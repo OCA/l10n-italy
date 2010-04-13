@@ -71,8 +71,7 @@
 		</record>
 		<record id="chartP" model="account.account.template">
 			<field name="code">P</field>
-			<field name="reconcile" eval="True"/>
-		
+			<field name="reconcile" eval="True"/>		
 			<field name="parent_id" ref="chart0"/>
 			<field name="type">view</field>
 			<field name="user_type" ref="account_type_view" />
