@@ -813,7 +813,7 @@
 			<field name="parent_id" ref="chartPAC4"/>
 			<field name="type">other</field>
 			<field name="user_type" ref="account_type_cash" />
-			<field name="name">Danaro e valori in cassa</field>
+			<field name="name">Denaro e valori in cassa</field>
 		
 		</record>
 		<record id="chartPAD" model="account.account.template">
