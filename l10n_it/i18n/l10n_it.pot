@@ -162,3 +162,9 @@ msgstr ""
 msgid "Province Name"
 msgstr ""
 
+#. module: l10n_it
+#: field:stock.picking,packages_no:0
+msgid "Number of Packages"
+msgstr ""
+
+

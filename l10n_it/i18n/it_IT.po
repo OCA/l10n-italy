@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.6\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2009-11-03 14:35:28+0000\n"
-"PO-Revision-Date: 2009-11-03 17:53+0100\n"
+"PO-Revision-Date: 2009-11-04 14:18+0100\n"
 "Last-Translator: Davide Corio <davide.corio@domsense.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -163,4 +163,9 @@ msgstr "Il codice di due caratteri della provincia."
 #: field:res.province,name:0
 msgid "Province Name"
 msgstr "Nome Provincia"
+
+#. module: l10n_it
+#: field:stock.picking,packages_no:0
+msgid "Number of Packages"
+msgstr "Numero di Colli"
 

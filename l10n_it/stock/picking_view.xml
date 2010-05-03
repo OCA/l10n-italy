@@ -11,6 +11,7 @@
                     <field name="goods_description_id"/>
                     <field name="transportation_reason_id"/>
                     <field name="carriage_condition_id"/>
+		    <field name="packages_no"/>
                 </field>
             </field>
 		</record>
