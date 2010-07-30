@@ -32,7 +32,8 @@
     "update_xml" : ['partner/partner_view.xml', 'stock/picking_view.xml', 'stock/carriage_condition_view.xml',
                     'stock/transportation_reason_view.xml', 'stock/goods_description_view.xml', 
                     'stock/transportation_reason_data.xml', 'stock/goods_description_data.xml', 
-                    'stock/carriage_condition_data.xml', 'sale/sale_view.xml', "security/ir.model.access.csv"],
+                    'stock/carriage_condition_data.xml', 'sale/sale_view.xml', "security/ir.model.access.csv",
+                    'partner/data/res.province.csv'],
     "demo_xml" : [],
     "active": False,
     "installable": True
