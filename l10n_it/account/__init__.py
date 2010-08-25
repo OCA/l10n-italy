@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2009 Domsense SRL (<http://www.domsense.com>). 
+#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
 #    All Rights Reserved
 #    $Id$
 #
@@ -20,10 +20,4 @@
 #
 ##############################################################################
 
-import l10n_it
-import partner
-import stock
-import sale
 import account
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
