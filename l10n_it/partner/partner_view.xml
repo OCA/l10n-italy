@@ -15,62 +15,11 @@
 	<record model="ir.ui.view" id="view_partner_form_inherit_province">
 		<field name="name">partner.form.province</field>
 		<field name="model">res.partner</field>
-		<field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
+		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="type">form</field>
 		<field name="arch" type="xml">
-		    <field name="address" mode="form,tree" colspan="4" nolabel="1" select="1" position="replace">
-		        <field name="address" mode="form,tree" colspan="4" nolabel="1" select="1">
-		            <form string="Address">
-		                <field name="type" select="2" colspan="4"/>
-		                <newline/>
-		                <field name="street" select="2"/>
-		                <field name="street2"/>
-		                <newline/>
-		                <field name="zip" select="2"/>
-		                <field name="city" select="2"/>
-		                <newline/>
-		                <field name="country_id" select="2" completion="1"/>
-		                <field name="province_id" select="2"/>
-		                <newline/>
-		                <field name="state_id" select="2"/>
-		                <field name="email" widget="email"/>
-		                <newline/>
-		                <field name="phone"/>
-		                <field name="fax"/>
-		                <newline/>
-		                <field name="job_ids" mode="tree,form" nolabel="1" colspan="4">
-		                    <tree string="Contacts" editable="top">
-		                        <field name="sequence_partner"/>
-		                        <field name="contact_id"/>
-		                        <field name="function_id"/>
-		                        <field name="phone"/>
-		                        <field name="fax"/>
-		                        <field name="extension"/>
-		                        <field name="other"/>
-		                        <field name="email"/>
-		                    </tree>
-		                    <form string="Contacts">
-		                        <field name="name"/>
-		                        <field name="sequence_partner"/>
-		                        <field name="contact_id"/>
-		                        <field name="function_id"/>
-		                        <field name="phone"/>
-		                        <field name="fax"/>
-		                        <field name="extension"/>
-		                        <field name="other"/>
-		                        <field name="email" widget="email"/>
-		                    </form>
-		                </field>
-		            </form>
-		            <tree string="Addresses">
-		                <field name="type"/>
-		                <field name="zip"/>
-		                <field name="city"/>
-		                <field name="country_id"/>
-		                <field name="phone"/>
-		                <field name="job_ids"/>
-		            </tree>
-		        </field>
+           <field name="country_id" completion="1" position="after">
+               <field name="province_id" select="2"/>
 		    </field>
 		</field>
 	 </record>

@@ -26,7 +26,7 @@
     'description': """This module customizes OpenERP in order to fit italian laws and mores""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
-    "depends" : ['base','base_contact','account','base_vat','account_chart','base_iban','stock','sale'],
+    "depends" : ['base','account','base_vat','account_chart','base_iban','stock','sale'],
     "init_xml" : [
     ],
     "update_xml" : ['partner/partner_view.xml', 'stock/picking_view.xml', 'stock/carriage_condition_view.xml',

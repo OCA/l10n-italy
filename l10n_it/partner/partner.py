@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2009 Domsense SRL (<http://www.domsense.com>). 
+#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
 #    All Rights Reserved
 #    $Id$
 #
@@ -49,7 +49,7 @@ class res_partner(osv.osv):
 
     _columns = {
         'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
-	'province': fields.related('address','province_id',type='many2one', relation='res.province', string='Province'),
+	    'province': fields.related('address','province_id',type='many2one', relation='res.province', string='Province'),
     }
     #_constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
     
