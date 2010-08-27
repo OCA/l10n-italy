@@ -1,0 +1,783 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0dev\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2010-08-27 13:51:26+0000\n"
+"PO-Revision-Date: 2010-08-27 16:16+0100\n"
+"Last-Translator: eLBati <lorenzo.battistini@albatos.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: l10n_it
+#: model:ir.actions.act_window,name:l10n_it.action_province
+#: model:ir.ui.menu,name:l10n_it.menu_province_partner
+msgid "Provinces"
+msgstr "Province"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.SR
+msgid "Siracusa"
+msgstr "Siracusa"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BO
+msgid "Bologna"
+msgstr "Bologna"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.GR
+msgid "Grosseto"
+msgstr "Grosseto"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RM
+msgid "Roma"
+msgstr "Roma"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CE
+msgid "Caserta"
+msgstr "Caserta"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AL
+msgid "Alessandria"
+msgstr "Alessandria"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AN
+msgid "Ancona"
+msgstr "Ancona"
+
+#. module: l10n_it
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nome del modulo non valido nella definizione dell'azione."
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_res_province
+#: field:res.city,province_id:0
+#: field:res.partner,province:0
+#: field:res.partner.address,province:0
+#: view:res.province:0
+msgid "Province"
+msgstr "Provincia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TE
+msgid "Teramo"
+msgstr "Teramo"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.LO
+msgid "Lodi"
+msgstr "Lodi"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.NO
+msgid "Novara"
+msgstr "Novara"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AV
+msgid "Avellino"
+msgstr "Avellino"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VR
+msgid "Verona"
+msgstr "Verona"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.FC
+msgid "Forlì-Cesena"
+msgstr "Forlì-Cesena"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VB
+msgid "Verbano-Cusio-Ossola"
+msgstr "Verbano-Cusio-Ossola"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RO
+msgid "Rovigo"
+msgstr "Rovigo"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CT
+msgid "Catania"
+msgstr "Catania"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TV
+msgid "Treviso"
+msgstr "Treviso"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.OG
+msgid "Ogliastra"
+msgstr "Ogliastra"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.LI
+msgid "Livorno"
+msgstr "Livorno"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.OT
+msgid "Olbia-Tempio"
+msgstr "Olbia-Tempio"
+
+#. module: l10n_it
+#: field:res.province,code:0
+msgid "Province Code"
+msgstr "Codice Provincia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TO
+msgid "Torino"
+msgstr "Torino"
+
+#. module: l10n_it
+#: field:res.city,istat_code:0
+msgid "ISTAT code"
+msgstr "Codice ISTAT"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_wizard_multi_charts_accounts
+msgid "wizard.multi.charts.accounts"
+msgstr "wizard.multi.charts.accounts"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BZ
+msgid "Bolzano"
+msgstr "Bolzano"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.NA
+msgid "Napoli"
+msgstr "Napoli"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CB
+msgid "Campobasso"
+msgstr "Campobasso"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_sale_order
+msgid "Sale Order"
+msgstr "Ordine di Vendita"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_account_account_template
+msgid "Templates for Accounts"
+msgstr "Templates per contabilità"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_stock_picking_carriage_condition
+#: view:stock.picking.carriage_condition:0
+#: field:stock.picking.carriage_condition,name:0
+msgid "Carriage Condition"
+msgstr "Porto"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.LU
+msgid "Lucca"
+msgstr "Lucca"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BS
+msgid "Brescia"
+msgstr "Brescia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PC
+msgid "Piacenza"
+msgstr "Piacenza"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AG
+msgid "Agrigento"
+msgstr "Agrigento"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PT
+msgid "Pistoia"
+msgstr "Pistoia"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_stock_picking_goods_description
+#: view:stock.picking.goods_description:0
+#: field:stock.picking.goods_description,name:0
+msgid "Description of Goods"
+msgstr "Aspetto dei Beni"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PE
+msgid "Pescara"
+msgstr "Pescara"
+
+#. module: l10n_it
+#: model:ir.actions.act_window,name:l10n_it.action_transportation_reason_tree
+#: model:ir.ui.menu,name:l10n_it.menu_action_transportation_reason_tree
+#: view:stock.picking.transportation_reason:0
+msgid "Reasons for transportation"
+msgstr "Causale del Trasporto"
+
+#. module: l10n_it
+#: model:ir.actions.act_window,name:l10n_it.action_carriage_condition_tree
+#: model:ir.ui.menu,name:l10n_it.menu_action_carriage_condition_tree
+#: view:stock.picking.carriage_condition:0
+msgid "Carriage Conditions"
+msgstr "Porto"
+
+#. module: l10n_it
+#: help:res.partner,fiscalcode:0
+msgid "Italian Fiscal Code"
+msgstr "Codice Fiscale"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VC
+msgid "Vercelli"
+msgstr "Vercelli"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.GE
+msgid "Genova"
+msgstr "Genova"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TA
+msgid "Taranto"
+msgstr "Taranto"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.EN
+msgid "Enna"
+msgstr "Enna"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PV
+msgid "Pavia"
+msgstr "Pavia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.NU
+msgid "Nuoro"
+msgstr "Nuoro"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VS
+msgid "Medio Campidano"
+msgstr "Medio Campidano"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CZ
+msgid "Catanzaro"
+msgstr "Catanzaro"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TS
+msgid "Trieste"
+msgstr "Trieste"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AO
+msgid "Aosta"
+msgstr "Aosta"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TP
+msgid "Trapani"
+msgstr "Trapani"
+
+#. module: l10n_it
+#: field:account.account.template,child_consol_ids:0
+msgid "Consolidated Children"
+msgstr "Conti consolidati"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.MO
+msgid "Modena"
+msgstr "Modena"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.UD
+msgid "Udine"
+msgstr "Udine"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CL
+msgid "Caltanissetta"
+msgstr "Caltanissetta"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RE
+msgid "Reggio Emilia"
+msgstr "Reggio Emilia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.SP
+msgid "La Spezia"
+msgstr "La Spezia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.FR
+msgid "Frosinone"
+msgstr "Frosinone"
+
+#. module: l10n_it
+#: help:res.province,code:0
+msgid "The province code in two chars."
+msgstr "Il codice di due caratteri della provincia."
+
+#. module: l10n_it
+#: model:ir.module.module,shortdesc:l10n_it.module_meta_information
+msgid "Italian Localisation"
+msgstr "Localizzazione Italiana"
+
+#. module: l10n_it
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "XML non valido per Visualizzazione Architettura!"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BL
+msgid "Belluno"
+msgstr "Belluno"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PN
+msgid "Pordenone"
+msgstr "Pordenone"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VT
+msgid "Viterbo"
+msgstr "Viterbo"
+
+#. module: l10n_it
+#: field:stock.picking,carriage_condition_id:0
+msgid "Carriage condition"
+msgstr "Porto"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.GO
+msgid "Gorizia"
+msgstr "Gorizia"
+
+#. module: l10n_it
+#: field:stock.picking,packages_no:0
+msgid "Number of Packages"
+msgstr "Numero di Colli"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.FE
+msgid "Ferrara"
+msgstr "Ferrara"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CH
+msgid "Chieti"
+msgstr "Chieti"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.KR
+msgid "Crotone"
+msgstr "Crotone"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.FG
+msgid "Foggia"
+msgstr "Foggia"
+
+#. module: l10n_it
+#: field:stock.picking.transportation_reason,name:0
+msgid "Reason For Transportation"
+msgstr "Causale del Trasporto"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PG
+msgid "Perugia"
+msgstr "Perugia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BA
+msgid "Bari"
+msgstr "Bari"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BN
+msgid "Benevento"
+msgstr "Benevento"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Indirizzi Partner"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.MS
+msgid "Massa-Carrara"
+msgstr "Massa-Carrara"
+
+#. module: l10n_it
+#: help:res.city,name:0
+msgid "The full name of the city."
+msgstr "Il nome completo del comune."
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_res_city
+#: view:res.city:0
+msgid "City"
+msgstr "Citta"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PI
+msgid "Pisa"
+msgstr "Pisa"
+
+#. module: l10n_it
+#: field:stock.picking.carriage_condition,note:0
+#: field:stock.picking.goods_description,note:0
+#: field:stock.picking.transportation_reason,note:0
+msgid "Note"
+msgstr "Note"
+
+#. module: l10n_it
+#: field:res.partner,fiscalcode:0
+msgid "Fiscal Code"
+msgstr "Codice Fiscale"
+
+#. module: l10n_it
+#: field:res.city,web_site:0
+msgid "Web Site"
+msgstr "Sito web"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.LT
+msgid "Latina"
+msgstr "Latina"
+
+#. module: l10n_it
+#: constraint:ir.ui.menu:0
+msgid "Error ! You can not create recursive Menu."
+msgstr "Error ! You can not create recursive Menu."
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.SA
+msgid "Salerno"
+msgstr "Salerno"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.ME
+msgid "Messina"
+msgstr "Messina"
+
+#. module: l10n_it
+#: field:res.city,cadaster_code:0
+msgid "Cadaster Code"
+msgstr "Cadaster Code"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.LC
+msgid "Lecco"
+msgstr "Lecco"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.LE
+msgid "Lecce"
+msgstr "Lecce"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.FI
+msgid "Firenze"
+msgstr "Firenze"
+
+#. module: l10n_it
+#: model:ir.ui.menu,name:l10n_it.menu_localisation
+msgid "Localisation"
+msgstr "Localizzazione"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CO
+msgid "Como"
+msgstr "Como"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RG
+msgid "Ragusa"
+msgstr "Ragusa"
+
+#. module: l10n_it
+#: model:ir.actions.act_window,name:l10n_it.action_city
+#: model:ir.ui.menu,name:l10n_it.menu_city_partner
+msgid "Cities"
+msgstr "Citta"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CA
+msgid "Cagliari"
+msgstr "Cagliari"
+
+#. module: l10n_it
+#: help:res.province,name:0
+msgid "The full name of the province."
+msgstr "Il nome completo della provincia."
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.IM
+msgid "Imperia"
+msgstr "Imperia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PA
+msgid "Palermo"
+msgstr "Palermo"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.MT
+msgid "Matera"
+msgstr "Matera"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VI
+msgid "Vicenza"
+msgstr "Vicenza"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AQ
+msgid "L'Aquila"
+msgstr "L'Aquila"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.MI
+msgid "Milano"
+msgstr "Milano"
+
+#. module: l10n_it
+#: field:res.city,phone_prefix:0
+msgid "Telephone Prefix"
+msgstr "Prefisso telefonico"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RI
+msgid "Rieti"
+msgstr "Rieti"
+
+#. module: l10n_it
+#: field:res.city,name:0
+msgid "City Name"
+msgstr "Nome del comune"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PZ
+msgid "Potenza"
+msgstr "Potenza"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BR
+msgid "Brindisi"
+msgstr "Brindisi"
+
+#. module: l10n_it
+#: model:ir.actions.act_window,name:l10n_it.action_goods_description_tree
+#: model:ir.ui.menu,name:l10n_it.menu_action_good_description_tree
+#: view:stock.picking.goods_description:0
+msgid "Descriptions of Goods"
+msgstr "Aspetto dei Beni"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.MC
+msgid "Macerata"
+msgstr "Macerata"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.SI
+msgid "Siena"
+msgstr "Siena"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VV
+msgid "Vibo Valentia"
+msgstr "Vibo Valentia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RC
+msgid "Reggio Calabria"
+msgstr "Reggio Calabria"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AP
+msgid "Ascoli Piceno"
+msgstr "Ascoli Piceno"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CI
+msgid "Carbonia-Iglesias"
+msgstr "Carbonia-Iglesias"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.OR
+msgid "Oristano"
+msgstr "Oristano"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AT
+msgid "Asti"
+msgstr "Asti"
+
+#. module: l10n_it
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "Il nome dell'oggetto deve iniziare per x_ e non deve contenere caratteri speciali!"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RA
+msgid "Ravenna"
+msgstr "Ravenna"
+
+#. module: l10n_it
+#: field:stock.picking,goods_description_id:0
+msgid "Description of goods"
+msgstr "Aspetto dei Beni"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.MN
+msgid "Mantova"
+msgstr "Mantova"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.SV
+msgid "Savona"
+msgstr "Savona"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BI
+msgid "Biella"
+msgstr "Biella"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.BG
+msgid "Bergamo"
+msgstr "Bergamo"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_stock_picking
+msgid "Picking List"
+msgstr "Lista di prelievo"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.RN
+msgid "Rimini"
+msgstr "Rimini"
+
+#. module: l10n_it
+#: field:res.city,zip:0
+msgid "ZIP"
+msgstr "CAP"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PO
+msgid "Prato"
+msgstr "Prato"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CN
+msgid "Cuneo"
+msgstr "Cuneo"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CS
+msgid "Cosenza"
+msgstr "Cosenza"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.SO
+msgid "Sondrio"
+msgstr "Sondrio"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PD
+msgid "Padova"
+msgstr "Padova"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.CR
+msgid "Cremona"
+msgstr "Cremona"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.IS
+msgid "Isernia"
+msgstr "Isernia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TN
+msgid "Trento"
+msgstr "Trento"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.TR
+msgid "Terni"
+msgstr "Terni"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PU
+msgid "Pesaro e Urbino"
+msgstr "Pesaro e Urbino"
+
+#. module: l10n_it
+#: model:ir.model,name:l10n_it.model_stock_picking_transportation_reason
+#: field:stock.picking,transportation_reason_id:0
+#: view:stock.picking.transportation_reason:0
+msgid "Reason for transportation"
+msgstr "Causale del Trasporto"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.PR
+msgid "Parma"
+msgstr "Parma"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VA
+msgid "Varese"
+msgstr "Varese"
+
+#. module: l10n_it
+#: field:res.province,name:0
+msgid "Province Name"
+msgstr "Nome Provincia"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.VE
+msgid "Venezia"
+msgstr "Venezia"
+
+#. module: l10n_it
+#: model:ir.module.module,description:l10n_it.module_meta_information
+msgid "This module customizes OpenERP in order to fit italian laws and mores"
+msgstr "Questo modulo personalizza OpenERP al fine di rispettare le leggi e le usanze italiane"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.SS
+msgid "Sassari"
+msgstr "Sassari"
+
+#. module: l10n_it
+#: model:res.province,name:l10n_it.AR
+msgid "Arezzo"
+msgstr "Arezzo"
+

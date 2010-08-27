@@ -33,6 +33,21 @@ class res_province(osv.osv):
 
 res_province()
 
+class res_province(osv.osv):
+    _name = 'res.city'
+    _description = 'City'
+    _columns = {
+        'name': fields.char('City Name', size=64, help='The full name of the city.', required=True),
+    	'province_id': fields.many2one('res.province','Province'),
+        'zip': fields.char('ZIP', size=5),
+        'phone_prefix': fields.char('Telephone Prefix' , size=16),
+        'istat_code': fields.char('ISTAT code', size=16),
+        'cadaster_code': fields.char('Cadaster Code', size=16),
+        'web_site': fields.char('Web Site', size=64),
+    }
+
+res_province()
+
 
 class res_partner(osv.osv):
     _inherit = 'res.partner'
@@ -49,7 +64,8 @@ class res_partner(osv.osv):
 
     _columns = {
         'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
-        'province': fields.related('address','province_id',type='many2one', relation='res.province', string='Province'),
+        'province': fields.related('address','province',type='char', string='Province'),
+        'city': fields.related('address','city',type='many2one', relation='res.city', string='City'),
     }
     #_constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
     
@@ -68,7 +84,23 @@ class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-	'province_id': fields.many2one('res.province','Province'),
+    	'province': fields.char('Province', size=2),
+        'city': fields.many2one('res.city', 'City'),
     }
+
+    def on_change_city(self, cr, uid, ids, city):
+        '''
+        res = {'value': {
+            'country_id': self.pool.get('res.country').search(cr, uid, [('name','=','Italy')])[0],
+            }}
+        '''
+        res = {'value':{}}
+        if(city):
+            city = self.pool.get('res.city').browse(cr, uid, city)
+            res = {'value': {
+                'province':city.province_id.code,
+                'zip': city.zip,
+                }}
+        return res
     
 res_partner_address()

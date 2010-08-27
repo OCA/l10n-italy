@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2009 Domsense SRL (<http://www.domsense.com>). 
+#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
 #    All Rights Reserved
 #    $Id$
 #
@@ -33,7 +33,7 @@
                     'stock/transportation_reason_view.xml', 'stock/goods_description_view.xml', 
                     'stock/transportation_reason_data.xml', 'stock/goods_description_data.xml', 
                     'stock/carriage_condition_data.xml', 'sale/sale_view.xml', "security/ir.model.access.csv",
-                    'partner/data/res.province.csv'],
+                    'partner/data/res.province.csv', 'partner/data/res.city.csv'],
     "demo_xml" : [],
     "active": False,
     "installable": True
