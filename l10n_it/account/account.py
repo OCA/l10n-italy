@@ -25,6 +25,7 @@ class wizard_multi_charts_accounts(osv.osv_memory):
         obj_acc_root = obj_multi.chart_template_id.account_root_id
         children_acc_template = obj_acc_template.search(cr, uid, [('parent_id','child_of',[obj_acc_root.id]),('nocreate','!=',True)])
         children_acc_template.sort()
+        #scrivo i consolidati in account.account prendendoli da account.template
         for account_template in obj_acc_template.browse(cr, uid, children_acc_template):
             if(account_template.child_consol_ids):
                 dig = obj_multi.code_digits

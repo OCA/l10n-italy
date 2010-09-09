@@ -12,7 +12,6 @@
             </field>
 	</record>
 
-<!--
 	<record model="ir.ui.view" id="view_partner_form_inherit_province">
 		<field name="name">partner.form.province</field>
 		<field name="model">res.partner</field>
@@ -21,10 +20,10 @@
 		<field name="arch" type="xml">
            <field name="country_id" completion="1" position="after">
                <field name="province" select="2"/>
+               <field name="region"/>
 		    </field>
 		</field>
 	 </record>
--->
 
 	<record model="ir.ui.view" id="view_partner_form_inherit_state">
 		<field name="name">partner.form.state</field>
@@ -45,6 +44,18 @@
 		<field name="arch" type="xml">
            <field name="city" position="replace">
                 <field name="municipality" on_change="on_change_municipality(municipality)"/>
+		    </field>
+		</field>
+	 </record>
+
+	<record model="ir.ui.view" id="view_partner_tree_inherit_city">
+		<field name="name">partner.tree.city</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_tree"/>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+           <field name="city" position="replace">
+                <field name="municipality"/>
 		    </field>
 		</field>
 	 </record>

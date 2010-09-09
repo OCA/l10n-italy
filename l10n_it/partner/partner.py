@@ -53,6 +53,7 @@ class res_municipality(osv.osv):
         'istat_code': fields.char('ISTAT code', size=16),
         'cadaster_code': fields.char('Cadaster Code', size=16),
         'web_site': fields.char('Web Site', size=64),
+        'region': fields.related('province_id','region',type='many2one', relation='res.region', string='Region', readonly=True),
     }
 
 res_municipality()
@@ -93,8 +94,9 @@ class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-#    	'province': fields.char('Province', size=2),
         'municipality': fields.many2one('res.municipality', 'Municipality'),
+        'province': fields.related('municipality','province_id',type='many2one', relation='res.province', string='Province', readonly=True),
+        'region': fields.related('municipality','region',type='many2one', relation='res.region', string='Region', readonly=True),
     }
 
     def on_change_municipality(self, cr, uid, ids, municipality):
