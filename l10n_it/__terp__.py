@@ -33,7 +33,7 @@
                     'stock/transportation_reason_view.xml', 'stock/goods_description_view.xml', 
                     'stock/transportation_reason_data.xml', 'stock/goods_description_data.xml', 
                     'stock/carriage_condition_data.xml', 'sale/sale_view.xml', "security/ir.model.access.csv",
-                    'partner/data/res.province.csv', 'partner/data/res.city.csv'],
+                    'partner/data/res.province.csv', 'partner/data/res.municipality.csv', 'partner/data/res.region.csv'],
     "demo_xml" : [],
     "active": False,
     "installable": True

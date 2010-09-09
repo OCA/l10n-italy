@@ -7,6 +7,10 @@ class account_account_template(osv.osv):
     }
 account_account_template()
 
+'''
+
+#####funzionalita' compatibile solo con openERP V6#####
+
 class wizard_multi_charts_accounts(osv.osv_memory):
     _inherit = 'wizard.multi.charts.accounts'
     _defaults = {
@@ -35,3 +39,4 @@ class wizard_multi_charts_accounts(osv.osv_memory):
                 obj_acc.write(cr, uid, account_id, {'child_consol_ids': [(6, 0, child_consol_ids)]})
 
 wizard_multi_charts_accounts()
+'''

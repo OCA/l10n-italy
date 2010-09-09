@@ -23,21 +23,30 @@
 from osv import osv
 from osv import fields
 
+class res_region(osv.osv):
+    _name = 'res.region'
+    _description = 'Region'
+    _columns = {
+        'name': fields.char('Region Name', size=64, help='The full name of the region.', required=True),
+    }
+res_region()
+
 class res_province(osv.osv):
     _name = 'res.province'
     _description = 'Province'
     _columns = {
-        'name': fields.char('Province Name', size=64, help='The full name of the province.', required=True, translate=True),
+        'name': fields.char('Province Name', size=64, help='The full name of the province.', required=True),
         'code': fields.char('Province Code', size=2, help='The province code in two chars.',required=True),
+        'region': fields.many2one('res.region','Region'),
     }
 
 res_province()
 
-class res_province(osv.osv):
-    _name = 'res.city'
-    _description = 'City'
+class res_municipality(osv.osv):
+    _name = 'res.municipality'
+    _description = 'Municipality'
     _columns = {
-        'name': fields.char('City Name', size=64, help='The full name of the city.', required=True),
+        'name': fields.char('Municipality', size=64, required=True),
     	'province_id': fields.many2one('res.province','Province'),
         'zip': fields.char('ZIP', size=5),
         'phone_prefix': fields.char('Telephone Prefix' , size=16),
@@ -46,7 +55,7 @@ class res_province(osv.osv):
         'web_site': fields.char('Web Site', size=64),
     }
 
-res_province()
+res_municipality()
 
 
 class res_partner(osv.osv):
@@ -64,8 +73,8 @@ class res_partner(osv.osv):
 
     _columns = {
         'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
-        'province': fields.related('address','province',type='char', string='Province'),
-        'city': fields.related('address','city',type='many2one', relation='res.city', string='City'),
+#        'province': fields.related('address','province',type='char', string='Province'),
+        'municipality': fields.related('address','municipality',type='many2one', relation='res.municipality', string='Municipality'),
     }
     #_constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
     
@@ -84,22 +93,22 @@ class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-    	'province': fields.char('Province', size=2),
-        'city': fields.many2one('res.city', 'City'),
+#    	'province': fields.char('Province', size=2),
+        'municipality': fields.many2one('res.municipality', 'Municipality'),
     }
 
-    def on_change_city(self, cr, uid, ids, city):
+    def on_change_municipality(self, cr, uid, ids, municipality):
         '''
         res = {'value': {
             'country_id': self.pool.get('res.country').search(cr, uid, [('name','=','Italy')])[0],
             }}
         '''
         res = {'value':{}}
-        if(city):
-            city = self.pool.get('res.city').browse(cr, uid, city)
+        if(municipality):
+            municipality = self.pool.get('res.municipality').browse(cr, uid, municipality)
             res = {'value': {
-                'province':city.province_id.code,
-                'zip': city.zip,
+#                'province':city.province_id.code,
+                'zip': municipality.zip,
                 }}
         return res
     

@@ -12,6 +12,7 @@
             </field>
 	</record>
 
+<!--
 	<record model="ir.ui.view" id="view_partner_form_inherit_province">
 		<field name="name">partner.form.province</field>
 		<field name="model">res.partner</field>
@@ -23,6 +24,7 @@
 		    </field>
 		</field>
 	 </record>
+-->
 
 	<record model="ir.ui.view" id="view_partner_form_inherit_state">
 		<field name="name">partner.form.state</field>
@@ -42,7 +44,7 @@
 		<field name="type">form</field>
 		<field name="arch" type="xml">
            <field name="city" position="replace">
-                <field name="city" on_change="on_change_city(city)"/>
+                <field name="municipality" on_change="on_change_municipality(municipality)"/>
 		    </field>
 		</field>
 	 </record>
@@ -59,6 +61,7 @@
                 <tree string="Province">
                     <field name="name"/>
                     <field name="code"/>
+                    <field name="region"/>
                 </tree>
             </field>
         </record>
@@ -71,6 +74,7 @@
                 <form string="Province">
                     <field name="name" select="1"/>
                     <field name="code" select="1"/>
+                    <field name="region" select="1"/>
                 </form>
             </field>
         </record>
@@ -86,15 +90,15 @@
         <menuitem action="action_province" id="menu_province_partner" parent="base.menu_localisation"/>
 
  <!--
-	city
+	Municipality
  -->
         
-        <record id="view_res_city_tree" model="ir.ui.view">
-            <field name="name">res.city.tree</field>
-            <field name="model">res.city</field>
+        <record id="view_res_municipality_tree" model="ir.ui.view">
+            <field name="name">res.municipality.tree</field>
+            <field name="model">res.municipality</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="City">
+                <tree string="Municipality">
                     <field name="name"/>
                     <field name="zip"/>
                     <field name="province_id"/>
@@ -102,12 +106,12 @@
             </field>
         </record>
         
-        <record id="view_res_city_form" model="ir.ui.view">
-            <field name="name">res.city.form</field>
-            <field name="model">res.city</field>
+        <record id="view_res_municipality_form" model="ir.ui.view">
+            <field name="name">res.municipality.form</field>
+            <field name="model">res.municipality</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="City">
+                <form string="Municipality">
                     <group col="4">
                         <field name="name" select="1" colspan="4"/>
                         <field name="zip" select="1"/>
@@ -120,14 +124,14 @@
             </field>
         </record>
         
-        <record id="action_city" model="ir.actions.act_window">
-            <field name="name">Cities</field>
+        <record id="action_municipality" model="ir.actions.act_window">
+            <field name="name">Municipalities</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.city</field>
+            <field name="res_model">res.municipality</field>
             <field name="view_type">form</field>
         </record>
         
-        <menuitem action="action_city" id="menu_city_partner" parent="base.menu_localisation"/>
+        <menuitem action="action_municipality" id="menu_municipality_partner" parent="base.menu_localisation"/>
 
 	</data>
 </openerp>
