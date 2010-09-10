@@ -18,7 +18,7 @@
 		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="type">form</field>
 		<field name="arch" type="xml">
-           <field name="country_id" completion="1" position="after">
+           <field name="country_id" position="before">
                <field name="province" select="2"/>
                <field name="region"/>
 		    </field>
