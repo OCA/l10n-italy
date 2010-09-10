@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.11\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-09-09 21:33:23+0000\n"
-"PO-Revision-Date: 2010-09-09 21:33:23+0000\n"
+"POT-Creation-Date: 2010-09-10 10:44:25+0000\n"
+"PO-Revision-Date: 2010-09-10 10:44:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,7 @@ msgid "Note"
 msgstr "Note"
 
 #. module: l10n_it
+#: field:hr.employee,fiscalcode:0
 #: field:res.partner,fiscalcode:0
 msgid "Fiscal Code"
 msgstr "Codice Fiscale"
@@ -208,6 +209,7 @@ msgid "Carriage Conditions"
 msgstr "Porto"
 
 #. module: l10n_it
+#: help:hr.employee,fiscalcode:0
 #: help:res.partner,fiscalcode:0
 msgid "Italian Fiscal Code"
 msgstr "Codice Fiscale"
