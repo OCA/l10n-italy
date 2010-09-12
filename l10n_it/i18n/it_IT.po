@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.11\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-09-10 10:44:25+0000\n"
-"PO-Revision-Date: 2010-09-10 10:44:25+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2010-09-12 09:48:31+0000\n"
+"PO-Revision-Date: 2010-09-12 11:49+0100\n"
+"Last-Translator: eLBati <lorenzo.battistini@albatos.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+
+#. module: l10n_it
+#: field:res.partner.address,municipality:0
+msgid "City"
+msgstr "Città"
 
 #. module: l10n_it
 #: model:ir.actions.act_window,name:l10n_it.action_province
@@ -190,7 +195,6 @@ msgstr "Aspetto dei Beni"
 #: view:res.municipality:0
 #: field:res.municipality,name:0
 #: field:res.partner,municipality:0
-#: field:res.partner.address,municipality:0
 msgid "Municipality"
 msgstr "Comune"
 

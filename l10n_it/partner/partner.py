@@ -94,7 +94,7 @@ class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-        'municipality': fields.many2one('res.municipality', 'Municipality'),
+        'municipality': fields.many2one('res.municipality', 'City'),
         'province': fields.related('municipality','province_id',type='many2one', relation='res.province', string='Province', readonly=True),
         'region': fields.related('municipality','region',type='many2one', relation='res.region', string='Region', readonly=True),
     }
