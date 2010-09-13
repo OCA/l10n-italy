@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2009 Domsense SRL (<http://www.domsense.com>). 
-#    All Rights Reserved
-#    $Id$
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 OpenERP Italian Community (<http://www.openerp-italia.org>). All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,21 +18,34 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+
 {
-    'name': 'Italy - Minimal',
-    'version': '1.1',
-    'category': 'Localisation/Account Charts',
-    'description': """This is the base module to manage the accounting chart for Italy in Open ERP.""",
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
-    "depends" : ['base', 'account', 'base_vat', 'account_chart', 'base_iban'],
-    "init_xml" : [
-    ],
-    "update_xml" : ['account_tax_code.xml','account_chart.xml',
-                    'account_tax.xml','account_chart_wizard.xml'],
-    "demo_xml" : [],
-    "active": False,
-    "installable": True
+    "name" : "Minimal Italian Chart of Accounts",
+    "version" : "0.1",
+    "license": "AGPL-3",
+    "depends" : [
+                 "account", 
+                 "account_chart", 
+                 "base",
+                 "l10n_it",
+        ],
+    "author" : "OpenERP Italian Community",
+    "description": """Piano dei conti italiano minimale""",
+    'website': 'http://www.openerp-italia.org/',
+    'init_xml': [
+        ],
+    'update_xml': [
+        'data/account.account.type.csv',
+        'data/account.account.template.csv',
+        'data/account.tax.code.template.csv',
+        'account_chart.xml',
+        'account_tax.xml',
+        'l10n_chart_it_minimal.xml',
+        ],
+    'demo_xml': [
+        ],
+    'installable': True,
+    'active': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2009 Domsense SRL (<http://www.domsense.com>). 
-#    All Rights Reserved
-#    $Id$
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2009 Net Insight
+#    Copyright (C) 2010 Open Labs Business Solutions 
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,7 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import l10n_it
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
