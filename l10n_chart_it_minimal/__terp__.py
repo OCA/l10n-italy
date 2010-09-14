@@ -24,6 +24,7 @@
     "name" : "Minimal Italian Chart of Accounts",
     "version" : "0.1",
     "license": "AGPL-3",
+    "category" : "Localisation/Account Charts",
     "depends" : [
                  "account", 
                  "account_chart", 
