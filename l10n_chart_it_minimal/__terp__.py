@@ -32,7 +32,7 @@
                  "l10n_it",
         ],
     "author" : "OpenERP Italian Community",
-    "description": """Piano dei conti italiano minimale""",
+    "description": """Piano dei conti italiano minimale, da usare come base di partenza per realizzare il proprio""",
     'website': 'http://www.openerp-italia.org/',
     'init_xml': [
         ],
