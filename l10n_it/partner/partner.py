@@ -95,8 +95,8 @@ class res_partner_address(osv.osv):
 
     _columns = {
         'municipality': fields.many2one('res.municipality', 'City'),
-        'province': fields.related('municipality','province_id',type='many2one', relation='res.province', string='Province', readonly=True),
-        'region': fields.related('municipality','region',type='many2one', relation='res.region', string='Region', readonly=True),
+        'province': fields.related('municipality','province_id',type='many2one', relation='res.province', string='Province'),
+        'region': fields.related('municipality','region',type='many2one', relation='res.region', string='Region'),
     }
 
     def on_change_municipality(self, cr, uid, ids, municipality):
@@ -109,7 +109,8 @@ class res_partner_address(osv.osv):
         if(municipality):
             municipality = self.pool.get('res.municipality').browse(cr, uid, municipality)
             res = {'value': {
-#                'province':city.province_id.code,
+                'province':municipality.province_id.id,
+                'region':municipality.region.id,
                 'zip': municipality.zip,
                 }}
         return res
