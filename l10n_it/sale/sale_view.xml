@@ -7,6 +7,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="fiscal_position" position="after">
+                	<field name="validity"/>
                 </field>
             </field>
 		</record>        
