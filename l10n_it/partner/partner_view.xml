@@ -25,17 +25,6 @@
 		</field>
 	 </record>
 
-	<record model="ir.ui.view" id="view_partner_form_inherit_state">
-		<field name="name">partner.form.state</field>
-		<field name="model">res.partner</field>
-		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="type">form</field>
-		<field name="arch" type="xml">
-           <field name="state_id" position="replace">
-		    </field>
-		</field>
-	 </record>
-
 	<record model="ir.ui.view" id="view_partner_form_inherit_city">
 		<field name="name">partner.form.city</field>
 		<field name="model">res.partner</field>

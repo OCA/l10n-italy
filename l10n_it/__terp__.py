@@ -36,7 +36,8 @@
                     'hr/employee_view.xml',
                     'partner/data/res.region.csv',
                     'partner/data/res.province.csv',
-                    'partner/data/res.municipality.csv'],
+                    'partner/data/res.municipality.csv',
+                    'partner/data/res.partner.title.csv'],
     "demo_xml" : [],
     "active": False,
     "installable": True
