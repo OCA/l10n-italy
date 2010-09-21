@@ -233,3 +233,15 @@ msgstr "Porto"
 msgid "This module customizes OpenERP in order to fit italian laws and mores"
 msgstr "Questo modulo personalizza OpenERP al fine di rispettare le leggi e le usanze italiane"
 
+#. module: l10n_it
+#: code:addons/l10n_it/account/invoice.py:0
+#, python-format
+msgid "Date Inconsistency"
+msgstr "Inconsistenza nelle date"
+
+#. module: l10n_it
+#: code:addons/l10n_it/account/invoice.py:0
+#, python-format
+msgid "Cannot create invoice! Post the invoice with a greater date"
+msgstr "Impossibile registrare la fattura in contabilità! Esistono fatture registrate con data successiva alla fattura corrente; inserisci una data superiore per il documento."
+
