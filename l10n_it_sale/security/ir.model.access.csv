@@ -5,9 +5,3 @@
 "access_stock_picking_goods_description_user","stock.picking.goods_description.user","model_stock_picking_goods_description","base.group_user",1,0,0,0
 "access_stock_picking_carriage_condition_manager","stock.picking.carriage_condition manager","model_stock_picking_carriage_condition","stock.group_stock_manager",1,1,1,1
 "access_stock_picking_goods_description_user","stock.picking.carriage_condition user","model_stock_picking_carriage_condition","base.group_user",1,0,0,0
-"access_res_province_group_all","res_province group_user_all","model_res_province",,1,0,0,0
-"access_res_province_group_user","res_province group_user","model_res_province","base.group_partner_manager",1,1,1,1
-"access_res_municipality_group_all","res_municipality group_user_all","model_res_municipality",,1,0,0,0
-"access_res_municipality_group_user","res_municipality group_user","model_res_municipality","base.group_partner_manager",1,1,1,1
-"access_res_region_group_all","res_region group_user_all","model_res_region",,1,0,0,0
-"access_res_region_group_user","res_region group_user","model_res_region","base.group_partner_manager",1,1,1,1

@@ -20,9 +20,8 @@
 #
 ##############################################################################
 
-import netsvc
-import pooler, tools
-
-from osv import fields, osv
-
+import stock
+import sale
+import hr
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

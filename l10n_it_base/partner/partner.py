@@ -61,33 +61,10 @@ res_municipality()
 
 class res_partner(osv.osv):
     _inherit = 'res.partner'
-
-    def check_fiscalcode(self, cr, uid, ids, context={}):
-        
-        for partner in self.browse(cr, uid, ids):
-            if not partner.fiscalcode:
-                return True
-            if len(partner.fiscalcode) != 16:
-                return False
-
-        return True
-
     _columns = {
-        'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
 #        'province': fields.related('address','province',type='char', string='Province'),
         'municipality': fields.related('address','municipality',type='many2one', relation='res.municipality', string='Municipality'),
-    }
-    #_constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
-    
-    def check_fiscalcode(self, fiscalcode):
-        import re
-        pattern = r'^[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}$'
-        #if len(fiscalcode) == 16 and re.findall(regexp,fiscalcode):
-        #if len(fiscalcode) == 16:
-        return True
-        #else:
-        #    return False
-    
+    }    
 res_partner()
 
 class res_partner_address(osv.osv):

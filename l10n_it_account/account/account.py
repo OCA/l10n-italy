@@ -41,3 +41,32 @@ class wizard_multi_charts_accounts(osv.osv_memory):
 
 wizard_multi_charts_accounts()
 '''
+
+class res_partner(osv.osv):
+    _inherit = 'res.partner'
+
+    def check_fiscalcode(self, cr, uid, ids, context={}):
+        
+        for partner in self.browse(cr, uid, ids):
+            if not partner.fiscalcode:
+                return True
+            if len(partner.fiscalcode) != 16:
+                return False
+
+        return True
+
+    _columns = {
+        'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
+    }
+    #_constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
+    
+    def check_fiscalcode(self, fiscalcode):
+        import re
+        pattern = r'^[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}$'
+        #if len(fiscalcode) == 16 and re.findall(regexp,fiscalcode):
+        #if len(fiscalcode) == 16:
+        return True
+        #else:
+        #    return False
+    
+res_partner()

@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). All Rights Reserved
+#    
+#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#    All Rights Reserved
+#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,30 +19,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
 {
-    "name" : "Minimal Italian Chart of Accounts",
-    "version" : "0.1",
-    "license": "AGPL-3",
-    "category" : "Localisation/Account Charts",
-    "depends" : ["l10n_it_account",],
-    "author" : "OpenERP Italian Community",
-    "description": """Piano dei conti italiano minimale, da usare come base di partenza per realizzare il proprio""",
-    'website': 'http://www.openerp-italia.org/',
-    'init_xml': [
-        ],
-    'update_xml': [
-        'data/account.account.type.csv',
-        'data/account.account.template.csv',
-        'data/account.tax.code.template.csv',
-        'account_chart.xml',
-        'account_tax.xml',
-        'l10n_chart_it_minimal.xml',
-        ],
-    'demo_xml': [
-        ],
-    'installable': True,
-    'active': False,
+    'name': 'Italian Localisation - Base',
+    'version': '0.1',
+    'category': 'Localisation/Italy',
+    'description': """This module customizes OpenERP in order to fit italian laws and mores\nBase version""",
+    'author': 'OpenERP Italian Community',
+    'website': 'http://www.openerp-italia.org',
+    'license': 'AGPL-3',
+    "depends" : ['base'],
+    "init_xml" : [
+    ],
+    "update_xml" : ['partner/partner_view.xml',
+                    "security/ir.model.access.csv", 
+                    'partner/data/res.region.csv',
+                    'partner/data/res.province.csv',
+                    'partner/data/res.municipality.csv',
+                    'partner/data/res.partner.title.csv'],
+    "demo_xml" : [],
+    "active": False,
+    "installable": True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

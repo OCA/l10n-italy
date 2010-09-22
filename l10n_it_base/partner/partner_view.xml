@@ -1,17 +1,6 @@
 <?xml version="1.0" ?>
 <openerp>
 	<data>
-        <record id="view_partner_form" model="ir.ui.view">
-            <field name="name">res.partner.fiscalcode.inherit</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="account.view_partner_property_form"/>
-            <field name="arch" type="xml">
-                <field name="property_account_position" position="after">
-                    <field name="fiscalcode"/>
-                </field>
-            </field>
-	</record>
-
 	<record model="ir.ui.view" id="view_partner_form_inherit_province">
 		<field name="name">partner.form.province</field>
 		<field name="model">res.partner</field>

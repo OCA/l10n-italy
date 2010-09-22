@@ -25,7 +25,7 @@
     "author" : "OpenERP Italian Community",
     "category" : "Localisation/Account Charts",
     "description": "This is the module to manage the accounting chart for Italy (CC2424 Profile) in Open ERP.",
-    "depends" : ["account", "base_iban", "base_vat", "account_chart"],
+    "depends" : ["l10n_it_account"],
     "demo_xml" : [],
     "update_xml" : ['account_tax_code.xml',"account_chart.xml",
                     'account_tax.xml','l10n_chart_it_cc2424_wizard.xml'],

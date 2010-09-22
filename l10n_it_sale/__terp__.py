@@ -20,24 +20,21 @@
 #
 ##############################################################################
 {
-    'name': 'Italian Localisation',
-    'version': '1.1',
+    'name': 'Italian Localisation - Sale',
+    'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores""",
+    'description': """This module customizes OpenERP in order to fit italian laws and mores\nSale version""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
-    "depends" : ['base','account','base_vat','account_chart','base_iban','stock','sale','hr'],
+    'license': 'AGPL-3',
+    "depends" : ['l10n_it_base','stock','sale','hr'],
     "init_xml" : [
     ],
-    "update_xml" : ['partner/partner_view.xml', 'stock/picking_view.xml', 'stock/carriage_condition_view.xml',
+    "update_xml" : ['stock/picking_view.xml', 'stock/carriage_condition_view.xml',
                     'stock/transportation_reason_view.xml', 'stock/goods_description_view.xml', 
                     'stock/transportation_reason_data.xml', 'stock/goods_description_data.xml', 
                     'stock/carriage_condition_data.xml', 'sale/sale_view.xml', "security/ir.model.access.csv", 
-                    'hr/employee_view.xml',
-                    'partner/data/res.region.csv',
-                    'partner/data/res.province.csv',
-                    'partner/data/res.municipality.csv',
-                    'partner/data/res.partner.title.csv'],
+                    'hr/employee_view.xml',],
     "demo_xml" : [],
     "active": False,
     "installable": True
