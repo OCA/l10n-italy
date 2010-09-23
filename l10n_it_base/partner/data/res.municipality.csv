@@ -442,7 +442,7 @@
 "Gattico","NO","28013","0322","003071","D937","http://www.comune.gattico.no.it/"
 "Ghemme","NO","28074","0163","003073","E001","http://www.comune.ghemme.novara.it/"
 "Gozzano","NO","28024","0322","003076","E120","http://www.comune.gozzano.no.it/"
-"Granozzo con Monticello","NO","28060","0321","003077","E143",
+"Granozzo Con Monticello","NO","28060","0321","003077","E143",
 "Grignasco","NO","28075","0163","003079","E177","http://www.comune.grignasco.no.it/"
 "Invorio","NO","28045","0322","003082","E314","http://www.comuneinvorio.it/"
 "Landiona","NO","28064","0321","003083","E436","http://www.comune.landiona.no.it/"
@@ -964,7 +964,7 @@
 "Montechiaro D'Acqui","AL","15010","0144","006106","F469",
 "Montegioco","AL","15050","0131","006107","F518",
 "Montemarzino","AL","15050","0131","006108","F562",
-"Morano sul Po","AL","15025","0142","006109","F707",
+"Morano Sul Po","AL","15025","0142","006109","F707",
 "Morbello","AL","15010","0144","006110","F713",
 "Mornese","AL","15075","0143","006111","F737",
 "Morsasco","AL","15010","0144","006112","F751",
@@ -1211,7 +1211,7 @@
 "Celle Ligure","SV","17015","019","009022","C443","http://www.comune.celle.sv.it/"
 "Cengio","SV","17056","019","009023","C463",
 "Ceriale","SV","17023","0182","009024","C510","http://www.comune.ceriale.sv.it/"
-"Cisano sul Neva","SV","17035","0182","009025","C729","http://www.cisanosulneva.it/"
+"Cisano Sul Neva","SV","17035","0182","009025","C729","http://www.cisanosulneva.it/"
 "Cosseria","SV","17017","019","009026","D095","http://www.comune.cosseria.sv.it/"
 "Dego","SV","17058","019","009027","D264","http://www.comune.dego.sv.it/"
 "Erli","SV","17030","0182","009028","D424",
@@ -1402,7 +1402,7 @@
 "Castelveccana","VA","21010","0332","012045","C181",
 "Castiglione Olona","VA","21043","0331","012046","C300","http://www.comune.castiglione-olona.va.it/"
 "Castronno","VA","21040","0332","012047","C343","http://www.comune.castronno.va.it/"
-"Cavaria con Premezzo","VA","21044","0331","012048","C382","http://www.comune.cavariaconpremezzo.va.it/"
+"Cavaria Con Premezzo","VA","21044","0331","012048","C382","http://www.comune.cavariaconpremezzo.va.it/"
 "Cazzago Brabbia","VA","21020","0332","012049","C409",
 "Cislago","VA","21040","02","012050","C732","http://www.comunedicislago.it/"
 "Cittiglio","VA","21033","0332","012051","C751",
@@ -1415,7 +1415,7 @@
 "Cuasso Al Monte","VA","21050","0332","012058","D192","http://www.comune.cuassoalmonte.va.it/"
 "Cugliate-Fabiasco","VA","21030","0332","012059","D199",
 "Cunardo","VA","21035","0332","012060","D204",
-"Curiglia con Monteviasco","VA","21010","0332","012061","D217",
+"Curiglia Con Monteviasco","VA","21010","0332","012061","D217",
 "Cuveglio","VA","21030","0332","012062","D238",
 "Cuvio","VA","21030","0332","012063","D239","http://www.comune.cuvio.va.it/"
 "Daverio","VA","21020","0332","012064","D256","http://www.comune.daverio.va.it/"
@@ -1439,7 +1439,7 @@
 "Inarzo","VA","21020","0332","012082","E292","http://www.comune.inarzo.va.it/"
 "Induno Olona","VA","21056","0332","012083","E299","http://www.comune.induno-olona.va.it/"
 "Ispra","VA","21027","0332","012084","E367","http://www.comune.ispra.va.it/"
-"Jerago con Orago","VA","21040","0331","012085","E386",
+"Jerago Con Orago","VA","21040","0331","012085","E386",
 "Lavena Ponte Tresa","VA","21037","0332","012086","E494","http://www.comune.lavenapontetresa.va.it/"
 "Laveno-Mombello","VA","21014","0332","012087","E496","http://www.comune.laveno.va.it/"
 "Leggiuno","VA","21038","0332","012088","E510",
@@ -1461,12 +1461,12 @@
 "Monvalle","VA","21020","0332","012104","F703","http://www.comune.monvalle.va.it/"
 "Morazzone","VA","21040","0332","012105","F711","http://www.comune.morazzone.va.it/"
 "Mornago","VA","21020","0331","012106","F736","http://www.comune.mornago.va.it/"
-"Oggiona con Santo Stefano","VA","21040","0331","012107","G008","http://www.comune.oggionaconsantostefano.va.it/"
+"Oggiona Con Santo Stefano","VA","21040","0331","012107","G008","http://www.comune.oggionaconsantostefano.va.it/"
 "Olgiate Olona","VA","21057","0331","012108","G028","http://www.comuneolgiateolona.it/"
 "Origgio","VA","21040","02","012109","G103","http://www.comune.origgio.va.it/"
 "Orino","VA","21030","0332","012110","G105","http://www.orino.info/"
 "Osmate","VA","21018","0331","012111","E529",
-"Pino sulla Sponda Del Lago Maggiore","VA","21010","0332","012112","G677",
+"Pino Sulla Sponda Del Lago Maggiore","VA","21010","0332","012112","G677",
 "Porto Ceresio","VA","21050","0332","012113","G906","http://www.comune.portoceresio.va.it/"
 "Porto Valtravaglia","VA","21010","0332","012114","G907","http://www.comune-portovaltravaglia.it/"
 "Rancio Valcuvia","VA","21030","0332","012115","H173",
@@ -1497,7 +1497,7 @@
 "Vizzola Ticino","VA","21010","0331","012140","M101","http://www.comune.vizzolaticino.va.it/"
 "Sangiano","VA","21038","0332","012141","H872",
 "Albavilla","CO","22031","031","013003","A143","http://www.comune.albavilla.co.it/"
-"Albese con Cassano","CO","22032","031","013004","A153","http://www.comune.albeseconcassano.co.it/"
+"Albese Con Cassano","CO","22032","031","013004","A153","http://www.comune.albeseconcassano.co.it/"
 "Albiolo","CO","22070","031","013005","A164",
 "Alserio","CO","22040","031","013006","A224",
 "Alzate Brianza","CO","22040","031","013007","A249","http://www.comune.alzate-brianza.co.it/"
@@ -1509,7 +1509,7 @@
 "Barni","CO","22030","031","013015","A670",
 "Bellagio","CO","22021","031","013019","A744","http://www.bellagiocomune.it/"
 "Bene Lario","CO","22010","0344","013021","A778",
-"Beregazzo con Figliaro","CO","22070","031","013022","A791",
+"Beregazzo Con Figliaro","CO","22070","031","013022","A791",
 "Binago","CO","22070","031","013023","A870","http://www.comune.binago.co.it/"
 "Bizzarone","CO","22020","031","013024","A898","http://comune.bizzarone.co.it/"
 "Blessagno","CO","22028","031","013025","A904",
@@ -1534,7 +1534,7 @@
 "Carugo","CO","22060","031","013048","B851","http://www.comune.carugo.co.it/"
 "Casasco D'Intelvi","CO","22022","031","013050","B942",
 "Caslino D'Erba","CO","22030","031","013052","B974",
-"Casnate con Bernate","CO","22070","031","013053","B977","http://www.comune.casnateconbernate.co.it/"
+"Casnate Con Bernate","CO","22070","031","013053","B977","http://www.comune.casnateconbernate.co.it/"
 "Cassina Rizzardi","CO","22070","031","013055","C020","http://www.cassinarizzardi.com/"
 "Castelmarte","CO","22030","031","013058","C206","http://www.comune.castelmarte.co.it/"
 "Castelnuovo Bozzente","CO","22070","031","013059","C220",
@@ -1546,7 +1546,7 @@
 "Cernobbio","CO","22012","031","013065","C520","http://www.comune.cernobbio.co.it/"
 "Cirimido","CO","22070","031","013068","C724","http://www.comune.cirimido.co.it/"
 "Civenna","CO","22030","031","013070","C754","http://www.comune-civenna.it/"
-"Claino con Osteno","CO","22010","0344","013071","C787",
+"Claino Con Osteno","CO","22010","0344","013071","C787",
 "Colonno","CO","22010","031","013074","C902",
 "Como","CO","22100","031","013075","C933","http://www.comune.como.it/"
 "Consiglio Di Rumo","CO","22010","0344","013076","C965",
@@ -1571,7 +1571,7 @@
 "Germasino","CO","22010","0344","013108","D986",
 "Gironico","CO","22020","031","013109","E051",
 "Grandate","CO","22070","031","013110","E139","http://www.comune.grandate.co.it/"
-"Grandola ed Uniti","CO","22010","0344","013111","E141",
+"Grandola Ed Uniti","CO","22010","0344","013111","E141",
 "Gravedona","CO","22015","0344","013112","E151",
 "Griante","CO","22011","0344","013113","E172",
 "Guanzate","CO","22070","031","013114","E235","http://www.comune.guanzate.co.it/"
@@ -1656,9 +1656,9 @@
 "Veleso","CO","22020","031","013236","L715",
 "Veniano","CO","22070","031","013238","L737","http://www.comunediveniano.it/"
 "Vercana","CO","22013","0344","013239","L748",
-"Vertemate con Minoprio","CO","22070","031","013242","L792","http://www.comune.vertemateconminoprio.co.it/"
+"Vertemate Con Minoprio","CO","22070","031","013242","L792","http://www.comune.vertemateconminoprio.co.it/"
 "Villa Guardia","CO","22079","031","013245","L956","http://www.comune.villaguardia.co.it/"
-"Albaredo per San Marco","SO","23010","0342","014001","A135","http://www.vallidelbitto.it/"
+"Albaredo Per San Marco","SO","23010","0342","014001","A135","http://www.vallidelbitto.it/"
 "Albosaggia","SO","23010","0342","014002","A172","http://www.comune.albosaggia.so.it/"
 "Andalo Valtellino","SO","23014","0342","014003","A273",
 "Aprica","SO","23031","0342","014004","A337","http://www.comune.aprica.so.it/"
@@ -1667,7 +1667,7 @@
 "Berbenno Di Valtellina","SO","23010","0342","014007","A787","http://www.comune.berbenno.so.it/"
 "Bianzone","SO","23030","0342","014008","A848","http://www.comune.bianzone.so.it/"
 "Bormio","SO","23032","0342","014009","B049","http://www.comune.bormio.so.it/"
-"Buglio in Monte","SO","23010","0342","014010","B255",
+"Buglio In Monte","SO","23010","0342","014010","B255",
 "Caiolo","SO","23010","0342","014011","B366","http://www.comune.caiolo.so.it/"
 "Campodolcino","SO","23021","0343","014012","B530","http://www.comune.campodolcino.so.it/"
 "Caspoggio","SO","23020","0342","014013","B993","http://www.comune.caspoggio.so.it/"
@@ -1676,7 +1676,7 @@
 "Cedrasco","SO","23010","0342","014016","C418","http://www.comune.cedrasco.so.it/"
 "Cercino","SO","23016","0342","014017","C493",
 "Chiavenna","SO","23022","0343","014018","C623","http://www.comune.chiavenna.so.it/"
-"Chiesa in Valmalenco","SO","23023","0342","014019","C628","http://www.comune.chiesainvalmalenco.so.it/"
+"Chiesa In Valmalenco","SO","23023","0342","014019","C628","http://www.comune.chiesainvalmalenco.so.it/"
 "Chiuro","SO","23030","0342","014020","C651","http://www.comune.chiuro.so.it/"
 "Cino","SO","23010","0342","014021","C709",
 "Civo","SO","23010","0342","014022","C785",
@@ -1701,7 +1701,7 @@
 "Mello","SO","23010","0342","014041","F115",
 "Menarola","SO","23020","0343","014042","F121",
 "Mese","SO","23020","0343","014043","F153",
-"Montagna in Valtellina","SO","23020","0342","014044","F393",
+"Montagna In Valtellina","SO","23020","0342","014044","F393",
 "Morbegno","SO","23017","0342","014045","F712","http://www.morbegno.it/"
 "Novate Mezzola","SO","23025","0343","014046","F956","http://www.comune.novatemezzola.so.it/"
 "Pedesina","SO","23010","0342","014047","G410",
@@ -1709,7 +1709,7 @@
 "Piateda","SO","23020","0342","014049","G576","http://www.comune.piateda.so.it/"
 "Piuro","SO","23020","0343","014050","G718","http://www.piuro.net/"
 "Poggiridenti","SO","23020","0342","014051","G431","http://www.comune.poggiridenti.so.it/"
-"Ponte in Valtellina","SO","23026","0342","014052","G829","http://www.comune.ponteinvaltellina.so.it/"
+"Ponte In Valtellina","SO","23026","0342","014052","G829","http://www.comune.ponteinvaltellina.so.it/"
 "Postalesio","SO","23010","0342","014053","G937","http://www.comune.postalesio.so.it/"
 "Prata Camportaccio","SO","23020","0343","014054","G993","http://www.comune.pratacamportaccio.so.it/"
 "Rasura","SO","23010","0342","014055","H192","http://www.rasura.com/"
@@ -1754,7 +1754,7 @@
 "Bellusco","MI","20040","039","015017","A759","http://www.comune.bellusco.mi.it/"
 "Bernareggio","MI","20044","039","015018","A802","http://www.comune.bernareggio.mi.it/"
 "Bernate Ticino","MI","20010","02","015019","A804","http://www.comune.bernateticino.mi.it/"
-"Besana in Brianza","MI","20045","0362","015021","A818","http://www.comune.besanainbrianza.mi.it/"
+"Besana In Brianza","MI","20045","0362","015021","A818","http://www.comune.besanainbrianza.mi.it/"
 "Besate","MI","20080","02","015022","A820","http://www.comune.besate.mi.it/"
 "Biassono","MI","20046","039","015023","A849","http://www.biassono.org/"
 "Binasco","MI","20082","02","015024","A872","http://www.comunebinasco.it/"
@@ -1788,7 +1788,7 @@
 "Castano Primo","MI","20022","0331","015062","C052","http://www.comune.castanoprimo.mi.it/"
 "Cavenago Di Brianza","MI","20040","02","015068","C395","http://www.comune.cavenagobrianza.mi.it/"
 "Ceriano Laghetto","MI","20020","02","015069","C512","http://www.comune.cerianolaghetto.mi.it/"
-"Cernusco sul Naviglio","MI","20063","02","015070","C523","http://www.comune.cernuscosulnaviglio.mi.it/"
+"Cernusco Sul Naviglio","MI","20063","02","015070","C523","http://www.comune.cernuscosulnaviglio.mi.it/"
 "Cerro Al Lambro","MI","20070","02","015071","C536","http://www.comune.cerroallambro.mi.it/"
 "Cerro Maggiore","MI","20023","0331","015072","C537",
 "Cesano Boscone","MI","20090","02","015074","C565","http://www.comune.cesano-boscone.mi.it/"
@@ -1825,7 +1825,7 @@
 "Lainate","MI","20020","02","015116","E415","http://www.comune.lainate.mi.it/"
 "Lazzate","MI","20020","02","015117","E504","http://www.lazzate.com/"
 "Legnano","MI","20025","0331","015118","E514","http://www.legnano.org/"
-"Lentate sul Seveso","MI","20030","0362","015119","E530","http://www.comune.lentatesulseveso.mi.it/"
+"Lentate Sul Seveso","MI","20030","0362","015119","E530","http://www.comune.lentatesulseveso.mi.it/"
 "Lesmo","MI","20050","039","015120","E550","http://www.lesmo.org/"
 "Limbiate","MI","20051","02","015121","E591","http://www.comune.limbiate.mi.it/"
 "Liscate","MI","20060","02","015122","E610","http://www.comune.liscate.mi.it/"
@@ -1834,7 +1834,7 @@
 "Macherio","MI","20050","039","015129","E786","http://www.comune.macherio.mi.it/"
 "Magenta","MI","20013","02","015130","E801","http://www.comune.magenta.mi.it/"
 "Magnago","MI","20020","0331","015131","E819","http://www.comune.magnago.mi.it/"
-"Marcallo con Casone","MI","20010","02","015134","E921","http://www.marcallo.it/"
+"Marcallo Con Casone","MI","20010","02","015134","E921","http://www.marcallo.it/"
 "Masate","MI","20060","02","015136","F003",
 "Meda","MI","20036","0362","015138","F078","http://www.comune.meda.mi.it/"
 "Mediglia","MI","20060","02","015139","F084","http://www.comune.mediglia.mi.it/"
@@ -1863,7 +1863,7 @@
 "Paullo","MI","20067","02","015169","G385","http://www.comune.paullo.mi.it/"
 "Pero","MI","20016","02","015170","C013","http://www.comune.pero.mi.it/"
 "Peschiera Borromeo","MI","20068","02","015171","G488","http://www.peschieraborromeo.com/"
-"Pessano con Bornago","MI","20060","02","015172","G502","http://www.comune.pessanoconbornago.mi.it/"
+"Pessano Con Bornago","MI","20060","02","015172","G502","http://www.comune.pessanoconbornago.mi.it/"
 "Pieve Emanuele","MI","20090","02","015173","G634","http://www.comune.pieveemanuele.mi.it/"
 "Pioltello","MI","20096","02","015175","G686","http://www.comune.pioltello.mi.it/"
 "Pogliano Milanese","MI","20010","02","015176","G772","http://www.poglianomilanese.org/"
@@ -1873,8 +1873,8 @@
 "Renate","MI","20055","0362","015180","H233","http://www.comunerenate.mi.it/"
 "Rescaldina","MI","20027","0331","015181","H240","http://www.rescaldina.org/"
 "Rho","MI","20017","02","015182","H264","http://www.comune.rho.mi.it/"
-"Robecchetto con Induno","MI","20020","0331","015183","H371","http://www.comune.robecchetto-con-induno.mi.it/"
-"Robecco sul Naviglio","MI","20087","02","015184","H373","http://www.comune.robeccosulnaviglio.mi.it/"
+"Robecchetto Con Induno","MI","20020","0331","015183","H371","http://www.comune.robecchetto-con-induno.mi.it/"
+"Robecco Sul Naviglio","MI","20087","02","015184","H373","http://www.comune.robeccosulnaviglio.mi.it/"
 "Rodano","MI","20090","02","015185","H470","http://www.comune.rodano.mi.it/"
 "Roncello","MI","20040","039","015186","H529","http://www.comunedironcello.it/"
 "Ronco Briantino","MI","20050","039","015187","H537","http://www.comune.roncobriantino.mi.it/"
@@ -1882,7 +1882,7 @@
 "Rozzano","MI","20089","02","015189","H623","http://www.comune.rozzano.mi.it/"
 "San Colombano Al Lambro","MI","20078","0371","015191","H803","http://www.sancolombano.it/"
 "San Donato Milanese","MI","20097","02","015192","H827","http://www.comune.sandonatomilanese.mi.it/"
-"San Giorgio su Legnano","MI","20010","0331","015194","H884",
+"San Giorgio Su Legnano","MI","20010","0331","015194","H884",
 "San Giuliano Milanese","MI","20098","02","015195","H930","http://www.sangiulianonline.it/"
 "Santo Stefano Ticino","MI","20010","02","015200","I361","http://www.comune.santostefanoticino.mi.it/"
 "San Vittore Olona","MI","20028","0331","015201","I409","http://www.sanvittoreolona.org/"
@@ -1899,8 +1899,8 @@
 "Sovico","MI","20050","039","015216","I878","http://www.comune.sovico.mi.it/"
 "Sulbiate","MI","20050","039","015217","I998",
 "Trezzano Rosa","MI","20060","02","015219","L408","http://www.comune.trezzanorosa.mi.it/"
-"Trezzano sul Naviglio","MI","20090","02","015220","L409","http://www.comune.trezzano-sul-naviglio.mi.it/"
-"Trezzo sull'Adda","MI","20056","02","015221","L411","http://www.comune.trezzosulladda.mi.it/"
+"Trezzano Sul Naviglio","MI","20090","02","015220","L409","http://www.comune.trezzano-sul-naviglio.mi.it/"
+"Trezzo Sull'Adda","MI","20056","02","015221","L411","http://www.comune.trezzosulladda.mi.it/"
 "Tribiano","MI","20067","02","015222","L415","http://www.comune.tribiano.mi.it/"
 "Triuggio","MI","20050","0362","015223","L434","http://www.comune.triuggio.mi.it/"
 "Truccazzano","MI","20060","02","015224","L454","http://www.comune.truccazzano.mi.it/"
@@ -1910,7 +1910,7 @@
 "Vaprio D'Adda","MI","20069","02","015230","L667","http://www.comune.vapriodadda.mi.it/"
 "Varedo","MI","20039","0362","015231","L677","http://www.comune.varedo.mi.it/"
 "Vedano Al Lambro","MI","20057","039","015232","L704","http://www.comune.vedanoallambro.mi.it/"
-"Veduggio con Colzano","MI","20050","0362","015233","L709","http://www.comune.veduggioconcolzano.mi.it/"
+"Veduggio Con Colzano","MI","20050","0362","015233","L709","http://www.comune.veduggioconcolzano.mi.it/"
 "Verano Brianza","MI","20050","0362","015234","L744",
 "Vermezzo","MI","20080","02","015235","L768","http://www.comune.vermezzo.mi.it/"
 "Vernate","MI","20080","02","015236","L773","http://www.comune.vernate.mi.it/"
@@ -2018,7 +2018,7 @@
 "Endine Gaiano","BG","24060","035","016093","D406","http://www.comune.endine-gaiano.bg.it/"
 "Entratico","BG","24060","035","016094","D411","http://www.comune.entratico.bg.it/"
 "Fara Gera D'Adda","BG","24045","0363","016096","D490",
-"Fara Olivana con Sola","BG","24058","0363","016097","D491",
+"Fara Olivana Con Sola","BG","24058","0363","016097","D491",
 "Filago","BG","24040","035","016098","D588","http://www.comune.filago.bg.it/"
 "Fino Del Monte","BG","24020","0346","016099","D604","http://www.comune.finodelmonte.bg.it/"
 "Fiorano Al Serio","BG","24020","035","016100","D606","http://www.comune.fioranoalserio.bg.it/"
@@ -2066,7 +2066,7 @@
 "Mozzo","BG","24030","035","016143","F791","http://www.comune.mozzo.bg.it/"
 "Nembro","BG","24027","035","016144","F864","http://www.nembro.net/"
 "Olmo Al Brembo","BG","24010","0345","016145","G049",
-"Oltre il Colle","BG","24013","0345","016146","G050",
+"Oltre Il Colle","BG","24013","0345","016146","G050",
 "Oltressenda Alta","BG","24020","0346","016147","G054",
 "Oneta","BG","24020","035","016148","G068","http://www.comune.oneta.bg.it/"
 "Onore","BG","24020","0346","016149","G075",
@@ -2122,7 +2122,7 @@
 "Solto Collina","BG","24060","035","016200","I812","http://www.comune.solto-collina.bg.it/"
 "Songavazzo","BG","24020","0346","016201","I830",
 "Sorisole","BG","24010","035","016202","I858","http://www.sorisole.com/"
-"Sotto il Monte Giovanni XXIII","BG","24039","035","016203","I869",
+"Sotto Il Monte Giovanni XXIII","BG","24039","035","016203","I869",
 "Sovere","BG","24060","035","016204","I873","http://www.comune.sovere.bg.it/"
 "Spinone Al Lago","BG","24060","035","016205","I916","http://www.comune-spinoneallago.it/"
 "Spirano","BG","24050","035","016206","I919","http://www.comunespirano.it/"
@@ -2257,7 +2257,7 @@
 "Isorella","BS","25010","030","017086","E364",
 "Lavenone","BS","25074","0365","017087","E497","http://www.comune.lavenone.bs.it/"
 "Leno","BS","25024","030","017088","E526","http://www.comune.leno.bs.it/"
-"Limone sul Garda","BS","25010","0365","017089","E596",
+"Limone Sul Garda","BS","25010","0365","017089","E596",
 "Lodrino","BS","25060","030","017090","E652",
 "Lograto","BS","25030","030","017091","E654","http://www.comune.lograto.bs.it/"
 "Lonato","BS","25017","030","017092","E667","http://www.comune.lonato.bs.it/"
@@ -2297,11 +2297,11 @@
 "Orzivecchi","BS","25030","030","017126","G150","http://www.comune.orzivecchi.bs.it/"
 "Ospitaletto","BS","25035","030","017127","G170","http://www.comune.ospitaletto.bs.it/"
 "Ossimo","BS","25050","0364","017128","G179","http://www.comune.ossimo.bs.it/"
-"Padenghe sul Garda","BS","25080","030","017129","G213","http://www.comune.padenghesulgarda.bs.it/"
+"Padenghe Sul Garda","BS","25080","030","017129","G213","http://www.comune.padenghesulgarda.bs.it/"
 "Paderno Franciacorta","BS","25050","030","017130","G217","http://www.padernofranciacorta.net/"
 "Paisco Loveno","BS","25050","0364","017131","G247","http://www.comune.paisco-loveno.bs.it/"
 "Paitone","BS","25080","030","017132","G248",
-"Palazzolo sull'Oglio","BS","25036","030","017133","G264","http://www.palazzoloweb.it/"
+"Palazzolo Sull'Oglio","BS","25036","030","017133","G264","http://www.palazzoloweb.it/"
 "Paratico","BS","25030","035","017134","G327","http://www.comune.paratico.bs.it/"
 "Paspardo","BS","25050","0364","017135","G354","http://www.comune.paspardo.bs.it/"
 "Passirano","BS","25050","030","017136","G361","http://www.comune.passirano.bs.it/"
@@ -2326,7 +2326,7 @@
 "Prevalle","BS","25080","030","017155","H055","http://www.comune.prevalle.bs.it/"
 "Provaglio D'Iseo","BS","25050","030","017156","H078","http://www.comune.provaglio-d-iseo.bs.it/"
 "Provaglio Val Sabbia","BS","25070","0365","017157","H077",
-"Puegnago sul Garda","BS","25080","0365","017158","H086",
+"Puegnago Sul Garda","BS","25080","0365","017158","H086",
 "Quinzano D'Oglio","BS","25027","030","017159","H140","http://www.quinzano.it/"
 "Remedello","BS","25010","030","017160","H230","http://www.comune.remedello.bs.it/"
 "Rezzato","BS","25086","030","017161","H256","http://www.comunerezzato.it/"
@@ -2351,7 +2351,7 @@
 "Soiano Del Lago","BS","25080","0365","017180","I782","http://www.comune.soianodellago.bs.it/"
 "Sonico","BS","25048","0364","017181","I831","http://www.comune.sonico.bs.it/"
 "Sulzano","BS","25058","030","017182","L002","http://www.comune.sulzano.bs.it/"
-"Tavernole sul Mella","BS","25060","030","017183","C698",
+"Tavernole Sul Mella","BS","25060","030","017183","C698",
 "Temù","BS","25050","0364","017184","L094","http://www.comune.temu.bs.it/"
 "Tignale","BS","25080","0365","017185","L169",
 "Torbole Casaglia","BS","25030","030","017186","L210",
@@ -2369,7 +2369,7 @@
 "Vezza D'Oglio","BS","25059","0364","017198","L816","http://www.comune.vezza-d-oglio.bs.it/"
 "Villa Carcina","BS","25069","030","017199","L919","http://www.comune.villacarcina.bs.it/"
 "Villachiara","BS","25030","030","017200","L923","http://www.comune.villachiara.bs.it/"
-"Villanuova sul Clisi","BS","25089","0365","017201","L995","http://www.comune.villanuova-sul-clisi.bs.it/"
+"Villanuova Sul Clisi","BS","25089","0365","017201","L995","http://www.comune.villanuova-sul-clisi.bs.it/"
 "Vione","BS","25050","0364","017202","M065","http://www.comune.vione.bs.it/"
 "Visano","BS","25010","030","017203","M070","http://www.comune.visano.bs.it/"
 "Vobarno","BS","25079","0365","017204","M104","http://www.comune.vobarno.bs.it/"
@@ -2451,7 +2451,7 @@
 "Golferenzo","PV","27047","0385","018074","E081",
 "Gravellona Lomellina","PV","27020","0381","018075","E152","http://www.comune.gravellona-lomellina.pv.it/"
 "Gropello Cairoli","PV","27027","0382","018076","E195",
-"Inverno e Monteleone","PV","27010","0382","018077","E310","http://www.comune.invernoemonteleone.pv.it/"
+"Inverno E Monteleone","PV","27010","0382","018077","E310","http://www.comune.invernoemonteleone.pv.it/"
 "Landriano","PV","27015","0382","018078","E437","http://www.comune.landriano.pv.it/"
 "Langosco","PV","27030","0384","018079","E439",
 "Lardirago","PV","27016","0382","018080","E454","http://www.comune.lardirago.pv.it/"
@@ -2509,13 +2509,13 @@
 "Ruino","PV","27040","0385","018132","H637",
 "San Cipriano Po","PV","27043","0385","018133","H799",
 "San Damiano Al Colle","PV","27040","0385","018134","H814",
-"San Genesio ed Uniti","PV","27010","0382","018135","H859","http://www.comune.sangenesio.pv.it/"
+"San Genesio Ed Uniti","PV","27010","0382","018135","H859","http://www.comune.sangenesio.pv.it/"
 "San Giorgio Di Lomellina","PV","27020","0384","018136","H885",
 "San Martino Siccomario","PV","27028","0382","018137","I014",
 "Sannazzaro De' Burgondi","PV","27039","0382","018138","I048","http://www.comune.sannazzarodeburgondi.pv.it/"
-"Santa Cristina e Bissone","PV","27010","0382","018139","I175","http://www.comune.santacristinaebissone.pv.it/"
+"Santa Cristina E Bissone","PV","27010","0382","018139","I175","http://www.comune.santacristinaebissone.pv.it/"
 "Santa Giuletta","PV","27046","0383","018140","I203",
-"Sant'Alessio con Vialone","PV","27016","0382","018141","I213",
+"Sant'Alessio Con Vialone","PV","27016","0382","018141","I213",
 "Santa Margherita Di Staffora","PV","27050","0383","018142","I230",
 "Santa Maria Della Versa","PV","27047","0385","018143","I237",
 "Sant'Angelo Lomellina","PV","27030","0384","018144","I276",
@@ -2530,7 +2530,7 @@
 "Stradella","PV","27049","0385","018153","I968",
 "Suardi","PV","27030","0384","018154","B014",
 "Torrazza Coste","PV","27050","0383","018155","L237",
-"Torre Beretti e Castellaro","PV","27030","0384","018156","L250",
+"Torre Beretti E Castellaro","PV","27030","0384","018156","L250",
 "Torre D'Arese","PV","27010","0382","018157","L256",
 "Torre De' Negri","PV","27011","0382","018158","L262",
 "Torre D'Isola","PV","27020","0382","018159","L269",
@@ -2580,7 +2580,7 @@
 "Cappella Cantone","CR","26020","0374","019013","B679",
 "Cappella De' Picenardi","CR","26030","0372","019014","B680",
 "Capralba","CR","26010","0373","019015","B686","http://www.comune.capralba.cr.it/"
-"Casalbuttano ed Uniti","CR","26011","0374","019016","B869",
+"Casalbuttano Ed Uniti","CR","26011","0374","019016","B869",
 "Casale Cremasco-Vidolasco","CR","26010","0373","019017","B881","http://www.comune.casalecremascovidolasco.cr.it/"
 "Casaletto Ceredano","CR","26010","0373","019018","B889","http://www.comune.casalettoceredano.cr.it/"
 "Casaletto Di Sopra","CR","26014","0373","019019","B890",
@@ -2596,14 +2596,14 @@
 "Chieve","CR","26010","0373","019029","C634",
 "Cicognolo","CR","26030","0372","019030","C678",
 "Cingia De' Botti","CR","26042","0375","019031","C703",
-"Corte De' Cortesi con Cignone","CR","26020","0372","019032","D056",
+"Corte De' Cortesi Con Cignone","CR","26020","0372","019032","D056",
 "Corte De' Frati","CR","26010","0372","019033","D057",
 "Credera Rubbiano","CR","26010","0373","019034","D141",
 "Crema","CR","26013","0373","019035","D142","http://www.comune.crema.cr.it/"
 "Cremona","CR","26100","0372","019036","D150","http://www.comune.cremona.it/"
 "Cremosano","CR","26010","0373","019037","D151",
 "Crotta D'Adda","CR","26020","0372","019038","D186",
-"Cumignano sul Naviglio","CR","26020","0374","019039","D203",
+"Cumignano Sul Naviglio","CR","26020","0374","019039","D203",
 "Derovere","CR","26040","0372","019040","D278",
 "Dovera","CR","26010","0373","019041","D358",
 "Drizzona","CR","26034","0375","019042","D370",
@@ -2615,7 +2615,7 @@
 "Gerre De' Caprioli","CR","26040","0372","019048","D993",
 "Gombito","CR","26020","0374","019049","E082",
 "Grontardo","CR","26044","0372","019050","E193",
-"Grumello Cremonese ed Uniti","CR","26023","0372","019051","E217",
+"Grumello Cremonese Ed Uniti","CR","26023","0372","019051","E217",
 "Gussola","CR","26040","0375","019052","E272",
 "Isola Dovarese","CR","26031","0375","019053","E356",
 "Izano","CR","26010","0373","019054","E380",
@@ -2633,7 +2633,7 @@
 "Palazzo Pignano","CR","26020","0373","019066","G260","http://www.comune.palazzopignano.cr.it/"
 "Pandino","CR","26025","0373","019067","G306","http://www.comune.pandino.cr.it/"
 "Persico Dosimo","CR","26043","0372","019068","G469",
-"Pescarolo ed Uniti","CR","26033","0372","019069","G483",
+"Pescarolo Ed Uniti","CR","26033","0372","019069","G483",
 "Pessina Cremonese","CR","26030","0372","019070","G504",
 "Piadena","CR","26034","0375","019071","G536","http://www.comune.piadena.cr.it/"
 "Pianengo","CR","26010","0373","019072","G558","http://www.comune.pianengo.cr.it/"
@@ -2641,25 +2641,25 @@
 "Pieve D'Olmi","CR","26040","0372","019074","G647",
 "Pieve San Giacomo","CR","26035","0372","019075","G651",
 "Pizzighettone","CR","26026","0372","019076","G721",
-"Pozzaglio ed Uniti","CR","26010","0372","019077","B914",
+"Pozzaglio Ed Uniti","CR","26010","0372","019077","B914",
 "Quintano","CR","26017","0373","019078","H130","http://www.comune.quintano.cr.it/"
 "Ricengo","CR","26010","0373","019079","H276",
 "Ripalta Arpina","CR","26010","0373","019080","H314",
 "Ripalta Cremasca","CR","26010","0373","019081","H315",
 "Ripalta Guerina","CR","26010","0373","019082","H316",
-"Rivarolo Del Re ed Uniti","CR","26036","0375","019083","H341",
+"Rivarolo Del Re Ed Uniti","CR","26036","0375","019083","H341",
 "Rivolta D'Adda","CR","26027","0363","019084","H357","http://www.comune.rivoltadadda.cr.it/"
 "Robecco D'Oglio","CR","26010","0372","019085","H372",
 "Romanengo","CR","26014","0373","019086","H508",
 "Salvirola","CR","26010","0373","019087","H731",
 "San Bassano","CR","26020","0374","019088","H767",
 "San Daniele Po","CR","26046","0372","019089","H815",
-"San Giovanni in Croce","CR","26037","0375","019090","H918",
+"San Giovanni In Croce","CR","26037","0375","019090","H918",
 "San Martino Del Lago","CR","26040","0375","019091","I007",
 "Scandolara Ravara","CR","26040","0375","019092","I497",
 "Scandolara Ripa D'Oglio","CR","26047","0372","019093","I498",
 "Sergnano","CR","26010","0373","019094","I627","http://www.comunesergnano.it/"
-"Sesto ed Uniti","CR","26028","0372","019095","I683",
+"Sesto Ed Uniti","CR","26028","0372","019095","I683",
 "Solarolo Rainerio","CR","26030","0375","019096","I790",
 "Soncino","CR","26029","0374","019097","I827",
 "Soresina","CR","26015","0374","019098","I849","http://www.comune.soresina.cr.it/"
@@ -2680,14 +2680,14 @@
 "Vescovato","CR","26039","0372","019113","L806",
 "Volongo","CR","26030","0372","019114","M116",
 "Voltido","CR","26030","0375","019115","M127",
-"Acquanegra sul Chiese","MN","46011","0376","020001","A038","http://www.comune.acquanegra.mn.it/"
+"Acquanegra Sul Chiese","MN","46011","0376","020001","A038","http://www.comune.acquanegra.mn.it/"
 "Asola","MN","46041","0376","020002","A470","http://www.comune.asola.mn.it/"
 "Bagnolo San Vito","MN","46031","0376","020003","A575","http://www.comune.bagnolosanvito.mn.it/"
 "Bigarello","MN","46030","0376","020004","A866","http://www.comune.bigarello.mn.it/"
 "Borgoforte","MN","46030","0376","020005","B011","http://www.comune.borgoforte.mn.it/"
-"Borgofranco sul Po","MN","46020","0386","020006","B013","http://www.comune.borgofrancosulpo.mn.it/"
+"Borgofranco Sul Po","MN","46020","0386","020006","B013","http://www.comune.borgofrancosulpo.mn.it/"
 "Bozzolo","MN","46012","0376","020007","B110","http://www.comune.bozzolo.mn.it/"
-"Canneto sull'Oglio","MN","46013","0376","020008","B612","http://www.comune.canneto.mn.it/"
+"Canneto Sull'Oglio","MN","46013","0376","020008","B612","http://www.comune.canneto.mn.it/"
 "Carbonara Di Po","MN","46020","0386","020009","B739",
 "Casalmoro","MN","46040","0376","020010","B901","http://www.comune.casalmoro.mn.it/"
 "Casaloldo","MN","46040","0376","020011","B907","http://www.comune.casaloldo.mn.it/"
@@ -2723,7 +2723,7 @@
 "Piubega","MN","46040","0376","020041","G717",
 "Poggio Rusco","MN","46025","0386","020042","G753","http://www.comune.poggiorusco.mn.it/"
 "Pomponesco","MN","46030","0375","020043","G816",
-"Ponti sul Mincio","MN","46040","0376","020044","G862","http://www.comune.pontisulmincio.mn.it/"
+"Ponti Sul Mincio","MN","46040","0376","020044","G862","http://www.comune.pontisulmincio.mn.it/"
 "Porto Mantovano","MN","46047","0376","020045","G917","http://www.comune.porto-mantovano.mn.it/"
 "Quingentole","MN","46020","0386","020046","H129","http://www.comune.quingentole.mn.it/"
 "Quistello","MN","46026","0376","020047","H143","http://www.comune.quistello.mn.it/"
@@ -2753,7 +2753,7 @@
 "Aldino","BZ","39040","0471","021001","A179","http://www.comune.aldino.bz.it/"
 "Andriano","BZ","39010","0471","021002","A286","http://www.comune.andriano.bz.it/"
 "Anterivo","BZ","39040","0462","021003","A306","http://www.comune.anterivo.bz.it/"
-"Appiano sulla Strada Del Vino","BZ","39057","0471","021004","A332","http://www.comune.appiano.bz.it/"
+"Appiano Sulla Strada Del Vino","BZ","39057","0471","021004","A332","http://www.comune.appiano.bz.it/"
 "Avelengo","BZ","39010","0473","021005","A507","http://www.comune.avelengo.bz.it/"
 "Badia","BZ","39036","0471","021006","A537","http://www.comunbadia.it/"
 "Barbiano","BZ","39040","0471","021007","A635",
@@ -2764,7 +2764,7 @@
 "Bronzolo","BZ","39051","0471","021012","B203","http://www.comune.bronzolo.bz.it/"
 "Brunico","BZ","39031","0474","021013","B220","http://www.comune.brunico.bz.it/"
 "Caines","BZ","39010","0473","021014","B364",
-"Caldaro sulla Strada Del Vino","BZ","39052","0471","021015","B397","http://www.comune.caldaro.bz.it/"
+"Caldaro Sulla Strada Del Vino","BZ","39052","0471","021015","B397","http://www.comune.caldaro.bz.it/"
 "Campo Di Trens","BZ","39040","0472","021016","B529",
 "Campo Tures","BZ","39032","0474","021017","B570","http://www.sand-in-taufers.com/"
 "Castelbello Ciardes","BZ","39020","0473","021018","C062","http://www.comune.castelbello-ciardes.bz.it/"
@@ -2773,9 +2773,9 @@
 "Chienes","BZ","39030","0474","021021","C625","http://www.comune.chienes.bz.it/"
 "Chiusa","BZ","39043","0472","021022","C652",
 "Cornedo All'Isarco","BZ","39053","0471","021023","B799","http://www.comune.cornedo.bz.it/"
-"Cortaccia sulla Strada Del Vino","BZ","39040","0471","021024","D048","http://www.comune.cortaccia.bz.it/"
-"Cortina sulla Strada Del Vino","BZ","39040","0471","021025","D075","http://www.comune.cortina.bz.it/"
-"Corvara in Badia","BZ","39033","0471","021026","D079",
+"Cortaccia Sulla Strada Del Vino","BZ","39040","0471","021024","D048","http://www.comune.cortaccia.bz.it/"
+"Cortina Sulla Strada Del Vino","BZ","39040","0471","021025","D075","http://www.comune.cortina.bz.it/"
+"Corvara In Badia","BZ","39033","0471","021026","D079",
 "Curon Venosta","BZ","39027","0473","021027","D222","http://www.comune.curon.bz.it/"
 "Dobbiaco","BZ","39034","0474","021028","D311","http://www.comune.dobbiaco.bz.it/"
 "Egna","BZ","39044","0471","021029","D392","http://www.comune.egna.bz.it/"
@@ -2794,7 +2794,7 @@
 "Lasa","BZ","39023","0473","021042","E457","http://www.comune.lasa.bz.it/"
 "Lauregno","BZ","39040","0463","021043","E481",
 "Luson","BZ","39040","0472","021044","E764","http://www.comune.luson.bz.it/"
-"Magrè sulla Strada Del Vino","BZ","39040","0471","021045","E829",
+"Magrè Sulla Strada Del Vino","BZ","39040","0471","021045","E829",
 "Malles Venosta","BZ","39024","0473","021046","E862","http://www.comune.malles.bz.it/"
 "Marebbe","BZ","39030","0474","021047","E938","http://www.comune.marebbe.bz.it/"
 "Marlengo","BZ","39020","0473","021048","E959","http://www.comune.marlengo.bz.it/"
@@ -2803,7 +2803,7 @@
 "Merano","BZ","39012","0473","021051","F132","http://www.comune.merano.bz.it/"
 "Monguelfo","BZ","39035","0474","021052","F371",
 "Montagna","BZ","39040","0471","021053","F392",
-"Moso in Passiria","BZ","39013","0473","021054","F766","http://www.comune.mosoinpassiria.bz.it/"
+"Moso In Passiria","BZ","39013","0473","021054","F766","http://www.comune.mosoinpassiria.bz.it/"
 "Nalles","BZ","39010","0471","021055","F836",
 "Naturno","BZ","39025","0473","021056","F849","http://www.comune.naturno.bz.it/"
 "Naz-Sciaves","BZ","39040","0472","021057","F856","http://www.comune.naz-sciaves.bz.it/"
@@ -2828,10 +2828,10 @@
 "Salorno","BZ","39040","0471","021076","H719","http://www.comune.salorno.bz.it/"
 "San Candido","BZ","39038","0474","021077","H786","http://www.comune.sancandido.bz.it/"
 "San Genesio Atesino","BZ","39050","0471","021079","H858","http://www.comune.sangenesioatesino.bz.it/"
-"San Leonardo in Passiria","BZ","39015","0473","021080","H952","http://www.comune.sanleonardoinpassiria.bz.it/"
+"San Leonardo In Passiria","BZ","39015","0473","021080","H952","http://www.comune.sanleonardoinpassiria.bz.it/"
 "San Lorenzo Di Sebato","BZ","39030","0474","021081","H956","http://www.comune.sanlorenzodisebato.bz.it/"
-"San Martino in Badia","BZ","39030","0474","021082","H988","http://www.comune.sanmartinoinbadia.bz.it/"
-"San Martino in Passiria","BZ","39010","0473","021083","H989","http://www.comune.sanmartinoinpassiria.bz.it/"
+"San Martino In Badia","BZ","39030","0474","021082","H988","http://www.comune.sanmartinoinbadia.bz.it/"
+"San Martino In Passiria","BZ","39010","0473","021083","H989","http://www.comune.sanmartinoinpassiria.bz.it/"
 "San Pancrazio","BZ","39010","0473","021084","I065","http://www.comune.sanpancrazio.bz.it/"
 "Santa Cristina Valgardena","BZ","39047","0471","021085","I173","http://www.comune.santacristina.bz.it/"
 "Sarentino","BZ","39058","0471","021086","I431","http://www.comune.sarentino.bz.it/"
@@ -2845,7 +2845,7 @@
 "Stelvio","BZ","39029","0473","021095","I948","http://www.comune.stelvio.bz.it/"
 "Terento","BZ","39030","0472","021096","L106","http://www.comune.terento.bz.it/"
 "Terlano","BZ","39018","0471","021097","L108",
-"Termeno sulla Strada Del Vino","BZ","39040","0471","021098","L111",
+"Termeno Sulla Strada Del Vino","BZ","39040","0471","021098","L111",
 "Tesimo","BZ","39010","0473","021099","L149","http://www.comune.tesimo.bz.it/"
 "Tires","BZ","39050","0471","021100","L176","http://www.comune.tires.bz.it/"
 "Tirolo","BZ","39019","0473","021101","L178","http://www.comune.tirolo.bz.it/"
@@ -3028,7 +3028,7 @@
 "Rumo","TN","38020","0463","022163","H639",
 "Sagron Mis","TN","38050","0439","022164","H666",
 "Samone","TN","38059","0461","022165","H754",
-"San Lorenzo in Banale","TN","38078","0465","022166","H966",
+"San Lorenzo In Banale","TN","38078","0465","022166","H966",
 "San Michele All'Adige","TN","38010","0461","022167","I042",
 "Sant'Orsola Terme","TN","38050","0461","022168","I354",
 "Sanzeno","TN","38010","0463","022169","I411",
@@ -3164,7 +3164,7 @@
 "San Martino Buon Albergo","VR","37036","045","023073","I003","http://www.comunesanmartinobuonalbergo.it/"
 "San Mauro Di Saline","VR","37030","045","023074","H712",
 "San Pietro Di Morubio","VR","37050","045","023075","I105",
-"San Pietro in Cariano","VR","37029","045","023076","I109","http://www.comune.sanpietroincariano.vr.it/"
+"San Pietro In Cariano","VR","37029","045","023076","I109","http://www.comune.sanpietroincariano.vr.it/"
 "Sant'Ambrogio Di Valpolicella","VR","37015","045","023077","I259","http://www.comune.santambrogio.vr.it/"
 "Sant'Anna D'Alfaedo","VR","37020","045","023078","I292","http://www.comune.santannadalfaedo.vr.it/"
 "San Zeno Di Montagna","VR","37010","045","023079","I414","http://www.comunesanzenodimontagna.it/"
@@ -3177,7 +3177,7 @@
 "Torri Del Benaco","VR","37010","045","023086","L287","http://www.comune.torridelbenaco.vr.it/"
 "Tregnago","VR","37039","045","023087","L364","http://www.tregnago.net/"
 "Trevenzuolo","VR","37060","045","023088","L396",
-"Valeggio sul Mincio","VR","37067","045","023089","L567","http://www.valeggio.com/comune/"
+"Valeggio Sul Mincio","VR","37067","045","023089","L567","http://www.valeggio.com/comune/"
 "Velo Veronese","VR","37030","045","023090","L722","http://www.baldolessinia.it/velo/"
 "Verona","VR","37100","045","023091","L781","http://www.comune.verona.it/"
 "Veronella","VR","37040","0442","023092","D193",
@@ -3209,7 +3209,7 @@
 "Calvene","VI","36030","0445","024020","B441","http://www.comune.calvene.vi.it/"
 "Camisano Vicentino","VI","36043","0444","024021","B485",
 "Campiglia Dei Berici","VI","36020","0444","024022","B511","http://www.comune.campigliadeiberici.vi.it/"
-"Campolongo sul Brenta","VI","36020","0424","024023","B547",
+"Campolongo Sul Brenta","VI","36020","0424","024023","B547",
 "Carrè","VI","36010","0445","024024","B835","http://www.comune.carre.vi.it/"
 "Cartigliano","VI","36050","0424","024025","B844",
 "Cassola","VI","36022","0424","024026","C037","http://www.comune.cassola.vi.it/"
@@ -3290,7 +3290,7 @@
 "Solagna","VI","36020","0424","024101","I783","http://www.comune.solagna.vi.it/"
 "Sossano","VI","36040","0444","024102","I867","http://www.comune.sossano.vi.it/"
 "Sovizzo","VI","36050","0444","024103","I879","http://www.comune.sovizzo.vi.it/"
-"Tezze sul Brenta","VI","36056","0424","024104","L156","http://www.comune.tezze.vi.it/"
+"Tezze Sul Brenta","VI","36056","0424","024104","L156","http://www.comune.tezze.vi.it/"
 "Thiene","VI","36016","0445","024105","L157","http://www.comune.thiene.vi.it/"
 "Tonezza Del Cimone","VI","36040","0445","024106","D717","http://www.comune.tonezzadelcimone.vi.it/"
 "Torrebelvicino","VI","36036","0445","024107","L248","http://www.comune.torrebelvicino.vi.it/"
@@ -3347,12 +3347,12 @@
 "Perarolo Di Cadore","BL","32010","0435","025037","G442",
 "Pieve D'Alpago","BL","32010","0437","025038","G638",
 "Pieve Di Cadore","BL","32044","0435","025039","G642",
-"Ponte nelle Alpi","BL","32014","0437","025040","B662","http://www.comune.pontenellealpi.bl.it/"
+"Ponte Nelle Alpi","BL","32014","0437","025040","B662","http://www.comune.pontenellealpi.bl.it/"
 "Puos D'Alpago","BL","32015","0437","025041","H092",
 "Quero","BL","32030","0439","025042","H124","http://www.feltrino.bl.it/quero"
 "Rivamonte Agordino","BL","32020","0437","025043","H327",
 "Rocca Pietore","BL","32020","0437","025044","H379",
-"San Gregorio nelle Alpi","BL","32030","0437","025045","H938",
+"San Gregorio Nelle Alpi","BL","32030","0437","025045","H938",
 "San Nicolò Di Comelico","BL","32040","0435","025046","I063",
 "San Pietro Di Cadore","BL","32040","0435","025047","I088",
 "Santa Giustina","BL","32035","0437","025048","I206","http://www.comune.santagiustina.bl.it/"
@@ -3385,7 +3385,7 @@
 "Caerano Di San Marco","TV","31031","0423","026006","B349","http://www.comune.caerano-di-san-marco.tv.it/"
 "Cappella Maggiore","TV","31012","0438","026007","B678","http://www.cappellamaggiore.net/"
 "Carbonera","TV","31030","0422","026008","B744","http://www.carbonera-tv.it/"
-"Casale sul Sile","TV","31032","0422","026009","B879","http://www.comunecasale.tv.it/"
+"Casale Sul Sile","TV","31032","0422","026009","B879","http://www.comunecasale.tv.it/"
 "Casier","TV","31030","0422","026010","B965","http://www.comunecasier.it/"
 "Castelcucco","TV","31030","0423","026011","C073","http://www.comune.castelcucco.tv.it/"
 "Castelfranco Veneto","TV","31033","0423","026012","C111","http://www.comune.castelfranco-veneto.tv.it/"
@@ -3416,7 +3416,7 @@
 "Mansuè","TV","31040","0422","026037","E893","http://www.comune.mansue.tv.it/"
 "Mareno Di Piave","TV","31010","0438","026038","E940","http://www.comune.marenodipiave.tv.it/"
 "Maser","TV","31010","0423","026039","F009","http://www.comune.maser.tv.it/"
-"Maserada sul Piave","TV","31052","0422","026040","F012","http://www.comuneweb.it/MaseradaHome/"
+"Maserada Sul Piave","TV","31052","0422","026040","F012","http://www.comuneweb.it/MaseradaHome/"
 "Meduna Di Livenza","TV","31040","0422","026041","F088","http://www.medunaonline.com/"
 "Miane","TV","31050","0438","026042","F190","http://www.comunedimiane.it/"
 "Mogliano Veneto","TV","31021","041","026043","F269","http://www.comune.mogliano-veneto.tv.it/"
@@ -3576,7 +3576,7 @@
 "Padova","PD","35100","049","028060","G224","http://www.comune.padova.it/"
 "Pernumia","PD","35020","0429","028061","G461",
 "Piacenza D'Adige","PD","35040","0425","028062","G534","http://www.comune.piacenza-d-adige.pd.it/"
-"Piazzola sul Brenta","PD","35016","049","028063","G587","http://www.comune.piazzola-sul-brenta.pd.it/"
+"Piazzola Sul Brenta","PD","35016","049","028063","G587","http://www.comune.piazzola-sul-brenta.pd.it/"
 "Piombino Dese","PD","35017","049","028064","G688","http://www.comune.piombinodese.pd.it/"
 "Piove Di Sacco","PD","35028","049","028065","G693","http://www.comune.piovedisacco.net/"
 "Polverara","PD","35020","049","028066","G802","http://www.comune.polverara.pd.it/"
@@ -3589,11 +3589,11 @@
 "Saccolongo","PD","35030","049","028073","H655","http://www.comune.saccolongo.pd.it/"
 "Saletto","PD","35046","0429","028074","H705",
 "San Giorgio Delle Pertiche","PD","35010","049","028075","H893","http://www.comune.sangiorgiodellepertiche.pd.it/"
-"San Giorgio in Bosco","PD","35010","049","028076","H897","http://www.comune.sangiorgioinbosco.pd.it/"
+"San Giorgio In Bosco","PD","35010","049","028076","H897","http://www.comune.sangiorgioinbosco.pd.it/"
 "San Martino Di Lupari","PD","35018","049","028077","I008",
-"San Pietro in Gu","PD","35010","049","028078","I107","http://www.comune.sanpietroingu.pd.it/"
+"San Pietro In Gu","PD","35010","049","028078","I107","http://www.comune.sanpietroingu.pd.it/"
 "San Pietro Viminario","PD","35020","0429","028079","I120",
-"Santa Giustina in Colle","PD","35010","049","028080","I207","http://www.comuneweb.it/GiustinaHome/"
+"Santa Giustina In Colle","PD","35010","049","028080","I207","http://www.comuneweb.it/GiustinaHome/"
 "Santa Margherita D'Adige","PD","35040","0429","028081","I226",
 "Sant'Angelo Di Piove Di Sacco","PD","35020","049","028082","I275","http://www.santangelopiove.net/"
 "Sant'Elena","PD","35040","0429","028083","I319",
@@ -3621,7 +3621,7 @@
 "Vo","PD","35030","049","028105","M103","http://www.comune.vo.pd.it/"
 "Due Carrare","PD","35020","049","028106","M300","http://www.comune.duecarrare.pd.it/"
 "Adria","RO","45011","0426","029001","A059","http://www.comune.adria.ro.it/"
-"Ariano nel Polesine","RO","45012","0426","029002","A400",
+"Ariano Nel Polesine","RO","45012","0426","029002","A400",
 "Arquà Polesine","RO","45031","0425","029003","A435","http://www.comune.arqua.ro.it/"
 "Badia Polesine","RO","45021","0425","029004","A539","http://www.comune.badiapolesine.ro.it/"
 "Bagnolo Di Po","RO","45022","0425","029005","A574","http://www.bagnolodipo.com/"
@@ -3644,7 +3644,7 @@
 "Fratta Polesine","RO","45025","0425","029024","D788","http://www.comune.frattapolesine.ro.it/"
 "Gaiba","RO","45030","0425","029025","D855","http://www.comune.gaiba.ro.it/"
 "Gavello","RO","45010","0425","029026","D942","http://www.comune.gavello.ro.it/"
-"Giacciano con Baruchella","RO","45020","0425","029027","E008","http://www.comune.giacciano.ro.it/"
+"Giacciano Con Baruchella","RO","45020","0425","029027","E008","http://www.comune.giacciano.ro.it/"
 "Guarda Veneta","RO","45030","0425","029028","E240","http://www.comune.guardaveneta.ro.it/"
 "Lendinara","RO","45026","0425","029029","E522","http://www.comune.lendinara.ro.it/"
 "Loreo","RO","45017","0426","029030","E689","http://www.comune.loreo.ro.it/"
@@ -3721,7 +3721,7 @@
 "Lignano Sabbiadoro","UD","33054","0431","030049","E584","http://www.comune.lignano-sabbiadoro.ud.it/"
 "Ligosullo","UD","33020","0433","030050","E586",
 "Lusevera","UD","33010","0432","030051","E760","http://www.comune.lusevera.ud.it/"
-"Magnano in Riviera","UD","33010","0432","030052","E820","http://www.magnanoinriviera.ud.gov.it/"
+"Magnano In Riviera","UD","33010","0432","030052","E820","http://www.magnanoinriviera.ud.gov.it/"
 "Majano","UD","33030","0432","030053","E833","http://www.comune.majano.ud.it/"
 "Malborghetto Valbruna","UD","33010","0428","030054","E847","http://www.malborghetto-valbruna.com/"
 "Manzano","UD","33044","0432","030055","E899","http://www.comune.manzano.ud.it/"
@@ -3806,7 +3806,7 @@
 "Villa Vicentina","UD","33059","0431","030134","M034","http://www.comune.villavicentina.ud.it/"
 "Visco","UD","33040","0432","030135","M073","http://www.comune.visco.ud.it/"
 "Zuglio","UD","33020","0433","030136","M200","http://www.comune.zuglio.ud.it/"
-"Forgaria nel Friuli","UD","33030","0427","030137","D700","http://www.comune.forgarianelfriuli.ud.it/"
+"Forgaria Nel Friuli","UD","33030","0427","030137","D700","http://www.comune.forgarianelfriuli.ud.it/"
 "Capriva Del Friuli","GO","34070","0481","031001","B712",
 "Cormons","GO","34071","0481","031002","D014","http://www.comune.cormons.go.it/"
 "Doberdò Del Lago","GO","34070","0481","031003","D312","http://www.comune.doberdo.go.it/"
@@ -3878,12 +3878,12 @@
 "Rivergaro","PC","29029","0523","033038","H350","http://www.comune.rivergaro.pc.it/"
 "Rottofreno","PC","29010","0523","033039","H593","http://www.comunerottofreno.it/"
 "San Giorgio Piacentino","PC","29019","0523","033040","H887","http://www.comune.sangiorgiopiacentino.pc.it/"
-"San Pietro in Cerro","PC","29010","0523","033041","G788",
+"San Pietro In Cerro","PC","29010","0523","033041","G788",
 "Sarmato","PC","29010","0523","033042","I434","http://www.comune.sarmato.pc.it/"
 "Travo","PC","29020","0523","033043","L348","http://www.comune.travo.pc.it/"
 "Vernasca","PC","29010","0523","033044","L772","http://www.comune.vernasca.pc.it/"
 "Vigolzone","PC","29020","0523","033045","L897","http://www.comune-vigolzone.pc.it/"
-"Villanova sull'Arda","PC","29010","0523","033046","L980","http://www.comune.villanova.pc.it/"
+"Villanova Sull'Arda","PC","29010","0523","033046","L980","http://www.comune.villanova.pc.it/"
 "Zerba","PC","29020","0523","033047","M165","http://www.comune.zerba.pc.it/"
 "Ziano Piacentino","PC","29010","0523","033048","L848","http://www.comune.ziano.pc.it/"
 "Albareto","PR","43051","0525","034001","A138","http://www.comune.albareto.pr.it/"
@@ -3934,7 +3934,7 @@
 "Varsi","PR","43049","0525","034046","L689","http://www.comune.varsi.pr.it/"
 "Zibello","PR","43010","0524","034048","M174","http://www.comune.zibello.pr.it/"
 "Albinea","RE","42020","0522","035001","A162","http://www.comune.albinea.re.it/"
-"Bagnolo in Piano","RE","42011","0522","035002","A573","http://www.comune.bagnolo.re.it/"
+"Bagnolo In Piano","RE","42011","0522","035002","A573","http://www.comune.bagnolo.re.it/"
 "Baiso","RE","42031","0522","035003","A586","http://www.comune.baiso.re.it/"
 "Bibbiano","RE","42021","0522","035004","A850","http://www.comune.bibbiano.re.it/"
 "Boretto","RE","42022","0522","035005","A988","http://www.comune.boretto.re.it/"
@@ -3948,7 +3948,7 @@
 "Casina","RE","42034","0522","035013","B967","http://www.comune.casina.re.it/"
 "Castellarano","RE","42014","0536","035014","C141","http://www.comune.castellarano.re.it/"
 "Castelnovo Di Sotto","RE","42024","0522","035015","C218","http://www.comune.castelnovo-di-sotto.re.it/"
-"Castelnovo ne' Monti","RE","42035","0522","035016","C219","http://www.comune.castelnovo-nemonti.re.it/"
+"Castelnovo Ne' Monti","RE","42035","0522","035016","C219","http://www.comune.castelnovo-nemonti.re.it/"
 "Cavriago","RE","42025","0522","035017","C405","http://www.comune.cavriago.re.it/"
 "Canossa","RE","42026","0522","035018","C669","http://www.comune.canossa.re.it/"
 "Collagna","RE","42037","0522","035019","C840",
@@ -3969,13 +3969,13 @@
 "Rio Saliceto","RE","42010","0522","035034","H298","http://www.comune.riosaliceto.re.it/"
 "Rolo","RE","42047","0522","035035","H500","http://www.comune.rolo.re.it/"
 "Rubiera","RE","42048","0522","035036","H628","http://www.comune.rubiera.re.it/"
-"San Martino in Rio","RE","42018","0522","035037","I011","http://www.comune.sanmartinoinrio.re.it/"
+"San Martino In Rio","RE","42018","0522","035037","I011","http://www.comune.sanmartinoinrio.re.it/"
 "San Polo D'Enza","RE","42020","0522","035038","I123","http://www.comune.sanpolodenza.re.it/"
 "Sant'Ilario D'Enza","RE","42049","0522","035039","I342","http://www.comune.santilariodenza.re.it/"
 "Scandiano","RE","42019","0522","035040","I496","http://www.comune.scandiano.re.it/"
 "Toano","RE","42010","0522","035041","L184","http://www.comune.toano.re.it/"
 "Vetto","RE","42020","0522","035042","L815","http://www.comune.vetto.re.it/"
-"Vezzano sul Crostolo","RE","42030","0522","035043","L820","http://www.comune.vezzano-sul-crostolo.re.it/"
+"Vezzano Sul Crostolo","RE","42030","0522","035043","L820","http://www.comune.vezzano-sul-crostolo.re.it/"
 "Viano","RE","42030","0522","035044","L831","http://www.comune.viano.re.it/"
 "Villa Minozzo","RE","42030","0522","035045","L969","http://www.comune.villa-minozzo.re.it/"
 "Bastiglia","MO","41030","059","036001","A713","http://www.comune.bastiglia.mo.it/"
@@ -3987,7 +3987,7 @@
 "Castelnuovo Rangone","MO","41051","059","036007","C242","http://www.comune.castelnuovo-rangone.mo.it/"
 "Castelvetro Di Modena","MO","41014","059","036008","C287","http://www.comune.castelvetro-di-modena.mo.it/"
 "Cavezzo","MO","41032","0535","036009","C398","http://www.comune.cavezzo.mo.it/"
-"Concordia sulla Secchia","MO","41033","0535","036010","C951","http://www.comune.concordia.mo.it/"
+"Concordia Sulla Secchia","MO","41033","0535","036010","C951","http://www.comune.concordia.mo.it/"
 "Fanano","MO","41021","0536","036011","D486","http://www.comune.fanano.mo.it/"
 "Finale Emilia","MO","41034","0535","036012","D599","http://www.comunefinale.net/"
 "Fiorano Modenese","MO","41042","0536","036013","D607","http://www.comune.fiorano-modenese.mo.it/"
@@ -3997,7 +3997,7 @@
 "Guiglia","MO","41052","059","036017","E264","http://www.comune.guiglia.mo.it/"
 "Lama Mocogno","MO","41023","0536","036018","E426","http://www.comune.lamamocogno.mo.it/"
 "Maranello","MO","41053","0536","036019","E904","http://www.comune.maranello.modena.it/"
-"Marano sul Panaro","MO","41054","059","036020","E905","http://www.comune.marano-sul-panaro.mo.it/"
+"Marano Sul Panaro","MO","41054","059","036020","E905","http://www.comune.marano-sul-panaro.mo.it/"
 "Medolla","MO","41036","0535","036021","F087","http://www.comune.medolla.mo.it/"
 "Mirandola","MO","41037","0535","036022","F240","http://www.comune.mirandola.mo.it/"
 "Modena","MO","41100","059","036023","F257","http://www.comune.modena.it/"
@@ -4007,18 +4007,18 @@
 "Nonantola","MO","41015","059","036027","F930","http://www.comune.nonantola.mo.it/"
 "Novi Di Modena","MO","41016","059","036028","F966","http://www.comune.novi.mo.it/"
 "Palagano","MO","41046","0536","036029","G250","http://www.comune.palagano.mo.it/"
-"Pavullo nel Frignano","MO","41026","0536","036030","G393","http://www.comune.pavullo-nel-frignano.mo.it/"
+"Pavullo Nel Frignano","MO","41026","0536","036030","G393","http://www.comune.pavullo-nel-frignano.mo.it/"
 "Pievepelago","MO","41027","0536","036031","G649","http://www.comune.pievepelago.mo.it/"
 "Polinago","MO","41040","0536","036032","G789","http://www.comune.polinago.mo.it/"
-"Prignano sulla Secchia","MO","41048","0536","036033","H061","http://www.prignanosulsecchia.it/"
+"Prignano Sulla Secchia","MO","41048","0536","036033","H061","http://www.prignanosulsecchia.it/"
 "Ravarino","MO","41017","059","036034","H195","http://www.comune.ravarino.mo.it/"
 "Riolunato","MO","41020","0536","036035","H303","http://www.comune.riolunato.mo.it/"
-"San Cesario sul Panaro","MO","41018","059","036036","H794","http://www.comune.sancesariosulpanaro.mo.it/"
-"San Felice sul Panaro","MO","41038","0535","036037","H835","http://www.comunesanfelice.net/"
+"San Cesario Sul Panaro","MO","41018","059","036036","H794","http://www.comune.sancesariosulpanaro.mo.it/"
+"San Felice Sul Panaro","MO","41038","0535","036037","H835","http://www.comunesanfelice.net/"
 "San Possidonio","MO","41039","0535","036038","I128","http://www.comune.sanpossidonio.mo.it/"
 "San Prospero","MO","41030","059","036039","I133","http://www.comune.sanprospero.mo.it/"
 "Sassuolo","MO","41049","0536","036040","I462","http://www.comune.sassuolo.mo.it/"
-"Savignano sul Panaro","MO","41056","059","036041","I473","http://www.savignano.it/"
+"Savignano Sul Panaro","MO","41056","059","036041","I473","http://www.savignano.it/"
 "Serramazzoni","MO","41028","0536","036042","F357","http://www.comune.serramazzoni.mo.it/"
 "Sestola","MO","41029","0536","036043","I689","http://www.comune.sestola.mo.it/"
 "Soliera","MO","41019","059","036044","I802","http://www.comune.soliera.mo.it/"
@@ -4057,7 +4057,7 @@
 "Granarolo Dell'Emilia","BO","40057","051","037030","E136","http://www.comune.granarolo-dellemilia.bo.it/"
 "Grizzana Morandi","BO","40030","051","037031","E187","http://www.comune.grizzanamorandi.bo.it/"
 "Imola","BO","40026","0542","037032","E289","http://www.comune.imola.bo.it/"
-"Lizzano in Belvedere","BO","40042","0534","037033","A771","http://www.comune.lizzano.bo.it/"
+"Lizzano In Belvedere","BO","40042","0534","037033","A771","http://www.comune.lizzano.bo.it/"
 "Loiano","BO","40050","051","037034","E655","http://www.comune.loiano.bologna.it/"
 "Malalbergo","BO","40051","051","037035","E844","http://www.comune.malalbergo.bo.it/"
 "Marzabotto","BO","40043","051","037036","B689","http://www.comune.marzabotto.bo.it/"
@@ -4077,9 +4077,9 @@
 "Sala Bolognese","BO","40010","051","037050","H678","http://www.comune.sala-bolognese.bo.it/"
 "San Benedetto Val Di Sambro","BO","40048","0534","037051","G566","http://www.comune.sanbenedettovaldisambro.bo.it/"
 "San Giorgio Di Piano","BO","40016","051","037052","H896","http://www.comune.san-giorgio-di-piano.bo.it/"
-"San Giovanni in Persiceto","BO","40017","051","037053","G467","http://www.comunepersiceto.it/"
+"San Giovanni In Persiceto","BO","40017","051","037053","G467","http://www.comunepersiceto.it/"
 "San Lazzaro Di Savena","BO","40068","051","037054","H945","http://www.comune.sanlazzaro.bologna.it/"
-"San Pietro in Casale","BO","40018","051","037055","I110","http://www.comune.san-pietro-in-casale.bo.it/"
+"San Pietro In Casale","BO","40018","051","037055","I110","http://www.comune.san-pietro-in-casale.bo.it/"
 "Sant'Agata Bolognese","BO","40019","051","037056","I191","http://www.comune.santagatabolognese.bo.it/"
 "Sasso Marconi","BO","40037","051","037057","G972","http://www.comune.sassomarconi.bologna.it/"
 "Savigno","BO","40060","051","037058","I474","http://www.comunedisavigno.it/"
@@ -4127,12 +4127,12 @@
 "Ravenna","RA","48100","0544","039014","H199","http://www.comune.ravenna.it/"
 "Riolo Terme","RA","48025","0546","039015","H302","http://www.comune.rioloterme.ra.it/"
 "Russi","RA","48026","0544","039016","H642","http://www.comune.russi.ra.it/"
-"Sant'Agata sul Santerno","RA","48020","0545","039017","I196","http://www.comune.santagatasulsanterno.ra.it/"
+"Sant'Agata Sul Santerno","RA","48020","0545","039017","I196","http://www.comune.santagatasulsanterno.ra.it/"
 "Solarolo","RA","48027","0546","039018","I787","http://www.comune.solarolo.ra.it/"
 "Bagno Di Romagna","FC","47021","0543","040001","A565","http://www.comune.bagnodiromagna.fc.it/"
 "Bertinoro","FC","47032","0543","040003","A809","http://www.comune.bertinoro.fo.it/"
 "Borghi","FC","47030","0541","040004","B001","http://www.comune.borghi.fc.it/"
-"Castrocaro Terme e Terra Del Sole","FC","47011","0543","040005","C339","http://www.comune.castrocarotermeeterradelsole.fc.it/"
+"Castrocaro Terme E Terra Del Sole","FC","47011","0543","040005","C339","http://www.comune.castrocarotermeeterradelsole.fc.it/"
 "Cesena","FC","47023","0547","040007","C573","http://www.comune.cesena.fc.it/"
 "Cesenatico","FC","47042","0547","040008","C574","http://www.comune.cesenatico.fo.it/"
 "Civitella Di Romagna","FC","47012","0543","040009","C777","http://www.comune.civitella-di-romagna.fo.it/"
@@ -4147,7 +4147,7 @@
 "Mercato Saraceno","FC","47025","0547","040020","F139","http://www.comune.mercatosaraceno.fc.it/"
 "Modigliana","FC","47015","0546","040022","F259","http://www.comune.modigliana.fc.it/"
 "Montiano","FC","47020","0547","040028","F668","http://www.comune.montiano.fc.it/"
-"Portico e San Benedetto","FC","47010","0543","040031","G904","http://www.comune.portico-e-san-benedetto.fc.it/"
+"Portico E San Benedetto","FC","47010","0543","040031","G904","http://www.comune.portico-e-san-benedetto.fc.it/"
 "Predappio","FC","47016","0543","040032","H017","http://www.comune.predappio.fo.it/"
 "Premilcuore","FC","47010","0543","040033","H034","http://www.comune.premilcuore.fo.it/"
 "Rocca San Casciano","FC","47017","0543","040036","H437","http://www.comune.roccasancasciano.fc.it/"
@@ -4155,7 +4155,7 @@
 "San Mauro Pascoli","FC","47030","0541","040041","I027","http://www.comune.sanmauropascoli.fc.it/"
 "Santa Sofia","FC","47018","0543","040043","I310","http://www.comune.santa-sofia.fo.it/"
 "Sarsina","FC","47027","0547","040044","I444","http://www.comune.sarsina.fo.it/"
-"Savignano sul Rubicone","FC","47039","0541","040045","I472","http://www.comune.savignano-sul-rubicone.fo.it/"
+"Savignano Sul Rubicone","FC","47039","0541","040045","I472","http://www.comune.savignano-sul-rubicone.fo.it/"
 "Sogliano Al Rubicone","FC","47030","0541","040046","I779","http://www.comune.sogliano.fc.it/"
 "Tredozio","FC","47019","0546","040049","L361","http://www.comune.tredozio.fc.it/"
 "Verghereto","FC","47028","0543","040050","L764","http://www.comune.verghereto.fc.it/"
@@ -4183,12 +4183,12 @@
 "Lunano","PU","61026","0722","041022","E743",
 "Macerata Feltria","PU","61023","0722","041023","E785","http://www.comune.maceratafeltria.pu.it/"
 "Maiolo","PU","61010","0541","041024","E838","http://www.comunemaiolo.it/"
-"Mercatello sul Metauro","PU","61040","0722","041025","F135",
+"Mercatello Sul Metauro","PU","61040","0722","041025","F135",
 "Mercatino Conca","PU","61013","0541","041026","F136",
 "Mombaroccio","PU","61024","0721","041027","F310",
 "Mondavio","PU","61040","0721","041028","F347","http://www.comune.mondavio.pu.it/"
 "Mondolfo","PU","61037","0721","041029","F348","http://www.comune.mondolfo.pu.it/"
-"Montecalvo in Foglia","PU","61020","0722","041030","F450",
+"Montecalvo In Foglia","PU","61020","0722","041030","F450",
 "Monte Cerignone","PU","61010","0541","041031","F467",
 "Monteciccardo","PU","61024","0721","041032","F474",
 "Montecopiolo","PU","61014","0722","041033","F478",
@@ -4212,10 +4212,10 @@
 "San Costanzo","PU","61039","0721","041051","H809","http://www.comune.san-costanzo.pu.it/"
 "San Giorgio Di Pesaro","PU","61030","0721","041052","H886","http://www.comune.san-giorgio.pu.it/"
 "San Leo","PU","61018","0541","041053","H949","http://www.comune.san-leo.ps.it/"
-"San Lorenzo in Campo","PU","61047","0721","041054","H958","http://www.provincia.ps.it/comune.san-lorenzo/"
+"San Lorenzo In Campo","PU","61047","0721","041054","H958","http://www.provincia.ps.it/comune.san-lorenzo/"
 "Sant'Agata Feltria","PU","61019","0541","041055","I201",
-"Sant'Angelo in Lizzola","PU","61020","0721","041056","I285","http://www.sail.pu.it/"
-"Sant'Angelo in Vado","PU","61048","0722","041057","I287","http://www.comunesantangeloinvado.it/"
+"Sant'Angelo In Lizzola","PU","61020","0721","041056","I285","http://www.sail.pu.it/"
+"Sant'Angelo In Vado","PU","61048","0722","041057","I287","http://www.comunesantangeloinvado.it/"
 "Sant'Ippolito","PU","61040","0721","041058","I344","http://www.comune.santippolito.pu.it/"
 "Sassocorvaro","PU","61028","0722","041059","I459","http://www.comune.sassocorvaro.pu.it/"
 "Sassofeltrio","PU","61013","0541","041060","I460",
@@ -4284,7 +4284,7 @@
 "Camerino","MC","62032","0737","043007","B474","http://www.camerino.sinp.net/"
 "Camporotondo Di Fiastrone","MC","62020","0733","043008","B562","http://www.camporotondo.sinp.net/"
 "Castelraimondo","MC","62022","0737","043009","C251","http://www.castelraimondo.sinp.net/"
-"Castelsantangelo sul Nera","MC","62039","0737","043010","C267","http://www.castelsantangelo.sinp.net/"
+"Castelsantangelo Sul Nera","MC","62039","0737","043010","C267","http://www.castelsantangelo.sinp.net/"
 "Cessapalombo","MC","62020","0733","043011","C582","http://www.cessapalombo.sinp.net/"
 "Cingoli","MC","62011","0733","043012","C704","http://www.cingoli.sinp.net/"
 "Civitanova Marche","MC","62012","0733","043013","C770","http://www.comune.civitanova.mc.it/"
@@ -4322,7 +4322,7 @@
 "Ripe San Ginesio","MC","62020","0733","043045","H323","http://www.ripesanginesio.sinp.net/"
 "San Ginesio","MC","62026","0733","043046","H876","http://www.sanginesio.sinp.net/"
 "San Severino Marche","MC","62027","0733","043047","I156","http://www.sanseverino.sinp.net/"
-"Sant'Angelo in Pontano","MC","62020","0733","043048","I286","http://www.santangelo.sinp.net/"
+"Sant'Angelo In Pontano","MC","62020","0733","043048","I286","http://www.santangelo.sinp.net/"
 "Sarnano","MC","62028","0733","043049","I436","http://www.sarnano.sinp.net/"
 "Sefro","MC","62025","0737","043050","I569","http://www.sefro.sinp.net/"
 "Serrapetrona","MC","62020","0733","043051","I651","http://www.comune.serrapetrona.mc.it/"
@@ -4398,7 +4398,7 @@
 "Roccafluvione","AP","63049","0736","044064","H390",
 "Rotella","AP","63030","0736","044065","H588",
 "San Benedetto Del Tronto","AP","63039","0735","044066","H769","http://www.comune.san-benedetto-del-tronto.ap.it/"
-"Santa Vittoria in Matenano","AP","63028","0734","044067","I315",
+"Santa Vittoria In Matenano","AP","63028","0734","044067","I315",
 "Sant'Elpidio A Mare","AP","63019","0734","044068","I324","http://www.santelpidioamare.it/"
 "Servigliano","AP","63029","0734","044069","C070","http://www.serviglianoonline.it/"
 "Smerillo","AP","63020","0734","044070","I774",
@@ -4408,7 +4408,7 @@
 "Aulla","MS","54011","0187","045001","A496",
 "Bagnone","MS","54021","0187","045002","A576","http://www.comune.bagnone.ms.it/"
 "Carrara","MS","54033","0585","045003","B832","http://www.comune.carrara.ms.it/"
-"Casola in Lunigiana","MS","54014","0585","045004","B979",
+"Casola In Lunigiana","MS","54014","0585","045004","B979",
 "Comano","MS","54015","0187","045005","C914","http://www.comune.comano.ms.it/"
 "Filattiera","MS","54023","0187","045006","D590","http://www.comune.filattiera.ms.it/"
 "Fivizzano","MS","54013","0585","045007","D629","http://www.comune.fivizzano.ms.it/"
@@ -4420,7 +4420,7 @@
 "Podenzana","MS","54010","0187","045013","G746","http://www.comune.podenzana.ms.it/"
 "Pontremoli","MS","54027","0187","045014","G870","http://www.comune.pontremoli.ms.it/"
 "Tresana","MS","54012","0187","045015","L386","http://www.comune.tresana.ms.it/"
-"Villafranca in Lunigiana","MS","54028","0187","045016","L946","http://www.comunevillafrancainlunigiana.it/"
+"Villafranca In Lunigiana","MS","54028","0187","045016","L946","http://www.comunevillafrancainlunigiana.it/"
 "Zeri","MS","54029","0187","045017","M169","http://www.comune.zeri.ms.it/"
 "Altopascio","LU","55011","0583","046001","A241","http://www.comune.altopascio.lu.it/"
 "Bagni Di Lucca","LU","55022","0583","046002","A560",
@@ -4448,7 +4448,7 @@
 "Pietrasanta","LU","55045","0584","046024","G628","http://www.comune.pietrasanta.lu.it/"
 "Pieve Fosciana","LU","55036","0583","046025","G648",
 "Porcari","LU","55016","0583","046026","G882","http://www.comune.porcari.lu.it/"
-"San Romano in Garfagnana","LU","55038","0583","046027","I142","http://www.comunesanromano.it/"
+"San Romano In Garfagnana","LU","55038","0583","046027","I142","http://www.comunesanromano.it/"
 "Seravezza","LU","55047","0584","046028","I622","http://www.comune.seravezza.lucca.it/"
 "Sillano","LU","55030","0583","046029","I737",
 "Stazzema","LU","55040","0584","046030","I942",
@@ -4464,7 +4464,7 @@
 "Lamporecchio","PT","51035","0573","047005","E432","http://www.comune.lamporecchio.pt.it/"
 "Larciano","PT","51036","0573","047006","E451","http://www.comune.larciano.pt.it/"
 "Marliana","PT","51010","0572","047007","E960",
-"Massa e Cozzile","PT","51010","0572","047008","F025","http://www.comune.massa-e-cozzile.pt.it/"
+"Massa E Cozzile","PT","51010","0572","047008","F025","http://www.comune.massa-e-cozzile.pt.it/"
 "Monsummano Terme","PT","51015","0572","047009","F384","http://www.comune.monsummano-terme.pt.it/"
 "Montale","PT","51037","0573","047010","F410","http://www.comune.montale.pt.it/"
 "Montecatini-Terme","PT","51016","0572","047011","A561","http://www.comunemontecatini.com/"
@@ -4485,7 +4485,7 @@
 "Borgo San Lorenzo","FI","50032","055","048004","B036","http://www.comune.borgo-san-lorenzo.fi.it/"
 "Calenzano","FI","50041","055","048005","B406","http://www.comune.calenzano.fi.it/"
 "Campi Bisenzio","FI","50013","055","048006","B507","http://www.comune.campi-bisenzio.fi.it/"
-"Capraia e Limite","FI","50050","0571","048008","B684","http://www.comune.capraia-e-limite.fi.it/"
+"Capraia E Limite","FI","50050","0571","048008","B684","http://www.comune.capraia-e-limite.fi.it/"
 "Castelfiorentino","FI","50051","0571","048010","C101","http://www.comune.castelfiorentino.fi.it/"
 "Cerreto Guidi","FI","50050","0571","048011","C529","http://www.comune.cerreto-guidi.fi.it/"
 "Certaldo","FI","50052","0571","048012","C540","http://www.comune.certaldo.fi.it/"
@@ -4497,22 +4497,22 @@
 "Firenzuola","FI","50033","055","048018","D613","http://www.comune.firenzuola.fi.it/"
 "Fucecchio","FI","50054","0571","048019","D815","http://www.comune.fucecchio.fi.it/"
 "Gambassi Terme","FI","50050","0571","048020","D895","http://www.comune.gambassi-terme.fi.it/"
-"Greve in Chianti","FI","50022","055","048021","E169","http://www.comune.greve-in-chianti.fi.it/"
+"Greve In Chianti","FI","50022","055","048021","E169","http://www.comune.greve-in-chianti.fi.it/"
 "Impruneta","FI","50023","055","048022","E291","http://www.comune.impruneta.fi.it/"
-"Incisa in Val D'Arno","FI","50064","055","048023","E296","http://www.comune.incisa-valdarno.fi.it/"
+"Incisa In Val D'Arno","FI","50064","055","048023","E296","http://www.comune.incisa-valdarno.fi.it/"
 "Lastra A Signa","FI","50055","055","048024","E466","http://www.comune.lastra-a-signa.fi.it/"
 "Londa","FI","50060","055","048025","E668","http://www.comune.londa.fi.it/"
 "Marradi","FI","50034","055","048026","E971","http://www.comune.marradi.fi.it/"
 "Montaione","FI","50050","0571","048027","F398","http://www.comune.montaione.fi.it/"
 "Montelupo Fiorentino","FI","50056","0571","048028","F551","http://www.comune.montelupo-fiorentino.fi.it/"
 "Montespertoli","FI","50025","0571","048030","F648","http://www.comune.montespertoli.fi.it/"
-"Palazzuolo sul Senio","FI","50035","055","048031","G270","http://www.palazzuolo.it/"
+"Palazzuolo Sul Senio","FI","50035","055","048031","G270","http://www.palazzuolo.it/"
 "Pelago","FI","50060","055","048032","G420","http://www.comune.pelago.fi.it/"
 "Pontassieve","FI","50065","055","048033","G825","http://www.comune.pontassieve.fi.it/"
 "Reggello","FI","50066","055","048035","H222","http://www.comune.reggello.fi.it/"
-"Rignano sull'Arno","FI","50067","055","048036","H286","http://www.comune.rignano-sullarno.fi.it/"
+"Rignano Sull'Arno","FI","50067","055","048036","H286","http://www.comune.rignano-sullarno.fi.it/"
 "Rufina","FI","50068","055","048037","H635","http://www.comune.rufina.fi.it/"
-"San Casciano in Val Di Pesa","FI","50026","055","048038","H791","http://www.comune.san-casciano-val-di-pesa.fi.it/"
+"San Casciano In Val Di Pesa","FI","50026","055","048038","H791","http://www.comune.san-casciano-val-di-pesa.fi.it/"
 "San Godenzo","FI","50060","055","048039","H937","http://www.comune.san-godenzo.fi.it/"
 "San Piero A Sieve","FI","50037","055","048040","I085","http://www.comune.san-piero-a-sieve.fi.it/"
 "Scandicci","FI","50018","055","048041","B962","http://www.comune.scandicci.fi.it/"
@@ -4525,7 +4525,7 @@
 "Vinci","FI","50059","0571","048050","M059","http://www.comune.vinci.fi.it/"
 "Bibbona","LI","57020","0586","049001","A852","http://www.comune.bibbona.livorno.it/"
 "Campiglia Marittima","LI","57021","0565","049002","B509","http://www.comune.campigliamarittima.li.it/"
-"Campo nell'Elba","LI","57034","0565","049003","B553","http://www.comune.camponellelba.li.it/"
+"Campo Nell'Elba","LI","57034","0565","049003","B553","http://www.comune.camponellelba.li.it/"
 "Capoliveri","LI","57031","0565","049004","B669","http://www.elba-capoliveri.net/"
 "Capraia Isola","LI","57032","0586","049005","B685",
 "Castagneto Carducci","LI","57022","0565","049006","C044","http://www.comune.castagneto-carducci.li.it/"
@@ -4538,7 +4538,7 @@
 "Porto Azzurro","LI","57036","0565","049013","E680",
 "Portoferraio","LI","57037","0565","049014","G912","http://www.comune.portoferraio.li.it/"
 "Rio Marina","LI","57038","0565","049015","H305","http://www.comuneriomarina.it/"
-"Rio nell'Elba","LI","57039","0565","049016","H297",
+"Rio Nell'Elba","LI","57039","0565","049016","H297",
 "Rosignano Marittimo","LI","57016","0586","049017","H570","http://www.comune.rosignano.livorno.it/"
 "San Vincenzo","LI","57027","0565","049018","I390","http://www.comune.san-vincenzo.li.it/"
 "Sassetta","LI","57020","0565","049019","I454","http://www.comunedisassetta.com/"
@@ -4564,7 +4564,7 @@
 "Montecatini Val Di Cecina","PI","56040","0588","050019","F458","http://www.comune.montecatini.pi.it/"
 "Montescudaio","PI","56040","0586","050020","F640","http://www.comune.montescudaio.pi.it/"
 "Monteverdi Marittimo","PI","56040","0565","050021","F661","http://www.comune.monteverdi-marittimo.pi.it/"
-"Montopoli in Val D'Arno","PI","56020","0571","050022","F686","http://www.comune.montopoli.pi.it/"
+"Montopoli In Val D'Arno","PI","56020","0571","050022","F686","http://www.comune.montopoli.pi.it/"
 "Orciano Pisano","PI","56040","050","050023","G090","http://www.comune.orcianopisano.pi.it/"
 "Palaia","PI","56036","0587","050024","G254","http://www.comune.palaia.pisa.it/"
 "Peccioli","PI","56037","0587","050025","G395","http://www.comune.peccioli.pisa.it/"
@@ -4575,7 +4575,7 @@
 "Riparbella","PI","56046","0586","050030","H319","http://www.comune.riparbella.pi.it/"
 "San Giuliano Terme","PI","56017","050","050031","A562","http://www.comune.sangiulianoterme.pisa.it/"
 "San Miniato","PI","56028","0571","050032","I046","http://www.comune.san-miniato.pi.it/"
-"Santa Croce sull'Arno","PI","56029","0571","050033","I177","http://www.comune.santacroce.pi.it/"
+"Santa Croce Sull'Arno","PI","56029","0571","050033","I177","http://www.comune.santacroce.pi.it/"
 "Santa Luce","PI","56040","050","050034","I217","http://www.comune.santaluce.pi.it/"
 "Santa Maria A Monte","PI","56020","0587","050035","I232","http://www.comune.santamariaamonte.pi.it/"
 "Terricciola","PI","56030","0587","050036","L138","http://www.comune.terricciola.pi.it/"
@@ -4597,7 +4597,7 @@
 "Cavriglia","AR","52022","055","051013","C407","http://www.comune.cavriglia.ar.it/"
 "Chitignano","AR","52010","0575","051014","C648","http://www.comune.chitignano.arezzo.it/"
 "Chiusi Della Verna","AR","52010","0575","051015","C663","http://www.comune.chiusi-della-verna.ar.it/"
-"Civitella in Val Di Chiana","AR","52041","0575","051016","C774","http://www.comune.civitella-in-val-di-chiana.ar.it/"
+"Civitella In Val Di Chiana","AR","52041","0575","051016","C774","http://www.comune.civitella-in-val-di-chiana.ar.it/"
 "Cortona","AR","52044","0575","051017","D077","http://www.comunedicortona.it/"
 "Foiano Della Chiana","AR","52045","0575","051018","D649","http://www.comune.foiano.ar.it/"
 "Laterina","AR","52020","0575","051019","E468","http://www.comune.laterina.ar.it/"
@@ -4625,7 +4625,7 @@
 "Asciano","SI","53041","0577","052002","A461","http://www.comune.asciano.siena.it/"
 "Buonconvento","SI","53022","0577","052003","B269","http://www.comune.buonconvento.siena.it/"
 "Casole D'Elsa","SI","53031","0577","052004","B984",
-"Castellina in Chianti","SI","53011","0577","052005","C172","http://www.comune.castellina.si.it/"
+"Castellina In Chianti","SI","53011","0577","052005","C172","http://www.comune.castellina.si.it/"
 "Castelnuovo Berardenga","SI","53019","0577","052006","C227","http://www.comune.castelnuovo-berardenga.si.it/"
 "Castiglione D'Orcia","SI","53023","0577","052007","C313","http://www.comune.castiglionedorcia.siena.it/"
 "Cetona","SI","53040","0578","052008","C587","http://www.comune.cetona.siena.it/"
@@ -4633,7 +4633,7 @@
 "Chiusdino","SI","53012","0577","052010","C661","http://www.comune.chiusdino.siena.it/"
 "Chiusi","SI","53043","0578","052011","C662","http://www.comune.chiusi.si.it/"
 "Colle Di Val D'Elsa","SI","53034","0577","052012","C847","http://www.comune.colle-di-val-d-elsa.si.it/"
-"Gaiole in Chianti","SI","53013","0577","052013","D858","http://www.comune.gaiole.siena.it/"
+"Gaiole In Chianti","SI","53013","0577","052013","D858","http://www.comune.gaiole.siena.it/"
 "Montalcino","SI","53024","0577","052014","F402","http://www.comunemontalcino.it/"
 "Montepulciano","SI","53045","0578","052015","F592","http://www.comune.montepulciano.si.it/"
 "Monteriggioni","SI","53035","0577","052016","F598","http://www.comune.monteriggioni.si.it/"
@@ -4643,7 +4643,7 @@
 "Piancastagnaio","SI","53025","0577","052020","G547","http://www.comune.piancastagnaio.si.it/"
 "Pienza","SI","53026","0578","052021","G602","http://www.comunedipienza.it/"
 "Poggibonsi","SI","53036","0577","052022","G752","http://www.comune.poggibonsi.si.it/"
-"Radda in Chianti","SI","53017","0577","052023","H153","http://www.comune.radda-in-chianti.si.it/"
+"Radda In Chianti","SI","53017","0577","052023","H153","http://www.comune.radda-in-chianti.si.it/"
 "Radicofani","SI","53040","0578","052024","H156","http://www.comune.radicofani.si.it/"
 "Radicondoli","SI","53030","0577","052025","H157","http://www.comune.radicondoli.si.it/"
 "Rapolano Terme","SI","53040","0577","052026","H185","http://www.comune.rapolano.si.it/"
@@ -4669,7 +4669,7 @@
 "Gavorrano","GR","58023","0566","053010","D948","http://www.comune.gavorrano.gr.it/"
 "Grosseto","GR","58100","0564","053011","E202","http://www.comune.grosseto.it/"
 "Isola Del Giglio","GR","58012","0564","053012","E348","http://www.comune.isoladelgiglio.gr.it/"
-"Magliano in Toscana","GR","58051","0564","053013","E810","http://www.comune.magliano-in-toscana.gr.it/"
+"Magliano In Toscana","GR","58051","0564","053013","E810","http://www.comune.magliano-in-toscana.gr.it/"
 "Manciano","GR","58014","0564","053014","E875","http://www.comune.manciano.gr.it/"
 "Massa Marittima","GR","58024","0566","053015","F032","http://www.comune.massamarittima.gr.it/"
 "Monte Argentario","GR","58019","0564","053016","F437","http://www.comunemonteargentario.it/"
@@ -4689,7 +4689,7 @@
 "Bastia Umbra","PG","06083","075","054002","A710","http://www.comune.bastia.pg.it/"
 "Bettona","PG","06084","075","054003","A832","http://www.comune.bettona.pg.it/"
 "Bevagna","PG","06031","0742","054004","A835","http://www.comune.bevagna.pg.it/"
-"Campello sul Clitunno","PG","06042","0743","054005","B504","http://www.comune.campello.pg.it/"
+"Campello Sul Clitunno","PG","06042","0743","054005","B504","http://www.comune.campello.pg.it/"
 "Cannara","PG","06033","0742","054006","B609","http://www.comune.cannara.pg.it/"
 "Cascia","PG","06043","0743","054007","B948",
 "Castel Ritaldi","PG","06044","0743","054008","C252","http://www.comune.castel-ritaldi.pg.it/"
@@ -4722,7 +4722,7 @@
 "Norcia","PG","06046","0743","054035","F935","http://www.comune.norcia.pg.it/"
 "Paciano","PG","06060","075","054036","G212","http://www.comune.paciano.pg.it/"
 "Panicale","PG","06064","075","054037","G308","http://www.comune.panicale.pg.it/"
-"Passignano sul Trasimeno","PG","06065","075","054038","G359","http://www.passignanosultrasimeno.org/"
+"Passignano Sul Trasimeno","PG","06065","075","054038","G359","http://www.passignanosultrasimeno.org/"
 "Perugia","PG","06100","075","054039","G478","http://www.comune.perugia.it/"
 "Piegaro","PG","06066","075","054040","G601","http://www.comune.piegaro.pg.it/"
 "Pietralunga","PG","06026","075","054041","G618","http://www.pietralunga.it/"
@@ -4730,7 +4730,7 @@
 "Preci","PG","06047","0743","054043","H015",
 "San Giustino","PG","06016","075","054044","H935","http://www.comunesangiustino.it/"
 "Sant'Anatolia Di Narco","PG","06040","0743","054045","I263",
-"Scheggia e Pascelupo","PG","06027","075","054046","I522","http://www.comunescheggiaepascelupo.it/"
+"Scheggia E Pascelupo","PG","06027","075","054046","I522","http://www.comunescheggiaepascelupo.it/"
 "Scheggino","PG","06040","0743","054047","I523",
 "Sellano","PG","06030","0743","054048","I585","http://www.comune.sellano.pg.it/"
 "Sigillo","PG","06028","075","054049","I727",
@@ -4739,7 +4739,7 @@
 "Todi","PG","06059","075","054052","L188","http://www.comune.todi.pg.it/"
 "Torgiano","PG","06089","075","054053","L216","http://www.comune.torgiano.pg.it/"
 "Trevi","PG","06039","0742","054054","L397","http://www.comune.trevi.pg.it/"
-"Tuoro sul Trasimeno","PG","06069","075","054055","L466","http://www.comune.tuoro-sul-trasimeno.pg.it/"
+"Tuoro Sul Trasimeno","PG","06069","075","054055","L466","http://www.comune.tuoro-sul-trasimeno.pg.it/"
 "Umbertide","PG","06019","075","054056","D786","http://www.comune.umbertide.it/"
 "Valfabbrica","PG","06029","075","054057","L573","http://www.comune.valfabbrica.pg.it/"
 "Vallo Di Nera","PG","06040","0743","054058","L627","http://www.comune.vallodinera.pg.it/"
@@ -4759,7 +4759,7 @@
 "Ficulle","TR","05016","0763","055013","D570","http://www.comune.ficulle.tr.it/"
 "Giove","TR","05024","0744","055014","E045","http://www.comune.giove.tr.it/"
 "Guardea","TR","05025","0744","055015","E241","http://www.comunediguardea.it/"
-"Lugnano in Teverina","TR","05020","0744","055016","E729",
+"Lugnano In Teverina","TR","05020","0744","055016","E729",
 "Montecastrilli","TR","05026","0744","055017","F457","http://www.comune.montecastrilli.tr.it/"
 "Montecchio","TR","05020","0744","055018","F462","http://www.comune.montecchio.tr.it/"
 "Montefranco","TR","05030","0744","055019","F510",
@@ -4769,7 +4769,7 @@
 "Orvieto","TR","05018","0763","055023","G148","http://www.comune.orvieto.tr.it/"
 "Otricoli","TR","05030","0744","055024","G189","http://www.comuneotricoli.it/"
 "Parrano","TR","05010","0763","055025","G344",
-"Penna in Teverina","TR","05028","0744","055026","G432",
+"Penna In Teverina","TR","05028","0744","055026","G432",
 "Polino","TR","05030","0744","055027","G790",
 "Porano","TR","05010","0763","055028","G881","http://www.comune.porano.tr.it/"
 "San Gemini","TR","05029","0744","055029","H857","http://www.comune.sangemini.tr.it/"
@@ -4782,7 +4782,7 @@
 "Bagnoregio","VT","01022","0761","056003","A577","http://www.comune.bagnoregio.vt.it/"
 "Barbarano Romano","VT","01010","0761","056004","A628",
 "Bassano Romano","VT","01030","0761","056005","A704","http://www.comunebassanoromano.it/"
-"Bassano in Teverina","VT","01030","0761","056006","A706","http://www.comune.bassanointeverina.vt.it/"
+"Bassano In Teverina","VT","01030","0761","056006","A706","http://www.comune.bassanointeverina.vt.it/"
 "Blera","VT","01010","0761","056007","A857","http://www.comune.blera.vt.it/"
 "Bolsena","VT","01023","0761","056008","A949","http://www.comunebolsena.it/"
 "Bomarzo","VT","01020","0761","056009","A955","http://www.comunebomarzo.it/"
@@ -4794,7 +4794,7 @@
 "Caprarola","VT","01032","0761","056015","B691",
 "Carbognano","VT","01030","0761","056016","B735","http://www.comune.carbognano.vt.it/"
 "Castel Sant'Elia","VT","01030","0761","056017","C269","http://www.comunecastelsantelia.it/"
-"Castiglione in Teverina","VT","01024","0761","056018","C315","http://www.castiglione.teverina.it/"
+"Castiglione In Teverina","VT","01024","0761","056018","C315","http://www.castiglione.teverina.it/"
 "Celleno","VT","01020","0761","056019","C446","http://www.comune.celleno.it/"
 "Cellere","VT","01010","0761","056020","C447","http://www.comune.cellere.vt.it/"
 "Civita Castellana","VT","01033","0761","056021","C765","http://www.comune.civitacastellana.vt.it/"
@@ -4822,9 +4822,9 @@
 "Piansano","VT","01010","0761","056043","G571","http://www.piansano.org/"
 "Proceno","VT","01020","0763","056044","H071","http://www.comunediproceno.vt.it/"
 "Ronciglione","VT","01037","0761","056045","H534","http://www.comune.ronciglione.vt.it/"
-"Villa San Giovanni in Tuscia","VT","01010","0761","056046","H913","http://www.comunevsgtuscia.it/"
+"Villa San Giovanni In Tuscia","VT","01010","0761","056046","H913","http://www.comunevsgtuscia.it/"
 "San Lorenzo Nuovo","VT","01020","0763","056047","H969","http://www.comunesanlorenzonuovo.it/"
-"Soriano nel Cimino","VT","01038","0761","056048","I855","http://www.comune.sorianonelcimino.vt.it/"
+"Soriano Nel Cimino","VT","01038","0761","056048","I855","http://www.comune.sorianonelcimino.vt.it/"
 "Sutri","VT","01015","0761","056049","L017","http://www.comune.sutri.vt.it/"
 "Tarquinia","VT","01016","0766","056050","D024","http://www.tarquinia.net/"
 "Tessennano","VT","01010","0761","056051","L150",
@@ -4841,12 +4841,12 @@
 "Amatrice","RI","02012","0746","057002","A258","http://www.amatrice.net/"
 "Antrodoco","RI","02013","0746","057003","A315","http://www.comunediantrodoco.it/"
 "Ascrea","RI","02020","0765","057004","A464",
-"Belmonte in Sabina","RI","02020","0765","057005","A765",
+"Belmonte In Sabina","RI","02020","0765","057005","A765",
 "Borbona","RI","02010","0746","057006","A981","http://www.comune.borbona.rieti.it/"
 "Borgorose","RI","02021","0746","057007","B008","http://www.comuneborgorose.ri.it/"
 "Borgo Velino","RI","02010","0746","057008","A996","http://www.borgo-velino.it/"
 "Cantalice","RI","02014","0746","057009","B627","http://www.comune.cantalice.ri.it/"
-"Cantalupo in Sabina","RI","02040","0765","057010","B631","http://www.comune.cantalupoinsabina.ri.it/"
+"Cantalupo In Sabina","RI","02040","0765","057010","B631","http://www.comune.cantalupoinsabina.ri.it/"
 "Casaprota","RI","02030","0765","057011","B934","http://www.comune.casaprota.ri.it/"
 "Casperia","RI","02041","0765","057012","A472","http://www.comunedicasperia.it/"
 "Castel Di Tora","RI","02020","0765","057013","C098","http://www.comune.castelditora.ri.it/"
@@ -4858,12 +4858,12 @@
 "Colle Di Tora","RI","02020","0765","057019","C857",
 "Collegiove","RI","02020","0765","057020","C859",
 "Collevecchio","RI","02042","0765","057021","C876",
-"Colli sul Velino","RI","02010","0746","057022","C880",
+"Colli Sul Velino","RI","02010","0746","057022","C880",
 "Concerviano","RI","02020","0765","057023","C946",
 "Configni","RI","02040","0746","057024","C959",
 "Contigliano","RI","02043","0746","057025","C969","http://www.comune.contigliano.ri.it/"
 "Cottanello","RI","02040","0746","057026","D124","http://www.comune.cottanello.ri.it/"
-"Fara in Sabina","RI","02032","0765","057027","D493","http://www.comune.farainsabina.ri.it/"
+"Fara In Sabina","RI","02032","0765","057027","D493","http://www.comune.farainsabina.ri.it/"
 "Fiamignano","RI","02023","0746","057028","D560","http://www.comune.fiamignano.ri.it/"
 "Forano","RI","02044","0765","057029","D689",
 "Frasso Sabino","RI","02030","0765","057030","D785",
@@ -4879,7 +4879,7 @@
 "Montebuono","RI","02040","0765","057040","F446",
 "Monteleone Sabino","RI","02033","0765","057041","F541",
 "Montenero Sabino","RI","02040","0765","057042","F579","http://www.comune.montenerosabino.ri.it/"
-"Monte San Giovanni in Sabina","RI","02040","0765","057043","F619",
+"Monte San Giovanni In Sabina","RI","02040","0765","057043","F619",
 "Montopoli Di Sabina","RI","02034","0765","057044","F687",
 "Morro Reatino","RI","02010","0746","057045","F746",
 "Nespolo","RI","02020","0765","057046","F876",
@@ -4905,8 +4905,8 @@
 "Stimigliano","RI","02048","0765","057066","I959",
 "Tarano","RI","02040","0765","057067","L046",
 "Toffia","RI","02039","0765","057068","L189","http://www.comune.toffia.ri.it/"
-"Torricella in Sabina","RI","02030","0765","057069","L293","http://www.comune.torricellainsabina.ri.it/"
-"Torri in Sabina","RI","02049","0765","057070","L286",
+"Torricella In Sabina","RI","02030","0765","057069","L293","http://www.comune.torricellainsabina.ri.it/"
+"Torri In Sabina","RI","02049","0765","057070","L286",
 "Turania","RI","02020","0765","057071","G507",
 "Vacone","RI","02040","0746","057072","L525","http://www.comune.vacone.ri.it/"
 "Varco Sabino","RI","02020","0765","057073","L676",
@@ -4949,7 +4949,7 @@
 "Filacciano","RM","00060","0765","058037","D586",
 "Formello","RM","00060","06","058038","D707","http://www.comunediformello.it/"
 "Frascati","RM","00044","06","058039","D773","http://www.comune.frascati.rm.it/"
-"Gallicano nel Lazio","RM","00010","06","058040","D875","http://www.comune.gallicanonellazio.roma.it/"
+"Gallicano Nel Lazio","RM","00010","06","058040","D875","http://www.comune.gallicanonellazio.roma.it/"
 "Gavignano","RM","00030","06","058041","D945",
 "Genazzano","RM","00030","06","058042","D964","http://www.comune.genazzano.roma.it/"
 "Genzano Di Roma","RM","00045","06","058043","D972","http://www.comune.genzanodiroma.roma.it/"
@@ -5056,7 +5056,7 @@
 "Roccasecca Dei Volsci","LT","04010","0773","059023","H444",
 "Sabaudia","LT","04016","0773","059024","H647","http://www.comune.sabaudia.latina.it/"
 "San Felice Circeo","LT","04017","0773","059025","H836","http://www.comune.sanfelicecirceo.lt.it/"
-"Santi Cosma e Damiano","LT","04020","0771","059026","I339",
+"Santi Cosma E Damiano","LT","04020","0771","059026","I339",
 "Sermoneta","LT","04013","0773","059027","I634","http://www.comune.sermoneta.latina.it/"
 "Sezze","LT","04018","0773","059028","I712","http://www.comune.sezze.lt.it/"
 "Sonnino","LT","04010","0773","059029","I832","http://www.comune.sonnino.latina.it/"
@@ -5128,7 +5128,7 @@
 "San Donato Val Di Comino","FR","03046","0776","060062","H824","http://www.comune.sandonatovaldicomino.fr.it/"
 "San Giorgio A Liri","FR","03047","0776","060063","H880",
 "San Giovanni Incarico","FR","03028","0776","060064","H917","http://www.comunesangiovanniincarico.fr.it/"
-"Sant'Ambrogio sul Garigliano","FR","03040","0776","060065","I256","http://www.comune.santambrogiosulgarigliano.fr.it/"
+"Sant'Ambrogio Sul Garigliano","FR","03040","0776","060065","I256","http://www.comune.santambrogiosulgarigliano.fr.it/"
 "Sant'Andrea Del Garigliano","FR","03040","0776","060066","I265",
 "Sant'Apollinare","FR","03048","0776","060067","I302","http://www.comunedisantapollinare.it/"
 "Sant'Elia Fiumerapido","FR","03049","0776","060068","I321","http://www.comune.santeliafiumerapido.fr.it/"
@@ -5143,14 +5143,14 @@
 "Terelle","FR","03040","0776","060077","L105",
 "Torre Cajetani","FR","03010","0775","060078","L243","http://www.comune.torrecajetani.fr.it/"
 "Torrice","FR","03020","0775","060079","L290","http://www.comune.torrice.fr.it/"
-"Trevi nel Lazio","FR","03010","0775","060080","L398",
+"Trevi Nel Lazio","FR","03010","0775","060080","L398",
 "Trivigliano","FR","03010","0775","060081","L437",
 "Vallecorsa","FR","03020","0775","060082","L598","http://www.comune.vallecorsa.fr.it/"
 "Vallemaio","FR","03040","0776","060083","L605",
 "Vallerotonda","FR","03040","0776","060084","L614",
 "Veroli","FR","03029","0775","060085","L780","http://www.comune.veroli.fr.it/"
 "Vicalvi","FR","03030","0776","060086","L836",
-"Vico nel Lazio","FR","03010","0775","060087","L843",
+"Vico Nel Lazio","FR","03010","0775","060087","L843",
 "Villa Latina","FR","03040","0776","060088","A081",
 "Villa Santa Lucia","FR","03030","0776","060089","L905",
 "Villa Santo Stefano","FR","03020","0775","060090","I364",
@@ -5160,13 +5160,13 @@
 "Alvignano","CE","81012","0823","061003","A243",
 "Arienzo","CE","81021","0823","061004","A403","http://www.comune.arienzo.ce.it/"
 "Aversa","CE","81031","081","061005","A512","http://www.comune.aversa.ce.it/"
-"Baia e Latina","CE","81010","0823","061006","A579","http://www.comunedibaiaelatina.it/"
+"Baia E Latina","CE","81010","0823","061006","A579","http://www.comunedibaiaelatina.it/"
 "Bellona","CE","81041","0823","061007","A755",
 "Caianello","CE","81059","0823","061008","B361",
 "Caiazzo","CE","81013","0823","061009","B362","http://www.comune.caiazzo.ce.it/"
 "Calvi Risorta","CE","81042","0823","061010","B445",
 "Camigliano","CE","81050","0823","061011","B477","http://www.comunedicamigliano.it/"
-"Cancello ed Arnone","CE","81030","0823","061012","B581","http://www.comune.cancelloedarnone.ce.it/"
+"Cancello Ed Arnone","CE","81030","0823","061012","B581","http://www.comune.cancelloedarnone.ce.it/"
 "Capodrise","CE","81020","0823","061013","B667","http://www.comune.capodrise.ce.it/"
 "Capriati A Volturno","CE","81014","0823","061014","B704",
 "Capua","CE","81043","0823","061015","B715","http://www.comunedicapua.it/"
@@ -5226,13 +5226,13 @@
 "Rocca D'Evandro","CE","81040","0823","061069","H398","http://www.comuneroccadevandro.it/"
 "Roccamonfina","CE","81035","0823","061070","H423",
 "Roccaromana","CE","81051","0823","061071","H436",
-"Rocchetta e Croce","CE","81042","0823","061072","H459","http://www.comune.rocchettaecroce.ce.it/"
+"Rocchetta E Croce","CE","81042","0823","061072","H459","http://www.comune.rocchettaecroce.ce.it/"
 "Ruviano","CE","81010","0823","061073","H165","http://www.comuneruviano.com/"
 "San Cipriano D'Aversa","CE","81036","081","061074","H798",
 "San Felice A Cancello","CE","81027","0823","061075","H834","http://www.cittasanfeliceacancello.it/"
 "San Gregorio Matese","CE","81010","0823","061076","H939",
 "San Marcellino","CE","81030","081","061077","H978","http://www.comune.san-marcellino.ce.it/"
-"San Nicola la Strada","CE","81020","0823","061078","I056","http://www.comune.sannicolalastrada.ce.it/"
+"San Nicola La Strada","CE","81020","0823","061078","I056","http://www.comune.sannicolalastrada.ce.it/"
 "San Pietro Infine","CE","81049","0823","061079","I113",
 "San Potito Sannitico","CE","81016","0823","061080","I130",
 "San Prisco","CE","81054","0823","061081","I131","http://www.comune.sanprisco.ce.it/"
@@ -5247,7 +5247,7 @@
 "Succivo","CE","81030","081","061090","I993","http://www.comune.succivo.ce.it/"
 "Teano","CE","81057","0823","061091","L083","http://www.comune.teano.ce.it/"
 "Teverola","CE","81030","081","061092","L155",
-"Tora e Piccilli","CE","81044","0823","061093","L205",
+"Tora E Piccilli","CE","81044","0823","061093","L205",
 "Trentola-Ducenta","CE","81038","081","061094","L379","http://www.comune.trentoladucenta.ce.it/"
 "Vairano Patenora","CE","81058","0823","061095","L540","http://www.comune.vairano-patenora.ce.it/"
 "Valle Agricola","CE","81010","0823","061096","L594",
@@ -5274,11 +5274,11 @@
 "Campolattaro","BN","82020","0824","062013","B541",
 "Campoli Del Monte Taburno","BN","82030","0824","062014","B542",
 "Casalduni","BN","82027","0824","062015","B873",
-"Castelfranco in Miscano","BN","82022","0824","062016","C106",
+"Castelfranco In Miscano","BN","82022","0824","062016","C106",
 "Castelpagano","BN","82024","0824","062017","C245","http://www.sannio.com/castelpagano/"
 "Castelpoto","BN","82030","0824","062018","C250","http://www.comunedicastelpoto.it/"
 "Castelvenere","BN","82037","0824","062019","C280","http://www.comunedicastelvenere.it/"
-"Castelvetere in Val Fortore","BN","82023","0824","062020","C284",
+"Castelvetere In Val Fortore","BN","82023","0824","062020","C284",
 "Cautano","BN","82030","0824","062021","C359",
 "Ceppaloni","BN","82010","0824","062022","C476","http://www.comune.ceppaloni.bn.it/"
 "Cerreto Sannita","BN","82032","0824","062023","C525","http://www.comune.cerretosannita.bn.it/"
@@ -5315,7 +5315,7 @@
 "Pontelandolfo","BN","82027","0824","062054","G848","http://www.comune.pontelandolfo.bn.it/"
 "Puglianello","BN","82030","0824","062055","H087",
 "Reino","BN","82020","0824","062056","H227","http://www.comune.reino.bn.it/"
-"San Bartolomeo in Galdo","BN","82028","0824","062057","H764",
+"San Bartolomeo In Galdo","BN","82028","0824","062057","H764",
 "San Giorgio Del Sannio","BN","82018","0824","062058","H894",
 "San Giorgio La Molara","BN","82020","0824","062059","H898",
 "San Leucio Del Sannio","BN","82010","0824","062060","H953",
@@ -5370,7 +5370,7 @@
 "Forio","NA","80075","081","063031","D702","http://www.comune.forio.na.it/"
 "Frattamaggiore","NA","80027","081","063032","D789",
 "Frattaminore","NA","80020","081","063033","D790","http://www.comune.frattaminore.na.it/"
-"Giugliano in Campania","NA","80014","081","063034","E054","http://www.comune.giugliano.na.it/"
+"Giugliano In Campania","NA","80014","081","063034","E054","http://www.comune.giugliano.na.it/"
 "Gragnano","NA","80054","081","063035","E131","http://www.comune.gragnano.na.it/"
 "Grumo Nevano","NA","80028","081","063036","E224","http://www.comune.grumo-nevano.na.it/"
 "Ischia","NA","80077","081","063037","E329","http://www.comuneischia.it/"
@@ -5426,7 +5426,7 @@
 "Villaricca","NA","80010","081","063087","G309","http://www.comune.villaricca.na.it/"
 "Visciano","NA","80030","081","063088","M072","http://www.comunevisciano.na.it/"
 "Volla","NA","80040","081","063089","M115","http://www.comunedivolla.it/"
-"Santa Maria la Carità","NA","80050","081","063090","M273",
+"Santa Maria La Carità","NA","80050","081","063090","M273",
 "Trecase","NA","80040","081","063091","M280",
 "Massa Di Somma","NA","80040","081","063092","M289",
 "Aiello Del Sabato","AV","83020","0825","064001","A101","http://www.comune.aiellodelsabato.av.it/"
@@ -5452,7 +5452,7 @@
 "Cassano Irpino","AV","83040","0827","064021","B997","http://www.comunecassanoirpino.it/"
 "Castel Baronia","AV","83040","0827","064022","C058",
 "Castelfranci","AV","83040","0827","064023","C105","http://www.comune.castelfranci.av.it/"
-"Castelvetere sul Calore","AV","83040","0827","064024","C283",
+"Castelvetere Sul Calore","AV","83040","0827","064024","C283",
 "Cervinara","AV","83012","0824","064025","C557",
 "Cesinali","AV","83020","0825","064026","C576",
 "Chianche","AV","83010","0825","064027","C606",
@@ -5510,7 +5510,7 @@
 "Rocca San Felice","AV","83050","0827","064079","H438","http://www.comune.roccasanfelice.av.it/"
 "Rotondi","AV","83017","0824","064080","H592","http://www.comune.rotondi.av.it/"
 "Salza Irpina","AV","83050","0825","064081","H733",
-"San Mango sul Calore","AV","83050","0827","064082","H975","http://www.comune.sanmangosulcalore.av.it/"
+"San Mango Sul Calore","AV","83050","0827","064082","H975","http://www.comune.sanmangosulcalore.av.it/"
 "San Martino Valle Caudina","AV","83018","0824","064083","I016",
 "San Michele Di Serino","AV","83020","0825","064084","I034","http://www.comunedisanmichelediserino.it/"
 "San Nicola Baronia","AV","83050","0827","064085","I061","http://www.comune.san-nicola-baronia.av.it/"
@@ -5576,7 +5576,7 @@
 "Casalbuono","SA","84030","0975","065026","B868","http://www.comune.casalbuono.sa.it/"
 "Casaletto Spartano","SA","84030","0973","065027","B888","http://www.casalettospartano.com/"
 "Casal Velino","SA","84040","0974","065028","B895","http://www.comune.casal-velino.sa.it/"
-"Caselle in Pittari","SA","84030","0974","065029","B959","http://www.comune.caselleinpittari.sa.it/"
+"Caselle In Pittari","SA","84030","0974","065029","B959","http://www.comune.caselleinpittari.sa.it/"
 "Castelcivita","SA","84020","0828","065030","C069",
 "Castellabate","SA","84048","0974","065031","C125","http://www.comune.castellabate.sa.it/"
 "Castelnuovo Cilento","SA","84040","0974","065032","C231",
@@ -5623,13 +5623,13 @@
 "Montecorvino Rovella","SA","84096","089","065073","F481","http://www.comune.montecorvinorovella.sa.it/"
 "Monteforte Cilento","SA","84060","0974","065074","F507",
 "Monte San Giacomo","SA","84030","0975","065075","F618",
-"Montesano sulla Marcellana","SA","84033","0975","065076","F625","http://www.comune.montesano.sa.it/"
+"Montesano Sulla Marcellana","SA","84033","0975","065076","F625","http://www.comune.montesano.sa.it/"
 "Morigerati","SA","84030","0974","065077","F731","http://www.comune.morigerati.sa.it/"
 "Nocera Inferiore","SA","84014","081","065078","F912","http://www.comune.nocera-inferiore.sa.it/"
 "Nocera Superiore","SA","84015","081","065079","F913","http://www.comune.nocera-superiore.sa.it/"
 "Novi Velia","SA","84060","0974","065080","F967","http://www.comune.novivelia.sa.it/"
 "Ogliastro Cilento","SA","84061","0974","065081","G011",
-"Olevano sul Tusciano","SA","84062","0828","065082","G023","http://www.olevano.it/"
+"Olevano Sul Tusciano","SA","84062","0828","065082","G023","http://www.olevano.it/"
 "Oliveto Citra","SA","84020","0828","065083","G039","http://www.comune.oliveto-citra.sa.it/"
 "Omignano","SA","84060","0974","065084","G063",
 "Orria","SA","84060","0974","065085","G121",
@@ -5669,7 +5669,7 @@
 "San Giovanni A Piro","SA","84070","0974","065119","H907","http://www.comunedisangiovanniapiro.it/"
 "San Gregorio Magno","SA","84020","0828","065120","H943",
 "San Mango Piemonte","SA","84090","089","065121","H977","http://www.comune.sanmangopiemonte.sa.it/"
-"San Marzano sul Sarno","SA","84010","081","065122","I019","http://www.comune.sanmarzanosulsarno.sa.it/"
+"San Marzano Sul Sarno","SA","84010","081","065122","I019","http://www.comune.sanmarzanosulsarno.sa.it/"
 "San Mauro Cilento","SA","84070","0974","065123","I031","http://www.comune.sanmaurocilento.sa.it/"
 "San Mauro La Bruca","SA","84070","0974","065124","I032",
 "San Pietro Al Tanagro","SA","84030","0975","065125","I089","http://www.comune.sanpietroaltanagro.sa.it/"
@@ -5704,7 +5704,7 @@
 "Vallo Della Lucania","SA","84078","0974","065154","L628","http://www.comune.vallodellalucania.sa.it/"
 "Valva","SA","84020","0828","065155","L656",
 "Vibonati","SA","84079","0973","065156","L835","http://www.comune.vibonati.sa.it/"
-"Vietri sul Mare","SA","84019","089","065157","L860","http://www.comune.vietri-sul-mare.sa.it/"
+"Vietri Sul Mare","SA","84019","089","065157","L860","http://www.comune.vietri-sul-mare.sa.it/"
 "Bellizzi","SA","84092","0828","065158","A753","http://www.comune.bellizzi.sa.it/"
 "Acciano","AQ","67020","0864","066001","A018",
 "Aielli","AQ","67041","0863","066002","A100","http://www.comunediaielli.it/"
@@ -5755,7 +5755,7 @@
 "Goriano Sicoli","AQ","67030","0864","066047","E096",
 "Introdacqua","AQ","67030","0864","066048","E307","http://www.comuneintrodacqua.com/"
 "L'Aquila","AQ","67100","0862","066049","A345","http://www.comune.laquila.it/"
-"Lecce nei Marsi","AQ","67050","0863","066050","E505","http://www.comunelecceneimarsi.it/"
+"Lecce Nei Marsi","AQ","67050","0863","066050","E505","http://www.comunelecceneimarsi.it/"
 "Luco Dei Marsi","AQ","67056","0863","066051","E723","http://www.luco.it/"
 "Lucoli","AQ","67045","0862","066052","E724","http://www.comune.lucoli.aq.it/"
 "Magliano De' Marsi","AQ","67062","0863","066053","E811","http://www.comune.maglianodemarsi.aq.it/"
@@ -5776,7 +5776,7 @@
 "Pescasseroli","AQ","67032","0863","066068","G484",
 "Pescina","AQ","67057","0863","066069","G492","http://www.comune.pescina.aq.it/"
 "Pescocostanzo","AQ","67033","0864","066070","G493","http://www.comune.pescocostanzo.aq.it/"
-"Pettorano sul Gizio","AQ","67034","0864","066071","G524","http://www.comune.pettorano.aq.it/"
+"Pettorano Sul Gizio","AQ","67034","0864","066071","G524","http://www.comune.pettorano.aq.it/"
 "Pizzoli","AQ","67017","0862","066072","G726","http://www.comune.pizzoli.aq.it/"
 "Poggio Picenze","AQ","67026","0862","066073","G766","http://www.comunepoggiopicenze.it/"
 "Prata D'Ansidonia","AQ","67020","0862","066074","G992","http://www.comune.pratadansidonia.aq.it/"
@@ -5791,8 +5791,8 @@
 "Rocca Pia","AQ","67030","0864","066083","H429","http://www.comune.roccapia.aq.it/"
 "Roccaraso","AQ","67037","0864","066084","H434","http://www.roccaraso.info/"
 "San Benedetto Dei Marsi","AQ","67058","0863","066085","H772","http://www.comune.sanbenedettodeimarsi.aq.it/"
-"San Benedetto in Perillis","AQ","67020","0862","066086","H773",
-"San Demetrio ne' Vestini","AQ","67028","0862","066087","H819",
+"San Benedetto In Perillis","AQ","67020","0862","066086","H773",
+"San Demetrio Ne' Vestini","AQ","67028","0862","066087","H819",
 "San Pio Delle Camere","AQ","67020","0862","066088","I121",
 "Sante Marie","AQ","67067","0863","066089","I326","http://www.comunesantemarie.it/"
 "Sant'Eusanio Forconese","AQ","67020","0862","066090","I336",
@@ -5865,8 +5865,8 @@
 "Alanno","PE","65020","085","068002","A120","http://www.comune.alanno.pe.it/"
 "Bolognano","PE","65020","085","068003","A945","http://www.bolognano.com/"
 "Brittoli","PE","65010","085","068004","B193",
-"Bussi sul Tirino","PE","65022","085","068005","B294","http://www.comune.bussi.pe.it/"
-"Cappelle sul Tavo","PE","65010","085","068006","B681","http://www.cappelletavo.it/"
+"Bussi Sul Tirino","PE","65022","085","068005","B294","http://www.comune.bussi.pe.it/"
+"Cappelle Sul Tavo","PE","65010","085","068006","B681","http://www.cappelletavo.it/"
 "Caramanico Terme","PE","65023","085","068007","B722","http://www.comunecaramanicoterme.it/"
 "Carpineto Della Nora","PE","65010","085","068008","B827","http://www.comune.carpinetodellanora.pe.it/"
 "Castiglione A Casauria","PE","65020","085","068009","C308",
@@ -5898,7 +5898,7 @@
 "Rosciano","PE","65020","085","068035","H562",
 "Salle","PE","65020","085","068036","H715","http://www.comune.salle.pe.it/"
 "Sant'Eufemia A Maiella","PE","65020","085","068037","I332",
-"San Valentino in Abruzzo Citeriore","PE","65020","085","068038","I376","http://www.sanvalentinoac.it/"
+"San Valentino In Abruzzo Citeriore","PE","65020","085","068038","I376","http://www.sanvalentinoac.it/"
 "Scafa","PE","65027","085","068039","I482","http://www.comune.scafa.pe.it/"
 "Serramonacesca","PE","65025","085","068040","I649","http://www.comune.serramonacesca.pe.it/"
 "Spoltore","PE","65010","085","068041","I922","http://www.comune.spoltore.pe.it/"
@@ -5915,7 +5915,7 @@
 "Bomba","CH","66042","0872","069006","A956","http://www.comunedibomba.it/"
 "Borrello","CH","66040","0872","069007","B057",
 "Bucchianico","CH","66011","0871","069008","B238",
-"Montebello sul Sangro","CH","66040","0872","069009","B268",
+"Montebello Sul Sangro","CH","66040","0872","069009","B268",
 "Canosa Sannita","CH","66010","0871","069010","B620",
 "Carpineto Sinello","CH","66030","0872","069011","B826",
 "Carunchio","CH","66050","0873","069012","B853","http://www.carunchio.net/"
@@ -5927,7 +5927,7 @@
 "Castel Frentano","CH","66032","0872","069018","C114","http://www.comune.castelfrentano.ch.it/"
 "Castelguidone","CH","66040","0873","069019","C123",
 "Castiglione Messer Marino","CH","66033","0873","069020","C298",
-"Celenza sul Trigno","CH","66050","0873","069021","C428",
+"Celenza Sul Trigno","CH","66050","0873","069021","C428",
 "Chieti","CH","66100","0871","069022","C632","http://www.comunechieti.com/"
 "Civitaluparella","CH","66040","0872","069023","C768","http://www.valdisangro.it/civitaluparella/"
 "Civitella Messer Raimondo","CH","66010","0872","069024","C776",
@@ -5988,7 +5988,7 @@
 "San Buono","CH","66050","0873","069079","H784",
 "San Giovanni Lipioni","CH","66050","0873","069080","H923",
 "San Giovanni Teatino","CH","66020","085","069081","D690","http://www.comune.sangiovanniteatino.ch.it/"
-"San Martino sulla Marrucina","CH","66010","0871","069082","H991","http://www.sanmartinosm.it/"
+"San Martino Sulla Marrucina","CH","66010","0871","069082","H991","http://www.sanmartinosm.it/"
 "San Salvo","CH","66050","0873","069083","I148","http://www.comune.sansalvo.ch.it/"
 "Santa Maria Imbaro","CH","66030","0872","069084","I244",
 "Sant'Eusanio Del Sangro","CH","66037","0872","069085","I335","http://www.comune.santeusaniodelsangro.chieti.it/"
@@ -6053,11 +6053,11 @@
 "Monacilioni","CB","86040","0874","070040","F322",
 "Montagano","CB","86023","0874","070041","F391","http://www.comune.montagano.cb.it/"
 "Montecilfone","CB","86032","0875","070042","F475",
-"Montefalcone nel Sannio","CB","86033","0874","070043","F495",
+"Montefalcone Nel Sannio","CB","86033","0874","070043","F495",
 "Montelongo","CB","86040","0874","070044","F548",
 "Montemitro","CB","86030","0874","070045","F569","http://www.comune.montemitro.cb.it/"
 "Montenero Di Bisaccia","CB","86036","0875","070046","F576","http://www.comune.montenerodibisaccia.cb.it/"
-"Montorio nei Frentani","CB","86040","0874","070047","F689",
+"Montorio Nei Frentani","CB","86040","0874","070047","F689",
 "Morrone Del Sannio","CB","86040","0874","070048","F748","http://www.morronedelsannio.eu/"
 "Oratino","CB","86010","0874","070049","G086","http://www.comune.oratino.cb.it/"
 "Palata","CB","86037","0875","070050","G257",
@@ -6076,10 +6076,10 @@
 "San Biase","CB","86020","0874","070063","H782","http://www.comune.sanbiase.cb.it/"
 "San Felice Del Molise","CB","86030","0874","070064","H833","http://www.comunesanfelice.it/"
 "San Giacomo Degli Schiavoni","CB","86030","0875","070065","H867",
-"San Giovanni in Galdo","CB","86010","0874","070066","H920",
+"San Giovanni In Galdo","CB","86010","0874","070066","H920",
 "San Giuliano Del Sannio","CB","86010","0874","070067","H928","http://www.comune.sangiulianodelsannio.cb.it/"
 "San Giuliano Di Puglia","CB","86040","0874","070068","H929",
-"San Martino in Pensilis","CB","86046","0875","070069","H990","http://www.comune.sanmartinoinpensilis.cb.it/"
+"San Martino In Pensilis","CB","86046","0875","070069","H990","http://www.comune.sanmartinoinpensilis.cb.it/"
 "San Massimo","CB","86027","0874","070070","I023","http://www.comune.sanmassimo.cb.it/"
 "San Polo Matese","CB","86020","0874","070071","I122",
 "Santa Croce Di Magliano","CB","86047","0874","070072","I181","http://www.comune.santacrocedimagliano.cb.it/"
@@ -6141,8 +6141,8 @@
 "Roseto Valfortore","FG","71039","0881","071044","H568",
 "San Ferdinando Di Puglia","FG","71046","0883","071045","H839","http://www.comune.san-ferdinando-di-puglia.fg.it/"
 "San Giovanni Rotondo","FG","71013","0882","071046","H926","http://www.sangiovannirotondo.com/"
-"San Marco in Lamis","FG","71014","0882","071047","H985","http://www.comune.sanmarcoinlamis.fg.it/"
-"San Marco la Catola","FG","71030","0881","071048","H986",
+"San Marco In Lamis","FG","71014","0882","071047","H985","http://www.comune.sanmarcoinlamis.fg.it/"
+"San Marco La Catola","FG","71030","0881","071048","H986",
 "San Nicandro Garganico","FG","71015","0882","071049","I054",
 "San Paolo Di Civitate","FG","71010","0882","071050","I072",
 "San Severo","FG","71016","0882","071051","I158","http://www.comune.san-severo.fg.it/"
@@ -6181,7 +6181,7 @@
 "Corato","BA","70033","080","072020","C983","http://www.comune.corato.bari.it/"
 "Gioia Del Colle","BA","70023","080","072021","E038","http://www.comune.gioiadelcolle.ba.it/"
 "Giovinazzo","BA","70054","080","072022","E047","http://www.comune.giovinazzo.bari.it/"
-"Gravina in Puglia","BA","70024","080","072023","E155","http://www.comunedigravina.it/"
+"Gravina In Puglia","BA","70024","080","072023","E155","http://www.comunedigravina.it/"
 "Grumo Appula","BA","70025","080","072024","E223",
 "Locorotondo","BA","70010","080","072025","E645","http://www.comune.locorotondo.ba.it/"
 "Minervino Murge","BA","70055","0883","072026","F220",
@@ -6199,7 +6199,7 @@
 "Ruvo Di Puglia","BA","70037","080","072038","H645",
 "Sammichele Di Bari","BA","70010","080","072039","H749",
 "Sannicandro Di Bari","BA","70028","080","072040","I053","http://www.comune.sannicandro.bari.it/"
-"Santeramo in Colle","BA","70029","080","072041","I330","http://www.comune.santeramo.ba.it/"
+"Santeramo In Colle","BA","70029","080","072041","I330","http://www.comune.santeramo.ba.it/"
 "Spinazzola","BA","70058","0883","072042","I907","http://www.comune.spinazzola.ba.it/"
 "Terlizzi","BA","70038","080","072043","L109","http://www.comune.terlizzi.ba.it/"
 "Toritto","BA","70020","080","072044","L220","http://www.comune.toritto.ba.it/"
@@ -6326,7 +6326,7 @@
 "San Cesario Di Lecce","LE","73016","0832","075068","H793","http://www.comune.sancesariodilecce.le.it/"
 "San Donato Di Lecce","LE","73010","0832","075069","H826","http://www.comune.sandonatodilecce.le.it/"
 "Sannicola","LE","73017","0833","075070","I059",
-"San Pietro in Lama","LE","73010","0832","075071","I115","http://www.comunesanpietroinlama.le.it/"
+"San Pietro In Lama","LE","73010","0832","075071","I115","http://www.comunesanpietroinlama.le.it/"
 "Santa Cesarea Terme","LE","73020","0836","075072","I172",
 "Scorrano","LE","73020","0836","075073","I549",
 "Seclì","LE","73050","0836","075074","I559",
@@ -6386,7 +6386,7 @@
 "Fardella","PZ","85034","0973","076031","D497",
 "Filiano","PZ","85020","0971","076032","D593",
 "Forenza","PZ","85023","0971","076033","D696","http://www.comune.forenza.pz.it/"
-"Francavilla in Sinni","PZ","85034","0973","076034","D766","http://www.comune.francavillainsinni.pz.it/"
+"Francavilla In Sinni","PZ","85034","0973","076034","D766","http://www.comune.francavillainsinni.pz.it/"
 "Gallicchio","PZ","85010","0971","076035","D876","http://www.comune.gallicchio.pz.it/"
 "Genzano Di Lucania","PZ","85013","0971","076036","D971","http://www.comune.genzano.pz.it/"
 "Grumento Nova","PZ","85050","0975","076037","E221","http://www.grumento-nova.it/"
@@ -6418,7 +6418,7 @@
 "Potenza","PZ","85100","0971","076063","G942","http://www.comune.potenza.it/"
 "Rapolla","PZ","85027","0972","076064","H186","http://www.comune.rapolla.pz.it/"
 "Rapone","PZ","85020","0976","076065","H187","http://www.comune.rapone.pz.it/"
-"Rionero in Vulture","PZ","85028","0972","076066","H307","http://www.comune.rioneroinvulture.pz.it/"
+"Rionero In Vulture","PZ","85028","0972","076066","H307","http://www.comune.rioneroinvulture.pz.it/"
 "Ripacandida","PZ","85020","0972","076067","H312","http://www.comune.ripacandida.pz.it/"
 "Rivello","PZ","85040","0973","076068","H348","http://www.comune.rivello.pz.it/"
 "Roccanova","PZ","85036","0973","076069","H426","http://www.comune.roccanova.pz.it/"
@@ -6602,15 +6602,15 @@
 "San Fili","CS","87037","0984","078116","H841","http://www.comune.sanfili.cs.it/"
 "Sangineto","CS","87020","0982","078117","H877",
 "San Giorgio Albanese","CS","87060","0983","078118","H881",
-"San Giovanni in Fiore","CS","87055","0984","078119","H919","http://www.comune.sangiovanniinfiore.cs.it/"
+"San Giovanni In Fiore","CS","87055","0984","078119","H919","http://www.comune.sangiovanniinfiore.cs.it/"
 "San Lorenzo Bellizzi","CS","87070","0981","078120","H961",
 "San Lorenzo Del Vallo","CS","87040","0981","078121","H962",
 "San Lucido","CS","87038","0982","078122","H971",
 "San Marco Argentano","CS","87018","0984","078123","H981","http://www.comune.sanmarcoargentano.cs.it/"
 "San Martino Di Finita","CS","87010","0984","078124","H992",
 "San Nicola Arcella","CS","87020","0985","078125","I060",
-"San Pietro in Amantea","CS","87030","0982","078126","I108",
-"San Pietro in Guarano","CS","87047","0984","078127","I114","http://www.comune.sanpietroinguarano.cs.it/"
+"San Pietro In Amantea","CS","87030","0982","078126","I108",
+"San Pietro In Guarano","CS","87047","0984","078127","I114","http://www.comune.sanpietroinguarano.cs.it/"
 "San Sosti","CS","87010","0981","078128","I165",
 "Santa Caterina Albanese","CS","87010","0984","078129","I171",
 "Santa Domenica Talao","CS","87020","0985","078130","I183","http://www.comunesantadomenicatalao.org/"
@@ -6618,7 +6618,7 @@
 "Santa Maria Del Cedro","CS","87020","0985","078132","C717","http://www.comune.santa-maria-del-cedro.cs.it/"
 "Santa Sofia D'Epiro","CS","87048","0984","078133","I309",
 "Santo Stefano Di Rogliano","CS","87056","0984","078134","I359","http://www.santostefano.cs.it/"
-"San Vincenzo la Costa","CS","87030","0984","078135","I388","http://www.comune.sanvincenzolacosta.cs.it/"
+"San Vincenzo La Costa","CS","87030","0984","078135","I388","http://www.comune.sanvincenzolacosta.cs.it/"
 "Saracena","CS","87010","0981","078136","I423","http://www.comune.saracena.cs.it/"
 "Scala Coeli","CS","87060","0983","078137","I485",
 "Scalea","CS","87029","0985","078138","I489","http://www.comune.scalea.cosenza.it/"
@@ -6672,7 +6672,7 @@
 "Girifalco","CZ","88024","0968","079059","E050","http://www.comune.girifalco.cz.it/"
 "Gizzeria","CZ","88040","0968","079060","E068",
 "Guardavalle","CZ","88065","0967","079061","E239",
-"Isca sullo Ionio","CZ","88060","0967","079063","E328","http://www.comune.isca.cz.it/"
+"Isca Sullo Ionio","CZ","88060","0967","079063","E328","http://www.comune.isca.cz.it/"
 "Jacurso","CZ","88020","0968","079065","E274",
 "Magisano","CZ","88050","0961","079068","E806",
 "Maida","CZ","88025","0968","079069","E834",
@@ -6699,7 +6699,7 @@
 "San Sostene","CZ","88060","0967","079116","I164",
 "Santa Caterina Dello Ionio","CZ","88060","0967","079117","I170",
 "Sant'Andrea Apostolo Dello Ionio","CZ","88060","0967","079118","I266",
-"San Vito sullo Ionio","CZ","88067","0967","079122","I393",
+"San Vito Sullo Ionio","CZ","88067","0967","079122","I393",
 "Satriano","CZ","88060","0967","079123","I463",
 "Sellia","CZ","88050","0961","079126","I589",
 "Sellia Marina","CZ","88050","0961","079127","I590","http://comune.selliamarina.cz.it/"
@@ -6798,10 +6798,10 @@
 "San Roberto","RC","89050","0965","080077","I139",
 "Santa Cristina D'Aspromonte","RC","89056","0966","080078","I176","http://www.comune.santacristinadaspromonte.rc.it/"
 "Sant'Agata Del Bianco","RC","89030","0964","080079","I198",
-"Sant'Alessio in Aspromonte","RC","89050","0965","080080","I214","http://www.comune.santalessioinaspromonte.rc.it/"
+"Sant'Alessio In Aspromonte","RC","89050","0965","080080","I214","http://www.comune.santalessioinaspromonte.rc.it/"
 "Sant'Eufemia D'Aspromonte","RC","89027","0966","080081","I333",
 "Sant'Ilario Dello Ionio","RC","89040","0964","080082","I341","http://www.comune.santilariodelloionio.rc.it/"
-"Santo Stefano in Aspromonte","RC","89057","0965","080083","I371","http://www.comune.santostefanoinaspromonte.rc.it/"
+"Santo Stefano In Aspromonte","RC","89057","0965","080083","I371","http://www.comune.santostefanoinaspromonte.rc.it/"
 "Scido","RC","89010","0966","080084","I536","http://www.comune.scido.rc.it/"
 "Scilla","RC","89058","0965","080085","I537","http://www.comune.scilla.rc.it/"
 "Seminara","RC","89028","0966","080086","I600","http://www.comune.seminara.rc.it/"
@@ -7049,7 +7049,7 @@
 "Favara","AG","92026","0922","084017","D514","http://www.comune.favara.ag.it/"
 "Grotte","AG","92020","0922","084018","E209","http://www.comunedigrotte.org/"
 "Joppolo Giancaxio","AG","92010","0922","084019","E390","http://www.comune.joppologiancaxio.ag.it/"
-"Lampedusa e Linosa","AG","92010","0922","084020","E431",
+"Lampedusa E Linosa","AG","92010","0922","084020","E431",
 "Licata","AG","92027","0922","084021","E573","http://www.comune.licata.ag.it/"
 "Lucca Sicula","AG","92010","0925","084022","E714",
 "Menfi","AG","92013","0925","084023","F126","http://www.comune.menfi.ag.it/"
@@ -7139,7 +7139,7 @@
 "Maletto","CT","95035","095","087022","E854",
 "Mascali","CT","95016","095","087023","F004","http://www.comune.mascali.ct.it/"
 "Mascalucia","CT","95030","095","087024","F005","http://www.comune.mascalucia.ct.it/"
-"Militello in Val Di Catania","CT","95043","095","087025","F209","http://www.comunemilitello.it/"
+"Militello In Val Di Catania","CT","95043","095","087025","F209","http://www.comunemilitello.it/"
 "Milo","CT","95010","095","087026","F214","http://www.comunedimilo.ct.it/"
 "Mineo","CT","95044","0933","087027","F217","http://www.comunedimineo.it/"
 "Mirabella Imbaccari","CT","95040","0933","087028","F231","http://www.comune.mirabella-imbaccari.ct.it/"
@@ -7155,7 +7155,7 @@
 "Randazzo","CT","95036","095","087038","H175","http://www.comune.randazzo.ct.it/"
 "Riposto","CT","95018","095","087039","H325","http://www.comune.riposto.ct.it/"
 "San Cono","CT","95040","0933","087040","H805",
-"San Giovanni la Punta","CT","95037","095","087041","H922",
+"San Giovanni La Punta","CT","95037","095","087041","H922",
 "San Gregorio Di Catania","CT","95027","095","087042","H940","http://www.comune.san-gregorio-di-catania.ct.it/"
 "San Michele Di Ganzaria","CT","95040","0933","087043","I035",
 "San Pietro Clarenza","CT","95030","095","087044","I098","http://www.comune.sanpietroclarenza.ct.it/"
@@ -7413,7 +7413,7 @@
 "Clauzetto","PN","33090","0427","093016","C791",
 "Cordenons","PN","33084","0434","093017","C991","http://www.comune.cordenons.pn.it/"
 "Cordovado","PN","33075","0434","093018","C993","http://www.comune.cordovado.pn.it/"
-"Erto e Casso","PN","33080","0427","093019","D426","http://www.comune.ertoecasso.pn.it/"
+"Erto E Casso","PN","33080","0427","093019","D426","http://www.comune.ertoecasso.pn.it/"
 "Fanna","PN","33092","0427","093020","D487","http://www.comune.fanna.pn.it/"
 "Fiume Veneto","PN","33080","0434","093021","D621","http://www.comune.fiumeveneto.pn.it/"
 "Fontanafredda","PN","33074","0434","093022","D670","http://www.comune.fontanafredda.pn.it/"
@@ -7429,7 +7429,7 @@
 "Pordenone","PN","33170","0434","093033","G888","http://www.comune.pordenone.it/"
 "Prata Di Pordenone","PN","33080","0434","093034","G994","http://www.comune.prata.pn.it/"
 "Pravisdomini","PN","33076","0434","093035","H010","http://www.comune.pravisdomini.pn.it/"
-"Roveredo in Piano","PN","33080","0434","093036","H609","http://www.comune.roveredoinpiano.pn.it/"
+"Roveredo In Piano","PN","33080","0434","093036","H609","http://www.comune.roveredoinpiano.pn.it/"
 "Sacile","PN","33077","0434","093037","H657","http://www.comune.sacile.pn.it/"
 "San Giorgio Della Richinvelda","PN","33095","0427","093038","H891","http://www.comune.san-giorgio-della-richinvelda.pn.it/"
 "San Martino Al Tagliamento","PN","33098","0434","093039","H999","http://www.comune.sanmartinoaltagliamento.pn.it/"
@@ -7450,7 +7450,7 @@
 "Agnone","IS","86081","0865","094002","A080","http://www.comune.agnone.is.it/"
 "Bagnoli Del Trigno","IS","86091","0874","094003","A567",
 "Belmonte Del Sannio","IS","86080","0865","094004","A761","http://www.comune.belmontedelsannio.is.it/"
-"Cantalupo nel Sannio","IS","86092","0865","094005","B630","http://www.comune.cantalupo.is.it/"
+"Cantalupo Nel Sannio","IS","86092","0865","094005","B630","http://www.comune.cantalupo.is.it/"
 "Capracotta","IS","86082","0865","094006","B682","http://www.capracotta.com/"
 "Carovilli","IS","86083","0865","094007","B810",
 "Carpinone","IS","86093","0865","094008","B830","http://www.comune.carpinone.is.it/"
@@ -7803,9 +7803,9 @@
 "Ospedaletto Lodigiano","LO","26864","0377","098043","G166",
 "Ossago Lodigiano","LO","26816","0371","098044","G171","http://www.comune.ossagolodigiano.lo.it/"
 "Pieve Fissiraga","LO","26854","0371","098045","G096","http://www.comune.pieve-fissiraga.lo.it/"
-"Salerano sul Lambro","LO","26857","0371","098046","H701","http://www.comunesalerano.it/"
+"Salerano Sul Lambro","LO","26857","0371","098046","H701","http://www.comunesalerano.it/"
 "San Fiorano","LO","26848","0377","098047","H844",
-"San Martino in Strada","LO","26817","0371","098048","I012",
+"San Martino In Strada","LO","26817","0371","098048","I012",
 "San Rocco Al Porto","LO","26865","0377","098049","I140","http://www.comune.san-rocco-al-porto.lo.it/"
 "Sant'Angelo Lodigiano","LO","26866","0371","098050","I274","http://www.comune.santangelolodigiano.lo.it/"
 "Santo Stefano Lodigiano","LO","26849","0377","098051","I362",
@@ -7813,7 +7813,7 @@
 "Senna Lodigiana","LO","26856","0377","098053","I612","http://www.comunesenna.it/"
 "Somaglia","LO","26867","0377","098054","I815","http://www.comune.somaglia.lo.it/"
 "Sordio","LO","26858","02","098055","I848",
-"Tavazzano con Villavesco","LO","26838","0371","098056","F260","http://www.comune.tavazzano.lo.it/"
+"Tavazzano Con Villavesco","LO","26838","0371","098056","F260","http://www.comune.tavazzano.lo.it/"
 "Terranova Dei Passerini","LO","26827","0377","098057","L125","http://comune.terranovadeipasserini.lo.it/"
 "Turano Lodigiano","LO","26828","0377","098058","L469",
 "Valera Fratta","LO","26859","0371","098059","L572",
@@ -7835,7 +7835,7 @@
 "Rimini","RN","47900","0541","099014","H294","http://www.comune.rimini.it/"
 "Saludecio","RN","47835","0541","099015","H724",
 "San Clemente","RN","47832","0541","099016","H801","http://www.comune.san-clemente.rn.it/"
-"San Giovanni in Marignano","RN","47842","0541","099017","H921","http://www.comune.san-giovanni-in-marignano.rn.it/"
+"San Giovanni In Marignano","RN","47842","0541","099017","H921","http://www.comune.san-giovanni-in-marignano.rn.it/"
 "Santarcangelo Di Romagna","RN","47822","0541","099018","I304","http://www.comune.santarcangelo.rn.it/"
 "Torriana","RN","47825","0541","099019","I550",
 "Verucchio","RN","47826","0541","099020","L797","http://www.comunediverucchio.it/"
@@ -7992,7 +7992,7 @@
 "Trasquera","VB","28868","0324","103067","L336",
 "Trontano","VB","28859","0324","103068","L450","http://www.comune.trontano.vb.it/"
 "Valstrona","VB","28897","0323","103069","L651","http://www.comune.valstrona.vb.it/"
-"Vanzone con San Carlo","VB","28879","0324","103070","L666",
+"Vanzone Con San Carlo","VB","28879","0324","103070","L666",
 "Varzo","VB","28868","0324","103071","L691","http://www.comune.varzo.vb.it/"
 "Verbania","VB","28900","0323","103072","L746","http://www.comune.verbania.it/"
 "Viganella","VB","28841","0324","103073","L864","http://www.comune.viganella.vb.it/"
@@ -8025,7 +8025,7 @@
 "San Teodoro","OT","08020","0784","104023","I329","http://www.comune.san-teodoro.nu.it/"
 "Telti","OT","07020","0789","104024","L088","http://www.comune.telti.ss.it/"
 "Tempio Pausania","OT","07029","079","104025","L093","http://www.comune.tempiopausania.ss.it/"
-"Trinità D'Agultu e Vignola","OT","07038","079","104026","L428",
+"Trinità D'Agultu E Vignola","OT","07038","079","104026","L428",
 "Arzana","OG","08040","0782","105001","A454",
 "Bari Sardo","OG","08042","0782","105002","A663",
 "Baunei","OG","08040","0782","105003","A722","http://www.comunebaunei.it/"
