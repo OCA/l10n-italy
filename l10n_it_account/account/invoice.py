@@ -29,7 +29,7 @@ from tools.translate import _
 class Invoice(osv.osv):
     
     _inherit = 'account.invoice'
-    
+
     def action_number(self, cr, uid, ids, *args):
         super(Invoice, self).action_number(cr, uid, ids, args)
         for obj_inv in self.browse(cr, uid, ids):
