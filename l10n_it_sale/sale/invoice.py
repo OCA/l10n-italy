@@ -20,6 +20,19 @@
 #
 ##############################################################################
 
-import sale
-import account
+import netsvc
+import pooler, tools
+
+from osv import fields, osv
+from tools.translate import _
+
+class account_invoice(osv.osv):
+    
+    _inherit = 'account.invoice'
+        
+    _columns = {
+                'order_id':fields.many2one('sale.order','Sale Order'),
+                }
+    
+account_invoice()
 

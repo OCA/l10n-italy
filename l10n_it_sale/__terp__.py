@@ -27,7 +27,7 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_base','stock','sale','hr'],
+    "depends" : ['l10n_it_base','stock','sale','hr','account'],
     "init_xml" : [
     ],
     "update_xml" : ['stock/picking_view.xml', 'stock/carriage_condition_view.xml',
