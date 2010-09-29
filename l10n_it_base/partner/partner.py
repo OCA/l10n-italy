@@ -42,11 +42,11 @@ class res_province(osv.osv):
 
 res_province()
 
-class res_municipality(osv.osv):
-    _name = 'res.municipality'
-    _description = 'Municipality'
+class res_city(osv.osv):
+    _name = 'res.city'
+    _description = 'City'
     _columns = {
-        'name': fields.char('Municipality', size=64, required=True),
+        'name': fields.char('City', size=64, required=True),
     	'province_id': fields.many2one('res.province','Province'),
         'zip': fields.char('ZIP', size=5),
         'phone_prefix': fields.char('Telephone Prefix' , size=16),
@@ -56,39 +56,43 @@ class res_municipality(osv.osv):
         'region': fields.related('province_id','region',type='many2one', relation='res.region', string='Region', readonly=True),
     }
 
-res_municipality()
+res_city()
 
 
 class res_partner(osv.osv):
     _inherit = 'res.partner'
     _columns = {
 #        'province': fields.related('address','province',type='char', string='Province'),
-        'municipality': fields.related('address','municipality',type='many2one', relation='res.municipality', string='Municipality'),
+        'city': fields.related('address','city',type='many2one', relation='res.city', string='City'),
     }    
+
+    def init (self, cr):
+        cr.execute("ALTER TABLE res_partner_address DROP COLUMN city")
+
 res_partner()
 
 class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-        'municipality': fields.many2one('res.municipality', 'City'),
-        'province': fields.related('municipality','province_id',type='many2one', relation='res.province', string='Province'),
-        'region': fields.related('municipality','region',type='many2one', relation='res.region', string='Region'),
+        'city': fields.many2one('res.city', 'City'),
+        'province': fields.related('city','province_id',type='many2one', relation='res.province', string='Province'),
+        'region': fields.related('city','region',type='many2one', relation='res.region', string='Region'),
     }
 
-    def on_change_municipality(self, cr, uid, ids, municipality):
+    def on_change_city(self, cr, uid, ids, city):
         '''
         res = {'value': {
             'country_id': self.pool.get('res.country').search(cr, uid, [('name','=','Italy')])[0],
             }}
         '''
         res = {'value':{}}
-        if(municipality):
-            municipality = self.pool.get('res.municipality').browse(cr, uid, municipality)
+        if(city):
+            city = self.pool.get('res.city').browse(cr, uid, city)
             res = {'value': {
-                'province':municipality.province_id.id,
-                'region':municipality.region.id,
-                'zip': municipality.zip,
+                'province':city.province_id.id,
+                'region':city.region.id,
+                'zip': city.zip,
                 }}
         return res
     

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.11\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-09-22 13:08:16+0000\n"
-"PO-Revision-Date: 2010-09-22 13:08:16+0000\n"
+"POT-Creation-Date: 2010-09-29 17:17:02+0000\n"
+"PO-Revision-Date: 2010-09-29 17:17:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,19 +16,51 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_base
-#: field:res.partner.address,municipality:0
+#: model:ir.model,name:l10n_it_base.model_res_province
+#: field:res.city,province_id:0
+#: field:res.partner.address,province:0
+#: view:res.province:0
+msgid "Province"
+msgstr ""
+
+#. module: l10n_it_base
+#: field:res.city,cadaster_code:0
+msgid "Cadaster Code"
+msgstr ""
+
+#. module: l10n_it_base
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: l10n_it_base
+#: field:res.city,istat_code:0
+msgid "ISTAT code"
+msgstr ""
+
+#. module: l10n_it_base
+#: field:res.city,zip:0
+msgid "ZIP"
+msgstr ""
+
+#. module: l10n_it_base
+#: field:res.region,name:0
+msgid "Region Name"
+msgstr ""
+
+#. module: l10n_it_base
+#: model:ir.model,name:l10n_it_base.model_res_city
+#: view:res.city:0
+#: field:res.city,name:0
 msgid "City"
 msgstr ""
 
 #. module: l10n_it_base
-#: model:ir.actions.act_window,name:l10n_it_base.action_province
-#: model:ir.ui.menu,name:l10n_it_base.menu_province_partner
-msgid "Provinces"
-msgstr ""
-
-#. module: l10n_it_base
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
+#: model:ir.model,name:l10n_it_base.model_res_region
+#: field:res.city,region:0
+#: field:res.partner.address,region:0
+#: field:res.province,region:0
+msgid "Region"
 msgstr ""
 
 #. module: l10n_it_base
@@ -42,13 +74,30 @@ msgid "Province Code"
 msgstr ""
 
 #. module: l10n_it_base
-#: field:res.partner,fiscalcode:0
-msgid "Fiscal Code"
+#: model:ir.module.module,description:l10n_it_base.module_meta_information
+msgid "This module customizes OpenERP in order to fit italian laws and mores\n"
+"Base version"
 msgstr ""
 
 #. module: l10n_it_base
-#: field:res.municipality,web_site:0
+#: field:res.city,phone_prefix:0
+msgid "Telephone Prefix"
+msgstr ""
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_province
+#: model:ir.ui.menu,name:l10n_it_base.menu_province_partner
+msgid "Provinces"
+msgstr ""
+
+#. module: l10n_it_base
+#: field:res.city,web_site:0
 msgid "Web Site"
+msgstr ""
+
+#. module: l10n_it_base
+#: field:res.province,name:0
+msgid "Province Name"
 msgstr ""
 
 #. module: l10n_it_base
@@ -57,37 +106,14 @@ msgid "Invalid model name in the action definition."
 msgstr ""
 
 #. module: l10n_it_base
-#: model:ir.model,name:l10n_it_base.model_res_province
-#: field:res.municipality,province_id:0
-#: field:res.partner.address,province:0
-#: view:res.province:0
-msgid "Province"
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
 msgstr ""
 
 #. module: l10n_it_base
-#: field:res.municipality,cadaster_code:0
-msgid "Cadaster Code"
-msgstr ""
-
-#. module: l10n_it_base
-#: model:ir.actions.act_window,name:l10n_it_base.action_municipality
-#: model:ir.ui.menu,name:l10n_it_base.menu_municipality_partner
-msgid "Municipalities"
-msgstr ""
-
-#. module: l10n_it_base
-#: field:res.region,name:0
-msgid "Region Name"
-msgstr ""
-
-#. module: l10n_it_base
-#: model:ir.ui.menu,name:l10n_it_base.menu_localisation
-msgid "Localisation"
-msgstr ""
-
-#. module: l10n_it_base
-#: help:res.province,name:0
-msgid "The full name of the province."
+#: model:ir.actions.act_window,name:l10n_it_base.action_city
+#: model:ir.ui.menu,name:l10n_it_base.menu_city_partner
+msgid "Cities"
 msgstr ""
 
 #. module: l10n_it_base
@@ -96,55 +122,8 @@ msgid "The province code in two chars."
 msgstr ""
 
 #. module: l10n_it_base
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr ""
-
-#. module: l10n_it_base
-#: field:res.municipality,istat_code:0
-msgid "ISTAT code"
-msgstr ""
-
-#. module: l10n_it_base
-#: field:res.municipality,zip:0
-msgid "ZIP"
-msgstr ""
-
-#. module: l10n_it_base
-#: model:ir.model,name:l10n_it_base.model_res_region
-#: field:res.municipality,region:0
-#: field:res.partner.address,region:0
-#: field:res.province,region:0
-msgid "Region"
-msgstr ""
-
-#. module: l10n_it_base
-#: model:ir.module.module,description:l10n_it_base.module_meta_information
-msgid "This module customizes OpenERP in order to fit italian laws and mores\n"
-"Base version"
-msgstr ""
-
-#. module: l10n_it_base
-#: field:res.municipality,phone_prefix:0
-msgid "Telephone Prefix"
-msgstr ""
-
-#. module: l10n_it_base
-#: model:ir.model,name:l10n_it_base.model_res_municipality
-#: view:res.municipality:0
-#: field:res.municipality,name:0
-#: field:res.partner,municipality:0
-msgid "Municipality"
-msgstr ""
-
-#. module: l10n_it_base
-#: help:res.partner,fiscalcode:0
-msgid "Italian Fiscal Code"
-msgstr ""
-
-#. module: l10n_it_base
-#: field:res.province,name:0
-msgid "Province Name"
+#: help:res.province,name:0
+msgid "The full name of the province."
 msgstr ""
 
 #. module: l10n_it_base

@@ -34,7 +34,7 @@
                     "security/ir.model.access.csv", 
                     'partner/data/res.region.csv',
                     'partner/data/res.province.csv',
-                    'partner/data/res.municipality.csv',
+                    'partner/data/res.city.csv',
                     'partner/data/res.partner.title.csv'],
     "demo_xml" : [],
     "active": False,

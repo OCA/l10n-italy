@@ -21,19 +21,7 @@
 		<field name="type">form</field>
 		<field name="arch" type="xml">
            <field name="city" position="replace">
-                <field name="municipality" on_change="on_change_municipality(municipality)"/>
-		    </field>
-		</field>
-	 </record>
-
-	<record model="ir.ui.view" id="view_partner_tree_inherit_city">
-		<field name="name">partner.tree.city</field>
-		<field name="model">res.partner</field>
-		<field name="inherit_id" ref="base.view_partner_tree"/>
-		<field name="type">tree</field>
-		<field name="arch" type="xml">
-           <field name="city" position="replace">
-                <field name="municipality"/>
+                <field name="city" on_change="on_change_city(city)"/>
 		    </field>
 		</field>
 	 </record>
@@ -41,18 +29,6 @@
  <!--
     Partner Address
 -->
-
-	<record model="ir.ui.view" id="view_partner_address_tree_inherit_city">
-		<field name="name">partner.address.tree.city</field>
-		<field name="model">res.partner.address</field>
-		<field name="inherit_id" ref="base.view_partner_address_tree"/>
-		<field name="type">tree</field>
-		<field name="arch" type="xml">
-           <field name="city" position="replace">
-                <field name="municipality"/>
-		    </field>
-		</field>
-	 </record>
 
 	<record model="ir.ui.view" id="view_partner_address_form_inherit_province">
 		<field name="name">partner.address.form.province</field>
@@ -85,7 +61,7 @@
 		<field name="type">form</field>
 		<field name="arch" type="xml">
            <field name="city" position="replace">
-                <field name="municipality" on_change="on_change_municipality(municipality)"/>
+                <field name="city" on_change="on_change_city(city)"/>
 		    </field>
 		</field>
 	 </record>
@@ -127,19 +103,19 @@
             <field name="view_type">form</field>
         </record>
         
-        <menuitem id="menu_localisation" name="Localisation" parent="base.menu_base_config"/>
+<!--        <menuitem id="menu_localisation" name="Localisation" parent="base.menu_base_config"/>-->
         <menuitem action="action_province" id="menu_province_partner" parent="base.menu_localisation"/>
 
  <!--
-	Municipality
+	City
  -->
         
-        <record id="view_res_municipality_tree" model="ir.ui.view">
-            <field name="name">res.municipality.tree</field>
-            <field name="model">res.municipality</field>
+        <record id="view_res_city_tree" model="ir.ui.view">
+            <field name="name">res.city.tree</field>
+            <field name="model">res.city</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Municipality">
+                <tree string="City">
                     <field name="name"/>
                     <field name="zip"/>
                     <field name="province_id"/>
@@ -147,12 +123,12 @@
             </field>
         </record>
         
-        <record id="view_res_municipality_form" model="ir.ui.view">
-            <field name="name">res.municipality.form</field>
-            <field name="model">res.municipality</field>
+        <record id="view_res_city_form" model="ir.ui.view">
+            <field name="name">res.city.form</field>
+            <field name="model">res.city</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Municipality">
+                <form string="City">
                     <group col="4">
                         <field name="name" select="1" colspan="4"/>
                         <field name="zip" select="1"/>
@@ -165,14 +141,14 @@
             </field>
         </record>
         
-        <record id="action_municipality" model="ir.actions.act_window">
-            <field name="name">Municipalities</field>
+        <record id="action_city" model="ir.actions.act_window">
+            <field name="name">Cities</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.municipality</field>
+            <field name="res_model">res.city</field>
             <field name="view_type">form</field>
         </record>
         
-        <menuitem action="action_municipality" id="menu_municipality_partner" parent="base.menu_localisation"/>
+        <menuitem action="action_city" id="menu_city_partner" parent="base.menu_localisation"/>
 
 	</data>
 </openerp>
