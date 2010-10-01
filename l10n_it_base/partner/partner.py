@@ -66,9 +66,6 @@ class res_partner(osv.osv):
         'city': fields.related('address','city',type='many2one', relation='res.city', string='City'),
     }    
 
-    def init (self, cr):
-        cr.execute("ALTER TABLE res_partner_address DROP COLUMN city")
-
 res_partner()
 
 class res_partner_address(osv.osv):
@@ -79,6 +76,10 @@ class res_partner_address(osv.osv):
         'province': fields.related('city','province_id',type='many2one', relation='res.province', string='Province'),
         'region': fields.related('city','region',type='many2one', relation='res.region', string='Region'),
     }
+    '''
+    def init (self, cr):
+        cr.execute("ALTER TABLE res_partner_address DROP COLUMN city")
+    '''
 
     def on_change_city(self, cr, uid, ids, city):
         '''
