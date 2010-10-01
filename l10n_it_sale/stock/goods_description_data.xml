@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="goods_description_CAR" model="stock.picking.goods_description">
+            <field name="name">CARTONE</field>
+        </record>
+        <record id="goods_description_BAN" model="stock.picking.goods_description">
+            <field name="name">BANCALE</field>
+        </record>
+        <record id="goods_description_SFU" model="stock.picking.goods_description">
+            <field name="name">SFUSI</field>
+        </record>
+        <record id="goods_description_CBA" model="stock.picking.goods_description">
+            <field name="name">CARTONI-BANCALI</field>
+        </record>
+     </data>
+</openerp>
