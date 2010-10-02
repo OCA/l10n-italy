@@ -34,7 +34,9 @@
                     'stock/transportation_reason_view.xml', 'stock/goods_description_view.xml', 
                     'stock/transportation_reason_data.xml', 'stock/goods_description_data.xml', 
                     'stock/carriage_condition_data.xml', 'sale/sale_view.xml', "security/ir.model.access.csv", 
-                    'hr/employee_view.xml',],
+                    'hr/employee_view.xml',
+                    'partner/partner_view.xml',
+                    'account/invoice_view.xml',],
     "demo_xml" : [],
     "active": False,
     "installable": True

@@ -89,6 +89,17 @@ class stock_picking(osv.osv):
 
         return super(stock_picking, self).create(cr, user, vals, context)
 
+    def action_invoice_create(self, cursor, user, ids, journal_id=False,
+            group=False, type='out_invoice', context=None):
+        res = super(stock_picking, self).action_invoice_create(cursor, user, ids, journal_id,
+            group, type, context)
+        for picking in self.browse(cursor, user, ids, context=context):
+            self.pool.get('account.invoice').write(cursor, user, res[picking.id], {
+                'carriage_condition_id': picking.carriage_condition_id.id,
+                'goods_description_id': picking.goods_description_id.id,
+                'transportation_reason_id': picking.transportation_reason_id.id,
+                })
+        return res
 
 stock_picking()
 

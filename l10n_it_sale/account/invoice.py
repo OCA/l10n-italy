@@ -31,8 +31,22 @@ class account_invoice(osv.osv):
     _inherit = 'account.invoice'
         
     _columns = {
-                'order_id':fields.many2one('sale.order','Sale Order'),
-                }
+        'order_id':fields.many2one('sale.order','Sale Order'),
+        'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
+        'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
+        'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
+        }
+
+    def onchange_partner_id(self, cr, uid, ids, type, partner_id,
+            date_invoice=False, payment_term=False, partner_bank=False):
+#        import pdb;pdb.set_trace()
+        result = super(account_invoice, self).onchange_partner_id(cr, uid, ids, type, partner_id,
+            date_invoice, payment_term, partner_bank)
+        partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
+        result['value']['carriage_condition_id'] = partner.carriage_condition_id.id
+        result['value']['goods_description_id'] = partner.goods_description_id.id
+        result['value']['transportation_reason_id'] = partner.transportation_reason_id.id
+        return result
     
 account_invoice()
 

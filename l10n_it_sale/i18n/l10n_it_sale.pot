@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.11\n"
+"Project-Id-Version: OpenERP Server 5.0.14\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-09-22 13:09:38+0000\n"
-"PO-Revision-Date: 2010-09-22 13:09:38+0000\n"
+"POT-Creation-Date: 2010-10-02 17:07:10+0000\n"
+"PO-Revision-Date: 2010-10-02 17:07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,71 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_sale
-#: model:ir.actions.act_window,name:l10n_it_sale.action_transportation_reason_tree
-#: model:ir.ui.menu,name:l10n_it_sale.menu_action_transportation_reason_tree
-#: view:stock.picking.transportation_reason:0
-msgid "Reasons for transportation"
-msgstr ""
-
-#. module: l10n_it_sale
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr ""
-
-#. module: l10n_it_sale
-#: model:ir.actions.act_window,name:l10n_it_sale.action_goods_description_tree
-#: model:ir.ui.menu,name:l10n_it_sale.menu_action_good_description_tree
-#: view:stock.picking.goods_description:0
-msgid "Descriptions of Goods"
-msgstr ""
-
-#. module: l10n_it_sale
-#: field:stock.picking.transportation_reason,name:0
-msgid "Reason For Transportation"
-msgstr ""
-
-#. module: l10n_it_sale
-#: model:ir.module.module,shortdesc:l10n_it_sale.module_meta_information
-msgid "Italian Localisation - Sale"
-msgstr ""
-
-#. module: l10n_it_sale
-#: field:stock.picking,goods_description_id:0
-msgid "Description of goods"
-msgstr ""
-
-#. module: l10n_it_sale
-#: field:stock.picking,company_id:0
-msgid "Company"
-msgstr ""
-
-#. module: l10n_it_sale
-#: model:ir.model,name:l10n_it_sale.model_stock_picking_goods_description
-#: view:stock.picking.goods_description:0
-#: field:stock.picking.goods_description,name:0
-msgid "Description of Goods"
-msgstr ""
-
-#. module: l10n_it_sale
 #: constraint:ir.model:0
 msgid "The Object name must start with x_ and not contain any special character !"
 msgstr ""
 
 #. module: l10n_it_sale
-#: help:hr.employee,fiscalcode:0
-msgid "Italian Fiscal Code"
-msgstr ""
-
-#. module: l10n_it_sale
-#: field:sale.order,validity:0
-msgid "Validity"
-msgstr ""
-
-#. module: l10n_it_sale
-#: model:ir.actions.act_window,name:l10n_it_sale.action_carriage_condition_tree
-#: model:ir.ui.menu,name:l10n_it_sale.menu_action_carriage_condition_tree
-#: view:stock.picking.carriage_condition:0
-msgid "Carriage Conditions"
+#: field:account.invoice,goods_description_id:0
+#: field:res.partner,goods_description_id:0
+#: field:stock.picking,goods_description_id:0
+msgid "Description of goods"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -91,14 +35,10 @@ msgid "Note"
 msgstr ""
 
 #. module: l10n_it_sale
-#: field:hr.employee,fiscalcode:0
-msgid "Fiscal Code"
-msgstr ""
-
-#. module: l10n_it_sale
-#: model:ir.module.module,description:l10n_it_sale.module_meta_information
-msgid "This module customizes OpenERP in order to fit italian laws and mores\n"
-"Sale version"
+#: model:ir.actions.act_window,name:l10n_it_sale.action_transportation_reason_tree
+#: model:ir.ui.menu,name:l10n_it_sale.menu_action_transportation_reason_tree
+#: view:stock.picking.transportation_reason:0
+msgid "Reasons for transportation"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -107,15 +47,43 @@ msgid "Invalid model name in the action definition."
 msgstr ""
 
 #. module: l10n_it_sale
-#: field:stock.picking,carriage_condition_id:0
-msgid "Carriage condition"
+#: model:ir.module.module,shortdesc:l10n_it_sale.module_meta_information
+msgid "Italian Localisation - Sale"
 msgstr ""
 
 #. module: l10n_it_sale
-#: model:ir.model,name:l10n_it_sale.model_stock_picking_transportation_reason
-#: field:stock.picking,transportation_reason_id:0
-#: view:stock.picking.transportation_reason:0
-msgid "Reason for transportation"
+#: field:stock.picking,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:sale.order,validity:0
+msgid "Validity"
+msgstr ""
+
+#. module: l10n_it_sale
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:res.partner:0
+msgid "Notes"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:account.invoice,order_id:0
+msgid "Sale Order"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:account.invoice:0
+msgid "Shipping"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:account.invoice:0
+msgid "Payments"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -126,7 +94,70 @@ msgid "Carriage Condition"
 msgstr ""
 
 #. module: l10n_it_sale
+#: field:account.invoice,transportation_reason_id:0
+#: model:ir.model,name:l10n_it_sale.model_stock_picking_transportation_reason
+#: field:res.partner,transportation_reason_id:0
+#: field:stock.picking,transportation_reason_id:0
+#: view:stock.picking.transportation_reason:0
+msgid "Reason for transportation"
+msgstr ""
+
+#. module: l10n_it_sale
 #: field:stock.picking,packages_no:0
 msgid "Number of Packages"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:stock.picking.transportation_reason,name:0
+msgid "Reason For Transportation"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_goods_description_tree
+#: model:ir.ui.menu,name:l10n_it_sale.menu_action_good_description_tree
+#: view:stock.picking.goods_description:0
+msgid "Descriptions of Goods"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_stock_picking_goods_description
+#: view:stock.picking.goods_description:0
+#: field:stock.picking.goods_description,name:0
+msgid "Description of Goods"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:hr.employee,fiscalcode:0
+msgid "Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_carriage_condition_tree
+#: model:ir.ui.menu,name:l10n_it_sale.menu_action_carriage_condition_tree
+#: view:stock.picking.carriage_condition:0
+msgid "Carriage Conditions"
+msgstr ""
+
+#. module: l10n_it_sale
+#: help:hr.employee,fiscalcode:0
+msgid "Italian Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.module.module,description:l10n_it_sale.module_meta_information
+msgid "This module customizes OpenERP in order to fit italian laws and mores\n"
+"Sale version"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:account.invoice,carriage_condition_id:0
+#: field:res.partner,carriage_condition_id:0
+#: field:stock.picking,carriage_condition_id:0
+msgid "Carriage condition"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:res.partner:0
+msgid "Default shipping conditions"
 msgstr ""
 
