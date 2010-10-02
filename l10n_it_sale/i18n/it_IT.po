@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.14\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-10-02 17:07:43+0000\n"
-"PO-Revision-Date: 2010-10-02 19:33+0100\n"
+"PO-Revision-Date: 2010-10-02 19:36+0100\n"
 "Last-Translator: eLBati <lorenzo.battistini@domsense.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "Ordine di vendita"
 #. module: l10n_it_sale
 #: view:account.invoice:0
 msgid "Shipping"
-msgstr "Spedizione"
+msgstr "Trasporto"
 
 #. module: l10n_it_sale
 #: view:account.invoice:0
@@ -162,5 +162,5 @@ msgstr "Resa merce"
 #. module: l10n_it_sale
 #: view:res.partner:0
 msgid "Default shipping conditions"
-msgstr "Condizioni di spedizione"
+msgstr "Dati DDT"
 
