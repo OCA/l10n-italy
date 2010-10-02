@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.14\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-10-02 17:07:43+0000\n"
-"PO-Revision-Date: 2010-10-02 19:15+0100\n"
+"PO-Revision-Date: 2010-10-02 19:33+0100\n"
 "Last-Translator: eLBati <lorenzo.battistini@domsense.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "Pagamenti"
 #: view:stock.picking.carriage_condition:0
 #: field:stock.picking.carriage_condition,name:0
 msgid "Carriage Condition"
-msgstr "Porto"
+msgstr "Resa merce"
 
 #. module: l10n_it_sale
 #: field:account.invoice,transportation_reason_id:0
@@ -136,7 +136,7 @@ msgstr "Codice Fiscale"
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_carriage_condition_tree
 #: view:stock.picking.carriage_condition:0
 msgid "Carriage Conditions"
-msgstr "Porto"
+msgstr "Resa merce"
 
 #. module: l10n_it_sale
 #: help:hr.employee,fiscalcode:0
@@ -157,7 +157,7 @@ msgstr ""
 #: field:res.partner,carriage_condition_id:0
 #: field:stock.picking,carriage_condition_id:0
 msgid "Carriage condition"
-msgstr "Porto"
+msgstr "Resa merce"
 
 #. module: l10n_it_sale
 #: view:res.partner:0
