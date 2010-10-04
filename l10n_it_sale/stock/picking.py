@@ -71,7 +71,8 @@ class stock_picking(osv.osv):
         'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
         'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
         'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
-	'packages_no' : fields.integer('Number of Packages'),
+    	'packages_no' : fields.integer('Number of Packages'),
+        'order_id': fields.many2one('sale.order','Sale Order'),
     }
     _defaults = {
         'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid,context=context).company_id.id,
@@ -95,6 +96,7 @@ class stock_picking(osv.osv):
             group, type, context)
         for picking in self.browse(cursor, user, ids, context=context):
             self.pool.get('account.invoice').write(cursor, user, res[picking.id], {
+                'order_id': picking.order_id.id,
                 'carriage_condition_id': picking.carriage_condition_id.id,
                 'goods_description_id': picking.goods_description_id.id,
                 'transportation_reason_id': picking.transportation_reason_id.id,
