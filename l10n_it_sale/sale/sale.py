@@ -30,7 +30,7 @@ class sale_order(osv.osv):
     }
 
     def _make_invoice(self, cr, uid, order, lines, context={}):
-        import pdb;pdb.set_trace()
+#        import pdb;pdb.set_trace()
         inv_id = super(sale_order, self)._make_invoice(cr, uid, order, lines, context)
         partner = self.pool.get('res.partner').browse(cr , uid, order.partner_id.id)
         self.pool.get('account.invoice').write(cr, uid, inv_id, {
