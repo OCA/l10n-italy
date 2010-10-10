@@ -6,102 +6,102 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-10-10 12:31:52+0000\n"
-"PO-Revision-Date: 2010-10-10 12:31:52+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2010-10-10 12:32:29+0000\n"
+"PO-Revision-Date: 2010-10-10 14:40+0100\n"
+"Last-Translator: eLBati <lorenzo.battistini@domsense.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
 #. module: l10n_it_sale
 #: constraint:ir.model:0
 msgid "The Object name must start with x_ and not contain any special character !"
-msgstr ""
+msgstr "Il nome dell'oggetto deve iniziare per x_ e non deve contenere caratteri speciali!"
 
 #. module: l10n_it_sale
 #: constraint:ir.ui.menu:0
 msgid "Error ! You can not create recursive Menu."
-msgstr ""
+msgstr "Errore ! Non puoi creare un menù ricorsivo"
 
 #. module: l10n_it_sale
 #: field:account.invoice,goods_description_id:0
 #: field:res.partner,goods_description_id:0
 #: field:stock.picking,goods_description_id:0
 msgid "Description of goods"
-msgstr ""
+msgstr "Aspetto dei Beni"
 
 #. module: l10n_it_sale
 #: field:stock.picking.carriage_condition,note:0
 #: field:stock.picking.goods_description,note:0
 #: field:stock.picking.transportation_reason,note:0
 msgid "Note"
-msgstr ""
+msgstr "Note"
 
 #. module: l10n_it_sale
 #: field:hr.employee,fiscalcode:0
 msgid "Fiscal Code"
-msgstr ""
+msgstr "Codice fiscale"
 
 #. module: l10n_it_sale
 #: constraint:ir.actions.act_window:0
 msgid "Invalid model name in the action definition."
-msgstr ""
+msgstr "Nome del modulo non valido nella definizione dell'azione."
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "DDT"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_hr_employee
 msgid "Employee"
-msgstr ""
+msgstr "Dipendente"
 
 #. module: l10n_it_sale
 #: model:ir.module.module,shortdesc:l10n_it_sale.module_meta_information
 msgid "Italian Localisation - Sale"
-msgstr ""
+msgstr "Localizzazione Italiana - Vendite"
 
 #. module: l10n_it_sale
 #: field:sale.order,validity:0
 msgid "Validity"
-msgstr ""
+msgstr "Validità"
 
 #. module: l10n_it_sale
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr ""
+msgstr "XML non valido per Visualizzazione Architettura!"
 
 #. module: l10n_it_sale
 #: view:res.partner:0
 msgid "Notes"
-msgstr ""
+msgstr "Note"
 
 #. module: l10n_it_sale
 #: field:account.invoice,order_id:0
 #: model:ir.model,name:l10n_it_sale.model_sale_order
 #: field:stock.picking,order_id:0
 msgid "Sale Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: l10n_it_sale
 #: view:account.invoice:0
 msgid "Shipping"
-msgstr ""
+msgstr "Trasporto"
 
 #. module: l10n_it_sale
 #: view:account.invoice:0
 msgid "Payments"
-msgstr ""
+msgstr "Pagamenti"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking_carriage_condition
 #: view:stock.picking.carriage_condition:0
 #: field:stock.picking.carriage_condition,name:0
 msgid "Carriage Condition"
-msgstr ""
+msgstr "Resa merce"
 
 #. module: l10n_it_sale
 #: field:account.invoice,transportation_reason_id:0
@@ -110,76 +110,79 @@ msgstr ""
 #: field:stock.picking,transportation_reason_id:0
 #: view:stock.picking.transportation_reason:0
 msgid "Reason for transportation"
-msgstr ""
+msgstr "Causale del trasporto"
 
 #. module: l10n_it_sale
 #: field:stock.picking,packages_no:0
 msgid "Number of Packages"
-msgstr ""
+msgstr "Numero di Colli"
 
 #. module: l10n_it_sale
 #: field:stock.picking.transportation_reason,name:0
 msgid "Reason For Transportation"
-msgstr ""
+msgstr "Causale del trasporto"
 
 #. module: l10n_it_sale
 #: model:ir.actions.act_window,name:l10n_it_sale.action_goods_description_tree
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_good_description_tree
 #: view:stock.picking.goods_description:0
 msgid "Descriptions of Goods"
-msgstr ""
+msgstr "Aspetto dei Beni"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking_goods_description
 #: view:stock.picking.goods_description:0
 #: field:stock.picking.goods_description,name:0
 msgid "Description of Goods"
-msgstr ""
+msgstr "Aspetto dei Beni"
 
 #. module: l10n_it_sale
 #: model:ir.actions.act_window,name:l10n_it_sale.action_transportation_reason_tree
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_transportation_reason_tree
 #: view:stock.picking.transportation_reason:0
 msgid "Reasons for transportation"
-msgstr ""
+msgstr "Causale del trasporto"
 
 #. module: l10n_it_sale
 #: model:ir.actions.act_window,name:l10n_it_sale.action_carriage_condition_tree
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_carriage_condition_tree
 #: view:stock.picking.carriage_condition:0
 msgid "Carriage Conditions"
-msgstr ""
+msgstr "Resa merce"
 
 #. module: l10n_it_sale
 #: help:hr.employee,fiscalcode:0
 msgid "Italian Fiscal Code"
-msgstr ""
+msgstr "Codice fiscale italiano"
 
 #. module: l10n_it_sale
 #: model:ir.module.module,description:l10n_it_sale.module_meta_information
-msgid "This module customizes OpenERP in order to fit italian laws and mores\n"
+msgid ""
+"This module customizes OpenERP in order to fit italian laws and mores\n"
 "Sale version"
 msgstr ""
+"Questo modulo personalizza OpenERP al fine di rispettare le leggi e le usanze italiane\n"
+"Versione vendite"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Fattura"
 
 #. module: l10n_it_sale
 #: field:account.invoice,carriage_condition_id:0
 #: field:res.partner,carriage_condition_id:0
 #: field:stock.picking,carriage_condition_id:0
 msgid "Carriage condition"
-msgstr ""
+msgstr "Resa merce"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_it_sale
 #: view:res.partner:0
 msgid "Default shipping conditions"
-msgstr ""
+msgstr "Dati DDT"
 
