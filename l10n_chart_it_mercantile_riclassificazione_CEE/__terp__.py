@@ -41,6 +41,7 @@
         'data/account.tax.code.template.csv',
         'account_chart.xml',
         'data/account.tax.template.csv',
+        'data/account.fiscal.position.template.csv',
         'l10n_chart_it_mercantile.xml',
         ],
     'demo_xml': [
