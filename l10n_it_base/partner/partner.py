@@ -83,8 +83,6 @@ class res_partner_address(osv.osv):
                 addr = r['name'] or ''
                 if r['name'] and (r['city'] or r['country_id']):
                     addr += ', '
-                import pdb;pdb.set_trace()
-                pippo = r
                 addr += (r['country_id'] and r['country_id'][1] or '') + ' ' + (r['city'] and r['city'][1] or '') + ' '  + (r['street'] or '')
                 if (context.get('contact_display', 'contact')=='partner_address') and r['partner_id']:
                     res.append((r['id'], "%s: %s" % (r['partner_id'][1], addr.strip() or '/')))
