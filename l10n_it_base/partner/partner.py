@@ -61,15 +61,36 @@ res_city()
 
 class res_partner(osv.osv):
     _inherit = 'res.partner'
+
     _columns = {
 #        'province': fields.related('address','province',type='char', string='Province'),
         'city': fields.related('address','city',type='many2one', relation='res.city', string='City'),
     }    
-
+   
 res_partner()
 
 class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
+
+    def name_get(self, cr, user, ids, context={}):
+        if not len(ids):
+            return []
+        res = []
+        for r in self.read(cr, user, ids, ['name','zip','country_id', 'city','partner_id', 'street']):
+            if context.get('contact_display', 'contact')=='partner' and r['partner_id']:
+                res.append((r['id'], r['partner_id'][1]))
+            else:
+                addr = r['name'] or ''
+                if r['name'] and (r['city'] or r['country_id']):
+                    addr += ', '
+                import pdb;pdb.set_trace()
+                pippo = r
+                addr += (r['country_id'] and r['country_id'][1] or '') + ' ' + (r['city'] and r['city'][1] or '') + ' '  + (r['street'] or '')
+                if (context.get('contact_display', 'contact')=='partner_address') and r['partner_id']:
+                    res.append((r['id'], "%s: %s" % (r['partner_id'][1], addr.strip() or '/')))
+                else:
+                    res.append((r['id'], addr.strip() or '/'))
+        return res
 
     _columns = {
         'city': fields.many2one('res.city', 'City'),
