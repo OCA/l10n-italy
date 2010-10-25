@@ -28,6 +28,7 @@ class res_region(osv.osv):
     _description = 'Region'
     _columns = {
         'name': fields.char('Region Name', size=64, help='The full name of the region.', required=True),
+        'country_id': fields.many2one('res.country', 'Country'),
     }
 res_region()
 
@@ -109,12 +110,12 @@ class res_partner_address(osv.osv):
         res = {'value':{}}
         if(city):
             city = self.pool.get('res.city').browse(cr, uid, city)
-            import pdb;pdb.set_trace()
+#            import pdb;pdb.set_trace()
             res = {'value': {
                 'province':city.province_id.id,
                 'region':city.region.id,
                 'zip': city.zip,
-                'country': city.region.country_id.id,
+                'country_id': city.region.country_id.id,
                 }}
         return res
     
