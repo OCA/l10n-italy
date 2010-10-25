@@ -1,8 +1,0 @@
-"id","name","parent_id:id"
-"vat_code_tax","Tax",
-"vat_code_balance_net","Tax Balance to Pay","vat_code_tax"
-"vat_code_due_tva","Tax Due (Tax to pay)","vat_code_balance_net"
-"vat_code_payable","Tax Payable","vat_code_balance_net"
-"vat_code_base_net","Tax Bases","vat_code_tax"
-"vat_code_base_due","Base of Taxed Sales","vat_code_base_net"
-"vat_code_receivable_net","Base of Taxed Purchases","vat_code_base_net"

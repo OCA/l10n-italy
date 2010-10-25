@@ -26,7 +26,6 @@ class wizard_multi_charts_accounts(osv.osv_memory):
         acc_template_ref = {}
         #cerco tutti gli account.chart.template diversi da quello creato dal wizard di default
         chart_template_ids = obj_acc_chart.search(cr, uid, [('id', '!=', obj_multi.chart_template_id.id)])
-#        import pdb;pdb.set_trace()
         for chart_template_id in chart_template_ids:
             #genero il pdc consolidato
             chart_template = obj_acc_chart.browse(cr, uid, chart_template_id)
@@ -42,7 +41,7 @@ class wizard_multi_charts_accounts(osv.osv_memory):
                 if code_main>0 and code_main<=dig and account_template.type != 'view':
                     code_acc=str(code_acc) + (str('0'*(dig-code_main)))
                 vals={
-                    'name': (chart_template.account_root_id.id == account_template.id) and obj_multi.company_id.name or account_template.name,
+                    'name': (chart_template.account_root_id.id == account_template.id) and chart_template.name or account_template.name,
                     'currency_id': account_template.currency_id and account_template.currency_id.id or False,
                     'code': code_acc,
                     'type': account_template.type,
@@ -86,14 +85,5 @@ class res_partner(osv.osv):
         'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
     }
     #_constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
-    
-    def check_fiscalcode(self, fiscalcode):
-        import re
-        pattern = r'^[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}$'
-        #if len(fiscalcode) == 16 and re.findall(regexp,fiscalcode):
-        #if len(fiscalcode) == 16:
-        return True
-        #else:
-        #    return False
     
 res_partner()
