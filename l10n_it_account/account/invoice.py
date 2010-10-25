@@ -26,12 +26,12 @@ import pooler, tools
 from osv import fields, osv
 from tools.translate import _
 
-class Invoice(osv.osv):
+class account_invoice(osv.osv):
     
     _inherit = 'account.invoice'
 
-    def action_number(self, cr, uid, ids, *args):
-        super(Invoice, self).action_number(cr, uid, ids, args)
+    def action_number(self, cr, uid, ids, context=None):
+        super(account_invoice, self).action_number(cr, uid, ids, context)
         for obj_inv in self.browse(cr, uid, ids):
             type = obj_inv.type
             number = obj_inv.number
@@ -43,7 +43,7 @@ class Invoice(osv.osv):
                         _('Cannot create invoice! Post the invoice with a greater date'))
         return True
     
-Invoice()
+account_invoice()
 
 
 
