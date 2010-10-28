@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-10-27 13:49:49+0000\n"
-"PO-Revision-Date: 2010-10-27 16:04+0100\n"
+"POT-Creation-Date: 2010-10-28 15:50:59+0000\n"
+"PO-Revision-Date: 2010-10-28 17:55+0100\n"
 "Last-Translator: eLBati <lorenzo.battistini@domsense.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,55 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "Il nome dell'oggetto deve iniziare per x_ e non deve contenere caratteri speciali!"
+
+#. module: l10n_it_account
+#: field:res.partner,birth_date:0
+msgid "Date of birth"
+msgstr "Data di nascita"
+
+#. module: l10n_it_account
+#: sql_constraint:ir.module.module:0
+msgid "The name of the module must be unique !"
+msgstr "Il nome del modulo deve essere unico!"
+
+#. module: l10n_it_account
+#: view:res.partner:0
+#: field:res.partner,fiscalcode:0
+msgid "Fiscal Code"
+msgstr "Codice fiscale"
+
+#. module: l10n_it_account
+#: view:res.partner:0
+msgid "Compute Fiscal Code"
+msgstr "Calcola codice fiscale"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_wizard_multi_charts_accounts
+msgid "wizard.multi.charts.accounts"
+msgstr "wizard.multi.charts.accounts"
+
+#. module: l10n_it_account
 #: sql_constraint:ir.module.module:0
 msgid "The certificate ID of the module must be unique !"
 msgstr "L'ID del certificato del modulo deve essere unico!"
+
+#. module: l10n_it_account
+#: field:account.account.template,child_consol_ids:0
+msgid "Consolidated Children"
+msgstr "Conti consolidati"
+
+#. module: l10n_it_account
+#: field:res.partner,fiscalcode_firstname:0
+msgid "First name"
+msgstr "Nome"
+
+#. module: l10n_it_account
+#: field:res.partner,birth_city:0
+msgid "City of birth"
+msgstr "Città natale"
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/account/invoice.py:0
@@ -32,58 +78,29 @@ msgid "Invalid XML for View Architecture!"
 msgstr "XML non valido per Visualizzazione Architettura!"
 
 #. module: l10n_it_account
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "Il nome dell'oggetto deve iniziare per x_ e non deve contenere caratteri speciali!"
+#: view:res.partner:0
+msgid "Compute"
+msgstr "Calcola"
+
+#. module: l10n_it_account
+#: selection:res.partner,sex:0
+msgid "Female"
+msgstr "Femmina"
+
+#. module: l10n_it_account
+#: view:res.partner:0
+msgid "Notes"
+msgstr "Note"
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account_template
 msgid "Templates for Accounts"
-msgstr "Template per la contabilità"
+msgstr "Templates per contabilità"
 
 #. module: l10n_it_account
-#: field:account.account.template,child_consol_ids:0
-msgid "Consolidated Children"
-msgstr "Conti consolidati"
-
-#. module: l10n_it_account
-#: help:res.partner,fiscalcode:0
-msgid "Italian Fiscal Code"
-msgstr "Codice Fiscale Italiano"
-
-#. module: l10n_it_account
-#: model:ir.module.module,description:l10n_it_account.module_meta_information
-msgid ""
-"This module customizes OpenERP in order to fit italian laws and mores\n"
-"Account version"
-msgstr ""
-"Questo modulo personalizza OpenERP al fine di rispettare le leggi e le usanze italiane\n"
-"Versione contabilità"
-
-#. module: l10n_it_account
-#: sql_constraint:ir.module.module:0
-msgid "The name of the module must be unique !"
-msgstr "Il nome del modulo deve essere unico!"
-
-#. module: l10n_it_account
-#: field:res.partner,fiscalcode:0
-msgid "Fiscal Code"
-msgstr "Codice Fiscale"
-
-#. module: l10n_it_account
-#: sql_constraint:ir.model.fields:0
-msgid "Size of the field can never be less than 1 !"
-msgstr "La dimensione del campo non può mai essere minore a 1 !"
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_invoice
-msgid "Invoice"
-msgstr "Fattura"
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_res_partner
-msgid "Partner"
-msgstr "Partner"
+#: selection:res.partner,sex:0
+msgid "Male"
+msgstr "Maschio"
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/account/invoice.py:0
@@ -97,7 +114,41 @@ msgid "Italian Localisation - Account"
 msgstr "Localizzazione Italiana - Contabilità"
 
 #. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_wizard_multi_charts_accounts
-msgid "wizard.multi.charts.accounts"
-msgstr "wizard.multi.charts.accounts"
+#: field:res.partner,fiscalcode_surname:0
+msgid "Surname"
+msgstr "Cognome"
+
+#. module: l10n_it_account
+#: model:ir.module.module,description:l10n_it_account.module_meta_information
+msgid ""
+"This module customizes OpenERP in order to fit italian laws and mores\n"
+"Account version"
+msgstr ""
+"Questo modulo personalizza OpenERP al fine di rispettare le leggi e le usanze italiane\n"
+"Versione contabilità"
+
+#. module: l10n_it_account
+#: field:res.partner,sex:0
+msgid "Sex"
+msgstr "Sesso"
+
+#. module: l10n_it_account
+#: help:res.partner,fiscalcode:0
+msgid "Italian Fiscal Code"
+msgstr "Codice Fiscale Italiano"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_account
+#: sql_constraint:ir.model.fields:0
+msgid "Size of the field can never be less than 1 !"
+msgstr "La dimensione del campo non può mai essere minore a 1 !"
 
