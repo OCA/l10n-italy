@@ -16,6 +16,20 @@
             </field>
 		</record>
 
+        <record id="stock_view_picking_form_ddt_inherit" model="ir.ui.view">
+            <field name="name">stock.view.picking.form.ddt.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="goods_description_id"/>
+                    <field name="transportation_reason_id"/>
+                    <field name="carriage_condition_id"/>
+        		    <field name="packages_no"/>
+                </field>
+            </field>
+		</record>
+
 	<!--
 	Sequences types for outgoing products
 	-->
