@@ -36,6 +36,7 @@
     'update_xml': [
         'data/account.account.type.csv',
         'data/account.account.csv',
+        'account_view.xml',
         ],
     'demo_xml': [
         ],
