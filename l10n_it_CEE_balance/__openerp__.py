@@ -23,7 +23,7 @@
 {
     "name" : "Italy - Generic Chart of Accounts",
     "version" : "0.1",
-    "depends" : ['l10n_it'],
+    "depends" : ['l10n_it',],
     "author" : "OpenERP Italian Community",
     "description": """
     Riclassificazione IV normativa UE per un piano dei conti italiano di un'impresa generica (compreso in l10n_it)
