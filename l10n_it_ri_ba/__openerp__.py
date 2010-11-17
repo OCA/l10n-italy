@@ -19,6 +19,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import invoice 
+{
+    'name': 'Italian Localisation - Ricevute Bancarie',
+    'version': '0.1',
+    'category': 'Localisation/Italy',
+    'description': """This module allows users to generate Ri.Ba. for banking payments""",
+    'author': 'Lorenzo Battistini',
+    'website': 'http://www.openerp-italia.org',
+    'license': 'AGPL-3',
+    "depends" : ['l10n_it_account', 'account_voucher', 'base_iban'],
+    "init_xml" : [
+        ],
+    "update_xml" : [
+        'wizard/riba_file_export.xml',
+        ],
+    "demo_xml" : [],
+    "active": False,
+    "installable": True
+}
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

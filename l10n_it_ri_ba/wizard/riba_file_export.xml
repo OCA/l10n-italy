@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_riba_file_export" model="ir.ui.view">
+            <field name="name">Export Ri.Ba.</field>
+            <field name="model">riba.file.export</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Export Ri.Ba. file">
+                    <group col="4">
+                        <group colspan="4" >
+                            <field name="credit_bank_id"/>
+                            <field name="debit_bank_id"/>
+                            <newline />
+                            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                            <button icon="gtk-ok" name="act_getfile" string="Export" type="object"/>
+                        </group>
+                        <group colspan="4">
+                            <field name="data" readonly="1"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+<!--
+        <record id="action_wizard_riba_file_export" model="ir.actions.act_window">
+            <field name="name">Export Ri.Ba.</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">riba.file.export</field>
+            <field name="src_model">account.voucher</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+-->
+       <act_window name="Export Ri.Ba."
+            res_model="riba.file.export"
+            src_model="account.voucher"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_wizard_riba_file_export"
+            view_id="wizard_riba_file_export"/>
+    </data>
+</openerp>
