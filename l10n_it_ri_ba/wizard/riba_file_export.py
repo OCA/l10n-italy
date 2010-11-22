@@ -168,7 +168,7 @@ class riba_file_export(osv.osv_memory):
             if not line.date_due:
                 due_date =  '000000'
             else:
-                due_date = datetime.strptime(line.date_due[:10], '%Y-%m-%d').strftime("%d%m%y")
+                due_date = datetime.datetime.strptime(line.date_due[:10], '%Y-%m-%d').strftime("%d%m%y")
             if not voucher.partner_id.vat and not voucher.partner_id.fiscalcode:
                 raise osv.except_osv('Error', _('No VAT or Fiscal code specified for ') + voucher.partner_id.name)
             Riba = [
