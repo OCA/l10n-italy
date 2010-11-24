@@ -71,33 +71,33 @@ class riba_file_export(osv.osv_memory):
         self._data = data_creazione.ljust(6, '0')
         self._valuta = codice_divisa[0:1]
         self._supporto = nome_supporto.rjust(20, '*')
-        return " IB     " + self._assuntrice + self._data + self._supporto + " " * 74 + self._valuta + " " * 6
+        return " IB     " + self._assuntrice + self._data + self._supporto + " " * 74 + self._valuta + " " * 6 + "\r\n"
 
     def _Record14(self, scadenza, importo, abi_assuntrice, cab_assuntrice, conto, abi_domiciliataria, cab_domiciliataria, codice_cliente):
         self._totale += importo
-        return " 14" + str(self._progressivo).rjust(7,'0') + " " * 12 + scadenza + "30000" + str(importo).rjust(13,'0') + "-" + abi_assuntrice.rjust(5,'0') + cab_assuntrice.rjust(5,'0') + conto.ljust(12) + abi_domiciliataria.rjust(5,'0') + cab_domiciliataria.rjust(5,'0') + " " * 12 + " " * 5 + "4" + codice_cliente.ljust(16) + " " * 6 + self._valuta
+        return " 14" + str(self._progressivo).rjust(7,'0') + " " * 12 + scadenza + "30000" + str(importo).rjust(13,'0') + "-" + abi_assuntrice.rjust(5,'0') + cab_assuntrice.rjust(5,'0') + conto.ljust(12) + abi_domiciliataria.rjust(5,'0') + cab_domiciliataria.rjust(5,'0') + " " * 12 + " " * 5 + "4" + codice_cliente.ljust(16) + " " * 6 + self._valuta + "\r\n"
 
     def _Record20(self, ragione_soc1_creditore, ragione_soc2_creditore, indirizzo_creditore, cap_citta_prov_creditore):
         self._creditore =  ragione_soc1_creditore.ljust(24)
-        return " 20" + str(self._progressivo).rjust(7,'0') + self._creditore[0:24] + ragione_soc2_creditore.ljust(24)[0:24] + indirizzo_creditore.ljust(24)[0:24] + cap_citta_prov_creditore.ljust(24)[0:24] + " " * 14
+        return " 20" + str(self._progressivo).rjust(7,'0') + self._creditore[0:24] + ragione_soc2_creditore.ljust(24)[0:24] + indirizzo_creditore.ljust(24)[0:24] + cap_citta_prov_creditore.ljust(24)[0:24] + " " * 14 + "\r\n"
 
     def _Record30(self, nome_debitore, codice_fiscale_debitore):
-        return " 30" + str(self._progressivo).rjust(7,'0') + nome_debitore.ljust(60)[0:60] + codice_fiscale_debitore.ljust(16,' ') + " " * 34
+        return " 30" + str(self._progressivo).rjust(7,'0') + nome_debitore.ljust(60)[0:60] + codice_fiscale_debitore.ljust(16,' ') + " " * 34 + "\r\n"
 
     def _Record40(self, indirizzo_debitore, cap_debitore, comune_provincia_debitore, descrizione_domiciliataria=""):
-        return " 40" + str(self._progressivo).rjust(7,'0') + indirizzo_debitore.ljust(30)[0:30] + str(cap_debitore).rjust(5,'0') + comune_provincia_debitore.ljust(25)[0:25] + descrizione_domiciliataria.ljust(50)[0:50]
+        return " 40" + str(self._progressivo).rjust(7,'0') + indirizzo_debitore.ljust(30)[0:30] + str(cap_debitore).rjust(5,'0') + comune_provincia_debitore.ljust(25)[0:25] + descrizione_domiciliataria.ljust(50)[0:50] + "\r\n"
 
     def _Record50(self, descrizione_debito, codice_fiscale_creditore):
-        return " 50" + str(self._progressivo).rjust(7,'0') + descrizione_debito.ljust(40)[0:40] + " " * 50 + codice_fiscale_creditore.ljust(16,' ') + " " * 4
+        return " 50" + str(self._progressivo).rjust(7,'0') + descrizione_debito.ljust(40)[0:40] + " " * 50 + codice_fiscale_creditore.ljust(16,' ') + " " * 4 + "\r\n"
 
     def _Record51(self, numero_ricevuta_creditore):
-        return " 51" + str(self._progressivo).rjust(7,'0') + str(numero_ricevuta_creditore).rjust(10,'0') + self._creditore[0:20] + " " * 80
+        return " 51" + str(self._progressivo).rjust(7,'0') + str(numero_ricevuta_creditore).rjust(10,'0') + self._creditore[0:20] + " " * 80 + "\r\n"
 
     def _Record70(self):
-        return " 70" + str(self._progressivo).rjust(7,'0') + " " * 110
+        return " 70" + str(self._progressivo).rjust(7,'0') + " " * 110 + "\r\n"
 
     def _RecordEF(self): #record di coda
-        return " EF     " + self._assuntrice + self._data + self._supporto + " " * 6 + str(self._progressivo).rjust(7,'0') + str(self._totale).rjust(15,'0') + "0" * 15 + str(int(self._progressivo)*7+2).rjust(7,'0') + " " * 24 + self._valuta + " " * 6
+        return " EF     " + self._assuntrice + self._data + self._supporto + " " * 6 + str(self._progressivo).rjust(7,'0') + str(self._totale).rjust(15,'0') + "0" * 15 + str(int(self._progressivo)*7+2).rjust(7,'0') + " " * 24 + self._valuta + " " * 6 + "\r\n"
 
     def _creaFile(self, intestazione, ricevute_bancarie):
         accumulatore = self._RecordIB(intestazione[0], intestazione[3], intestazione[4], intestazione[5])
@@ -127,7 +127,7 @@ class riba_file_export(osv.osv_memory):
         credit_cab = credit_bank.iban[10:15]
         debit_cab = debit_bank.iban[10:15]
         credit_account = credit_bank.iban[15:27]
-        dataemissione = datetime.datetime.now().strftime("%d%m%Y")
+        dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = voucher.partner_id.name[0:6] + datetime.datetime.now().strftime("%d%m%Y%H%M%S")
         if not voucher.company_id.partner_id.address:
             raise osv.except_osv('Error', _('No address specified for ') + voucher.company_id.partner_id.name)
@@ -174,7 +174,7 @@ class riba_file_export(osv.osv_memory):
             Riba = [
                 line.id,
                 due_date,
-                line.amount_unreconciled * 100,
+                int(line.amount_unreconciled * 100),
                 voucher.partner_id.name,
                 voucher.partner_id.vat or voucher.partner_id.fiscalcode,
                 debitor_address[0].street or '',
