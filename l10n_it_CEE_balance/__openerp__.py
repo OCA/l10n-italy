@@ -29,7 +29,7 @@
     Riclassificazione IV normativa UE per un piano dei conti italiano di un'impresa generica (compreso in l10n_it)
     """,
     "license": "AGPL-3",
-    "category" : "Localisation",
+    "category" : "Localisation/Italy",
     'website': 'http://www.openerp-italia.org/',
     'init_xml': [
         ],
