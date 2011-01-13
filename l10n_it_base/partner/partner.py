@@ -64,8 +64,7 @@ class res_partner(osv.osv):
     _inherit = 'res.partner'
 
     _columns = {
-#        'province': fields.related('address','province',type='char', string='Province'),
-        'city': fields.related('address','city',type='many2one', relation='res.city', string='City'),
+        'city': fields.related('address','city',type='char', string='City'),
     }    
    
 res_partner()
@@ -73,6 +72,7 @@ res_partner()
 class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
+    '''
     def name_get(self, cr, user, ids, context={}):
         if not len(ids):
             return []
@@ -90,33 +90,48 @@ class res_partner_address(osv.osv):
                 else:
                     res.append((r['id'], addr.strip() or '/'))
         return res
+    '''
+    def get_province(self, cr, uid, city):
+        result = None
+        city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', city.title())])
+        if city_id:
+            city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
+            result = city_obj.province_id.id
+        return result
+    def get_region(self, cr, uid, city):
+        result = None
+        city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', city.title())])
+        if city_id:
+            city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
+            result = city_obj.region.id
+        return result
 
     _columns = {
-        'city': fields.many2one('res.city', 'City'),
-        'province': fields.related('city','province_id',type='many2one', relation='res.province', string='Province'),
-        'region': fields.related('city','region',type='many2one', relation='res.region', string='Region'),
+#        'city': fields.many2one('res.city', 'City'),
+        'province': fields.many2one('res.province', string='Province'),
+        'region': fields.many2one('res.region', string='Region'),
     }
-    '''
-    def init (self, cr):
-        cr.execute("ALTER TABLE res_partner_address DROP COLUMN city")
-    '''
+
+    _defaults = {
+        'province': lambda self, cr, uid, context: context.get('city', False) and self.pool.get('res.partner.address').get_province(
+            cr, uid, [context['city']]),
+        'region': lambda self, cr, uid, context: context.get('city', False) and self.pool.get('res.partner.address').get_region(
+            cr, uid, [context['city']]),
+        }
 
     def on_change_city(self, cr, uid, ids, city):
-        '''
-        res = {'value': {
-            'country_id': self.pool.get('res.country').search(cr, uid, [('name','=','Italy')])[0],
-            }}
-        '''
         res = {'value':{}}
         if(city):
-            city = self.pool.get('res.city').browse(cr, uid, city)
-#            import pdb;pdb.set_trace()
-            res = {'value': {
-                'province':city.province_id.id,
-                'region':city.region.id,
-                'zip': city.zip,
-                'country_id': city.region.country_id.id,
-                }}
+            city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', city.title())])
+            if city_id:
+                city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
+                res = {'value': {
+                    'province':city_obj.province_id.id,
+                    'region':city_obj.region.id,
+                    'zip': city_obj.zip,
+                    'country_id': city_obj.region.country_id.id,
+                    'city': city.title(),
+                    }}
         return res
     
 res_partner_address()
