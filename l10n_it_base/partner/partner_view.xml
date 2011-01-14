@@ -14,6 +14,17 @@
 		</field>
 	 </record>
 
+	<record model="ir.ui.view" id="view_partner_form_inherit_zip">
+		<field name="name">partner.form.zip</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+           <field name="zip" position="replace">
+		    </field>
+		</field>
+	 </record>
+
 	<record model="ir.ui.view" id="view_partner_form_inherit_city">
 		<field name="name">partner.form.city</field>
 		<field name="model">res.partner</field>
@@ -22,6 +33,7 @@
 		<field name="arch" type="xml">
            <field name="city" position="replace">
                 <field name="city" on_change="on_change_city(city)"/>
+                <field name="zip"/>
 		    </field>
 		</field>
 	 </record>
@@ -54,6 +66,17 @@
 		</field>
 	 </record>
 
+	<record model="ir.ui.view" id="view_partner_address_form_inherit_zip">
+		<field name="name">partner.address.form.zip</field>
+		<field name="model">res.partner.address</field>
+		<field name="inherit_id" ref="base.view_partner_address_form1"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+           <field name="zip" position="replace">
+		    </field>
+		</field>
+	 </record>
+
 	<record model="ir.ui.view" id="view_partner_address_form_inherit_city">
 		<field name="name">partner.address.form.city</field>
 		<field name="model">res.partner.address</field>
@@ -62,6 +85,7 @@
 		<field name="arch" type="xml">
            <field name="city" position="replace">
                 <field name="city" on_change="on_change_city(city)"/>
+                <field name="zip"/>
 		    </field>
 		</field>
 	 </record>
