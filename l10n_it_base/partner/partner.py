@@ -91,19 +91,23 @@ class res_partner_address(osv.osv):
                     res.append((r['id'], addr.strip() or '/'))
         return res
     '''
-    def get_province(self, cr, uid, city):
+
+    def _get_province(self, cr, uid, context=None):
         result = None
-        city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', city.title())])
-        if city_id:
-            city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
-            result = city_obj.province_id.id
+        if 'city' in context:
+            city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', context['city'].title())])
+            if city_id:
+                city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
+                result = city_obj.province_id.id
         return result
-    def get_region(self, cr, uid, city):
+
+    def _get_region(self, cr, uid, context=None):
         result = None
-        city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', city.title())])
-        if city_id:
-            city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
-            result = city_obj.region.id
+        if 'city' in context:
+            city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', context['city'].title())])
+            if city_id:
+                city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
+                result = city_obj.region.id
         return result
 
     _columns = {
@@ -113,10 +117,8 @@ class res_partner_address(osv.osv):
     }
 
     _defaults = {
-        'province': lambda self, cr, uid, context: context.get('city', False) and self.pool.get('res.partner.address').get_province(
-            cr, uid, [context['city']]),
-        'region': lambda self, cr, uid, context: context.get('city', False) and self.pool.get('res.partner.address').get_region(
-            cr, uid, [context['city']]),
+        'province': _get_province,
+        'region': _get_region,
         }
 
     def on_change_city(self, cr, uid, ids, city):
