@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+	<record model="ir.ui.view" id="view_partner_form_inherit_zip">
+		<field name="name">partner.form.zip</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+           <field name="zip" position="replace">
+		    </field>
+		</field>
+	 </record>
+
+	<record model="ir.ui.view" id="view_partner_form_inherit_city">
+		<field name="name">partner.form.city</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+           <field name="city" position="replace">
+                <field name="city" on_change="on_change_city(city)"/>
+                <field name="zip"/>
+               <field name="province" select="2"/>
+               <field name="region"/>
+		    </field>
+		</field>
+	 </record>
+	</data>
+</openerp>
