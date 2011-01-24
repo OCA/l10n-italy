@@ -72,54 +72,10 @@ res_partner()
 class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
-    '''
-    def name_get(self, cr, user, ids, context={}):
-        if not len(ids):
-            return []
-        res = []
-        for r in self.read(cr, user, ids, ['name','zip','country_id', 'city','partner_id', 'street']):
-            if context.get('contact_display', 'contact')=='partner' and r['partner_id']:
-                res.append((r['id'], r['partner_id'][1]))
-            else:
-                addr = r['name'] or ''
-                if r['name'] and (r['city'] or r['country_id']):
-                    addr += ', '
-                addr += (r['country_id'] and r['country_id'][1] or '') + ' ' + (r['city'] and r['city'][1] or '') + ' '  + (r['street'] or '')
-                if (context.get('contact_display', 'contact')=='partner_address') and r['partner_id']:
-                    res.append((r['id'], "%s: %s" % (r['partner_id'][1], addr.strip() or '/')))
-                else:
-                    res.append((r['id'], addr.strip() or '/'))
-        return res
-    '''
-
-    def _get_province(self, cr, uid, context=None):
-        result = None
-        if 'city' in context:
-            city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', context['city'].title())])
-            if city_id:
-                city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
-                result = city_obj.province_id.id
-        return result
-
-    def _get_region(self, cr, uid, context=None):
-        result = None
-        if 'city' in context:
-            city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', context['city'].title())])
-            if city_id:
-                city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
-                result = city_obj.region.id
-        return result
-
     _columns = {
-#        'city': fields.many2one('res.city', 'City'),
         'province': fields.many2one('res.province', string='Province'),
         'region': fields.many2one('res.region', string='Region'),
     }
-
-    _defaults = {
-        'province': _get_province,
-        'region': _get_region,
-        }
 
     def on_change_city(self, cr, uid, ids, city):
         res = {'value':{}}
@@ -135,5 +91,27 @@ class res_partner_address(osv.osv):
                     'city': city.title(),
                     }}
         return res
+
+    def _set_vals_city_data(self, cr, uid, vals):
+        if vals.has_key('city') and not vals.has_key('province') and not vals.has_key('region'):
+            if vals['city']:
+                city_obj= self.pool.get('res.city')
+                city_ids = city_obj.search(cr, uid, [('name', '=', vals['city'].title())])
+                if (len(city_ids) == 1):
+                    city = city_obj.browse(cr, uid, city_ids[0])
+                    vals['province'] = city.province_id.id
+                    vals['region'] = city.region.id
+                    if not vals.has_key('zip'):
+                        vals['zip'] = city.zip
+                    vals['country_id'] = city.region.country_id.id
+        return vals
+
+    def create(self, cr, uid, vals, context=None):
+        vals = self._set_vals_city_data(cr, uid, vals)
+        return super(res_partner_address, self).create(cr, uid, vals, context)
+
+    def write(self, cr, uid, ids, vals, context=None):
+        vals = self._set_vals_city_data(cr, uid, vals)
+        return super(res_partner_address, self).write(cr, uid, ids, vals, context)
     
 res_partner_address()
