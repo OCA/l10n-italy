@@ -99,11 +99,14 @@ class res_partner_address(osv.osv):
                 city_ids = city_obj.search(cr, uid, [('name', '=', vals['city'].title())])
                 if (len(city_ids) == 1):
                     city = city_obj.browse(cr, uid, city_ids[0])
-                    vals['province'] = city.province_id.id
-                    vals['region'] = city.region.id
                     if not vals.has_key('zip'):
                         vals['zip'] = city.zip
-                    vals['country_id'] = city.region.country_id.id
+                    if city.province_id:
+                        vals['province'] = city.province_id.id
+                    if city.region:
+                        vals['region'] = city.region.id
+                        if city.region.country_id:
+                            vals['country_id'] = city.region.country_id.id
         return vals
 
     def create(self, cr, uid, vals, context=None):
