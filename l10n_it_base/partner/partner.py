@@ -59,16 +59,6 @@ class res_city(osv.osv):
 
 res_city()
 
-
-class res_partner(osv.osv):
-    _inherit = 'res.partner'
-
-    _columns = {
-        'city': fields.related('address','city',type='char', string='City'),
-    }    
-   
-res_partner()
-
 class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
