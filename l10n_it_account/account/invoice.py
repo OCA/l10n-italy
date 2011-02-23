@@ -33,10 +33,12 @@ class account_invoice(osv.osv):
     def action_number(self, cr, uid, ids, context=None):
         super(account_invoice, self).action_number(cr, uid, ids, context)
         for obj_inv in self.browse(cr, uid, ids):
-            type = obj_inv.type
+            inv_type = obj_inv.type
+            if inv_type == 'in_invoice':
+                return True
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
-            cr.execute("SELECT number FROM account_invoice i WHERE i.type = %s AND i.date_invoice > %s AND i.number < %s", (type, date_invoice, number))
+            cr.execute("SELECT number FROM account_invoice i WHERE i.type = %s AND i.date_invoice > %s AND i.number < %s", (inv_type, date_invoice, number))
             res = cr.dictfetchall()
             if res:
                 raise osv.except_osv(_('Date Inconsistency'),
