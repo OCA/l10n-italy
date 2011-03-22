@@ -24,7 +24,7 @@
     'version': '0.1',
     'category': 'Localisation/Italy',
     'description': """This module allows users to generate Ri.Ba. for banking payments""",
-    'author': 'Lorenzo Battistini',
+    'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['l10n_it_account', 'account_voucher', 'base_iban'],
