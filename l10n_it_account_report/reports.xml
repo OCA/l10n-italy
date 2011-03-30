@@ -10,7 +10,7 @@
             <field name="name">Stampa Fattura</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">account.invoice</field>
-            <field name="report_name">invoice</field>
+            <field name="report_name">fattura</field>
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
