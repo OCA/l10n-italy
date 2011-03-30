@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#    Copyright (C) 2010-2011 OpenERP Italian Community (<http://www.openerp-italia.org>). 
 #    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -67,17 +66,11 @@ stock_picking_reason()
 class stock_picking(osv.osv):
     _inherit = "stock.picking"
     _columns =  {
-        'company_id': fields.many2one('res.company', 'Company', required=True),
         'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
         'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
         'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
-    	'packages_no' : fields.integer('Number of Packages'),
         'order_id': fields.many2one('sale.order','Sale Order'),
     }
-    _defaults = {
-        'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid,context=context).company_id.id,
-    }
-
 
     def create(self, cr, user, vals, context=None):
         if ('name' not in vals) or (vals.get('name')=='/'):
