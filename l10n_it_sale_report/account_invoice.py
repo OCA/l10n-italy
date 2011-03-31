@@ -19,19 +19,13 @@
 #
 ##############################################################################
 
-import time
-from report import report_sxw
+from osv import fields, osv
 
-class Parser(report_sxw.rml_parse):
-
-    def _get_ddt(self, o):
-        import pdb;pdb.set_trace()
-        return o['form']['picking_id']
-
-    def __init__(self, cr, uid, name, context):
-        import pdb;pdb.set_trace()
-        super(Parser, self).__init__(cr, uid, name, context)
-        self.localcontext.update({
-            'time': time,
-            'ddt': self._get_ddt,
-        })
+class account_invoice(osv.osv):
+    
+    _inherit = 'account.invoice'
+        
+    _columns = {
+        'sale_order_ids': fields.many2many('sale.order', 'sale_order_invoice_rel', 'invoice_id', 'order_id', 'Sale orders')
+        }
+account_invoice()

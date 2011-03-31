@@ -39,16 +39,6 @@
             <field name="report_rml">l10n_it_sale_report/templates/fattura_accompagnatoria.odt</field>
             <field name="parser_state">loc</field>
         </record>
-
-        <ir_set>
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="['account.invoice']" name="models"/>
-            <field name="name">Fattura Accompagnatoria</field>
-            <field eval="'ir.actions.report.xml,'+str(invoice_report_id)" name="value"/>
-            <field eval="True" name="isobject"/>
-            <field eval="True" name="replace"/>
-        </ir_set>
     </data>
 </openerp>
 

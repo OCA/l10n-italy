@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #    
 #    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>). 
-#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -19,19 +17,4 @@
 #
 ##############################################################################
 
-import time
-from report import report_sxw
-
-class Parser(report_sxw.rml_parse):
-
-    def _get_ddt(self, o):
-        import pdb;pdb.set_trace()
-        return o['form']['picking_id']
-
-    def __init__(self, cr, uid, name, context):
-        import pdb;pdb.set_trace()
-        super(Parser, self).__init__(cr, uid, name, context)
-        self.localcontext.update({
-            'time': time,
-            'ddt': self._get_ddt,
-        })
+import print_fattura_accompagnatoria

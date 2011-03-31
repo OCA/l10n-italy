@@ -31,6 +31,7 @@
         ],
     "update_xml" : [
         'reports.xml',
+        'wizard/print_fattura_accompagnatoria.xml',
         ],
     "demo_xml" : [],
     "active": False,
