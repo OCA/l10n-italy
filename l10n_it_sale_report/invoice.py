@@ -24,12 +24,10 @@ from report import report_sxw
 
 class Parser(report_sxw.rml_parse):
 
-    def _get_ddt(self, o):
-        import pdb;pdb.set_trace()
-        return o['form']['picking_id']
+    def _get_ddt(self, ddt):
+        return self.pool.get('stock.picking').browse(self.cr, self.uid, ddt)
 
     def __init__(self, cr, uid, name, context):
-        import pdb;pdb.set_trace()
         super(Parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'time': time,
