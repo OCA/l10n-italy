@@ -7,7 +7,7 @@
 	    </record>
 
         <record id="invoice_report_id" model="ir.actions.report.xml">
-            <field name="name">Stampa Fattura</field>
+            <field name="name">Print Fattura</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">account.invoice</field>
             <field name="report_name">fattura</field>
@@ -24,7 +24,7 @@
             <field eval="'action'" name="key"/>
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="['account.invoice']" name="models"/>
-            <field name="name">Stampa Fattura</field>
+            <field name="name">Print Fattura</field>
             <field eval="'ir.actions.report.xml,'+str(invoice_report_id)" name="value"/>
             <field eval="True" name="isobject"/>
             <field eval="True" name="replace"/>
