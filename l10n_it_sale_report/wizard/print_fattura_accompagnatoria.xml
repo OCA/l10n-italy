@@ -11,7 +11,7 @@
                     <group col="2">
                         <field name="picking_id"/>
                         <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" name="print_invoice" string="Export" type="object"/>
+                        <button icon="gtk-ok" name="print_invoice" string="Print" type="object"/>
                     </group>
                 </form>
             </field>
