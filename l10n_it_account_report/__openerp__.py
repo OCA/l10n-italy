@@ -22,7 +22,7 @@
     'name': 'Italian Localisation - Accounting reports',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization""",
+    'description': """Accounting reports for Italian localization - Fattura""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',

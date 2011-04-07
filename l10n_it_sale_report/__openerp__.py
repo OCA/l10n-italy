@@ -22,7 +22,7 @@
     'name': 'Italian Localisation - Sale reports',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """Sale reports for Italian localization""",
+    'description': """Sale reports for Italian localization - DDT & Fattura accompagnatoria""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
