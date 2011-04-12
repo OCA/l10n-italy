@@ -138,14 +138,14 @@ class riba_file_export(osv.osv_memory):
 
         creditor_city = ''
         if creditor_address[0].city:
-            creditor_city = creditor_address[0].city.name
+            creditor_city = creditor_address[0].city
         creditor_province = ''
         if creditor_address[0].province:
             creditor_province = creditor_address[0].province.code
 
         debitor_city = ''
         if debitor_address[0].city:
-            debitor_city = debitor_address[0].city.name
+            debitor_city = debitor_address[0].city
         debitor_province = ''
         if debitor_address[0].province:
             debitor_province = debitor_address[0].province.code
