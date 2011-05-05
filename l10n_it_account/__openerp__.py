@@ -23,7 +23,14 @@
     'name': 'Italian Localisation - Account',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores\nAccount version""",
+    'description': """This module customizes OpenERP in order to fit italian laws and mores - Account version
+
+Functionalities:
+
+- Fiscal code computation for partner
+- Check invoice date consistency
+
+""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
