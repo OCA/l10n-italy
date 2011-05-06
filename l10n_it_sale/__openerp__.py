@@ -21,9 +21,16 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Sale',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores\nSale version""",
+    'description': """This module customizes OpenERP in order to fit italian laws and mores - Sale version
+
+Functionalities:
+
+- Documento di trasporto
+- Fiscal Code for employee
+
+""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',

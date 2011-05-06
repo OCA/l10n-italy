@@ -33,7 +33,7 @@ class sale_order(osv.osv):
         inv_id = super(sale_order, self)._make_invoice(cr, uid, order, lines, context)
         partner = self.pool.get('res.partner').browse(cr , uid, order.partner_id.id)
         self.pool.get('account.invoice').write(cr, uid, inv_id, {
-            'order_id': order.id,
+#            'order_id': order.id,
             'carriage_condition_id': partner.carriage_condition_id.id,
             'goods_description_id': partner.goods_description_id.id,
             'transportation_reason_id': partner.transportation_reason_id.id,
@@ -48,7 +48,7 @@ class sale_order(osv.osv):
             picking_ids = picking_obj.search(cr, uid, [('sale_id', '=', order.id)])
             for picking_id in picking_ids:
                 picking_obj.write(cr, uid, picking_id, {
-                    'order_id': order.id,
+#                    'order_id': order.id,
                     'carriage_condition_id': partner.carriage_condition_id.id,
                     'goods_description_id': partner.goods_description_id.id,
                     'transportation_reason_id': partner.transportation_reason_id.id,
