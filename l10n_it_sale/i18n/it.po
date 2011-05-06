@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0dev\n"
+"Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-10-10 12:32:29+0000\n"
-"PO-Revision-Date: 2010-10-10 14:40+0100\n"
+"POT-Creation-Date: 2011-05-06 13:50+0000\n"
+"PO-Revision-Date: 2011-05-06 15:54+0100\n"
 "Last-Translator: eLBati <lorenzo.battistini@domsense.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,21 +16,30 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_sale
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "Il nome dell'oggetto deve iniziare per x_ e non deve contenere caratteri speciali!"
-
-#. module: l10n_it_sale
-#: constraint:ir.ui.menu:0
-msgid "Error ! You can not create recursive Menu."
-msgstr "Errore ! Non puoi creare un menù ricorsivo"
-
-#. module: l10n_it_sale
 #: field:account.invoice,goods_description_id:0
 #: field:res.partner,goods_description_id:0
 #: field:stock.picking,goods_description_id:0
 msgid "Description of goods"
 msgstr "Aspetto dei Beni"
+
+#. module: l10n_it_sale
+#: model:ir.module.module,description:l10n_it_sale.module_meta_information
+msgid ""
+"This module customizes OpenERP in order to fit italian laws and mores - Sale version\n"
+"\n"
+"Functionalities:\n"
+"\n"
+"- Documento di trasporto\n"
+"- Fiscal Code for employee\n"
+"\n"
+msgstr ""
+"Localizzazione Italiana - Versione Sale\n"
+"\n"
+"Funzionalità:\n"
+"\n"
+"- Documento di trasporto\n"
+"- Codice fiscale per l'impiegato\n"
+"\n"
 
 #. module: l10n_it_sale
 #: field:stock.picking.carriage_condition,note:0
@@ -45,19 +54,26 @@ msgid "Fiscal Code"
 msgstr "Codice fiscale"
 
 #. module: l10n_it_sale
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr "Nome del modulo non valido nella definizione dell'azione."
-
-#. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking
 msgid "Picking List"
-msgstr "DDT"
+msgstr "Picking List"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_hr_employee
 msgid "Employee"
 msgstr "Dipendente"
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_wizard_assign_ddt
+#: view:stock.picking:0
+#: view:wizard.assign.ddt:0
+msgid "Assign DDT"
+msgstr "Assegna DDT"
+
+#. module: l10n_it_sale
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
+msgstr "Il riferimento ordine deve essere unico!"
 
 #. module: l10n_it_sale
 #: model:ir.module.module,shortdesc:l10n_it_sale.module_meta_information
@@ -70,9 +86,14 @@ msgid "Validity"
 msgstr "Validità"
 
 #. module: l10n_it_sale
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "XML non valido per Visualizzazione Architettura!"
+#: constraint:hr.employee:0
+msgid "Error ! You cannot create recursive Hierarchy of Employees."
+msgstr "Errore ! Non è possibile creare una gerarchia ricorsiva di dipendenti"
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_wizard_assign_ddt
+msgid "wizard.assign.ddt"
+msgstr "wizard.assign.ddt"
 
 #. module: l10n_it_sale
 #: view:res.partner:0
@@ -80,16 +101,24 @@ msgid "Notes"
 msgstr "Note"
 
 #. module: l10n_it_sale
-#: field:account.invoice,order_id:0
-#: model:ir.model,name:l10n_it_sale.model_sale_order
-#: field:stock.picking,order_id:0
-msgid "Sale Order"
-msgstr "Ordine di vendita"
+#: constraint:hr.employee:0
+msgid "Error ! You cannot select a department for which the employee is the manager."
+msgstr "Errore ! Non è possibile selezionare un dipartimento di cui il dipendente è manager."
 
 #. module: l10n_it_sale
 #: view:account.invoice:0
 msgid "Shipping"
 msgstr "Trasporto"
+
+#. module: l10n_it_sale
+#: field:stock.picking,ddt_number:0
+msgid "DDT"
+msgstr "DDT"
+
+#. module: l10n_it_sale
+#: field:stock.picking,ddt_date:0
+msgid "DDT date"
+msgstr "Data DDT"
 
 #. module: l10n_it_sale
 #: view:account.invoice:0
@@ -113,9 +142,20 @@ msgid "Reason for transportation"
 msgstr "Causale del trasporto"
 
 #. module: l10n_it_sale
-#: field:stock.picking,packages_no:0
-msgid "Number of Packages"
-msgstr "Numero di Colli"
+#: view:wizard.assign.ddt:0
+msgid "Assign"
+msgstr "Assegna"
+
+#. module: l10n_it_sale
+#: view:wizard.assign.ddt:0
+msgid "This will assign the DDT number"
+msgstr "Questo assegnerà il numero del DDT"
+
+#. module: l10n_it_sale
+#: code:addons/l10n_it_sale/wizard/assign_ddt.py:32
+#, python-format
+msgid "DTT number already assigned"
+msgstr "Numero DDT già assegnato"
 
 #. module: l10n_it_sale
 #: field:stock.picking.transportation_reason,name:0
@@ -156,15 +196,6 @@ msgid "Italian Fiscal Code"
 msgstr "Codice fiscale italiano"
 
 #. module: l10n_it_sale
-#: model:ir.module.module,description:l10n_it_sale.module_meta_information
-msgid ""
-"This module customizes OpenERP in order to fit italian laws and mores\n"
-"Sale version"
-msgstr ""
-"Questo modulo personalizza OpenERP al fine di rispettare le leggi e le usanze italiane\n"
-"Versione vendite"
-
-#. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
@@ -177,9 +208,19 @@ msgid "Carriage condition"
 msgstr "Resa merce"
 
 #. module: l10n_it_sale
+#: view:wizard.assign.ddt:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_res_partner
 msgid "Partner"
 msgstr "Partner"
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
 
 #. module: l10n_it_sale
 #: view:res.partner:0

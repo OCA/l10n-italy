@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0dev\n"
+"Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-10-10 12:31:52+0000\n"
-"PO-Revision-Date: 2010-10-10 12:31:52+0000\n"
+"POT-Creation-Date: 2011-05-06 13:37+0000\n"
+"PO-Revision-Date: 2011-05-06 13:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_sale
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr ""
-
-#. module: l10n_it_sale
-#: constraint:ir.ui.menu:0
-msgid "Error ! You can not create recursive Menu."
-msgstr ""
-
-#. module: l10n_it_sale
 #: field:account.invoice,goods_description_id:0
 #: field:res.partner,goods_description_id:0
 #: field:stock.picking,goods_description_id:0
 msgid "Description of goods"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.module.module,description:l10n_it_sale.module_meta_information
+msgid "This module customizes OpenERP in order to fit italian laws and mores - Sale version\n"
+"\n"
+"Functionalities:\n"
+"\n"
+"- Documento di trasporto\n"
+"- Fiscal Code for employee\n"
+"\n"
+""
 msgstr ""
 
 #. module: l10n_it_sale
@@ -45,11 +47,6 @@ msgid "Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_sale
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr ""
-
-#. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking
 msgid "Picking List"
 msgstr ""
@@ -57,6 +54,18 @@ msgstr ""
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_hr_employee
 msgid "Employee"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_wizard_assign_ddt
+#: view:stock.picking:0
+#: view:wizard.assign.ddt:0
+msgid "Assign DDT"
+msgstr ""
+
+#. module: l10n_it_sale
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -70,8 +79,13 @@ msgid "Validity"
 msgstr ""
 
 #. module: l10n_it_sale
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
+#: constraint:hr.employee:0
+msgid "Error ! You cannot create recursive Hierarchy of Employees."
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_wizard_assign_ddt
+msgid "wizard.assign.ddt"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -80,15 +94,23 @@ msgid "Notes"
 msgstr ""
 
 #. module: l10n_it_sale
-#: field:account.invoice,order_id:0
-#: model:ir.model,name:l10n_it_sale.model_sale_order
-#: field:stock.picking,order_id:0
-msgid "Sale Order"
+#: constraint:hr.employee:0
+msgid "Error ! You cannot select a department for which the employee is the manager."
 msgstr ""
 
 #. module: l10n_it_sale
 #: view:account.invoice:0
 msgid "Shipping"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:stock.picking,ddt_number:0
+msgid "DDT"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:stock.picking,ddt_date:0
+msgid "DDT date"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -113,8 +135,19 @@ msgid "Reason for transportation"
 msgstr ""
 
 #. module: l10n_it_sale
-#: field:stock.picking,packages_no:0
-msgid "Number of Packages"
+#: view:wizard.assign.ddt:0
+msgid "Assign"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:wizard.assign.ddt:0
+msgid "This will assign the DDT number"
+msgstr ""
+
+#. module: l10n_it_sale
+#: code:addons/l10n_it_sale/wizard/assign_ddt.py:32
+#, python-format
+msgid "DTT number already assigned"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -156,12 +189,6 @@ msgid "Italian Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_sale
-#: model:ir.module.module,description:l10n_it_sale.module_meta_information
-msgid "This module customizes OpenERP in order to fit italian laws and mores\n"
-"Sale version"
-msgstr ""
-
-#. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_account_invoice
 msgid "Invoice"
 msgstr ""
@@ -174,8 +201,18 @@ msgid "Carriage condition"
 msgstr ""
 
 #. module: l10n_it_sale
+#: view:wizard.assign.ddt:0
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_res_partner
 msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: l10n_it_sale
