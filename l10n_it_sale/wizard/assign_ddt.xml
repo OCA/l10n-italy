@@ -10,6 +10,7 @@
                 <form string="Assign DDT">
                     <group col="2">
                         <label colspan="2" string="This will assign the DDT number"/>
+                        <separator colspan="2"/>
                         <button icon="gtk-cancel" special="cancel" string="Cancel"/>
                         <button icon="gtk-ok" name="assign_ddt" string="Assign" type="object"/>
                     </group>
@@ -19,7 +20,6 @@
 
        <act_window name="Assign DDT"
             res_model="wizard.assign.ddt"
-            src_model="stock.picking"
             view_mode="form"
             target="new"
             key2="client_action_multi"

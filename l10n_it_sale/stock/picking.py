@@ -70,6 +70,7 @@ class stock_picking(osv.osv):
         'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
         'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
         'ddt_number':  fields.char('DDT', size=64),
+        'ddt_date':  fields.date('DDT date'),
     }
 
     def create(self, cr, user, vals, context=None):

@@ -19,6 +19,7 @@
 
 from osv import fields,osv
 from tools.translate import _
+import time
 
 class wizard_assign_ddt(osv.osv_memory):
 
@@ -29,7 +30,10 @@ class wizard_assign_ddt(osv.osv_memory):
         for picking in picking_obj.browse(cr, uid, context.get('active_ids', []), context=context):
             if picking.ddt_number:
                 raise osv.except_osv('Error', _('DTT number already assigned'))
-            picking.write({'ddt_number': self.pool.get('ir.sequence').get(cr, uid, 'stock.ddt')})
+            picking.write({
+                'ddt_number': self.pool.get('ir.sequence').get(cr, uid, 'stock.ddt'),
+                'ddt_date': time.strftime('%Y-%m-%d'),
+                })
         return {
             'type': 'ir.actions.act_window_close',
         }
