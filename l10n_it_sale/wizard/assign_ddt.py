@@ -1,9 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
-#    All Rights Reserved
-#    $Id$
+#    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -20,9 +17,23 @@
 #
 ##############################################################################
 
-import sale
-import stock
-import hr 
-import account 
-import partner
-import wizard
+from osv import fields,osv
+from tools.translate import _
+
+class wizard_assign_ddt(osv.osv_memory):
+
+    _name = "wizard.assign.ddt"
+
+    def assign_ddt(self, cr, uid, ids, context=None):
+        picking_obj = self.pool.get('stock.picking')
+        for picking in picking_obj.browse(cr, uid, context.get('active_ids', []), context=context):
+            if picking.ddt_number:
+                raise osv.except_osv('Error', _('DTT number already assigned'))
+            picking.write({'ddt_number': self.pool.get('ir.sequence').get(cr, uid, 'stock.ddt')})
+        return {
+            'type': 'ir.actions.act_window_close',
+        }
+
+wizard_assign_ddt()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

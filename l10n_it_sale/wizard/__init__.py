@@ -1,9 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
-#    All Rights Reserved
-#    $Id$
+#    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>). 
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -20,9 +17,4 @@
 #
 ##############################################################################
 
-import sale
-import stock
-import hr 
-import account 
-import partner
-import wizard
+import assign_ddt

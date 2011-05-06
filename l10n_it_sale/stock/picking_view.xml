@@ -28,56 +28,27 @@
             </field>
 		</record>
 
-	<!--
-	Sequences types for outgoing products
-	-->
-        <record id="seq_type_out_picking" model="ir.sequence.type">
-            <field name="name">DDT-OUT</field>
-            <field name="code">stock.picking_out</field>
-        </record>
-        <!--
-	Sequences for outgoing products
-	-->
-        <record id="seq_out_picking" model="ir.sequence">
-            <field name="name">DDT-OUT</field>
-            <field name="code">stock.picking_out</field>
-            <field eval="3" name="padding"/>
-            <field name="prefix">%(year)s/</field>
-        </record>
+        <record id="stock_view_picking_form_ddt" model="ir.ui.view">
+            <field name="name">stock.view.picking.form.ddt</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+                <field name="backorder_id" position="after">
+                    <field name="ddt_number" readonly="1"/>
+                </field>
+            </field>
+		</record>
 
-	<!--
-	Sequences types for incoming products
-	-->
-        <record id="seq_type_in_picking" model="ir.sequence.type">
-            <field name="name">DDT-IN</field>
-            <field name="code">stock.picking_in</field>
-        </record>
-        <!--
-	Sequences for incoming products
-	-->
-        <record id="seq_in_picking" model="ir.sequence">
-            <field name="name">DDT-IN</field>
-            <field name="code">stock.picking_in</field>
-            <field eval="3" name="padding"/>
-            <field name="prefix">%(year)s/</field>
-        </record>
-
-	<!--
-	Sequences types for internal moves
-	-->
-        <record id="seq_type_int_picking" model="ir.sequence.type">
-            <field name="name">DDT-INT</field>
-            <field name="code">stock.picking_internal</field>
-        </record>
-        <!--
-	Sequences for internal moves
-	-->
-        <record id="seq_int_picking" model="ir.sequence">
-            <field name="name">DDT-INT</field>
-            <field name="code">stock.picking_internal</field>
-            <field eval="3" name="padding"/>
-            <field name="prefix">%(year)s/</field>
-        </record>
+        <record id="stock_view_picking_form_assign_ddt" model="ir.ui.view">
+            <field name="name">stock.view.picking.form.assign.ddt</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="delivery.view_delivery_order_inherit_stock"/>
+            <field name="arch" type="xml">
+                <button name="%(delivery.report_shipping)d" position="replace">
+                    <button name="%(action_wizard_assign_ddt)d" string="Assign DDT" states="done,assigned" type="action"/>
+                </button>
+            </field>
+		</record>
 
     </data>
 </openerp>
