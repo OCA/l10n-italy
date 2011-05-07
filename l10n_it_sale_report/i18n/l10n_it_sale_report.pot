@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.1\n"
+"Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-04-01 07:06+0000\n"
-"PO-Revision-Date: 2011-04-01 07:06+0000\n"
+"POT-Creation-Date: 2011-05-07 14:45+0000\n"
+"PO-Revision-Date: 2011-05-07 14:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,12 @@ msgstr ""
 
 #. module: l10n_it_sale_report
 #: model:ir.actions.report.xml,name:l10n_it_sale_report.ddt_report_id
-msgid "Stampa DDT"
+msgid "Print DDT"
 msgstr ""
 
 #. module: l10n_it_sale_report
 #: model:ir.module.module,shortdesc:l10n_it_sale_report.module_meta_information
 msgid "Italian Localisation - Sale reports"
-msgstr ""
-
-#. module: l10n_it_sale_report
-#: field:wizard.fattura.accompagnatoria,picking_id:0
-msgid "DDT"
 msgstr ""
 
 #. module: l10n_it_sale_report
@@ -58,12 +53,17 @@ msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_sale_report
+#: field:wizard.fattura.accompagnatoria,picking_id:0
+msgid "Picking"
+msgstr ""
+
+#. module: l10n_it_sale_report
 #: field:account.invoice,sale_order_ids:0
 msgid "Sale orders"
 msgstr ""
 
 #. module: l10n_it_sale_report
 #: model:ir.module.module,description:l10n_it_sale_report.module_meta_information
-msgid "Sale reports for Italian localization"
+msgid "Sale reports for Italian localization - DDT & Fattura accompagnatoria"
 msgstr ""
 

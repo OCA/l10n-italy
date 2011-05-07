@@ -33,7 +33,7 @@ class wizard_fattura_accompagnatoria(osv.osv_memory):
 
     _name = "wizard.fattura.accompagnatoria"
     _columns = {
-        'picking_id': fields.selection(_get_picking_ids, 'DDT', required=True),
+        'picking_id': fields.selection(_get_picking_ids, 'Picking', required=True),
     }
 
     def print_invoice(self, cr, uid, ids, context=None):
