@@ -23,7 +23,16 @@
     'name': 'Italian Localisation - Base',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores\nBase version""",
+    'description': """Italian Localization module - Base version
+
+Funcionalities:
+
+- Comuni italiani
+- res.partner.title italiani
+- Province e regioni
+- Automatistmi su res.partner.address
+
+""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',

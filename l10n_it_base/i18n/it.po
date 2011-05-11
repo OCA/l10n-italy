@@ -4,11 +4,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
+"Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-10-25 14:26:23+0000\n"
-"PO-Revision-Date: 2010-10-25 16:26+0100\n"
-"Last-Translator: eLBati <lorenzo.battistini@domsense.com>\n"
+"POT-Creation-Date: 2011-05-11 21:48+0000\n"
+"PO-Revision-Date: 2011-05-11 23:49+0100\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,25 +23,21 @@ msgid "City"
 msgstr "Città"
 
 #. module: l10n_it_base
-#: model:ir.actions.act_window,name:l10n_it_base.action_province
-#: model:ir.ui.menu,name:l10n_it_base.menu_province_partner
-msgid "Provinces"
-msgstr "Province"
+#: model:res.partner.title,name:l10n_it_base.12
+#: model:res.partner.title,shortcut:l10n_it_base.12
+msgid "Dott."
+msgstr "Dott."
 
 #. module: l10n_it_base
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "Il nome dell'oggetto deve iniziare per x_ e non deve contenere caratteri speciali!"
+#: model:res.partner.title,name:l10n_it_base.14
+#: model:res.partner.title,shortcut:l10n_it_base.14
+msgid "Arch."
+msgstr "Arch."
 
 #. module: l10n_it_base
-#: constraint:ir.ui.menu:0
-msgid "Error ! You can not create recursive Menu."
-msgstr "Error ! You can not create recursive Menu."
-
-#. module: l10n_it_base
-#: help:res.region,name:0
-msgid "The full name of the region."
-msgstr "Il nome intero della regione"
+#: model:res.partner.title,name:l10n_it_base.8
+msgid "Persona Fisica"
+msgstr "Persona Fisica"
 
 #. module: l10n_it_base
 #: field:res.province,code:0
@@ -49,19 +45,63 @@ msgid "Province Code"
 msgstr "Codice provincia"
 
 #. module: l10n_it_base
-#: sql_constraint:ir.module.module:0
-msgid "The name of the module must be unique !"
-msgstr "Il nome del modulo deve essere unico!"
-
-#. module: l10n_it_base
 #: field:res.city,web_site:0
 msgid "Web Site"
 msgstr "Sito web"
 
 #. module: l10n_it_base
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr "Nome di modulo non valido nella definizione dell'azione."
+#: model:res.partner.title,name:l10n_it_base.1
+msgid "Impresa Famigliare"
+msgstr "Impresa Famigliare"
+
+#. module: l10n_it_base
+#: field:res.city,cadaster_code:0
+msgid "Cadaster Code"
+msgstr "Codice catastale"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.13
+#: model:res.partner.title,shortcut:l10n_it_base.13
+msgid "Notaio"
+msgstr "Notaio"
+
+#. module: l10n_it_base
+#: field:res.region,name:0
+msgid "Region Name"
+msgstr "Nome regione"
+
+#. module: l10n_it_base
+#: help:res.region,name:0
+msgid "The full name of the region."
+msgstr "Il nome intero della regione"
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_province
+#: model:ir.ui.menu,name:l10n_it_base.menu_province_partner
+msgid "Provinces"
+msgstr "Province"
+
+#. module: l10n_it_base
+#: model:res.partner.title,shortcut:l10n_it_base.8
+msgid "PF"
+msgstr "PF"
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_city
+#: model:ir.ui.menu,name:l10n_it_base.menu_city_partner
+msgid "Cities"
+msgstr "Città"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.9
+#: model:res.partner.title,shortcut:l10n_it_base.9
+msgid "Spett.le"
+msgstr "Spett.le"
+
+#. module: l10n_it_base
+#: help:res.province,code:0
+msgid "The province code in two chars."
+msgstr "Il codice di due caratteri della provincia."
 
 #. module: l10n_it_base
 #: model:ir.model,name:l10n_it_base.model_res_province
@@ -72,40 +112,10 @@ msgid "Province"
 msgstr "Provincia"
 
 #. module: l10n_it_base
-#: field:res.city,cadaster_code:0
-msgid "Cadaster Code"
-msgstr "Codice catastale"
-
-#. module: l10n_it_base
-#: field:res.region,name:0
-msgid "Region Name"
-msgstr "Nome regione"
-
-#. module: l10n_it_base
-#: model:ir.actions.act_window,name:l10n_it_base.action_city
-#: model:ir.ui.menu,name:l10n_it_base.menu_city_partner
-msgid "Cities"
-msgstr "Città"
-
-#. module: l10n_it_base
-#: help:res.province,name:0
-msgid "The full name of the province."
-msgstr "Il nome completo della provincia."
-
-#. module: l10n_it_base
-#: help:res.province,code:0
-msgid "The province code in two chars."
-msgstr "Il codice di due caratteri della provincia."
-
-#. module: l10n_it_base
-#: sql_constraint:ir.module.module:0
-msgid "The certificate ID of the module must be unique !"
-msgstr "L'ID del certificato del modulo deve essere unico!"
-
-#. module: l10n_it_base
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "XML non valido per Visualizzazione Architettura!"
+#: model:res.partner.title,name:l10n_it_base.10
+#: model:res.partner.title,shortcut:l10n_it_base.10
+msgid "Ing."
+msgstr "Ing."
 
 #. module: l10n_it_base
 #: field:res.city,istat_code:0
@@ -131,18 +141,60 @@ msgid "Region"
 msgstr "Regione"
 
 #. module: l10n_it_base
-#: model:ir.module.module,description:l10n_it_base.module_meta_information
-msgid ""
-"This module customizes OpenERP in order to fit italian laws and mores\n"
-"Base version"
-msgstr ""
-"Questo modulo personalizza OpenERP al fine di rispettare le leggi e le usanze italiane\n"
-"Versione base"
-
-#. module: l10n_it_base
 #: field:res.city,phone_prefix:0
 msgid "Telephone Prefix"
 msgstr "Prefisso telefonico"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.15
+#: model:res.partner.title,shortcut:l10n_it_base.15
+msgid "Avv."
+msgstr "Avv."
+
+#. module: l10n_it_base
+#: model:ir.module.module,description:l10n_it_base.module_meta_information
+msgid ""
+"Italian Localization module - Base version\n"
+"\n"
+"Funcionalities:\n"
+"\n"
+"- Comuni italiani\n"
+"- res.partner.title italiani\n"
+"- Province e regioni\n"
+"- Automatistmi su res.partner.address\n"
+"\n"
+msgstr ""
+"Modulo di localizzazione italiana - Versione base\n"
+"\n"
+"Funzionalità:\n"
+"\n"
+"- Comuni italiani\n"
+"- res.partner.title italiani\n"
+"- Province e regioni\n"
+"- Automatistmi su res.partner.address\n"
+"\n"
+
+#. module: l10n_it_base
+#: model:res.partner.title,shortcut:l10n_it_base.1
+msgid "IF"
+msgstr "IF"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.11
+#: model:res.partner.title,shortcut:l10n_it_base.11
+msgid "Egr. Sig.ra"
+msgstr "Egr. Sig.ra"
+
+#. module: l10n_it_base
+#: help:res.province,name:0
+msgid "The full name of the province."
+msgstr "Il nome completo della provincia."
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.16
+#: model:res.partner.title,shortcut:l10n_it_base.16
+msgid "Egr. Sig."
+msgstr "Egr. Sig."
 
 #. module: l10n_it_base
 #: field:res.province,name:0
@@ -150,19 +202,9 @@ msgid "Province Name"
 msgstr "Nome Provincia"
 
 #. module: l10n_it_base
-#: model:ir.model,name:l10n_it_base.model_res_partner
-msgid "Partner"
-msgstr "Partner"
-
-#. module: l10n_it_base
 #: model:ir.model,name:l10n_it_base.model_res_partner_address
 msgid "Partner Addresses"
 msgstr "Indirizzi Partner"
-
-#. module: l10n_it_base
-#: sql_constraint:ir.model.fields:0
-msgid "Size of the field can never be less than 1 !"
-msgstr "La dimensione del campo non può mai essere minore a 1 !"
 
 #. module: l10n_it_base
 #: model:ir.module.module,shortdesc:l10n_it_base.module_meta_information
