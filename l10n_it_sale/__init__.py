@@ -22,7 +22,6 @@
 
 import sale
 import stock
-import hr 
 import account 
 import partner
 import wizard

@@ -23,33 +23,21 @@
     'name': 'Italian Localisation - Sale',
     'version': '0.2',
     'category': 'Localisation/Italy',
-    'description': """OpenERP Italian Localization - Sale version
+    'description': """OpenERP Italian Localization - HR version
 
 Functionalities:
 
-- Documento di trasporto
+- Fiscal Code for employee
 
 """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['stock', 'sale', 'account', 'delivery'],
+    "depends" : ['hr'],
     "init_xml" : [
     ],
     "update_xml" : [
-        'wizard/assign_ddt.xml',
-        'stock/picking_view.xml',
-        'stock/carriage_condition_view.xml',
-        'stock/transportation_reason_view.xml',
-        'stock/goods_description_view.xml',
-        'stock/transportation_reason_data.xml',
-        'stock/goods_description_data.xml',
-        'stock/carriage_condition_data.xml',
-        'stock/sequence.xml',
-        'sale/sale_view.xml',
-        "security/ir.model.access.csv",
-        'partner/partner_view.xml',
-        'account/invoice_view.xml',
+        'employee_view.xml',
         ],
     "demo_xml" : [],
     "active": False,
