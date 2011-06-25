@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report auto="True" id="riba_order1" model="riba.order" name="riba.order" rml="riba_issue/report/order.rml" string="RiBa Order"/>
+    </data>
+</openerp>
