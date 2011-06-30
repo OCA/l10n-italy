@@ -24,7 +24,6 @@
             target="new"
             key2="client_action_multi"
             id="action_wizard_fattura_accompagnatoria"
-            view_id="wizard_fattura_accompagnatoria"
-            context="{'active_id': active_id}"/>
+            view_id="wizard_fattura_accompagnatoria"/>
     </data>
 </openerp>
