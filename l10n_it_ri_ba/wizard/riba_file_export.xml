@@ -41,6 +41,7 @@
             target="new"
             key2="client_action_multi"
             id="action_wizard_riba_file_export"
-            view_id="wizard_riba_file_export"/>
+            view_id="wizard_riba_file_export"
+            context="{'active_id': active_id}"/>
     </data>
 </openerp>
