@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-05-06 13:37+0000\n"
-"PO-Revision-Date: 2011-05-06 13:37+0000\n"
+"POT-Creation-Date: 2011-05-12 20:12+0000\n"
+"PO-Revision-Date: 2011-05-12 20:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,18 +23,6 @@ msgid "Description of goods"
 msgstr ""
 
 #. module: l10n_it_sale
-#: model:ir.module.module,description:l10n_it_sale.module_meta_information
-msgid "This module customizes OpenERP in order to fit italian laws and mores - Sale version\n"
-"\n"
-"Functionalities:\n"
-"\n"
-"- Documento di trasporto\n"
-"- Fiscal Code for employee\n"
-"\n"
-""
-msgstr ""
-
-#. module: l10n_it_sale
 #: field:stock.picking.carriage_condition,note:0
 #: field:stock.picking.goods_description,note:0
 #: field:stock.picking.transportation_reason,note:0
@@ -42,18 +30,15 @@ msgid "Note"
 msgstr ""
 
 #. module: l10n_it_sale
-#: field:hr.employee,fiscalcode:0
-msgid "Fiscal Code"
+#: model:ir.actions.act_window,name:l10n_it_sale.action_transportation_reason_tree
+#: model:ir.ui.menu,name:l10n_it_sale.menu_action_transportation_reason_tree
+#: view:stock.picking.transportation_reason:0
+msgid "Reasons for transportation"
 msgstr ""
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking
 msgid "Picking List"
-msgstr ""
-
-#. module: l10n_it_sale
-#: model:ir.model,name:l10n_it_sale.model_hr_employee
-msgid "Employee"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -79,11 +64,6 @@ msgid "Validity"
 msgstr ""
 
 #. module: l10n_it_sale
-#: constraint:hr.employee:0
-msgid "Error ! You cannot create recursive Hierarchy of Employees."
-msgstr ""
-
-#. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_wizard_assign_ddt
 msgid "wizard.assign.ddt"
 msgstr ""
@@ -91,11 +71,6 @@ msgstr ""
 #. module: l10n_it_sale
 #: view:res.partner:0
 msgid "Notes"
-msgstr ""
-
-#. module: l10n_it_sale
-#: constraint:hr.employee:0
-msgid "Error ! You cannot select a department for which the employee is the manager."
 msgstr ""
 
 #. module: l10n_it_sale
@@ -170,22 +145,10 @@ msgid "Description of Goods"
 msgstr ""
 
 #. module: l10n_it_sale
-#: model:ir.actions.act_window,name:l10n_it_sale.action_transportation_reason_tree
-#: model:ir.ui.menu,name:l10n_it_sale.menu_action_transportation_reason_tree
-#: view:stock.picking.transportation_reason:0
-msgid "Reasons for transportation"
-msgstr ""
-
-#. module: l10n_it_sale
 #: model:ir.actions.act_window,name:l10n_it_sale.action_carriage_condition_tree
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_carriage_condition_tree
 #: view:stock.picking.carriage_condition:0
 msgid "Carriage Conditions"
-msgstr ""
-
-#. module: l10n_it_sale
-#: help:hr.employee,fiscalcode:0
-msgid "Italian Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_sale
@@ -218,5 +181,16 @@ msgstr ""
 #. module: l10n_it_sale
 #: view:res.partner:0
 msgid "Default shipping conditions"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.module.module,description:l10n_it_sale.module_meta_information
+msgid "OpenERP Italian Localization - Sale version\n"
+"\n"
+"Functionalities:\n"
+"\n"
+"- Documento di trasporto\n"
+"\n"
+""
 msgstr ""
 
