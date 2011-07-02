@@ -76,11 +76,11 @@ class stock_picking(osv.osv):
     def create(self, cr, user, vals, context=None):
         if ('name' not in vals) or (vals.get('name')=='/'):
 	    if 'type' in vals.keys() and vals['type']=='out':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking_out')
+            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.out')
 	    elif 'type' in vals.keys() and vals['type']=='internal':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking_internal')
+            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.internal')
 	    else:
-		vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking_in')		
+		vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.in')		
 
         return super(stock_picking, self).create(cr, user, vals, context)
 

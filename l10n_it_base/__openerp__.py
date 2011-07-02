@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#    Copyright (C) 2010-2011 OpenERP Italian Community
+#    http://www.openerp-italia.org> 
 #    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -23,7 +23,16 @@
     'name': 'Italian Localisation - Base',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores\nBase version""",
+    'description': """Italian Localization module - Base version
+
+Funcionalities:
+
+- Comuni italiani
+- res.partner.title italiani
+- Province e regioni
+- Automatistmi su res.partner.address
+
+""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
@@ -40,5 +49,7 @@
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+# http://www.istat.it/strumenti/definizioni/comuni/
+# i dati dovrebbero essere sincronizzati con questi
 

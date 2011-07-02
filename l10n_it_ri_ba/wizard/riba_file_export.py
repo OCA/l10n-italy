@@ -196,15 +196,19 @@ class riba_file_export(osv.osv_memory):
     def _get_debitor_banks(self, cr, uid, fields, context=None):
         voucher_pool = self.pool.get('account.voucher')
         res = []
-        for bank in voucher_pool.browse(cr, uid, fields['active_ids'], context=context)[0].partner_id.bank_ids:
-            res.append((bank.id, bank.bank.name))
+        if fields.has_key('active_ids'):
+            for voucher in voucher_pool.browse(cr, uid, fields['active_ids'], context=context):
+                for bank in voucher.partner_id.bank_ids:
+                    res.append((bank.id, bank.bank.name))
         return res
 
     def _get_creditor_banks(self, cr, uid, fields, context=None):
         voucher_pool = self.pool.get('account.voucher')
         res = []
-        for bank in voucher_pool.browse(cr, uid, fields['active_ids'], context=context)[0].company_id.partner_id.bank_ids:
-            res.append((bank.id, bank.bank.name))
+        if fields.has_key('active_ids'):
+            for voucher in voucher_pool.browse(cr, uid, fields['active_ids'], context=context):
+                for bank in voucher.company_id.partner_id.bank_ids:
+                    res.append((bank.id, bank.bank.name))
         return res
 
     _name = "riba.file.export"
