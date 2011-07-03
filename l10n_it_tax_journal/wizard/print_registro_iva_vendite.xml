@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	    <record id="l10n_it.menu_report_l10n_chart_it_libroIVA" model="ir.ui.menu">
+		    <field eval="[(6,0,[ref('base.group_no_one')])]" name="groups_id"/>
+	    </record>
+
+        <record id="wizard_registro_iva_vendite" model="ir.ui.view">
+            <field name="name">Registro IVA vendite</field>
+            <field name="model">wizard.registro.iva.vendite</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Registro IVA vendite">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                    <button icon="gtk-ok" name="print_registro" string="Print" type="object"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_registro_iva_vendite" model="ir.actions.act_window">
+            <field name="name">Registro IVA vendite</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.registro.iva.vendite</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            name="Registro IVA vendite"
+            parent="account.menu_finance_reporting"
+            action="action_registro_iva_vendite"
+            id="menu_registro_iva_vendite"
+            icon="STOCK_PRINT"/>
+
+    </data>
+</openerp>
