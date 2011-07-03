@@ -19,22 +19,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Italian Localisation - Tax Journals',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - Tax Journals""",
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
-    "depends" : ['l10n_it_base', 'report_aeroo_ooo', 'l10n_it_account'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
-        'reports.xml',
-        'wizard/print_registro_iva_vendite.xml',
-        ],
-    "demo_xml" : [],
-    "active": False,
-    "installable": True
-}
+
+from osv import fields, osv
+
+class account_tax_code(osv.osv):
+
+    _inherit = 'account.tax.code'
+    _columns = {
+        'tax_ids': fields.one2many('account.tax', 'tax_code_id', 'Taxes'),
+        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
+#        'ref_tax_ids': fields.one2many('account.tax', 'ref_tax_code_id', 'Refund Taxes'),
+#        'ref_base_tax_ids': fields.one2many('account.tax', 'ref_base_code_id', 'Refund Base Taxes'),
+        }
+
+account_tax_code()
