@@ -2,10 +2,6 @@
 <openerp>
     <data>
 
-	    <record id="l10n_it.menu_report_l10n_chart_it_libroIVA" model="ir.ui.menu">
-		    <field eval="[(6,0,[ref('base.group_no_one')])]" name="groups_id"/>
-	    </record>
-
         <record id="wizard_registro_iva_vendite" model="ir.ui.view">
             <field name="name">Registro IVA vendite</field>
             <field name="model">wizard.registro.iva.vendite</field>
