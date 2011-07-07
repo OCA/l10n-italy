@@ -28,8 +28,6 @@ class account_tax_code(osv.osv):
     _columns = {
         'tax_ids': fields.one2many('account.tax', 'tax_code_id', 'Taxes'),
         'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
-#        'ref_tax_ids': fields.one2many('account.tax', 'ref_tax_code_id', 'Refund Taxes'),
-#        'ref_base_tax_ids': fields.one2many('account.tax', 'ref_base_code_id', 'Refund Base Taxes'),
         }
 
 account_tax_code()

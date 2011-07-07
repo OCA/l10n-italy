@@ -45,10 +45,11 @@ class Parser(report_sxw.rml_parse):
 
     def _get_tax_lines(self, invoice):
         res=[]
+        # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
         index=0
         for inv_tax in invoice.tax_line:
+            self._check_tax_code(inv_tax.tax_code_id)
             if inv_tax.base_code_id and inv_tax.tax_code_id:
-                self._check_tax_code(inv_tax.tax_code_id)
                 tax_item = {
                     'tax_percentage': inv_tax.tax_code_id.tax_ids[0].amount and str(
                         inv_tax.tax_code_id.tax_ids[0].amount * 100).split('.')[0] or '',
@@ -60,23 +61,42 @@ class Parser(report_sxw.rml_parse):
                     tax_item['amount']=inv_tax.tax_code_id.name
                 res.append(tax_item)
                 index += 1
+            # Se non c'è il tax code imponibile, cerco la tassa corrispondente
             elif inv_tax.tax_code_id:
-                self._check_tax_code(inv_tax.tax_code_id)
                 tax_id = inv_tax.tax_code_id.tax_ids[0].id
                 for inv_tax_2 in invoice.tax_line:
-                    if inv_tax.base_code_id and not inv_tax.tax_code_id:
-                        self._check_base_tax_code(inv_tax.base_code_id)
-                        if inv_tax.base_code_id.base_tax_ids[0].id == tax_id:
+                    if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
+                        self._check_base_tax_code(inv_tax_2.base_code_id)
+                        # Se hanno la stessa tassa
+                        if inv_tax_2.base_code_id.base_tax_ids[0].id == tax_id:
                             tax_item = {
                                 'tax_percentage': inv_tax.tax_code_id.tax_ids[0].amount and str(
                                     inv_tax.tax_code_id.tax_ids[0].amount * 100).split('.')[0] or '',
-                                'base': inv_tax.base,
-                                'amount': inv_tax.amount,
+                                'base': inv_tax.base + inv_tax_2.base,
+                                'amount': inv_tax.amount + inv_tax_2.amount,
+                                # TODO calcolare percentuale indetraibilità
                                 'index': index,
                                 }
                             res.append(tax_item)
                             index += 1
-                            break                
+                            break
+            elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
+                raise Exception(_('The tax %s has not tax codes') % inv_tax.name)
+
+            if tax_item['tax_percentage'] not in self.localcontext['tax_codes']:
+                self.localcontext['tax_codes']['tax_percentage'] = {
+                    'base': tax_item['base'],
+                    'amount': tax_item['amount'],
+                    }
+            else:
+                self.localcontext['tax_codes']['tax_percentage']['base'] += tax_item['base']
+                self.localcontext['tax_codes']['tax_percentage']['amount'] += tax_item['amount']
+
+            self.localcontext['totale_operazioni'] += invoice.amount_total
+            self.localcontext['totale_imponibili'] += invoice.amount_untaxed
+#            self.totale_variazioni += invoice.amount_total
+            self.localcontext['totale_iva'] += invoice.amount_tax
+
         return res
 
     def __init__(self, cr, uid, name, context):
@@ -84,4 +104,9 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'tax_lines': self._get_tax_lines,
+            'totale_operazioni': 0.0,
+            'totale_imponibili': 0.0,
+            'totale_variazioni': 0.0,
+            'totale_iva': 0.0,
+            'tax_codes': {}
         })

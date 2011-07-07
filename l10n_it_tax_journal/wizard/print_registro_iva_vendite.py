@@ -48,6 +48,7 @@ class wizard_registro_iva_vendite(osv.osv_memory):
         datas = {'ids': inv_ids}
         datas['model'] = 'account.invoice'
         datas['form'] = wizard
+        datas['inv_ids'] = inv_ids
         return {
             'type': 'ir.actions.report.xml',
             'report_name': 'registro_iva_vendite',
