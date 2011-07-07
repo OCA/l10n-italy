@@ -32,7 +32,7 @@
         ],
     "update_xml" : [
         'reports.xml',
-        'wizard/print_registro_iva_vendite.xml',
+        'wizard/print_registro_iva.xml',
         ],
     "demo_xml" : [],
     "active": False,

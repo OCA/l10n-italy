@@ -22,37 +22,59 @@
 
 from osv import fields,osv
 
-class wizard_registro_iva_vendite(osv.osv_memory):
+class wizard_registro_iva(osv.osv_memory):
 
-    _name = "wizard.registro.iva.vendite"
+    _name = "wizard.registro.iva"
     _columns = {
         'date_from': fields.date('From date', required=True),
         'date_to': fields.date('To date', required=True),
+        'type': fields.selection([
+            ('customer', 'Customer Invoices'),
+            ('supplier', 'Supplier Invoices'),
+            ], 'Type', required=True),
     }
 
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.read(cr, uid, ids)[0]
         inv_obj = self.pool.get('account.invoice')
-        inv_ids = inv_obj.search(cr, uid, [
-            ('move_id.date', '<=', wizard['date_to']),
-            ('move_id.date', '>=', wizard['date_from']),
-            '|',
-            ('type', '=', 'out_invoice'),
-            ('type', '=', 'out_refund'),
-            '|',
-            ('state', '=', 'open'),
-            ('state', '=', 'paid'),
-            ])
+        search_list = []
+        if wizard['type'] == 'customer':
+            search_list = [
+                ('move_id.date', '<=', wizard['date_to']),
+                ('move_id.date', '>=', wizard['date_from']),
+                '|',
+                ('type', '=', 'out_invoice'),
+                ('type', '=', 'out_refund'),
+                '|',
+                ('state', '=', 'open'),
+                ('state', '=', 'paid'),
+                ]
+        elif wizard['type'] == 'supplier':
+            search_list = [
+                ('move_id.date', '<=', wizard['date_to']),
+                ('move_id.date', '>=', wizard['date_from']),
+                '|',
+                ('type', '=', 'in_invoice'),
+                ('type', '=', 'in_refund'),
+                '|',
+                ('state', '=', 'open'),
+                ('state', '=', 'paid'),
+                ]
+        inv_ids = inv_obj.search(cr, uid, search_list)
         if context is None:
             context = {}
         datas = {'ids': inv_ids}
         datas['model'] = 'account.invoice'
         datas['form'] = wizard
         datas['inv_ids'] = inv_ids
-        return {
+        res= {
             'type': 'ir.actions.report.xml',
-            'report_name': 'registro_iva_vendite',
             'datas': datas,
         }
+        if wizard['type'] == 'customer':
+            res['report_name'] = 'registro_iva_vendite'
+        elif wizard['type'] == 'supplier':
+            res['report_name'] = 'registro_iva_acquisti'
+        return res
 
-wizard_registro_iva_vendite()
+wizard_registro_iva()
