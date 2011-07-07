@@ -83,6 +83,7 @@ class Parser(report_sxw.rml_parse):
             elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
                 raise Exception(_('The tax %s has not tax codes') % inv_tax.name)
 
+            # TODO raggruppare per tax code invece che percentuale
             if tax_item['tax_percentage'] not in self.localcontext['tax_codes']:
                 self.localcontext['tax_codes']['tax_percentage'] = {
                     'base': tax_item['base'],
@@ -92,10 +93,10 @@ class Parser(report_sxw.rml_parse):
                 self.localcontext['tax_codes']['tax_percentage']['base'] += tax_item['base']
                 self.localcontext['tax_codes']['tax_percentage']['amount'] += tax_item['amount']
 
-            self.localcontext['totale_operazioni'] += invoice.amount_total
-            self.localcontext['totale_imponibili'] += invoice.amount_untaxed
+        self.localcontext['totali']['totale_operazioni'] += invoice.amount_total
+        self.localcontext['totali']['totale_imponibili'] += invoice.amount_untaxed
 #            self.totale_variazioni += invoice.amount_total
-            self.localcontext['totale_iva'] += invoice.amount_tax
+        self.localcontext['totali']['totale_iva'] += invoice.amount_tax
 
         return res
 
@@ -104,9 +105,11 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'tax_lines': self._get_tax_lines,
-            'totale_operazioni': 0.0,
-            'totale_imponibili': 0.0,
-            'totale_variazioni': 0.0,
-            'totale_iva': 0.0,
-            'tax_codes': {}
+            'totali': {                
+                'totale_operazioni': 0.0,
+                'totale_imponibili': 0.0,
+                'totale_variazioni': 0.0,
+                'totale_iva': 0.0,
+                },
+            'tax_codes': {},
         })
