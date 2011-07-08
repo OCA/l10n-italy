@@ -21,6 +21,7 @@
 ##############################################################################
 
 from osv import fields,osv
+from tools.translate import _
 
 class wizard_registro_iva(osv.osv_memory):
 
@@ -35,6 +36,7 @@ class wizard_registro_iva(osv.osv_memory):
     }
 
     def print_registro(self, cr, uid, ids, context=None):
+        inv_ids = []
         wizard = self.read(cr, uid, ids)[0]
         inv_obj = self.pool.get('account.invoice')
         search_list = []
@@ -61,6 +63,8 @@ class wizard_registro_iva(osv.osv_memory):
                 ('state', '=', 'paid'),
                 ]
         inv_ids = inv_obj.search(cr, uid, search_list)
+        if not inv_ids:
+            raise osv.except_osv(_('Error !'), _('No invoices found in the selected date range'))
         if context is None:
             context = {}
         datas = {'ids': inv_ids}

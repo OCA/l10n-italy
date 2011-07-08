@@ -3,11 +3,11 @@
     <data>
 
         <record id="wizard_registro_iva" model="ir.ui.view">
-            <field name="name">Registro IVA</field>
+            <field name="name">Tax Journal</field>
             <field name="model">wizard.registro.iva</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Registro IVA">
+                <form string="Tax Journal">
                     <field name="date_from"/>
                     <field name="date_to"/>
                     <field name="type" colspan="4"/>
@@ -18,7 +18,7 @@
         </record>
 
         <record id="action_registro_iva" model="ir.actions.act_window">
-            <field name="name">Registro IVA</field>
+            <field name="name">Tax Journal</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">wizard.registro.iva</field>
             <field name="view_type">form</field>
@@ -27,7 +27,7 @@
         </record>
 
         <menuitem
-            name="Registri IVA"
+            name="Tax Journals"
             parent="account.menu_finance_reporting"
             action="action_registro_iva"
             id="menu_registro_iva"
