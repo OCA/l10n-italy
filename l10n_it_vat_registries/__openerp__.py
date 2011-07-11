@@ -20,10 +20,10 @@
 #
 ##############################################################################
 {
-    'name': 'Italian Localisation - Tax Journals',
+    'name': 'Italian Localisation - VAT Registries',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - Tax Journals""",
+    'description': """Accounting reports for Italian localization - VAT Registries""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',

@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <record id="registro_iva_vendite_report_id" model="ir.actions.report.xml">
-            <field name="name">Customer Invoices Tax Journal</field>
+            <field name="name">Customer Invoices VAT Registry</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">account.invoice</field>
             <field name="report_name">registro_iva_vendite</field>
@@ -15,7 +15,7 @@
             <field name="parser_state">loc</field>
         </record>
         <record id="registro_iva_acquisti_report_id" model="ir.actions.report.xml">
-            <field name="name">Supplier Invoices Tax Journal</field>
+            <field name="name">Supplier Invoices VAT Registry</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">account.invoice</field>
             <field name="report_name">registro_iva_acquisti</field>
