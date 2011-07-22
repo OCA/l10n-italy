@@ -32,7 +32,9 @@ class wizard_registro_iva(osv.osv_memory):
         'type': fields.selection([
             ('customer', 'Customer Invoices'),
             ('supplier', 'Supplier Invoices'),
+            ('corrispettivi', 'Corrispettivi'),
             ], 'Type', required=True),
+        'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
     }
 
     def print_registro(self, cr, uid, ids, context=None):
@@ -42,6 +44,8 @@ class wizard_registro_iva(osv.osv_memory):
         search_list = []
         if wizard['type'] == 'customer':
             search_list = [
+                ('journal_id', 'in', wizard.journal_ids),
+                ('corrispettivo', '=', False),
                 ('move_id.date', '<=', wizard['date_to']),
                 ('move_id.date', '>=', wizard['date_from']),
                 '|',
@@ -53,6 +57,8 @@ class wizard_registro_iva(osv.osv_memory):
                 ]
         elif wizard['type'] == 'supplier':
             search_list = [
+                ('journal_id', 'in', wizard.journal_ids),
+                ('corrispettivo', '=', False),
                 ('move_id.date', '<=', wizard['date_to']),
                 ('move_id.date', '>=', wizard['date_from']),
                 '|',
@@ -62,9 +68,22 @@ class wizard_registro_iva(osv.osv_memory):
                 ('state', '=', 'open'),
                 ('state', '=', 'paid'),
                 ]
+        elif wizard['type'] == 'corrispettivi':
+            search_list = [
+                ('journal_id', 'in', wizard.journal_ids),
+                ('corrispettivo', '=', True),
+                ('move_id.date', '<=', wizard['date_to']),
+                ('move_id.date', '>=', wizard['date_from']),
+                '|',
+                ('type', '=', 'out_invoice'),
+                ('type', '=', 'out_refund'),
+                '|',
+                ('state', '=', 'open'),
+                ('state', '=', 'paid'),
+                ]
         inv_ids = inv_obj.search(cr, uid, search_list)
         if not inv_ids:
-            raise osv.except_osv(_('Error !'), _('No invoices found in the selected date range'))
+            raise osv.except_osv(_('Error !'), _('No documents found in the selected date range'))
         if context is None:
             context = {}
         datas = {'ids': inv_ids}
@@ -75,7 +94,7 @@ class wizard_registro_iva(osv.osv_memory):
             'type': 'ir.actions.report.xml',
             'datas': datas,
         }
-        if wizard['type'] == 'customer':
+        if wizard['type'] == 'customer' or wizard['type'] == 'corrispettivi':
             res['report_name'] = 'registro_iva_vendite'
         elif wizard['type'] == 'supplier':
             res['report_name'] = 'registro_iva_acquisti'
