@@ -21,5 +21,9 @@
             <field name="name">Corrispettivi</field>
             <field name="ref">COJ</field>
         </record>
+        <record model="res.partner.address" id="address_corrispettivi">
+            <field name="name">Corrispettivi</field>
+            <field name="partner_id" ref="partner_corrispettivi"></field>
+        </record>
     </data>
 </openerp>
