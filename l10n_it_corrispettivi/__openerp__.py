@@ -27,11 +27,12 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it'],
+    "depends" : ['l10n_it', 'account_voucher'],
     "init_xml" : [],
     "update_xml" : [
         'data/account_data.xml',
         'account_view.xml',
+        'data/account.tax.csv',
         ],
     "demo_xml" : [],
     "active": False,
