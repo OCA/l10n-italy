@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Italian OpenERP Community (<http://www.openerp-italia.com>)                            
+#    Copyright (C) 2011
+#    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
