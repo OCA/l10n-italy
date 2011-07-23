@@ -85,7 +85,7 @@ class account_invoice(osv.osv):
                 cr, uid, 'l10n_it_corrispettivi', 'partner_corrispettivi', context)
             if not partner.address:
                 raise orm.except_orm(_('Error!'), 
-                     _('No address specified for partner %s' % partner.name))
+                     _('No address specified for partner %s') % partner.name)
             res = partner.address[0].id
         return res
 
