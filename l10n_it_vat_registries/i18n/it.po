@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-07-11 06:29+0000\n"
-"PO-Revision-Date: 2011-07-11 08:39+0100\n"
+"POT-Creation-Date: 2011-07-23 14:20+0000\n"
+"PO-Revision-Date: 2011-07-23 16:24+0100\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+
+#. module: l10n_it_vat_registries
+#: model:ir.module.module,description:l10n_it_vat_registries.module_meta_information
+msgid "Accounting reports for Italian localization - VAT Registries"
+msgstr "Report contabili per la localizzazione italiana - Registri IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax_code
@@ -36,10 +41,10 @@ msgid "Print"
 msgstr "Stampa"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:67
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva_corrispettivi.py:68
 #, python-format
 msgid "No invoices found in the selected date range"
-msgstr "Nessuna fattura trovata nell'intervallo selezionato"
+msgstr "Nessuna fattura trovata nell'intervallo di date selezionato"
 
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,type:0
@@ -52,7 +57,8 @@ msgid "Supplier Invoices"
 msgstr "Fatture ricevute"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:67
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:86
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva_corrispettivi.py:68
 #, python-format
 msgid "Error !"
 msgstr "Errore !"
@@ -63,14 +69,7 @@ msgid "VAT Registry"
 msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/invoice.py:33
-#: code:addons/l10n_it_vat_registries/invoice.py:41
-#, python-format
-msgid "No tax defined for tax code %s"
-msgstr "Nessuna imposta definita per il codice IVA %s"
-
-#. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/invoice.py:100
+#: code:addons/l10n_it_vat_registries/invoice.py:97
 #, python-format
 msgid "The tax %s has no tax codes"
 msgstr "L'imposta %s non ha codici IVA"
@@ -91,16 +90,41 @@ msgid "To date"
 msgstr "Alla data"
 
 #. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:0
+#: field:wizard.registro.iva,journal_ids:0
+msgid "Journals"
+msgstr "Sezionali"
+
+#. module: l10n_it_vat_registries
+#: sql_constraint:account.tax:0
+msgid "The tax name must be unique!"
+msgstr "Il nome dell'imposta deve essere unico!"
+
+#. module: l10n_it_vat_registries
+#: help:wizard.registro.iva,journal_ids:0
+msgid "Select journals you want retrieve documents from"
+msgstr "Selezionare i sezionali da cui si vuole ottenere i documenti"
+
+#. module: l10n_it_vat_registries
 #: field:account.tax.code,tax_ids:0
 msgid "Taxes"
 msgstr "Tasse"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/invoice.py:36
-#: code:addons/l10n_it_vat_registries/invoice.py:44
+#: selection:wizard.registro.iva,type:0
+msgid "Corrispettivi"
+msgstr "Corrispettivi"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:86
 #, python-format
-msgid "Too many taxes defined for tax code %s"
-msgstr "Troppe imposte definite per il codice IVA %s"
+msgid "No documents found in the current selection"
+msgstr "Nessun documento trovato per la selezione corrente"
+
+#. module: l10n_it_vat_registries
+#: model:ir.module.module,shortdesc:l10n_it_vat_registries.module_meta_information
+msgid "Italian Localisation - VAT Registries"
+msgstr "Localizzazione Italiana - Registri IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.report.xml,name:l10n_it_vat_registries.registro_iva_acquisti_report_id
@@ -113,6 +137,12 @@ msgid "VAT Registries"
 msgstr "Registri IVA"
 
 #. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/invoice.py:49
+#, python-format
+msgid "Too many taxes with name %s"
+msgstr "Troppe tasse con nome %s"
+
+#. module: l10n_it_vat_registries
 #: constraint:account.tax.code:0
 msgid "Error ! You can not create recursive accounts."
 msgstr "Errore! Non puoi creare conti ricorsivi"
@@ -123,12 +153,28 @@ msgid "Customer Invoices"
 msgstr "Fatture emesse"
 
 #. module: l10n_it_vat_registries
+#: model:ir.actions.report.xml,name:l10n_it_vat_registries.registro_iva_corrispettivi_report_id
+msgid "Corrispettivi VAT Registry"
+msgstr "Registro IVA Corrispettivi"
+
+#. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,date_from:0
 msgid "From date"
 msgstr "Dalla data"
 
 #. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/invoice.py:47
+#, python-format
+msgid "The tax %s does not exist"
+msgstr "L'imposta %s non esiste"
+
+#. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:0
 msgid "Cancel"
 msgstr "Annulla"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_tax
+msgid "account.tax"
+msgstr "account.tax"
 
