@@ -28,27 +28,26 @@ from decimal import *
 
 class Parser(report_sxw.rml_parse):
 
-    def _check_tax_code(self, tax_code):
-        if not tax_code.tax_ids:
-            raise Exception(_('No tax defined for tax code %s')
-                % tax_code.code)
-        if len(tax_code.tax_ids) > 1:
-            raise Exception(_('Too many taxes defined for tax code %s')
-                % tax_code.code)
-
-    def _check_base_tax_code(self, tax_code):
-        if not tax_code.base_tax_ids:
-            raise Exception(_('No tax defined for tax code %s')
-                % tax_code.code)
-        if len(tax_code.base_tax_ids) > 1:
-            raise Exception(_('Too many taxes defined for tax code %s')
-                % tax_code.code)
-
     def _get_main_tax(self, tax):
         if not tax.parent_id:
             return tax
         else:
             return self._get_main_tax(tax.parent_id)
+
+    def _get_account_tax(self, inv_tax):
+        splitted_name = inv_tax.name.split(' - ')
+        if len(splitted_name) > 1:
+            tax_name = splitted_name[1]
+        else:
+            tax_name = splitted_name[0]
+        tax_obj = self.pool.get('account.tax')
+        # cerco la tassa per nome, dopo averlo ottenuto dalla tassa in fattura
+        tax_ids = tax_obj.search(self.cr, self.uid, [('name', '=', tax_name)])
+        if not tax_ids:
+            raise Exception(_('The tax %s does not exist') % tax_name)
+        if len(tax_ids) > 1:
+            raise Exception(_('Too many taxes with name %s') % tax_name)
+        return tax_obj.browse(self.cr, self.uid, tax_ids[0])
 
     def _get_tax_lines(self, invoice):
         res=[]
@@ -60,10 +59,10 @@ class Parser(report_sxw.rml_parse):
         for inv_tax in invoice.tax_line:
             tax_item = {}
             if inv_tax.base_code_id and inv_tax.tax_code_id:
-                self._check_tax_code(inv_tax.tax_code_id)
+                account_tax_amount = self._get_account_tax(inv_tax).amount
                 tax_item = {
-                    'tax_percentage': inv_tax.tax_code_id.tax_ids[0].amount and str(
-                        inv_tax.tax_code_id.tax_ids[0].amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
+                    'tax_percentage': account_tax_amount and str(
+                        account_tax_amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
                     'base': inv_tax.base,
                     'amount': inv_tax.amount,
                     'non_deductible': 0.0,
@@ -74,12 +73,10 @@ class Parser(report_sxw.rml_parse):
                 index += 1
             # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
             elif inv_tax.tax_code_id:
-                # TODO raggruppare con la tassa giusta
-                tax = self._get_main_tax(inv_tax.tax_code_id.tax_ids[0])
+                tax = self._get_main_tax(self._get_account_tax(inv_tax))
                 for inv_tax_2 in invoice.tax_line:
                     if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
-                        self._check_base_tax_code(inv_tax_2.base_code_id)
-                        base_tax = self._get_main_tax(inv_tax_2.base_code_id.base_tax_ids[0])
+                        base_tax = self._get_main_tax(self._get_account_tax(inv_tax_2))
                         # Se hanno la stessa tassa
                         if base_tax.id == tax.id:
                             tax_item = {
