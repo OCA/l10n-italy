@@ -33,7 +33,6 @@
     "update_xml" : [
         'reports.xml',
         'wizard/print_registro_iva.xml',
-#        'wizard/print_registro_iva_corrispettivi.xml',
         ],
     "demo_xml" : [],
     "active": False,
