@@ -31,3 +31,12 @@ class account_tax_code(osv.osv):
         }
 
 account_tax_code()
+
+class account_invoice_tax(osv.osv):
+
+    _inherit = 'account.tax'
+    _sql_constraints = [
+        ('name_uniq', 'UNIQUE(name)', 'The tax name must be unique!'),
+    ]
+
+account_invoice_tax()

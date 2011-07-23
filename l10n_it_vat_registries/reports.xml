@@ -10,8 +10,8 @@
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
             <field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_pdf_odt')"></field>
-            <field name="parser_loc">l10n_it_tax_journal/invoice.py</field>
-            <field name="report_rml">l10n_it_tax_journal/templates/registro_iva_vendite.odt</field>
+            <field name="parser_loc">l10n_it_vat_registries/invoice.py</field>
+            <field name="report_rml">l10n_it_vat_registries/templates/registro_iva_vendite.odt</field>
             <field name="parser_state">loc</field>
         </record>
         <record id="registro_iva_acquisti_report_id" model="ir.actions.report.xml">
@@ -23,8 +23,21 @@
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
             <field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_pdf_odt')"></field>
-            <field name="parser_loc">l10n_it_tax_journal/invoice.py</field>
-            <field name="report_rml">l10n_it_tax_journal/templates/registro_iva_acquisti.odt</field>
+            <field name="parser_loc">l10n_it_vat_registries/invoice.py</field>
+            <field name="report_rml">l10n_it_vat_registries/templates/registro_iva_acquisti.odt</field>
+            <field name="parser_state">loc</field>
+        </record>
+        <record id="registro_iva_corrispettivi_report_id" model="ir.actions.report.xml">
+            <field name="name">Corrispettivi VAT Registry</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.invoice</field>
+            <field name="report_name">registro_iva_corrispettivi</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">file</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_pdf_odt')"></field>
+            <field name="parser_loc">l10n_it_vat_registries/invoice.py</field>
+            <field name="report_rml">l10n_it_vat_registries/templates/registro_iva_corrispettivi.odt</field>
             <field name="parser_state">loc</field>
         </record>
     </data>
