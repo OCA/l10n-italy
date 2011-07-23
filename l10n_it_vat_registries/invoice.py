@@ -85,7 +85,7 @@ class Parser(report_sxw.rml_parse):
                                 'base': inv_tax.base + inv_tax_2.base,
                                 'amount': inv_tax.amount + inv_tax_2.amount,
                                 'non_deductible': float(Decimal(str(inv_tax_2.base / (inv_tax.base + inv_tax_2.base) * 100)
-                                    ).quantize(Decimal('1.'+precision*'0'), rounding=ROUND_HALF_UP)),
+                                    ).quantize(Decimal('.1'), rounding=ROUND_HALF_UP)),
                                 'index': index,
                                 }
                             res.append(tax_item)
