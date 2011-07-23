@@ -9,16 +9,16 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree colors="blue:state in ('draft');black:state in ('proforma','proforma2','open');gray:state in ('cancel')" string="Corrispettivi">
-                    <field name="date_invoice"/>
+                    <field name="date_invoice" string="Date"/>
                     <field name="number"/>
-                    <field name="partner_id" groups="base.group_user"/>
+                    <field name="partner_id" groups="base.group_erp_manager"/>
                     <field name="name"/>
                     <field name="journal_id" invisible="1"/>
                     <field name="period_id" invisible="1" groups="account.group_account_user"/>
                     <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                     <field name="user_id"/>
-                    <field name="date_due"/>
-                    <field name="origin"/>
+                    <field name="date_due" groups="base.group_erp_manager"/>
+                    <field name="origin" groups="base.group_erp_manager"/>
                     <field name="currency_id"/>
                     <field name="residual" sum="Residual Amount"/>
                     <field name="amount_untaxed" sum="Untaxed Amount"/>
@@ -47,7 +47,7 @@
                     <field domain="[('partner_id','=',partner_id)]" name="address_invoice_id"  groups="base.group_erp_manager"/>
                     <field name="fiscal_position" groups="base.group_erp_manager" widget="selection"/>
                     <newline/>
-                    <field name="date_invoice"/>
+                    <field name="date_invoice" string="Date"/>
                     <field name="corrispettivo"  groups="base.group_erp_manager"/>
                     <field name="period_id" domain="[('state', '=', 'draft')]" groups="account.group_account_user" widget="selection"/>
                     <group colspan="2" col="1" groups="account.group_account_user">
@@ -58,7 +58,7 @@
                         <page string="Invoice">
                             <field domain="[('company_id', '=', company_id),('type','=', 'receivable')]" name="account_id" groups="account.group_account_user"/>
                             <field name="name"/>
-                            <field name="payment_term" widget="selection"/>
+                            <field name="payment_term" widget="selection" groups="base.group_erp_manager"/>
                             <field colspan="4" name="invoice_line" nolabel="1" widget="one2many_list"/>
                             <group col="1" colspan="2">
                                 <field name="tax_line" nolabel="1">
@@ -89,7 +89,7 @@
 
                                     <button name="%(account.action_account_invoice_refund)d" type='action' string='Refund' states='open,paid' icon="gtk-execute"/>
                                     <button name='%(account.action_account_state_open)d' type='action' string='Re-Open' states='paid' icon="gtk-convert" groups="base.group_no_one"/>
-                                    <button name="invoice_proforma2" states="draft" string="PRO-FORMA" icon="terp-gtk-media-pause" groups="account.group_account_user"/>
+                                    <button name="invoice_proforma2" states="draft" string="PRO-FORMA" icon="terp-gtk-media-pause" groups="base.group_erp_manager"/>
                                     <button name="invoice_open" states="draft,proforma2" string="Validate" icon="gtk-go-forward"/>
                     	           <button name="invoice_pay_customer" type="object" string="Payment" states="open" icon="gtk-go-forward"/>
                                 </group>
@@ -98,14 +98,14 @@
                         <page string="Other Info">
                             <field name="company_id" on_change="onchange_company_id(company_id,partner_id,type,invoice_line,currency_id)" widget="selection" groups="base.group_multi_company"/>
                             <newline/>
-                            <field name="date_due"/>
+                            <field name="date_due" groups="base.group_erp_manager"/>
                             <field name="user_id"/>
                             <newline/>
                             <field domain="[('partner_id.ref_companies', 'in', [company_id])]" name="partner_bank_id"
-                                groups="base.group_extended"/>
-                            <field name="origin"/>
+                                groups="base.group_erp_manager"/>
+                            <field name="origin" groups="base.group_erp_manager"/>
                             <field colspan="4" domain="[('partner_id','=',partner_id)]" name="address_contact_id"
-                                groups="base.group_extended"/>
+                                groups="base.group_erp_manager"/>
                             <field name="move_id" groups="account.group_account_user"/>
                             <separator colspan="4" string="Additional Information"/>
                             <field colspan="4" name="comment" nolabel="1"/>
@@ -136,17 +136,14 @@
                 <search string="Search Corrispettivi">
                    <group col="10" colspan="4">
                         <filter name="draft" icon="terp-document-new" string="Draft" domain="[('state','=','draft')]" help="Draft Invoices"/>
-                        <filter name="proforma" icon="terp-gtk-media-pause" string="Proforma" domain="[('state','=','proforma2')]" help="Proforma Invoices"/>
-                        <filter name="invoices" icon="terp-dolar" string="Invoices" domain="[('state','not in',['draft','cancel'])]" help="Proforma/Open/Paid Invoices"/>
+                        <filter name="invoices" icon="terp-dolar" string="Corrispettivi" domain="[('state','not in',['draft','cancel'])]" help="Open/Paid"/>
                         <separator orientation="vertical"/>
-                        <filter name="unpaid" icon="terp-dolar_ok!" string="Unpaid" domain="[('state','=','open')]" help="Unpaid Invoices"/>
+                        <filter name="unpaid" icon="terp-dolar_ok!" string="Unpaid" domain="[('state','=','open')]" help="Unpaid"/>
                         <separator orientation="vertical"/>
                         <field name="number"/>
-                        <field name="partner_id"/>
                         <field name="user_id" select="1" widget="selection" string="Salesman">
                         <filter domain="[('user_id','=',uid)]" help="My invoices" icon="terp-personal" separator="1"/>
                         </field>
-                        <field name="origin"/>
                         <field name="amount_total"/>
                     </group>
                     <newline/>
@@ -161,8 +158,7 @@
                         <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]"  context="{'group_by':'state'}"/>
                         <separator orientation="vertical"/>
                         <filter string="Period" icon="terp-go-month" domain="[]" context="{'group_by':'period_id'}"/>
-                        <filter string="Invoice Date" icon="terp-go-month" domain="[]"  context="{'group_by':'date_invoice'}"/>
-                        <filter string="Due Date" icon="terp-go-month" domain="[]"  context="{'group_by':'date_due'}"/>
+                        <filter string="Date" icon="terp-go-month" domain="[]"  context="{'group_by':'date_invoice'}"/>
                     </group>
                </search>
             </field>
