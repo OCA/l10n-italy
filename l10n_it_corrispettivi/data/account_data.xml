@@ -20,6 +20,8 @@
         <record model="res.partner" id="partner_corrispettivi">
             <field name="name">Corrispettivi</field>
             <field name="ref">COJ</field>
+            <field name="customer" eval="False"></field>
+            <field name="supplier" eval="False"></field>
         </record>
         <record model="res.partner.address" id="address_corrispettivi">
             <field name="name">Corrispettivi</field>
