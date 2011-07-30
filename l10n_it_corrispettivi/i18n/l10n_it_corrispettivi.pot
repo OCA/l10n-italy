@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-07-23 14:16+0000\n"
-"PO-Revision-Date: 2011-07-23 14:16+0000\n"
+"POT-Creation-Date: 2011-07-30 15:48+0000\n"
+"PO-Revision-Date: 2011-07-30 15:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgid "Other Info"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
+#: field:corrispettivi.config.data,default_credit_account_id:0
+msgid "Default credit account"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
 #: model:ir.module.module,shortdesc:l10n_it_corrispettivi.module_meta_information
 msgid "Italian Localisation - Corrispettivi"
 msgstr ""
@@ -36,8 +41,8 @@ msgid "Responsible"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: model:account.tax,name:l10n_it_corrispettivi.10a INC
-msgid "Iva al 10% (debito) INC"
+#: view:account.invoice:0
+msgid "Period"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -56,8 +61,8 @@ msgid "Draft"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: model:account.tax,name:l10n_it_corrispettivi.4a INC
-msgid "Iva 4% (debito) INC"
+#: help:corrispettivi.config.data,default_debit_account_id:0
+msgid "SeIf doubtful, use income account"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -66,23 +71,28 @@ msgid "PRO-FORMA"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: model:account.tax,name:l10n_it_corrispettivi.22a INC
-msgid "Iva 2% (debito) INC"
+#: field:corrispettivi.config.data,paid_tax_account_id:0
+msgid "Paid Tax Account"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: model:account.tax,name:l10n_it_corrispettivi.12a INC
-msgid "Iva 12% (debito) INC"
+#: field:corrispettivi.config.data,progress:0
+msgid "Configuration Progress"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: view:account.invoice:0
-msgid "Total Amount"
+#: view:corrispettivi.config.data:0
+msgid "title"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: model:account.tax,name:l10n_it_corrispettivi.20a INC
-msgid "Iva al 20% (debito) INC"
+#: model:ir.model,name:l10n_it_corrispettivi.model_corrispettivi_config_data
+msgid "corrispettivi.config.data"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: model:ir.model,name:l10n_it_corrispettivi.model_account_journal
+msgid "Journal"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -96,8 +106,8 @@ msgid "Date"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: view:account.invoice:0
-msgid "Validate"
+#: view:corrispettivi.config.data:0
+msgid "Corrispettivi Configuration"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -116,12 +126,17 @@ msgid "Customer"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: model:account.tax,name:l10n_it_corrispettivi.00a INC
-msgid "Esente IVA (debito) INC"
+#: view:account.invoice:0
+msgid "Refund"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: code:addons/l10n_it_corrispettivi/account.py:88
+#: field:corrispettivi.config.data,collected_tax_account_id:0
+msgid "Collected Tax Account"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: code:addons/l10n_it_corrispettivi/account.py:98
 #, python-format
 msgid "No address specified for partner %s"
 msgstr ""
@@ -148,20 +163,35 @@ msgstr ""
 
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:0
+#: field:account.journal,corrispettivi:0
 #: model:ir.actions.act_window,name:l10n_it_corrispettivi.action_corrispettivi_tree
 #: model:ir.ui.menu,name:l10n_it_corrispettivi.menu_action_corrispettivi_tree
+#: field:res.partner,corrispettivi:0
 msgid "Corrispettivi"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: code:addons/l10n_it_corrispettivi/account.py:87
+#: code:addons/l10n_it_corrispettivi/account.py:64
+#: code:addons/l10n_it_corrispettivi/account.py:79
+#: code:addons/l10n_it_corrispettivi/account.py:93
+#: code:addons/l10n_it_corrispettivi/account.py:97
 #, python-format
 msgid "Error!"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
+#: field:corrispettivi.config.data,journal_view_id:0
+msgid "Journal View"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
 #: view:account.invoice:0
 msgid "Payments"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: view:corrispettivi.config.data:0
+msgid "Select data to configure Corrispettivi module."
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -171,7 +201,17 @@ msgstr ""
 
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:0
-msgid "Refund"
+msgid "Validate"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: view:corrispettivi.config.data:0
+msgid "Configure"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: help:corrispettivi.config.data,default_credit_account_id:0
+msgid "If doubtful, use income account"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -185,8 +225,36 @@ msgid "Unpaid"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: view:account.invoice:0
-msgid "Period"
+#: field:corrispettivi.config.data,default_debit_account_id:0
+msgid "Default debit account"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: field:corrispettivi.config.data,config_logo:0
+msgid "Image"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: sql_constraint:account.journal:0
+msgid "The name of the journal must be unique per company !"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: view:corrispettivi.config.data:0
+msgid "Configure Corrispettivi Journal"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: model:ir.actions.act_window,name:l10n_it_corrispettivi.action_corrispettivi_config_data
+msgid "Configure Corrispettivi"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: code:addons/l10n_it_corrispettivi/account.py:65
+#: code:addons/l10n_it_corrispettivi/account.py:80
+#: code:addons/l10n_it_corrispettivi/account.py:94
+#, python-format
+msgid "No partner \"corrispettivi\" found"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -206,8 +274,18 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
+#: sql_constraint:account.journal:0
+msgid "The code of the journal must be unique per company !"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
 #: view:account.invoice:0
 msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: model:ir.model,name:l10n_it_corrispettivi.model_res_partner
+msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -218,6 +296,11 @@ msgstr ""
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:0
 msgid "Salesman"
+msgstr ""
+
+#. module: l10n_it_corrispettivi
+#: view:account.invoice:0
+msgid "Total Amount"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
