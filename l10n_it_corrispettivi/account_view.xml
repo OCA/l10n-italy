@@ -2,6 +2,8 @@
 <openerp>
     <data>
 
+<!-- invoice -->
+
         <record id="corrispettivi_tree" model="ir.ui.view">
             <field name="name">account.corrispettivi.tree</field>
             <field name="model">account.invoice</field>
@@ -96,7 +98,7 @@
                             </group>
                         </page>
                         <page string="Other Info">
-                            <field name="company_id" on_change="onchange_company_id(company_id,partner_id,type,invoice_line,currency_id)" widget="selection" groups="base.group_multi_company"/>
+                            <field name="company_id" on_change="onchange_company_id(company_id,partner_id,type,invoice_line,currency_id,context)" widget="selection" groups="base.group_multi_company"/>
                             <newline/>
                             <field name="date_due" groups="base.group_erp_manager"/>
                             <field name="user_id"/>
@@ -128,6 +130,19 @@
                 </form>
             </field>
         </record>
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"></field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="replace">
+                    <field name="company_id" on_change="onchange_company_id(company_id,partner_id,type,invoice_line,currency_id,context)" widget="selection" groups="base.group_multi_company"/>
+                </field>
+            </field>
+        </record>
+
         <record id="view_account_corrispettivi_filter" model="ir.ui.view">
             <field name="name">account.corrispettivi.select</field>
             <field name="model">account.invoice</field>
@@ -195,6 +210,34 @@
         </record>
 
         <menuitem action="action_corrispettivi_tree" id="menu_action_corrispettivi_tree" parent="account.menu_finance_receivables"/>
+
+<!-- partner -->
+
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="supplier" position="after">    
+                    <field name="corrispettivi" groups="account.group_account_manager"/>
+                </field>
+            </field>
+        </record>
+
+<!-- journal -->
+
+        <record id="view_account_journal_form" model="ir.ui.view">
+            <field name="name">account.journal.form</field>
+            <field name="model">account.journal</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="allow_date" position="after">
+                    <field name="corrispettivi"/>
+                </field>
+            </field>
+        </record>
 
     </data>
 </openerp>

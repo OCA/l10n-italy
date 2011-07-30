@@ -12,6 +12,7 @@
             <field name="name">Corrispettivi Journal</field>
             <field name="type">sale</field>
             <field name="code">COJ</field>
+            <field name="corrispettivi" eval="True"></field>
             <field name="sequence_id" ref="sequence_corrispettivi_journal"/>
             <field name="analytic_journal_id" ref="account.analytic_journal_sale"/>
             <field name="default_credit_account_id" ref="l10n_it.3101"/>
@@ -22,6 +23,7 @@
             <field name="ref">COJ</field>
             <field name="customer" eval="False"></field>
             <field name="supplier" eval="False"></field>
+            <field name="corrispettivi" eval="True"></field>
         </record>
         <record model="res.partner.address" id="address_corrispettivi">
             <field name="name">Corrispettivi</field>
