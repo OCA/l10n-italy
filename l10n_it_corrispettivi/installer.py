@@ -32,8 +32,6 @@ class corrispettivi_config_data(osv.osv_memory):
         'default_debit_account_id': fields.many2one('account.account', 'Default debit account',
             domain=[('type','!=','view')], required=True, help='If doubtful, use income account'),
         'journal_view_id': fields.many2one('account.journal.view', 'Journal View', required=True),
-        'collected_tax_account_id': fields.many2one('account.account', 'Collected Tax Account', required=True),
-        'paid_tax_account_id': fields.many2one('account.account', 'Paid Tax Account', required=True),
         }
 
     def execute(self, cr, uid, ids, context=None):
