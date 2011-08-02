@@ -39,7 +39,7 @@ class account_report_prima_nota_cassa(osv.osv_memory):
         data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
         if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
             data['form'].update({'initial_balance': False})
-        return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.journal.webkit', 'datas': data}
+        return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
 
     _columns = {
 

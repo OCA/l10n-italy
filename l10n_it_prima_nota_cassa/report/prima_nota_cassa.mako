@@ -30,7 +30,7 @@
 
 <div id="results">
     % for a in objects:
-        ${ company.partner_id.lang }
+##        ${ company.partner_id.lang }
         <% setLang(company.partner_id.lang) %>
         <table class="list_table"  width="90%">
             <tr>

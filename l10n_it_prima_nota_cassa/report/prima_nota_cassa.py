@@ -50,12 +50,12 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         if (data['model'] == 'ir.ui.menu'):
             new_ids = [data['form']['chart_account_id']]
             objects = self.pool.get('account.account').browse(self.cr, self.uid, new_ids)
-        return super(print_journal_webkit, self).set_context(objects, data, new_ids, report_type=report_type)
+        return super(print_prima_nota_cassa, self).set_context(objects, data, new_ids, report_type=report_type)
 
     def __init__(self, cr, uid, name, context=None):
         if context is None:
             context = {}
-        super(print_journal_webkit, self).__init__(cr, uid, name, context=context)
+        super(print_prima_nota_cassa, self).__init__(cr, uid, name, context=context)
         self.query = ""
         self.tot_currency = 0.0
         self.period_sql = ""
@@ -287,7 +287,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
     def _get_account(self, data):
         if data['model'] == 'account.account':
             return self.pool.get('account.account').browse(self.cr, self.uid, data['form']['id']).company_id.name
-        return super(print_journal_webkit ,self)._get_account(data)
+        return super(print_prima_nota_cassa ,self)._get_account(data)
 
     def _get_sortby(self, data):
         if self.sortby == 'sort_date':
