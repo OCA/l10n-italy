@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2011-08-02 09:42+0000\n"
-"PO-Revision-Date: 2011-08-02 11:44+0100\n"
+"PO-Revision-Date: 2011-08-02 12:02+0100\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: l10n_it_prima_nota_cassa
 #: report:report.account.print.prima_nota_cassa:8
 msgid "Prime entry"
-msgstr "Prime entry"
+msgstr "Prima nota"
 
 #. module: l10n_it_prima_nota_cassa
 #: model:ir.module.module,shortdesc:l10n_it_prima_nota_cassa.module_meta_information
