@@ -22,7 +22,6 @@
 
 from osv import fields,osv
 from tools.translate import _
-import time
 
 class wizard_registro_iva(osv.osv_memory):
 
@@ -36,13 +35,7 @@ class wizard_registro_iva(osv.osv_memory):
             ('corrispettivi', 'Corrispettivi'),
             ], 'Type', required=True),
         'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
-        }
-    _defaults = {
-        'type': 'customer',
-        'date_from': lambda * a: time.strftime('%Y-%m-%d'),
-        'date_to': lambda * a: time.strftime('%Y-%m-%d'),
-        'journal_ids': lambda s, cr, uid, c: s.pool.get('account.journal').search(cr, uid, []),
-        }
+    }
 
     def print_registro(self, cr, uid, ids, context=None):
         inv_ids = []

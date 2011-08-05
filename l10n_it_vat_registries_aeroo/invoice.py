@@ -128,9 +128,3 @@ class Parser(report_sxw.rml_parse):
                 },
             'tax_codes': {},
         })
-
-        
-report_sxw.report_sxw('report.registro_iva_vendite',
-                       'registro_iva_vendite', 
-                       'addons/l10n_it_vat_registries/templates/registro_iva_vendite.mako',
-                       parser=Parser)

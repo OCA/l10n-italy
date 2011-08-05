@@ -22,3 +22,4 @@
 
 import wizard
 import account
+import invoice

@@ -19,22 +19,24 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Italian Localisation - VAT Registries',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - VAT Registries""",
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
-    "depends" : ['l10n_it_base', 'report_webkit', 'l10n_it_account', 'l10n_it_corrispettivi'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
-        'reports.xml',
-        'wizard/print_registro_iva.xml',
-        ],
-    "demo_xml" : [],
-    "active": False,
-    "installable": True
-}
+
+from osv import fields, osv
+
+class account_tax_code(osv.osv):
+
+    _inherit = 'account.tax.code'
+    _columns = {
+        'tax_ids': fields.one2many('account.tax', 'tax_code_id', 'Taxes'),
+        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
+        }
+
+account_tax_code()
+
+class account_invoice_tax(osv.osv):
+
+    _inherit = 'account.tax'
+    _sql_constraints = [
+        ('name_uniq', 'UNIQUE(name)', 'The tax name must be unique!'),
+    ]
+
+account_invoice_tax()

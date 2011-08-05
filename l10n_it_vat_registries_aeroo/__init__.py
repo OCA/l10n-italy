@@ -19,22 +19,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Italian Localisation - VAT Registries',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - VAT Registries""",
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
-    "depends" : ['l10n_it_base', 'report_webkit', 'l10n_it_account', 'l10n_it_corrispettivi'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
-        'reports.xml',
-        'wizard/print_registro_iva.xml',
-        ],
-    "demo_xml" : [],
-    "active": False,
-    "installable": True
-}
+
+import wizard
+import account
