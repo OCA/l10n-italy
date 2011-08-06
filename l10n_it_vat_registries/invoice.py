@@ -134,3 +134,11 @@ report_sxw.report_sxw('report.registro_iva_vendite',
                        'registro_iva_vendite', 
                        'addons/l10n_it_vat_registries/templates/registro_iva_vendite.mako',
                        parser=Parser)
+report_sxw.report_sxw('report.registro_iva_acquisti',
+                       'registro_iva_acquisti', 
+                       'addons/l10n_it_vat_registries/templates/registro_iva_acquisti.mako',
+                       parser=Parser)
+report_sxw.report_sxw('report.registro_iva_corrispettivi',
+                       'registro_iva_corrispettivi', 
+                       'addons/l10n_it_vat_registries/templates/registro_iva_corrispettivi.mako',
+                       parser=Parser)
