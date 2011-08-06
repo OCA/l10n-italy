@@ -5,7 +5,7 @@
     </style>
 </head>
 <body>
-    <h2>Fatture Emesse</h2>
+    <h2>Corrispettivi</h2>
     <% setLang(objects[0].company_id.partner_id.lang or "en_US") %>
     <table style="width:100%;">
         <thead>
