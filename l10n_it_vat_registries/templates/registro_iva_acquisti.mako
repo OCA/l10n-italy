@@ -5,7 +5,7 @@
     </style>
 </head>
 <body>
-    <h2>Fatture Emesse</h2>
+    <h2>Fatture Ricevute</h2>
     <% setLang(objects[0].company_id.partner_id.lang or "en_US") %>
     <table style="width:100%;">
         <thead>
@@ -19,6 +19,7 @@
             <th style="text-align:right">% IVA</th>
             <th style="text-align:right">Imponibile</th>
             <th style="text-align:right">Imposta</th>
+            <th style="text-align:right">% inded.</th>
             <th></th>
         </tr>
         </thead>
@@ -43,10 +44,10 @@
                 %endif
                 </td><td>
                 %if line['index']==0:
-                    %if object.type == 'out_invoice':
+                    %if object.type == 'in_invoice':
                         Fattura
-                    %elif object.type == 'out_refund':
-                        Nota di credito
+                    %elif object.type == 'in_refund':
+                        Nota di debito
                     %endif
                 %endif
                 </td><td style="text-align:right">
@@ -57,6 +58,11 @@
                 <td style="text-align:right">${ line['tax_percentage'] or ''| entity}</td>
                 <td style="text-align:right">${ line['base']  or ''| entity}</td>
                 <td style="text-align:right">${ line['amount']  or ''| entity}</td>
+                <td style="text-align:right">
+                %if line['non_deductible']:
+                    ${ line['non_deductible'] | entity} %
+                %endif
+                </td>
                 <td></td>
                 </tr>
             %endfor
@@ -67,7 +73,7 @@
         <br/>
         <table style="width:100%;  " border="1">
             <tr style="border-style:ridge;border-width:5px">
-                <td colspan="3" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(data['form']['date_from'],date=True)| entity}</strong> al <strong>${formatLang(data['form']['date_to'],date=True)| entity}</strong></td>
+                <td colspan="4" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(data['form']['date_from'],date=True)| entity}</strong> al <strong>${formatLang(data['form']['date_to'],date=True)| entity}</strong></td>
             </tr>
             <tr>
                 <td rowspan="2" style="vertical-align:text-top;padding:10">
@@ -87,11 +93,12 @@
                         %endfor
                     </table>
                 </td><td style="padding:10">Totale operazioni:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_operazioni'])|entity}</strong></p><br/></td>
-                <td style="padding:10">Totale imponibili:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_imponibili'])|entity}</strong></p><br/></td>
+                <td colspan="2" style="padding:10">Totale imponibili:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_imponibili'])|entity}</strong></p><br/></td>
             </tr>
             <tr>
                 <td style="padding:10">Totale variazioni:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_variazioni'])|entity}</strong></p><br/></td>
-                <td style="padding:10">Totale IVA:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_iva'])|entity}</strong></p><br/></td>
+                <td style="padding:10">Totale IVA Detraibile:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_iva'])|entity}</strong></p><br/></td>
+                <td style="padding:10">Totale IVA Indetraibile:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_iva_inded'])|entity}</strong></p><br/></td>
             </tr>
         </table>
     </div>

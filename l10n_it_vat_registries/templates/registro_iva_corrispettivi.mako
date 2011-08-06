@@ -11,11 +11,8 @@
         <thead>
         <tr>
             <th style="text-align:left">Data registrazione</th>
-            <th style="text-align:left">Data fattura</th>
-            <th style="text-align:left">Numero fattura</th>
-            <th style="text-align:left">Ragione sociale</th>
             <th style="text-align:left">Descrizione</th>
-            <th style="text-align:right">Totale fattura</th>
+            <th style="text-align:right">Importo totale</th>
             <th style="text-align:right">% IVA</th>
             <th style="text-align:right">Imponibile</th>
             <th style="text-align:right">Imposta</th>
@@ -31,23 +28,7 @@
                 %endif
                 </td><td>
                 %if line['index']==0:
-                    ${ formatLang(object.date_invoice,date=True) or '' | entity}
-                %endif
-                </td><td>
-                %if line['index']==0:
-                    ${object.number or ''| entity}
-                %endif
-                </td><td>
-                %if line['index']==0:
-                    ${object.partner_id.name | entity}
-                %endif
-                </td><td>
-                %if line['index']==0:
-                    %if object.type == 'out_invoice':
-                        Fattura
-                    %elif object.type == 'out_refund':
-                        Nota di credito
-                    %endif
+                    Corrispettivo
                 %endif
                 </td><td style="text-align:right">
                 %if line['index']==0:

@@ -36,6 +36,7 @@ class wizard_registro_iva(osv.osv_memory):
             ('corrispettivi', 'Corrispettivi'),
             ], 'Type', required=True),
         'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
+        'message': fields.char('Message', size=64, readonly=True),
         }
     _defaults = {
         'type': 'customer',
@@ -90,7 +91,8 @@ class wizard_registro_iva(osv.osv_memory):
                 ]
         inv_ids = inv_obj.search(cr, uid, search_list)
         if not inv_ids:
-            raise osv.except_osv(_('Error !'), _('No documents found in the current selection'))
+            self.write(cr, uid,  ids, {'message': _('No documents found in the current selection')})
+            return
         if context is None:
             context = {}
         datas = {'ids': inv_ids}
