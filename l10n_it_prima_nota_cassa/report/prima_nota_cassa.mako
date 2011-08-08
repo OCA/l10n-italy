@@ -48,15 +48,15 @@
        
             %for line in lines(a) :
                 <tr style="page-break-inside: avoid; vertical-align:text-top;">
-                    <td>${ formatLang(line['ldate'], date=True)|entity }</td>
-                    <td>${ line['jname'] }</td>
-                    <td>${ line['partner_name'] }</td>
-                    <td>${ line['lref'] }</td>
-                    <td>${ line['move'] }</td>
-                    <td>${ line['lname'] }</td>
-                    <td>${ formatLang(line['debit'], digits=get_digits(dp='Account')) }</td>
-                    <td>${ formatLang(line['credit'], digits=get_digits(dp='Account')) }</td>
-                    <td>${ line['debit'] - line['credit'] }</td>
+                    <td>${ formatLang(line['ldate'], date=True) or ''|entity }</td>
+                    <td>${ line['jname']  or ''|entity }</td>
+                    <td>${ line['partner_name']  or ''|entity }</td>
+                    <td>${ line['lref']  or ''|entity }</td>
+                    <td>${ line['move']  or ''|entity }</td>
+                    <td>${ line['lname']  or ''|entity }</td>
+                    <td>${ formatLang(line['debit'], digits=get_digits(dp='Account')) |entity}</td>
+                    <td>${ formatLang(line['credit'], digits=get_digits(dp='Account')) |entity}</td>
+                    <td>${ line['debit'] - line['credit'] |entity}</td>
                 </tr>
             %endfor
         </table>
