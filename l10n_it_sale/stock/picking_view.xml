@@ -11,7 +11,7 @@
                     <field name="goods_description_id"/>
                     <field name="transportation_reason_id"/>
                     <field name="carriage_condition_id"/>
-                    <field name="ddt_date" readonly="1"/>
+                    <field name="ddt_date"/>
                 </field>
             </field>
 		</record>
@@ -36,7 +36,7 @@
             <field name="inherit_id" ref="stock.view_picking_out_form"/>
             <field name="arch" type="xml">
                 <field name="backorder_id" position="after">
-                    <field name="ddt_number" readonly="1"/>
+                    <field name="ddt_number"/>
                 </field>
             </field>
 		</record>
