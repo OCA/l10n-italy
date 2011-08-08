@@ -47,7 +47,7 @@
 
        
             %for line in lines(a) :
-                <tr>
+                <tr style="page-break-inside: avoid; vertical-align:text-top;">
                     <td>${ formatLang(line['ldate'], date=True)|entity }</td>
                     <td>${ line['jname'] }</td>
                     <td>${ line['partner_name'] }</td>
