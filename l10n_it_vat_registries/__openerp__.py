@@ -32,6 +32,7 @@
         ],
     "update_xml" : [
         'reports.xml',
+        'account_view.xml',
         'wizard/print_registro_iva.xml',
         ],
     "demo_xml" : [],

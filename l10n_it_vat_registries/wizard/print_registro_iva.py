@@ -92,7 +92,7 @@ class wizard_registro_iva(osv.osv_memory):
         inv_ids = inv_obj.search(cr, uid, search_list)
         if not inv_ids:
             self.write(cr, uid,  ids, {'message': _('No documents found in the current selection')})
-            return
+            return True
         if context is None:
             context = {}
         datas = {'ids': inv_ids}
