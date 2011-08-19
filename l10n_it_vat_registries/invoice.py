@@ -25,8 +25,11 @@ from report import report_sxw
 from osv import osv
 from tools.translate import _
 from decimal import *
+import netsvc
 
 class Parser(report_sxw.rml_parse):
+
+    logger = netsvc.Logger()
 
     def _get_main_tax(self, tax):
         if not tax.parent_id:
@@ -55,11 +58,18 @@ class Parser(report_sxw.rml_parse):
         index=0
         totale_iva = 0.0
         totale_iva_inded = 0.0
+        invoice_amount_total = 0.0
+        invoice_amount_untaxed = 0.0
         precision = self.pool.get('decimal.precision').precision_get(self.cr, self.uid, 'Account')
         for inv_tax in invoice.tax_line:
             tax_item = {}
             if inv_tax.base_code_id and inv_tax.tax_code_id:
-                account_tax_amount = self._get_account_tax(inv_tax).amount
+                account_tax = self._get_account_tax(inv_tax)
+                if account_tax.exclude_from_registries:
+                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
+                        _('The tax %s is excluded from registries') % account_tax.name)
+                    continue
+                account_tax_amount = account_tax.amount
                 tax_item = {
                     'tax_percentage': account_tax_amount and str(
                         account_tax_amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
@@ -70,10 +80,16 @@ class Parser(report_sxw.rml_parse):
                     }
                 res.append(tax_item)
                 totale_iva += inv_tax.amount
+                invoice_amount_total = invoice.amount_total
+                invoice_amount_untaxed = invoice.amount_untaxed
                 index += 1
             # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
             elif inv_tax.tax_code_id:
                 tax = self._get_main_tax(self._get_account_tax(inv_tax))
+                if tax.exclude_from_registries:
+                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
+                        _('The tax %s is excluded from registries') % tax.name)
+                    continue
                 for inv_tax_2 in invoice.tax_line:
                     if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
                         base_tax = self._get_main_tax(self._get_account_tax(inv_tax_2))
@@ -91,11 +107,14 @@ class Parser(report_sxw.rml_parse):
                             res.append(tax_item)
                             totale_iva += inv_tax.amount
                             totale_iva_inded += inv_tax_2.amount
+                            invoice_amount_total = invoice.amount_total
+                            invoice_amount_untaxed = invoice.amount_untaxed
                             index += 1
                             break
             elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
-                raise Exception(_('The tax %s has no tax codes') % inv_tax.name)
-
+                self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
+                    _('The tax %s has no tax codes') % inv_tax.name)
+                continue
             if tax_item:
                 if tax_item['tax_percentage'] not in self.localcontext['tax_codes']:
                     self.localcontext['tax_codes'][tax_item['tax_percentage']] = {
@@ -106,8 +125,8 @@ class Parser(report_sxw.rml_parse):
                     self.localcontext['tax_codes'][tax_item['tax_percentage']]['base'] += tax_item['base']
                     self.localcontext['tax_codes'][tax_item['tax_percentage']]['amount'] += tax_item['amount']
 
-        self.localcontext['totali']['totale_operazioni'] += invoice.amount_total
-        self.localcontext['totali']['totale_imponibili'] += invoice.amount_untaxed
+        self.localcontext['totali']['totale_operazioni'] += invoice_amount_total
+        self.localcontext['totali']['totale_imponibili'] += invoice_amount_untaxed
 # da analizzare           self.totale_variazioni += invoice.amount_total
         self.localcontext['totali']['totale_iva'] += totale_iva
         self.localcontext['totali']['totale_iva_inded'] += totale_iva_inded
