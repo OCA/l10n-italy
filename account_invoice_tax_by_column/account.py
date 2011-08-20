@@ -38,32 +38,17 @@ class account_tax(osv.osv):
     }
 
     def _compute(self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None, partner=None):
-        """
-        Compute tax values for given PRICE_UNIT, QUANTITY and a buyer/seller ADDRESS_ID.
-
-        RETURN:
-            [ tax ]
-            tax = {'name':'', 'amount':0.0, 'account_collected_id':1, 'account_paid_id':2}
-            one tax for each tax id in IDS and their children
-        """
-        res = self._unit_compute(cr, uid, taxes, price_unit, address_id, product, partner, quantity)
+        res = super(account_tax, self)._compute(cr, uid, taxes, price_unit, quantity, address_id, product, partner)
+        tax_pool=self.pool.get('account.tax')
         total = 0.0
-        prec = True
-        for t in taxes:
-            prec = t.line_precision
-        precision_pool = self.pool.get('decimal.precision')
         for r in res:
-            if r.get('balance',False):
-                if prec:
+            tax = tax_pool.browse(cr, uid, r['id'])
+            if tax.line_precision:
+                if r.get('balance',False):
                     r['amount'] = r.get('balance', 0.0) * quantity - total
                 else:
-                    r['amount'] = round(r.get('balance', 0.0) * quantity, precision_pool.precision_get(cr, uid, 'Account')) - total
-            else:
-                if prec:
                     r['amount'] = r.get('amount', 0.0) * quantity
-                else:
-                    r['amount'] = round(r.get('amount', 0.0) * quantity, precision_pool.precision_get(cr, uid, 'Account'))
-                total += r['amount']
+                    total += r['amount']
         return res
 
 
