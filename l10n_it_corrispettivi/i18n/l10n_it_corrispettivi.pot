@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-07-30 15:56+0000\n"
-"PO-Revision-Date: 2011-07-30 15:56+0000\n"
+"POT-Creation-Date: 2011-08-22 08:03+0000\n"
+"PO-Revision-Date: 2011-08-22 08:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,13 +66,8 @@ msgid "PRO-FORMA"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: field:corrispettivi.config.data,paid_tax_account_id:0
-msgid "Paid Tax Account"
-msgstr ""
-
-#. module: l10n_it_corrispettivi
-#: field:corrispettivi.config.data,progress:0
-msgid "Configuration Progress"
+#: view:corrispettivi.config.data:0
+msgid "Configure"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -123,11 +118,6 @@ msgstr ""
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:0
 msgid "Refund"
-msgstr ""
-
-#. module: l10n_it_corrispettivi
-#: field:corrispettivi.config.data,collected_tax_account_id:0
-msgid "Collected Tax Account"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
@@ -200,8 +190,8 @@ msgid "Validate"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
-#: view:corrispettivi.config.data:0
-msgid "Configure"
+#: field:corrispettivi.config.data,progress:0
+msgid "Configuration Progress"
 msgstr ""
 
 #. module: l10n_it_corrispettivi
