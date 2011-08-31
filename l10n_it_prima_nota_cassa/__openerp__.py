@@ -33,6 +33,7 @@
     "update_xml" : [
         'reports.xml',
         'wizard/wizard_print_prima_nota_cassa.xml',
+        'webkit_model.xml',
         ],
     "demo_xml" : [],
     "active": False,

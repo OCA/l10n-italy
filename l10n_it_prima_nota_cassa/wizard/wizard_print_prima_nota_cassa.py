@@ -42,10 +42,12 @@ class account_report_prima_nota_cassa(osv.osv_memory):
         return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
 
     _columns = {
-
+        'initial_balance': fields.boolean("Include initial balances",
+                                          help='It adds initial balance row on report which display previous sum amount of debit/credit/balance'),
     }
     _defaults = {
         'journal_ids': _get_all_journal,
+        'initial_balance': False,
     }
 
 
