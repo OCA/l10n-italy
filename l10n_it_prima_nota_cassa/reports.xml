@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-
+        
+        
         <report
             auto="False"
             id="prima_nota_cassa"
@@ -10,6 +11,34 @@
             file="l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako"
             string="Prima Nota Cassa"
             report_type="webkit" />
+            
+
+<!--
+        <record id="prima_nota_cassa" model="ir.actions.report.xml">
+            <field name="name">account.print.prima_nota_cassa</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.account</field>
+            <field name="report_name">Prima Nota Cassa Webkit</field>
+            <field name="file">l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako</field>
+            <field name="report_type">webkit</field>
+                        <field name="webkit_header">ir_header_webkit_primanotacassa</field> 
+                 <field name="webkit_header" eval="ref('l10n_it_prima_nota_cassa.ir_header_webkit_primanotacassa')"></field> 
+        </record>
+
+        <record id="invoice_report_id" model="ir.actions.report.xml">
+            <field name="name">Print Fattura</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.invoice</field>
+            <field name="report_name">fattura</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">file</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_pdf_odt')"></field>
+            <field name="parser_loc">l10n_it_account_report/invoice.py</field>
+            <field name="report_rml">l10n_it_account_report/templates/fattura.odt</field>
+            <field name="parser_state">loc</field>
+        </record>
+-->
 
     </data>
 </openerp>
