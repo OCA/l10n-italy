@@ -87,7 +87,7 @@ class res_partner_address(osv.osv):
             if vals['city']:
                 city_obj= self.pool.get('res.city')
                 city_ids = city_obj.search(cr, uid, [('name', '=', vals['city'].title())])
-                if (len(city_ids) == 1):
+                if city_ids:
                     city = city_obj.browse(cr, uid, city_ids[0])
                     if not vals.has_key('zip'):
                         vals['zip'] = city.zip
