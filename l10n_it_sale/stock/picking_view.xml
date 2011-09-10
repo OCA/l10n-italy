@@ -14,7 +14,22 @@
                     <field name="ddt_date"/>
                 </field>
             </field>
-		</record>
+	</record>
+
+	<record id="stock_picking_tree_ddt_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.tree.ddt.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="ddt_number"/>
+                    <field name="ddt_date"/>
+                </field>
+            </field>
+        </record>
+
+
+
 <!-- serve?
         <record id="stock_view_picking_form_ddt_inherit" model="ir.ui.view">
             <field name="name">stock.view.picking.form.ddt.inherit</field>
