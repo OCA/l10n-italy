@@ -27,7 +27,7 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_account',],
+    "depends" : ['account',],
     "init_xml" : [],
     "update_xml" : ['invoice_view.xml'],
     "demo_xml" : [],
