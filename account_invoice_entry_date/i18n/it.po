@@ -1,0 +1,109 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_entry_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-09-05 10:31+0000\n"
+"PO-Revision-Date: 2011-09-05 10:31+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:163
+#, python-format
+msgid "UserError"
+msgstr "UserError"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:40
+#: code:addons/account_invoice_entry_date/invoice.py:81
+#, python-format
+msgid "Error !"
+msgstr "Errore !"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:70
+#, python-format
+msgid "Please verify the price of the invoice !\n"
+"The real total does not match the computed total."
+msgstr "Per favore verificare il prezzo della fattura!\n"
+"Il totale reale non corrisponde al totale calcolato."
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:81
+#, python-format
+msgid "Cannot create the invoice !\n"
+"The payment term defined gives a computed amount greater than the total invoiced amount."
+msgstr "Impossibile creare la fattura!\n"
+"I termini di pagamento definiti generano un importo calcolato maggiore del totale importo fatturato."
+
+#. module: account_invoice_entry_date
+#: model:ir.module.module,description:account_invoice_entry_date.module_meta_information
+#: model:ir.module.module,shortdesc:account_invoice_entry_date.module_meta_information
+msgid "Account Invoice entry Date"
+msgstr "Account Invoice entry Date"
+
+#. module: account_invoice_entry_date
+#: help:account.invoice,registration_date:0
+msgid "Keep empty to use the current date"
+msgstr "Lasciare vuoto per utilizzare la data corrente"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:42
+#, python-format
+msgid "Please create some invoice lines."
+msgstr "Creare voci della fattura."
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:40
+#, python-format
+msgid "Please define sequence on invoice journal"
+msgstr "Definire una sequenza per il giornale fatture"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:70
+#, python-format
+msgid "Bad total !"
+msgstr "Totale Errato !"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:57
+#, python-format
+msgid "The invoice date cannot be later than the date of registration!"
+msgstr "La data di fatturazione non può essere successiva alla data di registrazione!"
+
+#. module: account_invoice_entry_date
+#: model:ir.model,name:account_invoice_entry_date.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:164
+#, python-format
+msgid "Cannot create invoice move on centralised journal"
+msgstr "Impossibile creare la registrazione della fattura su un giornale centralizzato"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:42
+#, python-format
+msgid "No Invoice Lines !"
+msgstr "Mancano voci nella fattura  !"
+
+#. module: account_invoice_entry_date
+#: field:account.invoice,registration_date:0
+msgid "Registration Date"
+msgstr "Data di registrazione"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/invoice.py:57
+#, python-format
+msgid "Error date !"
+msgstr "Data errata !"
+
