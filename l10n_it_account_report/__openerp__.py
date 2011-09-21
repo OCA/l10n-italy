@@ -26,7 +26,7 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_account', 'report_aeroo'],
+    "depends" : ['l10n_it_account', 'report_aeroo_ooo'],
     "init_xml" : [
         ],
     "update_xml" : [
