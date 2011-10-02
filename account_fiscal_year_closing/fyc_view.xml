@@ -128,11 +128,11 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
                                         <field name="nlp_account_mapping_ids" colspan="4" nolabel="1" attrs="{'readonly':[('state','in',('done','cancel'))]}">
                                             <tree string="Account mappings" editable="top">
                                                 <field name="source_account_id"/>
-                                                <field name="dest_account_id" required="1"/>
+                                                <field name="dest_account_id"/>
                                             </tree>
                                             <form string="Account mapping">
                                                 <field name="source_account_id"/>
-                                                <field name="dest_account_id" required="1"/>
+                                                <field name="dest_account_id"/>
                                                 <field name="name"/>
                                             </form>
                                         </field>

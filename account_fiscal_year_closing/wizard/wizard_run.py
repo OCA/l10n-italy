@@ -238,6 +238,8 @@ class wizard_run(wizard.interface):
         move_lines = []
         dest_accounts_totals = {}
         period_ids = []
+        for period in fyc.closing_fiscalyear_id.period_ids:
+            period_ids.append(period.id)
         account_mapping_ids = []
         description = None
         date = None
@@ -249,6 +251,7 @@ class wizard_run(wizard.interface):
         # Depending on the operation we will use different data
         #
         if operation == 'loss_and_profit':
+            '''
             #
             # Consider all the periods of the fiscal year *BUT* the L&P,
             # Net L&P and the Closing one.
@@ -258,6 +261,7 @@ class wizard_run(wizard.interface):
                         and period.id != fyc.nlp_period_id.id \
                         and period.id != fyc.c_period_id.id:
                     period_ids.append(period.id)
+            '''
             #
             # Set the accounts to use
             #
@@ -282,6 +286,7 @@ class wizard_run(wizard.interface):
             period_id = fyc.lp_period_id.id
             journal_id = fyc.lp_journal_id.id
         elif operation == 'net_loss_and_profit':
+            '''
             #
             # Consider all the periods of the fiscal year *BUT* the 
             # Net L&P and the Closing one.
@@ -290,13 +295,16 @@ class wizard_run(wizard.interface):
                 if period.id != fyc.nlp_period_id.id \
                         and period.id != fyc.c_period_id.id:
                     period_ids.append(period.id)
+            '''
             #
             # Set the accounts to use
             #
             account_mapping_ids = fyc.nlp_account_mapping_ids
+            '''
             for account_map in account_mapping_ids:
                 if not account_map.dest_account_id:
                     raise wizard.except_wizard(_('UserError'), _("The Net L&P account mappings are not properly configured: %s") % account_map.name)
+            '''
             #
             # Get the values for the lines
             #
@@ -316,12 +324,14 @@ class wizard_run(wizard.interface):
             # Require the user to have performed the L&P operation
             if not (fyc.loss_and_profit_move_id and fyc.loss_and_profit_move_id.id):
                 raise wizard.except_wizard(_('UserError'), _("The L&P move must exist before creating the closing one"))
+            '''
             #
             # Consider all the periods of the fiscal year *BUT* the Closing one.
             #
             for period in fyc.closing_fiscalyear_id.period_ids:
                 if period.id != fyc.c_period_id.id:
                     period_ids.append(period.id)
+            '''
             # Set the accounts to use
             account_mapping_ids = fyc.c_account_mapping_ids
             #
