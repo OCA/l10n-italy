@@ -26,7 +26,7 @@
     "depends" : ['base_vat','account_chart','base_iban'],
     "author" : "OpenERP Italian Community",
     "description": """
-    Piano dei conti italiano minimale. Contiene solo i conti strettamente necessari a configurare una contabilità di base in OpenERP
+    Piano dei conti italiano minimale. Contiene solo i conti strettamente necessari a configurare una contabilità di base funzionante in OpenERP. Il modulo va inteso come una base di partenza per costruire il proprio piano dei conti.
     """,
     "license": "AGPL-3",
     "category" : "Localisation/Account Charts",
