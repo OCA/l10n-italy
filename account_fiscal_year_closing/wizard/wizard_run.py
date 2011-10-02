@@ -353,7 +353,7 @@ class wizard_run(wizard.interface):
             if account_map.dest_account_id:
                 dest_accounts_totals[account_map.dest_account_id.id] = dest_accounts_totals.get(account_map.dest_account_id.id, 0)
 
-            context.update({'fiscalyear': fiscalyear_id, 'periods': period_ids})
+            context.update({'periods': period_ids})
             ctx = context.copy()
 
             # Find its children accounts (recursively)
