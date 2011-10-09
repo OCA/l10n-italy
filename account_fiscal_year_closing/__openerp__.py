@@ -27,10 +27,12 @@
 {
     "name" : "Fiscal Year Closing",
     "version" : "1.0",
-    "author" : "Pexego, OpenERP Italian Community",
+    "author" : "OpenERP Italian Community, Pexego",
     "website" : "http://www.openerp-italia.org",
     "category" : "Generic Modules/Accounting",
     "description": """
+Generalization of l10n_es_fiscal_year_closing ( http://apps.openerp.com/addon/4506 )
+
 Fiscal Year Closing Wizard
     
 Replaces the default OpenERP end of year wizards (from account module)
