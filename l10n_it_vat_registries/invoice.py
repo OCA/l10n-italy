@@ -31,29 +31,9 @@ class Parser(report_sxw.rml_parse):
 
     logger = netsvc.Logger()
 
-    def _get_main_tax(self, tax):
-        if not tax.parent_id:
-            return tax
-        else:
-            return self._get_main_tax(tax.parent_id)
-
-    def _get_account_tax(self, inv_tax):
-        splitted_name = inv_tax.name.split(' - ')
-        if len(splitted_name) > 1:
-            tax_name = splitted_name[1]
-        else:
-            tax_name = splitted_name[0]
-        tax_obj = self.pool.get('account.tax')
-        # cerco la tassa per nome, dopo averlo ottenuto dalla tassa in fattura
-        tax_ids = tax_obj.search(self.cr, self.uid, [('name', '=', tax_name)])
-        if not tax_ids:
-            raise Exception(_('The tax %s does not exist') % tax_name)
-        if len(tax_ids) > 1:
-            raise Exception(_('Too many taxes with name %s') % tax_name)
-        return tax_obj.browse(self.cr, self.uid, tax_ids[0])
-
     def _get_tax_lines(self, invoice):
         res=[]
+        tax_obj = self.pool.get('account.tax')
         # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
         index=0
         totale_iva = 0.0
@@ -64,7 +44,7 @@ class Parser(report_sxw.rml_parse):
         for inv_tax in invoice.tax_line:
             tax_item = {}
             if inv_tax.base_code_id and inv_tax.tax_code_id:
-                account_tax = self._get_account_tax(inv_tax)
+                account_tax = tax_obj.get_account_tax(self.cr, self.uid, inv_tax.name)
                 if account_tax.exclude_from_registries:
                     self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
                         _('The tax %s is excluded from registries') % account_tax.name)
@@ -85,14 +65,14 @@ class Parser(report_sxw.rml_parse):
                 index += 1
             # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
             elif inv_tax.tax_code_id:
-                tax = self._get_main_tax(self._get_account_tax(inv_tax))
+                tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax))
                 if tax.exclude_from_registries:
                     self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
                         _('The tax %s is excluded from registries') % tax.name)
                     continue
                 for inv_tax_2 in invoice.tax_line:
                     if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
-                        base_tax = self._get_main_tax(self._get_account_tax(inv_tax_2))
+                        base_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax_2.name))
                         # Se hanno la stessa tassa
                         if base_tax.id == tax.id:
                             tax_item = {
