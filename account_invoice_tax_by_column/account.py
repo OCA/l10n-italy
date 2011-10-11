@@ -22,34 +22,43 @@
 ##############################################################################
 
 from osv import fields, osv
-import decimal_precision as dp
-from decimal import *
+
+class res_company(osv.osv):
+
+    _inherit = 'res.company'
+    
+    _columns = {
+        'vertical_comp' : fields.boolean('Tax Vertical Calculation'),
+    }
+    
+    _defaults = {
+        'vertical_comp': True
+    }
+
+res_company()
 
 class account_tax(osv.osv):
 
     _inherit = 'account.tax'
-    
-    _columns = {
-        'line_precision' : fields.boolean('Rounding Precision', help="Calculates floating point tax per line to simulate vertical calculation"),
-    }
-    
-    _defaults = {
-        'line_precision': True
-    }
 
-    def _compute(self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None, partner=None):
-        res = super(account_tax, self)._compute(cr, uid, taxes, price_unit, quantity, address_id, product, partner)
-        tax_pool=self.pool.get('account.tax')
-        total = 0.0
-        for r in res:
-            tax = tax_pool.browse(cr, uid, r['id'])
-            if tax.line_precision:
-                if r.get('balance',False):
-                    r['amount'] = r.get('balance', 0.0) * quantity - total
-                else:
-                    r['amount'] = r.get('amount', 0.0) * quantity
-                    total += r['amount']
-        return res
+    def get_main_tax(self, tax):
+        if not tax.parent_id:
+            return tax
+        else:
+            return self.get_main_tax(tax.parent_id)
 
+    def get_account_tax(self, cr, uid, inv_tax_name):
+        splitted_name = inv_tax_name.split(' - ')
+        if len(splitted_name) > 1:
+            tax_name = splitted_name[1]
+        else:
+            tax_name = splitted_name[0]
+        # cerco la tassa per nome, dopo averlo ottenuto dalla tassa in fattura
+        tax_ids = self.search(cr, uid, [('name', '=', tax_name)])
+        if not tax_ids:
+            raise osv.except_osv(_('Error'), _('The tax %s does not exist') % tax_name)
+        if len(tax_ids) > 1:
+            raise osv.except_osv(_('Error'), _('Too many taxes with name %s') % tax_name)
+        return self.browse(cr, uid, tax_ids[0])
 
 account_tax()

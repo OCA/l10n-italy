@@ -49,7 +49,7 @@
     'license': 'AGPL-3',
     "depends" : ['account', 'account_voucher'],
     "init_xml" : [],
-    "update_xml" : [],
+    "update_xml" : ['company_view.xml',],
     "demo_xml" : [],
     "active": False,
     "installable": True
