@@ -29,8 +29,8 @@ class account_invoice_tax(osv.osv):
     def compute(self, cr, uid, invoice_id, context=None):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
         user_obj = self.pool.get('res.users')
+        precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
         if user_obj.browse(cr, uid, uid).company_id.vertical_comp:
-            precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
             tax_obj = self.pool.get('account.tax')
             inv_obj = self.pool.get('account.invoice')
 
@@ -46,7 +46,8 @@ class account_invoice_tax(osv.osv):
                 for tax in line.invoice_line_tax_id:
                     if not tax_by_rate.get(tax['amount'], False):
                         tax_by_rate[tax['amount']] = 0
-                    tax_by_rate[tax['amount']] += (line.price_unit* (1-(line.discount or 0.0)/100.0))
+                    tax_by_rate[tax['amount']] += round((line.price_unit* (1-(line.discount or 0.0)/100.0))
+                        * line.quantity, precision)
             # compute the tax amount grouped by rate
             for rate in tax_by_rate:
                 tax_by_rate[rate] = round(rate * tax_by_rate[rate], precision)
