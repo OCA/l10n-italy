@@ -1,12 +1,13 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Copyright (C) 2010-2011 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#    
+#    Copyright (C) 2010 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -14,7 +15,7 @@
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
+#    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
@@ -76,11 +77,11 @@ class stock_picking(osv.osv):
     def create(self, cr, user, vals, context=None):
         if ('name' not in vals) or (vals.get('name')=='/'):
 	    if 'type' in vals.keys() and vals['type']=='out':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking_out')
+            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.out')
 	    elif 'type' in vals.keys() and vals['type']=='internal':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking_internal')
+            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.internal')
 	    else:
-		vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking_in')		
+		vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.in')		
 
         return super(stock_picking, self).create(cr, user, vals, context)
 

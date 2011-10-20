@@ -1,0 +1,185 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_vat_registries
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-08-19 21:40+0000\n"
+"PO-Revision-Date: 2011-08-19 21:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_vat_registries
+#: model:ir.module.module,description:l10n_it_vat_registries.module_meta_information
+msgid "Accounting reports for Italian localization - VAT Registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_tax_code
+msgid "Tax Code"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.report.xml,name:l10n_it_vat_registries.registro_iva_vendite_report_id
+msgid "Customer Invoices VAT Registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
+msgid "wizard.registro.iva"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:0
+msgid "Print"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,type:0
+msgid "Type"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: selection:wizard.registro.iva,type:0
+msgid "Supplier Invoices"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.report.xml,name:l10n_it_vat_registries.registro_iva_acquisti_report_id
+msgid "Supplier Invoices VAT Registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.act_window,name:l10n_it_vat_registries.action_registro_iva
+msgid "VAT Registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/invoice.py:116
+#, python-format
+msgid "The tax %s has no tax codes"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:account.tax,base_tax_ids:0
+#: field:account.tax.code,base_tax_ids:0
+msgid "Base Taxes"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/invoice.py:70
+#: code:addons/l10n_it_vat_registries/invoice.py:91
+#, python-format
+msgid "The tax %s is excluded from registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:0
+msgid "Tax Journal"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,date_to:0
+msgid "To date"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:0
+#: field:wizard.registro.iva,journal_ids:0
+msgid "Journals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: sql_constraint:account.tax:0
+msgid "The tax name must be unique!"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: help:wizard.registro.iva,journal_ids:0
+msgid "Select journals you want retrieve documents from"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.code,tax_ids:0
+msgid "Taxes"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: selection:wizard.registro.iva,type:0
+msgid "Corrispettivi"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:94
+#, python-format
+msgid "No documents found in the current selection"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.module.module,shortdesc:l10n_it_vat_registries.module_meta_information
+msgid "Italian Localisation - VAT Registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_registro_iva
+msgid "VAT Registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/invoice.py:52
+#, python-format
+msgid "Too many taxes with name %s"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: constraint:account.tax.code:0
+msgid "Error ! You can not create recursive accounts."
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:account.tax,exclude_from_registries:0
+msgid "Exclude from VAT registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: selection:wizard.registro.iva,type:0
+msgid "Customer Invoices"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.report.xml,name:l10n_it_vat_registries.registro_iva_corrispettivi_report_id
+msgid "Corrispettivi VAT Registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,date_from:0
+msgid "From date"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/invoice.py:50
+#, python-format
+msgid "The tax %s does not exist"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:0
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,message:0
+msgid "Message"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_tax
+msgid "account.tax"
+msgstr ""
+

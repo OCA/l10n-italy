@@ -1,0 +1,131 @@
+Manual tests on tax calculation (should write automated tests)
+
+=== FATTURA ===
+
+1) arrotondamento IVA ordinaria 20%
+fattura   VENDJ/2011/016  
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+somma   36,87   7,38
+
+  
+  
+IVA10   0   0
+IVA20   36,87   7,37
+
+  
+  
+
+  36,87   7,37
+L'IVA corretta è 7,37, e cioè il 20% del totale imponibile al 20%
+
+=== FATTURA ===
+
+2) arrotondamento IVA ordinaria e agevolata 4%
+fattura   VENDJ/2011/018  
+IVA4  12,33   0,49
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA4  12,33   0,49
+IVA4  12,33   0,49
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA20   
+  
+IVA20   
+  
+IVA20   
+  
+
+  
+  
+somma   110,73  16,23
+
+  
+  
+IVA4  36,99   1,48
+IVA20   73,74   14,75
+
+  
+  
+TOTALE IVA  110,73  16,23
+
+l'IVA viene correttamente ripartita fra IVA 4 ed IVA 20
+
+=== FATTURA ===
+
+arrotondamento IVA ordinaria 20% ed agevolata 10%
+
+fattura   VENDJ/2011/019  
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA20   12,29   2,46
+IVA10   10,56   1,06
+IVA10   10,56   1,06
+IVA10   10,56   1,06
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+IVA10   
+  
+
+  
+  
+somma   68,55   10,56
+
+  
+  
+IVA10   31,68   3,17
+IVA20   36,87   7,37
+
+  
+  
+TOTALE IVA  68,55   10,54
+
+L'IVA viene correttamente calcolata ed indicata secondo le aliquote
+
+=== FATTURA ===
+
+123.57 al 20 det 50%
+123.57 al 20 det 10%
+123.57 al 20
+100.03 al 20 det 50%
+
+== calcolo corretto ==
+
+123.57 * 3 + 100.03 = 470.74
+470.74 * 0.2 = 94.148 = 94.15
+
+== calcolo errato ==
+
+123.57×0.2 = 24.714 = 24.71
+100.03×0.2 = 20.006 = 20
+24.71×3+20 = 94.13
