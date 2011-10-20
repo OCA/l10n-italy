@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
+#    
+#    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>).
+#    All Rights Reserved 
+#    Thanks to Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
+#    it under the terms of the GNU Affero General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
+#    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU Affero General Public License
+#    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
@@ -45,6 +47,7 @@ class account_move_line(osv.osv):
                     WHERE id IN %s""", (tuple(ids),))
         r = dict(cr.fetchall())
         return r
+    
 
     def _to_pay_search(self, cr, uid, obj, name, args, context=None):
         if not args:
@@ -68,9 +71,9 @@ class account_move_line(osv.osv):
             WHERE account_id IN (select id
                 FROM account_account
                 WHERE type=%s AND active)
-            AND reconcile_id IS null
+            AND reconcile_id IS NOT NULL
             AND debit > 0
-            AND ''' + where + ' and ' + query), ('liquidity',)+sql_args )
+            AND ''' + where + ' and ' + query), ('receivable',)+sql_args )
         res = cr.fetchall()
         if not res:
             return [('id', '=', '0')]
@@ -82,13 +85,13 @@ class account_move_line(osv.osv):
         account according to the payment type.  This work using one of
         the bank of the partner defined on the invoice eventually
         associated to the line.
-        Return the first suitable bank for the corresponding partner.
+        Return the last suitable bank for the corresponding partner.
         """
-        riba_mode_obj = self.pool.get('riba.mode')
+        riba_line_obj = self.pool.get('riba.line')
         line2bank = {}
         if not ids:
             return {}
-        bank_type = riba_mode_obj.suitable_bank_types(cr, uid, payment_type,
+        bank_type = riba_line_obj.s_bank_types(cr, uid, payment_type,
                 context=context)
         for line in self.browse(cr, uid, ids, context=context):
             line2bank[line.id] = False
@@ -102,11 +105,43 @@ class account_move_line(osv.osv):
                         if bank.state in bank_type:
                             line2bank[line.id] = bank.id
                             break
-                if line.id not in line2bank and line.partner_id.bank_ids:
-                    line2bank[line.id] = line.partner_id.bank_ids[0].id
+                if not line2bank[line.id] and line.partner_id.bank_ids:
+                    line2bank[line.id] = line.partner_id.bank_ids[-1].id
             else:
                 raise osv.except_osv(_('Error !'), _('No partner defined on entry line'))
         return line2bank
+
+    def line2iban(self, cr, uid, ids, payment_type=None, context=None):
+        """
+        Try to return for each Ledger Posting line a corresponding code
+        iban to the payment type.  This work using one of
+        the bank of the partner defined on the invoice eventually
+        associated to the line.
+        Return the last suitable bank for the corresponding partner.
+        """
+        riba_line_obj = self.pool.get('riba.line')
+        line2iban = {}
+        if not ids:
+            return {}
+        bank_type = riba_line_obj.s_bank_types(cr, uid, payment_type,
+                context=context)
+        for line in self.browse(cr, uid, ids, context=context):
+            line2iban[line.id] = False
+            if line.invoice and line.invoice.partner_bank_id:
+                line2iban[line.id] = line.invoice.partner_bank_id.id.iban
+            elif line.partner_id:
+                if not line.partner_id.bank_ids:
+                    line2iban[line.id] = False
+                else:
+                    for bank in line.partner_id.bank_ids:
+                        if bank.state in bank_type:
+                            line2iban[line.id] = bank.id.iban
+                            break
+                if not line2iban[line.id] and line.partner_id.bank_ids:
+                    line2iban[line.id] = line.partner_id.bank_ids[-1].iban
+            else:
+                raise osv.except_osv(_('Error !'), _('No partner defined on entry line'))
+        return line2iban
 
     _columns = {
         'amount_to_pay': fields.function(amount_to_pay, method=True,

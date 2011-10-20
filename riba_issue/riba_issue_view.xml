@@ -2,6 +2,54 @@
 <openerp>
     <data>
 
+        <!-- 
+        Create a new field based on account.view_payment_term_from
+        base is the module which contains the code of the account view form
+        view_payment_term_from is the xml ID of the view in addons/account/account_view.xml
+        -->
+        <record id="view_riba_add_text_field" model="ir.ui.view">
+            <field name="name">account.riba.add.text.field</field>
+            <field name="model">account.payment.term</field>
+	    <field name="inherit_id" ref="account.view_payment_term_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="active" position="after">
+                    <field name="riba"/>
+                </field>
+             </field>
+        </record>
+        <!-- 
+        Create a new field based on base.view_parter_from
+        base is the module which contains the code of the account view form
+        view_parter_form is the xml ID of the view in addons/base/res/bank_view.xml
+        -->
+        <record id="view_res_bank_add_text_field" model="ir.ui.view">
+            <field name="name">res.bank.add.text.field</field>
+            <field name="model">res.bank</field>
+	    <field name="inherit_id" ref="base.view_res_bank_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="bic" position="after">
+                    <field name="banca_estera"/>
+                 </field>
+             </field>
+        </record>
+
+       <!-- view for res.partner for SIA Code-->
+        <record id="view_partner_sia_form" model="ir.ui.view">
+            <field name="name">res.partner.form.sia.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="acc_number" position="after">
+                    <newline/>
+                    <field name="codice_sia"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+
         <!-- View used in the wizard -->
         <record id="view_move_line_form" model="ir.ui.view">
             <field name="name">account.move.line.form.inherit</field>
@@ -39,7 +87,10 @@
             </field>
         </record>
 
+        <!-- Icon Menu Principale -->
         <menuitem name="RiBa" parent="account.menu_finance" id="menu_riba" icon="terp-folder-green" sequence="8"/>
+
+        <!-- Vista RiBa Mode (Banca Aziendale di Presentazione Pagamenti Riba) -->
 
         <record id="view_riba_mode_search" model="ir.ui.view">
             <field name="name">riba.mode.search</field>
@@ -79,7 +130,7 @@
                 <form string="Riba Mode">
                     <field name="name" select="1"/>
                     <field name="journal" select="1"/>
-                    <field name="bank_id" domain="[('partner_id','=',partner_id)]"  />
+                    <field name="bank_id" domain="[('partner_id','=',partner_id)]"/>
                     <field name="company_id" select="1" widget='selection' groups="base.group_multi_company" on_change="onchange_company_id(company_id)"/>
                     <field name="partner_id" select="1" widget='selection' invisible="1"/>
                 </form>
@@ -93,7 +144,10 @@
             <field name="search_view_id" ref="view_riba_mode_search"/>
         </record>
 
-        <menuitem action="action_riba_mode_form" id="menu_action_riba_mode_form" parent="account.menu_configuration_misc"/> -->
+        <menuitem action="action_riba_mode_form" id="menu_action_riba_mode_form" parent="account.menu_configuration_misc"/> 
+
+
+        <!-- Vista RiBa Order (Raggrupamento Pagamenti Riba Lines) -->
 
 <record id="view_riba_order_form" model="ir.ui.view">
             <field name="name">riba.order.form</field>
@@ -103,16 +157,14 @@
                 <form string="Riba Order">
                     <group col="6" colspan="4">
                       <field name="reference"/>
-
                       <field name="mode" widget='selection'/>
-                      <button colspan="2" name="%(action_riba_order_create)d" string="Select Riba to Issue" type="action" attrs="{'invisible':[('state','=','done')]}" icon="gtk-find"/>
-                      <field name="company_id" widget='selection' groups="base.group_multi_company"/> 
+                      <button colspan="2" name="%(action_riba_order_create)d" string="Select Riba to Issue" type="action" attrs="{'invisible':[('state','=','done')]}" icon="gtk-find"/> 
                     </group>
                     <field name="line_ids" colspan="4" widget="one2many_list" nolabel="1" default_get="{'order_id': active_id or False}" >
                         <form string="Riba Line">
                             <notebook>
                                 <page string="Riba">
-                                    <field name="move_line_id" on_change="onchange_move_line(move_line_id,parent.mode,parent.date_prefered,parent.date_scheduled,currency,company_currency)" select="1" domain="[('debit', '>',0),('amount_to_pay','>',0)] "/>
+                                    <field name="move_line_id" on_change="onchange_move_line(move_line_id,parent.mode,parent.date_prefered,parent.date_scheduled,currency,company_currency)" select="1" domain="[('reconcile_id','=', True),('debit', '>',0),('amount_to_pay','>',0)] "/>
                                     <separator colspan="4" string="Transaction Information"/>
                                     <field name="date"/>
                                     <group colspan="2">
@@ -149,7 +201,7 @@
                             <field name="ml_inv_ref" />
                             <field name="partner_id" select="1"/>
                             <field name="bank_id" domain="[('partner_id', '=', partner_id)]"/>
-                            <field name="ml_maturity_date"/>
+                            <field name="ml_date_created"/>
                             <field name="date"/>
                             <field name="amount_currency" string="Amount"/>
                             <field name="currency"/>
@@ -176,7 +228,7 @@
             <field name="type">tree</field>
             <field eval="4" name="priority"/>
             <field name="arch" type="xml">
-                <tree colors="blue:state in ('draft');gray:state in ('cancel','done');black:state in ('open')" string="riba order">
+                <tree colors="blue:state in ('draft');gray:state in ('cancel','done');black:state in ('open')" string="Riba Order">
                     <field name="reference"/>
                     <field name="mode"/>
                     <field name="user_id"/>
@@ -197,7 +249,7 @@
             <field name="model">riba.order</field>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <search string="Search">
+                <search string="Search Riba Orders">
                     <group col="8" colspan="4">
                         <filter string="Draft" domain="[('state','=','draft')]" icon="terp-document-new"/>
                         <filter string="Confirmed" domain="[('state','=','open')]" icon="terp-camera_test"/>
@@ -227,14 +279,16 @@
         </record>
 
         <menuitem name="RiBa Issue" action="action_riba_order_tree" id="menu_action_riba_order_form" parent="menu_riba" sequence="3"/>
+        <menuitem action="action_invoice_customer_tree1" id="menu_action_invoice_customer_tree1" parent="menu_riba" sequence="2"/>
 
         <record id="action_riba_order_tree_new" model="ir.actions.act_window">
-            <field name="name">New riba Order</field>
+            <field name="name">New Riba Order</field>
             <field name="res_model">riba.order</field>
             <field name="view_type">form</field>
             <field name="view_mode">form,tree</field>
         </record>
 
+        <!-- Vista RiBa Lines (Riga Pagamento Riba) -->
         <record id="view_riba_line_form" model="ir.ui.view">
             <field name="name">riba Line</field>
             <field name="model">riba.line</field>
@@ -248,13 +302,13 @@
                             <separator colspan="4" string="Transaction Information"/>
                             <field name="date"/>
                             <group colspan="2">
-                                <field name="amount_currency" on_change="onchange_amount(amount_currency,currency,comapny_currency)"/>
+                                <field name="amount_currency" on_change="onchange_amount(amount_currency,currency,company_currency)"/>
                                 <field name="currency" nolabel="1"/>
                             </group>
                             <field name="partner_id" on_change="onchange_partner(partner_id, False)" select="1"/>
                             <field domain="[('partner_id','=',partner_id)]" name="bank_id"/>
                             <separator colspan="2" string="Owner Account"/>
-                            <separator colspan="2" string="Desitination Account"/>
+                            <separator colspan="2" string="Destination Account"/>
                             <field colspan="2" name="info_owner" nolabel="1"/>
                             <field colspan="2" name="info_partner" nolabel="1"/>
 
@@ -287,6 +341,7 @@
                 <tree string="Riba Line">
                     <field name="order_id"/>
                     <field name="ml_inv_ref" />
+                    <field name ="ml_date_created" />
                     <field name="ml_maturity_date"/>
                     <field name="partner_id" select="1"/>
                     <field name="amount" sum="Amount Total"/>
@@ -300,27 +355,11 @@
             </field>
         </record>
         <record id="action_riba_line_form" model="ir.actions.act_window">
-            <field name="name">riba Line</field>
+            <field name="name">Riba Line</field>
             <field name="res_model">riba.line</field>
             <field name="view_type">tree</field>
             <field name="view_mode">form,tree</field>
         </record>
-
-     <record id="riba_bank_statement_form" model="ir.ui.view">
-            <field name="name">account.bank.statement.form.inherit</field>
-            <field name="model">account.bank.statement</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.view_bank_statement_form"/>
-            <field name="arch" type="xml">
-                <field name="journal_id" position="after">
-                    <button name="%(action_riba_issue_populate_statement_confirm)d" attrs="{'invisible':[('state','=','confirm')]}" string="Import Riba Lines" type="action" icon="gtk-execute"/>
-                </field>
-            </field>
-        </record>
-
-        <act_window domain="[('move_line_id.move_id.id', '=', move_id)]" id="act_account_invoice_2_riba_line" name="Riba Lines" res_model="riba.line" src_model="account.invoice"/> -->
-
-              
 
     </data>
 </openerp>

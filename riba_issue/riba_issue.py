@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    
+#    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>).
+#    All Rights Reserved 
+#    Thanks to Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
+#    it under the terms of the GNU Affero General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
+#    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU Affero General Public License
+#    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
@@ -23,16 +24,20 @@ import time
 
 from osv import osv, fields
 import netsvc
+from tools.translate import _
+import datetime
+
+
 
 class riba_mode(osv.osv):
     _name= 'riba.mode'
-    _description= 'Bank Presentacion'
+    _description= 'Presentacion Bank'
     _columns = {
-        'name': fields.char('Banca Presentazione', size=64, required=True, help='Banca di Presentazione'),
-        'bank_id': fields.many2one('res.partner.bank', "Bank account",
-            required=True,help='Bank Account for the Presentacion RiBa'),
+        'name': fields.char('Bank of Presentacion', size=64, required=True, help='Banca di Presentazione'),
+        'bank_id': fields.many2one('res.partner.bank', "Bank Account for the Riba Mode",
+            required=True,help='Presentacion bank account for the RiBa'),
         'journal': fields.many2one('account.journal', 'Journal', required=True,
-            domain=[('type', 'in', ('bank','cash'))], help='Bank or Cash Journal for the Payment RiBa'),
+            domain=[('type', '=', 'bank')], help='Bank Journal for the Mode RiBa'),
         'company_id': fields.many2one('res.company', 'Company',required=True),
         'partner_id':fields.related('company_id','partner_id',type='many2one',relation='res.partner',string='Partner',store=True,),
         
@@ -44,6 +49,7 @@ class riba_mode(osv.osv):
     def suitable_bank_types(self, cr, uid, payment_code=None, context=None):
         """Return the codes of the bank type that are suitable
         for the given payment type code"""
+        """ID's Creditor Banks"""
         if not payment_code:
             return []
         cr.execute(""" SELECT pb.state
@@ -70,7 +76,7 @@ class riba_order(osv.osv):
     def get_wizard(self, type):
         logger = netsvc.Logger()
         logger.notifyChannel("warning", netsvc.LOG_WARNING,
-                "No wizard found for the payment type '%s'." % type)
+                "No wizard found for the RiBa type '%s'." % type)
         return None
 
     def _total(self, cursor, user, ids, name, args, context=None):
@@ -182,7 +188,7 @@ class riba_line(osv.osv):
 
     def info_owner(self, cr, uid, ids, name=None, args=None, context=None):
         if not ids: return {}
-        partner_zip_obj = self.pool.get('res.partner.zip')
+        partner_address_obj = self.pool.get('res.partner.address')
 
         result = {}
         info=''
@@ -195,7 +201,7 @@ class riba_line(osv.osv):
                         st = ads.street and ads.street or ''
                         st1 = ads.street2 and ads.street2 or ''
                         if 'zip_id' in ads:
-                            zip_city = ads.zip_id and partner_zip_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
+                            zip_city = ads.zip_id and partner_address_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
                         else:
                             zip = ads.zip and ads.zip or ''
                             city = ads.city and ads.city or  ''
@@ -208,7 +214,7 @@ class riba_line(osv.osv):
 
     def info_partner(self, cr, uid, ids, name=None, args=None, context=None):
         if not ids: return {}
-        partner_zip_obj = self.pool.get('res.partner.zip')
+        partner_address_obj = self.pool.get('res.partner.address')
         result = {}
         info = ''
 
@@ -223,7 +229,7 @@ class riba_line(osv.osv):
                         st = ads.street and ads.street or ''
                         st1 = ads.street2 and ads.street2 or ''
                         if 'zip_id' in ads:
-                            zip_city = ads.zip_id and partner_zip_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
+                            zip_city = ads.zip_id and partner_address_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
                         else:
                             zip = ads.zip and ads.zip or ''
                             city = ads.city and ads.city or  ''
@@ -233,6 +239,19 @@ class riba_line(osv.osv):
                         result[line.id] = info
                         break
         return result
+
+
+    def s_bank_types(self, cr, uid, payment_code=None, context=None):
+        """Return the codes of the bank type that are suitable
+        for the given bank payment of riba line"""
+        """ID's Debitor's Banks"""
+        if not payment_code:
+            return []
+        cr.execute(""" SELECT pb.name
+            FROM res_partner_bank pb
+            JOIN riba_line rl ON (rl.bank_id = pb.id)
+            WHERE rl.id = %s """, [payment_code])
+        return [x[0] for x in cr.fetchall()]
 
     def select_by_name(self, cr, uid, ids, name, args, context=None):
         if not ids: return {}
@@ -331,14 +350,14 @@ class riba_line(osv.osv):
 
     _columns = {
         'name': fields.char('Your Reference', size=64),
-        'communication': fields.char('Communication', size=64, required=True, help="Used as the message between ordering customer and current company. Depicts 'What do you want to say to the recipient about this order ?'"),
+        'communication': fields.char('Communication', size=64, required=True, help="Used as the message between ordering customer and current company. Depicts 'What do you want to say to the recipient about this order?'"),
         'communication2': fields.char('Communication 2', size=64, help='The successor message of Communication.'),
-        'move_line_id': fields.many2one('account.move.line', 'Entry line', domain=[('account_id.type', '=', 'liquidity')], help='This Entry Line will be referred for the information of the ordering customer.'),
+        'move_line_id': fields.many2one('account.move.line', 'Entry line', domain=[('account_id.type', '=', 'receivable'), ('account_id.type', '=', 'receivable')], help='This Entry Line will be referred for the information of the ordering customer.'),
         'amount_currency': fields.float('Amount in Partner Currency', digits=(16, 2),
             required=True, help='Payment amount in the partner currency'),
         'currency': fields.many2one('res.currency','Partner Currency'),
         'company_currency': fields.many2one('res.currency', 'Company Currency', readonly=True),
-        'bank_id': fields.many2one('res.partner.bank', 'Destination Bank account'),
+        'bank_id': fields.many2one('res.partner.bank', 'Debitor Bank'),
         'order_id': fields.many2one('riba.order', 'Order', required=True,
             ondelete='cascade', select=True),
         'partner_id': fields.many2one('res.partner', string="Partner", required=True, help='The Ordering Customer'),
@@ -350,11 +369,10 @@ class riba_line(osv.osv):
         'ml_maturity_date': fields.function(_get_ml_maturity_date, method=True, type='date', string='Due Date'),
         'ml_inv_ref': fields.function(_get_ml_inv_ref, method=True, type='many2one', relation='account.invoice', string='Invoice Ref.'),
         'info_owner': fields.function(info_owner, string="Owner Account", method=True, type="text", help='Address of the Main Partner'),
-        'info_partner': fields.function(info_partner, string="Destination Account", method=True, type="text", help='Address of the Ordering Customer.'),
+        'info_partner': fields.function(info_partner, string="Destination Account", method=True, type="text", help='Address of the Customer.'),
         'date': fields.date('Payment Date', help="If no payment date is specified, the bank will treat this riba line directly"),
         'create_date': fields.datetime('Created', readonly=True),
         'state': fields.selection([('normal','Free'), ('structured','Structured')], 'Communication Type', required=True),
-        'bank_statement_line_id': fields.many2one('account.bank.statement.line', 'Bank statement line'),
         'company_id': fields.related('order_id', 'company_id', type='many2one', relation='res.company', string='Company', store=True, readonly=True),
     }
     _defaults = {
@@ -419,9 +437,8 @@ class riba_line(osv.osv):
 
     def onchange_partner(self, cr, uid, ids, partner_id, payment_type, context=None):
         data = {}
-        partner_zip_obj = self.pool.get('res.partner.zip')
+        partner_address_obj = self.pool.get('res.partner.address')
         partner_obj = self.pool.get('res.partner')
-        riba_mode_obj = self.pool.get('riba.mode')
         data['info_partner'] = data['bank_id'] = False
 
         if partner_id:
@@ -435,7 +452,7 @@ class riba_line(osv.osv):
                         st1 = ads.street2 and ads.street2 or ''
 
                         if 'zip_id' in ads:
-                            zip_city = ads.zip_id and partner_zip_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
+                            zip_city = ads.zip_id and partner_address_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
                         else:
                             zip = ads.zip and ads.zip or ''
                             city = ads.city and ads.city or  ''
@@ -447,7 +464,7 @@ class riba_line(osv.osv):
                         data['info_partner'] = info
 
             if part_obj.bank_ids and payment_type:
-                bank_type = riba_mode_obj.suitable_bank_types(cr, uid, payment_type, context=context)
+                bank_type = self.s_bank_types(cr, uid, payment_type, context=context)
                 for bank in part_obj.bank_ids:
                     if bank.state in bank_type:
                         data['bank_id'] = bank.id
@@ -463,5 +480,42 @@ class riba_line(osv.osv):
         return res
 
 riba_line()
+
+class account_payment_term(osv.osv):
+    # This OpenERP object inherits from account_payment_term 
+    # to add a new boolean field
+    _inherit = 'account.payment.term'
+    _columns = {
+        'riba' : fields.boolean('Riba'),
+    }
+    _defaults = {
+        'riba': 0,
+    }
+# create an instance of account_payment_term_ 
+# to migrate the objects in the system
+account_payment_term()
+
+class res_bank_add_field(osv.osv):
+    # This OpenERP object inherits from account_payment_term 
+    # to add a new boolean field
+    _inherit = 'res.bank'
+    _columns = {
+        'banca_estera' : fields.boolean('Banca Estera'),
+    }
+# create an instance of account_payment_term_ 
+# to migrate the objects in the system
+res_bank_add_field()
+
+class res_partner_bank_add(osv.osv):
+    # This OpenERP object inherits from account_payment_term 
+    # to add a new boolean field
+    _inherit = "res.partner.bank"
+    _columns = {
+        'codice_sia' : fields.char('Codice SIA', size=5, help="Identification Code of the Company in the System Interbank")    
+    }
+
+# create an instance of account_payment_term_ 
+# to migrate the objects in the system
+res_partner_bank_add()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

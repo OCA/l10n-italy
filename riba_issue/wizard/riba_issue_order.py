@@ -1,27 +1,28 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    
+#    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>).
+#    All Rights Reserved 
+#    Thanks to Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
+#    it under the terms of the GNU Affero General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
+#    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU Affero General Public License
+#    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
 import time
 from lxml import etree
-
+from tools.translate import _
 from osv import osv, fields
 
 class riba_order_create(osv.osv_memory):
@@ -70,7 +71,8 @@ class riba_order_create(osv.osv_memory):
         riba = order_obj.browse(cr, uid, context['active_id'], context=context)
         t = None
         line2bank = line_obj.line2bank(cr, uid, line_ids, t, context)
-
+        line2iban = line_obj.line2iban(cr, uid, line_ids, t, context)
+        
         ## Finally populate the current riba with new lines:
         for line in line_obj.browse(cr, uid, line_ids, context=context):
             if riba.date_prefered == "now":
@@ -80,6 +82,11 @@ class riba_order_create(osv.osv_memory):
                 date_to_pay = line.date_maturity
             elif riba.date_prefered == 'fixed':
                 date_to_pay = riba.date_scheduled
+            iban = []
+            if line2iban.get(line.id):
+                iban = line2iban.get(line.id)
+            else:
+                raise osv.except_osv('Error', _('For one o more partner(s) NO has been specified IBAN '))        
             riba_obj.create(cr, uid,{
                 'move_line_id': line.id,
                 'amount_currency': line.amount_to_pay,
@@ -95,13 +102,14 @@ class riba_order_create(osv.osv_memory):
     def search_entries(self, cr, uid, ids, context=None):
         line_obj = self.pool.get('account.move.line')
         mod_obj = self.pool.get('ir.model.data')
+        invoice_obj = self.pool.get('account.invoice')
         if context is None:
             context = {}
         data = self.browse(cr, uid, ids, context=context)[0]
+        move_id = invoice_obj.search_move_id_riba(cr, uid, ids, context)       
         search_due_date = data.duedate
-
         # Search for move line to pay:
-        domain = [('account_id.type', '=', 'liquidity'), ('amount_to_pay', '>', 0)]
+        domain = [('account_id.type', '=', 'receivable'), ('amount_to_pay', '>', 0), ('move_id', 'in', move_id)]
         domain = domain + ['|', ('date_maturity', '<=', search_due_date), ('date_maturity', '=', False)]
         line_ids = line_obj.search(cr, uid, domain, context=context)
         context.update({'line_ids': line_ids})
