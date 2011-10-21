@@ -31,6 +31,7 @@ class Parser(report_sxw.rml_parse):
 
     logger = netsvc.Logger()
 
+    # TODO verificare multi valuta
     def _get_tax_lines(self, invoice):
         res=[]
         tax_obj = self.pool.get('account.tax')

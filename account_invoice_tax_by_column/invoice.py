@@ -26,6 +26,28 @@ from osv import fields, osv
 class account_invoice_tax(osv.osv):
     _inherit = "account.invoice.tax"
 
+    def compute_taxes_by_rate(self, cr, uid, lines=[], precision=2):
+        # lines has the form [{'price_unit': 100, 'discount': 0, 'quantity': 1, 'taxes': [account.tax]}]
+        # returns a dictionary like {0.2: 20}
+
+        tax_by_rate = {}
+        # collect the base amount grouped by tax rate
+        for line in lines:
+            for tax in line['taxes']:
+                # TODO manage include_base_amount, applicable taxes and multi currency
+                if not tax_by_rate.get(tax['amount'], False):
+                    tax_by_rate[tax['amount']] = 0
+                price_unit=line['price_unit']
+                if tax['price_include']:
+                    price_unit = price_unit / (1 + tax['amount'])
+                tax_by_rate[tax['amount']] += round((price_unit* (1-(line['discount'] or 0.0)/100.0))
+                    * line['quantity'], precision)
+        # compute the tax amount grouped by rate
+        for rate in tax_by_rate:
+            tax_by_rate[rate] = round(rate * tax_by_rate[rate], precision)
+
+        return tax_by_rate
+
     def compute(self, cr, uid, invoice_id, context=None):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
         user_obj = self.pool.get('res.users')
@@ -40,17 +62,14 @@ class account_invoice_tax(osv.osv):
                 inv_tax['tax_rate'] = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name'])).amount
                 inv_tax['tax_id'] = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name'])).id
 
-            tax_by_rate = {}
-            # collect the base amount grouped by tax rate
+            lines = []
             for line in inv.invoice_line:
+                line_dic = {'price_unit': line.price_unit, 'discount': line.discount, 'quantity': line.quantity, 'taxes': []}
                 for tax in line.invoice_line_tax_id:
-                    if not tax_by_rate.get(tax['amount'], False):
-                        tax_by_rate[tax['amount']] = 0
-                    tax_by_rate[tax['amount']] += round((line.price_unit* (1-(line.discount or 0.0)/100.0))
-                        * line.quantity, precision)
-            # compute the tax amount grouped by rate
-            for rate in tax_by_rate:
-                tax_by_rate[rate] = round(rate * tax_by_rate[rate], precision)
+                    line_dic['taxes'].append(tax)
+                lines.append(line_dic)
+
+            tax_by_rate = self.compute_taxes_by_rate(cr, uid, lines=lines, precision=precision)
 
             # compute the tax amount of tax_grouped (old wrong amount), grouped by tax rate
             wrong_tax_by_rate = {}
