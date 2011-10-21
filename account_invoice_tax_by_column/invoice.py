@@ -52,13 +52,14 @@ class account_invoice_tax(osv.osv):
             for rate in tax_by_rate:
                 tax_by_rate[rate] = round(rate * tax_by_rate[rate], precision)
 
-            # compute the tax amount of tax_grouped, grouped by tax rate
+            # compute the tax amount of tax_grouped (old wrong amount), grouped by tax rate
             wrong_tax_by_rate = {}
             for inv_tax in tax_grouped.values():
                 if not wrong_tax_by_rate.get(inv_tax['tax_rate'], False):
                     wrong_tax_by_rate[inv_tax['tax_rate']] = 0
                 wrong_tax_by_rate[inv_tax['tax_rate']] += inv_tax['tax_amount']
 
+            # compute the difference between correct and wrong amount
             difference_by_rate = {}
             for rate in tax_by_rate:
                 difference_by_rate[rate] = tax_by_rate[rate] - wrong_tax_by_rate[rate]
