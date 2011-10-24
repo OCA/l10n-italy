@@ -21,6 +21,7 @@
 ##############################################################################
 
 from osv import fields, osv
+from tools.translate import _
 
 class res_company(osv.osv):
 

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Project-Id-Version: OpenERP Server 6.0.3\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-08-22 08:08+0000\n"
-"PO-Revision-Date: 2011-08-22 08:08+0000\n"
+"POT-Creation-Date: 2011-10-24 12:13+0000\n"
+"PO-Revision-Date: 2011-10-24 12:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,38 @@ msgstr ""
 #. module: account_invoice_tax_by_column
 #: model:ir.model,name:account_invoice_tax_by_column.model_account_invoice_tax
 msgid "Invoice Tax"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: code:addons/account_invoice_tax_by_column/account.py:61
+#, python-format
+msgid "Too many taxes with name %s"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: code:addons/account_invoice_tax_by_column/account.py:59
+#, python-format
+msgid "The tax %s does not exist"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: field:res.company,vertical_comp:0
+msgid "Tax Vertical Calculation"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: model:ir.model,name:account_invoice_tax_by_column.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: model:ir.module.module,shortdesc:account_invoice_tax_by_column.module_meta_information
+msgid "Account Invoice Tax - Computation By Column"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: constraint:res.company:0
+msgid "Error! You can not create recursive companies."
 msgstr ""
 
 #. module: account_invoice_tax_by_column
@@ -46,22 +78,19 @@ msgid "    \n"
 msgstr ""
 
 #. module: account_invoice_tax_by_column
-#: help:account.tax,line_precision:0
-msgid "Calculates floating point tax per line to simulate vertical calculation"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: field:account.tax,line_precision:0
-msgid "Rounding Precision"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: model:ir.module.module,shortdesc:account_invoice_tax_by_column.module_meta_information
-msgid "Account Invoice Tax - Computation By Column"
+#: code:addons/account_invoice_tax_by_column/account.py:59
+#: code:addons/account_invoice_tax_by_column/account.py:61
+#, python-format
+msgid "Error"
 msgstr ""
 
 #. module: account_invoice_tax_by_column
 #: model:ir.model,name:account_invoice_tax_by_column.model_account_tax
 msgid "account.tax"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: sql_constraint:account.tax:0
+msgid "The tax name must be unique!"
 msgstr ""
 
