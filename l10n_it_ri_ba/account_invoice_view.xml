@@ -17,18 +17,6 @@
             </field>
         </record>
 
-        <record id="invoice_form" model="ir.ui.view">
-            <field name="name">account.invoice.form.inherit</field>
-            <field name="model">account.invoice</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.invoice_form"/>
-            <field name="arch" type="xml">
-                <field name="partner_bank_id" position="before">
-                    <field name="amount_to_pay"/>
-                </field>
-            </field>
-        </record>
-
         <record id="action_invoice_customer_tree" model="ir.actions.act_window">
             <field name="name">Invoices</field>
             <field name="res_model">account.invoice</field>

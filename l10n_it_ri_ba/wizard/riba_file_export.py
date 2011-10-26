@@ -3,9 +3,7 @@
 #    
 #    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>).
 #    All Rights Reserved 
-#    Thanks to Antonio de Vincentiis http://www.devincentiis.it/ ,
-#    GAzie http://gazie.sourceforge.net/
-#    and Cecchi s.r.l http://www.cecchi.com/
+#    Thanks to Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
