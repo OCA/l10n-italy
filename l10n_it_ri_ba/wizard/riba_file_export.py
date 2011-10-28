@@ -170,7 +170,7 @@ class riba_file_export(osv.osv_memory):
                creditor_address[0].street,
                creditor_address[0].zip + ' ' + creditor_city,
                order_obj.mode.company_id.partner_id.ref,
-               order_obj.company_id.partner_id.vat[2:] or order_obj.company_id.partner_id.fiscalcode,
+               order_obj.company_id.partner_id.vat and order_obj.company_id.partner_id.vat[2:] or order_obj.company_id.partner_id.fiscalcode,
                ]
         arrayRiba = []
         for line in order_obj.line_ids:
@@ -202,7 +202,7 @@ class riba_file_export(osv.osv_memory):
                         due_date,
                         line.amount_currency,
                         line.partner_id.name,
-                        line.partner_id.vat[2:] or line.partner_id.fiscalcode,
+                        line.partner_id.vat and line.partner_id.vat[2:] or line.partner_id.fiscalcode,
                         debitor_address[0].street or '',
                         debitor_address[0].zip or '',
                         debitor_city,
