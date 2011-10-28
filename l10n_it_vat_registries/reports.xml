@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <openerp>
-    <data>
+    <data noupdate="1">
         <record id="ir_header_webkit_vat_registries" model="ir.header_webkit">
             <field name="orientation">Landscape</field>
             <field name="format">A4</field>
