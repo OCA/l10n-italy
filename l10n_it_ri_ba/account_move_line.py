@@ -129,14 +129,14 @@ class account_move_line(osv.osv):
         for line in self.browse(cr, uid, ids, context=context):
             line2iban[line.id] = False
             if line.invoice and line.invoice.partner_bank_id:
-                line2iban[line.id] = line.invoice.partner_bank_id.id.iban
+                line2iban[line.id] = line.invoice.partner_bank_id.iban
             elif line.partner_id:
                 if not line.partner_id.bank_ids:
                     line2iban[line.id] = False
                 else:
                     for bank in line.partner_id.bank_ids:
                         if bank.state in bank_type:
-                            line2iban[line.id] = bank.id.iban
+                            line2iban[line.id] = bank.iban
                             break
                 if not line2iban[line.id] and line.partner_id.bank_ids:
                     line2iban[line.id] = line.partner_id.bank_ids[-1].iban
