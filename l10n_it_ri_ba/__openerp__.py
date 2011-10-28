@@ -35,7 +35,7 @@ This module provides :
 * a basic mechanism to easily plug various automated issue.
     """,
     'images': [],
-    'depends': ['account','account_voucher'],
+    'depends': ['account','account_voucher', 'base_iban'],
     'init_xml': [],
     'update_xml': [
                    'security/riba_issue_security.xml',
