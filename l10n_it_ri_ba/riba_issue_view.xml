@@ -164,7 +164,7 @@
                         <form string="Riba Line">
                             <notebook>
                                 <page string="Riba">
-                                    <field name="move_line_id" on_change="onchange_move_line(move_line_id,parent.mode,parent.date_prefered,parent.date_scheduled,currency,company_currency)" select="1" domain="[('reconcile_id','=', True),('debit', '>',0),('amount_to_pay','>',0)] "/>
+                                    <field name="move_line_id" on_change="onchange_move_line(move_line_id,parent.mode,parent.date_prefered,parent.date_scheduled,currency,company_currency)" select="1" domain="[('debit', '>',0),('amount_to_pay','>',0)]"/>
                                     <separator colspan="4" string="Transaction Information"/>
                                     <field name="date"/>
                                     <group colspan="2">

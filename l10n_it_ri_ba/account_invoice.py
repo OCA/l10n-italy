@@ -30,7 +30,7 @@ class Invoice(osv.osv):
     _inherit = 'account.invoice'
 
     def search_move_id_riba(self, cr, uid, ids, context):
-       """Invoices on Payments"""
+       """Invoices on Payments_Term Riba True"""
        cr.execute(""" SELECT ai.move_id
           FROM account_invoice ai
           INNER JOIN account_payment_term pt ON (ai.payment_term = pt.id)
