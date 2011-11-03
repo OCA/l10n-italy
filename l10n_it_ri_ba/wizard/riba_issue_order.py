@@ -31,8 +31,8 @@ class riba_order_create(osv.osv_memory):
     Create a riba object with lines corresponding to the account move line
     to pay according to the date and the mode provided by the user.
     Hypothesis:
-    - Small number of non-reconcilied move line, riba mode and bank account type,
-    - Big number of partner and bank account.
+    - Riba mode and bank account type,
+    - Iban number of partner and bank account.
 
     If a type is given, unsuitable account Entry lines are ignored.
     """
@@ -71,8 +71,8 @@ class riba_order_create(osv.osv_memory):
 
         riba = order_obj.browse(cr, uid, context['active_id'], context=context)
         t = None
-        line2bank = line_obj.line2bank(cr, uid, line_ids, t, context)
-        line2iban = line_obj.line2iban(cr, uid, line_ids, t, context)
+        line2bank = line_obj.line_2_bank(cr, uid, line_ids, t, context)
+        line2iban = line_obj.line_2_iban(cr, uid, line_ids, t, context)
         
         ## Finally populate the current riba with new lines:
         for line in line_obj.browse(cr, uid, line_ids, context=context):
@@ -90,7 +90,7 @@ class riba_order_create(osv.osv_memory):
                 raise osv.except_osv('Error', _('For one o more partner(s) NO has been specified IBAN '))        
             riba_obj.create(cr, uid,{
                 'move_line_id': line.id,
-                'amount_currency': line.amount_to_pay,
+                'amount_currency': line.riba_amount_to_pay,
                 'bank_id': line2bank.get(line.id),
                 'order_id': riba.id,
                 'partner_id': line.partner_id and line.partner_id.id or False,
@@ -110,7 +110,7 @@ class riba_order_create(osv.osv_memory):
         move_id = invoice_obj.search_move_id_riba(cr, uid, ids, context)       
         search_due_date = data.duedate
         # Search for move line to pay:
-        domain = [('account_id.type', '=', 'receivable'), ('amount_to_pay', '>', 0), ('move_id', 'in', move_id)]
+        domain = [('account_id.type', '=', 'receivable'), ('riba_amount_to_pay', '>', 0), ('move_id', 'in', move_id)]
         domain = domain + ['|', ('date_maturity', '<=', search_due_date), ('date_maturity', '=', False)]
         line_ids = line_obj.search(cr, uid, domain, context=context)
         context.update({'line_ids': line_ids})

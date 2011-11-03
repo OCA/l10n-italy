@@ -38,7 +38,7 @@ class Invoice(osv.osv):
        return [x[0] for x in cr.fetchall()]
 
 
-    def action_process(self, cr, uid, ids, context=None):
+    def action_process_riba(self, cr, uid, ids, context=None):
         if not ids: return []
         inv = self.browse(cr, uid, ids[0], context=context)
         if inv.payment_term.riba is True:

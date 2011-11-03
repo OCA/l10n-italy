@@ -393,10 +393,10 @@ class riba_line(osv.osv):
         move_line_obj = self.pool.get('account.move.line')
 
         data['amount_currency'] = data['communication'] = data['partner_id'] = data['reference'] = data['date_created'] = data['bank_id'] = data['amount'] = False
-
+     
         if move_line_id:
-            line = move_line_obj.browse(cr, uid, move_line_id, context=context)
-            data['amount_currency'] = line.amount_to_pay
+            line = move_line_obj.browse(cr, uid, move_line_id, context=context) 
+            data['amount_currency'] = line.riba_amount_to_pay
 
             res = self.onchange_amount(cr, uid, ids, data['amount_currency'], currency,
                                        company_currency, context)

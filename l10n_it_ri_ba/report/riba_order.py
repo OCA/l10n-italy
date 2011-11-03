@@ -41,6 +41,6 @@ class riba_order(report_sxw.rml_parse):
         })
 
 
-report_sxw.report_sxw('report.riba.order', 'riba.order', 'addons/riba_issue/report/order.mako', parser=riba_order)
+report_sxw.report_sxw('report.riba.order', 'riba.order', 'addons/l10n_it_ri_ba/report/order.mako', parser=riba_order)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

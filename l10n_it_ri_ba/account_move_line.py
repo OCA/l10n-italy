@@ -28,7 +28,7 @@ from tools.translate import _
 class account_move_line(osv.osv):
     _inherit = "account.move.line"
 
-    def amount_to_pay(self, cr, uid, ids, name, arg={}, context=None):
+    def riba_amount_to_pay(self, cr, uid, ids, name, arg={}, context=None):
         """ Return the amount still to pay regarding all the riba orders
         (excepting cancelled orders)"""
         if not ids:
@@ -48,9 +48,8 @@ class account_move_line(osv.osv):
                     WHERE id IN %s""", (tuple(ids),))
         r = dict(cr.fetchall())
         return r
-    
 
-    def _to_pay_search(self, cr, uid, obj, name, args, context=None):
+    def riba_to_pay_search(self, cr, uid, obj, name, args, context=None):
         if not args:
             return []
         line_obj = self.pool.get('account.move.line')
@@ -80,7 +79,7 @@ class account_move_line(osv.osv):
             return [('id', '=', '0')]
         return [('id', 'in', map(lambda x:x[0], res))]
 
-    def line2bank(self, cr, uid, ids, payment_type=None, context=None):
+    def line_2_bank(self, cr, uid, ids, payment_type=None, context=None):
         """
         Try to return for each Ledger Posting line a corresponding bank
         account according to the payment type.  This work using one of
@@ -112,7 +111,7 @@ class account_move_line(osv.osv):
                 raise osv.except_osv(_('Error !'), _('No partner defined on entry line'))
         return line2bank
 
-    def line2iban(self, cr, uid, ids, payment_type=None, context=None):
+    def line_2_iban(self, cr, uid, ids, payment_type=None, context=None):
         """
         Try to return for each Ledger Posting line a corresponding code
         iban to the payment type.  This work using one of
@@ -145,8 +144,8 @@ class account_move_line(osv.osv):
         return line2iban
 
     _columns = {
-        'amount_to_pay': fields.function(amount_to_pay, method=True,
-            type='float', string='Amount to pay', fnct_search=_to_pay_search),
+        'riba_amount_to_pay': fields.function(riba_amount_to_pay, method=True,
+            type='float', string='Amount to pay', fnct_search= riba_to_pay_search),       
     }
 
 account_move_line()

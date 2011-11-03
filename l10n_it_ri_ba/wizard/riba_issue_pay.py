@@ -27,7 +27,7 @@ class riba_issue_make_payment(osv.osv_memory):
     _name = "riba.issue.make.payment"
     _description = "Riba make issue"
 
-    def launch_wizard(self, cr, uid, ids, context=None):
+    def launch_wizard_riba(self, cr, uid, ids, context=None):
         """
         Search for a wizard to launch according to the type.
         If type is manual. just confirm the order.

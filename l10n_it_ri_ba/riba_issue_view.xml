@@ -51,20 +51,20 @@
         </record>
 
         <!-- View used in the wizard -->
-        <record id="view_move_line_form" model="ir.ui.view">
-            <field name="name">account.move.line.form.inherit</field>
+        <record id="view_riba_move_line_form" model="ir.ui.view">
+            <field name="name">account.riba.move.line.form.inherit</field>
             <field name="model">account.move.line</field>
             <field name="type">form</field>
             <field name="inherit_id" ref="account.view_move_line_form"/>
             <field name="arch" type="xml">
                 <field name="reconcile_partial_id" position="after">
-                    <field name="amount_to_pay"/>
+                    <field name="riba_amount_to_pay"/>
                 </field>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_move_line_tree_wiz">
-            <field name="name">account.move.line.tree</field>
+        <record model="ir.ui.view" id="view_riba_move_line_tree">
+            <field name="name">account.riba.move.line.tree</field>
             <field name="model">account.move.line</field>
             <field name="type">tree</field>
             <field name="priority" eval="1"/>
@@ -79,7 +79,7 @@
                     <field name="date"/>
                     <field name="debit" sum="Total debit"/>
                     <field name="credit" sum="Total credit"/>
-                    <field name="amount_to_pay"/>
+                    <field name="riba_amount_to_pay"/>
                     <field name="amount_currency"/>
                     <field name="currency_id"/>
                     <field name="period_id" invisible="1"/>
@@ -164,7 +164,7 @@
                         <form string="Riba Line">
                             <notebook>
                                 <page string="Riba">
-                                    <field name="move_line_id" on_change="onchange_move_line(move_line_id,parent.mode,parent.date_prefered,parent.date_scheduled,currency,company_currency)" select="1" domain="[('debit', '>',0),('amount_to_pay','>',0)]"/>
+                                    <field name="move_line_id" on_change="onchange_move_line(move_line_id,parent.mode,parent.date_prefered,parent.date_scheduled,currency,company_currency)" select="1" domain="[('debit', '>',0),('riba_amount_to_pay','>',0)]"/>
                                     <separator colspan="4" string="Transaction Information"/>
                                     <field name="date"/>
                                     <group colspan="2">
@@ -206,7 +206,7 @@
                             <field name="amount_currency" string="Amount"/>
                             <field name="currency"/>
                             <field name="name"/>
-                            <field name="amount" sum="Total in Company Currency" invisible="1"/>
+                            <field name="amount" sum="Total Riba Order: " invisible="1"/>
                         </tree>
                     </field>
                     <field name="date_created"/>
@@ -279,7 +279,7 @@
         </record>
 
         <menuitem name="RiBa Issue" action="action_riba_order_tree" id="menu_action_riba_order_form" parent="menu_riba" sequence="3"/>
-        <menuitem action="action_invoice_customer_tree1" id="menu_action_invoice_customer_tree1" parent="menu_riba" sequence="2"/>
+        <menuitem action="action_riba_invoice_customer_tree1" id="menu_action_riba_invoice_customer_tree1" parent="menu_riba" sequence="2"/>
 
         <record id="action_riba_order_tree_new" model="ir.actions.act_window">
             <field name="name">New Riba Order</field>
@@ -290,15 +290,15 @@
 
         <!-- Vista RiBa Lines (Riga Pagamento Riba) -->
         <record id="view_riba_line_form" model="ir.ui.view">
-            <field name="name">riba Line</field>
+            <field name="name">Riba Line</field>
             <field name="model">riba.line</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Riba Line">
                     <notebook>
-                        <page string="riba">
+                        <page string="Riba">
                             <field name="order_id" select="1"/>
-                            <field name="move_line_id" on_change="onchange_move_line(move_line_id, False, currency, company_currency)" select="1" domain="[('debit', '>',0),('amount_to_pay','>',0)] "/>
+                            <field name="move_line_id" on_change="onchange_move_line(move_line_id, False, currency, company_currency)" select="1" domain="[('debit', '>',0),('riba_amount_to_pay','>',0)] "/>
                             <separator colspan="4" string="Transaction Information"/>
                             <field name="date"/>
                             <group colspan="2">
@@ -333,7 +333,7 @@
             </field>
         </record>
         <record id="view_riba_line_tree" model="ir.ui.view">
-            <field name="name">riba Lines</field>
+            <field name="name">Riba Lines</field>
             <field name="model">riba.line</field>
             <field name="type">tree</field>
             <field eval="4" name="priority"/>
