@@ -112,6 +112,20 @@ TOTALE IVA  68,55   10,54
 
 L'IVA viene correttamente calcolata ed indicata secondo le aliquote
 
+=== Fattura ===
+
+    una di 123.57 con IVA al 20% detraibile al 50%
+    una di 123.57 con IVA al 20% totalmente detraibile
+
+=== Fattura ===
+
+    una di 123.57 con IVA al 20% detraibile al 10%
+    una di 123.57 con IVA al 20% totalmente detraibile
+
+=== Fattura ===
+
+imponibile €100,03 e IVA al 20% indetraibile al 50%
+
 === FATTURA ===
 
 123.57 al 20 det 50%
@@ -129,3 +143,29 @@ L'IVA viene correttamente calcolata ed indicata secondo le aliquote
 123.57×0.2 = 24.714 = 24.71
 100.03×0.2 = 20.006 = 20
 24.71×3+20 = 94.13
+
+=== Fattura ===
+
+ - 23.83 + IVA 21%
+ - 7.44  + IVA 21%
+
+=== Fattura ===
+
+ - 24.92 + IVA 21%
+ - 7.44  + IVA 21%
+
+=== Fattura ===
+
+A     *  B   = C
+1.99 * 0.1 = 0.20
+0.38 * 0.1 = 0.04
+5.68 * 0.1 = 0.57
+0.45 * 0.1 = 0.05
+1.05 * 0.1 = 0.11
+2.87 * 0.1 = 0.29
+SUM(C) = 0.20 + 0.04 + 0.57 + 0.05 + 0.11 + 0.29 = 1.26
+
+while
+
+SUM(A) = 1.99 + 0.38 + 5.68 + 0.45 + 1.05 + 2.87 = 12.42
+12.42 * 0.1 = 1.24
