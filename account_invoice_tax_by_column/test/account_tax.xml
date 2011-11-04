@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="account_tax_10" model="account.tax">
+            <field name="name">10 %</field>
+            <field name="amount">0.1</field>
+            <field name="line_precision">1</field>
+        </record>
+
+        <record id="account_tax_21" model="account.tax">
+            <field name="name">21 %</field>
+            <field name="amount">0.21</field>
+            <field name="line_precision">1</field>
+        </record>
+        
+    </data>
+</openerp>

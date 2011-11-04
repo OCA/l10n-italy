@@ -26,90 +26,53 @@ from osv import fields, osv
 class account_invoice_tax(osv.osv):
     _inherit = "account.invoice.tax"
 
-    def compute_taxes_by_rate(self, cr, uid, lines=[], precision=2, address_id=None, partner=None):
-
-        # lines has the form
-        # [{'price_unit': 100, 'discount': 0, 'quantity': 1, 'taxes': [account.tax], 'product': product.product}]
-        # returns a dictionary like {0.2: 20}
-
-        tax_obj = self.pool.get('account.tax')
-        tax_by_rate = {}
-        # collect the base amount grouped by tax rate
-        for line in lines:
-            for tax in line['taxes']:
-                # TODO manage multi currency
-                if not tax_by_rate.get(tax['id'], False):
-                    tax_by_rate[tax['id']] = {'base_amount': 0.0, 'product': None}
-                tax_by_rate[tax['id']]['base_amount'] += (line['price_unit'] * (1-(line['discount'] or 0.0)/100.0)) \
-                    * line['quantity']
-                if line.get('product', False):
-                    tax_by_rate[tax['id']]['product']  = line['product']
-        # compute the tax amount grouped by tax
-        for tax_id in tax_by_rate:
-            tax = tax_obj.browse(cr, uid, tax_id)
-            total = tax_obj.compute_all(cr, uid, [tax], tax_by_rate[tax_id]['base_amount'], 1,
-                address_id=address_id, product=tax_by_rate[tax_id]['product'], partner=partner)
-            tax_by_rate[tax_id] = total['total_included'] - total['total']
-
-        return tax_by_rate
-
     def compute(self, cr, uid, invoice_id, context=None):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
-        user_obj = self.pool.get('res.users')
-        precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
-        if user_obj.browse(cr, uid, uid).company_id.vertical_comp:
-            tax_obj = self.pool.get('account.tax')
-            inv_obj = self.pool.get('account.invoice')
+        total_base = 0
+        total_tax = {}
+        total_amount_of_taxes_horizontal = 0
+        number_deductible_account = 0
+        cur_obj = self.pool.get('res.currency')
+        inv = self.pool.get('account.invoice').browse(cr, uid, invoice_id, context=context)
+        cur = inv.currency_id
+        for line in inv.invoice_line:
+            # workout of total amount of taxes
+            for tax in line.invoice_line_tax_id:
+                key = tax['amount']
+                if not key in total_tax:
+                    # Total_tax 
+                    total_tax[key] = [0]
+                total_tax[key][0] += (line.price_unit* (1-(line.discount or 0.0)/100.0)) * tax['amount']
 
-            inv = inv_obj.browse(cr, uid, invoice_id, context=context)
+        index = 0
+        for t in tax_grouped.values():
+            if inv.type in ('in_invoice') and t['base_code_id'] == False:
+                number_deductible_account += 1 
+            total_amount_of_taxes_horizontal += t['tax_amount']
 
-            for inv_tax in tax_grouped.values():
-                inv_tax['tax_rate'] = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name'])).amount
-                inv_tax['tax_id'] = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name'])).id
-
-            lines = []
-            for line in inv.invoice_line:
-                line_dic = {'price_unit': line.price_unit, 'discount': line.discount, 'quantity': line.quantity,
-                    'taxes': [], 'product': line.product_id}
-                for tax in line.invoice_line_tax_id:
-                    line_dic['taxes'].append(tax)
-                lines.append(line_dic)
-
-            tax_by_rate = self.compute_taxes_by_rate(cr, uid, lines=lines, precision=precision,
-                address_id=inv.address_invoice_id.id, partner=inv.partner_id)
-
-            # compute the tax amount of tax_grouped (old wrong amount), grouped by tax rate
-            wrong_tax_by_rate = {}
-            for inv_tax in tax_grouped.values():
-                if not wrong_tax_by_rate.get(inv_tax['tax_id'], False):
-                    wrong_tax_by_rate[inv_tax['tax_id']] = 0
-                wrong_tax_by_rate[inv_tax['tax_id']] += inv_tax['tax_amount']
-
-            # compute the difference between correct and wrong amount
-            difference_by_rate = {}
-            for tax_id in tax_by_rate:
-                difference_by_rate[tax_id] = tax_by_rate[tax_id] - wrong_tax_by_rate[tax_id]
-
-            for tax_id in difference_by_rate:
-                tax = tax_obj.browse(cr, uid, tax_id)
-                value_set = False
-                # first try to add difference to non deductible tax
-                for inv_tax in tax_grouped.values():
-                    if inv_tax['tax_rate'] == tax.amount:
-                        if inv_tax['base_code_id'] == False:
-                            inv_tax['tax_amount'] =  inv_tax['tax_amount'] + difference_by_rate[tax_id]
-                            inv_tax['amount'] =  inv_tax['amount'] + difference_by_rate[tax_id]
-                            value_set = True
-                            break
-                # else add it to the normal tax
-                if not value_set:
-                    for inv_tax in tax_grouped.values():
-                        if inv_tax['tax_rate'] == tax.amount:
-                            inv_tax['tax_amount'] =  inv_tax['tax_amount'] + difference_by_rate[tax_id]
-                            inv_tax['amount'] =  inv_tax['amount'] + difference_by_rate[tax_id]
-                            value_set = True
-                            break
-
+        total_amount_of_taxes_vertical = 0
+        # round the total amount of taxes
+        for t in total_tax.values():
+            t[0] = cur_obj.round(cr, uid, cur, t[0])
+            total_amount_of_taxes_vertical += t[0]
+        total_amount_of_taxes_vertical = cur_obj.round(cr, uid, cur, total_amount_of_taxes_vertical)
+        total_amount_of_taxes_horizontal = cur_obj.round(cr, uid, cur, total_amount_of_taxes_horizontal)
+        if number_deductible_account != 0:
+            quotient = (total_amount_of_taxes_vertical - total_amount_of_taxes_horizontal) / number_deductible_account
+            quotient = cur_obj.round(cr, uid, cur, quotient)
+            remainder = (total_amount_of_taxes_vertical - total_amount_of_taxes_horizontal) - number_deductible_account * quotient
+            remainder = cur_obj.round(cr, uid, cur, remainder)
+        # change at least a deductible tax amount to to make coincide total amount of taxes
+        counter = 0
+        if inv.type in ('in_invoice') and total_amount_of_taxes_vertical != total_amount_of_taxes_horizontal:
+            for t in tax_grouped.values():               
+                if t['base_code_id'] == False:
+                    counter += 1
+                    t['tax_amount'] =  t['tax_amount'] + quotient
+                    t['amount'] =  t['amount'] + quotient
+                    if counter == number_deductible_account:
+                        t['tax_amount'] =  t['tax_amount'] + remainder
+                        t['amount'] =  t['amount'] + remainder  
         return tax_grouped
     
 account_invoice_tax()    
