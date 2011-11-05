@@ -47,9 +47,9 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account', 'account_voucher', 'c2c_account_tax_rounding'],
+    "depends" : ['account', 'account_voucher'],
     "init_xml" : [],
-    "update_xml" : [],
+    "update_xml" : ['invoice_view.xml',],
     "demo_xml" : [],
     'test': [
         'test/account_tax.xml',
@@ -58,3 +58,5 @@
     "active": False,
     "installable": True
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

@@ -22,57 +22,44 @@
 import time
 from osv import fields, osv
 
+class account_invoice(osv.osv):
+
+    _inherit = 'account.invoice'
+    
+    _columns = {
+        'vertical_comp' : fields.boolean('Tax Vertical Calculation'),
+    }
+    
+    _defaults = {
+        'vertical_comp': True
+    }
+
+account_invoice()
 
 class account_invoice_tax(osv.osv):
+
     _inherit = "account.invoice.tax"
 
     def compute(self, cr, uid, invoice_id, context=None):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
-        total_base = 0
-        total_tax = {}
-        total_amount_of_taxes_horizontal = 0
-        number_deductible_account = 0
-        cur_obj = self.pool.get('res.currency')
-        inv = self.pool.get('account.invoice').browse(cr, uid, invoice_id, context=context)
-        cur = inv.currency_id
-        for line in inv.invoice_line:
-            # workout of total amount of taxes
-            for tax in line.invoice_line_tax_id:
-                key = tax['amount']
-                if not key in total_tax:
-                    # Total_tax 
-                    total_tax[key] = [0]
-                total_tax[key][0] += (line.price_unit* (1-(line.discount or 0.0)/100.0)) * tax['amount']
+        inv_obj = self.pool.get('account.invoice')
+        inv = inv_obj.browse(cr, uid, invoice_id, context=context)
+        if inv.vertical_comp:
+            cur = inv.currency_id
+            company_currency = inv.company_id.currency_id.id
+            tax_obj = self.pool.get('account.tax')
+            user_obj = self.pool.get('res.users')
+            cur_obj = self.pool.get('res.currency')
+            precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
 
-        index = 0
-        for t in tax_grouped.values():
-            if inv.type in ('in_invoice') and t['base_code_id'] == False:
-                number_deductible_account += 1 
-            total_amount_of_taxes_horizontal += t['tax_amount']
+            for inv_tax in tax_grouped.values():
+                main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name']))
+                if inv_tax['amount'] and inv_tax['base']:
+                    inv_tax['amount'] = cur_obj.round(cr, uid, cur, inv_tax['base'] * main_tax.amount)
+                    inv_tax['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency, inv_tax['amount'] *
+                        main_tax['ref_tax_sign'], context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                    inv_tax['tax_amount'] = cur_obj.round(cr, uid, cur, inv_tax['tax_amount'])
 
-        total_amount_of_taxes_vertical = 0
-        # round the total amount of taxes
-        for t in total_tax.values():
-            t[0] = cur_obj.round(cr, uid, cur, t[0])
-            total_amount_of_taxes_vertical += t[0]
-        total_amount_of_taxes_vertical = cur_obj.round(cr, uid, cur, total_amount_of_taxes_vertical)
-        total_amount_of_taxes_horizontal = cur_obj.round(cr, uid, cur, total_amount_of_taxes_horizontal)
-        if number_deductible_account != 0:
-            quotient = (total_amount_of_taxes_vertical - total_amount_of_taxes_horizontal) / number_deductible_account
-            quotient = cur_obj.round(cr, uid, cur, quotient)
-            remainder = (total_amount_of_taxes_vertical - total_amount_of_taxes_horizontal) - number_deductible_account * quotient
-            remainder = cur_obj.round(cr, uid, cur, remainder)
-        # change at least a deductible tax amount to to make coincide total amount of taxes
-        counter = 0
-        if inv.type in ('in_invoice') and total_amount_of_taxes_vertical != total_amount_of_taxes_horizontal:
-            for t in tax_grouped.values():               
-                if t['base_code_id'] == False:
-                    counter += 1
-                    t['tax_amount'] =  t['tax_amount'] + quotient
-                    t['amount'] =  t['amount'] + quotient
-                    if counter == number_deductible_account:
-                        t['tax_amount'] =  t['tax_amount'] + remainder
-                        t['amount'] =  t['amount'] + remainder  
         return tax_grouped
     
 account_invoice_tax()    

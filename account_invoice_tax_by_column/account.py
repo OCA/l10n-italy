@@ -20,5 +20,31 @@
 #
 ##############################################################################
 
-import invoice
-import account
+from osv import fields, osv
+from tools.translate import _
+
+class account_tax(osv.osv):
+
+    _inherit = 'account.tax'
+
+    def get_main_tax(self, tax):
+        if not tax.parent_id:
+            return tax
+        else:
+            return self.get_main_tax(tax.parent_id)
+
+    def get_account_tax(self, cr, uid, inv_tax_name):
+        splitted_name = inv_tax_name.split(' - ')
+        if len(splitted_name) > 1:
+            tax_name = splitted_name[1]
+        else:
+            tax_name = splitted_name[0]
+        # search for tax by name, after getting it from invoice tax
+        tax_ids = self.search(cr, uid, [('name', '=', tax_name)])
+        if not tax_ids:
+            raise osv.except_osv(_('Error'), _('The tax %s does not exist') % tax_name)
+        if len(tax_ids) > 1:
+            raise osv.except_osv(_('Error'), _('Too many taxes with name %s') % tax_name)
+        return self.browse(cr, uid, tax_ids[0])
+
+account_tax()
