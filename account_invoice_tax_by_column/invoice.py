@@ -27,7 +27,7 @@ class account_invoice(osv.osv):
     _inherit = 'account.invoice'
     
     _columns = {
-        'vertical_comp' : fields.boolean('Tax Vertical Calculation'),
+        'vertical_comp' : fields.boolean('Tax Computation By Column'),
     }
     
     _defaults = {
