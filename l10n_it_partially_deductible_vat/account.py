@@ -37,7 +37,7 @@ class account_tax(osv.osv):
         totalex = res['total']
         if len(tax_list) == 2:
             for tax in tax_list:
-                if tax.get('balance',False): # Calcolo di imponibili e imposte per l'IVA parzialmente detraibile
+                if tax.get('balance',False): # Calcolo di imponibili per l'IVA parzialmente detraibile
                     deductible_base = totalex
                     ind_tax = tax_list[abs(tax_list.index(tax)-1)]
                     ind_tax_obj = self.browse(cr, uid, ind_tax['id'])
@@ -45,13 +45,8 @@ class account_tax(osv.osv):
                     base_ind = float(Decimal(str(totalex * ind_tax_obj.amount)).quantize(Decimal('1.'+precision*'0'), rounding=ROUND_HALF_UP))
                     base_ded = float(Decimal(str(totalex - base_ind)).quantize(Decimal('1.'+precision*'0'), rounding=ROUND_HALF_UP))
                     tax_total = float(Decimal(str(tax['balance'])).quantize(Decimal('1.'+precision*'0'), rounding=ROUND_HALF_UP))
-                    #tax_ind = float(Decimal(str(tax_total * ind_tax_obj.amount)).quantize(Decimal('1.'+precision*'0'), rounding=ROUND_HALF_UP))
-                    #tax_ded = tax_total - tax_ind
                     ind_tax['price_unit']  = base_ind
                     tax['price_unit'] = base_ded
-                    # account_invoice_tax_by_column li sovrascrive
-                    #ind_tax['amount']  = tax_ind
-                    #tax['amount'] = tax_ded
 
         return res
 
@@ -62,6 +57,8 @@ class account_invoice_tax(osv.osv):
     _inherit = "account.invoice.tax"
     
     '''
+    tax_grouped:
+    
     {(False, 21, 132): {'account_id': 132,
                     'amount': 12.36,
                     'base': 61.79,
@@ -97,7 +94,7 @@ class account_invoice_tax(osv.osv):
                 'tax_code_id': 26}}
     '''
     
-    def tax_differ(self, cr, uid, cur, tax_grouped):
+    def tax_difference(self, cr, uid, cur, tax_grouped):
         real_total = 0
         invoice_total = 0
         cur_obj = self.pool.get('res.currency')
@@ -113,10 +110,7 @@ class account_invoice_tax(osv.osv):
         real_total = cur_obj.round(cr, uid, cur, real_total)
         for inv_tax in tax_grouped.values():
             invoice_total += inv_tax['amount']
-        if cur_obj.is_zero(cr, uid, cur, (real_total - invoice_total)):
-            return False
-        else:
-            return True
+        return real_total - invoice_total
 
     def compute(self, cr, uid, invoice_id, context=None):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
@@ -124,11 +118,11 @@ class account_invoice_tax(osv.osv):
         tax_obj = self.pool.get('account.tax')
         invoice = inv_obj.browse(cr, uid, invoice_id, context=context)
         cur = invoice.currency_id
-        import pdb;pdb.set_trace()
-        if not self.tax_differ(cr, uid, cur, tax_grouped):
+        tax_difference = self.tax_difference(cr, uid, cur, tax_grouped)
+        cur_obj = self.pool.get('res.currency')
+        if cur_obj.is_zero(cr, uid, cur, tax_difference):
             return tax_grouped
         company_currency = invoice.company_id.currency_id.id
-        cur_obj = self.pool.get('res.currency')
         for inv_tax in tax_grouped.values():
             # parte detraibile
             if not inv_tax['base_code_id'] and inv_tax['tax_code_id']:
@@ -140,29 +134,25 @@ class account_invoice_tax(osv.osv):
                         main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax_2['name']))
                         # Se hanno la stessa tassa
                         if main_tax.id == tax.id:
-                            total_base = inv_tax['base_amount'] + inv_tax_2['base_amount']
-                            total_tax = cur_obj.round(cr, uid, cur, total_base * tax.amount)
-                            total_inv_tax = inv_tax['amount'] + inv_tax_2['amount']
-                            if not cur_obj.is_zero(cr, uid, cur, (total_tax - total_inv_tax)):
-                                # se risulta un'eccedenza, la tolgo dalla parte detraibile
-                                if total_tax < total_inv_tax:
-                                    inv_tax['amount'] = inv_tax['amount'] - (total_inv_tax - total_tax)
-                                # se risulta una mancanza, la aggiungo alla parte indetraibile
-                                elif total_tax > total_inv_tax:
-                                    inv_tax_2['amount'] = inv_tax_2['amount'] + (total_tax - total_inv_tax)
-                                # calcolo l'importo del tax.code relativo all'imposta (la parte indetraibile non lo muove)
-                                if invoice.type in ('out_invoice','in_invoice'):
-                                    inv_tax['tax_amount'] = cur_obj.compute(cr, uid, invoice.currency_id.id, company_currency,
-                                        inv_tax['amount'] * main_tax['tax_sign'],
-                                        context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
-                                else:
-                                    inv_tax['tax_amount'] = cur_obj.compute(cr, uid, invoice.currency_id.id, company_currency,
-                                        inv_tax['amount'] * main_tax['ref_tax_sign'],
-                                        context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                            # se risulta un'eccedenza, la tolgo dalla parte detraibile
+                            if tax_difference < 0:
+                                inv_tax['amount'] = inv_tax['amount'] + tax_difference
+                            # se risulta una mancanza, la aggiungo alla parte indetraibile
+                            elif tax_difference > 0:
+                                inv_tax_2['amount'] = inv_tax_2['amount'] + tax_difference
+                            # calcolo l'importo del tax.code relativo all'imposta (la parte indetraibile non lo muove)
+                            if invoice.type in ('out_invoice','in_invoice'):
+                                inv_tax['tax_amount'] = cur_obj.compute(cr, uid, invoice.currency_id.id, company_currency,
+                                    inv_tax['amount'] * main_tax['tax_sign'],
+                                    context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                            else:
+                                inv_tax['tax_amount'] = cur_obj.compute(cr, uid, invoice.currency_id.id, company_currency,
+                                    inv_tax['amount'] * main_tax['ref_tax_sign'],
+                                    context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
 
-                                inv_tax['amount'] = cur_obj.round(cr, uid, cur, inv_tax['amount'])
-                                inv_tax['tax_amount'] = cur_obj.round(cr, uid, cur, inv_tax['tax_amount'])
-                                inv_tax_2['amount'] = cur_obj.round(cr, uid, cur, inv_tax_2['amount'])
+                            inv_tax['amount'] = cur_obj.round(cr, uid, cur, inv_tax['amount'])
+                            inv_tax['tax_amount'] = cur_obj.round(cr, uid, cur, inv_tax['tax_amount'])
+                            inv_tax_2['amount'] = cur_obj.round(cr, uid, cur, inv_tax_2['amount'])
         return tax_grouped
     
 account_invoice_tax()
