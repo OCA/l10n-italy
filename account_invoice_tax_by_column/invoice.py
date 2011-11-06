@@ -56,8 +56,14 @@ class account_invoice_tax(osv.osv):
                 main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name']))
                 if inv_tax['amount'] and inv_tax['base']:
                     inv_tax['amount'] = cur_obj.round(cr, uid, cur, inv_tax['base'] * main_tax.amount)
-                    inv_tax['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency, inv_tax['amount'] *
-                        main_tax['ref_tax_sign'], context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                    if inv.type in ('out_invoice','in_invoice'):
+                        inv_tax['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency,
+                            inv_tax['amount'] * main_tax['tax_sign'],
+                            context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                    else:
+                        inv_tax['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency,
+                            inv_tax['amount'] * main_tax['ref_tax_sign'],
+                            context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
                     inv_tax['tax_amount'] = cur_obj.round(cr, uid, cur, inv_tax['tax_amount'])
 
         return tax_grouped
