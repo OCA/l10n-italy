@@ -17,6 +17,12 @@
             <field name="amount">0.21</field>
             <field name="price_include">1</field>
         </record>
+
+        <record id="account_tax_20_inc" model="account.tax">
+            <field name="name">20 % INC</field>
+            <field name="amount">0.2</field>
+            <field name="price_include">1</field>
+        </record>
         
     </data>
 </openerp>

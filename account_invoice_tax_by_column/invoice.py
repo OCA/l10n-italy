@@ -54,6 +54,8 @@ class account_invoice_tax(osv.osv):
 
             for inv_tax in tax_grouped.values():
                 main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name']))
+                if main_tax.price_include:
+                    continue
                 if inv_tax['amount'] and inv_tax['base']:
                     inv_tax['amount'] = cur_obj.round(cr, uid, cur, inv_tax['base'] * main_tax.amount)
                     if inv.type in ('out_invoice','in_invoice'):
