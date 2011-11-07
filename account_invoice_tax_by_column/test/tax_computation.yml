@@ -32,6 +32,8 @@
         self.button_compute(cr, uid, [ref("account_invoice_customer0")])  
 -  
     Then I verify the amount.
+    23.83 + 7.44 = 31.27
+    31.27 × 0.21 = 6.5667 = 6.57
 -  
     !assert {model: account.invoice, id: account_invoice_customer0}:
         - amount_tax == 6.57
@@ -70,6 +72,8 @@
         self.button_compute(cr, uid, [ref("account_invoice_customer1")])  
 -  
     Then I verify the amount.
+    24.92 + 7.44 = 32.36
+    32.36 × 0.21 = 6.7956 = 6.8
 -  
     !assert {model: account.invoice, id: account_invoice_customer1}:
         - amount_tax == 6.8
@@ -133,6 +137,8 @@
         self.button_compute(cr, uid, [ref("account_invoice_customer2")])  
 -  
     Then I verify the amount.
+    1.99 + 0.38 + 5.68 + 0.45 + 1.05 + 2.87 = 12.42
+    12.42 * 0.1 = 1.242 = 1.24
 -  
     !assert {model: account.invoice, id: account_invoice_customer2}:
         - amount_tax == 1.24
@@ -172,6 +178,9 @@
         self.button_compute(cr, uid, [ref("account_invoice_customer3")])  
 -  
     Then I verify the amount.
+    465 + 9 = 474
+    474 ÷ 1.21 = 391.73553719 = 391.74
+    391.74 × 0.21 = 82.2654 = 82.27
 -  
     !assert {model: account.invoice, id: account_invoice_customer3}:
         - amount_tax == 82.27
