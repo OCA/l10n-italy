@@ -35,7 +35,7 @@ This module provides :
 * a basic mechanism to easily plug various automated issue.
     """,
     'images': [],
-    'depends': ['account','account_voucher', 'l10n_it_account'],
+    'depends': ['account','account_voucher', 'l10n_it_account', 'report_webkit'],
     'init_xml': [],
     'update_xml': [
                    'security/riba_issue_security.xml',
