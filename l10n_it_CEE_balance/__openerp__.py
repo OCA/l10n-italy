@@ -26,7 +26,7 @@
     "depends" : ['l10n_it',],
     "author" : "OpenERP Italian Community",
     "description": """
-    Riclassificazione IV normativa UE per un piano dei conti italiano di un'impresa generica (compreso in l10n_it)
+    Riclassificazione IV direttiva UE per un piano dei conti italiano di un'impresa generica (compreso in l10n_it)
     """,
     "license": "AGPL-3",
     "category" : "Localisation/Italy",
