@@ -87,7 +87,7 @@ class riba_order_create(osv.osv_memory):
             if line2iban.get(line.id):
                 iban = line2iban.get(line.id)
             else:
-                raise osv.except_osv('Error', _('For one o more partner(s) NO has been specified IBAN '))        
+                raise osv.except_osv('Error', _('No IBAN specified for one o more partner(s)'))        
             riba_obj.create(cr, uid,{
                 'move_line_id': line.id,
                 'amount_currency': line.riba_amount_to_pay,
