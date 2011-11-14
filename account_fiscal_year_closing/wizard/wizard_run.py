@@ -426,7 +426,7 @@ class wizard_run(wizard.interface):
                             'journal_id': journal_id,
                             'line_id': [(0,0,line) for line in move_lines],
                         }, context=context)
-            pool.get('account.move').button_validate(cr, uid, [move_id], context)
+            # pool.get('account.move').button_validate(cr, uid, [move_id], context)
         else:
             move_id = None
         data['process_task_progress'] = 99.0
@@ -522,7 +522,7 @@ class wizard_run(wizard.interface):
                             'journal_id': journal_id,
                             'line_id': [(0,0,line) for line in move_lines],
                         }, context=context)
-            pool.get('account.move').button_validate(cr, uid, [move_id], context)
+            # pool.get('account.move').button_validate(cr, uid, [move_id], context)
         else:
             move_id = None
         data['process_task_progress'] = 99.0
