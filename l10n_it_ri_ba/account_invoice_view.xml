@@ -37,7 +37,7 @@
             <field name="domain">[('type','=','out_invoice'),('payment_term.riba', '=', 'True')]</field>
             <field name="context">{'type':'out_invoice', 'journal_type': 'sale'}</field>
             <field name="search_view_id" ref="account.view_account_invoice_filter"/>
-            <field name="help">With Customer Invoices with pay RiBa you can create and manage sales invoices issued to your customers.</field>
+            <field name="help">With Customer Invoices with RiBa term you can create and manage sales invoices issued to your customers.</field>
         </record>
 
     </data>

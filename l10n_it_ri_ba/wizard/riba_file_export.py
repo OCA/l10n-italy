@@ -178,17 +178,26 @@ class riba_file_export(osv.osv_memory):
             if not line.partner_id.address:
                 raise osv.except_osv('Error', _('No address specified for ') + line.partner_id.name)
             debitor_address = line.partner_id.address
+            if debitor_address[0].street:
+               debitor_street = debitor_address[0].street
+            else:
+               raise osv.except_osv('Error', _('No Street specified for ') + line.partner_id.name)
+            if debitor_address[0].zip:
+               debitor_zip = debitor_address[0].zip
+            else:
+               raise osv.except_osv('Error', _('No CAP specified for ') + line.partner_id.name)
             if not debit_bank.iban:
-               raise osv.except_osv('Error', _('No IBAN specified'))
+               raise osv.except_osv('Error', _('No IBAN specified for ') + line.partner_id.name)
             debit_abi = debit_bank.iban[5:10]
             debit_cab = debit_bank.iban[10:15]
             debitor_city = ''
             if debitor_address[0].city:
                 debitor_city = debitor_address[0].city
+            else:
+                raise osv.except_osv('Error', _('No City specified for ') + line.partner_id.name) 
             debitor_province = ''
             if debitor_address[0].province:
                 debitor_province = debitor_address[0].province.code
-
             if not line.date:
                 due_date =  '000000'
 
@@ -203,8 +212,8 @@ class riba_file_export(osv.osv_memory):
                         line.amount_currency,
                         line.partner_id.name,
                         line.partner_id.vat and line.partner_id.vat[2:] or line.partner_id.fiscalcode,
-                        debitor_address[0].street or '',
-                        debitor_address[0].zip or '',
+                        debitor_street,
+                        debitor_zip,
                         debitor_city,
                         debitor_province,
                         debit_abi,
