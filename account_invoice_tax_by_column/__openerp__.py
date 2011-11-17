@@ -49,8 +49,12 @@
     'license': 'AGPL-3',
     "depends" : ['account', 'account_voucher'],
     "init_xml" : [],
-    "update_xml" : ['company_view.xml',],
+    "update_xml" : ['invoice_view.xml',],
     "demo_xml" : [],
+    'test': [
+        'test/account_tax.xml',
+        'test/tax_computation.yml',
+        ],
     "active": False,
     "installable": True
 }
