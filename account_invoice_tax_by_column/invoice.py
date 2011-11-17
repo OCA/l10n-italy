@@ -22,93 +22,51 @@
 import time
 from osv import fields, osv
 
+class account_invoice(osv.osv):
+
+    _inherit = 'account.invoice'
+    
+    _columns = {
+        'vertical_comp' : fields.boolean('Tax Computation By Column'),
+    }
+    
+    _defaults = {
+        'vertical_comp': True
+    }
+
+account_invoice()
 
 class account_invoice_tax(osv.osv):
+
     _inherit = "account.invoice.tax"
-
-    def compute_taxes_by_rate(self, cr, uid, lines=[], precision=2, address_id=None, partner=None):
-
-        # lines has the form
-        # [{'price_unit': 100, 'discount': 0, 'quantity': 1, 'taxes': [account.tax], 'product': product.product}]
-        # returns a dictionary like {0.2: 20}
-
-        tax_obj = self.pool.get('account.tax')
-        tax_by_rate = {}
-        # collect the base amount grouped by tax rate
-        for line in lines:
-            for tax in line['taxes']:
-                # TODO manage multi currency
-                if not tax_by_rate.get(tax['id'], False):
-                    tax_by_rate[tax['id']] = {'base_amount': 0.0, 'product': None}
-                tax_by_rate[tax['id']]['base_amount'] += (line['price_unit'] * (1-(line['discount'] or 0.0)/100.0)) \
-                    * line['quantity']
-                if line.get('product', False):
-                    tax_by_rate[tax['id']]['product']  = line['product']
-        # compute the tax amount grouped by tax
-        for tax_id in tax_by_rate:
-            tax = tax_obj.browse(cr, uid, tax_id)
-            total = tax_obj.compute_all(cr, uid, [tax], tax_by_rate[tax_id]['base_amount'], 1,
-                address_id=address_id, product=tax_by_rate[tax_id]['product'], partner=partner)
-            tax_by_rate[tax_id] = total['total_included'] - total['total']
-
-        return tax_by_rate
 
     def compute(self, cr, uid, invoice_id, context=None):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
-        user_obj = self.pool.get('res.users')
-        precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
-        if user_obj.browse(cr, uid, uid).company_id.vertical_comp:
+        inv_obj = self.pool.get('account.invoice')
+        inv = inv_obj.browse(cr, uid, invoice_id, context=context)
+        if inv.vertical_comp:
+            cur = inv.currency_id
+            company_currency = inv.company_id.currency_id.id
             tax_obj = self.pool.get('account.tax')
-            inv_obj = self.pool.get('account.invoice')
-
-            inv = inv_obj.browse(cr, uid, invoice_id, context=context)
+            user_obj = self.pool.get('res.users')
+            cur_obj = self.pool.get('res.currency')
+            precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
 
             for inv_tax in tax_grouped.values():
-                inv_tax['tax_rate'] = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name'])).amount
-                inv_tax['tax_id'] = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name'])).id
-
-            lines = []
-            for line in inv.invoice_line:
-                line_dic = {'price_unit': line.price_unit, 'discount': line.discount, 'quantity': line.quantity,
-                    'taxes': [], 'product': line.product_id}
-                for tax in line.invoice_line_tax_id:
-                    line_dic['taxes'].append(tax)
-                lines.append(line_dic)
-
-            tax_by_rate = self.compute_taxes_by_rate(cr, uid, lines=lines, precision=precision,
-                address_id=inv.address_invoice_id.id, partner=inv.partner_id)
-
-            # compute the tax amount of tax_grouped (old wrong amount), grouped by tax rate
-            wrong_tax_by_rate = {}
-            for inv_tax in tax_grouped.values():
-                if not wrong_tax_by_rate.get(inv_tax['tax_id'], False):
-                    wrong_tax_by_rate[inv_tax['tax_id']] = 0
-                wrong_tax_by_rate[inv_tax['tax_id']] += inv_tax['tax_amount']
-
-            # compute the difference between correct and wrong amount
-            difference_by_rate = {}
-            for tax_id in tax_by_rate:
-                difference_by_rate[tax_id] = tax_by_rate[tax_id] - wrong_tax_by_rate[tax_id]
-
-            for tax_id in difference_by_rate:
-                tax = tax_obj.browse(cr, uid, tax_id)
-                value_set = False
-                # first try to add difference to non deductible tax
-                for inv_tax in tax_grouped.values():
-                    if inv_tax['tax_rate'] == tax.amount:
-                        if inv_tax['base_code_id'] == False:
-                            inv_tax['tax_amount'] =  inv_tax['tax_amount'] + difference_by_rate[tax_id]
-                            inv_tax['amount'] =  inv_tax['amount'] + difference_by_rate[tax_id]
-                            value_set = True
-                            break
-                # else add it to the normal tax
-                if not value_set:
-                    for inv_tax in tax_grouped.values():
-                        if inv_tax['tax_rate'] == tax.amount:
-                            inv_tax['tax_amount'] =  inv_tax['tax_amount'] + difference_by_rate[tax_id]
-                            inv_tax['amount'] =  inv_tax['amount'] + difference_by_rate[tax_id]
-                            value_set = True
-                            break
+                main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name']))
+                if main_tax.price_include:
+                    continue
+                if inv_tax['amount'] and inv_tax['base']:
+                    inv_tax['amount'] = cur_obj.round(cr, uid, cur, inv_tax['base'] * main_tax.amount)
+                    if inv.type in ('out_invoice','in_invoice'):
+                        inv_tax['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency,
+                            inv_tax['amount'] * main_tax['tax_sign'],
+                            context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                    else:
+                        inv_tax['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency,
+                            inv_tax['amount'] * main_tax['ref_tax_sign'],
+                            context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                    inv_tax['tax_amount'] = cur_obj.round(cr, uid, cur, inv_tax['tax_amount'])
 
         return tax_grouped
     

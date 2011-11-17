@@ -66,7 +66,7 @@ class Parser(report_sxw.rml_parse):
                 index += 1
             # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
             elif inv_tax.tax_code_id:
-                tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax))
+                tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax.name))
                 if tax.exclude_from_registries:
                     self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
                         _('The tax %s is excluded from registries') % tax.name)
@@ -76,6 +76,7 @@ class Parser(report_sxw.rml_parse):
                         base_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax_2.name))
                         # Se hanno la stessa tassa
                         if base_tax.id == tax.id:
+                            # TODO verificare se si può evitare Decimal
                             tax_item = {
                                 'tax_percentage': base_tax.amount and str(
                                     base_tax.amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
