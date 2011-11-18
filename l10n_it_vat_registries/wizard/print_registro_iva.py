@@ -44,61 +44,55 @@ class wizard_registro_iva(osv.osv_memory):
         'date_to': lambda * a: time.strftime('%Y-%m-%d'),
         'journal_ids': lambda s, cr, uid, c: s.pool.get('account.journal').search(cr, uid, []),
         }
+        
+    def counterparts_number(self, move_line):
+        counter = 0
+        if  not move_line.credit:
+            for line in move_line.move_id.line_id:
+                if line.credit:
+                    counter += 1
+        elif not move_line.debit:
+            for line in move_line.move_id.line_id:
+                if line.debit:
+                    counter += 1
+        return counter
 
     def print_registro(self, cr, uid, ids, context=None):
-        inv_ids = []
+        move_ids = []
         wizard = self.read(cr, uid, ids)[0]
-        inv_obj = self.pool.get('account.invoice')
+        move_line_obj = self.pool.get('account.move.line')
         search_list = []
-        if wizard['type'] == 'customer':
-            search_list = [
-                ('journal_id', 'in', wizard['journal_ids']),
-                ('corrispettivo', '=', False),
-                ('move_id.date', '<=', wizard['date_to']),
-                ('move_id.date', '>=', wizard['date_from']),
-                '|',
-                ('type', '=', 'out_invoice'),
-                ('type', '=', 'out_refund'),
-                '|',
-                ('state', '=', 'open'),
-                ('state', '=', 'paid'),
-                ]
-        elif wizard['type'] == 'supplier':
-            search_list = [
-                ('journal_id', 'in', wizard['journal_ids']),
-                ('corrispettivo', '=', False),
-                ('move_id.date', '<=', wizard['date_to']),
-                ('move_id.date', '>=', wizard['date_from']),
-                '|',
-                ('type', '=', 'in_invoice'),
-                ('type', '=', 'in_refund'),
-                '|',
-                ('state', '=', 'open'),
-                ('state', '=', 'paid'),
-                ]
-        elif wizard['type'] == 'corrispettivi':
-            search_list = [
-                ('journal_id', 'in', wizard['journal_ids']),
-                ('corrispettivo', '=', True),
-                ('move_id.date', '<=', wizard['date_to']),
-                ('move_id.date', '>=', wizard['date_from']),
-                '|',
-                ('type', '=', 'out_invoice'),
-                ('type', '=', 'out_refund'),
-                '|',
-                ('state', '=', 'open'),
-                ('state', '=', 'paid'),
-                ]
-        inv_ids = inv_obj.search(cr, uid, search_list)
-        if not inv_ids:
+        search_list = [
+            ('journal_id', 'in', wizard['journal_ids']),
+            ('move_id.date', '<=', wizard['date_to']),
+            ('move_id.date', '>=', wizard['date_from']),
+            ('move_id.state', '=', 'posted'),
+            ('tax_code_id', '!=', False),
+            ]
+        move_line_ids = move_line_obj.search(cr, uid, search_list, order='date')
+        if not move_line_ids:
             self.write(cr, uid,  ids, {'message': _('No documents found in the current selection')})
             return True
         if context is None:
             context = {}
-        datas = {'ids': inv_ids}
-        datas['model'] = 'account.invoice'
+        for move_line in move_line_obj.browse(cr, uid, move_line_ids):
+            if move_line.tax_code_id.tax_ids:
+                # controllo che ogni tax code abbia una e una sola imposta
+                ''' non posso farlo per via dell IVA inclusa nel prezzo
+                if len(move_line.tax_code_id.tax_ids) != 1:
+                    raise osv.except_osv(_('Error'), _('Wrong tax configuration for tax code %s')
+                        % move_line.tax_code_id.name)
+                '''
+                # controllo che ci sia una sola riga di debito o credito
+                if self.counterparts_number(move_line) != 1:
+                    raise osv.except_osv(_('Error'), _('Wrong counterparts number for move %s')
+                        % move_line.move_id.name)
+                if move_line.move_id.id not in move_ids:
+                    move_ids.append(move_line.move_id.id)
+        datas = {'ids': move_ids}
+        datas['model'] = 'account.move'
         datas['form'] = wizard
-        datas['inv_ids'] = inv_ids
+        datas['move_ids'] = move_ids
         res= {
             'type': 'ir.actions.report.xml',
             'datas': datas,
