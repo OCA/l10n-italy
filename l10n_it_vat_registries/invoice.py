@@ -42,8 +42,22 @@ class Parser(report_sxw.rml_parse):
                 if line.debit:
                     total +=  line.debit
         return total
+    
+    # in valuta base
+    def _get_invoice_amount_total(self, invoice):
+        total = 0.0
+        for inv_tax in invoice.tax_line:
+            total += inv_tax.base_amount + inv_tax.tax_amount
+        return total
+    
+    # in valuta base
+    def _get_invoice_amount_untaxed(self, invoice):
+        total = 0.0
+        for inv_tax in invoice.tax_line:
+            total += inv_tax.base_amount
+        return total
 
-    def _get_tax_lines(self, move):
+    def _get_tax_lines_by_invoice(self, invoice):
         res=[]
         tax_obj = self.pool.get('account.tax')
         cur_pool = self.pool.get('res.currency')
@@ -53,10 +67,110 @@ class Parser(report_sxw.rml_parse):
         totale_iva_inded = 0.0
         invoice_amount_total = 0.0
         invoice_amount_untaxed = 0.0
+        precision = self.pool.get('decimal.precision').precision_get(self.cr, self.uid, 'Account')
+        for inv_tax in invoice.tax_line:
+            tax_item = {}
+            if inv_tax.base_code_id and inv_tax.tax_code_id:
+                account_tax = tax_obj.get_account_tax(self.cr, self.uid, inv_tax.name)
+                if account_tax.exclude_from_registries:
+                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
+                        _('The tax %s is excluded from registries') % account_tax.name)
+                    continue
+                account_tax_amount = account_tax.amount
+                invoice_amount_total = self._get_invoice_amount_total(invoice)
+                invoice_amount_untaxed = self._get_invoice_amount_untaxed(invoice)
+                tax_item = {
+                    'tax_percentage': account_tax_amount and str(
+                        account_tax_amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
+                    'base': inv_tax.base_amount,
+                    'amount': inv_tax.tax_amount, #in valuta base
+                    'non_deductible': 0.0,
+                    'index': index,
+                    'amount_total': invoice_amount_total,
+                    }
+                res.append(tax_item)
+                totale_iva += inv_tax.tax_amount
+                index += 1
+            # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
+            elif inv_tax.tax_code_id:
+                tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax.name))
+                if tax.exclude_from_registries:
+                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
+                        _('The tax %s is excluded from registries') % tax.name)
+                    continue
+                for inv_tax_2 in invoice.tax_line:
+                    if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
+                        base_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax_2.name))
+                        # Se hanno la stessa tassa
+                        if base_tax.id == tax.id:
+                            non_deductible = (inv_tax_2.base_amount / (inv_tax.base_amount + inv_tax_2.base_amount) * 100)
+                            invoice_amount_total = self._get_invoice_amount_total(invoice)
+                            invoice_amount_untaxed = self._get_invoice_amount_untaxed(invoice)
+                            tax_item = {
+                                'tax_percentage': base_tax.amount and str(
+                                    base_tax.amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
+                                'base': inv_tax.base_amount + inv_tax_2.base_amount,
+                                'amount': inv_tax.tax_amount + inv_tax_2.tax_amount,
+                                'non_deductible': non_deductible and str(non_deductible).split('.')[0] or '',
+                                'index': index,
+                                'amount_total': invoice_amount_total,
+                                }
+                            res.append(tax_item)
+                            totale_iva += inv_tax.tax_amount
+                            totale_iva_inded += inv_tax_2.tax_amount
+                            index += 1
+                            break
+            elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
+                self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
+                    _('The tax %s has no tax codes') % inv_tax.name)
+                continue
+            if tax_item:
+                if tax_item['tax_percentage'] not in self.localcontext['tax_codes']:
+                    self.localcontext['tax_codes'][tax_item['tax_percentage']] = {
+                        'base': tax_item['base'],
+                        'amount': tax_item['amount'],
+                        }
+                else:
+                    self.localcontext['tax_codes'][tax_item['tax_percentage']]['base'] += tax_item['base']
+                    self.localcontext['tax_codes'][tax_item['tax_percentage']]['amount'] += tax_item['amount']
+
+        self.localcontext['totali']['totale_operazioni'] += invoice_amount_total
+        self.localcontext['totali']['totale_imponibili'] += invoice_amount_untaxed
+# da analizzare           self.totale_variazioni += invoice.amount_total
+        self.localcontext['totali']['totale_iva'] += totale_iva
+        self.localcontext['totali']['totale_iva_inded'] += totale_iva_inded
+
+        return res
+
+    def _get_tax_lines(self, move):
+        res=[]
+        tax_obj = self.pool.get('account.tax')
+        cur_pool = self.pool.get('res.currency')
+        inv_pool = self.pool.get('account.invoice')
+        # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
+        index=0
+        totale_iva = 0.0
+        totale_iva_inded = 0.0
+        invoice_amount_total = 0.0
+        invoice_amount_untaxed = 0.0
+        related_invoices = []
+        
+        # se c'è l'oggetto fattura, utilizzo il calcolo su fattura
+        for move_line in move.line_id:
+            if move_line.invoice and move_line.invoice.id not in related_invoices:
+                related_invoices.append(move_line.invoice.id)
+        if related_invoices:
+            for invoice_id in related_invoices:
+                return self._get_tax_lines_by_invoice(inv_pool.browse(self.cr, self.uid, invoice_id))
+                
         for move_line in move.line_id:
             tax_item = {}
             if move_line.tax_code_id and move_line.tax_code_id.tax_ids:
                 main_tax = tax_obj.get_main_tax(move_line.tax_code_id.tax_ids[0])
+                if main_tax.exclude_from_registries:
+                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
+                        _('The tax %s is excluded from registries') % main_tax.name)
+                    continue
                 # sommo gli imponibili relativi all'imposta corrente
                 base_amount = 0.0
                 for line in move_line.move_id.line_id:
@@ -104,7 +218,6 @@ class Parser(report_sxw.rml_parse):
 
         self.localcontext['totali']['totale_operazioni'] += invoice_amount_total
         self.localcontext['totali']['totale_imponibili'] += invoice_amount_untaxed
-# da analizzare           self.totale_variazioni += invoice.amount_total
         self.localcontext['totali']['totale_iva'] += totale_iva
         self.localcontext['totali']['totale_iva_inded'] += totale_iva_inded
 
