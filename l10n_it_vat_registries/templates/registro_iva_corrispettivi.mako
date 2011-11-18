@@ -24,7 +24,7 @@
             %for line in tax_lines(object) :
                 <tr><td>
                 %if line['index']==0: 
-                    ${ formatLang(object.move_id.date,date=True) or ''| entity}
+                    ${ formatLang(object.date,date=True) or ''| entity}
                 %endif
                 </td><td>
                 %if line['index']==0:
@@ -32,12 +32,12 @@
                 %endif
                 </td><td style="text-align:right">
                 %if line['index']==0:
-                    ${ object.amount_total | entity}
+                    ${ formatLang(line['amount_total']) | entity}
                 %endif
                 </td>
                 <td style="text-align:right">${ line['tax_percentage'] or ''| entity}</td>
-                <td style="text-align:right">${ line['base']  or ''| entity}</td>
-                <td style="text-align:right">${ line['amount']  or ''| entity}</td>
+                <td style="text-align:right">${ formatLang(line['base'])  or ''| entity}</td>
+                <td style="text-align:right">${ formatLang(line['amount'])  or ''| entity}</td>
                 <td></td>
                 </tr>
             %endfor

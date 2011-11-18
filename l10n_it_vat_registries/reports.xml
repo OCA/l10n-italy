@@ -83,7 +83,7 @@ thead{
         <record id="registro_iva_vendite_report_id" model="ir.actions.report.xml">
             <field name="name">Customer Invoices VAT Registry</field>
             <field name="type">ir.actions.report.xml</field>
-            <field name="model">account.invoice</field>
+            <field name="model">account.move</field>
             <field name="report_name">registro_iva_vendite</field>
             <field name="report_type">webkit</field>
             <field name="report_rml">l10n_it_vat_registries/templates/registro_iva_vendite.mako</field>
@@ -92,7 +92,7 @@ thead{
         <record id="registro_iva_acquisti_report_id" model="ir.actions.report.xml">
             <field name="name">Supplier Invoices VAT Registry</field>
             <field name="type">ir.actions.report.xml</field>
-            <field name="model">account.invoice</field>
+            <field name="model">account.move</field>
             <field name="report_name">registro_iva_acquisti</field>
             <field name="report_type">webkit</field>
             <field name="report_rml">l10n_it_vat_registries/templates/registro_iva_acquisti.mako</field>
@@ -101,7 +101,7 @@ thead{
         <record id="registro_iva_corrispettivi_report_id" model="ir.actions.report.xml">
             <field name="name">Corrispettivi VAT Registry</field>
             <field name="type">ir.actions.report.xml</field>
-            <field name="model">account.invoice</field>
+            <field name="model">account.move</field>
             <field name="report_name">registro_iva_corrispettivi</field>
             <field name="report_type">webkit</field>
             <field name="report_rml">l10n_it_vat_registries/templates/registro_iva_corrispettivi.mako</field>

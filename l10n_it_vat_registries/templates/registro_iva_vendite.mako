@@ -10,7 +10,6 @@
     <table style="width:100%;">
         <thead>
         <tr>
-            <th style="text-align:left">Data registrazione</th>
             <th style="text-align:left">Data fattura</th>
             <th style="text-align:left">Numero fattura</th>
             <th style="text-align:left">Ragione sociale</th>
@@ -26,16 +25,12 @@
         %for object in objects :
             %for line in tax_lines(object) :
                 <tr><td>
-                %if line['index']==0: 
-                    ${ formatLang(object.move_id.date,date=True) or ''| entity}
+                %if line['index']==0:
+                    ${ formatLang(object.date,date=True) or '' | entity}
                 %endif
                 </td><td>
                 %if line['index']==0:
-                    ${ formatLang(object.date_invoice,date=True) or '' | entity}
-                %endif
-                </td><td>
-                %if line['index']==0:
-                    ${object.number or ''| entity}
+                    ${object.name or ''| entity}
                 %endif
                 </td><td>
                 %if line['index']==0:
@@ -43,20 +38,20 @@
                 %endif
                 </td><td>
                 %if line['index']==0:
-                    %if object.type == 'out_invoice':
+                    %if line['base'] > 0:
                         Fattura
-                    %elif object.type == 'out_refund':
+                    %else:
                         Nota di credito
                     %endif
                 %endif
                 </td><td style="text-align:right">
                 %if line['index']==0:
-                    ${ object.amount_total | entity}
+                    ${ formatLang(line['amount_total']) | entity}
                 %endif
                 </td>
                 <td style="text-align:right">${ line['tax_percentage'] or ''| entity}</td>
-                <td style="text-align:right">${ line['base']  or ''| entity}</td>
-                <td style="text-align:right">${ line['amount']  or ''| entity}</td>
+                <td style="text-align:right">${ formatLang(line['base'])  or ''| entity}</td>
+                <td style="text-align:right">${ formatLang(line['amount'])  or ''| entity}</td>
                 <td></td>
                 </tr>
             %endfor

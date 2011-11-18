@@ -30,9 +30,18 @@ import netsvc
 class Parser(report_sxw.rml_parse):
 
     logger = netsvc.Logger()
+    
+    def _move_total(self, move_line):
+        if not move_line.credit:
+            for line in move_line.move_id.line_id:
+                if line.credit:
+                    return line.credit
+        elif not move_line.debit:
+            for line in move_line.move_id.line_id:
+                if line.debit:
+                    return line.debit
 
-    # TODO verificare multi valuta
-    def _get_tax_lines(self, invoice):
+    def _get_tax_lines(self, move):
         res=[]
         tax_obj = self.pool.get('account.tax')
         # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
@@ -41,62 +50,41 @@ class Parser(report_sxw.rml_parse):
         totale_iva_inded = 0.0
         invoice_amount_total = 0.0
         invoice_amount_untaxed = 0.0
-        precision = self.pool.get('decimal.precision').precision_get(self.cr, self.uid, 'Account')
-        for inv_tax in invoice.tax_line:
+        for move_line in move.line_id:
             tax_item = {}
-            if inv_tax.base_code_id and inv_tax.tax_code_id:
-                account_tax = tax_obj.get_account_tax(self.cr, self.uid, inv_tax.name)
-                if account_tax.exclude_from_registries:
-                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
-                        _('The tax %s is excluded from registries') % account_tax.name)
-                    continue
-                account_tax_amount = account_tax.amount
+            if move_line.tax_code_id and move_line.tax_code_id.tax_ids:
+                main_tax = tax_obj.get_main_tax(move_line.tax_code_id.tax_ids[0])
+                # sommo gli imponibili relativi all'imposta corrente
+                base_amount = 0.0
+                for line in move_line.move_id.line_id:
+                    if line.tax_code_id.id == main_tax.base_code_id.id:
+                        base_amount += line.tax_amount
+                # calcolo % indetraibile
+                actual_tax_amount = base_amount * main_tax.amount
+                non_deductible = 0.0
+                if actual_tax_amount != move_line.tax_amount:
+                    non_deductible = 100
+                    if move_line.tax_amount:
+                        non_deductible = 100 - abs((move_line.tax_amount * 100.0) / actual_tax_amount)
+                # calcolo il totale dell'operazione
+                invoice_amount_total = self._move_total(move_line)
+                if base_amount < 0:
+                    invoice_amount_total = - invoice_amount_total
                 tax_item = {
-                    'tax_percentage': account_tax_amount and str(
-                        account_tax_amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
-                    'base': inv_tax.base,
-                    'amount': inv_tax.amount,
-                    'non_deductible': 0.0,
+                    'tax_percentage': main_tax.amount and str(
+                        main_tax.amount * 100).split('.')[0] or move_line.tax_code_id.name,
+                    'base': base_amount,
+                    'amount': actual_tax_amount,
+                    'non_deductible': non_deductible and str(non_deductible).split('.')[0] or '',
                     'index': index,
+                    'amount_total': invoice_amount_total,
                     }
                 res.append(tax_item)
-                totale_iva += inv_tax.amount
-                invoice_amount_total = invoice.amount_total
-                invoice_amount_untaxed = invoice.amount_untaxed
+                totale_iva += actual_tax_amount * (100 - non_deductible) * 0.01
+                invoice_amount_untaxed += base_amount
+                totale_iva_inded += actual_tax_amount * non_deductible * 0.01
                 index += 1
-            # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
-            elif inv_tax.tax_code_id:
-                tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax.name))
-                if tax.exclude_from_registries:
-                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
-                        _('The tax %s is excluded from registries') % tax.name)
-                    continue
-                for inv_tax_2 in invoice.tax_line:
-                    if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
-                        base_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(self.cr, self.uid, inv_tax_2.name))
-                        # Se hanno la stessa tassa
-                        if base_tax.id == tax.id:
-                            # TODO verificare se si può evitare Decimal
-                            tax_item = {
-                                'tax_percentage': base_tax.amount and str(
-                                    base_tax.amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
-                                'base': inv_tax.base + inv_tax_2.base,
-                                'amount': inv_tax.amount + inv_tax_2.amount,
-                                'non_deductible': float(Decimal(str(inv_tax_2.base / (inv_tax.base + inv_tax_2.base) * 100)
-                                    ).quantize(Decimal('.1'), rounding=ROUND_HALF_UP)),
-                                'index': index,
-                                }
-                            res.append(tax_item)
-                            totale_iva += inv_tax.amount
-                            totale_iva_inded += inv_tax_2.amount
-                            invoice_amount_total = invoice.amount_total
-                            invoice_amount_untaxed = invoice.amount_untaxed
-                            index += 1
-                            break
-            elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
-                self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
-                    _('The tax %s has no tax codes') % inv_tax.name)
-                continue
+
             if tax_item:
                 if tax_item['tax_percentage'] not in self.localcontext['tax_codes']:
                     self.localcontext['tax_codes'][tax_item['tax_percentage']] = {
