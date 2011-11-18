@@ -84,9 +84,11 @@ class wizard_registro_iva(osv.osv_memory):
                         % move_line.tax_code_id.name)
                 '''
                 # controllo che ci sia una sola riga di debito o credito
+                ''' non ha senso per via dei pagamenti parziali, quindi riconciliazioni parziali
                 if self.counterparts_number(move_line) != 1:
                     raise osv.except_osv(_('Error'), _('Wrong counterparts number for move %s')
                         % move_line.move_id.name)
+                '''
                 if move_line.move_id.id not in move_ids:
                     move_ids.append(move_line.move_id.id)
         datas = {'ids': move_ids}

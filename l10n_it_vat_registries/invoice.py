@@ -32,14 +32,16 @@ class Parser(report_sxw.rml_parse):
     logger = netsvc.Logger()
     
     def _move_total(self, move_line):
+        total = 0.0
         if not move_line.credit:
             for line in move_line.move_id.line_id:
                 if line.credit:
-                    return line.credit
+                    total += line.credit
         elif not move_line.debit:
             for line in move_line.move_id.line_id:
                 if line.debit:
-                    return line.debit
+                    total +=  line.debit
+        return total
 
     def _get_tax_lines(self, move):
         res=[]
