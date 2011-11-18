@@ -44,6 +44,7 @@ class Parser(report_sxw.rml_parse):
     def _get_tax_lines(self, move):
         res=[]
         tax_obj = self.pool.get('account.tax')
+        cur_pool = self.pool.get('res.currency')
         # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
         index=0
         totale_iva = 0.0
@@ -61,11 +62,13 @@ class Parser(report_sxw.rml_parse):
                         base_amount += line.tax_amount
                 # calcolo % indetraibile
                 actual_tax_amount = base_amount * main_tax.amount
+                actual_tax_amount = cur_pool.round(self.cr, self.uid, move.company_id.currency_id, actual_tax_amount)
                 non_deductible = 0.0
                 if actual_tax_amount != move_line.tax_amount:
                     non_deductible = 100
                     if move_line.tax_amount:
                         non_deductible = 100 - abs((move_line.tax_amount * 100.0) / actual_tax_amount)
+                        non_deductible = cur_pool.round(self.cr, self.uid, move.company_id.currency_id, non_deductible)
                 # calcolo il totale dell'operazione
                 invoice_amount_total = self._move_total(move_line)
                 if base_amount < 0:
@@ -80,9 +83,11 @@ class Parser(report_sxw.rml_parse):
                     'amount_total': invoice_amount_total,
                     }
                 res.append(tax_item)
-                totale_iva += actual_tax_amount * (100 - non_deductible) * 0.01
+                totale_iva += cur_pool.round(self.cr, self.uid, move.company_id.currency_id,
+                    (actual_tax_amount * (100 - non_deductible) * 0.01))
                 invoice_amount_untaxed += base_amount
-                totale_iva_inded += actual_tax_amount * non_deductible * 0.01
+                totale_iva_inded += cur_pool.round(self.cr, self.uid, move.company_id.currency_id,
+                    (actual_tax_amount * non_deductible * 0.01))
                 index += 1
 
             if tax_item:
