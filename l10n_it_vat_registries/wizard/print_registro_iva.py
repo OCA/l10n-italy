@@ -42,7 +42,7 @@ class wizard_registro_iva(osv.osv_memory):
         'type': 'customer',
         'date_from': lambda * a: time.strftime('%Y-%m-%d'),
         'date_to': lambda * a: time.strftime('%Y-%m-%d'),
-        'journal_ids': lambda s, cr, uid, c: s.pool.get('account.journal').search(cr, uid, []),
+        #'journal_ids': lambda s, cr, uid, c: s.pool.get('account.journal').search(cr, uid, []),
         }
         
     def counterparts_number(self, move_line):

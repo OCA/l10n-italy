@@ -34,7 +34,7 @@
                 %endif
                 </td><td>
                 %if line['index']==0:
-                    ${object.partner_id.name | entity}
+                    ${object.partner_id.name or ''| entity}
                 %endif
                 </td><td>
                 %if line['index']==0:
