@@ -70,13 +70,11 @@ class wizard_registro_iva(osv.osv_memory):
             ('tax_code_id', '!=', False),
             ]
         move_line_ids = move_line_obj.search(cr, uid, search_list, order='date')
-        if not move_line_ids:
-            self.write(cr, uid,  ids, {'message': _('No documents found in the current selection')})
-            return True
         if context is None:
             context = {}
         for move_line in move_line_obj.browse(cr, uid, move_line_ids):
-            if move_line.tax_code_id.tax_ids:
+            # verifico che sia coinvolto un conto imposta legato ad un'imposta tramite conto standard o conto refund
+            if move_line.tax_code_id.tax_ids or move_line.tax_code_id.ref_tax_ids:
                 # controllo che ogni tax code abbia una e una sola imposta
                 ''' non posso farlo per via dell IVA inclusa nel prezzo
                 if len(move_line.tax_code_id.tax_ids) != 1:
@@ -91,6 +89,9 @@ class wizard_registro_iva(osv.osv_memory):
                 '''
                 if move_line.move_id.id not in move_ids:
                     move_ids.append(move_line.move_id.id)
+        if not move_ids:
+            self.write(cr, uid,  ids, {'message': _('No documents found in the current selection')})
+            return True
         datas = {'ids': move_ids}
         datas['model'] = 'account.move'
         datas['form'] = wizard
