@@ -147,9 +147,10 @@ class riba_file_export(osv.osv_memory):
         credit_account = credit_bank.iban[15:27]
         dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = datetime.datetime.now().strftime("%d%m%y%H%M%S") + credit_sia
-        if not order_obj.company_id.partner_id.address:
-           raise osv.except_osv('Error', _('No address specified for: ') + name_company)
         creditor_address = order_obj.company_id.partner_id.address
+        if not creditor_address[0].street:
+           raise osv.except_osv('Error', _('No address specified for: ') + name_company)
+        creditor_address_street = creditor_address[0].street
         creditor_city = ''
         if creditor_address[0].city:
             creditor_city = creditor_address[0].city
@@ -167,7 +168,7 @@ class riba_file_export(osv.osv_memory):
                nome_supporto,
                'E',
                name_company,
-               creditor_address[0].street,
+               creditor_address_street,
                creditor_address[0].zip + ' ' + creditor_city,
                order_obj.mode.company_id.partner_id.ref,
                order_obj.company_id.partner_id.vat and order_obj.company_id.partner_id.vat[2:] or order_obj.company_id.partner_id.fiscalcode,
