@@ -34,7 +34,7 @@ class account_invoice(osv.osv):
         super(account_invoice, self).action_number(cr, uid, ids, context)
         for obj_inv in self.browse(cr, uid, ids):
             inv_type = obj_inv.type
-            if inv_type == 'in_invoice':
+            if inv_type == 'in_invoice' or inv_type == 'in_refund':
                 return True
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
