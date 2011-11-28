@@ -30,7 +30,7 @@ import netsvc
 class Parser(report_sxw.rml_parse):
 
     logger = netsvc.Logger()
-    
+    # TODO calcolare con il tipo di conto
     def _move_total(self, move_line):
         total = 0.0
         if not move_line.credit:
