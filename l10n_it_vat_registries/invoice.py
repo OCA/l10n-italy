@@ -35,26 +35,33 @@ class Parser(report_sxw.rml_parse):
         total = 0.0
         if not move_line.credit:
             for line in move_line.move_id.line_id:
-                if line.credit:
+                if line.credit and not line.tax_code_id:
                     total += line.credit
         elif not move_line.debit:
             for line in move_line.move_id.line_id:
-                if line.debit:
+                if line.debit and not line.tax_code_id:
                     total +=  line.debit
         return total
+
+    # Calcola il segno corretto sulla base del tax code.
+    # Il tax code ha l'importo in valuta base, ma ha segno negativo per l'IVA a credito (da stampare positiva)
+    # e per le note di credito (da stampare positive)
+    def _get_amount_with_sign(self, tax_code_amount, amount):
+        return abs(tax_code_amount) * cmp(amount, 0)
     
     # in valuta base
     def _get_invoice_amount_total(self, invoice):
         total = 0.0
         for inv_tax in invoice.tax_line:
-            total += inv_tax.base_amount + inv_tax.tax_amount
+            total += self._get_amount_with_sign(inv_tax.base_amount, inv_tax.base) \
+                + self._get_amount_with_sign(inv_tax.tax_amount, inv_tax.amount)
         return total
     
     # in valuta base
     def _get_invoice_amount_untaxed(self, invoice):
         total = 0.0
         for inv_tax in invoice.tax_line:
-            total += inv_tax.base_amount
+            total += self._get_amount_with_sign(inv_tax.base_amount, inv_tax.base)
         return total
 
     def _get_tax_lines_by_invoice(self, invoice):
@@ -79,17 +86,19 @@ class Parser(report_sxw.rml_parse):
                 account_tax_amount = account_tax.amount
                 invoice_amount_total = self._get_invoice_amount_total(invoice)
                 invoice_amount_untaxed = self._get_invoice_amount_untaxed(invoice)
+                amount = self._get_amount_with_sign(inv_tax.tax_amount, inv_tax.amount)
+                base = self._get_amount_with_sign(inv_tax.base_amount, inv_tax.base)
                 tax_item = {
                     'tax_percentage': account_tax_amount and str(
                         account_tax_amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
-                    'base': inv_tax.base_amount,
-                    'amount': inv_tax.tax_amount, #in valuta base
+                    'base': base,
+                    'amount': amount, #in valuta base
                     'non_deductible': 0.0,
                     'index': index,
                     'amount_total': invoice_amount_total,
                     }
                 res.append(tax_item)
-                totale_iva += inv_tax.tax_amount
+                totale_iva += amount
                 index += 1
             # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
             elif inv_tax.tax_code_id:
@@ -106,18 +115,22 @@ class Parser(report_sxw.rml_parse):
                             non_deductible = (inv_tax_2.base_amount / (inv_tax.base_amount + inv_tax_2.base_amount) * 100)
                             invoice_amount_total = self._get_invoice_amount_total(invoice)
                             invoice_amount_untaxed = self._get_invoice_amount_untaxed(invoice)
+                            amount = self._get_amount_with_sign(inv_tax.tax_amount, inv_tax.amount)
+                            base = self._get_amount_with_sign(inv_tax.base_amount, inv_tax.base)
+                            amount2 = self._get_amount_with_sign(inv_tax_2.tax_amount, inv_tax_2.amount)
+                            base2 = self._get_amount_with_sign(inv_tax_2.base_amount, inv_tax_2.base)
                             tax_item = {
                                 'tax_percentage': base_tax.amount and str(
                                     base_tax.amount * 100).split('.')[0] or inv_tax.tax_code_id.name,
-                                'base': inv_tax.base_amount + inv_tax_2.base_amount,
-                                'amount': inv_tax.tax_amount + inv_tax_2.tax_amount,
+                                'base': base + base2,
+                                'amount': amount + amount2,
                                 'non_deductible': non_deductible and str(non_deductible).split('.')[0] or '',
                                 'index': index,
                                 'amount_total': invoice_amount_total,
                                 }
                             res.append(tax_item)
-                            totale_iva += inv_tax.tax_amount
-                            totale_iva_inded += inv_tax_2.tax_amount
+                            totale_iva += amount
+                            totale_iva_inded += amount2
                             index += 1
                             break
             elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
@@ -175,12 +188,12 @@ class Parser(report_sxw.rml_parse):
                 base_amount = 0.0
                 for line in move_line.move_id.line_id:
                     if line.tax_code_id.id == main_tax.base_code_id.id:
-                        base_amount += line.tax_amount
+                        base_amount += self._get_amount_with_sign(line.tax_amount, line.debit - line.credit)
                 # calcolo % indetraibile
                 actual_tax_amount = base_amount * main_tax.amount
                 actual_tax_amount = cur_pool.round(self.cr, self.uid, move.company_id.currency_id, actual_tax_amount)
                 non_deductible = 0.0
-                if actual_tax_amount != move_line.tax_amount:
+                if abs(actual_tax_amount) != abs(move_line.tax_amount):
                     non_deductible = 100
                     if move_line.tax_amount:
                         non_deductible = 100 - abs((move_line.tax_amount * 100.0) / actual_tax_amount)
