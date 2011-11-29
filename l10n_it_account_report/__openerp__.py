@@ -22,11 +22,14 @@
     'name': 'Italian Localisation - Accounting reports',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - Fattura""",
+    'description': """Accounting reports for Italian localization - Fattura
+    Install report_aero_ooo to be able to output to a format
+    different from the one of the template.
+    """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_account', 'report_aeroo_ooo'],
+    "depends" : ['l10n_it_account', 'report_aeroo'],
     "init_xml" : [
         ],
     "update_xml" : [

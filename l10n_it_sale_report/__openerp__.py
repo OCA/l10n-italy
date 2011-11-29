@@ -23,11 +23,14 @@
     'name': 'Italian Localisation - Sale reports',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """Sale reports for Italian localization - DDT & Fattura accompagnatoria""",
+    'description': """Sale reports for Italian localization - DDT & Fattura accompagnatoria
+    Install report_aero_ooo to be able to output to a format
+    different from the one of the template.
+    """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_sale', 'report_aeroo_ooo', 'l10n_it_account_report'],
+    "depends" : ['l10n_it_sale', 'report_aeroo', 'l10n_it_account_report'],
     "init_xml" : [
         ],
     "update_xml" : [
