@@ -22,22 +22,12 @@
 
 from osv import fields, osv
 
-class account_tax_code(osv.osv):
-
-    _inherit = 'account.tax.code'
-    _columns = {
-        'tax_ids': fields.one2many('account.tax', 'tax_code_id', 'Taxes'),
-        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
-        }
-
-account_tax_code()
-
 class account_invoice_tax(osv.osv):
 
     _inherit = 'account.tax'
     _columns = {
         'exclude_from_registries': fields.boolean('Exclude from VAT registries'),
-        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
+        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'), # serve ancora?
         }
     _sql_constraints = [
         ('name_uniq', 'UNIQUE(name)', 'The tax name must be unique!'),
