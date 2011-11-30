@@ -2,58 +2,106 @@
 <head>
     <style type="text/css">
         ${css}
+        .left_with_line {
+            text-align:left; vertical-align:text-top; border-top:1px solid #000; padding:5px
+        }
+        .right_with_line {
+            text-align:right; vertical-align:text-top; border-top:1px solid #000; padding:5px
+        }
+        .left_without_line {
+            text-align:left; vertical-align:text-top; padding:5px
+        }
+        .right_without_line {
+            text-align:right; vertical-align:text-top; padding:5px
+        }
     </style>
 </head>
 <body>
     <h2>Fatture Ricevute</h2>
     <% setLang(objects[0].company_id.partner_id.lang or "en_US") %>
-    <table style="width:100%;">
+    <table style="width:100%;" cellspacing="0">
         <thead>
         <tr>
-            <th style="text-align:left">Data fattura</th>
-            <th style="text-align:left">Numero fattura</th>
-            <th style="text-align:left">Ragione sociale</th>
-            <th style="text-align:left">Descrizione</th>
-            <th style="text-align:right">Totale fattura</th>
-            <th style="text-align:right">% IVA</th>
-            <th style="text-align:right">Imponibile</th>
-            <th style="text-align:right">Imposta</th>
-            <th style="text-align:right">% inded.</th>
+            <th class="left_without_line">Data fattura</th>
+            <th class="left_without_line">Numero fattura</th>
+            <th class="left_without_line">Ragione sociale</th>
+            <th class="left_without_line">Descrizione</th>
+            <th class="right_without_line">Totale fattura</th>
+            <th class="right_without_line">% IVA</th>
+            <th class="right_without_line">Imponibile</th>
+            <th class="right_without_line">Imposta</th>
+            <th class="right_without_line">% inded.</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         %for object in objects :
             %for line in tax_lines(object) :
-                <tr><td>
+                %if line['index']==0:
+                    <tr><td class="left_with_line">
+                %else:
+                    <tr><td class="left_without_line">
+                %endif
                 %if line['index']==0:
                     ${ formatLang(object.date,date=True) or '' | entity}
                 %endif
-                </td><td>
+                %if line['index']==0:
+                    </td><td class="left_with_line">
+                %else:
+                    </td><td class="left_without_line">
+                %endif
                 %if line['index']==0:
                     ${object.name or ''| entity}
                 %endif
-                </td><td>
+                %if line['index']==0:
+                    </td><td class="left_with_line">
+                %else:
+                    </td><td class="left_without_line">
+                %endif
                 %if line['index']==0:
                     ${object.partner_id.name  or ''| entity}
                 %endif
-                </td><td>
                 %if line['index']==0:
-                    %if line['base'] > 0:
+                    </td><td class="left_with_line">
+                %else:
+                    </td><td class="left_without_line">
+                %endif
+                %if line['index']==0:
+                    %if line['amount_total'] >= 0:
                         Fattura
                     %else:
                         Nota di credito
                     %endif
                 %endif
-                </td><td style="text-align:right">
+                %if line['index']==0:
+                    </td><td class="right_with_line">
+                %else:
+                    </td><td class="right_without_line">
+                %endif
                 %if line['index']==0:
                     ${ formatLang(line['amount_total']) | entity}
                 %endif
                 </td>
-                <td style="text-align:right">${ line['tax_percentage'] or ''| entity}</td>
-                <td style="text-align:right">${ formatLang(line['base'])  or ''| entity}</td>
-                <td style="text-align:right">${ formatLang(line['amount'])  or ''| entity}</td>
-                <td style="text-align:right">
+                %if line['index']==0:
+                    <td class="right_with_line">${ line['tax_percentage'] or ''| entity}</td>
+                %else:
+                    <td class="right_without_line">${ line['tax_percentage'] or ''| entity}</td>
+                %endif
+                %if line['index']==0:
+                    <td class="right_with_line">${ formatLang(line['base'])  or ''| entity}</td>
+                %else:
+                    <td class="right_without_line">${ formatLang(line['base'])  or ''| entity}</td>
+                %endif
+                %if line['index']==0:
+                    <td class="right_with_line">${ formatLang(line['amount'])  or ''| entity}</td>
+                %else:
+                    <td class="right_without_line">${ formatLang(line['amount'])  or ''| entity}</td>
+                %endif
+                %if line['index']==0:
+                    <td class="right_with_line">
+                %else:
+                    <td class="right_without_line">
+                %endif
                 %if line['non_deductible']:
                     ${ line['non_deductible'] | entity} %
                 %endif

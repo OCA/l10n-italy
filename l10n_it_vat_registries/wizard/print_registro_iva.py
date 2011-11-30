@@ -61,6 +61,7 @@ class wizard_registro_iva(osv.osv_memory):
         move_ids = []
         wizard = self.read(cr, uid, ids)[0]
         move_line_obj = self.pool.get('account.move.line')
+        tax_pool = self.pool.get('account.tax')
         search_list = []
         search_list = [
             ('journal_id', 'in', wizard['journal_ids']),
@@ -75,17 +76,19 @@ class wizard_registro_iva(osv.osv_memory):
         for move_line in move_line_obj.browse(cr, uid, move_line_ids):
             # verifico che sia coinvolto un conto imposta legato ad un'imposta tramite conto standard o conto refund
             if move_line.tax_code_id.tax_ids or move_line.tax_code_id.ref_tax_ids:
+                if move_line.tax_code_id.tax_ids:
+                    if not tax_pool._have_same_rate(move_line.tax_code_id.tax_ids):
+                        raise osv.except_osv(_('Error'), _('Taxes %s have different rates')
+                            % str(move_line.tax_code_id.tax_ids))
+                if move_line.tax_code_id.ref_tax_ids:
+                    if not tax_pool._have_same_rate(move_line.tax_code_id.ref_tax_ids):
+                        raise osv.except_osv(_('Error'), _('Taxes %s have different rates')
+                            % str(move_line.tax_code_id.ref_tax_ids))
                 # controllo che ogni tax code abbia una e una sola imposta
                 ''' non posso farlo per via dell IVA inclusa nel prezzo
                 if len(move_line.tax_code_id.tax_ids) != 1:
                     raise osv.except_osv(_('Error'), _('Wrong tax configuration for tax code %s')
                         % move_line.tax_code_id.name)
-                '''
-                # controllo che ci sia una sola riga di debito o credito
-                ''' non ha senso per via dei pagamenti parziali, quindi riconciliazioni parziali
-                if self.counterparts_number(move_line) != 1:
-                    raise osv.except_osv(_('Error'), _('Wrong counterparts number for move %s')
-                        % move_line.move_id.name)
                 '''
                 if move_line.move_id.id not in move_ids:
                     move_ids.append(move_line.move_id.id)
