@@ -25,7 +25,7 @@
     <% setLang(company.partner_id.lang or "en_US") %>
     <h1>Registro IVA</h1>
     <h3>${company.partner_id.name or ''|entity}</h3>
-    <table style="border-bottom: 1px solid black; width: 100%">
+    <table style="border-bottom: 4px solid black; width: 100%; padding-bottom: 8px">
     <tr>
     <td>
     <div>${company.partner_id.address and company.partner_id.address[0].street or ''|entity}</div>
