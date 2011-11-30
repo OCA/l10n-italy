@@ -43,6 +43,8 @@ class account_invoice_tax(osv.osv):
     def compute(self, cr, uid, invoice_id, context=None):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
         inv_obj = self.pool.get('account.invoice')
+        tax_obj = self.pool.get('account.tax')
+        tax_code_obj = self.pool.get('account.tax.code')
         inv = inv_obj.browse(cr, uid, invoice_id, context=context)
         if inv.vertical_comp:
             cur = inv.currency_id
@@ -53,7 +55,15 @@ class account_invoice_tax(osv.osv):
             precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
 
             for inv_tax in tax_grouped.values():
-                main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name']))
+                if inv_tax['tax_code_id']:
+                    main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_tax_code(
+                        tax_code_obj.browse(cr, uid, inv_tax['tax_code_id'])))
+                elif inv_tax['base_code_id']:
+                    main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
+                        tax_code_obj.browse(cr, uid, inv_tax['base_code_id'])))
+                else:
+                    raise osv.except_osv(_('Error'),
+                        _('No tax codes for invoice tax %s') % inv_tax['name'])
                 if main_tax.price_include:
                     continue
                 if inv_tax['amount'] and inv_tax['base']:

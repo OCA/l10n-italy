@@ -99,9 +99,18 @@ class account_invoice_tax(osv.osv):
         invoice_total = 0
         cur_obj = self.pool.get('res.currency')
         tax_obj = self.pool.get('account.tax')
+        tax_code_obj = self.pool.get('account.tax.code')
         grouped_base = {}
         for inv_tax in tax_grouped.values():
-            main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax['name']))
+            if inv_tax['tax_code_id']:
+                main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_tax_code(
+                    tax_code_obj.browse(cr, uid, inv_tax['tax_code_id'])))
+            elif inv_tax['base_code_id']:
+                main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
+                    tax_code_obj.browse(cr, uid, inv_tax['base_code_id'])))
+            else:
+                raise osv.except_osv(_('Error'),
+                    _('No tax codes for invoice tax %s') % inv_tax['name'])
             if not grouped_base.get(main_tax.amount, False):
                 grouped_base[main_tax.amount] = 0
             grouped_base[main_tax.amount] +=  inv_tax['base']
@@ -116,6 +125,7 @@ class account_invoice_tax(osv.osv):
         tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
         inv_obj = self.pool.get('account.invoice')
         tax_obj = self.pool.get('account.tax')
+        tax_code_obj = self.pool.get('account.tax.code')
         invoice = inv_obj.browse(cr, uid, invoice_id, context=context)
         cur = invoice.currency_id
         tax_difference = self.tax_difference(cr, uid, cur, tax_grouped)
@@ -126,13 +136,18 @@ class account_invoice_tax(osv.osv):
         for inv_tax in tax_grouped.values():
             # parte detraibile
             if not inv_tax['base_code_id'] and inv_tax['tax_code_id']:
-                ded_tax = tax_obj.get_account_tax(cr, uid, inv_tax['name'])
+                ded_tax = tax_obj.get_account_tax_by_tax_code(
+                    tax_code_obj.browse(cr, uid, inv_tax['tax_code_id']))
                 tax = tax_obj.get_main_tax(ded_tax)
                 for inv_tax_2 in tax_grouped.values():
                     # parte indetraibile
                     if inv_tax_2['base_code_id'] and not inv_tax_2['tax_code_id']:
-                        main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax(cr, uid, inv_tax_2['name']))
+                        main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
+                            tax_code_obj.browse(cr, uid, inv_tax_2['base_code_id'])))
                         # Se hanno la stessa tassa
+                        # (Il get_account_tax_by* potrebbe in generale ritornare una qualunque
+                        # delle N imposte associate al tax_code. Per la parte indetraibile, il
+                        # tax code dovrà sempre avere una sola imposta)
                         if main_tax.id == tax.id:
                             # se risulta un'eccedenza, la tolgo dalla parte detraibile
                             if tax_difference < 0:
