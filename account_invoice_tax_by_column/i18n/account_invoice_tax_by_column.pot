@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.3\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-10-24 12:13+0000\n"
-"PO-Revision-Date: 2011-10-24 12:13+0000\n"
+"POT-Creation-Date: 2011-11-30 16:27+0000\n"
+"PO-Revision-Date: 2011-11-30 16:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,40 +16,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_invoice_tax_by_column
+#: field:account.tax.code,ref_base_tax_ids:0
+msgid "Ref Base Taxes"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
 #: model:ir.model,name:account_invoice_tax_by_column.model_account_invoice_tax
 msgid "Invoice Tax"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: code:addons/account_invoice_tax_by_column/account.py:61
-#, python-format
-msgid "Too many taxes with name %s"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: code:addons/account_invoice_tax_by_column/account.py:59
-#, python-format
-msgid "The tax %s does not exist"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: field:res.company,vertical_comp:0
-msgid "Tax Vertical Calculation"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: model:ir.model,name:account_invoice_tax_by_column.model_res_company
-msgid "Companies"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: model:ir.module.module,shortdesc:account_invoice_tax_by_column.module_meta_information
-msgid "Account Invoice Tax - Computation By Column"
-msgstr ""
-
-#. module: account_invoice_tax_by_column
-#: constraint:res.company:0
-msgid "Error! You can not create recursive companies."
 msgstr ""
 
 #. module: account_invoice_tax_by_column
@@ -78,15 +51,98 @@ msgid "    \n"
 msgstr ""
 
 #. module: account_invoice_tax_by_column
-#: code:addons/account_invoice_tax_by_column/account.py:59
-#: code:addons/account_invoice_tax_by_column/account.py:61
+#: code:addons/account_invoice_tax_by_column/account.py:49
+#: code:addons/account_invoice_tax_by_column/account.py:54
+#: code:addons/account_invoice_tax_by_column/account.py:63
+#: code:addons/account_invoice_tax_by_column/account.py:68
+#, python-format
+msgid "The taxes %s have different rates"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: code:addons/account_invoice_tax_by_column/account.py:93
+#, python-format
+msgid "Too many taxes with name %s"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: constraint:account.tax.code:0
+msgid "Error ! You can not create recursive accounts."
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: code:addons/account_invoice_tax_by_column/account.py:79
+#: code:addons/account_invoice_tax_by_column/invoice.py:66
+#, python-format
+msgid "No tax codes for invoice tax %s"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: model:ir.module.module,shortdesc:account_invoice_tax_by_column.module_meta_information
+msgid "Account Invoice Tax - Computation By Column"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: field:account.tax.code,tax_ids:0
+msgid "Taxes"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: code:addons/account_invoice_tax_by_column/account.py:91
+#, python-format
+msgid "The tax %s does not exist"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: field:account.tax.code,base_tax_ids:0
+msgid "Base Taxes"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: code:addons/account_invoice_tax_by_column/account.py:57
+#: code:addons/account_invoice_tax_by_column/account.py:71
+#, python-format
+msgid "No taxes associated to tax code %s"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: field:account.tax.code,ref_tax_ids:0
+msgid "Ref Taxes"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: model:ir.model,name:account_invoice_tax_by_column.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: code:addons/account_invoice_tax_by_column/account.py:48
+#: code:addons/account_invoice_tax_by_column/account.py:53
+#: code:addons/account_invoice_tax_by_column/account.py:56
+#: code:addons/account_invoice_tax_by_column/account.py:62
+#: code:addons/account_invoice_tax_by_column/account.py:67
+#: code:addons/account_invoice_tax_by_column/account.py:70
+#: code:addons/account_invoice_tax_by_column/account.py:78
+#: code:addons/account_invoice_tax_by_column/account.py:91
+#: code:addons/account_invoice_tax_by_column/account.py:93
+#: code:addons/account_invoice_tax_by_column/invoice.py:65
 #, python-format
 msgid "Error"
 msgstr ""
 
 #. module: account_invoice_tax_by_column
+#: field:account.invoice,vertical_comp:0
+msgid "Tax Computation By Column"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
 #: model:ir.model,name:account_invoice_tax_by_column.model_account_tax
 msgid "account.tax"
+msgstr ""
+
+#. module: account_invoice_tax_by_column
+#: model:ir.model,name:account_invoice_tax_by_column.model_account_tax_code
+msgid "Tax Code"
 msgstr ""
 
 #. module: account_invoice_tax_by_column
