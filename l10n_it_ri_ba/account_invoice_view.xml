@@ -17,17 +17,6 @@
             </field>
         </record>
 
-        <record id="action_riba_invoice_customer_tree" model="ir.actions.act_window">
-            <field name="name">Invoices</field>
-            <field name="res_model">account.invoice</field>
-            <field name="view_type">tree</field>
-            <field name="view_mode">tree,form,calendar,graph</field>
-            <field name="view_id" ref="riba_invoice_tree"/>
-            <field name="context">{'type':'out_invoice'}</field>
-            <field name="domain">[('state','=','open')]</field>
-            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
-        </record>
-
         <record id="action_riba_invoice_customer_tree1" model="ir.actions.act_window">
             <field name="name">Customer Invoices</field>
             <field name="res_model">account.invoice</field>
@@ -38,6 +27,19 @@
             <field name="context">{'type':'out_invoice', 'journal_type': 'sale'}</field>
             <field name="search_view_id" ref="account.view_account_invoice_filter"/>
             <field name="help">With Customer Invoices with RiBa term you can create and manage sales invoices issued to your customers.</field>
+        </record>
+
+        <record id="action_riba_invoice_customer_tree1_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="action_riba_invoice_customer_tree1"/>
+        </record>
+
+        <record id="action_riba_invoice_customer_tree1_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form"/>
+            <field name="act_window_id" ref="action_riba_invoice_customer_tree1"/>
         </record>
 
     </data>
