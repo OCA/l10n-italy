@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2010 Associazione OpenERP Italia
+#    Copyright (C) 2010-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #    All Rights Reserved
 #
@@ -91,18 +91,17 @@ class stock_picking(osv.osv):
             group, type, context)
         for picking in self.browse(cursor, user, ids, context=context):
             self.pool.get('account.invoice').write(cursor, user, res[picking.id], {
-#                'order_id': picking.order_id.id,
                 'carriage_condition_id': picking.carriage_condition_id.id,
                 'goods_description_id': picking.goods_description_id.id,
                 'transportation_reason_id': picking.transportation_reason_id.id,
                 })
         return res
 
+    #-----------------------------------------------------------------------------
+    # EVITARE LA COPIA DI 'NUMERO DDT'
+    #-----------------------------------------------------------------------------
+    def copy(self, cr, uid, id, default={}, context=None):
+        default.update({'ddt_number': ''})
+        return super(stock_picking, self).copy(cr, uid, id, default, context)
 
 stock_picking()
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
-
-
