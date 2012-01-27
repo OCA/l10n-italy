@@ -38,7 +38,7 @@ class Parser(report_sxw.rml_parse):
                 if not partner_type:
                     partner_type = line.account_id.type
                 elif partner_type != line.account_id.type:
-                    raise osv.except_osv(_('Error'),
+                    raise Exception(
                         _('The move %s has different partner account type') % move_line.move_id.name)
         return partner_type
     
