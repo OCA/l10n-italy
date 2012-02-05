@@ -21,6 +21,7 @@
 ##############################################################################
 import time
 from osv import fields, osv
+from tools.translate import _
 
 class account_invoice(osv.osv):
 
