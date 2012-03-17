@@ -32,7 +32,7 @@
     % for a in objects:
 ##        ${ company.partner_id.lang }
         <% setLang(company.partner_id.lang) %>
-        <table id="primanota_table">
+        <table class="list_table"  width="90%">
             <tr>
                 <th> ${ _('Date') }</th>
                 <th> ${ _('JRNL') }</th>
@@ -45,21 +45,8 @@
                 <th> ${ _('Balance') }</th>
             </tr>
 
-            % if data['form']['initial_balance']:
-            <tr style="page-break-inside: avoid; vertical-align:text-top;">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>${ _('Initial Balance') }</td>
-                <td></td>
-                <td></td>
-                <td class="right">${ formatLang(compute_totals(a)['initial_balance'], digits=get_digits(dp='Account')) | entity}</td>
-            </tr>
-            % endif
-            
-            % for line in lines(a) :
+       
+            %for line in lines(a) :
                 <tr style="page-break-inside: avoid; vertical-align:text-top;">
                     <td>${ formatLang(line['ldate'], date=True) or ''|entity }</td>
                     <td>${ line['jname']  or ''|entity }</td>
@@ -67,22 +54,11 @@
                     <td>${ line['lref']  or ''|entity }</td>
                     <td>${ line['move']  or ''|entity }</td>
                     <td>${ line['lname']  or ''|entity }</td>
-                    <td class="right">${ formatLang(line['debit'], digits=get_digits(dp='Account')) |entity}</td>
-                    <td class="right">${ formatLang(line['credit'], digits=get_digits(dp='Account')) |entity}</td>
-                    <td class="right">${ line['progress'] |entity}</td>
+                    <td>${ formatLang(line['debit'], digits=get_digits(dp='Account')) |entity}</td>
+                    <td>${ formatLang(line['credit'], digits=get_digits(dp='Account')) |entity}</td>
+                    <td>${ line['debit'] - line['credit'] |entity}</td>
                 </tr>
             %endfor
-            <tr style="page-break-inside: avoid; vertical-align:text-top;">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="right">${ _('Total') }</td>
-                <td class="right">${ formatLang(compute_totals(a)['total_debit'], digits=get_digits(dp='Account')) | entity}</td>
-                <td class="right">${ formatLang(compute_totals(a)['total_credit'], digits=get_digits(dp='Account')) | entity}</td>
-                <td></td>
-            </tr>
         </table>
     %endfor
     ## ${ ipdb(data) }

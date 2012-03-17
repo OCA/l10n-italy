@@ -35,12 +35,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         self.sortby = data['form'].get('sortby', 'sort_date')
         self.query = obj_move._query_get(self.cr, self.uid, obj='l', context=data['form'].get('used_context',{}))
         ctx2 = data['form'].get('used_context',{}).copy()
-
-        self.init_balance = data['form'].get('initial_balance', True)
-        if self.init_balance:
-            ctx2.update({'initial_bal': True})
-        self.init_query = obj_move._query_get(self.cr, self.uid, obj='l', context=ctx2)
-
+        print _('Debit')
         self.init_balance = data['form']['initial_balance']
         self.display_account = data['form']['display_account']
         self.target_move = data['form'].get('target_move', 'all')
@@ -68,21 +63,14 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         self.period_sql = ""
         self.sold_accounts = {}
         self.sortby = 'sort_date'
-        self.initial_amount = 0.0
-        currency_obj = self.pool.get('res.currency')
-        journal_obj = self.pool.get('account.journal')
-        
-        cash_bank_journals = journal_obj.search(self.cr, self.uid, [ ('type','in',('bank','cash')) ] )
-        self.cash_bank_accounts = [journal_obj.browse(self.cr, self.uid, j).default_credit_account_id.id for j in cash_bank_journals] + \
-            [journal_obj.browse(self.cr, self.uid, j).default_debit_account_id.id for j in cash_bank_journals]
-        
         self.localcontext.update( {
             'time': time,
             'lines': self.lines,
-            'compute_totals': self.compute_totals,
+            'sum_debit_account': self._sum_debit_account,
+            'sum_credit_account': self._sum_credit_account,
+            'sum_balance_account': self._sum_balance_account,
             'sum_currency_amount_account': self._sum_currency_amount_account,
 #            'get_children_accounts': self.get_children_accounts,
-#            'init_balance': self.init_balance,
             'get_fiscalyear': self._get_fiscalyear,
             'get_journal': self._get_journal,
             'get_account': self._get_account,
@@ -116,9 +104,17 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
     def get_children_accounts(self, account):
         """ Return all the accounts that are children of the chosen main one
         and are set as default for the selected cash and bank accounts"""
+
+        currency_obj = self.pool.get('res.currency')
+        journal_obj = self.pool.get('account.journal')
+        
+        cash_bank_journals = journal_obj.search(self.cr, self.uid, [ ('type','in',('bank','cash')) ] )
+        
+        cash_bank_accounts = [journal_obj.browse(self.cr, self.uid, j).default_credit_account_id.id for j in cash_bank_journals] + \
+            [journal_obj.browse(self.cr, self.uid, j).default_debit_account_id.id for j in cash_bank_journals]
         
         ids_acc = [acc for acc in self.pool.get('account.account')._get_children_and_consol(self.cr, self.uid, account.id) \
-            if acc in self.cash_bank_accounts]
+            if acc in cash_bank_accounts]
         
         currency = account.currency_id and account.currency_id or account.company_id.currency_id
         
@@ -126,7 +122,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
-
+        #import ipdb;ipdb.set_trace()
         account_ids = self.get_children_accounts(main_account)
         
         move_state = ['draft','posted']
@@ -174,13 +170,9 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         """ %(self.query, tuple(move_state), sql_sort)
         self.cr.execute(sql, (tuple(account_ids),))
         res = self.cr.dictfetchall()
-        account_sum = self.initial_amount
         for l in res:
             l['move'] = l['move_name'] != '/' and l['move_name'] or ('*'+str(l['mmove_id']))
             l['partner'] = l['partner_name'] or ''
-            account_sum += l['debit'] - l['credit']
-            l['progress'] = account_sum
-            
             # Modification of amount Currency
             if l['credit'] > 0:
                 if l['amount_currency'] != None:
@@ -189,43 +181,58 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
                 self.tot_currency = self.tot_currency + l['amount_currency']
         return res
 
-    def compute_totals(self, account):
+    def _sum_total_debit(self, account):
         move_state = ['draft','posted']
-        account_ids = self.get_children_accounts(account)
+        
+        account_ids = self.get_children_accounts(main_account)
         
         if self.target_move == 'posted':
             move_state = ['posted','']
-        
-        sql = """
-            SELECT
-                sum(debit) as total_debit,
-                sum(credit) as total_credit,
-                sum(debit) - sum(credit) as total_balance
-            FROM account_move_line l
-            JOIN account_move m on (l.move_id=m.id)
-            WHERE %s
-                AND m.state IN %s 
-                AND l.account_id in %%s
-        """ %(self.query, tuple(move_state))
-        self.cr.execute(sql, (tuple(account_ids),))
-        res = self.cr.dictfetchone()
-        
+        self.cr.execute('SELECT sum(debit) \
+                FROM account_move_line l \
+                JOIN account_move am ON (am.id = l.move_id) \
+                WHERE (l.account_id = %s) \
+                AND (am.state IN %s) \
+                AND '+ self.query +' '
+                ,(account.id, tuple(move_state)))
+        sum_debit = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            sql = """
-                SELECT
-                    sum(debit) as initial_debit,
-                    sum(credit) as initial_credit,
-                    sum(debit) - sum(credit) as initial_balance
-                FROM account_move_line l
-                JOIN account_move m on (l.move_id=m.id)
-                WHERE %s
-                    AND m.state IN %s 
-                    AND l.account_id in %%s
-            """ %(self.init_query, tuple(move_state))
-            self.cr.execute(sql, (tuple(account_ids),))
-            res.update(self.cr.dictfetchone())
-            self.initial_amount = res['initial_balance']
-        return res
+            self.cr.execute('SELECT sum(debit) \
+                    FROM account_move_line l \
+                    JOIN account_move am ON (am.id = l.move_id) \
+                    WHERE (l.account_id = %s) \
+                    AND (am.state IN %s) \
+                    AND '+ self.init_query +' '
+                    ,(account.id, tuple(move_state)))
+            # Add initial balance to the result
+            sum_debit += self.cr.fetchone()[0] or 0.0
+        return sum_debit
+
+    def _sum_debit_account(self, account):
+        if account.type == 'view':
+            return account.debit
+        move_state = ['draft','posted']
+        if self.target_move == 'posted':
+            move_state = ['posted','']
+        self.cr.execute('SELECT sum(debit) \
+                FROM account_move_line l \
+                JOIN account_move am ON (am.id = l.move_id) \
+                WHERE (l.account_id = %s) \
+                AND (am.state IN %s) \
+                AND '+ self.query +' '
+                ,(account.id, tuple(move_state)))
+        sum_debit = self.cr.fetchone()[0] or 0.0
+        if self.init_balance:
+            self.cr.execute('SELECT sum(debit) \
+                    FROM account_move_line l \
+                    JOIN account_move am ON (am.id = l.move_id) \
+                    WHERE (l.account_id = %s) \
+                    AND (am.state IN %s) \
+                    AND '+ self.init_query +' '
+                    ,(account.id, tuple(move_state)))
+            # Add initial balance to the result
+            sum_debit += self.cr.fetchone()[0] or 0.0
+        return sum_debit
 
     def _sum_credit_account(self, account):
         if account.type == 'view':
