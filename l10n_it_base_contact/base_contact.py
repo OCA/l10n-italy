@@ -49,8 +49,8 @@ class res_partner_address(osv.osv):
         if location_id:
             location = self.pool.get('res.partner.location').browse(cr, uid, location_id, context=context)
             res['value'].update({
-                'province':location.province.id,
-                'region':location.province.region.id,
+                'province':location.province and location.province.id or False,
+                'region':location.province and location.province.region and location.province.region.id or False,
                 })
         return res
 res_partner_address()
