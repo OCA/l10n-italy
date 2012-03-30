@@ -28,3 +28,29 @@ class res_partner_contact(osv.osv):
         'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
         }
 res_partner_contact()
+
+class res_partner_location(osv.osv):
+    _inherit = 'res.partner.location'
+    _columns = {
+        'province': fields.many2one('res.province', string='Province'),
+        }
+        
+    def on_change_city(self, cr, uid, ids, city):
+        return self.pool.get('res.partner.address').on_change_city(cr, uid, ids, city)
+        
+res_partner_location()
+
+class res_partner_address(osv.osv):
+    _inherit = 'res.partner.address'
+    
+    def onchange_location_id(self,cr, uid, ids, location_id=False, context={}):
+        res = super(res_partner_address, self).onchange_location_id(
+            cr, uid, ids, location_id=location_id, context=context)
+        if location_id:
+            location = self.pool.get('res.partner.location').browse(cr, uid, location_id, context=context)
+            res['value'].update({
+                'province':location.province.id,
+                'region':location.province.region.id,
+                })
+        return res
+res_partner_address()
