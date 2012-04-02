@@ -28,16 +28,16 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
         <menuitem id="menu_account_end_year_treatments_old"
             name="Other operations"
             parent="account.menu_account_end_year_treatments"
-            sequence="100"/>
+            sequence="100" groups="base.group_erp_manager"/>
 
         <menuitem id="account.menu_wizard_fy_close"
-            parent="menu_account_end_year_treatments_old"/>
+            parent="menu_account_end_year_treatments_old" groups="base.group_erp_manager"/>
 
         <menuitem id="account.menu_wizard_fy_close_state"
-            parent="menu_account_end_year_treatments_old"/>
+            parent="menu_account_end_year_treatments_old" groups="base.group_erp_manager"/>
 
         <menuitem id="account.menu_wizard_account_open_closed_fiscalyear"
-            parent="menu_account_end_year_treatments_old"/>
+            parent="menu_account_end_year_treatments_old" groups="base.group_erp_manager"/>
 
     </data>
 </openerp>
