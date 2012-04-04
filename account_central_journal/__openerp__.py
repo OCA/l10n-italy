@@ -30,6 +30,7 @@ Managing the printing of the "Central Journal" """,
     'depends' : [
         'base',
         'account',
+        'report_webkit',
         ],
     'init_xml' : [],
     'update_xml': [
