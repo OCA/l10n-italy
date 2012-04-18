@@ -22,10 +22,10 @@
 {
     "name" : "Italy - Fourth Directive UE - Annual accounts of companies",
     "version" : "0.1",
-    "depends" : ['l10n_it',],
+    "depends" : ['account_chart',],
     "author" : "OpenERP Italian Community",
     "description": """
-    Riclassificazione IV direttiva UE per un piano dei conti italiano di un'impresa generica (compreso in l10n_it)
+    Riclassificazione IV direttiva UE per un piano dei conti italiano di un'impresa generica
     I nuovi conti inseriti non hanno relazioni con altri conti precedentemente esistenti
     Le eventuali relazioni debbono essere inserite manualmente
     """,
