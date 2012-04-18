@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    "name" : "Italy - Fourth Directive UE - Annual accounts of companies",
+    "name" : "Italy - 4th EU Directive - Consolidation Chart of Accounts",
     "version" : "0.1",
     "depends" : ['account_chart',],
     "author" : "OpenERP Italian Community",
