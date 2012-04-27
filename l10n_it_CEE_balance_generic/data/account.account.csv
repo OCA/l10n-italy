@@ -1,5 +1,5 @@
 "id","code","name","parent_id:id","user_type:id","type","reconcile","child_consol_ids:id"
-"cee_0","CEE_0","CEE",,"l10n_it.account_type_view","view","False",
+"cee_0","CEE_0","CEE",,"account.data_account_type_view","view","False",
 "cee_E","E","CONTO ECONOMICO","cee_0","account_type_legalview1","view","True",
 "cee_E_A","E_A","VALORE DELLA PRODUZIONE","cee_E","account_type_legalview2","view","True",
 "cee_E_A1","E_A1","Ricavi delle vendite e delle prestazioni","cee_E_A","account_type_legalview3","consolidation","True",
