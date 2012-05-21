@@ -60,7 +60,6 @@ Ad ogni passaggio di stato sarà possibile generare le relative registrazioni co
         "account/account_view.xml",
         "wizard/wizard_emissione_riba.xml",
         "wizard/riba_file_export.xml",
-        "reports/reports.xml",
         "riba_workflow.xml",
         "security/ir.model.access.csv",
     ],
