@@ -8,6 +8,8 @@
 #                       Pedro Tarrafeta <pedro@acysos.com>
 #    Copyright (C) 2011 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -56,7 +58,7 @@ user can cancel and undo the operations easily.
     "update_xml" : [
                     "security/ir.model.access.csv",
                     "fyc_workflow.xml",
-                    "fyc_wizard.xml",
+                    "wizard/wizard_run.xml",
                     "fyc_view.xml",
                     "hide_account_wizards.xml",
                     ],

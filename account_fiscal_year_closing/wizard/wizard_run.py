@@ -3,7 +3,8 @@
 #
 #    OpenERP - Import operations model 347 engine
 #    Copyright (C) 2009 Asr Oss. All Rights Reserved
-#    $Id$
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -23,86 +24,128 @@
 """
 Create FYC entries wizards
 """
-__author__ = """Borja López Soilán (Pexego) - borja@kami.es"""
 
 from tools.translate import _
-import wizard
-import pooler
-import time
-import threading
-import sql_db
 import netsvc
 import decimal_precision as dp
-from tools import config
 from osv import fields, osv
 
-class wizard_run(wizard.interface):
+class wizard_run(osv.osv_memory):
     """
     Wizard to create the FYC entries.
     """
+    
+    _name = 'fyc.run'
+    
+    def run(self, cr, uid, ids, context=None):
+        """
+        Creates / removes FYC entries
+        """
 
-    ############################################################################
-    # Forms
-    ############################################################################
+        pool = self.pool
+        active_id = context and context.get('active_id', False) or False
+        if not active_id:
+            raise osv.except_osv(_('Error'), _('No active ID found'))
+        # Read the object
+        fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, active_id, context=context)
 
-    _init_run_form = """<?xml version="1.0" encoding="utf-8"?>
-    <form string="Fiscal Year Closing" colspan="4" width="400">
-        <label string="This wizard will perform the selected operations." colspan="4"/>
-        <label string="" colspan="4"/>
-        <label string="It will create account moves for the operations you selected, skipping those already created." colspan="4"/>
-        <label string="Non-selected operations will be canceled." colspan="4"/>
-    </form>"""
+        #
+        # Check for invalid period moves if needed
+        #
+        if fyc.check_invalid_period_moves:
+            self._check_invalid_period_moves(cr, uid, fyc, context)
 
-    _init_cancel_form = """<?xml version="1.0" encoding="utf-8"?>
-    <form string="Fiscal Year Closing" colspan="4" width="400">
-        <label string="This wizard will cancel the selected operations." colspan="4"/>
-        <label string="" colspan="4"/>
-        <label string="It will remove the previously generated account moves." colspan="4"/>
-        <label string="Closed periods, and the fiscal year, will be reopened." colspan="4"/>
-    </form>"""
+        #
+        # Check for draft moves if needed
+        #
+        if fyc.check_draft_moves:
+            self._check_draft_moves(cr, uid, fyc, context)
 
-    _progress_form = '''<?xml version="1.0"?>
-    <form string="Fiscal Year Closing - Working" colspan="4" width="400" auto_refresh="1">
-        <label string="The process may take a while." colspan="4"/>
-        <label string="" colspan="4"/>
-        <field name="task_progress" widget="progressbar" colspan="4"/>
-        <field name="progress" widget="progressbar" colspan="4"/>
-    </form>'''
+        #
+        # Check for unbalanced moves if needed
+        #
+        if fyc.check_unbalanced_moves:
+            self._check_unbalanced_moves(cr, uid, fyc, context)
 
-    _progress_fields = {
-        'task_progress': { 'string': 'Task Progress', 'type':'float' },
-        'progress': { 'string': 'Total Progress', 'type':'float' },
-    }
+        #
+        # Create L&P move if needed
+        #
+        if fyc.create_loss_and_profit and not fyc.loss_and_profit_move_id:
+            self.create_closing_move(cr, uid, 'loss_and_profit', fyc, context)
+        #
+        # Remove the L&P move if needed
+        #
+        if (not fyc.create_loss_and_profit) and fyc.loss_and_profit_move_id:
+            self.remove_move(cr, uid, 'loss_and_profit', fyc, context)
+
+        # Refresh the cached fyc object
+        fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, active_id, context=context)
 
 
-    _done_form = """<?xml version="1.0" encoding="utf-8"?>
-    <form string="Fiscal Year Closing - Done" colspan="4" width="400">
-        <label string="The selected operations have been performed sucessfuly." colspan="4"/>
-        <label string="" colspan="4"/>
-    </form>"""
+        #
+        # Create the Net L&P move if needed
+        #
+        if fyc.create_net_loss_and_profit and not fyc.net_loss_and_profit_move_id:
+            self.create_closing_move(cr, uid, 'net_loss_and_profit', fyc, context)
+        #
+        # Remove the Net L&P move if needed
+        #
+        if (not fyc.create_net_loss_and_profit) and fyc.net_loss_and_profit_move_id:
+            self.remove_move(cr, uid, 'net_loss_and_profit', fyc, context)
 
-    _show_exception_form = """<?xml version="1.0" encoding="utf-8"?>
-    <form string="Fiscal Year Closing - Error!" colspan="4" width="400">
-        <label string="Error: One of the selected operations has failed!" colspan="4"/>
-        <label string="" colspan="4"/>
-        <separator string="Details"/>
-        <field name="exception_text" colspan="4" nolabel="1"/>
-    </form>"""
+        # Refresh the cached fyc object
+        fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, active_id, context=context)
 
-    _show_exception_fields = {
-        'exception_text': {'string': 'Exception', 'type':'text' },
-    }
+
+        #
+        # Create the closing move if needed
+        #
+        if fyc.create_closing and not fyc.closing_move_id:
+            self.create_closing_move(cr, uid, 'close', fyc, context)
+        #
+        # Remove the closing move if needed
+        #
+        if (not fyc.create_closing) and fyc.closing_move_id:
+            self.remove_move(cr, uid, 'close', fyc, context)
+
+        # Refresh the cached fyc object
+        fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, active_id, context=context)
+
+        
+        #
+        # Create the opening move if needed
+        #
+        if fyc.create_opening and not fyc.opening_move_id:
+            self.create_opening_move(cr, uid, 'open', fyc, context)
+        #
+        # Remove the opening move if needed
+        #
+        if (not fyc.create_opening) and fyc.opening_move_id:
+            self.remove_move(cr, uid, 'open', fyc, context)
+
+        #
+        # Set the fyc as done (if not in cancel_mode)
+        #
+        if not fyc.create_opening and not fyc.create_closing and not not fyc.create_net_loss_and_profit and not fyc.create_loss_and_profit:
+            wf_service = netsvc.LocalService("workflow")
+            wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'cancel', cr)
+        else:
+            wf_service = netsvc.LocalService("workflow")
+            wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'run', cr)
+
+        return {'type': 'ir.actions.act_window_close'}
+
+
 
     ############################################################################
     # CHECK OPERATIONS
     ############################################################################
 
-    def _check_invalid_period_moves(self, cr, uid, fyc, data, context):
+    def _check_invalid_period_moves(self, cr, uid, fyc, context):
         """
         Checks for moves with invalid period on the fiscal year that is being closed
         """
-        pool = pooler.get_pool(cr.dbname)
-        data['process_task_progress'] = 0.0
+        pool = self.pool
 
         # Consider all the periods of the fiscal year.
         period_ids = [period.id for period in fyc.closing_fiscalyear_id.period_ids]
@@ -134,15 +177,12 @@ class wizard_run(wizard.interface):
             str_invalid_period_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in invalid_period_moves])
             raise osv.except_osv(_('Error'), _('One or more moves with invalid period or date found on the fiscal year: \n%s') % str_invalid_period_moves)
 
-        data['process_task_progress'] = 100.0
 
-
-    def _check_draft_moves(self, cr, uid, fyc, data, context):
+    def _check_draft_moves(self, cr, uid, fyc, context):
         """
         Checks for draft moves on the fiscal year that is being closed
         """
-        pool = pooler.get_pool(cr.dbname)
-        data['process_task_progress'] = 0.0
+        pool = self.pool
 
         #
         # Consider all the periods of the fiscal year *BUT* the L&P,
@@ -169,15 +209,11 @@ class wizard_run(wizard.interface):
             str_draft_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in draft_moves])
             raise osv.except_osv(_('Error'), _('One or more draft moves found: \n%s') % str_draft_moves)
 
-        data['process_task_progress'] = 100.0
-
-
-    def _check_unbalanced_moves(self, cr, uid, fyc, data, context):
+    def _check_unbalanced_moves(self, cr, uid, fyc, context):
         """
         Checks for unbalanced moves on the fiscal year that is being closed
         """
-        pool = pooler.get_pool(cr.dbname)
-        data['process_task_progress'] = 0.0
+        pool = self.pool
 
         #
         # Consider all the periods of the fiscal year *BUT* the L&P,
@@ -201,7 +237,6 @@ class wizard_run(wizard.interface):
         #
         unbalanced_moves = []
         total_accounts = len(account_move_ids)
-        accounts_done = 0
         for move in pool.get('account.move').browse(cr, uid, account_move_ids, context):
             amount = 0
             for line in move.line_id:
@@ -210,9 +245,6 @@ class wizard_run(wizard.interface):
             if round(abs(amount), pool.get('decimal.precision').precision_get(cr, uid, 'Account')) > 0:
                 unbalanced_moves.append(move)
 
-            accounts_done += 1
-            data['process_task_progress'] = (accounts_done * 90.0) / total_accounts
-
         #
         # If one or more unbalanced moves where found, raise an exception
         #
@@ -220,21 +252,17 @@ class wizard_run(wizard.interface):
             str_unbalanced_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in unbalanced_moves])
             raise osv.except_osv(_('Error'), _('One or more unbalanced moves found: \n%s') % str_unbalanced_moves)
 
-        data['process_task_progress'] = 100.0
-
-
 
     ############################################################################
     # CLOSING/OPENING OPERATIONS
     ############################################################################
 
-    def create_closing_move(self, cr, uid, operation, fyc, data, context):
+    def create_closing_move(self, cr, uid, operation, fyc, context):
         """
         Create a closing move (L&P, NL&P or Closing move).
         """
-        pool = pooler.get_pool(cr.dbname)
+        pool = self.pool
 
-        data['process_task_progress'] = 0.0
 
         move_lines = []
         dest_accounts_totals = {}
@@ -398,7 +426,6 @@ class wizard_run(wizard.interface):
                         if account_map.dest_account_id:
                             dest_accounts_totals[account_map.dest_account_id.id] -= balance
             accounts_done += 1
-            data['process_task_progress'] = (accounts_done * 90.0) / total_accounts
 
         #
         # Add the dest lines
@@ -414,7 +441,6 @@ class wizard_run(wizard.interface):
                     'period_id': period_id,
                     'journal_id': journal_id,
                 })
-        data['process_task_progress'] = 95.0
 
         #
         # Finally create the account move with all the lines (if needed)
@@ -430,7 +456,6 @@ class wizard_run(wizard.interface):
             # pool.get('account.move').button_validate(cr, uid, [move_id], context)
         else:
             move_id = None
-        data['process_task_progress'] = 99.0
 
         #
         # Save the reference to the created account move into the fyc object
@@ -444,16 +469,14 @@ class wizard_run(wizard.interface):
         else:
             assert operation in ('loss_and_profit', 'net_loss_and_profit', 'close'), "The operation must be a supported one"
 
-        data['process_task_progress'] = 100.0
         return move_id
 
 
-    def create_opening_move(self, cr, uid, operation, fyc, data, context):
+    def create_opening_move(self, cr, uid, operation, fyc, context):
         """
         Create an opening move (based on the closing one)
         """
-        pool = pooler.get_pool(cr.dbname)
-        data['process_task_progress'] = 0.0
+        pool = self.pool
 
         move_lines = []
         description = None
@@ -510,7 +533,6 @@ class wizard_run(wizard.interface):
                     'journal_id': journal_id,
                 })
             accounts_done += 1
-            data['process_task_progress'] = (accounts_done * 90.0) / total_accounts
 
         #
         # Finally create the account move with all the lines (if needed)
@@ -526,7 +548,6 @@ class wizard_run(wizard.interface):
             # pool.get('account.move').button_validate(cr, uid, [move_id], context)
         else:
             move_id = None
-        data['process_task_progress'] = 99.0
 
         #
         # Save the reference to the created account move into the fyc object
@@ -536,16 +557,14 @@ class wizard_run(wizard.interface):
         else:
             assert operation in ('open'), "The operation must be a supported one"
 
-        data['process_task_progress'] = 100.0
         return move_id
 
 
-    def remove_move(self, cr, uid, operation, fyc, data, context):
+    def remove_move(self, cr, uid, operation, fyc, context):
         """
         Remove a account move (L&P, NL&P, Closing or Opening move)
         """
-        pool = pooler.get_pool(cr.dbname)
-        data['process_task_progress'] = 0.0
+        pool = self.pool
 
         #
         # Depending on the operation we will delete one or other move
@@ -565,342 +584,10 @@ class wizard_run(wizard.interface):
             pool.get('account_fiscal_year_closing.fyc').write(cr, uid, fyc.id, { 'opening_move_id': None })
         else:
             assert operation in ('loss_and_profit', 'net_loss_and_profit', 'close', 'open'), "The operation must be a supported one"
-        data['process_task_progress'] = 15.0
 
         assert move and move.id, "The move to delete must be defined"
 
-        #
-        # Unreconcile the move if needed
-        #
-        reconcile_ids = []
-        for line in move.line_id:
-            if line.reconcile_id and (line.reconcile_id.id not in reconcile_ids):
-                reconcile_ids.append(line.reconcile_id.id)
-            if line.reconcile_partial_id and (line.reconcile_partial_id.id not in reconcile_ids):
-                reconcile_ids.append(line.reconcile_partial_id.id)
-        if reconcile_ids:
-            pool.get('account.move.reconcile').unlink(cr, uid, reconcile_ids, context)
-        data['process_task_progress'] = 30.0
-
-        #
-        # Remove the move after changing it's state to draft
-        #
-        pool.get('account.move').write(cr, uid, [move.id], {'state': 'draft'}, context)
         pool.get('account.move').unlink(cr, uid, [move.id], context)
 
-        data['process_task_progress'] = 100.0
         return move.id
-
-
-    ############################################################################
-    # Wizard Actions
-    ############################################################################
-
-    def _init_choice(self, cr, uid, data, context):
-        """
-        Choice-like action that checks whether the operations must be run
-        or canceled.
-        """
-        if context is None:
-            context = {}
-        if context.get('cancel_mode'):
-            data['cancel_mode'] = True
-            return 'init_cancel'
-        else:
-            data['cancel_mode'] = False
-            return 'init_run'
-        
-
-    def _run(self, db_name, uid, data, context=None):
-        """
-        Creates / removes FYC entries
-        """
-        data['process_progress'] = 0
-        data['process_task_progress'] = 0
-        data['process_task'] = None
-        try:
-            conn = sql_db.db_connect(db_name)
-            cr = conn.cursor()
-            pool = pooler.get_pool(cr.dbname)
-
-            #
-            # If the wizard is in cancel mode, run the objects cancel action
-            # to let it undo the confirmation action, before running the wizard.
-            #
-            if data.get('cancel_mode'):
-                wf_service = netsvc.LocalService("workflow")
-                wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', data['id'], 'cancel', cr)
-
-            # Read the object
-            fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, data['id'], context=context)
-
-            #
-            # Calculate the operations to perform (needed to calculate the progress)
-            #
-            total_operations = 0
-            operations_done = 0
-            if fyc.check_invalid_period_moves:
-                total_operations += 1
-            if fyc.check_draft_moves:
-                total_operations += 1
-            if fyc.check_unbalanced_moves:
-                total_operations += 1
-            if (fyc.create_loss_and_profit and not fyc.loss_and_profit_move_id) \
-                or ((not fyc.create_loss_and_profit) and fyc.loss_and_profit_move_id):
-                total_operations += 1
-            if (fyc.create_net_loss_and_profit and not fyc.net_loss_and_profit_move_id) \
-                or ((not fyc.create_net_loss_and_profit) and fyc.net_loss_and_profit_move_id):
-                total_operations += 1
-            if (fyc.create_closing and not fyc.closing_move_id) \
-                or ((not fyc.create_closing) and fyc.closing_move_id):
-                total_operations += 1
-            if (fyc.create_opening and not fyc.opening_move_id) \
-                or ((not fyc.create_opening) and fyc.opening_move_id):
-                total_operations += 1
-                
-            if total_operations > 0:
-
-                #
-                # Check for invalid period moves if needed
-                #
-                if fyc.check_invalid_period_moves:
-                    data['process_task'] = 'Check invalid period/date moves'
-                    self._check_invalid_period_moves(cr, uid, fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-
-                #
-                # Check for draft moves if needed
-                #
-                if fyc.check_draft_moves:
-                    data['process_task'] = 'Check draft moves'
-                    self._check_draft_moves(cr, uid, fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-
-                #
-                # Check for unbalanced moves if needed
-                #
-                if fyc.check_unbalanced_moves:
-                    data['process_task'] = 'Check unbalanced moves'
-                    self._check_unbalanced_moves(cr, uid, fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-
-                #
-                # Create L&P move if needed
-                #
-                if fyc.create_loss_and_profit and not fyc.loss_and_profit_move_id:
-                    data['process_task'] = 'Create L&P move'
-                    self.create_closing_move(cr, uid, 'loss_and_profit', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-                #
-                # Remove the L&P move if needed
-                #
-                if (not fyc.create_loss_and_profit) and fyc.loss_and_profit_move_id:
-                    data['process_task'] = 'Remove L&P move'
-                    self.remove_move(cr, uid, 'loss_and_profit', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-
-                # Refresh the cached fyc object
-                fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, data['id'], context=context)
-
-
-                #
-                # Create the Net L&P move if needed
-                #
-                if fyc.create_net_loss_and_profit and not fyc.net_loss_and_profit_move_id:
-                    data['process_task'] = 'Create NL&P move'
-                    self.create_closing_move(cr, uid, 'net_loss_and_profit', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-                #
-                # Remove the Net L&P move if needed
-                #
-                if (not fyc.create_net_loss_and_profit) and fyc.net_loss_and_profit_move_id:
-                    data['process_task'] = 'Remove NL&P move'
-                    self.remove_move(cr, uid, 'net_loss_and_profit', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-
-                # Refresh the cached fyc object
-                fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, data['id'], context=context)
-
-
-                #
-                # Create the closing move if needed
-                #
-                if fyc.create_closing and not fyc.closing_move_id:
-                    data['process_task'] = 'Create closing move'
-                    self.create_closing_move(cr, uid, 'close', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-                #
-                # Remove the closing move if needed
-                #
-                if (not fyc.create_closing) and fyc.closing_move_id:
-                    data['process_task'] = 'Remove closing move'
-                    self.remove_move(cr, uid, 'close', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-
-                # Refresh the cached fyc object
-                fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, data['id'], context=context)
-
-                
-                #
-                # Create the opening move if needed
-                #
-                if fyc.create_opening and not fyc.opening_move_id:
-                    data['process_task'] = 'Create opening move'
-                    self.create_opening_move(cr, uid, 'open', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-                #
-                # Remove the opening move if needed
-                #
-                if (not fyc.create_opening) and fyc.opening_move_id:
-                    data['process_task'] = 'Remove opening move'
-                    self.remove_move(cr, uid, 'open', fyc, data, context)
-                    operations_done += 1
-                    data['process_progress'] = (operations_done * 100.0) / total_operations
-
-            #
-            # Set the as done (if not in cancel_mode)
-            #
-            if not data.get('cancel_mode'):
-                wf_service = netsvc.LocalService("workflow")
-                wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'run', cr)
-
-            data['process_progress'] = 100
-            cr.commit()
-        except Exception, ex:
-            data['process_exception'] = ex
-            cr.rollback()
-            raise
-        finally:
-            cr.close()
-            data['process_done'] = True
-        return {}
-
-
-    def _run_in_background_choice(self, cr, uid, data, context):
-        """
-        Choice-like action that runs the process on background,
-        waiting for it to end or timeout.
-        """
-        if not data.get('process_thread'):
-            # Run the calculation in background
-            data['process_done'] = False
-            data['process_exception'] = None
-            data['process_thread'] = threading.Thread(target=self._run, args=(cr.dbname, uid, data, context))
-            data['process_thread'].start()
-        #
-        # Wait up some seconds seconds for the task to end.
-        #
-        time_left = 20
-        while not data['process_done'] and time_left > 0:
-            time_left = time_left - 1
-            time.sleep(1)
-            message = "Fiscal year closing progress: %s%% (%s: %s%%)" % (data.get('process_progress'), data.get('process_task'), data.get('process_task_progress'))
-            netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG, message)
-        #
-        # Check if we are done
-        #
-        if data['process_done']:
-            if data['process_exception']:
-                return 'show_exception'
-            else:
-                return 'done'
-        else:
-            return 'progress'
-
-
-    def _progress_action(self, cr, uid, data, context):
-        """
-        Action that gets the current progress
-        """
-        return {
-            'task_progress': data['process_task_progress'],
-            'progress': data['process_progress']
-        }
-
-    def _show_exception_action(self, cr, uid, data, context):
-        """
-        Action that gets the calculation exception text
-        """
-        exception_text = ''
-        if data.get('process_exception'):
-            if isinstance(data['process_exception'], osv.except_osv):
-                exception_text = data['process_exception'].value
-            else:
-                try:
-                    exception_text = unicode(data['process_exception'])
-                except:
-                    exception_text = str(data['process_exception'])
-        return { 'exception_text': exception_text }
-
-    ############################################################################
-    # States
-    ############################################################################
-
-    states = {
-        'init': {
-            'actions': [],
-            'result': {'type': 'choice', 'next_state': _init_choice}
-        },
-        'init_run': {
-            'actions': [],
-            'result': {'type':'form', 'arch': _init_run_form, 'fields': {}, 'state':[('end', 'Cancel', 'gtk-cancel', True), ('run', 'Run', 'gtk-apply', True)]}
-        },
-        'init_cancel': {
-            'actions': [],
-            'result': {'type':'form', 'arch': _init_cancel_form, 'fields': {}, 'state':[('end', 'Cancel', 'gtk-cancel', True), ('run', 'Run', 'gtk-apply', True)]}
-        },
-        'run': {
-            'actions': [],
-            'result': {'type': 'choice', 'next_state': _run_in_background_choice}
-        },
-        'progress': {
-            'actions': [_progress_action],
-            'result': {'type': 'form', 'arch': _progress_form, 'fields': _progress_fields, 'state':[('end','Close (continues in background)', 'gtk-cancel', True),('run','Keep waiting', 'gtk-go-forward', True)]}
-        },
-        'done': {
-            'actions': [],
-            'result': {'type': 'form', 'arch': _done_form, 'fields': {}, 'state':[('end','Done', 'gtk-ok', True)]}
-        },
-        'show_exception': {
-            'actions': [_show_exception_action],
-            'result': {'type': 'form', 'arch': _show_exception_form, 'fields': _show_exception_fields, 'state':[('end','Done', 'gtk-ok', True)]}
-        }
-    }
-
-
-wizard_run('account_fiscal_year_closing.wizard_run')
-
-
-class wizard_cancel(wizard_run):
-    """
-    Wizard to remove the FYC entries.
-    """
-
-    def _init_choice(self, cr, uid, data, context):
-        """
-        Choice-like action that checks whether the operations must be run
-        or canceled. => Always cancel on wizard_cancel.
-        """
-        data['cancel_mode'] = True
-        return 'init_cancel'
-
-    states = wizard_run.states.copy()
-    
-    states['init'] = {
-            'actions': [],
-            'result': {'type': 'choice', 'next_state': _init_choice}
-        }
-
-
-wizard_cancel('account_fiscal_year_closing.wizard_cancel')
 
