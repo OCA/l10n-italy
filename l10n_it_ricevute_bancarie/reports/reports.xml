@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+	<report id="report_stampa_riba_distinta" 
+		string="Stampa Distinta" 
+		model="riba.distinta" 
+		auto="True" 
+		name="jasper_riba_distinta" 
+		rml="l10n_it_ricevute_bancarie/reports/jasper_riba_distinta.jrxml" 
+		menu="True" 
+		header="False"/>
+
+	</data>
+</openerp>
+
