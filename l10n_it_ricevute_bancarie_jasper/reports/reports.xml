@@ -7,7 +7,7 @@
 		model="riba.distinta" 
 		auto="True" 
 		name="jasper_riba_distinta" 
-		rml="l10n_it_ricevute_bancarie/reports/jasper_riba_distinta.jrxml" 
+		rml="l10n_it_ricevute_bancarie_jasper/reports/jasper_riba_distinta.jrxml" 
 		menu="True" 
 		header="False"/>
 
