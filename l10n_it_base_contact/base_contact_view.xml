@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_partner_contact_form">
+        <field name="name">res.partner.contact.form</field>
+        <field name="model">res.partner.contact</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base_contact.view_partner_contact_form"></field>
+        <field name="arch" type="xml">
+            <field name="birthdate" position="after">
+                <field name="fiscalcode"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_partner_location_form_zip">
+        <field name="name">res.partner.location.form.zip</field>
+        <field name="model">res.partner.location</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base_contact.view_partner_location_form"></field>
+        <field name="arch" type="xml">
+            <field name="zip" position="replace"/>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_partner_location_form_city">
+        <field name="name">res.partner.location.form.city</field>
+        <field name="model">res.partner.location</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base_contact.view_partner_location_form"></field>
+        <field name="arch" type="xml">
+           <field name="city" position="replace">
+                <field name="city" on_change="on_change_city(city)"/>
+                <field name="zip"/>
+                <field name="province"/>
+		    </field>
+        </field>
+    </record>
+
+</data>
+</openerp>
