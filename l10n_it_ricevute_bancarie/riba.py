@@ -97,7 +97,7 @@ class riba_distinta(osv.osv):
 
     _defaults = {
         'user_id': lambda self,cr,uid,context: uid,
-        'date_created': fields.date.context_today,
+        'date_created': time.strftime('%Y-%m-%d'), #fields.date.context_today,
         'name': lambda self,cr,uid,context: self.pool.get('ir.sequence').get(cr, uid, 'riba.distinta'),
         'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'riba.distinta', context=c),
     }
@@ -139,14 +139,14 @@ class riba_distinta(osv.osv):
     def riba_accepted(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'accepted',
-            'date_accepted': fields.date.context_today(cr,uid,context),
+            'date_accepted': time.strftime('%Y-%m-%d'), #fields.date.context_today(cr,uid,context),
             }, context=context)
         return True
     
     def riba_accredited(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'accredited',
-            'date_accreditation': fields.date.context_today(cr,uid,context),
+            'date_accreditation': time.strftime('%Y-%m-%d'), #fields.date.context_today(cr,uid,context),
             }, context=context)
         for distinta in self.browse(cr, uid, ids, context=context):
             for line in distinta.line_ids:
@@ -156,14 +156,14 @@ class riba_distinta(osv.osv):
     def riba_paid(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'paid',
-            'date_paid': fields.date.context_today(cr,uid,context),
+            'date_paid': time.strftime('%Y-%m-%d'), #fields.date.context_today(cr,uid,context),
             }, context=context)
         return True
     
     def riba_unsolved(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'unsolved',
-            'date_unsolved': fields.date.context_today(cr,uid,context),
+            'date_unsolved': time.strftime('%Y-%m-%d'), #fields.date.context_today(cr,uid,context),
             }, context=context)
         return True
         
@@ -401,4 +401,4 @@ class riba_distinta_move_line(osv.osv):
         'riba_line_id': fields.many2one('riba.distinta.line', 'Distinta line', ondelete='cascade'),
     }
 
-riba_distinta_line()
+riba_distinta_move_line()
