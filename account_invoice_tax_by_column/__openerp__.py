@@ -1,9 +1,12 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -43,6 +46,10 @@
             TA(t) = f( TBA(t) )
         the result difference is small but important
 
+    For an optimal solution, please use the following patch
+    https://bugs.launchpad.net/openobject-addons/+bug/707923/comments/56
+    instead of this module
+    
     """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
@@ -58,5 +65,3 @@
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
