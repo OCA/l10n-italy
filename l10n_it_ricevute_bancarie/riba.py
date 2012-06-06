@@ -196,8 +196,6 @@ class riba_distinta(osv.osv):
             wf_service.trg_create(uid, 'riba.distinta', distinta_id, cr)
         return True
 
-riba_distinta()
-
 
 class riba_distinta_line(osv.osv):
     
@@ -387,7 +385,6 @@ class riba_distinta_line(osv.osv):
                 uid, 'riba.distinta', line.distinta_id.id, 'accepted', cr)
         return True
 
-riba_distinta_line()
 
 class riba_distinta_move_line(osv.osv):
 
@@ -401,4 +398,3 @@ class riba_distinta_move_line(osv.osv):
         'riba_line_id': fields.many2one('riba.distinta.line', 'Distinta line', ondelete='cascade'),
     }
 
-riba_distinta_line()
