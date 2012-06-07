@@ -46,8 +46,9 @@
             TA(t) = f( TBA(t) )
         the result difference is small but important
 
-    For an optimal solution, please use the following patch
-    https://bugs.launchpad.net/openobject-addons/+bug/707923/comments/56
+    For an optimal solution, please use the pacthes contained in the following branches
+     - 6.1 https://code.launchpad.net/~openerp-community/openobject-addons/fix-account-6-1-tax-computation-method
+     - trunk https://code.launchpad.net/~openerp-community/openobject-addons/fix-account-trunk-tax-computation-method
     instead of this module
     
     """,
