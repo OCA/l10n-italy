@@ -4,6 +4,9 @@
 #    Copyright (C) 2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>). 
 #    All Rights Reserved
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +27,9 @@
     'version': '0.1',
     'category': 'Localisation/Italy',
     'description': """
-    http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto#openerp
+    Modulo per le ritenute d'acconto sulle fatture fornitore
+    
+    http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
 """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
