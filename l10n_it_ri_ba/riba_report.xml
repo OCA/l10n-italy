@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <report auto="False" id="riba_order_view" model="riba.order" name="riba.order" file="l10n_it_ri_ba/report/order.mako" string="RiBa Order" report_type="webkit" />
-    </data>
-</openerp>
-
