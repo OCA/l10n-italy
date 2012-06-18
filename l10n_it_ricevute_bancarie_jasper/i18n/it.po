@@ -1,0 +1,212 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_ricevute_bancarie_jasper
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-21 10:19+0000\n"
+"PO-Revision-Date: 2012-05-21 10:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{IBAN-iban}"
+msgstr "$F{IBAN-iban}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Citta-city}"
+msgstr "$F{Citta-city}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Scadenze_Riba-line_ids/Cliente-partner_id/Citta-city"
+msgstr "/data/record/Scadenze_Riba-line_ids/Cliente-partner_id/Citta-city"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Scadenze_Riba-line_ids/Data_Scadenza-data_scadenza"
+msgstr "/data/record/Scadenze_Riba-line_ids/Data_Scadenza-data_scadenza"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Modalita_Riba-config/Banca-bank_id/Citta-city"
+msgstr "/data/record/Modalita_Riba-config/Banca-bank_id/Citta-city"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Scadenze_Riba-line_ids/Cliente-partner_id/Nome-name"
+msgstr "/data/record/Scadenze_Riba-line_ids/Cliente-partner_id/Nome-name"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "\" \" + $V{PAGE_NUMBER}"
+msgstr "\" \" + $V{PAGE_NUMBER}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Scadenze_Riba-line_ids/Debitor_Bank-bank_id/IBAN-iban"
+msgstr "/data/record/Scadenze_Riba-line_ids/Debitor_Bank-bank_id/IBAN-iban"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "Numero Fattura"
+msgstr "Numero Fattura"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Riferimento-name"
+msgstr "/data/record/Riferimento-name"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "\"SPETT.LE \" + $F{DescrizioneBanca} + \", \" + $F{CittaBanca} + \" - \" + $F{CAPBanca}"
+msgstr "\"SPETT.LE \" + $F{DescrizioneBanca} + \", \" + $F{CittaBanca} + \" - \" + $F{CAPBanca}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Numero_Fattura-numero_fattura}"
+msgstr "$F{Numero_Fattura-numero_fattura}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Data_Scadenza-data_scadenza}.getDate() + \"/\" + ($F{Data_Scadenza-data_scadenza}.getMonth() + 1) + \"/\" + ($F{Data_Scadenza-data_scadenza}.getYear() + 1900)"
+msgstr "$F{Data_Scadenza-data_scadenza}.getDate() + \"/\" + ($F{Data_Scadenza-data_scadenza}.getMonth() + 1) + \"/\" + ($F{Data_Scadenza-data_scadenza}.getYear() + 1900)"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "\"Numero righe : \" + $V{Importo-importo_2}"
+msgstr "\"Numero righe : \" + $V{Importo-importo_2}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Data_Creazione-date_created"
+msgstr "/data/record/Data_Creazione-date_created"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Importo-importo}"
+msgstr "$F{Importo-importo}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "Data"
+msgstr "Data"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: model:ir.actions.report.xml,name:l10n_it_ricevute_bancarie_jasper.report_stampa_riba_distinta
+msgid "Stampa Distinta"
+msgstr "Stampa Distinta"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "\"Pagina \"+$V{PAGE_NUMBER}+\" di\""
+msgstr "\"Pagina \"+$V{PAGE_NUMBER}+\" di\""
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Modalita_Riba-config/Banca-bank_id/Descrizione-name"
+msgstr "/data/record/Modalita_Riba-config/Banca-bank_id/Descrizione-name"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "\"Numero Distinta : \" + $F{Riferimento-name}"
+msgstr "\"Numero Distinta : \" + $F{Riferimento-name}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "Città"
+msgstr "Città"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "Ragione soc."
+msgstr "Ragione soc."
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Nome_Azienda-name}"
+msgstr "$F{Nome_Azienda-name}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "Scadenza"
+msgstr "Scadenza"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "IBAN"
+msgstr "IBAN"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Scadenze_Riba-line_ids/Importo-importo"
+msgstr "/data/record/Scadenze_Riba-line_ids/Importo-importo"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Scadenze_Riba-line_ids/Numero_Fattura-numero_fattura"
+msgstr "/data/record/Scadenze_Riba-line_ids/Numero_Fattura-numero_fattura"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Data_Fattura-data_fattura}"
+msgstr "$F{Data_Fattura-data_fattura}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "DISTINTA DI PRESENTAZIONE"
+msgstr "DISTINTA DI PRESENTAZIONE"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Modalita_Riba-config/Company-company_id/Nome_Azienda-name"
+msgstr "/data/record/Modalita_Riba-config/Company-company_id/Nome_Azienda-name"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Partner Nome}"
+msgstr "$F{Partner Nome}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$V{Importo-importo_3}"
+msgstr "$V{Importo-importo_3}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Scadenze_Riba-line_ids/Data_Fattura-data_fattura"
+msgstr "/data/record/Scadenze_Riba-line_ids/Data_Fattura-data_fattura"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Modalita_Riba-config/Banca-bank_id/CAP-zip"
+msgstr "/data/record/Modalita_Riba-config/Banca-bank_id/CAP-zip"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "Importo"
+msgstr "Importo"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "/data/record/Modalita_Riba-config/Company-company_id/Logo-logo"
+msgstr "/data/record/Modalita_Riba-config/Company-company_id/Logo-logo"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "$F{Logo-logo}"
+msgstr "$F{Logo-logo}"
+
+#. module: l10n_it_ricevute_bancarie_jasper
+#: report:jasper_riba_distinta:0
+msgid "\"Data : \" + $F{Data_Creazione-date_created}.getDate() + \"/\" + ($F{Data_Creazione-date_created}.getMonth() + 1) + \"/\" + ($F{Data_Creazione-date_created}.getYear() + 1900)"
+msgstr "\"Data : \" + $F{Data_Creazione-date_created}.getDate() + \"/\" + ($F{Data_Creazione-date_created}.getMonth() + 1) + \"/\" + ($F{Data_Creazione-date_created}.getYear() + 1900)"
+
