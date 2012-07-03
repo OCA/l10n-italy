@@ -29,6 +29,8 @@
     'description': """
     Modulo per le ritenute d'acconto sulle fatture fornitore
     
+http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornitore-con-ritenuta-dacconto/
+    
     http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
 """,
     'author': 'OpenERP Italian Community',
