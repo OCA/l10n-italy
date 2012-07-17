@@ -1,9 +1,12 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -28,6 +31,49 @@ import time
 class account_tax(osv.osv):
 
     _inherit = 'account.tax'
+    
+    def _have_same_rate(self, account_taxes):
+        rate = None
+        for account_tax in account_taxes:
+            if rate is None:
+                rate = account_tax.amount
+            elif rate != account_tax.amount:
+                return False
+        return True
+
+    def get_main_tax(self, tax):
+        if not tax.parent_id:
+            return tax
+        else:
+            return self.get_main_tax(tax.parent_id)
+    
+    def get_account_tax_by_tax_code(self, tax_code):
+        if tax_code.tax_ids:
+            if not self._have_same_rate(tax_code.tax_ids):
+                raise osv.except_osv(_('Error'),
+                    _('The taxes %s have different rates') % str(tax_code.tax_ids))
+            return tax_code.tax_ids[0]
+        if tax_code.ref_tax_ids:
+            if not self._have_same_rate(tax_code.ref_tax_ids):
+                raise osv.except_osv(_('Error'),
+                    _('The taxes %s have different rates') % str(tax_code.ref_tax_ids))
+            return tax_code.ref_tax_ids[0]
+        raise osv.except_osv(_('Error'),
+            _('No taxes associated to tax code %s') % str(tax_code.name))
+    
+    def get_account_tax_by_base_code(self, tax_code):
+        if tax_code.base_tax_ids:
+            if not self._have_same_rate(tax_code.base_tax_ids):
+                raise osv.except_osv(_('Error'),
+                    _('The taxes %s have different rates') % str(tax_code.base_tax_ids))
+            return tax_code.base_tax_ids[0]
+        if tax_code.ref_base_tax_ids:
+            if not self._have_same_rate(tax_code.ref_base_tax_ids):
+                raise osv.except_osv(_('Error'),
+                    _('The taxes %s have different rates') % str(tax_code.ref_base_tax_ids))
+            return tax_code.ref_base_tax_ids[0]
+        raise osv.except_osv(_('Error'),
+            _('No taxes associated to tax code %s') % str(tax_code.name))
 
     def compute_all(self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None, partner=None):
         res = super(account_tax, self).compute_all(cr, uid, taxes, price_unit, quantity, address_id, product, partner)
@@ -170,4 +216,14 @@ class account_invoice_tax(osv.osv):
                             inv_tax_2['amount'] = cur_obj.round(cr, uid, cur, inv_tax_2['amount'])
         return tax_grouped
     
-account_invoice_tax()
+
+class account_tax_code(osv.osv):
+
+    _inherit = 'account.tax.code'
+    
+    _columns = {
+        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
+        'tax_ids': fields.one2many('account.tax', 'tax_code_id', 'Taxes'),
+        'ref_base_tax_ids': fields.one2many('account.tax', 'ref_base_code_id', 'Ref Base Taxes'),
+        'ref_tax_ids': fields.one2many('account.tax', 'ref_tax_code_id', 'Ref Taxes'),
+        }

@@ -1,9 +1,12 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,7 +26,7 @@
 {
     "name" : "Italy - Partially Deductible VAT",
     "version" : "0.1",
-    "depends" : ['account_invoice_tax_by_column'],
+    "depends" : ['account'],
     "author" : "OpenERP Italian Community",
     "description": """
     Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile. Senza questo modulo non è possibile calcolare correttamente imponibili, imposte e conti imposte relativi all'IVA parzialmente detraibile.
