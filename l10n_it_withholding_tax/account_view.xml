@@ -11,6 +11,8 @@
                 <field name="active" position="after">
                     <field name="withholding_tax"/>
                     <field name="withholding_payment_term_id" attrs="{'readonly':[('withholding_tax','=',False)]}"/>
+                    <field name="withholding_account_id" attrs="{'readonly':[('withholding_tax','=',False)]}"  domain="[('type', '=', 'payable')]"/>
+                    <field name="withholding_journal_id" attrs="{'readonly':[('withholding_tax','=',False)]}"/>
                 </field>
             </field>
         </record>
