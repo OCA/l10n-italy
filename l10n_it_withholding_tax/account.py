@@ -54,6 +54,7 @@ class account_voucher(osv.osv):
         return is_withholding
         
     def get_withholding_tax(self, cr, uid, move_line_id, context=None):
+        tax_pool = self.pool.get('account.tax')
         move_line = self.pool.get('account.move.line').browse(cr, uid, move_line_id, context)
         tax_ids = tax_pool.search(cr, uid, [('tax_code_id', '=', move_line.tax_code_id.id)])
         if len(tax_ids) > 1:
@@ -68,12 +69,15 @@ class account_voucher(osv.osv):
         res = super(account_voucher,self).action_move_line_create(cr, uid, ids, context)
         inv_pool = self.pool.get('account.invoice')
         tax_pool = self.pool.get('account.tax')
+        curr_pool = self.pool.get('res.currency')
+        term_pool = self.pool.get('account.payment.term')
         for voucher in self.browse(cr, uid, ids, context):
             amounts_by_invoice = super(account_voucher,self).allocated_amounts_grouped_by_invoice(cr, uid,voucher, context)
             for inv_id in amounts_by_invoice:
                 invoice = inv_pool.browse(cr, uid, inv_id, context)
                 for move_line in invoice.move_id.line_id:
                     if self.is_withholding_move_line(cr , uid, move_line.id, context):
+                        # only for supplier payments
                         if voucher.type != 'payment':
                             raise osv.except_osv(_('Error'), _('Can\'t handle withholding tax with voucher of type other than payment'))
                         wh_tax = tax_pool.browse(cr, uid, self.get_withholding_tax(cr, uid, move_line.id, context), context)
@@ -84,40 +88,40 @@ class account_voucher(osv.osv):
                         if not wh_tax.withholding_journal_id:
                             raise osv.except_osv(_('Error'), _('The tax %s does not have an associated Withholding journal') % wh_tax.name)
                         # compute the new amount proportionally to paid amount
-                        new_line_amount = currency_obj.round(cr, uid, voucher.company_id.currency_id, ((amounts_by_invoice[invoice.id]['allocated'] + amounts_by_invoice[invoice.id]['write-off']) / amounts_by_invoice[invoice.id]['total']) * (move_line.credit or move_line.debit))
+                        new_line_amount = curr_pool.round(cr, uid, voucher.company_id.currency_id, ((amounts_by_invoice[invoice.id]['allocated'] + amounts_by_invoice[invoice.id]['write-off']) / amounts_by_invoice[invoice.id]['total']) * (move_line.credit or move_line.debit))
+                        
+                        # compute the due date
+                        due_list = term_pool.compute(
+                            cr, uid, wh_tax.withholding_payment_term_id.id, new_line_amount,
+                            date_ref=invoice.date_invoice, context=context)
+                        if len(due_list) > 1:
+                            raise osv.except_osv(_('Error'),
+                                _('The payment term %s has too many due dates')
+                                % wh_tax.withholding_payment_term_id.name)
+                        if len(due_list) == 0:
+                            raise osv.except_osv(_('Error'),
+                                _('The payment term %s does not have due dates')
+                                % wh_tax.withholding_payment_term_id.name)
+                                
                         new_move = {
                             'journal_id': wh_tax.withholding_journal_id.id,
                             'line_id': [
                                 (0,0,{
-                                    'name'
+                                    'name': move_line.name,
+                                    'account_id': move_line.account_id.id,
+                                    'debit': new_line_amount,
+                                    'credit': 0.0,
+                                    }),
+                                (0,0,{
+                                    'name': _('Payable withholding - ') + move_line.name,
+                                    'account_id': wh_tax.withholding_account_id.id,
+                                    'debit': 0.0,
+                                    'credit': new_line_amount,
+                                    'date_maturity': due_list[0][0],
                                     }),
                                 ]
                             }
-        return res
-
-class account_invoice(osv.osv):
-    _inherit = "account.invoice"
-    
-    def action_move_create(self, cr, uid, ids, context=None):
-        res = super(account_invoice, self).action_move_create(cr, uid, ids, context=context)
-        tax_pool = self.pool.get('account.tax')
-        term_pool = self.pool.get('account.payment.term')
-        for inv in self.browse(cr, uid, ids, context=context):
-            for move_line in inv.move_id.line_id:
-                if move_line.tax_code_id:
-                    
-                        if tax.withholding_tax and tax.withholding_payment_term_id:
-                            due_list = term_pool.compute(
-                                cr, uid, tax.withholding_payment_term_id.id, move_line.tax_amount,
-                                date_ref=inv.date_invoice, context=context)
-                            if len(due_list) > 1:
-                                raise osv.except_osv(_('Error'),
-                                    _('The payment term %s has too many due dates')
-                                    % tax.withholding_payment_term_id.name)
-                            if len(due_list) == 0:
-                                raise osv.except_osv(_('Error'),
-                                    _('The payment term %s does not have due dates')
-                                    % tax.withholding_payment_term_id.name)
-                            move_line.write({'date_maturity': due_list[0][0]})
+                        move_id = self.pool.get('account.move').create(cr, uid, new_move, context=context)
+                        voucher.write({'withholding_move_id': move_id})
         return res
 

@@ -10,9 +10,21 @@
             <field name="arch" type="xml">
                 <field name="active" position="after">
                     <field name="withholding_tax"/>
-                    <field name="withholding_payment_term_id" attrs="{'readonly':[('withholding_tax','=',False)]}"/>
-                    <field name="withholding_account_id" attrs="{'readonly':[('withholding_tax','=',False)]}"  domain="[('type', '=', 'payable')]"/>
-                    <field name="withholding_journal_id" attrs="{'readonly':[('withholding_tax','=',False)]}"/>
+                    <field name="withholding_payment_term_id" attrs="{'readonly':[('withholding_tax','=',False)], 'required':[('withholding_tax','!=',False)]}"/>
+                    <field name="withholding_account_id" attrs="{'readonly':[('withholding_tax','=',False)], 'required':[('withholding_tax','!=',False)]}"  domain="[('type', '=', 'payable')]"/>
+                    <field name="withholding_journal_id" attrs="{'readonly':[('withholding_tax','=',False)], 'required':[('withholding_tax','!=',False)]}"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="view_vendor_payment_form_wh_move" model="ir.ui.view">
+            <field name="name">account.voucher.payment.form.wh.move</field>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="move_ids" position="after">
+                    <field name="withholding_move_id" />
                 </field>
             </field>
         </record>
