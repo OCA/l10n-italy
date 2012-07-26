@@ -125,3 +125,13 @@ class account_voucher(osv.osv):
                         voucher.write({'withholding_move_id': move_id})
         return res
 
+    def cancel_voucher(self, cr, uid, ids, context=None):
+        res = super(account_voucher,self).cancel_voucher(cr, uid, ids, context)
+        reconcile_pool = self.pool.get('account.move.reconcile')
+        move_pool = self.pool.get('account.move')
+        for voucher in self.browse(cr, uid, ids, context=context):
+            recs = []
+            if voucher.withholding_move_id:
+                move_pool.button_cancel(cr, uid, [voucher.withholding_move_id.id])
+                move_pool.unlink(cr, uid, [voucher.withholding_move_id.id])
+        return res
