@@ -26,7 +26,6 @@
 from osv import fields, osv
 from tools.translate import _
 
-# TODO creare la tax ritenuta
 class account_tax(osv.osv):
     _inherit = 'account.tax'
     _columns = {
