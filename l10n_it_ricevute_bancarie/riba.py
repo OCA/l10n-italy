@@ -318,7 +318,7 @@ class riba_distinta_line(osv.osv):
         'move_line_ids': fields.one2many('riba.distinta.move.line', 'riba_line_id', 'Credit move lines'),
         'acceptance_move_id': fields.many2one('account.move', 'Acceptance Entry', readonly=True),
         'unsolved_move_id': fields.many2one('account.move', 'Unsolved Entry', readonly=True),
-        'acceptance_account_id': fields.many2one('account.account', 'Acceptance Account', required=True),
+        'acceptance_account_id': fields.many2one('account.account', 'Acceptance Account'),
         'amount' : fields.function(_get_line_values, method=True, string="Amount", multi="line"),
         'bank_id': fields.many2one('res.partner.bank', 'Debitor Bank'),
         'distinta_id': fields.many2one('riba.distinta', 'Distinta', required=True, ondelete='cascade'),
