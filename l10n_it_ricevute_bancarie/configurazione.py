@@ -40,10 +40,10 @@ class riba_configurazione(osv.osv):
             required=True, help="Bank account used for Ri.Ba. issuing"),
             
         'acceptance_journal_id' : fields.many2one('account.journal', "Acceptance journal", 
-            domain=[('type', '=', 'bank')], required=True,
+            domain=[('type', '=', 'bank')],
             help="Journal used when Ri.Ba. is accepted by the bank"),
         'acceptance_account_id' : fields.many2one('account.account', "Acceptance account", 
-            domain=[('type', '=', 'receivable')], required=True, help='Account used when Ri.Ba. is accepted by the bank'),
+            domain=[('type', '=', 'receivable')], help='Account used when Ri.Ba. is accepted by the bank'),
             
         'company_id': fields.many2one('res.company', 'Company',required=True),
         
