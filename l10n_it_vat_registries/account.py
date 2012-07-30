@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2011 Associazione OpenERP Italia
+#    Copyright (C) 2011-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>). 
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,7 +24,7 @@
 
 from osv import fields, osv
 
-class account_invoice_tax(osv.osv):
+class account_tax(osv.osv):
 
     _inherit = 'account.tax'
     _columns = {
@@ -33,4 +35,11 @@ class account_invoice_tax(osv.osv):
         ('name_uniq', 'UNIQUE(name)', 'The tax name must be unique!'),
     ]
 
-account_invoice_tax()
+    def get_account_tax(self, inv_tax):
+        if inv_tax.tax_code_id:
+            return self.get_account_tax_by_tax_code(inv_tax.tax_code_id)
+        if inv_tax.base_code_id:
+            return self.get_account_tax_by_base_code(inv_tax.base_code_id)
+        raise osv.except_osv(_('Error'),
+            _('No tax codes for invoice tax %s') % str(inv_tax.name))
+
