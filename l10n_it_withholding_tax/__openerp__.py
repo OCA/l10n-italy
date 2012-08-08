@@ -23,7 +23,7 @@
 #
 ##############################################################################
 {
-    'name': "Italian Localisation - Ritenute d'acconto",
+    'name': "Italian Localisation - Withholding tax",
     'version': '0.1',
     'category': 'Localisation/Italy',
     'description': """

@@ -26,13 +26,38 @@
 from osv import fields, osv
 from tools.translate import _
 
-class account_tax(osv.osv):
-    _inherit = 'account.tax'
+class res_company(osv.osv):
+    _inherit = 'res.company'
     _columns = {
-        'withholding_tax': fields.boolean('Withholding Tax'),
-        'withholding_payment_term_id': fields.many2one('account.payment.term', 'Withholding Payment Term'),
-        'withholding_account_id': fields.many2one('account.account','Withholding account', help='Payable account used for amount due to tax authority'),
-        'withholding_journal_id': fields.many2one('account.journal','Withholding journal'),
+        'withholding_amount': fields.float('Withholding tax Percentage'),
+        'withholding_payment_term_id': fields.many2one('account.payment.term', 'Withholding tax Payment Term'),
+        'withholding_account_id': fields.many2one('account.account','Withholding account', help='Payable account used for amount due to tax authority', domain=[('type', '=', 'payable')]),
+        'withholding_journal_id': fields.many2one('account.journal','Withholding journal', help="Journal used for registration of witholding amounts to be paid"),
+        }
+
+class account_invoice_line(osv.osv):
+
+    _inherit = "account.invoice.line"
+
+    _columns = {
+        'withholding_tax': fields.boolean('Apply Withholding tax'),
+        }
+
+class account_invoice(osv.osv):
+    
+    def _net_pay(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        for invoice in self.browse(cr, uid, ids, context):
+            res[invoice.id] = 0.0
+            for line in invoice.invoice_line:
+                if line.withholding_tax:
+                    res[invoice.id] += invoice.company_id.withholding_amount * (line.price_unit* (1-(line.discount or 0.0)/100.0)) * line.quantity
+        return res
+
+    _inherit = "account.invoice"
+
+    _columns = {
+        'net_pay': fields.function(_net_pay, string="Net Pay"),
         }
 
 class account_voucher(osv.osv):

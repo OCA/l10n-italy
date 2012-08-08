@@ -2,20 +2,87 @@
 <openerp>
     <data>
 
-        <record id="view_tax_form" model="ir.ui.view">
-            <field name="name">account.tax.form</field>
-            <field name="model">account.tax</field>
+<!-- company -->
+
+        <record model="ir.ui.view" id="view_company_inherit_form">
+            <field name="name">res.company.form.inherit</field>
+            <field name="inherit_id" ref="account.view_company_inherit_form"/>
+            <field name="model">res.company</field>
             <field name="type">form</field>
-            <field name="inherit_id" ref="account.view_tax_form"></field>
             <field name="arch" type="xml">
-                <field name="active" position="after">
-                    <field name="withholding_tax"/>
-                    <field name="withholding_payment_term_id" attrs="{'readonly':[('withholding_tax','=',False)], 'required':[('withholding_tax','!=',False)]}"/>
-                    <field name="withholding_account_id" attrs="{'readonly':[('withholding_tax','=',False)], 'required':[('withholding_tax','!=',False)]}"  domain="[('type', '=', 'payable')]"/>
-                    <field name="withholding_journal_id" attrs="{'readonly':[('withholding_tax','=',False)], 'required':[('withholding_tax','!=',False)]}"/>
+                <field name="paypal_account" position="after">
+                    <separator colspan="4"></separator>
+                    <field name="withholding_amount"/>
+                    <field name="withholding_payment_term_id" attrs="{'readonly':[('withholding_amount','=',False)], 'required':[('withholding_amount','!=',False)]}"/>
+                    <field name="withholding_account_id" attrs="{'readonly':[('withholding_amount','=',False)], 'required':[('withholding_amount','!=',False)]}" />
+                    <field name="withholding_journal_id" attrs="{'readonly':[('withholding_amount','=',False)], 'required':[('withholding_amount','!=',False)]}"/>
+                    <separator colspan="4"></separator>
                 </field>
             </field>
         </record>
+        
+        <!-- invoice -->
+        
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="price_subtotal" position="after">
+                    <field name="withholding_tax"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_invoice_line_tree" model="ir.ui.view">
+            <field name="name">account.invoice.line.tree</field>
+            <field name="model">account.invoice.line</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="price_subtotal" position="after">
+                    <field name="withholding_tax"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_invoice_line_form" model="ir.ui.view">
+            <field name="name">account.invoice.line.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <field name="discount" position="after">
+                    <field name="withholding_tax"/>
+                </field>
+            </field>
+        </record>
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="residual" position="after">
+                    <label string="" colspan="2"></label>
+                    <field name="net_pay"/>
+                </field>
+            </field>
+        </record>
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="residual" position="after">
+                    <label string="" colspan="2"></label>
+                    <field name="net_pay"/>
+                </field>
+            </field>
+        </record>
+        
+        <!-- voucher -->
         
         <record id="view_vendor_payment_form_wh_move" model="ir.ui.view">
             <field name="name">account.voucher.payment.form.wh.move</field>
