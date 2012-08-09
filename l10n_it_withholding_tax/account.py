@@ -62,10 +62,10 @@ class account_voucher(osv.osv):
         line_pool=self.pool.get('account.move.line')
         rec_ids = []
         for inv_move_line in invoice.move_id.line_id:
-            if inv_move_line.account_id.type == 'payable':
+            if inv_move_line.account_id.type == 'payable' and not inv_move_line.reconcile_id:
                 rec_ids.append(inv_move_line.id)
         for wh_line in wh_move.line_id:
-            if wh_line.account_id.type == 'payable' and invoice.company_id.withholding_account_id and invoice.company_id.withholding_account_id.id != wh_line.account_id.id:
+            if wh_line.account_id.type == 'payable' and invoice.company_id.withholding_account_id and invoice.company_id.withholding_account_id.id != wh_line.account_id.id and not wh_line.reconcile_id:
                 rec_ids.append(wh_line.id)
         return line_pool.reconcile_partial(cr, uid, rec_ids, type='auto', context=context)
     
