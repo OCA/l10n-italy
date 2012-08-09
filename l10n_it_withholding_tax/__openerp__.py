@@ -24,7 +24,7 @@
 ##############################################################################
 {
     'name': "Italian Localisation - Withholding tax",
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Localisation/Italy',
     'description': """
 Ritenute d'acconto sulle fatture fornitore
