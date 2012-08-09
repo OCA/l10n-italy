@@ -42,7 +42,8 @@ Requisiti
 http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
 
 Howto
------ http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornitore-con-ritenuta-dacconto/
+-----
+http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornitore-con-ritenuta-dacconto/
 """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
