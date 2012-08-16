@@ -22,19 +22,23 @@
     <table style="width:100%;" cellspacing="0">
         <thead>
         <tr>
-            <th class="left_without_line">Data fattura</th>
-            <th class="left_without_line">Numero fattura</th>
+            <th class="left_without_line">Data registrazione</th>
+            <th class="left_without_line">Numero</th>
             <th class="left_without_line">Ragione sociale</th>
-            <th class="left_without_line">Descrizione</th>
+            <th class="left_without_line">Numero fattura</th>
+            <th class="left_without_line">Data fattura</th>
+            <th class="left_without_line">Causale</th>
             <th class="right_without_line">Totale fattura</th>
-            <th class="right_without_line">% IVA</th>
             <th class="right_without_line">Imponibile</th>
+            <th class="right_without_line">% IVA</th>
             <th class="right_without_line">Imposta</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
+        <% counter = 0 %>
         %for object in objects :
+            <% counter += 1 %>
             %for line in tax_lines(object) :
                 %if line['index']==0:
                     <tr><td class="left_with_line">
@@ -50,7 +54,7 @@
                     </td><td class="left_without_line">
                 %endif
                 %if line['index']==0:
-                    ${object.name or ''| entity}
+                    ${ counter | entity}
                 %endif
                 %if line['index']==0:
                     </td><td class="left_with_line">
@@ -59,6 +63,22 @@
                 %endif
                 %if line['index']==0:
                     ${object.partner_id.name or ''| entity}
+                %endif
+                %if line['index']==0:
+                    </td><td class="left_with_line">
+                %else:
+                    </td><td class="left_without_line">
+                %endif
+                %if line['index']==0:
+                    ${object.name or ''| entity}
+                %endif
+                %if line['index']==0:
+                    </td><td class="left_with_line">
+                %else:
+                    </td><td class="left_without_line">
+                %endif
+                %if line['index']==0:
+                    ${ formatLang(object.date,date=True) or '' | entity}
                 %endif
                 %if line['index']==0:
                     </td><td class="left_with_line">
@@ -82,14 +102,14 @@
                 %endif
                 </td>
                 %if line['index']==0:
-                    <td class="right_with_line">${ line['tax_percentage'] or ''| entity}</td>
-                %else:
-                    <td class="right_without_line">${ line['tax_percentage'] or ''| entity}</td>
-                %endif
-                %if line['index']==0:
                     <td class="right_with_line">${ formatLang(line['base'])  or ''| entity}</td>
                 %else:
                     <td class="right_without_line">${ formatLang(line['base'])  or ''| entity}</td>
+                %endif
+                %if line['index']==0:
+                    <td class="right_with_line">${ line['tax_percentage'] or ''| entity}</td>
+                %else:
+                    <td class="right_without_line">${ line['tax_percentage'] or ''| entity}</td>
                 %endif
                 %if line['index']==0:
                     <td class="right_with_line">${ formatLang(line['amount'])  or ''| entity}</td>
