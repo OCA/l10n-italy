@@ -65,7 +65,7 @@ class central_journal_report(report_sxw.rml_parse):
 
     def _get_movements(self):
         move_line_obj = self.pool.get('account.move.line')
-        line_ids=move_line_obj.search(self.cr,self.uid,self.filters,order="date asc")
+        line_ids=move_line_obj.search(self.cr,self.uid,self.filters,order="date, move_id asc")
         report_lines=move_line_obj.browse(self.cr,self.uid,line_ids)
         return report_lines
 
