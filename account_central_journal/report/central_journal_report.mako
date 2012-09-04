@@ -5,13 +5,16 @@
     ${css}
     
     .page_block {
-        /*border: 1px solid red;*/
         page-break-after: always;
-        /*page-break-inside: avoid;*/
+        width: 100%;
+        }
+    .page_table {
+        width: 100%;
         }
     .p_row {
         page-break-inside: avoid; 
         vertical-align:text-top;
+        height: 21px;
         }
     .p_cell {
         overflow: hidden;
@@ -22,7 +25,7 @@
         font-size: 9px;
         font-family: "Courier New", Courier, monospace;
         }
-    .p_cell_progr_row, .p_cell_debit, .p_cell_credit {
+    .p_cell_debit, .p_cell_credit {
         text-align: right;
         }
         
@@ -61,9 +64,9 @@
         text-align: right;
         }
         
-    /* COLUMNS WIDTH */
-    .p_cell_progr_row { width: 40px;}
-    .p_cell_date { width: 65px;}
+    /* COLUMNS WIDTH 
+    .p_cell_progr_row { width: 15px;}
+    .p_cell_date { width: 45px;}
     .p_cell_ref { width: 70px;}
     .p_cell_move_id_name { width: 70px;}
     .p_cell_account_id_code { width: 50px;}
@@ -71,6 +74,7 @@
     .p_cell_name { width: 250px;}
     .p_cell_debit { width: 70px;}
     .p_cell_credit { width: 70px;}
+    */
     </style>
 </head>
 
@@ -88,7 +92,7 @@
         result_rows = get_movements()
     %>
     <%
-        page_rows = 50
+        page_rows = 25
         
         num_rows = len(result_rows)
         num_row = 0
@@ -117,7 +121,7 @@
                 </tr>
             </table>
 
-            <table>
+            <table class="page_table">
             <tr class="p_row p_row_page">
                 <td colspan="7" class="p_cell p_cell_test">
                     % if flag_print_final == False:
