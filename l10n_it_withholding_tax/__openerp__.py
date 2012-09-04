@@ -23,20 +23,32 @@
 #
 ##############################################################################
 {
-    'name': "Italian Localisation - Ritenute d'acconto",
-    'version': '0.1',
+    'name': "Italian Localisation - Withholding tax",
+    'version': '0.2',
     'category': 'Localisation/Italy',
     'description': """
-    Modulo per le ritenute d'acconto sulle fatture fornitore
-    
+Ritenute d'acconto sulle fatture fornitore
+==========================================
+
+Per utilizzare il modulo bisogna configurare i campi associati alla company:
+ - Termine di pagamento della ritenuta
+ - Conto di debito per le ritenute da versare
+ - Sezionale che conterrà le registrazioni legate alla ritenuta
+
+Durante la compilazione di una fattura fornitore con ritenuta d'acconto, l'utente dovrà specificare l'importo della ritenuta.
+
+Requisiti
+---------
+http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
+
+Howto
+-----
 http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornitore-con-ritenuta-dacconto/
-    
-    http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
 """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account_invoice_template'],
+    "depends" : ['account_invoice_template', 'account_voucher_cash_basis'],
     "init_xml" : [
         'account_view.xml',
         ],
