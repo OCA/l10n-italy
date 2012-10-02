@@ -27,7 +27,7 @@ class Parser(report_sxw.rml_parse):
 
     def _get_ddt(self):
         return self.pool.get('stock.picking').browse(self.cr, self.uid, 
-            self.localcontext['data']['form']['picking_id'])
+            int(self.localcontext['data']['form']['picking_id']))
 
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)

@@ -25,11 +25,11 @@ import netsvc
 
 class wizard_fattura_accompagnatoria(osv.osv_memory):
 
-    def _get_picking_ids(self, cr, uid, fields, context=None):
+    def _get_picking_ids(self, cr, uid, context=None):
         invoice_obj = self.pool.get('account.invoice')
         res = []
-        if fields.has_key('active_ids'):
-            for invoice in invoice_obj.browse(cr, uid, fields['active_ids'], context=context):
+        if context.has_key('active_ids'):
+            for invoice in invoice_obj.browse(cr, uid, context['active_ids'], context=context):
                 for sale_order in invoice.sale_order_ids:
                     for picking in sale_order.picking_ids:
                         res.append((picking.id, picking.name))
