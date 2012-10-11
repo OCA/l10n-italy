@@ -31,7 +31,7 @@ import time
 class account_tax(osv.osv):
 
     _inherit = 'account.tax'
-    
+
     def _have_same_rate(self, account_taxes):
         rate = None
         for account_tax in account_taxes:
@@ -46,7 +46,7 @@ class account_tax(osv.osv):
             return tax
         else:
             return self.get_main_tax(tax.parent_id)
-    
+
     def get_account_tax_by_tax_code(self, tax_code):
         if tax_code.tax_ids:
             if not self._have_same_rate(tax_code.tax_ids):
@@ -60,7 +60,7 @@ class account_tax(osv.osv):
             return tax_code.ref_tax_ids[0]
         raise osv.except_osv(_('Error'),
             _('No taxes associated to tax code %s') % str(tax_code.name))
-    
+
     def get_account_tax_by_base_code(self, tax_code):
         if tax_code.base_tax_ids:
             if not self._have_same_rate(tax_code.base_tax_ids):
@@ -75,9 +75,9 @@ class account_tax(osv.osv):
         raise osv.except_osv(_('Error'),
             _('No taxes associated to tax code %s') % str(tax_code.name))
 
-    def compute_all(self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None, partner=None):
+    def compute_all(self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None, partner=None, force_excluded=False):
         res = super(account_tax, self).compute_all(cr, uid, taxes, price_unit, quantity, address_id, product, partner)
-        
+
         precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
         tax_list = res['taxes']
         totalex = res['total']
@@ -101,10 +101,10 @@ account_tax()
 class account_invoice_tax(osv.osv):
 
     _inherit = "account.invoice.tax"
-    
+
     '''
     tax_grouped:
-    
+
     {(False, 21, 132): {'account_id': 132,
                     'amount': 12.36,
                     'base': 61.79,
@@ -139,7 +139,7 @@ class account_invoice_tax(osv.osv):
                 'tax_amount': 24.71,
                 'tax_code_id': 26}}
     '''
-    
+
     def tax_difference(self, cr, uid, cur, tax_grouped):
         real_total = 0
         invoice_total = 0
@@ -215,12 +215,12 @@ class account_invoice_tax(osv.osv):
                             inv_tax['tax_amount'] = cur_obj.round(cr, uid, cur, inv_tax['tax_amount'])
                             inv_tax_2['amount'] = cur_obj.round(cr, uid, cur, inv_tax_2['amount'])
         return tax_grouped
-    
+
 
 class account_tax_code(osv.osv):
 
     _inherit = 'account.tax.code'
-    
+
     _columns = {
         'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
         'tax_ids': fields.one2many('account.tax', 'tax_code_id', 'Taxes'),
