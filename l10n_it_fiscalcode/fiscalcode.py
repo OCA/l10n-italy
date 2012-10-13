@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010 Associazione OpenERP Italia
+#    Copyright (C) 2010-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #    All Rights Reserved
 #
@@ -20,4 +20,30 @@
 #
 ##############################################################################
 
-import invoice
+from osv import fields, osv
+import tools
+import pooler
+from tools.translate import _
+import datetime
+
+class res_partner(osv.osv):
+    _inherit = 'res.partner'
+
+    def check_fiscalcode(self, cr, uid, ids, context={}):
+
+        for partner in self.browse(cr, uid, ids):
+            if not partner.fiscalcode:
+                return True
+            elif len(partner.fiscalcode) != 16 and partner.individual:
+                return False
+            else:
+                return True
+
+    _columns = {
+        'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
+        'individual': fields.boolean('Individual', help="If checked the C.F. is referred to a Individual Person"),
+    }
+    _defaults = {
+        'individual': False,
+    }
+    _constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]

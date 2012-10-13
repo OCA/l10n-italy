@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+        <record id="view_partner_form_fiscalcode_data" model="ir.ui.view">
+            <field name="name">res.partner.fiscalcode.data</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="property_account_payable" position="after">
+                    <separator string="Fiscal Data" colspan="2"/>
+                    <group colspan="2" col="6">
+                        <field name="fiscalcode"/>
+                        <field name="individual" colspan="1" groups="base.group_extended" />
+                    </group>
+                </field>
+                <field name="property_account_position" position="before">
+                    <separator string="Payment Mode" colspan="2"/>
+                </field>
+            </field>
+        </record>
+
+	</data>
+</openerp>

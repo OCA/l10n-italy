@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010 Associazione OpenERP Italia
+#    Copyright (C) 2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #    All Rights Reserved
 #
@@ -20,4 +20,6 @@
 #
 ##############################################################################
 
-import invoice
+import fiscalcode
+import wizard
+

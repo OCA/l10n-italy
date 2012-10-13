@@ -20,26 +20,27 @@
 #
 ##############################################################################
 {
-    'name': 'Italian Localisation - Account',
+    'name': 'Italian Localisation - Fiscal Code',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores - Account version
+    'description': """
+This module customizes OpenERP in order to fit italian laws and mores - Account version
 
 Functionalities:
 
 - Fiscal code computation for partner
-- Check invoice date consistency
 
 """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account','base_vat','account_chart','base_iban'],
-    "init_xml" : [],
+    "depends" : ['base', 'l10n_it_base'],
+    "init_xml" : [
+        'fiscalcode_view.xml',
+        'wizard/compute_fc_view.xml'
+        ],
     "update_xml" : [],
     "demo_xml" : [],
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
