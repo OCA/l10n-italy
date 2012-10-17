@@ -38,8 +38,7 @@ class account_invoice(osv.osv):
                 return True
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
-            cr.execute("SELECT number FROM account_invoice i WHERE i.type = %s AND i.date_invoice > %s AND i.number < %s", (inv_type, date_invoice, number))
-            res = cr.dictfetchall()
+            res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice), ('number', '<', number)])
             if res:
                 raise osv.except_osv(_('Date Inconsistency'),
                         _('Cannot create invoice! Post the invoice with a greater date'))
