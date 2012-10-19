@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
+#    
 #    Copyright (C) 2010 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.openerp-italia.org>). 
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,4 +20,5 @@
 #
 ##############################################################################
 
+import account
 import invoice

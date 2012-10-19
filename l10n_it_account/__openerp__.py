@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
+#    
 #    Copyright (C) 2010-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.openerp-italia.org>). 
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -34,8 +34,8 @@ Functionalities:
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account','base_vat','account_chart','base_iban'],
-    "init_xml" : [],
+    "depends" : ['account','base_vat','account_chart','base_iban', 'l10n_it_base'],
+    "init_xml" : ['account/partner_view.xml'],
     "update_xml" : [],
     "demo_xml" : [],
     "active": False,
