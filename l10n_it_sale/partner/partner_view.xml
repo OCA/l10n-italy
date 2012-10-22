@@ -7,14 +7,13 @@
 		    <field name="inherit_id" ref="base.view_partner_form"/>
 		    <field name="type">form</field>
 		    <field name="arch" type="xml">
-               <page string="Notes" position="after">
-                    <page string="Default shipping conditions">
-                       <field name="carriage_condition_id"/>
-                        <newline/>
-                       <field name="goods_description_id"/>
-                        <newline/>
-                       <field name="transportation_reason_id"/>
-                    </page>
+               <page string="Sales &amp; Purchases" position="inside">
+                    <group colspan="2" col="2" groups="base.group_extended">
+                        <separator string="Default shipping conditions" colspan="2"/>
+                        <field name="carriage_condition_id" groups="base.group_extended"/>
+                        <field name="goods_description_id" groups="base.group_extended"/>
+                        <field name="transportation_reason_id" groups="base.group_extended"/>
+                    </group>
 		        </page>
 		    </field>
         </record>
