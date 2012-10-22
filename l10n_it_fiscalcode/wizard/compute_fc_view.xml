@@ -41,7 +41,7 @@
             <field name="inherit_id" ref="l10n_it_fiscalcode.view_partner_form_fiscalcode_data"/>
             <field name="arch" type="xml">
                 <field name="fiscalcode" position="after">
-                    <button name="%(l10n_it_fiscalcode.action_compute_fc)d" string="Compute F.C." type="action" icon="gtk-execute"/>
+                    <button name="%(l10n_it_fiscalcode.action_compute_fc)d" string="Compute F.C." type="action" icon="gtk-execute" colspan="2"/>
                 </field>
             </field>
         </record>
