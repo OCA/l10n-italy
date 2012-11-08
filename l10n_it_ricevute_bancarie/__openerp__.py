@@ -46,6 +46,8 @@ Se per il cliente è stato abilitato il raggruppo, i pagamenti dello stesso clie
 
 I possibili stati della distinta sono: bozza, accettata, accreditata, pagata, insoluta, annullata.
 Ad ogni passaggio di stato sarà possibile generare le relative registrazioni contabili, le quali verranno riepilogate nel tab 'contabilità'. Questo tab è presente sia sulla distinta che sulle sue righe.
+
+Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQkt4/edit# abbiamo un esempio delle tipiche registrazioni generate da un flusso 'salvo buon fine'.
     """,
     'images': [],
     'depends': ['account','account_voucher', 'l10n_it_account', 'account_due_list'],
