@@ -113,6 +113,7 @@ class wizard_compute_fc(osv.osv_memory):
 
     def compute_fc(self, cr, uid, ids, context):
         active_id = context.get('active_id', [])
+        partner = self.pool.get('res.partner').browse(cr, uid, active_id, context)
         form_obj = self.browse(cr, uid, ids, context)
         for fields in form_obj:
             if not fields.fiscalcode_surname or not fields.fiscalcode_firstname or not fields.birth_date or not fields.birth_city or not fields.sex:
@@ -121,5 +122,7 @@ class wizard_compute_fc(osv.osv_memory):
             CF = self._codicefiscale(fields.fiscalcode_surname, fields.fiscalcode_firstname, str(birth_date.day),
                 str(birth_date.month), str(birth_date.year), fields.sex,
                 fields.birth_city.cadaster_code)
+            if partner.fiscalcode and partner.fiscalcode != CF:
+                raise osv.except_osv(_('Error'), _('Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one'))
             self.pool.get('res.partner').write(cr, uid, active_id, {'fiscalcode': CF, 'individual': True})
         return {}
