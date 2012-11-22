@@ -140,6 +140,7 @@ class Parser(report_sxw.rml_parse):
                 tax_item = {
                     'tax_percentage': main_tax.amount and str(
                         main_tax.amount * 100).split('.')[0] or move_line.tax_code_id.name,
+                    'tax_code_name': move_line.tax_code_id.name,
                     'base': base_amount,
                     'amount': actual_tax_amount,
                     'non_deductible': str_non_deductible != '0' and str_non_deductible or '',
@@ -155,14 +156,14 @@ class Parser(report_sxw.rml_parse):
                 index += 1
 
             if tax_item:
-                if tax_item['tax_percentage'] not in self.localcontext['tax_codes']:
-                    self.localcontext['tax_codes'][tax_item['tax_percentage']] = {
+                if tax_item['tax_code_name'] not in self.localcontext['tax_codes']:
+                    self.localcontext['tax_codes'][tax_item['tax_code_name']] = {
                         'base': tax_item['base'],
                         'amount': tax_item['amount'],
                         }
                 else:
-                    self.localcontext['tax_codes'][tax_item['tax_percentage']]['base'] += tax_item['base']
-                    self.localcontext['tax_codes'][tax_item['tax_percentage']]['amount'] += tax_item['amount']
+                    self.localcontext['tax_codes'][tax_item['tax_code_name']]['base'] += tax_item['base']
+                    self.localcontext['tax_codes'][tax_item['tax_code_name']]['amount'] += tax_item['amount']
 
         self.localcontext['totali']['totale_operazioni'] += invoice_amount_total
         self.localcontext['totali']['totale_imponibili'] += invoice_amount_untaxed
