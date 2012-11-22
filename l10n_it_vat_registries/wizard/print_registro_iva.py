@@ -34,7 +34,7 @@ class wizard_registro_iva(osv.osv_memory):
             ('customer', 'Customer Invoices'),
             ('supplier', 'Supplier Invoices'),
             ('corrispettivi', 'Corrispettivi'),
-            ], 'Type', required=True),
+            ], 'Layout', required=True),
         'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
         'message': fields.char('Message', size=64, readonly=True),
         }
