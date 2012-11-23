@@ -123,6 +123,6 @@ class wizard_compute_fc(osv.osv_memory):
                 str(birth_date.month), str(birth_date.year), fields.sex,
                 fields.birth_city.cadaster_code)
             if partner.fiscalcode and partner.fiscalcode != CF:
-                raise osv.except_osv(_('Error'), _('Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one'))
+                raise osv.except_osv(_('Error'), _('Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one') % (partner.fiscalcode, CF))
             self.pool.get('res.partner').write(cr, uid, active_id, {'fiscalcode': CF, 'individual': True})
         return {}
