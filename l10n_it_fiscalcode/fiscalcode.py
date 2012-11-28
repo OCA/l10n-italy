@@ -47,3 +47,6 @@ class res_partner(osv.osv):
         'individual': False,
     }
     _constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
+    _sql_constraints = [
+        ('fiscalcode_uniq', 'unique (fiscalcode, company_id)', 'The fiscal code must be unique per company !'),
+        ]
