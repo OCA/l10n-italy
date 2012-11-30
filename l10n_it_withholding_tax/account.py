@@ -96,7 +96,7 @@ class account_voucher(osv.osv):
                     # compute the due date
                     due_list = term_pool.compute(
                         cr, uid, invoice.company_id.withholding_payment_term_id.id, new_line_amount,
-                        date_ref=invoice.date_invoice, context=context)
+                        date_ref=voucher.date or invoice.date_invoice, context=context)
                     if len(due_list) > 1:
                         raise osv.except_osv(_('Error'),
                             _('The payment term %s has too many due dates')
