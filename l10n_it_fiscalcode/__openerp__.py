@@ -41,6 +41,9 @@ Functionalities:
         ],
     "update_xml" : [],
     "demo_xml" : [],
+    'test': [
+        'test/fiscalcode.yml',
+        ],
     "active": False,
     "installable": True
 }
