@@ -29,8 +29,8 @@
             <tr>
                 <td style="text-align:left; padding: 5px 0px;">
                     <span style="font-weight: bold;">
-                    ${company.partner_id.name |entity}&nbsp;
-                    ${company.partner_id.vat or '' |entity}&nbsp;
+                    ${company.partner_id.name |entity}&nbsp; - &nbsp;P.IVA:&nbsp;
+                    ${company.partner_id.vat or '' |entity}&nbsp; <br/>
                     ${company.partner_id.address and company.partner_id.address[0].street or '' |entity}&nbsp;
                     ${company.partner_id.address and company.partner_id.address[0].street2 or '' |entity}&nbsp;
                     ${company.partner_id.address and company.partner_id.address[0].zip or '' |entity}&nbsp;
