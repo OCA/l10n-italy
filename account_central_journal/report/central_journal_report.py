@@ -46,6 +46,7 @@ class central_journal_report(report_sxw.rml_parse):
             'start_page': fiscalyear_data.progressive_page_number,
             'start_debit': fiscalyear_data.progressive_debit,
             'start_credit': fiscalyear_data.progressive_credit,
+            'year_name': fiscalyear_data.name,
         }
         return print_info
 

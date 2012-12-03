@@ -128,7 +128,7 @@
                     <span class="p_text">${ _("TEST PRINTING") }&nbsp;${ _("From date") }&nbsp;${ formatLang(date_from, date=True) or ''|entity }&nbsp;${ _("to date") }&nbsp;${ formatLang(date_to, date=True) or ''|entity }</span>
                     % endif
                 </td>
-                <td colspan="2" class="p_cell p_cell_page"><span class="p_text p_page">${ _("Page:") }&nbsp;&nbsp;${progr_page}</span></td>
+                <td colspan="2" class="p_cell p_cell_page"><span class="p_text p_page">${ _("Page:") }&nbsp;&nbsp;${progr_page} / ${print_info['year_name']}</span></td>
             </tr>
             
             <tr class="p_row p_row_head">
