@@ -79,7 +79,6 @@
 </head>
 
 <body>
-    <% setLang(user.context_lang) %>
     <%
         flag_print_final = data["print_final"]
         fiscalyear_id = data["form"]["fiscalyear"]
@@ -105,6 +104,7 @@
         debit_tot = print_info['start_debit']
         credit_tot = print_info['start_credit']
     %>        
+    <% result_rows and result_rows[0] and result_rows[0].company_id and result_rows[0].company_id.partner_id and result_rows[0].company_id and result_rows[0].company_id.partner_id.lang and setLang(result_rows[0].company_id and result_rows[0].company_id.partner_id.lang) %>
 
     %for line in result_rows :
         <% num_row = num_row + 1 %>
