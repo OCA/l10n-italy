@@ -27,16 +27,14 @@
                  </field>
              </field>
         </record>
-        <record id="view_partner_sia_form" model="ir.ui.view">
-            <field name="name">res.partner.form.sia.inherit</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
+        <record id="view_partner_bank_sia_form" model="ir.ui.view">
+            <field name="name">res.partner.bank.form.sia.inherit</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="acc_number" position="after">
-                    <newline/>
                     <field name="codice_sia"/>
-                    <newline/>
                 </field>
             </field>
         </record>
