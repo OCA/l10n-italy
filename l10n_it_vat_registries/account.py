@@ -1,8 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    All Rights Reserved
@@ -15,7 +15,7 @@
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -23,13 +23,17 @@
 ##############################################################################
 
 from osv import fields, osv
+from tools.translate import _
+
 
 class account_tax(osv.osv):
 
     _inherit = 'account.tax'
     _columns = {
-        'exclude_from_registries': fields.boolean('Exclude from VAT registries'),
-        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'), # serve ancora?
+        'exclude_from_registries': fields.boolean(
+            'Exclude from VAT registries'),
+        'base_tax_ids': fields.one2many(
+            'account.tax', 'base_code_id', 'Base Taxes'),  # serve ancora?
         }
     _sql_constraints = [
         ('name_uniq', 'UNIQUE(name)', 'The tax name must be unique!'),
