@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,6 @@
 
 import time
 from report import report_sxw
-from osv import osv
 from tools.translate import _
 from decimal import *
 import netsvc
@@ -30,7 +29,7 @@ import netsvc
 class Parser(report_sxw.rml_parse):
 
     logger = netsvc.Logger()
-    
+
     def _get_partner_type(self, move_line):
         partner_type = ''
         for line in move_line.move_id.line_id:
@@ -41,7 +40,7 @@ class Parser(report_sxw.rml_parse):
                     raise Exception(
                         _('The move %s has different partner account type') % move_line.move_id.name)
         return partner_type
-    
+
     def _move_total(self, move_line):
         partner_type = self._get_partner_type(move_line)
         total = 0.0
@@ -67,7 +66,7 @@ class Parser(report_sxw.rml_parse):
             return self._get_amount_with_sign(move_line.tax_amount, move_line.credit - move_line.debit)
         if self._get_partner_type(move_line) == 'payable':
             return self._get_amount_with_sign(move_line.tax_amount, move_line.debit - move_line.credit)
-    
+
     # in valuta base
     def _get_invoice_amount_total(self, invoice):
         total = 0.0
@@ -75,7 +74,7 @@ class Parser(report_sxw.rml_parse):
             total += self._get_amount_with_sign(inv_tax.base_amount, inv_tax.base) \
                 + self._get_amount_with_sign(inv_tax.tax_amount, inv_tax.amount)
         return total
-    
+
     # in valuta base
     def _get_invoice_amount_untaxed(self, invoice):
         total = 0.0
@@ -95,18 +94,18 @@ class Parser(report_sxw.rml_parse):
         invoice_amount_total = 0.0
         invoice_amount_untaxed = 0.0
         related_invoices = []
-        
+
         ''' riusciamo a essere sempre indipendenti dalle fatture?
         # se c'è l'oggetto fattura, utilizzo il calcolo su fattura
         for move_line in move.line_id:
             if move_line.invoice and move_line.invoice.id not in related_invoices:
                 related_invoices.append(move_line.invoice.id)
         '''
-        
+
         if related_invoices:
             for invoice_id in related_invoices:
                 return self._get_tax_lines_by_invoice(inv_pool.browse(self.cr, self.uid, invoice_id))
-                
+
         for move_line in move.line_id:
             tax_item = {}
             if move_line.tax_code_id and move_line.tax_code_id.tax_ids:
@@ -175,14 +174,12 @@ class Parser(report_sxw.rml_parse):
     def _get_tax_lines_by_invoice(self, invoice):
         res=[]
         tax_obj = self.pool.get('account.tax')
-        cur_pool = self.pool.get('res.currency')
         # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
         index=0
         totale_iva = 0.0
         totale_iva_inded = 0.0
         invoice_amount_total = 0.0
         invoice_amount_untaxed = 0.0
-        precision = self.pool.get('decimal.precision').precision_get(self.cr, self.uid, 'Account')
         for inv_tax in invoice.tax_line:
             tax_item = {}
             if inv_tax.base_code_id and inv_tax.tax_code_id:
@@ -286,7 +283,7 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'tax_lines': self._get_tax_lines,
-            'totali': {                
+            'totali': {
                 'totale_operazioni': 0.0,
                 'totale_imponibili': 0.0,
                 'totale_variazioni': 0.0,
@@ -296,16 +293,16 @@ class Parser(report_sxw.rml_parse):
             'tax_codes': {},
         })
 
-        
+
 report_sxw.report_sxw('report.registro_iva_vendite',
-                       'registro_iva_vendite', 
+                       'registro_iva_vendite',
                        'addons/l10n_it_vat_registries/templates/registro_iva_vendite.mako',
                        parser=Parser)
 report_sxw.report_sxw('report.registro_iva_acquisti',
-                       'registro_iva_acquisti', 
+                       'registro_iva_acquisti',
                        'addons/l10n_it_vat_registries/templates/registro_iva_acquisti.mako',
                        parser=Parser)
 report_sxw.report_sxw('report.registro_iva_corrispettivi',
-                       'registro_iva_corrispettivi', 
+                       'registro_iva_corrispettivi',
                        'addons/l10n_it_vat_registries/templates/registro_iva_corrispettivi.mako',
                        parser=Parser)
