@@ -17,6 +17,9 @@
             <field name="journal_ids" position="replace">
                 <field name="journal_ids" domain="[('type','in',['cash'])]"    />
             </field>
+            <field name="target_move" position="after">
+                <field name="initial_balance"/>
+            </field>
             </data>
             </field>
         </record>
