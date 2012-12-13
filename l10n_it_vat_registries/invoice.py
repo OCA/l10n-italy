@@ -154,13 +154,22 @@ class Parser(report_sxw.rml_parse):
                     'amount_total': invoice_amount_total,
                     }
                 res.append(tax_item)
-                totale_iva += cur_pool.round(
+                iva = cur_pool.round(
                     self.cr, self.uid, move.company_id.currency_id,
                     (actual_tax_amount * (100 - non_deductible) * 0.01))
-                invoice_amount_untaxed += base_amount
-                totale_iva_inded += cur_pool.round(
+                iva_inded = cur_pool.round(
                     self.cr, self.uid, move.company_id.currency_id,
                     (actual_tax_amount * non_deductible * 0.01))
+                tax_difference= (iva + iva_inded) - actual_tax_amount
+                # se risulta un'eccedenza, la tolgo dalla parte detraibile
+                if tax_difference > 0:
+                    iva = iva - tax_difference
+                # se risulta una mancanza, la aggiungo alla parte indetraibile
+                elif tax_difference < 0:
+                    iva_inded = iva_inded + tax_difference
+                totale_iva += iva
+                invoice_amount_untaxed += base_amount
+                totale_iva_inded += iva_inded
                 index += 1
 
             if tax_item:
