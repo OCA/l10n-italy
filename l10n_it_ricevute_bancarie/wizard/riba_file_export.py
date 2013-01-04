@@ -4,8 +4,7 @@
 #    Copyright (C) 2011-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-#    All Rights Reserved 
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>) 
 #    Thanks to Antonio de Vincentiis http://www.devincentiis.it/ ,
 #    GAzie http://gazie.sourceforge.net/
 #    and Cecchi s.r.l http://www.cecchi.com/
