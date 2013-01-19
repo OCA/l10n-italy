@@ -58,14 +58,6 @@ class res_city(osv.osv):
         'region': fields.related('province_id','region',type='many2one', relation='res.region', string='Region', readonly=True),
     }
 
-    def create(self, cr, uid, vals, context=None):
-        if vals.get('name', False):
-            vals['name'] = vals['name'].title()
-            city_ids=self.search(cr, uid, [('name', '=', vals['name'])], context=context)
-            if city_ids:
-                raise osv.except_osv(_('Error'), _('City %s existing yet') % vals['name'])
-        return super(res_city, self).create(cr, uid, vals, context=context)
-
 class res_partner(osv.osv):
     _inherit = 'res.partner'
 
