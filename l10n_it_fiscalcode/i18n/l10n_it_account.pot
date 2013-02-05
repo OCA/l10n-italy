@@ -1,0 +1,117 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-05-05 16:44+0000\n"
+"PO-Revision-Date: 2011-05-05 16:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/account/invoice.py:45
+#, python-format
+msgid "Cannot create invoice! Post the invoice with a greater date"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:res.partner:0
+msgid "Compute"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,birth_date:0
+msgid "Date of birth"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:res.partner:0
+msgid "Notes"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.module.module,description:l10n_it_account.module_meta_information
+msgid "This module customizes OpenERP in order to fit italian laws and mores - Account version\n"
+"\n"
+"Functionalities:\n"
+"\n"
+"- Fiscal code computation for partner\n"
+"- Check invoice date consistency\n"
+"\n"
+""
+msgstr ""
+
+#. module: l10n_it_account
+#: help:res.partner,fiscalcode:0
+msgid "Italian Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,sex:0
+msgid "Sex"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,fiscalcode_surname:0
+msgid "Surname"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,fiscalcode_firstname:0
+msgid "First name"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:res.partner:0
+#: field:res.partner,fiscalcode:0
+msgid "Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.module.module,shortdesc:l10n_it_account.module_meta_information
+msgid "Italian Localisation - Account"
+msgstr ""
+
+#. module: l10n_it_account
+#: selection:res.partner,sex:0
+msgid "Female"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:res.partner:0
+msgid "Compute Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_account
+#: selection:res.partner,sex:0
+msgid "Male"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/account/invoice.py:44
+#, python-format
+msgid "Date Inconsistency"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,birth_city:0
+msgid "City of birth"
+msgstr ""
+
