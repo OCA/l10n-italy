@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+        <record id="wizard_compute_fc_form" model="ir.ui.view">
+            <field name="name">wizard.compute.fc.form</field>
+            <field name="model">wizard.compute.fc</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fiscal Code">
+                    <group col="2"  width="250">
+                        <group string="Individual Data">
+                            <field name="fiscalcode_surname" colspan="2" default_focus="1"/>
+                            <field name="fiscalcode_firstname" colspan="2"/>
+                            <field name="sex" colspan="2"/>
+                            <field name="birth_date" colspan="2"/>
+                            <field name="birth_city" colspan="2"/>
+                        </group>
+                        <newline/>
+                        <group col="2">
+                            <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="1"/>
+                            <button name="compute_fc" type="object" string="Compute" colspan="1"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_compute_fc" model="ir.actions.act_window">
+            <field name="name">Compute Fiscal Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.compute.fc</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_partner_form_fiscalcode_button" model="ir.ui.view">
+            <field name="name">res.partner.fiscalcode.button</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_it_fiscalcode.view_partner_form_fiscalcode_data"/>
+            <field name="arch" type="xml">
+                <field name="fiscalcode" position="after">
+                    <button name="%(l10n_it_fiscalcode.action_compute_fc)d" string="Compute F.C." type="action" icon="gtk-execute" colspan="2"/>
+                </field>
+            </field>
+        </record>
+
+	</data>
+</openerp>
