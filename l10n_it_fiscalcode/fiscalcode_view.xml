@@ -7,8 +7,8 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <field name="lang" position="after">
-                    <separator string="Fiscal Data" colspan="6"/>
+                <field name="email" position="after">
+                    <!--separator string="Fiscal Data" colspan="6"/-->
                         <field name="fiscalcode"/>
                         <field name="individual" colspan="1" groups="base.group_extended" />
                 </field>
