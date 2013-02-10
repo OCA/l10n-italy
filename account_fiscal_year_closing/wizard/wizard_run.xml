@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        
+        <record id="fyc_run_view" model="ir.ui.view">
+            <field name="name">fyc.run.wizard</field>
+            <field name="model">fyc.run</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fiscal Year Closing">
+                    <label string="This wizard will perform the selected operations. It will create account moves for the operations you selected, skipping those already created. Non-selected operations will be canceled." colspan="4"/>
+                    <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
+                    <button string="Run" name="run" type="object" icon="gtk-ok" colspan="2"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="fyc_run_action" model="ir.actions.act_window">
+            <field name="name">Fiscal Year Closing</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fyc.run</field>
+            <field name="src_model">account_fiscal_year_closing.fyc</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="fyc_run_view"/>
+
+        </record>
+        
+    </data>
+</openerp>
