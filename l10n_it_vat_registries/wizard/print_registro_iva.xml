@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_registro_iva" model="ir.ui.view">
+            <field name="name">VAT Registry</field>
+            <field name="model">wizard.registro.iva</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tax Journal">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="type" colspan="4"/>
+                    <separator string="Journals" colspan="4"/>
+                    <field name="journal_ids" colspan="4" nolabel="1" height="250"/>
+                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                    <button icon="gtk-ok" name="print_registro" string="Print" type="object"/>
+                    <newline/>
+                    <field name="message" nolabel="1" colspan="4"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_registro_iva" model="ir.actions.act_window">
+            <field name="name">VAT Registry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.registro.iva</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            name="VAT Registries"
+            parent="account.menu_finance_reporting"
+            action="action_registro_iva"
+            id="menu_registro_iva"
+            icon="STOCK_PRINT"/>
+
+    </data>
+</openerp>
