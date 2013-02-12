@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="account_report_prima_nota_cassa" model="ir.ui.view">
+            <field name="name">Print Prima Nota Cassa</field>
+            <field name="model">account.report.prima_nota_cassa</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.account_common_report_view" />
+            <field name="arch" type="xml">
+            <data>
+            <xpath expr="/form/label[@string='']" position="replace">
+                <separator string="Prima Nota Cassa" colspan="4"/>
+                <label nolabel="1" colspan="4" string="This report prints a summary of all cash and bank moves in a given date or period range. It is possible to restrict analysis to single cash or bank accounts on the second tab."/>
+            </xpath>
+
+            <field name="journal_ids" position="replace">
+                <field name="journal_ids" domain="[('type','in',['cash'])]"    />
+            </field>
+            <field name="target_move" position="after">
+                <field name="initial_balance"/>
+            </field>
+            </data>
+            </field>
+        </record>
+
+        <record id="action_account_prima_nota_cassa" model="ir.actions.act_window">
+            <field name="name">Prima Nota Cassa</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.report.prima_nota_cassa</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_report_prima_nota_cassa"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            icon="STOCK_PRINT"
+            name="Prima Nota Cassa"
+            parent="account.menu_journals_report"
+            action="action_account_prima_nota_cassa"
+            groups="account.group_account_manager,account.group_account_user"
+            id="menu_print_prima_nota_cassa"
+           />
+</data>
+</openerp>
