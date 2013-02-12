@@ -44,8 +44,8 @@ msgstr "Filtra Per"
 
 #. module: l10n_it_prima_nota_cassa
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:42
-msgid "Entry Label"
-msgstr "Descrizione"
+msgid "Entry"
+msgstr "Registrazione"
 
 #. module: l10n_it_prima_nota_cassa
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:40
