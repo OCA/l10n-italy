@@ -34,7 +34,6 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         self.sortby = data['form'].get('sortby', 'sort_date')
         self.query = obj_move._query_get(self.cr, self.uid, obj='l', context=data['form'].get('used_context',{}))
         ctx2 = data['form'].get('used_context',{}).copy()
-        print _('Debit')
         self.init_balance = data['form']['initial_balance']
         self.display_account = data['form']['display_account']
         self.target_move = data['form'].get('target_move', 'all')
@@ -69,7 +68,6 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             'sum_credit_account': self._sum_credit_account,
             'sum_balance_account': self._sum_balance_account,
             'sum_currency_amount_account': self._sum_currency_amount_account,
-#            'get_children_accounts': self.get_children_accounts,
             'get_fiscalyear': self._get_fiscalyear,
             'get_journal': self._get_journal,
             'get_account': self._get_account,
@@ -83,10 +81,6 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             'ipdb': self.ipdb
         })
         self.context = context
-
-    def ipdb(self, data):
-        import ipdb;ipdb.set_trace()
-        return 'LEP WAS HERE'
 
     def _sum_currency_amount_account(self, account):
         self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
@@ -121,7 +115,6 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
-        #import ipdb;ipdb.set_trace()
         account_ids = self.get_children_accounts(main_account)
         
         move_state = ['draft','posted']
@@ -303,4 +296,3 @@ report_sxw.report_sxw('report.account.print.prima_nota_cassa',
                       parser=print_prima_nota_cassa)
 
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
