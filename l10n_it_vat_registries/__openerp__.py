@@ -28,7 +28,7 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['report_webkit', 'l10n_it_account', 'l10n_it_partially_deductible_vat'],
+    "depends" : ['report_webkit', 'l10n_it_base', 'l10n_it_fiscalcode', 'l10n_it_partially_deductible_vat'],
     "init_xml" : [
         ],
     "update_xml" : [
