@@ -116,7 +116,9 @@ class wizard_compute_fc(osv.osv_memory):
         form_obj = self.browse(cr, uid, ids, context)
         for fields in form_obj:
             if not fields.fiscalcode_surname or not fields.fiscalcode_firstname or not fields.birth_date or not fields.birth_city or not fields.sex:
-                raise osv.except_osv('Error', 'One or more fields are missing')
+                raise osv.except_osv(_('Error'), _('One or more fields are missing'))
+            if not fields.birth_city.cadaster_code:
+                raise osv.except_osv(_('Error'), _('Cataster code is missing'))
             birth_date = datetime.datetime.strptime(fields.birth_date, "%Y-%m-%d")
             CF = self._codicefiscale(fields.fiscalcode_surname, fields.fiscalcode_firstname, str(birth_date.day),
                 str(birth_date.month), str(birth_date.year), fields.sex,
