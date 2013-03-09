@@ -51,6 +51,7 @@
                 <field name="invoice_date" readonly="1"/>
                 <field name="invoice_origin" readonly="1"/>
                 <field name="partner_id" readonly="1"/>
+                <field name="iban" readonly="1"/>
                 <field name="partner_ref" readonly="1"/>
                 <field name="payment_term_id" readonly="1"/>
                 <field name="account_id" readonly="1"/>
