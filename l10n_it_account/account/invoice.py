@@ -35,13 +35,11 @@ class account_invoice(osv.osv):
             inv_type = obj_inv.type
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
                 return True
-            if obj_inv.internal_number:
-                return True
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
             journal = obj_inv.journal_id.id
-            res = self.search(cr, uid, [('type','=',inv_type), ('number', '<', number), 
-                ('date_invoice','>',date_invoice), ('journal_id','=',journal)])
+            res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice),
+                 ('number', '<', number), ('journal_id','=',journal)])
             if res:
                 raise osv.except_osv(_('Date Inconsistency'),
                         _('Cannot create invoice! Post the invoice with a greater date'))
