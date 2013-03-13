@@ -38,7 +38,7 @@ class account_invoice(osv.osv):
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
             journal = obj_inv.journal_id.id
-            res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice),
+            res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice), 
                 ('number', '<', number), ('journal_id','=',journal)])
             if res:
                 raise osv.except_osv(_('Date Inconsistency'),
