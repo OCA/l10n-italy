@@ -320,6 +320,7 @@ class riba_distinta_line(osv.osv):
         'acceptance_account_id': fields.many2one('account.account', 'Acceptance Account'),
         'amount' : fields.function(_get_line_values, method=True, string="Amount", multi="line"),
         'bank_id': fields.many2one('res.partner.bank', 'Debitor Bank'),
+        'iban': fields.related('bank_id', 'iban', type='char', string='IBAN', store=False, readonly=True),
         'distinta_id': fields.many2one('riba.distinta', 'Distinta', required=True, ondelete='cascade'),
         'partner_id' : fields.many2one('res.partner', "Cliente", readonly=True),
         'invoice_date' : fields.function(_get_line_values, string="Invoice Date", type='char', size=256, method=True, multi="line"),
