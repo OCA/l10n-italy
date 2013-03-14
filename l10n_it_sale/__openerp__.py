@@ -33,9 +33,7 @@ Functionalities:
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['stock', 'sale', 'account', 'delivery'],
-    "init_xml" : [
-    ],
-    "update_xml" : [
+    "data" : [
         'wizard/assign_ddt.xml',
         'stock/picking_view.xml',
         'stock/carriage_condition_view.xml',
@@ -50,7 +48,7 @@ Functionalities:
         'partner/partner_view.xml',
         'account/invoice_view.xml',
         ],
-    "demo_xml" : [],
+    "demo" : [],
     "active": False,
     "installable": True
 }

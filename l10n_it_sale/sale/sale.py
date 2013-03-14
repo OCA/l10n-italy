@@ -20,9 +20,9 @@
 ##############################################################################
 
 import time
-from osv import fields, osv
+from openerp.osv import orm, fields
 
-class sale_order(osv.osv):
+class sale_order(orm.Model):
     _inherit = "sale.order"
     _columns =  {
         'validity': fields.date('Validity'),

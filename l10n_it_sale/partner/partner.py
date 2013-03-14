@@ -19,10 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
+from openerp.osv import orm, fields
 
-class res_partner(osv.osv):
+class res_partner(orm.Model):
     _inherit = "res.partner"
     _columns =  {
         'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),

@@ -22,10 +22,10 @@
 import netsvc
 import pooler, tools
 
-from osv import fields, osv
+from openerp.osv import orm, fields
 from tools.translate import _
 
-class account_invoice(osv.osv):
+class account_invoice(orm.Model):
     
     _inherit = 'account.invoice'
         

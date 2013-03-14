@@ -22,9 +22,9 @@
 import netsvc
 import pooler, tools
 
-from osv import fields, osv
+from openerp.osv import orm, fields
 
-class stock_picking_carriage_condition(osv.osv):
+class stock_picking_carriage_condition(orm.Model):
     """
     Carriage condition
     """
@@ -36,7 +36,7 @@ class stock_picking_carriage_condition(osv.osv):
     }
 stock_picking_carriage_condition()
 
-class stock_picking_goods_description(osv.osv):
+class stock_picking_goods_description(orm.Model):
     """
     Description of Goods
     """
@@ -50,7 +50,7 @@ class stock_picking_goods_description(osv.osv):
 stock_picking_goods_description()
 
 
-class stock_picking_reason(osv.osv):
+class stock_picking_reason(orm.Model):
     """
     Reason for Transportation
     """
@@ -63,7 +63,7 @@ class stock_picking_reason(osv.osv):
     }
 stock_picking_reason()
 
-class stock_picking(osv.osv):
+class stock_picking(orm.Model):
     _inherit = "stock.picking.out"
     _columns =  {
         'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),

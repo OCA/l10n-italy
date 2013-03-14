@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from osv import fields,osv
+from openerp.osv import orm, fields
 from tools.translate import _
 import time
 
-class wizard_assign_ddt(osv.osv_memory):
+class wizard_assign_ddt(orm.TransientModel):
 
     _name = "wizard.assign.ddt"
 
