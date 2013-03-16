@@ -302,6 +302,7 @@ class account_vat_period_end_statement(osv.osv):
                 'name': _('VAT statement') + ' - ' + statement.date,
                 'date': statement.date,
                 'journal_id': statement.journal_id.id,
+                'period_id' : period_ids[0],
                 }
             move_id = move_obj.create(cr, uid, move_data)
             statement.write({'move_id': move_id})
