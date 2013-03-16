@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Tax codes -->
+
+        <record id="account_tax_code_21" model="account.tax.code">
+            <field name="name">21 %</field>
+            <field name="vat_statement_type">debit</field>
+            <field name="vat_statement_account_id">account.ova</field>
+        </record>
+        <record id="account_tax_code_21_imp" model="account.tax.code">
+            <field name="name">21 % IMP</field>
+        </record>
+
+        <record id="account_tax_code_21_credit" model="account.tax.code">
+            <field name="name">21 % (credit)</field>
+            <field name="vat_statement_type">credit</field>
+            <field name="vat_statement_account_id">account.iva</field>
+        </record>
+        <record id="account_tax_code_21_imp_credit" model="account.tax.code">
+            <field name="name">21 % IMP</field>
+        </record>
+        
+        <!-- taxes -->
+
+        <record id="account_tax_21" model="account.tax">
+            <field name="name">21 %</field>
+            <field name="amount">0.21</field>
+            <field name="tax_code_id" ref="account_tax_code_21"></field>
+            <field name="base_code_id" ref="account_tax_code_21_imp"></field>
+        </record>
+
+        <record id="account_tax_21_credit" model="account.tax">
+            <field name="name">21 % (credit)</field>
+            <field name="amount">0.21</field>
+            <field name="tax_code_id" ref="account_tax_code_21_credit"></field>
+            <field name="base_code_id" ref="account_tax_code_21_imp_credit"></field>
+        </record>
+        
+        <!-- account -->
+
+        <record id="vat_authority" model="account.account">
+            <field name="code">VAT AUTH</field>
+            <field name="name">VAT Authority</field>
+            <field ref="cli" name="parent_id"/>
+            <field name="type">payable</field>
+            <field eval="True" name="reconcile"/>
+            <field name="user_type" ref="data_account_type_payable"/>
+        </record>
+        
+        <!--
+        Payment term
+        -->
+        <record id="account_payment_term" model="account.payment.term">
+            <field name="name">16 Days End of Month</field>
+            <field name="note">16 Days End of Month</field>
+        </record>
+        <record id="account_payment_term_line" model="account.payment.term.line">
+            <field name="name">16 Days End of Month</field>
+            <field name="value">balance</field>
+            <field eval="16" name="days"/>
+            <field eval="-1" name="days2"/>
+            <field eval="account_payment_term" name="payment_id"/>
+        </record>
+        
+    </data>
+</openerp>
