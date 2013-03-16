@@ -1,0 +1,69 @@
+-
+  I create a new customer invoice
+-
+  !record {model: account.invoice, id: account_invoice_customer_0}:
+    account_id: account.a_recv
+    address_contact_id: base.res_partner_address_zen
+    address_invoice_id: base.res_partner_address_zen
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    type: out_invoice
+    invoice_line:
+      - account_id: account.a_sale
+        name: '100'
+        price_unit: 100
+        quantity: 1.0
+        invoice_line_tax_id:
+            - account_tax_21
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_3
+    
+-
+  I confirm and open the invoice
+-
+  !workflow {model: account.invoice, ref: account_invoice_customer_0, action: invoice_open}
+-
+  I create a new supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier_0}:
+    account_id: account.a_pay
+    address_contact_id: base.res_partner_address_7
+    address_invoice_id: base.res_partner_address_7
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    type: in_invoice
+    invoice_line:
+      - account_id: account.a_expense
+        name: '50'
+        price_unit: 50
+        quantity: 1.0
+        invoice_line_tax_id:
+            - account_tax_21_credit
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_4
+    
+-
+  I confirm and open the invoice
+-
+  !workflow {model: account.invoice, ref: account_invoice_supplier_0, action: invoice_open}
+
+-
+  I create the vat statement
+-
+  !python {model: account.vat.period.end.statement}: |
+    period_id = self.pool.get('account.period').find(cr, uid, dt=time.strftime('%Y-%m-%d'))
+    on_change_res = self.on_change_period_id(cr, uid, [], period_id)
+    
+  !record {model: account.vat.period.end.statement, id: account_vat_statement_0}:
+    period_id: period_id 
+    journal_id: account.miscellaneous_journal
+    debit_vat_account_line_ids: on_change_res['value']['debit_vat_account_line_ids']
+    credit_vat_account_line_ids: on_change_res['value']['credit_vat_account_line_ids']
+    authority_vat_account_id: vat_authority
+    payment_term_id: account_payment_term
+-
+  I confirm and open the statement
+-
+  !workflow {model: account.vat.period.end.statement, ref: account_vat_statement_0, action: create_move}
