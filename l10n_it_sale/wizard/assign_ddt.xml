@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_assign_ddt" model="ir.ui.view">
+            <field name="name">Assign DDT</field>
+            <field name="model">wizard.assign.ddt</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Assign DDT">
+                    <group col="2">
+                        <label colspan="2" string="This will assign the DDT number"/>
+                        <separator colspan="2"/>
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="assign_ddt" string="Assign" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+       <act_window name="Assign DDT"
+            res_model="wizard.assign.ddt"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_wizard_assign_ddt"
+            view_id="wizard_assign_ddt"/>
+    </data>
+</openerp>

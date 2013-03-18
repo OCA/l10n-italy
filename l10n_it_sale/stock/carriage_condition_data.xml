@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="carriage_condition_PF" model="stock.picking.carriage_condition">
+            <field name="name">PORTO FRANCO</field>
+        </record>
+        <record id="carriage_condition_PA" model="stock.picking.carriage_condition">
+            <field name="name">PORTO ASSEGNATO</field>
+        </record>
+        <record id="carriage_condition_PAF" model="stock.picking.carriage_condition">
+            <field name="name">CON ADDEBITO IN FATTURA</field>
+        </record>
+     </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_order_form_other_data_inherit" model="ir.ui.view">
+			<field name="name">sale.order.form.other.data.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<field name="fiscal_position" position="after">
+					<field name="validity"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>
