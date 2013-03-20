@@ -1,0 +1,5 @@
+"id","code","name","close_method","report_type"
+"account_type_legalview1","bilancio1","Sezione Bilancio","none","none"
+"account_type_legalview2","bilancio2","Titolo Bilancio","none","none"
+"account_type_legalview3","bilancio3","Voce Bilancio","none","none"
+"account_type_legalview4","bilancio4","Sotto-voce Bilancio","none","none"

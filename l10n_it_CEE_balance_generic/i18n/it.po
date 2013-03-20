@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-04-18 13:37+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Daniele Arcangeli <d.arcangeli@isa.it>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: l10n_it_CEE_balance_generic
+#: model:ir.model,name:l10n_it_CEE_balance_generic.model_account_account
+msgid "Account"
+msgstr "Conto"
+
+#. module: l10n_it_CEE_balance_generic
+#: sql_constraint:account.account:0
+msgid "The code of the account must be unique per company !"
+msgstr "Il codice del conto deve essere univoco per ogni azienda !"
+
+#. module: l10n_it_CEE_balance_generic
+#: constraint:account.account:0
+msgid ""
+"Configuration Error! \n"
+"You cannot define children to an account with internal type different of \"View\"! "
+msgstr ""
+"Errore di configurazione! \n"
+"Non è possibile definire sottoconti a un conto con tipo interno diverso da \"Vista\"!"
+
+#. module: l10n_it_CEE_balance_generic
+#: view:account.account:0
+#: field:account.account,parent_consol_ids:0
+msgid "Consolidated Parents"
+msgstr "Conti di livello superiore consolidati"
+
+#. module: l10n_it_CEE_balance_generic
+#: constraint:account.account:0
+msgid "Error ! You can not create recursive accounts."
+msgstr "Errore ! Non è possibile creare conti ricorsivi."
+
