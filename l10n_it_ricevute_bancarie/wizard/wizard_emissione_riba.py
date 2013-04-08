@@ -99,7 +99,7 @@ class emissione_riba(osv.osv_memory):
                         for grouped_line in grouped_lines[key]:
                             riba_distinta_move_line.create(cr, uid, {
                                 'riba_line_id': rdl_id,
-                                'amount': grouped_line.debit,
+                                'amount': grouped_line.amount_residual,
                                 'move_line_id': grouped_line.id,
                                 }, context=context)
                         del grouped_lines[key]
@@ -108,7 +108,7 @@ class emissione_riba(osv.osv_memory):
                 rdl_id = create_rdl(conta, bank_id.id, rd_id, move_line.date_maturity, move_line.partner_id.id, wizard_obj.configurazione.acceptance_account_id.id)
                 riba_distinta_move_line.create(cr, uid, {
                     'riba_line_id': rdl_id,
-                    'amount': move_line.debit,
+                    'amount': move_line.amount_residual,
                     'move_line_id': move_line.id,
                     }, context=context)
             
