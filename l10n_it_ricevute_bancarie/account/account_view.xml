@@ -59,6 +59,7 @@
                 <field name="date_maturity"/>
                 <field name="riba" />
                 <field name="distinta_line_ids" invisible="1" />
+                <field name="reconcile_id" invisible="1" />
             </tree>
         </field>
     </record>
@@ -98,7 +99,7 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_riba_da_emettere_tree" />
         <field name="context">{'search_default_da_emettere':1}</field>
-        <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable')]</field>
+        <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable'), ('reconcile_id', '=', False)]</field>
         <field name="search_view_id" ref="riba_filter"/>
     </record>
 
