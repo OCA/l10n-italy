@@ -219,7 +219,7 @@ class riba_file_export(osv.osv_memory):
                         debitor_province,
                         debit_abi,
                         debit_cab,
-                        debit_bank.bank.name,
+                        debit_bank.bank and debit_bank.bank.name or debit_bank.bank_name,
                         line.partner_id.ref or '',
                         #line.move_line_id.name,
                         line.invoice_number,
