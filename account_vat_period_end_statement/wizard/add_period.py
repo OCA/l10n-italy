@@ -23,7 +23,7 @@
 from openerp.osv import orm, fields
 from tools.translate import _
 
-class add_period(osv.osv_memory):
+class add_period(orm.Model):
 
     _name = 'add.period.to.vat.statement'
     
@@ -33,11 +33,11 @@ class add_period(osv.osv_memory):
 
     def add_period(self, cr, uid, ids, context=None):
         if 'active_id' not in context:
-            raise osv.except_osv(_('Error'), _('Current statement not found'))
+            raise orm.except_orm(_('Error'), _('Current statement not found'))
         statement_pool=self.pool.get('account.vat.period.end.statement')
         wizard = self.browse(cr, uid, ids, context)[0]
         if wizard.period_id.vat_statement_id:
-            raise osv.except_osv(_('Error'), _('Period %s is associated to statement %s yet') % (wizard.period_id.name, wizard.period_id.vat_statement_id.date))
+            raise orm.except_orm(_('Error'), _('Period %s is associated to statement %s yet') % (wizard.period_id.name, wizard.period_id.vat_statement_id.date))
         wizard.period_id.write({'vat_statement_id': context['active_id']})
         statement_pool.compute_amounts(cr, uid, [context['active_id']], context=context)
         return {
