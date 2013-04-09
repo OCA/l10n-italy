@@ -33,7 +33,7 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
         tax_pool = self.pool.get('account.tax')
         if tax_code.sum_period:
             if res.get(tax_code.name, False):
-                raise osv.except_osv(_('Error'), _('Too many occurences of tax code %s') % tax_code.name)
+                raise orm.except_orm(_('Error'), _('Too many occurences of tax code %s') % tax_code.name)
             # search for taxes linked to that code
             tax_ids = tax_pool.search(self.cr, self.uid, [('tax_code_id', '=', tax_code.id)], context=context)
             if tax_ids:
@@ -41,12 +41,12 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
                 # search for the related base code
                 base_code = tax.base_code_id or tax.parent_id and tax.parent_id.base_code_id or False
                 if not base_code:
-                    raise osv.except_osv(_('Error'), _('No base code found for tax code %s') % tax_code.name)
+                    raise orm.except_orm(_('Error'), _('No base code found for tax code %s') % tax_code.name)
                 # check if every tax is linked to the same tax code and base code
                 for tax in tax_pool.browse(self.cr, self.uid, tax_ids, context=context):
                     test_base_code = tax.base_code_id or tax.parent_id and tax.parent_id.base_code_id or False
                     if test_base_code.id != base_code.id:
-                        raise osv.except_osv(_('Error'), _('Not every tax linked to tax code %s is linked the same base code') % tax_code.name)
+                        raise orm.except_orm(_('Error'), _('Not every tax linked to tax code %s is linked the same base code') % tax_code.name)
                 res[tax_code.name] = {
                     'vat': tax_code.sum_period,
                     'base': base_code.sum_period,
@@ -71,7 +71,7 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
         period_pool = self.pool.get('account.period')
         period_ids = period_pool.find(self.cr, self.uid, dt=date, context=context)
         if len(period_ids)> 1:
-            raise osv.except_osv(_('Error'), _('Too many periods for date %s') % str(date))
+            raise orm.except_orm(_('Error'), _('Too many periods for date %s') % str(date))
         return period_ids[0]
         
     def __init__(self, cr, uid, name, context=None):
