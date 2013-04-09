@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import orm, fields
 from tools.translate import _
 
-class remove_period(osv.osv_memory):
+class remove_period(orm.Model):
 
     def _get_period_ids(self, cr, uid, context=None):
         statement_obj = self.pool.get('account.vat.period.end.statement')
@@ -42,7 +42,7 @@ class remove_period(osv.osv_memory):
 
     def remove_period(self, cr, uid, ids, context=None):
         if 'active_id' not in context:
-            raise osv.except_osv(_('Error'), _('Current statement not found'))
+            raise orm.except_orm(_('Error'), _('Current statement not found'))
         self.pool.get('account.period').write(cr, uid, [int(self.browse(cr, uid, ids, context)[0].period_id)], {'vat_statement_id': False}, context=context)
         self.pool.get('account.vat.period.end.statement').compute_amounts(cr, uid, [context['active_id']], context=context)
         return {
