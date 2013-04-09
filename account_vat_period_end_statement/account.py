@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import orm, fields
 from tools.translate import _
 import math
 import decimal_precision as dp
@@ -28,7 +28,7 @@ import netsvc
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-class account_vat_period_end_statement(osv.osv):
+class account_vat_period_end_statement(orm.Model):
 
     def _compute_authority_vat_amount(self, cr, uid, ids, field_name, arg, context):
         res={}
@@ -272,7 +272,7 @@ class account_vat_period_end_statement(osv.osv):
             ids = [ids]
         for statement in self.browse(cr, uid, ids, context):
             if statement.state == 'confirmed' or statement.state == 'paid':
-                raise osv.except_osv(_('Error!'), _('You cannot delete a confirmed or paid statement'))
+                raise orm.except_orm(_('Error!'), _('You cannot delete a confirmed or paid statement'))
         res = super(account_vat_period_end_statement, self).unlink(cr, uid, ids, context)
         return res
 
@@ -297,7 +297,7 @@ class account_vat_period_end_statement(osv.osv):
         for statement in self.browse(cr, uid, ids, context):
             period_ids = period_obj.find(cr, uid, dt=statement.date, context=context)
             if len(period_ids) != 1:
-                raise osv.except_osv(_('Encoding error'), _('No period found or more than one period found for the given date.'))
+                raise orm.except_orm(_('Encoding error'), _('No period found or more than one period found for the given date.'))
             move_data = {
                 'name': _('VAT statement') + ' - ' + statement.date,
                 'date': statement.date,
@@ -409,7 +409,7 @@ class account_vat_period_end_statement(osv.osv):
                         cr, uid, statement.payment_term_id.id, math.fabs(statement.authority_vat_amount),
                         date_ref=statement.date, context=context)
                     if len(due_list) == 0:
-                        raise osv.except_osv(_('Error'),
+                        raise orm.except_orm(_('Error'),
                             _('The payment term %s does not have due dates')
                             % statement.payment_term_id.name)
                     for term in due_list:
@@ -439,7 +439,7 @@ class account_vat_period_end_statement(osv.osv):
             period_obj = self.pool.get('account.period')
             period_ids = period_obj.find(cr, uid, dt=statement.date, context=context)
             if len(period_ids)> 1:
-                raise osv.except_osv(_('Error'), _('Too many periods for date %s') % str(statement.date))
+                raise orm.except_orm(_('Error'), _('Too many periods for date %s') % str(statement.date))
             period = period_obj.browse(cr, uid, period_ids[0], context)
             result = mod_obj.get_object_reference(cr, uid, 'account', 'action_tax_code_tree')
             id = result and result[1] or False
@@ -520,7 +520,7 @@ class account_vat_period_end_statement(osv.osv):
         partner = self.pool.get('res.partner').browse(cr, uid, partner_id, context)
         return {'value': {'authority_vat_account_id': partner.property_account_payable.id}}
 
-class statement_debit_account_line(osv.osv):
+class statement_debit_account_line(orm.Model):
     _name='statement.debit.account.line'
     _columns = {
         'account_id': fields.many2one('account.account', 'Account', required=True),
@@ -529,7 +529,7 @@ class statement_debit_account_line(osv.osv):
         'amount': fields.float('Amount', digits_compute= dp.get_precision('Account'), required=True),
         }
 
-class statement_credit_account_line(osv.osv):
+class statement_credit_account_line(orm.Model):
     _name='statement.credit.account.line'
     _columns = {
         'account_id': fields.many2one('account.account', 'Account', required=True),
@@ -538,7 +538,7 @@ class statement_credit_account_line(osv.osv):
         'amount': fields.float('Amount', digits_compute= dp.get_precision('Account'), required=True),
         }
 
-class statement_generic_account_line(osv.osv):
+class statement_generic_account_line(orm.Model):
     _name='statement.generic.account.line'
     _columns = {
         'account_id': fields.many2one('account.account', 'Account', required=True),
@@ -555,7 +555,7 @@ class statement_generic_account_line(osv.osv):
             context).balance
         return res
 
-class account_tax_code(osv.osv):
+class account_tax_code(orm.Model):
     _inherit = "account.tax.code"
     _columns = {
         'vat_statement_account_id': fields.many2one('account.account', "Account used for VAT statement"),
@@ -567,7 +567,7 @@ class account_tax_code(osv.osv):
         'vat_statement_sign': 1,
     }
 
-class account_period(osv.osv):
+class account_period(orm.Model):
     _inherit = "account.period"
     _columns = {
         'vat_statement_id': fields.many2one('account.vat.period.end.statement', "VAT statement"),

@@ -47,8 +47,7 @@ Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_sta
 
 """,
     'website': 'http://www.agilebg.com',
-    'init_xml': [],
-    'update_xml': [
+    'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
         'account_view.xml',
@@ -56,7 +55,7 @@ Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_sta
         'security/ir.model.access.csv',
         'reports.xml',
         ],
-    'demo_xml': [],
+    'demo': [],
     'installable': True,
     'active': False,
 }
