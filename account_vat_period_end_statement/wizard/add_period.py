@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import orm, fields
 from tools.translate import _
 
 class add_period(osv.osv_memory):
