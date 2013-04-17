@@ -153,6 +153,7 @@ class account_voucher(orm.Model):
                             (0,0,{
                                 'name': invoice.number,
                                 'account_id': invoice.account_id.id,
+                                'partner_id': invoice.partner_id.id,
                                 'debit': new_line_amount,
                                 'credit': 0.0,
                                 }),
