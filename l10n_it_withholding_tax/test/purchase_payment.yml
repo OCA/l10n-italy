@@ -65,19 +65,38 @@
 -
   I create the voucher of payment with values 90
 -
-  !record {model: account.voucher, id: account_voucher_1, view: account_voucher.view_vendor_receipt_dialog_form}:
-    account_id: account.cash
-    amount: 90.0
-    company_id: base.main_company
-    journal_id: account.cash_journal
-    name: 'Supplier payment'
-    partner_id: base.res_partner_12
--
-  I confirm the voucher
--
-  !workflow {model: account.voucher, action: proforma_voucher, ref: account_voucher_1}
--
-  I check that the voucher state is now "confirmed"
--
-  !assert {model: account.voucher, id: account_voucher_1}:
-    - state == 'posted'
+  !python {model: account.voucher}: |
+    import netsvc
+    import time
+    vals = {}
+    vals = {
+        'account_id': ref('account.cash'),
+        'amount': 90.0,
+        'company_id': ref('base.main_company'),
+        'journal_id': ref('account.bank_journal'),
+        'partner_id': ref('base.res_partner_12'),
+        'date': time.strftime("%Y-03-10"),
+        'type': 'payment',
+    }
+    invoice = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_supplier0'))
+    for move_line in invoice.move_id.line_id:
+        if move_line.account_id.type == 'payable':
+            dr_move_line_id = move_line.id
+    vals['line_dr_ids'] = [(0,0,{
+        'account_id': ref('account.a_pay'),
+        'amount': 90.0,
+        'type': 'dr',
+        'move_line_id': dr_move_line_id,
+        })]
+    voucher_id = self.create(cr, uid, vals)
+    voucher = self.browse(cr, uid, voucher_id)
+    assert (voucher.state=='draft'), "Voucher is not in draft state"
+    wf_service = netsvc.LocalService("workflow")
+    wf_service.trg_validate(uid, 'account.voucher', voucher.id, 'proforma_voucher', cr)
+    voucher.refresh()
+    assert (voucher.state=='posted'), "Voucher is not in posted state: %s" % voucher.state
+    assert (len(voucher.withholding_move_ids) == 1), "Withholding entry must be one, not %s" % len(voucher.withholding_move_ids)
+    for move_line in voucher.withholding_move_ids[0].line_id:
+        if move_line.account_id.id == ref('a_witholding'):
+            assert (move_line.credit==20.0), "withholding move line credit must be 20 instead of %s" % move_line.credit
+            assert (move_line.date_maturity==time.strftime("%Y-04-30")), "due date must be %s instead of %s" % (time.strftime("%Y-04-30"),move_line.date_maturity)
