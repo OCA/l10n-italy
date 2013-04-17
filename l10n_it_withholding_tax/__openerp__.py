@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    Copyright (C) 2012-2013 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>). 
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -47,11 +47,9 @@ http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornito
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account_invoice_template', 'account_voucher_cash_basis'],
-    "init_xml" : [
-        'account_view.xml',
-        ],
-    "update_xml" : [],
-    "demo_xml" : [],
+    "data" : [
+        'account_view.xml',],
+    "demo" : [],
     "active": False,
     "installable": True
 }
