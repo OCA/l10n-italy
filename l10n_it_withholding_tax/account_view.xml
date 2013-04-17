@@ -26,6 +26,10 @@
                                 <label for="withholding_journal_id"/>
                                 <field name="withholding_journal_id" class="oe_inline"/>
                             </div>
+                            <div>
+                                <label for="authority_partner_id"/>
+                                <field name="authority_partner_id" class="oe_inline"/>
+                            </div>
                         </div>
                     </group>
                 </xpath>
