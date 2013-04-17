@@ -21,19 +21,62 @@
 #
 ##############################################################################
 
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import fields, orm
+from openerp.tools.translate import _
 import decimal_precision as dp
 
-class res_company(osv.osv):
+class res_company(orm.Model):
     _inherit = 'res.company'
     _columns = {
         'withholding_payment_term_id': fields.many2one('account.payment.term', 'Withholding tax Payment Term'),
         'withholding_account_id': fields.many2one('account.account','Withholding account', help='Payable account used for amount due to tax authority', domain=[('type', '=', 'payable')]),
         'withholding_journal_id': fields.many2one('account.journal','Withholding journal', help="Journal used for registration of witholding amounts to be paid"),
         }
+    
+class account_config_settings(orm.TransientModel):
+    _inherit = 'account.config.settings'
+    _columns = {
+        'withholding_payment_term_id': fields.related(
+            'company_id', 'withholding_payment_term_id',
+            type='many2one',
+            relation="account.payment.term",
+            string="Withholding tax Payment Term"),
+        'withholding_account_id': fields.related(
+            'company_id', 'withholding_account_id',
+            type='many2one',
+            relation="account.account",
+            string="Withholding account",
+            help='Payable account used for amount due to tax authority',
+            domain=[('type', '=', 'payable')]),
+        'withholding_journal_id': fields.related(
+            'company_id', 'withholding_journal_id',
+            type='many2one',
+            relation="account.journal",
+            string="Withholding journal",
+            help='Journal used for registration of witholding amounts to be paid'),
+    }
+    
+    def onchange_company_id(self, cr, uid, ids, company_id, context=None):
+        res = super(account_config_settings, self).onchange_company_id(cr, uid, ids, company_id, context=context)
+        if company_id:
+            company = self.pool.get('res.company').browse(cr, uid, company_id, context=context)
+            res['value'].update({
+                'withholding_payment_term_id': (company.withholding_payment_term_id
+                    and company.withholding_payment_term_id.id or False), 
+                'withholding_account_id': (company.withholding_account_id
+                    and company.withholding_account_id.id or False),
+                'withholding_journal_id': (company.withholding_journal_id
+                    and company.withholding_journal_id.id or False),
+                })
+        else: 
+            res['value'].update({
+                'withholding_payment_term_id': False, 
+                'withholding_account_id': False,
+                'withholding_journal_id': False,
+                })
+        return res
 
-class account_invoice(osv.osv):
+class account_invoice(orm.Model):
     
     def _net_pay(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
@@ -49,7 +92,7 @@ class account_invoice(osv.osv):
         'net_pay': fields.function(_net_pay, string="Net Pay"),
         }
 
-class account_voucher(osv.osv):
+class account_voucher(orm.Model):
     _inherit = "account.voucher"
     
     _columns = {
