@@ -1,0 +1,105 @@
+-
+  I configure the main company
+-
+  !record {model: res.company, id: base.main_company}:
+    withholding_payment_term_id: account.account_payment_term
+    withholding_account_id: a_witholding
+    withholding_journal_id: account.miscellaneous_journal
+    authority_partner_id: tax_authority
+-
+  In order to test account invoice I create a new supplier invoice
+-
+  I create a Tax Codes
+-
+  !record {model: account.tax.code, id: tax_case}:
+    name: Tax_case
+    company_id: base.main_company
+    sign: 1
+-
+  I create a Tax
+-
+  !record {model: account.tax, id: tax10}:
+    name: Tax 10.0
+    amount: 10.0
+    type: fixed
+    sequence: 1
+    company_id: base.main_company
+    type_tax_use: all
+    tax_code_id: tax_case
+-
+  I set the context
+-
+  !context
+    'type': 'in_invoice'
+-
+  I create a supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier_0, view: invoice_supplier_form}:
+    account_id: account.a_pay
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_expense
+        name: 'Lawyer service'
+        price_unit: 100.0
+        quantity: 1.0
+        invoice_line_tax_id:
+                  - tax10
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    has_withholding: True
+    withholding_amount: 20.0
+-
+  I check that Initially supplier invoice state is "Draft"
+-
+  !assert {model: account.invoice, id: account_invoice_supplier_0}:
+    - state == 'draft'
+-
+  I change the state of invoice to open by clicking Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_supplier_0}
+-
+  I check that the invoice state is now "Open" and 'Net Pay' is 90
+-
+  !assert {model: account.invoice, id: account_invoice_supplier_0}:
+    - state == 'open'
+    - net_pay == 90.0
+-
+  I create the voucher of payment with 90
+-
+  !record {model: account.voucher, id: account_voucher_0, view: account_voucher.view_vendor_payment_form}:
+    account_id: account.cash
+    amount: 90.0
+    company_id: base.main_company
+    journal_id: account.bank_journal
+    name: 'Payment: invoice 0'
+    partner_id: base.res_partner_12
+    period_id: account.period_3
+    date: !eval time.strftime("%Y-03-10")
+    type: 'payment'
+-
+  I check voucher state is draft
+-
+  !assert {model: account.voucher, id: account_voucher_0}:
+    - state == 'draft'
+-
+  I confirm the voucher
+-
+  !workflow {model: account.voucher, action: proforma_voucher, ref: account_voucher_0}
+-
+  I check the entries
+-
+  !python {model: account.voucher}: |
+    import time
+    voucher = self.browse(cr, uid, ref('account_voucher_0'))
+    assert (voucher.state=='posted'), "Voucher is not in posted state: %s" % voucher.state
+    assert (len(voucher.withholding_move_ids) == 1), "Withholding entry must be one, not %s" % len(voucher.withholding_move_ids)
+    for move_line in voucher.withholding_move_ids[0].line_id:
+        if move_line.account_id.id == ref('a_witholding'):
+            assert (move_line.credit==20.0), "withholding move line credit must be 20 instead of %s" % move_line.credit
+            assert (move_line.date_maturity==time.strftime("%Y-04-30")), "due date must be %s instead of %s" % (time.strftime("%Y-04-30"),move_line.date_maturity)
+-
+  Finally i will Confirm the state of the invoice is paid
+-
+  !assert {model: account.invoice, id: account_invoice_supplier_0}:
+    - state == 'paid'
