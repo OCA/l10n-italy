@@ -46,7 +46,7 @@ http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornito
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account_invoice_template', 'account_voucher_cash_basis'],
+    "depends" : ['account_voucher_cash_basis'],
     "data" : [
         'account_view.xml',],
     "demo" : [],
