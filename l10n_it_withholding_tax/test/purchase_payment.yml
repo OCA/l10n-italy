@@ -1,0 +1,83 @@
+-
+  I configure the main company
+-
+  !record {model: res.company, id: base.main_company}:
+    withholding_payment_term_id: account.account_payment_term
+    withholding_account_id: a_witholding
+    withholding_journal_id: account.miscellaneous_journal
+    authority_partner_id: tax_authority
+-
+  In order to test account invoice I create a new supplier invoice
+-
+  I create a Tax Codes
+-
+  !record {model: account.tax.code, id: tax_case}:
+    name: Tax_case
+    company_id: base.main_company
+    sign: 1
+-
+  I create a Tax
+-
+  !record {model: account.tax, id: tax10}:
+    name: Tax 10.0
+    amount: 10.0
+    type: fixed
+    sequence: 1
+    company_id: base.main_company
+    type_tax_use: all
+    tax_code_id: tax_case
+-
+  I create a supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier0, view: invoice_supplier_form}:
+    account_id: account.a_pay
+    check_total: 100.0
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_expense
+        name: 'Layer service'
+        price_unit: 100.0
+        quantity: 1.0
+        invoice_line_tax_id:
+                  - tax10
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    reference_type: none
+    type: in_invoice
+    has_withholding: True
+    withholding_amount: 20.0
+-
+  I check that Initially supplier invoice state is "Draft" and 'Net Pay' is 90
+-
+  !assert {model: account.invoice, id: account_invoice_supplier0}:
+    - state == 'draft'
+-
+  I change the state of invoice to open by clicking Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_supplier0}
+-
+  I check that the invoice state is now "Open"
+-
+  !assert {model: account.invoice, id: account_invoice_supplier0}:
+    - state == 'open'
+    - net_pay == 90.0
+-
+  I create the voucher of payment with values 90
+-
+  !record {model: account.voucher, id: account_voucher_1, view: account_voucher.view_vendor_receipt_dialog_form}:
+    account_id: account.cash
+    amount: 90.0
+    company_id: base.main_company
+    journal_id: account.cash_journal
+    name: 'Supplier payment'
+    partner_id: base.res_partner_12
+-
+  I confirm the voucher
+-
+  !workflow {model: account.voucher, action: proforma_voucher, ref: account_voucher_1}
+-
+  I check that the voucher state is now "confirmed"
+-
+  !assert {model: account.voucher, id: account_voucher_1}:
+    - state == 'posted'

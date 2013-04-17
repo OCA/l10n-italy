@@ -49,7 +49,12 @@ http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornito
     "depends" : ['account_voucher_cash_basis'],
     "data" : [
         'account_view.xml',],
-    "demo" : [],
+    "demo" : [
+        'account_demo.xml',
+        ],
+    'test' : [
+        'test/purchase_payment.yml',
+        ],
     "active": False,
     "installable": True
 }
