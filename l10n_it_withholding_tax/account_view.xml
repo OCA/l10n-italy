@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!-- company -->
+
+        <record model="ir.ui.view" id="view_company_inherit_form">
+            <field name="name">res.company.form.inherit</field>
+            <field name="inherit_id" ref="account.view_company_inherit_1_form"/>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="paypal_account" position="after">
+                    <separator colspan="4"></separator>
+                    <field name="withholding_payment_term_id"/>
+                    <field name="withholding_account_id"/>
+                    <field name="withholding_journal_id" />
+                    <separator colspan="4"></separator>
+                </field>
+            </field>
+        </record>
+        
+        <!-- invoice -->
+        
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="date_due" position="after">
+                    <field name="has_withholding"/>
+                </field>
+                <field name="amount_total" position="after">
+                    <field name="withholding_amount" attrs="{'invisible': [('has_withholding', '=', False)]}"/>
+                    <field name="net_pay" attrs="{'invisible': [('has_withholding', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+        
+        <!-- voucher -->
+        
+        <record id="view_vendor_payment_form_wh_move" model="ir.ui.view">
+            <field name="name">account.voucher.payment.form.wh.move</field>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="move_ids" position="after">
+                    <separator string="Withholding tax entries" colspan="4"></separator>
+                    <field name="withholding_move_ids" colspan="4" nolabel="1"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
