@@ -31,6 +31,7 @@ class res_company(orm.Model):
         'withholding_payment_term_id': fields.many2one('account.payment.term', 'Withholding tax Payment Term'),
         'withholding_account_id': fields.many2one('account.account','Withholding account', help='Payable account used for amount due to tax authority', domain=[('type', '=', 'payable')]),
         'withholding_journal_id': fields.many2one('account.journal','Withholding journal', help="Journal used for registration of witholding amounts to be paid"),
+        'authority_partner_id': fields.many2one('res.partner', 'Tax Authority Partner'),
         }
     
 class account_config_settings(orm.TransientModel):
@@ -54,6 +55,11 @@ class account_config_settings(orm.TransientModel):
             relation="account.journal",
             string="Withholding journal",
             help='Journal used for registration of witholding amounts to be paid'),
+        'authority_partner_id': fields.related(
+            'company_id', 'authority_partner_id',
+            type='many2one',
+            relation="res.partner",
+            string="Tax Authority Partner"),
     }
     
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
@@ -67,12 +73,15 @@ class account_config_settings(orm.TransientModel):
                     and company.withholding_account_id.id or False),
                 'withholding_journal_id': (company.withholding_journal_id
                     and company.withholding_journal_id.id or False),
+                'authority_partner_id': (company.authority_partner_id
+                    and company.authority_partner_id.id or False),
                 })
         else: 
             res['value'].update({
                 'withholding_payment_term_id': False, 
                 'withholding_account_id': False,
                 'withholding_journal_id': False,
+                'authority_partner_id': False,
                 })
         return res
 
@@ -124,13 +133,15 @@ class account_voucher(orm.Model):
                 if invoice.withholding_amount:
                     # only for supplier payments
                     if voucher.type != 'payment':
-                        raise osv.except_osv(_('Error'), _('Can\'t handle withholding tax with voucher of type other than payment'))
+                        raise orm.except_orm(_('Error'), _('Can\'t handle withholding tax with voucher of type other than payment'))
                     if not invoice.company_id.withholding_account_id:
-                        raise osv.except_osv(_('Error'), _('The company does not have an associated Withholding account') )
+                        raise orm.except_orm(_('Error'), _('The company does not have an associated Withholding account') )
                     if not invoice.company_id.withholding_payment_term_id:
-                        raise osv.except_osv(_('Error'), _('The company does not have an associated Withholding Payment Term') )
+                        raise orm.except_orm(_('Error'), _('The company does not have an associated Withholding Payment Term') )
                     if not invoice.company_id.withholding_journal_id:
-                        raise osv.except_osv(_('Error'), _('The company does not have an associated Withholding journal') )
+                        raise orm.except_orm(_('Error'), _('The company does not have an associated Withholding journal') )
+                    if not invoice.company_id.authority_partner_id:
+                        raise orm.except_orm(_('Error'), _('The company does not have an associated Tax Authority partner') )
                     # compute the new amount proportionally to paid amount
                     new_line_amount = curr_pool.round(cr, uid, voucher.company_id.currency_id, ((amounts_by_invoice[invoice.id]['allocated'] + amounts_by_invoice[invoice.id]['write-off']) / invoice.net_pay) * invoice.withholding_amount)
                     
@@ -139,11 +150,11 @@ class account_voucher(orm.Model):
                         cr, uid, invoice.company_id.withholding_payment_term_id.id, new_line_amount,
                         date_ref=voucher.date or invoice.date_invoice, context=context)
                     if len(due_list) > 1:
-                        raise osv.except_osv(_('Error'),
+                        raise orm.except_orm(_('Error'),
                             _('The payment term %s has too many due dates')
                             % invoice.company_id.withholding_payment_term_id.name)
                     if len(due_list) == 0:
-                        raise osv.except_osv(_('Error'),
+                        raise orm.except_orm(_('Error'),
                             _('The payment term %s does not have due dates')
                             % invoice.company_id.withholding_payment_term_id.name)
                             
@@ -160,6 +171,7 @@ class account_voucher(orm.Model):
                             (0,0,{
                                 'name': _('Payable withholding - ') + invoice.number,
                                 'account_id': invoice.company_id.withholding_account_id.id,
+                                'partner_id': invoice.company_id.authority_partner_id.id,
                                 'debit': 0.0,
                                 'credit': new_line_amount,
                                 'date_maturity': due_list[0][0],
