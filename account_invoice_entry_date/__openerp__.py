@@ -28,9 +28,8 @@
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account',],
-    "init_xml" : [],
-    "update_xml" : ['invoice_view.xml'],
-    "demo_xml" : [],
+    "data" : ['invoice_view.xml'],
+    "demo" : [],
     "active": False,
     "installable": True
 }

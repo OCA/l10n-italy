@@ -22,11 +22,11 @@
 ##############################################################################
 
 import time
-from osv import fields, osv, orm
+from openerp.osv import fields, orm
 from tools.translate import _
 from datetime import datetime
 
-class account_invoice(osv.osv):
+class account_invoice(orm.Model):
     
     _inherit = 'account.invoice'
     _columns = {
@@ -49,7 +49,7 @@ class account_invoice(osv.osv):
 
             if date_invoice and reg_date :
                 if (date_invoice > reg_date) :
-                    raise osv.except_osv(_('Error date !'), _('The invoice date cannot be later than the date of registration!'))
+                    raise orm.except_orm(_('Error date !'), _('The invoice date cannot be later than the date of registration!'))
 
             #periodo
             date_start = inv.registration_date or inv.date_invoice or time.strftime('%Y-%m-%d')
@@ -75,5 +75,3 @@ class account_invoice(osv.osv):
             
         self._log_event(cr, uid, ids)
         return True
-                
-account_invoice()
