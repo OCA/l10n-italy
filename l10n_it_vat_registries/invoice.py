@@ -121,11 +121,14 @@ class Parser(report_sxw.rml_parse):
                 for line in move_line.move_id.line_id:
                     if line.tax_code_id.id == main_tax.base_code_id.id:
                         base_amount += self._get_line_amount_with_sign(line)
-                # calcolo % indetraibile
-                actual_tax_amount = base_amount * main_tax.amount
+                if base_amount and main_tax.amount:
+                    actual_tax_amount = base_amount * main_tax.amount
+                else:
+                    actual_tax_amount = move_line.tax_amount
                 actual_tax_amount = cur_pool.round(
                     self.cr, self.uid, move.company_id.currency_id,
                     actual_tax_amount)
+                # calcolo % indetraibile
                 non_deductible = 0.0
                 if abs(actual_tax_amount) != abs(move_line.tax_amount):
                     non_deductible = 100
