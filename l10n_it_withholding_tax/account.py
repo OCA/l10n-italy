@@ -28,9 +28,14 @@ import decimal_precision as dp
 class res_company(orm.Model):
     _inherit = 'res.company'
     _columns = {
-        'withholding_payment_term_id': fields.many2one('account.payment.term', 'Withholding tax Payment Term'),
-        'withholding_account_id': fields.many2one('account.account','Withholding account', help='Payable account used for amount due to tax authority', domain=[('type', '=', 'payable')]),
-        'withholding_journal_id': fields.many2one('account.journal','Withholding journal', help="Journal used for registration of witholding amounts to be paid"),
+        'withholding_payment_term_id': fields.many2one('account.payment.term',
+            'Withholding tax Payment Term',
+            help="The withholding tax will have to be paid within this term"),
+        'withholding_account_id': fields.many2one('account.account','Withholding account',
+            help='Payable account used for amount due to tax authority',
+            domain=[('type', '=', 'payable')]),
+        'withholding_journal_id': fields.many2one('account.journal','Withholding journal',
+            help="Journal used for registration of witholding amounts to be paid"),
         'authority_partner_id': fields.many2one('res.partner', 'Tax Authority Partner'),
         }
     
