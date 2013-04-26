@@ -48,7 +48,7 @@ class res_city(osv.osv):
     _description = 'City'
     _columns = {
         'name': fields.char('City', size=64, required=True),
-        'province_id': fields.many2one('res.province','Province'),
+        'province_id': fields.many2one('res.province','Province', ondelete='restrict'),
         'zip': fields.char('ZIP', size=5),
         'phone_prefix': fields.char('Telephone Prefix' , size=16),
         'istat_code': fields.char('ISTAT code', size=16),
@@ -61,7 +61,7 @@ class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-        'province': fields.many2one('res.province', string='Province'),
+        'province': fields.many2one('res.province', string='Province', ondelete='restrict'),
         'region': fields.many2one('res.region', string='Region', ondelete='restrict'),
     }
 
