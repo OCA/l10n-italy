@@ -154,7 +154,8 @@ class Parser(report_sxw.rml_parse):
                         str_non_deductible or '',
                     'index': index,
                     'amount_total': invoice_amount_total,
-                    'invoice_date': move_line.invoice and move_line.invoice.date_invoice or '',
+                    'invoice_date': (move_line.invoice and move_line.invoice.date_invoice
+                        or move_line.date or ''),
                     }
                 res.append(tax_item)
                 iva = cur_pool.round(
