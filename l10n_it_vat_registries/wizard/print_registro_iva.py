@@ -59,8 +59,6 @@ class wizard_registro_iva(osv.osv_memory):
             return True
         datas = {'ids': move_ids}
         datas['model'] = 'account.move'
-        datas['form'] = wizard
-        datas['move_ids'] = move_ids
         res= {
             'type': 'ir.actions.report.xml',
             'datas': datas,

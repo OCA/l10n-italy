@@ -42,15 +42,21 @@ class Parser(report_sxw.rml_parse):
         tax_code_obj=self.pool.get('account.tax.code')
         # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
         index=0
-        for tax_code_id in self._tax_amounts_by_code(move):
-            tax_code = tax_code_obj.browse(cr, uid, tax_code_id, context)
+        invoice = False
+        for move_line in move.line_id:
+            if move_line.invoice:
+                if invoice and invoice.id != move_line.invoice.id:
+                    raise Exception(_("Move %s contains different invoices") % move.name)
+                invoice = move_line.invoice
+        amounts_by_code = self._tax_amounts_by_code(move)
+        for tax_code_id in amounts_by_code:
+            tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             tax_item = {
-                'tax_code_name': move_line.tax_code_id.name,
-                'amount': actual_tax_amount,
+                'tax_code_name': tax_code.name,
+                'amount': amounts_by_code[tax_code_id],
                 'index': index,
-                'amount_total': invoice_amount_total, #TODO print curr
-                'invoice_date': (move_line.invoice and move_line.invoice.date_invoice
-                    or move_line.date or ''),
+                'invoice_date': (invoice and invoice.date_invoice
+                    or move.date or ''),
                 }
             res.append(tax_item)
             index += 1
