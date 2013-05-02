@@ -26,9 +26,8 @@
             <th class="left_without_line">Data registrazione</th>
             <th class="left_without_line">Causale</th>
             <th class="right_without_line">Importo totale</th>
-            <th class="right_without_line">Imponibile</th>
-            <th class="right_without_line">% IVA</th>
             <th class="right_without_line">Imposta</th>
+            <th class="right_without_line">Importo</th>
             <th></th>
         </tr>
         </thead>
