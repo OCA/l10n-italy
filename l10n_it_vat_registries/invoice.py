@@ -49,10 +49,11 @@ class Parser(report_sxw.rml_parse):
                 'amount': actual_tax_amount,
                 'index': index,
                 'amount_total': invoice_amount_total, #TODO print curr
+                'invoice_date': (move_line.invoice and move_line.invoice.date_invoice
+                    or move_line.date or ''),
                 }
             res.append(tax_item)
             index += 1
-
         return res
 
     def __init__(self, cr, uid, name, context):

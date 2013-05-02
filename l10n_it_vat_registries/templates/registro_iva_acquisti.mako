@@ -77,7 +77,7 @@
                     </td><td class="left_without_line">
                 %endif
                 %if line['index']==0:
-                    ${ formatLang(object.date,date=True) or '' | entity}
+                    ${ formatLang(line['invoice_date'],date=True) or '' | entity}
                 %endif
                 %if line['index']==0:
                     </td><td class="left_with_line">
