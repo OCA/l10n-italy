@@ -22,12 +22,11 @@
 import time
 from report import report_sxw
 from tools.translate import _
-from decimal import *
-import netsvc
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class Parser(report_sxw.rml_parse):
-
-    logger = netsvc.Logger()
 
     def _get_partner_type(self, move_line):
         partner_type = ''
@@ -113,8 +112,7 @@ class Parser(report_sxw.rml_parse):
                 # Le diverse imposte devono comunque usare gli stessi tax code
                 main_tax = tax_obj.get_main_tax(move_line.tax_code_id.tax_ids[0])
                 if main_tax.exclude_from_registries:
-                    self.logger.notifyChannel("l10n_it_vat_registries", netsvc.LOG_INFO,
-                        _('The tax %s is excluded from registries') % main_tax.name)
+                    _logger.info(_('The tax %s is excluded from registries') % main_tax.name)
                     continue
                 # sommo gli imponibili relativi all'imposta corrente
                 base_amount = 0.0
@@ -213,10 +211,7 @@ class Parser(report_sxw.rml_parse):
             if inv_tax.base_code_id and inv_tax.tax_code_id:
                 account_tax = tax_obj.get_account_tax(inv_tax)
                 if account_tax.exclude_from_registries:
-                    self.logger.notifyChannel("l10n_it_vat_registries",
-                        netsvc.LOG_INFO, _(
-                        'The tax %s is excluded from registries')
-                        % account_tax.name)
+                    _logger.info(_('The tax %s is excluded from registries') % account_tax.name)
                     continue
                 account_tax_amount = account_tax.amount
                 invoice_amount_total = self._get_invoice_amount_total(invoice)
@@ -249,9 +244,7 @@ class Parser(report_sxw.rml_parse):
             elif inv_tax.tax_code_id:
                 tax = tax_obj.get_main_tax(tax_obj.get_account_tax(inv_tax))
                 if tax.exclude_from_registries:
-                    self.logger.notifyChannel("l10n_it_vat_registries",
-                        netsvc.LOG_INFO,
-                        _('The tax %s is excluded from registries') % tax.name)
+                    _logger.info(_('The tax %s is excluded from registries') % tax.name)
                     continue
                 for inv_tax_2 in invoice.tax_line:
                     if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
@@ -303,9 +296,7 @@ class Parser(report_sxw.rml_parse):
                             index += 1
                             break
             elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
-                self.logger.notifyChannel("l10n_it_vat_registries",
-                    netsvc.LOG_INFO,
-                    _('The tax %s has no tax codes') % inv_tax.name)
+                _logger.info(_('The tax %s has no tax codes') % inv_tax.name)
                 continue
             if tax_item:
                 if tax_item['tax_percentage'] not in self.localcontext[
