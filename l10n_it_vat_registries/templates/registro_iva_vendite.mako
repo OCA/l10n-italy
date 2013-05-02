@@ -27,7 +27,7 @@
             <th class="left_without_line">Ragione sociale</th>
             <th class="left_without_line">Numero fattura</th>
             <th class="left_without_line">Data fattura</th>
-            <th class="left_without_line">Causale</th>
+            <th class="left_without_line">Sezionale</th>
             <th class="right_without_line">Totale fattura</th>
             <th class="right_without_line">Imposta</th>
             <th class="right_without_line">Importo</th>
@@ -85,11 +85,7 @@
                     </td><td class="left_without_line">
                 %endif
                 %if line['index']==0:
-                    %if line['amount_total'] >= 0:
-                        Fattura
-                    %else:
-                        Nota di credito
-                    %endif
+                    ${object.journal_id.name or ''| entity}
                 %endif
                 %if line['index']==0:
                     </td><td class="right_with_line">
@@ -97,25 +93,19 @@
                     </td><td class="right_without_line">
                 %endif
                 %if line['index']==0:
-                    ${ formatLang(line['amount_total']) | entity}
+                    ${ formatLang(object.amount) | entity}
                 %endif
                 </td>
                 %if line['index']==0:
-                    <td class="right_with_line">${ formatLang(line['base'])  or ''| entity}</td>
+                    <td class="right_with_line">${ (line['tax_code_name'])  or ''| entity}</td>
                 %else:
-                    <td class="right_without_line">${ formatLang(line['base'])  or ''| entity}</td>
+                    <td class="right_without_line">${ (line['tax_code_name'])  or ''| entity}</td>
                 %endif
                 %if line['index']==0:
-                    <td class="right_with_line">${ line['tax_percentage'] or ''| entity}</td>
+                    <td class="right_with_line">${ formatLang(line['amount'])| entity}</td>
                 %else:
-                    <td class="right_without_line">${ line['tax_percentage'] or ''| entity}</td>
+                    <td class="right_without_line">${ formatLang(line['amount'])| entity}</td>
                 %endif
-                %if line['index']==0:
-                    <td class="right_with_line">${ formatLang(line['amount'])  or ''| entity}</td>
-                %else:
-                    <td class="right_without_line">${ formatLang(line['amount'])  or ''| entity}</td>
-                %endif
-                <td></td>
                 </tr>
             %endfor
         %endfor
