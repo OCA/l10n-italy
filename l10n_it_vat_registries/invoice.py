@@ -27,17 +27,20 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class Parser(report_sxw.rml_parse):
-
-    def _get_partner_type(self, move_line):
+    
+    def _get_partner_type_by_move(self, move):
         partner_type = ''
-        for line in move_line.move_id.line_id:
+        for line in move.line_id:
             if line.account_id.type == 'payable' or line.account_id.type == 'receivable':
                 if not partner_type:
                     partner_type = line.account_id.type
                 elif partner_type != line.account_id.type:
                     raise Exception(
-                        _('The move %s has different partner account type') % move_line.move_id.name)
+                        _('The move %s has different partner account type') % move.name)
         return partner_type
+
+    def _get_partner_type(self, move_line):
+        return self._get_partner_type_by_move(move_line.move_id)
 
     def _move_total(self, move_line):
         partner_type = self._get_partner_type(move_line)
@@ -82,27 +85,8 @@ class Parser(report_sxw.rml_parse):
 
     def _get_tax_lines(self, move):
         res=[]
-        tax_obj = self.pool.get('account.tax')
-        cur_pool = self.pool.get('res.currency')
-        inv_pool = self.pool.get('account.invoice')
         # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
         index=0
-        totale_iva = 0.0
-        totale_iva_inded = 0.0
-        invoice_amount_total = 0.0
-        invoice_amount_untaxed = 0.0
-        related_invoices = []
-
-        ''' riusciamo a essere sempre indipendenti dalle fatture?
-        # se c'è l'oggetto fattura, utilizzo il calcolo su fattura
-        for move_line in move.line_id:
-            if move_line.invoice and move_line.invoice.id not in related_invoices:
-                related_invoices.append(move_line.invoice.id)
-        '''
-
-        if related_invoices:
-            for invoice_id in related_invoices:
-                return self._get_tax_lines_by_invoice(inv_pool.browse(self.cr, self.uid, invoice_id))
 
         for move_line in move.line_id:
             tax_item = {}
@@ -190,131 +174,6 @@ class Parser(report_sxw.rml_parse):
             'totale_operazioni'] += invoice_amount_total
         self.localcontext['totali'][
             'totale_imponibili'] += invoice_amount_untaxed
-        self.localcontext['totali']['totale_iva'] += totale_iva
-        self.localcontext['totali']['totale_iva_inded'] += totale_iva_inded
-
-        return res
-
-    def _get_tax_lines_by_invoice(self, invoice):
-        res=[]
-        tax_obj = self.pool.get('account.tax')
-        # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
-        index = 0
-        totale_iva = 0.0
-        totale_iva_inded = 0.0
-        invoice_amount_total = 0.0
-        invoice_amount_untaxed = 0.0
-        for inv_tax in invoice.tax_line:
-            tax_item = {}
-            if inv_tax.base_code_id and inv_tax.tax_code_id:
-                account_tax = tax_obj.get_account_tax(inv_tax)
-                if account_tax.exclude_from_registries:
-                    _logger.info(_('The tax %s is excluded from registries') % account_tax.name)
-                    continue
-                account_tax_amount = account_tax.amount
-                invoice_amount_total = self._get_invoice_amount_total(invoice)
-                invoice_amount_untaxed = self._get_invoice_amount_untaxed(
-                    invoice)
-                amount = self._get_amount_with_sign(inv_tax.tax_amount,
-                    inv_tax.amount)
-                base = self._get_amount_with_sign(inv_tax.base_amount,
-                    inv_tax.base)
-                # calcolo le note di credito con segno invertito
-                if invoice.type in ('in_refund', 'out_refund'):
-                    amount = -amount
-                    base = -base
-                    invoice_amount_untaxed = -invoice_amount_untaxed
-                    invoice_amount_total = -invoice_amount_total
-                tax_item = {
-                    'tax_percentage': account_tax_amount and str(
-                        account_tax_amount * 100).split('.')[0] or
-                        inv_tax.tax_code_id.name,
-                    'base': base,
-                    'amount': amount,  # in valuta base
-                    'non_deductible': 0.0,
-                    'index': index,
-                    'amount_total': invoice_amount_total,
-                    }
-                res.append(tax_item)
-                totale_iva += amount
-                index += 1
-            # Se non c'è il tax code imponibile, cerco la tassa relativa alla parte non deducibile
-            elif inv_tax.tax_code_id:
-                tax = tax_obj.get_main_tax(tax_obj.get_account_tax(inv_tax))
-                if tax.exclude_from_registries:
-                    _logger.info(_('The tax %s is excluded from registries') % tax.name)
-                    continue
-                for inv_tax_2 in invoice.tax_line:
-                    if inv_tax_2.base_code_id and not inv_tax_2.tax_code_id:
-                        base_tax = tax_obj.get_main_tax(
-                            tax_obj.get_account_tax(inv_tax_2))
-                        # Se hanno la stessa tassa
-                        if base_tax.id == tax.id:
-                            # Uso il valore assoluto perchè riferendosi
-                            # alla stessa imposta non ci possono essere
-                            # segni differenti
-                            non_deductible = (abs(inv_tax_2.base_amount) /
-                                (abs(inv_tax.base_amount) + abs(
-                                    inv_tax_2.base_amount)) * 100)
-                            invoice_amount_total = \
-                                self._get_invoice_amount_total(invoice)
-                            invoice_amount_untaxed = \
-                                self._get_invoice_amount_untaxed(invoice)
-                            amount = self._get_amount_with_sign(
-                                inv_tax.tax_amount, inv_tax.amount)
-                            base = self._get_amount_with_sign(
-                                inv_tax.base_amount, inv_tax.base)
-                            amount2 = self._get_amount_with_sign(
-                                inv_tax_2.tax_amount, inv_tax_2.amount)
-                            base2 = self._get_amount_with_sign(
-                                inv_tax_2.base_amount, inv_tax_2.base)
-                            # calcolo le note di credito con segno invertito
-                            if invoice.type in ('in_refund', 'out_refund'):
-                                amount = -amount
-                                base = -base
-                                amount2 = -amount2
-                                base2 = -base2
-                                invoice_amount_untaxed = \
-                                    -invoice_amount_untaxed
-                                invoice_amount_total = -invoice_amount_total
-                            tax_item = {
-                                'tax_percentage': base_tax.amount and str(
-                                    base_tax.amount * 100).split('.')[0] or
-                                    inv_tax.tax_code_id.name,
-                                'base': base + base2,
-                                'amount': amount + amount2,
-                                'non_deductible': non_deductible and str(
-                                    non_deductible).split('.')[0] or '',
-                                'index': index,
-                                'amount_total': invoice_amount_total,
-                                }
-                            res.append(tax_item)
-                            totale_iva += amount
-                            totale_iva_inded += amount2
-                            index += 1
-                            break
-            elif not inv_tax.tax_code_id and not inv_tax.base_code_id:
-                _logger.info(_('The tax %s has no tax codes') % inv_tax.name)
-                continue
-            if tax_item:
-                if tax_item['tax_percentage'] not in self.localcontext[
-                    'tax_codes']:
-                    self.localcontext['tax_codes'][tax_item[
-                        'tax_percentage']] = {
-                        'base': tax_item['base'],
-                        'amount': tax_item['amount'],
-                        }
-                else:
-                    self.localcontext['tax_codes'][tax_item[
-                        'tax_percentage']]['base'] += tax_item['base']
-                    self.localcontext['tax_codes'][tax_item[
-                        'tax_percentage']]['amount'] += tax_item['amount']
-
-        self.localcontext['totali'][
-            'totale_operazioni'] += invoice_amount_total
-        self.localcontext['totali'][
-            'totale_imponibili'] += invoice_amount_untaxed
-# da analizzare           self.totale_variazioni += invoice.amount_total
         self.localcontext['totali']['totale_iva'] += totale_iva
         self.localcontext['totali']['totale_iva_inded'] += totale_iva_inded
 
