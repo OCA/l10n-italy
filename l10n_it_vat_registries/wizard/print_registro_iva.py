@@ -25,10 +25,14 @@ import time
 
 class wizard_registro_iva(osv.osv_memory):
 
+    def _get_period(self, cr, uid, context=None):
+        ctx = dict(context or {}, account_period_prefer_normal=True)
+        period_ids = self.pool.get('account.period').find(cr, uid, context=ctx)
+        return period_ids[0]
+
     _name = "wizard.registro.iva"
     _columns = {
-        'date_from': fields.date('From date', required=True),
-        'date_to': fields.date('To date', required=True),
+        'period_id': fields.many2one('account.period','Period', required=True),
         'type': fields.selection([
             ('customer', 'Customer Invoices'),
             ('supplier', 'Supplier Invoices'),
@@ -39,58 +43,17 @@ class wizard_registro_iva(osv.osv_memory):
         }
     _defaults = {
         'type': 'customer',
-        'date_from': lambda * a: time.strftime('%Y-%m-%d'),
-        'date_to': lambda * a: time.strftime('%Y-%m-%d'),
-        #'journal_ids': lambda s, cr, uid, c: s.pool.get('account.journal').search(cr, uid, []),
+        'period_id': _get_period,
         }
-        
-    def counterparts_number(self, move_line):
-        counter = 0
-        if  not move_line.credit:
-            for line in move_line.move_id.line_id:
-                if line.credit:
-                    counter += 1
-        elif not move_line.debit:
-            for line in move_line.move_id.line_id:
-                if line.debit:
-                    counter += 1
-        return counter
 
     def print_registro(self, cr, uid, ids, context=None):
-        move_ids = []
-        wizard = self.read(cr, uid, ids)[0]
-        move_line_obj = self.pool.get('account.move.line')
-        tax_pool = self.pool.get('account.tax')
-        search_list = []
-        search_list = [
-            ('journal_id', 'in', wizard['journal_ids']),
-            ('move_id.date', '<=', wizard['date_to']),
-            ('move_id.date', '>=', wizard['date_from']),
-            ('move_id.state', '=', 'posted'),
-            ('tax_code_id', '!=', False),
-            ]
-        move_line_ids = move_line_obj.search(cr, uid, search_list, order='date')
-        if context is None:
-            context = {}
-        for move_line in move_line_obj.browse(cr, uid, move_line_ids):
-            # verifico che sia coinvolto un conto imposta legato ad un'imposta tramite conto standard o conto refund
-            if move_line.tax_code_id.tax_ids or move_line.tax_code_id.ref_tax_ids:
-                if move_line.tax_code_id.tax_ids:
-                    if not tax_pool._have_same_rate(move_line.tax_code_id.tax_ids):
-                        raise osv.except_osv(_('Error'), _('Taxes %s have different rates')
-                            % str(move_line.tax_code_id.tax_ids))
-                if move_line.tax_code_id.ref_tax_ids:
-                    if not tax_pool._have_same_rate(move_line.tax_code_id.ref_tax_ids):
-                        raise osv.except_osv(_('Error'), _('Taxes %s have different rates')
-                            % str(move_line.tax_code_id.ref_tax_ids))
-                # controllo che ogni tax code abbia una e una sola imposta
-                ''' non posso farlo per via dell IVA inclusa nel prezzo
-                if len(move_line.tax_code_id.tax_ids) != 1:
-                    raise osv.except_osv(_('Error'), _('Wrong tax configuration for tax code %s')
-                        % move_line.tax_code_id.name)
-                '''
-                if move_line.move_id.id not in move_ids:
-                    move_ids.append(move_line.move_id.id)
+        wizard = self.browse(cr, uid, ids)[0]
+        move_obj = self.pool.get('account.move')
+        move_ids = move_obj.search(cr, uid, [
+            ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
+            ('period_id', '=', wizard.period_id.id),
+            ('state', '=', 'posted'),
+            ], order='date')
         if not move_ids:
             self.write(cr, uid,  ids, {'message': _('No documents found in the current selection')})
             return True
@@ -109,5 +72,3 @@ class wizard_registro_iva(osv.osv_memory):
         elif wizard['type'] == 'corrispettivi':
             res['report_name'] = 'registro_iva_corrispettivi'
         return res
-
-wizard_registro_iva()
