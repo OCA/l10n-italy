@@ -107,12 +107,6 @@
                         %endfor
                     </table>
                 </td>
-                <td style="padding:10"></td>
-                <td style="padding:10"></td>
-            </tr>
-            <tr>
-                <td style="padding:10"></td>
-                <td style="padding:10"></td>
             </tr>
         </table>
     </div>
