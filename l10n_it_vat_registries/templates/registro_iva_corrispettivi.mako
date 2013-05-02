@@ -88,31 +88,31 @@
         <br/>
         <table style="width:100%;  " border="1">
             <tr style="border-style:ridge;border-width:5px">
-                <td colspan="3" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(data['form']['date_from'],date=True)| entity}</strong> al <strong>${formatLang(data['form']['date_to'],date=True)| entity}</strong></td>
+                <td colspan="3" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(objects[0].period_id.date_start,date=True)| entity}</strong> al <strong>${formatLang(objects[0].period_id.date_stop,date=True)| entity}</strong></td>
             </tr>
             <tr>
                 <td rowspan="2" style="vertical-align:text-top;padding:10">
                     <table style="width:100%;">
                         <tr>
                             <th style="text-align:left">Descrizione</th>
-                            <th style="text-align:right">Imponibile</th>
-                            <th style="text-align:right">Imposta</th>
+                            <th style="text-align:right">Importo</th>
                         </tr>
-                        %for tax_code in tax_codes :
+                        <% tax_code_list = tax_codes(objects[0]) %>
+                        %for tax_code_tuple in tax_code_list :
                         <tr>
-                            <td>${tax_code|entity}
-                            </td><td style="text-align:right">${formatLang(tax_codes[tax_code]['base'])|entity}
-                            </td><td style="text-align:right">${formatLang(tax_codes[tax_code]['amount']) or ''|entity}
+                            <td>${tax_code_tuple[0]|entity}
+                            </td><td style="text-align:right">${formatLang(tax_code_tuple[1])|entity}
                             </td>
                         </tr>
                         %endfor
                     </table>
-                </td><td style="padding:10">Totale operazioni:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_operazioni'])|entity}</strong></p><br/></td>
-                <td style="padding:10">Totale imponibili:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_imponibili'])|entity}</strong></p><br/></td>
+                </td>
+                <td style="padding:10"></td>
+                <td style="padding:10"></td>
             </tr>
             <tr>
-                <td style="padding:10">Totale variazioni:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_variazioni'])|entity}</strong></p><br/></td>
-                <td style="padding:10">Totale IVA:<br/><p style="text-align:center"><strong>${formatLang(totali['totale_iva'])|entity}</strong></p><br/></td>
+                <td style="padding:10"></td>
+                <td style="padding:10"></td>
             </tr>
         </table>
     </div>

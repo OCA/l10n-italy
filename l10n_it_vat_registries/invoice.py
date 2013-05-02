@@ -62,20 +62,26 @@ class Parser(report_sxw.rml_parse):
             index += 1
 
         return res
+    
+    def _get_tax_codes(self,move):
+        tax_code_obj = self.pool.get('account.tax.code')
+        tax_code_ids = tax_code_obj.search(self.cr, self.uid, [
+            ('child_ids','=', False),
+            ])
+        res=[]
+        for tax_code in tax_code_obj.browse(self.cr, self.uid, tax_code_ids, context={
+            'period_id': move.period_id.id,
+            }):
+            if tax_code.sum_period:
+                res.append((tax_code.name,tax_code.sum_period))
+        return res
 
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'time': time,
             'tax_lines': self._get_tax_lines,
-            'totali': {
-                'totale_operazioni': 0.0,
-                'totale_imponibili': 0.0,
-                'totale_variazioni': 0.0,
-                'totale_iva': 0.0,
-                'totale_iva_inded': 0.0,
-                },
-            'tax_codes': {},
+            'tax_codes': self._get_tax_codes,
         })
 
 
