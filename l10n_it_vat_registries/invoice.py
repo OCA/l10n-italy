@@ -89,7 +89,7 @@ class Parser(report_sxw.rml_parse):
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
-                res.append((tax_code.name,res_dict[tax_code_id]))
+                res.append((tax_code.name,res_dict[tax_code_id],tax_code.is_base))
         return res
     
     def _get_tax_codes(self):
