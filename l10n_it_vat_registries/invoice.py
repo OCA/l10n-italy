@@ -34,6 +34,7 @@ class Parser(report_sxw.rml_parse):
             if move_line.tax_code_id and move_line.tax_amount:
                 if not res.get(move_line.tax_code_id.id):
                     res[move_line.tax_code_id.id] = 0.0
+                    self.localcontext['used_tax_codes'][move_line.tax_code_id.id] = True
                 res[move_line.tax_code_id.id] += move_line.tax_amount
         return res
 
@@ -63,14 +64,12 @@ class Parser(report_sxw.rml_parse):
 
         return res
     
-    def _get_tax_codes(self,move):
-        tax_code_obj = self.pool.get('account.tax.code')
-        tax_code_ids = tax_code_obj.search(self.cr, self.uid, [
-            ('child_ids','=', False),
-            ])
+    def _get_tax_codes(self):
         res=[]
-        for tax_code in tax_code_obj.browse(self.cr, self.uid, tax_code_ids, context={
-            'period_id': move.period_id.id,
+        tax_code_obj = self.pool.get('account.tax.code')
+        for tax_code in tax_code_obj.browse(self.cr, self.uid,
+            self.localcontext['used_tax_codes'].keys(), context={
+            'period_id': self.localcontext['period_id'],
             }):
             if tax_code.sum_period:
                 res.append((tax_code.name,tax_code.sum_period))
@@ -79,9 +78,10 @@ class Parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
-            'time': time,
             'tax_lines': self._get_tax_lines,
             'tax_codes': self._get_tax_codes,
+            'used_tax_codes': {},
+            'period_id': context.get('period_id')
         })
 
 
