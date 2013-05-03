@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    
+#    Copyright (C) 2011-2013 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>). 
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -63,15 +63,37 @@ class Parser(report_sxw.rml_parse):
             index += 1
         return res
     
+    def build_parent_tax_codes(self, tax_code):
+        res={}
+        if tax_code.parent_id and tax_code.parent_id.parent_id:
+            res[tax_code.parent_id.id]=True
+            res.update(self.build_parent_tax_codes(tax_code.parent_id))
+        return res
+    
     def _get_tax_codes(self):
         res=[]
         tax_code_obj = self.pool.get('account.tax.code')
         for tax_code in tax_code_obj.browse(self.cr, self.uid,
             self.localcontext['used_tax_codes'].keys(), context={
-            'period_id': self.localcontext['period_id'],
+            'period_id': self.localcontext['data']['period_id'],
             }):
             if tax_code.sum_period:
                 res.append((tax_code.name,tax_code.sum_period))
+        return res
+        
+    def _get_tax_codes_totals(self):
+        res=[]
+        parent_codes = {}
+        tax_code_obj = self.pool.get('account.tax.code')
+        for tax_code in tax_code_obj.browse(self.cr, self.uid,
+            self.localcontext['used_tax_codes'].keys()):
+            parent_codes.update(self.build_parent_tax_codes(tax_code))
+        for total_tax_code in tax_code_obj.browse(self.cr, self.uid,
+            parent_codes.keys(), context={
+            'period_id': self.localcontext['data']['period_id'],
+            }):
+            if total_tax_code.sum_period:
+                res.append((total_tax_code.name,total_tax_code.sum_period))
         return res
 
     def __init__(self, cr, uid, name, context):
@@ -79,8 +101,8 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'tax_lines': self._get_tax_lines,
             'tax_codes': self._get_tax_codes,
+            'tax_codes_totals': self._get_tax_codes_totals,
             'used_tax_codes': {},
-            'period_id': context.get('period_id')
         })
 
 

@@ -118,14 +118,32 @@
                 <td colspan="3" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(objects[0].period_id.date_start,date=True)| entity}</strong> al <strong>${formatLang(objects[0].period_id.date_stop,date=True)| entity}</strong></td>
             </tr>
             <tr>
-                <td rowspan="2" style="vertical-align:text-top;padding:10">
+                <td colspan="2" style="vertical-align:text-top;padding:10">
+                    <h3>Dettaglio</h3>
                     <table style="width:100%;">
                         <tr>
                             <th style="text-align:left">Descrizione</th>
                             <th style="text-align:right">Importo</th>
                         </tr>
-                        <% tax_code_list = tax_codes(objects[0]) %>
+                        <% tax_code_list = tax_codes() %>
                         %for tax_code_tuple in tax_code_list :
+                        <tr>
+                            <td>${tax_code_tuple[0]|entity}
+                            </td><td style="text-align:right">${formatLang(tax_code_tuple[1])|entity}
+                            </td>
+                        </tr>
+                        %endfor
+                    </table>
+                </td>
+                <td style="vertical-align:text-top;padding:10">
+                    <h3>Totali</h3>
+                    <table style="width:100%;">
+                        <tr>
+                            <th style="text-align:left">Descrizione</th>
+                            <th style="text-align:right">Importo</th>
+                        </tr>
+                        <% tax_code_totals_list = tax_codes_totals() %>
+                        %for tax_code_tuple in tax_code_totals_list :
                         <tr>
                             <td>${tax_code_tuple[0]|entity}
                             </td><td style="text-align:right">${formatLang(tax_code_tuple[1])|entity}

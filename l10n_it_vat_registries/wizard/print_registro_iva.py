@@ -61,7 +61,8 @@ class wizard_registro_iva(osv.osv_memory):
             return True
         datas = {'ids': move_ids}
         datas['model'] = 'account.move'
-        context['period_id'] = wizard.period_id.id
+        datas['period_id'] = wizard.period_id.id
+        datas['layout'] = wizard['type']
         res= {
             'type': 'ir.actions.report.xml',
             'datas': datas,
