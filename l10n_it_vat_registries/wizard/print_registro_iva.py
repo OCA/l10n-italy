@@ -28,11 +28,11 @@ class wizard_registro_iva(osv.osv_memory):
     def _get_period(self, cr, uid, context=None):
         ctx = dict(context or {}, account_period_prefer_normal=True)
         period_ids = self.pool.get('account.period').find(cr, uid, context=ctx)
-        return period_ids[0]
+        return period_ids
 
     _name = "wizard.registro.iva"
     _columns = {
-        'period_id': fields.many2one('account.period','Period', required=True),
+        'period_ids': fields.many2many('account.period', 'registro_iva_periods_rel', 'period_id', 'registro_id', 'Periods', help='Select periods you want retrieve documents from', required=True),
         'type': fields.selection([
             ('customer', 'Customer Invoices'),
             ('supplier', 'Supplier Invoices'),
@@ -43,7 +43,7 @@ class wizard_registro_iva(osv.osv_memory):
         }
     _defaults = {
         'type': 'customer',
-        'period_id': _get_period,
+        'period_ids': _get_period,
         }
 
     def print_registro(self, cr, uid, ids, context=None):
@@ -54,7 +54,7 @@ class wizard_registro_iva(osv.osv_memory):
         obj_model_data = self.pool.get('ir.model.data')
         move_ids = move_obj.search(cr, uid, [
             ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
-            ('period_id', '=', wizard.period_id.id),
+            ('period_id', 'in', [p.id for p in wizard.period_ids]),
             ('state', '=', 'posted'),
             ], order='date')
         if not move_ids:
@@ -74,7 +74,7 @@ class wizard_registro_iva(osv.osv_memory):
             }
         datas = {'ids': move_ids}
         datas['model'] = 'account.move'
-        datas['period_id'] = wizard.period_id.id
+        datas['period_ids'] = [p.id for p in wizard.period_ids]
         datas['layout'] = wizard['type']
         res= {
             'type': 'ir.actions.report.xml',

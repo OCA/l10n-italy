@@ -23,6 +23,7 @@ import time
 from report import report_sxw
 from tools.translate import _
 import logging
+from datetime import datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -70,31 +71,54 @@ class Parser(report_sxw.rml_parse):
             res.update(self.build_parent_tax_codes(tax_code.parent_id))
         return res
     
-    def _get_tax_codes(self):
+    def _compute_totals(self, tax_code_ids):
         res=[]
+        res_dict={}
         tax_code_obj = self.pool.get('account.tax.code')
-        for tax_code in tax_code_obj.browse(self.cr, self.uid,
-            self.localcontext['used_tax_codes'].keys(), context={
-            'period_id': self.localcontext['data']['period_id'],
-            }):
-            if tax_code.sum_period:
-                res.append((tax_code.name,tax_code.sum_period))
+        for period_id in self.localcontext['data']['period_ids']:
+            for tax_code in tax_code_obj.browse(self.cr, self.uid,
+                tax_code_ids, context={
+                'period_id': period_id,
+                }):
+                if not res_dict.get(tax_code.id):
+                    res_dict[tax_code.id] = 0.0
+                res_dict[tax_code.id] += tax_code.sum_period
+        for tax_code_id in res_dict:
+            tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
+            if res_dict[tax_code_id]:
+                res.append((tax_code.name,res_dict[tax_code_id]))
         return res
+    
+    def _get_tax_codes(self):
+        return self._compute_totals(self.localcontext['used_tax_codes'].keys())
         
     def _get_tax_codes_totals(self):
-        res=[]
         parent_codes = {}
         tax_code_obj = self.pool.get('account.tax.code')
         for tax_code in tax_code_obj.browse(self.cr, self.uid,
             self.localcontext['used_tax_codes'].keys()):
             parent_codes.update(self.build_parent_tax_codes(tax_code))
-        for total_tax_code in tax_code_obj.browse(self.cr, self.uid,
-            parent_codes.keys(), context={
-            'period_id': self.localcontext['data']['period_id'],
-            }):
-            if total_tax_code.sum_period:
-                res.append((total_tax_code.name,total_tax_code.sum_period))
-        return res
+        return self._compute_totals(parent_codes.keys())
+        
+    def _get_start_date(self):
+        period_obj = self.pool.get('account.period')
+        start_date = False
+        for period in period_obj.browse(self.cr,self.uid,
+            self.localcontext['data']['period_ids']):
+            period_start = datetime.strptime(period.date_start, '%Y-%m-%d')
+            if not start_date or start_date > period_start:
+                start_date = period_start
+        return start_date.strftime('%Y-%m-%d')
+        
+    def _get_end_date(self):
+        period_obj = self.pool.get('account.period')
+        end_date = False
+        for period in period_obj.browse(self.cr,self.uid,
+            self.localcontext['data']['period_ids']):
+            period_end = datetime.strptime(period.date_stop, '%Y-%m-%d')
+            if not end_date or end_date < period_end:
+                end_date = period_end
+        return end_date.strftime('%Y-%m-%d')
 
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
@@ -103,6 +127,8 @@ class Parser(report_sxw.rml_parse):
             'tax_codes': self._get_tax_codes,
             'tax_codes_totals': self._get_tax_codes_totals,
             'used_tax_codes': {},
+            'start_date': self._get_start_date,
+            'end_date': self._get_end_date,
         })
 
 
