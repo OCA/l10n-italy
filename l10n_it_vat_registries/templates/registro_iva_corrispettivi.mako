@@ -86,6 +86,8 @@
     </table>
     <div style="page-break-inside: avoid;">
         <br/>
+        <% tax_code_list = tax_codes() %>
+        <% tax_code_totals_list = tax_codes_totals() %>
         <table style="width:100%;  " border="1">
             <tr style="border-style:ridge;border-width:5px">
                 <td colspan="3" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(start_date(),date=True)| entity}</strong> al <strong>${formatLang(end_date(),date=True)| entity}</strong></td>
@@ -98,7 +100,6 @@
                             <th style="text-align:left">Descrizione</th>
                             <th style="text-align:right">Importo</th>
                         </tr>
-                        <% tax_code_list = tax_codes() %>
                         %for tax_code_tuple in tax_code_list :
                             % if not tax_code_tuple[2]:
                                 <tr>
@@ -117,7 +118,6 @@
                             <th style="text-align:left">Descrizione</th>
                             <th style="text-align:right">Importo</th>
                         </tr>
-                        <% tax_code_totals_list = tax_codes_totals() %>
                         %for tax_code_tuple in tax_code_totals_list :
                             % if not tax_code_tuple[2]:
                                 <tr>
@@ -138,7 +138,6 @@
                             <th style="text-align:left">Descrizione</th>
                             <th style="text-align:right">Importo</th>
                         </tr>
-                        <% tax_code_list = tax_codes() %>
                         %for tax_code_tuple in tax_code_list :
                             % if tax_code_tuple[2]:
                                 <tr>
@@ -157,8 +156,7 @@
                             <th style="text-align:left">Descrizione</th>
                             <th style="text-align:right">Importo</th>
                         </tr>
-                        <% tax_code_totals_list = tax_codes_totals() %>
-                        %for tax_code_tuple in tax_code_list :
+                        %for tax_code_tuple in tax_code_totals_list :
                             % if tax_code_tuple[2]:
                                 <tr>
                                     <td>${tax_code_tuple[0]|entity}
