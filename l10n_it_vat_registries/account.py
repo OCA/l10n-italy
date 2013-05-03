@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Copyright (C) 2011-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    
+#    Copyright (C) 2013 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>). 
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,28 +19,12 @@
 #
 ##############################################################################
 
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
 
-
-class account_tax(osv.osv):
-
-    _inherit = 'account.tax'
+class account_tax_code(osv.osv):
+    _inherit = "account.tax.code"
+    
     _columns = {
-        'exclude_from_registries': fields.boolean(
-            'Exclude from VAT registries'),
-        'base_tax_ids': fields.one2many(
-            'account.tax', 'base_code_id', 'Base Taxes'),  # serve ancora?
+        'is_base': fields.boolean('Is base', help="This tax code is used for base amounts (field used by VAT registries)"),
         }
-    _sql_constraints = [
-        ('name_uniq', 'UNIQUE(name)', 'The tax name must be unique!'),
-    ]
-
-    def get_account_tax(self, inv_tax):
-        if inv_tax.tax_code_id:
-            return self.get_account_tax_by_tax_code(inv_tax.tax_code_id)
-        if inv_tax.base_code_id:
-            return self.get_account_tax_by_base_code(inv_tax.base_code_id)
-        raise osv.except_osv(_('Error'),
-            _('No tax codes for invoice tax %s') % str(inv_tax.name))
-
