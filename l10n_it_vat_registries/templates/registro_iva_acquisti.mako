@@ -115,7 +115,7 @@
         <br/>
         <table style="width:100%;  " border="1">
             <tr style="border-style:ridge;border-width:5px">
-                <td colspan="3" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(objects[0].period_id.date_start,date=True)| entity}</strong> al <strong>${formatLang(objects[0].period_id.date_stop,date=True)| entity}</strong></td>
+                <td colspan="3" style="padding:10; ">Periodo di stampa dal <strong>${formatLang(start_date(),date=True)| entity}</strong> al <strong>${formatLang(end_date(),date=True)| entity}</strong></td>
             </tr>
             <tr>
                 <td colspan="2" style="vertical-align:text-top;padding:10">
