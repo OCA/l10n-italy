@@ -19,7 +19,7 @@
 <body>
     <h2>Corrispettivi</h2>
     <% setLang(objects[0].company_id.partner_id.lang or "en_US") %>
-    <table style="width:100%;" cellspacing="0">
+    <table style="width:100%; font-size: small;" cellspacing="0">
         <thead>
         <tr>
             <th class="left_without_line">Numero</th>
