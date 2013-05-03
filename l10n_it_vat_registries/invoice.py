@@ -36,7 +36,8 @@ class Parser(report_sxw.rml_parse):
                 if not res.get(move_line.tax_code_id.id):
                     res[move_line.tax_code_id.id] = 0.0
                     self.localcontext['used_tax_codes'][move_line.tax_code_id.id] = True
-                res[move_line.tax_code_id.id] += move_line.tax_amount
+                res[move_line.tax_code_id.id] += (move_line.tax_amount
+                    * self.localcontext['data']['tax_sign'])
         return res
 
     def _get_tax_lines(self, move):
@@ -82,7 +83,8 @@ class Parser(report_sxw.rml_parse):
                 }):
                 if not res_dict.get(tax_code.id):
                     res_dict[tax_code.id] = 0.0
-                res_dict[tax_code.id] += tax_code.sum_period
+                res_dict[tax_code.id] += (tax_code.sum_period
+                    * self.localcontext['data']['tax_sign'])
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
