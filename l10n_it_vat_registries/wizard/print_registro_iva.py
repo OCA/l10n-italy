@@ -47,6 +47,8 @@ class wizard_registro_iva(osv.osv_memory):
         }
 
     def print_registro(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
         wizard = self.browse(cr, uid, ids)[0]
         move_obj = self.pool.get('account.move')
         move_ids = move_obj.search(cr, uid, [
@@ -59,6 +61,7 @@ class wizard_registro_iva(osv.osv_memory):
             return True
         datas = {'ids': move_ids}
         datas['model'] = 'account.move'
+        context['period_id'] = wizard.period_id.id
         res= {
             'type': 'ir.actions.report.xml',
             'datas': datas,
