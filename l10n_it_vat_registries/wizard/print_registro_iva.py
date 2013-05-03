@@ -39,11 +39,14 @@ class wizard_registro_iva(osv.osv_memory):
             ('corrispettivi', 'Corrispettivi'),
             ], 'Layout', required=True),
         'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
+        'tax_sign': fields.float('Tax amount sign',
+            help="Use -1 you have negative tax amounts and you want to print them prositive"),
         'message': fields.char('Message', size=64, readonly=True),
         }
     _defaults = {
         'type': 'customer',
         'period_ids': _get_period,
+        'tax_sign': 1.0,
         }
 
     def print_registro(self, cr, uid, ids, context=None):
@@ -76,6 +79,7 @@ class wizard_registro_iva(osv.osv_memory):
         datas['model'] = 'account.move'
         datas['period_ids'] = [p.id for p in wizard.period_ids]
         datas['layout'] = wizard['type']
+        datas['tax_sign'] = wizard['tax_sign']
         res= {
             'type': 'ir.actions.report.xml',
             'datas': datas,
