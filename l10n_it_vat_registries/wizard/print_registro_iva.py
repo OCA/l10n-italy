@@ -51,6 +51,7 @@ class wizard_registro_iva(osv.osv_memory):
             context = {}
         wizard = self.browse(cr, uid, ids)[0]
         move_obj = self.pool.get('account.move')
+        obj_model_data = self.pool.get('ir.model.data')
         move_ids = move_obj.search(cr, uid, [
             ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
             ('period_id', '=', wizard.period_id.id),
@@ -58,7 +59,19 @@ class wizard_registro_iva(osv.osv_memory):
             ], order='date')
         if not move_ids:
             self.write(cr, uid,  ids, {'message': _('No documents found in the current selection')})
-            return True
+            model_data_ids = obj_model_data.search(cr, uid, [('model','=','ir.ui.view'), ('name','=','wizard_registro_iva')])
+            resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
+            return {
+                'name': _('No documents'),
+                'res_id': ids[0],
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'wizard.registro.iva',
+                'views': [(resource_id,'form')],
+                'context': context,
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+            }
         datas = {'ids': move_ids}
         datas['model'] = 'account.move'
         datas['period_id'] = wizard.period_id.id
