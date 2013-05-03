@@ -34,6 +34,7 @@
     "update_xml" : [
         'reports.xml',
         'wizard/print_registro_iva.xml',
+        'account_view.xml',
         ],
     "demo_xml" : [],
     "active": False,
