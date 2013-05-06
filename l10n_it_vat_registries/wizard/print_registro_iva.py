@@ -91,3 +91,12 @@ class wizard_registro_iva(osv.osv_memory):
         elif wizard['type'] == 'corrispettivi':
             res['report_name'] = 'registro_iva_corrispettivi'
         return res
+
+    def on_type_changed(self, cr, uid, ids, j_type, context=None):
+        res={}
+        if j_type:
+            if j_type == 'supplier':
+                res['value'] = {'tax_sign': -1}
+            else:
+                res['value'] = {'tax_sign': 1}
+        return res
