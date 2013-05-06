@@ -28,7 +28,7 @@
     "version": "0.3",
     'category': 'Generic Modules/Accounting',
     "depends": ["account_voucher", "report_webkit"],
-    "author": "Agile Business Group",
+    "author": ["Agile Business Group", "OpenERP Italian Community"],
     "description": """
     
 This module helps to register the VAT statement of period end.
@@ -42,8 +42,6 @@ Confirming the statement, the 'account.move' is created. If you select a payment
 
 The 'tax authority' tab contains information about payment(s). You can see statement's result ('authority VAT amount') and residual amount to pay ('Balance').
 The statement can be paid like every other debit: by voucher or 'move.line' reconciliation.
-
-It is advisable the use of account_due_list module.
 
 Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_statement
 
