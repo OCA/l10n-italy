@@ -37,8 +37,7 @@
     <td>
     <div>P. IVA: ${company.partner_id.vat or ''|entity}</div>
     <div>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</div>
-    <div>Codice Attività:</div>
-    <div>Registro Imprese:</div>
+
     </td>
     </tr>
     </table>
@@ -115,8 +114,7 @@ thead{
     <td>
     <div>P. IVA: ${company.partner_id.vat or ''|entity}</div>
     <div>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</div>
-    <div>Codice Attività:</div>
-    <div>Registro Imprese:</div>
+
     </td>
     </tr>
     </table>
@@ -193,8 +191,7 @@ thead{
     <td>
     <div>P. IVA: ${company.partner_id.vat or ''|entity}</div>
     <div>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</div>
-    <div>Codice Attività:</div>
-    <div>Registro Imprese:</div>
+
     </td>
     </tr>
     </table>
