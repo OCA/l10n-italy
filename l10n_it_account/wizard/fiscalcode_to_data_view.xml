@@ -1,0 +1,30 @@
+<openerp>
+    <data>
+
+        <record id="view_wizard_fiscalcode_to_data" model="ir.ui.view">
+            <field name="name">Compute missing data from Fiscal Code</field>
+            <field name="model">wizard.fiscalcode.to.data</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="Compute missing data from Fiscal Code">
+                    <group colspan="4" col="6">
+                        <field name="update_birth_date"/>
+                        <field name="update_birth_city"/>
+                        <field name="update_sex"/>
+                    </group>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="compute" string="Compute" type="object" icon="gtk-ok"/>
+             </form>
+            </field>
+        </record>
+
+       <act_window name="Compute missing data from Fiscal Code"
+            res_model="wizard.fiscalcode.to.data"
+            src_model="res.partner"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_fiscalcode_to_data"/>
+
+    </data>
+</openerp>
