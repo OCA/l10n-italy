@@ -47,19 +47,20 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
         month_codes = ' ABCDEHLMPRST'
         for wiz in self.browse(cr, uid, ids):
             for partner in partner_obj.browse(cr, uid, context['active_ids']):
-                if partner.fiscalcode:
+                if partner.fiscalcode and len(partner.fiscalcode) == 16:
                     # maybe check fiscalcode sanity here?
                     data = {}
+                    fc = partner.fiscalcode.upper()
                     if wiz.update_sex and not partner.sex:
                         try:
-                            day = int(partner.fiscalcode[9:11])
+                            day = int(fc[9:11])
                         except Exception:
                             ### XXX handle insane fc here
                             raise
                         sex = day > 40 and 'F' or 'M'
                         data['sex'] = sex
                     if wiz.update_birth_city and not partner.birth_city:
-                        cadaster_code = partner.fiscalcode[11:15]
+                        cadaster_code = fc[11:15]
                         birth_city = city_obj.search(cr, uid, [
                             ('cadaster_code', '=', cadaster_code)
                         ])
@@ -77,22 +78,30 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
                             )
                         data['birth_city'] = birth_city[0]
                     if wiz.update_birth_date:
-                        year = int(partner.fiscalcode[6:8])
-                        day = int(partner.fiscalcode[9:11])
+                        year = int(fc[6:8])
+                        day = int(fc[9:11])
                         day = day > 40 and day - 40 or day
-                        month = month_codes.find(partner.fiscalcode[8])
+                        month = month_codes.find(fc[8])
                         if month == -1:
                             raise osv.except_osv(
                                 _('Error'),
                                 _('Fiscal code %s: Invalid month code %s')
-                                % (partner.fiscalcode, partner.fiscalcode[8])
+                                % (fc, fc[8])
                             )
 
                         # Don't format the date string directly to work out
                         # the century
-                        d = datetime.strptime(
-                            '{}{}{}'.format(year, month, day), '%y%m%d'
-                        )
+                        try:
+                            d = datetime.strptime(
+                                '{}{}{}'.format(year, month, day), '%y%m%d'
+                            )
+                        except ValueError:
+                            raise osv.except_osv(
+                                _('Error'),
+                                _('Invalid Fiscal code: %s')
+                                % (fc)
+                            )
+
                         if d > datetime.now():
                             d = datetime(d.year - 100, d.month, d.day)
                         data['birth_date'] = d.strftime('%Y-%m-%d')
