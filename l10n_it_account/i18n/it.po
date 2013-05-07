@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-07 12:00+0000\n"
-"PO-Revision-Date: 2013-05-07 12:00+0000\n"
+"POT-Creation-Date: 2013-05-07 13:39+0000\n"
+"PO-Revision-Date: 2013-05-07 13:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,14 @@ msgstr "Codice fiscale"
 #. module: l10n_it_account
 #: view:res.partner:0
 msgid "Compute Fiscal Code"
-msgstr "Calcola codice fiscale"
+msgstr "Calcola Codice Fiscale"
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:101
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:128
+#, python-format
+msgid "Invalid Fiscal code: %s"
+msgstr "Codice Fiscale invalido: %s"
 
 #. module: l10n_it_account
 #: field:res.partner,fiscalcode_firstname:0
@@ -37,7 +44,12 @@ msgid "First name"
 msgstr "Nome"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:75
+#: field:wizard.fiscalcode.to.data,relax_fc:0
+msgid "Ignore invalid Fiscal Code"
+msgstr "Ignora Codice Fiscale non valido"
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:86
 #, python-format
 msgid "More than one city with cadaster code %s"
 msgstr "Più di una città ha codice catastale %s"
@@ -54,7 +66,7 @@ msgid "Cannot create invoice! Post the invoice with a greater date"
 msgstr "Impossibile registrare la fattura in contabilità! Esistono fatture registrate con data successiva alla fattura corrente; inserisci una data superiore per il documento"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:69
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:77
 #, python-format
 msgid "City with cadaster code %s not found"
 msgstr "Città con codice catastale %s non trovata"
@@ -80,7 +92,7 @@ msgstr "Recupera i dati mancanti dal Codice Fiscale"
 #. module: l10n_it_account
 #: field:wizard.fiscalcode.to.data,update_birth_city:0
 msgid "Update city of birth"
-msgstr "Aggiorna la città di nascita"
+msgstr "Aggiorna città di nascita"
 
 #. module: l10n_it_account
 #: view:res.partner:0
@@ -90,12 +102,14 @@ msgstr "Note"
 #. module: l10n_it_account
 #: field:wizard.fiscalcode.to.data,update_sex:0
 msgid "Update sex"
-msgstr "Aggiorna il sesso"
+msgstr "Aggiorna sesso"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:68
-#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:74
-#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:86
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:76
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:85
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:100
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:111
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:127
 #, python-format
 msgid "Error"
 msgstr "Errore"
@@ -122,10 +136,10 @@ msgid "Surname"
 msgstr "Cognome"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:87
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:112
 #, python-format
 msgid "Fiscal code %s: Invalid month code %s"
-msgstr "Codice Fiscale %s: codice mese non valido %s"
+msgstr "Codice fiscale %s: Codice mese invalido %s"
 
 #. module: l10n_it_account
 #: field:res.partner,sex:0
@@ -155,5 +169,5 @@ msgstr "Partner"
 #. module: l10n_it_account
 #: field:wizard.fiscalcode.to.data,update_birth_date:0
 msgid "Update date of birth"
-msgstr "Aggiorna la data di nascita"
+msgstr "Aggiorna data di nascita"
 
