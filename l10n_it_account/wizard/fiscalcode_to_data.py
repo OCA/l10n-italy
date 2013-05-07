@@ -32,6 +32,7 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
         'update_birth_date': fields.boolean('Update date of birth'),
         'update_birth_city': fields.boolean('Update city of birth'),
         'update_sex': fields.boolean('Update sex'),
+        'relax_fc': fields.boolean('Ignore invalid Fiscal Code'),
     }
 
     _defaults = {
@@ -56,7 +57,10 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
                             day = int(fc[9:11])
                         except Exception:
                             ### XXX handle insane fc here
-                            raise
+                            if wiz.relax_fc:
+                                continue
+                            else:
+                                raise
                         sex = day > 40 and 'F' or 'M'
                         data['sex'] = sex
                     if wiz.update_birth_city and not partner.birth_city:
@@ -65,29 +69,49 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
                             ('cadaster_code', '=', cadaster_code)
                         ])
                         if not birth_city:
-                            raise osv.except_osv(
-                                _('Error'),
-                                _('City with cadaster code %s not found')
-                                % cadaster_code
-                            )
+                            if wiz.relax_fc:
+                                continue
+                            else:
+                                raise osv.except_osv(
+                                    _('Error'),
+                                    _('City with cadaster code %s not found')
+                                    % cadaster_code
+                                )
                         if len(birth_city) > 1:
-                            raise osv.except_osv(
-                                _('Error'),
-                                _('More than one city with cadaster code %s')
-                                % cadaster_code
-                            )
+                            if wiz.relax_fc:
+                                continue
+                            else:
+                                raise osv.except_osv(
+                                    _('Error'),
+                                    _('More than one city '
+                                        'with cadaster code %s')
+                                    % cadaster_code
+                                )
                         data['birth_city'] = birth_city[0]
                     if wiz.update_birth_date:
-                        year = int(fc[6:8])
-                        day = int(fc[9:11])
+                        try:
+                            year = int(fc[6:8])
+                            day = int(fc[9:11])
+                        except ValueError:
+                            if wiz.relax_fc:
+                                continue
+                            else:
+                                raise osv.except_osv(
+                                    _('Error'),
+                                    _('Invalid Fiscal code: %s')
+                                    % (fc)
+                                )
                         day = day > 40 and day - 40 or day
                         month = month_codes.find(fc[8])
                         if month == -1:
-                            raise osv.except_osv(
-                                _('Error'),
-                                _('Fiscal code %s: Invalid month code %s')
-                                % (fc, fc[8])
-                            )
+                            if wiz.relax_fc:
+                                continue
+                            else:
+                                raise osv.except_osv(
+                                    _('Error'),
+                                    _('Fiscal code %s: Invalid month code %s')
+                                    % (fc, fc[8])
+                                )
 
                         # Don't format the date string directly to work out
                         # the century
@@ -96,11 +120,14 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
                                 '{}{}{}'.format(year, month, day), '%y%m%d'
                             )
                         except ValueError:
-                            raise osv.except_osv(
-                                _('Error'),
-                                _('Invalid Fiscal code: %s')
-                                % (fc)
-                            )
+                            if wiz.relax_fc:
+                                continue
+                            else:
+                                raise osv.except_osv(
+                                    _('Error'),
+                                    _('Invalid Fiscal code: %s')
+                                    % (fc)
+                                )
 
                         if d > datetime.now():
                             d = datetime(d.year - 100, d.month, d.day)
