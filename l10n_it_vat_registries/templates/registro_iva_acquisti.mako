@@ -25,6 +25,7 @@
             <th class="left_without_line">Data registrazione</th>
             <th class="left_without_line">Numero</th>
             <th class="left_without_line">Ragione sociale</th>
+            <th class="left_without_line">Numero registrazione</th>
             <th class="left_without_line">Numero fattura</th>
             <th class="left_without_line">Data fattura</th>
             <th class="left_without_line">Sezionale</th>
@@ -70,6 +71,14 @@
                 %endif
                 %if line['index']==0:
                     ${object.name or ''| entity}
+                %endif
+                %if line['index']==0:
+                    </td><td class="left_with_line">
+                %else:
+                    </td><td class="left_without_line">
+                %endif
+                %if line['index']==0:
+                    ${ line['supplier_invoice_number'] or '' | entity}
                 %endif
                 %if line['index']==0:
                     </td><td class="left_with_line">

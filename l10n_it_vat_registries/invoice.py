@@ -60,6 +60,7 @@ class Parser(report_sxw.rml_parse):
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice
                     or move.date or ''),
+                'supplier_invoice_number': (invoice and invoice.supplier_invoice_number or '')
                 }
             res.append(tax_item)
             index += 1
