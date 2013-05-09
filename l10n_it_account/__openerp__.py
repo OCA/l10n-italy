@@ -34,7 +34,10 @@ Functionalities:
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account','base_vat','account_chart','base_iban', 'l10n_it_base'],
-    "init_xml" : ['account/partner_view.xml'],
+    "init_xml": [
+        'account/partner_view.xml',
+        'wizard/fiscalcode_to_data_view.xml',
+    ],
     "update_xml" : [],
     "demo_xml" : [],
     "active": False,

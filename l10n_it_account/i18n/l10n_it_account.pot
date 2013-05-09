@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-05-05 16:44+0000\n"
-"PO-Revision-Date: 2011-05-05 16:44+0000\n"
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-07 13:38+0000\n"
+"PO-Revision-Date: 2013-05-07 13:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,61 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/account/invoice.py:45
-#, python-format
-msgid "Cannot create invoice! Post the invoice with a greater date"
-msgstr ""
-
-#. module: l10n_it_account
-#: view:res.partner:0
-msgid "Compute"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_invoice
-msgid "Invoice"
-msgstr ""
-
-#. module: l10n_it_account
 #: field:res.partner,birth_date:0
 msgid "Date of birth"
-msgstr ""
-
-#. module: l10n_it_account
-#: view:res.partner:0
-msgid "Notes"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.module.module,description:l10n_it_account.module_meta_information
-msgid "This module customizes OpenERP in order to fit italian laws and mores - Account version\n"
-"\n"
-"Functionalities:\n"
-"\n"
-"- Fiscal code computation for partner\n"
-"- Check invoice date consistency\n"
-"\n"
-""
-msgstr ""
-
-#. module: l10n_it_account
-#: help:res.partner,fiscalcode:0
-msgid "Italian Fiscal Code"
-msgstr ""
-
-#. module: l10n_it_account
-#: field:res.partner,sex:0
-msgid "Sex"
-msgstr ""
-
-#. module: l10n_it_account
-#: field:res.partner,fiscalcode_surname:0
-msgid "Surname"
-msgstr ""
-
-#. module: l10n_it_account
-#: field:res.partner,fiscalcode_firstname:0
-msgid "First name"
 msgstr ""
 
 #. module: l10n_it_account
@@ -80,8 +27,54 @@ msgid "Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.module.module,shortdesc:l10n_it_account.module_meta_information
-msgid "Italian Localisation - Account"
+#: view:res.partner:0
+msgid "Compute Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:101
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:128
+#, python-format
+msgid "Invalid Fiscal code: %s"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,fiscalcode_firstname:0
+msgid "First name"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:wizard.fiscalcode.to.data,relax_fc:0
+msgid "Ignore invalid Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:86
+#, python-format
+msgid "More than one city with cadaster code %s"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,birth_city:0
+msgid "City of birth"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/account/invoice.py:45
+#, python-format
+msgid "Cannot create invoice! Post the invoice with a greater date"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:77
+#, python-format
+msgid "City with cadaster code %s not found"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:res.partner:0
+#: view:wizard.fiscalcode.to.data:0
+msgid "Compute"
 msgstr ""
 
 #. module: l10n_it_account
@@ -90,13 +83,35 @@ msgid "Female"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_res_partner
-msgid "Partner"
+#: model:ir.actions.act_window,name:l10n_it_account.action_fiscalcode_to_data
+#: model:ir.model,name:l10n_it_account.model_wizard_fiscalcode_to_data
+#: view:wizard.fiscalcode.to.data:0
+msgid "Compute missing data from Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:wizard.fiscalcode.to.data,update_birth_city:0
+msgid "Update city of birth"
 msgstr ""
 
 #. module: l10n_it_account
 #: view:res.partner:0
-msgid "Compute Fiscal Code"
+msgid "Notes"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:wizard.fiscalcode.to.data,update_sex:0
+msgid "Update sex"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:76
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:85
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:100
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:111
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:127
+#, python-format
+msgid "Error"
 msgstr ""
 
 #. module: l10n_it_account
@@ -111,7 +126,48 @@ msgid "Date Inconsistency"
 msgstr ""
 
 #. module: l10n_it_account
-#: field:res.partner,birth_city:0
-msgid "City of birth"
+#: sql_constraint:account.invoice:0
+msgid "Invoice Number must be unique per Company!"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,fiscalcode_surname:0
+msgid "Surname"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/wizard/fiscalcode_to_data.py:112
+#, python-format
+msgid "Fiscal code %s: Invalid month code %s"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:res.partner,sex:0
+msgid "Sex"
+msgstr ""
+
+#. module: l10n_it_account
+#: help:res.partner,fiscalcode:0
+msgid "Italian Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:wizard.fiscalcode.to.data:0
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:wizard.fiscalcode.to.data,update_birth_date:0
+msgid "Update date of birth"
 msgstr ""
 
