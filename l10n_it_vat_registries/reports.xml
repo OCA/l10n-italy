@@ -57,7 +57,11 @@
             var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
             for(var i in x) {
             var y = document.getElementsByClassName(x[i]);
-            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+            for(var j=0; j<y.length; ++j) {
+            if(x[i] == 'page') {y[j].textContent = eval(vars[x[i]]) + ${fiscal_page_base};}
+            else{y[j].textContent = vars[x[i]];}
+            }
+
                 }
             }
         </script>
@@ -135,7 +139,11 @@ thead{
             var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
             for(var i in x) {
             var y = document.getElementsByClassName(x[i]);
-            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+            for(var j=0; j<y.length; ++j) {
+            if(x[i] == 'page') {y[j].textContent = eval(vars[x[i]]) + ${fiscal_page_base};}
+            else{y[j].textContent = vars[x[i]];}
+            }
+
                 }
             }
         </script>
@@ -213,7 +221,11 @@ thead{
             var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
             for(var i in x) {
             var y = document.getElementsByClassName(x[i]);
-            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+            for(var j=0; j<y.length; ++j) {
+            if(x[i] == 'page') {y[j].textContent = eval(vars[x[i]]) + ${fiscal_page_base};}
+            else{y[j].textContent = vars[x[i]];}
+            }
+
                 }
             }
         </script>

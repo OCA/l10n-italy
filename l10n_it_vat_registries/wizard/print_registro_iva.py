@@ -42,11 +42,13 @@ class wizard_registro_iva(osv.osv_memory):
         'tax_sign': fields.float('Tax amount sign',
             help="Use -1 you have negative tax amounts and you want to print them prositive"),
         'message': fields.char('Message', size=64, readonly=True),
+        'fiscal_page_base': fields.integer('Last printed page', required=True),
         }
     _defaults = {
         'type': 'customer',
         'period_ids': _get_period,
         'tax_sign': 1.0,
+        'fiscal_page_base': 0,
         }
 
     def print_registro(self, cr, uid, ids, context=None):
@@ -77,6 +79,7 @@ class wizard_registro_iva(osv.osv_memory):
             }
         datas = {'ids': move_ids}
         datas['model'] = 'account.move'
+        datas['fiscal_page_base'] = wizard.fiscal_page_base
         datas['period_ids'] = [p.id for p in wizard.period_ids]
         datas['layout'] = wizard['type']
         datas['tax_sign'] = wizard['tax_sign']
