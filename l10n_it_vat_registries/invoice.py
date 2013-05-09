@@ -133,6 +133,11 @@ class Parser(report_sxw.rml_parse):
             'end_date': self._get_end_date,
         })
 
+    def set_context(self, objects, data, ids, report_type=None):
+        self.localcontext.update({
+            'fiscal_page_base': data.get('fiscal_page_base'),
+        })
+        return super(Parser, self).set_context(objects, data, ids, report_type=report_type)
 
 report_sxw.report_sxw('report.registro_iva_vendite',
                        'registro_iva_vendite',
