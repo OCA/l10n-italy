@@ -131,6 +131,7 @@ class account_voucher(orm.Model):
         tax_pool = self.pool.get('account.tax')
         curr_pool = self.pool.get('res.currency')
         term_pool = self.pool.get('account.payment.term')
+        priod_obj = self.pool.get('account.period')
         for voucher in self.browse(cr, uid, ids, context):
             amounts_by_invoice = super(account_voucher,self).allocated_amounts_grouped_by_invoice(cr, uid,voucher, context)
             for inv_id in amounts_by_invoice:
@@ -163,8 +164,11 @@ class account_voucher(orm.Model):
                             _('The payment term %s does not have due dates')
                             % invoice.company_id.withholding_payment_term_id.name)
                             
+                    period_ids = priod_obj.find(cr, uid, dt=voucher.date, context=context)
                     new_move = {
                         'journal_id': invoice.company_id.withholding_journal_id.id,
+                        'period_id': period_ids and period_ids[0] or False,
+                        'date': voucher.date,
                         'line_id': [
                             (0,0,{
                                 'name': invoice.number,
