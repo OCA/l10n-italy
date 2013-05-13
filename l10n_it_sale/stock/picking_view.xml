@@ -4,7 +4,7 @@
 		<record id="stock_picking_form_ddt_inherit" model="ir.ui.view">
 			<field name="name">stock.picking.form.ddt.inherit</field>
 			<field name="model">stock.picking.out</field>
-			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="inherit_id" ref="stock.view_picking_out_form"/>
 			<field name="arch" type="xml">
 				<field name="move_type" position="after">
 					<field name="goods_description_id"/>
@@ -18,7 +18,7 @@
 	<record id="stock_picking_tree_ddt_inherit" model="ir.ui.view">
 			<field name="name">stock.picking.tree.ddt.inherit</field>
 			<field name="model">stock.picking.out</field>
-			<field name="inherit_id" ref="stock.vpicktree"/>
+			<field name="inherit_id" ref="stock.view_picking_out_tree"/>
 			<field name="arch" type="xml">
 				<field name="name" position="before">
 					<field name="ddt_number"/>
@@ -30,7 +30,7 @@
 		<record id="stock_view_picking_form_ddt" model="ir.ui.view">
 			<field name="name">stock.view.picking.form.ddt</field>
 			<field name="model">stock.picking.out</field>
-			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="inherit_id" ref="stock.view_picking_out_form"/>
 			<field name="arch" type="xml">
 				<field name="backorder_id" position="after">
 					<field name="ddt_number" readonly="1"/>
