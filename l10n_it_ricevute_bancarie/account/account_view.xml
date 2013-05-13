@@ -75,6 +75,8 @@
             <search string="Search Journal Items">
                 <filter icon="terp-go-today" string="To Issue" 
                     domain="[('distinta_line_ids', '=', False)]" name="da_emettere"/>
+                <filter icon="terp-go-today" string="Issued" 
+                    domain="[('distinta_line_ids', '!=', False)]" name="emesse"/>
                 <field name="account_id"/>
                 <field name="partner_id"/>
                 <field name="invoice"/>
