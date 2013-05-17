@@ -24,7 +24,8 @@
 		<field name="type">form</field>
 		<field name="arch" type="xml">
            <field name="state_id" position="replace">
-		    </field>
+				<field name="state_id" invisible="1" />
+		   </field>
 		</field>
 	 </record>
 
