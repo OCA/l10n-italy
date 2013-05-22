@@ -72,10 +72,10 @@ class res_partner_address(osv.osv):
             if city_id:
                 city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
                 res = {'value': {
-                    'province':city_obj.province_id.id,
-                    'region':city_obj.region.id,
+                    'province': city_obj.province_id and city_obj.province_id.id or False,
+                    'region': city_obj.region and city_obj.region.id or False,
                     'zip': city_obj.zip,
-                    'country_id': city_obj.region.country_id.id,
+                    'country_id': city_obj.region and city_obj.region.country_id and city_obj.region.country_id.id or False,
                     'city': city.title(),
                     }}
         return res
