@@ -78,7 +78,7 @@
                     </td><td class="left_without_line">
                 %endif
                 %if line['index']==0:
-                    ${ line['supplier_invoice_number'] or '' | entity}
+                    ${ line['reference'] or '' | entity}
                 %endif
                 %if line['index']==0:
                     </td><td class="left_with_line">
