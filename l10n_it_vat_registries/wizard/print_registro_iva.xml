@@ -8,11 +8,13 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Tax Journal">
-                    <field name="date_from"/>
-                    <field name="date_to"/>
-                    <field name="type" colspan="4"/>
+                    <field name="type" on_change="on_type_changed(type)"/>
+                    <field name="tax_sign"/>
+                    <field name="fiscal_page_base"/>
+                    <separator string="Periods" colspan="4"/>
+                    <field name="period_ids" colspan="4" nolabel="1" height="250"/>
                     <separator string="Journals" colspan="4"/>
-                    <field name="journal_ids" colspan="4" nolabel="1" height="250"/>
+                    <field name="journal_ids" colspan="4" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase','sale_refund','purchase_refund'))]"/>
                     <button icon="gtk-cancel" special="cancel" string="Cancel"/>
                     <button icon="gtk-ok" name="print_registro" string="Print" type="object"/>
                     <newline/>
