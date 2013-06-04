@@ -6,12 +6,17 @@
             <field name="model">add.period.to.vat.statement</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Add period">
-                    <field name="period_id"></field>
-                    <group col="2" colspan="4">
+                <form string="Add period" version="7.0">
+                    <group>
+                        <label for="period_id"/>
+                        <div>
+                            <field name="period_id" class="oe_inline"></field>
+                        </div>
+                    </group>
+                    <footer>
                         <button icon="gtk-cancel" special="cancel" string="Cancel"/>
                         <button icon="gtk-ok" name="add_period" string="Add" type="object"/>
-                    </group>
+                    </footer>
                 </form>
             </field>
         </record>
