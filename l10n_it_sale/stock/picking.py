@@ -31,8 +31,8 @@ class stock_picking_carriage_condition(orm.Model):
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
     _columns = {
-	'name':fields.char('Carriage Condition', size=64, required=True, readonly=False),
-	'note': fields.text('Note'),
+    'name':fields.char('Carriage Condition', size=64, required=True, readonly=False),
+    'note': fields.text('Note'),
     }
 
 class stock_picking_goods_description(orm.Model):
@@ -43,8 +43,8 @@ class stock_picking_goods_description(orm.Model):
     _description = "Description of Goods"
 
     _columns = {
-	'name':fields.char('Description of Goods', size=64, required=True, readonly=False),
-	'note': fields.text('Note'),
+    'name':fields.char('Description of Goods', size=64, required=True, readonly=False),
+    'note': fields.text('Note'),
     }
 
 class stock_picking_reason(orm.Model):
@@ -55,8 +55,8 @@ class stock_picking_reason(orm.Model):
     _description = 'Reason for transportation'
 
     _columns = {
-	'name':fields.char('Reason For Transportation', size=64, required=True, readonly=False),
-	'note': fields.text('Note'),
+    'name':fields.char('Reason For Transportation', size=64, required=True, readonly=False),
+    'note': fields.text('Note'),
     }
 
 class stock_picking(orm.Model):
@@ -70,13 +70,16 @@ class stock_picking(orm.Model):
     }
 
     def create(self, cr, user, vals, context=None):
+        import pdb; pdb.set_trace()
         if ('name' not in vals) or (vals.get('name')=='/'):
-	    if 'type' in vals.keys() and vals['type']=='out':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.out')
-	    elif 'type' in vals.keys() and vals['type']=='internal':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.internal')
-	    else:
-		vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.in')		
+            if 'type' in vals.keys() and vals['type']=='out':
+                vals['name'] = self.pool.get('ir.sequence').get(
+                    cr, user, 'stock.picking.out')
+            elif 'type' in vals.keys() and vals['type']=='internal':
+                vals['name'] = self.pool.get('ir.sequence').get(
+                    cr, user, 'stock.picking.internal')
+        else:
+            vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.in')        
 
         return super(stock_picking, self).create(cr, user, vals, context)
 
