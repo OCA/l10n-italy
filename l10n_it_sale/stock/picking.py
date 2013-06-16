@@ -69,6 +69,7 @@ class stock_picking(orm.Model):
         'ddt_date':  fields.date('DDT date'),
     }
 
+    ''' serve?
     def create(self, cr, user, vals, context=None):
         import pdb; pdb.set_trace()
         if ('name' not in vals) or (vals.get('name')=='/'):
@@ -79,9 +80,10 @@ class stock_picking(orm.Model):
                 vals['name'] = self.pool.get('ir.sequence').get(
                     cr, user, 'stock.picking.internal')
         else:
-            vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.in')        
-
+            vals['name'] = self.pool.get('ir.sequence').get(
+                cr, user, 'stock.picking.in')
         return super(stock_picking, self).create(cr, user, vals, context)
+    '''
 
     def action_invoice_create(self, cursor, user, ids, journal_id=False,
             group=False, type='out_invoice', context=None):
