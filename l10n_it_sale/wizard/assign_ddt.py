@@ -31,7 +31,7 @@ class wizard_assign_ddt(orm.TransientModel):
         picking_obj = self.pool.get('stock.picking.out')
         for picking in picking_obj.browse(cr, uid, context.get('active_ids', []), context=context):
             if picking.ddt_number:
-                raise osv.except_osv('Error', _('DTT number already assigned'))
+                raise orm.except_orm('Error', _('DTT number already assigned'))
             picking.write({
                 'ddt_number': self.pool.get('ir.sequence').get(cr, uid, 'stock.ddt'),
                 'ddt_date': time.strftime('%Y-%m-%d'),
@@ -39,7 +39,3 @@ class wizard_assign_ddt(orm.TransientModel):
         return {
             'type': 'ir.actions.act_window_close',
         }
-
-wizard_assign_ddt()
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
