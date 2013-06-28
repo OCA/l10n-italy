@@ -5,8 +5,6 @@
 			<field name="name">invoice.form.contractual.conditions</field>
 			<field name="model">account.invoice</field>
 			<field name="inherit_id" ref="account.invoice_form"/>
-			<field name="type">form</field>
-
 			<field name="arch" type="xml">
 				<page string="Payments" position="after">
 					<page string="Shipping">
