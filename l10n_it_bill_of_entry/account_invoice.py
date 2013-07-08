@@ -39,3 +39,11 @@ class account_invoice(osv.osv):
         'forwarder_bill_of_entry_ids': fields.one2many('account.invoice', 'forwarder_invoice_id', 'Forward Bill of Entries', readonly=True),
         'bill_of_entry_cancellation_id': fields.many2one('account.move', 'Bill od Entry Cancellation', readonly=True),
     }
+
+
+class account_invoice_line(osv.osv):
+    _inherit = "account.invoice.line"
+
+    _columns = {
+        'advance_customs_vat': fields.boolean("Adavance Customs Vat"),
+    }
