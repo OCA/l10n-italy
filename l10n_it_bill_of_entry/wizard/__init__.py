@@ -23,5 +23,4 @@
 #
 ##############################################################################
 
-import account_invoice
-import wizard
+import select_template

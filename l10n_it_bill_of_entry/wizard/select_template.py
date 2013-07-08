@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
 
 
@@ -28,7 +28,6 @@ class wizard_select_invoice_template(orm.TransientModel):
     _inherit = "wizard.select.invoice.template"
 
     def load_template(self, cr, uid, ids, context=None):
-        import pdb; pdb.set_trace();
         res = super(wizard_select_invoice_template, self).load_template(cr, uid, ids, context=context)
         invoice_id = res['res_id']
         invoice_obj = self.pool.get('account.invoice')
