@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	 <record model="ir.ui.view" id="invoice_supplier_form">
+    	     <field name="name">account.invoice.supplier.form</field>
+    	     <field name="model">account.invoice</field>
+    	     <field name="inherit_id" ref="account.invoice_supplier_form"/>
+    	     <field name="arch" type="xml">
+    	     	<xpath expr="//field[@name='journal_id']" position="after">
+    	     		<field name="customs_doc_type" />
+	     		</xpath>
+    	     	<xpath expr="//notebook/page[@string='Payments']" position="after">
+    	     		<page string="Bill of Entries" attrs="{'invisible': [('customs_doc_type','=', False)]}">
+    	     			<field name="supplier_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"/>
+    	     			<field name="supplier_invoice_ids" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
+    	     			<field name="forwarder_invoice_id" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
+    	     			<field name="forwarder_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+    	     			<field name="bill_of_entry_cancellation_id" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+    	             </page>
+    	         </xpath>
+    	     </field>
+    	</record>
+
+	</data>
+</openerp>
