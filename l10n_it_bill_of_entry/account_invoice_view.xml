@@ -17,6 +17,7 @@
     	     			<field name="forwarder_invoice_id" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
     	     			<field name="forwarder_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
     	     			<field name="bill_of_entry_cancellation_id" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+                        <button string="Make Bill of Entry" name="%(account_invoice_template.action_wizard_select_template)d" type="action" class="oe_highlight" states="draft" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
     	             </page>
     	         </xpath>
     	     </field>
