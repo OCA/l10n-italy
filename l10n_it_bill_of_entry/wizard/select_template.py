@@ -31,4 +31,8 @@ class wizard_select_invoice_template(orm.TransientModel):
         res = super(wizard_select_invoice_template, self).load_template(cr, uid, ids, context=context)
         invoice_id = res['res_id']
         invoice_obj = self.pool.get('account.invoice')
-        # invoice_obj.write(cr, uid, invoice_id, {'customs_doc_type': 'bill_of_entry', 'forwarder_invoice_id': invoice_id}, context=context)
+        invoice_obj.write(cr, uid, invoice_id, {
+            'customs_doc_type': 'bill_of_entry',
+            'forwarder_invoice_id': context['active_id']
+        }, context=context)
+        return res
