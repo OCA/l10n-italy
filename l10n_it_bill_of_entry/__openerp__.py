@@ -24,9 +24,10 @@
     'version': '0.1',
     'category': 'Localisation/Italy',
     'description': """
+TODO
 """,
-    'author': ['Agile Business Group sagl'],
-    'website': ['http://www.agilebg.com'],
+    'author': 'Agile Business Group',
+    'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['base', 'account_invoice_template'],
     "data": [
