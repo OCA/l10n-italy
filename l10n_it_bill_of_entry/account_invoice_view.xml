@@ -8,7 +8,7 @@
     	     <field name="inherit_id" ref="account.invoice_supplier_form"/>
     	     <field name="arch" type="xml">
     	     	<xpath expr="//field[@name='journal_id']" position="after">
-    	     		<field name="customs_doc_type" />
+    	     		<field name="customs_doc_type" attrs="{'readonly': ['|',('state', '!=', 'draft'), ('forwarder_bill_of_entry_ids', '!=', [])]}"/>
 	     		</xpath>
     	     	<xpath expr="//notebook/page[@string='Payments']" position="after">
     	     		<page string="Customs" attrs="{'invisible': [('customs_doc_type','=', False)]}">
