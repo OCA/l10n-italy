@@ -107,6 +107,17 @@ class account_invoice(orm.Model):
                 move_line_obj.reconcile_partial(cr, uid, reconcile_ids, type='auto',
                     context=context)
         return res
+        
+    def action_cancel(self, cr, uid, ids, context=None):
+        account_move_obj = self.pool.get('account.move')
+        res = super(account_invoice,self).action_cancel(cr, uid, ids, context=context)
+        for invoice in self.browse(cr, uid, ids, context):
+            if invoice.bill_of_entry_storno_id:
+                account_move_obj.button_cancel(cr, uid, [invoice.bill_of_entry_storno_id.id],
+                    context=context)
+                account_move_obj.unlink(cr, uid, [invoice.bill_of_entry_storno_id.id],
+                    context=context)
+        return res
 
 class account_invoice_line(orm.Model):
     _inherit = "account.invoice.line"
