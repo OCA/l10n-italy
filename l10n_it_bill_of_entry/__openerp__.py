@@ -25,12 +25,13 @@
     'category': 'Localisation/Italy',
     'description': """
 """,
-    'author': ['Agile Business Group sagl', 'OpenERP Italian Community'],
-    'website': ['http://www.agilebg.com', 'http://www.openerp-italia.org'],
+    'author': ['Agile Business Group sagl'],
+    'website': ['http://www.agilebg.com'],
     'license': 'AGPL-3',
     "depends": ['base', 'account_invoice_template'],
     "data": [
         'account_invoice_view.xml',
+        'company_view.xml',
     ],
     "demo": [],
     "installable": True

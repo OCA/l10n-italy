@@ -43,7 +43,6 @@ class account_invoice(orm.Model):
     def action_move_create(self, cr, uid, ids, context=None):
         res = super(account_invoice,self).action_move_create(cr, uid, ids, context=context)
         move_obj = self.pool.get('account.move')
-        move_line_obj = self.pool.get('account.move.line')
         period_obj = self.pool.get('account.period')
         for invoice in self.browse(cr, uid, ids, context):
             if invoice.customs_doc_type == 'forwarder_invoice':
@@ -61,10 +60,40 @@ class account_invoice(orm.Model):
                     raise orm.except_orm(_('Error'),
                         _("Forwarder invoice %s does not have lines with 'Adavance Customs Vat'")
                         % invoice.number)
+                if not invoice.company_id.bill_of_entry_journal_id:
+                    raise orm.except_orm(_('Error'), _('No Bill of entry Storno journal configured'))
                 period_ids = period_obj.find(cr, uid, dt=invoice.date, context=context)
                 move_vals = {
                     'period_id': period_ids and period_ids[0] or False,
+                    'journal_id': invoice.company_id.bill_of_entry_journal_id.id,
+                    'date': invoice.date,
                     }
+                move_lines = []
+                for inv_line in invoice.invoice_line:
+                    if inv_line.advance_customs_vat:
+                        move_lines.append((0, 0, {
+                            'name': _("Customs expenses"),
+                            'account_id': inv_line.account_id.id,
+                            'debit': 0.0,
+                            'credit': inv_line.price_subtotal,
+                            }))
+                for bill_of_entry in invoice.forwarder_bill_of_entry_ids:
+                    move_lines.append((0, 0, {
+                        'name': _("Customs supplier"),
+                        'account_id': bill_of_entry.account_id.id,
+                        'debit': bill_of_entry.amount_total,
+                        'credit': 0.0,
+                        }))
+                    for boe_line in bill_of_entry.invoice_line:
+                        move_lines.append((0, 0, {
+                            'name': _("Extra CEE expenses"),
+                            'account_id': boe_line.account_id.id,
+                            'debit': 0.0,
+                            'credit': boe_line.price_subtotal,
+                            }))
+                move_vals['line_id'] = move_lines
+                move_id = move_obj.create(cr, uid, move_vals, context=context)
+                invoice.write({'bill_of_entry_storno_id': move_id}, context=context)
         return res
 
 class account_invoice_line(orm.Model):
