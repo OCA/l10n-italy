@@ -50,7 +50,7 @@ class account_invoice(orm.Model):
                 for bill_of_entry in invoice.forwarder_bill_of_entry_ids:
                     if bill_of_entry.state not in ('open', 'paid'):
                         raise orm.except_orm(_('Error'), _('Bill of entry %s is in state %s')
-                            % (bill_of_entry.number, bill_of_entry.state))
+                            % (bill_of_entry.partner_id.name, bill_of_entry.state))
                 advance_customs_vat_line = False
                 if invoice.forwarder_bill_of_entry_ids:
                     for line in invoice.invoice_line:
