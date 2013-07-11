@@ -37,7 +37,7 @@ class account_invoice(orm.Model):
         'supplier_invoice_ids': fields.many2many('account.invoice', 'invoice_sbe_rel', 'invoice_id', 'sboe_id', 'Supplier Invoices', readonly=True),
         'forwarder_invoice_id': fields.many2one('account.invoice', 'Forwarder Invoice', readonly=True),
         'forwarder_bill_of_entry_ids': fields.one2many('account.invoice', 'forwarder_invoice_id', 'Forward Bill of Entries', readonly=True),
-        'bill_of_entry_cancellation_id': fields.many2one('account.move', 'Bill od Entry Cancellation', readonly=True),
+        'bill_of_entry_storno_id': fields.many2one('account.move', 'Bill of Entry Storno', readonly=True),
     }
 
     def action_move_create(self, cr, uid, ids, context=None):

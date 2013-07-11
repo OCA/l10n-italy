@@ -11,12 +11,19 @@
     	     		<field name="customs_doc_type" />
 	     		</xpath>
     	     	<xpath expr="//notebook/page[@string='Payments']" position="after">
-    	     		<page string="Bill of Entries" attrs="{'invisible': [('customs_doc_type','=', False)]}">
-    	     			<field name="supplier_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"/>
+    	     		<page string="Customs" attrs="{'invisible': [('customs_doc_type','=', False)]}">
+    	     			<separator string="Bill of entries" colspan="4" attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"></separator>
+                        <field name="supplier_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"/>
+    	     			<separator string="Supplier invoices" colspan="4" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"></separator>
     	     			<field name="supplier_invoice_ids" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
-    	     			<field name="forwarder_invoice_id" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
+                        <group>
+                            <field name="forwarder_invoice_id" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
+                        </group>
+    	     			<separator string="Bill of entries" colspan="4" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"></separator>
     	     			<field name="forwarder_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
-    	     			<field name="bill_of_entry_cancellation_id" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+    	     			<group>
+                            <field name="bill_of_entry_storno_id" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+                        </group>
                         <button string="Make Bill of Entry" name="%(account_invoice_template.action_wizard_select_template)d" type="action" class="oe_highlight" states="draft" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
     	             </page>
     	         </xpath>
