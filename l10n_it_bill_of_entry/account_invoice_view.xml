@@ -13,9 +13,9 @@
     	     	<xpath expr="//notebook/page[@string='Payments']" position="after">
     	     		<page string="Customs" attrs="{'invisible': [('customs_doc_type','=', False)]}">
     	     			<separator string="Bill of entries" colspan="4" attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"></separator>
-                        <field name="supplier_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"/>
+                        <field name="supplier_bill_of_entry_ids" attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}" />
     	     			<separator string="Supplier invoices" colspan="4" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"></separator>
-    	     			<field name="supplier_invoice_ids" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
+    	     			<field name="supplier_invoice_ids" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}" domain="[('customs_doc_type', '=', 'supplier_invoice')]"/>
                         <group>
                             <field name="forwarder_invoice_id" attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
                         </group>
