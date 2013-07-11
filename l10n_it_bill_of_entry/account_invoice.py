@@ -42,6 +42,9 @@ class account_invoice(orm.Model):
 
     def action_move_create(self, cr, uid, ids, context=None):
         res = super(account_invoice,self).action_move_create(cr, uid, ids, context=context)
+        move_obj = self.pool.get('account.move')
+        move_line_obj = self.pool.get('account.move.line')
+        period_obj = self.pool.get('account.period')
         for invoice in self.browse(cr, uid, ids, context):
             if invoice.customs_doc_type == 'forwarder_invoice':
                 for bill_of_entry in invoice.forwarder_bill_of_entry_ids:
@@ -58,7 +61,10 @@ class account_invoice(orm.Model):
                     raise orm.except_orm(_('Error'),
                         _("Forwarder invoice %s does not have lines with 'Adavance Customs Vat'")
                         % invoice.number)
-                
+                period_ids = period_obj.find(cr, uid, dt=invoice.date, context=context)
+                move_vals = {
+                    'period_id': period_ids and period_ids[0] or False,
+                    }
         return res
 
 class account_invoice_line(orm.Model):
