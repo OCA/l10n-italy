@@ -43,6 +43,7 @@ class account_invoice(orm.Model):
     def action_move_create(self, cr, uid, ids, context=None):
         res = super(account_invoice,self).action_move_create(cr, uid, ids, context=context)
         move_obj = self.pool.get('account.move')
+        move_line_obj = self.pool.get('account.move.line')
         period_obj = self.pool.get('account.period')
         for invoice in self.browse(cr, uid, ids, context):
             if invoice.customs_doc_type == 'forwarder_invoice':
@@ -94,6 +95,17 @@ class account_invoice(orm.Model):
                 move_vals['line_id'] = move_lines
                 move_id = move_obj.create(cr, uid, move_vals, context=context)
                 invoice.write({'bill_of_entry_storno_id': move_id}, context=context)
+                
+                reconcile_ids = []
+                for move_line in move_obj.browse(cr, uid, move_id, context).line_id:
+                    for bill_of_entry in invoice.forwarder_bill_of_entry_ids:
+                        if move_line.account_id.id == bill_of_entry.account_id.id:
+                            reconcile_ids.append(move_line.id)
+                            for boe_move_line in bill_of_entry.move_id.line_id:
+                                if boe_move_line.account_id.id == bill_of_entry.account_id.id:
+                                    reconcile_ids.append(boe_move_line.id)
+                move_line_obj.reconcile_partial(cr, uid, reconcile_ids, type='auto',
+                    context=context)
         return res
 
 class account_invoice_line(orm.Model):
