@@ -34,7 +34,7 @@ class account_invoice(orm.Model):
             ('forwarder_invoice', 'Forwarder Invoice'),
         ], 'Customs Doc Type', readonly=True),
         'supplier_bill_of_entry_ids': fields.many2many('account.invoice', 'sboe_invoice_rel', 'sboe_id', 'invoice_id', 'Supplier Bill of Entries', readonly=True),
-        'supplier_invoice_ids': fields.many2many('account.invoice', 'invoice_sbe_rel', 'invoice_id', 'sboe_id', 'Supplier Invoices'),
+        'supplier_invoice_ids': fields.many2many('account.invoice', 'sboe_invoice_rel', 'invoice_id', 'sboe_id', 'Supplier Invoices'),
         'forwarder_invoice_id': fields.many2one('account.invoice', 'Forwarder Invoice', readonly=True),
         'forwarder_bill_of_entry_ids': fields.one2many('account.invoice', 'forwarder_invoice_id', 'Forward Bill of Entries', readonly=True),
         'bill_of_entry_storno_id': fields.many2one('account.move', 'Bill of Entry Storno', readonly=True),
