@@ -87,12 +87,23 @@ class account_invoice(orm.Model):
                         'partner_id': bill_of_entry.partner_id.id,
                         }))
                     for boe_line in bill_of_entry.invoice_line:
-                        move_lines.append((0, 0, {
+                        tax_code_id = False
+                        if boe_line.invoice_line_tax_id:
+                            if len(boe_line.invoice_line_tax_id) > 1:
+                                raise osv.except_osv(_('Error'),
+                                    _("Can't handle more than 1 tax for line %s") % boe_line.name)
+                            tax_code_id = (boe_line.invoice_line_tax_id[0].base_code_id
+                                and boe_line.invoice_line_tax_id[0].base_code_id.id or False)
+                        line_vals = {
                             'name': _("Extra CEE expenses"),
                             'account_id': boe_line.account_id.id,
                             'debit': 0.0,
                             'credit': boe_line.price_subtotal,
-                            }))
+                            }
+                        if tax_code_id:
+                            line_vals['tax_code_id'] = tax_code_id
+                            line_vals['tax_amount'] = boe_line.price_subtotal
+                        move_lines.append((0, 0, line_vals))
                 move_vals['line_id'] = move_lines
                 move_id = move_obj.create(cr, uid, move_vals, context=context)
                 invoice.write({'bill_of_entry_storno_id': move_id}, context=context)
