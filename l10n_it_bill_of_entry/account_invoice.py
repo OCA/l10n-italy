@@ -63,11 +63,11 @@ class account_invoice(orm.Model):
                         % invoice.number)
                 if not invoice.company_id.bill_of_entry_journal_id:
                     raise orm.except_orm(_('Error'), _('No Bill of entry Storno journal configured'))
-                period_ids = period_obj.find(cr, uid, dt=invoice.date, context=context)
+                period_ids = period_obj.find(cr, uid, dt=invoice.date_invoice, context=context)
                 move_vals = {
                     'period_id': period_ids and period_ids[0] or False,
                     'journal_id': invoice.company_id.bill_of_entry_journal_id.id,
-                    'date': invoice.date,
+                    'date': invoice.date_invoice,
                     }
                 move_lines = []
                 for inv_line in invoice.invoice_line:
@@ -84,6 +84,7 @@ class account_invoice(orm.Model):
                         'account_id': bill_of_entry.account_id.id,
                         'debit': bill_of_entry.amount_total,
                         'credit': 0.0,
+                        'partner_id': bill_of_entry.partner_id.id,
                         }))
                     for boe_line in bill_of_entry.invoice_line:
                         move_lines.append((0, 0, {
