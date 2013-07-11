@@ -20,11 +20,11 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
 
-class account_invoice(osv.osv):
+class account_invoice(orm.Model):
     _inherit = "account.invoice"
 
     _columns = {
@@ -41,7 +41,7 @@ class account_invoice(osv.osv):
     }
 
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(orm.Model):
     _inherit = "account.invoice.line"
 
     _columns = {
