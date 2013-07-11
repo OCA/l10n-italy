@@ -40,6 +40,26 @@ class account_invoice(orm.Model):
         'bill_of_entry_cancellation_id': fields.many2one('account.move', 'Bill od Entry Cancellation', readonly=True),
     }
 
+    def action_move_create(self, cr, uid, ids, context=None):
+        res = super(account_invoice,self).action_move_create(cr, uid, ids, context=context)
+        for invoice in self.browse(cr, uid, ids, context):
+            if invoice.customs_doc_type == 'forwarder_invoice':
+                for bill_of_entry in invoice.forwarder_bill_of_entry_ids:
+                    if bill_of_entry.state not in ('open', 'paid'):
+                        raise orm.except_orm(_('Error'), _('Bill of entry %s is in state %s')
+                            % (bill_of_entry.number, bill_of_entry.state))
+                advance_customs_vat_line = False
+                if invoice.forwarder_bill_of_entry_ids:
+                    for line in invoice.invoice_line:
+                        if line.advance_customs_vat:
+                            advance_customs_vat_line = True
+                            break
+                if not advance_customs_vat_line:
+                    raise orm.except_orm(_('Error'),
+                        _("Forwarder invoice %s does not have lines with 'Adavance Customs Vat'")
+                        % invoice.number)
+                
+        return res
 
 class account_invoice_line(orm.Model):
     _inherit = "account.invoice.line"
