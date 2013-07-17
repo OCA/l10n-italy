@@ -31,9 +31,9 @@ class account_invoice(osv.osv):
         'registration_date':fields.date('Registration Date', states={'paid':[('readonly',True)], 'open':[('readonly',True)], 'close':[('readonly',True)]}, select=True, help="Keep empty to use the current date"),
     }
         
-    def action_move_create(self, cr, uid, ids, *args):
+    def action_move_create(self, cr, uid, ids, context=None):
         
-        super(account_invoice,self).action_move_create(cr, uid, ids,*args)
+        super(account_invoice,self).action_move_create(cr, uid, ids, context=context)
         
         for inv in self.browse(cr, uid, ids):
             
