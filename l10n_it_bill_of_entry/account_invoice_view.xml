@@ -24,7 +24,7 @@
     	     			<group>
                             <field name="bill_of_entry_storno_id" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
                         </group>
-                        <button string="Make Bill of Entry" name="%(account_invoice_template.action_wizard_select_template)d" type="action" class="oe_highlight" states="draft" attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+                        <button string="Make Bill of Entry" name="%(account_invoice_template.action_wizard_select_template)d" type="action" class="oe_highlight" attrs="{'invisible': ['|',('customs_doc_type','!=', 'forwarder_invoice'),('state','!=','draft')]}"/>
     	             </page>
     	         </xpath>
                 <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="after">
