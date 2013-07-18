@@ -135,5 +135,5 @@ class account_invoice_line(orm.Model):
     _inherit = "account.invoice.line"
 
     _columns = {
-        'advance_customs_vat': fields.boolean("Adavance Customs Vat"),
+        'advance_customs_vat': fields.boolean("Advance Customs Vat"),
     }
