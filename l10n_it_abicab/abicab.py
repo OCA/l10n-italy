@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,16 +20,16 @@
 #
 #############################################################################
 
-from osv import fields, osv
+from osv import fields, orm
 
-class res_bank(osv.osv):
+class res_bank(orm.Model):
     _inherit = "res.bank"
     _columns = {
         'abi': fields.char('ABI', size=5),
         'cab': fields.char('CAB', size=5),
     }
 
-class res_partner_bank(osv.osv):
+class res_partner_bank(orm.Model):
     _inherit = "res.partner.bank"
     _columns = {
         'bank_abi': fields.char('ABI', size=5),
