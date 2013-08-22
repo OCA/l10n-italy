@@ -65,6 +65,15 @@ class Parser(report_sxw.rml_parse):
             res.append(tax_item)
             index += 1
         return res
+
+    def _get_invoice_total(self, move):
+        total = 0.0
+        for move_line in move.line_id:
+            if move_line.account_id.type == 'receivable':
+                total += move_line.debit or ( - move_line.credit)
+            elif move_line.account_id.type == 'payable':
+                total += ( - move_line.debit) or move_line.credit
+        return abs(total)
     
     def build_parent_tax_codes(self, tax_code):
         res={}
@@ -132,6 +141,7 @@ class Parser(report_sxw.rml_parse):
             'used_tax_codes': {},
             'start_date': self._get_start_date,
             'end_date': self._get_end_date,
+            'invoice_total': self._get_invoice_total,
         })
 
     def set_context(self, objects, data, ids, report_type=None):
