@@ -19,6 +19,7 @@
             <field name="arch" type="xml">
                 <field name="date_invoice" position="after">
                     <field name="registration_date"></field>
+                    <field name="supplier_invoice_number"/>
                 </field>
             </field>
         </record>
@@ -29,11 +30,11 @@
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <field name="date_invoice" position="after">
-                    <field name="registration_date"></field>
+                    <field name="registration_date"/>
+                    <field name="supplier_invoice_number" attrs="{'readonly':[('state','!=','draft')]}"/>
                 </field>
             </field>
         </record>
-        
         
      </data>
 </openerp>
