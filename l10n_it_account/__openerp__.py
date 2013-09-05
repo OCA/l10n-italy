@@ -36,6 +36,7 @@ Functionalities:
     "depends" : ['account','base_vat','account_chart','base_iban', 'l10n_it_base','account_invoice_entry_date'],
     "init_xml": [
         'account/partner_view.xml',
+        'account/invoice_view.xml',
         'wizard/fiscalcode_to_data_view.xml',
     ],
     "update_xml" : [],

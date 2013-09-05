@@ -19,7 +19,6 @@
             <field name="arch" type="xml">
                 <field name="date_invoice" position="after">
                     <field name="registration_date"></field>
-                    <field name="supplier_invoice_number"/>
                 </field>
             </field>
         </record>
@@ -31,7 +30,6 @@
             <field name="arch" type="xml">
                 <field name="date_invoice" position="after">
                     <field name="registration_date"/>
-                    <field name="supplier_invoice_number" attrs="{'readonly':[('state','!=','draft')]}"/>
                 </field>
             </field>
         </record>
