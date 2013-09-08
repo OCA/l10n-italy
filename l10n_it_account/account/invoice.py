@@ -22,10 +22,10 @@
 import netsvc
 import pooler, tools
 
-from osv import fields, osv
+from openerp.osv import fields, orm
 from tools.translate import _
 
-class account_invoice(osv.osv):
+class account_invoice(orm.Model):
     
     _inherit = 'account.invoice'
     _columns = {
@@ -49,7 +49,7 @@ class account_invoice(osv.osv):
             res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice), 
                 ('number', '<', number), ('journal_id','=',journal),('period_id','in',period_ids)])
             if res:
-                raise osv.except_osv(_('Date Inconsistency'),
+                raise orm.except_orm(_('Date Inconsistency'),
                         _('Cannot create invoice! Post the invoice with a greater date'))
         return True
 
@@ -68,24 +68,23 @@ class account_invoice(osv.osv):
 
             inv_type = inv.type
             journal = inv.journal_id.id
-            res = self.search(cr, uid, [('type','=',inv_type),('registration_date','>',reg_date), 
-                ('journal_id','=',journal),('period_id','in',period_ids)], context=context)
-            if res:
-                raise orm.except_orm(_('Date Inconsistency'),
-                    _('Cannot create invoice! Post the invoice with a greater date'))
-
-            #check duplication (only supplier's invoices)
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
+                #check if an invoice with a superior registration_date is posted
+                res = self.search(cr, uid, [('type','=',inv_type),('registration_date','>',reg_date), 
+                    ('journal_id','=',journal),('period_id','in',period_ids)], context=context)
+                if res:
+                    raise orm.except_orm(_('Date Inconsistency'),
+                        _('Cannot create invoice! Post the invoice with a greater date'))
+
+                #check duplication (only supplier's invoices)
                 supplier_invoice_number = inv.supplier_invoice_number
                 partner_id = inv.partner_id.id
                 res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','=',date_invoice), 
                     ('journal_id','=',journal),('supplier_invoice_number','=',supplier_invoice_number),
                     ('partner_id','=',partner_id),('state','not in',('draft','cancel'))], context=context)
                 if res:
-                    raise osv.except_osv(_('Invoice Duplication'),
+                    raise orm.except_orm(_('Invoice Duplication'),
                         _('Invoice already posted!'))
         return True
-
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
