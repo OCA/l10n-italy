@@ -36,38 +36,24 @@ class account_invoice(orm.Model):
         super(account_invoice, self).action_number(cr, uid, ids, context)
         for obj_inv in self.browse(cr, uid, ids):
             inv_type = obj_inv.type
-            if inv_type == 'in_invoice' or inv_type == 'in_refund':
-                return True
+
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
+            reg_date = obj_inv.registration_date
             journal = obj_inv.journal_id.id
+            inv_type = obj_inv.type
             date_start = obj_inv.registration_date or obj_inv.date_invoice or time.strftime('%Y-%m-%d')
             date_stop = obj_inv.registration_date or obj_inv.date_invoice or time.strftime('%Y-%m-%d')
             period_ids = self.pool.get('account.period').search(
                 cr, uid, [('date_start','<=',date_start),('date_stop','>=',date_stop), 
                 ('company_id', '=', obj_inv.company_id.id)])
-            res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice), 
-                ('number', '<', number), ('journal_id','=',journal),('period_id','in',period_ids)])
-            if res:
-                raise orm.except_orm(_('Date Inconsistency'),
-                        _('Cannot create invoice! Post the invoice with a greater date'))
-        return True
-
-    def action_move_create(self, cr, uid, ids, context=None):
-        super(account_invoice,self).action_move_create(cr, uid, ids, context=context)
-        for inv in self.browse(cr, uid, ids):
-            date_invoice=inv.date_invoice
-            reg_date = inv.registration_date
-
-            #periodo
-            date_start = inv.registration_date or inv.date_invoice or time.strftime('%Y-%m-%d')
-            date_stop = inv.registration_date or inv.date_invoice or time.strftime('%Y-%m-%d')
-            period_ids = self.pool.get('account.period').search(
-                cr, uid, [('date_start','<=',date_start),('date_stop','>=',date_stop), 
-                ('company_id', '=', inv.company_id.id)])
-
-            inv_type = inv.type
-            journal = inv.journal_id.id
+            if inv_type == 'out_invoice' or inv_type == 'out_refund':
+                #check if another invoice with a minor number and a superior date_invoice is posted
+                res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice), 
+                    ('number', '<', number), ('journal_id','=',journal),('period_id','in',period_ids)])
+                if res:
+                    raise orm.except_orm(_('Date Inconsistency'),
+                            _('Cannot create invoice! xxxx Post the invoice with a greater date'))
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
                 #check if an invoice with a superior registration_date is posted
                 res = self.search(cr, uid, [('type','=',inv_type),('registration_date','>',reg_date), 
@@ -75,10 +61,9 @@ class account_invoice(orm.Model):
                 if res:
                     raise orm.except_orm(_('Date Inconsistency'),
                         _('Cannot create invoice! Post the invoice with a greater date'))
-
                 #check duplication (only supplier's invoices)
-                supplier_invoice_number = inv.supplier_invoice_number
-                partner_id = inv.partner_id.id
+                supplier_invoice_number = obj_inv.supplier_invoice_number
+                partner_id = obj_inv.partner_id.id
                 res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','=',date_invoice), 
                     ('journal_id','=',journal),('supplier_invoice_number','=',supplier_invoice_number),
                     ('partner_id','=',partner_id),('state','not in',('draft','cancel'))], context=context)
