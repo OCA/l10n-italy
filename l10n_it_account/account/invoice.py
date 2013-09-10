@@ -36,12 +36,10 @@ class account_invoice(orm.Model):
         super(account_invoice, self).action_number(cr, uid, ids, context)
         for obj_inv in self.browse(cr, uid, ids):
             inv_type = obj_inv.type
-
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
             reg_date = obj_inv.registration_date
             journal = obj_inv.journal_id.id
-            inv_type = obj_inv.type
             date_start = obj_inv.registration_date or obj_inv.date_invoice or time.strftime('%Y-%m-%d')
             date_stop = obj_inv.registration_date or obj_inv.date_invoice or time.strftime('%Y-%m-%d')
             period_ids = self.pool.get('account.period').search(
@@ -53,7 +51,7 @@ class account_invoice(orm.Model):
                     ('number', '<', number), ('journal_id','=',journal),('period_id','in',period_ids)])
                 if res:
                     raise orm.except_orm(_('Date Inconsistency'),
-                            _('Cannot create invoice! xxxx Post the invoice with a greater date'))
+                            _('Cannot create invoice! Post the invoice with a greater date'))
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
                 #check if an invoice with a superior registration_date is posted
                 res = self.search(cr, uid, [('type','=',inv_type),('registration_date','>',reg_date), 
