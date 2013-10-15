@@ -69,7 +69,7 @@ class res_partner(osv.osv):
     def on_change_city(self, cr, uid, ids, city):
         res = {'value':{}}
         if(city):
-            city_id = self.pool.get('res.city').search(cr, uid, [('name', '=', city.title())])
+            city_id = self.pool.get('res.city').search(cr, uid, [('name', '=ilike', city)])
             if city_id:
                 city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
                 res = {'value': {
@@ -85,7 +85,7 @@ class res_partner(osv.osv):
         if vals.has_key('city') and not vals.has_key('province') and not vals.has_key('region'):
             if vals['city']:
                 city_obj= self.pool.get('res.city')
-                city_ids = city_obj.search(cr, uid, [('name', '=', vals['city'].title())])
+                city_ids = city_obj.search(cr, uid, [('name', '=ilike', vals['city'])])
                 if city_ids:
                     city = city_obj.browse(cr, uid, city_ids[0])
                     if not vals.has_key('zip'):
