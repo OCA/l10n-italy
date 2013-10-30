@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <report id="ddt_webkit"
+            name="ddt_webkit"
+            auto="False"
+            model="stock.picking.out"
+            file="stock_picking_webkit/report/picking.html.mako"
+            string="Aggregated pickings"
+            report_type="webkit"
+            header="False"
+            webkit_header="base_headers_webkit.base_minimum_reports_portrait_header" />
+
+  </data>
+</openerp>
