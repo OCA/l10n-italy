@@ -6,8 +6,8 @@
             name="ddt_webkit"
             auto="False"
             model="stock.picking.out"
-            file="stock_picking_webkit/report/picking.html.mako"
-            string="Aggregated pickings"
+            file="l10n_it_DDT_webkit/report/ddt.mako"
+            string="DDT"
             report_type="webkit"
             header="False"
             webkit_header="base_headers_webkit.base_minimum_reports_portrait_header" />
