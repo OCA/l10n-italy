@@ -77,10 +77,10 @@ class Parser(report_sxw.rml_parse):
             elif move_line.account_id.type == 'payable':
                 total += ( - move_line.debit) or move_line.credit
                 receivable_payable_found = True
-        if not receivable_payable_found:
-            return abs(move.amount)
-        else:
+        if receivable_payable_found:
             return abs(total)
+        else:
+            return abs(move.amount)
     
     def build_parent_tax_codes(self, tax_code):
         res={}
