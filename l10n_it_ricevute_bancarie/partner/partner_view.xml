@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!--========================================================-->
+        <!--                    RES.PARTNER - FORM                    -->
+        <!--========================================================-->
+        <record id="view_partner_form_riba" model="ir.ui.view">
+            <field name="name">res.parner.form.riba</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="property_payment_term" position="after">
+                    <separator string="Ri.Ba. properties" colspan="2"/>
+                    <group col="4" colspan="2">
+                        <field name="group_riba"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
