@@ -46,27 +46,40 @@
             </table>
         </div>
         
-        <h1 style="clear:both;">${_(u'Delivery Order') } ${picking.name}</h1>
+        <h1 style="clear:both;">DDT n.:  ${picking.ddt_number or ''}</h1>
         
         <table class="basic_table" width="100%">
             <tr>
-                <td style="font-weight:bold;">${_("Contact")}</td>
-                <td style="font-weight:bold;">${_("Origin")}</td>
-                <td style="font-weight:bold;">${_("Scheduled Date")}</td>
+                <td style="font-weight:bold;">${_('Contact')}</td>
+                <td style="font-weight:bold;">${_('Origin')}</td>
+                <td style="font-weight:bold;">${_('DDT date')}</td>
                 <td style="font-weight:bold;">${_('Weight')}</td>
                 <td style="font-weight:bold;">${_('Delivery Method')}</td>
-                <td style="font-weight:bold;">${_('Incoterm')}</td>
             </tr>
             <tr>
                 <td>${user.name}</td>
                 <td>${picking.origin or ''}</td>
-                <td>${formatLang(picking.min_date, date=True)}</td>
+                <td>${formatLang(picking.ddt_date, date=True)}</td>
                 <td>${picking.weight}</td>
                 <td>${picking.carrier_id and picking.carrier_id.name or ''}</td>
-                <td>${picking.sale_id and picking.sale_id.incoterm and picking.sale_id.incoterm.name or ''}</td>
             </tr>
         </table>
-    
+         <br />
+         <br />
+        <table class="basic_table" width="100%">
+            <tr>
+                <td style="font-weight:bold;">${_('Description of goods')}</td>
+                <td style="font-weight:bold;">${_("Reason For Transportation")}</td>
+                <td style="font-weight:bold;">${_("Carriage condition")}</td>
+                <td style="font-weight:bold;">${_('Scheduled Date')}</td>
+            </tr>
+            <tr>
+                <td>${picking.goods_description_id and picking.goods_description_id.name or '' }</td>
+                <td>${picking.transportation_reason_id and picking.transportation_reason_id.name or ''}</td>
+                <td>${picking.carriage_condition_id and picking.carriage_condition_id.name or ''}</td>
+                <td>${formatLang(picking.min_date, date=True)}</td>
+            </tr>
+        </table>
         <table class="list_sale_table" width="100%" style="margin-top: 20px;">
             <thead>
                 <tr>
@@ -77,7 +90,7 @@
             </thead>
             <tbody>
             %for line in picking.move_lines:
-                <tr class="line">
+                <tr class="line" >
                     <td style="text-align:left; " >${ line.name }</td>
                     <td style="text-align:left; " >${ line.prodlot_id and line.prodlot_id.name or ''}</td>
                     <td class="amount" >${ formatLang(line.product_qty) } ${line.product_uom.name}</td>
@@ -89,8 +102,6 @@
         %if picking.note :
             <p class="std_text">${picking.note | carriage_returns}</p>
         %endif
-
-        <p style="page-break-after: always"/>
     <br/><br/><br/><br/>
      <table class="basic_table" width="100%">
             <tr>
@@ -102,6 +113,7 @@
                 <td><br /><br /></td>
             </tr>
         </table>
+         <p style="page-break-after: always"/>
     %endfor
 </body>
 </html>
