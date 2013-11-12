@@ -91,7 +91,17 @@
         %endif
 
         <p style="page-break-after: always"/>
-        <br/>
+    <br/><br/><br/><br/>
+     <table class="basic_table" width="100%">
+            <tr>
+                <td style="font-weight:bold;">Data Ritiro</td>
+                <td style="font-weight:bold;">Firma</td>
+            </tr>
+            <tr>
+                <td><br /></td>
+                <td><br /><br /></td>
+            </tr>
+        </table>
     %endfor
 </body>
 </html>
