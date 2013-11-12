@@ -10,7 +10,7 @@
             string="DDT"
             report_type="webkit"
             header="False"
-            webkit_header="base_headers_webkit.base_minimum_reports_portrait_header" />
+            webkit_header="base_headers_webkit.base_reports_portrait_header" />
 
   </data>
 </openerp>
