@@ -200,9 +200,9 @@ class account_vat_period_end_statement(orm.Model):
     _name = "account.vat.period.end.statement"
     _rec_name = 'date'
     _columns = {
-        'debit_vat_account_line_ids': fields.one2many('statement.debit.account.line', 'statement_id', 'Debit VAT', help='The accounts containing the debit VAT amount to write-off', required=True, states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
+        'debit_vat_account_line_ids': fields.one2many('statement.debit.account.line', 'statement_id', 'Debit VAT', help='The accounts containing the debit VAT amount to write-off', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
 
-        'credit_vat_account_line_ids': fields.one2many('statement.credit.account.line', 'statement_id', 'Credit VAT', help='The accounts containing the credit VAT amount to write-off', required=True, states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
+        'credit_vat_account_line_ids': fields.one2many('statement.credit.account.line', 'statement_id', 'Credit VAT', help='The accounts containing the credit VAT amount to write-off', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
 
         'previous_credit_vat_account_id': fields.many2one('account.account', 'Previous Credits VAT', help='Credit VAT from previous periods', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
         'previous_credit_vat_amount': fields.float('Previous Credits VAT Amount', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]},
