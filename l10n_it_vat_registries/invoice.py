@@ -60,7 +60,8 @@ class Parser(report_sxw.rml_parse):
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice
                     or move.date or ''),
-                'reference': (invoice and invoice.reference or '')
+                'reference': (invoice and invoice.reference or ''),
+                'exclude_from_registries': tax_code.exclude_from_registries,
                 }
             res.append(tax_item)
             index += 1
@@ -98,7 +99,8 @@ class Parser(report_sxw.rml_parse):
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
-                res.append((tax_code.name,res_dict[tax_code_id],tax_code.is_base))
+                res.append((tax_code.name,res_dict[tax_code_id],tax_code.is_base,
+                            tax_code.exclude_from_registries))
         return res
     
     def _get_tax_codes(self):

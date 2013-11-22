@@ -105,12 +105,16 @@
                     ${ formatLang(invoice_total(object)) | entity}
                 %endif
                 </td>
-                %if line['index']==0:
+                %if line['exclude_from_registries']:
+                    <td class="right_with_line"></td>
+                %elif line['index']==0:
                     <td class="right_with_line">${ (line['tax_code_name'])  or ''| entity}</td>
                 %else:
                     <td class="right_without_line">${ (line['tax_code_name'])  or ''| entity}</td>
                 %endif
-                %if line['index']==0:
+                %if line['exclude_from_registries']:
+                    <td class="right_with_line"></td>
+                %elif line['index']==0:
                     <td class="right_with_line">${ formatLang(line['amount'])| entity}</td>
                 %else:
                     <td class="right_without_line">${ formatLang(line['amount'])| entity}</td>
@@ -137,7 +141,7 @@
                             <th style="text-align:right">Importo</th>
                         </tr>
                         %for tax_code_tuple in tax_code_list :
-                            % if not tax_code_tuple[2]:
+                            % if not tax_code_tuple[2] and not tax_code_tuple[3]:
                                 <tr>
                                     <td>${tax_code_tuple[0]|entity}
                                     </td><td style="text-align:right">${formatLang(tax_code_tuple[1])|entity}
@@ -155,7 +159,7 @@
                             <th style="text-align:right">Importo</th>
                         </tr>
                         %for tax_code_tuple in tax_code_totals_list :
-                            % if not tax_code_tuple[2]:
+                            % if not tax_code_tuple[2] and not tax_code_tuple[3]:
                                 <tr>
                                     <td>${tax_code_tuple[0]|entity}
                                     </td><td style="text-align:right">${formatLang(tax_code_tuple[1])|entity}
@@ -175,7 +179,7 @@
                             <th style="text-align:right">Importo</th>
                         </tr>
                         %for tax_code_tuple in tax_code_list :
-                            % if tax_code_tuple[2]:
+                            % if tax_code_tuple[2] and not tax_code_tuple[3]:
                                 <tr>
                                     <td>${tax_code_tuple[0]|entity}
                                     </td><td style="text-align:right">${formatLang(tax_code_tuple[1])|entity}
@@ -193,7 +197,7 @@
                             <th style="text-align:right">Importo</th>
                         </tr>
                         %for tax_code_tuple in tax_code_totals_list :
-                            % if tax_code_tuple[2]:
+                            % if tax_code_tuple[2] and not tax_code_tuple[3]:
                                 <tr>
                                     <td>${tax_code_tuple[0]|entity}
                                     </td><td style="text-align:right">${formatLang(tax_code_tuple[1])|entity}
