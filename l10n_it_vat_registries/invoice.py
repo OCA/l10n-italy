@@ -28,11 +28,11 @@ from datetime import datetime
 _logger = logging.getLogger(__name__)
 
 class Parser(report_sxw.rml_parse):
-    
+
     def _tax_amounts_by_code(self, move):
         res={}
         for move_line in move.line_id:
-            if move_line.tax_code_id and move_line.tax_amount:
+            if move_line.tax_code_id and not move_line.tax_code_id.exclude_from_registries and move_line.tax_amount:
                 if not res.get(move_line.tax_code_id.id):
                     res[move_line.tax_code_id.id] = 0.0
                     self.localcontext['used_tax_codes'][move_line.tax_code_id.id] = True
@@ -60,8 +60,7 @@ class Parser(report_sxw.rml_parse):
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice
                     or move.date or ''),
-                'reference': (invoice and invoice.reference or ''),
-                'exclude_from_registries': tax_code.exclude_from_registries,
+                'reference': (invoice and invoice.reference or '')
                 }
             res.append(tax_item)
             index += 1
@@ -99,8 +98,7 @@ class Parser(report_sxw.rml_parse):
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
-                res.append((tax_code.name,res_dict[tax_code_id],tax_code.is_base,
-                            tax_code.exclude_from_registries))
+                res.append((tax_code.name,res_dict[tax_code_id],tax_code.is_base))
         return res
     
     def _get_tax_codes(self):
