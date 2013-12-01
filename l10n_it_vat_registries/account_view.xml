@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <field name="sign" position="after">
                     <field name="is_base"/>
+                    <field name="exclude_from_registries"/>
                 </field>
             </field>
         </record>
