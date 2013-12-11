@@ -9,7 +9,7 @@
             file="l10n_it_DDT_webkit/report/ddt.mako"
             string="DDT"
             report_type="webkit"
-            header="False"
+            header="True"
             webkit_header="base_headers_webkit.base_reports_portrait_header" />
 
   </data>
