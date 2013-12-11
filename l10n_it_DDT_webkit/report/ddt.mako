@@ -54,14 +54,14 @@
                 <td style="font-weight:bold;">${_('Origin')}</td>
                 <td style="font-weight:bold;">${_('DDT date')}</td>
                 <td style="font-weight:bold;">${_('Weight')}</td>
-                <td style="font-weight:bold;">${_('Delivery Method')}</td>
+                <td style="font-weight:bold;">${_('Nr. package')}</td>
             </tr>
             <tr>
                 <td>${user.name}</td>
                 <td>${picking.origin or ''}</td>
                 <td>${formatLang(picking.ddt_date, date=True)}</td>
                 <td>${picking.weight}</td>
-                <td>${picking.carrier_id and picking.carrier_id.name or ''}</td>
+                <td>${picking.number_of_packages}</td>                 
             </tr>
         </table>
          <br />
@@ -72,15 +72,17 @@
                 <td style="font-weight:bold;">${_("Reason For Transportation")}</td>
                 <td style="font-weight:bold;">${_("Carriage condition")}</td>
                 <td style="font-weight:bold;">${_('Scheduled Date')}</td>
+                <td style="font-weight:bold;">${_('Delivery Method')}</td>
             </tr>
             <tr>
                 <td>${picking.goods_description_id and picking.goods_description_id.name or '' }</td>
                 <td>${picking.transportation_reason_id and picking.transportation_reason_id.name or ''}</td>
                 <td>${picking.carriage_condition_id and picking.carriage_condition_id.name or ''}</td>
                 <td>${formatLang(picking.min_date, date=True)}</td>
+                <td>${picking.carrier_id and picking.carrier_id.name or ''}</td>
             </tr>
         </table>
-        <table class="list_sale_table" width="100%" style="margin-top: 20px;">
+        <table class="list_table td " width="100%" style="margin-top: 20px;">
             <thead>
                 <tr>
                     <th style="text-align:left; ">${_("Description")}</th>
