@@ -1,3 +1,4 @@
+Sergio Corato <sergio.corato@didotech.com>
 Davide Corio <davide.corio@domsense.com>
 Luca Subiaco <subluca@gmail.com>
 Simone Orsi <simone.orsi@domsense.com>

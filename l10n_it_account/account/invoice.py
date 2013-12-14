@@ -40,22 +40,20 @@ class account_invoice(orm.Model):
             date_invoice = obj_inv.date_invoice
             reg_date = obj_inv.registration_date
             journal = obj_inv.journal_id.id
-            date_start = obj_inv.registration_date or obj_inv.date_invoice or time.strftime('%Y-%m-%d')
-            date_stop = obj_inv.registration_date or obj_inv.date_invoice or time.strftime('%Y-%m-%d')
+            fy_id = obj_inv.period_id.fiscalyear_id.id
             period_ids = self.pool.get('account.period').search(
-                cr, uid, [('date_start','<=',date_start),('date_stop','>=',date_stop), 
-                ('company_id', '=', obj_inv.company_id.id)])
+                cr, uid, [('fiscalyear_id', '=', fy_id), ('company_id', '=', obj_inv.company_id.id)])
             if inv_type == 'out_invoice' or inv_type == 'out_refund':
-                #check if another invoice with a minor number and a superior date_invoice is posted
                 res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice), 
-                    ('number', '<', number), ('journal_id','=',journal),('period_id','in',period_ids)])
+                                            ('number', '<', number), ('journal_id', '=', journal),
+                                            ('period_id', 'in', period_ids)])
                 if res:
                     raise orm.except_orm(_('Date Inconsistency'),
                             _('Cannot create invoice! Post the invoice with a greater date'))
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
-                #check if an invoice with a superior registration_date is posted
                 res = self.search(cr, uid, [('type','=',inv_type),('registration_date','>',reg_date), 
-                    ('journal_id','=',journal),('period_id','in',period_ids)], context=context)
+                                            ('number', '<', number), ('journal_id', '=', journal),
+                                            ('period_id', 'in', period_ids)], context=context)
                 if res:
                     raise orm.except_orm(_('Date Inconsistency'),
                         _('Cannot create invoice! Post the invoice with a greater date'))
@@ -63,8 +61,10 @@ class account_invoice(orm.Model):
                 supplier_invoice_number = obj_inv.supplier_invoice_number
                 partner_id = obj_inv.partner_id.id
                 res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','=',date_invoice), 
-                    ('journal_id','=',journal),('supplier_invoice_number','=',supplier_invoice_number),
-                    ('partner_id','=',partner_id),('state','not in',('draft','cancel'))], context=context)
+                                            ('journal_id', '=', journal),
+                                            ('supplier_invoice_number', '=', supplier_invoice_number),
+                                            ('partner_id', '=', partner_id),
+                                            ('state', 'not in', ('draft', 'cancel'))], context=context)
                 if res:
                     raise orm.except_orm(_('Invoice Duplication'),
                         _('Invoice already posted!'))

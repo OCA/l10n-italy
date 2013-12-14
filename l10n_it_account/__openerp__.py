@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Account',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Localisation/Italy',
     'description': """This module customizes OpenERP in order to fit italian laws and mores - Account version
 
