@@ -67,7 +67,7 @@ class emissione_riba(orm.TransientModel):
             'name': self.pool.get('ir.sequence').get(cr, uid, 'seq.riba.distinta'),
             'config': wizard_obj.configurazione.id,
             'user_id': uid,
-            'date_created': fields.date.context_today(cr,uid,context),
+            'date_created': fields.date.context_today(self, cr, uid, context),
         }
         rd_id = riba_distinta.create(cr, uid, rd)
         
