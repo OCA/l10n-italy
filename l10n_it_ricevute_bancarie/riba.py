@@ -25,7 +25,6 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
-import time
 import decimal_precision as dp
 import netsvc
 from tools.translate import _
