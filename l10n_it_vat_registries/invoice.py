@@ -28,11 +28,11 @@ from datetime import datetime
 _logger = logging.getLogger(__name__)
 
 class Parser(report_sxw.rml_parse):
-    
+
     def _tax_amounts_by_code(self, move):
         res={}
         for move_line in move.line_id:
-            if move_line.tax_code_id and move_line.tax_amount:
+            if move_line.tax_code_id and not move_line.tax_code_id.exclude_from_registries and move_line.tax_amount:
                 if not res.get(move_line.tax_code_id.id):
                     res[move_line.tax_code_id.id] = 0.0
                     self.localcontext['used_tax_codes'][move_line.tax_code_id.id] = True
