@@ -36,64 +36,70 @@
             </field>
         </record>
         
-        <record model="ir.ui.view" id="view_riba_da_emettere_tree">
-            <field name="name">Issue Ri.Ba.</field>
-            <field name="model">account.move.line</field>
-            <field name="arch" type="xml">
-                <tree string="Issue Ri.Ba." colors="red:date_maturity&lt;current_date">
-                    <field name="stored_invoice_id" readonly="1"/>
-                    <field name="invoice_date" readonly="1"/>
-                    <field name="invoice_origin" readonly="1"/>
-                    <field name="partner_id" readonly="1"/>
-                    <field name="iban" readonly="1"/>
-                    <field name="partner_ref" readonly="1"/>
-                    <field name="payment_term_id" readonly="1"/>
-                    <field name="account_id" readonly="1"/>
-                    <field name="debit" readonly="1" sum="Total Debit"/>
-                    <field name="date_maturity"/>
-                    <field name="riba" />
-                    <field name="distinta_line_ids" invisible="1" />
-                </tree>
-            </field>
-        </record>
+    <!-- Riba da emettere Tree View -->
 
-        <!-- Riba da emettere Filtro -->
+    <record model="ir.ui.view" id="view_riba_da_emettere_tree">
+        <field name="name">Issue Ri.Ba.</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <tree string="Issue Ri.Ba." colors="red:date_maturity&lt;current_date">
+                <field name="stored_invoice_id" readonly="1"/>
+                <field name="invoice_date" readonly="1"/>
+                <field name="invoice_origin" readonly="1"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="iban" readonly="1"/>
+                <field name="partner_ref" readonly="1"/>
+                <field name="payment_term_id" readonly="1"/>
+                <field name="account_id" readonly="1"/>
+                <field name="debit" readonly="1" sum="Total Debit"/>
+                <field name="amount_residual" readonly="1" sum="Total Amount" />
+                <field name="date_maturity"/>
+                <field name="riba" />
+                <field name="distinta_line_ids" invisible="1" />
+                <field name="reconcile_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
 
-        <record id="riba_filter" model="ir.ui.view">
-            <field name="name">Ri.Ba. filter</field>
-            <field name="model">account.move.line</field>
-            <field name="arch" type="xml">
-                <search string="Search Journal Items">
-                    <filter icon="terp-go-today" string="To Issue" 
-                        domain="[('distinta_line_ids', '=', False)]" name="da_emettere"/>
-                    <field name="account_id"/>
-                    <field name="partner_id"/>
-                    <field name="invoice"/>
-                    <field name="invoice_origin"/>
-                    <field name="date_maturity"/>
-                    <newline/>
-                    <group expand="0" string="Group by..." colspan="11">
-                        <filter string="Group by customer" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
-                        <filter string="Group by invoice" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'stored_invoice_id'}"/>
-                    </group>
-                </search>
-            </field>
-        </record>
+    <!-- Riba da emettere Filtro -->
 
-        <!-- Riba da emettere Action -->
+    <record id="riba_filter" model="ir.ui.view">
+        <field name="name">Ri.Ba. filter</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Journal Items">
+                <filter icon="terp-go-today" string="To Issue" 
+                    domain="[('distinta_line_ids', '=', False)]" name="da_emettere"/>
+                <filter icon="terp-go-today" string="Issued" 
+                    domain="[('distinta_line_ids', '!=', False)]" name="emesse"/>
+                <field name="account_id"/>
+                <field name="partner_id"/>
+                <field name="invoice"/>
+                <field name="invoice_origin"/>
+                <field name="date_maturity"/>
+                <newline/>
+                <group expand="0" string="Group by..." colspan="11">
+                    <filter string="Group by customer" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Group by invoice" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'stored_invoice_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="action_riba_da_emettere">
-            <field name="name">Issue Ri.Ba.</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">account.move.line</field>
-            <field name="src_model">account.move.line</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_riba_da_emettere_tree" />
-            <field name="context">{'search_default_da_emettere':1}</field>
-            <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable')]</field>
-            <field name="search_view_id" ref="riba_filter"/>
-        </record>
+    <!-- Riba da emettere Action -->
+
+    <record model="ir.actions.act_window" id="action_riba_da_emettere">
+        <field name="name">Issue Ri.Ba.</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move.line</field>
+        <field name="src_model">account.move.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_riba_da_emettere_tree" />
+        <field name="context">{'search_default_da_emettere':1}</field>
+        <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable'), ('reconcile_id', '=', False)]</field>
+        <field name="search_view_id" ref="riba_filter"/>
+    </record>
 
 
         <menuitem name="Issue Ri.Ba." parent="menu_riba" 

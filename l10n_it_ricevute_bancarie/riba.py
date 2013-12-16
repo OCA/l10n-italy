@@ -138,14 +138,14 @@ class riba_distinta(orm.Model):
     def riba_accepted(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'accepted',
-            'date_accepted': fields.date.context_today(self,cr,uid,context),
+            'date_accepted': fields.date.context_today(cr,uid,context),
             }, context=context)
         return True
     
     def riba_accredited(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'accredited',
-            'date_accreditation': fields.date.context_today(self,cr,uid,context),
+            'date_accreditation': fields.date.context_today(cr,uid,context),
             }, context=context)
         for distinta in self.browse(cr, uid, ids, context=context):
             for line in distinta.line_ids:
@@ -155,14 +155,14 @@ class riba_distinta(orm.Model):
     def riba_paid(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'paid',
-            'date_paid': fields.date.context_today(self,cr,uid,context),
+            'date_paid': fields.date.context_today(cr,uid,context),
             }, context=context)
         return True
     
     def riba_unsolved(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'unsolved',
-            'date_unsolved': fields.date.context_today(self,cr,uid,context),
+            'date_unsolved': fields.date.context_today(cr,uid,context),
             }, context=context)
         return True
         
