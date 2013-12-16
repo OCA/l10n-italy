@@ -138,7 +138,7 @@ class riba_distinta(orm.Model):
                     _("""Distinta %s is in state %s. You can only delete
                       documents in state draft or canceled""")
                     % (distinta.name, distinta.state))
-        osv.osv.unlink(cr, uid, ids, context=context)
+        self.unlink(cr, uid, ids, context=context)
         return True
 
     def confirm(self, cr, uid, ids, context=None):
