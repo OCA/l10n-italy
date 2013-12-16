@@ -105,7 +105,7 @@ class riba_distinta(orm.Model):
         for distinta in self.browse(cr, uid, ids, context=context):
             if distinta.state not in ('draft',  'cancel'):
                 raise orm.except_orm(_('Error'),_('Distinta %s is in state %s. You can only delete documents in state draft or canceled') % (distinta.name, distinta.state))
-        osv.osv.unlink(cr, uid, ids, context=context)
+        super(riba_distinta,self).unlink(cr, uid, ids, context=context)
         return True
 
     def confirm(self, cr, uid, ids, context=None):
