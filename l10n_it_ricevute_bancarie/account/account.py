@@ -67,16 +67,29 @@ class account_move_line(orm.Model):
         'distinta_line_ids' : None,
     }
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context={}, toolbar=False, submenu=False):
-        view_payments_tree_id = self.pool.get('ir.model.data').get_object_reference(
-            cr, uid, 'l10n_it_ricevute_bancarie', 'view_riba_da_emettere_tree')
+    def fields_view_get(
+        self, cr, uid, view_id=None, view_type='form',
+        context={}, toolbar=False, submenu=False
+    ):
+        # Special view for account.move.line object
+        # (for ex. tree view contains user defined fields)
+        result = super(account_move_line, self).fields_view_get(
+            cr, uid, view_id, view_type, context, toolbar=toolbar,
+            submenu=submenu)
+        try:
+            view_payments_tree_id = self.pool.get(
+                'ir.model.data').get_object_reference(
+                cr, uid, 'l10n_it_ricevute_bancarie',
+                'view_riba_da_emettere_tree')
+        except ValueError:
+            return result
         if view_id == view_payments_tree_id[1]:
             # Use RiBa list - grazie a eLBati @ account_due_list
-            result = super(orm.Model, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar=toolbar, submenu=submenu)
+            return super(orm.Model, self).fields_view_get(
+                cr, uid, view_id, view_type, context, toolbar=toolbar,
+                submenu=submenu)
         else:
-            # Use special views for account.move.line object (for ex. tree view contains user defined fields)
-            result = super(account_move_line, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar=toolbar, submenu=submenu)
-        return result
+            return result
 
 
 class account_invoice(orm.Model):
