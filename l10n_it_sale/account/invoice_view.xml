@@ -8,11 +8,11 @@
 			<field name="arch" type="xml">
 				<page string="Payments" position="after">
 					<page string="Shipping">
-						<field name="carriage_condition_id" string="Carriage condition"/>
-						<newline/>
-						<field name="goods_description_id" string="Description of goods"/>
-						<newline/>
-						<field name="transportation_reason_id" string="Reason for transportation"/>
+						<group colspan="2">
+							<field name="carriage_condition_id" string="Carriage condition"/>
+							<field name="goods_description_id" string="Description of goods"/>
+							<field name="transportation_reason_id" string="Reason for transportation"/>
+						</group>
 					</page>
 
 				</page>
