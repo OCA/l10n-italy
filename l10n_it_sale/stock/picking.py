@@ -84,9 +84,11 @@ class stock_picking_out(orm.Model):
     #-----------------------------------------------------------------------------
     # EVITARE LA COPIA DI 'NUMERO DDT'
     #-----------------------------------------------------------------------------
-    def copy(self, cr, uid, id, default={}, context=None):
+    def copy(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
         default.update({'ddt_number': ''})
-        return super(stock_picking_out, self).copy(cr, uid, id, default, context)
+        return super(stock_picking_out, self).copy(cr, uid, id, default, context=context)
 
 # Redefinition of the new fields in order to update the model stock.picking in the orm
 # FIXME: this is a temporary workaround because of a framework bug (ref: lp996816).
