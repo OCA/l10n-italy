@@ -85,8 +85,6 @@ class stock_picking_out(orm.Model):
     # EVITARE LA COPIA DI 'NUMERO DDT'
     #-----------------------------------------------------------------------------
     def copy(self, cr, uid, id, default={}, context=None):
-        if default is None:
-            default = {}
         default.update({'ddt_number': ''})
         return super(stock_picking_out, self).copy(cr, uid, id, default, context)
 
