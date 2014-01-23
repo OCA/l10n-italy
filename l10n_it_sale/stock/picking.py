@@ -59,7 +59,7 @@ class stock_picking_reason(orm.Model):
         'note': fields.text('Note'),
     }
 
-class stock_picking(orm.Model):
+class stock_picking_out(orm.Model):
     _inherit = "stock.picking.out"
     _columns =  {
         'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
@@ -71,7 +71,7 @@ class stock_picking(orm.Model):
 
     def action_invoice_create(self, cursor, user, ids, journal_id=False,
             group=False, type='out_invoice', context=None):
-        res = super(stock_picking, self).action_invoice_create(cursor, user, ids, journal_id,
+        res = super(stock_picking_out, self).action_invoice_create(cursor, user, ids, journal_id,
             group, type, context)
         for picking in self.browse(cursor, user, ids, context=context):
             self.pool.get('account.invoice').write(cursor, user, res[picking.id], {
@@ -86,7 +86,7 @@ class stock_picking(orm.Model):
     #-----------------------------------------------------------------------------
     def copy(self, cr, uid, id, default={}, context=None):
         default.update({'ddt_number': ''})
-        return super(stock_picking, self).copy(cr, uid, id, default, context)
+        return super(stock_picking_out, self).copy(cr, uid, id, default, context)
 
 # Redefinition of the new fields in order to update the model stock.picking in the orm
 # FIXME: this is a temporary workaround because of a framework bug (ref: lp996816).
