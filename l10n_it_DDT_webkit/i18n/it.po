@@ -1,0 +1,93 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_DDT_webkit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-11 15:23+0000\n"
+"PO-Revision-Date: 2013-12-11 16:34+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.6.2\n"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:54
+msgid "Origin"
+msgstr "Origine"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:74
+msgid "Scheduled Date"
+msgstr "Data Schedulazione"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:72
+msgid "Reason For Transportation"
+msgstr "Causale del trasporto"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:88
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:56
+msgid "Weight"
+msgstr "Peso"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:71
+msgid "Description of goods"
+msgstr "Aspetto dei Beni"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:57
+msgid "Nr. package"
+msgstr "Nr. Pacchi"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:36
+msgid "Invoice address:"
+msgstr "Indirizzo Fatturazione:"
+
+#. module: l10n_it_DDT_webkit
+#: model:ir.actions.report.xml,name:l10n_it_DDT_webkit.ddt_webkit
+msgid "DDT"
+msgstr "DDT"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:55
+msgid "DDT date"
+msgstr "Data DDT"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:89
+msgid "Serial Number"
+msgstr "Numero Seriale"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:53
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:73
+msgid "Carriage condition"
+msgstr "Resa merce"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:75
+msgid "Delivery Method"
+msgstr "Metodo Spedizione"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:90
+msgid "Quantity"
+msgstr "Quantià"
