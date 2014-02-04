@@ -34,7 +34,7 @@ Questo modulo permette di generare le corrette registrazioni contabili quando si
 Contributors
 ------------
 
- - Lorenzo Battistini <lorenzo.battistini@agilebg.com
+ - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
  - Davide Corio <davide.corio@lsweb.it>
 """,
     'author': 'OpenERP Italian Community',
