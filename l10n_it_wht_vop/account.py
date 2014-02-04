@@ -65,8 +65,13 @@ class account_voucher(orm.Model):
                 )
                 + eval("line." + line_type)
                 )
+            if line_type == 'debit':
+                tax_amount = - new_amount
+            else:
+                tax_amount = new_amount
             line.write({
                 line_type: new_amount,
+                'tax_amount': tax_amount,
                 }, update_check=False)
         return True
 
