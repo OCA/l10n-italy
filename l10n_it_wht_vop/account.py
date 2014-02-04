@@ -73,6 +73,7 @@ class account_voucher(orm.Model):
     def action_move_line_create(self, cr, uid, ids, context=None):
         res = super(account_voucher, self).action_move_line_create(
             cr, uid, ids, context)
+        move_pool = self.pool.get('account.move')
         for voucher in self.browse(cr, uid, ids, context=context):
             if voucher.withholding_move_ids:
                 if len(voucher.withholding_move_ids) > 1:
@@ -123,5 +124,7 @@ class account_voucher(orm.Model):
                         raise orm.except_orm(
                             _('Error'),
                             _('Withholding entry should have amount = 0'))
-                    voucher.withholding_move_ids[0].unlink()
+                    move_pool.button_cancel(
+                        cr, uid, [voucher.withholding_move_ids[0].id])
+                    move_pool.unlink(cr, uid, [voucher.withholding_move_ids[0].id])
         return res
