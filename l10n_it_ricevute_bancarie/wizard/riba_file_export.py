@@ -179,7 +179,7 @@ class riba_file_export(orm.TransientModel):
                raise orm.except_orm('Error', _('No IBAN specified for ') + line.partner_id.name)
             debit_abi = debit_bank.iban[5:10]
             debit_cab = debit_bank.iban[10:15]
-            debitor_city = debitor_address.city or ''
+            debitor_city = debitor_address.city and debitor_address.city.ljust(23)[0:23] or ''
             debitor_province = debitor_address.province.code or ''
             if not line.due_date: # ??? VERIFICARE
                 due_date =  '000000'
@@ -188,6 +188,8 @@ class riba_file_export(orm.TransientModel):
 
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise orm.except_orm('Error', _('No VAT or Fiscal code specified for ') + line.partner_id.name)
+            if not (debit_bank.bank and debit_bank.bank.name or debit_bank.bank_name):
+                raise orm.except_orm('Error', _('No debit_bank specified for ') + line.partner_id.name)
             Riba = [
                         line.sequence,
                         due_date,
