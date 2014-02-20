@@ -188,6 +188,8 @@ class riba_file_export(orm.TransientModel):
 
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise orm.except_orm('Error', _('No VAT or Fiscal code specified for ') + line.partner_id.name)
+            if not (debit_bank.bank and debit_bank.bank.name or debit_bank.bank_name):
+                raise orm.except_orm('Error', _('No debit_bank specified for ') + line.partner_id.name)
             Riba = [
                         line.sequence,
                         due_date,
