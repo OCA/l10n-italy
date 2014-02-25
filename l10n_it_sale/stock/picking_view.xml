@@ -44,7 +44,7 @@
 			<field name="inherit_id" ref="delivery.view_delivery_order_inherit_stock"/>
 			<field name="arch" type="xml">
 				<button name="%(delivery.report_shipping)d" position="replace">
-					<button name="%(action_wizard_assign_ddt)d" string="Assign DDT" states="done,assigned" type="action"/>
+					<button name="%(action_wizard_assign_ddt)d" string="Assign DDT" states="done" type="action"/>
 				</button>
 			</field>
 		</record>
