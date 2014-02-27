@@ -92,6 +92,14 @@ class riba_distinta(orm.Model):
         'payment_ids': fields.function(_get_payment_ids, relation='account.move.line', type="many2many", string='Payments'),
         'unsolved_move_ids': fields.function(_get_unsolved_move_ids, type='many2many', relation='account.move', method=True, string="Unsolved Entries"),
         'type': fields.related('config', 'tipo', type='char', size=32, string='Type', readonly=True),
+        'registration_date': fields.date(
+            'Registration Date',
+            states={'draft': [('readonly', False)],
+                    'cancel': [('readonly', False)], },
+            select=True,
+            readonly=True,
+            required=True,
+            help="Keep empty to use the current date"),
     }
 
     _defaults = {
@@ -99,6 +107,7 @@ class riba_distinta(orm.Model):
         'date_created': fields.date.context_today,
         'name': lambda self,cr,uid,context: self.pool.get('ir.sequence').get(cr, uid, 'riba.distinta'),
         'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'riba.distinta', context=c),
+        'registration_date': fields.date.context_today,
     }
     
     def unlink(self, cr, uid, ids, context=None):
@@ -357,6 +366,7 @@ class riba_distinta_line(orm.Model):
             move_id= move_pool.create(cr, uid, {
                 'ref': 'Ri.Ba. %s - line %s' % (line.distinta_id.name, line.sequence),
                 'journal_id': journal.id,
+                'date': line.distinta_id.registration_date,
                 }, context=context)
             to_be_reconciled = []
             for riba_move_line in line.move_line_ids:
@@ -372,7 +382,12 @@ class riba_distinta_line(orm.Model):
                 to_be_reconciled.append([move_line_id, riba_move_line.move_line_id.id])
             move_line_pool.create(cr, uid, {
                 'name': 'Ri.Ba. %s - line %s' % (line.distinta_id.name, line.sequence),
-                'account_id': line.acceptance_account_id.id,
+                'account_id': (
+                    line.acceptance_account_id.id or
+                    line.distinta_id.config.acceptance_account_id.id
+                    # in questo modo se la riga non ha conto accettazione
+                    # viene prelevato il conto in configurazione riba
+                    ),
                 'partner_id': line.partner_id.id,
                 'date_maturity': line.due_date,
                 'credit': 0.0,
