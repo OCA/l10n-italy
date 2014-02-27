@@ -51,6 +51,7 @@
                 <form string="Ri.Ba. - Distinta">
                     <field name="name" />
                     <field name="config" widget="selection"/>
+                    <field name="registration_date" />
                     <notebook colspan="4">
                         <page string="General">
                             <field name="line_ids" nolabel="1" colspan="4">
