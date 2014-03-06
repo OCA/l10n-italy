@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <openerp>
-    <data> 
+    <data noupdate="1"> 
         <record id="ir_header_central_journal_report" model="ir.header_webkit">
             <field name="footer_html"></field>
             <field eval="&quot;&quot;&quot;Landscape&quot;&quot;&quot;" name="orientation"/>
