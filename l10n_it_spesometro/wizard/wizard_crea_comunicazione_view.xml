@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_spesometro_crea_comunicazione" model="ir.ui.view">
+            <field name="name">Crea comunicazione</field>
+            <field name="model">wizard.spesometro.crea.comunicazione</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dati comunicazione">
+                    <field name="company_id"/>
+                    <newline/>
+                    <field name="tipo_fornitore"/>
+                    <field name="partner_intermediario" attrs="{'invisible': [('tipo_fornitore', '=', '01')], 'required': [('tipo_fornitore', '=', '10')]}"/>
+                    <newline/>
+                    <separator colspan="4"/>
+                    <field name="periodo"/>
+                    <field name="anno"/>
+                    <field name="trimestre" attrs="{'invisible': [('periodo', '!=', 'trimestre')], 'required': [('periodo', '=', 'trimestre')]}"/>
+                    <field name="mese" attrs="{'invisible': [('periodo', '!=', 'mese')], 'required': [('periodo', '=', 'mese')]}"/>
+                    <separator colspan="4"/>
+                    <field name="tipo"/>
+                    <field name="comunicazione_da_sostituire_annullare" attrs="{'invisible': [('tipo', '=', 'ordinaria')]}" />
+                    <field name="documento_da_sostituire_annullare" attrs="{'invisible': [('tipo', '=', 'ordinaria')]}"/>
+                    <field name="formato_dati"/>
+                    <newline/>
+                    <group colspan="2">
+                        <field name="quadro_FA" attrs="{'invisible': [('formato_dati', '!=', 'aggregati')]}" />
+                        <field name="quadro_SA" attrs="{'invisible': [('formato_dati', '!=', 'aggregati')]}" />
+                        
+	        			<field name="quadro_SE" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}"/>
+	        			<field name="quadro_FE" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}" readonly="1"/>
+	        			<field name="quadro_FR" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}" readonly="1"/>
+	        			<field name="quadro_NE" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}" readonly="1"/>
+                    </group>
+                    <group colspan="2">
+                        <field name="quadro_BL" attrs="{'invisible': [('formato_dati', '!=', 'aggregati')]}" />
+                        
+                        <field name="quadro_NR" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}" readonly="1"/>
+	        			<field name="quadro_DF" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}" readonly="1"/>
+	        			<field name="quadro_FN" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}" readonly="1"/>
+	        			<field name="quadro_TU" attrs="{'invisible': [('formato_dati', '!=', 'analitici')]}" readonly="1"/>
+                    </group>
+                    <group colspan="4">
+                        <separator colspan="4"/>
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="genera_comunicazione" string="Crea" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+      	<record id="wizard_spesometro_crea_comunicazione_action" model="ir.actions.act_window">
+            <field name="name">Nuova comunicazione</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.spesometro.crea.comunicazione</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_spesometro_crea_comunicazione"/>
+            <!-- <field name="search_view_id" ref="spesometro_comunicazione_search" /> -->
+        </record>
+         
+        <menuitem id="menu_spesometro_crea_comunicazione" action="wizard_spesometro_crea_comunicazione_action"
+            name="Nuova comunicazione" parent="menu_spesometro_main"/>
+    </data>
+</openerp>
