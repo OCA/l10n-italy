@@ -7,14 +7,13 @@
         <record id="wizard_spesometro_export_view" model="ir.ui.view">
 	        <field name="name">wizard.spesometro.export.view</field>
 	        <field name="model">wizard.spesometro.export</field>
-	        <field name="type">form</field>
 	        <field name="arch" type="xml">
 		        <form string="Params">
-		        	<!--<field name="file_to_import" />
-		        	<separator colspan="4" />-->
-		        	<field name="file_spesometro" readonly="1"/>
-		        	<separator colspan="4" />
-		            <button name="execute_export" string="Export" type="object" icon="gtk-execute" />
+		        	<group>
+			        	<field name="file_spesometro" readonly="1"/>
+			        	<separator colspan="4" />
+			            <button name="execute_export" string="Export" type="object" icon="gtk-execute" />
+		            </group>
 		      	</form>
 	        </field>
     	</record>

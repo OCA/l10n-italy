@@ -701,6 +701,22 @@ class wizard_spesometro_export(osv.osv_memory):
         content += self._record_Z(cr, uid, args, context=None)
         
         out=base64.encodestring(content.encode("utf8"))
-        return self.write(cr, uid, ids, {'file_spesometro':out}, context=context)
+        
+        self.write(cr, uid, ids, {'file_spesometro':out}, context=context)
+    
+        model_data_obj = self.pool.get('ir.model.data')
+        view_rec = model_data_obj.get_object_reference(cr, uid, 'l10n_it_spesometro', 'wizard_spesometro_export_view')
+        view_id = view_rec and view_rec[1] or False
+
+        return {
+           'view_type': 'form',
+           'view_id' : [view_id],
+           'view_mode': 'form',
+           'res_model': 'wizard.spesometro.export',
+           'res_id': ids[0],
+           'type': 'ir.actions.act_window',
+           'target': 'new',
+           'context': context,
+        }
        
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
