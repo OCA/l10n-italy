@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1"> 
+        <record id="ir_header_central_journal_report" model="ir.header_webkit">
+            <field name="footer_html"></field>
+            <field eval="&quot;&quot;&quot;Landscape&quot;&quot;&quot;" name="orientation"/>
+            <field eval="&quot;&quot;&quot;A4&quot;&quot;&quot;" name="format"/>
+            <field name="html"><![CDATA[<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+        <style type="text/css">
+            ${css}
+        </style>
+    </head>
+    <body style="border:0; margin:0;" onload="subst()">
+        <table class="header" style="border-bottom: 0px solid black; width: 100%">
+            <tr>
+                <td style="text-align:left; padding: 5px 0px;">
+                    <span style="font-weight: bold;">
+                    ${company.partner_id.name |entity}&nbsp; - &nbsp;P.IVA:&nbsp;
+                    ${company.partner_id.vat or '' |entity}&nbsp; <br/>
+                    ${company.partner_id.street or '' |entity}&nbsp;
+                    ${company.partner_id.street2 or '' |entity}&nbsp;
+                    ${company.partner_id.zip or '' |entity}&nbsp;
+                    ${company.partner_id.city or '' |entity}&nbsp;</span>
+                </td>
+            </tr>
+        </table> ${_debug or ''|n} 
+    </body>
+</html>]]>
+</field>
+            <field eval="20.0" name="margin_top"/>
+            <field eval="15.0" name="margin_bottom"/>
+            <field eval="15.0" name="margin_left"/>
+            <field eval="15.0" name="margin_right"/>
+            <field name="css" ><![CDATA[
+    /* http://meyerweb.com/eric/tools/css/reset/ 
+       v2.0 | 20110126
+       License: none (public domain)
+    */
+    /* START OF RESET CSS */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    /* END OF RESET CSS */
+    
+    body {
+        font-family: font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
+]]> </field>
+            <field eval="&quot;&quot;&quot;Central Journal Report&quot;&quot;&quot;" name="name"/>
+        </record>
+    </data>
+</openerp>
