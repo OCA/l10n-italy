@@ -30,7 +30,17 @@ class res_country(orm.Model):
     _columns =  {
         'codice_stato_agenzia_entrate': fields.char('Codice stato Agenzia Entrate', size=3)
     }
-
+    
+class account_tax_code(orm.Model): 
+    _inherit = "account.tax.code"
+    _columns =  {
+        'spesometro_escludi': fields.boolean('Escludi dalla dichiarazione'),
+    }
+    
+    _defaults = {
+        'spesometro_escludi' : False,
+    }
+    
 class account_journal(orm.Model): 
     _inherit = "account.journal"
     _columns =  {

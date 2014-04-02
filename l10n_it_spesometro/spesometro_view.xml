@@ -28,6 +28,22 @@
             </field>
 		</record>
 		
+		<!--
+        TAX CODE
+         -->
+        <record id="spesometro_account_tax_code_view_form" model="ir.ui.view">
+            <field name="name">spesometro.account.tax.code.view.form</field>
+            <field name="model">account.tax.code</field>
+            <field name="inherit_id" ref="account.view_tax_code_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Statistics']" position="after">
+                    <group string="Comunicazione art.21">
+	                	<field name="spesometro_escludi"/>
+	                </group>
+           		</xpath>
+            </field>
+		</record>
+		
         <!--
         JOURNAL
          -->
