@@ -236,6 +236,10 @@ class wizard_spesometro_export(osv.osv_memory):
         rcd += '{0:12s}'.format(fax.replace(' ','') or '') # fax
         rcd += '{0:50s}'.format(comunicazione.soggetto_email or '') # ind posta elettronica
         # Dati Anagrafici del Soggetto cui si riferisce la comunicazione - Persona Fisica
+        if comunicazione.soggetto_cm_codice_fiscale and \
+                comunicazione.soggetto_cm_codice_fiscale == comunicazione.soggetto_codice_fiscale:
+            raise osv.except_osv(_('Errore comunicazione!'),_("Codice fiscale del soggetto tenuto \
+                Deve essere diverso da quello del soggetto obbligato a cui si riferisce la comunicazione"))
         if comunicazione.soggetto_forma_giuridica == 'persona_fisica':
             if not comunicazione.soggetto_pf_cognome or not comunicazione.soggetto_pf_nome or not comunicazione.soggetto_pf_sesso \
                 or not comunicazione.soggetto_pf_data_nascita or not comunicazione.soggetto_pf_comune_nascita or not comunicazione.soggetto_pf_provincia_nascita:
