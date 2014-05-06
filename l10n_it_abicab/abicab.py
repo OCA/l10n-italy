@@ -22,12 +22,14 @@
 
 from osv import fields, orm
 
+
 class res_bank(orm.Model):
     _inherit = "res.bank"
     _columns = {
         'abi': fields.char('ABI', size=5),
         'cab': fields.char('CAB', size=5),
     }
+
 
 class res_partner_bank(orm.Model):
     _inherit = "res.partner.bank"
@@ -37,10 +39,12 @@ class res_partner_bank(orm.Model):
     }
 
     def onchange_bank_id(self, cr, uid, ids, bank_id, context=None):
-        result = super(res_partner_bank, self).onchange_bank_id(cr, uid, ids, bank_id, context=context)
+        result = super(
+            res_partner_bank, self).onchange_bank_id(
+            cr, uid, ids, bank_id, context=context)
         if bank_id:
-            bank = self.pool.get('res.bank').browse(cr, uid, bank_id, context=context)
+            bank = self.pool.get('res.bank').browse(
+                cr, uid, bank_id, context=context)
             result['value']['bank_abi'] = bank.abi
             result['value']['bank_cab'] = bank.cab
         return result
-

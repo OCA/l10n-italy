@@ -26,13 +26,12 @@
     'category': 'Localisation/Italy',
     'description': """
     Insert in the res.bank model the proprieties of the ABI/CAB
-    Utility to import italian bank from txt file 
+    Utility to import italian bank from txt file
     """,
     'author': 'OpenERP Italian Community',
+    'license': 'AGPL-3',
     'depends': ['base'],
     'website': 'http://www.openerp-italia.org/',
-    'update_xml': ['abicab_view.xml'],
+    'data': ['abicab_view.xml'],
     'installable': True,
-    'active': False,
-    'certificate': '',
 }
