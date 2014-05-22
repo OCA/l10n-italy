@@ -1,0 +1,72 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_ricevute_bancarie_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-22 09:57+0000\n"
+"PO-Revision-Date: 2014-05-22 09:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:20
+msgid "CUSTOMER"
+msgstr "CLIENTE"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:19
+msgid "ROW nr"
+msgstr "nr RIGA"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:40
+msgid "DUE DATE TOTAL:"
+msgstr "TOTALE SCADENZA:"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:23
+msgid "DUE DATE"
+msgstr "DATA SCADENZA"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:47
+msgid "TOTAL:"
+msgstr "TOTALE:"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:18
+msgid "LIST"
+msgstr "DISTINTA"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:22
+msgid "AMOUNT"
+msgstr "IMPORTO"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:9
+msgid "RIBA LIST MATURITIES SUMMARY"
+msgstr "RIEPILOGO SCADENZE RIBA"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:21
+msgid "RIF"
+msgstr "RIF"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:15
+msgid "Due date:"
+msgstr "Data scadenza:"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: model:ir.actions.report.xml,name:l10n_it_ricevute_bancarie_report.riba_maturities_summary
+msgid "Ri.Ba. Maturities Summary"
+msgstr "Riepilogo Scadenze Ri.Ba."
+
