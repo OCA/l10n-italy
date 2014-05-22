@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Associazione OpenERP Italia
+#    Copyright (C) 2014 Andrea Cometa <info@andreacometa.it>
+#    (<http://www.andreacometa.it>)
+#    Copyright (C) 2014 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -28,7 +30,7 @@ from osv import fields
 
 class report_riba_webkit(report_sxw.rml_parse):
 
-    def group_riba_data(self, objects):
+    def group_riba_by_date(self, objects):
         res = {}
         for distinta in objects:
             for line in distinta.line_ids:
@@ -58,13 +60,13 @@ class report_riba_webkit(report_sxw.rml_parse):
             'time': time,
             'cr': cr,
             'uid': uid,
-            'group_riba_data': self.group_riba_data,
+            'group_riba_by_date': self.group_riba_by_date,
             'newlined_text': self.newlined_text,
             'page_number': self.page_number,
         })
 
 report_sxw.report_sxw(
-    'report.riba.report.riepilogo_scadenze', 'riba',
+    'report.riba.maturities_summary', 'riba',
     'l10n_it_ricevute_bancarie_report/template/\
-riepilogo_scadenze_distinte_riba.mako',
+riba_maturities_summary.mako',
     parser=report_riba_webkit)

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Associazione OpenERP Italia
+#    Copyright (C) 2014 Andrea Cometa <info@andreacometa.it>
+#    (<http://www.andreacometa.it>)
+#    Copyright (C) 2014 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify

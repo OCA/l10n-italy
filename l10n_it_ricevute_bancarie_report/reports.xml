@@ -325,11 +325,11 @@
         </record>
 
         <report auto="False"
-                id="riba_riepilogo_scadenze"
+                id="riba_maturities_summary"
                 model="riba.distinta"
-                name="riba.report.riepilogo_scadenze"
-                file="l10n_it_ricevute_bancarie_report/templates/riepilogo_scadenze_distinte_riba.mako"
-                string="Riepilogo Scadenze Ri.Ba."
+                name="riba.maturities_summary"
+                file="l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako"
+                string="Ri.Ba. Maturities Summary"
                 report_type="webkit"
                 webkit_header="riba_portrait_header"
                 />
