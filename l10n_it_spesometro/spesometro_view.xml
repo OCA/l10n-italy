@@ -166,7 +166,6 @@
         <record id="spesometro_comunicazione_view_form" model="ir.ui.view">
             <field name="name">spesometro.comunicazione.view.form</field>
             <field name="model">spesometro.comunicazione</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Comunicazione">
                 	<group colspan="4">
@@ -426,7 +425,6 @@
         <record id="spesometro_comunicazione_view_tree" model="ir.ui.view">
             <field name="name">spesometro.comunicazione.view.tree</field>
             <field name="model">spesometro.comunicazione</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Comunicazioni">
                     <field name="progressivo_telematico"/>
@@ -444,7 +442,6 @@
         <record model="ir.ui.view" id="spesometro_comunicazione_search">
             <field name="name">salesman.commission.search</field>
             <field name="model">spesometro.comunicazione</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Ricerca comunicazioni">
                     <field name="anno"/>
@@ -476,7 +473,6 @@
          <record id="spesometro_comunicazione_fa_view_form" model="ir.ui.view">
             <field name="name">spesometro.comunicazione.fa.view.form</field>
             <field name="model">spesometro.comunicazione.line.fa</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Quado FA - Linea">
                     <group>
@@ -516,7 +512,6 @@
          <record id="spesometro_comunicazione_sa_view_form" model="ir.ui.view">
             <field name="name">spesometro.comunicazione.sa.view.form</field>
             <field name="model">spesometro.comunicazione.line.sa</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Quado SA - Linea">
                     <group>
@@ -541,7 +536,6 @@
          <record id="spesometro_comunicazione_bl_view_form" model="ir.ui.view">
             <field name="name">spesometro.comunicazione.bl.view.form</field>
             <field name="model">spesometro.comunicazione.line.bl</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Quado BL - Linea">
                     <group>
@@ -601,7 +595,6 @@
          <record id="spesometro_comunicazione_se_view_form" model="ir.ui.view">
             <field name="name">spesometro.comunicazione.se.view.form</field>
             <field name="model">spesometro.comunicazione.line.se</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Quado SE - Linea">
                    	<group>
