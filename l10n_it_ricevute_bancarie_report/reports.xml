@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="riba_portrait_header" model="ir.header_webkit">
+            <field name="footer_html"></field>
+            <field name="orientation">Portrait</field>
+            <field name="format">A4</field>
+            <field name="html">
+            <![CDATA[
+                <html>
+                    <head>
+                        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+                        <script>
+                            function subst() {
+                            var vars={};
+                            var x=document.location.search.substring(1).split('&');
+                            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+                            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+                            for(var i in x) {
+                            var y = document.getElementsByClassName(x[i]);
+                            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                                }
+                            }
+                        </script>
+                        <style type="text/css">
+                            ${css}
+                        </style>
+                    </head>
+                    <body style="border-bottom:0px solid lightGray; margin:0;" onload="subst()">
+                    ${_debug or ''|n} </body>
+                </html>]]>
+            </field>
+            <field eval="0" name="margin_top"/>
+            <field eval="0" name="margin_bottom"/>
+            <field name="css" ><![CDATA[
+                    
+                    body {
+                        font-family:helvetica;
+                        font-size:12;
+                    }
+                    
+                    .logo {
+                        width:100%;
+                        text-align:right;
+                    }
+
+                    .logo_centered {
+                        width:100%;
+                        text-align:center;
+                    }
+
+                    hr {
+                        width: 100%;
+                        align: center;
+                        border: 0px;
+                        color: #000;
+                        background-color: #000;
+                        height: 1px;
+                    }
+                    
+                    .simple_info {
+                        width: 50%;
+                        align: left;
+                        float: left;
+                        margin: 2px 0px;
+                    }
+                    
+                    .text_info {
+                        width:80%;
+                        margin:0px auto;
+                        text-align:left;
+                    }
+                    
+                    .centered {
+                        width:100%;
+                        text-align:center;
+                    }
+
+                    .basic_table{
+                        width:100%;
+                        text-align:center;
+                        border:1px solid #000;
+                        border-collapse: collapse;
+                        margin:10px 0px;
+                    }
+                    
+                    .contract_table {
+                        width:100%;
+                        text-align:left;
+                        border:1px solid #000;
+                        border-collapse: collapse;
+                        margin:10px 0px;
+                        font-size:10;
+                    }
+                    
+                    .contract_table td {
+                        border:1px solid #000;
+                        padding:2px;
+                        vertical-align:center;
+                    }
+
+                    .basic_table td {
+                        border:1px solid #000;
+                        padding:2px;
+                        vertical-align:center;
+                    }
+                    
+                    .particulars_main {
+                        width:100%;
+                        margin-bottom:5px;
+                    }
+                    
+                    .particulars {
+                        width:50%;
+                        float:left;
+                    }
+                    
+                    .details {
+                        width:80%;
+                        text-align:center;
+                        margin:10px 0px;
+                    }
+                    
+                    .sx {
+                        float:left;
+                        margin-left:0px;
+                        margin-right:auto;
+                    }
+                    
+                    .dx {
+                        float:right;
+                        margin-left:auto;
+                        margin-right:0px;
+                    }
+                    
+                    .clear {
+                        clear:both;
+                    }
+                    
+                    .space {
+                        margin:20px 0px;
+                    }
+                    
+                    .elevate {
+                        margin-top:-8px;
+                    }
+                    
+                    .page-break {
+                        page-break-after: always;
+                    }
+
+                    .w5 {
+                        width: 5%;
+                        float: left;
+                    }
+                    
+                    .w10 {
+                        width: 10%;
+                        float: left;
+                    }
+                    
+                    .w15 {
+                        width: 15%;
+                        float: left;
+                    }
+                    
+                    .w20 {
+                        width: 20%;
+                        float: left;
+                    }
+                    
+                    .w25 {
+                        width: 25%;
+                        float: left;
+                    }
+
+                    .w30 {
+                        width: 30%;
+                        float: left;
+                    }
+                    
+                    .w33 {
+                        width: 33%;
+                        float: left;
+                    } 
+                    
+                    .w35 {
+                        width: 35%;
+                        float: left;
+                    }   
+
+                    .w40 {
+                        width: 40%;
+                        float: left;
+                    }
+                    
+                    .w45 {
+                        width: 45%;
+                        float: left;
+                    }
+                    
+                    .w50 {
+                        width: 50%;
+                        float: left;
+                    }
+                    
+                    .w60 {
+                        width: 60%;
+                        float: left;
+                    }
+                    
+                    .w75 {
+                        width: 75%;
+                        float: left;
+                    }
+                    
+                    .w80 {
+                        width: 80%;
+                        float: left;
+                    }
+                    
+                    .w90 {
+                        width: 90%;
+                        float: left;
+                    }
+                    
+                    .w95 {
+                        width: 90%;
+                        float: left;
+                    }
+                    
+                    .w100 {
+                        width: 100%;
+                        float: left;
+                    }
+                    
+                    .indented {
+                        margin-left: 10px;
+                    }
+                    
+                    .font_6 {
+                        font-size: 6px;
+                    }
+                    
+                    .font_7 {
+                        font-size: 6px;
+                    }
+                    
+                    .font_8 {
+                        font-size: 8px;
+                    }
+                    
+                    .font_9 {
+                        font-size: 9px;
+                    }
+                    
+                    .font_10 {
+                        font-size: 10px;
+                    }
+                    
+                    .font_12 {
+                        font-size: 12px;
+                    }
+                    
+                    .font_big {
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+
+                    .noborder_table{
+                        width:100%;
+                        text-align:center;
+                        border:0;
+                        border-collapse: collapse;
+                        margin:10px 0px;
+                    }
+ 
+                    .noborder_table td {
+                        border:0;
+                        padding:2px;
+                        vertical-align:center;
+                    }
+                    
+                    .noborder_table table {
+                        border:1px solid #000;
+                    }
+                    
+                    .rotate_90 {
+                        -webkit-transform: rotate(-90deg);
+                    }
+                    
+                    .bordi_arrotondati {
+                        border:1px solid #656565;
+                        border-radius: 5px;
+                        -webkit-border-radius: 5px;
+                    }
+                    
+                    .distance {
+                        padding:10px 0px;
+                    }
+                    
+                    .separated_bottom {
+                        margin-bottom: 5px;
+                    }
+                    
+                    .grey_border {
+                        border-color:#B5B5B5;
+                    }
+                    
+                    .info_table td {
+                        border:1px solid;
+                        border-radius: 5px;
+                        -webkit-border-radius: 5px;
+                        border-color:#B5B5B5;
+                    }
+                    
+                    .info_table p.data {
+                        font-weight:bold;
+                    }
+                    
+                ]]>
+            </field>
+            <field name="name">Ri.Ba. Reports Header</field>
+        </record>
+
+        <report auto="False"
+                id="riba_maturities_summary"
+                model="riba.distinta"
+                name="riba.maturities_summary"
+                file="l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako"
+                string="Ri.Ba. Maturities Summary"
+                report_type="webkit"
+                webkit_header="riba_portrait_header"
+                />
+
+    </data>
+</openerp>
