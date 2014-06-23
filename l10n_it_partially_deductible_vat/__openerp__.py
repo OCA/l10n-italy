@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2014
+#    Copyright (C) 2011
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
 #    Copyright (C) 2012-2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
