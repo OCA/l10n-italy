@@ -10,7 +10,7 @@
     
     <table class="w100">
     <%total=0%>
-    %for due_date,lines in group_riba_by_date(objects).items():
+    %for due_date in sorted(group_riba_by_date(objects).keys()):
         <tr style="background-color: #cecece;">
             <td colspan="6">${_("Due date:")} ${due_date}</td>
         </tr>
@@ -23,7 +23,7 @@
             <td>${_("DUE DATE")}</td>
         </tr>
         <%group_amount=0%>
-        %for l in lines:
+        %for l in group_riba_by_date(objects)[due_date]:
             %if l.due_date == due_date:
                 <%group_amount+=l.amount%>
                 <tr>
