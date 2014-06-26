@@ -38,13 +38,6 @@ class report_riba_webkit(report_sxw.rml_parse):
                     res.update({line.due_date: [line]})
                 else:
                     res[line.due_date] = res[line.due_date] + [line]
-        """
-        if res:
-            res_ordered = {}
-            for k in sorted(res.keys()):
-                res_ordered.update({k: res[k]})
-            res = res_ordered
-        """
         return res
 
     def __init__(self, cr, uid, name, context):
