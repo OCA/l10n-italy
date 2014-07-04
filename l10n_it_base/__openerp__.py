@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #    
 #    Copyright (C) 2010-2011 OpenERP Italian Community
@@ -30,26 +30,24 @@ Funcionalities:
 - Comuni italiani
 - res.partner.title italiani
 - Province e regioni
-- Automatistmi su res.partner.address
+- Automatismi su res.partner.address
 
 """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['base'],
-    "init_xml" : [
-    ],
-    "update_xml" : ['partner/partner_view.xml',
-                    "security/ir.model.access.csv", 
+    "data" : ['partner/partner_view.xml',
+                    "security/ir.model.access.csv",
                     'partner/data/res.region.csv',
                     'partner/data/res.province.csv',
                     'partner/data/res.city.csv',
                     'partner/data/res.partner.title.csv'],
-    "demo_xml" : [],
+    "demo" : [],
     "active": False,
     "installable": True
-}
 
 # http://www.istat.it/strumenti/definizioni/comuni/
 # i dati dovrebbero essere sincronizzati con questi
 
+}
