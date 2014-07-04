@@ -6,7 +6,6 @@
 		<field name="name">lead.form.province</field>
 		<field name="model">crm.lead</field>
 		<field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
-		<field name="type">form</field>
 		<field name="arch" type="xml">
            <field name="country_id" position="before">
                <div class="province_format">
@@ -21,7 +20,6 @@
 		<field name="name">lead.form.city</field>
 		<field name="model">crm.lead</field>
 		<field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
-		<field name="type">form</field>
 		<field name="arch" type="xml">
 		   <field name="city" position="replace" >
                 <field name="city" placeholder="City" style="width: 70%%" on_change="on_change_city(city)"/>
