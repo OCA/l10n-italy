@@ -1,6 +1,6 @@
 [report]
 include =
-    */OCA/connector/*
+    */OCA/l10n-italy/*
 
 omit =
     */tests/*
