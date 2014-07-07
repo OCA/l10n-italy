@@ -5,6 +5,9 @@ python:
 virtualenv:
   system_site_packages: true
 
+before_install:
+  - git clone https://github.com/OCA/account-invoicing $HOME/account-invoicing -b 7.0
+
 install:
  - git clone https://github.com/OCA/maintainer-quality-tools.git $HOME/maintainer-quality-tools
  - export PATH=$HOME/maintainer-quality-tools/travis:$PATH
@@ -16,7 +19,7 @@ services:
 
 script:
     - travis_run_flake8
-    - travis_run_tests 7.0
+    - travis_run_tests 7.0 openerp_test $HOME/account-invoicing
 
 after_success:
   coveralls
