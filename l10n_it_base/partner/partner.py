@@ -24,7 +24,6 @@
 from osv import osv
 from osv import fields
 from tools.translate import _
-import openerp.addons.base.res.res_partner
 
 
 class res_region(osv.osv):
