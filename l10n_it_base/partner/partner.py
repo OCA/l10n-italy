@@ -4,6 +4,7 @@
 #    Copyright (C) 2010 OpenERP Italian Community
 #    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2010 Associazione OpenERP Italia.
+#    Copyright (C) 2014 Lorenzo Battistini <lorenzo.battistini@agilebg.com>.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -23,6 +24,11 @@
 from osv import osv
 from osv import fields
 from tools.translate import _
+import openerp.addons.base.res.res_partner
+
+openerp.addons.base.res.res_partner.ADDRESS_FIELDS = (
+    openerp.addons.base.res.res_partner.ADDRESS_FIELDS + ('province', 'region')
+    )
 
 
 class res_region(osv.osv):
@@ -128,38 +134,3 @@ class res_partner(osv.osv):
     def write(self, cr, uid, ids, vals, context=None):
         vals = self._set_vals_city_data(cr, uid, vals)
         return super(res_partner, self).write(cr, uid, ids, vals, context)
-
-    def _address_fields(self, cr, uid, context=None):
-        return super(res_partner, self)._address_fields(cr, uid, context) + [
-            'province', 'region']
-
-    def _display_address(
-        self, cr, uid, address, without_company=False, context=None
-    ):
-        '''
-        Inherithed to let the user add province and region.
-        '''
-
-        # get the information that will be injected into the display format
-        # get the address format
-        address_format = address.country_id and address.country_id.address_format or \
-                         "%(street)s\n%(street2)s\n%(city)s %(province_code)s %(zip)s\n%(country_name)s"
-        args = {
-            'state_code': address.state_id and address.state_id.code or '',
-            'state_name': address.state_id and address.state_id.name or '',
-            'country_code': address.country_id and address.country_id.code or '',
-            'country_name': address.country_id and address.country_id.name or '',
-            'company_name': address.parent_id and address.parent_id.name or '',
-            'region_name': address.region and address.region.name or '',
-            'province_code': address.province and address.province.code or '',
-            'province_name': address.province and address.province.name or '',
-        }
-        for field in self._address_fields(cr, uid, context=context):
-            args[field] = getattr(address, field) or ''
-        if without_company:
-            args['company_name'] = ''
-        elif address.parent_id:
-            address_format = '%(company_name)s\n' + address_format
-        return address_format % args
-
-res_partner()
