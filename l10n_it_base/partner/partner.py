@@ -130,9 +130,12 @@ class res_partner(osv.osv):
         return super(res_partner, self).write(cr, uid, ids, vals, context)
 
     def _address_fields(self, cr, uid, context=None):
-        return super(res_partner, self)._address_fields(cr, uid, context) + ['province', 'region']
+        return super(res_partner, self)._address_fields(cr, uid, context) + [
+            'province', 'region']
 
-    def _display_address(self, cr, uid, address, without_company=False, context=None):
+    def _display_address(
+        self, cr, uid, address, without_company=False, context=None
+    ):
         '''
         Inherithed to let the user add province and region.
         '''
