@@ -9,6 +9,7 @@ before_install:
   - git clone https://github.com/OCA/account-invoicing $HOME/account-invoicing -b 7.0
   - git clone https://github.com/OCA/account-financial-tools $HOME/account-financial-tools -b 7.0
   - git clone https://github.com/OCA/webkit-tools $HOME/webkit-tools -b 7.0
+  - git clone https://github.com/OCA/account-payment $HOME/account-payment -b 7.0
 
 install:
  - git clone https://github.com/OCA/maintainer-quality-tools.git $HOME/maintainer-quality-tools
@@ -21,7 +22,7 @@ services:
 
 script:
     - travis_run_flake8
-    - travis_run_tests 7.0 $HOME/account-invoicing $HOME/account-financial-tools $HOME/webkit-tools
+    - travis_run_tests 7.0 $HOME/account-invoicing $HOME/account-financial-tools $HOME/webkit-tools $HOME/account-payment
 
 after_success:
   coveralls
