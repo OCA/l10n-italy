@@ -26,10 +26,6 @@ from osv import fields
 from tools.translate import _
 import openerp.addons.base.res.res_partner
 
-openerp.addons.base.res.res_partner.ADDRESS_FIELDS = (
-    openerp.addons.base.res.res_partner.ADDRESS_FIELDS + ('province', 'region')
-    )
-
 
 class res_region(osv.osv):
     _name = 'res.region'
@@ -82,6 +78,9 @@ class res_partner(osv.osv):
     _columns = {
         'province': fields.many2one('res.province', string='Province'),
         'region': fields.many2one('res.region', string='Region'),
+        'province_code': fields.related(
+            'province', 'code', type='char',
+            size=2, string='Province code'),
     }
 
     def on_change_city(self, cr, uid, ids, city):
@@ -134,3 +133,7 @@ class res_partner(osv.osv):
     def write(self, cr, uid, ids, vals, context=None):
         vals = self._set_vals_city_data(cr, uid, vals)
         return super(res_partner, self).write(cr, uid, ids, vals, context)
+
+    def _address_fields(self, cr, uid, context=None):
+        return super(res_partner, self)._address_fields(
+            cr, uid, context) + ['province_code']
