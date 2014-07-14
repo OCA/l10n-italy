@@ -61,7 +61,7 @@
                     </td><td class="left_without_line">
                 %endif
                 %if line['index']==0:
-                    ${object.partner_id.name or ''| entity}
+                    <div style="page-break-inside: avoid">${object.partner_id.name or ''| entity}</div>
                 %endif
                 %if line['index']==0:
                     </td><td class="left_with_line">
@@ -69,7 +69,7 @@
                     </td><td class="left_without_line">
                 %endif
                 %if line['index']==0:
-                    ${object.name or ''| entity}
+                    <div style="page-break-inside: avoid">${object.name or ''| entity}</div>
                 %endif
                 %if line['index']==0:
                     </td><td class="left_with_line">
@@ -85,7 +85,7 @@
                     </td><td class="left_without_line">
                 %endif
                 %if line['index']==0:
-                    ${object.journal_id.name or ''| entity}
+                    <div style="page-break-inside: avoid">${object.journal_id.name or ''| entity}</div>
                 %endif
                 %if line['index']==0:
                     </td><td class="right_with_line">
@@ -97,9 +97,9 @@
                 %endif
                 </td>
                 %if line['index']==0:
-                    <td class="right_with_line">${ (line['tax_code_name'])  or ''| entity}</td>
+                    <td class="right_with_line"><div style="page-break-inside: avoid">${ (line['tax_code_name'])  or ''| entity}</div></td>
                 %else:
-                    <td class="right_without_line">${ (line['tax_code_name'])  or ''| entity}</td>
+                    <td class="right_without_line"><div style="page-break-inside: avoid">${ (line['tax_code_name'])  or ''| entity}</div></td>
                 %endif
                 %if line['index']==0:
                     <td class="right_with_line"><div style="page-break-inside: avoid">${ formatLang(line['amount'])| entity}</div></td>
