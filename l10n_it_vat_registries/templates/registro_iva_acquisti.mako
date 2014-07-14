@@ -111,9 +111,9 @@
                     <td class="right_without_line">${ (line['tax_code_name'])  or ''| entity}</td>
                 %endif
                 %if line['index']==0:
-                    <td class="right_with_line">${ formatLang(line['amount'])| entity}</td>
+                    <td class="right_with_line"><div style="page-break-inside: avoid">${ formatLang(line['amount'])| entity}</div></td>
                 %else:
-                    <td class="right_without_line">${ formatLang(line['amount'])| entity}</td>
+                    <td class="right_without_line"><div style="page-break-inside: avoid">${ formatLang(line['amount'])| entity}</div></td>
                 %endif
                 </tr>
             %endfor

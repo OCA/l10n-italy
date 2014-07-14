@@ -87,9 +87,6 @@
         </table>
     </body>
 </html>]]></field><field name="css" ><![CDATA[
-tr {
-    page-break-inside: avoid;
-}
 thead{
     display: table-header-group; /* http://code.google.com/p/wkhtmltopdf/issues/detail?id=9#c8 */
 }
@@ -182,9 +179,6 @@ thead{
         </table>
     </body>
 </html>]]></field><field name="css" ><![CDATA[
-tr {
-    page-break-inside: avoid;
-}
 thead{
     display: table-header-group; /* http://code.google.com/p/wkhtmltopdf/issues/detail?id=9#c8 */
 }
@@ -277,9 +271,6 @@ thead{
         </table>
     </body>
 </html>]]></field><field name="css" ><![CDATA[
-tr {
-    page-break-inside: avoid;
-}
 thead{
     display: table-header-group; /* http://code.google.com/p/wkhtmltopdf/issues/detail?id=9#c8 */
 }
