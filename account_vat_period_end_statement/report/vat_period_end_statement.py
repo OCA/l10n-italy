@@ -23,8 +23,8 @@
 ##############################################################################
 
 import time
-from report import report_sxw
-from tools.translate import _
+from openerp.report import report_sxw
+from openerp.tools.translate import _
 from openerp.osv import orm
 
 class print_vat_period_end_statement(report_sxw.rml_parse):

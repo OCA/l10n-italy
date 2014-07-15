@@ -4,7 +4,6 @@
         <record id="remove_period" model="ir.ui.view">
             <field name="name">remove_period</field>
             <field name="model">remove.period.from.vat.statement</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Remove period">
                     <field name="period_id"></field>

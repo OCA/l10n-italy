@@ -7,7 +7,6 @@
         <record id="view_account_vat_period_end_statement" model="ir.ui.view">
             <field name="name">account.vat.period.end.statement.form</field>
             <field name="model">account.vat.period.end.statement</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Vat statement">
                     <field name="journal_id"   widget="selection" select="1"/>
@@ -92,7 +91,6 @@
         <record id="view_account_vat_period_end_statement_tree" model="ir.ui.view">
             <field name="name">account.vat.period.end.statement.tree</field>
             <field name="model">account.vat.period.end.statement</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Vat statement">
                     <field name="date" />
@@ -117,7 +115,6 @@
             <field name="name">account.tax.code.form</field>
             <field name="model">account.tax.code</field>
             <field name="inherit_id" ref="account.view_tax_code_form"></field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <separator string="Description" position="before">
                     <group colspan="2" col="2">
