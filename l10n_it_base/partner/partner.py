@@ -4,6 +4,7 @@
 #    Copyright (C) 2010 OpenERP Italian Community
 #    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2010 Associazione OpenERP Italia.
+#    Copyright (C) 2014 Lorenzo Battistini <lorenzo.battistini@agilebg.com>.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -76,6 +77,9 @@ class res_partner(osv.osv):
     _columns = {
         'province': fields.many2one('res.province', string='Province'),
         'region': fields.many2one('res.region', string='Region'),
+        'province_code': fields.related(
+            'province', 'code', type='char',
+            size=2, string='Province code'),
     }
 
     def on_change_city(self, cr, uid, ids, city):
@@ -129,4 +133,6 @@ class res_partner(osv.osv):
         vals = self._set_vals_city_data(cr, uid, vals)
         return super(res_partner, self).write(cr, uid, ids, vals, context)
 
-res_partner()
+    def _address_fields(self, cr, uid, context=None):
+        return super(res_partner, self)._address_fields(
+            cr, uid, context) + ['province_code']
