@@ -29,7 +29,6 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
         <record model="ir.ui.view" id="view_fyc_tree">
             <field name="name">account_fiscal_year_closing.fyc.tree</field>
             <field name="model">account_fiscal_year_closing.fyc</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Fiscal Year Closings" colors="red:state=='new';blue:state=='draft';green:state=='in_progress'">
                     <field name="company_id" select="1"/>
@@ -45,7 +44,6 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
         <record model="ir.ui.view" id="view_fyc_form">
             <field name="name">account_fiscal_year_closing.fyc.form</field>
             <field name="model">account_fiscal_year_closing.fyc</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fiscal Year Closing">
                     <group attrs="{'invisible':[('state','!=','new')]}" colspan="4">

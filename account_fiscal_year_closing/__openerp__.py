@@ -33,18 +33,19 @@
     "website" : "http://www.openerp-italia.org",
     "category" : "Generic Modules/Accounting",
     "description": """
-Generalization of l10n_es_fiscal_year_closing ( http://apps.openerp.com/addon/4506 )
+Generalization of l10n_es_fiscal_year_closing
+( http://apps.openerp.com/addon/4506 )
 
 Fiscal Year Closing Wizard
     
 Replaces the default OpenERP end of year wizards (from account module)
 with a more advanced all-in-one wizard that will let the users:
-  - Check for unbalanced moves, moves with invalid dates
-    or period or draft moves on the fiscal year to be closed.
-  - Create the Loss and Profit entry.
-  - Create the Net Loss and Profit entry.
-  - Create the Closing entry.
-  - Create the Opening entry.
+1) Check for unbalanced moves, moves with invalid dates
+or period or draft moves on the fiscal year to be closed.
+2) Create the Loss and Profit entry.
+3) Create the Net Loss and Profit entry.
+4) Create the Closing entry.
+5) Create the Opening entry.
 
 It is stateful, saving all the info about the fiscal year closing, so the
 user can cancel and undo the operations easily.
@@ -54,8 +55,7 @@ user can cancel and undo the operations easily.
                     "base",
                     "account",
                 ],
-    "init_xml" : [],
-    "update_xml" : [
+    "data" : [
                     "security/ir.model.access.csv",
                     "fyc_workflow.xml",
                     "wizard/wizard_run.xml",

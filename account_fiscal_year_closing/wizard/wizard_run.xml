@@ -6,7 +6,6 @@
         <record id="fyc_run_view" model="ir.ui.view">
             <field name="name">fyc.run.wizard</field>
             <field name="model">fyc.run</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fiscal Year Closing">
                     <label string="This wizard will perform the selected operations. It will create account moves for the operations you selected, skipping those already created. Non-selected operations will be canceled." colspan="4"/>
