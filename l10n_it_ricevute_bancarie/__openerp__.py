@@ -94,6 +94,7 @@ da un flusso 'salvo buon fine'.
         ],
     'test': [
         'test/riba_invoice.yml',
+        'test/issue_riba.yml',
         ],
     'installable': True,
     'active': False,

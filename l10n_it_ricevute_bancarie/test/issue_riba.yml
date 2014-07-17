@@ -1,0 +1,18 @@
+-
+  I call the riba.emissione.wizard
+-
+  !record {model: riba.emissione, id: riba_emissione_1, view: emissione_riba_view}:
+    configurazione: sbf_riba_config
+-
+  I click on Create Button
+-
+  !python {model: riba.emissione}: |
+    invoice = self.pool['account.invoice'].browse(
+      cr, uid, ref('account_invoice_riba'))
+    for move_line in invoice.move_id.line_id:
+      if move_line.account_id.id == ref('account.a_recv'):
+        riba_move_line_id = move_line.account_id.id
+        break
+    self.crea_distinta(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
+      "tz": False, "active_model": "riba.emissione", "active_ids": [riba_move_line_id],
+      "active_id": riba_move_line_id, })
