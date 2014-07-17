@@ -31,7 +31,7 @@
   I check the riba credit
 -
   !python {model: account.invoice}: |
-    invoice = self.browse(cr, uid, ref('account_invoice_riba'))
+    invoice = self.browse(cr, uid, ref('account_invoice_riba'), context=context)
     for move_line in invoice.move_id.line_id:
       if move_line.account_id.id == ref('account.a_recv'):
         line_ids = self.pool['account.move.line'].search(cr, uid, [
@@ -41,7 +41,7 @@
             ('account_id.type','=','receivable'),
           ('reconcile_id', '=', False),
           ('distinta_line_ids', '=', False)
-          ])
+          ], context=context)
         assert (len(line_ids) == 1), (
           "There must be 1 riba line, %s found" % len(line_ids))
         assert (line_ids[0] == move_line.id), (
