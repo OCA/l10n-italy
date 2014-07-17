@@ -8,11 +8,18 @@
 -
   !python {model: riba.emissione}: |
     invoice = self.pool['account.invoice'].browse(
-      cr, uid, ref('account_invoice_riba'))
+      cr, uid, ref('account_invoice_riba'), context=context)
     for move_line in invoice.move_id.line_id:
       if move_line.account_id.id == ref('account.a_recv'):
-        riba_move_line_id = move_line.account_id.id
+        riba_move_line_id = move_line.id
         break
-    self.crea_distinta(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
+    action = self.crea_distinta(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
       "tz": False, "active_model": "riba.emissione", "active_ids": [riba_move_line_id],
       "active_id": riba_move_line_id, })
+    riba_list_id = action['res_id']
+    self.pool['riba.distinta'].confirm(cr, uid, [riba_list_id], context=context)
+-
+  I check that Initially customer invoice state is paid
+-
+  !assert {model: account.invoice, id: account_invoice_riba}:
+    - state == 'paid'

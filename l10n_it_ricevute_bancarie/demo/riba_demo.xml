@@ -16,7 +16,7 @@
             <field ref="account_payment_term_riba" name="payment_id"/>
         </record>
         
-        <!-- bank -->
+        <!-- banks -->
 
         <record id="res_bank_1" model="res.bank">
             <field name="name">Bank</field>
@@ -27,6 +27,15 @@
             <field name="name">company account</field>
             <field name="acc_number">BE74126201326907</field>
             <field name="partner_id" ref="base.main_partner"></field>
+            <field name="state">iban</field>
+            <field name="bank_bic">CPHBBE75</field>
+            <field name="bank" ref="res_bank_1"></field>
+        </record>
+        
+        <record id="customer_bank" model="res.partner.bank">
+            <field name="name">customer account</field>
+            <field name="acc_number">IT86Y0200809440000005235152</field>
+            <field name="partner_id" ref="base.res_partner_12"></field>
             <field name="state">iban</field>
             <field name="bank_bic">CPHBBE75</field>
             <field name="bank" ref="res_bank_1"></field>
