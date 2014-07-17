@@ -27,15 +27,15 @@ Fiscal Year Closing
 __author__ = "Borja López Soilán (Pexego)"
 
 
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import fields, orm
+from openerp.tools.translate import _
 from datetime import datetime
-import netsvc
+from openerp import netsvc
 
 #-------------------------------------------------------------------------------
 # Predeclaration of the FYC object
 #-------------------------------------------------------------------------------
-class fiscal_year_closing_init(osv.osv):
+class fiscal_year_closing_init(orm.Model):
     """
     Fiscal Year Closing Wizard
     """
@@ -54,7 +54,7 @@ fiscal_year_closing_init()
 # Account mapping objects (to be used on the fyc configuration)
 #-------------------------------------------------------------------------------
 
-class fiscal_year_closing_lp_account_mapping(osv.osv):
+class fiscal_year_closing_lp_account_mapping(orm.Model):
     """
     Loss & Profit Account Mapping
     """
@@ -75,7 +75,7 @@ class fiscal_year_closing_lp_account_mapping(osv.osv):
 fiscal_year_closing_lp_account_mapping()
 
 
-class fiscal_year_closing_nlp_account_mapping(osv.osv):
+class fiscal_year_closing_nlp_account_mapping(orm.Model):
     """
     Net Loss & Profit Account Mapping
     """
@@ -96,7 +96,7 @@ class fiscal_year_closing_nlp_account_mapping(osv.osv):
 fiscal_year_closing_nlp_account_mapping()
 
 
-class fiscal_year_closing_c_account_mapping(osv.osv):
+class fiscal_year_closing_c_account_mapping(orm.Model):
     """
     Closing Account Mapping
     """
@@ -119,7 +119,7 @@ fiscal_year_closing_c_account_mapping()
 #-------------------------------------------------------------------------------
 # Fiscal Year Closing Wizard
 #-------------------------------------------------------------------------------
-class fiscal_year_closing(osv.osv):
+class fiscal_year_closing(orm.Model):
     """
     Fiscal Year Closing Wizard
     """
@@ -425,17 +425,17 @@ class fiscal_year_closing(osv.osv):
             #
             fyc_ids = self.search(cr, uid, [('name', '=', fyc.name)])
             if len(fyc_ids) > 1:
-                raise osv.except_osv(_('Error'), _('There is already a fiscal year closing with this name.'))
+                raise orm.except_orm(_('Error'), _('There is already a fiscal year closing with this name.'))
             
             assert fyc.closing_fiscalyear_id and fyc.closing_fiscalyear_id.id
             fyc_ids = self.search(cr, uid, [('closing_fiscalyear_id', '=', fyc.closing_fiscalyear_id.id)])
             if len(fyc_ids) > 1:
-                raise osv.except_osv(_('Error'), _('There is already a fiscal year closing for the fiscal year to close.'))
+                raise orm.except_orm(_('Error'), _('There is already a fiscal year closing for the fiscal year to close.'))
 
             assert fyc.opening_fiscalyear_id and fyc.opening_fiscalyear_id.id
             fyc_ids = self.search(cr, uid, [('opening_fiscalyear_id', '=', fyc.opening_fiscalyear_id.id)])
             if len(fyc_ids) > 1:
-                raise osv.except_osv(_('Error'), _('There is already a fiscal year closing for the fiscal year to open.'))
+                raise orm.except_orm(_('Error'), _('There is already a fiscal year closing for the fiscal year to open.'))
 
             #
             # Check whether the default values of the fyc object have to be computed
@@ -530,11 +530,11 @@ class fiscal_year_closing(osv.osv):
             # Require the L&P, closing, and opening moves to exist (NL&P is optional)
             #
             if not fyc.loss_and_profit_move_id:
-                raise osv.except_osv(_("Not all the operations have been performed!"), _("The Loss & Profit move is required"))
+                raise orm.except_orm(_("Not all the operations have been performed!"), _("The Loss & Profit move is required"))
             if not fyc.closing_move_id:
-                raise osv.except_osv(_("Not all the operations have been performed!"), _("The Closing move is required"))
+                raise orm.except_orm(_("Not all the operations have been performed!"), _("The Closing move is required"))
             if not fyc.opening_move_id:
-                raise osv.except_osv(_("Not all the operations have been performed!"), _("The Opening move is required"))
+                raise orm.except_orm(_("Not all the operations have been performed!"), _("The Opening move is required"))
 
             ''' needed ?
             
@@ -557,7 +557,7 @@ class fiscal_year_closing(osv.osv):
                 # Check if it has been confirmed
                 #
                 if move.state == 'draft':
-                    raise osv.except_osv(_("Some moves are in draft state!"), _("You have to review and confirm each of the moves before continuing"))
+                    raise orm.except_orm(_("Some moves are in draft state!"), _("You have to review and confirm each of the moves before continuing"))
                 #
                 # Check the balance
                 #
@@ -565,7 +565,7 @@ class fiscal_year_closing(osv.osv):
                 for line in move.line_id:
                     amount += (line.debit - line.credit)
                 if abs(amount) > 0.5 * 10 ** -int(self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')):
-                    raise osv.except_osv(_("Some moves are unbalanced!"), _("All the moves should be balanced before continuing"))
+                    raise orm.except_orm(_("Some moves are unbalanced!"), _("All the moves should be balanced before continuing"))
 
                 #
                 # Reconcile the move
@@ -699,12 +699,3 @@ class fiscal_year_closing(osv.osv):
         for item_id in ids:
             wf_service.trg_create(uid, 'account_fiscal_year_closing.fyc', item_id, cr)
         return True
-
-
-fiscal_year_closing()
-
-
-
-
-
-

@@ -4,7 +4,6 @@
         <record id="add_period" model="ir.ui.view">
             <field name="name">add_period</field>
             <field name="model">add.period.to.vat.statement</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Add period" version="7.0">
                     <group>

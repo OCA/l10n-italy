@@ -23,10 +23,10 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-from tools.translate import _
+from openerp.tools.translate import _
 import math
-import decimal_precision as dp
-import netsvc
+import openerp.addons.decimal_precision as dp
+from openerp import netsvc
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 

@@ -6,7 +6,6 @@
 		<field name="name">partner.form.province</field>
 		<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="type">form</field>
 		<field name="arch" type="xml">
            <field name="country_id" position="before">
                <div class="province_format">
@@ -17,15 +16,14 @@
 		</field>
 	 </record>
 
-	<record model="ir.ui.view" id="view_partner_form_inherit_state">
+	 <record model="ir.ui.view" id="view_partner_form_inherit_state">
 		<field name="name">partner.form.state</field>
 		<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="type">form</field>
 		<field name="arch" type="xml">
-           <field name="state_id" position="replace">
-				<field name="state_id" invisible="1" />
-		   </field>
+		    <field name="state_id" position="replace">
+		        <field name="state_id" invisible="1"/>
+		    </field>
 		</field>
 	 </record>
 
@@ -33,7 +31,6 @@
 		<field name="name">partner.form.zip</field>
 		<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="type">form</field>
 		<field name="arch" type="xml">
            <field name="zip" position="replace">
 		    </field>
@@ -44,7 +41,6 @@
 		<field name="name">partner.form.city</field>
 		<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="type">form</field>
 		<field name="arch" type="xml">
 		   <field name="city" position="replace" >
                 <field name="city" placeholder="City" style="width: 70%%" on_change="on_change_city(city)"/>
@@ -60,7 +56,6 @@
         <record id="view_res_province_tree" model="ir.ui.view">
             <field name="name">res.province.tree</field>
             <field name="model">res.province</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Province">
                     <field name="name"/>
@@ -73,7 +68,6 @@
         <record id="view_res_province_form" model="ir.ui.view">
             <field name="name">res.province.form</field>
             <field name="model">res.province</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Province">
                     <field name="name" select="1"/>
@@ -100,7 +94,6 @@
         <record id="view_res_city_tree" model="ir.ui.view">
             <field name="name">res.city.tree</field>
             <field name="model">res.city</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="City">
                     <field name="name"/>
@@ -113,7 +106,6 @@
         <record id="view_res_city_form" model="ir.ui.view">
             <field name="name">res.city.form</field>
             <field name="model">res.city</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="City">
                     <group col="4">

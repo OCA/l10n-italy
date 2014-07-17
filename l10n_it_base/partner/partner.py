@@ -20,57 +20,52 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
-from tools.translate import _
+from openerp.osv import orm, fields
 
 
-class res_region(osv.osv):
+class res_region(orm.Model):
     _name = 'res.region'
     _description = 'Region'
     _columns = {
-        'name': fields.char(
-            'Region Name', size=64, help='The full name of the region.',
-            required=True),
+        'name': fields.char('Region Name', size=64,
+                            help='The full name of the region.',
+                            required=True),
         'country_id': fields.many2one('res.country', 'Country'),
     }
-res_region()
 
 
-class res_province(osv.osv):
+class res_province(orm.Model):
     _name = 'res.province'
     _description = 'Province'
     _columns = {
-        'name': fields.char(
-            'Province Name', size=64, help='The full name of the province.',
-            required=True),
-        'code': fields.char(
-            'Province Code', size=2, help='The province code in two chars.',
-            required=True),
+        'name': fields.char('Province Name', size=64,
+                            help='The full name of the province.',
+                            required=True),
+        'code': fields.char('Province Code', size=2,
+                            help='The province code in two chars.',
+                            required=True),
         'region': fields.many2one('res.region', 'Region'),
     }
 
-res_province()
 
-
-class res_city(osv.osv):
+class res_city(orm.Model):
     _name = 'res.city'
     _description = 'City'
     _columns = {
         'name': fields.char('City', size=64, required=True),
         'province_id': fields.many2one('res.province', 'Province'),
         'zip': fields.char('ZIP', size=5),
-        'phone_prefix': fields.char('Telephone Prefix', size=16),
+        'phone_prefix': fields.char('Telephone Prefix' , size=16),
         'istat_code': fields.char('ISTAT code', size=16),
         'cadaster_code': fields.char('Cadaster Code', size=16),
         'web_site': fields.char('Web Site', size=64),
-        'region': fields.related(
-            'province_id', 'region', type='many2one', relation='res.region',
-            string='Region', readonly=True),
+        'region': fields.related('province_id', 'region',
+                                 type='many2one', relation='res.region',
+                                 string='Region', readonly=True),
     }
 
 
-class res_partner(osv.osv):
+class res_partner(orm.Model):
     _inherit = 'res.partner'
 
     _columns = {
@@ -128,5 +123,3 @@ class res_partner(osv.osv):
     def write(self, cr, uid, ids, vals, context=None):
         vals = self._set_vals_city_data(cr, uid, vals)
         return super(res_partner, self).write(cr, uid, ids, vals, context)
-
-res_partner()

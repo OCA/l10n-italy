@@ -37,6 +37,7 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
             parent="menu_account_end_year_treatments_old" groups="base.group_erp_manager"/>
 
         <menuitem id="account.menu_wizard_account_open_closed_fiscalyear"
+            string="Elimina Registrazioni Anno Fiscale"
             parent="menu_account_end_year_treatments_old" groups="base.group_erp_manager"/>
 
     </data>

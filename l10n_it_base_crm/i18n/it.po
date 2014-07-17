@@ -1,0 +1,43 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_base_crm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140402-231812\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-03 14:30+0000\n"
+"PO-Revision-Date: 2014-04-03 14:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_base_crm
+#: view:crm.lead:0
+msgid "Province"
+msgstr "Province"
+
+#. module: l10n_it_base_crm
+#: view:crm.lead:0
+msgid "City"
+msgstr "Città"
+
+#. module: l10n_it_base_crm
+#: view:crm.lead:0
+#: field:crm.lead,region:0
+msgid "Region"
+msgstr "Region"
+
+#. module: l10n_it_base_crm
+#: model:ir.model,name:l10n_it_base_crm.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Lead/Opportunità"
+
+#. module: l10n_it_base_crm
+#: field:crm.lead,province:0
+msgid "Provincia"
+msgstr "Provincia"
+
