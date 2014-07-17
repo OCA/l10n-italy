@@ -28,7 +28,24 @@
       "tz": False, "active_model": "account.invoice", "active_ids": [ref("account_invoice_riba")],
       "type": "out_invoice", "active_id": ref("account_invoice_riba"), })
 -
-  I check that customer invoice state is "Open"
+  I check the riba credit
 -
-  !assert {model: account.invoice, id: account_invoice_riba}:
-    - state == 'open'
+  !python {model: account.invoice}: |
+    invoice = self.browse(cr, uid, ref('account_invoice_riba'))
+    for move_line in invoice.move_id.line_id:
+      if move_line.account_id.id == ref('account.a_recv'):
+        line_ids = self.pool['account.move.line'].search(cr, uid, [
+          '&',
+            '|',
+              ('riba','=','True'),('unsolved_invoice_ids','!=',False),
+            ('account_id.type','=','receivable'),
+          ('reconcile_id', '=', False),
+          ('distinta_line_ids', '=', False)
+          ])
+        assert (len(line_ids) == 1), (
+          "There must be 1 riba line, %s found" % len(line_ids))
+        assert (line_ids[0] == move_line.id), (
+          "invoice riba credit line (%s) is different from found riba line (%s)"
+          % (move_line.name, line_ids[0]))
+        break
+    
