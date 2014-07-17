@@ -3,9 +3,12 @@
 -
   !record {model: account.invoice, id: account_invoice_customer0}:
     account_id: account.a_recv
+    address_contact_id: base.res_partner_address_zen
+    address_invoice_id: base.res_partner_address_zen
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
+    vertical_comp: 1
     invoice_line:
       - account_id: account.a_sale
         name: '123.57'
@@ -32,9 +35,12 @@
 -
   !record {model: account.invoice, id: account_invoice_customer1}:
     account_id: account.a_recv
+    address_contact_id: base.res_partner_address_zen
+    address_invoice_id: base.res_partner_address_zen
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
+    vertical_comp: 1
     invoice_line:
       - account_id: account.a_sale
         name: '123.57'
@@ -68,9 +74,12 @@
 -
   !record {model: account.invoice, id: account_invoice_customer3}:
     account_id: account.a_recv
+    address_contact_id: base.res_partner_address_zen
+    address_invoice_id: base.res_partner_address_zen
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
+    vertical_comp: 1
     invoice_line:
       - account_id: account.a_sale
         name: '123.57'
@@ -104,9 +113,12 @@
 -
   !record {model: account.invoice, id: account_invoice_customer2}:
     account_id: account.a_recv
+    address_contact_id: base.res_partner_address_zen
+    address_invoice_id: base.res_partner_address_zen
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
+    vertical_comp: 1
     invoice_line:
       - account_id: account.a_sale
         name: '100.03'

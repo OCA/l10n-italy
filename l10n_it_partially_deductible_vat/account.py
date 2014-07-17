@@ -27,6 +27,8 @@ from decimal import Decimal, ROUND_HALF_UP
 import time
 from openerp.tools.translate import _
 
+from openerp import api
+
 
 class account_tax(orm.Model):
 
@@ -75,6 +77,7 @@ class account_tax(orm.Model):
         raise orm.except_orm(_('Error'),
             _('No taxes associated to tax code %s') % str(tax_code.name))
 
+    @api.v7
     def compute_all(self, cr, uid, taxes, price_unit, quantity, product=None, partner=None, force_excluded=False):
         res = super(account_tax, self).compute_all(cr, uid, taxes, price_unit, quantity, product, partner, force_excluded)
 
@@ -96,8 +99,11 @@ class account_tax(orm.Model):
 
         return res
 
-account_tax()
-
+    @api.v8
+    def compute_all(self, price_unit, quantity, product=None, partner=None, force_excluded=False):
+        return self._model.compute_all(
+            self._cr, self._uid, self, price_unit, quantity,
+            product=product, partner=partner, force_excluded=force_excluded)
 
 class account_invoice_tax(orm.Model):
 
@@ -141,7 +147,8 @@ class account_invoice_tax(orm.Model):
                 'tax_code_id': 26}}
     '''
 
-    def tax_difference(self, cr, uid, cur, tax_grouped):
+    @api.v8
+    def tax_difference(self, cur, tax_grouped):
         real_total = 0
         invoice_total = 0
         cur_obj = self.pool.get('res.currency')
@@ -151,10 +158,10 @@ class account_invoice_tax(orm.Model):
         for inv_tax in tax_grouped.values():
             if inv_tax['tax_code_id']:
                 main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_tax_code(
-                    tax_code_obj.browse(cr, uid, inv_tax['tax_code_id'])))
+                    tax_code_obj.browse(self._cr, self._uid, inv_tax['tax_code_id'])))
             elif inv_tax['base_code_id']:
                 main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
-                    tax_code_obj.browse(cr, uid, inv_tax['base_code_id'])))
+                    tax_code_obj.browse(self._cr, self._uid, inv_tax['base_code_id'])))
             else:
                 raise orm.except_orm(_('Error'),
                     _('No tax codes for invoice tax %s') % inv_tax['name'])
@@ -163,21 +170,22 @@ class account_invoice_tax(orm.Model):
             grouped_base[main_tax.amount] += inv_tax['base']
         for tax_rate in grouped_base:
             real_total += grouped_base[tax_rate] * tax_rate
-        real_total = cur_obj.round(cr, uid, cur, real_total)
+        real_total = cur_obj.round(self._cr, self._uid, cur, real_total)
         for inv_tax in tax_grouped.values():
             invoice_total += inv_tax['amount']
         return real_total - invoice_total
 
-    def compute(self, cr, uid, invoice_id, context=None):
-        tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
-        inv_obj = self.pool.get('account.invoice')
+    @api.v8
+    def compute(self, invoice):
+        tax_grouped = super(account_invoice_tax, self).compute(invoice)
+
         tax_obj = self.pool.get('account.tax')
         tax_code_obj = self.pool.get('account.tax.code')
-        invoice = inv_obj.browse(cr, uid, invoice_id, context=context)
+
         cur = invoice.currency_id
-        tax_difference = self.tax_difference(cr, uid, cur, tax_grouped)
+        tax_difference = self.tax_difference(cur, tax_grouped)
         cur_obj = self.pool.get('res.currency')
-        if cur_obj.is_zero(cr, uid, cur, tax_difference):
+        if cur_obj.is_zero(self._cr, self._uid, cur, tax_difference):
             return tax_grouped
         company_currency = invoice.company_id.currency_id.id
         for inv_tax in tax_grouped.values():
@@ -217,6 +225,11 @@ class account_invoice_tax(orm.Model):
                             inv_tax_2['amount'] = cur_obj.round(cr, uid, cur, inv_tax_2['amount'])
         return tax_grouped
 
+    @api.v7
+    def compute(self, cr, uid, invoice_id, context=None):
+        recs = self.browse(cr, uid, [], context)
+        invoice = recs.env['account.invoice'].browse(invoice_id)
+        return recs.compute(invoice)
 
 class account_tax_code(orm.Model):
 
