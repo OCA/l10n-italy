@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-from osv import fields, osv
-import tools
-import pooler
-from tools.translate import _
+from openerp.osv import osv, fields
+import openerp.tools
+import openerp.pooler
+from openerp.tools.translate import _
 import datetime
 
-class res_partner(osv.osv):
+class res_partner(osv.Model):
     _inherit = 'res.partner'
 
     def check_fiscalcode(self, cr, uid, ids, context={}):

@@ -19,14 +19,14 @@
 #
 ##############################################################################
 
-from osv import fields, osv
-import tools
-import pooler
-from tools.translate import _
+from openerp.osv import osv, fields
+import openerp.tools
+import openerp.pooler
+from openerp.tools.translate import _
 
 import datetime
 
-class wizard_compute_fc(osv.osv_memory):
+class wizard_compute_fc(osv.TransientModel):
 
     _name = "wizard.compute.fc"
     _description = "Compute Fiscal Code"

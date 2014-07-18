@@ -20,12 +20,11 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
 
-class res_region(osv.osv):
+class res_region(osv.Model):
     _name = 'res.region'
     _description = 'Region'
     _columns = {
@@ -37,7 +36,7 @@ class res_region(osv.osv):
 res_region()
 
 
-class res_province(osv.osv):
+class res_province(osv.Model):
     _name = 'res.province'
     _description = 'Province'
     _columns = {
@@ -53,7 +52,7 @@ class res_province(osv.osv):
 res_province()
 
 
-class res_city(osv.osv):
+class res_city(osv.Model):
     _name = 'res.city'
     _description = 'City'
     _columns = {
@@ -70,7 +69,7 @@ class res_city(osv.osv):
     }
 
 
-class res_partner(osv.osv):
+class res_partner(osv.Model):
     _inherit = 'res.partner'
 
     _columns = {
