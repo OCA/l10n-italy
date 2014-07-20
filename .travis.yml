@@ -19,7 +19,7 @@ services:
 
 script:
     - travis_run_flake8
-    - travis_run_tests 8.0
+    - travis_run_tests 8.0 $HOME/account-invoicing
 
 after_success:
   coveralls
