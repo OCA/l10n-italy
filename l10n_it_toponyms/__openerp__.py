@@ -27,7 +27,8 @@ Italian provinces
 
 This module adds the basic structure to partners in order to handle Italian
 provinces.
-It depends on base_location and extends it to automate address compilation.
+It depends on base_location and extends it to automate address compilation with
+provinces.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
