@@ -33,8 +33,8 @@ provinces.
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['base_location'],
-    "data" : [
+    "depends": ['base_location'],
+    "data": [
         'better_zip_view.xml',
         'partner_view.xml',
         'province_view.xml',
@@ -43,7 +43,7 @@ provinces.
     'test': [
         'test/partner.yml',
         ],
-    "demo" : [
+    "demo": [
         'demo/partner_demo.xml',
         ],
     "active": False,
