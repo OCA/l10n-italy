@@ -37,6 +37,7 @@ It depends on base_location and extends it to automate address compilation.
         'better_zip_view.xml',
         'partner_view.xml',
         'province_view.xml',
+        'security/ir.model.access.csv',
         ],
     'test': [
         ],
