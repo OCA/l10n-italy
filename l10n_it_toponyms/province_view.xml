@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
   <data>
+
+    <record id="view_province_filter" model="ir.ui.view">
+      <field name="name">res.country.province.select</field>
+        <field name="model">res.country.province</field>
+        <field name="arch" type="xml">
+        <search string="Search province">
+          <field name="name"/>
+          <field name="code"/>
+        </search>
+      </field>
+    </record>
+
+    <record id="view_province_tree" model="ir.ui.view">
+      <field name="name">res.country.province.tree</field>
+        <field name="model">res.country.province</field>
+        <field name="arch" type="xml">
+        <tree string="Provinces">
+          <field name="name"/>
+          <field name="code"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_province_tree" model="ir.actions.act_window">
+      <field name="name">Provinces</field>
+      <field name="res_model">res.country.province</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name="Provinces"
+        id="menu_action_province_tree"
+        parent="base.menu_localisation"
+        action="action_province_tree"
+        />
   </data>
 </openerp>
