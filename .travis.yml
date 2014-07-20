@@ -10,7 +10,7 @@ env:
 
 before_install:
   - git clone https://github.com/OCA/account-invoicing $HOME/account-invoicing -b 7.0
-  - git clone https://github.com/savoirfairelinux/account-financial-tools.git $HOME/account-financial-tools -b 7.0
+  - git clone https://github.com/OCA/account-financial-tools.git $HOME/account-financial-tools -b 7.0
   - git clone https://github.com/OCA/webkit-tools $HOME/webkit-tools -b 7.0
   - git clone https://github.com/OCA/account-payment $HOME/account-payment -b 7.0
 
