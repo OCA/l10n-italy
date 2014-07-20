@@ -40,8 +40,10 @@ It depends on base_location and extends it to automate address compilation.
         'security/ir.model.access.csv',
         ],
     'test': [
+        'test/partner.yml',
         ],
     "demo" : [
+        'demo/partner_demo.xml',
         ],
     "active": False,
     "installable": True
