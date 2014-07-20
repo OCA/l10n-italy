@@ -18,6 +18,18 @@
 #
 ##############################################################################
 
-from . import better_zip
-from . import partner
-from . import province
+from openerp.osv import fields, orm
+
+
+class ResCountryProvince(orm.Model):
+
+    _name = "res.country.province"
+
+    _columns = {
+        'name': fields.char(
+            'Province Name', size=64, help='The full name of the province',
+            required=True),
+        'code': fields.char(
+            'Province Code', size=2, help='The province code in two chars',
+            required=True),
+        }

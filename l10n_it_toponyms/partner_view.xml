@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+        <record id="view_partner_form_province" model="ir.ui.view">
+            <field name="name">res.partner.form.province</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"></field>
+            <field name="arch" type="xml">
+                <field name="city" position="after">
+                    <field name="province_id" placeholder="Province" attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                </field>
+            </field>
+        </record>
+  </data>
+</openerp>

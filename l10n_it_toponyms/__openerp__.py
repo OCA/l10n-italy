@@ -34,6 +34,9 @@ It depends on base_location and extends it to automate address compilation.
     'license': 'AGPL-3',
     "depends" : ['base_location'],
     "data" : [
+        'better_zip_view.xml',
+        'partner_view.xml',
+        'province_view.xml',
         ],
     'test': [
         ],
