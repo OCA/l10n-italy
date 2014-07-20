@@ -18,10 +18,16 @@
 #
 ##############################################################################
 {
-    'name': "Italy - Provinces and regions",
-    'version': '0.1',
+    'name': "Italian toponyms - Provinces",
+    'version': '0.2',
     'category': 'Localisation/Italy',
     'description': """
+Italian provinces
+-----------------
+
+This module adds the basic structure to partners in order to handle Italian
+provinces.
+It depends on base_location and extends it to automate address compilation.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
