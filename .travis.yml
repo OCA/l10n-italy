@@ -8,7 +8,7 @@ virtualenv:
 install:
  - git clone https://github.com/OCA/maintainer-quality-tools.git $HOME/maintainer-quality-tools
  - export PATH=$HOME/maintainer-quality-tools/travis:$PATH
- - $HOME/maintainer-quality-tools/travis/travis_install_nightly master
+ - $HOME/maintainer-quality-tools/travis/travis_install_nightly 8.0
  - pip install coveralls flake8
 
 services:
