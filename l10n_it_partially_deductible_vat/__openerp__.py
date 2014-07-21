@@ -35,16 +35,14 @@
     "license": "AGPL-3",
     "category" : "Localisation/Italy",
     'website': 'http://www.openerp-italia.org/',
-    'init_xml': [
+    'data': [
         ],
-    'update_xml': [
-        ],
-    'demo_xml': [
+    'demo': [
         ],
     'test': [
         'test/account_tax.xml',
         'test/tax_computation.yml',
         ],
-    'installable': False,
+    'installable': True,
     'active': False,
 }
