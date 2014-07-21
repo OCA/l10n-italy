@@ -53,29 +53,29 @@ class account_tax(orm.Model):
         if tax_code.tax_ids:
             if not self._have_same_rate(tax_code.tax_ids):
                 raise orm.except_orm(_('Error'),
-                    _('The taxes %s have different rates') % str(tax_code.tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.tax_ids))
             return tax_code.tax_ids[0]
         if tax_code.ref_tax_ids:
             if not self._have_same_rate(tax_code.ref_tax_ids):
                 raise orm.except_orm(_('Error'),
-                    _('The taxes %s have different rates') % str(tax_code.ref_tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.ref_tax_ids))
             return tax_code.ref_tax_ids[0]
         raise orm.except_orm(_('Error'),
-            _('No taxes associated to tax code %s') % str(tax_code.name))
+                             _('No taxes associated to tax code %s') % str(tax_code.name))
 
     def get_account_tax_by_base_code(self, tax_code):
         if tax_code.base_tax_ids:
             if not self._have_same_rate(tax_code.base_tax_ids):
                 raise orm.except_orm(_('Error'),
-                    _('The taxes %s have different rates') % str(tax_code.base_tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.base_tax_ids))
             return tax_code.base_tax_ids[0]
         if tax_code.ref_base_tax_ids:
             if not self._have_same_rate(tax_code.ref_base_tax_ids):
                 raise orm.except_orm(_('Error'),
-                    _('The taxes %s have different rates') % str(tax_code.ref_base_tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.ref_base_tax_ids))
             return tax_code.ref_base_tax_ids[0]
         raise orm.except_orm(_('Error'),
-            _('No taxes associated to tax code %s') % str(tax_code.name))
+                             _('No taxes associated to tax code %s') % str(tax_code.name))
 
     @api.v7
     def compute_all(self, cr, uid, taxes, price_unit, quantity, product=None, partner=None, force_excluded=False):
@@ -94,10 +94,10 @@ class account_tax(orm.Model):
 
                     base_ind = float(Decimal(str(totalex *
                                                  ind_tax_obj.amount)).quantize(Decimal('1.' + precision * '0'),
-                                                                                         rounding=ROUND_HALF_UP))
+                                                                               rounding=ROUND_HALF_UP))
                     base_ded = float(Decimal(str(totalex -
                                                  base_ind)).quantize(Decimal('1.' + precision * '0'),
-                                                                               rounding=ROUND_HALF_UP))
+                                                                     rounding=ROUND_HALF_UP))
 
                     ind_tax['price_unit'] = base_ind
                     tax['price_unit'] = base_ded
@@ -164,7 +164,7 @@ class account_invoice_tax(orm.Model):
                     tax_code_obj.browse(self._cr, self._uid, inv_tax['base_code_id'])))
             else:
                 raise orm.except_orm(_('Error'),
-                    _('No tax codes for invoice tax %s') % inv_tax['name'])
+                                     _('No tax codes for invoice tax %s') % inv_tax['name'])
             if not grouped_base.get(main_tax.amount, False):
                 grouped_base[main_tax.amount] = 0
             grouped_base[main_tax.amount] += inv_tax['base']
@@ -218,9 +218,11 @@ class account_invoice_tax(orm.Model):
                                     context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
                             else:
                                 inv_tax['tax_amount'] = cur_obj.compute(self._cr, self._uid, invoice.currency_id.id,
-                                    company_currency,
-                                    inv_tax['amount'] * main_tax['ref_tax_sign'],
-                                    context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                                                                        company_currency,
+                                                                        inv_tax['amount'] * main_tax['ref_tax_sign'],
+                                                                        context={'date': invoice.date_invoice or
+                                                                                 time.strftime('%Y-%m-%d')},
+                                                                        round=False)
 
                             inv_tax['amount'] = cur_obj.round(self._cr, self._uid, cur, inv_tax['amount'])
                             inv_tax['tax_amount'] = cur_obj.round(self._cr, self._uid, cur, inv_tax['tax_amount'])
