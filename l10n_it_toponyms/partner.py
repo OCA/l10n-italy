@@ -23,7 +23,7 @@ from openerp import models, fields, api
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
-    province_id = fields.Many2one('res.country.province', 'Province')
+    province_id = fields.Many2one('res.province', 'Province')
 
     @api.multi
     def onchange_zip_id(self, zip_id):

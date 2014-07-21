@@ -23,7 +23,7 @@ from openerp import models, fields
 
 class ResCountryProvince(models.Model):
 
-    _name = "res.country.province"
+    _name = "res.province"
     name = fields.Char(
         'Province Name', size=64,
         help='The full name of the province', required=True)

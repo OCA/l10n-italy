@@ -23,4 +23,4 @@ from openerp import models, fields
 
 class ResBetterZip(models.Model):
     _inherit = 'res.better.zip'
-    province_id = fields.Many2one('res.country.province', 'Province')
+    province_id = fields.Many2one('res.province', 'Province')

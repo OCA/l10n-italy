@@ -3,8 +3,8 @@
   <data>
 
     <record id="view_province_filter" model="ir.ui.view">
-      <field name="name">res.country.province.select</field>
-        <field name="model">res.country.province</field>
+      <field name="name">res.province.select</field>
+        <field name="model">res.province</field>
         <field name="arch" type="xml">
         <search string="Search province">
           <field name="name"/>
@@ -14,8 +14,8 @@
     </record>
 
     <record id="view_province_tree" model="ir.ui.view">
-      <field name="name">res.country.province.tree</field>
-        <field name="model">res.country.province</field>
+      <field name="name">res.province.tree</field>
+        <field name="model">res.province</field>
         <field name="arch" type="xml">
         <tree string="Provinces">
           <field name="name"/>
@@ -26,7 +26,7 @@
 
     <record id="action_province_tree" model="ir.actions.act_window">
       <field name="name">Provinces</field>
-      <field name="res_model">res.country.province</field>
+      <field name="res_model">res.province</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
