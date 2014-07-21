@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="better_zip_form_province">
+      <field name="name">res.better.zip.form.province</field>
+      <field name="model">res.better.zip</field>
+      <field name="inherit_id" ref="base_location.better_zip_form"></field>
+      <field name="arch" type="xml">
+        <field name="city" position="after">
+          <field name="province_id"/>
+        </field>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="better_zip_tree_province">
+      <field name="name">res.better.zip.tree.province</field>
+      <field name="model">res.better.zip</field>
+      <field name="inherit_id" ref="base_location.better_zip_tree"></field>
+      <field name="arch" type="xml">
+        <field name="city" position="after">
+          <field name="province_id"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

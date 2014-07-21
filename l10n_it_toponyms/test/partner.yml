@@ -1,0 +1,15 @@
+-
+  I create a customer
+-
+  !record {model: res.partner, id: customer_1, view: base.view_partner_form}:
+    customer: True
+    name: Lorenzo Battistini
+    zip_id: res_better_zip_genova
+-
+  I check the address province
+-
+  !python {model: res.partner}: |
+    partner = self.browse(cr, uid, ref('customer_1'), context=context)
+    assert(
+      partner.province_id.id == ref('res_province_ge')
+      ), 'Partner province is not GE, but %s' % partner.province_id.code

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="res_province_ge" model="res.province">
+            <field name="name">Genova</field>
+            <field name="code">GE</field>
+        </record>
+        <record id="res_better_zip_genova" model="res.better.zip">
+            <field name="name">16100</field>
+            <field name="city">Genova</field>
+            <field name="province_id" ref="res_province_ge"></field>
+        </record>
+    </data>
+</openerp>
