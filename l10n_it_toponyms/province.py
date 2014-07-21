@@ -18,18 +18,15 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 
 
-class ResCountryProvince(orm.Model):
+class ResCountryProvince(models.Model):
 
     _name = "res.country.province"
-
-    _columns = {
-        'name': fields.char(
-            'Province Name', size=64, help='The full name of the province',
-            required=True),
-        'code': fields.char(
-            'Province Code', size=2, help='The province code in two chars',
-            required=True),
-        }
+    name = fields.Char(
+        'Province Name', size=64,
+        help='The full name of the province', required=True)
+    code = fields.Char(
+        'Province Code', size=2,
+        help='The province code in two chars', required=True)

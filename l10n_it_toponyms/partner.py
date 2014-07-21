@@ -18,21 +18,18 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields, api
 
 
-class ResPartner(orm.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
-    _columns = {
-        'province_id': fields.many2one('res.country.province', 'Province'),
-        }
+    province_id = fields.Many2one('res.country.province', 'Province')
 
-    def onchange_zip_id(self, cr, uid, ids, zip_id, context=None):
-        res = super(ResPartner, self).onchange_zip_id(
-            cr, uid, ids, zip_id, context=context)
+    @api.multi
+    def onchange_zip_id(self, zip_id):
+        res = super(ResPartner, self).onchange_zip_id(zip_id)
         if 'value' in res:
-            bzip = self.pool['res.better.zip'].browse(
-                cr, uid, zip_id, context=context)
+            bzip = self.env['res.better.zip'].browse(zip_id)
             res['value'][
                 'province_id'
                 ] = bzip.province_id.id if bzip.province_id else False,

@@ -18,13 +18,9 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 
 
-class ResBetterZip(orm.Model):
-
+class ResBetterZip(models.Model):
     _inherit = 'res.better.zip'
-
-    _columns = {
-        'province_id': fields.many2one('res.country.province', 'Province'),
-        }
+    province_id = fields.Many2one('res.country.province', 'Province')
