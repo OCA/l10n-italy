@@ -220,9 +220,20 @@ class account_vat_period_end_statement(orm.Model):
         'previous_debit_vat_amount': fields.float('Previous Debits VAT Amount', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]},
             digits_compute=dp.get_precision('Account')),
 
-        'generic_vat_account_line_ids': fields.one2many('statement.generic.account.line', 'statement_id', 'Other VAT Credits / Debits or Tax Compensations', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
+        'generic_vat_account_line_ids': fields.one2many(
+            'statement.generic.account.line', 'statement_id',
+            'Other VAT Credits / Debits or Tax Compensations',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
 
-        'authority_partner_id': fields.many2one('res.partner', 'Tax Authority Partner', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
+        'authority_partner_id': fields.many2one(
+            'res.partner', 'Tax Authority Partner',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
         'authority_vat_account_id': fields.many2one(
             'account.account', 'Tax Authority VAT Account', required=True,
             states={
