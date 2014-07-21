@@ -79,7 +79,8 @@ class account_tax(orm.Model):
 
     @api.v7
     def compute_all(self, cr, uid, taxes, price_unit, quantity, product=None, partner=None, force_excluded=False):
-        res = super(account_tax, self).compute_all(cr, uid, taxes, price_unit, quantity, product, partner, force_excluded)
+        res = super(account_tax, self).compute_all(cr, uid, taxes, price_unit,
+                                                   quantity, product, partner, force_excluded)
 
         precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
         tax_list = res['taxes']
@@ -87,13 +88,13 @@ class account_tax(orm.Model):
         if len(tax_list) == 2:
             for tax in tax_list:
                 if tax.get('balance', False):  # Calcolo di imponibili per l'IVA parzialmente detraibile
-#                    deductible_base = totalex
+                    # deductible_base = totalex
                     ind_tax = tax_list[abs(tax_list.index(tax) - 1)]
                     ind_tax_obj = self.browse(cr, uid, ind_tax['id'])
-#                    ded_tax_obj = self.browse(cr, uid, tax['id'])
+                    # ded_tax_obj = self.browse(cr, uid, tax['id'])
                     base_ind = float(Decimal(str(totalex * ind_tax_obj.amount)).quantize(Decimal('1.' + precision * '0'), rounding=ROUND_HALF_UP))
                     base_ded = float(Decimal(str(totalex - base_ind)).quantize(Decimal('1.' + precision * '0'), rounding=ROUND_HALF_UP))
-#                    tax_total = float(Decimal(str(tax['balance'])).quantize(Decimal('1.'+precision*'0'), rounding=ROUND_HALF_UP))
+                    # tax_total = float(Decimal(str(tax['balance'])).quantize(Decimal('1.'+precision*'0'), rounding=ROUND_HALF_UP))
                     ind_tax['price_unit'] = base_ind
                     tax['price_unit'] = base_ded
 
@@ -104,6 +105,7 @@ class account_tax(orm.Model):
         return self._model.compute_all(
             self._cr, self._uid, self, price_unit, quantity,
             product=product, partner=partner, force_excluded=force_excluded)
+
 
 class account_invoice_tax(orm.Model):
 
@@ -230,6 +232,7 @@ class account_invoice_tax(orm.Model):
         recs = self.browse(cr, uid, [], context)
         invoice = recs.env['account.invoice'].browse(invoice_id)
         return recs.compute(invoice)
+
 
 class account_tax_code(orm.Model):
 
