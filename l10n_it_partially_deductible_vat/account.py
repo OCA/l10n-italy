@@ -213,9 +213,11 @@ class account_invoice_tax(orm.Model):
                             # calcolo l'importo del tax.code relativo all'imposta (la parte indetraibile non lo muove)
                             if invoice.type in ('out_invoice', 'in_invoice'):
                                 inv_tax['tax_amount'] = cur_obj.compute(self._cr, self._uid, invoice.currency_id.id,
-                                    company_currency,
-                                    inv_tax['amount'] * main_tax['tax_sign'],
-                                    context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                                                                        company_currency,
+                                                                        inv_tax['amount'] * main_tax['tax_sign'],
+                                                                        context={'date': invoice.date_invoice or
+                                                                                 time.strftime('%Y-%m-%d')},
+                                                                        round=False)
                             else:
                                 inv_tax['tax_amount'] = cur_obj.compute(self._cr, self._uid, invoice.currency_id.id,
                                                                         company_currency,
