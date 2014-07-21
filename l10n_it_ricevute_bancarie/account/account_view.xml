@@ -73,6 +73,8 @@
                     domain="[('distinta_line_ids', '=', False)]" name="da_emettere"/>
                 <filter icon="terp-go-today" string="Issued" 
                     domain="[('distinta_line_ids', '!=', False)]" name="emesse"/>
+                <filter icon="terp-go-today" string="To Reconcile"
+                    domain="[('reconcile_id', '=', False)]" name="to_reconcile"/>
                 <field name="account_id"/>
                 <field name="partner_id"/>
                 <field name="invoice"/>
@@ -97,8 +99,8 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_riba_da_emettere_tree" />
-        <field name="context">{'search_default_da_emettere':1}</field>
-        <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable'), ('reconcile_id', '=', False)]</field>
+        <field name="context">{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
+        <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable')]</field>
         <field name="search_view_id" ref="riba_filter"/>
     </record>
 
