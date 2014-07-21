@@ -104,12 +104,6 @@ class account_tax(orm.Model):
 
         return res
 
-    @api.v8
-    def compute_all(self, price_unit, quantity, product=None, partner=None, force_excluded=False):
-        return self._model.compute_all(
-            self._cr, self._uid, self, price_unit, quantity,
-            product=product, partner=partner, force_excluded=force_excluded)
-
 
 class account_invoice_tax(orm.Model):
 
@@ -232,12 +226,6 @@ class account_invoice_tax(orm.Model):
                             inv_tax['tax_amount'] = cur_obj.round(self._cr, self._uid, cur, inv_tax['tax_amount'])
                             inv_tax_2['amount'] = cur_obj.round(self._cr, self._uid, cur, inv_tax_2['amount'])
         return tax_grouped
-
-    @api.v7
-    def compute(self, cr, uid, invoice_id, context=None):
-        recs = self.browse(cr, uid, [], context)
-        invoice = recs.env['account.invoice'].browse(invoice_id)
-        return recs.compute(invoice)
 
 
 class account_tax_code(orm.Model):
