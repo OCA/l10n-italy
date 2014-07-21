@@ -29,8 +29,11 @@
     "depends": ['account'],
     "author": "OpenERP Italian Community",
     "description": """
-    Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile. Senza questo modulo non è possibile calcolare correttamente imponibili, imposte e conti imposte relativi all'IVA parzialmente detraibile.
-    La configurazione dell'IVA parzialmente detraibile deve essere quella utilizzata dal modulo 'l10n_it', anche se non viene usato tale modulo.
+    Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile.
+    Senza questo modulo non è possibile calcolare correttamente imponibili,
+    imposte e conti imposte relativi all'IVA parzialmente detraibile.
+    La configurazione dell'IVA parzialmente detraibile deve essere quella
+    utilizzata dal modulo 'l10n_it', anche se non viene usato tale modulo.
     """,
     "license": "AGPL-3",
     "category": "Localisation/Italy",
