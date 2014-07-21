@@ -20,7 +20,7 @@
 {
     'name': "Italian toponyms - Provinces",
     'version': '0.2',
-    'category': 'Localisation/Italy',
+    'category': 'Localization/Italy',
     'description': """
 Italian provinces
 -----------------
