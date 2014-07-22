@@ -433,7 +433,6 @@ class WizardExportFatturapa(orm.TransientModel):
         DatiBeniServizi = body.find('DatiBeniServizi')
         DettaglioLinee = DatiBeniServizi.find('DettaglioLinee')
 
-        # TODO: multiple invoice line
         line_no = 1
         for line in invoice.invoice_line:
             el = copy.deepcopy(DettaglioLinee)
@@ -537,11 +536,10 @@ class WizardExportFatturapa(orm.TransientModel):
         for invoice in invoices:
             if not partner:
                 partner = invoice.partner_id
-            else:
-                if invoice.partner_id != partner:
-                    raise orm.except_orm(
-                        _('Error!'),
-                        _('Invoices must belong to the same partner'))
+            if invoice.partner_id != partner:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Invoices must belong to the same partner'))
 
         return partner
 
