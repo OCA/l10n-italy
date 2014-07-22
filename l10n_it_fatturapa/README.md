@@ -7,6 +7,17 @@ Non è però necessario molto per renderlo completo perlomeno per i casi più se
 PS: l'XML generato viene validato correttamente dagli strumenti dell'agenzia delle entrate.
 PS2: Al momento funziona solo con fatture cliente
 
+Scelte tecniche
+===============
+
+Il file XML finale non viene creato da zero dal wizard.
+Bensì viene usato un template di base, il quale viene compilato o integrato con parti aggiuntive.
+Gli elementi non necessari possono essere rimossi dal template, programmaticamente.
+
+Il template usato è l'esempio riportato dall'agenzia delle entrate a questa pagina:
+
+<a href="http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm">Esempi FatturaPA</a>
+
 FatturaPA
 =========
 
