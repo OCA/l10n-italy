@@ -32,3 +32,10 @@ TODO
 5. Altri tipi di documento (note di credito, etc)
 6. Spedizione merce
 7. Molto altro...
+
+Validare il file
+================
+
+Per validare il file potere usare questo strumento:
+
+<a href="http://sdi.fatturapa.gov.it/SdI2FatturaPAWeb/AccediAlServizioAction.do?pagina=controlla_fattura">Controllo FatturaPA</a>
