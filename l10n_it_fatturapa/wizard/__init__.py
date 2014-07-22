@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2013
-#    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
-#    Author: Davide Corio <info@davidecorio.com>
+#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
