@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	<record model="ir.ui.view" id="view_payment_term_form_fatturapa">
+			<field name="name">account.payment.term.fatturapa</field>
+			<field name="model">account.payment.term</field>
+			<field name="inherit_id" ref="account.view_payment_term_form"/>
+			<field name="arch" type="xml">
+				<field name="line_ids" position="after">
+					<group colspan="2" col="2">
+						<separator string="FatturaPA" colspan="2"/>
+						<field name="fatturapa_pt_code"/>
+						<field name="fatturapa_pm_code"/>
+					</group>
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_invoice_form_fatturapa">
+			<field name="name">account.invoice.fatturapa</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+					<page string="FatturaPA">
+						<group>
+							<group string="Purchase Order">
+								<field name="fatturapa_po_line_no"/>
+								<field name="fatturapa_po"/>
+								<field name="fatturapa_po_cup"/>
+								<field name="fatturapa_po_cig"/>
+							</group>
+							<group string="Contract">
+								<field name="fatturapa_contract_line_no"/>
+								<field name="fatturapa_contract"/>
+								<field name="fatturapa_contract_data"/>
+								<field name="fatturapa_contract_numitem"/>
+								<field name="fatturapa_contract_cup"/>
+								<field name="fatturapa_contract_cig"/>
+							</group>
+							<group string="Agreement">
+								<field name="fatturapa_agreement_line_no"/>
+								<field name="fatturapa_agreement"/>
+								<field name="fatturapa_agreement_data"/>
+								<field name="fatturapa_agreement_numitem"/>
+								<field name="fatturapa_agreement_cup"/>
+								<field name="fatturapa_agreement_cig"/>
+							</group>
+							<group string="Reception">
+								<field name="fatturapa_reception_line_no"/>
+								<field name="fatturapa_reception"/>
+								<field name="fatturapa_reception_data"/>
+								<field name="fatturapa_reception_numitem"/>
+								<field name="fatturapa_reception_cup"/>
+								<field name="fatturapa_reception_cig"/>
+							</group>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+
+    </data>
+</openerp>
