@@ -42,7 +42,9 @@ TODO
 4. Pagamenti a rate
 5. Altri tipi di documento (note di credito, etc)
 6. Spedizione merce
-7. Molto altro...
+7. Seurity files
+8. Unit tests
+9. Molto altro...
 
 Validare il file
 ================
