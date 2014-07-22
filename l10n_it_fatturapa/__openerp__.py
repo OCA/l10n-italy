@@ -33,7 +33,6 @@
         'account_view.xml',
         'company_view.xml',
         'partner_view.xml',
-        'sequence_view.xml',
         'wizard/wizard_export_fatturapa_view.xml',
         'data/fatturapa_data.xml',
     ],

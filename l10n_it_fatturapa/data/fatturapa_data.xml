@@ -2,6 +2,17 @@
 <openerp>
     <data noupdate="1">
 
+    	<!-- Invoice Bundle Sequence -->
+    	<record id="seq_type_fatturapa" model="ir.sequence.type">
+            <field name="name">FatturaPA</field>
+            <field name="code">account.invoice.fatturapa</field>
+        </record>
+        <record id="seq_fatturapa" model="ir.sequence">
+            <field name="name">FatturaPA</field>
+            <field name="code">account.invoice.fatturapa</field>
+            <field name="prefix"></field>
+        </record>
+
     	<!-- Payment Terms -->
     	<record id="fatturapa_TP01" model="fatturapa.payment_term">
             <field name="code">TP01</field>
