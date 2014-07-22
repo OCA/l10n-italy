@@ -485,7 +485,6 @@ class WizardExportFatturapa(orm.TransientModel):
             ).text = invoice.payment_term.fatturapa_pt_id.code
 
         # TODO: multiple installments
-        # TODO: payment methods
         DettaglioPagamento.find(
             'ModalitaPagamento'
             ).text = invoice.payment_term.fatturapa_pm_id.code
