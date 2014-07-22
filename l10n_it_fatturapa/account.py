@@ -20,6 +20,24 @@
 
 from openerp.osv import fields, orm
 
+class fatturapa_payment_term(orm.Model):
+    _name = "fatturapa.payment_term"
+    _description = 'FatturaPA Payment Term'
+
+    _columns = {
+        'name': fields.char('Description', size=128),
+        'code': fields.char('Code', size=4),
+    }
+
+class fatturapa_payment_method(orm.Model):
+    _name = "fatturapa.payment_method"
+    _description = 'FatturaPA Payment Method'
+
+    _columns = {
+        'name': fields.char('Description', size=128),
+        'code': fields.char('Code', size=4),
+    }
+
 
 class fatturapa_fiscal_position(orm.Model):
     _name = "fatturapa.fiscal_position"
@@ -45,10 +63,10 @@ class account_payment_term(orm.Model):
     _inherit = 'account.payment.term'
 
     _columns = {
-        'fatturapa_pt_code': fields.char(
-            'FatturaPA Payment Term Code', size=4),
-        'fatturapa_pm_code': fields.char(
-            'FatturaPA Payment Method Code', size=4),
+        'fatturapa_pt_id': fields.many2one(
+            'fatturapa.payment_term', string="FatturaPA Payment Term"),
+        'fatturapa_pm_id': fields.many2one(
+            'fatturapa.payment_method', string="FatturaPA Payment Method"),
     }
 
 

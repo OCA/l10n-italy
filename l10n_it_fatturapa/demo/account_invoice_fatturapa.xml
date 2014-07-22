@@ -4,8 +4,8 @@
         <record id="account_payment_term_fatturapa" model="account.payment.term">
             <field name="name">60 gg fmdf</field>
             <field name="note">60 gg fmdf</field>
-            <field name="fatturapa_pt_code">PT01</field>
-            <field name="fatturapa_pm_code">MP01</field>
+            <field name="fatturapa_pt_id" ref="fatturapa_tp02"/>
+            <field name="fatturapa_pm_id" ref="fatturapa_mp05"/>
         </record>
         <record id="res_partner_fatturapa_1" model="res.partner">
             <field name="name">Pubblica Amministrazione</field>

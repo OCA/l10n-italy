@@ -10,8 +10,8 @@
 				<field name="line_ids" position="after">
 					<group colspan="2" col="2">
 						<separator string="FatturaPA" colspan="2"/>
-						<field name="fatturapa_pt_code"/>
-						<field name="fatturapa_pm_code"/>
+						<field name="fatturapa_pt_id"/>
+						<field name="fatturapa_pm_id"/>
 					</group>
 				</field>
 			</field>
