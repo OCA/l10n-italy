@@ -20,6 +20,7 @@
 
 import base64
 import copy
+import re
 import tempfile
 
 from openerp.osv import orm
@@ -129,9 +130,11 @@ class WizardExportFatturapa(orm.TransientModel):
         IdTrasmittente.find('IdPaese').text = IdPaese
 
         if not company.partner_id.fiscalcode:
-            raise orm.except_orm(
-                _('Error!'), _('Fiscalcode not set.'))
-        IdCodice = company.partner_id.fiscalcode
+            # XXX: just for testing purposes, to be resolved asap
+            fiscalcode = company.vat
+            #raise orm.except_orm(
+            #    _('Error!'), _('Fiscalcode not set.'))
+        IdCodice = company.partner_id.fiscalcode or fiscalcode
         IdTrasmittente.find('IdCodice').text = IdCodice
 
         return True
@@ -456,17 +459,14 @@ class WizardExportFatturapa(orm.TransientModel):
         if not context:
             context = {}
 
-        tax_obj = self.pool['account.tax']
-
         DatiRiepilogo = body.find('DatiBeniServizi/DatiRiepilogo')
 
         # TODO: multiple taxes
-        taxCode = invoice.tax_line[0].name.split(' -')[0]
-        taxId = tax_obj.search(cr, uid, [('description', '=', taxCode)])
-        tax = tax_obj.browse(cr, uid, taxId[0])
-        taxAmount = tax.amount*100
+        # TODO: improve tax identification
+        taxCode = int(re.findall(
+            r'\d+', invoice.tax_line[0].tax_code_id.name)[0])
 
-        DatiRiepilogo.find('AliquotaIVA').text = str('%.2f' % taxAmount)
+        DatiRiepilogo.find('AliquotaIVA').text = str('%.2f' % taxCode)
         DatiRiepilogo.find(
             'ImponibileImporto').text = str('%.2f' % invoice.amount_untaxed)
         DatiRiepilogo.find(
