@@ -439,7 +439,7 @@ class WizardExportFatturapa(orm.TransientModel):
         line_no = 1
         for line in invoice.invoice_line:
             el = copy.deepcopy(DettaglioLinee)
-            DatiBeniServizi.append(el)
+            DatiBeniServizi.insert(0, el)
             el.find('NumeroLinea').text = str(line_no)
             el.find('Descrizione').text = line.name
             el.find(
