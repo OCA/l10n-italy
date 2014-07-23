@@ -18,8 +18,6 @@
 #
 ##############################################################################
 
-from . import account
-from . import company
-from . import partner
-from . import tests
-from . import wizard
+from . import test_fatturapa_xml_validation
+
+checks = [test_fatturapa_xml_validation]
