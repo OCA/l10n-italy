@@ -81,7 +81,6 @@ class WizardExportFatturapa(orm.TransientModel):
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
             'datas': base64.encodestring(attach_data),
-            'file_type': 'text/xml',
         }
         attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
 
@@ -337,6 +336,11 @@ class WizardExportFatturapa(orm.TransientModel):
             context = {}
 
         DatiGeneraliDocumento = body.find('DatiGenerali/DatiGeneraliDocumento')
+
+        if not invoice.number:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Invoice does not have a number.'))
 
         # TODO: TipoDocumento
         DatiGeneraliDocumento.find('TipoDocumento').text = 'TD01'
