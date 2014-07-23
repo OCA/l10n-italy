@@ -56,7 +56,9 @@ Per validare il file potere usare questo strumento:
 Eseguire gli unit tests
 =======================
 
-{openerp-command} {parametri} --test-enable --log-level=test
+createdb fatturapa
+
+{openerp-command} {parametri} -i l10n_it_fatturepa -d fatturapa --test-enable --log-level=test
 
 Al posto di {openerp-command} inserire il comando usato per eseguire openerp da shell, come ./openerp-server o bin/start_openerp o altro.
 Al posto di {parametri} inserire i parametri necessari, come --addons-path oppure direttamente -c /etc/openerp-server.conf
