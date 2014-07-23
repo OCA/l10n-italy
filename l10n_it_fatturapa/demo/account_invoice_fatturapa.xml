@@ -37,7 +37,7 @@
             <field name="fatturapa_pm_id" ref="fatturapa_mp05"/>
         </record>
 
-        <record id="res_partner_fatturapa_1" model="res.partner">
+        <record id="res_partner_fatturapa_0" model="res.partner">
             <field name="name">Pubblica Amministrazione</field>
             <field name="customer">1</field>
             <field name="supplier">0</field>
@@ -66,7 +66,7 @@
             <field name="date_invoice" eval="time.strftime('%Y')+'-01-07'"/>
             <field eval="14.0" name="amount_untaxed"/>
             <field eval="14.0" name="amount_total"/>
-            <field name="partner_id" ref="res_partner_fatturapa_1"/>
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="fatturapa_po_line_no">1</field>
             <field name="fatturapa_po">1</field>
             <field name="fatturapa_po_cup">abc123</field>
@@ -101,7 +101,7 @@
             <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_code_sale_22')])]"/>
             <field name="product_id" ref="product.product_product_39"/>
             <field name="quantity" eval="1.0" />
-            <field name="partner_id" ref="res_partner_fatturapa_1"/>
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="name">Toner Cartridge</field>
         </record>
 
@@ -115,7 +115,7 @@
             <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_code_sale_22')])]"/>
             <field name="product_id" ref="product.product_product_43"/>
             <field name="quantity" eval="1.0" />
-            <field name="partner_id" ref="res_partner_fatturapa_1"/>
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="name">Zed+ Antivirus</field>
         </record>
     </data>
