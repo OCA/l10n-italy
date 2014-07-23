@@ -17,26 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Italian Localization - FatturaPA',
-    'version': '0.1',
-    'category': 'Localization/Italy',
-    'summary': 'Fatturazione Elettronica per la Pubblica Amministrazione',
-    'description': """
-    Fatturazione Elettronica per la Pubblica Amministrazione.
-    """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
-    "depends": ['base', 'account', 'l10n_it_base', 'l10n_it_fiscalcode'],
-    "data": [
-        'views/account_view.xml',
-        'views/company_view.xml',
-        'views/partner_view.xml',
-        'wizard/wizard_export_fatturapa_view.xml',
-        'data/fatturapa_data.xml',
-    ],
-    "test": [],
-    "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": True
-}
+
+from . import account 
+from . import company
+from . import partner 
