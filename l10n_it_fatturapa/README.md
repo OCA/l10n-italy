@@ -52,3 +52,12 @@ Validare il file
 Per validare il file potere usare questo strumento:
 
 <a href="http://sdi.fatturapa.gov.it/SdI2FatturaPAWeb/AccediAlServizioAction.do?pagina=controlla_fattura">Controllo FatturaPA</a>
+
+Eseguire gli unit tests
+=======================
+
+{openerp-command} {parametri} --test-enable --log-level=test
+
+Al posto di {openerp-command} inserire il comando usato per eseguire openerp da shell, come ./openerp-server o bin/start_openerp o altro.
+Al posto di {parametri} inserire i parametri necessari, come --addons-path oppure direttamente -c /etc/openerp-server.conf
+
