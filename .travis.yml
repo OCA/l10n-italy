@@ -6,7 +6,8 @@ virtualenv:
   system_site_packages: true
 
 env:
-  - VERSION="7.0"
+  - VERSION="7.0" ODOO_REPO="odoo/odoo"
+  - VERSION="7.0" ODOO_REPO="OCA/OCB"
 
 before_install:
   - git clone https://github.com/OCA/account-invoicing $HOME/account-invoicing -b 7.0
@@ -17,8 +18,7 @@ before_install:
 install:
   - git clone https://github.com/dreispt/maintainer-quality-tools.git $HOME/maintainer-quality-tools
   - export PATH=$HOME/maintainer-quality-tools/travis:$PATH
-  - travis_install_nightly $VERSION
-  - $HOME/maintainer-quality-tools/travis/travis_install_nightly ${VERSION}
+  - travis_install_nightly ${VERSION}
 
 script:
   - travis_run_flake8
