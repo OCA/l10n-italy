@@ -36,15 +36,16 @@ Andando su una fattura o selezionandone più di una, vi troverete l'azione Expor
 TODO
 ====
 
-1. Importare i dati di default (formati trasmissione, metodi di pagamento, etc)
-2. Dati di riepilogo nel wizard di esportazione
-3. Migliorare gestione lotti fatture
-4. Pagamenti a rate
-5. Altri tipi di documento (note di credito, etc)
-6. Spedizione merce
-7. Security files
-8. Unit tests
-9. Molto altro...
+1.  Importare i dati di default (formati trasmissione, metodi di pagamento, etc)
+2.  Dati di riepilogo nel wizard di esportazione
+3.  Migliorare gestione lotti fatture
+4.  Pagamenti a rate
+5.  Altri tipi di documento (note di credito, etc)
+6.  Spedizione merce
+7.  Security files
+8.  Unit tests
+9.  Workflow invio file
+10. Molto altro...
 
 Validare il file
 ================
