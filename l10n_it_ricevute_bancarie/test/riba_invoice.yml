@@ -1,5 +1,5 @@
 -
-  I create an invoice and confirm it with this wizard
+  I create an invoice and confirm it
 -
   !record {model: account.invoice, id: account_invoice_riba}:
     account_id: account.a_recv
@@ -48,4 +48,3 @@
           "invoice riba credit line (%s) is different from found riba line (%s)"
           % (move_line.name, line_ids[0]))
         break
-    
