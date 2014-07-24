@@ -52,6 +52,23 @@
             <field name="user_type" ref="account.data_account_type_receivable"/>
         </record>
         
+        <record id="riba_account" model="account.account">
+            <field name="code">RiBa</field>
+            <field name="name">RiBa account (test)</field>
+            <field ref="account.cas" name="parent_id"/>
+            <field name="type">other</field>
+            <field name="user_type" ref="account.data_account_type_asset"/>
+        </record>
+        
+        <record id="unsolved_account" model="account.account">
+            <field name="code">UNSOLVED</field>
+            <field name="name">Overdue effects account (test)</field>
+            <field ref="account.cas" name="parent_id"/>
+            <field name="type">receivable</field>
+            <field eval="True" name="reconcile"/>
+            <field name="user_type" ref="account.data_account_type_receivable"/>
+        </record>
+        
         <!-- Config -->
         
         <record id="sbf_riba_config" model="riba.configurazione">
@@ -59,7 +76,14 @@
             <field name="tipo">sbf</field>
             <field name="bank_id" eval="company_bank"></field>
             <field name="acceptance_journal_id" ref="account.bank_journal"></field>
+            <field name="accreditation_journal_id" ref="account.bank_journal"></field>
             <field name="acceptance_account_id" ref="sbf_effects"></field>
+            <field name="accreditation_account_id" ref="riba_account"></field>
+            <field name="bank_account_id" ref="account.bnk"></field>
+            <field name="bank_expense_account_id" ref="account.a_expense"></field>
+            <field name="unsolved_journal_id" ref="account.bank_journal"></field>
+            <field name="overdue_effects_account_id" ref="unsolved_account"></field>
+            <field name="protest_charge_account_id" ref="account.a_expense"></field>
         </record>
     </data>
 </openerp>
