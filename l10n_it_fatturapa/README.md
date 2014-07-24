@@ -36,15 +36,16 @@ Andando su una fattura o selezionandone più di una, vi troverete l'azione Expor
 TODO
 ====
 
-1. Importare i dati di default (formati trasmissione, metodi di pagamento, etc)
-2. Dati di riepilogo nel wizard di esportazione
-3. Migliorare gestione lotti fatture
-4. Pagamenti a rate
-5. Altri tipi di documento (note di credito, etc)
-6. Spedizione merce
-7. Security files
-8. Unit tests
-9. Molto altro...
+1.  Importare i dati di default (formati trasmissione, metodi di pagamento, etc)
+2.  Dati di riepilogo nel wizard di esportazione
+3.  Migliorare gestione lotti fatture
+4.  Pagamenti a rate
+5.  Altri tipi di documento (note di credito, etc)
+6.  Spedizione merce
+7.  Security files
+8.  Unit tests
+9.  Workflow invio file
+10. Molto altro...
 
 Validare il file
 ================
@@ -58,7 +59,7 @@ Eseguire gli unit tests
 
 createdb fatturapa
 
-{openerp-command} {parametri} -i l10n_it_fatturepa -d fatturapa --test-enable --log-level=test
+{openerp-command} {parametri} -i l10n_it_fatturapa -d fatturapa --test-enable --log-level=test
 
 Al posto di {openerp-command} inserire il comando usato per eseguire openerp da shell, come ./openerp-server o bin/start_openerp o altro.
 Al posto di {parametri} inserire i parametri necessari, come --addons-path oppure direttamente -c /etc/openerp-server.conf
