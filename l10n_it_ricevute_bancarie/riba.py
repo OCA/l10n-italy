@@ -408,7 +408,7 @@ class riba_distinta_line(orm.Model):
             ('draft', 'Draft'),
             ('confirmed', 'Confirmed'),
             ('accredited', 'Accredited'),
-            ('paid', 'Paid'),
+            ('paid', 'Closed'),
             ('unsolved', 'Unsolved'),
         ], 'State', select=True, readonly=True),
         'reconciled': fields.function(

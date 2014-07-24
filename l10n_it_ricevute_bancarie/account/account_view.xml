@@ -57,6 +57,7 @@
                 <field name="riba" />
                 <field name="distinta_line_ids" invisible="1" />
                 <field name="reconcile_id" invisible="1" />
+                <field name="unsolved_invoice_ids" />
             </tree>
         </field>
     </record>

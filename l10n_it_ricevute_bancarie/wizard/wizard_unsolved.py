@@ -154,6 +154,7 @@ class riba_unsolved(orm.TransientModel):
                 (0, 0, {
                     'name': _('Effects'),
                     'account_id': wizard.effects_account_id.id,
+                    'partner_id': distinta_line.partner_id.id,
                     'credit': wizard.effects_amount,
                     'debit': 0.0,
                 }),
