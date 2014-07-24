@@ -17,7 +17,10 @@
       "tz": False, "active_model": "riba.emissione", "active_ids": [riba_move_line_id],
       "active_id": riba_move_line_id, })
     riba_list_id = action['res_id']
-    self.pool['riba.distinta'].confirm(cr, uid, [riba_list_id], context=context)
+    list_pool = self.pool['riba.distinta']
+    list_pool.confirm(cr, uid, [riba_list_id], context=context)
+    list = list_pool.browse(cr, uid, riba_list_id)
+    assert (list.state == 'accepted'), ("RiBa list is not accepted, but %s" % list.state)
 -
   I check that Initially customer invoice state is paid
 -
