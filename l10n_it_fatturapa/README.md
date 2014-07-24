@@ -59,7 +59,7 @@ Eseguire gli unit tests
 
 createdb fatturapa
 
-{openerp-command} {parametri} -i l10n_it_fatturepa -d fatturapa --test-enable --log-level=test
+{openerp-command} {parametri} -i l10n_it_fatturapa -d fatturapa --test-enable --log-level=test
 
 Al posto di {openerp-command} inserire il comando usato per eseguire openerp da shell, come ./openerp-server o bin/start_openerp o altro.
 Al posto di {parametri} inserire i parametri necessari, come --addons-path oppure direttamente -c /etc/openerp-server.conf
