@@ -42,7 +42,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         super(TestFatturaPAXMLValidation, self).setUp()
         self.wizard_model = self.registry('wizard.export.fatturapa')
         self.data_model = self.registry('ir.model.data')
-        self.attach_model = self.registry('ir.attachment')
+        self.attach_model = self.registry('fatturapa.attachment')
 
     def tearDown(self):
         super(TestFatturaPAXMLValidation, self).tearDown()

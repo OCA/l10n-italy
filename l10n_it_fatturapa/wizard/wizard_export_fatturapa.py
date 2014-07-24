@@ -72,7 +72,7 @@ class WizardExportFatturapa(orm.TransientModel):
             raise orm.except_orm(
                 _('Error!'), _('TIN not set.'))
 
-        attach_obj = self.pool['ir.attachment']
+        attach_obj = self.pool['fatturapa.attachment']
         root = tmpl.getroot()
         header = """<?xml version="1.0" encoding="UTF-8"?>\n"""
         attach_data = tostring(root, encoding='utf-8', method='xml')
@@ -575,7 +575,7 @@ class WizardExportFatturapa(orm.TransientModel):
 
         attach_id = self.saveAttachment(cr, uid, context=context)
         view_rec = model_data_obj.get_object_reference(
-            cr, uid, 'base', 'view_attachment_form')
+            cr, uid, 'l10n_it_fatturapa', 'view_fatturapa_attachment_form')
         if view_rec:
             view_id = view_rec and view_rec[1] or False
 
@@ -585,7 +585,7 @@ class WizardExportFatturapa(orm.TransientModel):
             'view_id': [view_id],
             'res_id': attach_id,
             'view_mode': 'form',
-            'res_model': 'ir.attachment',
+            'res_model': 'fatturapa.attachment',
             'type': 'ir.actions.act_window',
             'context': context
             }

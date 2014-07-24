@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	<record model="ir.ui.view" id="view_fatturapa_attachment_form">
+			<field name="name">fatturapa.attachment.form</field>
+			<field name="model">fatturapa.attachment</field>
+			<field name="inherit_id" ref="base.view_attachment_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//sheet" position="before">
+					<header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,rejected,accepted" statusbar_colors='{"accepted":"blue"}'/>
+                </header>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

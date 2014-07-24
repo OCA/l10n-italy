@@ -17,27 +17,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Italian Localization - FatturaPA',
-    'version': '0.1',
-    'category': 'Localization/Italy',
-    'summary': 'Fatturazione Elettronica per la Pubblica Amministrazione',
-    'description': """
-    Fatturazione Elettronica per la Pubblica Amministrazione.
-    """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
-    "depends": ['base', 'account', 'l10n_it_base', 'l10n_it_fiscalcode'],
-    "data": [
-        'data/fatturapa_data.xml',
-        'views/account_view.xml',
-        'views/attachment_view.xml',
-        'views/company_view.xml',
-        'views/partner_view.xml',
-        'wizard/wizard_export_fatturapa_view.xml',
-    ],
-    "test": [],
-    "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": True
-}
+
+from openerp.osv import fields, orm
+
+
+class FatturaPAAttachment(orm.Model):
+    _name = "fatturapa.attachment"
+    _description = "FatturaPA Export File"
+    _inherits = {'ir.attachment': 'ir_attachment_id'}
+    _inherit = ['mail.thread']
+
+    _columns = {
+        'ir_attachment_id': fields.many2one('ir.attachment', 'Attachment'),
+        'state': fields.selection(
+            (('draft', 'Draft'),
+                ('sent', 'Sent'),
+                ('rejected', 'Rejected'),
+                ('accepted', 'Accepted')),
+            'State'),
+    }
+
+    _defaults = {
+        'state': 'draft',
+    }
