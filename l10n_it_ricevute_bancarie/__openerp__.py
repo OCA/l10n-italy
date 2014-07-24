@@ -49,7 +49,13 @@ Ad ogni passaggio di stato sarà possibile generare le relative registrazioni co
 Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQkt4/edit# abbiamo un esempio delle tipiche registrazioni generate da un flusso 'salvo buon fine'.
     """,
     'images': [],
-    'depends': ['account','account_voucher', 'l10n_it_fiscalcode', 'account_due_list'],
+    'depends': [
+        'account',
+        'account_voucher',
+        'l10n_it_fiscalcode',
+        'account_due_list',
+        'base_iban',
+        ],
     'init_xml': [],
     'data': [
         "partner/partner_view.xml",
@@ -64,8 +70,14 @@ Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQ
         "riba_workflow.xml",
         "security/ir.model.access.csv",
     ],
-    'demo_xml': [],
-    'test': [],
+    'demo_xml': [
+        'demo/riba_demo.xml',
+        ],
+    'test': [
+        'test/riba_invoice.yml',
+        'test/issue_riba.yml',
+        'test/unsolved_riba.yml',
+        ],
     'installable': True,
     'active': False,
 }
