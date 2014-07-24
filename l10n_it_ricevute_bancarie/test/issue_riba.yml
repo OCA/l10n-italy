@@ -38,6 +38,7 @@
     accreditation_pool.create_move(cr, uid, [accr_id], context=accr_context)
     list.refresh()
     assert (list.state == 'accredited'), ("RiBa list is not accredited, but %s" % list.state)
+    # voucher payment
     voucher_pool = self.pool['account.voucher']
     import netsvc
     vals = {}
@@ -56,8 +57,6 @@
     }
     if not res['value']['line_cr_ids']:
       res['value']['line_cr_ids'] = [{'type': 'cr', 'account_id': ref('sbf_effects'),}]
-    #clients aren't sending value of readonly fields in the view, and there is a good reason for that, so here the
-    #create should only use values of fields that are not readonly. That's why i'm removing some of these values
     del(res['value']['line_cr_ids'][0]['date_original'])
     del(res['value']['line_cr_ids'][0]['date_due'])
     res['value']['line_cr_ids'][0]['amount'] = 450.0
