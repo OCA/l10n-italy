@@ -305,6 +305,9 @@ class riba_distinta_line(orm.Model):
         return result.get(ids[0], [])
 
     def test_paid(self, cr, uid, ids, *args):
+        for line in self.browse(cr, uid, ids):
+            if line.state == 'unsolved':
+                return False
         res = self.move_line_id_payment_get(cr, uid, ids)
         if not res:
             return False

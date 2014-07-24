@@ -201,12 +201,12 @@ class riba_unsolved(orm.TransientModel):
         for acceptance_move_line in distinta_line.acceptance_move_id.line_id:
             if acceptance_move_line.account_id.id == wizard.effects_account_id.id:
                 to_be_reconciled.append(acceptance_move_line.id)
-        move_line_pool.reconcile_partial(cr, uid, to_be_reconciled, context=context)
         
         distinta_line.write({
             'unsolved_move_id': move_id,
             'state': 'unsolved',
-        })
+            })
+        move_line_pool.reconcile_partial(cr, uid, to_be_reconciled, context=context)
         wf_service.trg_validate(
             uid, 'riba.distinta', distinta_line.distinta_id.id, 'unsolved', cr)
         return {
