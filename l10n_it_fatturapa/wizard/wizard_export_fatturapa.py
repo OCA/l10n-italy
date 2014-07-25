@@ -368,10 +368,16 @@ class WizardExportFatturapa(orm.TransientModel):
                 ).text = str(invoice.fatturapa_po_line_no)
             DatiOrdineAcquisto.find(
                 'IdDocumento').text = invoice.fatturapa_po
-            DatiOrdineAcquisto.find(
-                'CodiceCUP').text = invoice.fatturapa_po_cup
-            DatiOrdineAcquisto.find(
-                'CodiceCIG').text = invoice.fatturapa_po_cig
+            if invoice.fatturapa_po_cup:
+                DatiOrdineAcquisto.find(
+                    'CodiceCUP').text = invoice.fatturapa_po_cup
+            else:
+                DatiOrdineAcquisto.remove(DatiOrdineAcquisto.find('CodiceCUP'))
+            if invoice.fatturapa_po_cig:
+                DatiOrdineAcquisto.find(
+                    'CodiceCIG').text = invoice.fatturapa_po_cig
+            else:
+                DatiOrdineAcquisto.remove(DatiOrdineAcquisto.find('CodiceCIG'))
         else:
             DatiGenerali.remove(DatiOrdineAcquisto)
 
@@ -391,10 +397,16 @@ class WizardExportFatturapa(orm.TransientModel):
             DatiContratto.find('Data').text = invoice.fatturapa_contract_data
             DatiContratto.find(
                 'NumItem').text = invoice.fatturapa_contract_numitem
-            DatiContratto.find(
-                'CodiceCUP').text = invoice.fatturapa_contract_cup
-            DatiContratto.find(
-                'CodiceCIG').text = invoice.fatturapa_contract_cig
+            if invoice.fatturapa_contract_cup:
+                DatiContratto.find(
+                    'CodiceCUP').text = invoice.fatturapa_contract_cup
+            else:
+                DatiContratto.remove(DatiContratto.find('CodiceCUP'))
+            if invoice.fatturapa_contract_cig:
+                DatiContratto.find(
+                    'CodiceCIG').text = invoice.fatturapa_contract_cig
+            else:
+                DatiContratto.remove(DatiContratto.find('CodiceCIG'))
         else:
             DatiGenerali.remove(DatiContratto)
 
@@ -417,10 +429,16 @@ class WizardExportFatturapa(orm.TransientModel):
                 'Data').text = invoice.fatturapa_agreement_data
             DatiConvenzione.find(
                 'NumItem').text = invoice.fatturapa_agreement_numitem
-            DatiConvenzione.find(
-                'CodiceCUP').text = invoice.fatturapa_agreement_cup
-            DatiConvenzione.find(
-                'CodiceCIG').text = invoice.fatturapa_agreement_cig
+            if invoice.fatturapa_agreement_cup:
+                DatiConvenzione.find(
+                    'CodiceCUP').text = invoice.fatturapa_agreement_cup
+            else:
+                DatiConvenzione.remove(DatiConvenzione.find('CodiceCUP'))
+            if invoice.fatturapa_agreement_cig:
+                DatiConvenzione.find(
+                    'CodiceCIG').text = invoice.fatturapa_agreement_cig
+            else:
+                DatiConvenzione.remove(DatiConvenzione.find('CodiceCIG'))
         else:
             DatiGenerali.remove(DatiConvenzione)
 
@@ -441,10 +459,16 @@ class WizardExportFatturapa(orm.TransientModel):
             DatiRicezione.find('Data').text = invoice.fatturapa_reception_data
             DatiRicezione.find(
                 'NumItem').text = invoice.fatturapa_reception_numitem
-            DatiRicezione.find(
-                'CodiceCUP').text = invoice.fatturapa_reception_cup
-            DatiRicezione.find(
-                'CodiceCIG').text = invoice.fatturapa_reception_cig
+            if invoice.fatturapa_reception_cup:
+                DatiRicezione.find(
+                    'CodiceCUP').text = invoice.fatturapa_reception_cup
+            else:
+                DatiRicezione.remove(DatiRicezione.find('CodiceCUP'))
+            if invoice.fatturapa_reception_cig:
+                DatiRicezione.find(
+                    'CodiceCIG').text = invoice.fatturapa_reception_cig
+            else:
+                DatiRicezione.remove(DatiRicezione.find('CodiceCIG'))
         else:
             DatiGenerali.remove(DatiRicezione)
 
