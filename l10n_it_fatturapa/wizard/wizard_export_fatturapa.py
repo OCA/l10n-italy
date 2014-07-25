@@ -347,8 +347,11 @@ class WizardExportFatturapa(orm.TransientModel):
         DatiGeneraliDocumento.find('Divisa').text = invoice.currency_id.name
         DatiGeneraliDocumento.find('Data').text = invoice.date_invoice
         DatiGeneraliDocumento.find('Numero').text = invoice.number
-        # TODO: Art73
-        DatiGeneraliDocumento.find('Art73').text = 'SI'
+
+        if invoice.company_id.fatturapa_art73:
+            DatiGeneraliDocumento.find('Art73').text = 'SI'
+        else:
+            DatiGeneraliDocumento.find('Art73').text = 'NO'
 
         return True
 

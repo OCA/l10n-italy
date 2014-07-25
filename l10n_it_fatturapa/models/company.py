@@ -36,6 +36,9 @@ class res_company(orm.Model):
             'ir.sequence', 'Sequence',
             help="FatturaPA Sequence",
             ),
+        'fatturapa_art73': fields.boolean(
+            'Art73', help="FatturaPA Art73",
+            ),
     }
 
 
@@ -63,6 +66,12 @@ class account_config_settings(orm.TransientModel):
             string="Sequence",
             help='FatturaPA Sequence'
             ),
+        'fatturapa_art73': fields.related(
+            'company_id', 'fatturapa_art73',
+            type='boolean',
+            string="Art73",
+            help='FatturaPA Art73'
+            ),
     }
 
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
@@ -84,11 +93,15 @@ class account_config_settings(orm.TransientModel):
                     company.fatturapa_sequence_id and
                     company.fatturapa_sequence_id.id or False,
                     ),
+                'fatturapa_art73': (
+                    company.fatturapa_art73 or False,
+                    ),
                 })
         else:
             res['value'].update({
                 'fatturapa_fiscal_position_id': False,
                 'fatturapa_format_id': False,
                 'fatturapa_sequence_id': False,
+                'fatturapa_art73': False,
                 })
         return res
