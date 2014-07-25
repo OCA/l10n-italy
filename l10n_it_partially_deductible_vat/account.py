@@ -194,7 +194,7 @@ class account_invoice_tax(orm.Model):
         tax_code_obj = self.pool.get('account.tax.code')
 
         cur = invoice.currency_id
-        tax_difference = self.tax_difference(self._cr, self._uid, cur, tax_grouped)
+        tax_difference = self.tax_difference(cur, tax_grouped)
         cur_obj = self.pool.get('res.currency')
         if cur_obj.is_zero(self._cr, self._uid, cur, tax_difference):
             return tax_grouped
