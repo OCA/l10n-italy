@@ -123,6 +123,17 @@
                 </field>
             </field>
         </record>
+        
+        <record id="view_account_invoice_filter_unsolved" model="ir.ui.view">
+            <field name="name">account.invoice.select.unsolved</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"></field>
+            <field name="arch" type="xml">
+                <filter name="unpaid" position="after">
+                    <filter name="unsolved" string="Unsolved" domain="[('is_unsolved','=',True)]" help="Unsolved Invoices"/>
+                </filter>
+            </field>
+        </record>
 
         <record id="action_invoice_tree1" model="ir.actions.act_window">
             <field name="name">Unsolved Invoices</field>
@@ -131,7 +142,7 @@
             <field name="view_mode">tree,form,calendar,graph</field>
             <field eval="False" name="view_id"/>
             <field name="domain">[('type','=','out_invoice'), ('unsolved_move_line_ids', '!=', False)]</field>
-            <field name="context">{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale'}</field>
+            <field name="context">{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale', 'search_default_unsolved': True}</field>
             <field name="search_view_id" ref="account.view_account_invoice_filter"/>
         </record>
 
