@@ -153,8 +153,7 @@ class account_invoice_tax(orm.Model):
                 'tax_code_id': 26}}
     '''
 
-    @api.v8
-    def tax_difference(self, cur, tax_grouped):
+    def tax_difference(self, cr, uid, cur, tax_grouped):
         real_total = 0
         invoice_total = 0
         cur_obj = self.pool.get('res.currency')
@@ -164,19 +163,19 @@ class account_invoice_tax(orm.Model):
         for inv_tax in tax_grouped.values():
             if inv_tax['tax_code_id']:
                 main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_tax_code(
-                    tax_code_obj.browse(self._cr, self._uid, inv_tax['tax_code_id'])))
+                    tax_code_obj.browse(cr, uid, inv_tax['tax_code_id'])))
             elif inv_tax['base_code_id']:
                 main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
-                    tax_code_obj.browse(self._cr, self._uid, inv_tax['base_code_id'])))
-            # else:
-            #     raise orm.except_orm(_('Error'),
-            #                         _('No tax codes for invoice tax %s') % inv_tax['name'])
+                    tax_code_obj.browse(cr, uid, inv_tax['base_code_id'])))
+            else:
+                raise orm.except_orm(_('Error'),
+                    _('No tax codes for invoice tax %s') % inv_tax['name'])
             if not grouped_base.get(main_tax.amount, False):
                 grouped_base[main_tax.amount] = 0
             grouped_base[main_tax.amount] += inv_tax['base']
         for tax_rate in grouped_base:
             real_total += grouped_base[tax_rate] * tax_rate
-        real_total = cur_obj.round(self._cr, self._uid, cur, real_total)
+        real_total = cur_obj.round(cr, uid, cur, real_total)
         for inv_tax in tax_grouped.values():
             invoice_total += inv_tax['amount']
         return real_total - invoice_total
@@ -189,7 +188,7 @@ class account_invoice_tax(orm.Model):
         tax_code_obj = self.pool.get('account.tax.code')
 
         cur = invoice.currency_id
-        tax_difference = self.tax_difference(cur, tax_grouped)
+        tax_difference = self.tax_difference(self._cr, self._uid, cur, tax_grouped)
         cur_obj = self.pool.get('res.currency')
         if cur_obj.is_zero(self._cr, self._uid, cur, tax_difference):
             return tax_grouped
