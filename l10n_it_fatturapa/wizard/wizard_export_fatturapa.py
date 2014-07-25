@@ -356,13 +356,21 @@ class WizardExportFatturapa(orm.TransientModel):
         if not context:
             context = {}
 
-        DatiOrdineAcquisto = body.find('DatiGenerali/DatiOrdineAcquisto')
+        DatiGenerali = body.find('DatiGenerali')
+        DatiOrdineAcquisto = DatiGenerali.find('DatiOrdineAcquisto')
 
-        DatiOrdineAcquisto.find(
-            'RiferimentoNumeroLinea').text = str(invoice.fatturapa_po_line_no)
-        DatiOrdineAcquisto.find('IdDocumento').text = invoice.fatturapa_po
-        DatiOrdineAcquisto.find('CodiceCUP').text = invoice.fatturapa_po_cup
-        DatiOrdineAcquisto.find('CodiceCIG').text = invoice.fatturapa_po_cig
+        if invoice.fatturapa_po_enable:
+            DatiOrdineAcquisto.find(
+                'RiferimentoNumeroLinea'
+                ).text = str(invoice.fatturapa_po_line_no)
+            DatiOrdineAcquisto.find(
+                'IdDocumento').text = invoice.fatturapa_po
+            DatiOrdineAcquisto.find(
+                'CodiceCUP').text = invoice.fatturapa_po_cup
+            DatiOrdineAcquisto.find(
+                'CodiceCIG').text = invoice.fatturapa_po_cig
+        else:
+            DatiGenerali.remove(DatiOrdineAcquisto)
 
         return True
 
@@ -370,15 +378,22 @@ class WizardExportFatturapa(orm.TransientModel):
         if not context:
             context = {}
 
-        DatiContratto = body.find('DatiGenerali/DatiContratto')
+        DatiGenerali = body.find('DatiGenerali')
+        DatiContratto = DatiGenerali.find('DatiContratto')
 
-        line_no = str(invoice.fatturapa_contract_line_no)
-        DatiContratto.find('RiferimentoNumeroLinea').text = line_no
-        DatiContratto.find('IdDocumento').text = invoice.fatturapa_contract
-        DatiContratto.find('Data').text = invoice.fatturapa_contract_data
-        DatiContratto.find('NumItem').text = invoice.fatturapa_contract_numitem
-        DatiContratto.find('CodiceCUP').text = invoice.fatturapa_contract_cup
-        DatiContratto.find('CodiceCIG').text = invoice.fatturapa_contract_cig
+        if invoice.fatturapa_contract_enable:
+            line_no = str(invoice.fatturapa_contract_line_no)
+            DatiContratto.find('RiferimentoNumeroLinea').text = line_no
+            DatiContratto.find('IdDocumento').text = invoice.fatturapa_contract
+            DatiContratto.find('Data').text = invoice.fatturapa_contract_data
+            DatiContratto.find(
+                'NumItem').text = invoice.fatturapa_contract_numitem
+            DatiContratto.find(
+                'CodiceCUP').text = invoice.fatturapa_contract_cup
+            DatiContratto.find(
+                'CodiceCIG').text = invoice.fatturapa_contract_cig
+        else:
+            DatiGenerali.remove(DatiContratto)
 
         return True
 
@@ -386,19 +401,25 @@ class WizardExportFatturapa(orm.TransientModel):
         if not context:
             context = {}
 
-        DatiConvenzione = body.find('DatiGenerali/DatiConvenzione')
+        DatiGenerali = body.find('DatiGenerali')
+        DatiConvenzione = DatiGenerali.find('DatiConvenzione')
 
-        DatiConvenzione.find(
-            'RiferimentoNumeroLinea'
-            ).text = str(invoice.fatturapa_agreement_line_no)
-        DatiConvenzione.find('IdDocumento').text = invoice.fatturapa_agreement
-        DatiConvenzione.find('Data').text = invoice.fatturapa_agreement_data
-        DatiConvenzione.find(
-            'NumItem').text = invoice.fatturapa_agreement_numitem
-        DatiConvenzione.find(
-            'CodiceCUP').text = invoice.fatturapa_agreement_cup
-        DatiConvenzione.find(
-            'CodiceCIG').text = invoice.fatturapa_agreement_cig
+        if invoice.fatturapa_agreement_enable:
+            DatiConvenzione.find(
+                'RiferimentoNumeroLinea'
+                ).text = str(invoice.fatturapa_agreement_line_no)
+            DatiConvenzione.find(
+                'IdDocumento').text = invoice.fatturapa_agreement
+            DatiConvenzione.find(
+                'Data').text = invoice.fatturapa_agreement_data
+            DatiConvenzione.find(
+                'NumItem').text = invoice.fatturapa_agreement_numitem
+            DatiConvenzione.find(
+                'CodiceCUP').text = invoice.fatturapa_agreement_cup
+            DatiConvenzione.find(
+                'CodiceCIG').text = invoice.fatturapa_agreement_cig
+        else:
+            DatiGenerali.remove(DatiConvenzione)
 
         return True
 
@@ -406,18 +427,23 @@ class WizardExportFatturapa(orm.TransientModel):
         if not context:
             context = {}
 
-        DatiRicezione = body.find('DatiGenerali/DatiRicezione')
+        DatiGenerali = body.find('DatiGenerali')
+        DatiRicezione = DatiGenerali.find('DatiRicezione')
 
-        line_no = str(invoice.fatturapa_reception_line_no)
-        DatiRicezione.find('RiferimentoNumeroLinea').text = line_no
-        DatiRicezione.find('IdDocumento').text = invoice.fatturapa_reception
-        DatiRicezione.find('Data').text = invoice.fatturapa_reception_data
-        DatiRicezione.find(
-            'NumItem').text = invoice.fatturapa_reception_numitem
-        DatiRicezione.find(
-            'CodiceCUP').text = invoice.fatturapa_reception_cup
-        DatiRicezione.find(
-            'CodiceCIG').text = invoice.fatturapa_reception_cig
+        if invoice.fatturapa_reception_enable:
+            line_no = str(invoice.fatturapa_reception_line_no)
+            DatiRicezione.find('RiferimentoNumeroLinea').text = line_no
+            DatiRicezione.find(
+                'IdDocumento').text = invoice.fatturapa_reception
+            DatiRicezione.find('Data').text = invoice.fatturapa_reception_data
+            DatiRicezione.find(
+                'NumItem').text = invoice.fatturapa_reception_numitem
+            DatiRicezione.find(
+                'CodiceCUP').text = invoice.fatturapa_reception_cup
+            DatiRicezione.find(
+                'CodiceCIG').text = invoice.fatturapa_reception_cig
+        else:
+            DatiGenerali.remove(DatiRicezione)
 
         return True
 
