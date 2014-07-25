@@ -14,20 +14,12 @@
             <field name="name">IVA a credito 20% det 50%</field>
         </record>
 
-        <record id="tax_code_credit_20n_50" model="account.tax.code">
-            <field name="name">IVA a credito 20% det 50% (indetraibile)</field>
-        </record>
-
         <record id="tax_base_code_credit_20_50" model="account.tax.code">
             <field name="name">IVA a credito 20% det 50%(imponibile)</field>
         </record>
 
         <record id="tax_code_credit_20_10" model="account.tax.code">
             <field name="name">IVA a credito 20% det 10%</field>
-        </record>
-
-        <record id="tax_code_credit_20n_10" model="account.tax.code">
-            <field name="name">IVA a credito 20% det 10% (indetraibile)</field>
         </record>
 
         <record id="tax_base_code_credit_20_10" model="account.tax.code">
@@ -52,7 +44,6 @@
             <field name="name">IVA al 20% detraibile al 50% (I)</field>
             <field name="amount">0.5</field>
             <field name="parent_id" ref="tax_20I5"></field>
-            <field name="tax_code_id" ref="tax_code_credit_20n_50"></field>
         </record>
 
         <record id="tax_20I5a" model="account.tax">
@@ -74,7 +65,6 @@
             <field name="name">IVA al 20% detraibile al 10% (I)</field>
             <field name="amount">0.9</field>
             <field name="parent_id" ref="tax_2010"></field>
-            <field name="tax_code_id" ref="tax_code_credit_20n_10"></field>
         </record>
 
         <record id="tax_2010a" model="account.tax">
