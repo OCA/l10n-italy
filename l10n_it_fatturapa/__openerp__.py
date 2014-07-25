@@ -28,7 +28,8 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends": ['base', 'account', 'l10n_it_base', 'l10n_it_fiscalcode'],
+    "depends": [
+        'base', 'account', 'l10n_it_base', 'l10n_it_fiscalcode', 'document'],
     "data": [
         'data/fatturapa_data.xml',
         'views/account_view.xml',

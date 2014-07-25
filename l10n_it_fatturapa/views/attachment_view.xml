@@ -5,7 +5,7 @@
     	<record model="ir.ui.view" id="view_fatturapa_attachment_form">
 			<field name="name">fatturapa.attachment.form</field>
 			<field name="model">fatturapa.attachment</field>
-			<field name="inherit_id" ref="base.view_attachment_form" />
+			<field name="inherit_id" ref="base.view_attachment_form"/>
 			<field name="arch" type="xml">
 				<xpath expr="//sheet" position="before">
 					<header>
@@ -20,6 +20,31 @@
 				</xpath>
 			</field>
 		</record>
+
+		<record model="ir.ui.view" id="view_fatturapa_attachment_tree">
+			<field name="name">fatturapa.attachment.tree</field>
+			<field name="model">fatturapa.attachment</field>
+			<field name="inherit_id" ref="base.view_attachment_tree" />
+			<field name="arch" type="xml">
+				<field name="create_date" position="after">
+					<field name="state"/>
+				</field>
+			</field>
+		</record>
+
+		<record id="action_fatturapa_attachment" model="ir.actions.act_window">
+            <field name="name">FatturaPA Export Files</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fatturapa.attachment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_fatturapa_attachment_tree"/>
+        </record>
+
+        <menuitem action="action_fatturapa_attachment"
+        	parent="document.menu_document_doc"
+        	name="FatturaPA Export Files"
+        	id="fatturapa_attachment_menu"/>
 
 	</data>
 </openerp>

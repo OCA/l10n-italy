@@ -20,6 +20,12 @@
 
 from openerp.osv import fields, orm
 
+AVAILABLE_STATES = [
+    ('draft', 'Draft'),
+    ('sent', 'Sent'),
+    ('rejected', 'Rejected'),
+    ('accepted', 'Accepted')]
+
 
 class FatturaPAAttachment(orm.Model):
     _name = "fatturapa.attachment"
@@ -29,12 +35,7 @@ class FatturaPAAttachment(orm.Model):
 
     _columns = {
         'ir_attachment_id': fields.many2one('ir.attachment', 'Attachment'),
-        'state': fields.selection(
-            (('draft', 'Draft'),
-                ('sent', 'Sent'),
-                ('rejected', 'Rejected'),
-                ('accepted', 'Accepted')),
-            'State'),
+        'state': fields.selection(AVAILABLE_STATES, 'State'),
     }
 
     _defaults = {
