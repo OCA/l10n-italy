@@ -22,6 +22,16 @@ from . import attachment
 from openerp.osv import fields, orm
 
 
+class fatturapa_document_type(orm.Model):
+    _name = "fatturapa.document_type"
+    _description = 'FatturaPA Document Type'
+
+    _columns = {
+        'name': fields.char('Description', size=128),
+        'code': fields.char('Code', size=4),
+    }
+
+
 class fatturapa_payment_term(orm.Model):
     _name = "fatturapa.payment_term"
     _description = 'FatturaPA Payment Term'

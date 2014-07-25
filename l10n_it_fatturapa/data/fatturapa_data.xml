@@ -2,6 +2,32 @@
 <openerp>
     <data noupdate="1">
 
+        <!-- FatturaPA Document Type -->
+        <record id="fatturapa_TD01" model="fatturapa.document_type">
+            <field name="code">TD01</field>
+            <field name="name">Fattura</field>
+        </record>
+        <record id="fatturapa_TD02" model="fatturapa.document_type">
+            <field name="code">TD02</field>
+            <field name="name">Acconto / anticipo su fattura</field>
+        </record>
+        <record id="fatturapa_TD03" model="fatturapa.document_type">
+            <field name="code">TD03</field>
+            <field name="name">Acconto / anticipo su parcella</field>
+        </record>
+        <record id="fatturapa_TD04" model="fatturapa.document_type">
+            <field name="code">TD04</field>
+            <field name="name">Nota di credito</field>
+        </record>
+        <record id="fatturapa_TD05" model="fatturapa.document_type">
+            <field name="code">TD05</field>
+            <field name="name">Nota di debito</field>
+        </record>
+        <record id="fatturapa_TD06" model="fatturapa.document_type">
+            <field name="code">TD06</field>
+            <field name="name">Parcella</field>
+        </record>
+
     	<!-- FatturaPA Fiscal Positions -->
     	<record id="fatturapa_RF01" model="fatturapa.fiscal_position">
             <field name="code">RF01</field>
