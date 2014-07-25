@@ -70,7 +70,8 @@ class account_config_settings(orm.TransientModel):
             'company_id', 'fatturapa_art73',
             type='boolean',
             string="Art73",
-            help='FatturaPA Art73'
+            help="Documento emesso secondo modalità e termini stabiliti con DM\
+ai sensi dell'art. 73 DPR 633/72"
             ),
     }
 
