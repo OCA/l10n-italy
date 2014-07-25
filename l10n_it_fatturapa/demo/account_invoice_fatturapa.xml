@@ -27,6 +27,7 @@
             <field name="fatturapa_fiscal_position_id" ref="fatturapa_RF01"/>
             <field name="fatturapa_format_id" ref="fatturapa_format_01"/>
             <field name="fatturapa_sequence_id" ref="seq_fatturapa"/>
+            <field name="fatturapa_art73">True</field>
             <field name="vat">IT02780790107</field>
         </record>
 
@@ -67,10 +68,12 @@
             <field eval="14.0" name="amount_untaxed"/>
             <field eval="14.0" name="amount_total"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="fatturapa_po_enable">True</field>
             <field name="fatturapa_po_line_no">1</field>
             <field name="fatturapa_po">1</field>
             <field name="fatturapa_po_cup">abc123</field>
             <field name="fatturapa_po_cig">abc123</field>
+            <field name="fatturapa_contract_enable">True</field>
             <field name="fatturapa_contract_line_no">1</field>
             <field name="fatturapa_contract">1</field>
             <field name="fatturapa_contract_data">2014-01-07</field>
@@ -78,12 +81,14 @@
             <field name="fatturapa_contract_cup">abc123</field>
             <field name="fatturapa_contract_cig">abc123</field>
             <field name="fatturapa_agreement_line_no">1</field>
+            <field name="fatturapa_agreement_enable">True</field>
             <field name="fatturapa_agreement">1</field>
             <field name="fatturapa_agreement_data">2014-01-07</field>
             <field name="fatturapa_agreement_numitem">1</field>
             <field name="fatturapa_agreement_cup">abc123</field>
             <field name="fatturapa_agreement_cig">abc123</field>
             <field name="fatturapa_reception_line_no">1</field>
+            <field name="fatturapa_reception_enable">True</field>
             <field name="fatturapa_reception">1</field>
             <field name="fatturapa_reception_data">2014-01-07</field>
             <field name="fatturapa_reception_numitem">1</field>

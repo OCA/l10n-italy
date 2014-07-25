@@ -83,5 +83,4 @@ xmldsig-core-schema.xsd"
         xsd_tree = etree.parse(BytesIO(xsd_content.encode('utf8')))
         schema = etree.XMLSchema(xsd_tree)
         validation = schema.validate(etree.parse(BytesIO(xml_content)))
-
         self.assertTrue(validation, 'FatturaPA XML file not valid')
