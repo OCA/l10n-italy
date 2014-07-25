@@ -168,9 +168,9 @@ class account_invoice_tax(orm.Model):
             elif inv_tax['base_code_id']:
                 main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
                     tax_code_obj.browse(self._cr, self._uid, inv_tax['base_code_id'])))
-            else:
-                raise orm.except_orm(_('Error'),
-                                     _('No tax codes for invoice tax %s') % inv_tax['name'])
+            # else:
+            #     raise orm.except_orm(_('Error'),
+            #                         _('No tax codes for invoice tax %s') % inv_tax['name'])
             if not grouped_base.get(main_tax.amount, False):
                 grouped_base[main_tax.amount] = 0
             grouped_base[main_tax.amount] += inv_tax['base']
