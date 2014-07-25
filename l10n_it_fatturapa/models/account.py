@@ -18,7 +18,9 @@
 #
 ##############################################################################
 
+from . import attachment
 from openerp.osv import fields, orm
+
 
 class fatturapa_payment_term(orm.Model):
     _name = "fatturapa.payment_term"
@@ -28,6 +30,7 @@ class fatturapa_payment_term(orm.Model):
         'name': fields.char('Description', size=128),
         'code': fields.char('Code', size=4),
     }
+
 
 class fatturapa_payment_method(orm.Model):
     _name = "fatturapa.payment_method"
@@ -74,11 +77,15 @@ class account_invoice(orm.Model):
     _inherit = "account.invoice"
 
     _columns = {
-        'fatturapa_po': fields.char('FatturaPA Purchase Order', size=64),
+        'fatturapa_po_enable': fields.boolean('FatturaPA Purchase Order'),
+        'fatturapa_po': fields.char(
+            'FatturaPA Purchase Order Number', size=64),
         'fatturapa_po_line_no': fields.integer('FatturaPA PO Line No'),
         'fatturapa_po_cup': fields.char('FatturaPA PO CUP', size=64),
         'fatturapa_po_cig': fields.char('FatturaPA PO CIG', size=64),
-        'fatturapa_contract': fields.char('FatturaPA Contract', size=64),
+        'fatturapa_contract_enable': fields.boolean('FatturaPA Contract'),
+        'fatturapa_contract': fields.char(
+            'FatturaPA Contract Number', size=64),
         'fatturapa_contract_line_no': fields.integer(
             'FatturaPA Contract Line No'),
         'fatturapa_contract_data': fields.date('FatturaPA Contract Data'),
@@ -88,7 +95,9 @@ class account_invoice(orm.Model):
             'FatturaPA Contract CUP', size=64),
         'fatturapa_contract_cig': fields.char(
             'FatturaPA Contract CIG', size=64),
-        'fatturapa_agreement': fields.char('FatturaPA Agreement', size=64),
+        'fatturapa_agreement_enable': fields.boolean('FatturaPA Agreement'),
+        'fatturapa_agreement': fields.char(
+            'FatturaPA Agreement Number', size=64),
         'fatturapa_agreement_line_no': fields.integer(
             'FatturaPA Agreement Line No'),
         'fatturapa_agreement_data': fields.date('FatturaPA Agreement Data'),
@@ -98,7 +107,9 @@ class account_invoice(orm.Model):
             'FatturaPA Agreement CUP', size=64),
         'fatturapa_agreement_cig': fields.char(
             'FatturaPA Agreement CIG', size=64),
-        'fatturapa_reception': fields.char('FatturaPA Reception', size=64),
+        'fatturapa_reception_enable': fields.boolean('FatturaPA Reception'),
+        'fatturapa_reception': fields.char(
+            'FatturaPA Reception Number', size=64),
         'fatturapa_reception_line_no': fields.integer(
             'FatturaPA Reception Line No'),
         'fatturapa_reception_data': fields.date('FatturaPA Reception Data'),
@@ -108,4 +119,10 @@ class account_invoice(orm.Model):
             'FatturaPA Reception CUP', size=64),
         'fatturapa_reception_cig': fields.char(
             'FatturaPA Reception CIG', size=64),
+        'fatturapa_attachment_id': fields.many2one(
+            'fatturapa.attachment', 'FatturaPA Export File'),
+        'fatturapa_attachment_state': fields.related(
+            'fatturapa_attachment_id', 'state', type='selection', store=True,
+            selection=attachment.AVAILABLE_STATES, readonly=True, select=True,
+            string='FatturaPA Export State'),
     }

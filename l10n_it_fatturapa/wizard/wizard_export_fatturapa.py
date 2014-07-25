@@ -574,6 +574,11 @@ class WizardExportFatturapa(orm.TransientModel):
         root.remove(FatturaElettronicaBody)
 
         attach_id = self.saveAttachment(cr, uid, context=context)
+
+        for invoice_id in invoice_ids:
+            inv = invoice_obj.browse(cr, uid, invoice_id)
+            inv.write({'fatturapa_attachment_id': attach_id})
+
         view_rec = model_data_obj.get_object_reference(
             cr, uid, 'l10n_it_fatturapa', 'view_fatturapa_attachment_form')
         if view_rec:
