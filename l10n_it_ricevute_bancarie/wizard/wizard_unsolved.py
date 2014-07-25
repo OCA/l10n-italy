@@ -192,9 +192,16 @@ class riba_unsolved(orm.TransientModel):
         for move_line in move_pool.browse(cr, uid, move_id, context=context).line_id:
             if move_line.account_id.id == wizard.overdue_effects_account_id.id:
                 for riba_move_line in distinta_line.move_line_ids:
-                    invoice_pool.write(
-                        cr, uid, riba_move_line.move_line_id.invoice.id, {
-                            'unsolved_move_line_ids': [(4, move_line.id)],
+                    invoice_ids = []
+                    if riba_move_line.move_line_id.invoice:
+                        invoice_ids = [riba_move_line.move_line_id.invoice.id]
+                    elif riba_move_line.move_line_id.unsolved_invoice_ids:
+                        invoice_ids = [
+                            i.id for i in
+                            riba_move_line.move_line_id.unsolved_invoice_ids
+                            ]
+                    invoice_pool.write(cr, uid, invoice_ids, {
+                        'unsolved_move_line_ids': [(4, move_line.id)],
                         }, context=context)
             if move_line.account_id.id == wizard.effects_account_id.id:
                 to_be_reconciled.append(move_line.id)
