@@ -153,6 +153,7 @@ class account_invoice_tax(orm.Model):
                 'tax_code_id': 26}}
     '''
 
+    @api.v7
     def tax_difference(self, cr, uid, cur, tax_grouped):
         real_total = 0
         invoice_total = 0
@@ -179,6 +180,11 @@ class account_invoice_tax(orm.Model):
         for inv_tax in tax_grouped.values():
             invoice_total += inv_tax['amount']
         return real_total - invoice_total
+
+    @api.v8
+    def tax_difference(self, cur, tax_grouped):
+        return self._model.tax_difference(
+            self._cr, self._uid, cur=cur, tax_grouped=tax_grouped)
 
     @api.v8
     def compute(self, invoice):
