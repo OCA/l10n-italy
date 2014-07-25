@@ -120,7 +120,7 @@ class account_invoice(orm.Model):
             cr, uid, ids, context=context
         ):
             result.extend([i.id for i in move_line.unsolved_invoice_ids])
-        return list(set(rseult))
+        return list(set(result))
     
     _inherit = "account.invoice"
     _columns = {
