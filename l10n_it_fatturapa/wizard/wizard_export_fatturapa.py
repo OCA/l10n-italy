@@ -407,7 +407,7 @@ class WizardExportFatturapa(orm.TransientModel):
             line_no = str(invoice.fatturapa_contract_line_no)
             DatiContratto.find('RiferimentoNumeroLinea').text = line_no
             DatiContratto.find('IdDocumento').text = invoice.fatturapa_contract
-            DatiContratto.find('Date').text = invoice.fatturapa_contract_date
+            DatiContratto.find('Data').text = invoice.fatturapa_contract_date
             DatiContratto.find(
                 'NumItem').text = invoice.fatturapa_contract_numitem
             if invoice.fatturapa_contract_cup:
@@ -447,7 +447,7 @@ class WizardExportFatturapa(orm.TransientModel):
             DatiConvenzione.find(
                 'IdDocumento').text = invoice.fatturapa_agreement
             DatiConvenzione.find(
-                'Date').text = invoice.fatturapa_agreement_date
+                'Data').text = invoice.fatturapa_agreement_date
             DatiConvenzione.find(
                 'NumItem').text = invoice.fatturapa_agreement_numitem
             if invoice.fatturapa_agreement_cup:
@@ -485,7 +485,7 @@ class WizardExportFatturapa(orm.TransientModel):
             DatiRicezione.find('RiferimentoNumeroLinea').text = line_no
             DatiRicezione.find(
                 'IdDocumento').text = invoice.fatturapa_reception
-            DatiRicezione.find('Date').text = invoice.fatturapa_reception_date
+            DatiRicezione.find('Data').text = invoice.fatturapa_reception_date
             DatiRicezione.find(
                 'NumItem').text = invoice.fatturapa_reception_numitem
             if invoice.fatturapa_reception_cup:
@@ -584,7 +584,7 @@ class WizardExportFatturapa(orm.TransientModel):
     def setFatturaElettronicaHeader(self, cr, uid, partner, context=None):
         if not context:
             context = {}
-
+            
         self.setProgressivoInvio(cr, uid, context=context)
         self.setIdTrasmittente(cr, uid, context=context)
         self.setFormatoTrasmissione(cr, uid, context=context)
