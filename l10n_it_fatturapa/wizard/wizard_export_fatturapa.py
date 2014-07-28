@@ -403,6 +403,9 @@ class WizardExportFatturapa(orm.TransientModel):
             if not invoice.fatturapa_contract_date:
                 raise orm.except_orm(
                     _('Error!'), _('Contract date not set'))
+            if not invoice.fatturapa_contract_numitem:
+                raise orm.except_orm(
+                    _('Error!'), _('Contract numitem not set'))
 
             line_no = str(invoice.fatturapa_contract_line_no)
             DatiContratto.find('RiferimentoNumeroLinea').text = line_no
@@ -440,6 +443,9 @@ class WizardExportFatturapa(orm.TransientModel):
             if not invoice.fatturapa_agreement_date:
                 raise orm.except_orm(
                     _('Error!'), _('Agreement date not set'))
+            if not invoice.fatturapa_agreement_numitem:
+                raise orm.except_orm(
+                    _('Error!'), _('Agreement numitem not set'))
 
             DatiConvenzione.find(
                 'RiferimentoNumeroLinea'
@@ -480,6 +486,9 @@ class WizardExportFatturapa(orm.TransientModel):
             if not invoice.fatturapa_reception_date:
                 raise orm.except_orm(
                     _('Error!'), _('Reception date not set'))
+            if not invoice.fatturapa_reception_numitem:
+                raise orm.except_orm(
+                    _('Error!'), _('Reception numitem not set'))
 
             line_no = str(invoice.fatturapa_reception_line_no)
             DatiRicezione.find('RiferimentoNumeroLinea').text = line_no
