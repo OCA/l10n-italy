@@ -363,6 +363,11 @@ class WizardExportFatturapa(orm.TransientModel):
         DatiOrdineAcquisto = DatiGenerali.find('DatiOrdineAcquisto')
 
         if invoice.fatturapa_po_enable:
+
+            if not invoice.fatturapa_po:
+                raise orm.except_orm(
+                    _('Error!'), _('PO number not set'))
+
             DatiOrdineAcquisto.find(
                 'RiferimentoNumeroLinea'
                 ).text = str(invoice.fatturapa_po_line_no)
@@ -391,6 +396,14 @@ class WizardExportFatturapa(orm.TransientModel):
         DatiContratto = DatiGenerali.find('DatiContratto')
 
         if invoice.fatturapa_contract_enable:
+
+            if not invoice.fatturapa_contract:
+                raise orm.except_orm(
+                    _('Error!'), _('Contract number not set'))
+            if not invoice.fatturapa_contract_data:
+                raise orm.except_orm(
+                    _('Error!'), _('Contract date not set'))
+
             line_no = str(invoice.fatturapa_contract_line_no)
             DatiContratto.find('RiferimentoNumeroLinea').text = line_no
             DatiContratto.find('IdDocumento').text = invoice.fatturapa_contract
@@ -420,6 +433,14 @@ class WizardExportFatturapa(orm.TransientModel):
         DatiConvenzione = DatiGenerali.find('DatiConvenzione')
 
         if invoice.fatturapa_agreement_enable:
+
+            if not invoice.fatturapa_agreement:
+                raise orm.except_orm(
+                    _('Error!'), _('Agreement number not set'))
+            if not invoice.fatturapa_agreement_data:
+                raise orm.except_orm(
+                    _('Error!'), _('Agreement date not set'))
+
             DatiConvenzione.find(
                 'RiferimentoNumeroLinea'
                 ).text = str(invoice.fatturapa_agreement_line_no)
@@ -452,6 +473,14 @@ class WizardExportFatturapa(orm.TransientModel):
         DatiRicezione = DatiGenerali.find('DatiRicezione')
 
         if invoice.fatturapa_reception_enable:
+
+            if not invoice.fatturapa_reception:
+                raise orm.except_orm(
+                    _('Error!'), _('Reception number not set'))
+            if not invoice.fatturapa_reception_data:
+                raise orm.except_orm(
+                    _('Error!'), _('Reception date not set'))
+
             line_no = str(invoice.fatturapa_reception_line_no)
             DatiRicezione.find('RiferimentoNumeroLinea').text = line_no
             DatiRicezione.find(
