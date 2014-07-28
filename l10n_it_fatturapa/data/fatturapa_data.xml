@@ -116,7 +116,7 @@
         <record id="seq_fatturapa" model="ir.sequence">
             <field name="name">FatturaPA</field>
             <field name="code">account.invoice.fatturapa</field>
-            <field name="prefix"></field>
+            <field name="padding">5</field>
         </record>
 
     	<!-- Payment Terms -->
