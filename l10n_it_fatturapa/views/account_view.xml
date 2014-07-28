@@ -42,7 +42,7 @@
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
 								<field name="fatturapa_contract" 
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_data" 
+								<field name="fatturapa_contract_date" 
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
 								<field name="fatturapa_contract_numitem" 
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
@@ -57,7 +57,7 @@
 									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
 								<field name="fatturapa_agreement" 
 									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_data" 
+								<field name="fatturapa_agreement_date" 
 									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
 								<field name="fatturapa_agreement_numitem" 
 									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
@@ -72,7 +72,7 @@
 									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
 								<field name="fatturapa_reception" 
 									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_data" 
+								<field name="fatturapa_reception_date" 
 									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
 								<field name="fatturapa_reception_numitem" 
 									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
