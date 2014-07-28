@@ -98,7 +98,7 @@ class account_invoice(orm.Model):
             'FatturaPA Contract Number', size=64),
         'fatturapa_contract_line_no': fields.integer(
             'FatturaPA Contract Line No'),
-        'fatturapa_contract_data': fields.date('FatturaPA Contract Data'),
+        'fatturapa_contract_date': fields.date('FatturaPA Contract Date'),
         'fatturapa_contract_numitem': fields.char(
             'FatturaPA Contract NumItem', size=64),
         'fatturapa_contract_cup': fields.char(
@@ -110,7 +110,7 @@ class account_invoice(orm.Model):
             'FatturaPA Agreement Number', size=64),
         'fatturapa_agreement_line_no': fields.integer(
             'FatturaPA Agreement Line No'),
-        'fatturapa_agreement_data': fields.date('FatturaPA Agreement Data'),
+        'fatturapa_agreement_date': fields.date('FatturaPA Agreement Date'),
         'fatturapa_agreement_numitem': fields.char(
             'FatturaPA Agreement NumItem', size=64),
         'fatturapa_agreement_cup': fields.char(
@@ -122,7 +122,7 @@ class account_invoice(orm.Model):
             'FatturaPA Reception Number', size=64),
         'fatturapa_reception_line_no': fields.integer(
             'FatturaPA Reception Line No'),
-        'fatturapa_reception_data': fields.date('FatturaPA Reception Data'),
+        'fatturapa_reception_date': fields.date('FatturaPA Reception Date'),
         'fatturapa_reception_numitem': fields.char(
             'FatturaPA Reception NumItem', size=64),
         'fatturapa_reception_cup': fields.char(
