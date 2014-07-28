@@ -584,8 +584,7 @@ class WizardExportFatturapa(orm.TransientModel):
     def setFatturaElettronicaHeader(self, cr, uid, partner, context=None):
         if not context:
             context = {}
-            
-        self.setProgressivoInvio(cr, uid, context=context)
+
         self.setIdTrasmittente(cr, uid, context=context)
         self.setFormatoTrasmissione(cr, uid, context=context)
         self.setCodiceDestinatario(cr, uid, partner, context=context)
@@ -654,6 +653,7 @@ class WizardExportFatturapa(orm.TransientModel):
             inv = invoice_obj.browse(cr, uid, invoice_id)
             self.setFatturaElettronicaBody(cr, uid, inv, el, context=context)
         root.remove(FatturaElettronicaBody)
+        self.setProgressivoInvio(cr, uid, context=context)
 
         attach_id = self.saveAttachment(cr, uid, context=context)
 
