@@ -21,7 +21,6 @@
 
 from osv import fields, osv
 from tools.translate import _
-import time
 
 
 class wizard_registro_iva(osv.osv_memory):
@@ -33,15 +32,25 @@ class wizard_registro_iva(osv.osv_memory):
 
     _name = "wizard.registro.iva"
     _columns = {
-        'period_ids': fields.many2many('account.period', 'registro_iva_periods_rel', 'period_id', 'registro_id', 'Periods', help='Select periods you want retrieve documents from', required=True),
+        'period_ids': fields.many2many(
+            'account.period', 'registro_iva_periods_rel', 'period_id',
+            'registro_id', 'Periods',
+            help='Select periods you want retrieve documents from',
+            required=True),
         'type': fields.selection([
             ('customer', 'Customer Invoices'),
             ('supplier', 'Supplier Invoices'),
             ('corrispettivi', 'Corrispettivi'),
         ], 'Layout', required=True),
-        'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
-        'tax_sign': fields.float('Tax amount sign',
-                                 help="Use -1 you have negative tax amounts and you want to print them prositive"),
+        'journal_ids': fields.many2many(
+            'account.journal', 'registro_iva_journals_rel', 'journal_id',
+            'registro_id', 'Journals',
+            help='Select journals you want retrieve documents from',
+            required=True),
+        'tax_sign': fields.float(
+            'Tax amount sign',
+            help="Use -1 you have negative tax amounts and you want to print "
+                 "them prositive"),
         'message': fields.char('Message', size=64, readonly=True),
         'fiscal_page_base': fields.integer('Last printed page', required=True),
     }
@@ -65,9 +74,13 @@ class wizard_registro_iva(osv.osv_memory):
         ], order='date, name')
         if not move_ids:
             self.write(
-                cr, uid,  ids, {'message': _('No documents found in the current selection')})
+                cr, uid,  ids,
+                {'message': _('No documents found in the current selection')})
             model_data_ids = obj_model_data.search(
-                cr, uid, [('model', '=', 'ir.ui.view'), ('name', '=', 'wizard_registro_iva')])
+                cr, uid, [
+                    ('model', '=', 'ir.ui.view'),
+                    ('name', '=', 'wizard_registro_iva')
+                    ])
             resource_id = obj_model_data.read(
                 cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
             return {

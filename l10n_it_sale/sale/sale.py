@@ -19,7 +19,6 @@
 #
 #
 
-import time
 from openerp.osv import orm, fields
 
 
@@ -34,12 +33,13 @@ class sale_order(orm.Model):
             cr, uid, order, lines, context)
         partner = self.pool.get('res.partner').browse(
             cr, uid, order.partner_id.id)
-        self.pool.get('account.invoice').write(cr, uid, inv_id, {
-                                               #            'order_id': order.id,
-                                               'carriage_condition_id': partner.carriage_condition_id.id,
-                                               'goods_description_id': partner.goods_description_id.id,
-                                               'transportation_reason_id': partner.transportation_reason_id.id,
-                                               })
+        self.pool.get('account.invoice').write(
+            cr, uid, inv_id, {
+                'carriage_condition_id': partner.carriage_condition_id.id,
+                'goods_description_id': partner.goods_description_id.id,
+                'transportation_reason_id': (
+                    partner.transportation_reason_id.id),
+                })
         return inv_id
 
     def action_ship_create(self, cr, uid, ids, *args):
@@ -51,12 +51,15 @@ class sale_order(orm.Model):
             picking_ids = picking_obj.search(
                 cr, uid, [('sale_id', '=', order.id)])
             for picking_id in picking_ids:
-                picking_obj.write(cr, uid, picking_id, {
-                                  #                    'order_id': order.id,
-                                  'carriage_condition_id': partner.carriage_condition_id.id,
-                                  'goods_description_id': partner.goods_description_id.id,
-                                  'transportation_reason_id': partner.transportation_reason_id.id,
-                                  })
+                picking_obj.write(
+                    cr, uid, picking_id, {
+                        'carriage_condition_id': (
+                            partner.carriage_condition_id.id),
+                        'goods_description_id': (
+                            partner.goods_description_id.id),
+                        'transportation_reason_id': (
+                            partner.transportation_reason_id.id),
+                        })
         return True
 
 sale_order()

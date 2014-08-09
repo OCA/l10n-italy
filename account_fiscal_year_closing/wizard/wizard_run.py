@@ -7,8 +7,8 @@
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -27,8 +27,7 @@ Create FYC entries wizards
 
 from tools.translate import _
 import netsvc
-import decimal_precision as dp
-from osv import fields, osv
+from osv import osv
 
 
 class wizard_run(osv.osv_memory):
@@ -88,13 +87,18 @@ class wizard_run(osv.osv_memory):
         #
         # Create the Net L&P move if needed
         #
-        if fyc.create_net_loss_and_profit and not fyc.net_loss_and_profit_move_id:
+        if (
+            fyc.create_net_loss_and_profit
+            and not fyc.net_loss_and_profit_move_id
+        ):
             self.create_closing_move(
                 cr, uid, 'net_loss_and_profit', fyc, context)
         #
         # Remove the Net L&P move if needed
         #
-        if (not fyc.create_net_loss_and_profit) and fyc.net_loss_and_profit_move_id:
+        if (
+            not fyc.create_net_loss_and_profit
+        ) and fyc.net_loss_and_profit_move_id:
             self.remove_move(cr, uid, 'net_loss_and_profit', fyc, context)
 
         # Refresh the cached fyc object
@@ -130,7 +134,11 @@ class wizard_run(osv.osv_memory):
         #
         # Set the fyc as done (if not in cancel_mode)
         #
-        if not fyc.create_opening and not fyc.create_closing and not not fyc.create_net_loss_and_profit and not fyc.create_loss_and_profit:
+        if (
+            not fyc.create_opening and not fyc.create_closing
+            and not not fyc.create_net_loss_and_profit
+            and not fyc.create_loss_and_profit
+        ):
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(
                 uid, 'account_fiscal_year_closing.fyc', fyc.id, 'cancel', cr)
@@ -147,7 +155,8 @@ class wizard_run(osv.osv_memory):
 
     def _check_invalid_period_moves(self, cr, uid, fyc, context):
         """
-        Checks for moves with invalid period on the fiscal year that is being closed
+        Checks for moves with invalid period on the fiscal year that is being
+        closed
         """
         pool = self.pool
 
@@ -158,8 +167,7 @@ class wizard_run(osv.osv_memory):
         # Find moves on the closing fiscal year with dates of previous years
         account_move_ids = pool.get('account.move').search(cr, uid, [
             ('period_id', 'in', period_ids),
-                                ('date', '<',
-                                 fyc.closing_fiscalyear_id.date_start),
+            ('date', '<', fyc.closing_fiscalyear_id.date_start),
         ], context=context)
 
         # Find moves on the closing fiscal year with dates of next years
@@ -185,9 +193,15 @@ class wizard_run(osv.osv_memory):
             invalid_period_moves = pool.get('account.move').browse(
                 cr, uid, account_move_ids, context)
             str_invalid_period_moves = '\n'.join(
-                ['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in invalid_period_moves])
+                [
+                    'id: %s, date: %s, number: %s, ref: %s'
+                    % (move.id, move.date, move.name, move.ref)
+                    for move in invalid_period_moves
+                ])
             raise osv.except_osv(
-                _('Error'), _('One or more moves with invalid period or date found on the fiscal year: \n%s') % str_invalid_period_moves)
+                _('Error'),
+                _('One or more moves with invalid period or date found on the '
+                  'fiscal year: \n%s') % str_invalid_period_moves)
 
     def _check_draft_moves(self, cr, uid, fyc, context):
         """
@@ -209,7 +223,7 @@ class wizard_run(osv.osv_memory):
         # Find the moves on the given periods
         account_move_ids = pool.get('account.move').search(cr, uid, [
             ('period_id', 'in', period_ids),
-                                ('state', '=', 'draft'),
+            ('state', '=', 'draft'),
         ], context=context)
 
         #
@@ -219,9 +233,14 @@ class wizard_run(osv.osv_memory):
             draft_moves = pool.get('account.move').browse(
                 cr, uid, account_move_ids, context)
             str_draft_moves = '\n'.join(
-                ['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in draft_moves])
+                [
+                    'id: %s, date: %s, number: %s, ref: %s'
+                    % (move.id, move.date, move.name, move.ref)
+                    for move in draft_moves
+                ])
             raise osv.except_osv(
-                _('Error'), _('One or more draft moves found: \n%s') % str_draft_moves)
+                _('Error'),
+                _('One or more draft moves found: \n%s') % str_draft_moves)
 
     def _check_unbalanced_moves(self, cr, uid, fyc, context):
         """
@@ -243,20 +262,23 @@ class wizard_run(osv.osv_memory):
         # Find the moves on the given periods
         account_move_ids = pool.get('account.move').search(cr, uid, [
             ('period_id', 'in', period_ids),
-                                ('state', '!=', 'draft'),
+            ('state', '!=', 'draft'),
         ], context=context)
 
         #
         # For each found move, check it
         #
         unbalanced_moves = []
-        total_accounts = len(account_move_ids)
-        for move in pool.get('account.move').browse(cr, uid, account_move_ids, context):
+        for move in pool.get('account.move').browse(
+            cr, uid, account_move_ids, context
+        ):
             amount = 0
             for line in move.line_id:
                 amount += (line.debit - line.credit)
 
-            if round(abs(amount), pool.get('decimal.precision').precision_get(cr, uid, 'Account')) > 0:
+            if round(abs(amount), pool.get('decimal.precision').precision_get(
+                cr, uid, 'Account'
+            )) > 0:
                 unbalanced_moves.append(move)
 
         #
@@ -264,9 +286,15 @@ class wizard_run(osv.osv_memory):
         #
         if len(unbalanced_moves):
             str_unbalanced_moves = '\n'.join(
-                ['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in unbalanced_moves])
+                [
+                    'id: %s, date: %s, number: %s, ref: %s'
+                    % (move.id, move.date, move.name, move.ref)
+                    for move in unbalanced_moves
+                ])
             raise osv.except_osv(
-                _('Error'), _('One or more unbalanced moves found: \n%s') % str_unbalanced_moves)
+                _('Error'),
+                _('One or more unbalanced moves found: \n%s')
+                % str_unbalanced_moves)
 
     #
     # CLOSING/OPENING OPERATIONS
@@ -288,7 +316,6 @@ class wizard_run(osv.osv_memory):
         date = None
         period_id = None
         journal_id = None
-        fiscalyear_id = fyc.closing_fiscalyear_id.id
 
         #
         # Depending on the operation we will use different data
@@ -312,7 +339,9 @@ class wizard_run(osv.osv_memory):
             for account_map in account_mapping_ids:
                 if not account_map.dest_account_id:
                     raise osv.except_osv(
-                        _('UserError'), _("The L&P account mappings are not properly configured: %s") % account_map.name)
+                        _('UserError'),
+                        _("The L&P account mappings are not properly "
+                          "configured: %s") % account_map.name)
 
             #
             # Get the values for the lines
@@ -351,14 +380,18 @@ class wizard_run(osv.osv_memory):
             '''
             for account_map in account_mapping_ids:
                 if not account_map.dest_account_id:
-                    raise osv.except_osv(_('UserError'), _("The Net L&P account mappings are not properly configured: %s") % account_map.name)
+                    raise osv.except_osv(
+                        _('UserError'),
+                        _("The Net L&P account mappings are not properly "
+                          "configured: %s") % account_map.name)
             '''
             #
             # Get the values for the lines
             #
             if not fyc.nlp_description:
                 raise osv.except_osv(
-                    _('UserError'), _("The Net L&P description must be defined"))
+                    _('UserError'),
+                    _("The Net L&P description must be defined"))
             if not fyc.nlp_date:
                 raise osv.except_osv(
                     _('UserError'), _("The Net L&P date must be defined"))
@@ -374,12 +407,17 @@ class wizard_run(osv.osv_memory):
             journal_id = fyc.nlp_journal_id.id
         elif operation == 'close':
             # Require the user to have performed the L&P operation
-            if not (fyc.loss_and_profit_move_id and fyc.loss_and_profit_move_id.id):
+            if not (
+                fyc.loss_and_profit_move_id and fyc.loss_and_profit_move_id.id
+            ):
                 raise osv.except_osv(
-                    _('UserError'), _("The L&P move must exist before creating the closing one"))
+                    _('UserError'),
+                    _("The L&P move must exist before creating the closing "
+                      "one"))
             '''
             #
-            # Consider all the periods of the fiscal year *BUT* the Closing one.
+            # Consider all the periods of the fiscal year *BUT*
+            # the Closing one.
             #
             for period in fyc.closing_fiscalyear_id.period_ids:
                 if period.id != fyc.c_period_id.id:
@@ -392,7 +430,8 @@ class wizard_run(osv.osv_memory):
             #
             if not fyc.c_description:
                 raise osv.except_osv(
-                    _('UserError'), _("The closing description must be defined"))
+                    _('UserError'),
+                    _("The closing description must be defined"))
             if not fyc.c_date:
                 raise osv.except_osv(
                     _('UserError'), _("The closing date must be defined"))
@@ -408,18 +447,20 @@ class wizard_run(osv.osv_memory):
             journal_id = fyc.c_journal_id.id
         else:
             assert operation in (
-                'loss_and_profit', 'net_loss_and_profit', 'close'), "The operation must be a supported one"
+                'loss_and_profit', 'net_loss_and_profit', 'close'
+            ), "The operation must be a supported one"
 
         #
         # For each (parent) account in the mapping list
         #
-        total_accounts = len(account_mapping_ids)
         accounts_done = 0
         for account_map in account_mapping_ids:
             # Init (if needed) the dictionary that will store the totals for
             # the dest accounts
             if account_map.dest_account_id:
-                dest_accounts_totals[account_map.dest_account_id.id] = dest_accounts_totals.get(
+                dest_accounts_totals[
+                    account_map.dest_account_id.id
+                ] = dest_accounts_totals.get(
                     account_map.dest_account_id.id, 0)
 
             context.update({'periods': period_ids})
@@ -433,27 +474,32 @@ class wizard_run(osv.osv_memory):
 
             # For each children account. (Notice the context filter! the
             # computed balanced is based on this filter)
-            for account in pool.get('account.account').browse(cr, uid, child_ids, ctx):
+            for account in pool.get('account.account').browse(
+                cr, uid, child_ids, ctx
+            ):
                 # Check if the children account needs to (and can) be closed
-                # Note: We currently ignore the close_method (account.user_type.close_method)
+                # Note: We currently ignore the close_method
+                # (account.user_type.close_method)
                 #       and always do a balance close.
                 if account.type != 'view':
                     # Compute the balance for the account (uses the previous
                     # browse context filter)
                     balance = account.balance
                     # Check if the balance is greater than the limit
-                    if round(abs(balance), pool.get('decimal.precision').precision_get(cr, uid, 'Account')) > 0:
+                    if round(abs(balance), pool.get(
+                        'decimal.precision'
+                    ).precision_get(cr, uid, 'Account')) > 0:
                         #
                         # Add a new line to the move
                         #
                         move_lines.append({
                             'account_id': account.id,
-                                'debit': balance < 0 and -balance,
-                                'credit': balance > 0 and balance,
-                                'name': description,
-                                'date': date,
-                                'period_id': period_id,
-                                'journal_id': journal_id,
+                            'debit': balance < 0 and -balance,
+                            'credit': balance > 0 and balance,
+                            'name': description,
+                            'date': date,
+                            'period_id': period_id,
+                            'journal_id': journal_id,
                         })
 
                         # Update the dest account total (with the inverse of
@@ -470,12 +516,12 @@ class wizard_run(osv.osv_memory):
             balance = dest_accounts_totals[dest_account_id]
             move_lines.append({
                 'account_id': dest_account_id,
-                    'debit': balance < 0 and -balance,
-                    'credit': balance > 0 and balance,
-                    'name': description,
-                    'date': date,
-                    'period_id': period_id,
-                    'journal_id': journal_id,
+                'debit': balance < 0 and -balance,
+                'credit': balance > 0 and balance,
+                'name': description,
+                'date': date,
+                'period_id': period_id,
+                'journal_id': journal_id,
             })
 
         #
@@ -484,10 +530,10 @@ class wizard_run(osv.osv_memory):
         if len(move_lines):
             move_id = pool.get('account.move').create(cr, uid, {
                 'ref': description,
-                            'date': date,
-                            'period_id': period_id,
-                            'journal_id': journal_id,
-                            'line_id': [(0, 0, line) for line in move_lines],
+                'date': date,
+                'period_id': period_id,
+                'journal_id': journal_id,
+                'line_id': [(0, 0, line) for line in move_lines],
             }, context=context)
             # pool.get('account.move').button_validate(cr, uid, [move_id],
             # context)
@@ -508,7 +554,8 @@ class wizard_run(osv.osv_memory):
                 cr, uid, [fyc.id], {'closing_move_id': move_id})
         else:
             assert operation in (
-                'loss_and_profit', 'net_loss_and_profit', 'close'), "The operation must be a supported one"
+                'loss_and_profit', 'net_loss_and_profit', 'close'
+            ), "The operation must be a supported one"
 
         return move_id
 
@@ -536,7 +583,8 @@ class wizard_run(osv.osv_memory):
             # Require the user to have performed the closing operation
             if not (closing_move and closing_move.id):
                 raise osv.except_osv(
-                    _('UserError'), _("The closing move must exist to create the opening one"))
+                    _('UserError'),
+                    _("The closing move must exist to create the opening one"))
             if not closing_move.line_id:
                 raise osv.except_osv(
                     _('UserError'), _("The closing move shouldn't be empty"))
@@ -545,7 +593,8 @@ class wizard_run(osv.osv_memory):
             #
             if not fyc.o_description:
                 raise osv.except_osv(
-                    _('UserError'), _("The opening description must be defined"))
+                    _('UserError'),
+                    _("The opening description must be defined"))
             if not fyc.o_date:
                 raise osv.except_osv(
                     _('UserError'), _("The opening date must be defined"))
@@ -567,17 +616,16 @@ class wizard_run(osv.osv_memory):
         # Read the lines from the closing move, and append the inverse lines
         # to the opening move lines.
         #
-        total_accounts = len(closing_move.line_id)
         accounts_done = 0
         for line in closing_move.line_id:
             move_lines.append({
                 'account_id': line.account_id.id,
-                    'debit': line.credit,
-                    'credit': line.debit,
-                    'name': description,
-                    'date': date,
-                    'period_id': period_id,
-                    'journal_id': journal_id,
+                'debit': line.credit,
+                'credit': line.debit,
+                'name': description,
+                'date': date,
+                'period_id': period_id,
+                'journal_id': journal_id,
             })
             accounts_done += 1
 
@@ -587,10 +635,10 @@ class wizard_run(osv.osv_memory):
         if len(move_lines):
             move_id = pool.get('account.move').create(cr, uid, {
                 'ref': description,
-                            'date': date,
-                            'period_id': period_id,
-                            'journal_id': journal_id,
-                            'line_id': [(0, 0, line) for line in move_lines],
+                'date': date,
+                'period_id': period_id,
+                'journal_id': journal_id,
+                'line_id': [(0, 0, line) for line in move_lines],
             }, context=context)
             # pool.get('account.move').button_validate(cr, uid, [move_id],
             # context)
@@ -636,8 +684,9 @@ class wizard_run(osv.osv_memory):
             pool.get('account_fiscal_year_closing.fyc').write(
                 cr, uid, fyc.id, {'opening_move_id': None})
         else:
-            assert operation in ('loss_and_profit', 'net_loss_and_profit',
-                                 'close', 'open'), "The operation must be a supported one"
+            assert operation in (
+                'loss_and_profit', 'net_loss_and_profit',
+                'close', 'open'), "The operation must be a supported one"
 
         assert move and move.id, "The move to delete must be defined"
 

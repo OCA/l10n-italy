@@ -33,17 +33,26 @@
 
 This module helps to register the VAT statement of period end.
 
-In order to load correct amount from tax code, the tax code has to be associated to account involved in statement, through tax code form.
+In order to load correct amount from tax code, the tax code has to be
+associated to account involved in statement, through tax code form.
 
-The 'VAT statement' object allows to specify every amount and relative account used by the statement.
-By default, amounts of debit and credit taxes are automatically loaded from tax codes of selected periods.
-Previous debit or credit is loaded from previous VAT statement, according to its payments status.
-Confirming the statement, the 'account.move' is created. If you select a payment term, the due date(s) will be set.
+The 'VAT statement' object allows to specify every amount and relative account
+used by the statement.
+By default, amounts of debit and credit taxes are automatically loaded
+from tax codes of selected periods.
+Previous debit or credit is loaded from previous VAT statement, according
+to its payments status.
+Confirming the statement, the 'account.move' is created. If you select
+a payment term, the due date(s) will be set.
 
-The 'tax authority' tab contains information about payment(s). You can see statement's result ('authority VAT amount') and residual amount to pay ('Balance').
-The statement can be paid like every other debit: by voucher or 'move.line' reconciliation.
+The 'tax authority' tab contains information about payment(s).
+You can see statement's result ('authority VAT amount') and residual
+amount to pay ('Balance').
+The statement can be paid like every other debit: by voucher or 'move.line'
+reconciliation.
 
-Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_statement
+Specification:
+http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_statement
 
 """,
     'website': 'http://www.agilebg.com',

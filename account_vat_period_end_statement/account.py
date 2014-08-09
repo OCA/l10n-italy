@@ -26,9 +26,6 @@ from openerp.osv import orm, fields
 from tools.translate import _
 import math
 import decimal_precision as dp
-import netsvc
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 
 class account_vat_period_end_statement(orm.Model):
@@ -48,12 +45,16 @@ class account_vat_period_end_statement(orm.Model):
                 credit_vat_amount += credit_line.amount
             for generic_line in statement.generic_vat_account_line_ids:
                 generic_vat_amount += generic_line.amount
-            authority_amount = (debit_vat_amount - credit_vat_amount - generic_vat_amount
-                                - statement.previous_credit_vat_amount + statement.previous_debit_vat_amount)
+            authority_amount = (
+                debit_vat_amount - credit_vat_amount - generic_vat_amount
+                - statement.previous_credit_vat_amount
+                + statement.previous_debit_vat_amount)
             res[i] = authority_amount
         return res
 
-    def _compute_payable_vat_amount(self, cr, uid, ids, field_name, arg, context):
+    def _compute_payable_vat_amount(
+        self, cr, uid, ids, field_name, arg, context
+    ):
         res = {}
         for i in ids:
             statement = self.browse(cr, uid, i)
@@ -63,7 +64,9 @@ class account_vat_period_end_statement(orm.Model):
             res[i] = debit_vat_amount
         return res
 
-    def _compute_deductible_vat_amount(self, cr, uid, ids, field_name, arg, context):
+    def _compute_deductible_vat_amount(
+        self, cr, uid, ids, field_name, arg, context
+    ):
         res = {}
         for i in ids:
             statement = self.browse(cr, uid, i)
@@ -88,7 +91,8 @@ class account_vat_period_end_statement(orm.Model):
             return res
         cr.execute('SELECT statement.id, l.id '
                    'FROM account_move_line l '
-                   'LEFT JOIN account_vat_period_end_statement statement ON (statement.move_id=l.move_id) '
+                   'LEFT JOIN account_vat_period_end_statement statement ON '
+                   '(statement.move_id=l.move_id) '
                    'WHERE statement.id IN %s '
                    'AND l.account_id=statement.authority_vat_account_id',
                    (tuple(ids),))
@@ -97,7 +101,8 @@ class account_vat_period_end_statement(orm.Model):
             res[r[0]].append(r[1])
         return res
 
-    # return the ids of the move lines which has the same account than the statement
+    # return the ids of the move lines which has the same account than the
+    # statement
     # whose id is in ids
     def move_line_id_payment_get(self, cr, uid, ids, *args):
         if not ids:
@@ -112,13 +117,16 @@ class account_vat_period_end_statement(orm.Model):
         ok = True
         for id in res:
             cr.execute(
-                'select reconcile_id from account_move_line where id=%s', (id,))
+                'select reconcile_id from account_move_line where id=%s',
+                (id,))
             ok = ok and bool(cr.fetchone()[0])
         return ok
 
     def _get_statement_from_line(self, cr, uid, ids, context=None):
         move = {}
-        for line in self.pool.get('account.move.line').browse(cr, uid, ids, context=context):
+        for line in self.pool.get('account.move.line').browse(
+            cr, uid, ids, context=context
+        ):
             if line.reconcile_partial_id:
                 for line2 in line.reconcile_partial_id.line_partial_ids:
                     move[line2.move_id.id] = True
@@ -127,15 +135,21 @@ class account_vat_period_end_statement(orm.Model):
                     move[line2.move_id.id] = True
         statement_ids = []
         if move:
-            statement_ids = self.pool.get('account.vat.period.end.statement').search(
+            statement_ids = self.pool.get(
+                'account.vat.period.end.statement'
+            ).search(
                 cr, uid, [('move_id', 'in', move.keys())], context=context)
         return statement_ids
 
     def _get_statement_from_move(self, cr, uid, ids, context=None):
         move = {}
         statement_ids = []
-        for move in self.pool.get('account.move').browse(cr, uid, ids, context=context):
-            found_ids = self.pool.get('account.vat.period.end.statement').search(
+        for move in self.pool.get('account.move').browse(
+            cr, uid, ids, context=context
+        ):
+            found_ids = self.pool.get(
+                'account.vat.period.end.statement'
+            ).search(
                 cr, uid, [('move_id', '=', move.id)], context=context)
             for found_id in found_ids:
                 if found_id not in statement_ids:
@@ -144,7 +158,9 @@ class account_vat_period_end_statement(orm.Model):
 
     def _get_statement_from_reconcile(self, cr, uid, ids, context=None):
         move = {}
-        for r in self.pool.get('account.move.reconcile').browse(cr, uid, ids, context=context):
+        for r in self.pool.get('account.move.reconcile').browse(
+            cr, uid, ids, context=context
+        ):
             for line in r.line_partial_ids:
                 move[line.move_id.id] = True
             for line in r.line_id:
@@ -152,25 +168,33 @@ class account_vat_period_end_statement(orm.Model):
 
         statement_ids = []
         if move:
-            statement_ids = self.pool.get('account.vat.period.end.statement').search(
+            statement_ids = self.pool.get(
+                'account.vat.period.end.statement'
+            ).search(
                 cr, uid, [('move_id', 'in', move.keys())], context=context)
         return statement_ids
 
     def _get_credit_line(self, cr, uid, ids, context=None):
         result = {}
-        for line in self.pool.get('statement.credit.account.line').browse(cr, uid, ids, context=context):
+        for line in self.pool.get('statement.credit.account.line').browse(
+            cr, uid, ids, context=context
+        ):
             result[line.statement_id.id] = True
         return result.keys()
 
     def _get_debit_line(self, cr, uid, ids, context=None):
         result = {}
-        for line in self.pool.get('statement.debit.account.line').browse(cr, uid, ids, context=context):
+        for line in self.pool.get('statement.debit.account.line').browse(
+            cr, uid, ids, context=context
+        ):
             result[line.statement_id.id] = True
         return result.keys()
 
     def _get_generic_line(self, cr, uid, ids, context=None):
         result = {}
-        for line in self.pool.get('statement.generic.account.line').browse(cr, uid, ids, context=context):
+        for line in self.pool.get('statement.generic.account.line').browse(
+            cr, uid, ids, context=context
+        ):
             result[line.statement_id.id] = True
         return result.keys()
 
@@ -197,7 +221,8 @@ class account_vat_period_end_statement(orm.Model):
                             lambda x: x.id, m.reconcile_id.line_id)
                     elif m.reconcile_partial_id:
                         temp_lines = map(
-                            lambda x: x.id, m.reconcile_partial_id.line_partial_ids)
+                            lambda x: x.id,
+                            m.reconcile_partial_id.line_partial_ids)
                     lines += [x for x in temp_lines if x not in lines]
                     src.append(m.id)
 
@@ -208,19 +233,57 @@ class account_vat_period_end_statement(orm.Model):
     _name = "account.vat.period.end.statement"
     _rec_name = 'date'
     _columns = {
-        'debit_vat_account_line_ids': fields.one2many('statement.debit.account.line', 'statement_id', 'Debit VAT', help='The accounts containing the debit VAT amount to write-off', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
+        'debit_vat_account_line_ids': fields.one2many(
+            'statement.debit.account.line', 'statement_id', 'Debit VAT',
+            help='The accounts containing the debit VAT amount to write-off',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+                }),
 
-        'credit_vat_account_line_ids': fields.one2many('statement.credit.account.line', 'statement_id', 'Credit VAT', help='The accounts containing the credit VAT amount to write-off', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
+        'credit_vat_account_line_ids': fields.one2many(
+            'statement.credit.account.line', 'statement_id', 'Credit VAT',
+            help='The accounts containing the credit VAT amount to write-off',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+                }),
 
-        'previous_credit_vat_account_id': fields.many2one('account.account', 'Previous Credits VAT', help='Credit VAT from previous periods', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
-        'previous_credit_vat_amount': fields.float('Previous Credits VAT Amount', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]},
-                                                   digits_compute=dp.get_precision(
-                                                       'Account')),
+        'previous_credit_vat_account_id': fields.many2one(
+            'account.account', 'Previous Credits VAT',
+            help='Credit VAT from previous periods',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+                }),
+        'previous_credit_vat_amount': fields.float(
+            'Previous Credits VAT Amount',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            },
+            digits_compute=dp.get_precision('Account')),
 
-        'previous_debit_vat_account_id': fields.many2one('account.account', 'Previous Debits VAT', help='Debit VAT from previous periods', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
-        'previous_debit_vat_amount': fields.float('Previous Debits VAT Amount', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]},
-                                                  digits_compute=dp.get_precision(
-                                                      'Account')),
+        'previous_debit_vat_account_id': fields.many2one(
+            'account.account', 'Previous Debits VAT',
+            help='Debit VAT from previous periods',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            }),
+        'previous_debit_vat_amount': fields.float(
+            'Previous Debits VAT Amount',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+                },
+            digits_compute=dp.get_precision('Account')),
 
         'generic_vat_account_line_ids': fields.one2many(
             'statement.generic.account.line', 'statement_id',

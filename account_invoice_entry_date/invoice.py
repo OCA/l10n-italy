@@ -24,14 +24,19 @@
 import time
 from openerp.osv import fields, orm
 from tools.translate import _
-from datetime import datetime
 
 
 class account_invoice(orm.Model):
 
     _inherit = 'account.invoice'
     _columns = {
-        'registration_date': fields.date('Registration Date', states={'paid': [('readonly', True)], 'open': [('readonly', True)], 'close': [('readonly', True)]}, select=True, help="Keep empty to use the current date"),
+        'registration_date': fields.date(
+            'Registration Date',
+            states={
+                'paid': [('readonly', True)],
+                'open': [('readonly', True)],
+                'close': [('readonly', True)]
+            }, select=True, help="Keep empty to use the current date"),
     }
 
     def action_move_create(self, cr, uid, ids, context=None):
@@ -52,22 +57,31 @@ class account_invoice(orm.Model):
 
             if date_invoice and reg_date:
                 if (date_invoice > reg_date):
-                    raise orm.except_orm(_('Error date !'), _(
-                        'The invoice date cannot be later than the date of registration!'))
+                    raise orm.except_orm(
+                        _('Error date !'),
+                        _('The invoice date cannot be later than the date of '
+                          'registration!'))
 
             # periodo
-            date_start = inv.registration_date or inv.date_invoice or time.strftime(
-                '%Y-%m-%d')
-            date_stop = inv.registration_date or inv.date_invoice or time.strftime(
-                '%Y-%m-%d')
+            date_start = (
+                inv.registration_date or inv.date_invoice or time.strftime(
+                    '%Y-%m-%d'))
+            date_stop = (
+                inv.registration_date or inv.date_invoice or time.strftime(
+                    '%Y-%m-%d'))
 
             period_ids = self.pool.get('account.period').search(
-                cr, uid, [('date_start', '<=', date_start), ('date_stop', '>=', date_stop), ('company_id', '=', inv.company_id.id)])
+                cr, uid, [
+                    ('date_start', '<=', date_start),
+                    ('date_stop', '>=', date_stop),
+                    ('company_id', '=', inv.company_id.id)
+                    ])
             if period_ids:
                 period_id = period_ids[0]
 
             self.write(
-                cr, uid, [inv.id], {'registration_date': reg_date, 'period_id': period_id, })
+                cr, uid, [inv.id], {
+                    'registration_date': reg_date, 'period_id': period_id, })
 
             mov_date = reg_date or inv.date_invoice or time.strftime(
                 '%Y-%m-%d')
@@ -82,7 +96,8 @@ class account_invoice(orm.Model):
             cr.execute(sql)
 
             self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id], {'period_id': period_id, 'date': mov_date})
+                cr, uid, [inv.move_id.id], {
+                    'period_id': period_id, 'date': mov_date})
 
             self.pool.get('account.move').write(
                 cr, uid, [inv.move_id.id], {'state': 'posted'})

@@ -31,7 +31,8 @@ class add_period(orm.TransientModel):
     _name = 'add.period.to.vat.statement'
 
     _columns = {
-        'period_id': fields.many2one('account.period', 'Period', required=True),
+        'period_id': fields.many2one(
+            'account.period', 'Period', required=True),
     }
 
     def add_period(self, cr, uid, ids, context=None):
@@ -40,8 +41,10 @@ class add_period(orm.TransientModel):
         statement_pool = self.pool.get('account.vat.period.end.statement')
         wizard = self.browse(cr, uid, ids, context)[0]
         if wizard.period_id.vat_statement_id:
-            raise orm.except_orm(_('Error'), _('Period %s is associated to statement %s yet') %
-                                 (wizard.period_id.name, wizard.period_id.vat_statement_id.date))
+            raise orm.except_orm(
+                _('Error'), _('Period %s is associated to statement %s yet') %
+                (wizard.period_id.name, wizard.period_id.vat_statement_id.date)
+                )
         wizard.period_id.write({'vat_statement_id': context['active_id']})
         statement_pool.compute_amounts(
             cr, uid, [context['active_id']], context=context)

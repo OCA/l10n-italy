@@ -19,7 +19,6 @@
 #
 #
 
-import time
 from report import report_sxw
 from tools.translate import _
 import logging
@@ -33,13 +32,18 @@ class Parser(report_sxw.rml_parse):
     def _tax_amounts_by_code(self, move):
         res = {}
         for move_line in move.line_id:
-            if move_line.tax_code_id and not move_line.tax_code_id.exclude_from_registries and move_line.tax_amount:
+            if (
+                move_line.tax_code_id
+                and not move_line.tax_code_id.exclude_from_registries
+                and move_line.tax_amount
+            ):
                 if not res.get(move_line.tax_code_id.id):
                     res[move_line.tax_code_id.id] = 0.0
                     self.localcontext['used_tax_codes'][
                         move_line.tax_code_id.id] = True
-                res[move_line.tax_code_id.id] += (move_line.tax_amount
-                                                  * self.localcontext['data']['tax_sign'])
+                res[move_line.tax_code_id.id] += (
+                    move_line.tax_amount
+                    * self.localcontext['data']['tax_sign'])
         return res
 
     def _get_tax_lines(self, move):
@@ -64,7 +68,8 @@ class Parser(report_sxw.rml_parse):
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice
                                  or move.date or ''),
-                'supplier_invoice_number': (invoice and invoice.supplier_invoice_number or '')
+                'supplier_invoice_number': (
+                    invoice and invoice.supplier_invoice_number or '')
             }
             res.append(tax_item)
             index += 1
@@ -97,14 +102,16 @@ class Parser(report_sxw.rml_parse):
         res_dict = {}
         tax_code_obj = self.pool.get('account.tax.code')
         for period_id in self.localcontext['data']['period_ids']:
-            for tax_code in tax_code_obj.browse(self.cr, self.uid,
-                                                tax_code_ids, context={
-                                                'period_id': period_id,
-                                                }):
+            for tax_code in tax_code_obj.browse(
+                self.cr, self.uid,
+                tax_code_ids, context={
+                    'period_id': period_id,
+                    }):
                 if not res_dict.get(tax_code.id):
                     res_dict[tax_code.id] = 0.0
-                res_dict[tax_code.id] += (tax_code.sum_period
-                                          * self.localcontext['data']['tax_sign'])
+                res_dict[tax_code.id] += (
+                    tax_code.sum_period
+                    * self.localcontext['data']['tax_sign'])
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
@@ -118,16 +125,20 @@ class Parser(report_sxw.rml_parse):
     def _get_tax_codes_totals(self):
         parent_codes = {}
         tax_code_obj = self.pool.get('account.tax.code')
-        for tax_code in tax_code_obj.browse(self.cr, self.uid,
-                                            self.localcontext['used_tax_codes'].keys()):
+        for tax_code in tax_code_obj.browse(
+            self.cr, self.uid,
+            self.localcontext['used_tax_codes'].keys()
+        ):
             parent_codes.update(self.build_parent_tax_codes(tax_code))
         return self._compute_totals(parent_codes.keys())
 
     def _get_start_date(self):
         period_obj = self.pool.get('account.period')
         start_date = False
-        for period in period_obj.browse(self.cr, self.uid,
-                                        self.localcontext['data']['period_ids']):
+        for period in period_obj.browse(
+            self.cr, self.uid,
+            self.localcontext['data']['period_ids']
+        ):
             period_start = datetime.strptime(period.date_start, '%Y-%m-%d')
             if not start_date or start_date > period_start:
                 start_date = period_start
@@ -136,8 +147,10 @@ class Parser(report_sxw.rml_parse):
     def _get_end_date(self):
         period_obj = self.pool.get('account.period')
         end_date = False
-        for period in period_obj.browse(self.cr, self.uid,
-                                        self.localcontext['data']['period_ids']):
+        for period in period_obj.browse(
+            self.cr, self.uid,
+            self.localcontext['data']['period_ids']
+        ):
             period_end = datetime.strptime(period.date_stop, '%Y-%m-%d')
             if not end_date or end_date < period_end:
                 end_date = period_end
@@ -159,17 +172,21 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'fiscal_page_base': data.get('fiscal_page_base'),
         })
-        return super(Parser, self).set_context(objects, data, ids, report_type=report_type)
+        return super(Parser, self).set_context(
+            objects, data, ids, report_type=report_type)
 
-report_sxw.report_sxw('report.registro_iva_vendite',
-                      'registro_iva_vendite',
-                      'addons/l10n_it_vat_registries/templates/registro_iva_vendite.mako',
-                      parser=Parser)
-report_sxw.report_sxw('report.registro_iva_acquisti',
-                      'registro_iva_acquisti',
-                      'addons/l10n_it_vat_registries/templates/registro_iva_acquisti.mako',
-                      parser=Parser)
-report_sxw.report_sxw('report.registro_iva_corrispettivi',
-                      'registro_iva_corrispettivi',
-                      'addons/l10n_it_vat_registries/templates/registro_iva_corrispettivi.mako',
-                      parser=Parser)
+report_sxw.report_sxw(
+    'report.registro_iva_vendite',
+    'registro_iva_vendite',
+    'addons/l10n_it_vat_registries/templates/registro_iva_vendite.mako',
+    parser=Parser)
+report_sxw.report_sxw(
+    'report.registro_iva_acquisti',
+    'registro_iva_acquisti',
+    'addons/l10n_it_vat_registries/templates/registro_iva_acquisti.mako',
+    parser=Parser)
+report_sxw.report_sxw(
+    'report.registro_iva_corrispettivi',
+    'registro_iva_corrispettivi',
+    'addons/l10n_it_vat_registries/templates/registro_iva_corrispettivi.mako',
+    parser=Parser)

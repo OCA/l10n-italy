@@ -25,8 +25,12 @@ from openerp.osv import orm, fields
 class res_partner(orm.Model):
     _inherit = "res.partner"
     _columns = {
-        'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
-        'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
-        'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
+        'carriage_condition_id': fields.many2one(
+            'stock.picking.carriage_condition', 'Carriage condition'),
+        'goods_description_id': fields.many2one(
+            'stock.picking.goods_description', 'Description of goods'),
+        'transportation_reason_id': fields.many2one(
+            'stock.picking.transportation_reason',
+            'Reason for transportation'),
     }
 res_partner()

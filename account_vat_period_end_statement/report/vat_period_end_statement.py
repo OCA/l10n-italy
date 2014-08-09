@@ -38,25 +38,37 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
         if tax_code.sum_period:
             if res.get(tax_code.name, False):
                 raise orm.except_orm(
-                    _('Error'), _('Too many occurences of tax code %s') % tax_code.name)
+                    _('Error'),
+                    _('Too many occurences of tax code %s') % tax_code.name)
             # search for taxes linked to that code
-            tax_ids = tax_pool.search(self.cr, self.uid, [
-                                      ('tax_code_id', '=', tax_code.id)], context=context)
+            tax_ids = tax_pool.search(
+                self.cr, self.uid, [
+                    ('tax_code_id', '=', tax_code.id)], context=context)
             if tax_ids:
                 tax = tax_pool.browse(
                     self.cr, self.uid, tax_ids[0], context=context)
                 # search for the related base code
-                base_code = tax.base_code_id or tax.parent_id and tax.parent_id.base_code_id or False
+                base_code = (
+                    tax.base_code_id or tax.parent_id
+                    and tax.parent_id.base_code_id or False)
                 if not base_code:
                     raise orm.except_orm(
-                        _('Error'), _('No base code found for tax code %s') % tax_code.name)
+                        _('Error'),
+                        _('No base code found for tax code %s')
+                        % tax_code.name)
                 # check if every tax is linked to the same tax code and base
                 # code
-                for tax in tax_pool.browse(self.cr, self.uid, tax_ids, context=context):
-                    test_base_code = tax.base_code_id or tax.parent_id and tax.parent_id.base_code_id or False
+                for tax in tax_pool.browse(
+                    self.cr, self.uid, tax_ids, context=context
+                ):
+                    test_base_code = (
+                        tax.base_code_id or tax.parent_id
+                        and tax.parent_id.base_code_id or False)
                     if test_base_code.id != base_code.id:
                         raise orm.except_orm(
-                            _('Error'), _('Not every tax linked to tax code %s is linked the same base code') % tax_code.name)
+                            _('Error'),
+                            _('Not every tax linked to tax code %s is linked '
+                              'the same base code') % tax_code.name)
                 res[tax_code.name] = {
                     'vat': tax_code.sum_period,
                     'base': base_code.sum_period,
@@ -72,7 +84,9 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
         res = {}
         code_pool = self.pool.get('account.tax.code')
         context['period_id'] = period_id
-        for tax_code in code_pool.browse(self.cr, self.uid, tax_code_ids, context=context):
+        for tax_code in code_pool.browse(
+            self.cr, self.uid, tax_code_ids, context=context
+        ):
             res = self._build_codes_dict(tax_code, res=res, context=context)
         return res
 
@@ -99,10 +113,12 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
         })
         self.context = context
 
-report_sxw.report_sxw('report.account.print.vat.period.end.statement',
-                      'account.vat.period.end.statement',
-                      'addons/account_vat_period_end_statement/report/vat_period_end_statement.mako',
-                      parser=print_vat_period_end_statement)
+report_sxw.report_sxw(
+    'report.account.print.vat.period.end.statement',
+    'account.vat.period.end.statement',
+    'addons/account_vat_period_end_statement/report/'
+    'vat_period_end_statement.mako',
+    parser=print_vat_period_end_statement)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
