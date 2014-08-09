@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2013
@@ -18,7 +18,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Italian Localisation - Bill of Entry',
     'version': '0.1',
@@ -37,7 +37,7 @@ Ci sono 3 documenti coinvolti:
  - Fattura fornitore
  - Fattura spedizioniere
  - Bolla doganale
- 
+
 Le relazioni:
 
 N bolle doganali -> N fatture fornitore

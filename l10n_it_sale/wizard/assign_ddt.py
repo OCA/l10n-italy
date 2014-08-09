@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2010 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #
@@ -17,11 +17,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import orm, fields
 from tools.translate import _
 import time
+
 
 class wizard_assign_ddt(orm.TransientModel):
 
@@ -35,7 +36,7 @@ class wizard_assign_ddt(orm.TransientModel):
             picking.write({
                 'ddt_number': self.pool.get('ir.sequence').get(cr, uid, 'stock.ddt'),
                 'ddt_date': time.strftime('%Y-%m-%d'),
-                })
+            })
         return {
             'type': 'ir.actions.act_window_close',
         }

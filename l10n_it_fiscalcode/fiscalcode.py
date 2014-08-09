@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2010-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
@@ -17,13 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from osv import fields, osv
 import tools
 import pooler
 from tools.translate import _
 import datetime
+
 
 class res_partner(osv.osv):
     _inherit = 'res.partner'
@@ -45,7 +46,9 @@ class res_partner(osv.osv):
     _defaults = {
         'individual': False,
     }
-    _constraints = [(check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
+    _constraints = [
+        (check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
     _sql_constraints = [
-        ('fiscalcode_uniq', 'unique (fiscalcode, company_id)', 'The fiscal code must be unique per company !'),
-        ]
+        ('fiscalcode_uniq', 'unique (fiscalcode, company_id)',
+         'The fiscal code must be unique per company !'),
+    ]

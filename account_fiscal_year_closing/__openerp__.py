@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
@@ -24,19 +24,19 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
-    "name" : "Fiscal Year Closing",
-    "version" : "1.0",
-    "author" : "OpenERP Italian Community, Pexego",
-    "website" : "http://www.openerp-italia.org",
-    "category" : "Generic Modules/Accounting",
+    "name": "Fiscal Year Closing",
+    "version": "1.0",
+    "author": "OpenERP Italian Community, Pexego",
+    "website": "http://www.openerp-italia.org",
+    "category": "Generic Modules/Accounting",
     "description": """
 Generalization of l10n_es_fiscal_year_closing ( http://apps.openerp.com/addon/4506 )
 
 Fiscal Year Closing Wizard
-    
+
 Replaces the default OpenERP end of year wizards (from account module)
 with a more advanced all-in-one wizard that will let the users:
   - Check for unbalanced moves, moves with invalid dates
@@ -49,20 +49,19 @@ with a more advanced all-in-one wizard that will let the users:
 It is stateful, saving all the info about the fiscal year closing, so the
 user can cancel and undo the operations easily.
     """,
-    "license" : "AGPL-3",
-    "depends" : [
-                    "base",
+    "license": "AGPL-3",
+    "depends": [
+        "base",
                     "account",
-                ],
-    "init_xml" : [],
-    "update_xml" : [
-                    "security/ir.model.access.csv",
+    ],
+    "init_xml": [],
+    "update_xml": [
+        "security/ir.model.access.csv",
                     "fyc_workflow.xml",
                     "wizard/wizard_run.xml",
                     "fyc_view.xml",
                     "hide_account_wizards.xml",
-                    ],
+    ],
     "active": False,
     "installable": True
 }
-

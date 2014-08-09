@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2010-2011 OpenERP Italian Community
-#    http://www.openerp-italia.org> 
+#    http://www.openerp-italia.org>
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Italian Localisation - Base',
     'version': '0.1',
@@ -36,20 +36,19 @@ Funcionalities:
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['base'],
-    "init_xml" : [
+    "depends": ['base'],
+    "init_xml": [
     ],
-    "update_xml" : ['partner/partner_view.xml',
-                    "security/ir.model.access.csv", 
-                    'partner/data/res.region.csv',
-                    'partner/data/res.province.csv',
-                    'partner/data/res.city.csv',
-                    'partner/data/res.partner.title.csv'],
-    "demo_xml" : [],
+    "update_xml": ['partner/partner_view.xml',
+                   "security/ir.model.access.csv",
+                   'partner/data/res.region.csv',
+                   'partner/data/res.province.csv',
+                   'partner/data/res.city.csv',
+                   'partner/data/res.partner.title.csv'],
+    "demo_xml": [],
     "active": False,
     "installable": True
 }
 
 # http://www.istat.it/strumenti/definizioni/comuni/
 # i dati dovrebbero essere sincronizzati con questi
-

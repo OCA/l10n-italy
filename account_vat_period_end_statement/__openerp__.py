@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 
 {
@@ -30,9 +30,9 @@
     "depends": ["account_voucher", "report_webkit"],
     "author": ["Agile Business Group", "OpenERP Italian Community"],
     "description": """
-    
+
 This module helps to register the VAT statement of period end.
-    
+
 In order to load correct amount from tax code, the tax code has to be associated to account involved in statement, through tax code form.
 
 The 'VAT statement' object allows to specify every amount and relative account used by the statement.
@@ -54,7 +54,7 @@ Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_sta
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'reports.xml',
-        ],
+    ],
     'demo': [],
     'installable': True,
     'active': False,

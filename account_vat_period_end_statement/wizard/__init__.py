@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 import add_period
 import remove_period

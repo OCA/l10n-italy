@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -22,7 +22,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
     "name": "Ricevute Bancarie",
@@ -49,7 +49,7 @@ Ad ogni passaggio di stato sarà possibile generare le relative registrazioni co
 Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQkt4/edit# abbiamo un esempio delle tipiche registrazioni generate da un flusso 'salvo buon fine'.
     """,
     'images': [],
-    'depends': ['account','account_voucher', 'l10n_it_fiscalcode', 'account_due_list'],
+    'depends': ['account', 'account_voucher', 'l10n_it_fiscalcode', 'account_due_list'],
     'init_xml': [],
     'data': [
         "partner/partner_view.xml",

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Associazione OpenERP Italia
-#    http://www.openerp-italia.org> 
+#    http://www.openerp-italia.org>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Account Invoice entry Date',
     'version': '0.1',
@@ -27,9 +27,9 @@
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account',],
-    "data" : ['invoice_view.xml'],
-    "demo" : [],
+    "depends": ['account', ],
+    "data": ['invoice_view.xml'],
+    "demo": [],
     "active": False,
     "installable": True
 }

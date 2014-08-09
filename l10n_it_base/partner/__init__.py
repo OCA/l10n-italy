@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
-##############################################################################
-#    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#
+#
+#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>).
 #    All Rights Reserved
 #    $Id$
 #
@@ -18,6 +18,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 import partner

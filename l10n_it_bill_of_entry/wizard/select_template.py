@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2013
@@ -18,7 +18,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
@@ -28,10 +28,11 @@ class wizard_select_invoice_template(orm.TransientModel):
     _inherit = "wizard.select.invoice.template"
 
     def load_template(self, cr, uid, ids, context=None):
-        res = super(wizard_select_invoice_template, self).load_template(cr, uid, ids, context=context)
+        res = super(wizard_select_invoice_template, self).load_template(
+            cr, uid, ids, context=context)
         if context.get('active_model') == 'account.invoice':
             invoice = self.pool.get('account.invoice').browse(cr, uid,
-                context.get('active_id'), context=context)
+                                                              context.get('active_id'), context=context)
             if invoice and invoice.customs_doc_type == 'forwarder_invoice':
                 invoice_id = res['res_id']
                 invoice_obj = self.pool.get('account.invoice')

@@ -49,7 +49,7 @@ class account_vat_period_end_statement(orm.Model):
             for generic_line in statement.generic_vat_account_line_ids:
                 generic_vat_amount += generic_line.amount
             authority_amount = (debit_vat_amount - credit_vat_amount - generic_vat_amount
-                - statement.previous_credit_vat_amount + statement.previous_debit_vat_amount)
+                                - statement.previous_credit_vat_amount + statement.previous_debit_vat_amount)
             res[i] = authority_amount
         return res
 
@@ -214,11 +214,13 @@ class account_vat_period_end_statement(orm.Model):
 
         'previous_credit_vat_account_id': fields.many2one('account.account', 'Previous Credits VAT', help='Credit VAT from previous periods', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
         'previous_credit_vat_amount': fields.float('Previous Credits VAT Amount', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]},
-            digits_compute=dp.get_precision('Account')),
+                                                   digits_compute=dp.get_precision(
+                                                       'Account')),
 
         'previous_debit_vat_account_id': fields.many2one('account.account', 'Previous Debits VAT', help='Debit VAT from previous periods', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
         'previous_debit_vat_amount': fields.float('Previous Debits VAT Amount', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]},
-            digits_compute=dp.get_precision('Account')),
+                                                  digits_compute=dp.get_precision(
+                                                      'Account')),
 
         'generic_vat_account_line_ids': fields.one2many(
             'statement.generic.account.line', 'statement_id',
@@ -373,7 +375,7 @@ class account_vat_period_end_statement(orm.Model):
                 'date': statement.date,
                 'journal_id': statement.journal_id.id,
                 'period_id': period_ids[0],
-                }
+            }
             move_id = move_obj.create(cr, uid, move_data)
             statement.write({'move_id': move_id})
 
@@ -387,7 +389,7 @@ class account_vat_period_end_statement(orm.Model):
                     'credit': 0.0,
                     'date': statement.date,
                     'period_id': period_ids[0],
-                    }
+                }
                 if debit_line.amount > 0:
                     debit_vat_data['debit'] = math.fabs(debit_line.amount)
                 else:
@@ -404,7 +406,7 @@ class account_vat_period_end_statement(orm.Model):
                     'credit': 0.0,
                     'date': statement.date,
                     'period_id': period_ids[0],
-                    }
+                }
                 if credit_line.amount < 0:
                     credit_vat_data['debit'] = math.fabs(credit_line.amount)
                 else:
@@ -421,7 +423,7 @@ class account_vat_period_end_statement(orm.Model):
                     'credit': 0.0,
                     'date': statement.date,
                     'period_id': period_ids[0],
-                    }
+                }
                 if statement.previous_credit_vat_amount < 0:
                     previous_credit_vat_data['debit'] = math.fabs(
                         statement.previous_credit_vat_amount)
@@ -440,7 +442,7 @@ class account_vat_period_end_statement(orm.Model):
                     'credit': 0.0,
                     'date': statement.date,
                     'period_id': period_ids[0],
-                    }
+                }
                 if statement.previous_debit_vat_amount > 0:
                     previous_debit_vat_data['debit'] = math.fabs(
                         statement.previous_debit_vat_amount)
@@ -459,7 +461,7 @@ class account_vat_period_end_statement(orm.Model):
                     'credit': 0.0,
                     'date': statement.date,
                     'period_id': period_ids[0],
-                    }
+                }
                 if generic_line.amount < 0:
                     generic_vat_data['debit'] = math.fabs(generic_line.amount)
                 else:
@@ -474,7 +476,7 @@ class account_vat_period_end_statement(orm.Model):
                 'journal_id': statement.journal_id.id,
                 'date': statement.date,
                 'period_id': period_ids[0],
-                }
+            }
             if statement.authority_vat_amount > 0:
                 end_debit_vat_data['debit'] = 0.0
                 end_debit_vat_data['credit'] = math.fabs(
@@ -534,7 +536,7 @@ class account_vat_period_end_statement(orm.Model):
             debit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
                 ('vat_statement_type', '=', 'debit'),
-                ], context=context)
+            ], context=context)
             for debit_tax_code_id in debit_tax_code_ids:
                 debit_tax_code = tax_code_pool.browse(
                     cr, uid, debit_tax_code_id, context)
@@ -547,12 +549,12 @@ class account_vat_period_end_statement(orm.Model):
                     'account_id': debit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': debit_tax_code.id,
                     'amount': total * debit_tax_code.vat_statement_sign,
-                    })
+                })
 
             credit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
                 ('vat_statement_type', '=', 'credit'),
-                ], context=context)
+            ], context=context)
             for credit_tax_code_id in credit_tax_code_ids:
                 credit_tax_code = tax_code_pool.browse(
                     cr, uid, credit_tax_code_id, context)
@@ -565,7 +567,7 @@ class account_vat_period_end_statement(orm.Model):
                     'account_id': credit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': credit_tax_code.id,
                     'amount': total * credit_tax_code.vat_statement_sign,
-                    })
+                })
 
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
@@ -585,8 +587,8 @@ class account_vat_period_end_statement(orm.Model):
         return {
             'value': {
                 'authority_vat_account_id': partner.property_account_payable.id
-                }
             }
+        }
 
 
 class statement_debit_account_line(orm.Model):
@@ -601,7 +603,7 @@ class statement_debit_account_line(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
-        }
+    }
 
 
 class statement_credit_account_line(orm.Model):
@@ -616,7 +618,7 @@ class statement_credit_account_line(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
-        }
+    }
 
 
 class statement_generic_account_line(orm.Model):
@@ -629,7 +631,7 @@ class statement_generic_account_line(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
-        }
+    }
 
     def on_change_vat_account_id(
         self, cr, uid, ids, vat_account_id=False, context=None
@@ -659,7 +661,7 @@ class account_tax_code(orm.Model):
         'vat_statement_sign': fields.integer(
             'Sign used in statement',
             help="If tax code period sum is usually negative, set '-1' here"),
-        }
+    }
     _defaults = {
         'vat_statement_type': 'debit',
         'vat_statement_sign': 1,
@@ -671,4 +673,4 @@ class account_period(orm.Model):
     _columns = {
         'vat_statement_id': fields.many2one(
             'account.vat.period.end.statement', "VAT statement"),
-        }
+    }

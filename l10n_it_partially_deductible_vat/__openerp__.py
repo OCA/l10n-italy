@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
@@ -21,30 +21,30 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
-    "name" : "Italy - Partially Deductible VAT",
-    "version" : "0.1",
-    "depends" : ['account'],
-    "author" : "OpenERP Italian Community",
+    "name": "Italy - Partially Deductible VAT",
+    "version": "0.1",
+    "depends": ['account'],
+    "author": "OpenERP Italian Community",
     "description": """
     Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile. Senza questo modulo non è possibile calcolare correttamente imponibili, imposte e conti imposte relativi all'IVA parzialmente detraibile.
     La configurazione dell'IVA parzialmente detraibile deve essere quella utilizzata dal modulo 'l10n_it', anche se non viene usato tale modulo.
     """,
     "license": "AGPL-3",
-    "category" : "Localisation/Italy",
+    "category": "Localisation/Italy",
     'website': 'http://www.openerp-italia.org/',
     'init_xml': [
-        ],
+    ],
     'update_xml': [
-        ],
+    ],
     'demo_xml': [
-        ],
+    ],
     'test': [
         'test/account_tax.xml',
         'test/tax_computation.yml',
-        ],
+    ],
     'installable': True,
     'active': False,
 }

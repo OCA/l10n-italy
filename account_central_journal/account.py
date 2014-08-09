@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012 ISA s.r.l. (<http://www.isa.it>).
@@ -17,11 +17,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from osv import fields, orm
 from tools.translate import _
 import decimal_precision as dp
+
 
 class account_fiscalyear(orm.Model):
     _inherit = "account.fiscalyear"
@@ -33,7 +34,7 @@ class account_fiscalyear(orm.Model):
         'progressive_credit': fields.float('Progressive Credit', digits_compute=dp.get_precision('Account'), required=True, readonly=True),
         'progressive_debit': fields.float('Progressive Debit', digits_compute=dp.get_precision('Account'), required=True, readonly=True),
     }
-    
+
     _defaults = {
         'progressive_page_number': 0,
         'progressive_line_number': 0,

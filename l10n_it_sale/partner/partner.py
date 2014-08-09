@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2010 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #
@@ -17,13 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import orm, fields
 
+
 class res_partner(orm.Model):
     _inherit = "res.partner"
-    _columns =  {
+    _columns = {
         'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
         'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
         'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),

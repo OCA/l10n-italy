@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2013
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
@@ -44,7 +44,7 @@ class DeliverySlip(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'invoice_address': self._get_invoice_address,
-            })
+        })
 
 report_sxw.report_sxw('report.ddt_webkit',
                       'stock.picking',
