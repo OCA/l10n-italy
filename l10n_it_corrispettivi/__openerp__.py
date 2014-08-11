@@ -24,7 +24,8 @@
     'category': 'Localisation/Italy',
     'description': """This module helps to easily input Corrispettivi within OpenERP.
 
-    Per maggiori informazioni: http://planet.domsense.com/2011/11/openerp-registrare-i-corrispettivi/""",
+Per maggiori informazioni:
+http://planet.domsense.com/2011/11/openerp-registrare-i-corrispettivi/""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',

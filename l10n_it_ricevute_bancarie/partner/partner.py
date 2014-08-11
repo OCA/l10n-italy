@@ -33,6 +33,7 @@ class res_partner(orm.Model):
     _inherit = "res.partner"
 
     _columns = {
-        'group_riba': fields.boolean("Group Ri.Ba.",
-                                     help="Group Ri.Ba. by customer while issuing"),
+        'group_riba': fields.boolean(
+            "Group Ri.Ba.",
+            help="Group Ri.Ba. by customer while issuing"),
     }

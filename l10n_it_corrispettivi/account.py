@@ -29,7 +29,10 @@ class account_invoice(osv.osv):
         'corrispettivo': fields.boolean('Corrispettivo'),
     }
 
-    def onchange_company_id(self, cr, uid, ids, company_id, part_id, type, invoice_line, currency_id, context=None):
+    def onchange_company_id(
+        self, cr, uid, ids, company_id, part_id, type, invoice_line,
+        currency_id, context=None
+    ):
         if not context:
             context = {}
         journal_obj = self.pool.get('account.journal')
@@ -37,7 +40,8 @@ class account_invoice(osv.osv):
             cr, uid, ids, company_id, part_id, type, invoice_line, currency_id)
         is_corrispettivo = context.get('corrispettivo', False)
         corr_journal_ids = journal_obj.search(
-            cr, uid, [('corrispettivi', '=', True), ('company_id', '=', company_id)])
+            cr, uid,
+            [('corrispettivi', '=', True), ('company_id', '=', company_id)])
 
         # Se è un corrispettivo e la company ha almeno un sezionale
         # corrispettivi
@@ -46,9 +50,15 @@ class account_invoice(osv.osv):
 
         # Se la company ha almeno un sezionale corrispettivi ma l'invoice non è
         # un corrispettivo
-        elif corr_journal_ids and corr_journal_ids[0] in res['domain']['journal_id'][0][2]:
+        elif (
+            corr_journal_ids
+            and corr_journal_ids[0] in res['domain']['journal_id'][0][2]
+        ):
             # Se l'on_change di invoice ha impostato il journal corrispettivi
-            if corr_journal_ids[0] == res['value']['journal_id'] and len(res['domain']['journal_id'][0][2]) > 1:
+            if (
+                corr_journal_ids[0] == res['value']['journal_id']
+                and len(res['domain']['journal_id'][0][2]) > 1
+            ):
                 for j_id in res['domain']['journal_id'][0][2]:
                     if corr_journal_ids[0] != j_id:
                         res['value']['journal_id'] = j_id
@@ -86,13 +96,16 @@ class account_invoice(osv.osv):
             res = partner_ids[0]
         return res
 
-    def onchange_corrispettivo(self, cr, uid, ids, corrispettivo=False, context=None):
+    def onchange_corrispettivo(
+        self, cr, uid, ids, corrispettivo=False, context=None
+    ):
         res = {}
         user_obj = self.pool.get('res.users')
         journal_obj = self.pool.get('account.journal')
         company_id = user_obj.browse(cr, uid, uid).company_id.id
         corr_journal_ids = journal_obj.search(
-            cr, uid, [('corrispettivi', '=', True), ('company_id', '=', company_id)])
+            cr, uid,
+            [('corrispettivi', '=', True), ('company_id', '=', company_id)])
         if corr_journal_ids and corrispettivo:
             res = {'value': {'journal_id': corr_journal_ids[0]}}
         return res

@@ -33,7 +33,8 @@ Per utilizzare il modulo bisogna configurare i campi associati alla company:
  - Conto di debito per le ritenute da versare
  - Sezionale che conterrà le registrazioni legate alla ritenuta
 
-Durante la compilazione di una fattura fornitore con ritenuta d'acconto, l'utente dovrà specificare l'importo della ritenuta.
+Durante la compilazione di una fattura fornitore con ritenuta d'acconto,
+l'utente dovrà specificare l'importo della ritenuta.
 
 Requisiti
 ---------

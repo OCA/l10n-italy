@@ -2,7 +2,8 @@
 #
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Italian OpenERP Community (<http://www.openerp-italia.com>)
+#    Copyright (C) 2012 Italian OpenERP Community
+#    (<http://www.openerp-italia.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,8 +26,10 @@
     "depends": ['account_chart', ],
     "author": "OpenERP Italian Community",
     "description": """
-    Riclassificazione IV direttiva UE per un piano dei conti italiano di un'impresa generica
-    I nuovi conti inseriti non hanno relazioni con altri conti precedentemente esistenti
+    Riclassificazione IV direttiva UE per un piano dei conti italiano di
+    un'impresa generica
+    I nuovi conti inseriti non hanno relazioni con altri conti precedentemente
+    esistenti
     Le eventuali relazioni debbono essere inserite manualmente
     """,
     "license": "AGPL-3",

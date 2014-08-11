@@ -20,10 +20,6 @@
 #
 
 from osv import fields, osv
-import tools
-import pooler
-from tools.translate import _
-import datetime
 
 
 class res_partner(osv.osv):
@@ -40,14 +36,18 @@ class res_partner(osv.osv):
                 return True
 
     _columns = {
-        'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
-        'individual': fields.boolean('Individual', help="If checked the C.F. is referred to a Individual Person"),
+        'fiscalcode': fields.char(
+            'Fiscal Code', size=16, help="Italian Fiscal Code"),
+        'individual': fields.boolean(
+            'Individual',
+            help="If checked the C.F. is referred to a Individual Person"),
     }
     _defaults = {
         'individual': False,
     }
-    _constraints = [
-        (check_fiscalcode, "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
+    _constraints = [(
+        check_fiscalcode,
+        "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
     _sql_constraints = [
         ('fiscalcode_uniq', 'unique (fiscalcode, company_id)',
          'The fiscal code must be unique per company !'),

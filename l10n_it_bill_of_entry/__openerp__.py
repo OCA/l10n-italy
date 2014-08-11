@@ -56,13 +56,14 @@ Dalla bolla doganale è possibile collegare manualmente la (o le) fattura(e)
 fornitore corrispondente.
 
 Dalla fattura spedizioniere è possibile generare la (o le) bolla(e) doganale(i)
-tramite il bottone 'genera bolla'. Per questa operazione bisogna prima configurare
-un template di fattura (usato per la bolla doganale).
+tramite il bottone 'genera bolla'. Per questa operazione bisogna prima
+configurare un template di fattura (usato per la bolla doganale).
 
 Nella fattura spedizioniere bisogna indicare quale (o quali) riga (righe)
 rappresenti(no) l'IVA anticipata alla dogana.
 
-Alla conferma della fattura spedizioniere, verrà generata la scrittura contabile di giroconto per chiudere la bolla doganale.
+Alla conferma della fattura spedizioniere, verrà generata la scrittura
+contabile di giroconto per chiudere la bolla doganale.
 
 """,
     'author': 'Agile Business Group',

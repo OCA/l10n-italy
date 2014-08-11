@@ -27,12 +27,14 @@ class corrispettivi_config_data(osv.osv_memory):
     _inherit = 'res.config'
 
     _columns = {
-        'default_credit_account_id': fields.many2one('account.account', 'Default credit account',
-                                                     domain=[(
-                                                             'type', '!=', 'view')], required=True, help='If doubtful, use income account'),
-        'default_debit_account_id': fields.many2one('account.account', 'Default debit account',
-                                                    domain=[(
-                                                            'type', '!=', 'view')], required=True, help='If doubtful, use income account'),
+        'default_credit_account_id': fields.many2one(
+            'account.account', 'Default credit account',
+            domain=[('type', '!=', 'view')], required=True,
+            help='If doubtful, use income account'),
+        'default_debit_account_id': fields.many2one(
+            'account.account', 'Default debit account',
+            domain=[('type', '!=', 'view')], required=True,
+            help='If doubtful, use income account'),
     }
 
     def execute(self, cr, uid, ids, context=None):
@@ -42,7 +44,7 @@ class corrispettivi_config_data(osv.osv_memory):
                 'padding': 3,
                 'prefix': 'COJ/%(year)s/',
             })
-            journal_id = self.pool.get('account.journal').create(cr, uid, {
+            self.pool.get('account.journal').create(cr, uid, {
                 'code': 'COJ',
                 'name': 'Sezionale Corrispettivi',
                 'type': 'sale',
@@ -51,7 +53,7 @@ class corrispettivi_config_data(osv.osv_memory):
                 'default_credit_account_id': o.default_credit_account_id.id,
                 'default_debit_account_id': o.default_debit_account_id.id,
             })
-            partner_id = self.pool.get('res.partner').create(cr, uid, {
+            self.pool.get('res.partner').create(cr, uid, {
                 'name': 'Corrispettivi',
                 'ref': 'COJ',
                 'customer': False,

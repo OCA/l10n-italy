@@ -19,11 +19,8 @@
 #
 #
 
-import netsvc
-import pooler
-import tools
 
-from openerp.osv import fields, orm
+from openerp.osv import orm
 from tools.translate import _
 
 
@@ -40,13 +37,17 @@ class account_invoice(orm.Model):
             number = obj_inv.number
             date_invoice = obj_inv.date_invoice
             journal = obj_inv.journal_id.id
-            res = self.search(
-                cr, uid, [(
-                    'type', '=', inv_type), ('date_invoice', '>', date_invoice),
-                    ('number', '<', number), ('journal_id', '=', journal)], context=context)
+            res = self.search(cr, uid, [
+                ('type', '=', inv_type),
+                ('date_invoice', '>', date_invoice),
+                ('number', '<', number),
+                ('journal_id', '=', journal)
+            ], context=context)
             if res:
-                raise orm.except_orm(_('Date Inconsistency'),
-                                     _('Cannot create invoice! Post the invoice with a greater date'))
+                raise orm.except_orm(
+                    _('Date Inconsistency'),
+                    _('Cannot create invoice! Post the invoice with a greater '
+                      'date'))
         return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

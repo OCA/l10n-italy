@@ -22,7 +22,8 @@
     'name': 'Check invoice date consistency',
     'version': '0.1',
     'category': 'Tools',
-    'description': """This module customizes OpenERP in order to make invoices with consistent dates.
+    'description': """This module customizes OpenERP in order to make invoices
+with consistent dates.
 
 Functionalities:
 

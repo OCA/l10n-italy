@@ -20,8 +20,6 @@
 #
 
 from osv import fields, osv
-import tools
-import pooler
 from tools.translate import _
 
 import datetime
@@ -41,7 +39,10 @@ class wizard_compute_fc(osv.osv_memory):
                                  ], "Sex"),
     }
 
-    def _codicefiscale(self, cognome, nome, giornonascita, mesenascita, annonascita, sesso, cittanascita):
+    def _codicefiscale(
+        self, cognome, nome, giornonascita, mesenascita, annonascita, sesso,
+        cittanascita
+    ):
 
         MESI = 'ABCDEHLMPRST'
         CONSONANTI = 'BCDFGHJKLMNPQRSTVWXYZ'
@@ -49,19 +50,27 @@ class wizard_compute_fc(osv.osv_memory):
         LETTERE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
         REGOLECONTROLLO = {
-            'A': (0, 1),   'B': (1, 0),   'C': (2, 5),   'D': (3, 7),   'E': (4, 9),
-            'F': (5, 13),  'G': (6, 15),  'H': (7, 17),  'I': (8, 19),  'J': (9, 21),
-            'K': (10, 2),  'L': (11, 4),  'M': (12, 18), 'N': (13, 20), 'O': (14, 11),
-            'P': (15, 3),  'Q': (16, 6),  'R': (17, 8),  'S': (18, 12), 'T': (19, 14),
-            'U': (20, 16), 'V': (21, 10), 'W': (22, 22), 'X': (23, 25), 'Y': (24, 24),
+            'A': (0, 1),   'B': (1, 0),   'C': (2, 5),   'D': (3, 7),
+            'E': (4, 9),
+            'F': (5, 13),  'G': (6, 15),  'H': (7, 17),  'I': (8, 19),
+            'J': (9, 21),
+            'K': (10, 2),  'L': (11, 4),  'M': (12, 18), 'N': (13, 20),
+            'O': (14, 11),
+            'P': (15, 3),  'Q': (16, 6),  'R': (17, 8),  'S': (18, 12),
+            'T': (19, 14),
+            'U': (20, 16), 'V': (21, 10), 'W': (22, 22), 'X': (23, 25),
+            'Y': (24, 24),
             'Z': (25, 23),
-            '0': (0, 1),   '1': (1, 0),   '2': (2, 5),   '3': (3, 7),   '4': (4, 9),
-            '5': (5, 13),  '6': (6, 15),  '7': (7, 17),  '8': (8, 19),  '9': (9, 21)
+            '0': (0, 1),   '1': (1, 0),   '2': (2, 5),   '3': (3, 7),
+            '4': (4, 9),
+            '5': (5, 13),  '6': (6, 15),  '7': (7, 17),  '8': (8, 19),
+            '9': (9, 21)
         }
 
         """Funzioni per il calcolo del C.F."""
         def _surname(stringa):
-            """Ricava, da stringa, 3 lettere in base alla convenzione dei C.F."""
+            """Ricava, da stringa, 3 lettere in base alla convenzione dei C.F.
+            """
             cons = [c for c in stringa if c in CONSONANTI]
             voc = [c for c in stringa if c in VOCALI]
             chars = cons + voc
@@ -70,7 +79,8 @@ class wizard_compute_fc(osv.osv_memory):
             return chars[:3]
 
         def _name(stringa):
-            """Ricava, da stringa, 3 lettere in base alla convenzione dei C.F."""
+            """Ricava, da stringa, 3 lettere in base alla convenzione dei C.F.
+            """
             cons = [c for c in stringa if c in CONSONANTI]
             voc = [c for c in stringa if c in VOCALI]
             if len(cons) > 3:
@@ -90,7 +100,8 @@ class wizard_compute_fc(osv.osv_memory):
             return chars
 
         def _codicecontrollo(c):
-            """Restituisce il codice di controllo, l'ultimo carattere del C.F."""
+            """Restituisce il codice di controllo, l'ultimo carattere del
+            C.F."""
             sommone = 0
             for i, car in enumerate(c):
                 j = 1 - i % 2
@@ -115,22 +126,29 @@ class wizard_compute_fc(osv.osv_memory):
         partner = self.pool.get('res.partner').browse(
             cr, uid, active_id, context)
         form_obj = self.browse(cr, uid, ids, context)
-        for fields in form_obj:
-            if not fields.fiscalcode_surname or not fields.fiscalcode_firstname or not fields.birth_date or not fields.birth_city or not fields.sex:
+        for wizard in form_obj:
+            if (
+                not wizard.fiscalcode_surname
+                or not wizard.fiscalcode_firstname or not wizard.birth_date
+                or not wizard.birth_city or not wizard.sex
+            ):
                 raise osv.except_osv(
                     _('Error'), _('One or more fields are missing'))
-            if not fields.birth_city.cadaster_code:
+            if not wizard.birth_city.cadaster_code:
                 raise osv.except_osv(_('Error'), _('Cataster code is missing'))
             birth_date = datetime.datetime.strptime(
-                fields.birth_date, "%Y-%m-%d")
+                wizard.birth_date, "%Y-%m-%d")
             CF = self._codicefiscale(
-                fields.fiscalcode_surname, fields.fiscalcode_firstname, str(
+                wizard.fiscalcode_surname, wizard.fiscalcode_firstname, str(
                     birth_date.day),
-                str(birth_date.month), str(birth_date.year), fields.sex,
-                fields.birth_city.cadaster_code)
+                str(birth_date.month), str(birth_date.year), wizard.sex,
+                wizard.birth_city.cadaster_code)
             if partner.fiscalcode and partner.fiscalcode != CF:
                 raise osv.except_osv(
-                    _('Error'), _('Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one') % (partner.fiscalcode, CF))
+                    _('Error'),
+                    _('Existing fiscal code %s is different from the computed '
+                      'one (%s). If you want to use the computed one, remove '
+                      'the existing one') % (partner.fiscalcode, CF))
             self.pool.get('res.partner').write(
                 cr, uid, active_id, {'fiscalcode': CF, 'individual': True})
         return {}
