@@ -23,7 +23,6 @@
 
 from osv import osv
 from osv import fields
-from tools.translate import _
 
 
 class res_region(osv.osv):

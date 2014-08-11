@@ -21,9 +21,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import operator
 from report import report_sxw
-import pooler
 import time
 
 
