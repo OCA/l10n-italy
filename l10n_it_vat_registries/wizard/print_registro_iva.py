@@ -80,7 +80,7 @@ class wizard_registro_iva(osv.osv_memory):
                 cr, uid, [
                     ('model', '=', 'ir.ui.view'),
                     ('name', '=', 'wizard_registro_iva')
-                    ])
+                ])
             resource_id = obj_model_data.read(
                 cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
             return {

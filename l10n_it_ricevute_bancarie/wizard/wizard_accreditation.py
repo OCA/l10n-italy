@@ -29,16 +29,28 @@ import netsvc
 class riba_accreditation(orm.TransientModel):
 
     def _get_accreditation_journal_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta(cr, uid, 'accreditation_journal_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta(
+            cr, uid, 'accreditation_journal_id', context=context)
 
     def _get_accreditation_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta(cr, uid, 'accreditation_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta(
+            cr, uid, 'accreditation_account_id', context=context)
 
     def _get_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta(cr, uid, 'bank_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta(
+            cr, uid, 'bank_account_id', context=context)
 
     def _get_bank_expense_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta(cr, uid, 'bank_expense_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta(
+            cr, uid, 'bank_expense_account_id', context=context)
 
     def _get_accreditation_amount(self, cr, uid, context=None):
         if context is None:
@@ -56,16 +68,18 @@ class riba_accreditation(orm.TransientModel):
     _name = "riba.accreditation"
     _description = "Bank accreditation"
     _columns = {
-        'accreditation_journal_id': fields.many2one('account.journal', "Accreditation journal",
-                                                    domain=[(
-                                                        'type', '=', 'bank')]),
-        'accreditation_account_id': fields.many2one('account.account', "Ri.Ba. bank account"),
+        'accreditation_journal_id': fields.many2one(
+            'account.journal', "Accreditation journal",
+            domain=[('type', '=', 'bank')]),
+        'accreditation_account_id': fields.many2one(
+            'account.account', "Ri.Ba. bank account"),
         'accreditation_amount': fields.float('Credit amount'),
         'bank_account_id': fields.many2one('account.account', "Bank account",
                                            domain=[(
                                                'type', '=', 'liquidity')]),
         'bank_amount': fields.float('Versed amount'),
-        'bank_expense_account_id': fields.many2one('account.account', "Bank Expenses account"),
+        'bank_expense_account_id': fields.many2one(
+            'account.account', "Bank Expenses account"),
         'expense_amount': fields.float('Expenses amount'),
     }
 
@@ -96,11 +110,15 @@ class riba_accreditation(orm.TransientModel):
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
         move_pool = self.pool.get('account.move')
-        move_line_pool = self.pool.get('account.move.line')
         distinta_pool = self.pool.get('riba.distinta')
         distinta = distinta_pool.browse(cr, uid, active_id, context=context)
         wizard = self.browse(cr, uid, ids)[0]
-        if not wizard.accreditation_journal_id or not wizard.accreditation_account_id or not wizard.bank_account_id or not wizard.bank_expense_account_id:
+        if (
+            not wizard.accreditation_journal_id
+            or not wizard.accreditation_account_id
+            or not wizard.bank_account_id
+            or not wizard.bank_expense_account_id
+        ):
             raise orm.except_orm(_('Error'), _('Every account is mandatory'))
         move_vals = {
             'ref': _('Accreditation Ri.Ba. %s') % distinta.name,

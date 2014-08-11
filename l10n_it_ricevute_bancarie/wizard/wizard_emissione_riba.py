@@ -36,14 +36,18 @@ class emissione_riba(orm.TransientModel):
     _description = "Emissione Ricevute Bancarie"
     _columns = {
 
-        'configurazione': fields.many2one('riba.configurazione', 'Configurazione', required=True),
+        'configurazione': fields.many2one(
+            'riba.configurazione', 'Configurazione', required=True),
     }
 
     def crea_distinta(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
 
-        def create_rdl(conta, bank_id, rd_id, date_maturity, partner_id, acceptance_account_id):
+        def create_rdl(
+            conta, bank_id, rd_id, date_maturity, partner_id,
+            acceptance_account_id
+        ):
             rdl = {
                 'sequence': conta,
                 'bank_id': bank_id,
@@ -67,7 +71,8 @@ class emissione_riba(orm.TransientModel):
 
         # create distinta
         rd = {
-            'name': self.pool.get('ir.sequence').get(cr, uid, 'seq.riba.distinta'),
+            'name': self.pool.get('ir.sequence').get(
+                cr, uid, 'seq.riba.distinta'),
             'config': wizard_obj.configurazione.id,
             'user_id': uid,
             'date_created': fields.date.context_today(self, cr, uid, context),
@@ -78,32 +83,44 @@ class emissione_riba(orm.TransientModel):
         grouped_lines = {}
         move_line_ids = move_line_obj.search(
             cr, uid, [('id', 'in', active_ids)], context=context)
-        for move_line in move_line_obj.browse(cr, uid, move_line_ids, context=context):
+        for move_line in move_line_obj.browse(
+            cr, uid, move_line_ids, context=context
+        ):
             if move_line.partner_id.group_riba:
                 if not grouped_lines.get(
-                        (move_line.partner_id.id, move_line.date_maturity), False):
+                    (move_line.partner_id.id, move_line.date_maturity), False
+                ):
                     grouped_lines[
-                        (move_line.partner_id.id, move_line.date_maturity)] = []
-                grouped_lines[(move_line.partner_id.id, move_line.date_maturity)].append(
+                        (move_line.partner_id.id, move_line.date_maturity)
+                    ] = []
+                grouped_lines[
+                    (move_line.partner_id.id, move_line.date_maturity)
+                ].append(
                     move_line)
 
         # create lines
         conta = 1
 
-        for move_line in move_line_obj.browse(cr, uid, move_line_ids, context=context):
+        for move_line in move_line_obj.browse(
+            cr, uid, move_line_ids, context=context
+        ):
             if move_line.partner_id.bank_ids:
                 bank_id = move_line.partner_id.bank_ids[0]
             else:
                 raise orm.except_orm(
-                    'Attenzione!', 'Il cliente %s non ha la banca!!!' % move_line.partner_id.name)
+                    'Attenzione!',
+                    'Il cliente %s non ha la banca!!!'
+                    % move_line.partner_id.name)
             if move_line.partner_id.group_riba:
                 for key in grouped_lines:
-                    if key[0] == move_line.partner_id.id and key[1] == move_line.date_maturity:
+                    if (
+                        key[0] == move_line.partner_id.id
+                        and key[1] == move_line.date_maturity
+                    ):
                         rdl_id = create_rdl(
                             conta, bank_id.id, rd_id, move_line.date_maturity,
-                                            move_line.partner_id.id, wizard_obj.configurazione.acceptance_account_id.id)
-                        total = 0.0
-                        invoice_date_group = ''
+                            move_line.partner_id.id,
+                            wizard_obj.configurazione.acceptance_account_id.id)
                         for grouped_line in grouped_lines[key]:
                             riba_distinta_move_line.create(cr, uid, {
                                 'riba_line_id': rdl_id,
@@ -115,7 +132,8 @@ class emissione_riba(orm.TransientModel):
             else:
                 rdl_id = create_rdl(
                     conta, bank_id.id, rd_id, move_line.date_maturity,
-                                    move_line.partner_id.id, wizard_obj.configurazione.acceptance_account_id.id)
+                    move_line.partner_id.id,
+                    wizard_obj.configurazione.acceptance_account_id.id)
                 riba_distinta_move_line.create(cr, uid, {
                     'riba_line_id': rdl_id,
                     'amount': move_line.amount_residual,
@@ -136,7 +154,6 @@ class emissione_riba(orm.TransientModel):
             'view_id': res_id,
             'res_model': 'riba.distinta',
             'type': 'ir.actions.act_window',
-            #'nodestroy': True,
             'target': 'current',
             'res_id': rd_id or False,
         }

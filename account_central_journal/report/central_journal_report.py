@@ -21,8 +21,6 @@
 
 import time
 from report import report_sxw
-from osv import osv
-from tools.translate import _
 
 
 class central_journal_report(report_sxw.rml_parse):
@@ -53,12 +51,13 @@ class central_journal_report(report_sxw.rml_parse):
         }
         return print_info
 
-    def _set_print_info(self, fiscalyear_id, end_date_print, end_row, end_page, end_debit, end_credit):
+    def _set_print_info(
+        self, fiscalyear_id, end_date_print, end_row, end_page, end_debit,
+        end_credit
+    ):
         fiscalyear_obj = self.pool.get('account.fiscalyear')
         fiscalyear_ids = fiscalyear_obj.search(
             self.cr, self.uid, [('id', '=', fiscalyear_id), ])
-        fiscalyear_data = fiscalyear_obj.browse(
-            self.cr, self.uid, fiscalyear_ids)[0]
         print_info = {
             'date_last_print': end_date_print,
             'progressive_line_number': end_row,
@@ -90,7 +89,8 @@ class central_journal_report(report_sxw.rml_parse):
             'get_movements': self._get_movements,
         })
 
-report_sxw.report_sxw('report.central_journal_report',
-                      'account.move.line',
-                      'addons/account_central_journal/report/central_journal_report.mako',
-                      parser=central_journal_report)
+report_sxw.report_sxw(
+    'report.central_journal_report',
+    'account.move.line',
+    'addons/account_central_journal/report/central_journal_report.mako',
+    parser=central_journal_report)

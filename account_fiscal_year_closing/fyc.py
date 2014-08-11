@@ -504,7 +504,7 @@ class fiscal_year_closing(osv.osv):
                 raise osv.except_osv(
                     _('Error'),
                     _('There is already a fiscal year closing with this name.')
-                    )
+                )
 
             assert fyc.closing_fiscalyear_id and fyc.closing_fiscalyear_id.id
             fyc_ids = self.search(

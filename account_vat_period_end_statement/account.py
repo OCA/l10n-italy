@@ -240,7 +240,7 @@ class account_vat_period_end_statement(orm.Model):
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]
-                }),
+            }),
 
         'credit_vat_account_line_ids': fields.one2many(
             'statement.credit.account.line', 'statement_id', 'Credit VAT',
@@ -249,7 +249,7 @@ class account_vat_period_end_statement(orm.Model):
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]
-                }),
+            }),
 
         'previous_credit_vat_account_id': fields.many2one(
             'account.account', 'Previous Credits VAT',
@@ -258,7 +258,7 @@ class account_vat_period_end_statement(orm.Model):
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]
-                }),
+            }),
         'previous_credit_vat_amount': fields.float(
             'Previous Credits VAT Amount',
             states={
@@ -282,7 +282,7 @@ class account_vat_period_end_statement(orm.Model):
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]
-                },
+            },
             digits_compute=dp.get_precision('Account')),
 
         'generic_vat_account_line_ids': fields.one2many(

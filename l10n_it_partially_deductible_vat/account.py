@@ -265,7 +265,7 @@ class account_invoice_tax(osv.osv):
                                         'date': (
                                             invoice.date_invoice
                                             or time.strftime('%Y-%m-%d')
-                                            )
+                                        )
                                     }, round=False)
 
                             inv_tax['amount'] = cur_obj.round(

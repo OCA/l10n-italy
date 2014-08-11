@@ -49,7 +49,9 @@ class res_bank_add_field(orm.Model):
 class res_partner_bank_add(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
-        'codice_sia': fields.char('Codice SIA', size=5, help="Identification Code of the Company in the System Interbank")
+        'codice_sia': fields.char(
+            'Codice SIA', size=5,
+            help="Identification Code of the Company in the System Interbank")
     }
 
 
@@ -58,11 +60,16 @@ class account_move_line(orm.Model):
     _inherit = "account.move.line"
 
     _columns = {
-        'distinta_line_ids': fields.one2many('riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
+        'distinta_line_ids': fields.one2many(
+            'riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
         'riba': fields.related('invoice', 'payment_term', 'riba',
                                type='boolean', string='RiBa', store=False),
-        'unsolved_invoice_ids': fields.many2many('account.invoice', 'invoice_unsolved_line_rel', 'line_id', 'invoice_id', 'Unsolved Invoices'),
-        'iban': fields.related('partner_id', 'bank_ids', 'iban', type='char', string='IBAN', store=False),
+        'unsolved_invoice_ids': fields.many2many(
+            'account.invoice', 'invoice_unsolved_line_rel', 'line_id',
+            'invoice_id', 'Unsolved Invoices'),
+        'iban': fields.related(
+            'partner_id', 'bank_ids', 'iban', type='char', string='IBAN',
+            store=False),
     }
     _defaults = {
         'distinta_line_ids': None,
@@ -96,5 +103,7 @@ class account_move_line(orm.Model):
 class account_invoice(orm.Model):
     _inherit = "account.invoice"
     _columns = {
-        'unsolved_move_line_ids': fields.many2many('account.move.line', 'invoice_unsolved_line_rel', 'invoice_id', 'line_id', 'Unsolved journal items'),
+        'unsolved_move_line_ids': fields.many2many(
+            'account.move.line', 'invoice_unsolved_line_rel', 'invoice_id',
+            'line_id', 'Unsolved journal items'),
     }

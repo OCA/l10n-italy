@@ -39,7 +39,7 @@ class sale_order(orm.Model):
                 'goods_description_id': partner.goods_description_id.id,
                 'transportation_reason_id': (
                     partner.transportation_reason_id.id),
-                })
+            })
         return inv_id
 
     def action_ship_create(self, cr, uid, ids, *args):
@@ -59,7 +59,7 @@ class sale_order(orm.Model):
                             partner.goods_description_id.id),
                         'transportation_reason_id': (
                             partner.transportation_reason_id.id),
-                        })
+                    })
         return True
 
 sale_order()

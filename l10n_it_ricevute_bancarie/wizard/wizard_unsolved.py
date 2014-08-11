@@ -29,49 +29,72 @@ import netsvc
 class riba_unsolved(orm.TransientModel):
 
     def _get_unsolved_journal_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'unsolved_journal_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'unsolved_journal_id', context=context)
 
     def _get_effects_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'acceptance_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'acceptance_account_id', context=context)
 
     def _get_effects_amount(self, cr, uid, context=None):
         if context is None:
             context = {}
         if not context.get('active_id', False):
             return False
-        return self.pool.get('riba.distinta.line').browse(cr, uid, context['active_id'], context=context).amount
+        return self.pool.get(
+            'riba.distinta.line'
+        ).browse(cr, uid, context['active_id'], context=context).amount
 
     def _get_riba_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'accreditation_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'accreditation_account_id', context=context)
 
     def _get_overdue_effects_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'overdue_effects_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'overdue_effects_account_id', context=context)
 
     def _get_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'bank_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'bank_account_id', context=context)
 
     def _get_bank_expense_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'protest_charge_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'protest_charge_account_id', context=context)
 
     _name = "riba.unsolved"
     _columns = {
-        'unsolved_journal_id': fields.many2one('account.journal', "Unsolved journal",
-                                               domain=[('type', '=', 'bank')]),
-        'effects_account_id': fields.many2one('account.account', "Effects account",
-                                              domain=[(
-                                                  'type', '=', 'receivable')]),
+        'unsolved_journal_id': fields.many2one(
+            'account.journal', "Unsolved journal",
+            domain=[('type', '=', 'bank')]),
+        'effects_account_id': fields.many2one(
+            'account.account', "Effects account",
+            domain=[('type', '=', 'receivable')]),
         'effects_amount': fields.float('Effects amount'),
-        'riba_bank_account_id': fields.many2one('account.account', "Ri.Ba. bank account"),
+        'riba_bank_account_id': fields.many2one(
+            'account.account', "Ri.Ba. bank account"),
         'riba_bank_amount': fields.float('Ri.Ba. bank amount'),
-        'overdue_effects_account_id': fields.many2one('account.account', "Overdue Effects account",
-                                                      domain=[(
-                                                          'type', '=', 'receivable')]),
+        'overdue_effects_account_id': fields.many2one(
+            'account.account', "Overdue Effects account",
+            domain=[('type', '=', 'receivable')]),
         'overdue_effects_amount': fields.float('Overdue Effects amount'),
         'bank_account_id': fields.many2one('account.account', "Bank account",
                                            domain=[(
                                                'type', '=', 'liquidity')]),
         'bank_amount': fields.float('Taken amount'),
-        'bank_expense_account_id': fields.many2one('account.account', "Bank Expenses account"),
+        'bank_expense_account_id': fields.many2one(
+            'account.account', "Bank Expenses account"),
         'expense_amount': fields.float('Expenses amount'),
     }
 
@@ -98,7 +121,8 @@ class riba_unsolved(orm.TransientModel):
         line_pool.write(cr, uid, active_id,
                         {'state': 'unsolved'}, context=context)
         wf_service.trg_validate(
-            uid, 'riba.distinta', line_pool.browse(cr, uid, active_id).distinta_id.id, 'unsolved', cr)
+            uid, 'riba.distinta', line_pool.browse(
+                cr, uid, active_id).distinta_id.id, 'unsolved', cr)
         return {'type': 'ir.actions.act_window_close'}
 
     def create_move(self, cr, uid, ids, context=None):
@@ -110,14 +134,21 @@ class riba_unsolved(orm.TransientModel):
             raise orm.except_orm(_('Error'), _('No active ID found'))
         move_pool = self.pool.get('account.move')
         invoice_pool = self.pool.get('account.invoice')
-        move_line_pool = self.pool.get('account.move.line')
         distinta_line = self.pool.get('riba.distinta.line').browse(
             cr, uid, active_id, context=context)
         wizard = self.browse(cr, uid, ids)[0]
-        if not wizard.unsolved_journal_id or not wizard.effects_account_id or not wizard.riba_bank_account_id or not wizard.overdue_effects_account_id or not wizard.bank_account_id or not wizard.bank_expense_account_id:
+        if (
+            not wizard.unsolved_journal_id
+            or not wizard.effects_account_id
+            or not wizard.riba_bank_account_id
+            or not wizard.overdue_effects_account_id
+            or not wizard.bank_account_id
+            or not wizard.bank_expense_account_id
+        ):
             raise orm.except_orm(_('Error'), _('Every account is mandatory'))
         move_vals = {
-            'ref': _('Unsolved Ri.Ba. %s - line %s') % (distinta_line.distinta_id.name, distinta_line.sequence),
+            'ref': _('Unsolved Ri.Ba. %s - line %s') % (
+                distinta_line.distinta_id.name, distinta_line.sequence),
             'journal_id': wizard.unsolved_journal_id.id,
             'line_id': [
                 (0, 0, {
@@ -156,12 +187,15 @@ class riba_unsolved(orm.TransientModel):
         }
         move_id = move_pool.create(cr, uid, move_vals, context=context)
 
-        for move_line in move_pool.browse(cr, uid, move_id, context=context).line_id:
+        for move_line in move_pool.browse(
+            cr, uid, move_id, context=context
+        ).line_id:
             if move_line.account_id.id == wizard.overdue_effects_account_id.id:
                 for riba_move_line in distinta_line.move_line_ids:
-                    invoice_pool.write(cr, uid, riba_move_line.move_line_id.invoice.id, {
-                        'unsolved_move_line_ids': [(4, move_line.id)],
-                    }, context=context)
+                    invoice_pool.write(
+                        cr, uid, riba_move_line.move_line_id.invoice.id, {
+                            'unsolved_move_line_ids': [(4, move_line.id)],
+                        }, context=context)
 
         distinta_line.write({
             'unsolved_move_id': move_id,

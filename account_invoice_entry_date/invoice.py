@@ -75,7 +75,7 @@ class account_invoice(orm.Model):
                     ('date_start', '<=', date_start),
                     ('date_stop', '>=', date_stop),
                     ('company_id', '=', inv.company_id.id)
-                    ])
+                ])
             if period_ids:
                 period_id = period_ids[0]
 

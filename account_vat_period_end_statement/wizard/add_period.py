@@ -44,7 +44,7 @@ class add_period(orm.TransientModel):
             raise orm.except_orm(
                 _('Error'), _('Period %s is associated to statement %s yet') %
                 (wizard.period_id.name, wizard.period_id.vat_statement_id.date)
-                )
+            )
         wizard.period_id.write({'vat_statement_id': context['active_id']})
         statement_pool.compute_amounts(
             cr, uid, [context['active_id']], context=context)

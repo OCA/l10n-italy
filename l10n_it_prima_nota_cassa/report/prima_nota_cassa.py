@@ -6,8 +6,8 @@
 #    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -23,7 +23,6 @@
 import time
 from report import report_sxw
 from account.report.common_report_header import common_report_header
-from tools.translate import _
 
 
 class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
@@ -34,8 +33,8 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         obj_move = self.pool.get('account.move.line')
         self.sortby = data['form'].get('sortby', 'sort_date')
         self.query = obj_move._query_get(
-            self.cr, self.uid, obj='l', context=data['form'].get('used_context', {}))
-        ctx2 = data['form'].get('used_context', {}).copy()
+            self.cr, self.uid, obj='l', context=data['form'].get(
+                'used_context', {}))
         self.init_balance = data['form']['initial_balance']
         self.display_account = data['form']['display_account']
         self.target_move = data['form'].get('target_move', 'all')
@@ -53,7 +52,8 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             new_ids = [data['form']['chart_account_id']]
             objects = self.pool.get('account.account').browse(
                 self.cr, self.uid, new_ids)
-        return super(print_prima_nota_cassa, self).set_context(objects, data, new_ids, report_type=report_type)
+        return super(print_prima_nota_cassa, self).set_context(
+            objects, data, new_ids, report_type=report_type)
 
     def __init__(self, cr, uid, name, context=None):
         if context is None:
@@ -91,9 +91,11 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
                 WHERE l.account_id = %s AND %s' % (account.id, self.query))
         sum_currency = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
-                            FROM account_move_line l \
-                            WHERE l.account_id = %s AND %s ' % (account.id, self.init_query))
+            self.cr.execute(
+                'SELECT sum(l.amount_currency) AS tot_currency \
+                FROM account_move_line l \
+                WHERE l.account_id = %s AND %s '
+                % (account.id, self.init_query))
             sum_currency += self.cr.fetchone()[0] or 0.0
         return sum_currency
 
@@ -101,7 +103,6 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         """ Return all the accounts that are children of the chosen main one
         and are set as default for the selected cash and bank accounts"""
 
-        currency_obj = self.pool.get('res.currency')
         journal_obj = self.pool.get('account.journal')
 
         cash_bank_journals = journal_obj.search(
@@ -111,15 +112,16 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             [journal_obj.browse(self.cr, self.uid, j)
              .default_debit_account_id.id for j in cash_bank_journals]
 
-        ids_acc = [acc for acc in self.pool.get('account.account')._get_children_and_consol(self.cr, self.uid, account.id)
-                   if acc in cash_bank_accounts]
-
-        currency = account.currency_id and account.currency_id or account.company_id.currency_id
+        ids_acc = [acc for acc in self.pool.get(
+            'account.account'
+            )._get_children_and_consol(
+                self.cr, self.uid, account.id) if acc in cash_bank_accounts]
 
         return ids_acc
 
     def lines(self, main_account):
-        """ Return all the account_move_line of account with their account code counterparts """
+        """ Return all the account_move_line of account with their account code
+        counterparts """
         account_ids = self.get_children_accounts(main_account)
 
         move_state = ['draft', 'posted']
@@ -173,16 +175,14 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             l['partner'] = l['partner_name'] or ''
             # Modification of amount Currency
             if l['credit'] > 0:
-                if l['amount_currency'] != None:
+                if l['amount_currency'] is not None:
                     l['amount_currency'] = abs(l['amount_currency']) * -1
-            if l['amount_currency'] != None:
+            if l['amount_currency'] is not None:
                 self.tot_currency = self.tot_currency + l['amount_currency']
         return res
 
     def _sum_total_debit(self, account):
         move_state = ['draft', 'posted']
-
-        account_ids = self.get_children_accounts(main_account)
 
         if self.target_move == 'posted':
             move_state = ['posted', '']
@@ -194,12 +194,13 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
                 AND ' + self.query + ' ', (account.id, tuple(move_state)))
         sum_debit = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(debit) \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT sum(debit) \
+                FROM account_move_line l \
+                JOIN account_move am ON (am.id = l.move_id) \
+                WHERE (l.account_id = %s) \
+                AND (am.state IN %s) \
+                AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_debit += self.cr.fetchone()[0] or 0.0
         return sum_debit
@@ -218,12 +219,13 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
                 AND ' + self.query + ' ', (account.id, tuple(move_state)))
         sum_debit = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(debit) \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT sum(debit) \
+                FROM account_move_line l \
+                JOIN account_move am ON (am.id = l.move_id) \
+                WHERE (l.account_id = %s) \
+                AND (am.state IN %s) \
+                AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_debit += self.cr.fetchone()[0] or 0.0
         return sum_debit
@@ -242,12 +244,13 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
                 AND ' + self.query + ' ', (account.id, tuple(move_state)))
         sum_credit = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(credit) \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT sum(credit) \
+                FROM account_move_line l \
+                JOIN account_move am ON (am.id = l.move_id) \
+                WHERE (l.account_id = %s) \
+                AND (am.state IN %s) \
+                AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_credit += self.cr.fetchone()[0] or 0.0
         return sum_credit
@@ -266,19 +269,21 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
                 AND ' + self.query + ' ', (account.id, tuple(move_state)))
         sum_balance = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT (sum(debit) - sum(credit)) as tot_balance \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT (sum(debit) - sum(credit)) as tot_balance \
+                FROM account_move_line l \
+                JOIN account_move am ON (am.id = l.move_id) \
+                WHERE (l.account_id = %s) \
+                AND (am.state IN %s) \
+                AND ' + self.init_query + ' ', (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_balance += self.cr.fetchone()[0] or 0.0
         return sum_balance
 
     def _get_account(self, data):
         if data['model'] == 'account.account':
-            return self.pool.get('account.account').browse(self.cr, self.uid, data['form']['id']).company_id.name
+            return self.pool.get('account.account').browse(
+                self.cr, self.uid, data['form']['id']).company_id.name
         return super(print_prima_nota_cassa, self)._get_account(data)
 
     def _get_sortby(self, data):
@@ -288,7 +293,8 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             return 'Journal & Partner'
         return 'Date'
 
-report_sxw.report_sxw('report.account.print.prima_nota_cassa',
-                      'account.account',
-                      'addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako',
-                      parser=print_prima_nota_cassa)
+report_sxw.report_sxw(
+    'report.account.print.prima_nota_cassa',
+    'account.account',
+    'addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako',
+    parser=print_prima_nota_cassa)
