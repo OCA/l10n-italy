@@ -16,7 +16,7 @@ before_install:
   - git clone https://github.com/OCA/account-payment $HOME/account-payment -b 7.0
 
 install:
-  - git clone https://github.com/dreispt/maintainer-quality-tools.git $HOME/maintainer-quality-tools
+  - git clone https://github.com/OCA/maintainer-quality-tools.git $HOME/maintainer-quality-tools
   - export PATH=$HOME/maintainer-quality-tools/travis:$PATH
   - travis_install_nightly
 
