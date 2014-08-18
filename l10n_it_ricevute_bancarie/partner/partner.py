@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -22,9 +22,10 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import fields, orm
+
 
 class res_partner(orm.Model):
 
@@ -32,7 +33,7 @@ class res_partner(orm.Model):
     _inherit = "res.partner"
 
     _columns = {
-        'group_riba' : fields.boolean("Group Ri.Ba.", 
+        'group_riba': fields.boolean(
+            "Group Ri.Ba.",
             help="Group Ri.Ba. by customer while issuing"),
     }
-

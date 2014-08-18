@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2010-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #
@@ -17,25 +17,27 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
-
-import netsvc
-import pooler, tools
+#
 
 from openerp.osv import orm, fields
 
+
 class stock_picking_carriage_condition(orm.Model):
+
     """
     Carriage condition
     """
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
     _columns = {
-        'name':fields.char('Carriage Condition', size=64, required=True, readonly=False),
+        'name': fields.char(
+            'Carriage Condition', size=64, required=True, readonly=False),
         'note': fields.text('Note'),
     }
 
+
 class stock_picking_goods_description(orm.Model):
+
     """
     Description of Goods
     """
@@ -43,11 +45,14 @@ class stock_picking_goods_description(orm.Model):
     _description = "Description of Goods"
 
     _columns = {
-        'name':fields.char('Description of Goods', size=64, required=True, readonly=False),
+        'name': fields.char(
+            'Description of Goods', size=64, required=True, readonly=False),
         'note': fields.text('Note'),
     }
 
+
 class stock_picking_reason(orm.Model):
+
     """
     Reason for Transportation
     """
@@ -55,51 +60,71 @@ class stock_picking_reason(orm.Model):
     _description = 'Reason for transportation'
 
     _columns = {
-        'name':fields.char('Reason For Transportation', size=64, required=True, readonly=False),
+        'name': fields.char(
+            'Reason For Transportation', size=64, required=True,
+            readonly=False),
         'note': fields.text('Note'),
     }
 
+
 class stock_picking_out(orm.Model):
     _inherit = "stock.picking.out"
-    _columns =  {
-        'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
-        'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
-        'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
+    _columns = {
+        'carriage_condition_id': fields.many2one(
+            'stock.picking.carriage_condition', 'Carriage condition'),
+        'goods_description_id': fields.many2one(
+            'stock.picking.goods_description', 'Description of goods'),
+        'transportation_reason_id': fields.many2one(
+            'stock.picking.transportation_reason',
+            'Reason for transportation'),
         'ddt_number':  fields.char('DDT', size=64),
         'ddt_date':  fields.date('DDT date'),
     }
 
     def action_invoice_create(self, cursor, user, ids, journal_id=False,
-            group=False, type='out_invoice', context=None):
-        res = super(stock_picking_out, self).action_invoice_create(cursor, user, ids, journal_id,
-            group, type, context)
+                              group=False, type='out_invoice', context=None):
+        res = super(
+            stock_picking_out, self).action_invoice_create(
+                cursor, user, ids, journal_id,
+                group, type, context)
         for picking in self.browse(cursor, user, ids, context=context):
-            self.pool.get('account.invoice').write(cursor, user, res[picking.id], {
-                'carriage_condition_id': picking.carriage_condition_id.id,
-                'goods_description_id': picking.goods_description_id.id,
-                'transportation_reason_id': picking.transportation_reason_id.id,
+            self.pool.get('account.invoice').write(
+                cursor, user, res[picking.id], {
+                    'carriage_condition_id': picking.carriage_condition_id.id,
+                    'goods_description_id': picking.goods_description_id.id,
+                    'transportation_reason_id': (
+                        picking.transportation_reason_id.id),
                 })
         return res
 
-    #-----------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # EVITARE LA COPIA DI 'NUMERO DDT'
-    #-----------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def copy(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
         default.update({'ddt_number': ''})
-        return super(stock_picking_out, self).copy(cr, uid, id, default, context=context)
+        return super(stock_picking_out, self).copy(
+            cr, uid, id, default, context=context)
 
-# Redefinition of the new fields in order to update the model stock.picking in the orm
-# FIXME: this is a temporary workaround because of a framework bug (ref: lp996816).
+# Redefinition of the new fields in order to update the model stock.picking
+# in the orm
+# FIXME: this is a temporary workaround because of a framework bug
+# (ref: lp996816).
 # It should be removed as soon as
 # the bug is fixed
+
+
 class stock_picking(orm.Model):
     _inherit = 'stock.picking'
-    _columns =  {
-        'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
-        'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
-        'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
+    _columns = {
+        'carriage_condition_id': fields.many2one(
+            'stock.picking.carriage_condition', 'Carriage condition'),
+        'goods_description_id': fields.many2one(
+            'stock.picking.goods_description', 'Description of goods'),
+        'transportation_reason_id': fields.many2one(
+            'stock.picking.transportation_reason',
+            'Reason for transportation'),
         'ddt_number':  fields.char('DDT', size=64),
         'ddt_date':  fields.date('DDT date'),
     }

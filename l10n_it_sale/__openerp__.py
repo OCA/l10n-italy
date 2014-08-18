@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2010 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Italian Localisation - Sale',
     'version': '0.2',
@@ -32,8 +32,8 @@ Functionalities:
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['stock', 'sale', 'account', 'delivery'],
-    "data" : [
+    "depends": ['stock', 'sale', 'account', 'delivery'],
+    "data": [
         'wizard/assign_ddt.xml',
         'stock/picking_view.xml',
         'stock/carriage_condition_view.xml',
@@ -47,10 +47,9 @@ Functionalities:
         "security/ir.model.access.csv",
         'partner/partner_view.xml',
         'account/invoice_view.xml',
-        ],
-    "demo" : [],
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

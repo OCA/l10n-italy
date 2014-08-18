@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2010-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
@@ -17,13 +17,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Italian Localisation - Fiscal Code',
     'version': '0.1',
     'category': 'Localisation/Italy',
     'description': """
-This module customizes OpenERP in order to fit italian laws and mores - Account version
 
 Functionalities:
 
@@ -33,16 +32,16 @@ Functionalities:
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['base', 'l10n_it_base'],
-    "init_xml" : [
+    "depends": ['base', 'l10n_it_base'],
+    "init_xml": [
         'fiscalcode_view.xml',
         'wizard/compute_fc_view.xml'
-        ],
-    "update_xml" : [],
-    "demo_xml" : [],
+    ],
+    "update_xml": [],
+    "demo_xml": [],
     'test': [
         'test/fiscalcode.yml',
-        ],
+    ],
     "active": False,
     "installable": True
 }
