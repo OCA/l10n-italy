@@ -121,7 +121,7 @@ class account_invoice(orm.Model):
         ):
             result.extend([i.id for i in move_line.unsolved_invoice_ids])
         return list(set(result))
-    
+
     _inherit = "account.invoice"
     _columns = {
         'unsolved_move_line_ids': fields.many2many(
