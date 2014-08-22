@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp.osv import orm
 from openerp.tools.translate import _
 
 
@@ -131,5 +131,6 @@ class account_voucher(orm.Model):
                             _('Withholding entry should have amount = 0'))
                     move_pool.button_cancel(
                         cr, uid, [voucher.withholding_move_ids[0].id])
-                    move_pool.unlink(cr, uid, [voucher.withholding_move_ids[0].id])
+                    move_pool.unlink(
+                        cr, uid, [voucher.withholding_move_ids[0].id])
         return res
