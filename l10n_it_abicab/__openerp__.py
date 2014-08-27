@@ -30,7 +30,7 @@
     """,
     'author': 'OpenERP Italian Community',
     'license': 'AGPL-3',
-    'depends': ['base'],
+    'depends': ['base','account'],
     'website': 'http://www.openerp-italia.org/',
     'data': ['abicab_view.xml'],
     'installable': True,
