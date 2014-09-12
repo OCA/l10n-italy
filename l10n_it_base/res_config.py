@@ -22,7 +22,7 @@
 from openerp.osv import fields, osv
 
 
-class l10n_it_config_settings(osv.osv_memory):
+class it_config_settings(osv.osv_memory):
     _name = 'l10n_it.config.settings'
     _inherit = 'res.config.settings'
 
@@ -34,8 +34,7 @@ class l10n_it_config_settings(osv.osv_memory):
     }
 
     def create(self, cr, uid, values, context=None):
-        id = super(l10n_it_config_settings, self).create(
-            cr, uid, values, context)
+        id = super(it_config_settings, self).create(cr, uid, values, context)
         # Hack: to avoid some nasty bug, related fields are not written
         # upon record creation. Hence we write on those fields here.
         vals = {}

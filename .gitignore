@@ -1,4 +1,6 @@
-*.pyc
-*.pyo
+*.py[cod]
+*.mo
+*~
+*.swp
 *egg-info
 .DS_Store
