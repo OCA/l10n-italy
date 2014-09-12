@@ -31,6 +31,9 @@
     'author': 'OpenERP Italian Community',
     'license': 'AGPL-3',
     'depends': ['base', 'account'],
+    'test': [
+        'test/abicab.yml',
+        ],
     'website': 'http://www.openerp-italia.org/',
     'data': ['abicab_view.xml'],
     'installable': True,
