@@ -1,0 +1,225 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0alpha\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-28 15:26+0000\n"
+"PO-Revision-Date: 2012-11-28 15:26+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_base
+#: model:ir.model,name:l10n_it_base.model_res_city
+#: view:res.city:0
+#: field:res.city,name:0
+msgid "City"
+msgstr "Città"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.dott
+#: model:res.partner.title,shortcut:l10n_it_base.dott
+msgid "Dott."
+msgstr "Dott."
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.arch
+#: model:res.partner.title,shortcut:l10n_it_base.arch
+msgid "Arch."
+msgstr "Arch."
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.di
+msgid "Ditta individuale"
+msgstr "Ditta individuale"
+
+#. module: l10n_it_base
+#: model:res.partner.title,shortcut:l10n_it_base.di
+msgid "DI"
+msgstr "DI"
+
+#. module: l10n_it_base
+#: field:res.province,code:0
+msgid "Province Code"
+msgstr "Codice provincia"
+
+#. module: l10n_it_base
+#: field:res.city,web_site:0
+msgid "Web Site"
+msgstr "Sito web"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.pf
+msgid "Persona Fisica"
+msgstr "Persona Fisica"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.spa
+#: model:res.partner.title,shortcut:l10n_it_base.spa
+msgid "S.p.A."
+msgstr "S.p.A."
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.if
+msgid "Impresa Famigliare"
+msgstr "Impresa Famigliare"
+
+#. module: l10n_it_base
+#: field:res.city,cadaster_code:0
+msgid "Cadaster Code"
+msgstr "Codice catastale"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.notaio
+#: model:res.partner.title,shortcut:l10n_it_base.notaio
+msgid "Notaio"
+msgstr "Notaio"
+
+#. module: l10n_it_base
+#: field:res.region,name:0
+msgid "Region Name"
+msgstr "Nome regione"
+
+#. module: l10n_it_base
+#: help:res.region,name:0
+msgid "The full name of the region."
+msgstr "Il nome intero della regione"
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_province
+#: model:ir.ui.menu,name:l10n_it_base.menu_province_partner
+msgid "Provinces"
+msgstr "Province"
+
+#. module: l10n_it_base
+#: model:res.partner.title,shortcut:l10n_it_base.pf
+msgid "PF"
+msgstr "PF"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.sas
+#: model:res.partner.title,shortcut:l10n_it_base.sas
+msgid "S.a.s."
+msgstr "S.a.s."
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_city
+#: model:ir.ui.menu,name:l10n_it_base.menu_city_partner
+msgid "Cities"
+msgstr "Città"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.spettle
+#: model:res.partner.title,shortcut:l10n_it_base.spettle
+msgid "Spett.le"
+msgstr "Spett.le"
+
+#. module: l10n_it_base
+#: help:res.province,code:0
+msgid "The province code in two chars."
+msgstr "Il codice di due caratteri della provincia."
+
+#. module: l10n_it_base
+#: model:ir.model,name:l10n_it_base.model_res_province
+#: field:res.city,province_id:0
+#: field:res.partner,province:0
+#: view:res.province:0
+msgid "Province"
+msgstr "Provincia"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.ing
+#: model:res.partner.title,shortcut:l10n_it_base.ing
+msgid "Ing."
+msgstr "Ing."
+
+#. module: l10n_it_base
+#: field:res.city,istat_code:0
+msgid "ISTAT code"
+msgstr "Codice ISTAT"
+
+#. module: l10n_it_base
+#: field:res.city,zip:0
+msgid "ZIP"
+msgstr "CAP"
+
+#. module: l10n_it_base
+#: field:res.region,country_id:0
+msgid "Country"
+msgstr "Nazione"
+
+#. module: l10n_it_base
+#: model:ir.model,name:l10n_it_base.model_res_region
+#: field:res.city,region:0
+#: field:res.partner,region:0
+#: field:res.province,region:0
+msgid "Region"
+msgstr "Regione"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.snc
+#: model:res.partner.title,shortcut:l10n_it_base.snc
+msgid "S.n.c."
+msgstr "S.n.c."
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.srl
+#: model:res.partner.title,shortcut:l10n_it_base.srl
+msgid "S.r.l."
+msgstr "S.r.l."
+
+#. module: l10n_it_base
+#: field:res.city,phone_prefix:0
+msgid "Telephone Prefix"
+msgstr "Prefisso telefonico"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.avv
+#: model:res.partner.title,shortcut:l10n_it_base.avv
+msgid "Avv."
+msgstr "Avv."
+
+#. module: l10n_it_base
+#: model:res.partner.title,shortcut:l10n_it_base.if
+msgid "IF"
+msgstr "IF"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.egrsigra
+#: model:res.partner.title,shortcut:l10n_it_base.egrsigra
+msgid "Egr. Sig.ra"
+msgstr "Egr. Sig.ra"
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.sapa
+#: model:res.partner.title,shortcut:l10n_it_base.sapa
+msgid "S.a.p.a."
+msgstr "S.a.p.a."
+
+#. module: l10n_it_base
+#: help:res.province,name:0
+msgid "The full name of the province."
+msgstr "Il nome completo della provincia."
+
+#. module: l10n_it_base
+#: model:res.partner.title,name:l10n_it_base.egrsig
+#: model:res.partner.title,shortcut:l10n_it_base.egrsig
+msgid "Egr. Sig."
+msgstr "Egr. Sig."
+
+#. module: l10n_it_base
+#: field:res.province,name:0
+msgid "Province Name"
+msgstr "Nome Provincia"
+
+#. module: l10n_it_base
+#: model:ir.model,name:l10n_it_base.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
