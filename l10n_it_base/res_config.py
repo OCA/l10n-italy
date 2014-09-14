@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 
 
-class it_config_settings(osv.osv_memory):
+class it_config_settings(orm.TransientModel):
     _name = 'l10n_it.config.settings'
     _inherit = 'res.config.settings'
 
