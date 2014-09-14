@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp.osv import fields, orm
 
 
-class product_product(osv.Model):
+class ResPartner(orm.Model):
     _inherit = "res.partner"
     _columns = {
         'pec_mail': fields.char(
