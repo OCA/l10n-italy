@@ -32,14 +32,3 @@ class L10nItConfigSettings(orm.TransientModel):
             help="""Install l10n_it_pec module for pec mail management"""
         ),
     }
-
-    def create(self, cr, uid, values, context=None):
-        id = super(L10nItConfigSettings, self).create(cr, uid, values, context)
-        # Hack: to avoid some nasty bug, related fields are not written
-        # upon record creation. Hence we write on those fields here.
-        vals = {}
-        for fname, field in self._columns.iteritems():
-            if isinstance(field, fields.related) and fname in values:
-                vals[fname] = values[fname]
-        self.write(cr, uid, [id], vals, context)
-        return id
