@@ -2,8 +2,9 @@
 ##############################################################################
 #
 #    Copyright (C) 2010-2011 OpenERP Italian Community
-#    http://www.openerp-italia.org>
-#    All Rights Reserved
+#    <http://www.openerp-italia.org>
+#    Copyright (C) 2014 Associazione Odoo Italia
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
