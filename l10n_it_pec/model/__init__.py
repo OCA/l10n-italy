@@ -3,8 +3,9 @@
 #
 #    Copyright (C) 2010 OpenERP Italian Community
 #    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.openerp-italia.org>).
+#
+#    All Rights Reserved
+#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,4 +22,4 @@
 #
 ##############################################################################
 
-from . import model
+from . import partner
