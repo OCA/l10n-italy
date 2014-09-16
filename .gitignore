@@ -55,4 +55,5 @@ docs/_build/
 *~
 *.swp
 
-
+# OSX Files
+*.DS_Store

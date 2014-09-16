@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-16 09:24+0000\n"
+"PO-Revision-Date: 2014-09-16 11:26+0100\n"
+"Last-Translator: Franco Tampieri <franco@tampieri.info>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.6.9\n"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Apply"
+msgstr "Applica"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Communication"
+msgstr "Comunicazione"
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_l10n_it_config
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Configure Italian Localization"
+msgstr "Configura Localizzazione Italiana"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_pec:0
+msgid "Install l10n_it_pec module for pec mail management"
+msgstr "Installa il modulo l10n_it_pec per la gestione della mail pec"
+
+#. module: l10n_it_base
+#: model:ir.ui.menu,name:l10n_it_base.menu_account_config
+msgid "Italian Localization"
+msgstr "Localizzazione Italiana"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima Modifica da"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima Modifica il"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Partner Profile"
+msgstr "Profilo Partner"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_pec:0
+msgid "Use Pec Mail in Partner Profile"
+msgstr "Usa Mail Pec nel Profilo Partner"
