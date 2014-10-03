@@ -76,7 +76,6 @@
                 <separator></separator>
                 <filter string="Reconciled"
                     domain="[('reconcile_id', '!=', False)]" name="reconciled"/>
-                <separator></separator>
                 <filter string="To Reconcile"
                     domain="[('reconcile_id', '=', False)]" name="to_reconcile"/>
                 <separator></separator>
