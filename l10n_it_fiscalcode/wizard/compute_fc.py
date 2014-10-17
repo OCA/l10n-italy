@@ -248,9 +248,12 @@ class wizard_compute_fc(models.TransientModel):
                     _('Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one') % (partner.fiscalcode, CF))
             partner.fiscalcode = CF
             partner.individual = True
+        return {'type': 'ir.actions.act_window_close'}
+        """
         return {
             'value': {
                 'fiscalcode': CF,
                 'individual': True
             }
         }
+        """
