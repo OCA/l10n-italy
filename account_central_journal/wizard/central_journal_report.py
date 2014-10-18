@@ -54,14 +54,12 @@ class central_journal_report(osv.osv_memory):
         if date_start > date_stop:
             raise osv.except_osv(_('Wrong dates !'), _(
                 "The end date must be greater than the initial date."))
-            return False
         if date_stop > today_date:
             raise osv.except_osv(_('Wrong dates !'), _(
                 "The end date can not be greater than today's date."))
-            return False
         return True
 
-    def _get_report_datas(self, cr, uid, ids, context={}):
+    def _get_report_datas(self, cr, uid, ids, context=None):
         wizard_form_datas = self.read(cr, uid, ids)[0]
         datas = {
             'ids': [],
@@ -129,7 +127,9 @@ class central_journal_report(osv.osv_memory):
         }
         }
 
-    def print_report(self, cr, uid, ids, context={}):
+    def print_report(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
         datas = self._get_report_datas(cr, uid, ids, context)
         if (
             self._dates_control(
@@ -144,7 +144,9 @@ class central_journal_report(osv.osv_memory):
             'datas': datas,
         }
 
-    def print_report_final(self, cr, uid, ids, context={}):
+    def print_report_final(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
         datas = self._get_report_datas(cr, uid, ids, context)
         if (
             self._dates_control(

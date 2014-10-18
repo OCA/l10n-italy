@@ -28,7 +28,7 @@ class sale_order(orm.Model):
         'validity': fields.date('Validity'),
     }
 
-    def _make_invoice(self, cr, uid, order, lines, context={}):
+    def _make_invoice(self, cr, uid, order, lines, context=None):
         inv_id = super(sale_order, self)._make_invoice(
             cr, uid, order, lines, context)
         partner = self.pool.get('res.partner').browse(
