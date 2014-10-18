@@ -25,8 +25,7 @@
     'version': '1.0',
     'category': 'Localisation/Italy',
     'description': """
-    Insert in the res.bank model the proprieties of the ABI/CAB
-    Utility to import italian bank from txt file
+Adds to res.bank the ABI/CAB data (bank identification numbers).
     """,
     'author': 'OpenERP Italian Community',
     'license': 'AGPL-3',
