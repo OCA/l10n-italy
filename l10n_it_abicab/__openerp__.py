@@ -32,7 +32,7 @@ Adds to res.bank the ABI/CAB data (bank identification numbers).
     'depends': ['base', 'account'],
     'test': [
         'test/abicab.yml',
-        ],
+    ],
     'website': 'http://www.openerp-italia.org/',
     'data': ['abicab_view.xml'],
     'installable': True,
