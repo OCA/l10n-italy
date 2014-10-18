@@ -109,7 +109,7 @@ class central_journal_report(osv.osv_memory):
                 if date_last_print == date_stop:
                     date_move_line_from = (
                         date_move_line_from_view
-                        ) = date_start.__str__()
+                    ) = date_start.__str__()
                     print_state = 'printed'
             else:
                 date_move_line_from = (

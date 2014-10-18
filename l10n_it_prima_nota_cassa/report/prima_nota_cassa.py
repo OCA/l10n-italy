@@ -114,8 +114,8 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
 
         ids_acc = [acc for acc in self.pool.get(
             'account.account'
-            )._get_children_and_consol(
-                self.cr, self.uid, account.id) if acc in cash_bank_accounts]
+        )._get_children_and_consol(
+            self.cr, self.uid, account.id) if acc in cash_bank_accounts]
 
         return ids_acc
 
