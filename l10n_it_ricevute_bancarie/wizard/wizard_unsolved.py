@@ -152,19 +152,19 @@ class riba_unsolved(orm.TransientModel):
             'journal_id': wizard.unsolved_journal_id.id,
             'line_id': [
                 (0, 0, {
-                    'name':  _('Effects'),
+                    'name': _('Effects'),
                     'account_id': wizard.effects_account_id.id,
                     'credit': wizard.effects_amount,
                     'debit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Ri.Ba. Bank'),
+                    'name': _('Ri.Ba. Bank'),
                     'account_id': wizard.riba_bank_account_id.id,
                     'debit': wizard.riba_bank_amount,
                     'credit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Overdue Effects'),
+                    'name': _('Overdue Effects'),
                     'account_id': wizard.overdue_effects_account_id.id,
                     'debit': wizard.overdue_effects_amount,
                     'credit': 0.0,
@@ -172,13 +172,13 @@ class riba_unsolved(orm.TransientModel):
                     'date_maturity': distinta_line.due_date,
                 }),
                 (0, 0, {
-                    'name':  _('Bank'),
+                    'name': _('Bank'),
                     'account_id': wizard.bank_account_id.id,
                     'credit': wizard.bank_amount,
                     'debit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Expenses'),
+                    'name': _('Expenses'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,

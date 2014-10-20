@@ -74,7 +74,7 @@ class wizard_registro_iva(osv.osv_memory):
         ], order='date, name')
         if not move_ids:
             self.write(
-                cr, uid,  ids,
+                cr, uid, ids,
                 {'message': _('No documents found in the current selection')})
             model_data_ids = obj_model_data.search(
                 cr, uid, [

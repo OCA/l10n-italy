@@ -125,19 +125,19 @@ class riba_accreditation(orm.TransientModel):
             'journal_id': wizard.accreditation_journal_id.id,
             'line_id': [
                 (0, 0, {
-                    'name':  _('Credit'),
+                    'name': _('Credit'),
                     'account_id': wizard.accreditation_account_id.id,
                     'credit': wizard.accreditation_amount,
                     'debit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Bank'),
+                    'name': _('Bank'),
                     'account_id': wizard.bank_account_id.id,
                     'debit': wizard.bank_amount,
                     'credit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Bank'),
+                    'name': _('Bank'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,

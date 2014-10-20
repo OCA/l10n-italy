@@ -140,7 +140,7 @@ class riba_distinta(orm.Model):
 
     def unlink(self, cr, uid, ids, context=None):
         for distinta in self.browse(cr, uid, ids, context=context):
-            if distinta.state not in ('draft',  'cancel'):
+            if distinta.state not in ('draft', 'cancel'):
                 raise orm.except_orm(
                     _('Error'),
                     _('Distinta %s is in state %s. You can only delete '

@@ -25,7 +25,7 @@ from osv import fields, osv
 class res_partner(osv.osv):
     _inherit = 'res.partner'
 
-    def check_fiscalcode(self, cr, uid, ids, context={}):
+    def check_fiscalcode(self, cr, uid, ids, context=None):
 
         for partner in self.browse(cr, uid, ids):
             if not partner.fiscalcode:

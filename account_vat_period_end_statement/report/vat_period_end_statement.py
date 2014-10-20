@@ -31,7 +31,9 @@ from openerp.osv import orm
 class print_vat_period_end_statement(report_sxw.rml_parse):
     _name = 'parser.vat.period.end.statement'
 
-    def _build_codes_dict(self, tax_code, res={}, context=None):
+    def _build_codes_dict(self, tax_code, res=None, context=None):
+        if res is None:
+            res = {}
         if context is None:
             context = {}
         tax_pool = self.pool.get('account.tax')
@@ -78,7 +80,11 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
                     child_code, res=res, context=context)
         return res
 
-    def _get_tax_codes_amounts(self, period_id, tax_code_ids=[], context=None):
+    def _get_tax_codes_amounts(
+        self, period_id, tax_code_ids=None, context=None
+    ):
+        if tax_code_ids is None:
+            tax_code_ids = []
         if context is None:
             context = {}
         res = {}

@@ -77,8 +77,8 @@ class stock_picking_out(orm.Model):
         'transportation_reason_id': fields.many2one(
             'stock.picking.transportation_reason',
             'Reason for transportation'),
-        'ddt_number':  fields.char('DDT', size=64),
-        'ddt_date':  fields.date('DDT date'),
+        'ddt_number': fields.char('DDT', size=64),
+        'ddt_date': fields.date('DDT date'),
     }
 
     def action_invoice_create(self, cursor, user, ids, journal_id=False,
@@ -125,6 +125,6 @@ class stock_picking(orm.Model):
         'transportation_reason_id': fields.many2one(
             'stock.picking.transportation_reason',
             'Reason for transportation'),
-        'ddt_number':  fields.char('DDT', size=64),
-        'ddt_date':  fields.date('DDT date'),
+        'ddt_number': fields.char('DDT', size=64),
+        'ddt_date': fields.date('DDT date'),
     }

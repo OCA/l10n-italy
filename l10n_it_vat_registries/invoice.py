@@ -106,7 +106,8 @@ class Parser(report_sxw.rml_parse):
                 self.cr, self.uid,
                 tax_code_ids, context={
                     'period_id': period_id,
-                    }):
+                }
+            ):
                 if not res_dict.get(tax_code.id):
                     res_dict[tax_code.id] = 0.0
                 res_dict[tax_code.id] += (

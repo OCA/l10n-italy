@@ -70,7 +70,7 @@ da un flusso 'salvo buon fine'.
     'images': [],
     'depends': [
         'account', 'account_voucher', 'l10n_it_fiscalcode', 'account_due_list'
-        ],
+    ],
     'init_xml': [],
     'data': [
         "partner/partner_view.xml",
