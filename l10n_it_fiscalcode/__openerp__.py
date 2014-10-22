@@ -33,7 +33,7 @@ Functionalities:
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    'depends': ['base', 'l10n_it_base'],
+    'depends': ['base_vat'],
     'data': [
         'view/fiscalcode_view.xml',
         'wizard/compute_fc_view.xml',
