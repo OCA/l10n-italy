@@ -52,7 +52,7 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
                     # maybe check fiscalcode sanity here?
                     data = {}
                     fc = partner.fiscalcode.upper()
-                    if wiz.update_sex and not partner.sex:
+                    if wiz.update_sex:
                         try:
                             day = int(fc[9:11])
                         except Exception:
@@ -63,7 +63,7 @@ class wizard_fiscalcode_to_data(osv.osv_memory):
                                 raise
                         sex = day > 40 and 'F' or 'M'
                         data['sex'] = sex
-                    if wiz.update_birth_city and not partner.birth_city:
+                    if wiz.update_birth_city:
                         cadaster_code = fc[11:15]
                         birth_city = city_obj.search(cr, uid, [
                             ('cadaster_code', '=', cadaster_code)
