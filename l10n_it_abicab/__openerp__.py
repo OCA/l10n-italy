@@ -26,7 +26,15 @@
     'category': 'Localisation/Italy',
     'description': """
 Adds to res.bank the ABI/CAB data (bank identification numbers).
-    """,
+
+
+Contributors
+------------
+
+Franco Tampieri <franco@tampieri.info>
+Alessandro Camilli <a.camilli@yahoo.it>
+Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+""",
     'author': 'OpenERP Italian Community',
     'license': 'AGPL-3',
     'depends': ['base', 'account'],
