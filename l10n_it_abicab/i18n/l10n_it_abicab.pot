@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-25 12:01+0000\n"
-"PO-Revision-Date: 2014-10-25 12:01+0000\n"
+"POT-Creation-Date: 2014-10-25 11:59+0000\n"
+"PO-Revision-Date: 2014-10-25 11:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,26 +19,26 @@ msgstr ""
 #: field:res.bank,abi:0
 #: field:res.partner.bank,bank_abi:0
 msgid "ABI"
-msgstr "ABI"
+msgstr ""
 
 #. module: l10n_it_abicab
 #: model:ir.model,name:l10n_it_abicab.model_res_partner_bank
 msgid "Bank Accounts"
-msgstr "Conti Bancari"
+msgstr ""
 
 #. module: l10n_it_abicab
 #: view:res.bank:0
 msgid "Bank Details"
-msgstr "Dettagli Banca"
+msgstr ""
 
 #. module: l10n_it_abicab
 #: model:ir.model,name:l10n_it_abicab.model_res_bank
 msgid "Bank"
-msgstr "Banca"
+msgstr ""
 
 #. module: l10n_it_abicab
 #: field:res.bank,cab:0
 #: field:res.partner.bank,bank_cab:0
 msgid "CAB"
-msgstr "CAB"
+msgstr ""
 
