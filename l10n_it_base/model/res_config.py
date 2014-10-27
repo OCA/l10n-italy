@@ -33,6 +33,7 @@ class L10nItConfigSettings(orm.TransientModel):
         ),
         'module_l10n_it_fiscalcode': fields.boolean(
             'Use fiscal code in Parner Profile',
-            help="""Install l10n_it_fiscalcode module for fiscal code management"""
+            help="""Install l10n_it_fiscalcode module for fiscal
+code management"""
         ),
     }

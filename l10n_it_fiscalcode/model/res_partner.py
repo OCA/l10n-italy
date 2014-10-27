@@ -19,7 +19,8 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, _
+from openerp import models, fields, api
+
 
 class res_partner(models.Model):
     _inherit = 'res.partner'
@@ -34,9 +35,10 @@ class res_partner(models.Model):
             else:
                 return True
 
-    fiscalcode = fields.Char('Fiscal Code', size=16,
-        help="Italian Fiscal Code")
-    individual = fields.Boolean('Individual',
+    fiscalcode = fields.Char(
+        'Fiscal Code', size=16, help="Italian Fiscal Code")
+    individual = fields.Boolean(
+        'Individual',
         help="If checked the C.F. is referred to a Individual Person")
 
     _defaults = {
@@ -45,10 +47,10 @@ class res_partner(models.Model):
 
     _constraints = [
         (check_fiscalcode,
-        "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
+         "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
     ]
 
     _sql_constraints = [
         ('fiscalcode_uniq', 'unique (fiscalcode, company_id)',
-        'The fiscal code must be unique per company !')
+         'The fiscal code must be unique per company !')
     ]

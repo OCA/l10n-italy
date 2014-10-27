@@ -55,7 +55,6 @@ class wizard_compute_fc(models.TransientModel):
         res['value'] = {'birth_province': ''}
         return res
 
-    
     def _codicefiscale(self, cognome, nome, giornonascita, mesenascita,
                        annonascita, sesso, cittanascita):
 
@@ -176,8 +175,8 @@ class wizard_compute_fc(models.TransientModel):
                 break
         if newcts:
             cities = newcts
-        return self._check_national_codes(birth_city, birth_prov,
-            birth_date, cities)
+        return self._check_national_codes(
+            birth_city, birth_prov, birth_date, cities)
 
     def _check_national_codes(
             self, birth_city, birth_prov, birth_date, cities):
@@ -244,16 +243,10 @@ class wizard_compute_fc(models.TransientModel):
                 f.sex,
                 nat_code)
             if partner.fiscalcode and partner.fiscalcode != CF:
-                raise except_orm(_('Error'),
-                    _('Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one') % (partner.fiscalcode, CF))
+                raise except_orm(_('Error'), (
+                    'Existing fiscal code %s is different from the computed'
+                    ' one (%s). If you want to use the computed one, remove'
+                    ' the existing one') % (partner.fiscalcode, CF))
             partner.fiscalcode = CF
             partner.individual = True
         return {'type': 'ir.actions.act_window_close'}
-        """
-        return {
-            'value': {
-                'fiscalcode': CF,
-                'individual': True
-            }
-        }
-        """

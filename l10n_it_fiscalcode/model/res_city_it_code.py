@@ -19,22 +19,24 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, _, tools
+from openerp import models, fields, tools
 
 
 class res_city_it_code(models.Model):
     """
     To create res.city.it.code.csv:
-    http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Codici+attivita+e+tributo/Codici+territorio/Comuni+italia+esteri/
+    http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/
+Codici+attivita+e+tributo/Codici+territorio/Comuni+italia+esteri/
     - download the file named: Codici Comuni d’Italia - xls
     - open it in LibreOffice and save it as .ods
-    - some date cells contain a "'" to be removed using Calc's menu 
+    - some date cells contain a "'" to be removed using Calc's menu
       Data / Text to columns
     - rows 216,1122 contain wrong written dates
     - dates format must be yyyy-mm-dd
     - add first column with numeric ids
     - change first row with column names from res.city.it.code model
-      id,national_code,cadastre_code,province,name,notes,national_code_var,cadastre_code_var,province_var,name_var,creation_date,var_date
+      id,national_code,cadastre_code,province,name,notes,national_code_var,
+cadastre_code_var,province_var,name_var,creation_date,var_date
     - save as csv in data/res.city.it.code.csv
     """
     _name = "res.city.it.code"
@@ -86,22 +88,3 @@ class res_city_it_code_province(models.Model):
             FROM res_city_it_code
             GROUP BY province, name)
             """)
-
-    """
-    @api.multi
-    def name_get(self):
-        res = []
-        for it in self:
-            res.append((it.id, it.province))
-        return res
-
-    @api.model
-    def name_search(self, name, args=None, operator='ilike'):
-        args = args or []
-        #if (name):
-        recs = self.search(
-            [('province', operator, name)] + args)
-        #else:
-            #recs = self.browse()
-        return recs.name_get()
-    """

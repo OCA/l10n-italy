@@ -21,4 +21,3 @@
 
 import res_partner
 import res_city_it_code
-
