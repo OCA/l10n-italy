@@ -20,4 +20,4 @@
 ##############################################################################
 
 from . import model
-import wizard
+from . import wizard
