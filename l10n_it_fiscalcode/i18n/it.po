@@ -87,7 +87,7 @@ msgid ""
 "Existing fiscal code %s is different from the computed one (%s). If you want "
 "to use the computed one, remove the existing one"
 msgstr ""
-"Il codice fiscale sistente %s è diverso da quello calcolato (%s). Se si "
+"Il codice fiscale esistente %s è diverso da quello calcolato (%s). Se si "
 "vuole usare quello calcolato, rimuovere quello esistente."
 
 #. module: l10n_it_fiscalcode
