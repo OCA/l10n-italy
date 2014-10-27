@@ -166,7 +166,7 @@ class wizard_compute_fc(models.TransientModel):
         - VED: reference to another city. This is assigned to cities that
                changed name and were then subject to other changes.
         """
-        #Checks for any VED element
+        # Checks for any VED element
         newcts = None
         for ct in cities:
             if ct.notes == 'VED':
