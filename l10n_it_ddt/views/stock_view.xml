@@ -45,7 +45,7 @@
                             </page>
                             <page string="Pickings">
                                 <field name="pickings"
-                                    domain="[('ddt_type', '=', 'outgoing')]"/>
+                                    domain="[('ddt_type', '=', 'outgoing'), ('partner_id', '=', partner_id)]"/>
                             </page>
                             <page string="Shipping Informations">
                                 <group>
