@@ -37,6 +37,7 @@ class SaleOrder(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         'Method of Transportation')
+    number_of_packages = fields.Integer()
 
     def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
         if not context:
@@ -86,5 +87,6 @@ class SaleOrder(models.Model):
                     partner.transportation_reason_id.id,
                     'transportation_method_id':
                     partner.transportation_method_id.id,
+                    'number_of_packages': order.number_of_packages,
                     })
         return True
