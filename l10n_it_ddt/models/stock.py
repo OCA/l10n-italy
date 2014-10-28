@@ -71,11 +71,12 @@ class StockDdT(models.Model):
             [('code', '=', 'stock.ddt')]).id
 
     name = fields.Char(string='Number')
-    delivery_date = fields.Datetime(string='Date', required=True)
+    date = fields.Datetime(required=True)
+    delivery_date = fields.Datetime()
     sequence = fields.Many2one(
         'ir.sequence', string='Sequence',
         default=get_sequence, required=True)
-    pickings = fields.Many2many('stock.picking', string='Pickings')
+    picking_ids = fields.Many2many('stock.picking', string='Pickings')
     ddt_lines = fields.One2many(
         'stock.ddt.line', 'ddt_id', string='DdT Line')
     partner_id = fields.Many2one(
@@ -109,36 +110,33 @@ class StockDdT(models.Model):
     @api.multi
     def write(self, values):
         result = super(StockDdT, self).write(values)
-        if values.get('pickings'):
+        if values.get('picking_ids'):
             picking_model = self.env['stock.picking']
-            pickings = picking_model.browse(values['pickings'][0][2])
+            pickings = picking_model.browse(values['picking_ids'][0][2])
             pickings.write({'ddt_id': self.id})
         return result
 
     @api.one
     def updateLines(self):
         self.ddt_lines.unlink()
-        seq = 0
-        for picking in self.pickings:
+        seq = 10
+        for picking in self.picking_ids:
             if picking.partner_id != self.partner_id:
                 raise Warning(
                     _('Picking related partner must be the same (%s)'
                         % picking.name))
             for move in picking.move_lines:
-                if not seq:
-                    seq = 10
-                else:
-                    seq += 10
                 self.ddt_lines.create(
                     {
                         'sequence': seq,
                         'ddt_id': self.id,
-                        'picking': move.picking_id.id,
-                        'product': move.product_id.id,
+                        'picking_id': move.picking_id.id,
+                        'product_id': move.product_id.id,
                         'name': move.name,
-                        'product_uom': move.product_uom.id,
+                        'product_uom_id': move.product_uom.id,
                         'quantity': move.product_uom_qty,
                         })
+                seq += 10
 
     @api.multi
     def action_confirm(self):
@@ -157,10 +155,10 @@ class StockDdTLine(models.Model):
     sequence = fields.Integer(string='Sequence')
     name = fields.Char(string='Name')
     ddt_id = fields.Many2one('stock.ddt', string='DdT')
-    picking = fields.Many2one('stock.picking', string='Picking')
-    product = fields.Many2one('product.product', string='Product')
+    picking_id = fields.Many2one('stock.picking', string='Picking')
+    product_id = fields.Many2one('product.product', string='Product')
     quantity = fields.Float(string='Quantity')
-    product_uom = fields.Many2one('product.uom', string='UoM')
+    product_uom_id = fields.Many2one('product.uom', string='UoM')
 
     _order = 'sequence asc, id'
 
