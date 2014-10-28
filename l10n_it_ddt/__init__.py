@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Davide Corio <davide.corio@lsweb.it>
-#    Copyright (C) 2014 L.S. Advanced Software srl
+#    Author: Davide Corio <info@davidecorio.com>
+#    Copyright (C) Davide Corio
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

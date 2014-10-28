@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Davide Corio <davide.corio@lsweb.it>
-#    Copyright (C) 2014 L.S. Advanced Software srl
+#    Author: Davide Corio <info@davidecorio.com>
+#    Copyright (C) Davide Corio
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -31,8 +31,8 @@ Class, method and fields name are the same of l10n_it_sale, in order
 to guarantee compatibility.
 
     """,
-    'author': 'L.S. Advanced Software',
-    'website': 'http://www.lsweb.it',
+    'author': 'Davide Corio',
+    'website': 'http://www.davidecorio.com',
     'depends': ['account', 'base', 'stock', 'stock_account', 'sale'],
     'data': [
         'security/ir.model.access.csv',
