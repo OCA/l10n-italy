@@ -2,25 +2,28 @@
 <openerp>
     <data>
 
-    	<record id="sale_order_form_view_ddt" model="ir.ui.view">
-			<field name="name">sale.order.form.ddt</field>
-			<field name="model">sale.order</field>
-			<field name="inherit_id" ref="sale.view_order_form"/>
-			<field name="arch" type="xml">
-				<xpath expr="//page[@string='Other Information']/group[1]">
-					<group string="Shipping Informations">
-						<field name="goods_description_id"
-							widget="selection"/>
-						<field name="carriage_condition_id"
-							widget="selection"/>
-						<field name="transportation_reason_id"
-							widget="selection"/>
-						<field name="transportation_method_id"
-							widget="selection"/>
-					</group>
-				</xpath>
-			</field>
-		</record>
+        <record id="sale_order_form_view_ddt" model="ir.ui.view">
+            <field name="name">sale.order.form.ddt</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Other Information']" position="after">
+                    <page string="Shipping Informations">
+                        <group string="Shipping Informations">
+                            <field name="goods_description_id"
+                                widget="selection"/>
+                            <field name="carriage_condition_id"
+                                widget="selection"/>
+                            <field name="transportation_reason_id"
+                                widget="selection"/>
+                            <field name="transportation_method_id"
+                                widget="selection"/>
+                            <field name="number_of_packages" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
 
     </data>
 </openerp>
