@@ -33,13 +33,15 @@ to guarantee compatibility.
     """,
     'author': 'L.S. Advanced Software',
     'website': 'http://www.lsweb.it',
-    'depends': ['account', 'base', 'stock', 'stock_account'],
+    'depends': ['account', 'base', 'stock', 'stock_account', 'sale'],
     'data': [
         'security/ir.model.access.csv',
         'data/stock_data.xml',
         'views/account_view.xml',
         'views/partner_view.xml',
+        'views/sale_view.xml',
         'views/stock_view.xml',
+        'workflow/stock_ddt_workflow.xml'
     ],
     'installable': True,
     'active': False,
