@@ -2,18 +2,105 @@
 <openerp>
     <data>
 
+        <record id="stock_ddt_form" model="ir.ui.view">
+            <field name="name">stock.ddt.form</field>
+            <field name="model">stock.ddt</field>
+            <field name="arch" type="xml">
+                <form string="DdT">
+                    <header>
+                        <button name="updateLines" string="Update Lines" type="object"/>
+                        <button name="ddt_confirm" states="draft" string="Confirm" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirmed,cancelled"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <div class="oe_edit_only">
+                                    <label for="name"/>
+                                </div>
+                                <h1>
+                                    <field name="name" class="oe_inline" readonly="1"/>
+                                </h1>
+                            </group>
+                            <group>
+                                <label string="(*) Update Lines will remove all the manually created lines." style="font-style: italic;"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="delivery_date"/>
+                                <field name="sequence"/>
+                                <field name="partner_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="DDT Lines">
+                                <field name="ddt_lines">
+                                    <tree string="DDT Lines" editable="top">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="name"/>
+                                        <field name="product"/>
+                                        <field name="product_uom"/>
+                                        <field name="quantity"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Pickings">
+                                <field name="pickings"
+                                    domain="[('ddt_type', '=', 'outgoing')]"/>
+                            </page>
+                            <page string="Shipping Informations">
+                                <group>
+                                    <group string="Shipping Informations">
+                                        <field name="goods_description_id"
+                                            widget="selection"/>
+                                        <field name="carriage_condition_id"
+                                            widget="selection"/>
+                                        <field name="transportation_reason_id"
+                                            widget="selection"/>
+                                        <field name="transportation_method_id"
+                                            widget="selection"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_ddt_tree" model="ir.ui.view">
+            <field name="name">stock.ddt.tree</field>
+            <field name="model">stock.ddt</field>
+            <field name="arch" type="xml">
+                <tree string="DdT">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_stock_ddt" model="ir.actions.act_window">
+            <field name="name">DDT</field>
+            <field name="res_model">stock.ddt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            action="action_stock_ddt"
+            id="menu_action_stock_ddt"
+            parent="stock.menu_stock_warehouse_mgmt"/>
+
+
         <record id="stock_picking_form_ddt" model="ir.ui.view">
             <field name="name">stock.picking.form.ddt</field>
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
-                <field name="partner_id" position="after">
-                    <field name="ddt_number"
-                        attrs="{'invisible': [('ddt_type','!=','outgoing')]}"/>
-                    <field name="ddt_date"
-                        attrs="{'invisible': [('ddt_type','!=','outgoing')]}"/>
-                    <field name="ddt_type" invisible="1"/>
-                </field>
                 <xpath expr="//page[@string='Additional Info']">
                     <group string="Shipping Informations">
                         <field name="goods_description_id"
@@ -26,6 +113,17 @@
                             widget="selection"/>
                     </group>
                 </xpath>
+            </field>
+        </record>
+
+        <record id="stock_picking_tree_ddt" model="ir.ui.view">
+            <field name="name">stock.picking.tree.ddt</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                    <field name="name" position="after">
+                            <field name="ddt_id"/>
+                    </field>
             </field>
         </record>
 
