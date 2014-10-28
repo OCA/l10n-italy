@@ -19,10 +19,12 @@
 #
 ##############################################################################
 
-from openerp import api, models, fields
+
+from openerp import models, fields
 
 
 class SaleOrder(models.Model):
+
     _inherit = 'sale.order'
 
     carriage_condition_id = fields.Many2one(
@@ -80,7 +82,9 @@ class SaleOrder(models.Model):
                 picking_obj.write(cr, uid, picking_id, {
                     'carriage_condition_id': partner.carriage_condition_id.id,
                     'goods_description_id': partner.goods_description_id.id,
-                    'transportation_reason_id': partner.transportation_reason_id.id,
-                    'transportation_method_id': partner.transportation_method_id.id,
+                    'transportation_reason_id':
+                    partner.transportation_reason_id.id,
+                    'transportation_method_id':
+                    partner.transportation_method_id.id,
                     })
         return True

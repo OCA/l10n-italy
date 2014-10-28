@@ -19,10 +19,12 @@
 #
 ##############################################################################
 
+
 from openerp.osv import orm, fields
 
 
 class res_partner(orm.Model):
+
     _inherit = 'res.partner'
 
     _columns = {

@@ -19,26 +19,49 @@
 #
 ##############################################################################
 
+
 from openerp import api, models, fields, _
 from openerp.exceptions import Warning
 
 
-class StockDdTLine(models.Model):
-    _name = 'stock.ddt.line'
-    _description = 'DdT Line'
+class StockPickingCarriageCondition(models.Model):
 
-    sequence = fields.Integer(string='Sequence')
-    name = fields.Char(string='Name')
-    ddt_id = fields.Many2one('stock.ddt', string='DdT')
-    picking = fields.Many2one('stock.picking', string='Picking')
-    product = fields.Many2one('product.product', string='Product')
-    quantity = fields.Float(string='Quantity')
-    product_uom = fields.Many2one('product.uom', string='UoM')
+    _name = "stock.picking.carriage_condition"
+    _description = "Carriage Condition"
 
-    _order = 'sequence asc, id'
+    name = fields.Char(string='Carriage Condition', required=True)
+    note = fields.Text(string='Note')
+
+
+class StockPickingGoodsDescription(models.Model):
+
+    _name = 'stock.picking.goods_description'
+    _description = "Description of Goods"
+
+    name = fields.Char(string='Description of Goods', required=True)
+    note = fields.Text(string='Note')
+
+
+class StockPickingTransportationReason(models.Model):
+
+    _name = 'stock.picking.transportation_reason'
+    _description = 'Reason for Transportation'
+
+    name = fields.Char(string='Reason For Transportation', required=True)
+    note = fields.Text(string='Note')
+
+
+class StockPickingTransportationMethod(models.Model):
+
+    _name = 'stock.picking.transportation_method'
+    _description = 'Method of Transportation'
+
+    name = fields.Char(string='Method of Transportation', required=True)
+    note = fields.Text(string='Note')
 
 
 class StockDdT(models.Model):
+
     _name = 'stock.ddt'
     _description = 'DdT'
 
@@ -69,8 +92,8 @@ class StockDdT(models.Model):
         'Method of Transportation')
     state = fields.Selection(
         [('draft', 'Draft'),
-            ('confirmed', 'Confirmed'),
-            ('cancelled', 'Cancelled')],
+         ('confirmed', 'Confirmed'),
+         ('cancelled', 'Cancelled')],
         string='State',
         default='draft'
         )
@@ -125,39 +148,24 @@ class StockDdT(models.Model):
         self.write({'state': 'cancelled'})
 
 
-class StockPickingCarriageCondition(models.Model):
-    _name = "stock.picking.carriage_condition"
-    _description = "Carriage Condition"
+class StockDdTLine(models.Model):
 
-    name = fields.Char(string='Carriage Condition', required=True)
-    note = fields.Text(string='Note')
+    _name = 'stock.ddt.line'
+    _description = 'DdT Line'
 
+    sequence = fields.Integer(string='Sequence')
+    name = fields.Char(string='Name')
+    ddt_id = fields.Many2one('stock.ddt', string='DdT')
+    picking = fields.Many2one('stock.picking', string='Picking')
+    product = fields.Many2one('product.product', string='Product')
+    quantity = fields.Float(string='Quantity')
+    product_uom = fields.Many2one('product.uom', string='UoM')
 
-class StockPickingGoodsDescription(models.Model):
-    _name = 'stock.picking.goods_description'
-    _description = "Description of Goods"
-
-    name = fields.Char(string='Description of Goods', required=True)
-    note = fields.Text(string='Note')
-
-
-class StockPickingTransportationReason(models.Model):
-    _name = 'stock.picking.transportation_reason'
-    _description = 'Reason for Transportation'
-
-    name = fields.Char(string='Reason For Transportation', required=True)
-    note = fields.Text(string='Note')
-
-
-class StockPickingTransportationMethod(models.Model):
-    _name = 'stock.picking.transportation_method'
-    _description = 'Method of Transportation'
-
-    name = fields.Char(string='Method of Transportation', required=True)
-    note = fields.Text(string='Note')
+    _order = 'sequence asc, id'
 
 
 class StockPicking(models.Model):
+
     _inherit = "stock.picking"
 
     carriage_condition_id = fields.Many2one(
