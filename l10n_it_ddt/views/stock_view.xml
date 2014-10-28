@@ -26,6 +26,7 @@
                         </group>
                         <group>
                             <group>
+                                <field name="date"/>
                                 <field name="delivery_date"/>
                                 <field name="sequence"/>
                                 <field name="partner_id"/>
@@ -37,14 +38,14 @@
                                     <tree string="DDT Lines" editable="top">
                                         <field name="sequence" widget="handle"/>
                                         <field name="name"/>
-                                        <field name="product"/>
-                                        <field name="product_uom"/>
+                                        <field name="product_id"/>
+                                        <field name="product_uom_id"/>
                                         <field name="quantity"/>
                                     </tree>
                                 </field>
                             </page>
                             <page string="Pickings">
-                                <field name="pickings"
+                                <field name="picking_ids"
                                     domain="[('ddt_type', '=', 'outgoing'), ('partner_id', '=', partner_id)]"/>
                             </page>
                             <page string="Shipping Informations">
@@ -74,6 +75,7 @@
             <field name="arch" type="xml">
                 <tree string="DdT">
                     <field name="name"/>
+                    <field name="date"/>
                     <field name="delivery_date"/>
                     <field name="partner_id"/>
                     <field name="state"/>
