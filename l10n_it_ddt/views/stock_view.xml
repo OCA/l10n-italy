@@ -8,7 +8,8 @@
             <field name="arch" type="xml">
                 <form string="DdT">
                     <header>
-                        <button name="updateLines" string="Update Lines" type="object"/>
+                        <button name="updateLines" string="Update Lines" type="object"
+                            confirm="Update Lines will remove all the manually created lines. Do you want continue?"/>
                         <button name="ddt_confirm" states="draft" string="Confirm" class="oe_highlight"/>
                         <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirmed,cancelled"/>
                     </header>
@@ -21,9 +22,6 @@
                                 <h1>
                                     <field name="name" class="oe_inline" readonly="1"/>
                                 </h1>
-                            </group>
-                            <group>
-                                <label string="(*) Update Lines will remove all the manually created lines." style="font-style: italic;"/>
                             </group>
                         </group>
                         <group>
