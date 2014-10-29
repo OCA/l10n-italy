@@ -91,7 +91,7 @@ class StockDdT(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         'Method of Transportation')
-    number_of_packages = fields.Integer()
+    parcels = fields.Integer()
     state = fields.Selection(
         [('draft', 'Draft'),
          ('confirmed', 'Confirmed'),
@@ -177,7 +177,7 @@ class StockPicking(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         string='Method of Transportation')
-    number_of_packages = fields.Integer()
+    parcels = fields.Integer()
     ddt_id = fields.Many2one('stock.ddt', string='DdT', readonly=True)
     ddt_type = fields.Selection(
         string="DdT Type", related='picking_type_id.code')
@@ -204,6 +204,6 @@ class StockPicking(models.Model):
                 'transportation_method_id':
                 picking.transportation_method_id and
                 picking.transportation_method_id.id,
-                'number_of_packages': picking.number_of_packages,
+                'parcels': picking.parcels,
                 })
         return res
