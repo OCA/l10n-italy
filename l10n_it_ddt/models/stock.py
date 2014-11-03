@@ -100,19 +100,6 @@ class StockDdT(models.Model):
         default='draft'
         )
 
-    '''
-    @api.model
-    def create(self, values):
-        ddt = super(StockDdT, self).create(values)
-        sequence_model = self.env['ir.sequence']
-        ddt.name = ddt
-        if 'sequence' in values:
-            sequence_model = self.env['ir.sequence']
-            sequence = sequence_model.browse(values['sequence'])
-            values['name'] = sequence_model.get(sequence.code)
-        return ddt
-    '''
-
     @api.multi
     def write(self, values):
         result = super(StockDdT, self).write(values)
