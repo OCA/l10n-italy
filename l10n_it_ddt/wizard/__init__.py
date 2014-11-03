@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Davide Corio <info@davidecorio.com>
-#    Copyright (C) Davide Corio
+#    Author: Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+#    Copyright (C) Francesco Apruzzese
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,5 +20,4 @@
 ##############################################################################
 
 
-from . import models
-from . import wizard
+import ddt_from_pickings

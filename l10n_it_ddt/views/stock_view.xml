@@ -8,18 +8,18 @@
             <field name="arch" type="xml">
                 <form string="DdT">
                     <header>
-                        <button name="updateLines" string="Update Lines" type="object"
+                        <button name="updateLines" string="Update Lines" type="object" states="draft"
                             confirm="Update Lines will remove all the manually created lines. Do you want continue?"/>
                         <button name="ddt_confirm" states="draft" string="Confirm" class="oe_highlight"/>
+                        <button name="ddt_draft_cancel" states="draft" string="Cancel"/>
+                        <button name="ddt_confirmed_cancel" states="confirmed" string="Cancel"/>
                         <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirmed,cancelled"/>
                     </header>
                     <sheet>
                         <group>
                             <group>
-                                <div class="oe_edit_only">
-                                    <label for="name"/>
-                                </div>
                                 <h1>
+                                    <label for="name" class="oe_inline"/>
                                     <field name="name" class="oe_inline" readonly="1"/>
                                 </h1>
                             </group>

@@ -71,7 +71,7 @@ class StockDdT(models.Model):
             [('code', '=', 'stock.ddt')]).id
 
     name = fields.Char(string='Number')
-    date = fields.Datetime(required=True)
+    date = fields.Datetime(required=True, default=fields.Datetime.now())
     delivery_date = fields.Datetime()
     sequence = fields.Many2one(
         'ir.sequence', string='Sequence',
@@ -100,12 +100,18 @@ class StockDdT(models.Model):
         default='draft'
         )
 
+    '''
     @api.model
     def create(self, values):
+        ddt = super(StockDdT, self).create(values)
         sequence_model = self.env['ir.sequence']
-        sequence = sequence_model.browse(values['sequence'])
-        values['name'] = sequence_model.get(sequence.code)
-        return super(StockDdT, self).create(values)
+        ddt.name = ddt
+        if 'sequence' in values:
+            sequence_model = self.env['ir.sequence']
+            sequence = sequence_model.browse(values['sequence'])
+            values['name'] = sequence_model.get(sequence.code)
+        return ddt
+    '''
 
     @api.multi
     def write(self, values):
@@ -116,27 +122,44 @@ class StockDdT(models.Model):
             pickings.write({'ddt_id': self.id})
         return result
 
+    # ----- Use this function to create line from external resource
+    def create_details(self, lines):
+        seq = 10
+        partner_id = False
+        for line in lines:
+            if not partner_id:
+                partner_id = line.picking_id.partner_id
+            # ----- Validate merge only for picking of the same partner
+            if line.picking_id.partner_id != partner_id:
+                raise Warning(
+                    _('Picking related partner must be the same (%s)'
+                        % line.picking_id.name))
+            ddt_line = self.ddt_lines.create(
+                {'sequence': seq,
+                 'ddt_id': self.id,
+                 'product_id': line.product_id.id,
+                 'name': line.name,
+                 'product_uom_id': line.product_uom.id,
+                 'quantity': line.product_uom_qty,
+                 })
+            line.write({'ddt_line_id': ddt_line.id})
+            seq += 10
+
     @api.one
     def updateLines(self):
         self.ddt_lines.unlink()
-        seq = 10
+        move_lines = []
         for picking in self.picking_ids:
-            if picking.partner_id != self.partner_id:
-                raise Warning(
-                    _('Picking related partner must be the same (%s)'
-                        % picking.name))
-            for move in picking.move_lines:
-                self.ddt_lines.create(
-                    {
-                        'sequence': seq,
-                        'ddt_id': self.id,
-                        'picking_id': move.picking_id.id,
-                        'product_id': move.product_id.id,
-                        'name': move.name,
-                        'product_uom_id': move.product_uom.id,
-                        'quantity': move.product_uom_qty,
-                        })
-                seq += 10
+            move_lines.append(picking.move_lines)
+        self.create_details(move_lines)
+
+    @api.multi
+    def set_number(self):
+        for ddt in self:
+            if not ddt.name:
+                ddt.write({
+                    'name': ddt.sequence.get(ddt.sequence.code),
+                    })
 
     @api.multi
     def action_confirm(self):
@@ -154,8 +177,7 @@ class StockDdTLine(models.Model):
 
     sequence = fields.Integer(string='Sequence')
     name = fields.Char(string='Name')
-    ddt_id = fields.Many2one('stock.ddt', string='DdT')
-    picking_id = fields.Many2one('stock.picking', string='Picking')
+    ddt_id = fields.Many2one('stock.ddt', string='DdT', ondelete='cascade')
     product_id = fields.Many2one('product.product', string='Product')
     quantity = fields.Float(string='Quantity')
     product_uom_id = fields.Many2one('product.uom', string='UoM')
@@ -207,3 +229,10 @@ class StockPicking(models.Model):
                 'parcels': picking.parcels,
                 })
         return res
+
+
+class StockMove(models.Model):
+
+    _inherit = "stock.move"
+
+    ddt_line_id = fields.Many2one('stock.ddt.line', ondelete="set null")
