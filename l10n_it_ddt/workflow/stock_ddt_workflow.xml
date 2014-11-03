@@ -13,12 +13,15 @@
             <field name="flow_start">True</field>
             <field name="name">draft</field>
         </record>
+
         <record id="act_confirmed" model="workflow.activity">
             <field name="wkf_id" ref="wkf"/>
             <field name="name">confirmed</field>
-            <field name="action">action_confirm()</field>
+            <field name="action">set_number()
+action_confirm()</field>
             <field name="kind">function</field>
         </record>
+
         <record id="act_cancel" model="workflow.activity">
             <field name="wkf_id" ref="wkf"/>
             <field name="name">cancelled</field>
@@ -26,15 +29,24 @@
             <field name="action">action_cancel()</field>
             <field name="kind">function</field>
         </record>
+
         <record id="t1" model="workflow.transition">
             <field name="act_from" ref="act_draft"/>
             <field name="act_to" ref="act_confirmed"/>
             <field name="signal">ddt_confirm</field>
         </record>
+
         <record id="t2" model="workflow.transition">
             <field name="act_from" ref="act_draft"/>
             <field name="act_to" ref="act_cancel"/>
-            <field name="signal">ddt_cancel</field>
+            <field name="signal">ddt_draft_cancel</field>
         </record>
+
+        <record id="t3" model="workflow.transition">
+            <field name="act_from" ref="act_confirmed"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">ddt_confirmed_cancel</field>
+        </record>
+
     </data>
 </openerp>
