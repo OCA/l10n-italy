@@ -87,7 +87,7 @@ msgstr "Maschio"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:126
 #, python-format
 msgid "Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one"
-msgstr "Il codice fiscale sistente %s è diverso da quello calcolato (%s). Se si vuole usare quello calcolato, rimuovere quello esistente."
+msgstr "Il codice fiscale esistente %s è diverso da quello calcolato (%s). Se si vuole usare quello calcolato, rimuovere quello esistente."
 
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,fiscalcode_surname:0
