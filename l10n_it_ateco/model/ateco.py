@@ -28,12 +28,11 @@ class ateco_category(models.Model):
 
     name = fields.Char(
         'Name',
-        size=180,
         required=True
     )
     code = fields.Char(
         'ATECO Code',
-        size=10,
+        size=9,
         required=False
     )
     description = fields.Text(
