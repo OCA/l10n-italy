@@ -61,7 +61,8 @@
         <menuitem
             action="action_ateco_category_search"
             id="menu_ateco_category_form"
-            parent="base.menu_base_config" />
+            parent="base.menu_base_config"
+            groups="base.group_sale_manager" />
 
     </data>
 </openerp>
