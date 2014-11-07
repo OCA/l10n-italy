@@ -33,7 +33,7 @@
     "author": "Abstract",
     "website": "http://abstract.it",
     "depends": [
-        "sale"
+        "base"
     ],
     "data": [
         "security/ir.model.access.csv",
