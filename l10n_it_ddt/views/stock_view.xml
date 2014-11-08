@@ -26,10 +26,12 @@
                         </group>
                         <group>
                             <group>
-                                <field name="date"/>
-                                <field name="delivery_date"/>
                                 <field name="sequence"/>
                                 <field name="partner_id"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="delivery_date"/>
                             </group>
                         </group>
                         <notebook>
