@@ -42,7 +42,8 @@ to guarantee compatibility.
         'views/sale_view.xml',
         'views/stock_view.xml',
         'wizard/ddt_from_pickings_view.xml',
-        'workflow/stock_ddt_workflow.xml'
+        'workflow/stock_ddt_workflow.xml',
+        'reports/report_ddt.xml'
     ],
     'installable': True,
     'active': False,
