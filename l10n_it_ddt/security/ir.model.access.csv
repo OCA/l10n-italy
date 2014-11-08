@@ -6,4 +6,6 @@
 "access_stock_picking_transportation_reason_manager","stock.picking.transportation_reason manager","model_stock_picking_transportation_reason","stock.group_stock_manager",1,1,1,1
 "access_stock_picking_transportation_reason_user","stock.picking.transportation_reason user","model_stock_picking_transportation_reason","base.group_user",1,0,0,0
 "access_stock_picking_transportation_method_manager","stock.picking.transportation_method manager","model_stock_picking_transportation_method","stock.group_stock_manager",1,1,1,1
-"access_stock_picking_transportation_method_user","stock.picking.transportation_method user","model_stock_picking_transportation_method","base.group_user",1,0,0,0
+"access_stock_picking_transportation_method_user","stock.picking.transportation_method user","model_stock_picking_transportation_method","base.group_user",1,0,0,
+access_stock_ddt,access_stock_ddt,model_stock_ddt,stock.group_stock_user,1,1,1,1
+access_stock_ddt_line,access_stock_ddt_line,model_stock_ddt_line,stock.group_stock_user,1,1,1,1
