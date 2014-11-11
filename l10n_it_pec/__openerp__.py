@@ -28,6 +28,10 @@ Funcionalities:
 
 - Add Pec Mail Field in Partner Profile
 
+Contributors
+------------
+Franco Tampieri <franco.tampieri@abstract.it>
+Alessio Gerace <alessio.gerace@gmail.com>
 """,
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
