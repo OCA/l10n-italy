@@ -46,7 +46,7 @@ cadastre_code_var,province_var,name_var,creation_date,var_date
         'Belfiore cadastre code (not used anymore)',
         size=4)
     province = fields.Char('Province', size=5)
-    name = fields.Char('Name', size=100)
+    name = fields.Char('Name')
     notes = fields.Char('Notes', size=4)
     national_code_var = fields.Char('National code variation', size=4)
     cadastre_code_var = fields.Char('Cadastre code variation', size=4)
