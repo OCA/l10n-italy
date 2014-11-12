@@ -33,8 +33,8 @@ Contributors
 Franco Tampieri <franco.tampieri@abstract.it>
 Alessio Gerace <alessio.gerace@gmail.com>
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": ['base'],
     "data": [
