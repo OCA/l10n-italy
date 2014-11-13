@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * l10n_it_ateco
+#	* l10n_it_ateco
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-20 15:45+0000\n"
-"PO-Revision-Date: 2014-10-20 15:45+0000\n"
+"POT-Creation-Date: 2014-11-13 15:12+0000\n"
+"PO-Revision-Date: 2014-11-13 15:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,17 +41,24 @@ msgid "Ateco categories"
 msgstr ""
 
 #. module: l10n_it_ateco
+#: field:res.partner.ateco,ateco_category_id:0
+msgid "Ateco category"
+msgstr ""
+
+#. module: l10n_it_ateco
 #: field:ateco.category,child_ids:0
 msgid "Child Categories"
 msgstr ""
 
 #. module: l10n_it_ateco
 #: field:ateco.category,create_uid:0
+#: field:res.partner.ateco,create_uid:0
 msgid "Created by"
 msgstr ""
 
 #. module: l10n_it_ateco
 #: field:ateco.category,create_date:0
+#: field:res.partner.ateco,create_date:0
 msgid "Created on"
 msgstr ""
 
@@ -62,17 +69,25 @@ msgstr ""
 
 #. module: l10n_it_ateco
 #: field:ateco.category,id:0
+#: field:res.partner.ateco,id:0
 msgid "ID"
 msgstr ""
 
 #. module: l10n_it_ateco
 #: field:ateco.category,write_uid:0
+#: field:res.partner.ateco,write_uid:0
 msgid "Last Updated by"
 msgstr ""
 
 #. module: l10n_it_ateco
 #: field:ateco.category,write_date:0
+#: field:res.partner.ateco,write_date:0
 msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: field:res.partner.ateco,main_category:0
+msgid "Main category"
 msgstr ""
 
 #. module: l10n_it_ateco
@@ -88,7 +103,13 @@ msgstr ""
 #. module: l10n_it_ateco
 #: view:ateco.category:l10n_it_ateco.view_ateco_category_form
 #: model:ir.model,name:l10n_it_ateco.model_res_partner
+#: field:res.partner.ateco,partner_id:0
 msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: view:res.partner.ateco:l10n_it_ateco.view_partner_ateco_form
+msgid "Partner Ateco Category"
 msgstr ""
 
 #. module: l10n_it_ateco
@@ -100,3 +121,16 @@ msgstr ""
 #: view:ateco.category:l10n_it_ateco.ateco_category_search
 msgid "Search Ateco categories"
 msgstr ""
+
+#. module: l10n_it_ateco
+#: code:addons/l10n_it_ateco/model/partner.py:95
+#, python-format
+msgid "You can define only one main ateco category for a partner"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: code:addons/l10n_it_ateco/model/partner.py:100
+#, python-format
+msgid "You should define at least one main ateco category"
+msgstr ""
+
