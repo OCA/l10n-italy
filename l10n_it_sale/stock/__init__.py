@@ -19,4 +19,4 @@
 #
 #
 
-import picking
+from . import picking

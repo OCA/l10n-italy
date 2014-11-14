@@ -21,6 +21,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import account
-import report
-import wizard
+from . import account
+from . import report
+from . import wizard

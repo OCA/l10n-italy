@@ -21,6 +21,6 @@
 #
 #
 
-import account_invoice
-import wizard
-import company
+from . import account_invoice
+from . import wizard
+from . import company

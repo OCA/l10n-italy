@@ -19,4 +19,4 @@
 #
 #
 
-import compute_fc
+from . import compute_fc

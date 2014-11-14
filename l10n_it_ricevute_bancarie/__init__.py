@@ -24,8 +24,8 @@
 #
 #
 
-import configurazione
-import partner
-import riba
-import account
-import wizard
+from . import configurazione
+from . import partner
+from . import riba
+from . import account
+from . import wizard

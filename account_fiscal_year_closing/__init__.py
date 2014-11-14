@@ -23,5 +23,5 @@
 """
 Fiscal Year Closing
 """
-import fyc
-import wizard
+from . import fyc
+from . import wizard

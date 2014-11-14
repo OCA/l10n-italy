@@ -21,5 +21,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import add_period
-import remove_period
+from . import add_period
+from . import remove_period

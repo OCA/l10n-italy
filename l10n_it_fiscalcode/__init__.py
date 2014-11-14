@@ -19,5 +19,5 @@
 #
 #
 
-import fiscalcode
-import wizard
+from . import fiscalcode
+from . import wizard

@@ -19,6 +19,6 @@
 #
 #
 
-import wizard
-import invoice
-import account
+from . import wizard
+from . import invoice
+from . import account

@@ -19,8 +19,8 @@
 #
 #
 
-import sale
-import stock
-import account
-import partner
-import wizard
+from . import sale
+from . import stock
+from . import account
+from . import partner
+from . import wizard
