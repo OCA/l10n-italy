@@ -29,8 +29,8 @@ Funcionalities:
 - Add Pec Mail Field in Partner Profile
 
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    "author": "Abstract",
+    "website": "http://abstract.it",
     'license': 'AGPL-3',
     "depends": ['base'],
     "data": [

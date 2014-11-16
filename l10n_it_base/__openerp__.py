@@ -31,7 +31,7 @@ Funcionalities:
 - Create "Italian Localisation" in the Configuration -> Configuration Menu
 
 """,
-    'author': 'OpenERP Italian Community',
+    'author': 'Odoo/OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends": ['base'],
@@ -42,5 +42,6 @@ Funcionalities:
     "demo": [],
     "test": [],
     "active": False,
-    'installable': True
+    'installable': True,
+    'application': True,
 }

@@ -15,11 +15,34 @@
 
                     <separator string="Partner Profile"/>
                     <group>
+                        <label for="id" string="Locations"/>
+                        <div>
+                            <div>
+                                <label for="module_l10n_it_base_location_geonames_import"/>
+                                <field name="module_l10n_it_base_location_geonames_import"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </group>
+                    <group>
                         <label for="id" string="Communication"/>
                         <div>
                             <div>
                                 <label for="module_l10n_it_pec"/>
                                 <field name="module_l10n_it_pec"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </group>
+                    <separator string="Accounting and Taxation"/>
+                    <group>
+                        <label for="id" string="Codes for Payments and Activity"/>
+                        <div>
+                            <div>
+                                <label for="module_l10n_it_ateco"/>
+                                <field name="module_l10n_it_ateco"
                                     class="oe_inline"
                                 />
                             </div>

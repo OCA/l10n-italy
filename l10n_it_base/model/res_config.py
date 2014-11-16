@@ -19,16 +19,23 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models
+from openerp import fields
 
 
-class L10nItConfigSettings(orm.TransientModel):
+class L10nItConfigSettings(models.TransientModel):
     _name = 'l10n_it.config.settings'
     _inherit = 'res.config.settings'
 
-    _columns = {
-        'module_l10n_it_pec': fields.boolean(
-            'Use Pec Mail in Partner Profile',
-            help="""Install l10n_it_pec module for pec mail management"""
-        ),
-    }
+    module_l10n_it_base_location_geonames_import = fields.Boolean(
+        'Use Geonames.org to import Location',
+        help="""Use Geonames.org to import Location in Partner Profile"""
+    )
+    module_l10n_it_pec = fields.Boolean(
+        'Use Pec Mail in Partner Profile',
+        help="""Install l10n_it_pec module for PEC mail management"""
+    )
+    module_l10n_it_ateco = fields.Boolean(
+        'Use Ateco codes',
+        help="""Install l10n_it_ateco module for Ateco code management"""
+    )

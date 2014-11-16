@@ -22,7 +22,7 @@ from openerp import models
 from openerp import fields
 
 
-class ateco_category(models.Model):
+class AtecoCategory(models.Model):
     _name = 'ateco.category'
     _description = 'ATECO Code'
 
