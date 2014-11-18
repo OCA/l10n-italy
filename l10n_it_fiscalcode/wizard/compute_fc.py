@@ -67,7 +67,7 @@ class wizard_compute_fc(osv.osv_memory):
             '9': (9, 21)
         }
 
-        """Funzioni per il calcolo del C.F."""
+        # Funzioni per il calcolo del C.F.
         def _surname(stringa):
             """Ricava, da stringa, 3 lettere in base alla convenzione dei C.F.
             """
@@ -109,7 +109,7 @@ class wizard_compute_fc(osv.osv_memory):
             resto = sommone % 26
             return [LETTERE[resto]]
 
-        """Restituisce il C.F costruito sulla base degli argomenti."""
+        # Restituisce il C.F costruito sulla base degli argomenti.
         nome = nome.upper()
         cognome = cognome.upper()
         sesso = sesso.upper()
