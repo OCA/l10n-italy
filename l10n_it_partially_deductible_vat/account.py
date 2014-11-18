@@ -34,10 +34,10 @@ class account_tax(osv.osv):
 
     def _have_same_rate(self, account_taxes):
         rate = None
-        for account_tax in account_taxes:
+        for acc_tax in account_taxes:
             if rate is None:
-                rate = account_tax.amount
-            elif rate != account_tax.amount:
+                rate = acc_tax.amount
+            elif rate != acc_tax.amount:
                 return False
         return True
 

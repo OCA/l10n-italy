@@ -271,13 +271,13 @@ class riba_distinta_line(orm.Model):
     def _reconciled(self, cr, uid, ids, name, args, context=None):
         wf_service = netsvc.LocalService("workflow")
         res = {}
-        for id in ids:
-            res[id] = self.test_paid(cr, uid, [id])
-            if res[id]:
-                self.write(cr, uid, id, {'state': 'paid'}, context=context)
+        for rec_id in ids:
+            res[rec_id] = self.test_paid(cr, uid, [rec_id])
+            if res[rec_id]:
+                self.write(cr, uid, rec_id, {'state': 'paid'}, context=context)
                 wf_service.trg_validate(
                     uid, 'riba.distinta',
-                    self.browse(cr, uid, id).distinta_id.id, 'paid', cr)
+                    self.browse(cr, uid, rec_id).distinta_id.id, 'paid', cr)
         return res
 
     def move_line_id_payment_gets(self, cr, uid, ids, *args):
@@ -309,10 +309,10 @@ class riba_distinta_line(orm.Model):
         if not res:
             return False
         ok = True
-        for id in res:
+        for rec_id in res:
             cr.execute(
                 'select reconcile_id from account_move_line where id=%s',
-                (id,))
+                (rec_id,))
             ok = ok and bool(cr.fetchone()[0])
         return ok
 

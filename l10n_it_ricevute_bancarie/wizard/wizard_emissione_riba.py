@@ -59,9 +59,7 @@ class emissione_riba(orm.TransientModel):
             }
             return riba_distinta_line.create(cr, uid, rdl, context=context)
 
-        """
-        Qui creiamo la distinta
-        """
+        # Qui creiamo la distinta
         wizard_obj = self.browse(cr, uid, ids)[0]
         active_ids = context and context.get('active_ids', [])
         riba_distinta = self.pool.get('riba.distinta')
