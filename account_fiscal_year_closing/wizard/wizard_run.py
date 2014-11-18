@@ -321,17 +321,6 @@ class wizard_run(osv.osv_memory):
         # Depending on the operation we will use different data
         #
         if operation == 'loss_and_profit':
-            '''
-            #
-            # Consider all the periods of the fiscal year *BUT* the L&P,
-            # Net L&P and the Closing one.
-            #
-            for period in fyc.closing_fiscalyear_id.period_ids:
-                if period.id != fyc.lp_period_id.id \
-                        and period.id != fyc.nlp_period_id.id \
-                        and period.id != fyc.c_period_id.id:
-                    period_ids.append(period.id)
-            '''
             #
             # Set the accounts to use
             #
@@ -363,28 +352,10 @@ class wizard_run(osv.osv_memory):
             period_id = fyc.lp_period_id.id
             journal_id = fyc.lp_journal_id.id
         elif operation == 'net_loss_and_profit':
-            '''
-            #
-            # Consider all the periods of the fiscal year *BUT* the
-            # Net L&P and the Closing one.
-            #
-            for period in fyc.closing_fiscalyear_id.period_ids:
-                if period.id != fyc.nlp_period_id.id \
-                        and period.id != fyc.c_period_id.id:
-                    period_ids.append(period.id)
-            '''
             #
             # Set the accounts to use
             #
             account_mapping_ids = fyc.nlp_account_mapping_ids
-            '''
-            for account_map in account_mapping_ids:
-                if not account_map.dest_account_id:
-                    raise osv.except_osv(
-                        _('UserError'),
-                        _("The Net L&P account mappings are not properly "
-                          "configured: %s") % account_map.name)
-            '''
             #
             # Get the values for the lines
             #
@@ -414,15 +385,6 @@ class wizard_run(osv.osv_memory):
                     _('UserError'),
                     _("The L&P move must exist before creating the closing "
                       "one"))
-            '''
-            #
-            # Consider all the periods of the fiscal year *BUT*
-            # the Closing one.
-            #
-            for period in fyc.closing_fiscalyear_id.period_ids:
-                if period.id != fyc.c_period_id.id:
-                    period_ids.append(period.id)
-            '''
             # Set the accounts to use
             account_mapping_ids = fyc.c_account_mapping_ids
             #

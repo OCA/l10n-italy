@@ -19,4 +19,4 @@
 #
 #
 
-import assign_ddt
+from . import assign_ddt

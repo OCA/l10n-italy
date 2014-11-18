@@ -19,6 +19,6 @@
 #
 #
 
-import account
-import wizard
-import report
+from . import account
+from . import wizard
+from . import report

@@ -20,4 +20,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import vat_period_end_statement
+from . import vat_period_end_statement

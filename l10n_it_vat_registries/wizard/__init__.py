@@ -19,4 +19,4 @@
 #
 #
 
-import print_registro_iva
+from . import print_registro_iva

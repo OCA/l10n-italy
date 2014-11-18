@@ -81,8 +81,8 @@ class account_vat_period_end_statement(orm.Model):
 
     def _reconciled(self, cr, uid, ids, name, args, context=None):
         res = {}
-        for id in ids:
-            res[id] = self.test_paid(cr, uid, [id])
+        for rec_id in ids:
+            res[rec_id] = self.test_paid(cr, uid, [rec_id])
         return res
 
     def move_line_id_payment_gets(self, cr, uid, ids, *args):
@@ -115,10 +115,10 @@ class account_vat_period_end_statement(orm.Model):
         if not res:
             return False
         ok = True
-        for id in res:
+        for rec_id in res:
             cr.execute(
                 'select reconcile_id from account_move_line where id=%s',
-                (id,))
+                (rec_id,))
             ok = ok and bool(cr.fetchone()[0])
         return ok
 
@@ -412,10 +412,6 @@ class account_vat_period_end_statement(orm.Model):
         for statement in self.browse(cr, uid, ids, context):
             if statement.move_id:
                 statement.move_id.unlink()
-            '''
-            if statement.voucher_id:
-                statement.voucher_id.unlink()
-            '''
         self.write(cr, uid, ids, {'state': 'draft'})
 
     def statement_paid(self, cr, uid, ids, context=None):

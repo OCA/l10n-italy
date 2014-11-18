@@ -21,4 +21,4 @@
 #
 #
 
-import select_template
+from . import select_template

@@ -24,7 +24,7 @@
 #
 #
 
-import wizard_emissione_riba
-import riba_file_export
-import wizard_accreditation
-import wizard_unsolved
+from . import wizard_emissione_riba
+from . import riba_file_export
+from . import wizard_accreditation
+from . import wizard_unsolved

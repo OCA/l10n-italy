@@ -82,11 +82,11 @@ class stock_picking_out(orm.Model):
     }
 
     def action_invoice_create(self, cursor, user, ids, journal_id=False,
-                              group=False, type='out_invoice', context=None):
+                              group=False, _type='out_invoice', context=None):
         res = super(
             stock_picking_out, self).action_invoice_create(
                 cursor, user, ids, journal_id,
-                group, type, context)
+                group, _type, context)
         for picking in self.browse(cursor, user, ids, context=context):
             self.pool.get('account.invoice').write(
                 cursor, user, res[picking.id], {
@@ -100,12 +100,12 @@ class stock_picking_out(orm.Model):
     # -------------------------------------------------------------------------
     # EVITARE LA COPIA DI 'NUMERO DDT'
     # -------------------------------------------------------------------------
-    def copy(self, cr, uid, id, default=None, context=None):
+    def copy(self, cr, uid, ids, default=None, context=None):
         if default is None:
             default = {}
         default.update({'ddt_number': ''})
         return super(stock_picking_out, self).copy(
-            cr, uid, id, default, context=context)
+            cr, uid, ids, default, context=context)
 
 # Redefinition of the new fields in order to update the model stock.picking
 # in the orm

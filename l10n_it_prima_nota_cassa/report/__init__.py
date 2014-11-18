@@ -18,4 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import prima_nota_cassa
+from . import prima_nota_cassa

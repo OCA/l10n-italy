@@ -666,41 +666,6 @@ class fiscal_year_closing(osv.osv):
             'check_unbalanced_moves': False,
         }, context=context)
 
-        ''' needed?
-
-        #
-        # Open the fiscal year and it's periods
-        #
-        # Note: We can not just do a write, cause it would raise a
-        #   "You can not modify/delete a journal with entries for this period!"
-        #       so we have to do it on SQL level :(
-        #       This is based on the "account.fiscalyear.close.state" wizard.
-        #
-        # TODO check this for 6.1
-
-        for fyc in self.browse(cr, uid, ids, context):
-            query = """
-                    UPDATE account_journal_period
-                    SET state = 'draft'
-                    WHERE period_id IN
-                    (SELECT id FROM account_period WHERE fiscalyear_id = %d)
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-            query = """
-                    UPDATE account_period
-                    SET state = 'draft'
-                    WHERE fiscalyear_id = %d
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-            query = """
-                    UPDATE account_fiscalyear
-                    SET state = 'draft'
-                    WHERE id = %d
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-
-        '''
-
         for fyc in self.browse(cr, uid, ids, context):
             if fyc.loss_and_profit_move_id:
                 fyc.loss_and_profit_move_id.unlink()

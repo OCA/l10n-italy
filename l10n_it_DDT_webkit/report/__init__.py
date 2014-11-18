@@ -21,4 +21,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import stock_report
+from . import stock_report

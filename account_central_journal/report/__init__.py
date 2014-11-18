@@ -19,4 +19,4 @@
 #
 #
 
-import central_journal_report
+from . import central_journal_report
