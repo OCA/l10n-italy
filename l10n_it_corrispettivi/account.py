@@ -37,7 +37,8 @@ class account_invoice(osv.osv):
             context = {}
         journal_obj = self.pool.get('account.journal')
         res = super(account_invoice, self).onchange_company_id(
-            cr, uid, ids, company_id, part_id, _type, invoice_line, currency_id)
+            cr, uid, ids, company_id, part_id,
+            _type, invoice_line, currency_id)
         is_corrispettivo = context.get('corrispettivo', False)
         corr_journal_ids = journal_obj.search(
             cr, uid,
