@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-16 09:24+0000\n"
-"PO-Revision-Date: 2014-09-16 11:26+0100\n"
+"POT-Creation-Date: 2014-11-16 14:19+0000\n"
+"PO-Revision-Date: 2014-11-16 15:26+0100\n"
 "Last-Translator: Franco Tampieri <franco@tampieri.info>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "Language: it\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Accounting and Taxation"
+msgstr "Contabilità e Fiscalità"
 
 #. module: l10n_it_base
 #: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
@@ -26,6 +31,11 @@ msgstr "Applica"
 #: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
 msgid "Cancel"
 msgstr "Annulla"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Codes for Payments and Activity"
+msgstr "Codici per Pagamenti e Attività"
 
 #. module: l10n_it_base
 #: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
@@ -54,9 +64,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_ateco:0
+msgid "Install l10n_it_ateco module for Ateco code management"
+msgstr "Installa il modulo l10n_it_ateco per la Gestione dei codici Ateco"
+
+#. module: l10n_it_base
 #: help:l10n_it.config.settings,module_l10n_it_pec:0
-msgid "Install l10n_it_pec module for pec mail management"
-msgstr "Installa il modulo l10n_it_pec per la gestione della mail pec"
+msgid "Install l10n_it_pec module for PEC mail management"
+msgstr "Installa il modulo l10n_it_pec per la gestione della Mail PEC"
 
 #. module: l10n_it_base
 #: model:ir.ui.menu,name:l10n_it_base.menu_account_config
@@ -75,8 +90,28 @@ msgstr "Ultima Modifica il"
 
 #. module: l10n_it_base
 #: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Locations"
+msgstr "Locazioni"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
 msgid "Partner Profile"
 msgstr "Profilo Partner"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_ateco:0
+msgid "Use Ateco codes"
+msgstr "Usa i codici Ateco"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_base_location_geonames_import:0
+msgid "Use Geonames.org to import Location"
+msgstr "Usa Geonames.org per importare le Locazioni"
+
+#. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_base_location_geonames_import:0
+msgid "Use Geonames.org to import Location in Partner Profile"
+msgstr "Usa Geonames.org per importare le Locazioni nel Profilo Partner"
 
 #. module: l10n_it_base
 #: field:l10n_it.config.settings,module_l10n_it_pec:0

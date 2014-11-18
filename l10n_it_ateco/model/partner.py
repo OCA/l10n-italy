@@ -22,7 +22,7 @@ from openerp import models
 from openerp import fields
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     ateco_category_ids = fields.Many2many(
