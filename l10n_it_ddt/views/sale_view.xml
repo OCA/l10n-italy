@@ -20,6 +20,9 @@
                                 widget="selection"/>
                             <field name="parcels" />
                         </group>
+                        <group string="Related DDTs">
+                            <field name="ddt_ids" nolabel="1"/>
+                        </group>
                     </page>
                 </xpath>
             </field>
