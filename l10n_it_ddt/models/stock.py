@@ -137,7 +137,7 @@ class StockDdT(models.Model):
         self.ddt_lines.unlink()
         move_lines = []
         for picking in self.picking_ids:
-            move_lines.append(picking.move_lines)
+            move_lines += list(picking.move_lines)
         self.create_details(move_lines)
 
     @api.multi
