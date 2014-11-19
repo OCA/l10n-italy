@@ -223,3 +223,26 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     ddt_line_id = fields.Many2one('stock.ddt.line', ondelete="set null")
+
+    @api.cr_uid_ids_context
+    def _picking_assign(
+        self, cr, uid, move_ids, procurement_group, location_from, location_to,
+            context=None):
+
+        res = super(StockMove, self)._picking_assign(
+            cr, uid, move_ids, procurement_group, location_from, location_to,
+            context=context)
+
+        group_model = self.pool['procurement.group']
+        group = group_model.browse(cr, uid, procurement_group)
+        ddt = group.ddt_id
+
+        picking_ids = []
+
+        for move in self.browse(cr, uid, move_ids):
+            if move.picking_id.id not in picking_ids:
+                picking_ids.append(move.picking_id.id)
+
+        ddt.write({'picking_ids': [(6, 0, picking_ids)]})
+
+        return res
