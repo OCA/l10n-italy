@@ -20,12 +20,18 @@
 ##############################################################################
 
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class SaleOrder(models.Model):
 
     _inherit = 'sale.order'
+
+    @api.one
+    def _get_ddt_ids(self):
+        picking_model = self.env['stock.picking']
+        pickings = picking_model.search([('origin', '=', self.name)])
+        self.ddt_ids = [picking.ddt_id.id for picking in pickings]
 
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', 'Carriage Condition')
@@ -38,6 +44,11 @@ class SaleOrder(models.Model):
         'stock.picking.transportation_method',
         'Method of Transportation')
     parcels = fields.Integer()
+    ddt_ids = fields.Many2many(
+        'stock.ddt',
+        string='Related DdTs',
+        compute='_get_ddt_ids',
+        )
 
     def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
         if not context:
