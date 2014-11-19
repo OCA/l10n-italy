@@ -22,5 +22,6 @@
 
 from . import account
 from . import partner
+from . import procurement
 from . import sale
 from . import stock

@@ -19,33 +19,11 @@
 #
 ##############################################################################
 
-{
-    'name': 'DdT',
-    'version': '1.0',
-    'category': 'Localization/Italy',
-    'summary': 'Documento di Trasporto',
-    'description': """
-Customizations needed to manage the italian DdT (delivery order).
+from openerp import models, fields
 
-Class, method and fields name are the same of l10n_it_sale, in order
-to guarantee compatibility.
 
-    """,
-    'author': 'Davide Corio',
-    'website': 'http://www.davidecorio.com',
-    'depends': ['account', 'base', 'stock', 'stock_account', 'sale'],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/stock_data.xml',
-        'views/account_view.xml',
-        'views/partner_view.xml',
-        'views/sale_view.xml',
-        'views/stock_view.xml',
-        'views/procurement_view.xml',
-        'wizard/ddt_from_pickings_view.xml',
-        'workflow/stock_ddt_workflow.xml',
-        'views/report_ddt.xml'
-    ],
-    'installable': True,
-    'active': False,
-}
+class ProcurementGroup(models.Model):
+
+    _inherit = "procurement.group"
+
+    ddt_id = fields.Many2one('stock.ddt', 'DDT')

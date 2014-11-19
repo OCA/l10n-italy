@@ -10,15 +10,20 @@
                 <xpath expr="//page[@string='Other Information']" position="after">
                     <page string="Shipping Informations">
                         <group string="Shipping Informations">
-                            <field name="goods_description_id"
-                                widget="selection"/>
-                            <field name="carriage_condition_id"
-                                widget="selection"/>
-                            <field name="transportation_reason_id"
-                                widget="selection"/>
-                            <field name="transportation_method_id"
-                                widget="selection"/>
-                            <field name="parcels" />
+                            <group>
+                                <field name="goods_description_id"
+                                    widget="selection"/>
+                                <field name="carriage_condition_id"
+                                    widget="selection"/>
+                                <field name="transportation_reason_id"
+                                    widget="selection"/>
+                                <field name="transportation_method_id"
+                                    widget="selection"/>
+                                <field name="parcels" />
+                            </group>
+                            <group>
+                                <field name="create_ddt"/>
+                            </group>
                         </group>
                         <group string="Related DDTs">
                             <field name="ddt_ids" nolabel="1"/>

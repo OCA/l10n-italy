@@ -19,7 +19,6 @@
 #
 ##############################################################################
 
-
 from openerp import models, fields, api
 
 
@@ -49,6 +48,7 @@ class SaleOrder(models.Model):
         string='Related DdTs',
         compute='_get_ddt_ids',
         )
+    create_ddt = fields.Boolean('Automatically create the DDT', default=True)
 
     def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
         if not context:
@@ -101,3 +101,15 @@ class SaleOrder(models.Model):
                     'parcels': order.parcels,
                     })
         return True
+
+    def _prepare_procurement_group(self, cr, uid, order, context=None):
+        res = super(SaleOrder, self)._prepare_procurement_group(
+            cr, uid, order, context=context)
+        if order.create_ddt:
+            ddt_model = self.pool['stock.ddt']
+            ddt_data = {
+                'partner_id': order.partner_id.id,
+                }
+            res['ddt_id'] = ddt_model.create(
+                cr, uid, ddt_data, context=context)
+        return res
