@@ -1,0 +1,15 @@
+- 
+  Create a new DdT
+- 
+  !python {model: stock.ddt}: |
+    picking_model = self.pool['stock.picking']
+    picking_ids = picking_model.search(
+    cr, uid, [('partner_id', '=', ref('base.res_partner_2'))])
+    vals = {
+      'partner_id': ref('base.res_partner_2'),
+      'picking_ids': [(6, 0, picking_ids)],
+      'delivery_address_id': ref('base.res_partner_2'),
+      'carrier_id': ref('base.res_partner_2'),
+      }
+    ddt_id = self.create(cr, uid, vals)
+    assert ddt_id, "DDT not created"

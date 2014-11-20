@@ -46,6 +46,7 @@ to guarantee compatibility.
         'workflow/stock_ddt_workflow.xml',
         'views/report_ddt.xml'
     ],
+    'test': ['tests/new_ddt.yml'],
     'installable': True,
     'active': False,
 }
