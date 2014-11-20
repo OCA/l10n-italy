@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <template id="report_ddt">
+        <!--template id="report_ddt">
             <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="report.external_layout">
@@ -20,7 +20,7 @@
             report_type="qweb-pdf"
             name="l10n_it_ddt.report_ddt" 
             file="l10n_it_ddt.report_ddt" 
-        />
+        /-->
 
     </data>
 </openerp>
