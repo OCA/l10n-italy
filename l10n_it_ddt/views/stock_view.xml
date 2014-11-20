@@ -52,8 +52,8 @@
                                     domain="[('ddt_type', '=', 'outgoing'), ('partner_id', '=', partner_id)]"/>
                             </page>
                             <page string="Shipping Informations">
-                                <group>
-                                    <group string="Shipping Informations">
+                                <group string="Shipping Informations">
+                                    <group>
                                         <field name="goods_description_id"
                                             widget="selection"/>
                                         <field name="carriage_condition_id"
@@ -63,6 +63,9 @@
                                         <field name="transportation_method_id"
                                             widget="selection"/>
                                         <field name="parcels" />
+                                    </group>
+                                    <group>
+                                        <field name="carrier_id"/>
                                     </group>
                                 </group>
                             </page>
