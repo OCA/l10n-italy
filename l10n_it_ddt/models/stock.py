@@ -160,6 +160,13 @@ class StockDdT(models.Model):
     def action_cancel(self):
         self.write({'state': 'cancelled'})
 
+    @api.multi
+    def name_get(self):
+        result = []
+        for ddt in self:
+            result.append((ddt.id, "%s" % (ddt.name or 'N/A')))
+        return result
+
 
 class StockDdTLine(models.Model):
 
