@@ -125,7 +125,7 @@ class wizard_compute_fc(models.TransientModel):
             resto = sommone % 26
             return [LETTERE[resto]]
 
-        #Restituisce il C.F costruito sulla base degli argomenti.
+        # Restituisce il C.F costruito sulla base degli argomenti.
         nome = nome.upper()
         cognome = cognome.upper()
         sesso = sesso.upper()
