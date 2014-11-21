@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_document_file_protocol_form_pec">
+        <field name="name">fetchmail.server.form.pec</field>
+        <field name="model">fetchmail.server</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+        <field name="arch" type="xml">
+        <field name="date" position="after" >
+            <field name="pec" />
+        </field>
+        </field>
+    </record>
+</data>
+</openerp>
