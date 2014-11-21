@@ -79,7 +79,6 @@ class wizard_compute_fc(models.TransientModel):
             '9': (9, 21)
         }
 
-        """Funzioni per il calcolo del C.F."""
         def _surname(stringa):
             """
             Ricava, da stringa, 3 lettere in base alla convenzione dei C.F.
@@ -126,7 +125,7 @@ class wizard_compute_fc(models.TransientModel):
             resto = sommone % 26
             return [LETTERE[resto]]
 
-        """Restituisce il C.F costruito sulla base degli argomenti."""
+        #Restituisce il C.F costruito sulla base degli argomenti.
         nome = nome.upper()
         cognome = cognome.upper()
         sesso = sesso.upper()
@@ -139,11 +138,6 @@ class wizard_compute_fc(models.TransientModel):
         return ''.join(chars)
 
     def _get_national_code(self, birth_city, birth_prov, birth_date):
-        cities = self.env['res.city.it.code'].search([
-            ('name', '=', birth_city), ('province', '=', birth_prov)],
-            order='creation_date ASC, var_date ASC, notes ASC')
-        if not cities or len(cities) == 0:
-            return ''
         """
         notes fields contains variation data while var_date may contain the
         eventual date of the variation. notes may be:
@@ -166,6 +160,11 @@ class wizard_compute_fc(models.TransientModel):
         - VED: reference to another city. This is assigned to cities that
                changed name and were then subject to other changes.
         """
+        cities = self.env['res.city.it.code'].search([
+            ('name', '=', birth_city), ('province', '=', birth_prov)],
+            order='creation_date ASC, var_date ASC, notes ASC')
+        if not cities or len(cities) == 0:
+            return ''
         # Checks for any VED element
         newcts = None
         for ct in cities:
