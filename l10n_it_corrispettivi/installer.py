@@ -19,18 +19,15 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import osv
+from openerp import fields
 
 class corrispettivi_config_data(osv.osv_memory):
     _name = 'corrispettivi.config.data'
     _inherit = 'res.config'
 
-    _columns = {
-        'default_credit_account_id': fields.many2one('account.account', 'Default credit account',
-            domain=[('type','!=','view')], required=True, help='If doubtful, use income account'),
-        'default_debit_account_id': fields.many2one('account.account', 'Default debit account',
-            domain=[('type','!=','view')], required=True, help='If doubtful, use income account'),
-        }
+    default_credit_account_id = fields.Many2one('account.account', 'Default credit account', domain=[('type','!=','view')], required=True, help='If doubtful, use income account')
+    default_debit_account_id = fields.Many2one('account.account', 'Default debit account', domain=[('type','!=','view')], required=True, help='If doubtful, use income account')
 
     def execute(self, cr, uid, ids, context=None):
         for o in self.browse(cr, uid, ids, context=context):
@@ -57,4 +54,5 @@ class corrispettivi_config_data(osv.osv_memory):
                 })
 
 corrispettivi_config_data()
+
 

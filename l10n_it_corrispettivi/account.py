@@ -19,28 +19,25 @@
 #
 ##############################################################################
 
-from osv import fields, osv
-from tools.translate import _
+from openerp import models, fields, exceptions, _
 
-class account_invoice(osv.osv):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
-    _columns = {
-        'corrispettivo': fields.boolean('Corrispettivo'),
-        }
+    corrispettivo = fields.Boolean(string='Corrispettivo')
 
     def onchange_company_id(self, cr, uid, ids, company_id, part_id, type, invoice_line, currency_id, context=None):
         if not context:
             context={}
         journal_obj = self.pool.get('account.journal')
-        res = super(account_invoice, self).onchange_company_id(cr, uid, ids, company_id, part_id, type, invoice_line, currency_id)
+        res = super(AccountInvoice, self).onchange_company_id(cr, uid, ids, company_id, part_id, type, invoice_line, currency_id)
         is_corrispettivo = context.get('corrispettivo', False)
         corr_journal_ids = journal_obj.search(cr, uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
 
-        # Se Ã¨ un corrispettivo e la company ha almeno un sezionale corrispettivi
+        # Se è un corrispettivo e la company ha almeno un sezionale corrispettivi
         if is_corrispettivo and corr_journal_ids:
             res['value']['journal_id']  = corr_journal_ids[0]
 
-        # Se la company ha almeno un sezionale corrispettivi ma l'invoice non Ã¨ un corrispettivo
+        # Se la company ha almeno un sezionale corrispettivi ma l'invoice non è un corrispettivo
         elif corr_journal_ids and corr_journal_ids[0] in res['domain']['journal_id'][0][2]:
             # Se l'on_change di invoice ha impostato il journal corrispettivi
             if corr_journal_ids[0] == res['value']['journal_id'] and len(res['domain']['journal_id'][0][2]) > 1:
@@ -60,7 +57,7 @@ class account_invoice(osv.osv):
             partner_obj = partner_ids = self.pool.get('res.partner')
             partner_ids=partner_obj.search(cr, uid, [('corrispettivi', '=', True)])
             if not partner_ids:
-                raise osv.except_osv(_('Error!'), 
+                raise exceptions.except_orm(_('Error!'), 
                      _('No partner "corrispettivi" found'))
             partner = partner_obj.browse(cr, uid, partner_ids[0])
             res = partner.property_account_receivable.id
@@ -75,7 +72,7 @@ class account_invoice(osv.osv):
             partner_obj = partner_ids = self.pool.get('res.partner')
             partner_ids=partner_obj.search(cr, uid, [('corrispettivi', '=', True)])
             if not partner_ids:
-                raise osv.except_osv(_('Error!'), 
+                raise exceptions.except_orm(_('Error!'), 
                      _('No partner "corrispettivi" found'))
             res = partner_ids[0]
         return res
@@ -95,18 +92,15 @@ class account_invoice(osv.osv):
         'account_id': _get_account,
         }
 
-account_invoice()
+AccountInvoice()
 
-class account_journal(osv.osv):
+class AccountJournal(models.Model):
     _inherit = 'account.journal'
-    _columns = {
-        'corrispettivi': fields.boolean('Corrispettivi'),
-        }
-account_journal()
+    corrispettivi = fields.Boolean(string='Corrispettivi')
+AccountJournal()
 
-class res_partner(osv.osv):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
-    _columns = {
-        'corrispettivi': fields.boolean('Corrispettivi'),
-        }
-res_partner()
+    corrispettivi = fields.Boolean(string='Corrispettivi')
+ResPartner()
+
