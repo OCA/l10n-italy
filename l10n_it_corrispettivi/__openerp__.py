@@ -35,5 +35,5 @@
         'installer_view.xml',
         ],
     "active": False,
-    'installable': False
+    'installable': True
 }
