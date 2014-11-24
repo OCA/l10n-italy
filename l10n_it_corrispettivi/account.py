@@ -92,15 +92,10 @@ class AccountInvoice(models.Model):
         'account_id': _get_account,
         }
 
-AccountInvoice()
-
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
     corrispettivi = fields.Boolean(string='Corrispettivi')
-AccountJournal()
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
     corrispettivi = fields.Boolean(string='Corrispettivi')
-ResPartner()
-

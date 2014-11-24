@@ -55,4 +55,3 @@ class corrispettivi_config_data(osv.osv_memory):
 
 corrispettivi_config_data()
 
-
