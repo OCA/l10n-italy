@@ -20,27 +20,41 @@
                 }
             }
         </script>
+        <style type="text/css">
+            ${css}
+        </style>
     </head>
     <body style="border:0; margin: 0;" onload="subst()">
-    <% setLang(company.partner_id.lang or "en_US") %>
-    <h1>Registro I.V.A. Vendite</h1>
-    <h3>${company.partner_id.name or ''|entity}</h3>
-    <table style="border-bottom: 4px solid black; width: 100%; padding-bottom: 8px">
-    <tr>
-    <td>
-    <div>${company.partner_id.street or ''|entity}</div>
-    <div>${company.partner_id.street2 or ''|entity}</div>
-    <div>${company.partner_id.zip or ''|entity}</div>
-    <div>${company.partner_id.city or ''|entity}</div>
-    <div>${company.partner_id.province and company.partner_id.province.code or ''|entity}</div>
-    </td>
-    <td>
-    <div>P. IVA: ${company.partner_id.vat or ''|entity}</div>
-    <div>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</div>
-
-    </td>
-    </tr>
-    </table>
+        <table style="border-bottom: 3px solid black; width: 100%; padding-bottom:10px">
+            <tr>
+                <td style="font-weight:bold; font-size:150%">Registro I.V.A. Vendite</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold; font-size:120%">${company.partner_id.name or ''|entity}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td >${company.partner_id.street or ''|entity}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.street2 or ''|entity}</td>
+                <td>P. IVA: ${company.partner_id.vat or ''|entity}</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.zip or ''|entity}</td>
+                <td>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.city or ''|entity}</td>
+                <td>Codice Attività:</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.province and company.partner_id.province.code or ''|entity}</td>
+                <td>Registro Imprese:</td>
+            </tr>
+        </table> ${_debug or ''|n} 
     <br/>
     </body>
 </html>]]>
@@ -73,9 +87,6 @@
         </table>
     </body>
 </html>]]></field><field name="css" ><![CDATA[
-tr {
-    page-break-inside: avoid;
-}
 thead{
     display: table-header-group; /* http://code.google.com/p/wkhtmltopdf/issues/detail?id=9#c8 */
 }
@@ -101,27 +112,41 @@ thead{
                 }
             }
         </script>
+        <style type="text/css">
+            ${css}
+        </style>
     </head>
     <body style="border:0; margin: 0;" onload="subst()">
-    <% setLang(company.partner_id.lang or "en_US") %>
-    <h1>Registro I.V.A. Acquisti</h1>
-    <h3>${company.partner_id.name or ''|entity}</h3>
-    <table style="border-bottom: 4px solid black; width: 100%; padding-bottom: 8px">
-    <tr>
-    <td>
-    <div>${company.partner_id.street or ''|entity}</div>
-    <div>${company.partner_id.street2 or ''|entity}</div>
-    <div>${company.partner_id.zip or ''|entity}</div>
-    <div>${company.partner_id.city or ''|entity}</div>
-    <div>${company.partner_id.province and company.partner_id.province.code or ''|entity}</div>
-    </td>
-    <td>
-    <div>P. IVA: ${company.partner_id.vat or ''|entity}</div>
-    <div>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</div>
-
-    </td>
-    </tr>
-    </table>
+        <table style="border-bottom: 3px solid black; width: 100%; padding-bottom:10px">
+            <tr>
+                <td style="font-weight:bold; font-size:150%">Registro I.V.A. Acquisti</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold; font-size:120%">${company.partner_id.name or ''|entity}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td >${company.partner_id.street or ''|entity}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.street2 or ''|entity}</td>
+                <td>P. IVA: ${company.partner_id.vat or ''|entity}</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.zip or ''|entity}</td>
+                <td>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.city or ''|entity}</td>
+                <td>Codice Attività:</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.province and company.partner_id.province.code or ''|entity}</td>
+                <td>Registro Imprese:</td>
+            </tr>
+        </table> ${_debug or ''|n} 
     <br/>
     </body>
 </html>]]>
@@ -154,9 +179,6 @@ thead{
         </table>
     </body>
 </html>]]></field><field name="css" ><![CDATA[
-tr {
-    page-break-inside: avoid;
-}
 thead{
     display: table-header-group; /* http://code.google.com/p/wkhtmltopdf/issues/detail?id=9#c8 */
 }
@@ -182,27 +204,41 @@ thead{
                 }
             }
         </script>
+        <style type="text/css">
+            ${css}
+        </style>
     </head>
     <body style="border:0; margin: 0;" onload="subst()">
-    <% setLang(company.partner_id.lang or "en_US") %>
-    <h1>Registro I.V.A. Corrispettivi</h1>
-    <h3>${company.partner_id.name or ''|entity}</h3>
-    <table style="border-bottom: 4px solid black; width: 100%; padding-bottom: 8px">
-    <tr>
-    <td>
-    <div>${company.partner_id.street or ''|entity}</div>
-    <div>${company.partner_id.street2 or ''|entity}</div>
-    <div>${company.partner_id.zip or ''|entity}</div>
-    <div>${company.partner_id.city or ''|entity}</div>
-    <div>${company.partner_id.province and company.partner_id.province.code or ''|entity}</div>
-    </td>
-    <td>
-    <div>P. IVA: ${company.partner_id.vat or ''|entity}</div>
-    <div>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</div>
-
-    </td>
-    </tr>
-    </table>
+        <table style="border-bottom: 3px solid black; width: 100%; padding-bottom:10px">
+            <tr>
+                <td style="font-weight:bold; font-size:150%">Registro I.V.A. Corrispettivi</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold; font-size:120%">${company.partner_id.name or ''|entity}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td >${company.partner_id.street or ''|entity}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.street2 or ''|entity}</td>
+                <td>P. IVA: ${company.partner_id.vat or ''|entity}</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.zip or ''|entity}</td>
+                <td>Codice Fiscale: ${company.partner_id.fiscalcode or ''|entity}</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.city or ''|entity}</td>
+                <td>Codice Attività:</td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.province and company.partner_id.province.code or ''|entity}</td>
+                <td>Registro Imprese:</td>
+            </tr>
+        </table> ${_debug or ''|n} 
     <br/>
     </body>
 </html>]]>
@@ -235,9 +271,6 @@ thead{
         </table>
     </body>
 </html>]]></field><field name="css" ><![CDATA[
-tr {
-    page-break-inside: avoid;
-}
 thead{
     display: table-header-group; /* http://code.google.com/p/wkhtmltopdf/issues/detail?id=9#c8 */
 }
