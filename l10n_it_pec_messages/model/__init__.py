@@ -20,3 +20,4 @@
 
 from . import mail_messages
 from . import mail_thread
+from . import fetchmail

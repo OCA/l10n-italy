@@ -38,8 +38,8 @@ Authors:
     ],
     'init_xml': [],
     'data': [
-        "fetchmail/view.xml",
-        "mail/view.xml",
+        "view/fetchmail_view.xml",
+        "view/mail_view.xml",
     ],
     'demo_xml': [],
     'test': [],
