@@ -33,9 +33,13 @@ class MailMessage(orm.Model):
         'pec': fields.many2one(
             'fetchmail.server', 'Server Pec', readonly=True),
         'pec_type': fields.selection([
-            ('completa', 'Pec Mail'),
+            ('posta-certificata', 'Pec Mail'),
             ('accettazione', 'Reception'),
+            ('presa-in-carico', 'In Progress'),
             ('avvenuta-consegna', 'Delivery'),
+            ('errore-consegna', 'Delivery Error'),
+            ('preavviso-errore-consegna', 'Notice Delivery Error'),
+            ('rilevazione-virus', 'Virus Detected'),
             ], 'Pec Type', readonly=True),
         'cert_datetime': fields.datetime(
             'Certified Date and Time ', readonly=True),
@@ -50,6 +54,11 @@ class MailMessage(orm.Model):
         'reception_message_id': fields.many2one(
             'mail.message', 'Reception Message', readonly=True),
     }
+
+    def get_datafrom_daticertxml(self,daticertxml,contex=None):
+        ret={}
+        content = self.getFile(daticertxml).decode('base64')
+        daticert = ElementTree(fromstring(content))
 
     def _search(
         self, cr, uid, args, offset=0, limit=None, order=None,

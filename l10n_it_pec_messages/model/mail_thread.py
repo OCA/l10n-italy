@@ -99,7 +99,7 @@ class mail_thread(osv.AbstractModel):
                 # text/plain -> <pre/>
                 body = tools.append_content_to_html(u'', body, preserve=True)
         else:
-            signed = False
+            keepmsg = False
             mixed = False
             html = u''
             boundary_eml=''
@@ -110,11 +110,11 @@ class mail_thread(osv.AbstractModel):
                 #  _1416483046-5019-25 e' il codice di confine delle parti del messaggio
                 #  multipart/signed; protocol="application/x-pkcs7-signature";
                 #  application/xml; name="daticert.xml"
-                #  message/rfc822; name="postacert.eml
+                #  message/rfc822; name="postacert.eml"
                 #  application/x-pkcs7-signature; name="smime.p7s"
                 #
-                if part.get_content_type() == 'multipart/signed':
-                    signed = True
+                if part.get_content_type() == 'multipart/rfc822':
+                    keepmsg = True
 
                 if not mixed and part.get_content_type() == 'multipart/mixed':
                     mixed = True
@@ -146,7 +146,7 @@ class mail_thread(osv.AbstractModel):
                     continue
 
                 # 2) text/plain -> <pre/>
-                if part.get_content_type() == 'text/plain' and (not signed or not body):
+                if part.get_content_type() == 'text/plain' and (keepmsg):
                     body = tools.append_content_to_html(body, tools.ustr(part.get_payload(decode=True),
                                                                          encoding, errors='replace'), preserve=True)
                 # 3) text/html -> raw
