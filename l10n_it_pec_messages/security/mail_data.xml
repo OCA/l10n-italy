@@ -11,7 +11,7 @@
         <record id="pec_mail_message" model="ir.rule">
             <field name="name">PEC mails</field>
             <field ref="model_mail_message" name="model_id"/>
-            <field name="domain_force">[('pec.pec','=',True)]</field>
+            <field name="domain_force">[('server_id.pec','=',True)]</field>
             <field name="groups" eval="[(4, ref('base.group_pec'))]"/>
         </record>
     </data>
