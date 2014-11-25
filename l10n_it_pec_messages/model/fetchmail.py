@@ -21,7 +21,7 @@
 from openerp.osv import fields, orm
 
 
-class res_partner(orm.Model):
+class FetchmailServer(orm.Model):
 
     _inherit = "fetchmail.server"
 
@@ -29,7 +29,4 @@ class res_partner(orm.Model):
         'pec': fields.boolean(
             "Pec Server",
             help="Check if this server is PEC"),
-    }
-    _defaults = {
-        'pec': False
     }
