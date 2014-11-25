@@ -33,13 +33,13 @@ class AccountInvoice(models.Model):
         is_corrispettivo = context.get('corrispettivo', False)
         corr_journal_ids = journal_obj.search(cr, uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
 
-        # Se è un corrispettivo e la company ha almeno un sezionale corrispettivi
+        # if it is a "corrispettivo" and the company has at least one journal "corrispettivi"
         if is_corrispettivo and corr_journal_ids:
             res['value']['journal_id']  = corr_journal_ids[0]
 
-        # Se la company ha almeno un sezionale corrispettivi ma l'invoice non è un corrispettivo
+        # if the company has at least one journal "corrispettivi" but the invoice it isn't a corrispettivo
         elif corr_journal_ids and corr_journal_ids[0] in res['domain']['journal_id'][0][2]:
-            # Se l'on_change di invoice ha impostato il journal corrispettivi
+            # if invoice's on_change has set journal corrispettivi
             if corr_journal_ids[0] == res['value']['journal_id'] and len(res['domain']['journal_id'][0][2]) > 1:
                 for j_id in res['domain']['journal_id'][0][2]:
                     if corr_journal_ids[0] != j_id:
