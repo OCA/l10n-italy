@@ -38,8 +38,10 @@ Authors:
     ],
     'init_xml': [],
     'data': [
+        "security/mail_data.xml",
         "view/fetchmail_view.xml",
         "view/mail_view.xml",
+        "security/ir.model.access.csv",
     ],
     'demo_xml': [],
     'test': [],
