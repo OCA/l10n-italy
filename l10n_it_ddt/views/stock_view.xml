@@ -27,7 +27,9 @@
                         <div class="oe_right oe_button_box" name="buttons"></div>
                         <group>
                             <group>
-                                <field name="sequence" domain="[('code', '=', 'DDT')]"/>
+                                <field name="sequence" 
+                                    domain="[('code', '=', 'DDT')]"
+                                    widget="selection"/>
                                 <field name="partner_id"/>
                                 <field name="delivery_address_id"/>
                             </group>
