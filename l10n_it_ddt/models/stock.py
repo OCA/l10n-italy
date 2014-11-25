@@ -67,8 +67,9 @@ class StockDdT(models.Model):
 
     @api.multi
     def get_sequence(self):
+        # XXX: allow config of default seq per company
         return self.env['ir.sequence'].search(
-            [('code', '=', 'stock.ddt')]).id
+            [('code', '=', 'stock.ddt')])[0].id
 
     name = fields.Char(string='Number')
     date = fields.Datetime(required=True, default=fields.Datetime.now())
