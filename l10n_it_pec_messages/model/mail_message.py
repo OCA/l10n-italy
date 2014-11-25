@@ -17,41 +17,40 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
-import base64
-import copy
-import re
-import tempfile
-import logging
-from openerp.osv import fields, orm
-from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
-                                                DEFAULT_SERVER_DATETIME_FORMAT)
-from openerp.tools.translate import _
-from datetime import datetime,date
-from lxml.etree import fromstring, tostring, ElementTree
-from lxml.etree import register_namespace
 
-_logger = logging.getLogger(__name__)
+from openerp.osv import fields, orm
+
 
 class mail_message(orm.Model):
     _inherit = "mail.message"
 
     _columns = {
         'pec': fields.many2one(
-            'fetchmail.server', 'Server Pec',readonly=True),
+            'fetchmail.server', 'Server Pec', readonly=True),
         'pec_type': fields.selection([
-                        ('completa', 'Pec Mail'),
-                        ('accettazione', 'Reception'),
-                        ('avvenuta-consegna', 'Delivery'),
-                        ], 'Pec Type',readonly=True),
+            ('completa', 'Pec Mail'),
+            ('accettazione', 'Reception'),
+            ('avvenuta-consegna', 'Delivery'),
+            ], 'Pec Type', readonly=True),
         'cert_datetime': fields.datetime(
             'Certified Date and Time ', readonly=True),
-        'pec_msg_id': fields.char('PEC-Message-Id',
-             help='Message unique identifier', select=1, readonly=1),
-        'ref_msg_id': fields.char('ref-Message-Id',
-             help='Ref Message unique identifier', select=1, readonly=1),
-        'delivery_message_id' : fields.many2one(
-            'mail.message', 'Delivery Message',readonly=True),
-        'reception_message_id' : fields.many2one(
-            'mail.message', 'Reception Message',readonly=True),
+        'pec_msg_id': fields.char(
+            'PEC-Message-Id',
+            help='Message unique identifier', select=1, readonly=True),
+        'ref_msg_id': fields.char(
+            'ref-Message-Id',
+            help='Ref Message unique identifier', select=1, readonly=True),
+        'delivery_message_id': fields.many2one(
+            'mail.message', 'Delivery Message', readonly=True),
+        'reception_message_id': fields.many2one(
+            'mail.message', 'Reception Message', readonly=True),
     }
 
+    def _search(
+        self, cr, uid, args, offset=0, limit=None, order=None,
+        context=None, count=False, access_rights_uid=None
+    ):
+        res = super(mail_message, self)._search(
+            cr, uid, args, offset=0, limit=None, order=None,
+            context=None, count=False, access_rights_uid=None)
+        return res
