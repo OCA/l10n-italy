@@ -109,6 +109,8 @@ class SaleOrder(models.Model):
             ddt_model = self.pool['stock.ddt']
             ddt_data = {
                 'partner_id': order.partner_id.id,
+                'partner_shipping_id': order.partner_shipping_id and
+                order.partner_shipping_id.id
                 }
             res['ddt_id'] = ddt_model.create(
                 cr, uid, ddt_data, context=context)
