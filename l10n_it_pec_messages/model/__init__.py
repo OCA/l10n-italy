@@ -18,6 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
 
-from . import mail_messages
+from . import mail_message
 from . import mail_thread
 from . import fetchmail
