@@ -30,7 +30,7 @@ class MailMessage(orm.Model):
     _inherit = "mail.message"
 
     _columns = {
-        'pec': fields.many2one(
+        'server_id': fields.many2one(
             'fetchmail.server', 'Server Pec', readonly=True),
         'pec_type': fields.selection([
             ('posta-certificata', 'Pec Mail'),

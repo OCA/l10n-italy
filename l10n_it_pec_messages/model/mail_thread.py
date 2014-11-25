@@ -45,13 +45,13 @@ mail_header_msgid_re = re.compile('<[^<>]+>')
 class mail_thread(osv.AbstractModel):
     _inherit = 'mail.thread'
 
-    def is_server_pec(self,cr,uid,context=None):
+    def is_server_pec(self, cr, uid, context=None):
         if context is None:
             context = {}
-        server_pool=self.pool.get('fetchmail.server')
+        server_pool = self.pool.get('fetchmail.server')
         if 'fetchmail_server_id' in context:
-            id=context.get('fetchmail_server_id')
-            server=server_pool.read(cr,SUPERUSER_ID,[id],['pec'])
+            id = context.get('fetchmail_server_id')
+            server = server_pool.read(cr, SUPERUSER_ID, [id], ['pec'])
             return server[0]['pec']
         return False
 
@@ -186,10 +186,10 @@ class mail_thread(osv.AbstractModel):
             if parent_ids:
                 msg_dict['parent_id'] = parent_ids[0]
 
-        msg_dict['pec']=context.get('fetchmail_server_id')
-        msg_dict['pec_type']=message.get('X-Tiporicevuta')
-        msg_dict['pec_msg_id']=message.get('Message-ID')
-        msg_dict['ref_msg_id']=message.get('X-Riferimento-Message-ID')
+        msg_dict['server_id'] = context.get('fetchmail_server_id')
+        msg_dict['pec_type'] = message.get('X-Tiporicevuta')
+        msg_dict['pec_msg_id'] = message.get('Message-ID')
+        msg_dict['ref_msg_id'] = message.get('X-Riferimento-Message-ID')
         msg_dict['body'], msg_dict['attachments'] = self._message_extract_payload_pec(message, save_original=save_original)
         return msg_dict
 
