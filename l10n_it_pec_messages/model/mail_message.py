@@ -21,7 +21,7 @@
 from openerp.osv import fields, orm
 
 
-class mail_message(orm.Model):
+class MailMessage(orm.Model):
     _inherit = "mail.message"
 
     _columns = {
@@ -50,7 +50,25 @@ class mail_message(orm.Model):
         self, cr, uid, args, offset=0, limit=None, order=None,
         context=None, count=False, access_rights_uid=None
     ):
-        res = super(mail_message, self)._search(
-            cr, uid, args, offset=0, limit=None, order=None,
-            context=None, count=False, access_rights_uid=None)
-        return res
+        if context is None:
+            context = {}
+        if context.get('pec_messages'):
+            return super(orm.Model, self)._search(
+                cr, uid, args, offset=offset, limit=limit, order=order,
+                context=context, count=count,
+                access_rights_uid=access_rights_uid)
+        else:
+            return super(MailMessage, self)._search(
+                cr, uid, args, offset=offset, limit=limit, order=order,
+                context=context, count=count,
+                access_rights_uid=access_rights_uid)
+
+    def check_access_rule(self, cr, uid, ids, operation, context=None):
+        if context is None:
+            context = {}
+        if context.get('pec_messages'):
+            return super(orm.Model, self).check_access_rule(
+                cr, uid, ids, operation, context=context)
+        else:
+            return super(MailMessage, self).check_access_rule(
+                cr, uid, ids, operation, context=context)
