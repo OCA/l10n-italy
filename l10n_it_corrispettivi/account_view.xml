@@ -35,7 +35,7 @@
             <field name="priority" eval="17"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Corrispettivo" version="7.0">
+                <form string="Corrispettivo" version="8.0">
                 <header>
                     <button name="invoice_open" states="draft" string="Validate" class="oe_highlight" groups="base.group_user"/>
                     <button name="invoice_cancel" states="draft,open" string="Cancel" groups="base.group_no_one"/>
@@ -257,9 +257,10 @@
             <field name="name">res.partner.form</field>
             <field name="model">res.partner</field>
             <field name="type">form</field>
+            <!-- i've set the field in the "Accounting" page of the partner form -->
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <field name="supplier" position="after">    
+                <field name="last_reconciliation_date" position="after">    
                     <field name="corrispettivi" groups="account.group_account_manager"/>
                 </field>
             </field>
