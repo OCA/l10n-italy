@@ -3,6 +3,11 @@
 #
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
+#    Copyright 2014 Agile Business Group http://www.agilebg.com
+#    @authors
+#       Alessio Gerace <alessio.gerace@gmail.com>
+#       Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#       Roberto Onnis <roberto.onnis@innoviu.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -26,20 +31,23 @@
     "website": "http://www.odoo-italia.org",
     "description": """
 Pec Messages Management
-------------
-    Mail PEC Management via Alias
+-----------------------
 
-Authors:
-------------
-    """,
+This module allows to correctly parse PEC messages.
+According to 'daticert.xml' file, it identifies the message type and other
+message data.
+It also correclty parses the mail attachments.
+""",
     'images': [],
     'depends': [
         'fetchmail', 'mail','l10n_it_pec'
     ],
     'init_xml': [],
     'data': [
-        "fetchmail/view.xml",
-        "mail/view.xml",
+        "security/mail_data.xml",
+        "view/fetchmail_view.xml",
+        "view/mail_view.xml",
+        "security/ir.model.access.csv",
     ],
     'demo_xml': [],
     'test': [],

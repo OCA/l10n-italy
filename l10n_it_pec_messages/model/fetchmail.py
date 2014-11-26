@@ -3,6 +3,11 @@
 #
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
+#    Copyright 2014 Agile Business Group http://www.agilebg.com
+#    @authors
+#       Alessio Gerace <alessio.gerace@gmail.com>
+#       Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#       Roberto Onnis <roberto.onnis@innoviu.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,5 +23,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
 
-from . import mail_messages
-from . import mail_thread
+from openerp.osv import fields, orm
+
+
+class FetchmailServer(orm.Model):
+
+    _inherit = "fetchmail.server"
+
+    _columns = {
+        'pec': fields.boolean(
+            "Pec Server",
+            help="Check if this server is PEC"),
+    }

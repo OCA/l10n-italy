@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2009-today OpenERP SA (<http://www.openerp.com>)
+#    Copyright (C) 2014 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -16,8 +16,8 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
 ##############################################################################
 
-
+from . import mail_message
+from . import mail_thread
 from . import fetchmail
