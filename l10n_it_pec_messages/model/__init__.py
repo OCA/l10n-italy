@@ -21,3 +21,4 @@
 from . import mail_message
 from . import mail_thread
 from . import fetchmail
+from . import res_partner

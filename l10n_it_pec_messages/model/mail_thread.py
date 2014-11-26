@@ -31,7 +31,7 @@ from openerp.tools.translate import _
 import xml.etree.ElementTree as ET
 
 
-class mail_thread(orm.Model):
+class MailThread(orm.Model):
     _inherit = 'mail.thread'
 
     def is_server_pec(self, cr, uid, context=None):
@@ -49,16 +49,25 @@ class mail_thread(orm.Model):
         root = ET.fromstring(daticert)
         if 'tipo' in root.attrib:
             msg_dict['pec_type'] = root.attrib['tipo']
+        for child in root:
+            if child.tag == 'dati':
+                for child2 in child:
+                    if child2.tag == 'msgid':
+                        msg_dict['message_id'] = child2.text
         return msg_dict
 
     def message_parse(
         self, cr, uid, message, save_original=False, context=None
     ):
+        if context is None:
+            context = {}
         if not self.is_server_pec(cr, uid, context=context):
-            return super(mail_thread, self).message_parse(
+            return super(MailThread, self).message_parse(
                 cr, uid, message, save_original=save_original, context=context)
         postacert = False
         daticert = False
+        message_pool = self.pool['mail.message']
+        msg_dict = {}
         for part in message.walk():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
@@ -84,16 +93,44 @@ class mail_thread(orm.Model):
                     postacert = attachment
                 if filename == 'daticert.xml':
                     daticert = attachment
-        if not postacert:
-            raise orm.except_orm(
-                _('Error'), _('PEC message does not contain postacert.eml'))
         if not daticert:
             raise orm.except_orm(
                 _('Error'), _('PEC message does not contain daticert.xml'))
-        msg_dict = super(mail_thread, self).message_parse(
-            cr, uid, postacert, save_original=save_original,
-            context=context)
-        msg_dict.update(self.parse_daticert(
-            cr, uid, daticert, context=context))
+        daticert_dict = self.parse_daticert(
+            cr, uid, daticert, context=context)
+        if daticert_dict.get('pec_type') == 'posta-certificata':
+            if not postacert:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('PEC message does not contain postacert.eml'))
+            msg_dict = super(MailThread, self).message_parse(
+                cr, uid, postacert, save_original=save_original,
+                context=context)
+        else:
+            msg_dict = super(MailThread, self).message_parse(
+                cr, uid, message, save_original=save_original,
+                context=context)
+        msg_dict.update(daticert_dict)
+        if (
+            daticert_dict.get('message_id')
+            and (
+                daticert_dict.get('pec_type') == 'accettazione'
+                or daticert_dict.get('pec_type') == 'avvenuta-consegna')
+        ):
+            msg_ids = message_pool.search(
+                cr, uid, [('message_id', '=', daticert_dict['message_id'])],
+                context=context)
+            if len(msg_ids) > 1:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Too many existing mails with message_id %s')
+                    % daticert_dict['message_id'])
+            if msg_ids:
+                # I'm going to set this message as notification of the original
+                # message and remove the message_id of this message
+                # (it would duplicated)
+                context['main_message_id'] = msg_ids[0]
+                context['pec_type'] = daticert_dict.get('pec_type')
+                del msg_dict['message_id']
         msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
