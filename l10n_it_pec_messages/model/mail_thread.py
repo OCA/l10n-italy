@@ -84,7 +84,6 @@ class mail_thread(orm.Model):
                     postacert = attachment
                 if filename == 'daticert.xml':
                     daticert = attachment
-        import pdb; pdb.set_trace()
         if not postacert:
             raise orm.except_orm(
                 _('Error'), _('PEC message does not contain postacert.eml'))
@@ -96,4 +95,5 @@ class mail_thread(orm.Model):
             context=context)
         msg_dict.update(self.parse_daticert(
             cr, uid, daticert, context=context))
+        msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
