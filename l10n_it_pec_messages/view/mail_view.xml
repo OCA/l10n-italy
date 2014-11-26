@@ -13,7 +13,7 @@
                     <field name="ref_msg_id" />
                 </field>
                 <field name="model" position="before" >
-                    <field name="pec" />
+                    <field name="server_id" />
                     <field name="delivery_message_id" />
                     <field name="reception_message_id" />
                 </field>
