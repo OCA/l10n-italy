@@ -22,11 +22,7 @@
 #
 ##############################################################################
 {
-<<<<<<< HEAD
     'name': 'IPA Code (IndicePA)',
-=======
-    'name': 'Pec IPA',
->>>>>>> 700b87796b4b3825e8001f58520adb8f40a71ad9
     'version': '0.1',
     'category': 'Localisation/Italy',
     'description': """Italian Localisation module - IPA
