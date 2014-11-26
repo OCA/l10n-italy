@@ -172,7 +172,7 @@ class mail_thread(orm.Model):
                     # mutlipart/signed have one text and a html part,
                     # keep only the second
                     # mixed allows several html parts, append html content
-                    append_content = not signed or (html and mixed)
+                    append_content = keepmsg
                     html = tools.ustr(
                         part.get_payload(decode=True), encoding,
                         errors='replace')
