@@ -38,7 +38,6 @@ class ResPartner(orm.Model):
     ):
         if context is None:
             context = {}
-        import pdb; pdb.set_trace()
         message_pool = self.pool['mail.message']
         msg_id = super(ResPartner, self).message_post(
             cr, uid, thread_id, body=body, subject=subject, type=type,
