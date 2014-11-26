@@ -153,7 +153,7 @@ class mail_thread(osv.AbstractModel):
                 elif part.get_content_type() == 'text/html':
                     # mutlipart/signed have one text and a html part, keep only the second
                     # mixed allows several html parts, append html content
-                    append_content = not signed or (html and mixed)
+                    append_content = keepmsg
                     html = tools.ustr(part.get_payload(decode=True), encoding, errors='replace')
                     if not append_content:
                         body = html
