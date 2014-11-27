@@ -24,19 +24,25 @@
     'name': 'Italian Localisation - VAT Registries',
     'version': '0.2',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - VAT Registries\nhttp://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
+    'description': """Accounting reports for Italian localization - /
+    VAT Registries\n
+    http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['report_webkit', 'l10n_it_base', 'l10n_it_fiscalcode', 'l10n_it_partially_deductible_vat'],
-    "init_xml" : [
+    "depends": [
+                'report_webkit',
+                'l10n_it_base',
+                'l10n_it_fiscalcode',
+                'l10n_it_partially_deductible_vat'],
+    "init_xml": [
         ],
-    "update_xml" : [
+    "update_xml": [
         'reports.xml',
         'wizard/print_registro_iva.xml',
         'account_view.xml',
         ],
-    "demo_xml" : [],
+    "demo_xml": [],
     "active": False,
-    'installable': False
+    'installable': True
 }
