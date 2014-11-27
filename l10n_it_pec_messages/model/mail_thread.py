@@ -66,8 +66,10 @@ class MailThread(orm.Model):
                 cr, uid, message, save_original=save_original, context=context)
         postacert = False
         daticert = False
+        smime = False
         message_pool = self.pool['mail.message']
         msg_dict = {}
+        attachments=[]
         for part in message.walk():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
@@ -79,7 +81,9 @@ class MailThread(orm.Model):
                         filename).strip()
                 else:
                     filename = decode(filename)
-            if filename == 'postacert.eml' or filename == 'daticert.xml':
+            if ( filename == 'postacert.eml' or
+                  filename == 'daticert.xml' or
+                  filename == 'smime.p7s' ):
                 if part.is_multipart() and len(part.get_payload()) > 1:
                     raise orm.except_orm(
                         _('Error'),
@@ -93,6 +97,10 @@ class MailThread(orm.Model):
                     postacert = attachment
                 if filename == 'daticert.xml':
                     daticert = attachment
+                    attachments.append((filename , daticert))
+                if filename == 'smime.p7s':
+                    smime = attachment
+                    attachments.append((filename , smime))
         if not daticert:
             raise orm.except_orm(
                 _('Error'), _('PEC message does not contain daticert.xml'))
@@ -132,5 +140,7 @@ class MailThread(orm.Model):
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
+        if attachments:
+            msg_dict['attachments'] +=  attachments
         msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
