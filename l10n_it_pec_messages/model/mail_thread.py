@@ -104,7 +104,7 @@ class MailThread(orm.Model):
                     _('Error'),
                     _('PEC message does not contain postacert.eml'))
             msg_dict = super(MailThread, self).message_parse(
-                cr, uid, postacert, save_original=save_original,
+                cr, uid, postacert, save_original=True,
                 context=context)
         else:
             msg_dict = super(MailThread, self).message_parse(
