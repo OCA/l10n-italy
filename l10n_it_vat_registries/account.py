@@ -25,8 +25,8 @@ class account_tax_code(models.Model):
     _inherit = "account.tax.code"
     
     is_base = fields.Boolean(
-        string='Is base', 
+        string='Is base',
         help="This tax code is used for base amounts \
-         (field used by VAT registries)"),
+         (field used by VAT registries)")
     exclude_from_registries = fields.Boolean(
-        string='Exclude from VAT registries'),
+        string='Exclude from VAT registries')
