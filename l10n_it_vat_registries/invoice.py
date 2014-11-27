@@ -20,8 +20,8 @@
 ##############################################################################
 
 import time
-from report import report_sxw
-from tools.translate import _
+from openerp.report import report_sxw
+from openerp import _
 import logging
 from datetime import datetime
 
