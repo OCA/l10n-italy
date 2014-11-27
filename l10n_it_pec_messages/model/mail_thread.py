@@ -145,7 +145,8 @@ class MailThread(orm.Model):
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
-        if attachments:
-            msg_dict['attachments'] += attachments
+        else:
+            if attachments:
+                msg_dict['attachments'] += attachments
         msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
