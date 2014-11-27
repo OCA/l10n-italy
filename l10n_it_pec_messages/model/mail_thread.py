@@ -85,9 +85,12 @@ class MailThread(orm.Model):
                         _('Error'),
                         _("Too many payloads for 'postacert.eml' or "
                           "'daticert.xml'. Not handled"))
+                # http://goo.gl/zPRvxF
                 if part.is_multipart():
+                    # email.message.Message
                     attachment = part.get_payload()[0]
                 else:
+                    # string
                     attachment = part.get_payload(decode=True)
                 if filename == 'postacert.eml':
                     postacert = attachment
