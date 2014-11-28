@@ -29,6 +29,7 @@ from openerp.addons.mail.mail_message import decode
 from openerp.osv import orm
 from openerp.tools.translate import _
 import xml.etree.ElementTree as ET
+from openerp import tools
 
 
 class MailThread(orm.Model):
@@ -55,23 +56,13 @@ class MailThread(orm.Model):
                     if child2.tag == 'msgid':
                         msg_dict['message_id'] = child2.text
                     if child2.tag == 'identificativo':
-                        msg_dict['identificativo'] = child2.text
+                        msg_dict['pec_msg_id'] = child2.text
         return msg_dict
 
-    def message_parse(
-        self, cr, uid, message, save_original=False, context=None
-    ):
-        if context is None:
-            context = {}
-        if not self.is_server_pec(cr, uid, context=context):
-            return super(MailThread, self).message_parse(
-                cr, uid, message, save_original=save_original, context=context)
+    def get_pec_attachments(self, cr, uid, message, context=None):
         postacert = False
         daticert = False
         smime = False
-        message_pool = self.pool['mail.message']
-        msg_dict = {}
-        attachments = []
         for part in message.walk():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
@@ -104,10 +95,22 @@ class MailThread(orm.Model):
                     postacert = attachment
                 if filename == 'daticert.xml':
                     daticert = attachment
-                    attachments.append((filename, daticert))
                 if filename == 'smime.p7s':
                     smime = attachment
-                    attachments.append((filename, smime))
+        return (postacert, daticert, smime)
+
+    def message_parse(
+        self, cr, uid, message, save_original=False, context=None
+    ):
+        if context is None:
+            context = {}
+        if not self.is_server_pec(cr, uid, context=context):
+            return super(MailThread, self).message_parse(
+                cr, uid, message, save_original=save_original, context=context)
+        message_pool = self.pool['mail.message']
+        msg_dict = {}
+        postacert, daticert, smime = self.get_pec_attachments(
+            cr, uid, message, context=context)
         if not daticert:
             raise orm.except_orm(
                 _('Error'), _('PEC message does not contain daticert.xml'))
@@ -119,11 +122,13 @@ class MailThread(orm.Model):
                     _('Error'),
                     _('PEC message does not contain postacert.eml'))
             msg_dict = super(MailThread, self).message_parse(
-                cr, uid, postacert, save_original=True,
+                cr, uid, postacert, save_original=False,
                 context=context)
+            msg_dict['attachments'] += [
+                ('original_email.eml', message.as_string())]
         else:
             msg_dict = super(MailThread, self).message_parse(
-                cr, uid, message, save_original=save_original,
+                cr, uid, message, save_original=True,
                 context=context)
         msg_dict.update(daticert_dict)
         if (
@@ -143,13 +148,32 @@ class MailThread(orm.Model):
             if msg_ids:
                 # I'm going to set this message as notification of the original
                 # message and remove the message_id of this message
-                # (it would duplicated)
+                # (it would be duplicated)
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
-        else:
-            if attachments:
-                msg_dict['attachments'] += attachments
-        msg_dict['pec_msg_id'] = daticert_dict.get('identificativo')
         msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
+
+    def _message_find_partners(
+        self, cr, uid, message, header_fields=['From'], context=None
+    ):
+        """
+        override to search by pec_mail field too. See l10n_it_pec module
+        """
+
+        res = super(MailThread, self)._message_find_partners(
+            cr, uid, message, header_fields=header_fields, context=context)
+        partner_obj = self.pool.get('res.partner')
+        s = ', '.join([
+            decode(message.get(h)) for h in header_fields if message.get(h)])
+        for email_address in tools.email_split(s):
+            partner_ids = partner_obj.search(
+                cr, uid, [('pec_mail', '=ilike', email_address)],
+                context=context)
+            if len(partner_ids) > 1:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Too many partners with PEC mail %s') % email_address)
+            res += partner_ids
+        return res
