@@ -56,7 +56,7 @@ class MailThread(orm.Model):
                     if child2.tag == 'msgid':
                         msg_dict['message_id'] = child2.text
                     if child2.tag == 'identificativo':
-                        msg_dict['identificativo'] = child2.text
+                        msg_dict['pec_msg_id'] = child2.text
         return msg_dict
 
     def get_pec_attachments(self, cr, uid, message, context=None):
@@ -156,7 +156,6 @@ class MailThread(orm.Model):
         else:
             if attachments:
                 msg_dict['attachments'] += attachments
-        msg_dict['pec_msg_id'] = daticert_dict.get('identificativo')
         msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
 
