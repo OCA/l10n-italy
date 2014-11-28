@@ -59,20 +59,11 @@ class MailThread(orm.Model):
                         msg_dict['identificativo'] = child2.text
         return msg_dict
 
-    def message_parse(
-        self, cr, uid, message, save_original=False, context=None
-    ):
-        if context is None:
-            context = {}
-        if not self.is_server_pec(cr, uid, context=context):
-            return super(MailThread, self).message_parse(
-                cr, uid, message, save_original=save_original, context=context)
+    def get_pec_attachments(self, cr, uid, message, context=None):
+        attachments = []
         postacert = False
         daticert = False
         smime = False
-        message_pool = self.pool['mail.message']
-        msg_dict = {}
-        attachments = []
         for part in message.walk():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
@@ -109,6 +100,20 @@ class MailThread(orm.Model):
                 if filename == 'smime.p7s':
                     smime = attachment
                     attachments.append((filename, smime))
+        return (postacert, daticert, smime, attachments)
+
+    def message_parse(
+        self, cr, uid, message, save_original=False, context=None
+    ):
+        if context is None:
+            context = {}
+        if not self.is_server_pec(cr, uid, context=context):
+            return super(MailThread, self).message_parse(
+                cr, uid, message, save_original=save_original, context=context)
+        message_pool = self.pool['mail.message']
+        msg_dict = {}
+        postacert, daticert, smime, attachments = self.get_pec_attachments(
+            cr, uid, message, context=context)
         if not daticert:
             raise orm.except_orm(
                 _('Error'), _('PEC message does not contain daticert.xml'))
@@ -144,7 +149,7 @@ class MailThread(orm.Model):
             if msg_ids:
                 # I'm going to set this message as notification of the original
                 # message and remove the message_id of this message
-                # (it would duplicated)
+                # (it would be duplicated)
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
