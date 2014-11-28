@@ -114,27 +114,36 @@ class StockDdT(models.Model):
             pickings.write({'ddt_id': self.id})
         return result
 
-    # ----- Use this function to create line from external resource
-    def create_details(self, lines):
+    def get_ddt_line_values(self, seq, move_line):
+        """ get DdT line values given `seq` number and a `move_line`
+        """
+        values = {
+            'sequence': seq,
+            'ddt_id': self.id,
+            'product_id': move_line.product_id.id,
+            'name': move_line.name,
+            'product_uom_id': move_line.product_uom.id,
+            'quantity': move_line.product_uom_qty,
+        }
+        return values
+
+    def create_lines(self, move_lines):
+        """ create DdT lines
+        """
         seq = 10
         partner_id = False
-        for line in lines:
+        for move_line in move_lines:
             if not partner_id:
-                partner_id = line.picking_id.partner_id
+                partner_id = move_line.picking_id.partner_id
             # ----- Validate merge only for picking of the same partner
-            if line.picking_id.partner_id != partner_id:
+            if move_line.picking_id.partner_id != partner_id:
                 raise Warning(
                     _('Picking related partner must be the same (%s)'
-                        % line.picking_id.name))
+                        % move_line.picking_id.name))
             ddt_line = self.ddt_lines.create(
-                {'sequence': seq,
-                 'ddt_id': self.id,
-                 'product_id': line.product_id.id,
-                 'name': line.name,
-                 'product_uom_id': line.product_uom.id,
-                 'quantity': line.product_uom_qty,
-                 })
-            line.write({'ddt_line_id': ddt_line.id})
+                self.get_ddt_line_values(seq, move_line)
+            )
+            move_line.write({'ddt_line_id': ddt_line.id})
             seq += 10
 
     @api.one
@@ -142,8 +151,8 @@ class StockDdT(models.Model):
         self.ddt_lines.unlink()
         move_lines = []
         for picking in self.picking_ids:
-            move_lines += list(picking.move_lines)
-        self.create_details(move_lines)
+            move_lines.extend(picking.move_lines)
+        self.create_lines(move_lines)
 
     @api.multi
     def set_number(self):

@@ -20,18 +20,21 @@
 ##############################################################################
 
 
-from openerp import fields, models, api
+from openerp import fields
+from openerp import models
+from openerp import api
 
 
-class ddt_from_pickings(models.TransientModel):
+class DdTFromPickings(models.TransientModel):
 
     _name = "ddt.from.pickings"
 
     def _get_move_ids(self):
-        return self.env['stock.move'].search(
-            [('picking_id', 'in', self.env.context['active_ids']),
-             ('ddt_line_id', '=', False),
-             ])
+        search_args = [
+            ('picking_id', 'in', self.env.context['active_ids']),
+            ('ddt_line_id', '=', False),
+        ]
+        return self.env['stock.move'].search(search_args)
 
     def _get_picking_ids(self):
         return self.env['stock.picking'].browse(self.env.context['active_ids'])
@@ -40,21 +43,29 @@ class ddt_from_pickings(models.TransientModel):
     move_ids = fields.Many2many('stock.move', default=_get_move_ids)
 
     @api.multi
-    def create_ddt(self):
-        wizard = self[0]
+    def get_ddt_values(self):
         picking_ids = self.env.context['active_ids']
         first_picking = self.env['stock.picking'].browse(picking_ids[0])
-        ddt = self.env['stock.ddt'].create({
-            'partner_id':
-            first_picking.partner_id and first_picking.partner_id.id or False,
+        partner_id = first_picking.partner_id and \
+            first_picking.partner_id.id or False
+        values = {
+            'partner_id': partner_id,
             'picking_ids': [(6, 0, picking_ids)],
-            })
-        ddt.create_details(wizard.move_ids)
+        }
+        return values
+
+    @api.multi
+    def create_ddt(self):
+        wizard = self[0]
+        ddt = self.env['stock.ddt'].create(self.get_ddt_values())
+        ddt.create_lines(wizard.move_ids)
         # ----- Show new ddt
         ir_model_data = self.env['ir.model.data']
-        form_res = ir_model_data.get_object_reference('l10n_it_ddt', 'stock_ddt_form')
+        form_res = ir_model_data.get_object_reference('l10n_it_ddt',
+                                                      'stock_ddt_form')
         form_id = form_res and form_res[1] or False
-        tree_res = ir_model_data.get_object_reference('l10n_it_ddt', 'stock_ddt_tree')
+        tree_res = ir_model_data.get_object_reference('l10n_it_ddt',
+                                                      'stock_ddt_tree')
         tree_id = tree_res and tree_res[1] or False
         return {
             'name': 'DdT',
