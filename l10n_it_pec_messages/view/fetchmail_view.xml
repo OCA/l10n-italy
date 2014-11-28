@@ -8,9 +8,12 @@
         <field name="priority" eval="1"/>
         <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
         <field name="arch" type="xml">
-        <field name="date" position="after" >
-            <field name="pec" />
-        </field>
+            <field name="date" position="after" >
+                <field name="pec" />
+            </field>
+            <field name="original" position="attributes">
+                <attribute name="attrs">{'invisible': [('pec','=',True)]}</attribute>
+            </field>
         </field>
     </record>
 </data>
