@@ -13,5 +13,30 @@
             </field>
         </record>
 
+        <record id="view_partner_pec_tree" model="ir.ui.view">
+            <field name="name">res.partner.pec.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="pec_mail" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="res_partner_kanban_view">
+            <field name="name">res.partner.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+            </field>
+                 <field name="pec_mail"/>
+                  <t t-extend="kanban-box">
+                            <t t-jquery="div.oe_kanban_partner_links.ul" t-operation="inside" >
+                                <li t-if="record.pec_mail.raw_value"><field name="pec_mail"/></a></li>
+                            </t>
+                    </t>
+            </field>
+        </record>
+
     </data>
 </openerp>
