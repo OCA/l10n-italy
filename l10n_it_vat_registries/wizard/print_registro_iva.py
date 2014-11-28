@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp import models, fields, api, _
 
@@ -38,13 +38,15 @@ class wizard_registro_iva(models.TransientModel):
         'period_id',
         'registro_id',
         string='Periods',
+        default=_get_period,
         help='Select periods you want retrieve documents from',
         required=True)
     type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
         ('corrispettivi', 'Corrispettivi'),
-        ], 'Layout', required=True)
+        ], 'Layout', required=True,
+        default='customer')
     journal_ids = fields.Many2many(
         'account.journal',
         'registro_iva_journals_rel',
@@ -55,19 +57,14 @@ class wizard_registro_iva(models.TransientModel):
         required=True)
     tax_sign = fields.Float(
         string='Tax amount sign',
+        default=1.0,
         help="Use -1 you have negative tax \
         amounts and you want to print them prositive")
     message = fields.Char(string='Message', size=64, readonly=True)
     fiscal_page_base = fields.Integer(
         string='Last printed page',
+        default=0,
         required=True)
-
-    _defaults = {
-        'type': 'customer',
-        'period_ids': _get_period,
-        'tax_sign': 1.0,
-        'fiscal_page_base': 0,
-        }
 
     @api.one
     def print_registro(self):
