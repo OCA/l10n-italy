@@ -20,7 +20,8 @@
 ##############################################################################
 
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
+from openerp.osv import fields
 
 
 class res_partner(orm.Model):
@@ -38,4 +39,4 @@ class res_partner(orm.Model):
         'transportation_method_id': fields.many2one(
             'stock.picking.transportation_method',
             'Method of Transportation'),
-        }
+    }

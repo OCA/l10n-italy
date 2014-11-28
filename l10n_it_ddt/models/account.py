@@ -20,7 +20,8 @@
 ##############################################################################
 
 
-from openerp.osv import orm, fields
+from openerp.osv import fields
+from openerp.osv import orm
 
 
 class account_invoice(orm.Model):
@@ -39,7 +40,7 @@ class account_invoice(orm.Model):
             'stock.picking.transportation_method',
             'Method of Transportation'),
         'parcels': fields.integer('Number of Packages'),
-        }
+    }
 
     def onchange_partner_id(
             self, cr, uid, ids, type, partner_id, date_invoice=False,
@@ -50,14 +51,10 @@ class account_invoice(orm.Model):
             partner_bank_id, company_id, context)
         if partner_id:
             partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
-            result['value'][
-                'carriage_condition_id'] = partner.carriage_condition_id.id
-            result['value'][
-                'goods_description_id'] = partner.goods_description_id.id
-            result['value'][
-                'transportation_reason_id'
-                ] = partner.transportation_reason_id.id
-            result['value'][
-                'transportation_method_id'
-                ] = partner.transportation_method_id.id
+            for k in ('carriage_condition_id',
+                      'goods_description_id',
+                      'transportation_reason_id',
+                      'transportation_method_id'):
+                value = getattr(partner, k)
+                result['value'][k] = value.id
         return result

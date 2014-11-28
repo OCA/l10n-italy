@@ -19,7 +19,8 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import fields
+from openerp import models
 
 
 class ProcurementGroup(models.Model):
