@@ -82,7 +82,7 @@ class wizard_registro_iva(models.TransientModel):
                  ('name', '=', 'wizard_registro_iva')])
             resource_id = obj_model_data.read(
                 self._cr,
-                self.env,
+                self.env.user,
                 model_data_ids,
                 fields=['res_id'])[0]['res_id']
             return {
