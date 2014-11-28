@@ -96,10 +96,9 @@ class MailThread(orm.Model):
                     postacert = attachment
                 if filename == 'daticert.xml':
                     daticert = attachment
-                    attachments.append((filename, daticert))
                 if filename == 'smime.p7s':
                     smime = attachment
-                    attachments.append((filename, smime))
+                attachments.append((filename, smime))
         return (postacert, daticert, smime, attachments)
 
     def message_parse(
@@ -125,7 +124,7 @@ class MailThread(orm.Model):
                     _('Error'),
                     _('PEC message does not contain postacert.eml'))
             msg_dict = super(MailThread, self).message_parse(
-                cr, uid, postacert, save_original=True,
+                cr, uid, postacert, save_original=save_original,
                 context=context)
         else:
             msg_dict = super(MailThread, self).message_parse(
