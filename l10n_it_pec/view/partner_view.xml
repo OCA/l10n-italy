@@ -33,7 +33,7 @@
                  <field name="pec_mail"/>
                 </field>
                   <xpath expr="//div[contains(@class, 'oe_kanban_details')]/ul" position="inside">
-                                <li t-if="record.pec_mail.raw_value"><field name="pec_mail"/></li>
+                                <li t-if="record.pec_mail.raw_value"><b>PEC: </b><a t-attf-href="mailto:#{record.pec_mail.raw_value}"><field name="pec_mail"/></a></li>
                    </xpath>
             </field>
         </record>
