@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <form string="Tax Journal" version="7.0">
                     <group>
-                        <field name="type"/>
+                        <field name="type" on_change="on_type_changed(type)"/>
                         <field name="tax_sign"/>
                         <field name="fiscal_page_base"/>
                         <separator string="Periods" colspan="4"/>
