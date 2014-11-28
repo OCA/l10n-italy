@@ -19,7 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import fields
+from openerp import models
+from openerp import api
 
 
 class SaleOrder(models.Model):
@@ -99,7 +101,7 @@ class SaleOrder(models.Model):
                     'transportation_method_id':
                     partner.transportation_method_id.id,
                     'parcels': order.parcels,
-                    })
+                })
         return True
 
     def _prepare_procurement_group(self, cr, uid, order, context=None):

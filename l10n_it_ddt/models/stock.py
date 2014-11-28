@@ -19,8 +19,10 @@
 #
 ##############################################################################
 
-
-from openerp import api, models, fields, _
+from openerp import fields
+from openerp import models
+from openerp import api
+from openerp import _
 from openerp.exceptions import Warning
 
 
@@ -103,7 +105,7 @@ class StockDdT(models.Model):
          ('cancelled', 'Cancelled')],
         string='State',
         default='draft'
-        )
+    )
 
     @api.multi
     def write(self, values):
@@ -160,7 +162,7 @@ class StockDdT(models.Model):
             if not ddt.name:
                 ddt.write({
                     'name': ddt.sequence.get(ddt.sequence.code),
-                    })
+                })
 
     @api.multi
     def action_confirm(self):
@@ -235,7 +237,7 @@ class StockPicking(models.Model):
                 picking.transportation_method_id and
                 picking.transportation_method_id.id,
                 'parcels': picking.parcels,
-                })
+            })
         return res
 
 
