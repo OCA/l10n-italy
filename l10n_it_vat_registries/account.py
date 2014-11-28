@@ -19,7 +19,7 @@
 #
 #
 
-from openerp import models, fields, api, _
+from openerp import models, fields
 
 class account_tax_code(models.Model):
     _inherit = "account.tax.code"
