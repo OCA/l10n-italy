@@ -120,10 +120,7 @@ account_tax()
 
 
 class account_invoice_tax(osv.osv):
-
-    _inherit = "account.invoice.tax"
-
-    '''
+    """
     tax_grouped:
 
     {(False, 21, 132): {'account_id': 132,
@@ -159,7 +156,9 @@ class account_invoice_tax(osv.osv):
                 'sequence': 1,
                 'tax_amount': 24.71,
                 'tax_code_id': 26}}
-    '''
+    """
+
+    _inherit = "account.invoice.tax"
 
     def tax_difference(self, cr, uid, cur, tax_grouped):
         real_total = 0
