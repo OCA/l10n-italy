@@ -14,6 +14,11 @@
             <field name="original" position="attributes">
                 <attribute name="attrs">{'invisible': [('pec','=',True)]}</attribute>
             </field>
+            <notebook position="inside">
+                <page string="Configure allowed users">
+                     <field name="user_ids" />
+                </page>
+            </notebook>
         </field>
     </record>
 </data>

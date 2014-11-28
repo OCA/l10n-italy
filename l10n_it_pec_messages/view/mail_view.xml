@@ -32,6 +32,7 @@
                   ('server_id.pec','=',True),
                   ('main_msg_delivery_message_ids','=',False),
                   ('main_msg_reception_message_ids','=',False),
+                  ('server_id.user_ids','in',uid),
                 ],
             }&quot;"/>
         </record>

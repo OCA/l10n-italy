@@ -22,4 +22,15 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
-from openerp.osv import orm
+from openerp.osv import fields, orm
+
+
+class res_users(orm.Model):
+    _inherit = 'res.users'
+
+    _columns = {
+        'server_ids': fields.many2many(
+            'fetchmail.server', 'server_user_rel',
+            'user_id', 'server_id',
+            'Allow users to use servers'),
+    }

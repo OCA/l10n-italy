@@ -22,13 +22,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
-from openerp.osv import orm
+from openerp.osv import fields, orm
 
 
 class ir_mail_server(orm.Model):
     """Represents an SMTP server, able to send
         outgoing emails, with SSL and TLS capabilities."""
-    _inherith = "ir.mail_server"
+    _inherit = "ir.mail_server"
 
     _columns = {
         'in_server_rel':  fields.many2one(
@@ -38,3 +38,7 @@ class ir_mail_server(orm.Model):
             "Pec Server",
             help="Check if this server is PEC"),
     }
+    _sql_constraints = [
+        ('incomingserver_name_unique', 'unique(name,in_server_rel)',
+         'Incoming Server already in use'),
+        ]

@@ -22,3 +22,5 @@ from . import mail_message
 from . import mail_thread
 from . import fetchmail
 from . import res_partner
+from . import ir_mail_server
+from . import res_users
