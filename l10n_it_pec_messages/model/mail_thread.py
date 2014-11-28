@@ -29,6 +29,7 @@ from openerp.addons.mail.mail_message import decode
 from openerp.osv import orm
 from openerp.tools.translate import _
 import xml.etree.ElementTree as ET
+from openerp import tools
 
 
 class MailThread(orm.Model):
@@ -153,3 +154,26 @@ class MailThread(orm.Model):
         msg_dict['pec_msg_id'] = daticert_dict.get('identificativo')
         msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
+
+    def _message_find_partners(
+        self, cr, uid, message, header_fields=['From'], context=None
+    ):
+        """
+        override to search by pec_mail field too. See l10n_it_pec module
+        """
+
+        res = super(MailThread, self)._message_find_partners(
+            cr, uid, message, header_fields=header_fields, context=context)
+        partner_obj = self.pool.get('res.partner')
+        s = ', '.join([
+            decode(message.get(h)) for h in header_fields if message.get(h)])
+        for email_address in tools.email_split(s):
+            partner_ids = partner_obj.search(
+                cr, uid, [('pec_mail', '=ilike', email_address)],
+                context=context)
+            if len(partner_ids) > 1:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Too many partners with PEC mail %s') % email_address)
+            res += partner_ids
+        return res
