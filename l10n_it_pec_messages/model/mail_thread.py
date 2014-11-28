@@ -60,7 +60,6 @@ class MailThread(orm.Model):
         return msg_dict
 
     def get_pec_attachments(self, cr, uid, message, context=None):
-        attachments = []
         postacert = False
         daticert = False
         smime = False
@@ -98,8 +97,7 @@ class MailThread(orm.Model):
                     daticert = attachment
                 if filename == 'smime.p7s':
                     smime = attachment
-                attachments.append((filename, smime))
-        return (postacert, daticert, smime, attachments)
+        return (postacert, daticert, smime)
 
     def message_parse(
         self, cr, uid, message, save_original=False, context=None
@@ -111,7 +109,7 @@ class MailThread(orm.Model):
                 cr, uid, message, save_original=save_original, context=context)
         message_pool = self.pool['mail.message']
         msg_dict = {}
-        postacert, daticert, smime, attachments = self.get_pec_attachments(
+        postacert, daticert, smime = self.get_pec_attachments(
             cr, uid, message, context=context)
         if not daticert:
             raise orm.except_orm(
@@ -124,11 +122,13 @@ class MailThread(orm.Model):
                     _('Error'),
                     _('PEC message does not contain postacert.eml'))
             msg_dict = super(MailThread, self).message_parse(
-                cr, uid, postacert, save_original=save_original,
+                cr, uid, postacert, save_original=False,
                 context=context)
+            msg_dict['attachments'] += [
+                ('original_email.eml', message.as_string())]
         else:
             msg_dict = super(MailThread, self).message_parse(
-                cr, uid, message, save_original=save_original,
+                cr, uid, message, save_original=True,
                 context=context)
         msg_dict.update(daticert_dict)
         if (
@@ -152,9 +152,6 @@ class MailThread(orm.Model):
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
-        else:
-            if attachments:
-                msg_dict['attachments'] += attachments
         msg_dict['server_id'] = context.get('fetchmail_server_id')
         return msg_dict
 
