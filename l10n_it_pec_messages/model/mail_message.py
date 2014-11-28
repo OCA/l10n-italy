@@ -54,13 +54,15 @@ class MailMessage(orm.Model):
         'reception_message_id': fields.many2one(
             'mail.message', 'Reception Message', readonly=True),
         'main_msg_delivery_message_ids': fields.one2many(
-            'mail.message', 'delivery_message_id', 'Main messages', readonly=True),
+            'mail.message', 'delivery_message_id',
+            'Main messages',  readonly=True),
         'main_msg_reception_message_ids': fields.one2many(
-            'mail.message', 'reception_message_id', 'Main messages', readonly=True),
+            'mail.message', 'reception_message_id',
+            'Main messages', readonly=True),
     }
 
-    def get_datafrom_daticertxml(self,daticertxml,contex=None):
-        ret={}
+    def get_datafrom_daticertxml(self, daticertxml, contex=None):
+        ret = {}
         content = self.getFile(daticertxml).decode('base64')
         daticert = ElementTree(fromstring(content))
 
