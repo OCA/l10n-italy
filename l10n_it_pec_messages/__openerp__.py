@@ -49,6 +49,8 @@ It also correctly parses the mail attachments.
         "security/mail_data.xml",
         "view/fetchmail_view.xml",
         "view/mail_view.xml",
+        "view/ir_mail_server.xml",
+        "view/res_users.xml",
         "security/ir.model.access.csv",
     ],
     'demo_xml': [],
