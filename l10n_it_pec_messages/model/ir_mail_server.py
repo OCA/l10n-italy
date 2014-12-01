@@ -39,6 +39,6 @@ class ir_mail_server(orm.Model):
             help="Check if this server is PEC"),
     }
     _sql_constraints = [
-        ('incomingserver_name_unique', 'unique(name,in_server_rel)',
+        ('incomingserver_name_unique', 'unique(in_server_id)',
          'Incoming Server already in use'),
         ]
