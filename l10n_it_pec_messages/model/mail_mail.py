@@ -30,6 +30,10 @@ class MailMail(orm.Model):
     _inherit = "mail.mail"
 
     def create(self, cr, uid, values, context=None):
+        """
+        when replying to a PEC message, use the linked SMTP server and
+        SMTP user
+        """
         res = super(MailMail, self).create(cr, uid, values, context=context)
         mail = self.browse(cr, uid, res, context=context)
         if (
