@@ -22,21 +22,33 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
-from openerp.osv import fields, orm
+
+from openerp.osv import orm
 
 
-class ir_mail_server(orm.Model):
-    _inherit = "ir.mail_server"
+class MailMail(orm.Model):
+    _inherit = "mail.mail"
 
-    _columns = {
-        'in_server_id':  fields.many2one(
-            'fetchmail.server', 'Incoming PEC server',
-            domain=[('pec', '=', True)]),
-        'pec': fields.boolean(
-            "Pec Server",
-            help="Check if this server is PEC"),
-    }
-    _sql_constraints = [
-        ('incomingserver_name_unique', 'unique(in_server_id)',
-         'Incoming Server already in use'),
-        ]
+    def create(self, cr, uid, values, context=None):
+        """
+        when replying to a PEC message, use the linked SMTP server and
+        SMTP user
+        """
+        res = super(MailMail, self).create(cr, uid, values, context=context)
+        mail = self.browse(cr, uid, res, context=context)
+        if (
+            mail.parent_id and mail.parent_id.server_id
+            and mail.parent_id.server_id.pec
+        ):
+            server_pool = self.pool['ir.mail_server']
+            server_ids = server_pool.search(
+                cr, uid, [('in_server_id', '=', mail.parent_id.server_id.id)],
+                context=context)
+            if server_ids:
+                server = server_pool.browse(
+                    cr, uid, server_ids[0], context=context)
+                mail.write({
+                    'email_from': server.smtp_user,
+                    'mail_server_id': server.id,
+                    }, context=context)
+        return res
