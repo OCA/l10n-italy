@@ -97,7 +97,7 @@ class StockDdT(models.Model):
         'stock.picking.transportation_method',
         'Method of Transportation')
     carrier_id = fields.Many2one(
-        'res.partner', string='Carrier', required=True)
+        'res.partner', string='Carrier')
     parcels = fields.Integer()
     state = fields.Selection(
         [('draft', 'Draft'),
