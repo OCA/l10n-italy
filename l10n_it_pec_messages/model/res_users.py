@@ -29,8 +29,8 @@ class res_users(orm.Model):
     _inherit = 'res.users'
 
     _columns = {
-        'server_ids': fields.many2many(
-            'fetchmail.server', 'server_user_rel',
+        'allowed_server_ids': fields.many2many(
+            'fetchmail.server', 'fetchmail_server_user_rel',
             'user_id', 'server_id',
-            'Allow users to use servers'),
+            'Fetchmail servers allowed to be used'),
     }
