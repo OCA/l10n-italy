@@ -27,10 +27,11 @@ class wizard_registro_iva(models.TransientModel):
     def _get_period(self):
         ctx = dict(self._context or {}, account_period_prefer_normal=True)
         period_ids = self.env[
-            'account.period'].find(self._cr, self.env.user, context=ctx)
+            'account.period'].with_context(context=ctx).find()
         return period_ids
 
     _name = "wizard.registro.iva"
+    _rec_name = "type"
 
     period_ids = fields.Many2many(
         'account.period',
@@ -68,8 +69,8 @@ class wizard_registro_iva(models.TransientModel):
 
     @api.one
     def print_registro(self):
-        move_obj = self.env('account.move')
-        obj_model_data = self.env('ir.model.data')
+        move_obj = self.env['account.move']
+        obj_model_data = self.env['ir.model.data']
         move_ids = move_obj.search([
             ('journal_id', 'in', [j.id for j in self.journal_ids]),
             ('period_id', 'in', [p.id for p in self.period_ids]),
@@ -80,18 +81,13 @@ class wizard_registro_iva(models.TransientModel):
             model_data_ids = obj_model_data.search(
                 [('model', '=', 'ir.ui.view'),
                  ('name', '=', 'wizard_registro_iva')])
-            resource_id = obj_model_data.read(
-                self._cr,
-                self.env.user,
-                model_data_ids,
-                fields=['res_id'])[0]['res_id']
             return {
                 'name': _('No documents'),
                 'res_id': self.id,
                 'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'wizard.registro.iva',
-                'views': [(resource_id, 'form')],
+                'views': [(model_data_ids.res_id, 'form')],
                 'context': self._context,
                 'type': 'ir.actions.act_window',
                 'target': 'new',
