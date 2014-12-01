@@ -37,5 +37,5 @@ class FetchmailServer(orm.Model):
         'user_ids': fields.many2many(
             'res.users', 'fetchmail_server_user_rel',
             'server_id', 'user_id',
-            'Allowed users to use this server'),
+            'Users allowed to use this server'),
     }

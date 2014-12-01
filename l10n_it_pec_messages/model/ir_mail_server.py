@@ -26,8 +26,6 @@ from openerp.osv import fields, orm
 
 
 class ir_mail_server(orm.Model):
-    """Represents an SMTP server, able to send
-        outgoing emails, with SSL and TLS capabilities."""
     _inherit = "ir.mail_server"
 
     _columns = {
