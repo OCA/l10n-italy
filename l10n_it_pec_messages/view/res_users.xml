@@ -8,8 +8,8 @@
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="Configure servers">
-                    <field name="server_ids"  />
+                <page string="Fetchmail servers">
+                    <field name="allowed_server_ids"  />
                 </page>
             </notebook>
         </field>
