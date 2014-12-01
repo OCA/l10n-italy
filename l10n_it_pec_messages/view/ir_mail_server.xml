@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <field name="sequence" position="after" >
                     <field name="pec" />
-                    <field name="in_server_rel" attrs="{'required':[('pec', '=', True)]}" />
+                    <field name="in_server_id" attrs="{'required':[('pec', '=', True)]}" />
             </field>
         </field>
     </record>

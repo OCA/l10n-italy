@@ -35,7 +35,7 @@ class FetchmailServer(orm.Model):
             "Pec Server",
             help="Check if this server is PEC"),
         'user_ids': fields.many2many(
-            'res.users', 'server_user_rel',
+            'res.users', 'fetchmail_server_user_rel',
             'server_id', 'user_id',
-            'Allow users to use servers'),
+            'Allowed users to use this server'),
     }

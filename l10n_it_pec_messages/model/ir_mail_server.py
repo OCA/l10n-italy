@@ -31,7 +31,7 @@ class ir_mail_server(orm.Model):
     _inherit = "ir.mail_server"
 
     _columns = {
-        'in_server_rel':  fields.many2one(
+        'in_server_id':  fields.many2one(
             'fetchmail.server', 'Incoming PEC server',
             domain=[('pec', '=', True)]),
         'pec': fields.boolean(
