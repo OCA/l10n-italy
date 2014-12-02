@@ -79,8 +79,10 @@
                         <page string="Invoice Lines">
                             <field name="invoice_line" nolabel="1" widget="one2many_list" context="{'type': type}">
                                 <tree string="Invoice Lines" editable="bottom">
+                                    <!-- field name="product_id"
+                                        on_change="product_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, context, parent.company_id)"/ -->
                                     <field name="product_id"
-                                        on_change="product_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, context, parent.company_id)"/>
+                                        on_change="product_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, parent.company_id)"/>
                                     <field name="name"/>
                                     <field name="company_id" invisible="1"/>
                                     <field name="account_id" groups="account.group_account_user"
@@ -89,8 +91,10 @@
                                     <field name="account_analytic_id" groups="analytic.group_analytic_accounting"
                                         domain="[('type','!=','view'), ('company_id', '=', parent.company_id)]"/>
                                     <field name="quantity"/>
+                                    <!-- field name="uos_id" groups="product.group_uom"
+                                        on_change="uos_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, context, parent.company_id)"/ -->
                                     <field name="uos_id" groups="product.group_uom"
-                                        on_change="uos_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, context, parent.company_id)"/>
+                                        on_change="uos_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id,  parent.company_id)"/>
                                     <field name="price_unit"/>
                                     <field name="discount" groups="sale.group_discount_per_so_line"/>
                                     <field name="invoice_line_tax_id" widget="many2many_tags" context="{'type':parent.type}"
@@ -178,7 +182,7 @@
             <field name="inherit_id" ref="account.invoice_form"></field>
             <field name="arch" type="xml">
                 <field name="company_id" position="replace">
-                    <field name="company_id" on_change="onchange_company_id(company_id,partner_id,type,invoice_line,currency_id,context)" widget="selection" groups="base.group_multi_company"/>
+                    <field name="company_id" on_change="onchange_company_id(company_id,partner_id,type,invoice_line,currency_id)" widget="selection" groups="base.group_multi_company"/>
                 </field>
             </field>
         </record>
@@ -226,7 +230,7 @@
             <field name="view_mode">tree,form,calendar,graph</field>
             <field eval="False" name="view_id"/>
             <field name="domain">[('type','=','out_invoice'),('corrispettivo','=',True)]</field>
-            <field name="context" eval="{'default_type':'out_invoice', 'dafault_journal_type': 'sale', 'default_corrispettivo': True, 'default_partner_id':ref('partner_corrispettivi')}"/>
+            <field name="context" eval="{'default_type':'out_invoice', 'default_journal_type': 'sale', 'default_corrispettivo': True, 'default_partner_id':ref('partner_corrispettivi')}"/>
             <field name="search_view_id" ref="view_account_corrispettivi_filter"/>
         </record>
 
