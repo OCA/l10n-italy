@@ -22,6 +22,7 @@
 from openerp import models, fields, api, _
 from openerp.exceptions import except_orm
 import datetime
+from codicefiscale import build
 
 
 class wizard_compute_fc(models.TransientModel):
@@ -54,91 +55,6 @@ class wizard_compute_fc(models.TransientModel):
             res['domain'] = {'birth_province': []}
         res['value'] = {'birth_province': ''}
         return res
-
-    def _codicefiscale(self, cognome, nome, giornonascita, mesenascita,
-                       annonascita, sesso, cittanascita):
-
-        MESI = 'ABCDEHLMPRST'
-        CONSONANTI = 'BCDFGHJKLMNPQRSTVWXYZ'
-        VOCALI = 'AEIOU'
-        LETTERE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-        REGOLECONTROLLO = {
-            'A': (0, 1), 'B': (1, 0), 'C': (2, 5),
-            'D': (3, 7), 'E': (4, 9), 'F': (5, 13),
-            'G': (6, 15), 'H': (7, 17), 'I': (8, 19),
-            'J': (9, 21), 'K': (10, 2), 'L': (11, 4),
-            'M': (12, 18), 'N': (13, 20), 'O': (14, 11),
-            'P': (15, 3), 'Q': (16, 6), 'R': (17, 8),
-            'S': (18, 12), 'T': (19, 14), 'U': (20, 16),
-            'V': (21, 10), 'W': (22, 22), 'X': (23, 25),
-            'Y': (24, 24), 'Z': (25, 23),
-            '0': (0, 1), '1': (1, 0), '2': (2, 5),
-            '3': (3, 7), '4': (4, 9), '5': (5, 13),
-            '6': (6, 15), '7': (7, 17), '8': (8, 19),
-            '9': (9, 21)
-        }
-
-        def _surname(stringa):
-            """
-            Ricava, da stringa, 3 lettere in base alla convenzione dei C.F.
-            """
-            cons = [c for c in stringa if c in CONSONANTI]
-            voc = [c for c in stringa if c in VOCALI]
-            chars = cons + voc
-            if len(chars) < 3:
-                chars += ['X', 'X']
-            chars = "".join(chars[:3])
-            return chars
-
-        def _name(stringa):
-            """
-            Ricava, da stringa, 3 lettere in base alla convenzione dei C.F.
-            """
-            cons = [c for c in stringa if c in CONSONANTI]
-            voc = [c for c in stringa if c in VOCALI]
-            if len(cons) > 3:
-                cons = [cons[0]] + [cons[2]] + [cons[3]]
-            chars = cons + voc
-            if len(chars) < 3:
-                chars += ['X', 'X']
-            chars = "".join(chars[:3])
-            return chars
-
-        def _datan(giorno, mese, anno, sesso):
-            """
-            Restituisce il campo data del CF.
-            """
-            chars = "%s%s" % (anno[-2:], MESI[int(mese)-1])
-            gn = int(giorno)
-            if sesso == 'F':
-                gn += 40
-            chars = "%s%02d" % (chars, gn)
-            return chars
-
-        def _codicecontrollo(c):
-            """
-            Restituisce il codice di controllo, l'ultimo carattere del C.F.
-            """
-            sommone = 0
-            for i, car in enumerate(c):
-                j = 1 - i % 2
-                sommone += REGOLECONTROLLO[car][j]
-            resto = sommone % 26
-            return LETTERE[resto]
-
-        # Restituisce il C.F costruito sulla base degli argomenti.
-        nome = nome.upper()
-        cognome = cognome.upper()
-        sesso = sesso.upper()
-        cittanascita = cittanascita.upper()
-        chars = "%s%s%s%s" % (_surname(cognome),
-                              _name(nome),
-                              _datan(giornonascita, mesenascita, annonascita,
-                                     sesso),
-                              cittanascita)
-        chars += _codicecontrollo(chars)
-        return chars
 
     def _get_national_code(self, birth_city, birth_prov, birth_date):
         """
@@ -236,14 +152,8 @@ class wizard_compute_fc(models.TransientModel):
             if not nat_code:
                 raise except_orm(_('Error'), _('National code is missing'))
             birth_date = datetime.datetime.strptime(f.birth_date, "%Y-%m-%d")
-            CF = self._codicefiscale(
-                f.fiscalcode_surname,
-                f.fiscalcode_firstname,
-                str(birth_date.day),
-                str(birth_date.month),
-                str(birth_date.year),
-                f.sex,
-                nat_code)
+            CF = build(f.fiscalcode_surname, f.fiscalcode_firstname,
+                       birth_date, f.sex, nat_code)
             if partner.fiscalcode and partner.fiscalcode != CF:
                 raise except_orm(_('Error'), (
                     'Existing fiscal code %s is different from the computed'
