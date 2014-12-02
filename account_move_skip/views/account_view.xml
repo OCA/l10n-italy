@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+	    <record id="view_account_move_line_form_skip" model="ir.ui.view">
+            <field name="name">account.move.line.form.skip</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="skip"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
