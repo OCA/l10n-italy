@@ -88,7 +88,8 @@ class wizard_compute_fc(models.TransientModel):
             chars = cons + voc
             if len(chars) < 3:
                 chars += ['X', 'X']
-            return chars[:3]
+            chars = "".join(chars[:3])
+            return chars
 
         def _name(stringa):
             """
@@ -101,7 +102,8 @@ class wizard_compute_fc(models.TransientModel):
             chars = cons + voc
             if len(chars) < 3:
                 chars += ['X', 'X']
-            return chars[:3]
+            chars = "".join(chars[:3])
+            return chars
 
         def _datan(giorno, mese, anno, sesso):
             """
@@ -112,7 +114,7 @@ class wizard_compute_fc(models.TransientModel):
             if sesso == 'F':
                 gn += 40
             chars += list("%02d" % gn)
-            return chars
+            return "".join(chars)
 
         def _codicecontrollo(c):
             """
@@ -123,19 +125,20 @@ class wizard_compute_fc(models.TransientModel):
                 j = 1 - i % 2
                 sommone += REGOLECONTROLLO[car][j]
             resto = sommone % 26
-            return [LETTERE[resto]]
+            return LETTERE[resto]
 
         # Restituisce il C.F costruito sulla base degli argomenti.
         nome = nome.upper()
         cognome = cognome.upper()
         sesso = sesso.upper()
         cittanascita = cittanascita.upper()
-        chars = (_surname(cognome) +
-                 _name(nome) +
-                 _datan(giornonascita, mesenascita, annonascita, sesso) +
-                 list(cittanascita))
+        chars = "%s%s%s%s" % (_surname(cognome),
+                              _name(nome),
+                              _datan(giornonascita, mesenascita, annonascita,
+                                     sesso),
+                              cittanascita)
         chars += _codicecontrollo(chars)
-        return ''.join(chars)
+        return chars
 
     def _get_national_code(self, birth_city, birth_prov, birth_date):
         """
