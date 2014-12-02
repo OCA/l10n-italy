@@ -20,9 +20,9 @@
 ##############################################################################
 
 from openerp.osv import osv
-from openerp import fields
+from openerp import fields, models
 
-class corrispettivi_config_data(osv.osv_memory):
+class CorrispettiviConfigData(models.TransientModel):
     _name = 'corrispettivi.config.data'
     _inherit = 'res.config'
 
@@ -52,6 +52,3 @@ class corrispettivi_config_data(osv.osv_memory):
                 'supplier': False,
                 'corrispettivi': True,
                 })
-
-corrispettivi_config_data()
-
