@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -29,11 +29,18 @@ Functionalities:
 
 - Fiscal code computation for partner
 
+External depends:
+
+    * Python codicefiscale https://pypi.python.org/pypi/codicefiscale
+
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
+    'external_dependencies': {
+        'python': ['codicefiscale'],
+    },
     'data': [
         'view/fiscalcode_view.xml',
         'wizard/compute_fc_view.xml',
