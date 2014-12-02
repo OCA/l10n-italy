@@ -28,7 +28,9 @@ class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position'
 
     rc_tax_ids = fields.One2many(
-        'account.fiscal.position.rc.tax', string='RC Tax Mapping')
+        'account.fiscal.position.rc.tax',
+        'position_id',
+        string='RC Tax Mapping')
     rc_journal_id = fields.Many2one(
         'account.journal', string='RC Payment Journal')
     reverse_charge_vat = fields.Boolean("Reverse Charge VAT")

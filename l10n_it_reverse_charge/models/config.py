@@ -42,7 +42,7 @@ class ResCompany(models.Model):
         help="Transitory account used on reverse invoice.")
     rc_auto_invoice = fields.Boolean(
         string='RC Auto Invoice',
-        help="Automatically create the corresponding customer invoice."),
+        help="Automatically create the corresponding customer invoice.")
 
 
 class AccountConfigSettings(models.TransientModel):
