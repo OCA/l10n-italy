@@ -85,7 +85,7 @@ class StockDdT(models.Model):
     partner_id = fields.Many2one(
         'res.partner', string='Partner', required=True)
     delivery_address_id = fields.Many2one(
-        'res.partner', string='Delivery Address', required=True)
+        'res.partner', string='Delivery Address', required=False)
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', 'Carriage Condition')
     goods_description_id = fields.Many2one(
