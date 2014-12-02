@@ -21,33 +21,36 @@
 from openerp import fields, models
 from openerp.tools.translate import _
 from openerp import netsvc
+from openerp.exceptions import Warning
 
 
 class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position'
 
-    _columns = {
-        'rc_tax_ids': fields.one2many(
-            'account.fiscal.position.rc.tax', 'position_id', 'RC Tax Mapping'),
-        'rc_journal_id': fields.many2one(
-            'account.journal', 'RC Payment Journal'),
-        'reverse_charge_vat': fields.boolean("Reverse Charge VAT"),
-    }
+    rc_tax_ids = fields.One2many(
+        'account.fiscal.position.rc.tax', string='RC Tax Mapping')
+    rc_journal_id = fields.Many2one(
+        'account.journal', string='RC Payment Journal')
+    reverse_charge_vat = fields.Boolean("Reverse Charge VAT")
 
 
 class AccountFiscalPositionRCTax(models.Model):
     _name = 'account.fiscal.position.rc.tax'
     _description = 'Taxes Fiscal Position for Reverse Charge Operations'
     _rec_name = 'position_id'
-    _columns = {
-        'position_id': fields.many2one(
-            'account.fiscal.position', 'Fiscal Position', required=True,
-            ondelete='cascade'),
-        'tax_src_id': fields.many2one(
-            'account.tax', 'Tax Source', required=True),
-        'tax_dest_id': fields.many2one(
-            'account.tax', 'Replacement Tax')
-    }
+
+    position_id = fields.Many2one(
+        'account.fiscal.position',
+        string='Fiscal Position',
+        required=True,
+        ondelete='cascade')
+    tax_src_id = fields.Many2one(
+        'account.tax',
+        string='Tax Source',
+        required=True)
+    tax_dest_id = fields.Many2one(
+        'account.tax',
+        string='Replacement Tax')
 
     _sql_constraints = [
         ('tax_src_dest_uniq',
@@ -60,17 +63,16 @@ class AccountFiscalPositionRCTax(models.Model):
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    _columns = {
-        'rc_sale_invoice_id': fields.many2one(
-            'account.invoice', 'Reverse Charge Sale Invoice'
-            ),
-        'rc_purchase_invoice_id': fields.many2one(
-            'account.invoice', 'Reverse Charge Purchase Invoice',
-            ),
-        'rc_purchase_invoice_partner_id': fields.related(
-            'rc_purchase_invoice_id', 'partner_id', type='many2one',
-            relation='res.partner', string='Reverse Charge Invoice Partner'),
-    }
+    rc_sale_invoice_id = fields.Many2one(
+        'account.invoice',
+        string='Reverse Charge Sale Invoice')
+    rc_purchase_invoice_id = fields.Many2one(
+        'account.invoice',
+        string='Reverse Charge Purchase Invoice')
+    rc_purchase_invoice_partner_id = fields.Many2one(
+        'res.partner',
+        related='rc_purchase_invoice_id.partner_id',
+        string='Reverse Charge Invoice Partner')
 
     def copy(self, cr, uid, ids, default=None, context=None):
         if not context:
@@ -79,13 +81,13 @@ class AccountInvoice(models.Model):
             default = {}
         default.update({'rc_sale_invoice_id': False})
         default.update({'rc_purchase_invoice_id': False})
-        return super(account_invoice, self).copy(
+        return super(AccountInvoice, self).copy(
             cr, uid, ids, default=default, context=context)
 
     def invoice_validate(self, cr, uid, ids, context=None):
         if not context:
             context = {}
-        res = super(account_invoice, self).invoice_validate(
+        res = super(AccountInvoice, self).invoice_validate(
             cr, uid, ids, context)
 
         invoice_obj = self.pool.get('account.invoice')
@@ -105,10 +107,8 @@ class AccountInvoice(models.Model):
                         rc_account = rc_partner.property_account_receivable
                         rc_account_id = rc_account.id
                     else:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('Reverse Charge default partner not configured.')
-                            )
+                        raise Warning(
+                            _('Reverse Charge default partner not configured.'))
                     rc_invoice_line = {
                         'product_id': line.product_id.id,
                         'name': line.name,
@@ -135,14 +135,9 @@ class AccountInvoice(models.Model):
 
             if rc_invoice_lines:
                 if invoice.rc_sale_invoice_id:
-                    raise orm.except_orm(_('Error'),
-                                         _('Related sale invoice already set.')
-                                         )
+                    raise Warning(_('Related sale invoice already set.'))
                 if invoice.rc_purchase_invoice_id:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('Related purchase invoice already set.')
-                        )
+                    raise Warning(_('Related purchase invoice already set.'))
                 else:
                     invoice_data = {
                         'partner_id': rc_partner_id,
@@ -168,11 +163,9 @@ class AccountInvoice(models.Model):
                 rc_payment_journal = company.rc_payment_journal_id
                 rc_payment_sequence = rc_payment_journal.sequence_id
                 if not rc_payment_sequence and not rc_payment_sequence.active:
-                    raise osv.except_osv(_('Configuration Error !'),
-                        _('Please activate the sequence of selected journal !'))
+                    raise Warning(
+                        _('Please activate the sequence of selected journal!'))
 
-
-                
                 ## partially reconcile purchase invoice
 
                 rc_payment_move = {
@@ -195,10 +188,11 @@ class AccountInvoice(models.Model):
                     'name': invoice.number,
                     'credit': amount_tax,
                     'debit': 0.0,
-                    'account_id': rc_payment_journal.default_credit_account_id.id,
+                    'account_id': (
+                        rc_payment_journal.default_credit_account_id.id),
                     'move_id': rc_payment_move_id,
                 }
-                payment_credit_line_id = move_line_obj.create(
+                move_line_obj.create(
                     cr, uid, payment_credit_line_data, context=context)
 
                 payment_line_to_reconcile_data = {
@@ -218,7 +212,7 @@ class AccountInvoice(models.Model):
                     context=context)
 
                 ## reconcile rc invoice
-                
+
                 rc_invoice = invoice_obj.browse(
                     cr, uid, new_invoice_id, context=context)
 
@@ -231,7 +225,6 @@ class AccountInvoice(models.Model):
                     cr, uid, rc_inv_payment_move, context=context)
 
                 rc_inv_line_to_reconcile = False
-                rc_inv_line = False
                 for inv_line in rc_invoice.move_id.line_id:
                     if inv_line.debit:
                         rc_inv_line_to_reconcile = inv_line
@@ -251,10 +244,11 @@ class AccountInvoice(models.Model):
                     'name': rc_invoice.number,
                     'debit': rc_inv_line_to_reconcile.debit,
                     'credit': 0.0,
-                    'account_id': rc_payment_journal.default_credit_account_id.id,
+                    'account_id': (
+                        rc_payment_journal.default_credit_account_id.id),
                     'move_id': rc_inv_payment_move_id,
                 }
-                payment_debit_line_id = move_line_obj.create(
+                move_line_obj.create(
                     cr, uid, payment_debit_line_data, context=context)
 
                 move_line_obj.reconcile_partial(
@@ -268,15 +262,12 @@ class AccountInvoice(models.Model):
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
-    _columns = {
-        'reverse_charge_vat': fields.boolean("RC"),
-    }
+    reverse_charge_vat = fields.Boolean("RC")
 
     def onchange_tax(self, cr, uid, ids, tax, fp_id, context=None):
         if not context:
-            context={}
+            context = {}
         values = {}
-        tax_obj = self.pool.get('account.tax')
         fp_obj = self.pool.get('account.fiscal.position')
         if fp_id and tax and tax[0][2]:
             fp = fp_obj.browse(cr, uid, fp_id)
