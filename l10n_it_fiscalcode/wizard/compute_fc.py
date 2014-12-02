@@ -109,12 +109,12 @@ class wizard_compute_fc(models.TransientModel):
             """
             Restituisce il campo data del CF.
             """
-            chars = (list(anno[-2:]) + [MESI[int(mese)-1]])
+            chars = "%s%s" % (anno[-2:], MESI[int(mese)-1])
             gn = int(giorno)
             if sesso == 'F':
                 gn += 40
-            chars += list("%02d" % gn)
-            return "".join(chars)
+            chars = "%s%02d" % (chars, gn)
+            return chars
 
         def _codicecontrollo(c):
             """
