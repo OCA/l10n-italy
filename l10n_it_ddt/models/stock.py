@@ -126,6 +126,7 @@ class StockDdT(models.Model):
             'name': move_line.name,
             'product_uom_id': move_line.product_uom.id,
             'quantity': move_line.product_uom_qty,
+            'move_line_id': move_line.id
         }
         return values
 
@@ -191,6 +192,7 @@ class StockDdTLine(models.Model):
     product_id = fields.Many2one('product.product', string='Product')
     quantity = fields.Float(string='Quantity')
     product_uom_id = fields.Many2one('product.uom', string='UoM')
+    move_line_id = fields.Many2one('stock.move', ondelete="set null")
 
     _order = 'sequence asc, id'
 
