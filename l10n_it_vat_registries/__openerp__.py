@@ -35,14 +35,11 @@ http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
         'l10n_it_base',
         'account'
         ],
-    "init_xml": [
-    ],
-    "update_xml": [
+    "data": [
         'reports.xml',
         'wizard/print_registro_iva.xml',
         'account_view.xml',
     ],
-    "demo_xml": [],
     "active": False,
     "installable": True
 }
