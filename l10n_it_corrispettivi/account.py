@@ -25,8 +25,6 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     def _get_account(self):
-        #if context is None:
-        #    context = {}
         is_corrispettivo = self._context.get('corrispettivo', False)
         res = False
         if is_corrispettivo:
@@ -40,8 +38,6 @@ class AccountInvoice(models.Model):
         return res
 
     def _get_partner_id(self):
-        #if context is None:
-        #    context = {}
         is_corrispettivo = self._context.get('corrispettivo', False)
         res = False
         if is_corrispettivo:
@@ -53,17 +49,13 @@ class AccountInvoice(models.Model):
             res = partner_ids[0]
         return res
 
-    corrispettivo = fields.Boolean(string='Corrispettivo')
     #set default option on inherited field
+    corrispettivo = fields.Boolean(string='Corrispettivo')
     account_id = fields.Many2one(default=_get_account)
 
     def onchange_company_id(self, company_id, part_id, type, invoice_line, currency_id):
-        #if not context:
-        #    context={}
         journal_obj = self.env['account.journal']
         
-        #res = super(AccountInvoice, self).onchange_company_id(cr, uid, ids, company_id, part_id, type, invoice_line, currency_id)
-        #removing cr, uid and ids from the parameter list
         res = super(AccountInvoice, self).onchange_company_id(company_id, part_id, type, invoice_line, currency_id)
         is_corrispettivo = self._context.get('corrispettivo', False)
         corr_journal_ids = journal_obj.search(self._cr, self._uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
