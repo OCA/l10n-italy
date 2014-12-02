@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -38,12 +38,8 @@ class res_partner(models.Model):
     fiscalcode = fields.Char(
         'Fiscal Code', size=16, help="Italian Fiscal Code")
     individual = fields.Boolean(
-        'Individual',
+        'Individual', default=False,
         help="If checked the C.F. is referred to a Individual Person")
-
-    _defaults = {
-        'individual': False,
-    }
 
     _constraints = [
         (check_fiscalcode,
