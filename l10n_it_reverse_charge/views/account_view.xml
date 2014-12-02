@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	<record model="ir.ui.view" id="view_invoice_form_rc">
+    	     <field name="name">account.invoice.form.rc</field>
+    	     <field name="model">account.invoice</field>
+    	     <field name="inherit_id" ref="account.invoice_form"/>
+    	     <field name="arch" type="xml">
+                <field name="move_id" position="after">
+                    <field name="rc_purchase_invoice_id"
+                        domain="[('type', '=', 'in_invoice')]"
+                        context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
+                    <field name="rc_purchase_invoice_partner_id"/>
+                </field>
+    	     </field>
+    	</record>
+
+        <record model="ir.ui.view" id="view_invoice_supplier_form_rc">
+             <field name="name">account.invoice.supplier.form.rc</field>
+             <field name="model">account.invoice</field>
+             <field name="inherit_id" ref="account.invoice_supplier_form"/>
+             <field name="arch" type="xml">
+                <field name="invoice_line" position="attributes">
+                    <attribute name="context">{'partner_id': partner_id, 'price_type': context.get('price_type') or False, 'type': type, 'fiscal_position': fiscal_position}</attribute>
+                </field>
+                <field name="move_id" position="after">
+                    <field name="rc_sale_invoice_id" 
+                        domain="[('type', '=', 'out_invoice')]"
+                        context="{'form_view_ref': 'account.invoice_form'}"/>
+                </field>
+                <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="reverse_charge_vat"/>
+                </xpath>
+                <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='invoice_line_tax_id']" position="attributes">
+                    <attribute name="on_change">onchange_tax(invoice_line_tax_id, parent.fiscal_position)</attribute>
+                </xpath>
+             </field>
+        </record>
+
+        <record model="ir.ui.view" id="invoice_form_rc">
+              <field name="name">account.invoice.form.rc</field>
+              <field name="model">account.invoice.line</field>
+              <field name="inherit_id" ref="account.view_invoice_line_form"/>
+              <field name="arch" type="xml">
+                <field name="name" position="after">
+                  <group>
+                  <field name="reverse_charge_vat"/>
+                  </group>
+                </field>
+              </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_position_form_rc">
+            <field name="name">fiscal.position.form.rc</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="inherit_id" ref="account.view_account_position_form"/>
+            <field name="arch" type="xml">
+                <field name="account_ids" position="after">
+                  <div>
+                    <label for="reverse_charge_vat"/>
+                    <field name="reverse_charge_vat"/>
+                  </div>
+                  <separator string="RC Taxes Mapping"
+                    attrs="{'invisible':[('reverse_charge_vat','=',False)]}"/>
+                    <field name="rc_tax_ids" widget="one2many_list"
+                      attrs="{'invisible':[('reverse_charge_vat','=',False)],
+                           'required':[('reverse_charge_vat','=',True)]}">
+                        <tree string="Tax Mapping" editable="bottom">
+                            <field name="tax_src_id" domain="[('parent_id','=',False)]"/>
+                            <field name="tax_dest_id" domain="[('parent_id','=',False)]"/>
+                        </tree>
+                        <form string="Tax Mapping">
+                            <field name="tax_src_id" domain="[('parent_id','=',False)]"/>
+                            <field name="tax_dest_id" domain="[('parent_id','=',False)]"/>
+                        </form>
+                    </field>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_vendor_payment_form_rc">
+            <field name="name">account.voucher.payment.rc</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="writeoff_amount" position="attributes">
+                  <attribute name="on_change">onchange_writeoff_amount(line_dr_ids)</attribute>
+                </field>
+            </field>
+        </record>
+
+	</data>
+</openerp>
