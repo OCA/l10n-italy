@@ -30,12 +30,12 @@ class AccountInvoice(models.Model):
         is_corrispettivo = self._context.get('corrispettivo', False)
         res = False
         if is_corrispettivo:
-            partner_obj = partner_ids = self.pool.get('res.partner')
-            partner_ids=partner_obj.search(cr, uid, [('corrispettivi', '=', True)])
+            partner_obj = self.env['res.partner']
+            partner_ids = partner_obj.search(self._cr, self._uid, [('corrispettivi', '=', True)])
             if not partner_ids:
                 raise exceptions.except_orm(_('Error!'), 
                      _('No partner "corrispettivi" found'))
-            partner = partner_obj.browse(cr, uid, partner_ids[0])
+            partner = partner_obj.browse(self._cr, self._uid, partner_ids[0])
             res = partner.property_account_receivable.id
         return res
 
@@ -45,7 +45,7 @@ class AccountInvoice(models.Model):
         is_corrispettivo = self._context.get('corrispettivo', False)
         res = False
         if is_corrispettivo:
-            partner_obj = partner_ids = self.pool.get('res.partner')
+            partner_obj = partner_ids = self.env['res.partner']
             partner_ids=partner_obj.search(self._cr, self._uid, [('corrispettivi', '=', True)])
             if not partner_ids:
                 raise exceptions.except_orm(_('Error!'), 
@@ -60,7 +60,7 @@ class AccountInvoice(models.Model):
     def onchange_company_id(self, company_id, part_id, type, invoice_line, currency_id):
         #if not context:
         #    context={}
-        journal_obj = self.pool.get('account.journal')
+        journal_obj = self.env['account.journal']
         
         #res = super(AccountInvoice, self).onchange_company_id(cr, uid, ids, company_id, part_id, type, invoice_line, currency_id)
         #removing cr, uid and ids from the parameter list
@@ -82,12 +82,12 @@ class AccountInvoice(models.Model):
                         break
         return res
 
-    def onchange_corrispettivo(self, cr, uid, ids, corrispettivo=False):
+    def onchange_corrispettivo(self, corrispettivo=False):
         res = {}
-        user_obj = self.pool.get('res.users')
-        journal_obj = self.pool.get('account.journal') 
-        company_id = user_obj.browse(cr,uid,uid).company_id.id
-        corr_journal_ids = journal_obj.search(cr, uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
+        user_obj = self.env['res.users']
+        journal_obj = self.env['account.journal']
+        company_id = user_obj.browse(self._cr,self._uid,self._uid).company_id.id
+        corr_journal_ids = journal_obj.search(self._cr, self._uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
         if corr_journal_ids and corrispettivo:
             res = {'value': {'journal_id': corr_journal_ids[0]}}
         return res
