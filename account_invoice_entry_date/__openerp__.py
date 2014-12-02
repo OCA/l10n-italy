@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 ISA s.r.l. (<http://www.isa.it>).
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    http://www.openerp-italia.org> 
+#    Copyright (C) 2014 Associazione Odoo Italia
+#    http://www.odoo-italia.org>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,4 +19,17 @@
 #
 ##############################################################################
 
-import invoice
+{
+    'name': 'Account Invoice entry Date',
+    'version': '0.1',
+    'category': 'Generic Modules/Accounting',
+    'description': """This module allows to specify the date to be used by the\
+move created while confirming (supplier) invoice""",
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
+    'license': 'AGPL-3',
+    'depends': ['account'],
+    'data': ['views/account_view.xml'],
+    'active': False,
+    'installable': True
+}

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
         <record id="invoice_form_reg_date" model="ir.ui.view">
             <field name="name">account.invoice.form.reg_date</field>
             <field name="model">account.invoice</field>
@@ -32,8 +33,7 @@
                     <field name="registration_date"></field>
                 </field>
             </field>
-        </record>
-        
+        </record>     
         
      </data>
 </openerp>
