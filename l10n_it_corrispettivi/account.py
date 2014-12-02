@@ -23,15 +23,50 @@ from openerp import models, fields, exceptions, _
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
-    corrispettivo = fields.Boolean(string='Corrispettivo')
 
-    def onchange_company_id(self, cr, uid, ids, company_id, part_id, type, invoice_line, currency_id, context=None):
-        if not context:
-            context={}
+    def _get_account(self):
+        #if context is None:
+        #    context = {}
+        is_corrispettivo = self._context.get('corrispettivo', False)
+        res = False
+        if is_corrispettivo:
+            partner_obj = partner_ids = self.pool.get('res.partner')
+            partner_ids=partner_obj.search(cr, uid, [('corrispettivi', '=', True)])
+            if not partner_ids:
+                raise exceptions.except_orm(_('Error!'), 
+                     _('No partner "corrispettivi" found'))
+            partner = partner_obj.browse(cr, uid, partner_ids[0])
+            res = partner.property_account_receivable.id
+        return res
+
+    def _get_partner_id(self):
+        #if context is None:
+        #    context = {}
+        is_corrispettivo = self._context.get('corrispettivo', False)
+        res = False
+        if is_corrispettivo:
+            partner_obj = partner_ids = self.pool.get('res.partner')
+            partner_ids=partner_obj.search(self._cr, self._uid, [('corrispettivi', '=', True)])
+            if not partner_ids:
+                raise exceptions.except_orm(_('Error!'), 
+                     _('No partner "corrispettivi" found'))
+            res = partner_ids[0]
+        return res
+
+    corrispettivo = fields.Boolean(string='Corrispettivo')
+    #set default option on inherited field
+    account_id = fields.Many2one(default=_get_account)
+
+    def onchange_company_id(self, company_id, part_id, type, invoice_line, currency_id):
+        #if not context:
+        #    context={}
         journal_obj = self.pool.get('account.journal')
-        res = super(AccountInvoice, self).onchange_company_id(cr, uid, ids, company_id, part_id, type, invoice_line, currency_id)
-        is_corrispettivo = context.get('corrispettivo', False)
-        corr_journal_ids = journal_obj.search(cr, uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
+        
+        #res = super(AccountInvoice, self).onchange_company_id(cr, uid, ids, company_id, part_id, type, invoice_line, currency_id)
+        #removing cr, uid and ids from the parameter list
+        res = super(AccountInvoice, self).onchange_company_id(company_id, part_id, type, invoice_line, currency_id)
+        is_corrispettivo = self._context.get('corrispettivo', False)
+        corr_journal_ids = journal_obj.search(self._cr, self._uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
 
         # if it is a "corrispettivo" and the company has at least one journal "corrispettivi"
         if is_corrispettivo and corr_journal_ids:
@@ -47,37 +82,7 @@ class AccountInvoice(models.Model):
                         break
         return res
 
-
-    def _get_account(self, cr, uid, context=None):
-        if context is None:
-            context = {}
-        is_corrispettivo = context.get('corrispettivo', False)
-        res = False
-        if is_corrispettivo:
-            partner_obj = partner_ids = self.pool.get('res.partner')
-            partner_ids=partner_obj.search(cr, uid, [('corrispettivi', '=', True)])
-            if not partner_ids:
-                raise exceptions.except_orm(_('Error!'), 
-                     _('No partner "corrispettivi" found'))
-            partner = partner_obj.browse(cr, uid, partner_ids[0])
-            res = partner.property_account_receivable.id
-        return res
-
-    def _get_partner_id(self, cr, uid, context=None):
-        if context is None:
-            context = {}
-        is_corrispettivo = context.get('corrispettivo', False)
-        res = False
-        if is_corrispettivo:
-            partner_obj = partner_ids = self.pool.get('res.partner')
-            partner_ids=partner_obj.search(cr, uid, [('corrispettivi', '=', True)])
-            if not partner_ids:
-                raise exceptions.except_orm(_('Error!'), 
-                     _('No partner "corrispettivi" found'))
-            res = partner_ids[0]
-        return res
-
-    def onchange_corrispettivo(self, cr, uid, ids, corrispettivo=False, context=None):
+    def onchange_corrispettivo(self, cr, uid, ids, corrispettivo=False):
         res = {}
         user_obj = self.pool.get('res.users')
         journal_obj = self.pool.get('account.journal') 
@@ -89,7 +94,7 @@ class AccountInvoice(models.Model):
 
     _defaults = {
         'partner_id': _get_partner_id,
-        'account_id': _get_account,
+        #'account_id': _get_account,
         }
 
 class AccountJournal(models.Model):
