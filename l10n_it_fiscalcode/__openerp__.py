@@ -29,11 +29,18 @@ Functionalities:
 
 - Fiscal code computation for partner
 
+External depends:
+
+    * Python codicefiscale https://pypi.python.org/pypi/codicefiscale
+
 """,
     'author': 'Odoo Italian Community',
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
+    'external_dependencies': {
+        'python': ['codicefiscale'],
+    },
     'data': [
         'view/fiscalcode_view.xml',
         'wizard/compute_fc_view.xml',
