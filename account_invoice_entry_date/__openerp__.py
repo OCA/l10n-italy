@@ -23,7 +23,7 @@
     'name': 'Account Invoice entry Date',
     'version': '0.1',
     'category': 'Generic Modules/Accounting',
-    'description': """This module allows to specify the date to be used by the \
+    'description': """This module allows to specify the date to be used by the
 move created while confirming (supplier) invoice""",
     'author': 'Odoo Italian Community',
     'website': 'http://www.odoo-italia.org',
