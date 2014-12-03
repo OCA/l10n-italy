@@ -59,8 +59,8 @@ class AccountInvoice(models.Model):
 
             if date_invoice and reg_date:
                 if (date_invoice > reg_date):
-                    raise Warning(_("The invoice date cannot be later than the "
-                                    "date of registration!"))
+                    raise Warning(_("The invoice date cannot be later than the"
+                                    " date of registration!"))
 
             date_start = inv.registration_date or inv.date_invoice \
                 or time.strftime('%Y-%m-%d')
