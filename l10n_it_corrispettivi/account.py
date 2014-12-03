@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, exceptions, _
+from openerp import models, fields, exceptions, api, _
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
@@ -28,12 +28,11 @@ class AccountInvoice(models.Model):
         is_corrispettivo = self._context.get('corrispettivo', False)
         res = False
         if is_corrispettivo:
-            partner_obj = self.env['res.partner']
-            partner_ids = partner_obj.search(self._cr, self._uid, [('corrispettivi', '=', True)])
+            partner_ids = self.env['res.partner'].search([('corrispettivi', '=', True)])
             if not partner_ids:
                 raise exceptions.except_orm(_('Error!'), 
                      _('No partner "corrispettivi" found'))
-            partner = partner_obj.browse(self._cr, self._uid, partner_ids[0])
+            partner = self.env['res.partner'].browse(self._cr, self._uid, partner_ids[0])
             res = partner.property_account_receivable.id
         return res
 
@@ -41,8 +40,7 @@ class AccountInvoice(models.Model):
         is_corrispettivo = self._context.get('corrispettivo', False)
         res = False
         if is_corrispettivo:
-            partner_obj = partner_ids = self.env['res.partner']
-            partner_ids=partner_obj.search(self._cr, self._uid, [('corrispettivi', '=', True)])
+            partner_ids=self.env['res.partner'].search([('corrispettivi', '=', True)])
             if not partner_ids:
                 raise exceptions.except_orm(_('Error!'), 
                      _('No partner "corrispettivi" found'))
@@ -52,13 +50,13 @@ class AccountInvoice(models.Model):
     #set default option on inherited field
     corrispettivo = fields.Boolean(string='Corrispettivo')
     account_id = fields.Many2one(default=_get_account)
+    partner_id = files.Many2one(default=_get_partner_id)
 
+    @api.multi
     def onchange_company_id(self, company_id, part_id, type, invoice_line, currency_id):
-        journal_obj = self.env['account.journal']
-        
         res = super(AccountInvoice, self).onchange_company_id(company_id, part_id, type, invoice_line, currency_id)
         is_corrispettivo = self._context.get('corrispettivo', False)
-        corr_journal_ids = journal_obj.search(self._cr, self._uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
+        corr_journal_ids = self.env['account.journal'].search([('corrispettivi','=', True), ('company_id','=', company_id)])
 
         # if it is a "corrispettivo" and the company has at least one journal "corrispettivi"
         if is_corrispettivo and corr_journal_ids:
@@ -74,20 +72,14 @@ class AccountInvoice(models.Model):
                         break
         return res
 
+    @api.multi
     def onchange_corrispettivo(self, corrispettivo=False):
         res = {}
-        user_obj = self.env['res.users']
-        journal_obj = self.env['account.journal']
-        company_id = user_obj.browse(self._cr,self._uid,self._uid).company_id.id
-        corr_journal_ids = journal_obj.search(self._cr, self._uid, [('corrispettivi','=', True), ('company_id','=', company_id)])
+        company_id = self.env['res.users'].browse(self._uid).company_id.id
+        corr_journal_ids = self.env['account.journal'].search([('corrispettivi','=', True), ('company_id','=', company_id)])
         if corr_journal_ids and corrispettivo:
             res = {'value': {'journal_id': corr_journal_ids[0]}}
         return res
-
-    _defaults = {
-        'partner_id': _get_partner_id,
-        #'account_id': _get_account,
-        }
 
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
