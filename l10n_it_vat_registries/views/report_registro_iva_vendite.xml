@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="assets_backend" name="account assets" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">
+    	<link rel="stylesheet" href="/l10n_it_vat_registries/static/src/css/l10n_it_vat_registries.css"/>
+    </xpath>
+</template>
+<template id="report_registro_iva_vendite">
+<div class="page">
+    <h2>Fatture Emesse</h2>
+    <table style="width:100%; font-size: small;" cellspacing="0">
+        <thead>
+        <tr>
+            <th class="left_without_line">Data registrazione</th>
+            <th>Counter</th>
+        </tr>
+        </thead>
+        <tbody>
+        <t t-set="counter" t-value="0"/>
+        <t t-foreach="docs" t-as="object">
+        	<t t-set="counter" t-value="counter + 1"/>
+        	<t t-foreach="tax_lines(object)" t-as="line">
+              <tr>
+              	<td  t-att-class="line['index']===0 ? 'left_with_line':'left_without_line'"><span t-esc="formatLang(object.date,date=True) or '' | entity}"/></td>
+                <td class="left_with_line"><t t-esc="counter"/></td>
+              </tr>
+            </t>
+        </t>
+        </tbody>
+    </table>
+</div>
+</template>
+</data>
+</openerp>
