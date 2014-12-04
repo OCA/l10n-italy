@@ -118,9 +118,10 @@ class StockDdT(models.Model):
 
     @api.model
     def create(self, values):
-        result = super(StockDdT, self).create(values)
-        result.updateLines()
-        return result
+        ddt = super(StockDdT, self).create(values)
+        if not ddt.ddt_lines:
+            ddt.updateLines()
+        return ddt
 
     def get_ddt_line_values(self, seq, move_line):
         """ get DdT line values given `seq` number and a `move_line`
