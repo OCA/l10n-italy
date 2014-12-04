@@ -51,6 +51,10 @@ class MailThread(orm.Model):
         if 'tipo' in root.attrib:
             msg_dict['pec_type'] = root.attrib['tipo']
         for child in root:
+            if child.tag == 'intestazione':
+                for child2 in child:
+                    if child2.tag == 'mittente':
+                        msg_dict['mittente'] = child2.text
             if child.tag == 'dati':
                 for child2 in child:
                     if child2.tag == 'msgid':
@@ -152,28 +156,29 @@ class MailThread(orm.Model):
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
+        context['email_from']=daticert_dict.get('mittente')
+        author_id = self._message_find_partners_pec(
+            cr, uid, message, ['From'], context=context)
+        if author_id:
+            msg_dict['author_id'] = author_id
+        msg_dict['email_from'] = daticert_dict.get('mittente')
         msg_dict['server_id'] = context.get('fetchmail_server_id')
+
         return msg_dict
 
-    def _message_find_partners(
+    def _message_find_partners_pec(
         self, cr, uid, message, header_fields=['From'], context=None
     ):
         """
-        override to search by pec_mail field too. See l10n_it_pec module
+        create new method to search partner because
+        the data of from  field of messagase is not found
+        with _message_find_partners
         """
-
-        res = super(MailThread, self)._message_find_partners(
-            cr, uid, message, header_fields=header_fields, context=context)
+        res=False
         partner_obj = self.pool.get('res.partner')
-        s = ', '.join([
-            decode(message.get(h)) for h in header_fields if message.get(h)])
-        for email_address in tools.email_split(s):
-            partner_ids = partner_obj.search(
-                cr, uid, [('pec_mail', '=ilike', email_address)],
-                context=context)
-            if len(partner_ids) > 1:
-                raise orm.except_orm(
-                    _('Error'),
-                    _('Too many partners with PEC mail %s') % email_address)
-            res += partner_ids
+        partner_ids = partner_obj.search(
+            cr, uid, [('pec_mail', '=', context.get('email_from').strip())],
+            context=context)
+        if partner_ids:
+            res=partner_ids[0]
         return res
