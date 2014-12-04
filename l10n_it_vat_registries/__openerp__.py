@@ -39,6 +39,7 @@ http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
         'reports.xml',
         'wizard/print_registro_iva.xml',
         'account_view.xml',
+        'views/report_registro_iva_vendite.xml'
     ],
     "active": False,
     "installable": True
