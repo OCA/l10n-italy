@@ -20,6 +20,7 @@
 #
 
 from openerp import models, fields, api, _
+from openerp.exceptions import Warning
 
 class wizard_registro_iva(models.TransientModel):
 
@@ -67,48 +68,35 @@ class wizard_registro_iva(models.TransientModel):
         default=0,
         required=True)
 
-    @api.one
-    def print_registro(self):
-        move_obj = self.env['account.move']
-        obj_model_data = self.env['ir.model.data']
-        move_ids = move_obj.search([
-            ('journal_id', 'in', [j.id for j in self.journal_ids]),
-            ('period_id', 'in', [p.id for p in self.period_ids]),
+    def print_registro(self, cr, uid, ids, context=None):
+        wizard = self.browse(cr, uid, ids[0], context=context)
+        move_obj = self.pool['account.move']
+        move_ids = move_obj.search(cr, uid, [
+            ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
+            ('period_id', 'in', [p.id for p in wizard.period_ids]),
             ('state', '=', 'posted'),
             ], order='date, name')
         if not move_ids:
-            self.message = _('No documents found in the current selection')
-            model_data_ids = obj_model_data.search(
-                [('model', '=', 'ir.ui.view'),
-                 ('name', '=', 'wizard_registro_iva')])
-            return {
-                'name': _('No documents'),
-                'res_id': self.id,
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'wizard.registro.iva',
-                'views': [(model_data_ids.res_id, 'form')],
-                'context': self._context,
-                'type': 'ir.actions.act_window',
-                'target': 'new',
-            }
-        datas = {'ids': move_ids}
-        datas['model'] = 'account.move'
-        datas['fiscal_page_base'] = self.fiscal_page_base
-        datas['period_ids'] = [p.id for p in self.period_ids]
-        datas['layout'] = self.type
-        datas['tax_sign'] = self.tax_sign
-        res = {
-            'type': 'ir.actions.report.xml',
-            'datas': datas,
+            raise Warning(_('No documents found in the current selection'))
+        datas = {}
+        datas_form = {}
+        datas_form['fiscal_page_base'] = wizard.fiscal_page_base
+        datas_form['period_ids'] = [p.id for p in wizard.period_ids]
+        datas_form['tax_sign'] = wizard.tax_sign
+        report_name = ""
+        if wizard.type == 'customer':
+            report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
+        elif wizard.type == 'supplier':
+            report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
+        elif wizard.type == 'corrispettivi':
+            report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
+        datas = {
+            'ids': move_ids,
+            'model': 'account.move',
+            'form': datas_form
         }
-        if self.type == 'customer':
-            res['report_name'] = 'registro_iva_vendite'
-        elif self.type == 'supplier':
-            res.report_name = 'registro_iva_acquisti'
-        elif self.type == 'corrispettivi':
-            res['report_name'] = 'registro_iva_corrispettivi'
-        return res
+        return self.pool['report'].get_action(
+            cr, uid, [], report_name, data=datas, context=context)
 
     @api.onchange('type')
     def on_type_changed(self):

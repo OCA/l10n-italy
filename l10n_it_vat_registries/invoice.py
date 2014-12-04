@@ -20,6 +20,7 @@
 #
 
 from openerp.report import report_sxw
+from openerp.osv import osv
 from openerp import _
 import logging
 from datetime import datetime
@@ -43,8 +44,12 @@ class Parser(report_sxw.rml_parse):
                         move_line.tax_code_id.id] = True
                 res[move_line.tax_code_id.id] += (
                     move_line.tax_amount
-                    * self.localcontext['data']['tax_sign'])
+                    * self.localcontext['data']['form']['tax_sign'])
         return res
+
+    def _get_move(self, move_ids):
+        move_list = self.pool.get('account.move').browse(self.cr, self.uid, move_ids)
+        return move_list
 
     def _get_tax_lines(self, move):
         res = []
@@ -53,6 +58,7 @@ class Parser(report_sxw.rml_parse):
         # sono più codici IVA
         index = 0
         invoice = False
+        import pdb; pdb.set_trace()
         for move_line in move.line_id:
             if move_line.invoice:
                 if invoice and invoice.id != move_line.invoice.id:
@@ -105,7 +111,7 @@ class Parser(report_sxw.rml_parse):
         res = []
         res_dict = {}
         tax_code_obj = self.pool.get('account.tax.code')
-        for period_id in self.localcontext['data']['period_ids']:
+        for period_id in self.localcontext['data']['form']['period_ids']:
             for tax_code in tax_code_obj.browse(
                 self.cr, self.uid,
                 tax_code_ids, context={
@@ -116,7 +122,7 @@ class Parser(report_sxw.rml_parse):
                     res_dict[tax_code.id] = 0.0
                 res_dict[tax_code.id] += (
                     tax_code.sum_period
-                    * self.localcontext['data']['tax_sign'])
+                    * self.localcontext['data']['form']['tax_sign'])
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
@@ -142,7 +148,7 @@ class Parser(report_sxw.rml_parse):
         start_date = False
         for period in period_obj.browse(
             self.cr, self.uid,
-            self.localcontext['data']['period_ids']
+            self.localcontext['data']['form']['period_ids']
         ):
             period_start = datetime.strptime(period.date_start, '%Y-%m-%d')
             if not start_date or start_date > period_start:
@@ -154,7 +160,7 @@ class Parser(report_sxw.rml_parse):
         end_date = False
         for period in period_obj.browse(
             self.cr, self.uid,
-            self.localcontext['data']['period_ids']
+            self.localcontext['data']['form']['period_ids']
         ):
             period_end = datetime.strptime(period.date_stop, '%Y-%m-%d')
             if not end_date or end_date < period_end:
@@ -175,10 +181,17 @@ class Parser(report_sxw.rml_parse):
 
     def set_context(self, objects, data, ids, report_type=None):
         self.localcontext.update({
-            'fiscal_page_base': data.get('fiscal_page_base'),
+            'fiscal_page_base': data['form'].get('fiscal_page_base'),
         })
         return super(Parser, self).set_context(
             objects, data, ids, report_type=report_type)
+
+
+class report_registro_iva_venidte(osv.AbstractModel):
+    _name = 'report.l10n_it_vat_registries.report_registro_iva_vendite'
+    _inherit = 'report.abstract_report'
+    _template = 'l10n_it_vat_registries.report_registro_iva_vendite'
+    _wrapped_report_class = Parser
 
 report_sxw.report_sxw(
     'report.registro_iva_vendite',
