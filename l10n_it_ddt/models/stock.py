@@ -116,6 +116,12 @@ class StockDdT(models.Model):
             pickings.write({'ddt_id': self.id})
         return result
 
+    @api.model
+    def create(self, values):
+        result = super(StockDdT, self).create(values)
+        result.updateLines()
+        return result
+
     def get_ddt_line_values(self, seq, move_line):
         """ get DdT line values given `seq` number and a `move_line`
         """
