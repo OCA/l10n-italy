@@ -50,7 +50,7 @@ class AccountInvoice(models.Model):
     #set default option on inherited field
     corrispettivo = fields.Boolean(string='Corrispettivo')
     account_id = fields.Many2one(default=_get_account)
-    partner_id = files.Many2one(default=_get_partner_id)
+    partner_id = fields.Many2one(default=_get_partner_id)
 
     @api.multi
     def onchange_company_id(self, company_id, part_id, type, invoice_line, currency_id):
