@@ -34,8 +34,12 @@
                   ('main_msg_reception_message_ids','=',False),
                   ('server_id.user_ids','in',uid),
                 ],
+                'show_composer': True,
+                'is_private':True,
+                'show_compact_message': False
             }&quot;"/>
         </record>
+
         <record id="mail_pec" model="ir.ui.menu">
           <field name="name">PEC</field>
           <field name="action" ref="action_mail_pec"/>

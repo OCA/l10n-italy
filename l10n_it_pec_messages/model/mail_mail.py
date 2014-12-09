@@ -24,7 +24,7 @@
 ##############################################################################
 
 from openerp.osv import orm
-
+from email.utils import formataddr
 
 class MailMail(orm.Model):
     _inherit = "mail.mail"
@@ -51,4 +51,12 @@ class MailMail(orm.Model):
                     'email_from': server.smtp_user,
                     'mail_server_id': server.id,
                     }, context=context)
+        return res
+
+    def send_get_email_dict(self, cr, uid, mail, partner=None, context=None):
+        res = super(MailMail, self).send_get_email_dict(
+            cr, uid, mail, partner=partner, context=context)
+        if mail.mail_server_id.pec and partner:
+            email_to = [formataddr((partner.name, partner.pec_mail))]
+            res['email_to']=email_to
         return res

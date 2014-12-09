@@ -41,18 +41,21 @@ class ir_mail_server(orm.Model):
          'Incoming Server already in use'),
         ]
 
-    def send_email(self, cr, uid, message, mail_server_id=None, smtp_server=None, smtp_port=None,
-                   smtp_user=None, smtp_password=None, smtp_encryption=None, smtp_debug=False,
-                   context=None):
+    def send_email(
+        self, cr, uid, message, mail_server_id=None,
+        smtp_server=None, smtp_port=None, smtp_user=None,
+        smtp_password=None, smtp_encryption=None,
+        smtp_debug=False, context=None):
+
         if (
-            contex.has_key('pec_state') and
-            contex['pec_state']='new'
+            'pec_state' in context and
+            context['pec_state'] == 'new'
             ):
             return False
         else:
-             return super(ir_mail_server, self).send_email(
+            return super(ir_mail_server, self).send_email(
                 cr, uid, message, mail_server_id=mail_server_id,
-                smtp_server=smtp_server,smtp_port=smtp_port,
-                smtp_user=smtp_user,smtp_password=smtp_password,
-                smtp_encryption=smtp_encryption,smtp_debug=smtp_debug
+                smtp_server=smtp_server, smtp_port=smtp_port,
+                smtp_user=smtp_user, smtp_password=smtp_password,
+                smtp_encryption=smtp_encryption, smtp_debug=smtp_debug,
                 context=context)

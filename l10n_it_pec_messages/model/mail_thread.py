@@ -156,7 +156,7 @@ class MailThread(orm.Model):
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
-        context['email_from']=daticert_dict.get('mittente')
+        context['email_from'] = daticert_dict.get('mittente')
         author_id = self._message_find_partners_pec(
             cr, uid, message, ['From'], context=context)
         if author_id:
@@ -174,11 +174,29 @@ class MailThread(orm.Model):
         the data of from  field of messagase is not found
         with _message_find_partners
         """
-        res=False
+        res = False
         partner_obj = self.pool.get('res.partner')
         partner_ids = partner_obj.search(
             cr, uid, [('pec_mail', '=', context.get('email_from').strip())],
             context=context)
         if partner_ids:
-            res=partner_ids[0]
+            res = partner_ids[0]
         return res
+
+    def message_post(
+        self, cr, uid, thread_id, body='', subject=None,
+        type='notification', subtype=None, parent_id=False,
+        attachments=None, context=None, content_subtype='html',
+        **kwargs
+    ):
+        res_id = super(MailThread, self).message_post(
+            cr, uid, thread_id, body='', subject=subject, type=type,
+            subtype=subtype, parent_id=parent_id, attachments=attachments,
+            context=context, content_subtype=content_subtype, **kwargs)
+        if (
+            not subject and
+            parent_message.server_id.pec
+        ):
+            subject = "Re: %s" % parent_message.subject
+            mail_message.write(cr, uid, res_id, {'subject': subject})
+        return res_id
