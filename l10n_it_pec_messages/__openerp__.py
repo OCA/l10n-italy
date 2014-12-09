@@ -64,8 +64,12 @@ Add your user to 'PEC reader' group.
         "view/mail_view.xml",
         "view/ir_mail_server.xml",
         "view/res_users.xml",
+        "wizard/mail_compose_message_view.xml",
         "security/ir.model.access.csv",
     ],
+    'js': [
+           'static/js/mail.js',
+        ],
     'demo_xml': [],
     'test': [],
     'installable': True,
