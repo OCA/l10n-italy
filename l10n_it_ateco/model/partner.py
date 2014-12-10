@@ -88,6 +88,11 @@ class res_partner(models.Model):
     def main_category_constraint(self):
         """It is allowed only one and at least
         main ateco category for each partner"""
+
+        # check only if there is at least one ateco category
+        if len(self.ateco_category_ids) == 0:
+            return
+
         res = [i for i in self.ateco_category_ids if i.main_category is True]
         count_rs = len(res)
         if count_rs > 1:
