@@ -9,7 +9,7 @@
             <field name="groups_id" eval="[(4,ref('base.group_user'))]"/>
             <field name="arch" type="xml">
                     <field name="partner_ids" position="attributes" >
-                        <attribute name="context">{'force_pec_mail':True, 'show_pec_mail':True}</attribute>
+                        <attribute name="context">{'force_pec_mail':True, 'show_email':False}</attribute>
                     </field>
             </field>
         </record>
