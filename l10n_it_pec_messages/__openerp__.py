@@ -26,9 +26,9 @@
 {
     "name": "Pec Messages",
     "version": "1.0",
-    "author": "Odoo Italian Community",
+    "author": "Agile Business Group",
     "category": "Certified Mailing",
-    "website": "http://www.odoo-italia.org",
+    "website": "http://www.agilebg.com",
     "description": """
 Pec Messages Management
 -----------------------
@@ -52,6 +52,13 @@ Configure the 'outgoing mail server' (SMTP) used for PEC and set it as 'PEC'.
 Link the outgoing mail server to the 'incoming PEC server'.
 Add your user to 'PEC reader' group.
 
+
+Contributors
+------------
+
+ - Alessio Gerace <alessio.gerace@gmail.com>
+ - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+ - Roberto Onnis <roberto.onnis@innoviu.com>
 """,
     'images': [],
     'depends': [
