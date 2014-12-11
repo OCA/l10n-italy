@@ -54,7 +54,7 @@ class MailThread(orm.Model):
             if child.tag == 'intestazione':
                 for child2 in child:
                     if child2.tag == 'mittente':
-                        msg_dict['mittente'] = child2.text
+                        msg_dict['email_from'] = child2.text
             if child.tag == 'dati':
                 for child2 in child:
                     if child2.tag == 'msgid':
@@ -156,18 +156,16 @@ class MailThread(orm.Model):
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
                 del msg_dict['message_id']
-        context['email_from'] = daticert_dict.get('mittente')
         author_id = self._message_find_partners_pec(
-            cr, uid, message, ['From'], context=context)
+            cr, uid, message, daticert_dict.get('email_from'), context=context)
         if author_id:
             msg_dict['author_id'] = author_id
-        msg_dict['email_from'] = daticert_dict.get('mittente')
         msg_dict['server_id'] = context.get('fetchmail_server_id')
 
         return msg_dict
 
     def _message_find_partners_pec(
-        self, cr, uid, message, header_fields=['From'], context=None
+        self, cr, uid, message, email_from=False, context=None
     ):
         """
         create new method to search partner because
@@ -175,12 +173,13 @@ class MailThread(orm.Model):
         with _message_find_partners
         """
         res = False
-        partner_obj = self.pool.get('res.partner')
-        partner_ids = partner_obj.search(
-            cr, uid, [('pec_mail', '=', context.get('email_from').strip())],
-            context=context)
-        if partner_ids:
-            res = partner_ids[0]
+        if email_from:
+            partner_obj = self.pool.get('res.partner')
+            partner_ids = partner_obj.search(
+                cr, uid, [('pec_mail', '=', email_from.strip())],
+                context=context)
+            if partner_ids:
+                res = partner_ids[0]
         return res
 
     def message_post(
