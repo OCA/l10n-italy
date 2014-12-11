@@ -34,9 +34,8 @@
                   ('main_msg_reception_message_ids','=',False),
                   ('server_id.user_ids','in',uid),
                 ],
-                'show_composer': True,
-                'is_private':True,
-                'show_compact_message': False
+                'view_mailbox': True,
+                'show_compose_message': False
             }&quot;"/>
         </record>
 
@@ -44,6 +43,13 @@
           <field name="name">PEC</field>
           <field name="action" ref="action_mail_pec"/>
           <field name="parent_id" ref="mail.mail_feeds"/>
+          <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+        </record>
+
+        <record id="mail_write_pec" model="ir.ui.menu">
+          <field name="name">Scrivi PEC</field>
+          <field name="action" ref="action_email_pec_compose_message_wizard"/>
+          <field name="parent_id" ref="mail_pec"/>
           <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 </data>
