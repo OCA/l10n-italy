@@ -29,7 +29,6 @@ from openerp.addons.mail.mail_message import decode
 from openerp.osv import orm
 from openerp.tools.translate import _
 import xml.etree.ElementTree as ET
-from openerp import tools
 
 
 class MailThread(orm.Model):
@@ -181,21 +180,3 @@ class MailThread(orm.Model):
             if partner_ids:
                 res = partner_ids[0]
         return res
-
-    def message_post(
-        self, cr, uid, thread_id, body='', subject=None,
-        type='notification', subtype=None, parent_id=False,
-        attachments=None, context=None, content_subtype='html',
-        **kwargs
-    ):
-        res_id = super(MailThread, self).message_post(
-            cr, uid, thread_id, body='', subject=subject, type=type,
-            subtype=subtype, parent_id=parent_id, attachments=attachments,
-            context=context, content_subtype=content_subtype, **kwargs)
-        if (
-            not subject and
-            parent_message.server_id.pec
-        ):
-            subject = "Re: %s" % parent_message.subject
-            mail_message.write(cr, uid, res_id, {'subject': subject})
-        return res_id
