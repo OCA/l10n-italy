@@ -32,13 +32,13 @@ Funcionalities:
     'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends": ['base'],
-    "data": [
+    'depends': ['base'],
+    'data': [
         'view/partner_view.xml',
     ],
-    "qweb": [],
-    "demo": [],
-    "test": [],
-    "active": False,
+    'qweb': [],
+    'demo': [],
+    'test': [],
+    'active': False,
     'installable': True
 }
