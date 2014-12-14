@@ -11,6 +11,7 @@ virtualenv:
 install:
   - pip install requests
   - pip install unicodecsv
+  - pip install codicefiscale
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - git clone https://github.com/OCA/partner-contact -b ${VERSION} $HOME/partner-contact
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
