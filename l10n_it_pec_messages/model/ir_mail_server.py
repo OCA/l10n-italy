@@ -40,26 +40,3 @@ class ir_mail_server(orm.Model):
         ('incomingserver_name_unique', 'unique(in_server_id)',
          'Incoming Server already in use'),
         ]
-
-    def send_email(
-        self, cr, uid, message, mail_server_id=None,
-        smtp_server=None, smtp_port=None, smtp_user=None,
-        smtp_password=None, smtp_encryption=None,
-        smtp_debug=False, context=None
-    ):
-
-        if (
-            'pec_state' in context and
-            context['pec_state'] == 'new'
-        ):
-            return False
-        else:
-            if context.get('new_pec_server_id'):
-                mail_server_id = context.get('new_pec_server_id')
-
-            return super(ir_mail_server, self).send_email(
-                cr, uid, message, mail_server_id=mail_server_id,
-                smtp_server=smtp_server, smtp_port=smtp_port,
-                smtp_user=smtp_user, smtp_password=smtp_password,
-                smtp_encryption=smtp_encryption, smtp_debug=smtp_debug,
-                context=context)

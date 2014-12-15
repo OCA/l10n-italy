@@ -53,7 +53,7 @@ class mail_compose_message(osv.TransientModel):
             also have to be duplicated to avoid changing their ownership. """
         for wizard in self.browse(cr, uid, ids, context=context):
             if context.get('new_pec_mail'):
-                context['new_pec_server_id'] = wizard.server_id
+                context['new_pec_server_id'] = wizard.server_id.id
                 for partner in wizard.partner_ids:
                     if not partner.pec_mail:
                         raise osv.except_osv(

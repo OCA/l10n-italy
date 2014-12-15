@@ -38,9 +38,13 @@ class MailNotification(orm.Model):
         notify_pids = super(MailNotification, self).get_partners_to_notify(
             cr, uid, message, partners_to_notify=partners_to_notify,
             context=context)
-        if (message.server_id and message.server_id.pec) or (
-            message.parent_id and message.parent_id.server_id and
-            message.parent_id.server_id.pec
+        if (
+            (message.server_id and message.server_id.pec)
+            or
+            (message.parent_id and message.parent_id.server_id and
+            message.parent_id.server_id.pec)
+            or
+            context.get('new_pec_mail')
         ):
             for notification in message.notification_ids:
                 if notification.read:
