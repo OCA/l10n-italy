@@ -32,7 +32,7 @@ class mail_compose_message(osv.TransientModel):
     def _get_def_server(self, cr, uid, context=None):
         res = self.pool.get('fetchmail.server').search(
             cr, uid, [('user_ids','in',uid)], context=context)
-        return res[0]
+        return res and res[0] or False
 
     _columns = {
         'server_id': fields.many2one('fetchmail.server', 'Server', required=True),
