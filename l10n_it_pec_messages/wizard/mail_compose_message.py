@@ -23,22 +23,30 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import tools
+from openerp.osv import osv, fields
 
+class mail_compose_message(osv.TransientModel):
+    _inherit = 'mail.compose.message'
 
-class FetchmailServer(orm.Model):
-
-    _inherit = "fetchmail.server"
+    def _get_def_server(self, cr, uid, context=None):
+        res = self.pool.get('fetchmail.server').search(
+            cr, uid, [('user_ids','in',uid)], context=context)
+        return res[0]
 
     _columns = {
-        'pec': fields.boolean(
-            "Pec Server",
-            help="Check if this server is PEC"),
-        'user_ids': fields.many2many(
-            'res.users', 'fetchmail_server_user_rel',
-            'server_id', 'user_id',
-            'Users allowed to use this server'),
-        'out_server_id': fields.one2many(
-            'ir.mail_server', 'in_server_id',
-            'Outgoing Server',  readonly=True),
+        'server_id': fields.many2one('fetchmail.server', 'Server', required=True),
     }
+    _defaults = {
+        'server_id': _get_def_server
+    }
+
+    def send_mail(self, cr, uid, ids, context=None):
+        """ Override of send_mail to duplicate attachments linked to the email.template.
+            Indeed, basic mail.compose.message wizard duplicates attachments in mass
+            mailing mode. But in 'single post' mode, attachments of an email template
+            also have to be duplicated to avoid changing their ownership. """
+        for wizard in self.browse(cr, uid, ids, context=context):
+            if  context.get('new_pec_mail') :
+                context['new_pec_server_id']=wizard.server_id
+        return super(mail_compose_message, self).send_mail(cr, uid, ids, context=context)
