@@ -27,7 +27,7 @@
                                 and
                             </span>
                             <field name="partner_ids" widget="many2many_tags_email" placeholder="Add contacts to notify..."
-                                context="{'force_pec_mail':True, 'show_email':True}"/>
+                                context="{'force_pec_mail':True, 'show_pec_email':True}"/>
                         </div>
                         <field name="subject" placeholder="Subject..."/>
                     </group>
