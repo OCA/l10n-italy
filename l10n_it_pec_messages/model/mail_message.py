@@ -29,9 +29,22 @@ from openerp.osv import fields, orm
 class MailMessage(orm.Model):
     _inherit = "mail.message"
 
+    def _get_out_server(self, cr, uid, ids, *a):
+        res = {}
+        for id in self.browse(cr, uid, ids):
+            res[id.id] = False
+            if id.server_id:
+                if id.server_id.out_server_id:
+                    res[id.id] = id.server_id.out_server_id[0].id
+        return res
+
     _columns = {
         'server_id': fields.many2one(
             'fetchmail.server', 'Server Pec', readonly=True),
+        'out_server_id': fields.function(
+            _get_out_server, type='many2one',
+            relation='ir.mail_server',
+            string='Related Outgoing Server'),
         'pec_type': fields.selection([
             ('posta-certificata', 'Pec Mail'),
             ('accettazione', 'Reception'),
