@@ -41,8 +41,9 @@ class MailNotification(orm.Model):
         if (
             (message.server_id and message.server_id.pec)
             or
-            (message.parent_id and message.parent_id.server_id and
-            message.parent_id.server_id.pec)
+            (
+                message.parent_id and message.parent_id.server_id and
+                message.parent_id.server_id.pec)
             or
             context.get('new_pec_mail')
         ):

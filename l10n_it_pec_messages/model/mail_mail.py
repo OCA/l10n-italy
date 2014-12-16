@@ -26,6 +26,7 @@
 from openerp.osv import orm
 from email.utils import formataddr
 
+
 class MailMail(orm.Model):
     _inherit = "mail.mail"
 
@@ -37,8 +38,9 @@ class MailMail(orm.Model):
         res = super(MailMail, self).create(cr, uid, values, context=context)
         mail = self.browse(cr, uid, res, context=context)
         if (
-            (mail.parent_id and mail.parent_id.server_id
-            and mail.parent_id.server_id.pec)
+            (
+                mail.parent_id and mail.parent_id.server_id
+                and mail.parent_id.server_id.pec)
             or
             context.get('new_pec_server_id')
         ):
@@ -63,5 +65,5 @@ class MailMail(orm.Model):
             cr, uid, mail, partner=partner, context=context)
         if mail.mail_server_id.pec and partner:
             email_to = [formataddr((partner.name, partner.pec_mail))]
-            res['email_to']=email_to
+            res['email_to'] = email_to
         return res

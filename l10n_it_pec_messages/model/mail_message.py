@@ -74,10 +74,7 @@ class MailMessage(orm.Model):
             'Main messages', readonly=True),
     }
 
-    def get_datafrom_daticertxml(self, daticertxml, contex=None):
-        ret = {}
-        content = self.getFile(daticertxml).decode('base64')
-        daticert = ElementTree(fromstring(content))
+
 
     def _search(
         self, cr, uid, args, offset=0, limit=None, order=None,
