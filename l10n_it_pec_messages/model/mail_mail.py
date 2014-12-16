@@ -35,6 +35,9 @@ class MailMail(orm.Model):
         when replying to a PEC message, or sending a new PEC message,
         use the linked SMTP server and SMTP user
         """
+        mail_msg_pool = self.pool.get('mail.message')
+        if context.get('new_pec_server_id'):
+            values['type'] = 'email'
         res = super(MailMail, self).create(cr, uid, values, context=context)
         mail = self.browse(cr, uid, res, context=context)
         if (
@@ -59,8 +62,11 @@ class MailMail(orm.Model):
                     'mail_server_id': server.id,
                     'server_id': in_server_id,
                     'out_server_id': server.id,
-                     'pec_type': 'posta-certificata'
+                    'pec_type': 'posta-certificata',
                     }, context=context)
+                mail_msg_pool.write(
+                    cr, uid, mail.mail_message_id.id,
+                    {'email_from': server.smtp_user})
         return res
 
     def send_get_email_dict(self, cr, uid, mail, partner=None, context=None):
