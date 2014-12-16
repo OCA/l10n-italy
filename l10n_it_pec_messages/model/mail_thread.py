@@ -107,6 +107,8 @@ class MailThread(orm.Model):
     ):
         if context is None:
             context = {}
+        context['main_message_id'] = False
+        context['pec_type'] = False
         if not self.is_server_pec(cr, uid, context=context):
             return super(MailThread, self).message_parse(
                 cr, uid, message, save_original=save_original, context=context)
