@@ -180,4 +180,3 @@ class MailThread(orm.Model):
             if partner_ids:
                 res = partner_ids[0]
         return res
-
