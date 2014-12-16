@@ -57,6 +57,9 @@ class MailMail(orm.Model):
                 mail.write({
                     'email_from': server.smtp_user,
                     'mail_server_id': server.id,
+                    'server_id': in_server_id,
+                    'out_server_id': server.id,
+                     'pec_type': 'posta-certificata'
                     }, context=context)
         return res
 
