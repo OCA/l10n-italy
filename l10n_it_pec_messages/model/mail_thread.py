@@ -154,7 +154,7 @@ class MailThread(orm.Model):
                 # (it would be duplicated)
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
-                del msg_dict['message_id']
+            del msg_dict['message_id']
         author_id = self._message_find_partners_pec(
             cr, uid, message, daticert_dict.get('email_from'), context=context)
         if author_id:

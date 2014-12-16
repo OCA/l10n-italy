@@ -62,18 +62,12 @@ class ResPartner(orm.Model):
         if isinstance(ids, (int, long)):
             ids = [ids]
         res = []
-        if context.get('force_pec_mail'):
+        if context.get('show_pec_email'):
             for record in self.browse(cr, uid, ids, context=context):
                 name = record.name
                 if record.parent_id and not record.is_company:
                     name = "%s, %s" % (record.parent_name, name)
-                if context.get('show_address'):
-                    name = name + "\n" + self._display_address(
-                        cr, uid, record, without_company=True,
-                        context=context)
-                    name = name.replace('\n\n', '\n')
-                    name = name.replace('\n\n', '\n')
-                if context.get('show_email') and record.pec_mail:
+                if record.pec_mail:
                     name = "%s <%s>" % (name, record.pec_mail)
                 res.append((record.id, name))
             return res

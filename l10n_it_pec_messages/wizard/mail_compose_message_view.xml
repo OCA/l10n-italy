@@ -26,8 +26,8 @@
                                     attrs="{'invisible':[('model', '=', False)]}"/>
                                 and
                             </span>
-                            <field name="partner_ids" widget="many2many_tags_email" placeholder="Add contacts to notify..."
-                                context="{'force_pec_mail':True, 'show_email':True}"/>
+                            <field name="partner_ids" widget="many2many_tags" placeholder="Add contacts to notify..."
+                                context="{'show_pec_email':True}"/>
                         </div>
                         <field name="subject" placeholder="Subject..."/>
                     </group>
@@ -59,6 +59,12 @@
             <field name="act_window_id" ref="action_email_pec_compose_message_wizard"/>
         </record>
 
+        <record id="mail_write_pec" model="ir.ui.menu">
+          <field name="name">Scrivi PEC</field>
+          <field name="action" ref="action_email_pec_compose_message_wizard"/>
+          <field name="parent_id" ref="mail_pec"/>
+          <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+        </record>
 
 
     </data>
