@@ -48,7 +48,8 @@ class Parser(report_sxw.rml_parse):
         return res
 
     def _get_move(self, move_ids):
-        move_list = self.pool.get('account.move').browse(self.cr, self.uid, move_ids)
+        move_list = self.pool.get(
+            'account.move').browse(self.cr, self.uid, move_ids)
         return move_list
 
     def _get_tax_lines(self, move):
@@ -58,7 +59,6 @@ class Parser(report_sxw.rml_parse):
         # sono più codici IVA
         index = 0
         invoice = False
-        import pdb; pdb.set_trace()
         for move_line in move.line_id:
             if move_line.invoice:
                 if invoice and invoice.id != move_line.invoice.id:
@@ -166,6 +166,7 @@ class Parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
+            'get_move': self._get_move,
             'tax_lines': self._get_tax_lines,
             'tax_codes': self._get_tax_codes,
             'tax_codes_totals': self._get_tax_codes_totals,
@@ -187,6 +188,13 @@ class report_registro_iva_venidte(osv.AbstractModel):
     _name = 'report.l10n_it_vat_registries.report_registro_iva_vendite'
     _inherit = 'report.abstract_report'
     _template = 'l10n_it_vat_registries.report_registro_iva_vendite'
+    _wrapped_report_class = Parser
+
+
+class report_registro_iva_acquisti(osv.AbstractModel):
+    _name = 'report.l10n_it_vat_registries.report_registro_iva_acquisti'
+    _inherit = 'report.abstract_report'
+    _template = 'l10n_it_vat_registries.report_registro_iva_acquisti'
     _wrapped_report_class = Parser
 
 report_sxw.report_sxw(
