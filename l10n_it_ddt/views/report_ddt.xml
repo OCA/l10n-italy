@@ -2,12 +2,13 @@
 <openerp>
     <data>
 
-        <template id="report.style">
-            table.delivery_data td h6 { margin: 0; }
-            .signature { min-height: 4em; }
-        </template>
-
         <template id="delivery_data">
+
+            <style type="text/css">
+                table.delivery_data td h6 { margin: 0; }
+                .signature { min-height: 4em; }
+            </style>
+
             <table class="table table-condensed table-bordered delivery_data">
                 <tr>
                     <td>
