@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
+        <template id="report.style">
+            table.delivery_data td h6 { margin: 0; }
+            .signature { min-height: 4em; }
+        </template>
+
+        <template id="delivery_data">
+            <table class="table table-condensed table-bordered delivery_data">
+                <tr>
+                    <td>
+                        <h6>Causale del trasporto</h6>
+                        <span t-field="ddt.transportation_reason_id"></span>
+                    </td>
+                    <td>
+                        <h6>Porto</h6>
+                        <span t-field="ddt.carriage_condition_id"></span>
+                    </td>
+                    <td>
+                        <h6>Aspetto esteriore dei beni</h6>
+                        <span t-field="ddt.goods_description_id"></span>
+                    </td>
+                    <td>
+                        <h6>Peso lordo</h6>
+                    </td>
+                    <td>
+                        <h6>Peso netto</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Vettore</h6>
+                    </td>
+                    <td>
+                        <h6>Del</h6>
+                    </td>
+                    <td>
+                        <h6>Ora ritiro</h6>
+                    </td>
+                    <td>
+                        <h6>Numero colli</h6>
+                        <span t-field="ddt.parcels"></span>
+                    </td>
+                    <td>
+                        <h6>Dimensioni</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Firma vettore</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Firma conducente</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Firma destinatario</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td colspan="2"><h6>Note</h6></td>
+                </tr>
+            </table>
+        </template>
+
         <template id="report_ddt">
             <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="o">
@@ -25,6 +89,9 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <t t-call="l10n_it_ddt.delivery_data">
+                                <t t-set="ddt" t-value="o"/>
+                            </t>
                         </div>
                     </t>
                 </t>
