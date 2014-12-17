@@ -41,6 +41,10 @@ In accounting configuration you have to set
 
 You have to set the flag 'Withholding Tax' in tax codes related to
 withholding taxes
+
+Configure withholding tax like the following
+http://goo.gl/ZqWbiK
+where 260200 account is not payable
 """,
     'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
