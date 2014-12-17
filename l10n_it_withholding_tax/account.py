@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012-2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2012-2014 Agile Business Group sagl
+#    (<http://www.agilebg.com>)
+#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -23,7 +25,6 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-import decimal_precision as dp
 
 
 class res_company(orm.Model):
@@ -105,25 +106,11 @@ class account_config_settings(orm.TransientModel):
         return res
 
 
-class account_invoice(orm.Model):
-
-    def _net_pay(self, cr, uid, ids, field_name, arg, context=None):
-        res = {}
-        for invoice in self.browse(cr, uid, ids, context):
-            res[invoice.id] = invoice.amount_total - invoice.withholding_amount
-        return res
-
-    _inherit = "account.invoice"
-
+class AccountTaxCode(orm.Model):
+    _inherit = 'account.tax.code'
     _columns = {
-        'withholding_amount': fields.float(
-            'Withholding amount', digits_compute=dp.get_precision('Account'),
-            readonly=True, states={'draft': [('readonly', False)]}),
-        'has_withholding': fields.boolean(
-            'With withholding tax', readonly=True,
-            states={'draft': [('readonly', False)]}),
-        'net_pay': fields.function(_net_pay, string="Net Pay"),
-    }
+        'withholding_tax': fields.boolean('Withholding Tax'),
+        }
 
 
 class account_voucher(orm.Model):
@@ -135,34 +122,10 @@ class account_voucher(orm.Model):
             'move_id', 'Withholding Tax Entries', readonly=True),
     }
 
-    def reconcile_withholding_move(
-        self, cr, uid, invoice, wh_move, context=None
-    ):
-        line_pool = self.pool.get('account.move.line')
-        rec_ids = []
-        for inv_move_line in invoice.move_id.line_id:
-            if (
-                inv_move_line.account_id.type == 'payable'
-                and not inv_move_line.reconcile_id
-            ):
-                rec_ids.append(inv_move_line.id)
-        for wh_line in wh_move.line_id:
-            if (
-                wh_line.account_id.type == 'payable'
-                and invoice.company_id.withholding_account_id
-                and invoice.company_id.withholding_account_id.id
-                != wh_line.account_id.id
-                and not wh_line.reconcile_id
-            ):
-                rec_ids.append(wh_line.id)
-        return line_pool.reconcile_partial(
-            cr, uid, rec_ids, type='auto', context=context)
-
     def action_move_line_create(self, cr, uid, ids, context=None):
         res = super(account_voucher, self).action_move_line_create(
             cr, uid, ids, context)
         inv_pool = self.pool.get('account.invoice')
-        move_pool = self.pool.get('account.move')
         curr_pool = self.pool.get('res.currency')
         term_pool = self.pool.get('account.payment.term')
         priod_obj = self.pool.get('account.period')
@@ -172,98 +135,108 @@ class account_voucher(orm.Model):
                     cr, uid, voucher, context)
             for inv_id in amounts_by_invoice:
                 invoice = inv_pool.browse(cr, uid, inv_id, context)
-                if invoice.withholding_amount:
-                    # only for supplier payments
-                    if voucher.type != 'payment':
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('Can\'t handle withholding tax with voucher of '
-                              'type other than payment'))
-                    if not invoice.company_id.withholding_account_id:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('The company does not have an associated '
-                              'Withholding account'))
-                    if not invoice.company_id.withholding_payment_term_id:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('The company does not have an associated '
-                              'Withholding Payment Term'))
-                    if not invoice.company_id.withholding_journal_id:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('The company does not have an associated '
-                              'Withholding journal'))
-                    if not invoice.company_id.authority_partner_id:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('The company does not have an associated Tax '
-                              'Authority partner'))
-                    # compute the new amount proportionally to paid amount
-                    new_line_amount = curr_pool.round(
-                        cr, uid, voucher.company_id.currency_id,
-                        ((
-                            amounts_by_invoice[invoice.id]['allocated']
-                            + amounts_by_invoice[invoice.id]['write-off']
-                        ) / invoice.net_pay) * invoice.withholding_amount)
 
-                    # compute the due date
-                    due_list = term_pool.compute(
-                        cr, uid,
-                        invoice.company_id.withholding_payment_term_id.id,
-                        new_line_amount,
-                        date_ref=voucher.date or invoice.date_invoice,
-                        context=context)
-                    if len(due_list) > 1:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('The payment term %s has too many due dates')
-                            % invoice.company_id.withholding_payment_term_id.
-                            name)
-                    if len(due_list) == 0:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('The payment term %s does not have due dates')
-                            % invoice.company_id.withholding_payment_term_id.
-                            name)
+                # only for supplier payments
+                if voucher.type != 'payment':
+                    raise orm.except_orm(
+                        _('Error'),
+                        _('Can\'t handle withholding tax with voucher of '
+                          'type other than payment'))
+                if not invoice.company_id.withholding_account_id:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _('The company does not have an associated '
+                          'Withholding account'))
+                if not invoice.company_id.withholding_payment_term_id:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _('The company does not have an associated '
+                          'Withholding Payment Term'))
+                if not invoice.company_id.withholding_journal_id:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _('The company does not have an associated '
+                          'Withholding journal'))
+                if not invoice.company_id.authority_partner_id:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _('The company does not have an associated Tax '
+                          'Authority partner'))
 
-                    period_ids = priod_obj.find(
-                        cr, uid, dt=voucher.date, context=context)
-                    new_move = {
-                        'journal_id': (
-                            invoice.company_id.
-                            withholding_journal_id.id),
-                        'period_id': period_ids and period_ids[0] or False,
-                        'date': voucher.date,
-                        'line_id': [
-                            (0, 0, {
-                                'name': invoice.number,
-                                'account_id': invoice.account_id.id,
-                                'partner_id': invoice.partner_id.id,
-                                'debit': new_line_amount,
-                                'credit': 0.0,
-                            }),
-                            (0, 0, {
-                                'name': _(
-                                    'Payable withholding - ') + invoice.number,
-                                'account_id': (
-                                    invoice.company_id.
-                                    withholding_account_id.id),
-                                'partner_id': (
-                                    invoice.company_id.
-                                    authority_partner_id.id),
-                                'debit': 0.0,
-                                'credit': new_line_amount,
-                                'date_maturity': due_list[0][0],
-                            }),
-                        ]
-                    }
-                    move_id = self.pool.get('account.move').create(
-                        cr, uid, new_move, context=context)
-                    self.reconcile_withholding_move(
-                        cr, uid, invoice, move_pool.browse(
-                            cr, uid, move_id, context), context)
-                    voucher.write({'withholding_move_ids': [(4, move_id)]})
+                for tax_line in invoice.tax_line:
+                    if (
+                        tax_line.tax_code_id
+                        and tax_line.tax_code_id.withholding_tax
+                    ):
+                        move_ids = []
+                        # compute the new amount proportionally to paid amount
+                        new_line_amount = curr_pool.round(
+                            cr, uid, voucher.company_id.currency_id,
+                            ((
+                                amounts_by_invoice[invoice.id]['allocated']
+                                + amounts_by_invoice[invoice.id]['write-off']
+                            ) / invoice.amount_total) * abs(tax_line.amount))
+
+                        # compute the due date
+                        due_list = term_pool.compute(
+                            cr, uid,
+                            invoice.company_id.withholding_payment_term_id.id,
+                            new_line_amount,
+                            date_ref=voucher.date or invoice.date_invoice,
+                            context=context)
+                        if len(due_list) > 1:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('The payment term %s has too many due dates')
+                                % invoice.company_id.
+                                withholding_payment_term_id.
+                                name)
+                        if len(due_list) == 0:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('The payment term %s does not have due '
+                                  'dates')
+                                % invoice.company_id.
+                                withholding_payment_term_id.
+                                name)
+
+                        period_ids = priod_obj.find(
+                            cr, uid, dt=voucher.date, context=context)
+                        new_move = {
+                            'journal_id': (
+                                invoice.company_id.
+                                withholding_journal_id.id),
+                            'period_id': period_ids and period_ids[0] or False,
+                            'date': voucher.date,
+                            'line_id': [
+                                (0, 0, {
+                                    'name': invoice.number,
+                                    'account_id': invoice.account_id.id,
+                                    'partner_id': invoice.partner_id.id,
+                                    'debit': new_line_amount,
+                                    'credit': 0.0,
+                                }),
+                                (0, 0, {
+                                    'name': _(
+                                        'Payable withholding - '
+                                        ) + invoice.number,
+                                    'account_id': (
+                                        invoice.company_id.
+                                        withholding_account_id.id),
+                                    'partner_id': (
+                                        invoice.company_id.
+                                        authority_partner_id.id),
+                                    'debit': 0.0,
+                                    'credit': new_line_amount,
+                                    'date_maturity': due_list[0][0],
+                                }),
+                            ]
+                        }
+                        move_id = self.pool.get('account.move').create(
+                            cr, uid, new_move, context=context)
+                        move_ids.append(move_id)
+                voucher.write(
+                    {'withholding_move_ids': [(4, mid) for mid in move_ids]})
         return res
 
     def cancel_voucher(self, cr, uid, ids, context=None):

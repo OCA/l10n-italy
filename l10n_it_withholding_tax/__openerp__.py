@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012-2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2012-2014 Agile Business Group sagl
+#    (<http://www.agilebg.com>)
+#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -22,30 +24,26 @@
 #
 {
     'name': "Italian Localisation - Withholding tax",
-    'version': '0.2',
+    'version': '1.0',
     'category': 'Localisation/Italy',
     'description': """
-Ritenute d'acconto sulle fatture fornitore
-==========================================
+Withholding tax for supplier invoices
+=====================================
 
-Per utilizzare il modulo bisogna configurare i campi associati alla company:
- - Termine di pagamento della ritenuta
- - Conto di debito per le ritenute da versare
- - Sezionale che conterrà le registrazioni legate alla ritenuta
 
-Durante la compilazione di una fattura fornitore con ritenuta d'acconto,
-l'utente dovrà specificare l'importo della ritenuta.
+Configuration
+=============
 
-Requisiti
----------
-http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
+In accounting configuration you have to set
+ - Withholding tax payment term
+ - Payable account for withholding taxes to pay
+ - Withholding tax journal
 
-Howto
------
-http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornitore-con-ritenuta-dacconto/
+You have to set the flag 'Withholding Tax' in tax codes related to
+withholding taxes
 """,
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
-    'website': 'http://www.openerp-italia.org',
+    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": ['account_voucher_cash_basis'],
     "data": [

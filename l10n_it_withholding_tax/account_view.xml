@@ -36,23 +36,6 @@
             </field>
         </record>
         
-        <!-- invoice -->
-        
-        <record id="invoice_supplier_form" model="ir.ui.view">
-            <field name="name">account.invoice.supplier.form</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_supplier_form"/>
-            <field name="arch" type="xml">
-                <field name="date_due" position="after">
-                    <field name="has_withholding"/>
-                </field>
-                <field name="amount_total" position="after">
-                    <field name="withholding_amount" attrs="{'invisible': [('has_withholding', '=', False)]}"/>
-                    <field name="net_pay" attrs="{'invisible': [('has_withholding', '=', False)]}"/>
-                </field>
-            </field>
-        </record>
-        
         <!-- voucher -->
         
         <record id="view_vendor_payment_form_wh_move" model="ir.ui.view">
