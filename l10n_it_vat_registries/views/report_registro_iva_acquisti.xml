@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_registro_iva_acquisti" name="registro acquisti" inherit_id="l10n_it_vat_registries.report_registro_iva_vendite">
+    <xpath expr="//table[@name='first_table']/thead[@id='first_thead']" position="replace">
+        <thead>
+	        <tr>
+	            <th class="left_without_line">Data registrazione</th>
+	            <th class="left_without_line">Numero</th>
+	            <th class="left_without_line">Ragione sociale</th>
+	            <th class="left_without_line">Numero registrazione</th>
+	            <th class="left_without_line">Numero fattura</th>
+	            <th class="left_without_line">Data fattura</th>
+	            <th class="left_without_line">Sezionale</th>
+	            <th class="right_without_line">Totale fattura</th>
+	            <th class="right_without_line">Imposta</th>
+	            <th class="right_without_line">Importo</th>
+	            <th></th>
+	        </tr>
+        </thead>
+    </xpath>
+</template>
+</data>
+</openerp>

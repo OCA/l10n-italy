@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <openerp>
-    <data noupdate="0">
+    <data noupdate="1">
         <record id="ir_header_webkit_vat_registry_sale" model="ir.header_webkit">
             <field name="orientation">Landscape</field>
             <field name="format">A4</field>
@@ -309,10 +309,20 @@ thead{
         <report 
             id="action_report_registro_iva_vendite" 
             model="account.move" 
-            string="Customer Invoices VAT Registry"
+            string="Customer Invoices VAT Registry Supplier"
             report_type="qweb-pdf"
             name="l10n_it_vat_registries.report_registro_iva_vendite" 
             file="l10n_it_vat_registries.report_registro_iva_vendite"
+            menu="False"
+            auto="False"
+        />
+        <report 
+            id="action_report_registro_iva_acquisti" 
+            model="account.move" 
+            string="Customer Invoices VAT Registry Customer"
+            report_type="qweb-pdf"
+            name="l10n_it_vat_registries.report_registro_iva_acquisti" 
+            file="l10n_it_vat_registries.report_registro_iva_acquisti"
             menu="False"
             auto="False"
         />

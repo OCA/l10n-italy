@@ -3,32 +3,126 @@
 <data>
 <template id="assets_backend" name="account assets" inherit_id="web.assets_backend">
     <xpath expr="." position="inside">
-    	<link rel="stylesheet" href="/l10n_it_vat_registries/static/src/css/l10n_it_vat_registries.css"/>
+        <link rel="stylesheet" href="/l10n_it_vat_registries/static/src/css/l10n_it_vat_registries.css"/>
     </xpath>
 </template>
 <template id="report_registro_iva_vendite">
 <div class="page">
     <h2>Fatture Emesse</h2>
     <table style="width:100%; font-size: small;" cellspacing="0">
-        <thead>
-        <tr>
-            <th class="left_without_line">Data registrazione</th>
-            <th>Counter</th>
-        </tr>
-        </thead>
-        <tbody>
-        <t t-set="counter" t-value="0"/>
-        <t t-foreach="docs" t-as="object">
-        	<t t-set="counter" t-value="counter + 1"/>
-        	<t t-foreach="tax_lines(object)" t-as="line">
-              <tr>
-              	<td  t-att-class="line['index']===0 ? 'left_with_line':'left_without_line'"><span t-esc="formatLang(object.date,date=True) or '' | entity}"/></td>
-                <td class="left_with_line"><t t-esc="counter"/></td>
-              </tr>
+            <thead>
+                <tr>
+                    <th class="left_without_line">Data registrazione</th>
+                    <th class="left_without_line">Numero</th>
+                    <th class="left_without_line">Ragione sociale</th>
+                    <th class="left_without_line">Numero fattura</th>
+                    <th class="left_without_line">Data fattura</th>
+                    <th class="left_without_line">Sezionale</th>
+                    <th class="right_without_line">Totale fattura</th>
+                    <th class="right_without_line">Imposta</th>
+                    <th class="right_without_line">Importo</th>
+                </tr>
+            </thead>
+            <t t-foreach="get_move(data['ids'])" t-as="move">
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="tax_lines(move)" t-as="line">
+                    <tbody>
+                      <tr>
+                        <t t-set="line_class_left" t-value="left_with_line if line['index']=='0' else left_without_line"/>
+                        <t t-set="line_class_right" t-value="right_with_line if line['index']=='0' else right_without_line"/>
+                        <t t-set="counter" t-value="counter + 1"/>
+                        <td><t t-if="line['index']=='0'"><span t-esc="formatLang(move.date,date=True) or entity"/></t></td>
+                        <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="counter"/></t></td>
+                        <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="move.partner_id.name or entity"/></t></td>
+                        <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="move.name or entity"/></t></td>
+                        <td class="line_class_left"><t t-if="line['index']=='0'"><span t-esc="formatLang(line['invoice_date'],date=True) or entity"/></t></td>
+                        <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="move.journal_id.name or entity"/></t></td>
+                        <td class="line_class_right"><t t-if="line['index']=='0'"><span t-esc="formatLang(invoice_total(move)) or entity"/></t></td>
+                        <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name']) or entity"/></td>
+                        <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="formatLang(line['amount']) or entity"/></td>
+                      </tr>
+                    </tbody>
+                </t>
             </t>
-        </t>
-        </tbody>
     </table>
+<br/>
+    <table style="width:100%;  " border="1">
+            <tr style="border-style:ridge;border-width:5px">
+                <td colspan="3" style="padding:10;" t-esc="'Periodo di stampa dal' +formatLang(start_date(),date=True) or entity+' al '+formatLang(end_date(),date=True) or entity"/>
+            </tr>
+            <tr>
+                <td colspan="2" style="vertical-align:text-top;padding:10">
+                    <h3>Dettaglio</h3>
+                    <table style="width:100%;">
+                        <tr>
+                            <th style="text-align:left">Descrizione</th>
+                            <th style="text-align:right">Importo</th>
+                        </tr>
+                        <t t-foreach="tax_codes()" t-as="tax_code_tuple">
+                            <t t-if="(not tax_code_tuple[2])">
+                                <tr>
+                                    <td t-esc="tax_code_tuple[0] or entity"/>
+                                    <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+                </td>
+                <td style="vertical-align:text-top;padding:10">
+                    <h3>Totali</h3>
+                    <table style="width:100%;">
+                        <tr>
+                            <th style="text-align:left">Descrizione</th>
+                            <th style="text-align:right">Importo</th>
+                        </tr>
+                        <t t-foreach="tax_codes_totals()" t-as="tax_code_tuple">
+                            <t t-if="(not tax_code_tuple[2])">
+                                <tr>
+                                    <td t-esc="tax_code_tuple[0] or entity"/>
+                                    <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="vertical-align:text-top;padding:10">
+                    <h3>Dettaglio imponibili</h3>
+                    <table style="width:100%;">
+                        <tr>
+                            <th style="text-align:left">Descrizione</th>
+                            <th style="text-align:right">Importo</th>
+                        </tr>
+                        <t t-foreach="tax_codes()" t-as="tax_code_tuple">
+                            <t t-if="tax_code_tuple[2]">
+                                <tr>
+                                    <td t-esc="tax_code_tuple[0] or entity"/>
+                                    <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+                </td>
+                <td style="vertical-align:text-top;padding:10">
+                    <h3>Totali imponibili</h3>
+                    <table style="width:100%;">
+                        <tr>
+                            <th style="text-align:left">Descrizione</th>
+                            <th style="text-align:right">Importo</th>
+                        </tr>
+                        <t t-foreach="tax_codes_totals()" t-as="tax_code_tuple">
+                            <t t-if="tax_code_tuple[2]">
+                                <tr>
+                                    <td t-esc="tax_code_tuple[0] or entity"/>
+                                    <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+                </td>
+            </tr>
+        </table>
 </div>
 </template>
 </data>
