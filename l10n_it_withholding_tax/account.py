@@ -163,12 +163,12 @@ class account_voucher(orm.Model):
                         _('The company does not have an associated Tax '
                           'Authority partner'))
 
+                move_ids = []
                 for tax_line in invoice.tax_line:
                     if (
                         tax_line.tax_code_id
                         and tax_line.tax_code_id.withholding_tax
                     ):
-                        move_ids = []
                         # compute the new amount proportionally to paid amount
                         new_line_amount = curr_pool.round(
                             cr, uid, voucher.company_id.currency_id,
@@ -235,8 +235,10 @@ class account_voucher(orm.Model):
                         move_id = self.pool.get('account.move').create(
                             cr, uid, new_move, context=context)
                         move_ids.append(move_id)
-                voucher.write(
-                    {'withholding_move_ids': [(4, mid) for mid in move_ids]})
+                if move_ids:
+                    voucher.write(
+                        {'withholding_move_ids': [
+                            (4, mid) for mid in move_ids]})
         return res
 
     def cancel_voucher(self, cr, uid, ids, context=None):
