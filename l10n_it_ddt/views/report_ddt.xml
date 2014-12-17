@@ -1,26 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!--template id="report_ddt">
+        <template id="report_ddt">
             <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="report.external_layout">
                         <div class="page">
-               
+                            <h1>
+                                Delivery note: <span t-field="o.name"></span>
+                            </h1>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><strong>Description</strong></th>
+                                        <th><strong>Unit</strong></th>
+                                        <th class="text-right"><strong>Quantity</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.ddt_lines" t-as="line">
+                                        <td><span t-field="line.product_id"></span></td>
+                                        <td><span t-field="line.product_uom_id"></span></td>
+                                        <td class="text-right"><span t-field="line.quantity"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </t>
-                 </t>
-             </t>
+                </t>
+            </t>
         </template>
 
-        <report 
-            string="DDT" 
-            id="action_report_ddt" 
-            model="stock.ddt" 
+        <report
+            string="DDT"
+            id="action_report_ddt"
+            model="stock.ddt"
             report_type="qweb-pdf"
-            name="l10n_it_ddt.report_ddt" 
-            file="l10n_it_ddt.report_ddt" 
-        /-->
+            name="l10n_it_ddt.report_ddt"
+            file="l10n_it_ddt.report_ddt"/>
 
     </data>
 </openerp>
