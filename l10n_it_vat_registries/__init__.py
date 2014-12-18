@@ -22,5 +22,5 @@
 #
 
 from . import wizard
-from . import invoice
+from . import vat_registry
 from . import account

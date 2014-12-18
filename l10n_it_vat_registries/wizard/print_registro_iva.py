@@ -85,15 +85,8 @@ class wizard_registro_iva(models.TransientModel):
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['period_ids'] = [p.id for p in wizard.period_ids]
         datas_form['tax_sign'] = wizard.tax_sign
-        report_name = ""
-        # vendite
-        if wizard.type == 'customer':
-            report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
-        # acquisti
-        elif wizard.type == 'supplier':
-            report_name = 'l10n_it_vat_registries.report_registro_iva_acquisti'
-        elif wizard.type == 'corrispettivi':
-            report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
+        datas_form['registry_type'] = wizard.type
+        report_name = 'l10n_it_vat_registries.report_registro_iva'
         datas = {
             'ids': move_ids,
             'model': 'account.move',
