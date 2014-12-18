@@ -36,6 +36,18 @@ class ResPartner(orm.Model):
         subtype=None, parent_id=False, attachments=None, context=None,
         content_subtype='html', **kwargs
     ):
+        '''
+        if pec_type is accettazione and non-accettazione
+            link message as reception type in parent message
+
+        if  pec_type is avvenuta-consegna errore-consegna rilevazione-virus
+            link message as delivery type in parent message
+
+        if pec_type is error type like:
+            non-accettazione errore-consegna rilevazione-virus
+            marks parent message with error flag
+
+        '''
         if context is None:
             context = {}
         message_pool = self.pool['mail.message']
@@ -43,17 +55,48 @@ class ResPartner(orm.Model):
             cr, uid, thread_id, body=body, subject=subject, type=type,
             subtype=subtype, parent_id=parent_id, attachments=attachments,
             context=context, content_subtype=content_subtype, **kwargs)
-        if context.get('main_message_id') and context.get('pec_type'):
-            if context['pec_type'] == 'accettazione':
+        if (
+            context.get('main_message_id') and
+            (
+                context.get('pec_type') or
+                context.get('send_error')
+            )
+        ):
+
+            if (
+                context['pec_type'] in
+                ['accettazione', 'non-accettazione']
+            ):
                 message_pool.write(
                     cr, uid, [context['main_message_id']], {
                         'reception_message_id': msg_id,
                     }, context=context)
-            if context['pec_type'] == 'avvenuta-consegna':
+            if(
+                context['pec_type'] in
+                [
+                    'avvenuta-consegna',
+                    'errore-consegna',
+                    'rilevazione-virus'
+                ]
+            ):
                 message_pool.write(
                     cr, uid, [context['main_message_id']], {
                         'delivery_message_id': msg_id,
                     }, context=context)
+            if(
+                context.get('send_error') or
+                context['pec_type'] in
+                [
+                    'non-accettazione',
+                    'errore-consegna',
+                    'rilevazione-virus'
+                ]
+            ):
+                message_pool.write(
+                    cr, uid, [context['main_message_id']], {
+                        'error': True,
+                    }, context=context)
+
         return msg_id
 
     def name_get(self, cr, uid, ids, context=None):

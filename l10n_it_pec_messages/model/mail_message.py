@@ -48,12 +48,14 @@ class MailMessage(orm.Model):
         'pec_type': fields.selection([
             ('posta-certificata', 'Pec Mail'),
             ('accettazione', 'Reception'),
+            ('non-accettazione', 'No Reception'),
             ('presa-in-carico', 'In Progress'),
             ('avvenuta-consegna', 'Delivery'),
             ('errore-consegna', 'Delivery Error'),
             ('preavviso-errore-consegna', 'Notice Delivery Error'),
             ('rilevazione-virus', 'Virus Detected'),
             ], 'Pec Type', readonly=True),
+        'error': fields.boolean('Reception Delivery Error'),
         'cert_datetime': fields.datetime(
             'Certified Date and Time ', readonly=True),
         'pec_msg_id': fields.char(
