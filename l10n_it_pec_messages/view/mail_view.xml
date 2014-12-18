@@ -15,8 +15,8 @@
                 <field name="model" position="before" >
                     <field name="server_id" />
                     <field name="out_server_id" />
-                    <field name="delivery_message_id" />
                     <field name="reception_message_id" />
+                    <field name="delivery_message_id" />
                     <field name="error" />
                 </field>
             </field>
