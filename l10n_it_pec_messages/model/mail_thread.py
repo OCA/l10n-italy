@@ -136,11 +136,11 @@ class MailThread(orm.Model):
                 cr, uid, message, save_original=True,
                 context=context)
         msg_dict.update(daticert_dict)
+        msg_ids = []
         if (
             daticert_dict.get('message_id')
             and (
-                daticert_dict.get('pec_type') == 'accettazione'
-                or daticert_dict.get('pec_type') == 'avvenuta-consegna')
+                daticert_dict.get('pec_type') != 'posta-certificata')
         ):
             msg_ids = message_pool.search(
                 cr, uid, [('message_id', '=', daticert_dict['message_id'])],
@@ -157,6 +157,29 @@ class MailThread(orm.Model):
                 context['main_message_id'] = msg_ids[0]
                 context['pec_type'] = daticert_dict.get('pec_type')
             del msg_dict['message_id']
+        #if message transport resend original mail with
+        #transport error , marks in original message with
+        #error, and after the server not save the original message
+        #because is duplicate
+        if (
+            daticert_dict.get('message_id')
+            and message['X-Trasporto'] == 'errore'
+        ):
+            msg_ids = message_pool.search(
+                cr, uid, [('message_id', '=', daticert_dict['message_id'])],
+                context=context)
+            if len(msg_ids) > 1:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Too many existing mails with message_id %s')
+                    % daticert_dict['message_id'])
+            else:
+                message_pool = self.pool['mail.message']
+                message_pool.write(
+                    cr, uid, msg_ids, {
+                        'error': True,
+                    }, context=context)
+
         author_id = self._message_find_partners_pec(
             cr, uid, message, daticert_dict.get('email_from'), context=context)
         if author_id:
