@@ -76,8 +76,6 @@ class MailMessage(orm.Model):
             'Main messages', readonly=True),
     }
 
-
-
     def _search(
         self, cr, uid, args, offset=0, limit=None, order=None,
         context=None, count=False, access_rights_uid=None

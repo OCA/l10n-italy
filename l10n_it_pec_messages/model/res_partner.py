@@ -57,10 +57,7 @@ class ResPartner(orm.Model):
             context=context, content_subtype=content_subtype, **kwargs)
         if (
             context.get('main_message_id') and
-            (
-                context.get('pec_type') or
-                context.get('send_error')
-            )
+            context.get('pec_type')
         ):
 
             if (
@@ -84,7 +81,6 @@ class ResPartner(orm.Model):
                         'delivery_message_id': msg_id,
                     }, context=context)
             if(
-                context.get('send_error') or
                 context['pec_type'] in
                 [
                     'non-accettazione',
