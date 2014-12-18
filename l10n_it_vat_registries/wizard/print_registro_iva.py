@@ -3,6 +3,8 @@
 #
 #    Copyright (C) 2011 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2014 Agile Business Group sagl
+#    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -86,10 +88,10 @@ class wizard_registro_iva(models.TransientModel):
         report_name = ""
         # vendite
         if wizard.type == 'customer':
-            report_name = 'l10n_it_vat_registries.report_registro_iva_acquisti'
+            report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
         # acquisti
         elif wizard.type == 'supplier':
-            report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
+            report_name = 'l10n_it_vat_registries.report_registro_iva_acquisti'
         elif wizard.type == 'corrispettivi':
             report_name = 'l10n_it_vat_registries.report_registro_iva_vendite'
         datas = {

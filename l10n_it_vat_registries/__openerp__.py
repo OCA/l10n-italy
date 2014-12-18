@@ -3,8 +3,9 @@
 #
 #    Copyright (C) 2011-2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    Copyright (C) 2012-2014 Agile Business Group sagl
+#    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -27,8 +28,8 @@
     'description': """Accounting reports for Italian localization
 - VAT Registries
 http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Agile Business Group',
+    'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
         'report_webkit',
