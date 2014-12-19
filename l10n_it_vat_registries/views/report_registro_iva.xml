@@ -54,25 +54,25 @@
                 <t t-foreach="tax_lines(move)" t-as="line">
                     <tbody>
                       <tr>
-                    <t t-set="line_class_left" t-value="left_with_line if line['index']=='0' else left_without_line"/>
-                    <t t-set="line_class_right" t-value="right_with_line if line['index']=='0' else right_without_line"/>
+                    <t t-set="line_class_left" t-value="left_with_line if line['index']==0 else left_without_line"/>
+                    <t t-set="line_class_right" t-value="right_with_line if line['index']==0 else right_without_line"/>
                     <t t-set="counter" t-value="counter + 1"/>
                         <t t-if="registry_type!='corrispettivi'">
-                            <td><t t-if="line['index']=='0'"><span t-esc="formatLang(move.date,date=True) or entity"/></t></td>
-                            <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="move.partner_id.name or entity"/></t></td>
+                            <td><t t-if="line['index']==0"><span t-esc="formatLang(move.date,date=True) or entity"/></t></td>
+                            <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name or entity"/></t></td>
                         </t>
                         <t t-if="registry_type=='corrispettivi'">
-                            <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="move.partner_id.name or entity"/></t></td>
-                            <td><t t-if="line['index']=='0'"><span t-esc="formatLang(move.date,date=True) or entity"/></t></td>
+                            <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name or entity"/></t></td>
+                            <td><t t-if="line['index']==0"><span t-esc="formatLang(move.date,date=True) or entity"/></t></td>
                         </t>
                         <t t-if="registry_type!='corrispettivi'">
-                            <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="move.name or entity"/></t></td>
-                            <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="counter"/></t></td>
-                            <td class="line_class_left"><t t-if="line['index']=='0'"><t t-if="registry_type=='supplier'"><div style="page-break-inside: avoid" t-esc="{ line['supplier_invoice_number'] or '' | entity}"/></t></t></td>
-                            <td class="line_class_left"><t t-if="line['index']=='0'"><span t-esc="formatLang(line['invoice_date'],date=True) or entity"/></t></td>
-                            <td class="line_class_left"><t t-if="line['index']=='0'"><div style="page-break-inside: avoid" t-esc="move.journal_id.name or entity"/></t></td>
+                            <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.name or entity"/></t></td>
+                            <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="counter"/></t></td>
+                            <td class="line_class_left"><t t-if="line['index']==0"><t t-if="registry_type=='supplier'"><div style="page-break-inside: avoid" t-esc="{ line['supplier_invoice_number'] or '' | entity}"/></t></t></td>
+                            <td class="line_class_left"><t t-if="line['index']==0"><span t-esc="formatLang(line['invoice_date'],date=True) or entity"/></t></td>
+                            <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.journal_id.name or entity"/></t></td>
                         </t>
-                            <td class="line_class_right"><t t-if="line['index']=='0'"><span t-esc="formatLang(invoice_total(move)) or entity"/></t></td>
+                            <td class="line_class_right"><t t-if="line['index']==0"><span t-esc="formatLang(invoice_total(move)) or entity"/></t></td>
                             <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name']) or entity"/></td>
                             <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="formatLang(line['amount']) or entity"/></td>
                       </tr>
