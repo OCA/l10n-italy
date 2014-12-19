@@ -26,26 +26,25 @@
             <field name="name">PEC</field>
             <field name="tag">mail.wall</field>
             <field name="res_model">mail.message</field>
-            <field name="context">{
-                'pec_messages': True,
-            }</field>
+            <field name="context">{'pec_messages': True,}</field>
             <field name="params" eval="&quot;{
-                'domain': [
-                  ('server_id.pec','=',True),
-                  ('main_msg_delivery_message_ids','=',False),
-                  ('main_msg_reception_message_ids','=',False),
-                  ('server_id.user_ids','in',uid),
-                ],
-                'view_mailbox': True,
-                'show_compose_message': False
-            }&quot;"/>
+                            'domain':[
+                                ('server_id.pec','=',True),
+                                ('main_msg_delivery_message_ids','=',False),
+                                ('main_msg_reception_message_ids','=',False),
+                                ('server_id.user_ids','in',uid),
+                            ],
+                            'view_mailbox': True,
+                            'show_compose_message': False
+                        }&quot;"/>
         </record>
 
         <record id="mail_pec" model="ir.ui.menu">
-          <field name="name">PEC</field>
-          <field name="action" ref="action_mail_pec"/>
-          <field name="parent_id" ref="mail.mail_feeds"/>
-          <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+            <field name="name">PEC</field>
+            <field name="action" ref="action_mail_pec"/>
+            <field name="parent_id" ref="mail.mail_feeds"/>
+            <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
+
 </data>
 </openerp>
