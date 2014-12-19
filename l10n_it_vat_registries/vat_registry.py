@@ -184,7 +184,6 @@ class Parser(report_sxw.rml_parse):
 
     def set_context(self, objects, data, ids, report_type=None):
         self.localcontext.update({
-            'fiscal_page_base': data['form'].get('fiscal_page_base'),
             'registry_type': data['form'].get('registry_type'),
         })
         return super(Parser, self).set_context(
