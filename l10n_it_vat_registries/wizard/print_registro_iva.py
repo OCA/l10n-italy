@@ -24,6 +24,7 @@
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
+
 class wizard_registro_iva(models.TransientModel):
 
     @api.model
