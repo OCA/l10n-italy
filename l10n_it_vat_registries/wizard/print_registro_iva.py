@@ -65,10 +65,6 @@ class wizard_registro_iva(models.TransientModel):
         help="Use -1 you have negative tax \
         amounts and you want to print them prositive")
     message = fields.Char(string='Message', size=64, readonly=True)
-    fiscal_page_base = fields.Integer(
-        string='Last printed page',
-        default=0,
-        required=True)
 
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)
@@ -82,7 +78,6 @@ class wizard_registro_iva(models.TransientModel):
             raise Warning(_('No documents found in the current selection'))
         datas = {}
         datas_form = {}
-        datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['period_ids'] = [p.id for p in wizard.period_ids]
         datas_form['tax_sign'] = wizard.tax_sign
         datas_form['registry_type'] = wizard.type
