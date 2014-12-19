@@ -23,9 +23,10 @@
 
 from openerp import models, fields
 
+
 class account_tax_code(models.Model):
     _inherit = "account.tax.code"
-    
+
     is_base = fields.Boolean(
         string='Is base',
         help="This tax code is used for base amounts \
