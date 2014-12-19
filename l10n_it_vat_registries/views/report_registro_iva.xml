@@ -53,29 +53,29 @@
                     <t t-foreach="get_move(data['ids'])" t-as="move">
                         <t t-set="counter" t-value="0"/>
                         <t t-foreach="tax_lines(move)" t-as="line">
-                            <tbody>
-                              <tr>
                             <t t-set="line_class_left" t-value="left_with_line if line['index']==0 else left_without_line"/>
                             <t t-set="line_class_right" t-value="right_with_line if line['index']==0 else right_without_line"/>
                             <t t-set="counter" t-value="counter + 1"/>
+                            <tbody>
+                              <tr>
                                 <t t-if="registry_type!='corrispettivi'">
-                                    <td><t t-if="line['index']==0"><span t-esc="formatLang(move.date,date=True) or entity"/></t></td>
-                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name or entity"/></t></td>
+                                    <td><t t-if="line['index']==0"><span t-esc="formatLang(move.date,date=True)"/></t></td>
+                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></t></td>
                                 </t>
                                 <t t-if="registry_type=='corrispettivi'">
-                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name or entity"/></t></td>
-                                    <td><t t-if="line['index']==0"><span t-esc="formatLang(move.date,date=True) or entity"/></t></td>
+                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></t></td>
+                                    <td><t t-if="line['index']==0"><span t-esc="formatLang(move.date,date=True)"/></t></td>
                                 </t>
                                 <t t-if="registry_type!='corrispettivi'">
-                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.name or entity"/></t></td>
+                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.name"/></t></td>
                                     <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="counter"/></t></td>
-                                    <td class="line_class_left"><t t-if="line['index']==0"><t t-if="registry_type=='supplier'"><div style="page-break-inside: avoid" t-esc="{ line['supplier_invoice_number'] or '' | entity}"/></t></t></td>
-                                    <td class="line_class_left"><t t-if="line['index']==0"><span t-esc="formatLang(line['invoice_date'],date=True) or entity"/></t></td>
-                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.journal_id.name or entity"/></t></td>
+                                    <td class="line_class_left"><t t-if="line['index']==0"><t t-if="registry_type=='supplier'"><div style="page-break-inside: avoid" t-esc="{ line['supplier_invoice_number']}"/></t></t></td>
+                                    <td class="line_class_left"><t t-if="line['index']==0"><span t-esc="formatLang(line['invoice_date'],date=True)"/></t></td>
+                                    <td class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.journal_id.name"/></t></td>
                                 </t>
-                                    <td class="line_class_right"><t t-if="line['index']==0"><span t-esc="formatLang(invoice_total(move)) or entity"/></t></td>
-                                    <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name']) or entity"/></td>
-                                    <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="formatLang(line['amount']) or entity"/></td>
+                                    <td class="line_class_right"><t t-if="line['index']==0"><span t-esc="formatLang(invoice_total(move))"/></t></td>
+                                    <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></td>
+                                    <td class="line_class_right"><div style="page-break-inside: avoid" t-esc="formatLang(line['amount'])"/></td>
                               </tr>
                             </tbody>
                         </t>
@@ -84,7 +84,7 @@
         <br/>
             <table style="width:100%;  " border="1">
                     <tr style="border-style:ridge;border-width:5px">
-                        <td colspan="3" style="padding:10;" t-esc="'Periodo di stampa dal ' +formatLang(start_date(),date=True)+' al '+formatLang(end_date(),date=True) or entity"/>
+                        <td colspan="3" style="padding:10;" t-esc="'Periodo di stampa dal ' +formatLang(start_date(),date=True)+' al '+formatLang(end_date(),date=True)"/>
                     </tr>
                     <tr>
                         <td colspan="2" style="vertical-align:text-top;padding:10">
@@ -97,8 +97,8 @@
                                 <t t-foreach="tax_codes()" t-as="tax_code_tuple">
                                     <t t-if="(not tax_code_tuple[2])">
                                         <tr>
-                                            <td t-esc="tax_code_tuple[0] or entity"/>
-                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                            <td t-esc="tax_code_tuple[0]"/>
+                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1])"/>
                                         </tr>
                                     </t>
                                 </t>
@@ -114,8 +114,8 @@
                                 <t t-foreach="tax_codes_totals()" t-as="tax_code_tuple">
                                     <t t-if="(not tax_code_tuple[2])">
                                         <tr>
-                                            <td t-esc="tax_code_tuple[0] or entity"/>
-                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                            <td t-esc="tax_code_tuple[0]"/>
+                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1])"/>
                                         </tr>
                                     </t>
                                 </t>
@@ -133,8 +133,8 @@
                                 <t t-foreach="tax_codes()" t-as="tax_code_tuple">
                                     <t t-if="tax_code_tuple[2]">
                                         <tr>
-                                            <td t-esc="tax_code_tuple[0] or entity"/>
-                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                            <td t-esc="tax_code_tuple[0]"/>
+                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1])"/>
                                         </tr>
                                     </t>
                                 </t>
@@ -150,8 +150,8 @@
                                 <t t-foreach="tax_codes_totals()" t-as="tax_code_tuple">
                                     <t t-if="tax_code_tuple[2]">
                                         <tr>
-                                            <td t-esc="tax_code_tuple[0] or entity"/>
-                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1]) or entity"/>
+                                            <td t-esc="tax_code_tuple[0]"/>
+                                            <td style="text-align:right" t-esc="formatLang(tax_code_tuple[1])"/>
                                         </tr>
                                     </t>
                                 </t>
