@@ -50,12 +50,12 @@
                             <th class="right_without_line">Importo</th>
                         </tr>
                     </thead>
+                    <t t-set="counter" t-value="0"/>
                     <t t-foreach="get_move(data['ids'])" t-as="move">
-                        <t t-set="counter" t-value="0"/>
+                        <t t-set="counter" t-value="counter + 1"/>
                         <t t-foreach="tax_lines(move)" t-as="line">
                             <t t-set="line_class_left" t-value="left_with_line if line['index']==0 else left_without_line"/>
                             <t t-set="line_class_right" t-value="right_with_line if line['index']==0 else right_without_line"/>
-                            <t t-set="counter" t-value="counter + 1"/>
                             <tbody>
                               <tr>
                                 <t t-if="registry_type!='corrispettivi'">
