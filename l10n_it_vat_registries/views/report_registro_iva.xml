@@ -12,14 +12,14 @@
     <t t-call="report.html_container">
     <t t-call="report.internal_layout">
         <div class="page">
-            <t t-if="registry_type=='supplier'">
+            <t t-if="registry_type=='customer'">
                 <h2>Fatture Emesse</h2>
             </t>
-            <t t-if="registry_type=='customer'">
+            <t t-if="registry_type=='supplier'">
                 <h2>Fatture Ricevute</h2>
             </t>
             <t t-if="registry_type=='corrispettivi'">
-                <h2>Fatture Corrispettivi</h2>
+                <h2>Corrispettivi</h2>
             </t>
             <table style="width:100%; font-size: small;" cellspacing="0">
                     <thead>
