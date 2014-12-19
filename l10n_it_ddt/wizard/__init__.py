@@ -19,5 +19,6 @@
 #
 ##############################################################################
 
+from . import ddt_from_pickings
+from . import ddt_create_invoice
 
-import ddt_from_pickings
