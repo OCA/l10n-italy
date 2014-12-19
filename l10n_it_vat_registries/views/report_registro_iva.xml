@@ -82,6 +82,7 @@
                     </t>
             </table>
         <br/>
+        <div style="page-break-inside: avoid;">
             <table style="width:100%;  " border="1">
                     <tr style="border-style:ridge;border-width:5px">
                         <td colspan="3" style="padding:10;" t-esc="'Periodo di stampa dal ' +formatLang(start_date(),date=True)+' al '+formatLang(end_date(),date=True)"/>
@@ -159,6 +160,7 @@
                         </td>
                     </tr>
                 </table>
+            </div>
         </div>
     </t>
 </template>
