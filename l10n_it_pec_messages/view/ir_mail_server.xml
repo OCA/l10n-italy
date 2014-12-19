@@ -8,8 +8,8 @@
         <field name="inherit_id" ref="base.ir_mail_server_form"/>
         <field name="arch" type="xml">
             <field name="sequence" position="after" >
-                    <field name="pec" />
-                    <field name="in_server_id" attrs="{'required':[('pec', '=', True)]}" />
+                <field name="pec" />
+                <field name="in_server_id" attrs="{'required':[('pec', '=', True)]}" />
             </field>
         </field>
     </record>
