@@ -23,17 +23,20 @@
 #
 {
     'name': 'Italian Localisation - VAT Registries',
-    'version': '0.2',
+    'version': '1.0',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization
-- VAT Registries
-http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
+    'description': """
+Accounting reports for Italian localization
+
+
+VAT Registries
+==============
+
+http://goo.gl/b4y9Hx""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'report_webkit',
-        'l10n_it_base',
         'account'
         ],
     "data": [
