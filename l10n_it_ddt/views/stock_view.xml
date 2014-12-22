@@ -13,6 +13,7 @@
                         <button name="ddt_confirm" states="draft" string="Confirm" class="oe_highlight"/>
                         <button name="ddt_draft_cancel" states="draft" string="Cancel"/>
                         <button name="ddt_confirmed_cancel" states="confirmed" string="Cancel"/>
+                        <button name="ddt_reopen" states="cancelled" string="Reopen"/>
                         <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirmed,cancelled"/>
                     </header>
                     <sheet>
