@@ -110,6 +110,8 @@ class StockDdT(models.Model):
     @api.multi
     def write(self, values):
         result = super(StockDdT, self).write(values)
+        if not self.ddt_lines:
+            self.updateLines()
         if values.get('picking_ids'):
             picking_model = self.env['stock.picking']
             pickings = picking_model.browse(values['picking_ids'][0][2])
@@ -179,6 +181,10 @@ class StockDdT(models.Model):
     @api.multi
     def action_cancel(self):
         self.write({'state': 'cancelled'})
+
+    @api.multi
+    def action_reopen(self):
+        self.write({'state': 'draft'})
 
     @api.multi
     def name_get(self):
