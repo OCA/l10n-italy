@@ -38,7 +38,7 @@ class res_partner(models.Model):
     fiscalcode = fields.Char(
         'Fiscal Code', size=16, help="Italian Fiscal Code")
     individual = fields.Boolean(
-        'Individual', defaults=False,
+        'Individual', default=False,
         help="If checked the C.F. is referred to a Individual Person")
 
     _constraints = [
