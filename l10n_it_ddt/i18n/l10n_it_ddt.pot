@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-20 12:02+0000\n"
-"PO-Revision-Date: 2014-11-20 12:02+0000\n"
+"POT-Creation-Date: 2014-12-19 15:52+0000\n"
+"PO-Revision-Date: 2014-12-19 15:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,7 @@ msgid "Automatically create the DDT"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 #: view:stock.ddt:l10n_it_ddt.stock_ddt_form
 msgid "Cancel"
@@ -66,11 +67,18 @@ msgid "Confirmed"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "Create"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_create_invoice
+msgid "Create Invoice"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: field:ddt.create.invoice,create_uid:0
 #: field:ddt.from.pickings,create_uid:0
 #: field:stock.ddt,create_uid:0
 #: field:stock.ddt.line,create_uid:0
@@ -82,6 +90,7 @@ msgid "Created by"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: field:ddt.create.invoice,create_date:0
 #: field:ddt.from.pickings,create_date:0
 #: field:stock.ddt,create_date:0
 #: field:stock.ddt.line,create_date:0
@@ -105,6 +114,7 @@ msgid "DDT Lines"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: field:ddt.create.invoice,date:0
 #: field:stock.ddt,date:0
 msgid "Date"
 msgstr ""
@@ -116,6 +126,11 @@ msgstr ""
 #: field:stock.ddt.line,ddt_id:0
 #: field:stock.picking,ddt_id:0
 msgid "DdT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
+msgid "DdT Create Invoice"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -175,6 +190,7 @@ msgid "Draft"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: field:ddt.create.invoice,id:0
 #: field:ddt.from.pickings,id:0
 #: field:stock.ddt,id:0
 #: field:stock.ddt.line,id:0
@@ -191,6 +207,17 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
+msgid "Invoice Details"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: field:ddt.create.invoice,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: field:ddt.create.invoice,write_uid:0
 #: field:ddt.from.pickings,write_uid:0
 #: field:stock.ddt,write_uid:0
 #: field:stock.ddt.line,write_uid:0
@@ -202,6 +229,7 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: field:ddt.create.invoice,write_date:0
 #: field:ddt.from.pickings,write_date:0
 #: field:stock.ddt,write_date:0
 #: field:stock.ddt.line,write_date:0
@@ -234,6 +262,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: field:ddt.from.pickings,move_ids:0
 msgid "Move ids"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: field:stock.ddt.line,move_line_id:0
+msgid "Move line id"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -288,7 +321,7 @@ msgid "Picking ids"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock.py:126
+#: code:addons/l10n_it_ddt/models/stock.py:153
 #, python-format
 msgid "Picking related partner must be the same (%s)"
 msgstr ""
@@ -343,6 +376,11 @@ msgid "Related DDTs"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_form
+msgid "Reopen"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
 msgid "Sales Order"
 msgstr ""
@@ -390,5 +428,10 @@ msgstr ""
 #. module: l10n_it_ddt
 #: view:stock.ddt:l10n_it_ddt.stock_ddt_form
 msgid "Update Lines will remove all the manually created lines. Do you want continue?"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: view:sale.order:l10n_it_ddt.view_order_form_view_ddt
+msgid "View DdT"
 msgstr ""
 
