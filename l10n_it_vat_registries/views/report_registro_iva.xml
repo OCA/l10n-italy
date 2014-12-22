@@ -12,13 +12,13 @@
     <t t-call="report.html_container">
     <t t-call="report.internal_layout">
         <div class="page">
-            <t t-if="registry_type=='customer'">
+            <t t-if="registry_type == 'customer'">
                 <h2>Fatture Emesse</h2>
             </t>
-            <t t-if="registry_type=='supplier'">
+            <t t-if="registry_type == 'supplier'">
                 <h2>Fatture Ricevute</h2>
             </t>
-            <t t-if="registry_type=='corrispettivi'">
+            <t t-if="registry_type == 'corrispettivi'">
                 <h2>Corrispettivi</h2>
             </t>
             <table style="width:100%; font-size: small;" cellspacing="0">
@@ -26,9 +26,9 @@
                         <tr>
                             <th class="left_without_line">Numero</th>
                             <th class="left_without_line">Data registrazione</th>
-                            <t t-if="registry_type!='corrispettivi'">
+                            <t t-if="registry_type != 'corrispettivi'">
                                 <th class="left_without_line">Ragione sociale</th>
-                                <t t-if="registry_type=='supplier'">
+                                <t t-if="registry_type == 'supplier'">
                                     <th class="left_without_line">Numero registrazione</th>
                                 </t>
                                 <th class="left_without_line">Numero fattura</th>
@@ -45,33 +45,33 @@
                         <t t-foreach="get_move(data['ids'])" t-as="move">
                             <t t-set="counter" t-value="counter + 1"/>
                             <t t-foreach="tax_lines(move)" t-as="line">
-                                <t t-set="line_class_left" t-value="'left_with_line' if line['index']==0 else 'left_without_line'"/>
-                                <t t-set="line_class_right" t-value="'right_with_line' if line['index']==0 else 'right_without_line'"/>
+                                <t t-set="line_class_left" t-value="'left_with_line' if line['index'] == 0 else 'left_without_line'"/>
+                                <t t-set="line_class_right" t-value="'right_with_line' if line['index'] == 0 else 'right_without_line'"/>
                                   <tr>
                                     <!-- numero -->
-                                    <td t-att-class="line_class_left"><t t-if="line['index']==0"><div t-esc="counter" style="page-break-inside: avoid"/></t></td>
+                                    <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div t-esc="counter" style="page-break-inside: avoid"/></t></td>
                                     <!-- Data registrazione -->
-                                    <td t-att-class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="formatLang(move.date,date=True)"/></t></td>
-                                    <t t-if="registry_type!='corrispettivi'">
+                                    <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></t></td>
+                                    <t t-if="registry_type != 'corrispettivi'">
                                         <!-- Ragione sociale -->
-                                        <td t-att-class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></t></td>
-                                        <t t-if="registry_type=='supplier'">
+                                        <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></t></td>
+                                        <t t-if="registry_type == 'supplier'">
                                             <!-- Numero registrazione -->
-                                            <td t-att-class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.name"/></t></td>
+                                            <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="move.name"/></t></td>
                                             <!-- Numero fattura (fornitore)-->
-                                            <td t-att-class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="line['supplier_invoice_number']"/></t></td>
+                                            <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="line['supplier_invoice_number']"/></t></td>
                                         </t>
-                                        <t t-if="registry_type=='customer'">
+                                        <t t-if="registry_type == 'customer'">
                                             <!-- Numero fattura -->
-                                            <td t-att-class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.name"/></t></td>
+                                            <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="move.name"/></t></td>
                                         </t>
                                         <!-- Data fattura -->
-                                        <td t-att-class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="formatLang(line['invoice_date'],date=True)"/></t></td>
+                                        <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="formatLang(line['invoice_date'], date=True)"/></t></td>
                                     </t>
                                     <!-- sezionale -->
-                                    <td t-att-class="line_class_left"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="move.journal_id.name"/></t></td>
+                                    <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="move.journal_id.name"/></t></td>
                                     <!-- totale -->
-                                    <td t-att-class="line_class_right"><t t-if="line['index']==0"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></t></td>
+                                    <td t-att-class="line_class_right"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></t></td>
                                     <!--  imposta -->
                                     <td t-att-class="line_class_right"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></td>
                                     <!-- importo -->
@@ -85,7 +85,7 @@
         <div style="page-break-inside: avoid;">
             <table style="width:100%;  " border="1">
                     <tr style="border-style:ridge;border-width:5px">
-                        <td colspan="3" style="padding:10;" t-esc="'Periodo di stampa dal ' +formatLang(start_date(),date=True)+' al '+formatLang(end_date(),date=True)"/>
+                        <td colspan="3" style="padding:10;" t-esc="'Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
                     </tr>
                     <tr>
                         <td colspan="2" style="vertical-align:text-top;padding:10">
