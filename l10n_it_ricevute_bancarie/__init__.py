@@ -24,7 +24,5 @@
 #
 ##############################################################################
 
-import wizard_emissione_riba
-import riba_file_export
-import wizard_accreditation
-import wizard_unsolved
+import models
+import wizard

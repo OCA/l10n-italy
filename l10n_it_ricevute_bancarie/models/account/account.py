@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -26,29 +26,29 @@
 
 from openerp.osv import fields, orm
 
+
 class account_payment_term(orm.Model):
     # flag riba utile a distinguere la modalità di pagamento
     _inherit = 'account.payment.term'
-    
+
     _columns = {
-        'riba' : fields.boolean('Riba'),
-    }
-    _defaults = {
-        'riba': False,
+        'riba': fields.boolean('Riba', default=False),
     }
 
 
 class res_bank_add_field(orm.Model):
     _inherit = 'res.bank'
     _columns = {
-        'banca_estera' : fields.boolean('Banca Estera'),
+        'banca_estera': fields.boolean('Banca Estera'),
     }
 
 
 class res_partner_bank_add(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
-        'codice_sia' : fields.char('Codice SIA', size=5, help="Identification Code of the Company in the System Interbank")    
+        'codice_sia': fields.char(
+            'Codice SIA', size=5,
+            help="Identification Code of the Company in the System Interbank")
     }
 
 
@@ -57,14 +57,18 @@ class account_move_line(orm.Model):
     _inherit = "account.move.line"
 
     _columns = {
-        'distinta_line_ids' : fields.one2many('riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
-        'riba': fields.related('invoice', 'payment_term', 'riba', 
-            type='boolean', string='RiBa', store=False),
-        'unsolved_invoice_ids': fields.many2many('account.invoice', 'invoice_unsolved_line_rel', 'line_id', 'invoice_id', 'Unsolved Invoices'),
-        'iban' : fields.related('partner_id', 'bank_ids', 'iban', type='char', string='IBAN', store=False),
-    }
-    _defaults = {
-        'distinta_line_ids' : None,
+        'distinta_line_ids': fields.one2many(
+            'riba.list.move.line', 'move_line_id', "Dettaglio riba",
+            default=None),
+        'riba': fields.related(
+            'invoice', 'payment_term', 'riba', type='boolean', string='RiBa',
+            store=False),
+        'unsolved_invoice_ids': fields.many2many(
+            'account.invoice', 'invoice_unsolved_line_rel', 'line_id',
+            'invoice_id', 'Unsolved Invoices'),
+        'iban': fields.related(
+            'partner_id', 'bank_ids', 'iban', type='char', string='IBAN',
+            store=False),
     }
 
     def fields_view_get(
@@ -95,5 +99,7 @@ class account_move_line(orm.Model):
 class account_invoice(orm.Model):
     _inherit = "account.invoice"
     _columns = {
-        'unsolved_move_line_ids': fields.many2many('account.move.line', 'invoice_unsolved_line_rel', 'invoice_id', 'line_id', 'Unsolved journal items'),
+        'unsolved_move_line_ids': fields.many2many(
+            'account.move.line', 'invoice_unsolved_line_rel', 'invoice_id',
+            'line_id', 'Unsolved journal items'),
         }
