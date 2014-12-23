@@ -24,9 +24,7 @@
 #
 ##############################################################################
 
-import configurazione
+import riba_config
 import partner
 import riba
 import account
-import wizard
-

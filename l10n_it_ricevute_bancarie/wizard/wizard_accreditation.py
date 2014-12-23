@@ -22,22 +22,22 @@
 ##############################################################################
 
 from openerp.osv import fields,orm
-from tools.translate import _
-import netsvc
+from openerp.tools.translate import _
+from openerp import netsvc
 
 class riba_accreditation(orm.TransientModel):
     
     def _get_accreditation_journal_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta( cr, uid, 'accreditation_journal_id', context=context)
+        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'accreditation_journal_id', context=context)
     
     def _get_accreditation_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta( cr, uid, 'accreditation_account_id', context=context)
+        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'accreditation_account_id', context=context)
     
     def _get_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta( cr, uid, 'bank_account_id', context=context)
+        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'bank_account_id', context=context)
     
     def _get_bank_expense_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta( cr, uid, 'bank_expense_account_id', context=context)
+        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'bank_expense_account_id', context=context)
     
     def _get_accreditation_amount(self, cr, uid, context=None):
         if context is None:
