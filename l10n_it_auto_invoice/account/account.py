@@ -479,7 +479,7 @@ class account_invoice(osv.osv):
                 cr, uid, new_invoice.id, new_invoice.amount_total,
                 fiscal_position.journal_transfer_entry_id.id, 'receipt',
                 context)
-            # ----- Thanks to Andrea Camilli for fix
+            # ----- Thanks to Alessandro Camilli for fix
             # ----- Create a payment for vat of supplier invoice
             voucher_vat_supplier_id = self.voucher_from_invoice(
                 cr, uid, inv.id, inv.auto_invoice_amount_tax,
@@ -532,7 +532,7 @@ class account_invoice(osv.osv):
                                  line_autoinvoice_to_be_reconcile]
                 move_line_obj.reconcile_partial(cr, uid, reconcile_ids,
                                                 context=context)
-            # ----- / Thanks to Andrea Camilli for fix
+            # ----- / Thanks to Alessandro Camilli for fix
         return new_invoice_ids
 
     def action_number(self, cr, uid, ids, context=None):

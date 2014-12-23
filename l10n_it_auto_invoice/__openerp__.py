@@ -21,12 +21,12 @@
 ##############################################################################
 
 {
-    'name': "Invoice Intra CEE",
+    'name': "Auto Invoice",
     'version': '0.1',
     'category': 'Account',
     'description': """Manage Invoice for Intra CEE supplier""",
-    'author': 'CoOpenERP <info@coopenerp.it>',
-    'website': 'http://www.coopenerp.it',
+    'author': 'Apulia software <info@apuliasoftware.it>',
+    'website': 'http://www.apuliasoftware.it',
     'license': 'AGPL-3',
     "depends": ['base', 'account', 'account_voucher', 'account_cancel',
                 'account_invoice_entry_date'],

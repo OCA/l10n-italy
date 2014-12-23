@@ -1,5 +1,5 @@
-Francesco Apruzzese <f.apruzzese@coopenerp.it>
-Andrea Gallina <a.gallina@coopenerp.it>
+Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+Andrea Gallina <a.gallina@apuliasoftware.it>
 
 /* Bug and Fix */
 
