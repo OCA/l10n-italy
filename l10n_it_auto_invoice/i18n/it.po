@@ -1,0 +1,164 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_invoice_intra_cee
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-31 07:17+0000\n"
+"PO-Revision-Date: 2014-03-31 07:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,extra_ue_line_detail:0
+msgid "Extra UE Line Detail"
+msgstr "Dettagli Extra UE"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,active_intra_cee:0
+msgid "Active Intra CEE Management"
+msgstr "Attiva Gestione Intra CEE"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.invoice,auto_invoice_id:0
+#: view:account.tax:0
+msgid "Auto Invoice"
+msgstr "Auto Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: model:ir.model,name:l10n_it_invoice_intra_cee.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Righe Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: view:account.fiscal.position:0
+msgid "Text accept mako markdown. for example ${object.partner_id.name} for partner or ${object.number} for invoice number, etc..."
+msgstr "Il testo accetta segnaposto mako. Per esempio ${object.partner_id.name} per ottenere il nome del partner o ${object.number} per il numero fattura, etc..."
+
+#. module: l10n_it_invoice_intra_cee
+#: code:addons/l10n_it_invoice_intra_cee/account/account.py:368
+#, python-format
+msgid "You must define a tax for each line in Intra CEE Invoice"
+msgstr "Bisogna definire almeno un'aliquota IVA per ogni dettaglio delle fatture soggette ad Intra CEE"
+
+#. module: l10n_it_invoice_intra_cee
+#: help:account.fiscal.position,extra_ue_line_detail:0
+msgid "Text used as description line in Extra UE Auto Invoice"
+msgstr "Testo utilizzato come descrizione della riga dell'auto fattura extra UE"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,journal_auto_invoice_id:0
+msgid "Journal Auto Invoice CEE"
+msgstr "Sezionale Auto Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:res.company,auto_invoice_partner_id:0
+msgid "Auto Invoice Partner"
+msgstr "Cliente Auto Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.invoice,auto_invoice_amount_total:0
+msgid "Auto Invoice Total"
+msgstr "Totale Auto Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.invoice.line,reverse_charge:0
+msgid "RC"
+msgstr "RC"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.invoice,auto_invoice_amount_tax:0
+#: field:account.tax,auto_invoice_tax_id:0
+msgid "Auto Invoice Tax"
+msgstr "Aliquota Auto Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,account_transient_id:0
+msgid "Account CEE"
+msgstr "Conto Transitorio"
+
+#. module: l10n_it_invoice_intra_cee
+#: code:addons/l10n_it_invoice_intra_cee/account/account.py:374
+#, python-format
+msgid "Set an Auto Invoice Tax for tax %s"
+msgstr "Impostare l'aliquota dell'auto fattura per l'aliquota IVA %s"
+
+#. module: l10n_it_invoice_intra_cee
+#: view:account.fiscal.position:0
+msgid "Intra CEE Configuration"
+msgstr "Configurazione Intra CEE"
+
+#. module: l10n_it_invoice_intra_cee
+#: model:ir.model,name:l10n_it_invoice_intra_cee.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_invoice_intra_cee
+#: constraint:account.fiscal.position:0
+msgid "Error!\n"
+"You cannot create select two or more flag for time"
+msgstr "Errore!\n"
+"Non puoi seleziona due o più spunte alla volta"
+
+#. module: l10n_it_invoice_intra_cee
+#: code:addons/l10n_it_invoice_intra_cee/account/account.py:367
+#: code:addons/l10n_it_invoice_intra_cee/account/account.py:373
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,extra_ue_service_tax_id:0
+msgid "Extra UE Service Tax"
+msgstr "Tassa Servizio Extra UE"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.invoice,auto_invoice_amount_untaxed:0
+msgid "Auto Invoice Subtotal"
+msgstr "Subtotale Auto Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: model:ir.model,name:l10n_it_invoice_intra_cee.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: l10n_it_invoice_intra_cee
+#: help:res.company,auto_invoice_partner_id:0
+msgid "If not set, partner for auto invoice will be your company"
+msgstr "Se non impostato, il partner per l'auto fattura sarà l'azienda"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,active_extra_ue_service:0
+msgid "Active Extra UE Service Management"
+msgstr "Attiva Gestione Servizi Extra UE"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.invoice,transfer_entry_id:0
+msgid "Transfer Entry"
+msgstr "Giroconto"
+
+#. module: l10n_it_invoice_intra_cee
+#: model:ir.model,name:l10n_it_invoice_intra_cee.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posizione fiscale"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,active_reverse_charge:0
+msgid "Active Reverse Charge Management"
+msgstr "Attiva Gestione Reverse Charge"
+
+#. module: l10n_it_invoice_intra_cee
+#: model:ir.model,name:l10n_it_invoice_intra_cee.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_invoice_intra_cee
+#: field:account.fiscal.position,journal_transfer_entry_id:0
+msgid "Transfer Entry Journal"
+msgstr "Sezionale Giroconto"

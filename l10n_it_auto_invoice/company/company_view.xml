@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="auto_invoice_view_company_form" model="ir.ui.view">
+        <field name="name">auto_invoice.res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field name="auto_invoice_partner_id"
+                    domain="[('is_company', '=', True)]"/>
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>

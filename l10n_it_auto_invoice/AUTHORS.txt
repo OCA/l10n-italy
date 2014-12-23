@@ -1,0 +1,6 @@
+Francesco Apruzzese <f.apruzzese@coopenerp.it>
+Andrea Gallina <a.gallina@coopenerp.it>
+
+/* Bug and Fix */
+
+Alessandro Camilli <a.camilli@yahoo.it>
