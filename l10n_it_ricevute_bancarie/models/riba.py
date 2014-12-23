@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api, _
+from openerp import fields, models, api, _, exceptions
 import time
 import openerp.addons.decimal_precision as dp
 from openerp import netsvc
@@ -80,7 +80,8 @@ class riba_list(models.Model):
         ('accredited', 'Accredited'),
         ('paid', 'Paid'),
         ('unsolved', 'Unsolved'),
-        ('cancel', 'Canceled')], 'State', select=True, readonly=True)
+        ('cancel', 'Canceled')], 'State', select=True, readonly=True,
+        default='draft')
     line_ids = fields.One2many(
         'riba.list.line', 'list_id', 'Riba deadlines', readonly=True,
         states={'draft': [('readonly', False)]})
@@ -122,7 +123,7 @@ class riba_list(models.Model):
     def unlink(self, cr, uid, ids, context=None):
         for list in self.browse(cr, uid, ids, context=context):
             if list.state not in ('draft',  'cancel'):
-                raise orm.except_orm(
+                raise exceptions.Warning(
                     _('Error'),
                     _('List %s is in state %s. You can only delete documents \
 in state draft or canceled') % (list.name, list.state))

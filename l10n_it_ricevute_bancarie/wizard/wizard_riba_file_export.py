@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011-2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>) 
-#    Thanks to Antonio de Vincentiis http://www.devincentiis.it/ ,
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    Thanks to Antonio de Vincentiis http://www.devincentiis.it ,
 #    GAzie http://gazie.sourceforge.net/
 #    and Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -38,7 +38,7 @@ $intestazione = array monodimensionale con i seguenti index:
               [7] = name_company nome ragione sociale creditore variabile lunghezza 24 alfanumerico
               [8] = indirizzo_creditore variabile lunghezza 24 alfanumerico
               [9] = cap_citta_creditore variabile lunghezza 24 alfanumerico
-              [10] = ref (definizione attivita) creditore 
+              [10] = ref (definizione attivita) creditore
               [11] = codice fiscale/partita iva creditore alfanumerico opzionale
 
 $ricevute_bancarie = array bidimensionale con i seguenti index:
@@ -62,11 +62,12 @@ $ricevute_bancarie = array bidimensionale con i seguenti index:
 
 from openerp import tools
 import base64
-from openerp.osv import fields,orm
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import datetime
 
-class riba_file_export(orm.TransientModel):
+
+class wizard_riba_file_export(orm.TransientModel):
 
     _progressivo = 0
     _assuntrice = 0
@@ -80,8 +81,9 @@ class riba_file_export(orm.TransientModel):
     _codice = ''
     _comune_provincia_debitor = ''
 
-    def _RecordIB(self, sia_assuntrice, abi_assuntrice, data_creazione, nome_supporto, codice_divisa): #record di testa
-        self._sia = sia_assuntrice.rjust(5,'0')
+    def _RecordIB(self, sia_assuntrice, abi_assuntrice, data_creazione,
+                  nome_supporto, codice_divisa): # record di testa
+        self._sia = sia_assuntrice.rjust(5, '0')
         self._assuntrice = abi_assuntrice.rjust(5, '0')
         self._data = data_creazione.rjust(6, '0')
         self._valuta = codice_divisa[0:1]
@@ -135,9 +137,9 @@ class riba_file_export(orm.TransientModel):
 
     def act_getfile(self, cr, uid, ids, context=None):
         active_ids = context and context.get('active_ids', [])
-        order_obj = self.pool.get('riba.distinta').browse(cr, uid, active_ids, context=context)[0]
-        credit_bank = order_obj.config.bank_id
-        name_company = order_obj.config.company_id.partner_id.name
+        order_obj = self.pool['riba.list'].browse(cr, uid, active_ids, context=context)[0]
+        credit_bank = order_obj.config_id.bank_id
+        name_company = order_obj.config_id.company_id.partner_id.name
         if not credit_bank.iban:
            raise orm.except_orm('Error', _('No IBAN specified'))
         credit_abi = credit_bank.iban[5:10]
@@ -149,11 +151,11 @@ class riba_file_export(orm.TransientModel):
         credit_account = credit_bank.iban[15:27]
         dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = datetime.datetime.now().strftime("%d%m%y%H%M%S") + credit_sia
-        creditor_address = order_obj.config.company_id.partner_id
+        creditor_address = order_obj.config_id.company_id.partner_id
         creditor_street = creditor_address.street or ''
         creditor_city = creditor_address.city or ''
         creditor_province = creditor_address.province.code or ''
-        if not order_obj.config.company_id.partner_id.vat and not order_obj.config.company_id.partner_id.fiscalcode:
+        if not order_obj.config_id.company_id.partner_id.vat and not order_obj.config_id.company_id.partner_id.fiscalcode:
            raise orm.except_orm('Error', _('No VAT or Fiscalcode specified for: ') + name_company)
         array_testata = [
                credit_sia,
@@ -166,8 +168,8 @@ class riba_file_export(orm.TransientModel):
                name_company,
                creditor_address.street or '',
                creditor_address.zip or '' + ' ' + creditor_city,
-               order_obj.config.company_id.partner_id.ref or '',
-               order_obj.config.company_id.partner_id.vat and order_obj.config.company_id.partner_id.vat[2:] or order_obj.config.company_id.partner_id.fiscalcode,
+               order_obj.config_id.company_id.partner_id.ref or '',
+               order_obj.config_id.company_id.partner_id.vat and order_obj.config_id.company_id.partner_id.vat[2:] or order_obj.config_id.company_id.partner_id.fiscalcode,
                ]
         arrayRiba = []
         for line in order_obj.line_ids:
@@ -235,7 +237,7 @@ class riba_file_export(orm.TransientModel):
         'state': fields.selection( ( ('choose','choose'),   # choose accounts
                                      ('get','get'),         # get the file
                                    ) ),
-        'riba_.txt': fields.binary('File', readonly=True),
+        'ribafile': fields.binary('File', readonly=True),
     }
     _defaults = { 
         'state': lambda *a: 'choose',
