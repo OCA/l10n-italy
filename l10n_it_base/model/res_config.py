@@ -31,4 +31,9 @@ class L10nItConfigSettings(orm.TransientModel):
             'Use Pec Mail in Partner Profile',
             help="""Install l10n_it_pec module for pec mail management"""
         ),
+        'module_l10n_it_fiscalcode': fields.boolean(
+            'Use fiscal code in Parner Profile',
+            help="""Install l10n_it_fiscalcode module for fiscal
+code management"""
+        ),
     }

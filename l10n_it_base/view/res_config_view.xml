@@ -25,6 +25,17 @@
                             </div>
                         </div>
                     </group>
+                    <group>
+                        <label for="id" string="Accounting"/>
+                        <div>
+                            <div>
+                                <label for="module_l10n_it_fiscalcode"/>
+                                <field name="module_l10n_it_fiscalcode"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </group>
                 </form>
             </field>
         </record>

@@ -6,16 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-16 09:24+0000\n"
-"PO-Revision-Date: 2014-09-16 11:26+0100\n"
-"Last-Translator: Franco Tampieri <franco@tampieri.info>\n"
+"POT-Creation-Date: 2014-10-17 15:16+0000\n"
+"PO-Revision-Date: 2014-10-17 17:27+0100\n"
+"Last-Translator: Franco Alberganti <info@streamlake.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: it\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Accounting"
+msgstr "Contabilità"
 
 #. module: l10n_it_base
 #: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
@@ -54,6 +59,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_fiscalcode:0
+msgid "Install l10n_it_fiscalcode module for fiscal code management"
+msgstr ""
+"Installa il modulo l10n_it_fiscalcode per la gestione del codice fiscale"
+
+#. module: l10n_it_base
 #: help:l10n_it.config.settings,module_l10n_it_pec:0
 msgid "Install l10n_it_pec module for pec mail management"
 msgstr "Installa il modulo l10n_it_pec per la gestione della mail pec"
@@ -82,3 +93,8 @@ msgstr "Profilo Partner"
 #: field:l10n_it.config.settings,module_l10n_it_pec:0
 msgid "Use Pec Mail in Partner Profile"
 msgstr "Usa Mail Pec nel Profilo Partner"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_fiscalcode:0
+msgid "Use fiscal code in Parner Profile"
+msgstr "Usa codice fiscale nel Profilo Partner"
