@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api, _, exceptions
+from openerp import fields, models, api, _, exceptions, workflow
 import time
 import openerp.addons.decimal_precision as dp
-from openerp import netsvc
+# from openerp import netsvc
 
 
 class riba_list(models.Model):
@@ -212,10 +212,10 @@ in state draft or canceled') % (list.name, list.state))
 
     def action_cancel_draft(self, cr, uid, ids, *args):
         self.write(cr, uid, ids, {'state': 'draft'})
-        wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         for list_id in ids:
-            wf_service.trg_delete(uid, 'riba.list', list_id, cr)
-            wf_service.trg_create(uid, 'riba.list', list_id, cr)
+            workflow.trg_delete(uid, 'riba.list', list_id, cr)
+            workflow.trg_create(uid, 'riba.list', list_id, cr)
         return True
 
 
@@ -246,13 +246,13 @@ class riba_list_line(models.Model):
         return res
 
     def _reconciled(self, cr, uid, ids, name, args, context=None):
-        wf_service = netsvc.LocalService("workflow")
+        #wf_service = netsvc.LocalService("workflow")
         res = {}
         for id in ids:
             res[id] = self.test_paid(cr, uid, [id])
             if res[id]:
                 self.write(cr, uid, id, {'state': 'paid'}, context=context)
-                wf_service.trg_validate(
+                workflow.trg_validate(
                     uid, 'riba.list',
                     self.browse(cr, uid, id).list_id.id, 'paid', cr)
         return res
@@ -383,7 +383,7 @@ class riba_list_line(models.Model):
         ('accredited', 'Accredited'),
         ('paid', 'Paid'),
         ('unsolved', 'Unsolved'),
-        ], 'State', select=True, readonly=True)
+        ], 'State', select=True, readonly=True, track_visibility='onchange')
     reconciled = fields.Boolean(
         compute='_reconciled', string='Paid/Reconciled',
         store=True,
@@ -406,9 +406,9 @@ payment.")
     def confirm(self, cr, uid, ids, context=None):
         move_pool = self.pool.get('account.move')
         move_line_pool = self.pool.get('account.move.line')
-        wf_service = netsvc.LocalService("workflow")
+        #wf_service = netsvc.LocalService("workflow")
         for line in self.browse(cr, uid, ids, context=context):
-            journal = line.list_id.config.acceptance_journal_id
+            journal = line.list_id.config_id.acceptance_journal_id
             total_credit = 0.0
             move_id = move_pool.create(cr, uid, {
                 'ref': 'Ri.Ba. %s - line %s' % (line.list_id.name,
@@ -434,7 +434,7 @@ payment.")
                                                  line.sequence),
                 'account_id': (
                     line.acceptance_account_id.id or
-                    line.list_id.config.acceptance_account_id.id
+                    line.list_id.config_id.acceptance_account_id.id
                     # in questo modo se la riga non ha conto accettazione
                     # viene prelevato il conto in configuration riba
                     ),
@@ -452,7 +452,7 @@ payment.")
                 'acceptance_move_id': move_id,
                 'state': 'confirmed',
                 })
-            wf_service.trg_validate(
+            workflow.trg_validate(
                 uid, 'riba.list', line.list_id.id, 'accepted', cr)
         return True
 
