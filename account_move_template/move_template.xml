@@ -26,6 +26,7 @@
             <field name="model">account.move.template.line</field>
             <field name="arch" type="xml">
                 <form string="Journal Entry Template Line">
+                    <group>
                     <field colspan="4" name="name" select="1"/>
                     <field name="sequence"/>
                     <field name="journal_id"/>
@@ -37,6 +38,7 @@
                     <separator string="Python Code" colspan="4"/>
                     <field name="python_code" colspan="4" attrs="{'readonly': [('type', '!=', 'computed')]}" nolabel="1"/>
                     <label string="You can refer to other lines using their sequence number (e.g. 'L(1)' for first line). Examples of code: 'L(1) * 0.2'; 'L(2) - L(1)'; 'L(1) + L(2) + L(3)'; '1250'" colspan="4"/>
+                    </group>
                 </form>
             </field>
         </record>
