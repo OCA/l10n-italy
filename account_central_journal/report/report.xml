@@ -7,8 +7,13 @@
             <field name="model">account.move.line</field>
             <field name="report_name">central_journal_report</field>
             <field name="report_rml">account_central_journal/report/central_journal_report.mako</field>
+            <field name="report_file">account_central_journal/report/central_journal_report.mako</field>
             <field name="report_type">webkit</field>
             <field name="webkit_header" ref="ir_header_central_journal_report"/>
+            <field eval="[(6,0,[])]" name="groups_id"/>
+            <field eval="0" name="multi"/>
+            <field eval="0" name="auto"/>
+            <field eval="1" name="header"/>
         </record>
     </data>
 </openerp>

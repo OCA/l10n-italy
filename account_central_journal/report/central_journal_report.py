@@ -20,9 +20,20 @@
 ##############################################################################
 
 import time
-from report import report_sxw
-from osv import osv
-from tools.translate import _
+from openerp.report import report_sxw
+from openerp.osv import osv
+from openerp.tools.translate import _
+from openerp.addons.report_webkit import webkit_report
+
+from mako.template import Template
+from openerp.addons.report_webkit import report_helper
+from openerp.modules.module import get_module_resource
+
+def get_mako_template(obj, *args):
+    template_path = get_module_resource(*args)
+    return Template(filename=template_path, input_encoding='utf-8')
+
+report_helper.WebKitHelper.get_mako_template = get_mako_template
 
 class central_journal_report(report_sxw.rml_parse):
     
@@ -83,7 +94,14 @@ class central_journal_report(report_sxw.rml_parse):
             'get_movements': self._get_movements,
         })
 
+'''
 report_sxw.report_sxw('report.central_journal_report',
                        'account.move.line', 
                        'addons/account_central_journal/report/central_journal_report.mako',
                        parser=central_journal_report)
+'''
+webkit_report.WebKitParser(
+    'report.central_journal_report', 'account.move.line', 
+    'addons/account_central_journal/report/central_journal_report.mako',
+    parser=central_journal_report)
+

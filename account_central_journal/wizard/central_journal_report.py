@@ -21,8 +21,8 @@
 
 import time
 from datetime import datetime, date, timedelta
-from osv import osv, fields
-from tools.translate import _
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
 
 class central_journal_report(osv.osv_memory):
     
