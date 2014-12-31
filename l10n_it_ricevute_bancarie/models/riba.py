@@ -220,33 +220,43 @@ in state draft or canceled') % (list.name, list.state))
 
 
 class riba_list_line(models.Model):
+    # TODO estendere la account_due_list per visualizzare e filtrare in base alle riba ?
+    _name = 'riba.list.line'
+    _description = 'Riba details'
+    _rec_name = 'sequence'
 
     @api.multi
     def _get_line_values(self):
-        res = {}
+        # res = {}
         for line in self:
-            res[line.id] = {}
-            res[line.id]['amount'] = 0.0
-            res[line.id]['invoice_date'] = ''
-            res[line.id]['invoice_number'] = ''
+            # res[line.id] = {}
+            line.amount = 0.0
+            line.invoice_date = ""
+            line.invoice_number = ""
             for move_line in line.move_line_ids:
-                res[line.id]['amount'] += move_line.amount
-                if not res[line.id]['invoice_date']:
-                    res[line.id]['invoice_date'] = str(
+                line.amount += move_line.amount
+                if not line.invoice_date:
+                    line.invoice_date = str(
                         move_line.move_line_id.invoice.date_invoice)
                 else:
-                    res[line.id]['invoice_date'] += ', ' + str(
-                        move_line.move_line_id.invoice.date_invoice)
-                if not res[line.id]['invoice_number']:
-                    res[line.id]['invoice_number'] = str(
+                    line.invoice_date = "%s, %s" % (line.invoice_date, str(
+                        move_line.move_line_id.invoice.date_invoice))
+                if not line.invoice_number:
+                    line.invoice_number = str(
                         move_line.move_line_id.invoice.internal_number)
                 else:
-                    res[line.id]['invoice_number'] += ', ' + str(
-                        move_line.move_line_id.invoice.internal_number)
-        return res
+                    line.invoice_number = "%s, %s" % (line.invoice_number, str(
+                        move_line.move_line_id.invoice.internal_number))
+
+    amount = fields.Float(
+        compute='_get_line_values', string="Amount")
+    invoice_date = fields.Char(
+        compute='_get_line_values', string="Invoice Date", size=256)
+    invoice_number = fields.Char(
+        compute='_get_line_values', string="Invoice Number", size=256)
 
     def _reconciled(self, cr, uid, ids, name, args, context=None):
-        #wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         res = {}
         for id in ids:
             res[id] = self.test_paid(cr, uid, [id])
@@ -348,11 +358,6 @@ class riba_list_line(models.Model):
             result[riba_line.id] = lines
         return result
 
-    # TODO estendere la account_due_list per visualizzare e filtrare in base alle riba ?
-    _name = 'riba.list.line'
-    _description = 'Riba details'
-    _rec_name = 'sequence'
-
     sequence = fields.Integer('Number')
     move_line_ids = fields.One2many(
         'riba.list.move.line', 'riba_line_id', string='Credit move lines')
@@ -362,8 +367,6 @@ class riba_list_line(models.Model):
         'account.move', string='Unsolved Entry', readonly=True)
     acceptance_account_id = fields.Many2one(
         'account.account', string='Acceptance Account')
-    amount = fields.Float(
-        compute='_get_line_values', string="Amount")
     bank_id = fields.Many2one('res.partner.bank', string='Debitor Bank')
     iban = fields.Char(
         related='bank_id.iban', string='IBAN', store=False,
@@ -372,10 +375,6 @@ class riba_list_line(models.Model):
         'riba.list', string='List', required=True, ondelete='cascade')
     partner_id = fields.Many2one(
         'res.partner', string="Cliente", readonly=True)
-    invoice_date = fields.Char(
-        compute='_get_line_values', string="Invoice Date", size=256)
-    invoice_number = fields.Char(
-        compute='_get_line_values', string="Invoice Number", size=256)
     due_date = fields.Date("Due date", readonly=True)
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -406,7 +405,7 @@ payment.")
     def confirm(self, cr, uid, ids, context=None):
         move_pool = self.pool.get('account.move')
         move_line_pool = self.pool.get('account.move.line')
-        #wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         for line in self.browse(cr, uid, ids, context=context):
             journal = line.list_id.config_id.acceptance_journal_id
             total_credit = 0.0
