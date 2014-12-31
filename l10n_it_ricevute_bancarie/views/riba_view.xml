@@ -79,14 +79,20 @@
                                 <form string="Detail">
                                     <notebook colspan="4">
                                         <page string="General">
-                                            <field name="sequence"/>
-                                            <field name="invoice_number"/>
-                                            <field name="invoice_date"/>
-                                            <field name="partner_id"/>
-                                            <field name="amount" />
-                                            <field name="due_date"/>
-                                            <field name="state"/>
-                                            <field name="reconciled" />
+                                            <group>
+                                                <group>
+                                                    <field name="sequence"/>
+                                                    <field name="invoice_number"/>
+                                                    <field name="invoice_date"/>
+                                                    <field name="partner_id"/>
+                                                </group>
+                                                <group>
+                                                    <field name="amount" />
+                                                    <field name="due_date"/>
+                                                    <field name="state"/>
+                                                    <field name="reconciled" />
+                                                </group>
+                                            </group>
                                         </page>
                                         <page string="Accounting">
                                             <separator string="Invoice entries" colspan="4"/>
@@ -96,12 +102,16 @@
                                                     <field name="move_line_id"/>
                                                 </tree>
                                                 <form string="Move line">
-                                                    <field name="amount" />
-                                                    <field name="move_line_id"/>
+                                                    <group>
+                                                        <field name="amount" />
+                                                        <field name="move_line_id"/>
+                                                    </group>
                                                 </form>
                                             </field>
-                                            <field name="acceptance_account_id"/>
-                                            <field name="acceptance_move_id"/>
+                                            <group>
+                                                <field name="acceptance_account_id"/>
+                                                <field name="acceptance_move_id"/>
+                                            </group>
                                             <separator string="Payments" colspan="4"/>
                                             <field name="payment_ids" nolabel="1" colspan="4">
                                                 <tree string="Payments">
