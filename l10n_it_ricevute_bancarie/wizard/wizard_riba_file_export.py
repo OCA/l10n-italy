@@ -154,7 +154,7 @@ class wizard_riba_file_export(orm.TransientModel):
         creditor_address = order_obj.config_id.company_id.partner_id
         creditor_street = creditor_address.street or ''
         creditor_city = creditor_address.city or ''
-        creditor_province = creditor_address.province.code or ''
+        creditor_province = creditor_address.state_id.code or ''
         if not order_obj.config_id.company_id.partner_id.vat and not order_obj.config_id.company_id.partner_id.fiscalcode:
            raise orm.except_orm('Error', _('No VAT or Fiscalcode specified for: ') + name_company)
         array_testata = [
@@ -182,7 +182,7 @@ class wizard_riba_file_export(orm.TransientModel):
             debit_abi = debit_bank.iban[5:10]
             debit_cab = debit_bank.iban[10:15]
             debitor_city = debitor_address.city and debitor_address.city.ljust(23)[0:23] or ''
-            debitor_province = debitor_address.province.code or ''
+            debitor_province = debitor_address.state_id.code or ''
             if not line.due_date: # ??? VERIFICARE
                 due_date =  '000000'
             else:
@@ -214,7 +214,7 @@ class wizard_riba_file_export(orm.TransientModel):
             arrayRiba.append(Riba)
 
         out=base64.encodestring(self._creaFile(array_testata, arrayRiba).encode("utf8"))
-        self.write(cr, uid, ids, {'state':'get', 'riba_.txt':out}, context=context)
+        self.write(cr, uid, ids, {'state':'get', 'ribafile':out}, context=context)
 
         model_data_obj = self.pool.get('ir.model.data')
         view_rec = model_data_obj.get_object_reference(cr, uid, 'l10n_it_ricevute_bancarie', 'wizard_riba_file_export')
