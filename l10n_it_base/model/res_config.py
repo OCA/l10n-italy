@@ -32,7 +32,7 @@ class L10nItConfigSettings(orm.TransientModel):
             help="""Install l10n_it_pec module for pec mail management"""
         ),
         'module_l10n_it_fiscalcode': fields.boolean(
-            'Use fiscal code in Parner Profile',
+            'Use fiscal code in Partner Profile',
             help="""Install l10n_it_fiscalcode module for fiscal
 code management"""
         ),
