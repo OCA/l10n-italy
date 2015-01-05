@@ -120,31 +120,29 @@ class riba_list(models.Model):
         default=lambda self: fields.Date.context_today(self),
         help="Keep empty to use the current date")
 
-    def unlink(self, cr, uid, ids, context=None):
-        for list in self.browse(cr, uid, ids, context=context):
+    @api.multi
+    def unlink(self):  # , cr, uid, ids, context=None):
+        for list in self:  # .browse(cr, uid, ids, context=context):
             if list.state not in ('draft',  'cancel'):
                 raise exceptions.Warning(
                     _('Error'),
                     _('List %s is in state %s. You can only delete documents \
 in state draft or canceled') % (list.name, list.state))
-        super(riba_list, self).unlink(cr, uid, ids, context=context)
-        return True
+        super(riba_list, self).unlink(self)  # cr, uid, ids, context=context)
 
-    def confirm(self, cr, uid, ids, context=None):
-        line_pool = self.pool.get('riba.list.line')
-        for list in self.browse(cr, uid, ids, context=context):
-            line_pool.confirm(cr, uid, [line.id for line in list.line_ids],
-                              context=context)
-        return True
+    @api.multi
+    def confirm(self):  # , cr, uid, ids, context=None):
+        for list in self:  # .browse(cr, uid, ids, context=context):
+            for line in list.line_ids:
+                line.confirm()
 
-    def riba_new(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'draft',
-            }, context=context)
-        return True
+    @api.one
+    def riba_new(self):  # , cr, uid, ids, context=None):
+        self.state = 'draft'
 
-    def riba_cancel(self, cr, uid, ids, context=None):
-        for list in self.browse(cr, uid, ids, context=context):
+    @api.multi
+    def riba_cancel(self):  # , cr, uid, ids, context=None):
+        for list in self:  # .browse(cr, uid, ids, context=context):
             # TODO remove ervery other move
             for line in list.line_ids:
                 if line.acceptance_move_id:
@@ -153,74 +151,70 @@ in state draft or canceled') % (list.name, list.state))
                     line.unsolved_move_id.unlink()
             if list.accreditation_move_id:
                 list.accreditation_move_id.unlink()
-        self.write(cr, uid, ids, {
-            'state': 'cancel',
-            }, context=context)
-        return True
+            line.state = 'cancel'  # was self.write(state=cancel)
 
-    def riba_accepted(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'accepted',
-            'date_accepted': fields.Date.context_today(self),
-            }, context=context)
-        return True
+    @api.one
+    def riba_accepted(self):  # , cr, uid, ids, context=None):
+        self.state = 'accepted'
+        self.date_accepted = fields.Date.context_today(self)
 
-    def riba_accredited(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'accredited',
-            'date_accreditation': fields.Date.context_today(self),
-            }, context=context)
-        for list in self.browse(cr, uid, ids, context=context):
+    @api.one
+    def riba_accredited(self):  # , cr, uid, ids, context=None):
+        self.state = 'accredited'
+        self.date_accreditation = fields.Date.context_today(self)
+        for list in self:  # .browse(cr, uid, ids, context=context):
             for line in list.line_ids:
-                line.write({'state': 'accredited'})
-        return True
+                line.state = 'accredited'
 
-    def riba_paid(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'paid',
-            'date_paid': fields.Date.context_today(self),
-            }, context=context)
-        return True
+    @api.one
+    def riba_paid(self):  # , cr, uid, ids, context=None):
+        self.state = 'paid'
+        self.date_paid = fields.Date.context_today(self)
 
-    def riba_unsolved(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'unsolved',
-            'date_unsolved': fields.Date.context_today(self),
-            }, context=context)
-        return True
+    @api.one
+    def riba_unsolved(self):  # , cr, uid, ids, context=None):
+        self.state = 'unsolved'
+        self.date_unsolved = fields.Date.context_today(self)
 
-    def test_accepted(self, cr, uid, ids, *args):
-        for list in self.browse(cr, uid, ids):
+    @api.multi
+    def test_accepted(self):  # , cr, uid, ids, *args):
+        for list in self:  # .browse(cr, uid, ids):
             for line in list.line_ids:
                 if line.state != 'confirmed':
                     return False
         return True
 
-    def test_unsolved(self, cr, uid, ids, *args):
-        for list in self.browse(cr, uid, ids):
+    @api.multi
+    def test_unsolved(self):  # , cr, uid, ids, *args):
+        for list in self:  # .browse(cr, uid, ids):
             for line in list.line_ids:
                 if line.state != 'unsolved':
                     return False
         return True
 
-    def test_paid(self, cr, uid, ids, *args):
-        for list in self.browse(cr, uid, ids):
+    @api.multi
+    def test_paid(self):  # , cr, uid, ids, *args):
+        for list in self:  # .browse(cr, uid, ids):
             for line in list.line_ids:
                 if line.state != 'paid':
                     return False
         return True
 
-    def action_cancel_draft(self, cr, uid, ids, *args):
-        self.write(cr, uid, ids, {'state': 'draft'})
+    @api.multi
+    def action_cancel_draft(self):  # , cr, uid, ids, *args):
+        # self.state = 'draft'
         # wf_service = netsvc.LocalService("workflow")
-        for list_id in ids:
-            workflow.trg_delete(uid, 'riba.list', list_id, cr)
-            workflow.trg_create(uid, 'riba.list', list_id, cr)
-        return True
+        for list in self:
+            workflow.trg_delete(
+                self.env.user.id, 'riba.list', list.id, self._cr)
+            workflow.trg_create(
+                self.env.user.id, 'riba.list', list.id, self._cr)
+            list.state = 'draft'
 
 
 class riba_list_line(models.Model):
-    # TODO estendere la account_due_list per visualizzare e filtrare in base alle riba ?
+    # TODO estendere la account_due_list per visualizzare e filtrare
+    # in base alle riba ?
     _name = 'riba.list.line'
     _description = 'Riba details'
     _rec_name = 'sequence'
@@ -255,21 +249,23 @@ class riba_list_line(models.Model):
     invoice_number = fields.Char(
         compute='_get_line_values', string="Invoice Number", size=256)
 
-    def _reconciled(self, cr, uid, ids, name, args, context=None):
+    @api.multi
+    def _reconciled(self):  # , cr, uid, ids, name, args, context=None):
         # wf_service = netsvc.LocalService("workflow")
         res = {}
-        for id in ids:
-            res[id] = self.test_paid(cr, uid, [id])
-            if res[id]:
-                self.write(cr, uid, id, {'state': 'paid'}, context=context)
+        for line in self:
+            res[line.id] = line.test_paid()
+            if res[line.id]:
+                line.state = 'paid'
                 workflow.trg_validate(
-                    uid, 'riba.list',
-                    self.browse(cr, uid, id).list_id.id, 'paid', cr)
+                    self.env.user.id, 'riba.list',
+                    line.list_id.id, 'paid', cr)
         return res
 
-    def move_line_id_payment_gets(self, cr, uid, ids, *args):
+    @api.one
+    def move_line_id_payment_gets(self):  # , cr, uid, ids, *args):
         res = {}
-        if not ids:
+        if not self:
             return res
         cr.execute('SELECT list_line.id, l.id '
                    'FROM account_move_line l '
@@ -277,7 +273,7 @@ class riba_list_line(models.Model):
                    '(list_line.acceptance_move_id=l.move_id) '
                    'WHERE list_line.id IN %s '
                    'AND l.account_id=list_line.acceptance_account_id',
-                   (tuple(ids),))
+                   (tuple([line.id for line in self]),))
         for r in cr.fetchall():
             res.setdefault(r[0], [])
             res[r[0]].append(r[1])
@@ -285,14 +281,18 @@ class riba_list_line(models.Model):
 
     # return the ids of the move lines which has the same account than the
     # statement whose id is in ids
-    def move_line_id_payment_get(self, cr, uid, ids, *args):
-        if not ids:
+    @api.multi
+    def move_line_id_payment_get(self):  # , cr, uid, ids, *args):
+        if not self:
             return []
-        result = self.move_line_id_payment_gets(cr, uid, ids, *args)
+        ids = [x.id for x in self]
+        result = self.move_line_id_payment_gets(ids)  # cr, uid, ids, *args)
         return result.get(ids[0], [])
 
-    def test_paid(self, cr, uid, ids, *args):
-        res = self.move_line_id_payment_get(cr, uid, ids)
+    @api.multi
+    def test_paid(self):  # , cr, uid, ids, *args):
+        ids = [x.id for x in self]
+        res = self.move_line_id_payment_get(ids)
         if not res:
             return False
         ok = True
@@ -315,7 +315,7 @@ class riba_list_line(models.Model):
                     move[line2.move_id.id] = True
         line_ids = []
         if move:
-            line_ids = self.pool.get('riba.list.line').search(
+            line_ids = self.pool['riba.list.line'].search(
                 cr, uid, [('acceptance_move_id', 'in', move.keys())],
                 context=context)
         return line_ids
@@ -402,33 +402,34 @@ payment.")
     type = fields.Char(
         relation='list_id.type', size=32, string='Type', readonly=True)
 
-    def confirm(self, cr, uid, ids, context=None):
-        move_pool = self.pool.get('account.move')
-        move_line_pool = self.pool.get('account.move.line')
+    @api.multi
+    def confirm(self):  # , cr, uid, ids, context=None):
+        move_pool = self.pool['account.move']
+        move_line_pool = self.pool['account.move.line']
         # wf_service = netsvc.LocalService("workflow")
-        for line in self.browse(cr, uid, ids, context=context):
+        for line in self:  # .browse(cr, uid, ids, context=context):
             journal = line.list_id.config_id.acceptance_journal_id
             total_credit = 0.0
-            move_id = move_pool.create(cr, uid, {
+            move_id = move_pool.create(self._cr, self.env.user.id, {
                 'ref': 'Ri.Ba. %s - line %s' % (line.list_id.name,
                                                 line.sequence),
                 'journal_id': journal.id,
                 'date': line.list_id.registration_date,
-                }, context=context)
+                }, self._context)
             to_be_reconciled = []
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
-                move_line_id = move_line_pool.create(cr, uid, {
+                move_line_id = move_line_pool.create(self._cr, self.env.user.id, {
                     'name': riba_move_line.move_line_id.invoice.number,
                     'partner_id': line.partner_id.id,
                     'account_id': riba_move_line.move_line_id.account_id.id,
                     'credit': riba_move_line.amount,
                     'debit': 0.0,
                     'move_id': move_id,
-                    }, context=context)
+                    }, self._context)
                 to_be_reconciled.append([move_line_id,
                                          riba_move_line.move_line_id.id])
-            move_line_pool.create(cr, uid, {
+            move_line_pool.create(self._cr, self.env.user.id, {
                 'name': 'Ri.Ba. %s - line %s' % (line.list_id.name,
                                                  line.sequence),
                 'account_id': (
@@ -442,18 +443,18 @@ payment.")
                 'credit': 0.0,
                 'debit': total_credit,
                 'move_id': move_id,
-                }, context=context)
-            move_pool.post(cr, uid, [move_id], context=context)
+                }, self._context)
+            move_pool.post(self._cr, self.env.user.id, [move_id], self._context)
             for reconcile_ids in to_be_reconciled:
-                move_line_pool.reconcile_partial(cr, uid, reconcile_ids,
-                                                 context=context)
+                move_line_pool.reconcile_partial(self._cr, self.env.user.id,
+                                                 reconcile_ids,
+                                                 self._context)
             line.write({
                 'acceptance_move_id': move_id,
                 'state': 'confirmed',
                 })
             workflow.trg_validate(
-                uid, 'riba.list', line.list_id.id, 'accepted', cr)
-        return True
+                self.env.user.id, 'riba.list', line.list_id.id, 'accepted', self._cr)
 
 
 class riba_list_move_line(models.Model):
