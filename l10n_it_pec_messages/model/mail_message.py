@@ -219,7 +219,6 @@ class MailMessage(orm.Model):
     def check_access_rule(self, cr, uid, ids, operation, context=None):
         if context is None:
             context = {}
-        print context
         if context.get('pec_messages'):
             return super(orm.Model, self).check_access_rule(
                 cr, uid, ids, operation, context=context)

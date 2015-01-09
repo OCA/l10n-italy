@@ -177,7 +177,7 @@
         </record>
 
         <record model="ir.actions.act_window.view" id="message_pec_act_form">
-            <field name="sequence" eval="1"/>
+            <field name="sequence" eval="2"/>
             <field name="view_mode">form</field>
             <field name="view_id" ref="message_pec_form"/>
             <field name="act_window_id" ref="action_mail_pec"/>
