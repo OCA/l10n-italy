@@ -76,8 +76,13 @@
                     <field name="subject" colspan="4"/>
                     <field name="body" colspan="4"/>
                     <newline/>
+                    <button name="%(l10n_it_pec_messages.action_reply_pec_compose_message_wizard)d"
+                            string="Reply" type="action" icon="terp-mail-message-new"
+                            context="{'default_partner_ids':[author_id],'default_composition_mode':'reply'}"/>
+                    <newline/>
+
                     <notebook colspan="6" >
-                        <page string="Reply">
+                        <page string="Replies">
                             <field name="child_ids" nolabel="1"
                              readonly="1"
                              context = " {

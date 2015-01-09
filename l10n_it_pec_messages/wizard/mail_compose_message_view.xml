@@ -51,6 +51,16 @@
             <field name="target">new</field>
         </record>
 
+        <record id="action_reply_pec_compose_message_wizard" model="ir.actions.act_window">
+            <field name="name">Reply Pec Email</field>
+            <field name="res_model">mail.compose.message</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="context" >{'new_pec_mail': True,'reply_pec':True}</field>
+            <field name="target">new</field>
+        </record>
+
         <record id="action_write_pec_wizard" model="ir.actions.act_window.view">
             <field name="sequence" eval="4"/>
             <field name="view_mode">form</field>
