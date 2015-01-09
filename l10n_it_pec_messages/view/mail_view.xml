@@ -8,9 +8,29 @@
             <field name="inherit_id" ref="mail.view_message_form"/>
             <field name="arch" type="xml">
                 <field name="subtype_id" position="after" >
+                    <field name="ref_msg_id" />
                     <field name="pec_msg_id" />
                     <field name="pec_type" />
-                    <field name="ref_msg_id" />
+                </field>
+                <field name="body" position="replace" >
+                    <notebook>
+                        <page string="Body">
+                            <field name="body"/>
+                        </page>
+                        <page string="Server Notification Log Message">
+                                <group>
+                                        <field name="inprogress_message_id"/>
+                                        <field name="reception_message_id"/>
+                                        <field name="no_reception_message_id"/>
+                                        <field name="notice_delivery_err_message_id"/>
+                                        <field name="delivery_message_id"/>
+                                        <field name="delivery_err_message_id"/>
+                                        <field name="virus_message_id"/>
+                                </group>
+                        </page>
+                    </notebook>
+
+
                 </field>
                 <field name="model" position="before" >
                     <field name="server_id" />
@@ -22,6 +42,7 @@
             </field>
         </record>
 
+<!--
         <record id="action_mail_pec" model="ir.actions.client">
             <field name="name">PEC</field>
             <field name="tag">mail.wall</field>
@@ -38,13 +59,221 @@
                             'show_compose_message': False
                         }&quot;"/>
         </record>
+-->
+
+
+        <record model='ir.ui.view' id='message_pec_form'>
+            <field name="name">message.pec.form</field>
+            <field name="model">mail.message</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <form string="Pec">
+                    <field name="email_from" />
+                    <field name="date" />
+                    <field name="author_id" />
+                    <field name="folder_id" />
+                    <newline/>
+                    <field name="subject" colspan="4"/>
+                    <field name="body" colspan="4"/>
+                    <newline/>
+                    <notebook colspan="6" >
+                        <page string="Reply">
+                            <field name="child_ids" nolabel="1"
+                             readonly="1"
+                             context = " {
+                                              'form_view_ref' : 'l10n_it_pec_messages.message_pec_form',
+                                              'tree_view_ref' : 'l10n_it_pec_messages.message_pec_tree',
+                                              'pec_messages': True}"
+                              />
+                        </page>
+                        <page string="Attachment">
+                            <field name="attachment_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='message_pec_tree'>
+            <field name="name">message.pec.tree</field>
+            <field name="model">mail.message</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Pec">
+                    <field name="folder_id"  invisible="1"/>
+                    <field name="email_from" />
+                    <field name="date" />
+                    <field name="subject" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="pec_message_search_view" model="ir.ui.view">
+            <field name="name">message.search.form</field>
+            <field name="model">mail.message</field>
+            <field name="arch" type="xml">
+                <search string="Message">
+                   <field name="email_from" string=""/>
+                   <field name="date" string=""/>
+                   <separator/>
+                   <field name="folder_id"/>
+                   <group  expand='0' string='Group by...'>
+                       <filter string='Folder' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'folder_id'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='action_mail_pec'>
+            <field name="name">Leggi Pec</field>
+            <field name="res_model">mail.message</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="pec_message_search_view"/>
+            <field name="domain">[
+                  ('server_id.pec','=',True),
+                  ('parent_id','=',False),
+                  ('pec_type','=','posta-certificata'),
+                  ('server_id.user_ids','in',uid)]</field>
+            <field name="context">{
+                'pec_messages': True,
+            }</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Premi qui per creare un nuovo record
+              </p><p>
+                Ricordati di inserire tutti i campi in celeste!
+              </p>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='action_out_mail_pec'>
+            <field name="name">Leggi Pec</field>
+            <field name="res_model">mail.mail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="pec_message_search_view"/>
+            <field name="domain">[
+                  ('server_id.pec','=',True),
+                  ('pec_type','=','posta-certificata'),
+                  ('server_id.user_ids','in',uid)]</field>
+            <field name="context">{
+                'pec_messages': True,
+            }</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Premi qui per creare un nuovo record
+              </p><p>
+                Ricordati di inserire tutti i campi in celeste!
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="message_pec_act_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="message_pec_tree"/>
+            <field name="act_window_id" ref="action_mail_pec"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="message_pec_act_form">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="message_pec_form"/>
+            <field name="act_window_id" ref="action_mail_pec"/>
+        </record>
+
+
 
         <record id="mail_pec" model="ir.ui.menu">
-            <field name="name">PEC</field>
+            <field name="name">Leggi PEC</field>
             <field name="action" ref="action_mail_pec"/>
             <field name="parent_id" ref="mail.mail_feeds"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
+
+        <record id="in_mail_pec" model="ir.ui.menu">
+            <field name="name">PEC Inviate</field>
+            <field name="action" ref="action_out_mail_pec"/>
+            <field name="parent_id" ref="mail_pec"/>
+            <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+        </record>
+
+
+
+        <record id="message_category_search_view" model="ir.ui.view">
+            <field name="name">message.category.search</field>
+            <field name="model">message.category</field>
+            <field name="arch" type="xml">
+                <search string="Message Categories">
+                    <field name="name" string="Message Categories"/>
+                    <field name="parent_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="message_category_form_view" model="ir.ui.view">
+            <field name="name">message.category.form</field>
+            <field name="model">message.category</field>
+            <field name="arch" type="xml">
+                <form string="Product Categories" version="7.0">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="parent" col="4">
+                                <field name="parent_id"/>
+                                <field name="type"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="message_category_list_view" model="ir.ui.view">
+            <field name="name">message.category.list</field>
+            <field name="model">message.category</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Message Categories">
+                    <field name="complete_name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="message_category_tree_view" model="ir.ui.view">
+            <field name="name">message.category.tree</field>
+            <field name="model">message.category</field>
+            <field name="field_parent">child_id</field>
+            <field name="arch" type="xml">
+                <tree toolbar="True" string="Message Categories">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="message_category_action_form" model="ir.actions.act_window">
+            <field name="name">Pec Mail Folders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">message.category</field>
+            <field name="view_type">form</field>
+            <field name="domain">[
+                  ('server_id.pec','=',True),
+                  ('server_id.user_ids','in',uid)]</field>
+            <field name="search_view_id" ref="message_category_search_view"/>
+            <field name="view_id" ref="message_category_list_view"/>
+        </record>
+
+        <record id="config_mail_pec" model="ir.ui.menu">
+            <field name="name">Config PEC Folders</field>
+            <field name="action" ref="message_category_action_form"/>
+            <field name="parent_id" ref="mail_pec"/>
+            <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+        </record>
+
 
 </data>
 </openerp>
