@@ -68,9 +68,9 @@ Contributors
     'data': [
         "security/mail_data.xml",
         "view/fetchmail_view.xml",
-        "view/mail_view.xml",
         "view/ir_mail_server.xml",
         "wizard/mail_compose_message_view.xml",
+        "view/mail_view.xml",
         "view/res_users.xml",
         "security/ir.model.access.csv",
     ],
