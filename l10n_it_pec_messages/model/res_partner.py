@@ -61,25 +61,56 @@ class ResPartner(orm.Model):
         ):
 
             if (
-                context['pec_type'] in
-                ['accettazione', 'non-accettazione']
+                context['pec_type'] == 'presa-in-carico'
+            ):
+                message_pool.write(
+                    cr, uid, [context['main_message_id']], {
+                        'inprogress_message_id': msg_id,
+                    }, context=context)
+            if (
+                context['pec_type'] == 'preavviso-errore-consegna'
+            ):
+                message_pool.write(
+                    cr, uid, [context['main_message_id']], {
+                        'notice_delivery_err_message_id': msg_id,
+                    }, context=context)
+            if (
+                context['pec_type'] == 'accettazione'
             ):
                 message_pool.write(
                     cr, uid, [context['main_message_id']], {
                         'reception_message_id': msg_id,
                     }, context=context)
+            if (
+                context['pec_type'] == 'non-accettazione'
+            ):
+                message_pool.write(
+                    cr, uid, [context['main_message_id']], {
+                        'no_reception_message_id': msg_id,
+                    }, context=context)
             if(
-                context['pec_type'] in
-                [
-                    'avvenuta-consegna',
-                    'errore-consegna',
-                    'rilevazione-virus'
-                ]
+                context['pec_type'] == 'avvenuta-consegna'
             ):
                 message_pool.write(
                     cr, uid, [context['main_message_id']], {
                         'delivery_message_id': msg_id,
                     }, context=context)
+            if(
+                context['pec_type'] == 'errore-consegna'
+            ):
+                message_pool.write(
+                    cr, uid, [context['main_message_id']], {
+                        'delivery_err_message_id': msg_id,
+                    }, context=context)
+            if(
+                context['pec_type'] == 'rilevazione-virus'
+            ):
+                message_pool.write(
+                    cr, uid, [context['main_message_id']], {
+                        'virus_message_id': msg_id,
+                    }, context=context)
+
+
             if(
                 context['pec_type'] in
                 [
@@ -104,12 +135,19 @@ class ResPartner(orm.Model):
         if context.get('show_pec_email'):
             for record in self.browse(cr, uid, ids, context=context):
                 name = record.name
-                if record.parent_id and not record.is_company:
+                if (
+                    record.parent_id and not
+                    record.is_company
+                ):
                     name = "%s, %s" % (record.parent_name, name)
+                    res.append((record.id, name))
                 if record.pec_mail:
                     name = "%s <%s>" % (name, record.pec_mail)
-                res.append((record.id, name))
+                    res.append((record.id, name))
             return res
         else:
             return super(ResPartner, self).name_get(
                 cr, uid, ids, context=context)
+
+
+
