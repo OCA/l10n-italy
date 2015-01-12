@@ -1,0 +1,346 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#   * l10n_it_pec_messages
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-19 07:38+0000\n"
+"PO-Revision-Date: 2014-12-19 07:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Add contacts to notify..."
+msgstr "Aggiungi un contatto da notificare..."
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,cert_datetime:0
+msgid "Certified Date and Time "
+msgstr "Certified Date and Time "
+
+#. module: l10n_it_pec_messages
+#: help:fetchmail.server,pec:0
+#: help:ir.mail_server,pec:0
+msgid "Check if this server is PEC"
+msgstr "Spuntare se si tratta di un server PEC"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Compose Email"
+msgstr "Componi Email"
+
+#. module: l10n_it_pec_messages
+#: model:ir.actions.act_window,name:l10n_it_pec_messages.action_email_pec_compose_message_wizard
+msgid "Compose Pec Email"
+msgstr "Componi Email Pec"
+
+#. module: l10n_it_pec_messages
+#: view:fetchmail.server:0
+msgid "Configure allowed users"
+msgstr "Configura utenti abilitati a questo server"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "Delivery"
+msgstr "Consegna"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "Delivery Error"
+msgstr "Errore Consegna"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,delivery_message_id:0
+msgid "Delivery Message"
+msgstr "Messaggio di Consegna"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_mail_thread
+#, python-format
+msgid "Email Thread"
+msgstr "Thread Email"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_mail_compose_message
+#, python-format
+msgid "Email composition wizard"
+msgstr "Wizard composizione email"
+
+#. module: l10n_it_pec_messages
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:87
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:121
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:127
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:150
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:173
+#: code:addons/l10n_it_pec_messages/wizard/mail_compose_message.py:60
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: l10n_it_pec_messages
+#: view:res.users:0
+msgid "Fetchmail servers"
+msgstr "Elenco Server in cui sei abilitato"
+
+#. module: l10n_it_pec_messages
+#: field:res.users,allowed_server_ids:0
+msgid "Fetchmail servers allowed to be used"
+msgstr "Fetchmail servers abilitato per essere usato"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Followers of"
+msgstr "Followers di"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Followers of selected items and"
+msgstr "Followers degli element selezionati e"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "In Progress"
+msgstr "In Progress"
+
+#. module: l10n_it_pec_messages
+#: field:ir.mail_server,in_server_id:0
+msgid "Incoming PEC server"
+msgstr "PEC server in ingresso"
+
+#. module: l10n_it_pec_messages
+#: sql_constraint:ir.mail_server:0
+msgid "Incoming Server already in use"
+msgstr "Server in ingresso gia' in uso"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,main_msg_delivery_message_ids:0
+#: field:mail.message,main_msg_reception_message_ids:0
+msgid "Main messages"
+msgstr "Massaggio Inviato"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_mail_message
+#, python-format
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: l10n_it_pec_messages
+#: help:mail.message,pec_msg_id:0
+msgid "Message unique identifier"
+msgstr "Identificatico univoco del message"
+
+#. module: l10n_it_pec_messages
+#: code:addons/l10n_it_pec_messages/wizard/mail_compose_message.py:61
+#, python-format
+msgid "No PEC mail for partner %s"
+msgstr "Nessun indirizzo PEC collegato al partner %s"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "No Reception"
+msgstr "Notifica non accettazione"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "Notice Delivery Error"
+msgstr "Noifica di consegna Fallita"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_mail_notification
+#, python-format
+msgid "Notifications"
+msgstr "Notifiche"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_mail_mail
+#, python-format
+msgid "Outgoing Mails"
+msgstr "Email in Uscita"
+
+#. module: l10n_it_pec_messages
+#: field:fetchmail.server,out_server_id:0
+msgid "Outgoing Server"
+msgstr "Server in uscita"
+
+#. module: l10n_it_pec_messages
+#: model:ir.actions.client,name:l10n_it_pec_messages.action_mail_pec
+#: model:ir.ui.menu,name:l10n_it_pec_messages.mail_pec
+msgid "PEC"
+msgstr "PEC"
+
+#. module: l10n_it_pec_messages
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:121
+#, python-format
+msgid "PEC message does not contain daticert.xml"
+msgstr "Il Messaggio PEC non contiene daticert.xml"
+
+#. module: l10n_it_pec_messages
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:128
+#, python-format
+msgid "PEC message does not contain postacert.eml"
+msgstr "Il Messaggio PEC non contiene postacert.eml"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,pec_msg_id:0
+msgid "PEC-Message-Id"
+msgstr "PEC-Message-Id"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_fetchmail_server
+#, python-format
+msgid "POP/IMAP Server"
+msgstr "Server POP/IMAP"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_res_partner
+#, python-format
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "Pec Mail"
+msgstr "Pec Mail"
+
+#. module: l10n_it_pec_messages
+#: field:fetchmail.server,pec:0
+#: field:ir.mail_server,pec:0
+msgid "Pec Server"
+msgstr "Pec Server"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,pec_type:0
+msgid "Pec Type"
+msgstr "Tipologia messaggio PEC"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "Reception"
+msgstr "Accettazione"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,error:0
+msgid "Reception Delivery Error"
+msgstr "Errori in accettazione o consegna"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,reception_message_id:0
+msgid "Reception Message"
+msgstr "Messaggio di Accettazione"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Recipients"
+msgstr "Destinatari"
+
+#. module: l10n_it_pec_messages
+#: help:mail.message,ref_msg_id:0
+msgid "Ref Message unique identifier"
+msgstr "Riferimento ID messaggio"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,out_server_id:0
+msgid "Related Outgoing Server"
+msgstr "Server in uscita correlato"
+
+#. module: l10n_it_pec_messages
+#: model:ir.ui.menu,name:l10n_it_pec_messages.mail_write_pec
+msgid "Scrivi PEC"
+msgstr "Scrivi PEC"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Send"
+msgstr "Invia"
+
+#. module: l10n_it_pec_messages
+#: field:mail.compose.message,server_id:0
+msgid "Server"
+msgstr "Server"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,server_id:0
+msgid "Server Pec"
+msgstr "Server Pec in ingresso"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "Subject..."
+msgstr "Oggetto..."
+
+#. module: l10n_it_pec_messages
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:151
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:174
+#, python-format
+msgid "Too many existing mails with message_id %s"
+msgstr "Esistono troppi messaggi con il  message_id %s"
+
+#. module: l10n_it_pec_messages
+#: code:addons/l10n_it_pec_messages/model/mail_thread.py:88
+#, python-format
+msgid "Too many payloads for 'postacert.eml' or 'daticert.xml'. Not handled"
+msgstr "Molteplici occorrenze di 'postacert.eml' o 'daticert.xml'. Non gestite"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_res_users
+#, python-format
+msgid "Users"
+msgstr "Utenti"
+
+#. module: l10n_it_pec_messages
+#: field:fetchmail.server,user_ids:0
+msgid "Users allowed to use this server"
+msgstr "Utenti abilitati ad utilizzare questo server"
+
+#. module: l10n_it_pec_messages
+#: selection:mail.message,pec_type:0
+msgid "Virus Detected"
+msgstr "Rilevato Visrus"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "and"
+msgstr "e"
+
+#. module: l10n_it_pec_messages
+#: code:_description:0
+#: model:ir.model,name:l10n_it_pec_messages.model_ir_mail_server
+#, python-format
+msgid "ir.mail_server"
+msgstr "ir.mail_server"
+
+#. module: l10n_it_pec_messages
+#: view:mail.compose.message:0
+msgid "or"
+msgstr "o"
+
+#. module: l10n_it_pec_messages
+#: field:mail.message,ref_msg_id:0
+msgid "ref-Message-Id"
+msgstr "ref-Message-Id"
+
+#. module: l10n_it_pec_messages
+#: view:fetchmail.server:0
+msgid "{'invisible': [('pec','=',True)]}"
+msgstr "{'invisible': [('pec','=',True)]}"
+

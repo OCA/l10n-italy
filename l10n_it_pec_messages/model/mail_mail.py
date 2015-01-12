@@ -63,6 +63,7 @@ class MailMail(orm.Model):
                     'server_id': in_server_id,
                     'out_server_id': server.id,
                     'pec_type': 'posta-certificata',
+                    'direction': 'out'
                     }, context=context)
                 mail_msg_pool.write(
                     cr, uid, mail.mail_message_id.id,
