@@ -122,6 +122,7 @@ class StockDdT(models.Model):
         }
         return values
 
+    @api.one
     def create_lines(self, move_lines):
         """ create DdT lines
         """
