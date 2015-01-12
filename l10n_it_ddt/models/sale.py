@@ -22,7 +22,7 @@
 from openerp import fields
 from openerp import models
 from openerp import api
-from openerp import netsvc
+from openerp import workflow
 
 
 class SaleOrder(models.Model):
@@ -105,14 +105,13 @@ class SaleOrder(models.Model):
                 })
         return True
 
-    def action_button_confirm(
+    def action_ship_create(
         self, cr, uid, ids, context=None
     ):
-        res = super(SaleOrder, self).action_button_confirm(
+        res = super(SaleOrder, self).action_ship_create(
             cr, uid, ids, context=context)
         for order in self.browse(cr, uid, ids, context):
             if order.create_ddt:
-                ddt_model = self.pool['stock.ddt']
                 ddt_data = {
                     'partner_id': order.partner_id.id,
                     'picking_ids': [(6, 0, [p.id for p in order.picking_ids])],
@@ -124,8 +123,7 @@ class SaleOrder(models.Model):
                     move_lines += picking.move_lines
                 ddt_pool.create_lines(
                     cr, uid, [ddt_id], move_lines, context=context)
-                wf_service = netsvc.LocalService("workflow")
-                wf_service.trg_validate(
+                workflow.trg_validate(
                     uid, 'stock.ddt', ddt_id, 'ddt_confirm', cr)
         return res
 

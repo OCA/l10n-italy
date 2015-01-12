@@ -1,15 +1,82 @@
 - 
-  Create a new DdT
+  Create sale orders
 - 
-  !python {model: stock.ddt}: |
-    picking_model = self.pool['stock.picking']
-    picking_ids = picking_model.search(
-    cr, uid, [('partner_id', '=', ref('base.res_partner_2'))])
-    vals = {
-      'partner_id': ref('base.res_partner_2'),
-      'picking_ids': [(6, 0, picking_ids)],
-      'delivery_address_id': ref('base.res_partner_2'),
-      'carrier_id': ref('base.res_partner_2'),
-      }
-    ddt_id = self.create(cr, uid, vals)
-    assert ddt_id, "DDT not created"
+  !record {model: sale.order, id: sale_oder_1}:
+    partner_id: base.res_partner_18
+    order_line:
+      - product_id: product.product_product_5b
+        product_uom_qty: 2
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_oder_1}
+-
+  I check the delivery order.
+-
+  !python {model: sale.order}: |
+    order1 = self.browse(cr, uid, ref("sale_oder_1"))
+    assert len(order1.picking_ids) == 1, "Too many pickings"
+    assert len(self.pool['stock.ddt'].search(cr, uid, [('picking_ids', 'in', [p.id for p in order1.picking_ids])])) == 1, "There must be 1 DDT for order 1"
+-
+  I create 2 sale orders, without creating DDT, with invoice on picking
+- 
+  !record {model: sale.order, id: sale_oder_2}:
+    partner_id: base.res_partner_18
+    order_policy: picking
+    order_line:
+      - product_id: product.product_product_5b
+        product_uom_qty: 2
+-
+  !python {model: sale.order}: |
+    order2 = self.browse(cr, uid, ref("sale_oder_2"))
+    order2.create_ddt = False
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_oder_2}
+- 
+  !record {model: sale.order, id: sale_oder_3}:
+    partner_id: base.res_partner_18
+    order_policy: picking
+    create_ddt: 0
+    order_line:
+      - product_id: product.product_product_5b
+        product_uom_qty: 3
+-
+  !python {model: sale.order}: |
+    order3 = self.browse(cr, uid, ref("sale_oder_3"))
+    order3.create_ddt = False
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_oder_3}
+-
+  I create a sale order with invoice on picking
+- 
+  !record {model: sale.order, id: sale_oder_4}:
+    partner_id: base.res_partner_18
+    order_policy: picking
+    order_line:
+      - product_id: product.product_product_5b
+        product_uom_qty: 1
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_oder_4}
+-
+  !python {model: sale.order}: |
+    order2 = self.browse(cr, uid, ref("sale_oder_2"))
+    order3 = self.browse(cr, uid, ref("sale_oder_3"))
+    order4 = self.browse(cr, uid, ref("sale_oder_4"))
+    picking_ids = [p.id for p in order2.picking_ids] + [p.id for p in order3.picking_ids]
+    context['active_ids'] = picking_ids
+    wizard_pool = self.pool['ddt.from.pickings']
+    wizard_id = wizard_pool.create(cr, uid, {}, context=context)
+    wizard = wizard_pool.browse(cr, uid, wizard_id, context=context)
+    res = wizard.create_ddt()
+    ddt = self.pool['stock.ddt'].browse(cr, uid, res['res_id'])
+    assert len(ddt.picking_ids) == 2, "There must be 2 pickings"
+    ddt_order_4 = self.pool['stock.ddt'].search(cr, uid, [('picking_ids', 'in', [p.id for p in order4.picking_ids])])
+    assert len(ddt_order_4) == 1, "There must be 1 DDT for order 4"
+    invoice_wizard = self.pool['ddt.create.invoice']
+    context['active_ids'] = ddt_order_4 + [ddt.id]
+    wiz_id = invoice_wizard.create(cr, uid, {'journal_id': ref('account.sales_journal')}, context=context)
+    invoice_res = invoice_wizard.create_invoice(cr, uid, [wiz_id], context=context)
+    invoice = self.pool['account.invoice'].browse(cr, uid, invoice_res['res_id'])
+    assert len(invoice.invoice_line) == 3, "There must be 3 invoice lines"
+    assert order4.picking_ids[0].invoice_state == 'invoiced', "Picking must be invoiced, %s found" % order4.picking_ids[0].invoice_state
+    from openerp import workflow
+    workflow.trg_validate(uid, 'stock.ddt', ddt_order_4[0], 'ddt_confirm', cr)
+    assert self.pool['stock.ddt'].browse(cr, uid, ddt_order_4[0]).name, "DDT number no set"
