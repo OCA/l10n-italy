@@ -105,23 +105,28 @@ class SaleOrder(models.Model):
                 })
         return True
 
-    def _prepare_procurement_group(self, cr, uid, order, context=None):
-        res = super(SaleOrder, self)._prepare_procurement_group(
-            cr, uid, order, context=context)
-        if order.create_ddt:
-            ddt_model = self.pool['stock.ddt']
-            ddt_data = {
-                'partner_id': order.partner_id.id,
-                'picking_ids': [(6, 0, [p.id for p in order.picking_ids])],
-                }
-            ddt = self.env['stock.ddt'].create(ddt_data)
-            move_lines = []
-            for picking in order.picking_ids:
-                move_lines += picking.move_ids
-            ddt.create_lines(move_lines)
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(
-                uid, 'stock.ddt', ddt.id, 'ddt_confirm', cr)
+    def action_button_confirm(
+        self, cr, uid, ids, context=None
+    ):
+        res = super(SaleOrder, self).action_button_confirm(
+            cr, uid, ids, context=context)
+        for order in self.browse(cr, uid, ids, context):
+            if order.create_ddt:
+                ddt_model = self.pool['stock.ddt']
+                ddt_data = {
+                    'partner_id': order.partner_id.id,
+                    'picking_ids': [(6, 0, [p.id for p in order.picking_ids])],
+                    }
+                ddt_pool = self.pool['stock.ddt']
+                ddt_id = ddt_pool.create(cr, uid, ddt_data, context=context)
+                move_lines = []
+                for picking in order.picking_ids:
+                    move_lines += picking.move_lines
+                ddt_pool.create_lines(
+                    cr, uid, [ddt_id], move_lines, context=context)
+                wf_service = netsvc.LocalService("workflow")
+                wf_service.trg_validate(
+                    uid, 'stock.ddt', ddt_id, 'ddt_confirm', cr)
         return res
 
     def action_view_ddt(self, cr, uid, ids, context=None):
