@@ -25,7 +25,7 @@
                                            attrs="{'invisible':[('model', '=', False)]}"/>
                                     and
                             </span>
-                            <field name="partner_ids" widget="many2many_tags" placeholder="Add contacts to notify..."/>
+                            <field name="partner_ids" widget="many2many_tags" placeholder="Add contacts to notify..." context="{'show_pec_email':True}"/>
                         </div>
                         <field name="subject" placeholder="Subject..." />
                     </group>
