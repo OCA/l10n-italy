@@ -23,6 +23,8 @@
 from openerp import fields
 from openerp import models
 from openerp import api
+from openerp import _
+from openerp.exceptions import Warning
 
 
 class DdTFromPickings(models.TransientModel):
@@ -56,9 +58,11 @@ class DdTFromPickings(models.TransientModel):
 
     @api.multi
     def create_ddt(self):
-        wizard = self[0]
+        if not self.move_ids:
+            raise Warning(
+                _('No stock moves selected. Can\'t create DDT'))
         ddt = self.env['stock.ddt'].create(self.get_ddt_values())
-        ddt.create_lines(wizard.move_ids)
+        ddt.create_lines(self.move_ids)
         # ----- Show new ddt
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference('l10n_it_ddt',
