@@ -20,50 +20,37 @@
 
 
 from openerp import models, api, fields
+from openerp.tools.translate import _
+from openerp.exceptions import Warning
 
 
 class DdTCreateInvoice(models.TransientModel):
 
     _name = "ddt.create.invoice"
+    _rec_name = "journal_id"
 
-    journal_id = fields.Many2one('account.journal', 'Journal')
+    journal_id = fields.Many2one('account.journal', 'Journal', required=True)
     date = fields.Date('Date')
-
-    def _prepare_invoice_line(self, invoice, move):
-        invoice_line_data = {
-            'invoice_id': invoice.id,
-            'product_id': move.product_id.id,
-            'name': move.name,
-        }
-        return invoice_line_data
 
     @api.multi
     def create_invoice(self):
-        wizard = self[0]
         ddt_model = self.env['stock.ddt']
-        invoice_model = self.env['account.invoice']
-        invoice_line_model = self.env['account.invoice.line']
+        picking_pool = self.pool['stock.picking']
 
         ddts = ddt_model.browse(self.env.context['active_ids'])
         partners = set([ddt.partner_id for ddt in ddts])
-        partner = list(partners)[0]
-
-        invoice_data = {
-            'partner_id': partner.id,
-            'date_invoice': wizard.date,
-            'journal_id': wizard.journal_id.id,
-            'account_id': partner.property_account_receivable.id,
-        }
-
-        invoice = invoice_model.create(invoice_data)
-
+        if len(partners) > 1:
+            raise Warning(_("Selected DDTs belong to different partners"))
+        todo = []
         for ddt in ddts:
             for picking in ddt.picking_ids:
                 for move in picking.move_lines:
-                    invoice_line_data = self._prepare_invoice_line(
-                        invoice, move)
-                    invoice_line_model.create(invoice_line_data)
-
+                    if move.invoice_state != "2binvoiced":
+                        raise Warning(_("Move %s is not invoiceable") % move.name)
+                    todo.append(move)
+        invoices = picking_pool._invoice_create_line(
+            self.env.cr, self.env.uid, todo, self.journal_id.id,
+            inv_type='out_invoice', context=self.env.context)
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference('account',
                                                       'invoice_form')
@@ -76,7 +63,7 @@ class DdTCreateInvoice(models.TransientModel):
             'view_type': 'form',
             'view_mode': 'form,tree',
             'res_model': 'account.invoice',
-            'res_id': invoice.id,
+            'res_id': invoices[0],
             'view_id': False,
             'views': [(form_id, 'form'), (tree_id, 'tree')],
             'type': 'ir.actions.act_window',
