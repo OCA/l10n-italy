@@ -112,15 +112,16 @@ class SaleOrder(models.Model):
             ddt_model = self.pool['stock.ddt']
             ddt_data = {
                 'partner_id': order.partner_id.id,
-                'delivery_address_id': order.partner_shipping_id and
-                order.partner_shipping_id.id
+                'picking_ids': [(6, 0, [p.id for p in order.picking_ids])],
                 }
-            res['ddt_id'] = ddt_model.create(
-                cr, uid, ddt_data, context=context)
-            ddt_model.browse(cr, uid, res['ddt_id']).updateLines()
+            ddt = self.env['stock.ddt'].create(ddt_data)
+            move_lines = []
+            for picking in order.picking_ids:
+                move_lines += picking.move_ids
+            ddt.create_lines(move_lines)
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(
-                uid, 'stock.ddt', res['ddt_id'], 'ddt_confirm', cr)
+                uid, 'stock.ddt', ddt.id, 'ddt_confirm', cr)
         return res
 
     def action_view_ddt(self, cr, uid, ids, context=None):
