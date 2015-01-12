@@ -79,7 +79,8 @@ class StockDdT(models.Model):
     sequence = fields.Many2one(
         'ir.sequence', string='Sequence',
         default=get_sequence, required=True)
-    picking_ids = fields.Many2many('stock.picking', string='Pickings')
+    picking_ids = fields.Many2many(
+        'stock.picking', string='Pickings', readonly=True)
     ddt_lines = fields.One2many(
         'stock.ddt.line', 'ddt_id', string='DdT Line')
     partner_id = fields.Many2one(
@@ -106,24 +107,6 @@ class StockDdT(models.Model):
         string='State',
         default='draft'
     )
-
-    @api.multi
-    def write(self, values):
-        result = super(StockDdT, self).write(values)
-        if not self.ddt_lines:
-            self.updateLines()
-        if values.get('picking_ids'):
-            picking_model = self.env['stock.picking']
-            pickings = picking_model.browse(values['picking_ids'][0][2])
-            pickings.write({'ddt_id': self.id})
-        return result
-
-    @api.model
-    def create(self, values):
-        ddt = super(StockDdT, self).create(values)
-        if not ddt.ddt_lines:
-            ddt.updateLines()
-        return ddt
 
     def get_ddt_line_values(self, seq, move_line):
         """ get DdT line values given `seq` number and a `move_line`
@@ -157,14 +140,6 @@ class StockDdT(models.Model):
             )
             move_line.write({'ddt_line_id': ddt_line.id})
             seq += 10
-
-    @api.one
-    def updateLines(self):
-        self.ddt_lines.unlink()
-        move_lines = []
-        for picking in self.picking_ids:
-            move_lines.extend(picking.move_lines)
-        self.create_lines(move_lines)
 
     @api.multi
     def set_number(self):
