@@ -180,7 +180,7 @@
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 
-        <record id="out_mail_pec" model="ir.ui.menu">
+        <record id="menu_out_mail_pec" model="ir.ui.menu">
             <field name="name">PEC Inviate</field>
             <field name="action" ref="action_out_mail_pec"/>
             <field name="parent_id" ref="mail_pec"/>
