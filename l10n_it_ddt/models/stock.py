@@ -161,6 +161,9 @@ class StockDdT(models.Model):
     @api.multi
     def action_reopen(self):
         self.write({'state': 'draft'})
+        self.delete_workflow()
+        self.create_workflow()
+        return True
 
     @api.multi
     def name_get(self):
