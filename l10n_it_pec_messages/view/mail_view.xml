@@ -179,7 +179,7 @@
         <record id="mail_pec" model="ir.ui.menu">
             <field name="name">Leggi PEC</field>
             <field name="action" ref="action_mail_pec"/>
-            <field name="parent_id" ref="mail.mail_feeds"/>
+            <field name="parent_id" ref="mail.mail_feeds_main"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 
