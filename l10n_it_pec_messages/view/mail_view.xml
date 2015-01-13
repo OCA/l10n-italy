@@ -60,6 +60,9 @@
                     <newline/>
 
                     <notebook colspan="6" >
+                        <page string="Recipients">
+                            <field name="partner_ids" nolabel="1" readonly="1"/>
+                        </page>
                         <page string="Replies">
                             <field name="child_ids" nolabel="1"
                              readonly="1"
