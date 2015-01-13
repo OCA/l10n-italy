@@ -33,7 +33,7 @@ to guarantee compatibility.
     """,
     'author': 'Davide Corio',
     'website': 'http://www.davidecorio.com',
-    'depends': ['sale_stock', 'stock_account'],
+    'depends': ['account', 'base', 'stock', 'stock_account', 'sale', 'sale_stock'],
     'data': [
         'security/ir.model.access.csv',
         'data/stock_data.xml',
