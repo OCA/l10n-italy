@@ -82,7 +82,7 @@ class StockDdT(models.Model):
     picking_ids = fields.Many2many(
         'stock.picking', string='Pickings', readonly=True)
     ddt_lines = fields.One2many(
-        'stock.ddt.line', 'ddt_id', string='DdT Line')
+        'stock.ddt.line', 'ddt_id', string='DdT Line', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', string='Partner', required=True)
     delivery_address_id = fields.Many2one(
