@@ -184,6 +184,14 @@ class MailThread(orm.Model):
             cr, uid, message, daticert_dict.get('email_from'), context=context)
         if author_id:
             msg_dict['author_id'] = author_id
+        else:
+            msg_dict['partner_id'] = self.pool.get('res.partner').create(
+                cr, uid, SUPERUSER_ID,
+                {
+                    'name': daticert_dict.get('email_from'),
+                    'mail_pec': daticert_dict.get('email_from')
+                },
+                context=context)
         msg_dict['server_id'] = context.get('fetchmail_server_id')
 
         return msg_dict
