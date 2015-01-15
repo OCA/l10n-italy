@@ -189,7 +189,7 @@ class MailThread(orm.Model):
                 cr, SUPERUSER_ID,
                 {
                     'name': daticert_dict.get('email_from'),
-                    'mail_pec': daticert_dict.get('email_from')
+                    'pec_mail': daticert_dict.get('email_from')
                 },context = context)
         msg_dict['server_id'] = context.get('fetchmail_server_id')
 
