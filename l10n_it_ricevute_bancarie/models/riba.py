@@ -128,7 +128,7 @@ class riba_list(models.Model):
                     _('Error'),
                     _('List %s is in state %s. You can only delete documents \
 in state draft or canceled') % (list.name, list.state))
-        super(riba_list, self).unlink(self)  # cr, uid, ids, context=context)
+        super(riba_list, self).unlink()  # cr, uid, ids, context=context)
 
     @api.multi
     def confirm(self):  # , cr, uid, ids, context=None):
@@ -419,13 +419,15 @@ payment.")
             to_be_reconciled = []
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
-                move_line_id = move_line_pool.create(self._cr, self.env.user.id, {
-                    'name': riba_move_line.move_line_id.invoice.number,
-                    'partner_id': line.partner_id.id,
-                    'account_id': riba_move_line.move_line_id.account_id.id,
-                    'credit': riba_move_line.amount,
-                    'debit': 0.0,
-                    'move_id': move_id,
+                move_line_id = move_line_pool.create(
+                    self._cr, self.env.user.id, {
+                        'name': riba_move_line.move_line_id.invoice.number,
+                        'partner_id': line.partner_id.id,
+                        'account_id': (
+                            riba_move_line.move_line_id.account_id.id),
+                        'credit': riba_move_line.amount,
+                        'debit': 0.0,
+                        'move_id': move_id,
                     }, self._context)
                 to_be_reconciled.append([move_line_id,
                                          riba_move_line.move_line_id.id])
@@ -444,7 +446,8 @@ payment.")
                 'debit': total_credit,
                 'move_id': move_id,
                 }, self._context)
-            move_pool.post(self._cr, self.env.user.id, [move_id], self._context)
+            move_pool.post(
+                self._cr, self.env.user.id, [move_id], self._context)
             for reconcile_ids in to_be_reconciled:
                 move_line_pool.reconcile_partial(self._cr, self.env.user.id,
                                                  reconcile_ids,
@@ -454,7 +457,8 @@ payment.")
                 'state': 'confirmed',
                 })
             workflow.trg_validate(
-                self.env.user.id, 'riba.list', line.list_id.id, 'accepted', self._cr)
+                self.env.user.id, 'riba.list', line.list_id.id, 'accepted',
+                self._cr)
 
 
 class riba_list_move_line(models.Model):
