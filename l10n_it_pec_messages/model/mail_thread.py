@@ -185,7 +185,7 @@ class MailThread(orm.Model):
         if author_id:
             msg_dict['author_id'] = author_id
         else:
-            msg_dict['partner_id'] = self.pool.get('res.partner').create(
+            msg_dict['author_id'] = self.pool.get('res.partner').create(
                 cr, SUPERUSER_ID,
                 {
                     'name': daticert_dict.get('email_from'),
