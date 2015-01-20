@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="workflow" id="wkf_vat_period_end_statement">
+            <field name="name">workflow.vat.period.end.statement</field>
+            <field name="osv">account.vat.period.end.statement</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="act_draft">
+            <field name="wkf_id" ref="wkf_vat_period_end_statement" />
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+            <field name="action">statement_draft()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_move_created">
+            <field name="wkf_id" ref="wkf_vat_period_end_statement" />
+            <field name="name">created</field>
+            <field name="kind">function</field>
+            <field name="action">create_move()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_statement_paid">
+            <field name="wkf_id" ref="wkf_vat_period_end_statement" />
+            <field name="name">paid</field>
+            <field name="kind">function</field>
+            <field name="action">statement_paid()</field>
+<!--            <field name="flow_stop">True</field>    -->
+        </record>
+
+        <record model="workflow.transition" id="t1">
+            <field name="act_from" ref="act_draft" />
+            <field name="act_to" ref="act_move_created" />
+            <field name="signal">create_move</field>
+        </record>
+
+        <record model="workflow.transition" id="t2">
+            <field name="act_to" ref="act_draft" />
+            <field name="act_from" ref="act_move_created" />
+            <field name="signal">set_draft</field>
+        </record>
+
+        <record id="t3" model="workflow.transition">
+            <field name="act_to" ref="act_statement_paid" />
+            <field name="act_from" ref="act_move_created" />
+            <field name="trigger_model">account.move.line</field>
+            <field name="trigger_expr_id">move_line_id_payment_get()</field>
+            <field name="condition">test_paid()</field>
+        </record>
+
+        <record model="workflow.transition" id="t4">
+            <field name="act_to" ref="act_draft" />
+            <field name="act_from" ref="act_statement_paid" />
+            <field name="signal">set_draft</field>
+        </record>
+
+    </data>
+</openerp>

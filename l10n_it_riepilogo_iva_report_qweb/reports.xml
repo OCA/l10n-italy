@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            string="Vat Period End Statement" 
+            id="print_vat_period_end_statement" 
+            model="account.vat.period.end.statement" 
+            report_type="qweb-pdf"
+            name="l10n_it_riepilogo_iva_report_qweb.vat_period_end_statement" 
+            file="l10n_it_riepilogo_iva_report_qweb.vat_period_end_statement" 
+        />
+    </data>
+</openerp>
