@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="vat_period_end_statement">
+    <t t-call="report.external_layout">
+        <div class="page">
+            <div class="row" t-if="o.period_ids">
+                <p class="col-xs-12">
+                    LIQUIDAZIONE IVA
+                </p>
+                <p class="col-xs-12" t-foreach="o.period_ids" t-as="period">
+                    <span t-field="period.name"/>
+                </p>
+            </div>
+            <hr />
+            <div t-foreach="o.period_ids" t-as="period">
+                <h4><span t-field="period.name"/></h4>
+                <t t-set="amounts" t-value="tax_codes_amounts([period.id], [l.tax_code_id.id for l in o.credit_vat_account_line_ids])"/>
+                <div class="row" t-if="amounts">
+                    <p class="col-xs-12">
+                        ACQUISTI
+                    </p>
+                    <div class="col-xs-12">
+                        <table class="table table-condensed " >
+                            <thead>
+                                <tr>
+                                    <th>N.</th>
+                                    <th>Cod.</th>
+                                    <th>Descrizione</th>
+                                    <th>Imponibile</th>
+                                    <th>Imposta</th>
+                                    <th>Detraibile</th>
+                                    <th>Indetraibile</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="amounts" t-as="amount">
+                                    <th></th>
+                                    <th><span t-esc="amounts[amount]['code']"/></th> <!-- Code -->
+                                    <th><span t-esc="amount"/></th> <!-- Description -->
+                                    <th><span t-esc="amounts[amount]['base']"/></th> <!-- Base -->
+                                    <th><span t-esc="amounts[amount]['vat']"/></th> <!-- Vat -->
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3"></th>
+                                    <th>
+                                        <t t-set="total_base" t-value="[amounts[amount]['base'] for amount in amounts]"/>
+                                        <span t-esc="sum(total_base)"/>
+                                    </th>
+                                    <th>
+                                        <t t-set="total_vat" t-value="[amounts[amount]['vat'] for amount in amounts]"/>
+                                        <span t-esc="sum(total_vat)"/>
+                                    </th>
+                                    <th colspan="2"></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <t t-set="amounts" t-value="tax_codes_amounts([period.id], [l.tax_code_id.id for l in o.debit_vat_account_line_ids])"/>
+                <div class="row" t-if="amounts">
+                    <p class="col-xs-12">
+                        VENDITE
+                    </p>
+                    <div class="col-xs-12">
+                        <table class="table table-condensed " >
+                            <thead>
+                                <tr>
+                                    <th>N.</th>
+                                    <th>Cod.</th>
+                                    <th>Descrizione</th>
+                                    <th>Imponibile</th>
+                                    <th>Imposta</th>
+                                    <th>Detraibile</th>
+                                    <th>Indetraibile</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="amounts" t-as="amount">
+                                    <th></th>
+                                    <th><span t-esc="amounts[amount]['code']"/></th> <!-- Code -->
+                                    <th><span t-esc="amount"/></th> <!-- Description -->
+                                    <th><span t-esc="amounts[amount]['base']"/></th> <!-- Base -->
+                                    <th><span t-esc="amounts[amount]['vat']"/></th> <!-- Vat -->
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3"></th>
+                                    <th>
+                                        <t t-set="total_base" t-value="[amounts[amount]['base'] for amount in amounts]"/>
+                                        <span t-esc="sum(total_base)"/>
+                                    </th>
+                                    <th>
+                                        <t t-set="total_vat" t-value="[amounts[amount]['vat'] for amount in amounts]"/>
+                                        <span t-esc="sum(total_vat)"/>
+                                    </th>
+                                    <th colspan="2"></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  <!-- / period -->
+
+            <hr />
+
+            <!-- Summary -->
+            <h4>RIEPILOGO</h4>
+            <t t-set="credit_amounts" t-value="tax_codes_amounts([period.id for period in o.period_ids], [l.tax_code_id.id for l in o.credit_vat_account_line_ids])"/>
+            <t t-set="debit_amounts" t-value="tax_codes_amounts([period.id for period in o.period_ids], [l.tax_code_id.id for l in o.debit_vat_account_line_ids])"/>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Descrizione</th>
+                        <th>Credito</th>
+                        <th>Debito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>IVA C/Vendite</th>
+                        <th></th>
+                        <th>
+                            <t t-set="total_debit" t-value="[debit_amounts[amount]['vat'] for amount in debit_amounts]"/>
+                            <span t-esc="sum(total_debit)"/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>IVA C/Acquisti</th>
+                        <th>
+                            <t t-set="total_credit" t-value="[credit_amounts[amount]['vat'] for amount in credit_amounts]"/>
+                            <span t-esc="sum(total_credit)"/>
+                        </th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>IVA Debiti Precedenti</th>
+                        <th></th>
+                        <th>
+                            <span t-field="o.previous_debit_vat_amount"/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>IVA Crediti Precedenti</th>
+                        <th>
+                            <span t-field="o.previous_credit_vat_amount"/>
+                        </th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th><strong>TOTALE DA VERSARE</strong></th>
+                        <th colspan="2">
+                            <strong>
+                                <span t-esc="(sum(total_debit) + o.previous_debit_vat_amount) - (sum(total_credit) + o.previous_credit_vat_amount)"/>
+                            </strong>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /Summary -->
+            
+        </div>
+    </t>
+</template>
+</data>
+</openerp>
