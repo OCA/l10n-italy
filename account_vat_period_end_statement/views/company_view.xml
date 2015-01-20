@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_quarterly_vat_config_settings" model="ir.ui.view">
+            <field name="name">view_quarterly_vat_config_settings</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="currency_id" position="after">
+                    <field name="quarterly_vat" />
+                    <field name="amount_interest" attrs="{'readonly': [('quarterly_vat', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

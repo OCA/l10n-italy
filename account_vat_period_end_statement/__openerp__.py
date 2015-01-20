@@ -51,6 +51,7 @@ Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_sta
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
         'views/account_view.xml',
+        'views/company_view.xml',
         'data/statement_workflow.xml',
         'security/ir.model.access.csv',
         ],

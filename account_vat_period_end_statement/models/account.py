@@ -5,7 +5,7 @@
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -29,10 +29,12 @@ import openerp.addons.decimal_precision as dp
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+
 class account_vat_period_end_statement(orm.Model):
 
-    def _compute_authority_vat_amount(self, cr, uid, ids, field_name, arg, context):
-        res={}
+    def _compute_authority_vat_amount(self, cr, uid, ids, field_name, arg,
+                                      context):
+        res = {}
         for i in ids:
             statement = self.browse(cr, uid, i)
             debit_vat_amount = 0.0
@@ -44,13 +46,21 @@ class account_vat_period_end_statement(orm.Model):
                 credit_vat_amount += credit_line.amount
             for generic_line in statement.generic_vat_account_line_ids:
                 generic_vat_amount += generic_line.amount
-            authority_amount = (debit_vat_amount - credit_vat_amount - generic_vat_amount
-                - statement.previous_credit_vat_amount + statement.previous_debit_vat_amount)
+            # check if company has quarterly vat
+            company = self.pool['res.users'].browse(
+                cr, uid, uid, context).company_id
+            authority_amount = (
+                debit_vat_amount - credit_vat_amount - generic_vat_amount -
+                statement.previous_credit_vat_amount +
+                statement.previous_debit_vat_amount) * (
+                    company.quarterly_vat and (
+                        (100 + company.amount_interest) / 100.00) or 1.0)
             res[i] = authority_amount
         return res
 
-    def _compute_payable_vat_amount(self, cr, uid, ids, field_name, arg, context):
-        res={}
+    def _compute_payable_vat_amount(self, cr, uid, ids, field_name, arg,
+                                    context):
+        res = {}
         for i in ids:
             statement = self.browse(cr, uid, i)
             debit_vat_amount = 0.0
@@ -59,8 +69,9 @@ class account_vat_period_end_statement(orm.Model):
             res[i] = debit_vat_amount
         return res
 
-    def _compute_deductible_vat_amount(self, cr, uid, ids, field_name, arg, context):
-        res={}
+    def _compute_deductible_vat_amount(self, cr, uid, ids, field_name, arg,
+                                       context):
+        res = {}
         for i in ids:
             statement = self.browse(cr, uid, i)
             credit_vat_amount = 0.0
@@ -215,7 +226,9 @@ class account_vat_period_end_statement(orm.Model):
 
         'authority_partner_id': fields.many2one('res.partner', 'Tax Authority Partner', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
         'authority_vat_account_id': fields.many2one('account.account', 'Tax Authority VAT Account', required=True, states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
-        'authority_vat_amount': fields.function(_compute_authority_vat_amount, method=True, string='Authority VAT Amount'),
+        'authority_vat_amount': fields.function(
+            _compute_authority_vat_amount, method=True,
+            string='Authority VAT Amount'),
         'payable_vat_amount': fields.function(_compute_payable_vat_amount, method=True, string='Payable VAT Amount'),
         'deductible_vat_amount': fields.function(_compute_deductible_vat_amount, method=True, string='Deductible VAT Amount'),
 
@@ -296,14 +309,26 @@ class account_vat_period_end_statement(orm.Model):
         line_obj = self.pool.get('account.move.line')
         period_obj = self.pool.get('account.period')
         for statement in self.browse(cr, uid, ids, context):
-            period_ids = period_obj.find(cr, uid, dt=statement.date, context=context)
-            if len(period_ids) != 1:
-                raise orm.except_orm(_('Encoding error'), _('No period found or more than one period found for the given date.'))
+            period_ids = period_obj.find(
+                cr, uid, dt=statement.date, context=context)
+            # check if company has quarterly vat
+            quarterly_vat = self.pool['res.users'].browse(
+                cr, uid, uid, context).company_id.quarterly_vat
+            if (quarterly_vat and len(statement.period_ids) != 3):
+                raise orm.except_orm(
+                    _('Encoding error'),
+                    _("No quarterly found or more than three periods found"
+                      " for the given date."))
+            elif len(period_ids) != 1:
+                raise orm.except_orm(
+                    _('Encoding error'),
+                    _("No period found or more than one period found for "
+                      "the given date."))
             move_data = {
                 'name': _('VAT statement') + ' - ' + statement.date,
                 'date': statement.date,
                 'journal_id': statement.journal_id.id,
-                'period_id' : period_ids[0],
+                'period_id': period_ids[0],
                 }
             move_id = move_obj.create(cr, uid, move_data)
             statement.write({'move_id': move_id})
@@ -464,12 +489,16 @@ class account_vat_period_end_statement(orm.Model):
             statement.write({'previous_debit_vat_amount': 0.0})
             prev_statement_ids = self.search(cr, uid, [('date', '<', statement.date)], order='date')
             if prev_statement_ids:
-                prev_statement = self.browse(cr, uid, prev_statement_ids[len(prev_statement_ids)-1], context)
-                if prev_statement.residual > 0 and prev_statement.authority_vat_amount > 0:
-                    statement.write({'previous_debit_vat_amount': prev_statement.residual})
+                prev_statement = self.browse(cr, uid,
+                    prev_statement_ids[len(prev_statement_ids)-1], context)
+                if (prev_statement.residual > 0 and
+                        prev_statement.authority_vat_amount > 0):
+                    statement.write({
+                        'previous_debit_vat_amount': prev_statement.residual})
                 elif prev_statement.authority_vat_amount < 0:
-                    statement.write({'previous_credit_vat_amount': - prev_statement.authority_vat_amount})
-                
+                    statement.write({
+                        'previous_credit_vat_amount': - prev_statement.authority_vat_amount})
+
             credit_line_ids = []
             debit_line_ids = []
             tax_code_pool = self.pool.get('account.tax.code')
@@ -478,15 +507,17 @@ class account_vat_period_end_statement(orm.Model):
                 ('vat_statement_type', '=', 'debit'),
                 ], context=context)
             for debit_tax_code_id in debit_tax_code_ids:
-                debit_tax_code = tax_code_pool.browse(cr, uid, debit_tax_code_id, context)
+                debit_tax_code = tax_code_pool.browse(
+                    cr, uid, debit_tax_code_id, context)
                 total = 0.0
                 for period in statement.period_ids:
                     context['period_id'] = period.id
-                    total += tax_code_pool.browse(cr, uid, debit_tax_code_id, context).sum_period
+                    total += tax_code_pool.browse(
+                        cr, uid, debit_tax_code_id, context).sum_period
                 debit_line_ids.append({
                     'account_id': debit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': debit_tax_code.id,
-                    'amount': total * debit_tax_code.vat_statement_sign,
+                    'amount': (total * debit_tax_code.vat_statement_sign),
                     })
 
             credit_tax_code_ids = tax_code_pool.search(cr, uid, [
@@ -494,11 +525,13 @@ class account_vat_period_end_statement(orm.Model):
                 ('vat_statement_type', '=', 'credit'),
                 ], context=context)
             for credit_tax_code_id in credit_tax_code_ids:
-                credit_tax_code = tax_code_pool.browse(cr, uid, credit_tax_code_id, context)
+                credit_tax_code = tax_code_pool.browse(
+                    cr, uid, credit_tax_code_id, context)
                 total = 0.0
                 for period in statement.period_ids:
                     context['period_id'] = period.id
-                    total += tax_code_pool.browse(cr, uid, credit_tax_code_id, context).sum_period
+                    total += tax_code_pool.browse(
+                        cr, uid, credit_tax_code_id, context).sum_period
                 credit_line_ids.append({
                     'account_id': credit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': credit_tax_code.id,
