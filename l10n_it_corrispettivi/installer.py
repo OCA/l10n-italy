@@ -22,7 +22,7 @@
 from openerp.osv import osv
 from openerp import fields, models
 
-class CorrispettiviConfigData(models.TransientModel):
+class CorrispettiviConfigData(osv.osv_memory):
     _name = 'corrispettivi.config.data'
     _inherit = 'res.config'
 
