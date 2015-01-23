@@ -569,14 +569,22 @@ class WizardExportFatturapa(orm.TransientModel):
 
         DatiPagamento = body.find('DatiPagamento')
         DettaglioPagamento = DatiPagamento.find('DettaglioPagamento')
-        DatiPagamento.find(
-            'CondizioniPagamento'
-            ).text = invoice.payment_term.fatturapa_pt_id.code
+        if (
+            invoice.payment_term and invoice.payment_term.fatturapa_pt_id
+            and invoice.payment_term.fatturapa_pt_id.code
+        ):
+            DatiPagamento.find(
+                'CondizioniPagamento'
+                ).text = invoice.payment_term.fatturapa_pt_id.code
 
         # TODO: multiple installments
-        DettaglioPagamento.find(
-            'ModalitaPagamento'
-            ).text = invoice.payment_term.fatturapa_pm_id.code
+        if (
+            invoice.payment_term and invoice.payment_term.fatturapa_pm_id
+            and invoice.payment_term.fatturapa_pm_id.code
+        ):
+            DettaglioPagamento.find(
+                'ModalitaPagamento'
+                ).text = invoice.payment_term.fatturapa_pm_id.code
         DettaglioPagamento.find(
             'DataScadenzaPagamento').text = invoice.date_due
         DettaglioPagamento.find(
