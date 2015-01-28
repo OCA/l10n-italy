@@ -33,6 +33,46 @@ class DdTCreateInvoice(models.TransientModel):
     journal_id = fields.Many2one('account.journal', 'Journal', required=True)
     date = fields.Date('Date')
 
+    def check_ddt_data(self, ddts):
+        carriage_condition_id = False
+        goods_description_id = False
+        transportation_reason_id = False
+        transportation_method_id = False
+        parcels = False
+        for ddt in ddts:
+            if (
+                carriage_condition_id and
+                ddt.carriage_condition_id.id != carriage_condition_id
+            ):
+                raise Warning(
+                    _("Selected DDTs have different Carriage Conditions"))
+            if (
+                goods_description_id and
+                ddt.goods_description_id.id != goods_description_id
+            ):
+                raise Warning(
+                    _("Selected DDTs have different Descriptions of Goods"))
+            if (
+                transportation_reason_id and
+                ddt.transportation_reason_id.id != transportation_reason_id
+            ):
+                raise Warning(
+                    _("Selected DDTs have different "
+                      "Reasons for Transportation"))
+            if (
+                transportation_method_id and
+                ddt.transportation_method_id.id != transportation_method_id
+            ):
+                raise Warning(
+                    _("Selected DDTs have different "
+                      "Methods of Transportation"))
+            if (
+                parcels and
+                ddt.parcels != parcels
+            ):
+                raise Warning(
+                    _("Selected DDTs have different parcels"))
+
     @api.multi
     def create_invoice(self):
         ddt_model = self.env['stock.ddt']
@@ -43,15 +83,24 @@ class DdTCreateInvoice(models.TransientModel):
         if len(partners) > 1:
             raise Warning(_("Selected DDTs belong to different partners"))
         todo = []
+        self.check_ddt_data(ddts)
         for ddt in ddts:
             for picking in ddt.picking_ids:
                 for move in picking.move_lines:
                     if move.invoice_state != "2binvoiced":
-                        raise Warning(_("Move %s is not invoiceable") % move.name)
+                        raise Warning(
+                            _("Move %s is not invoiceable") % move.name)
                     todo.append(move)
         invoices = picking_pool._invoice_create_line(
             self.env.cr, self.env.uid, todo, self.journal_id.id,
             inv_type='out_invoice', context=self.env.context)
+        self.env['account.invoice'].write(invoices, {
+            'carriage_condition_id': ddts[0].carriage_condition_id.id,
+            'goods_description_id': ddts[0].goods_description_id.id,
+            'transportation_reason_id': ddts[0].transportation_reason_id.id,
+            'transportation_method_id': ddts[0].transportation_method_id.id,
+            'parcels': ddts[0].parcels,
+            })
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference('account',
                                                       'invoice_form')

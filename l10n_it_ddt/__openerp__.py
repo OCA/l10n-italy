@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2014 Abstract (http://www.abstract.it)
 #    @author Davide Corio <davide.corio@abstract.it>
+#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -41,7 +42,6 @@ to guarantee compatibility.
         'views/partner_view.xml',
         'views/sale_view.xml',
         'views/stock_view.xml',
-        'views/procurement_view.xml',
         'wizard/ddt_from_pickings_view.xml',
         'wizard/ddt_create_invoice_view.xml',
         'workflow/stock_ddt_workflow.xml',

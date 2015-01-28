@@ -3,6 +3,7 @@
 #
 #    Author: Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #    Copyright (C) Francesco Apruzzese
+#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -34,7 +35,7 @@ class DdTFromPickings(models.TransientModel):
     def _get_move_ids(self):
         search_args = [
             ('picking_id', 'in', self.env.context['active_ids']),
-            ('ddt_line_id', '=', False),
+            ('ddt_line_ids', '=', False),
         ]
         return self.env['stock.move'].search(search_args)
 

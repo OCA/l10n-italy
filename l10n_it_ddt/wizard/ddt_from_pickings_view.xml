@@ -11,7 +11,7 @@
                     <field name="picking_ids" readonly="1" />
                     <separator string="Selected Picking Lines" />
                     <field name="move_ids" nolabel="1"
-                        domain="[('ddt_line_id', '=', False), ('picking_id', 'in', picking_ids and picking_ids[0][2] or [])]"/>
+                        domain="[('ddt_line_ids', '=', False), ('picking_id', 'in', picking_ids and picking_ids[0][2] or [])]"/>
                     <footer>
                         <button name="create_ddt" string="Create" type="object" class="oe_highlight"/>
                         or
