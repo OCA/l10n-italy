@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2014 Abstract (http://www.abstract.it)
 #    @author Davide Corio <davide.corio@abstract.it>
+#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -73,6 +74,14 @@ class StockDdT(models.Model):
         return self.env['ir.sequence'].search(
             [('code', '=', 'stock.ddt')])[0].id
 
+    def _compute_picking_ids(self):
+        picking_ids = []
+        for ddt in self:
+            for line in ddt.ddt_lines:
+                if line.move_line_id.picking_id.id not in picking_ids:
+                    picking_ids.append(line.move_line_id.picking_id.id)
+            ddt.picking_ids = picking_ids
+
     name = fields.Char(string='Number')
     date = fields.Datetime(required=True, default=fields.Datetime.now())
     delivery_date = fields.Datetime()
@@ -80,7 +89,8 @@ class StockDdT(models.Model):
         'ir.sequence', string='Sequence',
         default=get_sequence, required=True)
     picking_ids = fields.Many2many(
-        'stock.picking', string='Pickings', readonly=True)
+        'stock.picking', string='Pickings', compute="_compute_picking_ids",
+        readonly=True)
     ddt_lines = fields.One2many(
         'stock.ddt.line', 'ddt_id', string='DdT Line', readonly=True)
     partner_id = fields.Many2one(
@@ -114,10 +124,6 @@ class StockDdT(models.Model):
         values = {
             'sequence': seq,
             'ddt_id': self.id,
-            'product_id': move_line.product_id.id,
-            'name': move_line.name,
-            'product_uom_id': move_line.product_uom.id,
-            'quantity': move_line.product_uom_qty,
             'move_line_id': move_line.id
         }
         return values
@@ -139,7 +145,6 @@ class StockDdT(models.Model):
             ddt_line = self.ddt_lines.create(
                 self.get_ddt_line_values(seq, move_line)
             )
-            move_line.write({'ddt_line_id': ddt_line.id})
             seq += 10
 
     @api.multi
@@ -179,12 +184,15 @@ class StockDdTLine(models.Model):
     _description = 'DdT Line'
 
     sequence = fields.Integer(string='Sequence')
-    name = fields.Char(string='Name')
+    name = fields.Char(related="move_line_id.name", readonly=True)
     ddt_id = fields.Many2one('stock.ddt', string='DdT', ondelete='cascade')
-    product_id = fields.Many2one('product.product', string='Product')
-    quantity = fields.Float(string='Quantity')
-    product_uom_id = fields.Many2one('product.uom', string='UoM')
-    move_line_id = fields.Many2one('stock.move', ondelete="set null")
+    product_id = fields.Many2one(
+        'product.product', related="move_line_id.product_id", readonly=True)
+    quantity = fields.Float(
+        related="move_line_id.product_uom_qty", readonly=True)
+    product_uom_id = fields.Many2one(
+        'product.uom', related="move_line_id.product_uom", readonly=True)
+    move_line_id = fields.Many2one('stock.move', required=True)
 
     _order = 'sequence asc, id'
 
@@ -193,73 +201,22 @@ class StockPicking(models.Model):
 
     _inherit = "stock.picking"
 
-    carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition', string='Carriage Condition')
-    goods_description_id = fields.Many2one(
-        'stock.picking.goods_description', string='Description of Goods')
-    transportation_reason_id = fields.Many2one(
-        'stock.picking.transportation_reason',
-        string='Reason for Transportation')
-    transportation_method_id = fields.Many2one(
-        'stock.picking.transportation_method',
-        string='Method of Transportation')
-    parcels = fields.Integer()
-    ddt_id = fields.Many2one('stock.ddt', string='DdT', readonly=True)
-    ddt_type = fields.Selection(
-        string="DdT Type", related='picking_type_id.code')
+    def _compute_ddt_ids(self):
+        ddt_ids = []
+        ddt_line_model = self.env['stock.ddt.line']
+        for picking in self:
+            for line in picking.move_lines:
+                ddt_lines = ddt_line_model.search(
+                    [('move_line_id', '=', line.id)])
+                for ddt_line in ddt_lines:
+                    if ddt_line.ddt_id.id not in ddt_ids:
+                        ddt_ids.append(ddt_line.ddt_id.id)
+            picking.ddt_ids = ddt_ids
 
-    def action_invoice_create(
-            self, cr, uid, ids, journal_id, group=False, type='out_invoice',
-            context=None):
-        if not context:
-            context = {}
-        invoice_obj = self.pool['account.invoice']
-        res = super(StockPicking, self).action_invoice_create(
-            cr, uid, ids, journal_id, group, type, context)
-        for picking in self.browse(cr, uid, ids, context=context):
-            invoice_obj.write(cr, uid, res, {
-                'carriage_condition_id':
-                picking.carriage_condition_id and
-                picking.carriage_condition_id.id,
-                'goods_description_id':
-                picking.goods_description_id and
-                picking.goods_description_id.id,
-                'transportation_reason_id':
-                picking.transportation_reason_id and
-                picking.transportation_reason_id.id,
-                'transportation_method_id':
-                picking.transportation_method_id and
-                picking.transportation_method_id.id,
-                'parcels': picking.parcels,
-            })
-        return res
-
+    ddt_ids = fields.Many2many(
+        "stock.ddt", string="DDT list", readonly=True,
+        compute="_compute_ddt_ids")
 
 class StockMove(models.Model):
-
     _inherit = "stock.move"
-
-    ddt_line_id = fields.Many2one('stock.ddt.line', ondelete="set null")
-
-    @api.cr_uid_ids_context
-    def _picking_assign(
-        self, cr, uid, move_ids, procurement_group, location_from, location_to,
-            context=None):
-
-        res = super(StockMove, self)._picking_assign(
-            cr, uid, move_ids, procurement_group, location_from, location_to,
-            context=context)
-
-        group_model = self.pool['procurement.group']
-        group = group_model.browse(cr, uid, procurement_group)
-        ddt = group.ddt_id
-
-        picking_ids = []
-
-        for move in self.browse(cr, uid, move_ids):
-            if move.picking_id.id not in picking_ids:
-                picking_ids.append(move.picking_id.id)
-
-        ddt.write({'picking_ids': [(6, 0, picking_ids)]})
-
-        return res
+    ddt_line_ids = fields.One2many("stock.ddt.line", "move_line_id")

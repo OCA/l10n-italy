@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2014 Abstract (http://www.abstract.it)
 #    @author Davide Corio <davide.corio@abstract.it>
+#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -31,9 +32,12 @@ class SaleOrder(models.Model):
 
     @api.one
     def _get_ddt_ids(self):
-        picking_model = self.env['stock.picking']
-        pickings = picking_model.search([('origin', '=', self.name)])
-        self.ddt_ids = [picking.ddt_id.id for picking in pickings]
+        ddt_ids = []
+        for picking in self.picking_ids:
+            for ddt in picking.ddt_ids:
+                if ddt.id not in ddt_ids:
+                    ddt_ids.append(ddt.id)
+        self.ddt_ids = ddt_ids
 
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', 'Carriage Condition')
@@ -75,35 +79,13 @@ class SaleOrder(models.Model):
     def _make_invoice(self, cr, uid, order, lines, context={}):
         inv_id = super(SaleOrder, self)._make_invoice(
             cr, uid, order, lines, context)
-        partner = self.pool.get('res.partner').browse(
-            cr, uid, order.partner_id.id)
-        self.pool.get('account.invoice').write(cr, uid, inv_id, {
-            'carriage_condition_id': partner.carriage_condition_id.id,
-            'goods_description_id': partner.goods_description_id.id,
-            'transportation_reason_id': partner.transportation_reason_id.id,
-            'transportation_method_id': partner.transportation_method_id.id,
+        self.pool.get('account.invoice').write(cr, uid, [inv_id], {
+            'carriage_condition_id': order.carriage_condition_id.id,
+            'goods_description_id': order.goods_description_id.id,
+            'transportation_reason_id': order.transportation_reason_id.id,
+            'transportation_method_id': order.transportation_method_id.id,
             })
         return inv_id
-
-    def action_ship_create(self, cr, uid, ids, *args):
-        super(SaleOrder, self).action_ship_create(cr, uid, ids, *args)
-        for order in self.browse(cr, uid, ids, context={}):
-            partner = self.pool.get('res.partner').browse(
-                cr, uid, order.partner_id.id)
-            picking_obj = self.pool.get('stock.picking')
-            picking_ids = picking_obj.search(
-                cr, uid, [('sale_id', '=', order.id)])
-            for picking_id in picking_ids:
-                picking_obj.write(cr, uid, picking_id, {
-                    'carriage_condition_id': partner.carriage_condition_id.id,
-                    'goods_description_id': partner.goods_description_id.id,
-                    'transportation_reason_id':
-                    partner.transportation_reason_id.id,
-                    'transportation_method_id':
-                    partner.transportation_method_id.id,
-                    'parcels': order.parcels,
-                })
-        return True
 
     def action_ship_create(
         self, cr, uid, ids, context=None

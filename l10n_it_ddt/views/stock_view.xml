@@ -51,7 +51,7 @@
                             </page>
                             <page string="Pickings">
                                 <field name="picking_ids"
-                                    domain="[('ddt_type', '=', 'outgoing'), ('partner_id', '=', partner_id)]"/>
+                                    domain="[('partner_id', '=', partner_id)]"/>
                             </page>
                             <page string="Shipping Informations">
                                 <group string="Shipping Informations">
@@ -110,29 +110,10 @@
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='Additional Info']">
-                    <group string="Shipping Informations">
-                        <field name="goods_description_id"
-                            widget="selection"/>
-                        <field name="carriage_condition_id"
-                            widget="selection"/>
-                        <field name="transportation_reason_id"
-                            widget="selection"/>
-                        <field name="transportation_method_id"
-                            widget="selection"/>
-                        <field name="parcels" />
+                    <group string="DDT list">
+                        <field name="ddt_ids" nolabel="1"></field>
                     </group>
                 </xpath>
-            </field>
-        </record>
-
-        <record id="stock_picking_tree_ddt" model="ir.ui.view">
-            <field name="name">stock.picking.tree.ddt</field>
-            <field name="model">stock.picking</field>
-            <field name="inherit_id" ref="stock.vpicktree"/>
-            <field name="arch" type="xml">
-                    <field name="name" position="after">
-                            <field name="ddt_id"/>
-                    </field>
             </field>
         </record>
 

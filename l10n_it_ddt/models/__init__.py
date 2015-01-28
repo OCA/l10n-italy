@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2014 Abstract (http://www.abstract.it)
 #    @author Davide Corio <davide.corio@abstract.it>
+#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,6 +23,5 @@
 
 from . import account
 from . import partner
-from . import procurement
 from . import sale
 from . import stock
