@@ -39,15 +39,7 @@
                         </group>
                         <notebook>
                             <page string="DDT Lines">
-                                <field name="ddt_lines">
-                                    <tree string="DDT Lines" editable="top">
-                                        <field name="sequence" widget="handle"/>
-                                        <field name="name"/>
-                                        <field name="product_id"/>
-                                        <field name="product_uom_id"/>
-                                        <field name="quantity"/>
-                                    </tree>
-                                </field>
+                                <field name="ddt_lines"/>
                             </page>
                             <page string="Pickings">
                                 <field name="picking_ids"
@@ -70,6 +62,9 @@
                                         <field name="carrier_id"/>
                                     </group>
                                 </group>
+                            </page>
+                            <page string="Note">
+                                <field name="note"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -110,10 +105,21 @@
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='Additional Info']">
-                    <group string="DDT list">
-                        <field name="ddt_ids" nolabel="1"></field>
+                    <group string="DDT">
+                        <field name="ddt_id" nolabel="1"></field>
                     </group>
                 </xpath>
+            </field>
+        </record>
+
+        <record id="stock_picking_tree_ddt" model="ir.ui.view">
+            <field name="name">stock.picking.tree.ddt</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                    <field name="name" position="after">
+                            <field name="ddt_id"/>
+                    </field>
             </field>
         </record>
 

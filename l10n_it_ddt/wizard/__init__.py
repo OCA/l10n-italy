@@ -21,4 +21,4 @@
 
 from . import ddt_from_pickings
 from . import ddt_create_invoice
-
+from . import add_picking_to_ddt
