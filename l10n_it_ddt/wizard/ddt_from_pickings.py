@@ -32,38 +32,92 @@ class DdTFromPickings(models.TransientModel):
 
     _name = "ddt.from.pickings"
 
-    def _get_move_ids(self):
-        search_args = [
-            ('picking_id', 'in', self.env.context['active_ids']),
-            ('ddt_line_ids', '=', False),
-        ]
-        return self.env['stock.move'].search(search_args)
-
     def _get_picking_ids(self):
         return self.env['stock.picking'].browse(self.env.context['active_ids'])
 
     picking_ids = fields.Many2many('stock.picking', default=_get_picking_ids)
-    move_ids = fields.Many2many('stock.move', default=_get_move_ids)
-
-    @api.multi
-    def get_ddt_values(self):
-        picking_ids = self.env.context['active_ids']
-        first_picking = self.env['stock.picking'].browse(picking_ids[0])
-        partner_id = first_picking.partner_id and \
-            first_picking.partner_id.id or False
-        values = {
-            'partner_id': partner_id,
-            'picking_ids': [(6, 0, picking_ids)],
-        }
-        return values
 
     @api.multi
     def create_ddt(self):
-        if not self.move_ids:
-            raise Warning(
-                _('No stock moves selected. Can\'t create DDT'))
-        ddt = self.env['stock.ddt'].create(self.get_ddt_values())
-        ddt.create_lines(self.move_ids)
+        values = {
+            'partner_id': False,
+            'parcels': 0,
+            'carriage_condition_id': False,
+            'goods_description_id': False,
+            'transportation_reason_id': False,
+            'transportation_method_id': False
+            }
+        partner = False
+        for picking in self.picking_ids:
+            if partner and partner != picking.partner_id:
+                raise Warning(
+                    _("Selected Pickings have different Partner"))
+            partner = picking.partner_id
+            values['partner_id'] = partner.id
+        parcels = 0
+        for picking in self.picking_ids:
+            if picking.sale_id and picking.sale_id.parcels:
+                if parcels and parcels != picking.sale_id.parcels:
+                    raise Warning(
+                        _("Selected Pickings have different parcels"))
+                parcels = picking.sale_id.parcels
+                values['parcels'] = parcels
+        carriage_condition_id = False
+        for picking in self.picking_ids:
+            if picking.sale_id and picking.sale_id.carriage_condition_id:
+                if carriage_condition_id and (
+                        carriage_condition_id != (
+                            picking.sale_id.carriage_condition_id)):
+                    raise Warning(
+                        _("Selected Pickings have"
+                          " different carriage condition"))
+                carriage_condition_id = (
+                    picking.sale_id.carriage_condition_id)
+                values['carriage_condition_id'] = (
+                    carriage_condition_id.id)
+        goods_description_id = False
+        for picking in self.picking_ids:
+            if picking.sale_id and picking.sale_id.goods_description_id:
+                if goods_description_id and (
+                    goods_description_id != (
+                        picking.sale_id.goods_description_id)):
+                    raise Warning(
+                        _("Selected Pickings have "
+                          "different goods description"))
+                goods_description_id = picking.sale_id.goods_description_id
+                values['goods_description_id'] = (
+                    goods_description_id.id)
+        transportation_reason_id = False
+        for picking in self.picking_ids:
+            if picking.sale_id and (
+                    picking.sale_id.transportation_reason_id):
+                if transportation_reason_id and (
+                        transportation_reason_id != (
+                            picking.sale_id.transportation_reason_id)):
+                    raise Warning(
+                        _("Selected Pickings have"
+                            " different transportation reason"))
+                transportation_reason_id = (
+                    picking.sale_id.transportation_reason_id)
+                values['transportation_reason_id'] = (
+                    transportation_reason_id.id)
+        transportation_method_id = False
+        for picking in self.picking_ids:
+            if picking.sale_id and (
+                    picking.sale_id.transportation_method_id):
+                if transportation_method_id and (
+                    transportation_method_id != (
+                        picking.sale_id.transportation_method_id)):
+                    raise Warning(
+                        _("Selected Pickings have"
+                          " different transportation reason"))
+                transportation_method_id = (
+                    picking.sale_id.transportation_method_id)
+                values['transportation_method_id'] = (
+                    transportation_method_id.id)
+        ddt = self.env['stock.ddt'].create(values)
+        for picking in self.picking_ids:
+            picking.ddt_id = ddt.id
         # ----- Show new ddt
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference('l10n_it_ddt',

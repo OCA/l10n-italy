@@ -7,11 +7,8 @@
             <field name="model">ddt.from.pickings</field>
             <field name="arch" type="xml">
               <form string="DDT from Pickings">
-                    <separator string="Picking" />
-                    <field name="picking_ids" readonly="1" />
-                    <separator string="Selected Picking Lines" />
-                    <field name="move_ids" nolabel="1"
-                        domain="[('ddt_line_ids', '=', False), ('picking_id', 'in', picking_ids and picking_ids[0][2] or [])]"/>
+                <separator string="Picking" />
+                    <field string="Pickings" name="picking_ids" readonly="1"/>
                     <footer>
                         <button name="create_ddt" string="Create" type="object" class="oe_highlight"/>
                         or
@@ -28,7 +25,6 @@
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_ddt_from_pickings"/>
-            <!--field name="context">{'record_id' : active_id}</field-->
             <field name="target">new</field>
         </record>
 

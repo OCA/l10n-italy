@@ -21,20 +21,14 @@
 ##############################################################################
 
 {
-    'name': 'DdT',
+    'name': 'DDT',
     'version': '1.0',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
-    'description': """
-Customizations needed to manage the italian DdT (delivery order).
-
-Class, method and fields name are the same of l10n_it_sale, in order
-to guarantee compatibility.
-
-    """,
-    'author': 'Davide Corio',
-    'website': 'http://www.davidecorio.com',
-    'depends': ['account', 'base', 'stock', 'stock_account', 'sale', 'sale_stock'],
+    'author': 'Davide Corio, Odoo Community Association (OCA), '
+              'Agile Business Group',
+    'website': 'http://www.odoo-italia.org/',
+    'depends': ['sale_stock', 'stock_account'],
     'data': [
         'security/ir.model.access.csv',
         'data/stock_data.xml',
@@ -44,6 +38,7 @@ to guarantee compatibility.
         'views/stock_view.xml',
         'wizard/ddt_from_pickings_view.xml',
         'wizard/ddt_create_invoice_view.xml',
+        'wizard/add_picking_to_ddt.xml',
         'workflow/stock_ddt_workflow.xml',
         'views/report_ddt.xml'
     ],

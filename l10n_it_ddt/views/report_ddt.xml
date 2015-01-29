@@ -12,56 +12,64 @@
             <table class="table table-condensed table-bordered delivery_data">
                 <tr>
                     <td>
-                        <h6>Causale del trasporto</h6>
-                        <span t-field="ddt.transportation_reason_id"></span>
+                        <h6>Transportation Reason</h6>
+                        <div class="signature" t-field="ddt.transportation_reason_id"></div>
                     </td>
                     <td>
-                        <h6>Porto</h6>
-                        <span t-field="ddt.carriage_condition_id"></span>
+                        <h6>Carriage Condition</h6>
+                        <div class="signature" t-field="ddt.carriage_condition_id"></div>
                     </td>
                     <td>
-                        <h6>Aspetto esteriore dei beni</h6>
-                        <span t-field="ddt.goods_description_id"></span>
+                        <h6>Goods Description</h6>
+                        <div class="signature" t-field="ddt.goods_description_id"></div>
                     </td>
                     <td>
-                        <h6>Peso lordo</h6>
+                        <h6>Gross Weight</h6>
+                        <div class="signature"></div>
                     </td>
                     <td>
-                        <h6>Peso netto</h6>
+                        <h6>Net Weight</h6>
+                        <div class="signature"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <h6>Vettore</h6>
+                        <h6>Carrier</h6>
+                        <div class="signature"></div>
                     </td>
                     <td>
-                        <h6>Del</h6>
+                        <h6>Date</h6>
+                        <div class="signature"></div>
                     </td>
                     <td>
-                        <h6>Ora ritiro</h6>
+                        <h6>Pick up time</h6>
+                        <div class="signature"></div>
                     </td>
                     <td>
-                        <h6>Numero colli</h6>
-                        <span t-field="ddt.parcels"></span>
+                        <h6>Parcels</h6>
+                        <div t-field="ddt.parcels"></div>
                     </td>
                     <td>
-                        <h6>Dimensioni</h6>
+                        <h6>Size</h6>
+                        <div class="signature"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <h6>Firma vettore</h6>
+                        <h6>Carrier's Signature</h6>
                         <div class="signature"></div>
                     </td>
                     <td>
-                        <h6>Firma conducente</h6>
+                        <h6>Driver's Signature</h6>
                         <div class="signature"></div>
                     </td>
                     <td>
-                        <h6>Firma destinatario</h6>
+                        <h6>Recipient's Signature</h6>
                         <div class="signature"></div>
                     </td>
-                    <td colspan="2"><h6>Note</h6></td>
+                    <td colspan="2"><h6>Notes</h6>
+                        <div class="signature" t-field="ddt.note"></div>
+                    </td>
                 </tr>
             </table>
         </template>
@@ -78,15 +86,13 @@
                                 <thead>
                                     <tr>
                                         <th><strong>Description</strong></th>
-                                        <th><strong>Unit</strong></th>
                                         <th class="text-right"><strong>Quantity</strong></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr t-foreach="o.ddt_lines" t-as="line">
-                                        <td><span t-field="line.product_id"></span></td>
-                                        <td><span t-field="line.product_uom_id"></span></td>
-                                        <td class="text-right"><span t-field="line.quantity"></span></td>
+                                        <td><span t-field="line.name"></span></td>
+                                        <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -99,13 +105,21 @@
             </t>
         </template>
 
+        <template id="report_ddt_main">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'l10n_it_ddt.report_ddt')"/>
+                </t>
+            </t>
+        </template>
+
         <report
             string="DDT"
             id="action_report_ddt"
             model="stock.ddt"
             report_type="qweb-pdf"
-            name="l10n_it_ddt.report_ddt"
-            file="l10n_it_ddt.report_ddt"/>
+            name="l10n_it_ddt.report_ddt_main"
+            file="l10n_it_ddt.report_ddt_main"/>
 
     </data>
 </openerp>
