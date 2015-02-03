@@ -305,6 +305,9 @@ class riba_distinta_line(orm.Model):
         return result.get(ids[0], [])
 
     def test_paid(self, cr, uid, ids, *args):
+        for line in self.browse(cr, uid, ids):
+            if line.state == 'unsolved':
+                return False
         res = self.move_line_id_payment_get(cr, uid, ids)
         if not res:
             return False
@@ -447,7 +450,11 @@ class riba_distinta_line(orm.Model):
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
                 move_line_id = move_line_pool.create(cr, uid, {
-                    'name': riba_move_line.move_line_id.invoice.number,
+                    'name': (
+                        riba_move_line.move_line_id.invoice
+                        and riba_move_line.move_line_id.invoice.number
+                        or riba_move_line.move_line_id.name
+                        ),
                     'partner_id': line.partner_id.id,
                     'account_id': riba_move_line.move_line_id.account_id.id,
                     'credit': riba_move_line.amount,

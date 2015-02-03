@@ -101,9 +101,42 @@ class account_move_line(orm.Model):
 
 
 class account_invoice(orm.Model):
+
+    def _get_is_unsolved(self, cr, uid, ids, name, arg, context=None):
+        res = {}
+        for invoice in self.browse(cr, uid, ids, context=context):
+            res[invoice.id] = False
+            reconciled_unsolved = 0
+            for unsolved_move_line in invoice.unsolved_move_line_ids:
+                if unsolved_move_line.reconcile_id:
+                    reconciled_unsolved += 1
+            if len(invoice.unsolved_move_line_ids) != reconciled_unsolved:
+                res[invoice.id] = True
+        return res
+
+    def _get_invoice_by_move_line(self, cr, uid, ids, context=None):
+        result = []
+        for move_line in self.pool['account.move.line'].browse(
+            cr, uid, ids, context=context
+        ):
+            result.extend([i.id for i in move_line.unsolved_invoice_ids])
+        return list(set(result))
+
     _inherit = "account.invoice"
     _columns = {
         'unsolved_move_line_ids': fields.many2many(
             'account.move.line', 'invoice_unsolved_line_rel', 'invoice_id',
             'line_id', 'Unsolved journal items'),
-    }
+        'is_unsolved': fields.function(
+            _get_is_unsolved, type='boolean',
+            string="The unsolved is open",
+            store={
+                'account.invoice': (
+                    lambda self, cr, uid, ids, c={}: ids, [
+                        'unsolved_move_line_ids'], 10
+                    ),
+                'account.move.line': (_get_invoice_by_move_line, [
+                    'unsolved_invoice_ids', 'reconcile_id'], 10),
+                }
+            ),
+        }
