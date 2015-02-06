@@ -32,6 +32,7 @@
     """,
     "author": "Abstract",
     "website": "http://abstract.it",
+    "license": "AGPL-3",
     "depends": [
         "base"
     ],
