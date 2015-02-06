@@ -31,6 +31,7 @@ This module adds the webkit DDT report
     """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
+    'license': 'GPL-3 or any later version',
     'depends': ['report_webkit', 'l10n_it_sale', 'base_headers_webkit'],
     'data': ['report.xml'],
     'installable': False,

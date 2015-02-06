@@ -24,6 +24,7 @@
     'version': '3',
     'author': "ISA S.r.l.",
     'website': 'http://www.isa.it',
+    'license': 'AGPL-3',
     'category': 'Generic Modules/Accounting',
     'description': """
 Managing the printing of the "Central Journal" """,
