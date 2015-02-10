@@ -30,6 +30,7 @@
     "author": "OpenERP Italian Community",
     "category": "Accounting & Finance",
     "website": "http://www.openerp-italia.org",
+    "license": "AGPL-3",
     "description": """
 Gestione delle Ricevute Bancarie
 --------------------------------

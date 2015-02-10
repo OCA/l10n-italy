@@ -47,6 +47,7 @@ Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_sta
 
 """,
     'website': 'http://www.agilebg.com',
+    'license': 'AGPL-3',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',

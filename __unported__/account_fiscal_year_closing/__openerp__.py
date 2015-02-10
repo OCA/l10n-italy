@@ -31,6 +31,7 @@
     "version" : "1.0",
     "author" : "OpenERP Italian Community, Pexego",
     "website" : "http://www.openerp-italia.org",
+    "license": "AGPL-3",
     "category" : "Generic Modules/Accounting",
     "description": """
 Generalization of l10n_es_fiscal_year_closing ( http://apps.openerp.com/addon/4506 )
