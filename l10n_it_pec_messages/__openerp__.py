@@ -36,8 +36,8 @@ Pec Messages Management
 This module allows to correctly parse PEC messages.
 According to 'daticert.xml' file, it identifies the message type and other
 message data.
-'consegna' and 'accettazione' messages are linked to the original message that
-originated them.
+'consegna', 'accettazione' and the other notification messages are linked to
+the original message that originated them.
 It also correctly parses the mail attachments and attaches the original 'eml'
 PEC message
 
