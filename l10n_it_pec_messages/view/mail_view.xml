@@ -105,7 +105,7 @@
         </record>
 
         <record model='ir.actions.act_window' id='action_mail_pec'>
-            <field name="name">Leggi Pec</field>
+            <field name="name">Read PEC</field>
             <field name="res_model">mail.message</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -118,15 +118,15 @@
             }</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Premi qui per creare un nuovo record
+                Click here to create a new record
               </p><p>
-                Ricordati di inserire tutti i campi in celeste!
+                Remember to fill every blue field
               </p>
             </field>
         </record>
 
         <record model='ir.actions.act_window' id='action_out_mail_pec'>
-            <field name="name">Pec inviate</field>
+            <field name="name">Sent PEC</field>
             <field name="res_model">mail.message</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -141,9 +141,9 @@
             }</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Premi qui per creare un nuovo record
+                Click here to create a new record
               </p><p>
-                Ricordati di inserire tutti i campi in celeste!
+                Remember to fill every blue field
               </p>
             </field>
         </record>
@@ -183,21 +183,21 @@
         </record>
 
         <record id="mail_pec" model="ir.ui.menu">
-            <field name="name">Leggi PEC</field>
+            <field name="name">Read PEC</field>
             <field name="action" ref="action_mail_pec"/>
             <field name="parent_id" ref="mail_pec_main"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 
         <record id="menu_out_mail_pec" model="ir.ui.menu">
-            <field name="name">PEC Inviate</field>
+            <field name="name">Sent PEC</field>
             <field name="action" ref="action_out_mail_pec"/>
             <field name="parent_id" ref="mail_pec"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 
         <record id="mail_write_pec" model="ir.ui.menu">
-            <field name="name">Scrivi PEC</field>
+            <field name="name">Write PEC</field>
             <field name="action" ref="action_email_pec_compose_message_wizard"/>
             <field name="parent_id" ref="mail_pec"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
