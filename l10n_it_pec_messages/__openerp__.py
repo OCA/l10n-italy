@@ -39,7 +39,8 @@ message data.
 'consegna', 'accettazione' and the other notification messages are linked to
 the original message that originated them.
 It also correctly parses the mail attachments and attaches the original 'eml'
-PEC message
+PEC message.
+The module adds a 'PEC' menu where to handle PEC messages.
 
 
 Configuration
