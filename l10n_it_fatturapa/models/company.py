@@ -34,7 +34,9 @@ class res_company(orm.Model):
             ),
         'fatturapa_sequence_id': fields.many2one(
             'ir.sequence', 'Sequence',
-            help="FatturaPA Sequence",
+            help="il progressivo univoco del file è rappresentato da una "
+                 "stringa alfanumerica di lunghezza massima di 5 caratteri "
+                 "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
             ),
         'fatturapa_art73': fields.boolean(
             'Art73', help="FatturaPA Art73",
