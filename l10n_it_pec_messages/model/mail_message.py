@@ -29,9 +29,12 @@ from openerp.osv import fields, orm
 class MailMessage(orm.Model):
     _inherit = "mail.message"
 
-    def _get_out_server(self, cr, uid, ids, *a):
+    def _get_out_server(self, cr, uid, ids, name,
+                        args, context=None):
         res = {}
-        for id in self.browse(cr, uid, ids):
+        if not context:
+            context = {}
+        for id in self.browse(cr, uid, ids, context=context):
             res[id.id] = False
             if id.server_id:
                 if id.server_id.out_server_id:
