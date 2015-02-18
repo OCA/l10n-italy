@@ -42,7 +42,7 @@
         </record>
 
         <menuitem action="action_fatturapa_attachment"
-        	parent="document.menu_document_doc"
+        	parent="document.menu_document_management_configuration"
         	name="FatturaPA Export Files"
         	id="fatturapa_attachment_menu"/>
 

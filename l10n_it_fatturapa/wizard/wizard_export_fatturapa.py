@@ -22,8 +22,9 @@ import base64
 import copy
 import re
 import tempfile
-
+import openerp
 from openerp import models, fields, addons, _
+from openerp.exceptions import except_orm
 from lxml.etree import fromstring, tostring, ElementTree
 from lxml.etree import register_namespace
 
@@ -41,8 +42,7 @@ class WizardExportFatturapa(models.TransientModel):
     def getFile(self, filename, context=None):
         if not context:
             context = {}
-
-        path = addons.get_module_resource(
+        path = openerp.modules.get_module_resource(
             'l10n_it_fatturapa', 'data', filename)
         with open(path) as test_data:
             with tempfile.TemporaryFile() as out:
@@ -67,7 +67,7 @@ class WizardExportFatturapa(models.TransientModel):
         company = user_obj.browse(cr, uid, uid).company_id
 
         if not company.vat:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('TIN not set.'))
 
         attach_obj = self.pool['fatturapa.attachment']
@@ -96,7 +96,7 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_sequence = company.fatturapa_sequence_id
 
         if not fatturapa_sequence:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('FatturaPA sequence not configured.'))
 
         self.number = number = sequence_obj.next_by_id(
@@ -121,7 +121,7 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/DatiTrasmissione/IdTrasmittente')
 
         if not company.country_id:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Country not set.'))
         IdPaese = company.country_id.code
         IdTrasmittente.find('IdPaese').text = IdPaese
@@ -130,7 +130,7 @@ class WizardExportFatturapa(models.TransientModel):
         if not IdCodice:
             IdCodice = company.vat
         if not IdCodice:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error'), _('Company does not have fiscal code or VAT'))
         IdTrasmittente.find('IdCodice').text = IdCodice
 
@@ -149,7 +149,7 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/DatiTrasmissione/FormatoTrasmissione')
 
         if not company.fatturapa_format_id:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('FatturaPA format not set.'))
         FormatoTrasmissione.text = company.fatturapa_format_id.code
 
@@ -166,7 +166,7 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/DatiTrasmissione/CodiceDestinatario')
 
         if not code:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('FatturaPA Code not set on partner form.'))
         CodiceDestinatario.text = code.upper()
 
@@ -185,13 +185,13 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/DatiTrasmissione/ContattiTrasmittente')
 
         if not company.phone:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Telephone number not set.'))
         Telefono = company.phone
         ContattiTrasmittente.find('Telefono').text = Telefono
 
         if not company.email:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Email address not set.'))
         Email = company.email
         ContattiTrasmittente.find('Email').text = Email
@@ -211,12 +211,12 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici')
 
         if not company.vat:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('TIN not set.'))
 
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('FatturaPA fiscal position not set.'))
         DatiAnagrafici.find(
             'IdFiscaleIVA/IdPaese').text = company.country_id.code
@@ -241,19 +241,19 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/CedentePrestatore/Sede')
 
         if not company.street:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Street not set.'))
         if not company.zip:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('ZIP not set.'))
         if not company.city:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('City not set.'))
         if not company.partner_id.province:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Province not set.'))
         if not company.country_id:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Country not set.'))
 
         Sede.find('Indirizzo').text = company.street
@@ -275,7 +275,7 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici')
 
         if not partner.fiscalcode:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Partner fiscalcode not set.'))
 
         DatiAnagrafici.find('CodiceFiscale').text = partner.fiscalcode
@@ -293,19 +293,19 @@ class WizardExportFatturapa(models.TransientModel):
             'FatturaElettronicaHeader/CessionarioCommittente/Sede')
 
         if not partner.street:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Partner street not set.'))
         if not partner.zip:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Partner ZIP not set.'))
         if not partner.city:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Partner city not set.'))
         if not partner.province:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Partner province not set.'))
         if not partner.country_id:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'), _('Partner country not set.'))
 
         Sede.find('Indirizzo').text = partner.street
@@ -336,7 +336,7 @@ class WizardExportFatturapa(models.TransientModel):
         DatiGeneraliDocumento = body.find('DatiGenerali/DatiGeneraliDocumento')
 
         if not invoice.number:
-            raise orm.except_orm(
+            raise except_orm(
                 _('Error!'),
                 _('Invoice does not have a number.'))
 
@@ -363,7 +363,7 @@ class WizardExportFatturapa(models.TransientModel):
         if invoice.fatturapa_po_enable:
 
             if not invoice.fatturapa_po:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'), _('PO number not set'))
 
             DatiOrdineAcquisto.find(
@@ -396,10 +396,10 @@ class WizardExportFatturapa(models.TransientModel):
         if invoice.fatturapa_contract_enable:
 
             if not invoice.fatturapa_contract:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'), _('Contract number not set'))
             if not invoice.fatturapa_contract_date:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'), _('Contract date not set'))
 
             line_no = str(invoice.fatturapa_contract_line_no)
@@ -434,10 +434,10 @@ class WizardExportFatturapa(models.TransientModel):
         if invoice.fatturapa_agreement_enable:
 
             if not invoice.fatturapa_agreement:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'), _('Agreement number not set'))
             if not invoice.fatturapa_agreement_date:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'), _('Agreement date not set'))
 
             DatiConvenzione.find(
@@ -475,10 +475,10 @@ class WizardExportFatturapa(models.TransientModel):
         if invoice.fatturapa_reception_enable:
 
             if not invoice.fatturapa_reception:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'), _('Reception number not set'))
             if not invoice.fatturapa_reception_date:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'), _('Reception date not set'))
 
             line_no = str(invoice.fatturapa_reception_line_no)
@@ -631,7 +631,7 @@ class WizardExportFatturapa(models.TransientModel):
             if not partner:
                 partner = invoice.partner_id
             if invoice.partner_id != partner:
-                raise orm.except_orm(
+                raise except_orm(
                     _('Error!'),
                     _('Invoices must belong to the same partner'))
 

@@ -20,9 +20,8 @@
 
 import base64
 import tempfile
-import netsvc
 import openerp.tests.common as test_common
-from openerp import addons
+from openerp import addons, netsvc
 from lxml import etree
 from io import BytesIO
 
