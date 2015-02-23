@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_import_fatturapa_form_view" model="ir.ui.view">
+            <field name="name">Import FatturaPA</field>
+            <field name="model">wizard.import.fatturapa</field>
+            <field name="arch" type="xml">
+                <form string="Import FatturaPA" >
+                    <group col="2" width="600" height="500">
+                        <group>
+                            <label string="Confirm?"/>
+                        </group>
+                        <newline/>
+                        <group col="3">
+                            <button icon="gtk-cancel" special="cancel" string="Cancel" colspan="1"/>
+                            <button icon="gtk-ok" name="importFatturaPA" string="Import" type="object" colspan="1"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Import FatturaPA"
+            res_model="wizard.import.fatturapa"
+            src_model="fatturapa.attachment.in"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_wizard_import_fatturapa"
+            view_id="wizard_import_fatturapa_form_view"/>
+
+	</data>
+</openerp>
