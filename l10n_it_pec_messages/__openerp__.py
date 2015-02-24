@@ -52,6 +52,7 @@ Set the users allowed to use that server.
 Configure the 'outgoing mail server' (SMTP) used for PEC and set it as 'PEC'.
 Link the outgoing mail server to the 'incoming PEC server'.
 Add your user to 'PEC reader' group.
+Create an alias in OpenERP for the PEC mailbox.
 
 
 Contributors
