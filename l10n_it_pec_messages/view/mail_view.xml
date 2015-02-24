@@ -46,7 +46,7 @@
             <field name="model">mail.message</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <form string="Pec">
+                <form string="Pec" create="false" edit="false">
                     <field name="email_from" readonly="1" />
                     <field name="date"  readonly="1" />
                     <field name="author_id"  />
@@ -85,7 +85,7 @@
             <field name="model">mail.message</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <tree string="Pec">
+                <tree string="Pec" create="false">
                     <field name="email_from" />
                     <field name="date" />
                     <field name="subject" />
@@ -116,13 +116,6 @@
             <field name="context">{
                 'pec_messages': True,
             }</field>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click here to create a new record
-              </p><p>
-                Remember to fill every blue field
-              </p>
-            </field>
         </record>
 
         <record model='ir.actions.act_window' id='action_out_mail_pec'>
@@ -139,13 +132,6 @@
             <field name="context">{
                 'pec_messages': True,
             }</field>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click here to create a new record
-              </p><p>
-                Remember to fill every blue field
-              </p>
-            </field>
         </record>
 
         <record model="ir.actions.act_window.view" id="message_pec_act_tree">
