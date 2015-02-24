@@ -140,10 +140,9 @@ class ResPartner(orm.Model):
                     record.is_company
                 ):
                     name = "%s, %s" % (record.parent_name, name)
-                    res.append((record.id, name))
                 if record.pec_mail:
                     name = "%s <%s>" % (name, record.pec_mail)
-                    res.append((record.id, name))
+                res.append((record.id, name))
             return res
         else:
             return super(ResPartner, self).name_get(
