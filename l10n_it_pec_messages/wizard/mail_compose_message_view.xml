@@ -63,7 +63,6 @@
         <record id="action_write_pec_wizard" model="ir.actions.act_window.view">
             <field name="sequence" eval="4"/>
             <field name="view_mode">form</field>
-            <field name="context" >{'new_pec_mail': True,'reply_pec':True,'pec_messages': True,'show_pec_email':True}</field>
             <field name="view_id" ref="email_compose_message_wizard_form_pec"/>
             <field name="act_window_id" ref="action_email_pec_compose_message_wizard"/>
         </record>
