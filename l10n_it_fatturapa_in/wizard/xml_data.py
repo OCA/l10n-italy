@@ -24,6 +24,379 @@ import tempfile
 import base64
 
 
+class DatiCassaPrevidenziale():
+    _name = 'Dati Cassa'
+
+    datiCassaPrevidenziale = None
+    tipoCassa = None
+    alCassa = None
+    importoContributoCassa = None
+    imponibileCassa = None
+    aliquotaIVA = None
+    ritenuta = None
+    natura = None
+    riferimentoAmministrazione = None
+
+    def __init__(self, datiCassaPrevidenziale):
+        self.datiCassaPrevidenziale = datiCassaPrevidenziale
+        if self.datiCassaPrevidenziale is not None:
+            self.tipoCassa = self.datiCassaPrevidenziale.find(
+                'TipoCassa').text
+            self.alCassa = self.datiCassaPrevidenziale.find(
+                'AlCassa').text
+            self.importoContributoCassa = self.datiCassaPrevidenziale.find(
+                'ImportoContributoCassa').text
+            self.imponibileCassa = self.datiCassaPrevidenziale.find(
+                'ImponibileCassa') is not None and \
+                self.datiCassaPrevidenziale.find(
+                'ImponibileCassa').text or None
+            self.aliquotaIVA = self.datiCassaPrevidenziale.find(
+                'AliquotaIVA').text
+            self.ritenuta = self.datiCassaPrevidenziale.find(
+                'Ritenuta') is not None and self.datiCassaPrevidenziale.find(
+                'Ritenuta').text or None
+            self.natura = self.datiCassaPrevidenziale.find(
+                'Natura') is not None and self.datiCassaPrevidenziale.find(
+                'Natura').text or None
+            self.riferimentoAmministrazione = self.datiCassaPrevidenziale.find(
+                'RiferimentoAmministrazione') is not None and \
+                self.datiCassaPrevidenziale.find(
+                    'RiferimentoAmministrazione').text or None
+
+
+class ScontoMaggiorazione():
+    _name = 'Sconto Maggiorazione'
+
+    scontoMaggiorazione = None
+    tipo = None
+    percentuale = None
+    importo = None
+
+    def __init__(self, scontoMaggiorazione):
+        self.scontoMaggiorazione = scontoMaggiorazione
+        if self.scontoMaggiorazione is not None:
+            self.tipo = self.scontoMaggiorazione.find(
+                'Tipo').text
+            self.percentuale = self.scontoMaggiorazione.find(
+                'Percentuale') is not None and self.scontoMaggiorazione.find(
+                'Percentuale').text or None
+            self.importo = self.scontoMaggiorazione.find(
+                'Importo') is not None and self.scontoMaggiorazione.find(
+                'Importo').text or None
+
+
+class ListaDatiGenerali():
+    _name = 'Lista Dati Generali'
+
+    listaDatiGenerali = None
+    riferimentoNumeroLinea = []
+    idDocumento = None
+    data = None
+    numItem = None
+    codiceCommessaConvenzione = None
+    codiceCUP = None
+    codiceCIG = None
+
+    def __init__(self, listaDatiGenerali):
+        self.listaDatiGenerali = listaDatiGenerali
+        if self.listaDatiGenerali is not None:
+            self.riferimentoNumeroLinea.extend(
+                [numeroLinea.text for numeroLinea in
+                    self.listaDatiGenerali.findall('RiferimentoNumeroLinea')]
+            )
+            self.idDocumento = self.listaDatiGenerali.find(
+                'IdDocumento').text
+            self.data = self.listaDatiGenerali.find(
+                'Data') is not None and self.listaDatiGenerali.find(
+                'Data').text or None
+            self.numItem = self.listaDatiGenerali.find(
+                'NumItem') is not None and self.listaDatiGenerali.find(
+                'NumItem').text or None
+            self.codiceCommessaConvenzione = self.listaDatiGenerali.find(
+                'CodiceCommessaConvenzione') is not None and \
+                self.listaDatiGenerali.find(
+                'CodiceCommessaConvenzione').text or None
+            self.codiceCUP = self.listaDatiGenerali.find(
+                'CodiceCUP') is not None and self.listaDatiGenerali.find(
+                'CodiceCUP').text or None
+            self.codiceCIG = self.listaDatiGenerali.find(
+                'CodiceCIG') is not None and self.listaDatiGenerali.find(
+                'CodiceCIG').text or None
+
+
+class DatiSAL():
+    _name = 'Dati SAL'
+
+    datiSAL = None
+    riferimentoBase = None
+
+    def __init__(self, datiSAL):
+        self.datiSAL = datiSAL
+        if self.datiSAL is not None:
+            self.riferimentoBase = self.datiSAL.find(
+                'RiferimentoBase').text
+
+
+class DatiDDT():
+    _name = 'Dati DDT'
+
+    datiDDT = None
+    numeroDDT = None
+    dataDDT = None
+    riferimentoNumeroLinea = []
+
+    def __init__(self, datiDDT):
+        self.datiDDT = datiDDT
+        if self.datiDDT is not None:
+            self.riferimentoNumeroLinea.extend(
+                [numeroLinea.text for numeroLinea in
+                    self.datiDDT.findall('RiferimentoNumeroLinea')]
+            )
+            self.numeroDDT = self.datiDDT.find(
+                'NumeroDDT').text
+            self.dataDDT = self.datiDDT.find(
+                'DataDDT').text
+
+
+class DatiTrasporto():
+    _name = 'Dati Trasporto'
+
+    datiAnagraficiVettore = None
+    idFiscaleIva = None
+    codiceFiscale = None
+    nomeTrasportatore = None
+    codEORI = None
+    numeroLicenzaGuida = None
+    mezzoTrasporto = None
+    causaleTrasporto = None
+    numeroColli = None
+    descrizione = None
+    unitaMisuraPeso = None
+    pesoLordo = None
+    pesoNetto = None
+    dataOraArrivo = None
+    dataInizioTrasporto = None
+    tipoResa = None
+    indirizzo = None
+    cap = None
+    comune = None
+    provinca = None
+    nazione = None
+    dataOraConsegna = None
+    numeroFatturaPrincipale = None
+    dataFatturaPrincipale = None
+
+    def __init__(self, datiTrasporto):
+        self.datiTrasporto = datiTrasporto
+        self.parseIdFiscaleIva()
+        self.parseCodiceFiscale()
+        self.parseNomeTrasportatore()
+        self.numeroLicenzaGuida = self.datiTrasporto.find(
+            'NumeroLicenzaGuida') is not None and self.datiTrasporto.find(
+            'NumeroLicenzaGuida').text or None
+        self.mezzoTrasporto = self.datiTrasporto.find(
+            'MezzoTrasporto') is not None and self.datiTrasporto.find(
+            'MezzoTrasporto').text or None
+        self.causaleTrasporto = self.datiTrasporto.find(
+            'CausaleTrasporto') is not None and self.datiTrasporto.find(
+            'CausaleTrasporto').text or None
+        self.numeroColli = self.datiTrasporto.find(
+            'NumeroColli') is not None and self.datiTrasporto.find(
+            'NumeroColli').text or None
+        self.descrizione = self.datiTrasporto.find(
+            'Descrizione') is not None and self.datiTrasporto.find(
+            'Descrizione').text or None
+        self.unitaMisuraPeso = self.datiTrasporto.find(
+            'UnitaMisuraPeso') is not None and self.datiTrasporto.find(
+            'UnitaMisuraPeso').text or None
+        self.pesoLordo = self.datiTrasporto.find(
+            'PesoLordo') is not None and self.datiTrasporto.find(
+            'PesoLordo').text or None
+        self.pesoNetto = self.datiTrasporto.find(
+            'PesoNetto') is not None and self.datiTrasporto.find(
+            'PesoNetto').text or None
+        self.dataOraArrivo = self.datiTrasporto.find(
+            'DataOraArrivo') is not None and self.datiTrasporto.find(
+            'DataOraArrivo').text or None
+        self.dataInizioTrasporto = self.datiTrasporto.find(
+            'DataInizioTrasporto') is not None and self.datiTrasporto.find(
+            'DataInizioTrasporto').text or None
+        self.tipoResa = self.datiTrasporto.find(
+            'TipoResa') is not None and self.datiTrasporto.find(
+            'TipoResa').text or None
+        self.parseIndirizzoResa()
+        self.dataOraConsegna = self.datiTrasporto.find(
+            'DataOraConsegna') is not None and self.datiTrasporto.find(
+            'DataOraConsegna').text or None
+
+    def parseIdFiscaleIva(self):
+        idPaese = self.datiTrasporto.find(
+            'DatiAnagraficiVettore/IdFiscaleIVA/IdPaese').text
+        idCodice = self.datiTrasporto.find(
+            'DatiAnagraficiVettore/IdFiscaleIVA/IdCodice').text
+        self.idFiscaleIVA = idPaese + idCodice
+
+    def parseCodiceFiscale(self):
+        if self.datiTrasporto.find('DatiAnagraficiVettore') is not None:
+            self.codiceFiscale = self.datiTrasporto.find(
+                'DatiAnagraficiVettore/CodiceFiscale') is not None and \
+                self.datiTrasporto.find(
+                    'DatiAnagraficiVettore/CodiceFiscale').text
+
+    def parseNomeTrasportatore(self):
+        anagrafica = self.datiTrasporto.find(
+            'DatiAnagraficiVettore/Anagrafica')
+        denominazione = anagrafica.find('Denominazione') is not None and \
+            anagrafica.find('Denominazione').text or ''
+        nome = anagrafica.find('Nome') is not None and \
+            anagrafica.find('Nome').text or ''
+        cognome = anagrafica.find('Cognome') is not None and \
+            anagrafica.find('Cognome').text or ''
+        titolo = anagrafica.find('Titolo') is not None and \
+            anagrafica.find('Titolo').text or ''
+        self.nomeTrasportatore = denominazione or '%s %s %s' % (
+            titolo, nome, cognome
+            )
+
+    def parseIndirizzoResa(self):
+        indirizzoResa = self.datiTrasporto.find('IndirizzoResa')
+        if indirizzoResa is not None:
+            address = indirizzoResa.find('Indirizzo').text
+            number = indirizzoResa.find(
+                'NumeroCivico') is not None and indirizzoResa.find(
+                'NumeroCivico').text or ''
+            self.indirizzo = '%s %s' % (address, number)
+            self.cap = indirizzoResa.find('CAP').text
+            self.comune = indirizzoResa.find('Comune').text
+            self.provinca = indirizzoResa.find('Provincia').text
+            self.nazione = indirizzoResa.find('Nazione').text
+
+    def parseFatturaPrincipale(self):
+        if self.datiTrasporto.find('FatturaPrincipale') is not None:
+            self.numeroFatturaPrincipale = self.datiTrasporto.find(
+                'FatturaPrincipale/NumeroFatturaPrincipale').text
+            self.dataFatturaPrincipale = self.datiTrasporto.find(
+                'FatturaPrincipale/DataFatturaPrincipale').text
+
+
+class DettaglioLinea():
+    _name = 'Dettaglio Linea'
+
+    class CodiceArticolo():
+        _name = 'Codice Articolo'
+
+        codiceTipo = None
+        codiceValore = None
+
+        def __init__(self, codiceArticolo):
+            self.codiceTipo = codiceArticolo.find('CodiceTipo').text
+            self.codiceValore = codiceArticolo.find('CodiceValore').text
+
+    class ScontoMaggiorazione():
+        _name = 'Sconto Maggiorazione'
+
+        tipo = None
+        percentuale = None
+        importo = None
+
+        def __init__(self, scontoMaggiorazione):
+            self.tipo = scontoMaggiorazione.find('Tipo').text
+            self.percentuale = scontoMaggiorazione.find(
+                'Percentuale') is not None and scontoMaggiorazione.find(
+                'Percentuale').text or None
+            self.importo = scontoMaggiorazione.find(
+                'Importo') is not None and scontoMaggiorazione.find(
+                'Importo').text or None
+
+    numeroLinea = None
+    tipoCessionePrestazione = None
+    codiceArticolo = []
+    descrizione = []
+    quantita = None
+    unitaMisura = None
+    dataInizioPeriodo = None
+    dataFinePeriodo = None
+    prezzoUnitario = None
+    prezzoTotale = None
+    aliquotaIVA = None
+    ritenuta = None
+    natura = None
+    riferimentoAmministrazione = None
+    # TODO: AltriDatiGestionali
+
+    def __init__(self, line):
+            self.numeroLinea = line.find('NumeroLinea').text
+            self.tipoCessionePrestazione = line.find(
+                'TipoCessionePrestazione') is not None and line.find(
+                'TipoCessionePrestazione').text or None
+            if line.find('CodiceArticolo') is not None:
+                self.codiceArticolo.append(self.CodiceArticolo(
+                    line.find('CodiceArticolo'))
+                )
+            self.descrizione = line.find('Descrizione').text
+            self.quantita = line.find(
+                'Quantita') is not None and line.find(
+                'Quantita').text or None
+            self.unitaMisura = line.find(
+                'UnitaMisura') is not None and line.find(
+                'UnitaMisura').text or None
+            self.dataInizioPeriodo = line.find(
+                'DataInizioPeriodo') is not None and line.find(
+                'DataInizioPeriodo').text or None
+            self.dataFinePeriodo = line.find(
+                'DataFinePeriodo') is not None and line.find(
+                'DataFinePeriodo').text or None
+            self.prezzoUnitario = line.find('PrezzoUnitario').text
+            if line.find('ScontoMaggiorazione') is not None:
+                self.codiceArticolo.append(self.ScontoMaggiorazione(
+                    line.find('ScontoMaggiorazione'))
+                )
+            self.prezzoTotale = line.find('PrezzoTotale').text
+            self.aliquotaIVA = line.find('AliquotaIVA').text
+            self.ritenuta = line.find(
+                'Ritenuta') is not None and line.find(
+                'Ritenuta').text or None
+            self.natura = line.find(
+                'Natura') is not None and line.find(
+                'Natura').text or None
+            self.riferimentoAmministrazione = line.find(
+                'RiferimentoAmministrazione') is not None and line.find(
+                'RiferimentoAmministrazione').text or None
+
+
+class DatiRiepilogo():
+    _name = 'Dati Riepilogo'
+
+    aliquotaIVA = None
+    natura = None
+    speseAccessorie = None
+    arrotondamento = None
+    imponibileImporto = None
+    imposta = None
+    esigibilitaIVA = None
+    riferimentoNormativo = None
+
+    def __init__(self, datoRiepilogo):
+        self.aliquotaIVA = datoRiepilogo.find('AliquotaIVA').text
+        self.natura = datoRiepilogo.find(
+            'Natura') is not None and datoRiepilogo.find(
+            'Natura').text or None
+        self.speseAccessorie = datoRiepilogo.find(
+            'SpeseAccessorie') is not None and datoRiepilogo.find(
+            'SpeseAccessorie').text or None
+        self.arrotondamento = datoRiepilogo.find(
+            'Arrotondamento') is not None and datoRiepilogo.find(
+            'Arrotondamento').text or None
+        self.imponibileImporto = datoRiepilogo.find('ImponibileImporto').text
+        self.imposta = datoRiepilogo.find('Imposta').text
+        self.esigibilitaIVA = datoRiepilogo.find(
+            'EsigibilitaIVA') is not None and datoRiepilogo.find(
+            'EsigibilitaIVA').text or None
+        self.riferimentoNormativo = datoRiepilogo.find(
+            'RiferimentoNormativo') is not None and datoRiepilogo.find(
+            'RiferimentoNormativo').text or None
+
+
 class XmlData():
     _name = 'Xml Object for data'
     _description = """ The object to store sdi xml datas"""
@@ -39,7 +412,6 @@ class XmlData():
     codiceFiscale = None
     nomeCedentePrestatore = None
     regimeFiscale = None
-    regimeFiscale = None
     # <Sede>
     indirizzo = None
     cap = None
@@ -51,41 +423,80 @@ class XmlData():
     fax = None
     email = None
 
+    # <RappresentanteFiscale>
+    # TODO: parse data
+
     # <CessionarioCommittente>
     cessionarioCommittente = None
     idFiscaleIVAPA = None
     codiceFiscalePA = None
 
+    # TerzoIntermediarioOSoggettoEmittente
+    # TODO: parse data
+
+    # SoggettoEmittente
+    # TODO: parse data
+
+    # FatturaElettronicaBody
+    # DatiGenerali
     # <DatiGeneraliDocumento>
     datiGeneraliDocumento = None
     tipoDocumento = None
     divisa = None
     data = None
     numero = None
-    # TODO: datiRitenuta
-    # TODO: datiBollo
-    # TODO: datiCassaPrevidenza
-    # TODO: scontoMaggiorazione
+
+    # datiRitenuta
+    datiRitenuta = None
+    tipoRitenuta = None
+    importoRitenuta = None
+    aliquotaRitenuta = None
+    causalePagamento = None
+
+    # datiBollo
+    datiBollo = None
+    bolloVirtuale = None
+    importoBollo = None
+
+    # datiCassaPrevidenza
+    datiCassaPrevidenzialeList = []
+    # contoMaggiorazione
+    scontoMaggiorazioneList = []
+
     importoTotaleDocumento = None
     arrotondamento = None
-    causale = None
+    causaleList = []
     art73 = False
-    # TODO: datiOrdineAcquisto
-    # TODO: datiContratto
-    # TODO: datiConvenzione
-    # TODO: datiRicezione
-    # TODO: datiFattureCollegate
-    # TODO: datiSal
-    # TODO: datiDdt
-    # TODO: datiTrasporto
+    # DatiOrdineAcquisto
+    datiOrdineAcquisto = None
+    datiOrdineAcquistoList = []
+    # DatiContratto
+    datiContratto = None
+    datiContrattoList = []
+    # DatiConvenzione
+    datiConvenzione = None
+    datiConvenzioneList = []
+    # DatiRicezione
+    datiRicezione = None
+    datiRicezioneList = []
+    # DatiFattureCollegate
+    datiFattureCollegate = None
+    datiFattureCollegateList = []
+    # DatiSal
+    datiSAL = None
+    datiSALList = []
+    # DatiDdt
+    datiDDT = None
+    datiDDTList = []
+    # DatiTrasporto
+    datiTrasporto = None
 
     # <DatiBeniServizi>/<DettaglioLinee>
-    dettaglioLinee = None
-    lines = {}
-    # TODO: tipoCessionePrestazione
-    # TODO: codiceArticolo
+    dettaglioLinee = []
 
-    # <DettaglioLinee>
+    # Dati Riepilogo
+    datiRiepilogo = []
+    # TODO: tipoCessionePrestazione
 
     def __init__(self, content):
         self.content = content
@@ -146,7 +557,7 @@ class XmlData():
                 contatti.find('Email').text or ''
 
     def parseIdFiscaleIvaPA(self):
-        # XXX: per fare un check sulla PIVA dell'ente
+        # TODO: per fare un check sulla PIVA dell'ente
         if self.cessionarioCommittente.find('DatiAnagrafici/IdFiscaleIVA') \
                 is not None:
             idPaese = self.cessionarioCommittente.find(
@@ -168,21 +579,67 @@ class XmlData():
         self.data = self.datiGeneraliDocumento.find('Data').text
         self.numero = self.datiGeneraliDocumento.find('Numero').text
 
-    def parseDettaglioLinee(self):
-        for line in self.dettaglioLinee:
-            numeroLinea = line.find('NumeroLinea').text
-            descrizione = line.find('Descrizione').text
-            quantita = line.find('Quantita').text
-            prezzoUnitario = line.find('PrezzoUnitario').text
-            prezzoTotale = line.find('PrezzoTotale').text
-            aliquotaIVA = line.find('AliquotaIVA').text
-            self.lines[numeroLinea] = {
-                     'Descrizione': descrizione,
-                     'Quantita': quantita,
-                     'PrezzoUnitario': prezzoUnitario,
-                     'PrezzoTotale': prezzoTotale,
-                     'AliquotaIVA': aliquotaIVA
-            }
+        # Dati Ritenuta
+        self.datiRitenuta = self.datiGeneraliDocumento.\
+            find('DatiRitenuta') is not None and self.datiGeneraliDocumento.\
+            find('DatiRitenuta').text or None
+        if self.datiRitenuta is not None:
+            self.tipoRitenuta = self.datiRitenuta.find(
+                'TipoRitenuta').text
+            self.importoRitenuta = self.datiRitenuta.find(
+                'ImportoRitenuta').text
+            self.aliquotaRitenuta = self.datiRitenuta.find(
+                'AliquotaRitenuta').text
+            self.causalePagamento = self.datiRitenuta.find(
+                'CausalePagamento').text
+
+        # Dati Bollo
+        self.datiBollo = self.datiGeneraliDocumento.\
+            find('DatiBollo') is not None and self.datiGeneraliDocumento.\
+            find('DatiBollo').text or None
+        if self.datiBollo:
+            self.bolloVirtuale = self.datiBollo.find(
+                'BolloVirtuale').text
+            self.importoBollo = self.datiBollo.find(
+                'ImportoBollo').text
+
+        # DatiCassaPrevidenziale
+        for datiCassaPrevidenziale in \
+                self.datiGeneraliDocumento.findall('DatiCassaPrevidenziale'):
+            self.datiCassaPrevidenzialeList.append(
+                DatiCassaPrevidenziale(datiCassaPrevidenziale)
+            )
+
+        # ScontoMaggiorazione
+        for scontoMaggiorazione in \
+                self.datiGeneraliDocumento.findall('ScontoMaggiorazione'):
+            self.scontoMaggiorazioneList.append(
+                ScontoMaggiorazione(scontoMaggiorazione)
+            )
+
+        self.importoTotaleDocumento = self.datiGeneraliDocumento.find(
+            'ImportoTotaleDocumento') is not None and \
+            self.datiGeneraliDocumento.find(
+            'ImportoTotaleDocumento').text or None
+
+        self.arrotondamento = self.datiGeneraliDocumento.find(
+            'Arrotondamento') is not None and self.datiGeneraliDocumento.find(
+            'Arrotondamento').text or None
+
+        for dgcausale in self.datiGeneraliDocumento.findall('causale'):
+            self.causaleList.append(dgcausale.text)
+
+        self.art73 = self.datiGeneraliDocumento.find(
+            'Art73') is not None and self.datiGeneraliDocumento.find(
+            'Art73').text or None
+
+    def parseDettaglioLinee(self, linee):
+        for line in linee:
+            self.dettaglioLinee.append(DettaglioLinea(line))
+
+    def parseDatiRiepilogo(self, riepilogo):
+        for datoRiepilogo in riepilogo:
+            self.datiRiepilogo.append(DatiRiepilogo(datoRiepilogo))
 
     def parseXml(self):
         # TODO: RappresentanteFiscale (come trattarlo?)
@@ -209,24 +666,118 @@ class XmlData():
             )
         self.parseDatiGeneraliDocumento()
 
-        # Linee Fatturazione
+        # Dati Ordine
+        self.datiOrdineAcquisto = self.template.findall(
+            'FatturaElettronicaBody/DatiGenerali/DatiOrdineAcquisto'
+            )
+        for datoOrdineAcquisto in self.datiOrdineAcquisto:
+            self.datiOrdineAcquistoList.append(
+                ListaDatiGenerali(datoOrdineAcquisto)
+            )
+
+        # Dati Contratto
+        self.datiContratto = self.template.findall(
+            'FatturaElettronicaBody/DatiGenerali/DatiContratto'
+            )
+        for datoContratto in self.datiContratto:
+            self.datiContrattoList.append(
+                ListaDatiGenerali(datoContratto)
+            )
+
+        # Dati Convenzione
+        self.datiConvenzione = self.template.findall(
+            'FatturaElettronicaBody/DatiGenerali/DatiConvenzione'
+            )
+        for datoConvenzione in self.datiConvenzione:
+            self.datiConvenzioneList.append(
+                ListaDatiGenerali(datoConvenzione)
+            )
+
+        # Dati Ricezione
+        self.datiRicezione = self.template.findall(
+            'FatturaElettronicaBody/DatiGenerali/DatiRicezione'
+            )
+        for datoRicezione in self.datiRicezione:
+            self.datiRicezioneList.append(
+                ListaDatiGenerali(datoRicezione)
+            )
+
+        # Dati Fatture Collegate
+        self.datiFattureCollegate = self.template.findall(
+            'FatturaElettronicaBody/DatiGenerali/DatiFattureCollegate'
+            )
+        for datoFattureCollegate in self.datiFattureCollegate:
+            self.datiFattureCollegateList.append(
+                ListaDatiGenerali(datoFattureCollegate)
+            )
+
+        # Dati SAL
+        self.datiSAL = self.template.findall(
+            'FatturaElettronicaBody/DatiGenerali/DatiSAL'
+            )
+        for datoSAL in self.datiSAL:
+            self.datiSALList.append(
+                DatiSAL(datoSAL)
+            )
+
+        # Dati DDT
+        self.datiDDT = self.template.findall(
+            'FatturaElettronicaBody/DatiGenerali/DatiDDT'
+            )
+        for datoDDT in self.datiDDT:
+            self.datiDDTList.append(
+                DatiDDT(datoDDT)
+            )
+
+        # Dati Trasporto
+        datoTrasporto = self.template.find(
+            'FatturaElettronicaBody/DatiGenerali/DatiTrasporto'
+            )
+        if datoTrasporto is not None:
+            self.datiTrasporto = DatiTrasporto(datoTrasporto)
+
+        # Dati Beni e Servizi
         datiBeniServizi = self.template.find(
             'FatturaElettronicaBody/DatiBeniServizi'
             )
-        self.dettaglioLinee = datiBeniServizi.findall(
+
+        # Linee Fatturazione
+        linee = datiBeniServizi.findall(
             'DettaglioLinee'
             )
-        self.parseDettaglioLinee()
+        self.parseDettaglioLinee(linee)
+
+        # Dati Riepilogo
+        riepilogo = datiBeniServizi.findall(
+            'DatiRiepilogo'
+            )
+        self.parseDatiRiepilogo(riepilogo)
 
 if __name__ == '__main__':
         with open('../tests/IT01234567890_11002.xml') as test_data:
             with tempfile.TemporaryFile() as out:
                 base64.encode(test_data, out)
                 out.seek(0)
+                # FIXME: when there are more than one invoice in xml document
                 xml_data = XmlData(out.read().decode('base64'))
                 xml_data.parseXml()
                 for attr in dir(xml_data):
-                    if isinstance(getattr(xml_data, attr), str) and attr != 'content':
-                        print "xml_data.%s = %s" % (attr, getattr(xml_data, attr))
-                for k,v in xml_data.lines.iteritems():
-                    print 'line %s -> values %s' % (k, v)
+                    if isinstance(getattr(xml_data, attr), str) \
+                            and attr != 'content':
+                        print "xml_data.%s = %s" % (attr,
+                                                    getattr(xml_data, attr)
+                                                    )
+                print "Dettaglio Linee Fattura"
+                for line in xml_data.dettaglioLinee:
+                    for attr in dir(line):
+                        if isinstance(getattr(line, attr), str) \
+                                and attr != 'content':
+                            print "line.%s = %s" % (attr,
+                                                    getattr(line, attr))
+                print "Dettaglio Linee Riepilogo"
+                for line in xml_data.datiRiepilogo:
+                    for attr in dir(line):
+                        if isinstance(getattr(line, attr), str) \
+                                and attr != 'content':
+                            print "line.%s = %s" % (attr,
+                                                    getattr(line, attr))

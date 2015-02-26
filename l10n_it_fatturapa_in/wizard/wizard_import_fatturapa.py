@@ -81,8 +81,7 @@ class WizardImportFatturapa(orm.TransientModel):
 
     def _prepareInvoiceLine(self, cr, uid,
                             credit_account_id,
-                            xml_line_num,
-                            xml_line_data,
+                            line,
                             context=None):
         account_tax_model = self.pool['account.tax']
         # TODO: verify if it's possible to have more than 1 tax_id
@@ -93,22 +92,22 @@ class WizardImportFatturapa(orm.TransientModel):
                                                      ('purchase', 'all')),
                                                     ('amount',
                                                      '=',
-                                                     float(xml_line_data[
-                                                        'AliquotaIVA'])/100),
+                                                     float(line.aliquotaIVA) /
+                                                     100),
                                                     ])
         if not account_tax_ids:
             raise orm.except_orm(
                 _('Error!'),
                 _('Define a tax with percentage '
                   'equals to: "%s"'
-                  % xml_line_data['AliquotaIVA'])
+                  % line.aliquotaIVA)
             )
         return {
-            'name': xml_line_data['Descrizione'],
-            'sequence': int(xml_line_num),
+            'name': line.descrizione,
+            'sequence': int(line.numeroLinea),
             'account_id': credit_account_id,
-            'price_unit': float(xml_line_data['PrezzoUnitario']),
-            'quantity': float(xml_line_data['Quantita']),
+            'price_unit': float(line.prezzoUnitario),
+            'quantity': float(line.quantita),
             'invoice_line_tax_id': [(6, 0, [account_tax_ids[0]])],
         }
 
@@ -164,12 +163,12 @@ class WizardImportFatturapa(orm.TransientModel):
                 )
         credit_account_id = purchase_journal.default_credit_account_id.id
         invoice_lines = []
-        for xml_line_num, xml_line_data in xmlData.lines.iteritems():
-            invoice_line_data = self._prepareInvoiceLine(cr, uid,
-                                                       credit_account_id,
-                                                       xml_line_num,
-                                                       xml_line_data,
-                                                       context=context)
+        for line in xmlData.dettaglioLinee:
+            invoice_line_data = self._prepareInvoiceLine(
+                cr, uid,
+                credit_account_id,
+                line,
+                context=context)
             invoice_line_id = invoice_line_model.create(cr, uid,
                                                         invoice_line_data,
                                                         context=context)
@@ -208,7 +207,6 @@ class WizardImportFatturapa(orm.TransientModel):
         if not context:
             context = {}
 
-        model_data_obj = self.pool['ir.model.data']
         fatturapa_attachment_obj = self.pool['fatturapa.attachment.in']
         fatturapa_attachment_ids = context.get('active_ids', False)
         new_invoices = []
@@ -217,15 +215,15 @@ class WizardImportFatturapa(orm.TransientModel):
             if fatturapa_attachment.state != 'processed':
                 try:
                     xmlData = XmlData(
-                                fatturapa_attachment.datas.decode('base64')
-                                )
+                        fatturapa_attachment.datas.decode('base64')
+                    )
                     xmlData.parseXml()
                     fatturapa_attachment_obj.write(
-                                                   cr,
-                                                   uid,
-                                                   fatturapa_attachment.id,
-                                                   {'state': 'processed'}
-                                                   )
+                        cr,
+                        uid,
+                        fatturapa_attachment.id,
+                        {'state': 'processed'}
+                        )
                     partner_id = self.getPartnerId(cr, uid, xmlData, context)
                     invoice_id = self.invoiceCreate(
                         cr,
@@ -238,13 +236,11 @@ class WizardImportFatturapa(orm.TransientModel):
                 except:
                     _logger.error('Error in xml %s', fatturapa_attachment.name)
                     fatturapa_attachment_obj.write(
-                                                   cr,
-                                                   uid,
-                                                   fatturapa_attachment.id,
-                                                   {'state': 'error'}
-                                                   )
-                    
-
+                        cr,
+                        uid,
+                        fatturapa_attachment.id,
+                        {'state': 'error'}
+                        )
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",
