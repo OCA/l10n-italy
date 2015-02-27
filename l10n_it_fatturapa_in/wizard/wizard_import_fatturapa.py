@@ -38,14 +38,14 @@ class WizardImportFatturapa(orm.TransientModel):
 
         return False
 
-    def getPartnerId(self, cr, uid, xmlData, context=None):
+    def getPartnerId(self, cr, uid, xmlDataCedentePrestatore, context=None):
 
         partner_model = self.pool['res.partner']
         partner_id = partner_model.search(
             cr, uid,
             ['|',
-             ('vat', '=', xmlData.idFiscaleIVA or 0),
-             ('fiscalcode', '=', xmlData.codiceFiscale or 0),
+             ('vat', '=', xmlDataCedentePrestatore.idFiscaleIVA or 0),
+             ('fiscalcode', '=', xmlDataCedentePrestatore.codiceFiscale or 0),
              ],
             context=context)
         if len(partner_id) > 1:
@@ -53,29 +53,30 @@ class WizardImportFatturapa(orm.TransientModel):
                 _('Error !'),
                 _("Two distinct partners with "
                   "Vat % and Fiscalcode % already present in db" %
-                  (xmlData.idFiscaleIVA,
-                   xmlData.codiceFiscale))
+                  (xmlDataCedentePrestatore.idFiscaleIVA,
+                   xmlDataCedentePrestatore.codiceFiscale))
                 )
         if partner_id:
             return partner_id[0]
         else:
             # TODO: manage here wrong VAT
             vals = {
-                'name': xmlData.nomeCedentePrestatore,
-                'vat': xmlData.idFiscaleIVA,
-                'fiscalcode': xmlData.codiceFiscale,
+                'name': xmlDataCedentePrestatore.nomeCedentePrestatore,
+                'vat': xmlDataCedentePrestatore.idFiscaleIVA,
+                'fiscalcode': xmlDataCedentePrestatore.codiceFiscale,
                 'customer': False,
                 'supplier': True,
                 # TODO: needs verify
-                'is_company': xmlData.idFiscaleIVA and True or False,
-                'street': xmlData.indirizzo,
-                'zip': xmlData.cap,
-                'city': xmlData.comune,
+                'is_company': xmlDataCedentePrestatore.idFiscaleIVA and
+                True or False,
+                'street': xmlDataCedentePrestatore.indirizzo,
+                'zip': xmlDataCedentePrestatore.cap,
+                'city': xmlDataCedentePrestatore.comune,
                 # FIXME add logic to get country id from name
                 # 'country_id': xmlData.nazione,
-                'phone': xmlData.telefono,
-                'email': xmlData.email,
-                'fax': xmlData.fax,
+                'phone': xmlDataCedentePrestatore.telefono,
+                'email': xmlDataCedentePrestatore.email,
+                'fax': xmlDataCedentePrestatore.fax,
             }
             return partner_model.create(cr, uid, vals, context=context)
 
@@ -112,7 +113,7 @@ class WizardImportFatturapa(orm.TransientModel):
         }
 
     def invoiceCreate(self, cr, uid,
-                      fatturapa_attachment, xmlData,
+                      fatturapa_attachment, xmlDataFattura,
                       partner_id, context=None):
         if context is None:
             context = {}
@@ -153,17 +154,17 @@ class WizardImportFatturapa(orm.TransientModel):
         # currency
         # TODO verify if divisa is equal to the code name used in odoo
         currency_id = currency_model.search(cr, uid,
-                                            [('name', '=', xmlData.divisa)]
+                                            [('name', '=', xmlDataFattura.divisa)]
                                             )
         if not currency_id:
             raise orm.except_orm(
                 _('Error!'),
                 _('No currency found with code %s'
-                  % xmlData.divisa)
+                  % xmlDataFattura.divisa)
                 )
         credit_account_id = purchase_journal.default_credit_account_id.id
         invoice_lines = []
-        for line in xmlData.dettaglioLinee:
+        for line in xmlDataFattura.dettaglioLinee:
             invoice_line_data = self._prepareInvoiceLine(
                 cr, uid,
                 credit_account_id,
@@ -224,15 +225,19 @@ class WizardImportFatturapa(orm.TransientModel):
                         fatturapa_attachment.id,
                         {'state': 'processed'}
                         )
-                    partner_id = self.getPartnerId(cr, uid, xmlData, context)
-                    invoice_id = self.invoiceCreate(
-                        cr,
-                        uid,
-                        fatturapa_attachment,
-                        xmlData,
-                        partner_id,
-                        context)
-                    new_invoices.append(invoice_id)
+                    partner_id = self.getPartnerId(cr,
+                                                   uid,
+                                                   xmlData.cedentePrestatore,
+                                                   context)
+                    for fattura in xmlData.fatturaElettronicaBody:
+                        invoice_id = self.invoiceCreate(
+                            cr,
+                            uid,
+                            fatturapa_attachment,
+                            fattura,
+                            partner_id,
+                            context)
+                        new_invoices.append(invoice_id)
                 except:
                     _logger.error('Error in xml %s', fatturapa_attachment.name)
                     fatturapa_attachment_obj.write(

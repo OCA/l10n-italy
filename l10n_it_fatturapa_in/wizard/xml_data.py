@@ -24,6 +24,280 @@ import tempfile
 import base64
 
 
+# TODO: use a single class to manage: CedentePrestatore,
+# RappresentanteFiscale, CessionarioCommittente,
+# TerzoIntermediarioOSoggettoEmittente
+class CedentePrestatore():
+    _name = 'Cedente Prestatore'
+
+    cedentePrestatore = None
+    idFiscaleIVA = None
+    codiceFiscale = None
+    nomeRappresentanteFiscale = None
+    codEORI = None
+    alboProfessionale = None
+    provinciaAlbo = None
+    numeroIscrizioneAlbo = None
+    dataIscrizioneAlbo = None
+    regimeFiscale = None
+    # <Sede>
+    indirizzo = None
+    cap = None
+    comune = None
+    provinca = None
+    nazione = None
+    # <Contatti>
+    telefono = None
+    fax = None
+    email = None
+
+    def __init__(self, cedentePrestatore):
+        self.cedentePrestatore = cedentePrestatore
+        self.parseIdFiscaleIva()
+        self.parseCodiceFiscale()
+        self.parseCedentePrestatore()
+        self.alboProfessionale = self.cedentePrestatore.find(
+            'DatiAnagrafici/AlboProfessionale') is not None and \
+            self.cedentePrestatore.find(
+            'DatiAnagrafici/AlboProfessionale').text or None
+        self.provinciaAlbo = self.cedentePrestatore.find(
+            'DatiAnagrafici/ProvinciaAlbo') is not None and \
+            self.cedentePrestatore.find(
+            'DatiAnagrafici/ProvinciaAlbo').text or None
+        self.numeroIscrizioneAlbo = self.cedentePrestatore.find(
+            'DatiAnagrafici/NumeroIscrizioneAlbo') is not None and \
+            self.cedentePrestatore.find(
+            'DatiAnagrafici/NumeroIscrizioneAlbo').text or None
+        self.dataIscrizioneAlbo = self.cedentePrestatore.find(
+            'DatiAnagrafici/DataIscrizioneAlbo') is not None and \
+            self.cedentePrestatore.find(
+            'DatiAnagrafici/DataIscrizioneAlbo').text or None
+        self.regimeFiscale = self.cedentePrestatore.find(
+            'DatiAnagrafici/RegimeFiscale').text
+        self.parseSede()
+        self.parseContatti()
+
+    def parseIdFiscaleIva(self):
+        idPaese = self.cedentePrestatore.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdPaese').text
+        idCodice = self.cedentePrestatore.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdCodice').text
+        self.idFiscaleIVA = idPaese + idCodice
+
+    def parseCodiceFiscale(self):
+        self.codiceFiscale = self.cedentePrestatore.find(
+            'DatiAnagrafici/CodiceFiscale') and \
+            self.cedentePrestatore.find(
+                'DatiAnagrafici/CodiceFiscale').text
+
+    def parseCedentePrestatore(self):
+        anagrafica = self.cedentePrestatore.find(
+            'DatiAnagrafici/Anagrafica')
+        denominazione = anagrafica.find('Denominazione') is not None and \
+            anagrafica.find('Denominazione').text or ''
+        nome = anagrafica.find('Nome') is not None and \
+            anagrafica.find('Nome').text or ''
+        cognome = anagrafica.find('Cognome') is not None and \
+            anagrafica.find('Cognome').text or ''
+        titolo = anagrafica.find('Titolo') is not None and \
+            anagrafica.find('Titolo').text or ''
+        self.nomeRappresentanteFiscale = denominazione or '%s %s %s' % (
+            titolo, nome, cognome
+            )
+        self.codEORI = anagrafica.find(
+            'CodiceEori') is not None and \
+            anagrafica.find(
+            'CodiceEori').text or None
+
+    def parseSede(self):
+        sede = self.cedentePrestatore.find('Sede')
+        address = sede.find('Indirizzo').text
+        number = sede.find('NumeroCivico') is not None and \
+            sede.find('NumeroCivico').text or ''
+        self.indirizzo = '%s %s' % (address, number)
+        self.cap = sede.find('CAP').text
+        self.comune = sede.find('Comune').text
+        self.provinca = sede.find('Provincia').text
+        self.nazione = sede.find('Nazione').text
+
+    def parseContatti(self):
+        contatti = self.cedentePrestatore.find('Contatti')
+        if contatti is not None:
+            self.telefono = contatti.find('Telefono') is not None and \
+                contatti.find('Telefono').text or ''
+            self.fax = contatti.find('Fax') is not None and \
+                contatti.find('Fax').text or ''
+            self.email = contatti.find('Email') is not None and \
+                contatti.find('Email').text or ''
+
+
+class RappresentanteFiscale():
+    _name = 'Rappresentante Fiscale'
+
+    rappresentanteFiscale = None
+    idFiscaleIVA = None
+    codiceFiscale = None
+    nomeRappresentanteFiscale = None
+    codEORI = None
+
+    def __init__(self, rappresentanteFiscale):
+        self.rappresentanteFiscale = rappresentanteFiscale
+        self.parseIdFiscaleIva()
+        self.parseCodiceFiscale()
+        self.parseRappresentanteFiscale()
+        self.codEORI = self.rappresentanteFiscale.find(
+            'DatiAnagrafici/Anagrafica/CodiceEori') is not None and \
+            self.rappresentanteFiscale.find(
+            'DatiAnagrafici/Anagrafica/CodiceEori').text or None
+
+    def parseIdFiscaleIva(self):
+        idPaese = self.rappresentanteFiscale.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdPaese').text
+        idCodice = self.rappresentanteFiscale.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdCodice').text
+        self.idFiscaleIVA = idPaese + idCodice
+
+    def parseCodiceFiscale(self):
+        self.codiceFiscale = self.rappresentanteFiscale.find(
+            'DatiAnagrafici/CodiceFiscale') and \
+            self.rappresentanteFiscale.find(
+                'DatiAnagrafici/CodiceFiscale').text
+
+    def parseRappresentanteFiscale(self):
+        anagrafica = self.rappresentanteFiscale.find(
+            'DatiAnagrafici/Anagrafica')
+        denominazione = anagrafica.find('Denominazione') is not None and \
+            anagrafica.find('Denominazione').text or ''
+        nome = anagrafica.find('Nome') is not None and \
+            anagrafica.find('Nome').text or ''
+        cognome = anagrafica.find('Cognome') is not None and \
+            anagrafica.find('Cognome').text or ''
+        titolo = anagrafica.find('Titolo') is not None and \
+            anagrafica.find('Titolo').text or ''
+        self.nomeRappresentanteFiscale = denominazione or '%s %s %s' % (
+            titolo, nome, cognome
+            )
+        self.codEORI = anagrafica.find(
+            'CodiceEori') is not None and \
+            anagrafica.find(
+            'CodiceEori').text or None
+
+
+class CessionarioCommittente():
+    _name = 'CessionarioCommittente'
+
+    cessionarioCommittente = None
+    idFiscaleIVA = None
+    codiceFiscale = None
+    nomeCessionarioCommittente = None
+    codEORI = None
+    # <Sede>
+    indirizzo = None
+    cap = None
+    comune = None
+    provinca = None
+    nazione = None
+
+    def __init__(self, cessionarioCommittente):
+        self.cessionarioCommittente = cessionarioCommittente
+        self.parseIdFiscaleIva()
+        self.parseCodiceFiscale()
+        self.parseCessionarioCommittente()
+        self.parseSede()
+
+    def parseIdFiscaleIva(self):
+        idPaese = self.cessionarioCommittente.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdPaese') is not None and \
+            self.cessionarioCommittente.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdPaese').text or ''
+        idCodice = self.cessionarioCommittente.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdCodice') is not None and \
+            self.cessionarioCommittente.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdCodice').text or ''
+        self.idFiscaleIVA = idPaese + idCodice
+
+    def parseCodiceFiscale(self):
+        self.codiceFiscale = self.cessionarioCommittente.find(
+            'DatiAnagrafici/CodiceFiscale') is not None and \
+            self.cessionarioCommittente.find(
+                'DatiAnagrafici/CodiceFiscale').text or None
+
+    def parseCessionarioCommittente(self):
+        anagrafica = self.cessionarioCommittente.find(
+            'DatiAnagrafici/Anagrafica')
+        denominazione = anagrafica.find('Denominazione') is not None and \
+            anagrafica.find('Denominazione').text or ''
+        nome = anagrafica.find('Nome') is not None and \
+            anagrafica.find('Nome').text or ''
+        cognome = anagrafica.find('Cognome') is not None and \
+            anagrafica.find('Cognome').text or ''
+        titolo = anagrafica.find('Titolo') is not None and \
+            anagrafica.find('Titolo').text or ''
+        self.nomeRappresentanteFiscale = denominazione or '%s %s %s' % (
+            titolo, nome, cognome
+            )
+        self.codEORI = anagrafica.find(
+            'CodiceEori') is not None and \
+            anagrafica.find(
+            'CodiceEori').text or None
+
+    def parseSede(self):
+        sede = self.cessionarioCommittente.find('Sede')
+        address = sede.find('Indirizzo').text
+        number = sede.find('NumeroCivico') is not None and \
+            sede.find('NumeroCivico').text or ''
+        self.indirizzo = '%s %s' % (address, number)
+        self.cap = sede.find('CAP').text
+        self.comune = sede.find('Comune').text
+        self.provinca = sede.find('Provincia').text
+        self.nazione = sede.find('Nazione').text
+
+
+class TerzoIntermediarioOSoggettoEmittente():
+    _name = 'Terzo Intermediario O Soggetto Emittente'
+
+    terzoIntermediarioOSoggettoEmittente = None
+    idFiscaleIVA = None
+    codiceFiscale = None
+    nomeRappresentanteFiscale = None
+    codEORI = None
+
+    def __init__(self, terzoIntermediarioOSoggettoEmittente):
+        self.terzoIntermediarioOSoggettoEmittente = \
+            terzoIntermediarioOSoggettoEmittente
+        self.parseIdFiscaleIva()
+        self.parseCodiceFiscale()
+        self.parseRappresentanteFiscale()
+
+    def parseIdFiscaleIva(self):
+        idPaese = self.terzoIntermediarioOSoggettoEmittente.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdPaese').text
+        idCodice = self.terzoIntermediarioOSoggettoEmittente.find(
+            'DatiAnagrafici/IdFiscaleIVA/IdCodice').text
+        self.idFiscaleIVA = idPaese + idCodice
+
+    def parseCodiceFiscale(self):
+        self.codiceFiscale = self.terzoIntermediarioOSoggettoEmittente.find(
+            'DatiAnagrafici/CodiceFiscale') and \
+            self.terzoIntermediarioOSoggettoEmittente.find(
+                'DatiAnagrafici/CodiceFiscale').text
+
+    def parseRappresentanteFiscale(self):
+        anagrafica = self.terzoIntermediarioOSoggettoEmittente.find(
+            'DatiAnagrafici/Anagrafica')
+        denominazione = anagrafica.find('Denominazione') is not None and \
+            anagrafica.find('Denominazione').text or ''
+        nome = anagrafica.find('Nome') is not None and \
+            anagrafica.find('Nome').text or ''
+        cognome = anagrafica.find('Cognome') is not None and \
+            anagrafica.find('Cognome').text or ''
+        titolo = anagrafica.find('Titolo') is not None and \
+            anagrafica.find('Titolo').text or ''
+        self.nomeRappresentanteFiscale = denominazione or '%s %s %s' % (
+            titolo, nome, cognome
+            )
+
+
 class DatiCassaPrevidenziale():
     _name = 'Dati Cassa'
 
@@ -330,9 +604,10 @@ class DettaglioLinea():
                 'TipoCessionePrestazione') is not None and line.find(
                 'TipoCessionePrestazione').text or None
             if line.find('CodiceArticolo') is not None:
-                self.codiceArticolo.append(self.CodiceArticolo(
-                    line.find('CodiceArticolo'))
-                )
+                for ca in line.findall('CodiceArticolo'):
+                    self.codiceArticolo.append(
+                        self.CodiceArticolo(ca)
+                    )
             self.descrizione = line.find('Descrizione').text
             self.quantita = line.find(
                 'Quantita') is not None and line.find(
@@ -348,9 +623,10 @@ class DettaglioLinea():
                 'DataFinePeriodo').text or None
             self.prezzoUnitario = line.find('PrezzoUnitario').text
             if line.find('ScontoMaggiorazione') is not None:
-                self.codiceArticolo.append(self.ScontoMaggiorazione(
-                    line.find('ScontoMaggiorazione'))
-                )
+                for scm in line.findall('ScontoMaggiorazione'):
+                    self.codiceArticolo.append(
+                        self.ScontoMaggiorazione(scm)
+                    )
             self.prezzoTotale = line.find('PrezzoTotale').text
             self.aliquotaIVA = line.find('AliquotaIVA').text
             self.ritenuta = line.find(
@@ -397,48 +673,170 @@ class DatiRiepilogo():
             'RiferimentoNormativo').text or None
 
 
-class XmlData():
-    _name = 'Xml Object for data'
-    _description = """ The object to store sdi xml datas"""
+class DatiPagamento():
+    _name = 'Dati Pagamento'
 
-    content = None
-    template = None
-    root = None
+    datiPagamento = None
+    condizioniPagamento = None
+    dettaglioPagamento = []
 
-    # Datas
-    # <CedentePrestatore>
-    cedentePrestatore = None
-    idFiscaleIVA = None
-    codiceFiscale = None
-    nomeCedentePrestatore = None
-    regimeFiscale = None
-    # <Sede>
-    indirizzo = None
-    cap = None
-    comune = None
-    provinca = None
-    nazione = None
-    # <Contatti>
-    telefono = None
-    fax = None
-    email = None
+    class DettaglioPagamento():
+        _name = 'Dettaglio Pagamento'
 
-    # <RappresentanteFiscale>
-    # TODO: parse data
+        beneficiario = None
+        modalitaPagamento = None
+        dataRiferimentoTerminiPagamento = None
+        giorniTerminiPagamento = None
+        dataScadenzaPagamento = None
+        importoPagamento = None
+        codUfficioPostale = None
+        cognomeQuietanzante = None
+        nomeQuietanzante = None
+        cFQuietanzante = None
+        titoloQuietanzante = None
+        istitutoFinanziario = None
+        iban = None
+        abi = None
+        cab = None
+        bic = None
+        scontoPagamentoAnticipato = None
+        dataLimitePagamentoAnticipato = None
+        penalitaPagamentiRitardati = None
+        dataDecorrenzaPenale = None
+        codicePagamento = None
 
-    # <CessionarioCommittente>
-    cessionarioCommittente = None
-    idFiscaleIVAPA = None
-    codiceFiscalePA = None
+        def __init__(self, dettaglioPagamento):
+            self.beneficiario = dettaglioPagamento.find(
+                'Beneficiario') is not None and dettaglioPagamento.find(
+                'Beneficiario').text or None
+            self.modalitaPagamento = dettaglioPagamento.find(
+                'ModalitaPagamento') is not None and dettaglioPagamento.find(
+                'ModalitaPagamento').text or None
+            self.dataRiferimentoTerminiPagamento = dettaglioPagamento.find(
+                'DataRiferimentoTerminiPagamento') is not None and \
+                dettaglioPagamento.find(
+                'DataRiferimentoTerminiPagamento').text or None
+            self.giorniTerminiPagamento = dettaglioPagamento.find(
+                'GiorniTerminiPagamento') is not None and \
+                dettaglioPagamento.find(
+                'GiorniTerminiPagamento').text or None
+            self.dataScadenzaPagamento = dettaglioPagamento.find(
+                'DataScadenzaPagamento') is not None and \
+                dettaglioPagamento.find(
+                'DataScadenzaPagamento').text or None
+            self.importoPagamento = dettaglioPagamento.find(
+                'ImportoPagamento') is not None and \
+                dettaglioPagamento.find(
+                'ImportoPagamento').text or None
+            self.codUfficioPostale = dettaglioPagamento.find(
+                'CodUfficioPostale') is not None and \
+                dettaglioPagamento.find(
+                'CodUfficioPostale').text or None
+            self.cognomeQuietanzante = dettaglioPagamento.find(
+                'CognomeQuietanzante') is not None and \
+                dettaglioPagamento.find(
+                'CognomeQuietanzante').text or None
+            self.nomeQuietanzante = dettaglioPagamento.find(
+                'NomeQuietanzante') is not None and \
+                dettaglioPagamento.find(
+                'NomeQuietanzante').text or None
+            self.cFQuietanzante = dettaglioPagamento.find(
+                'CFQuietanzante') is not None and \
+                dettaglioPagamento.find(
+                'CFQuietanzante').text or None
+            self.titoloQuietanzante = dettaglioPagamento.find(
+                'TitoloQuietanzante') is not None and \
+                dettaglioPagamento.find(
+                'TitoloQuietanzante').text or None
+            self.IstitutoFinanziario = dettaglioPagamento.find(
+                'istitutoFinanziario') is not None and \
+                dettaglioPagamento.find(
+                'IstitutoFinanziario').text or None
+            self.iban = dettaglioPagamento.find(
+                'IBAN') is not None and \
+                dettaglioPagamento.find(
+                'IBAN').text or None
+            self.abi = dettaglioPagamento.find(
+                'ABI') is not None and \
+                dettaglioPagamento.find(
+                'ABI').text or None
+            self.cab = dettaglioPagamento.find(
+                'CAB') is not None and \
+                dettaglioPagamento.find(
+                'CAB').text or None
+            self.bic = dettaglioPagamento.find(
+                'BIC') is not None and \
+                dettaglioPagamento.find(
+                'BIC').text or None
+            self.scontoPagamentoAnticipato = dettaglioPagamento.find(
+                'ScontoPagamentoAnticipato') is not None and \
+                dettaglioPagamento.find(
+                'ScontoPagamentoAnticipato').text or None
+            self.dataLimitePagamentoAnticipato = dettaglioPagamento.find(
+                'DataLimitePagamentoAnticipato') is not None and \
+                dettaglioPagamento.find(
+                'DataLimitePagamentoAnticipato').text or None
+            self.penalitaPagamentiRitardati = dettaglioPagamento.find(
+                'PenalitaPagamentiRitardati') is not None and \
+                dettaglioPagamento.find(
+                'PenalitaPagamentiRitardati').text or None
+            self.dataDecorrenzaPenale = dettaglioPagamento.find(
+                'DataDecorrenzaPenale') is not None and \
+                dettaglioPagamento.find(
+                'DataDecorrenzaPenale').text or None
+            self.codicePagamento = dettaglioPagamento.find(
+                'CodicePagamento') is not None and \
+                dettaglioPagamento.find(
+                'CodicePagamento').text or None
 
-    # TerzoIntermediarioOSoggettoEmittente
-    # TODO: parse data
+    def __init__(self, datiPagamento):
+        self.datiPagamento = datiPagamento
+        self.condizioniPagamento = self.datiPagamento.find(
+            'CondizioniPagamento').text
+        if self.datiPagamento.find('DettaglioPagamento') is not None:
+                for dp in self.datiPagamento.findall('DettaglioPagamento'):
+                    self.dettaglioPagamento.append(
+                        self.DettaglioPagamento(dp)
+                    )
 
-    # SoggettoEmittente
-    # TODO: parse data
 
-    # FatturaElettronicaBody
-    # DatiGenerali
+class Allegati():
+    _name = 'Dati Allegati'
+
+    allegato = None
+    nomeAttachment = None
+    algoritmoCompressione = None
+    formatoAttachment = None
+    descrizioneAttachment = None
+    attachment = None
+
+    def __init__(self, allegato):
+        self.allegato = allegato
+        if self.allegato is not None:
+            self.nomeAttachment = self.allegato.find(
+                'NomeAttachment').text
+            self.dataDDT = self.datiDDT.find(
+                'DataDDT').text
+            self.algoritmoCompressione = self.allegato.find(
+                'AlgoritmoCompressione') is not None and \
+                self.allegato.find(
+                'AlgoritmoCompressione').text or None
+            self.formatoAttachment = self.allegato.find(
+                'FormatoAttachment') is not None and \
+                self.allegato.find(
+                'FormatoAttachment').text or None
+            self.descrizioneAttachment = self.allegato.find(
+                'DescrizioneAttachment') is not None and \
+                self.allegato.find(
+                'DescrizioneAttachment').text or None
+            self.attachment = self.allegato.find(
+                'Attachment').text
+
+
+class FatturaElettronicaBody():
+    _name = 'Fattura Elettronica Body'
+
+    fatturaElettronicaBody = None
     # <DatiGeneraliDocumento>
     datiGeneraliDocumento = None
     tipoDocumento = None
@@ -496,81 +894,140 @@ class XmlData():
 
     # Dati Riepilogo
     datiRiepilogo = []
-    # TODO: tipoCessionePrestazione
 
-    def __init__(self, content):
-        self.content = content
-        self.template = ElementTree(fromstring(self.content))
-        self.root = self.template.getroot()
+    # Dati Veicoli
+    datiVeicoliData = None
+    datiVeicoliTotalePercorso = None
 
-    def parseIdFiscaleIva(self):
-        idPaese = self.cedentePrestatore.find(
-            'DatiAnagrafici/IdFiscaleIVA/IdPaese').text
-        idCodice = self.cedentePrestatore.find(
-            'DatiAnagrafici/IdFiscaleIVA/IdCodice').text
-        self.idFiscaleIVA = idPaese + idCodice
+    # Dati Pagamento
+    datiPagamento = None
+    datiPagamentoList = []
 
-    def parseCodiceFiscale(self):
-        self.codiceFiscale = self.cedentePrestatore.find(
-            'DatiAnagrafici/CodiceFiscale') and \
-            self.cedentePrestatore.find(
-                'DatiAnagrafici/CodiceFiscale').text
+    # Allegati
+    allegati = None
+    allegatiList = []
 
-    def parseNomeCedentePrestatore(self):
-        anagrafica = self.cedentePrestatore.find(
-            'DatiAnagrafici/Anagrafica')
-        denominazione = anagrafica.find('Denominazione') is not None and \
-            anagrafica.find('Denominazione').text or ''
-        nome = anagrafica.find('Nome') is not None and \
-            anagrafica.find('Nome').text or ''
-        cognome = anagrafica.find('Cognome') is not None and \
-            anagrafica.find('Cognome').text or ''
-        titolo = anagrafica.find('Titolo') is not None and \
-            anagrafica.find('Titolo').text or ''
-        self.nomeCedentePrestatore = denominazione or '%s %s %s' % (
-            titolo, nome, cognome
+    def __init__(self, fatturaElettronicaBody):
+        self.fatturaElettronicaBody = fatturaElettronicaBody
+        # Dati Fatturazione
+        self.datiGeneraliDocumento = self.fatturaElettronicaBody.find(
+            'DatiGenerali/DatiGeneraliDocumento'
+            )
+        self.parseDatiGeneraliDocumento()
+
+        # Dati Ordine
+        self.datiOrdineAcquisto = self.fatturaElettronicaBody.findall(
+            'DatiGenerali/DatiOrdineAcquisto'
+            )
+        for datoOrdineAcquisto in self.datiOrdineAcquisto:
+            self.datiOrdineAcquistoList.append(
+                ListaDatiGenerali(datoOrdineAcquisto)
             )
 
-    def parseRegimeFiscale(self):
-        self.regimeFiscale = self.cedentePrestatore.find(
-            'DatiAnagrafici/RegimeFiscale').text
+        # Dati Contratto
+        self.datiContratto = self.fatturaElettronicaBody.findall(
+            'DatiGenerali/DatiContratto'
+            )
+        for datoContratto in self.datiContratto:
+            self.datiContrattoList.append(
+                ListaDatiGenerali(datoContratto)
+            )
 
-    def parseSede(self):
-        sede = self.cedentePrestatore.find('Sede')
-        address = sede.find('Indirizzo').text
-        number = sede.find('NumeroCivico') is not None and \
-            sede.find('NumeroCivico').text or ''
-        self.indirizzo = '%s %s' % (address, number)
-        self.cap = sede.find('CAP').text
-        self.comune = sede.find('Comune').text
-        self.provinca = sede.find('Provincia').text
-        self.nazione = sede.find('Nazione').text
+        # Dati Convenzione
+        self.datiConvenzione = self.fatturaElettronicaBody.findall(
+            'DatiGenerali/DatiConvenzione'
+            )
+        for datoConvenzione in self.datiConvenzione:
+            self.datiConvenzioneList.append(
+                ListaDatiGenerali(datoConvenzione)
+            )
 
-    def parseContatti(self):
-        contatti = self.cedentePrestatore.find('Contatti')
-        if contatti is not None:
-            self.telefono = contatti.find('Telefono') is not None and \
-                contatti.find('Telefono').text or ''
-            self.fax = contatti.find('Fax') is not None and \
-                contatti.find('Fax').text or ''
-            self.email = contatti.find('Email') is not None and \
-                contatti.find('Email').text or ''
+        # Dati Ricezione
+        self.datiRicezione = self.fatturaElettronicaBody.findall(
+            'DatiGenerali/DatiRicezione'
+            )
+        for datoRicezione in self.datiRicezione:
+            self.datiRicezioneList.append(
+                ListaDatiGenerali(datoRicezione)
+            )
 
-    def parseIdFiscaleIvaPA(self):
-        # TODO: per fare un check sulla PIVA dell'ente
-        if self.cessionarioCommittente.find('DatiAnagrafici/IdFiscaleIVA') \
-                is not None:
-            idPaese = self.cessionarioCommittente.find(
-                'DatiAnagrafici/IdFiscaleIVA/IdPaese').text
-            idCodice = self.cessionarioCommittente.find(
-                'DatiAnagrafici/IdFiscaleIVA/IdCodice').text
-            self.idFiscaleIVAPA = idPaese + idCodice
+        # Dati Fatture Collegate
+        self.datiFattureCollegate = self.fatturaElettronicaBody.findall(
+            'DatiGenerali/DatiFattureCollegate'
+            )
+        for datoFattureCollegate in self.datiFattureCollegate:
+            self.datiFattureCollegateList.append(
+                ListaDatiGenerali(datoFattureCollegate)
+            )
 
-    def parseCodiceFiscalePA(self):
-        self.codiceFiscalePA = self.cedentePrestatore.find(
-            'DatiAnagrafici/CodiceFiscale') is not None and \
-            self.cedentePrestatore.find(
-                'DatiAnagrafici/CodiceFiscale').text
+        # Dati SAL
+        self.datiSAL = self.fatturaElettronicaBody.findall(
+            'DatiGenerali/DatiSAL'
+            )
+        for datoSAL in self.datiSAL:
+            self.datiSALList.append(
+                DatiSAL(datoSAL)
+            )
+
+        # Dati DDT
+        self.datiDDT = self.fatturaElettronicaBody.findall(
+            'DatiGenerali/DatiDDT'
+            )
+        for datoDDT in self.datiDDT:
+            self.datiDDTList.append(
+                DatiDDT(datoDDT)
+            )
+
+        # Dati Trasporto
+        datoTrasporto = self.fatturaElettronicaBody.find(
+            'DatiGenerali/DatiTrasporto'
+            )
+        if datoTrasporto is not None:
+            self.datiTrasporto = DatiTrasporto(datoTrasporto)
+
+        # Dati Beni e Servizi
+        datiBeniServizi = self.fatturaElettronicaBody.find(
+            'DatiBeniServizi'
+            )
+
+        # Linee Fatturazione
+        linee = datiBeniServizi.findall(
+            'DettaglioLinee'
+            )
+        self.parseDettaglioLinee(linee)
+
+        # Dati Riepilogo
+        riepilogo = datiBeniServizi.findall(
+            'DatiRiepilogo'
+            )
+        self.parseDatiRiepilogo(riepilogo)
+
+        # Dati Veicoli
+        datiVeicoli = self.fatturaElettronicaBody.find(
+            'DatiVeicoli')
+        if datiVeicoli is not None:
+            self.datiVeicoliData = datiVeicoli.find(
+                'Data').text
+            self.datiVeicoliTotalePercorso = datiVeicoli.find(
+                'TotalePercorso').text
+
+        # Dati Pagamento
+        self.datiPagamento = self.fatturaElettronicaBody.findall(
+            'DatiPagamento'
+            )
+        for datoPagamento in self.datiPagamento:
+            self.datiPagamentoList.append(
+                DatiPagamento(datoPagamento)
+            )
+
+        # Allegati
+        self.allegati = self.fatturaElettronicaBody.findall(
+            'Allegati'
+            )
+        for allegato in self.allegati:
+            self.allegatiList.append(
+                Allegati(allegato)
+            )
 
     def parseDatiGeneraliDocumento(self):
         self.tipoDocumento = self.datiGeneraliDocumento.\
@@ -641,117 +1098,107 @@ class XmlData():
         for datoRiepilogo in riepilogo:
             self.datiRiepilogo.append(DatiRiepilogo(datoRiepilogo))
 
+
+class XmlData():
+    _name = 'Xml Object for data'
+    _description = """ The object to store sdi xml datas"""
+
+    content = None
+    template = None
+    root = None
+
+    # Datas
+    # Dati Trasmissione
+    datiTrasmissione = None
+    idTrasmittente = None
+    progressivoInvio = None
+    formatoTrasmissione = None
+    codiceDestinatario = None
+    contattiTrasmittente = None
+
+    # <CedentePrestatore>
+    cedentePrestatore = None
+
+    # <RappresentanteFiscale>
+    rappresentanteFiscale = None
+
+    # TerzoIntermediarioOSoggettoEmittente
+    terzoIntermediarioOSoggettoEmittente = None
+
+    # <CessionarioCommittente>
+    cessionarioCommittente = None
+
+    # SoggettoEmittente
+    soggettoEmittente = None
+
+    # FatturaElettronicaBody
+    fatturaElettronicaBody = []
+
+    def __init__(self, content):
+        self.content = content
+        self.template = ElementTree(fromstring(self.content))
+        self.root = self.template.getroot()
+
+    def parseIdTrasmittente(self):
+        idPaese = self.datiTrasmissione.find(
+            'IdTrasmittente/IdPaese').text
+        idCodice = self.datiTrasmissione.find(
+            'IdTrasmittente/IdCodice').text
+        self.idTrasmittente = idPaese + idCodice
+
     def parseXml(self):
-        # TODO: RappresentanteFiscale (come trattarlo?)
-        # TODO: TerzoIntermediarioOSoggettoEmittente ( ?)
-        # Dati CedentePrestatore e CessionarioCommittente
-        self.cedentePrestatore = self.template.find(
+        # Dati Spedizione
+        self.datiTrasmissione = self.template.find(
+            'FatturaElettronicaHeader/DatiTrasmissione'
+            )
+        self.parseIdTrasmittente()
+        self.progressivoInvio = self.datiTrasmissione.find(
+            'ProgressivoInvio')
+        self.formatoTrasmissione = self.datiTrasmissione.find(
+            'FormatoTrasmissione')
+        self.codiceDestinatario = self.datiTrasmissione.find(
+            'CodiceDestinatario')
+        if self.datiTrasmissione.find(
+                'ContattiTrasmittente') is not None:
+            # FIXME
+            pass
+
+        # Dati CedentePrestatore
+        cp = self.template.find(
             'FatturaElettronicaHeader/CedentePrestatore'
             )
-        self.parseIdFiscaleIva()
-        self.parseCodiceFiscale()
-        self.parseNomeCedentePrestatore()
-        self.parseRegimeFiscale()
-        self.parseSede()
-        self.parseContatti()
-        self.cessionarioCommittente = self.template.find(
+        self.cedentePrestatore = CedentePrestatore(cp)
+
+        # RappresentanteFiscale
+        rf = self.template.find(
+            'FatturaElettronicaHeader/RappresentanteFiscale'
+            )
+        if rf is not None:
+            self.rappresentanteFiscale = RappresentanteFiscale(rf)
+
+        # Dati CessionarioCommittente
+        cc = self.template.find(
             'FatturaElettronicaHeader/CessionarioCommittente'
             )
-        self.parseIdFiscaleIvaPA()
-        self.parseCodiceFiscalePA()
+        self.cessionarioCommittente = CessionarioCommittente(cc)
 
-        # Dati Fatturazione
-        self.datiGeneraliDocumento = self.template.find(
-            'FatturaElettronicaBody/DatiGenerali/DatiGeneraliDocumento'
+        # TerzoIntermediarioOSoggettoEmittente
+        tise = self.template.find(
+            'FatturaElettronicaHeader/TerzoIntermediarioOSoggettoEmittente'
             )
-        self.parseDatiGeneraliDocumento()
+        if tise is not None:
+            self.terzoIntermediarioOSoggettoEmittente = \
+                TerzoIntermediarioOSoggettoEmittente(tise)
 
-        # Dati Ordine
-        self.datiOrdineAcquisto = self.template.findall(
-            'FatturaElettronicaBody/DatiGenerali/DatiOrdineAcquisto'
-            )
-        for datoOrdineAcquisto in self.datiOrdineAcquisto:
-            self.datiOrdineAcquistoList.append(
-                ListaDatiGenerali(datoOrdineAcquisto)
-            )
+        self.soggettoEmittente = self.template.find(
+            'FatturaElettronicaHeader/SoggettoEmittente'
+            ) is not None and self.template.find(
+            'FatturaElettronicaHeader/SoggettoEmittente'
+            ).text or None
 
-        # Dati Contratto
-        self.datiContratto = self.template.findall(
-            'FatturaElettronicaBody/DatiGenerali/DatiContratto'
-            )
-        for datoContratto in self.datiContratto:
-            self.datiContrattoList.append(
-                ListaDatiGenerali(datoContratto)
-            )
-
-        # Dati Convenzione
-        self.datiConvenzione = self.template.findall(
-            'FatturaElettronicaBody/DatiGenerali/DatiConvenzione'
-            )
-        for datoConvenzione in self.datiConvenzione:
-            self.datiConvenzioneList.append(
-                ListaDatiGenerali(datoConvenzione)
-            )
-
-        # Dati Ricezione
-        self.datiRicezione = self.template.findall(
-            'FatturaElettronicaBody/DatiGenerali/DatiRicezione'
-            )
-        for datoRicezione in self.datiRicezione:
-            self.datiRicezioneList.append(
-                ListaDatiGenerali(datoRicezione)
-            )
-
-        # Dati Fatture Collegate
-        self.datiFattureCollegate = self.template.findall(
-            'FatturaElettronicaBody/DatiGenerali/DatiFattureCollegate'
-            )
-        for datoFattureCollegate in self.datiFattureCollegate:
-            self.datiFattureCollegateList.append(
-                ListaDatiGenerali(datoFattureCollegate)
-            )
-
-        # Dati SAL
-        self.datiSAL = self.template.findall(
-            'FatturaElettronicaBody/DatiGenerali/DatiSAL'
-            )
-        for datoSAL in self.datiSAL:
-            self.datiSALList.append(
-                DatiSAL(datoSAL)
-            )
-
-        # Dati DDT
-        self.datiDDT = self.template.findall(
-            'FatturaElettronicaBody/DatiGenerali/DatiDDT'
-            )
-        for datoDDT in self.datiDDT:
-            self.datiDDTList.append(
-                DatiDDT(datoDDT)
-            )
-
-        # Dati Trasporto
-        datoTrasporto = self.template.find(
-            'FatturaElettronicaBody/DatiGenerali/DatiTrasporto'
-            )
-        if datoTrasporto is not None:
-            self.datiTrasporto = DatiTrasporto(datoTrasporto)
-
-        # Dati Beni e Servizi
-        datiBeniServizi = self.template.find(
-            'FatturaElettronicaBody/DatiBeniServizi'
-            )
-
-        # Linee Fatturazione
-        linee = datiBeniServizi.findall(
-            'DettaglioLinee'
-            )
-        self.parseDettaglioLinee(linee)
-
-        # Dati Riepilogo
-        riepilogo = datiBeniServizi.findall(
-            'DatiRiepilogo'
-            )
-        self.parseDatiRiepilogo(riepilogo)
+        # Fattura Elettronica Body
+        for feb in self.template.findall('FatturaElettronicaBody'):
+            self.fatturaElettronicaBody.append(FatturaElettronicaBody(feb))
 
 if __name__ == '__main__':
         with open('../tests/IT01234567890_11002.xml') as test_data:
@@ -767,17 +1214,36 @@ if __name__ == '__main__':
                         print "xml_data.%s = %s" % (attr,
                                                     getattr(xml_data, attr)
                                                     )
-                print "Dettaglio Linee Fattura"
-                for line in xml_data.dettaglioLinee:
-                    for attr in dir(line):
-                        if isinstance(getattr(line, attr), str) \
+                print "Dettaglio CedentePrestatore"
+                for cp in dir(xml_data.cedentePrestatore):
+                        if isinstance(getattr(xml_data.cedentePrestatore, cp),
+                                      str) and cp != 'content':
+                            print "xml_data.%s = %s" % (xml_data.
+                                                        cedentePrestatore,
+                                                        getattr(
+                                                            xml_data.
+                                                            cedentePrestatore,
+                                                            cp)
+                                                        )
+                for fatt in xml_data.fatturaElettronicaBody:
+                    print "Dettaglio Fatture"
+                    for attr in dir(fatt):
+                        if isinstance(getattr(fatt, attr), str) \
                                 and attr != 'content':
-                            print "line.%s = %s" % (attr,
-                                                    getattr(line, attr))
-                print "Dettaglio Linee Riepilogo"
-                for line in xml_data.datiRiepilogo:
-                    for attr in dir(line):
-                        if isinstance(getattr(line, attr), str) \
-                                and attr != 'content':
-                            print "line.%s = %s" % (attr,
-                                                    getattr(line, attr))
+                            print "xml_data.%s = %s" % (attr,
+                                                        getattr(fatt, attr)
+                                                        )
+                    print "Dettaglio Linee Fattura"
+                    for line in fatt.dettaglioLinee:
+                        for attr in dir(line):
+                            if isinstance(getattr(line, attr), str) \
+                                    and attr != 'content':
+                                print "line.%s = %s" % (attr,
+                                                        getattr(line, attr))
+                    print "Dettaglio Linee Riepilogo"
+                    for line in fatt.datiRiepilogo:
+                        for attr in dir(line):
+                            if isinstance(getattr(line, attr), str) \
+                                    and attr != 'content':
+                                print "line.%s = %s" % (attr,
+                                                        getattr(line, attr))
