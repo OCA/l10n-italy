@@ -24,7 +24,7 @@
     "name": "Italy - 4th EU Directive - Consolidation Chart of Accounts",
     "version": "0.1",
     "depends": ['account_chart', ],
-    "author": "OpenERP Italian Community",
+    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "description": """
     Riclassificazione IV direttiva UE per un piano dei conti italiano di
     un'impresa generica

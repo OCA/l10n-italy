@@ -29,7 +29,7 @@
 {
     "name": "Fiscal Year Closing",
     "version": "1.0",
-    "author": "OpenERP Italian Community, Pexego",
+    "author": "OpenERP Italian Community, Pexego,Odoo Community Association (OCA)",
     "website": "http://www.openerp-italia.org",
     "category": "Generic Modules/Accounting",
     "description": """

@@ -44,7 +44,7 @@ Howto
 -----
 http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornitore-con-ritenuta-dacconto/
 """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends": ['account_voucher_cash_basis'],

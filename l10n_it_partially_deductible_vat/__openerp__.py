@@ -27,7 +27,7 @@
     "name": "Italy - Partially Deductible VAT",
     "version": "0.1",
     "depends": ['account'],
-    "author": "OpenERP Italian Community",
+    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "description": """
     Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile.
     Senza questo modulo non è possibile calcolare correttamente imponibili,

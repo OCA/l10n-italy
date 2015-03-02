@@ -35,7 +35,7 @@ Franco Tampieri <franco@tampieri.info>
 Alessandro Camilli <a.camilli@yahoo.it>
 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'depends': ['base', 'account'],
     'test': [
