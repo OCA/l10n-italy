@@ -57,7 +57,7 @@ https://code.launchpad.net/~akretion-team/openobject-addons/trunk-add-tax-roundi
 so this module is not needed anymore
     
     """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account', 'account_voucher'],

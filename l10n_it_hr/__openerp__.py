@@ -29,7 +29,7 @@ Functionalities:
 - Fiscal Code for employee
 
 """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['hr'],

@@ -24,7 +24,7 @@
     "name" : "Italy - Generic Chart of Accounts",
     "version" : "0.1",
     "depends" : ['l10n_it',],
-    "author" : "OpenERP Italian Community",
+    "author" : "OpenERP Italian Community,Odoo Community Association (OCA)",
     "description": """
     Riclassificazione IV direttiva UE per un piano dei conti italiano di un'impresa generica (compreso in l10n_it)
     """,

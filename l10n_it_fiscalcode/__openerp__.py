@@ -30,7 +30,7 @@ Functionalities:
 - Fiscal code computation for partner
 
 """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['base', 'l10n_it_base'],

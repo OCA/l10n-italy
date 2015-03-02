@@ -25,7 +25,7 @@
     'version': '0.1',
     'category': 'Localisation/Italy',
     'description': """Adding fiscal code to 'contatc' object""",
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['base_contact', 'l10n_it_base'],

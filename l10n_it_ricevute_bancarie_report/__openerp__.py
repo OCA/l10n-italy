@@ -27,7 +27,7 @@
     "version": "0.1",
     "depends": ["report_webkit", "l10n_it_ricevute_bancarie"],
     "category": "Reporting",
-    "author": "OpenERP Italian Community",
+    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "url": "http://www.openerp-italia.org",
     "data": ["reports.xml", ],
     "installable": True,

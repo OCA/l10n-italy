@@ -26,7 +26,7 @@
     Install report_aero_ooo to be able to output to a format
     different from the one of the template.
     """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['l10n_it_sale', 'report_aeroo', 'l10n_it_account_report'],

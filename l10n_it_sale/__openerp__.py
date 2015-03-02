@@ -29,7 +29,7 @@ Functionalities:
 - Documento di trasporto
 
 """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['stock', 'sale', 'account', 'delivery'],

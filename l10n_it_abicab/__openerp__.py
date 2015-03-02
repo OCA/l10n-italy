@@ -27,7 +27,7 @@
     'description': """
     Insert in the res.bank model the proprieties of the ABI/CAB
     """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'depends': ['base'],
     'website': 'http://www.openerp-italia.org/',
     'update_xml': ['abicab_view.xml'],

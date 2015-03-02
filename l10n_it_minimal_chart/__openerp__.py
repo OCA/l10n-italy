@@ -24,7 +24,7 @@
     "name" : "Italy - Minimal Chart of Accounts",
     "version" : "0.1",
     "depends" : ['l10n_it'],
-    "author" : "OpenERP Italian Community",
+    "author" : "OpenERP Italian Community,Odoo Community Association (OCA)",
     "description": """
     Piano dei conti italiano minimale. Contiene solo i conti strettamente necessari a configurare una contabilità di base funzionante in OpenERP. Il modulo va inteso come una base di partenza per costruire il proprio piano dei conti.
     """,

@@ -27,7 +27,7 @@
 {
     "name": "Ricevute Bancarie",
     "version": "1.3",
-    "author": "OpenERP Italian Community",
+    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "http://www.openerp-italia.org",
     "description": """

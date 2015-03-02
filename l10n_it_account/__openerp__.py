@@ -30,7 +30,7 @@ Functionalities:
 - Check invoice date consistency
 
 """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account','base_vat','account_chart','base_iban', 'l10n_it_base','account_invoice_entry_date'],
