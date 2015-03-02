@@ -25,7 +25,7 @@
     'category': 'Generic Modules/Accounting',
     'description': """This module allows to specify the date to be used by the
 move created while confirming (supplier) invoice""",
-    'author': 'Odoo Italian Community',
+    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['account'],

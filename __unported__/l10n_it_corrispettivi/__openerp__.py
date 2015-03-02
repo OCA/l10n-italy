@@ -25,7 +25,7 @@
     'description': """This module helps to easily input Corrispettivi within OpenERP.
     
     Per maggiori informazioni: http://planet.domsense.com/2011/11/openerp-registrare-i-corrispettivi/""",
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account_voucher'],
