@@ -26,6 +26,40 @@
 from openerp.osv import fields, orm
 
 
+class PecNoficaitons(orm.Model):
+    _name = "pec.notifications"
+    _order = 'name'
+    _columns = {
+        'parent_id': fields.many2one(
+            'mail.message', 'Main messages', select=True,
+            ondelete='set null', help="Related Message."),
+        'name': fields.many2one(
+            'mail.message', 'Notification Message', select=True,
+            ondelete='set null', help="Notification Message."),
+        'recipient': fields.related(
+            'name', 'recipient_id',
+            type='many2one',
+            relation='res.partner',
+            string="Recipient", readonly=True,
+        ),
+        'recipient_addr': fields.related(
+            'name', 'recipient_id', 'pec_mail',
+            type='char',
+            string="Recipient Address", readonly=True,
+        ),
+        'type': fields.related(
+            'name', 'pec_type',
+            type='char',
+            string="Nitice Type", readonly=True,
+        ),
+        'error': fields.related(
+            'name', 'err_type',
+            type='char',
+            string="Error", readonly=True,
+        ),
+    }
+
+
 class MailMessage(orm.Model):
     _inherit = "mail.message"
 
@@ -63,6 +97,13 @@ class MailMessage(orm.Model):
             ('rilevazione-virus', 'Virus Detected'),
             ], 'Pec Type', readonly=True),
         'error': fields.boolean('Reception Delivery Error'),
+        'err_type': fields.selection([
+            ('nessuno', 'No Error'),
+            ('no-dest', 'Recipient Adress Error'),
+            ('no-dominio', 'Recipient domain Error'),
+            ('virus', 'Virus Detected Error'),
+            ('altro', 'Undefined Error'),
+            ], 'Pec Error Type', readonly=True),
         'cert_datetime': fields.datetime(
             'Certified Date and Time ', readonly=True),
         'pec_msg_id': fields.char(
@@ -72,6 +113,15 @@ class MailMessage(orm.Model):
             'ref-Message-Id',
             help='Ref Message unique identifier', select=1, readonly=True),
 
+        'recipient_id': fields.many2one(
+            'res.partner', 'Recipient', readonly=True),
+
+        'pec_notifications_ids': fields.one2many(
+            'pec.notifications', 'parent_id',
+            'Related Notifications',  readonly=True),
+        # TODO
+        # delete delete follow fields when
+        # new implementations are tested
         'inprogress_message_id': fields.many2one(
             'mail.message', 'Message In Progress', readonly=True),
         'reception_message_id': fields.many2one(
@@ -114,6 +164,49 @@ class MailMessage(orm.Model):
     _defaults = {
         'direction': 'in'
     }
+
+    def  ChckStatus(self, cr, uid, ids, context=None):
+        notif_pool = self.pool['pec.notifications']
+        if context is None:
+            context = {}
+        if not hasattr(ids, '__iter__'):
+            ids = [ids]
+        error=False
+        error_lst = []
+        noerror_lst=ids
+        if ids:
+            rec_ids=self.read(
+                cr, uid, ids, ['id','partner_ids'], context=context)
+            for row in rec_ids:
+                for partner in row['partner_ids']:
+                    if row['id'] not in error_lst:
+                        existid =notif_pool.search(
+                            cr, uid,
+                            [
+                                ('parent_id', '=', row['id' ]),
+                                ('recipient', '=', partner)
+                            ],
+                            context=context
+                        )
+                        if not existid:
+                            error_lst.append(row['id'])
+                        else:
+                            errors =notif_pool.search(
+                                cr, uid,
+                                [
+                                    ('id', 'in', existid),
+                                    ('error', '!=', 'nessuno')
+                                ],
+                                context=context
+                            )
+                            if errors:
+                                error_lst.append(row['id'])
+        if error_lst:
+            self.write(cr, uid, error_lst, {'error':True}, context=context)
+            noerror_lst = [item for item in ids if item not in error_lst]
+
+        self.write(cr, uid, noerror_lst, {'error':False}, context=context)
+        return True
 
     def _search(
         self, cr, uid, args, offset=0, limit=None, order=None,

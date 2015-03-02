@@ -47,13 +47,20 @@ class MailThread(orm.Model):
     def parse_daticert(self, cr, uid, daticert, context=None):
         msg_dict = {}
         root = ET.fromstring(daticert)
+        message = None
         if 'tipo' in root.attrib:
             msg_dict['pec_type'] = root.attrib['tipo']
+        if 'errore' in root.attrib:
+            msg_dict['err_type'] = root.attrib['errore']
         for child in root:
             if child.tag == 'intestazione':
                 for child2 in child:
                     if child2.tag == 'mittente':
                         msg_dict['email_from'] = child2.text
+                    if child2.tag == 'destinatari':
+                        recipient_id = self._message_find_partners_pec(
+                            cr, uid, message, child2.text, context=context)
+                        msg_dict['recipient_id'] = recipient_id
             if child.tag == 'dati':
                 for child2 in child:
                     if child2.tag == 'msgid':
@@ -107,6 +114,7 @@ class MailThread(orm.Model):
     ):
         if context is None:
             context = {}
+
         context['main_message_id'] = False
         context['pec_type'] = False
         if not self.is_server_pec(cr, uid, context=context):
@@ -196,7 +204,7 @@ class MailThread(orm.Model):
         return msg_dict
 
     def _message_find_partners_pec(
-        self, cr, uid, message, email_from=False, context=None
+        self, cr, uid, message=None, email_from=False, context=None
     ):
         """
         create new method to search partner because
