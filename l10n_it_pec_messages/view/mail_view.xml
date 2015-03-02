@@ -2,6 +2,24 @@
 <openerp>
 <data>
 
+
+        <record model='ir.ui.view' id='notifications_pec_tree'>
+            <field name="name">pec.notifications.tree</field>
+            <field name="model">pec.notifications</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Pec Notifications">
+                    <field name="parent_id" invisible="1" />
+                    <field name="name" />
+                    <field name="recipient" />
+                    <field name="recipient_addr" />
+                    <field name="type" />
+                    <field name="error" />
+                </tree>
+            </field>
+        </record>
+
+
         <record model="ir.ui.view" id="view_message_form_pec">
             <field name="name">mail.message.form.pec</field>
             <field name="model">mail.message</field>
@@ -18,26 +36,28 @@
                         <page string="Body">
                             <field name="body"/>
                         </page>
-                        <page string="Server Notification Log Message">
-                                <group>
-                                        <field name="inprogress_message_id"/>
-                                        <field name="reception_message_id"/>
-                                        <field name="no_reception_message_id"/>
-                                        <field name="notice_delivery_err_message_id"/>
-                                        <field name="delivery_message_id"/>
-                                        <field name="delivery_err_message_id"/>
-                                        <field name="virus_message_id"/>
-                                </group>
+                        <page string="Server Notification Log Messages">
+                                <field name="pec_notifications_ids"/>
                         </page>
                     </notebook>
                 </field>
                 <field name="model" position="before" >
                     <field name="server_id" />
                     <field name="out_server_id" />
-                    <field name="reception_message_id" />
-                    <field name="delivery_message_id" />
                     <field name="error" />
                 </field>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='message_pec_partner_tree'>
+            <field name="name">res.partner.pec.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Pec">
+                    <field name="name" />
+                    <field name="phone" />
+                    <field name="pec_mail" />
+                </tree>
             </field>
         </record>
 
@@ -61,7 +81,12 @@
 
                     <notebook colspan="6" >
                         <page string="Recipients">
-                            <field name="partner_ids" nolabel="1" readonly="1"/>
+                            <field name="partner_ids"
+                                        context = " {
+                                              'tree_view_ref' : 'l10n_it_pec_messages.message_pec_partner_tree',
+                                              'pec_messages': True}"
+                                        nolabel="1" readonly="1"
+                            />
                         </page>
                         <page string="Replies">
                             <field name="child_ids" nolabel="1"

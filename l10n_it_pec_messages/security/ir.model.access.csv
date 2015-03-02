@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_fetchmail_server,access_fetchmail_server,model_fetchmail_server,base.group_pec,1,0,0,0
 access_mail_message,access_mail_message,model_mail_message,base.group_pec,1,1,1,0
 ir_mail_pec,ir.mail_server.pec,model_ir_mail_server,base.group_user,1,0,1,0
+pec_notifications_pec,pec.notifications.pec,model_pec_notifications,base.group_user,1,1,1,0
