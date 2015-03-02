@@ -26,7 +26,7 @@
 from openerp.osv import fields, orm
 
 
-class PecNoficaitons(orm.Model):
+class PecNotifications(orm.Model):
     _name = "pec.notifications"
     _order = 'name'
     _columns = {
@@ -50,7 +50,7 @@ class PecNoficaitons(orm.Model):
         'type': fields.related(
             'name', 'pec_type',
             type='char',
-            string="Nitice Type", readonly=True,
+            string="Notice Type", readonly=True,
         ),
         'error': fields.related(
             'name', 'err_type',
@@ -165,7 +165,7 @@ class MailMessage(orm.Model):
         'direction': 'in'
     }
 
-    def  ChckStatus(self, cr, uid, ids, context=None):
+    def  CheckStatus(self, cr, uid, ids, context=None):
         notif_pool = self.pool['pec.notifications']
         if context is None:
             context = {}
