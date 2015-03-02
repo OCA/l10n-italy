@@ -34,7 +34,7 @@ External depends:
     * Python codicefiscale https://pypi.python.org/pypi/codicefiscale
 
 """,
-    'author': 'Odoo Italian Community',
+    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
