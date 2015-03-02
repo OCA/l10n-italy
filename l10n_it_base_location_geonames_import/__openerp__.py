@@ -29,7 +29,7 @@
 This module extends base_location_geonames_import in order to correctly import
 Italian provinces
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'depends': ['base_location_geonames_import'],
     'data': [
