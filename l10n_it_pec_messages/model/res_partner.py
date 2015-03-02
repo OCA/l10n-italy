@@ -67,7 +67,7 @@ class ResPartner(orm.Model):
                 },
                 context=context
             )
-            message_pool.ChckStatus(
+            message_pool.CheckStatus(
                 cr, uid, context['main_message_id'], context=context)
         return msg_id
 
