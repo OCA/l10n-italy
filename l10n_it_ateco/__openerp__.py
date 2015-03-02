@@ -30,7 +30,7 @@
     - Reference Ateco codes to partner model
 
     """,
-    "author": "Abstract",
+    "author": "Abstract,Odoo Community Association (OCA)",
     "website": "http://abstract.it",
     "license": "AGPL-3",
     "depends": [
