@@ -65,7 +65,7 @@ rappresenti(no) l'IVA anticipata alla dogana.
 Alla conferma della fattura spedizioniere, verrà generata la scrittura contabile di giroconto per chiudere la bolla doganale.
 
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['base', 'account_invoice_template'],
