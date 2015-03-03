@@ -76,7 +76,7 @@ class AccountConfigSettings(orm.TransientModel):
     }
 
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
-        res = super(account_config_settings, self).onchange_company_id(
+        res = super(AccountConfigSettings, self).onchange_company_id(
             cr, uid, ids, company_id, context=context)
         if company_id:
             company = self.pool.get('res.company').browse(
