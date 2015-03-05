@@ -57,16 +57,16 @@ class MailThread(orm.Model):
                 for child2 in child:
                     if child2.tag == 'mittente':
                         msg_dict['email_from'] = child2.text
-                    if child2.tag == 'destinatari':
-                        recipient_id = self._message_find_partners_pec(
-                            cr, uid, message, child2.text, context=context)
-                        msg_dict['recipient_id'] = recipient_id
             if child.tag == 'dati':
                 for child2 in child:
                     if child2.tag == 'msgid':
                         msg_dict['message_id'] = child2.text
                     if child2.tag == 'identificativo':
                         msg_dict['pec_msg_id'] = child2.text
+                    if child2.tag == 'consegna':
+                        recipient_id = self._FindOrCreatePartnersPec(
+                            cr, uid, message, child2.text, context=context)
+                        msg_dict['recipient_id'] = recipient_id
         return msg_dict
 
     def get_pec_attachments(self, cr, uid, message, context=None):
@@ -188,22 +188,14 @@ class MailThread(orm.Model):
                         'error': True,
                     }, context=context)
 
-        author_id = self._message_find_partners_pec(
+        author_id = self._FindOrCreatePartnersPec(
             cr, uid, message, daticert_dict.get('email_from'), context=context)
-        if author_id:
-            msg_dict['author_id'] = author_id
-        else:
-            msg_dict['author_id'] = self.pool.get('res.partner').create(
-                cr, SUPERUSER_ID,
-                {
-                    'name': daticert_dict.get('email_from'),
-                    'pec_mail': daticert_dict.get('email_from')
-                },context = context)
+        msg_dict['author_id'] = author_id
         msg_dict['server_id'] = context.get('fetchmail_server_id')
 
         return msg_dict
 
-    def _message_find_partners_pec(
+    def _FindPartnersPec(
         self, cr, uid, message=None, email_from=False, context=None
     ):
         """
@@ -219,4 +211,21 @@ class MailThread(orm.Model):
                 context=context)
             if partner_ids:
                 res = partner_ids[0]
+        return res
+
+    def _FindOrCreatePartnersPec(
+        self, cr, uid, message=None, email_from=False, context=None
+    ):
+        """
+        search partner if not exit create it
+        """
+        res = self._FindPartnersPec(
+            cr, uid, message, email_from, context=context)
+        if not res:
+            res = self.pool['res.partner'].create(
+                cr, SUPERUSER_ID,
+                {
+                    'name': email_from,
+                    'pec_mail': email_from
+                },context = context)
         return res

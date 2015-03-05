@@ -116,6 +116,12 @@ class MailMessage(orm.Model):
         'recipient_id': fields.many2one(
             'res.partner', 'Recipient', readonly=True),
 
+        'reception_message_id': fields.many2one(
+            'mail.message', 'Reception Message', readonly=True),
+
+        'no_reception_message_id': fields.many2one(
+            'mail.message', 'No Reception Message', readonly=True),
+
         'pec_notifications_ids': fields.one2many(
             'pec.notifications', 'parent_id',
             'Related Notifications',  readonly=True),
@@ -124,10 +130,7 @@ class MailMessage(orm.Model):
         # new implementations are tested
         'inprogress_message_id': fields.many2one(
             'mail.message', 'Message In Progress', readonly=True),
-        'reception_message_id': fields.many2one(
-            'mail.message', 'Reception Message', readonly=True),
-        'no_reception_message_id': fields.many2one(
-            'mail.message', 'No Reception Message', readonly=True),
+
         'notice_delivery_err_message_id': fields.many2one(
             'mail.message', 'Notice Error Delivery Message', readonly=True),
         'delivery_message_id': fields.many2one(
@@ -165,47 +168,57 @@ class MailMessage(orm.Model):
         'direction': 'in'
     }
 
-    def  CheckStatus(self, cr, uid, ids, context=None):
+    def CheckStatus(self, cr, uid, ids, context=None):
         notif_pool = self.pool['pec.notifications']
         if context is None:
             context = {}
         if not hasattr(ids, '__iter__'):
             ids = [ids]
-        error=False
         error_lst = []
-        noerror_lst=ids
+        noerror_lst = ids
         if ids:
-            rec_ids=self.read(
-                cr, uid, ids, ['id','partner_ids'], context=context)
-            for row in rec_ids:
-                for partner in row['partner_ids']:
-                    if row['id'] not in error_lst:
-                        existid =notif_pool.search(
-                            cr, uid,
-                            [
-                                ('parent_id', '=', row['id' ]),
-                                ('recipient', '=', partner)
-                            ],
-                            context=context
-                        )
-                        if not existid:
-                            error_lst.append(row['id'])
-                        else:
-                            errors =notif_pool.search(
+            for row in self.browse(cr, uid, ids, context=context):
+                if row.reception_message_id is False:
+                    error_lst.append(row.id)
+                else:
+                    for partner in row.partner_ids:
+                        if row.id not in error_lst:
+                            existid = notif_pool.search(
                                 cr, uid,
                                 [
-                                    ('id', 'in', existid),
-                                    ('error', '!=', 'nessuno')
+                                    ('parent_id', '=', row.id),
+                                    ('recipient', '=', partner.id)
                                 ],
                                 context=context
                             )
-                            if errors:
-                                error_lst.append(row['id'])
+                            if not existid:
+                                error_lst.append(row.id)
+                            else:
+                                errors = notif_pool.search(
+                                    cr, uid,
+                                    [
+                                        ('id', 'in', existid),
+                                        ('error', '!=', 'nessuno')
+                                    ],
+                                    context=context
+                                )
+                                if errors:
+                                    error_lst.append(row.id)
+                                deliveries = notif_pool.search(
+                                    cr, uid,
+                                    [
+                                        ('id', 'in', existid),
+                                        ('type', '=', 'avvenuta-consegna')
+                                    ],
+                                    context=context
+                                )
+                                if not deliveries:
+                                    error_lst.append(row.id)
         if error_lst:
-            self.write(cr, uid, error_lst, {'error':True}, context=context)
+            self.write(cr, uid, error_lst, {'error': True}, context=context)
             noerror_lst = [item for item in ids if item not in error_lst]
-
-        self.write(cr, uid, noerror_lst, {'error':False}, context=context)
+        if noerror_lst:
+            self.write(cr, uid, noerror_lst, {'error': False}, context=context)
         return True
 
     def _search(
