@@ -177,22 +177,22 @@ class MailMessage(orm.Model):
         error_lst = []
         noerror_lst = ids
         if ids:
-            for row in self.browse(cr, uid, ids, context=context):
-                if row.reception_message_id is False:
-                    error_lst.append(row.id)
+            for message in self.bmessagese(cr, uid, ids, context=context):
+                if message.reception_message_id is False:
+                    error_lst.append(message.id)
                 else:
-                    for partner in row.partner_ids:
-                        if row.id not in error_lst:
+                    for partner in message.partner_ids:
+                        if message.id not in error_lst:
                             existid = notif_pool.search(
                                 cr, uid,
                                 [
-                                    ('parent_id', '=', row.id),
+                                    ('parent_id', '=', message.id),
                                     ('recipient', '=', partner.id)
                                 ],
                                 context=context
                             )
                             if not existid:
-                                error_lst.append(row.id)
+                                error_lst.append(message.id)
                             else:
                                 errors = notif_pool.search(
                                     cr, uid,
@@ -203,7 +203,7 @@ class MailMessage(orm.Model):
                                     context=context
                                 )
                                 if errors:
-                                    error_lst.append(row.id)
+                                    error_lst.append(message.id)
                                 deliveries = notif_pool.search(
                                     cr, uid,
                                     [
@@ -213,7 +213,7 @@ class MailMessage(orm.Model):
                                     context=context
                                 )
                                 if not deliveries:
-                                    error_lst.append(row.id)
+                                    error_lst.append(message.id)
         if error_lst:
             self.write(cr, uid, error_lst, {'error': True}, context=context)
             noerror_lst = [item for item in ids if item not in error_lst]
