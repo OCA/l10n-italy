@@ -37,6 +37,10 @@
                             <field name="body"/>
                         </page>
                         <page string="Server Notification Log Messages">
+                            <group>
+                                <field name="reception_message_id"/>
+                                <field name="no_reception_message_id"/>
+                            </group>
                                 <field name="pec_notifications_ids"/>
                         </page>
                     </notebook>

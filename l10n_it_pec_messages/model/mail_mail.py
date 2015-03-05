@@ -25,6 +25,7 @@
 
 from openerp.osv import orm
 from email.utils import formataddr
+from openerp import SUPERUSER_ID
 
 
 class MailMail(orm.Model):
@@ -77,3 +78,34 @@ class MailMail(orm.Model):
             email_to = [formataddr((partner.name, partner.pec_mail))]
             res['email_to'] = email_to
         return res
+
+    def send(
+        self, cr, uid, ids, auto_commit=False, recipient_ids=None, context=None
+    ):
+        for mail in self.browse(cr, uid, ids, context=context):
+            if mail.mail_server_id.pec and recipient_ids:
+                #remove duplicate id if there are
+                recipient_ids = sorted(set(recipient_ids))
+                if recipient_ids:
+                    address_lst = ''
+                    #save old value of email_to
+                    if mail.email_to:
+                        address_lst = mail.email_to
+                    partner_obj = self.pool.get('res.partner')
+                    existing_recipient_ids = partner_obj.exists(
+                        cr, SUPERUSER_ID, recipient_ids, context=context)
+                    for partner in partner_obj.browse(
+                        cr, SUPERUSER_ID, existing_recipient_ids,
+                        context=context
+                    ):
+                        address_lst += formataddr(
+                            (partner.name, partner.pec_mail)) + ' '
+                    self.write(
+                        cr, uid, mail.id,
+                        {'email_to': address_lst}, context=context
+                    )
+                    recipient_ids = False
+        return super(MailMail, self).send(
+            cr, uid, ids, auto_commit=auto_commit,
+            recipient_ids=recipient_ids, context=context
+        )
