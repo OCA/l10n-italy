@@ -214,7 +214,7 @@ class MailThread(orm.Model):
         return res
 
     def _FindOrCreatePartnersPec(
-        self, cr, uid, message=None, email_from=False, context=None
+        self, cr, uid, message=None, pec_address=False, context=None
     ):
         """
         search partner if not exit create it
