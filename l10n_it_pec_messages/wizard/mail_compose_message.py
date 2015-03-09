@@ -73,9 +73,9 @@ class mail_compose_message(osv.TransientModel):
             # get partner_ids from action context
             partner_ids = context.get('default_partner_ids', [])
             # update the result
-            result = {
+            result.update({
                 'partner_ids': partner_ids,
-            }
+            })
             return result
         else:
             return super(mail_compose_message, self).get_message_data(
