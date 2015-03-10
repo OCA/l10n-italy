@@ -26,6 +26,7 @@
 from openerp.osv import orm
 from email.utils import formataddr
 from openerp import SUPERUSER_ID
+from email.utils import COMMASPACE
 
 
 class MailMail(orm.Model):
@@ -84,11 +85,11 @@ class MailMail(orm.Model):
     ):
         for mail in self.browse(cr, uid, ids, context=context):
             if mail.mail_server_id.pec and recipient_ids:
-                #remove duplicate id if there are
+                # remove duplicate id if there are
                 recipient_ids = sorted(set(recipient_ids))
                 if recipient_ids:
                     address_lst = ''
-                    #save old value of email_to
+                    # save old value of email_to
                     if mail.email_to:
                         address_lst = mail.email_to
                     partner_obj = self.pool.get('res.partner')
@@ -98,8 +99,10 @@ class MailMail(orm.Model):
                         cr, SUPERUSER_ID, existing_recipient_ids,
                         context=context
                     ):
+                        if address_lst:
+                            address_lst += COMMASPACE
                         address_lst += formataddr(
-                            (partner.name, partner.pec_mail)) + ' '
+                            (partner.name, partner.pec_mail))
                     self.write(
                         cr, uid, mail.id,
                         {'email_to': address_lst}, context=context
