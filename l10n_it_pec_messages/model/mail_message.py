@@ -177,7 +177,7 @@ class MailMessage(orm.Model):
         error_lst = []
         noerror_lst = ids
         if ids:
-            for message in self.bmessagese(cr, uid, ids, context=context):
+            for message in self.browse(cr, uid, ids, context=context):
                 if message.reception_message_id is False:
                     error_lst.append(message.id)
                 else:
