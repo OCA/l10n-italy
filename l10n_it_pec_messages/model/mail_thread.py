@@ -220,12 +220,12 @@ class MailThread(orm.Model):
         search partner if not exit create it
         """
         res = self._FindPartnersPec(
-            cr, uid, message, email_from, context=context)
+            cr, uid, message, pec_address, context=context)
         if not res:
             res = self.pool['res.partner'].create(
                 cr, SUPERUSER_ID,
                 {
                     'name': pec_address,
                     'pec_mail': pec_address
-                },context = context)
+                }, context=context)
         return res
