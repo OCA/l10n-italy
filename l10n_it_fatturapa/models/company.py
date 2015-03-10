@@ -39,6 +39,34 @@ class res_company(orm.Model):
         'fatturapa_art73': fields.boolean(
             'Art73', help="FatturaPA Art73",
             ),
+        'fatturapa_pub_administration_ref': fields.char(
+            'Public Administration Reference Code', size=20,
+            ),
+        'fatturapa_rea_office': fields.many2one(
+            'res.province', 'Rea Office',
+            ),
+        'fatturapa_rea_number': fields.char(
+            'Rea Number', size=20,
+            ),
+        'fatturapa_rea_capital': fields.float(
+            'Rea Capital',
+            ),
+        'fatturapa_rea_partner': fields.selection(
+            [('SU', 'Single Partner')
+             ('SM', 'Many Partners')],
+            'Rea Copartner',
+            ),
+        'fatturapa_rea_liquidation': fields.selection(
+            [('LN', 'Company Not in Liquidation'),
+             ('LN', 'Company In Liquidation')],
+            'Rea Copartner',
+            ),
+        'fatturapa_tax_representative': fields.many2one(
+            'res.partner', 'Legal Tax Representative'
+            ),
+        'fatturapa_sender_partner': fields.many2one(
+            'res.partner', 'Third Party/Sender'
+            ),
     }
 
 

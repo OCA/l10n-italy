@@ -11,6 +11,7 @@
 					<group colspan="2" col="2" groups="account.group_account_invoice">
 						<separator string="FatturaPA" colspan="2"/>
 						<field name="fatturapa_code"/>
+						<field name="eori_code"/>
 					</group>
 				</page>
 			</field>

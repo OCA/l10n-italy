@@ -25,62 +25,6 @@
 				<xpath expr="//notebook" position="inside">
 					<page string="FatturaPA">
 						<group>
-							<group string="Purchase Order">
-								<field name="fatturapa_po_enable"/>
-								<field name="fatturapa_po_line_no" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-								<field name="fatturapa_po" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-								<field name="fatturapa_po_cup" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-								<field name="fatturapa_po_cig" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-							</group>
-							<group string="Contract">
-								<field name="fatturapa_contract_enable"/>
-								<field name="fatturapa_contract_line_no" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_date" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_numitem" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_cup" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_cig" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-							</group>
-							<group string="Agreement">
-								<field name="fatturapa_agreement_enable"/>
-								<field name="fatturapa_agreement_line_no" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_date" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_numitem" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_cup" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_cig" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-							</group>
-							<group string="Reception">
-								<field name="fatturapa_reception_enable"/>
-								<field name="fatturapa_reception_line_no" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_date" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_numitem" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_cup" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_cig" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-							</group>
 							<group string="Results">
 								<field name="fatturapa_attachment_id"/>
 								<field name="fatturapa_attachment_state"/>
@@ -88,6 +32,33 @@
 						</group>
 					</page>
 				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_invoice_line_form_fatturapa">
+			<field name="name">account.invoice.line.fatturapa</field>
+			<field name="model">account.invoice.line</field>
+			<field name="inherit_id" ref="account.invoice_line_form"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<separator string="FatturaPA"/>
+						<group>
+							<group string="Related Documents">
+								<field name="related_documents">
+								<tree editable="bottom" string="Related Documents">
+										<field name="type"/>
+                                        <field name="name"/>
+                                        <field name="lineRef" readonly="1"/>
+                                        <field name="date"/>
+                                        <field name="numitem"/>
+                                        <field name="code"/>
+                                        <field name="cig"/>
+                                        <field name="cup"/>
+                                    </tree>
+								</field>
+							</group>
+						</group>
+				</field>
 			</field>
 		</record>
 

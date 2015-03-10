@@ -72,6 +72,43 @@ class fatturapa_format(orm.Model):
     }
 
 
+class fatturapa_related_document_type(orm.Model):
+    _name = 'fatturapa.related_document_type'
+    _description = 'FatturaPA Related Document Type'
+
+    _columns = {
+        'type': fields.selection([('order', 'Order'),
+                                  ('contract', 'Contract'),
+                                  ('agreement', 'Agreement'),
+                                  ('reception', 'Reception'),
+                                  ('invoice', 'Related Invoice')],
+                                 'Document Type', required=True),
+        'name': fields.char('DocumentID', size=128, required=True),
+        'lineRef': fields.integer('LineRef'),
+        'invoice_line_id': fields.many2one('account.invoice.line',
+                                           'Related Invoice Line',
+                                           ondelete='cascade',
+                                           select=True,
+                                           required=True),
+        'date': fields.date('Date'),
+        'numitem': fields.integer('NumItem'),
+        'code': fields.char('Order Agreement Code', size=64),
+        'cig': fields.char('CIG Code', size=64),
+        'cup': fields.char('CUP Code', size=64),
+    }
+
+    def create(self, cr, uid, vals, context=None):
+        if not context:
+            context = {}
+        line_obj = self.pool.get('account.invoice.line')
+        line = line_obj.browse(cr, uid,
+                               vals['invoice_line_id'],
+                               context=context)
+        vals['lineRef'] = line.sequence
+        return super(fatturapa_related_document_type, self).\
+            create(cr, uid, vals, context)
+
+
 class account_payment_term(orm.Model):
     _inherit = 'account.payment.term'
 
@@ -87,52 +124,25 @@ class account_invoice(orm.Model):
     _inherit = "account.invoice"
 
     _columns = {
-        'fatturapa_po_enable': fields.boolean('FatturaPA Purchase Order'),
-        'fatturapa_po': fields.char(
-            'FatturaPA Purchase Order Number', size=64),
-        'fatturapa_po_line_no': fields.integer('FatturaPA PO Line No'),
-        'fatturapa_po_cup': fields.char('FatturaPA PO CUP', size=64),
-        'fatturapa_po_cig': fields.char('FatturaPA PO CIG', size=64),
-        'fatturapa_contract_enable': fields.boolean('FatturaPA Contract'),
-        'fatturapa_contract': fields.char(
-            'FatturaPA Contract Number', size=64),
-        'fatturapa_contract_line_no': fields.char(
-            'FatturaPA Contract Line No', size=12),
-        'fatturapa_contract_date': fields.date('FatturaPA Contract Date'),
-        'fatturapa_contract_numitem': fields.char(
-            'FatturaPA Contract NumItem', size=64),
-        'fatturapa_contract_cup': fields.char(
-            'FatturaPA Contract CUP', size=64),
-        'fatturapa_contract_cig': fields.char(
-            'FatturaPA Contract CIG', size=64),
-        'fatturapa_agreement_enable': fields.boolean('FatturaPA Agreement'),
-        'fatturapa_agreement': fields.char(
-            'FatturaPA Agreement Number', size=64),
-        'fatturapa_agreement_line_no': fields.char(
-            'FatturaPA Agreement Line No', size=12),
-        'fatturapa_agreement_date': fields.date('FatturaPA Agreement Date'),
-        'fatturapa_agreement_numitem': fields.char(
-            'FatturaPA Agreement NumItem', size=64),
-        'fatturapa_agreement_cup': fields.char(
-            'FatturaPA Agreement CUP', size=64),
-        'fatturapa_agreement_cig': fields.char(
-            'FatturaPA Agreement CIG', size=64),
-        'fatturapa_reception_enable': fields.boolean('FatturaPA Reception'),
-        'fatturapa_reception': fields.char(
-            'FatturaPA Reception Number', size=64),
-        'fatturapa_reception_line_no': fields.char(
-            'FatturaPA Reception Line No', size=12),
-        'fatturapa_reception_date': fields.date('FatturaPA Reception Date'),
-        'fatturapa_reception_numitem': fields.char(
-            'FatturaPA Reception NumItem', size=64),
-        'fatturapa_reception_cup': fields.char(
-            'FatturaPA Reception CUP', size=64),
-        'fatturapa_reception_cig': fields.char(
-            'FatturaPA Reception CIG', size=64),
         'fatturapa_attachment_id': fields.many2one(
             'fatturapa.attachment', 'FatturaPA Export File'),
         'fatturapa_attachment_state': fields.related(
             'fatturapa_attachment_id', 'state', type='selection', store=True,
             selection=attachment.AVAILABLE_STATES, readonly=True, select=True,
             string='FatturaPA Export State'),
+        # Moved in company details
+        # 'fatturapa_tax_representative': fields.many2one(
+        # 'res.partner', 'Tax Representative'),
+        # 'fatturapa_third_party': fields.many2one(
+        #     'res.partner', 'Third Party/Issuer'),
+    }
+
+
+class account_invoice_line(orm.Model):
+    _inherit = "account.invoice.line"
+
+    _columns = {
+        'related_documents': fields.one2many('fatturapa.related_document_type',
+                                             'invoice_line_id',
+                                             'Related Documents Type'),
     }
