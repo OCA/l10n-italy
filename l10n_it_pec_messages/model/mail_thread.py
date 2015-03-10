@@ -225,7 +225,7 @@ class MailThread(orm.Model):
             res = self.pool['res.partner'].create(
                 cr, SUPERUSER_ID,
                 {
-                    'name': email_from,
-                    'pec_mail': email_from
+                    'name': pec_address,
+                    'pec_mail': pec_address
                 },context = context)
         return res
