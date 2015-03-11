@@ -27,8 +27,8 @@
     Fatturazione Elettronica per la Pubblica Amministrazione.
     Gestione delle fatture in ingresso
     """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Agile Business Group, Innoviu',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": [
         'l10n_it_fatturapa',

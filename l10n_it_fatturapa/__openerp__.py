@@ -25,8 +25,8 @@
     'description': """
     Fatturazione Elettronica per la Pubblica Amministrazione.
     """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Davide Corio, Agile Business Group, Innoviu',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": [
         'base', 'account', 'l10n_it_base', 'l10n_it_fiscalcode', 'document'],
