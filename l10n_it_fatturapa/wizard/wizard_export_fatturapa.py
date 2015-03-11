@@ -134,12 +134,12 @@ class WizardExportFatturapa(orm.TransientModel):
         IdPaese = company.country_id.code
         IdTrasmittente.find('IdPaese').text = IdPaese
 
-        if not company.partner_id.fiscalcode:
-            # XXX: just for testing purposes, to be resolved asap
-            fiscalcode = company.vat
-            # raise orm.except_orm(
-            #    _('Error!'), _('Fiscalcode not set.'))
-        IdCodice = company.partner_id.fiscalcode or fiscalcode
+        IdCodice = company.partner_id.fiscalcode
+        if not IdCodice:
+            IdCodice = company.vat
+        if not IdCodice:
+            raise orm.except_orm(
+                _('Error'), _('Company does not have fiscal code or VAT'))
         IdTrasmittente.find('IdCodice').text = IdCodice
 
         return True
@@ -699,14 +699,22 @@ class WizardExportFatturapa(orm.TransientModel):
 
         DatiPagamento = body.find('DatiPagamento')
         DettaglioPagamento = DatiPagamento.find('DettaglioPagamento')
-        DatiPagamento.find(
-            'CondizioniPagamento'
-            ).text = invoice.payment_term.fatturapa_pt_id.code
+        if (
+            invoice.payment_term and invoice.payment_term.fatturapa_pt_id
+            and invoice.payment_term.fatturapa_pt_id.code
+        ):
+            DatiPagamento.find(
+                'CondizioniPagamento'
+                ).text = invoice.payment_term.fatturapa_pt_id.code
 
         # TODO: multiple installments
-        DettaglioPagamento.find(
-            'ModalitaPagamento'
-            ).text = invoice.payment_term.fatturapa_pm_id.code
+        if (
+            invoice.payment_term and invoice.payment_term.fatturapa_pm_id
+            and invoice.payment_term.fatturapa_pm_id.code
+        ):
+            DettaglioPagamento.find(
+                'ModalitaPagamento'
+                ).text = invoice.payment_term.fatturapa_pm_id.code
         DettaglioPagamento.find(
             'DataScadenzaPagamento').text = invoice.date_due
         DettaglioPagamento.find(
