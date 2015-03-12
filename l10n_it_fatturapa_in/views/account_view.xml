@@ -56,6 +56,7 @@
 				<xpath expr="//notebook" position="inside">
 					<page string="FatturaPA">
 						<group>
+                            <!--
 							<group string="Purchase Order">
 								<field name="fatturapa_po_enable"/>
 								<field name="fatturapa_po_line_no" 
@@ -75,7 +76,7 @@
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
 								<field name="fatturapa_contract_date" 
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_numitem" 
+								<field name="   " 
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
 								<field name="fatturapa_contract_cup" 
 									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
@@ -112,6 +113,7 @@
 								<field name="fatturapa_reception_cig" 
 									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
 							</group>
+                            -->
 							<group string="Results">
 								<field name="fatturapa_attachment_in_id"/>
 								<field name="fatturapa_attachment_state"/>

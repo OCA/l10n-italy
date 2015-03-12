@@ -24,7 +24,7 @@
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices emission',
     'author': 'Davide Corio, Agile Business Group, Innoviu',
-    'website': 'http://www.odoo-italia.org',
+    'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
         'l10n_it_fatturapa'],

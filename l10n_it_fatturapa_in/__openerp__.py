@@ -24,7 +24,7 @@
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
     'author': 'Agile Business Group, Innoviu',
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
         'l10n_it_fatturapa',

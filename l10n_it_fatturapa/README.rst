@@ -42,7 +42,9 @@ Credits
 Contributors
 ------------
 
-* Firsname Lastname <email.address@example.org>
+* Davide Corio <davide.corio@abstract.it>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Roberto Onnis <roberto.onnis@innoviu.com>
 
 Maintainer
 ----------

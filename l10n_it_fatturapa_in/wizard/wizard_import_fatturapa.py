@@ -39,16 +39,15 @@ class WizardImportFatturapa(orm.TransientModel):
         return False
 
     def getPartnerId(self, cr, uid, xmlDataCedentePrestatore, context=None):
-
         partner_model = self.pool['res.partner']
-        partner_id = partner_model.search(
+        partner_ids = partner_model.search(
             cr, uid,
             ['|',
              ('vat', '=', xmlDataCedentePrestatore.idFiscaleIVA or 0),
              ('fiscalcode', '=', xmlDataCedentePrestatore.codiceFiscale or 0),
              ],
             context=context)
-        if len(partner_id) > 1:
+        if len(partner_ids) > 1:
             raise orm.except_orm(
                 _('Error !'),
                 _("Two distinct partners with "
@@ -56,12 +55,12 @@ class WizardImportFatturapa(orm.TransientModel):
                   (xmlDataCedentePrestatore.idFiscaleIVA,
                    xmlDataCedentePrestatore.codiceFiscale))
                 )
-        if partner_id:
-            return partner_id[0]
+        if partner_ids:
+            return partner_ids[0]
         else:
             # TODO: manage here wrong VAT
             vals = {
-                'name': xmlDataCedentePrestatore.nomeCedentePrestatore,
+                'name': xmlDataCedentePrestatore.cedentePrestatore,
                 'vat': xmlDataCedentePrestatore.idFiscaleIVA,
                 'fiscalcode': xmlDataCedentePrestatore.codiceFiscale,
                 'customer': False,
@@ -214,38 +213,29 @@ class WizardImportFatturapa(orm.TransientModel):
         for fatturapa_attachment in fatturapa_attachment_obj.browse(
                 cr, uid, fatturapa_attachment_ids, context=context):
             if fatturapa_attachment.state != 'processed':
-                try:
-                    xmlData = XmlData(
-                        fatturapa_attachment.datas.decode('base64')
+                xmlData = XmlData(
+                    fatturapa_attachment.datas.decode('base64')
+                )
+                xmlData.parseXml()
+                fatturapa_attachment_obj.write(
+                    cr,
+                    uid,
+                    fatturapa_attachment.id,
+                    {'state': 'processed'}
                     )
-                    xmlData.parseXml()
-                    fatturapa_attachment_obj.write(
+                partner_id = self.getPartnerId(cr,
+                                               uid,
+                                               xmlData.cedentePrestatore,
+                                               context)
+                for fattura in xmlData.fatturaElettronicaBody:
+                    invoice_id = self.invoiceCreate(
                         cr,
                         uid,
-                        fatturapa_attachment.id,
-                        {'state': 'processed'}
-                        )
-                    partner_id = self.getPartnerId(cr,
-                                                   uid,
-                                                   xmlData.cedentePrestatore,
-                                                   context)
-                    for fattura in xmlData.fatturaElettronicaBody:
-                        invoice_id = self.invoiceCreate(
-                            cr,
-                            uid,
-                            fatturapa_attachment,
-                            fattura,
-                            partner_id,
-                            context)
-                        new_invoices.append(invoice_id)
-                except:
-                    _logger.error('Error in xml %s', fatturapa_attachment.name)
-                    fatturapa_attachment_obj.write(
-                        cr,
-                        uid,
-                        fatturapa_attachment.id,
-                        {'state': 'error'}
-                        )
+                        fatturapa_attachment,
+                        fattura,
+                        partner_id,
+                        context)
+                    new_invoices.append(invoice_id)
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",
