@@ -22,22 +22,17 @@
     'name': 'Italian Localization - FatturaPA',
     'version': '0.1',
     'category': 'Localization/Italy',
-    'summary': 'Fatturazione Elettronica per la Pubblica Amministrazione',
-    'description': """
-    Fatturazione Elettronica per la Pubblica Amministrazione.
-    """,
+    'summary': 'Electronic invoices',
     'author': 'Davide Corio, Agile Business Group, Innoviu',
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": [
-        'base', 'account', 'l10n_it_base', 'l10n_it_fiscalcode', 'document'],
+        'account', 'l10n_it_base', 'l10n_it_fiscalcode', 'document'],
     "data": [
         'data/fatturapa_data.xml',
         'views/account_view.xml',
-        'views/attachment_view.xml',
         'views/company_view.xml',
         'views/partner_view.xml',
-        'wizard/wizard_export_fatturapa_view.xml',
     ],
     "test": [],
     "demo": ['demo/account_invoice_fatturapa.xml'],

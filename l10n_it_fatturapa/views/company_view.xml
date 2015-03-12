@@ -28,20 +28,14 @@
                                 <label for="fatturapa_art73"/>
                                 <field name="fatturapa_art73" class="oe_inline"/>
                             </div>
-                        </div>
-                        <separator string="Linked Partners" />
-                        <div>
                             <div>
-                                <label for="fatturapa_tax_representatives"/>
-                                <field name="fatturapa_tax_representatives" class="oe_inline"/>
+                                <label for="fatturapa_tax_representative"/>
+                                <field name="fatturapa_tax_representative" class="oe_inline"/>
                             </div>
                             <div>
                                 <label for="fatturapa_sender_partner"/>
                                 <field name="fatturapa_sender_partner" class="oe_inline"/>
                             </div>
-                        </div>
-                        <separator string="REA" />
-                        <div>
                             <div>
                                 <label for="fatturapa_rea_office"/>
                                 <field name="fatturapa_rea_office" class="oe_inline"/>
@@ -55,8 +49,8 @@
                                 <field name="fatturapa_rea_capital" class="oe_inline"/>
                             </div>
                             <div>
-                                <label for="fatturapa_rea_copartner"/>
-                                <field name="fatturapa_rea_copartner" class="oe_inline"/>
+                                <label for="fatturapa_rea_partner"/>
+                                <field name="fatturapa_rea_partner" class="oe_inline"/>
                             </div>
                             <div>
                                 <label for="fatturapa_rea_liquidation"/>

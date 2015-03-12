@@ -18,4 +18,18 @@
 #
 ##############################################################################
 
-from . import models
+from . import attachment
+from openerp.osv import fields, orm
+
+
+class account_invoice(orm.Model):
+    _inherit = "account.invoice"
+
+    _columns = {
+        'fatturapa_attachment_out_id': fields.many2one(
+            'fatturapa.attachment.out', 'FatturaPA Export File'),
+        'fatturapa_attachment_state': fields.related(
+            'fatturapa_attachment_out_id', 'state', type='selection', store=True,
+            selection=attachment.AVAILABLE_STATES, readonly=True, select=True,
+            string='FatturaPA Export State'),
+    }

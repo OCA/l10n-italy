@@ -26,5 +26,5 @@ class res_partner(orm.Model):
 
     _columns = {
         'fatturapa_code': fields.char('FatturaPA Code', size=6),
-        'eori_code': fields.char('EORI Code', size='20'),
+        'eori_code': fields.char('EORI Code', size=20),
     }

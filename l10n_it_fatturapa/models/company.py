@@ -38,9 +38,7 @@ class res_company(orm.Model):
                  "stringa alfanumerica di lunghezza massima di 5 caratteri "
                  "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
             ),
-        'fatturapa_art73': fields.boolean(
-            'Art73', help="FatturaPA Art73",
-            ),
+        'fatturapa_art73': fields.boolean('Art73'),
         'fatturapa_pub_administration_ref': fields.char(
             'Public Administration Reference Code', size=20,
             ),
@@ -54,14 +52,14 @@ class res_company(orm.Model):
             'Rea Capital',
             ),
         'fatturapa_rea_partner': fields.selection(
-            [('SU', 'Single Partner')
+            [('SU', 'Single Partner'),
              ('SM', 'Many Partners')],
             'Rea Copartner',
             ),
         'fatturapa_rea_liquidation': fields.selection(
             [('LN', 'Company Not in Liquidation'),
              ('LN', 'Company In Liquidation')],
-            'Rea Copartner',
+            'Rea Liquidation',
             ),
         'fatturapa_tax_representative': fields.many2one(
             'res.partner', 'Legal Tax Representative'
@@ -100,8 +98,55 @@ class account_config_settings(orm.TransientModel):
             'company_id', 'fatturapa_art73',
             type='boolean',
             string="Art73",
-            help="Documento emesso secondo modalità e termini stabiliti con DM\
-ai sensi dell'art. 73 DPR 633/72"
+            ),
+        'fatturapa_pub_administration_ref': fields.related(
+            'company_id', 'fatturapa_pub_administration_ref',
+            type='char',
+            size=20,
+            string="Public Administration Reference Code",
+            ),
+        'fatturapa_rea_office': fields.related(
+            'company_id', 'fatturapa_rea_office',
+            type='many2one',
+            relation="res.province",
+            string="Rea Office",
+            ),
+        'fatturapa_rea_number': fields.related(
+            'company_id', 'fatturapa_rea_number',
+            type='char',
+            size=20,
+            string="Rea Number",
+            ),
+        'fatturapa_rea_capital': fields.related(
+            'company_id', 'fatturapa_rea_capital',
+            type='float',
+            string="Rea Capital",
+            ),
+        'fatturapa_rea_partner': fields.related(
+            'company_id', 'fatturapa_rea_partner',
+            type='selection',
+            selection=[('SU', 'Single Partner'),
+                       ('SM', 'Many Partners')],
+            string="Rea Copartner",
+            ),
+        'fatturapa_rea_liquidation': fields.related(
+            'company_id', 'fatturapa_rea_liquidation',
+            type='selection',
+            selection=[('LN', 'Company Not in Liquidation'),
+                       ('LN', 'Company In Liquidation')],
+            string="Rea Liquidation",
+            ),
+        'fatturapa_tax_representative': fields.related(
+            'company_id', 'fatturapa_tax_representative',
+            type='many2one',
+            relation="res.partner",
+            string="Legal Tax Representative",
+            ),
+        'fatturapa_sender_partner': fields.related(
+            'company_id', 'fatturapa_sender_partner',
+            type='many2one',
+            relation="res.partner",
+            string="Third Party/Sender",
             ),
     }
 

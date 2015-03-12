@@ -19,14 +19,10 @@
 #
 ##############################################################################
 {
-    'name': 'Italian Localization - FatturaPA in Ingresso',
+    'name': 'Italian Localization - FatturaPA reception',
     'version': '0.1',
     'category': 'Localization/Italy',
-    'summary': 'Fatturazione Elettronica per la Pubblica Amministrazione',
-    'description': """
-    Fatturazione Elettronica per la Pubblica Amministrazione.
-    Gestione delle fatture in ingresso
-    """,
+    'summary': 'Electronic invoices reception',
     'author': 'Agile Business Group, Innoviu',
     'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',

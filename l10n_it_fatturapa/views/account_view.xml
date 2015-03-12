@@ -17,34 +17,38 @@
 			</field>
 		</record>
 
-		<record model="ir.ui.view" id="view_invoice_form_fatturapa">
-			<field name="name">account.invoice.fatturapa</field>
-			<field name="model">account.invoice</field>
-			<field name="inherit_id" ref="account.invoice_form"/>
-			<field name="arch" type="xml">
-				<xpath expr="//notebook" position="inside">
-					<page string="FatturaPA">
-						<group>
-							<group string="Results">
-								<field name="fatturapa_attachment_id"/>
-								<field name="fatturapa_attachment_state"/>
-							</group>
-						</group>
-					</page>
-				</xpath>
-			</field>
-		</record>
+    <record model="ir.ui.view" id="customer_invoice_lines_not_editable">
+      <field name="name">customer_invoice_lines_not_editable</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='invoice_line']/tree" position="attributes" >
+          <attribute name="editable" eval="False"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="supplier_invoice_lines_not_editable">
+      <field name="name">supplier_invoice_lines_not_editable</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='invoice_line']/tree" position="attributes" >
+          <attribute name="editable" eval="False"/>
+        </xpath>
+      </field>
+    </record>
 
 		<record model="ir.ui.view" id="view_invoice_line_form_fatturapa">
 			<field name="name">account.invoice.line.fatturapa</field>
 			<field name="model">account.invoice.line</field>
-			<field name="inherit_id" ref="account.invoice_line_form"/>
+			<field name="inherit_id" ref="account.view_invoice_line_form"/>
 			<field name="arch" type="xml">
 				<field name="name" position="after">
 					<separator string="FatturaPA"/>
 						<group>
 							<group string="Related Documents">
-								<field name="related_documents">
+								<field name="related_documents" nolabel="1">
 								<tree editable="bottom" string="Related Documents">
 										<field name="type"/>
                                         <field name="name"/>

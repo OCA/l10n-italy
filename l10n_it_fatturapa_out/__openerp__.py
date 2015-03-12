@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+#    Copyright (C) 2014 Davide Corio
+#    Copyright 2015 Agile Business Group <http://www.agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,5 +18,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from . import models
+{
+    'name': 'Italian Localization - FatturaPA - Emission',
+    'version': '0.1',
+    'category': 'Localization/Italy',
+    'summary': 'Electronic invoices emission',
+    'author': 'Davide Corio, Agile Business Group, Innoviu',
+    'website': 'http://www.odoo-italia.org',
+    'license': 'AGPL-3',
+    "depends": [
+        'l10n_it_fatturapa'],
+    "data": [
+        'wizard/wizard_export_fatturapa_view.xml',
+        'views/attachment_view.xml',
+        'views/account_view.xml',
+    ],
+    "test": [],
+    "demo": ['demo/account_invoice_fatturapa.xml'],
+    "installable": True
+}

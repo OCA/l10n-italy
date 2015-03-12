@@ -30,7 +30,7 @@ from io import BytesIO
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def getFile(self, filename):
-        path = addons.get_module_resource('l10n_it_fatturapa',
+        path = addons.get_module_resource('l10n_it_fatturapa_out',
                                           'tests', 'data', filename)
         with open(path) as test_data:
             with tempfile.TemporaryFile() as out:
@@ -42,7 +42,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         super(TestFatturaPAXMLValidation, self).setUp()
         self.wizard_model = self.registry('wizard.export.fatturapa')
         self.data_model = self.registry('ir.model.data')
-        self.attach_model = self.registry('fatturapa.attachment')
+        self.attach_model = self.registry('fatturapa.attachment.out')
 
     def tearDown(self):
         super(TestFatturaPAXMLValidation, self).tearDown()

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+#    Copyright (C) 2014 Davide Corio
+#    Copyright 2015 Agile Business Group <http://www.agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,26 +19,5 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
-
-AVAILABLE_STATES = [
-    ('draft', 'Draft'),
-    ('sent', 'Sent'),
-    ('rejected', 'Rejected'),
-    ('accepted', 'Accepted')]
-
-
-class FatturaPAAttachment(orm.Model):
-    _name = "fatturapa.attachment"
-    _description = "FatturaPA Export File"
-    _inherits = {'ir.attachment': 'ir_attachment_id'}
-    _inherit = ['mail.thread']
-
-    _columns = {
-        'ir_attachment_id': fields.many2one('ir.attachment', 'Attachment'),
-        'state': fields.selection(AVAILABLE_STATES, 'State'),
-    }
-
-    _defaults = {
-        'state': 'draft',
-    }
+from . import attachment
+from . import account

@@ -18,7 +18,6 @@
 #
 ##############################################################################
 
-from . import attachment
 from openerp.osv import fields, orm
 
 
@@ -35,6 +34,7 @@ class fatturapa_document_type(orm.Model):
 class fatturapa_payment_term(orm.Model):
     _name = "fatturapa.payment_term"
     _description = 'FatturaPA Payment Term'
+    _rec_name = 'code'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -45,6 +45,7 @@ class fatturapa_payment_term(orm.Model):
 class fatturapa_payment_method(orm.Model):
     _name = "fatturapa.payment_method"
     _description = 'FatturaPA Payment Method'
+    _rec_name = 'code'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -63,6 +64,7 @@ class fatturapa_fiscal_position(orm.Model):
 
 
 class fatturapa_format(orm.Model):
+    # TODO check possible formats
     _name = "fatturapa.format"
     _description = 'FatturaPA Format'
 
@@ -117,24 +119,6 @@ class account_payment_term(orm.Model):
             'fatturapa.payment_term', string="FatturaPA Payment Term"),
         'fatturapa_pm_id': fields.many2one(
             'fatturapa.payment_method', string="FatturaPA Payment Method"),
-    }
-
-
-class account_invoice(orm.Model):
-    _inherit = "account.invoice"
-
-    _columns = {
-        'fatturapa_attachment_id': fields.many2one(
-            'fatturapa.attachment', 'FatturaPA Export File'),
-        'fatturapa_attachment_state': fields.related(
-            'fatturapa_attachment_id', 'state', type='selection', store=True,
-            selection=attachment.AVAILABLE_STATES, readonly=True, select=True,
-            string='FatturaPA Export State'),
-        # Moved in company details
-        # 'fatturapa_tax_representative': fields.many2one(
-        # 'res.partner', 'Tax Representative'),
-        # 'fatturapa_third_party': fields.many2one(
-        #     'res.partner', 'Third Party/Issuer'),
     }
 
 
