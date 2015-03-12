@@ -11,14 +11,14 @@ This module allows you to generate the <a href="http://www.fatturapa.gov.it/expo
 Configuration
 =============
 
- * Edit the 'FatturaPA code' field of the partners who will receive the electronic invoices
+ * Edit the FatturaPA fields of the partners who will receive the electronic invoices
  * Configure payment terms filling the fatturaPA fields related to payment terms and payment methods
+ * Configura FatturaPA data in Accounting Configuration
 
 Usage
 =====
 
- * Create one or more invoices filling the fatturaPA fields.
- * Select the invoices and run 'Export FatturaPA' wizard
+ * Select N invoices and run 'Export FatturaPA' wizard
 
 Known issues / Roadmap
 ======================

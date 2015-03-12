@@ -29,7 +29,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <Nome></Nome>
           <Cognome></Cognome>
           <Titolo></Titolo>
-          <CodiceEORI></CodiceEORI>
+          <CodEORI></CodEORI>
         </Anagrafica>
         <AlboProfessionale></AlboProfessionale>
         <ProvinciaAlbo></ProvinciaAlbo>
@@ -79,7 +79,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <Nome></Nome>
           <Cognome></Cognome>
           <Titolo></Titolo>
-          <CodiceEORI></CodiceEORI>
+          <CodEORI></CodEORI>
         </Anagrafica>
       </DatiAnagrafici>
     </RappresentanteFiscale>
@@ -95,11 +95,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <Nome></Nome>
           <Cognome></Cognome>
           <Titolo></Titolo>
-          <CodiceEORI></CodiceEORI>
+          <CodEORI></CodEORI>
         </Anagrafica>
       </DatiAnagrafici>
       <Sede>
         <Indirizzo></Indirizzo>
+        <NumeroCivico></NumeroCivico>
         <CAP></CAP>
         <Comune></Comune>
         <Provincia></Provincia>
@@ -118,7 +119,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <Nome></Nome>
           <Cognome></Cognome>
           <Titolo></Titolo>
-          <CodiceEORI></CodiceEORI>
+          <CodEORI></CodEORI>
         </Anagrafica>
       </DatiAnagrafici>
     </TerzoIntermediarioOSoggettoEmittente>
@@ -227,7 +228,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 		          <Nome></Nome>
 		          <Cognome></Cognome>
 		          <Titolo></Titolo>
-		          <CodiceEORI></CodiceEORI>
+		          <CodEORI></CodEORI>
 		        </Anagrafica>
 		      </DatiAnagrafici>
 		      <NumeroLicenzaGuida></NumeroLicenzaGuida>

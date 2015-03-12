@@ -34,7 +34,8 @@ class FatturaPAAttachment(orm.Model):
     _inherit = ['mail.thread']
 
     _columns = {
-        'ir_attachment_id': fields.many2one('ir.attachment', 'Attachment'),
+        'ir_attachment_id': fields.many2one(
+            'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
         'state': fields.selection(AVAILABLE_STATES, 'State'),
     }
 

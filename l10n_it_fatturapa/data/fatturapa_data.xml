@@ -103,9 +103,9 @@
         </record>
 
     	<!-- FatturaPA Formats -->
-    	<record id="fatturapa_format_01" model="fatturapa.format">
-            <field name="name">Formato di Trasmissione SDI Versione 1.0</field>
-            <field name="code">SDI10</field>
+    	<record id="fatturapa_format_1_1" model="fatturapa.format">
+            <field name="name">Formato di Trasmissione SDI Versione 1.1</field>
+            <field name="code">SDI11</field>
         </record>
 
     	<!-- Invoice Bundle Sequence -->

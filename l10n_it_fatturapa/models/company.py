@@ -159,18 +159,45 @@ class account_config_settings(orm.TransientModel):
             res['value'].update({
                 'fatturapa_fiscal_position_id': (
                     company.fatturapa_fiscal_position_id and
-                    company.fatturapa_fiscal_position_id.id or False,
+                    company.fatturapa_fiscal_position_id.id or False
                     ),
                 'fatturapa_format_id': (
                     company.fatturapa_format_id and
-                    company.fatturapa_format_id.id or False,
+                    company.fatturapa_format_id.id or False
                     ),
                 'fatturapa_sequence_id': (
                     company.fatturapa_sequence_id and
-                    company.fatturapa_sequence_id.id or False,
+                    company.fatturapa_sequence_id.id or False
                     ),
                 'fatturapa_art73': (
-                    company.fatturapa_art73 or False,
+                    company.fatturapa_art73 or False
+                    ),
+                'fatturapa_pub_administration_ref': (
+                    company.fatturapa_pub_administration_ref or False
+                    ),
+                'fatturapa_rea_office': (
+                    company.fatturapa_pub_administration_ref and
+                    company.fatturapa_pub_administration_ref.id or False
+                    ),
+                'fatturapa_rea_number': (
+                    company.fatturapa_rea_number or False
+                    ),
+                'fatturapa_rea_capital': (
+                    company.fatturapa_rea_capital or False
+                    ),
+                'fatturapa_rea_partner': (
+                    company.fatturapa_rea_partner or False
+                    ),
+                'fatturapa_rea_liquidation': (
+                    company.fatturapa_rea_liquidation or False
+                    ),
+                'fatturapa_tax_representative': (
+                    company.fatturapa_tax_representative and
+                    company.fatturapa_tax_representative.id or False
+                    ),
+                'fatturapa_sender_partner': (
+                    company.fatturapa_sender_partner and
+                    company.fatturapa_sender_partner.id or False
                     ),
                 })
         else:
@@ -179,5 +206,13 @@ class account_config_settings(orm.TransientModel):
                 'fatturapa_format_id': False,
                 'fatturapa_sequence_id': False,
                 'fatturapa_art73': False,
+                'fatturapa_pub_administration_ref': False,
+                'fatturapa_rea_office': False,
+                'fatturapa_rea_number': False,
+                'fatturapa_rea_capital': False,
+                'fatturapa_rea_partner': False,
+                'fatturapa_rea_liquidation': False,
+                'fatturapa_tax_representative': False,
+                'fatturapa_sender_partner': False,
                 })
         return res
