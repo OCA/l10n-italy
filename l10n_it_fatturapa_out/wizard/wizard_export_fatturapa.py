@@ -135,7 +135,7 @@ class WizardExportFatturapa(orm.TransientModel):
 
         IdCodice = company.partner_id.fiscalcode
         if not IdCodice:
-            IdCodice = company.vat
+            IdCodice = company.vat[2:]
         if not IdCodice:
             raise orm.except_orm(
                 _('Error'), _('Company does not have fiscal code or VAT'))
