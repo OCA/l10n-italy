@@ -1103,41 +1103,37 @@ class XmlData():
     _name = 'Xml Object for data'
     _description = """ The object to store sdi xml datas"""
 
-    content = None
-    template = None
-    root = None
-
-    # Datas
-    # Dati Trasmissione
-    datiTrasmissione = None
-    idTrasmittente = None
-    progressivoInvio = None
-    formatoTrasmissione = None
-    codiceDestinatario = None
-    contattiTrasmittente = None
-
-    # <CedentePrestatore>
-    cedentePrestatore = None
-
-    # <RappresentanteFiscale>
-    rappresentanteFiscale = None
-
-    # TerzoIntermediarioOSoggettoEmittente
-    terzoIntermediarioOSoggettoEmittente = None
-
-    # <CessionarioCommittente>
-    cessionarioCommittente = None
-
-    # SoggettoEmittente
-    soggettoEmittente = None
-
-    # FatturaElettronicaBody
-    fatturaElettronicaBody = []
-
     def __init__(self, content):
         self.content = content
         self.template = ElementTree(fromstring(self.content))
         self.root = self.template.getroot()
+
+        # Datas
+        # Dati Trasmissione
+        self.datiTrasmissione = None
+        self.idTrasmittente = None
+        self.progressivoInvio = None
+        self.formatoTrasmissione = None
+        self.codiceDestinatario = None
+        self.contattiTrasmittente = None
+
+        # <CedentePrestatore>
+        self.cedentePrestatore = None
+
+        # <RappresentanteFiscale>
+        self.rappresentanteFiscale = None
+
+        # TerzoIntermediarioOSoggettoEmittente
+        self.terzoIntermediarioOSoggettoEmittente = None
+
+        # <CessionarioCommittente>
+        self.cessionarioCommittente = None
+
+        # SoggettoEmittente
+        self.soggettoEmittente = None
+
+        # FatturaElettronicaBody
+        self.fatturaElettronicaBody = []
 
     def parseIdTrasmittente(self):
         idPaese = self.datiTrasmissione.find(
