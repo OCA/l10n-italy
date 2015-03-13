@@ -7,11 +7,20 @@
 			<field name="model">fatturapa.attachment.in</field>
 			<field name="arch" type="xml">
                 <form string="Import FatturaPA" version="7.0">
-                        <div>
-                            <field name="name"/>
-                            <field name="datas_fname"/>
-                            <field name="datas" filename="datas_fname" />
-                        </div>
+                    <div>
+                        <field name="name"/>
+                        <field name="datas_fname"/>
+                        <field name="datas" filename="datas_fname" />
+                        <separator string="Invoices"></separator>
+                        <field name="in_invoice_ids"></field>
+                        <group groups="base.group_no_one" string="History">
+                            <label for="create_uid" string="Creation"/>
+                            <div name="creation_div">
+                                <field name="create_uid" readonly="1" class="oe_inline"/> on 
+                                <field name="create_date" readonly="1" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </div>
 					<div class="oe_chatter">
 	                    <field name="message_follower_ids" widget="mail_followers"/>
 	                    <field name="message_ids" widget="mail_thread"/>
@@ -33,15 +42,14 @@
     	
 
         <record id="action_fattura_pa_in" model="ir.actions.act_window">
-            <field name="name">Fatturazione Elettronica in Entrata</field>
+            <field name="name">Incoming fatturaPA files</field>
             <field name="res_model">fatturapa.attachment.in</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_fatturapa_in_attachment_tree"/>
         </record>
-        
-        <menuitem name="Fattura PA Ingresso" id="menu_fattura_pa_in" parent="account.menu_finance"/>
-        <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree" parent="menu_fattura_pa_in"/>
+
+        <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree" parent="document.menu_document_doc"/>
         
         <!-- Extend purchase invoice  -->
 		<record model="ir.ui.view" id="view_invoice_form_fatturapa_in">
