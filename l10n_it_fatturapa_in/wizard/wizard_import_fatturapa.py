@@ -221,6 +221,14 @@ class WizardImportFatturapa(orm.TransientModel):
                                            xmlData.cedentePrestatore,
                                            context)
             for fattura in xmlData.fatturaElettronicaBody:
+                # TODO
+                if xmlData.fatturaElettronicaBody.tipoDocumento in (
+                    'TD04', 'TD05'
+                ):
+                    raise orm.except_orm(
+                        _("Error"),
+                        _("tipoDocumento %s not handled")
+                        % xmlData.fatturaElettronicaBody.tipoDocumento)
                 invoice_id = self.invoiceCreate(
                     cr,
                     uid,
