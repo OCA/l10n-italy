@@ -83,8 +83,6 @@ class WizardImportFatturapa(orm.TransientModel):
                             line,
                             context=None):
         account_tax_model = self.pool['account.tax']
-        # TODO: verify if it's possible to have more than 1 tax_id
-        # TODO: verify if AliquotaIVA is always a float(and not a tax str code)
         account_tax_ids = account_tax_model.search(cr, uid,
                                                    [('type_tax_use',
                                                      'in',
