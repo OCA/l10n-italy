@@ -111,7 +111,7 @@ class WizardImportFatturapa(orm.TransientModel):
         }
 
     def invoiceCreate(self, cr, uid,
-                      fatturapa_attachment, xmlDataFattura,
+                      fatturapa_attachment, FatturaElettronicaBody,
                       partner_id, context=None):
         if context is None:
             context = {}
@@ -151,16 +151,16 @@ class WizardImportFatturapa(orm.TransientModel):
                                                 )
         # currency
         currency_id = currency_model.search(
-            cr, uid, [('name', '=', xmlDataFattura.divisa)])
+            cr, uid, [('name', '=', FatturaElettronicaBody.divisa)])
         if not currency_id:
             raise orm.except_orm(
                 _('Error!'),
                 _('No currency found with code %s'
-                  % xmlDataFattura.divisa)
+                  % FatturaElettronicaBody.divisa)
                 )
         credit_account_id = purchase_journal.default_credit_account_id.id
         invoice_lines = []
-        for line in xmlDataFattura.dettaglioLinee:
+        for line in FatturaElettronicaBody.dettaglioLinee:
             invoice_line_data = self._prepareInvoiceLine(
                 cr, uid,
                 credit_account_id,
@@ -221,13 +221,13 @@ class WizardImportFatturapa(orm.TransientModel):
                                            context)
             for fattura in xmlData.fatturaElettronicaBody:
                 # TODO
-                if xmlData.fatturaElettronicaBody.tipoDocumento in (
+                if fattura.tipoDocumento in (
                     'TD04', 'TD05'
                 ):
                     raise orm.except_orm(
                         _("Error"),
                         _("tipoDocumento %s not handled")
-                        % xmlData.fatturaElettronicaBody.tipoDocumento)
+                        % fattura.tipoDocumento)
                 invoice_id = self.invoiceCreate(
                     cr,
                     uid,
