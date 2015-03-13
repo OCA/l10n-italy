@@ -2,10 +2,10 @@
     :alt: License
 
 
-Italian Localization - FatturaPA - Emission
-===========================================
+Italian Localization - FatturaPA - Reception
+============================================
 
-This module allows you to generate the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm">fatturaPA</a> XML file version 1.1 to be sent to the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm">Exchange System</a>.
+This module allows you to receive and parse the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm">fatturaPA</a> XML file version 1.1 received from the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm">Exchange System</a>.
 
 
 Configuration
@@ -13,11 +13,12 @@ Configuration
 
 See l10n_it_fatturapa
 
-
 Usage
 =====
 
- * Select N invoices and run 'Export FatturaPA' wizard
+ * Go to knowledge -> Documents
+ * Create a Incoming fatturaPA file
+ * Run Import FatturaPA wizard
 
 Credits
 =======
@@ -25,7 +26,6 @@ Credits
 Contributors
 ------------
 
-* Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
 

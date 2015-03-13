@@ -1,40 +1,19 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-Module name
-===========
+Italian Localization - FatturaPA
+================================
 
-This module was written to extend the functionality of ... to support ... and allow you to ...
+Base module to handle FatturaPA data.
+See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
 
-Installation
-============
-
-To install this module, you need to:
-
- * do this ...
 
 Configuration
 =============
 
-To configure this module, you need to:
-
- * go to ...
-
-Usage
-=====
-
-To use this module, you need to:
-
- * go to ...
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
- * ...
+ * Edit the FatturaPA fields of the partners who will send/receive the electronic invoices
+ * Configure payment terms filling the fatturaPA fields related to payment terms and payment methods
+ * Configure FatturaPA data in Accounting Configuration
 
 Credits
 =======
