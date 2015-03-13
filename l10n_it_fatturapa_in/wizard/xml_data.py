@@ -30,28 +30,21 @@ import base64
 class CedentePrestatore():
     _name = 'Cedente Prestatore'
 
-    cedentePrestatore = None
-    idFiscaleIVA = None
-    codiceFiscale = None
-    nomeRappresentanteFiscale = None
-    codEORI = None
-    alboProfessionale = None
-    provinciaAlbo = None
-    numeroIscrizioneAlbo = None
-    dataIscrizioneAlbo = None
-    regimeFiscale = None
-    # <Sede>
-    indirizzo = None
-    cap = None
-    comune = None
-    provinca = None
-    nazione = None
-    # <Contatti>
-    telefono = None
-    fax = None
-    email = None
-
     def __init__(self, cedentePrestatore):
+        self.idFiscaleIVA = None
+        self.codiceFiscale = None
+        self.nomeRappresentanteFiscale = None
+        self.codEORI = None
+        # <Sede>
+        self.indirizzo = None
+        self.cap = None
+        self.comune = None
+        self.provinca = None
+        self.nazione = None
+        # <Contatti>
+        self.telefono = None
+        self.fax = None
+        self.email = None
         self.cedentePrestatore = cedentePrestatore
         self.parseIdFiscaleIva()
         self.parseCodiceFiscale()
@@ -134,13 +127,11 @@ class CedentePrestatore():
 class RappresentanteFiscale():
     _name = 'Rappresentante Fiscale'
 
-    rappresentanteFiscale = None
-    idFiscaleIVA = None
-    codiceFiscale = None
-    nomeRappresentanteFiscale = None
-    codEORI = None
-
     def __init__(self, rappresentanteFiscale):
+
+        self.idFiscaleIVA = None
+        self.codiceFiscale = None
+        self.nomeRappresentanteFiscale = None
         self.rappresentanteFiscale = rappresentanteFiscale
         self.parseIdFiscaleIva()
         self.parseCodiceFiscale()
@@ -186,19 +177,17 @@ class RappresentanteFiscale():
 class CessionarioCommittente():
     _name = 'CessionarioCommittente'
 
-    cessionarioCommittente = None
-    idFiscaleIVA = None
-    codiceFiscale = None
-    nomeCessionarioCommittente = None
-    codEORI = None
-    # <Sede>
-    indirizzo = None
-    cap = None
-    comune = None
-    provinca = None
-    nazione = None
-
     def __init__(self, cessionarioCommittente):
+
+        self.idFiscaleIVA = None
+        self.codiceFiscale = None
+        self.codEORI = None
+        # <Sede>
+        self.indirizzo = None
+        self.cap = None
+        self.comune = None
+        self.provinca = None
+        self.nazione = None
         self.cessionarioCommittente = cessionarioCommittente
         self.parseIdFiscaleIva()
         self.parseCodiceFiscale()
@@ -256,13 +245,11 @@ class CessionarioCommittente():
 class TerzoIntermediarioOSoggettoEmittente():
     _name = 'Terzo Intermediario O Soggetto Emittente'
 
-    terzoIntermediarioOSoggettoEmittente = None
-    idFiscaleIVA = None
-    codiceFiscale = None
-    nomeRappresentanteFiscale = None
-    codEORI = None
-
     def __init__(self, terzoIntermediarioOSoggettoEmittente):
+        self.idFiscaleIVA = None
+        self.codiceFiscale = None
+        self.nomeRappresentanteFiscale = None
+        self.codEORI = None
         self.terzoIntermediarioOSoggettoEmittente = \
             terzoIntermediarioOSoggettoEmittente
         self.parseIdFiscaleIva()
@@ -301,16 +288,6 @@ class TerzoIntermediarioOSoggettoEmittente():
 class DatiCassaPrevidenziale():
     _name = 'Dati Cassa'
 
-    datiCassaPrevidenziale = None
-    tipoCassa = None
-    alCassa = None
-    importoContributoCassa = None
-    imponibileCassa = None
-    aliquotaIVA = None
-    ritenuta = None
-    natura = None
-    riferimentoAmministrazione = None
-
     def __init__(self, datiCassaPrevidenziale):
         self.datiCassaPrevidenziale = datiCassaPrevidenziale
         if self.datiCassaPrevidenziale is not None:
@@ -341,12 +318,10 @@ class DatiCassaPrevidenziale():
 class ScontoMaggiorazione():
     _name = 'Sconto Maggiorazione'
 
-    scontoMaggiorazione = None
-    tipo = None
-    percentuale = None
-    importo = None
-
     def __init__(self, scontoMaggiorazione):
+        self.tipo = None
+        self.percentuale = None
+        self.importo = None
         self.scontoMaggiorazione = scontoMaggiorazione
         if self.scontoMaggiorazione is not None:
             self.tipo = self.scontoMaggiorazione.find(
@@ -362,16 +337,14 @@ class ScontoMaggiorazione():
 class ListaDatiGenerali():
     _name = 'Lista Dati Generali'
 
-    listaDatiGenerali = None
-    riferimentoNumeroLinea = []
-    idDocumento = None
-    data = None
-    numItem = None
-    codiceCommessaConvenzione = None
-    codiceCUP = None
-    codiceCIG = None
-
     def __init__(self, listaDatiGenerali):
+        self.riferimentoNumeroLinea = []
+        self.idDocumento = None
+        self.data = None
+        self.numItem = None
+        self.codiceCommessaConvenzione = None
+        self.codiceCUP = None
+        self.codiceCIG = None
         self.listaDatiGenerali = listaDatiGenerali
         if self.listaDatiGenerali is not None:
             self.riferimentoNumeroLinea.extend(
@@ -401,10 +374,8 @@ class ListaDatiGenerali():
 class DatiSAL():
     _name = 'Dati SAL'
 
-    datiSAL = None
-    riferimentoBase = None
-
     def __init__(self, datiSAL):
+        self.riferimentoBase = None
         self.datiSAL = datiSAL
         if self.datiSAL is not None:
             self.riferimentoBase = self.datiSAL.find(
@@ -414,12 +385,11 @@ class DatiSAL():
 class DatiDDT():
     _name = 'Dati DDT'
 
-    datiDDT = None
-    numeroDDT = None
-    dataDDT = None
-    riferimentoNumeroLinea = []
-
     def __init__(self, datiDDT):
+
+        self.numeroDDT = None
+        self.dataDDT = None
+        self.riferimentoNumeroLinea = []
         self.datiDDT = datiDDT
         if self.datiDDT is not None:
             self.riferimentoNumeroLinea.extend(
@@ -435,32 +405,19 @@ class DatiDDT():
 class DatiTrasporto():
     _name = 'Dati Trasporto'
 
-    datiAnagraficiVettore = None
-    idFiscaleIva = None
-    codiceFiscale = None
-    nomeTrasportatore = None
-    codEORI = None
-    numeroLicenzaGuida = None
-    mezzoTrasporto = None
-    causaleTrasporto = None
-    numeroColli = None
-    descrizione = None
-    unitaMisuraPeso = None
-    pesoLordo = None
-    pesoNetto = None
-    dataOraArrivo = None
-    dataInizioTrasporto = None
-    tipoResa = None
-    indirizzo = None
-    cap = None
-    comune = None
-    provinca = None
-    nazione = None
-    dataOraConsegna = None
-    numeroFatturaPrincipale = None
-    dataFatturaPrincipale = None
-
     def __init__(self, datiTrasporto):
+        self.datiAnagraficiVettore = None
+        self.idFiscaleIva = None
+        self.codiceFiscale = None
+        self.nomeTrasportatore = None
+        self.codEORI = None
+        self.numeroFatturaPrincipale = None
+        self.dataFatturaPrincipale = None
+        self.indirizzo = None
+        self.cap = None
+        self.comune = None
+        self.provinca = None
+        self.nazione = None
         self.datiTrasporto = datiTrasporto
         self.parseIdFiscaleIva()
         self.parseCodiceFiscale()
@@ -559,19 +516,12 @@ class DettaglioLinea():
     class CodiceArticolo():
         _name = 'Codice Articolo'
 
-        codiceTipo = None
-        codiceValore = None
-
         def __init__(self, codiceArticolo):
             self.codiceTipo = codiceArticolo.find('CodiceTipo').text
             self.codiceValore = codiceArticolo.find('CodiceValore').text
 
     class ScontoMaggiorazione():
         _name = 'Sconto Maggiorazione'
-
-        tipo = None
-        percentuale = None
-        importo = None
 
         def __init__(self, scontoMaggiorazione):
             self.tipo = scontoMaggiorazione.find('Tipo').text
@@ -582,75 +532,53 @@ class DettaglioLinea():
                 'Importo') is not None and scontoMaggiorazione.find(
                 'Importo').text or None
 
-    numeroLinea = None
-    tipoCessionePrestazione = None
-    codiceArticolo = []
-    descrizione = []
-    quantita = None
-    unitaMisura = None
-    dataInizioPeriodo = None
-    dataFinePeriodo = None
-    prezzoUnitario = None
-    prezzoTotale = None
-    aliquotaIVA = None
-    ritenuta = None
-    natura = None
-    riferimentoAmministrazione = None
     # TODO: AltriDatiGestionali
 
     def __init__(self, line):
-            self.numeroLinea = line.find('NumeroLinea').text
-            self.tipoCessionePrestazione = line.find(
-                'TipoCessionePrestazione') is not None and line.find(
-                'TipoCessionePrestazione').text or None
-            if line.find('CodiceArticolo') is not None:
-                for ca in line.findall('CodiceArticolo'):
-                    self.codiceArticolo.append(
-                        self.CodiceArticolo(ca)
-                    )
-            self.descrizione = line.find('Descrizione').text
-            self.quantita = line.find(
-                'Quantita') is not None and line.find(
-                'Quantita').text or None
-            self.unitaMisura = line.find(
-                'UnitaMisura') is not None and line.find(
-                'UnitaMisura').text or None
-            self.dataInizioPeriodo = line.find(
-                'DataInizioPeriodo') is not None and line.find(
-                'DataInizioPeriodo').text or None
-            self.dataFinePeriodo = line.find(
-                'DataFinePeriodo') is not None and line.find(
-                'DataFinePeriodo').text or None
-            self.prezzoUnitario = line.find('PrezzoUnitario').text
-            if line.find('ScontoMaggiorazione') is not None:
-                for scm in line.findall('ScontoMaggiorazione'):
-                    self.codiceArticolo.append(
-                        self.ScontoMaggiorazione(scm)
-                    )
-            self.prezzoTotale = line.find('PrezzoTotale').text
-            self.aliquotaIVA = line.find('AliquotaIVA').text
-            self.ritenuta = line.find(
-                'Ritenuta') is not None and line.find(
-                'Ritenuta').text or None
-            self.natura = line.find(
-                'Natura') is not None and line.find(
-                'Natura').text or None
-            self.riferimentoAmministrazione = line.find(
-                'RiferimentoAmministrazione') is not None and line.find(
-                'RiferimentoAmministrazione').text or None
+        self.codiceArticolo = []
+        self.numeroLinea = line.find('NumeroLinea').text
+        self.tipoCessionePrestazione = line.find(
+            'TipoCessionePrestazione') is not None and line.find(
+            'TipoCessionePrestazione').text or None
+        if line.find('CodiceArticolo') is not None:
+            for ca in line.findall('CodiceArticolo'):
+                self.codiceArticolo.append(
+                    self.CodiceArticolo(ca)
+                )
+        self.descrizione = line.find('Descrizione').text
+        self.quantita = line.find(
+            'Quantita') is not None and line.find(
+            'Quantita').text or None
+        self.unitaMisura = line.find(
+            'UnitaMisura') is not None and line.find(
+            'UnitaMisura').text or None
+        self.dataInizioPeriodo = line.find(
+            'DataInizioPeriodo') is not None and line.find(
+            'DataInizioPeriodo').text or None
+        self.dataFinePeriodo = line.find(
+            'DataFinePeriodo') is not None and line.find(
+            'DataFinePeriodo').text or None
+        self.prezzoUnitario = line.find('PrezzoUnitario').text
+        if line.find('ScontoMaggiorazione') is not None:
+            for scm in line.findall('ScontoMaggiorazione'):
+                self.codiceArticolo.append(
+                    self.ScontoMaggiorazione(scm)
+                )
+        self.prezzoTotale = line.find('PrezzoTotale').text
+        self.aliquotaIVA = line.find('AliquotaIVA').text
+        self.ritenuta = line.find(
+            'Ritenuta') is not None and line.find(
+            'Ritenuta').text or None
+        self.natura = line.find(
+            'Natura') is not None and line.find(
+            'Natura').text or None
+        self.riferimentoAmministrazione = line.find(
+            'RiferimentoAmministrazione') is not None and line.find(
+            'RiferimentoAmministrazione').text or None
 
 
 class DatiRiepilogo():
     _name = 'Dati Riepilogo'
-
-    aliquotaIVA = None
-    natura = None
-    speseAccessorie = None
-    arrotondamento = None
-    imponibileImporto = None
-    imposta = None
-    esigibilitaIVA = None
-    riferimentoNormativo = None
 
     def __init__(self, datoRiepilogo):
         self.aliquotaIVA = datoRiepilogo.find('AliquotaIVA').text
@@ -676,34 +604,8 @@ class DatiRiepilogo():
 class DatiPagamento():
     _name = 'Dati Pagamento'
 
-    datiPagamento = None
-    condizioniPagamento = None
-    dettaglioPagamento = []
-
     class DettaglioPagamento():
         _name = 'Dettaglio Pagamento'
-
-        beneficiario = None
-        modalitaPagamento = None
-        dataRiferimentoTerminiPagamento = None
-        giorniTerminiPagamento = None
-        dataScadenzaPagamento = None
-        importoPagamento = None
-        codUfficioPostale = None
-        cognomeQuietanzante = None
-        nomeQuietanzante = None
-        cFQuietanzante = None
-        titoloQuietanzante = None
-        istitutoFinanziario = None
-        iban = None
-        abi = None
-        cab = None
-        bic = None
-        scontoPagamentoAnticipato = None
-        dataLimitePagamentoAnticipato = None
-        penalitaPagamentiRitardati = None
-        dataDecorrenzaPenale = None
-        codicePagamento = None
 
         def __init__(self, dettaglioPagamento):
             self.beneficiario = dettaglioPagamento.find(
@@ -790,6 +692,7 @@ class DatiPagamento():
                 'CodicePagamento').text or None
 
     def __init__(self, datiPagamento):
+        self.dettaglioPagamento = []
         self.datiPagamento = datiPagamento
         self.condizioniPagamento = self.datiPagamento.find(
             'CondizioniPagamento').text
@@ -803,14 +706,12 @@ class DatiPagamento():
 class Allegati():
     _name = 'Dati Allegati'
 
-    allegato = None
-    nomeAttachment = None
-    algoritmoCompressione = None
-    formatoAttachment = None
-    descrizioneAttachment = None
-    attachment = None
-
     def __init__(self, allegato):
+        self.nomeAttachment = None
+        self.algoritmoCompressione = None
+        self.formatoAttachment = None
+        self.descrizioneAttachment = None
+        self.attachment = None
         self.allegato = allegato
         if self.allegato is not None:
             self.nomeAttachment = self.allegato.find(
@@ -836,78 +737,75 @@ class Allegati():
 class FatturaElettronicaBody():
     _name = 'Fattura Elettronica Body'
 
-    fatturaElettronicaBody = None
-    # <DatiGeneraliDocumento>
-    datiGeneraliDocumento = None
-    tipoDocumento = None
-    divisa = None
-    data = None
-    numero = None
-
-    # datiRitenuta
-    datiRitenuta = None
-    tipoRitenuta = None
-    importoRitenuta = None
-    aliquotaRitenuta = None
-    causalePagamento = None
-
-    # datiBollo
-    datiBollo = None
-    bolloVirtuale = None
-    importoBollo = None
-
-    # datiCassaPrevidenza
-    datiCassaPrevidenzialeList = []
-    # contoMaggiorazione
-    scontoMaggiorazioneList = []
-
-    importoTotaleDocumento = None
-    arrotondamento = None
-    causaleList = []
-    art73 = False
-    # DatiOrdineAcquisto
-    datiOrdineAcquisto = None
-    datiOrdineAcquistoList = []
-    # DatiContratto
-    datiContratto = None
-    datiContrattoList = []
-    # DatiConvenzione
-    datiConvenzione = None
-    datiConvenzioneList = []
-    # DatiRicezione
-    datiRicezione = None
-    datiRicezioneList = []
-    # DatiFattureCollegate
-    datiFattureCollegate = None
-    datiFattureCollegateList = []
-    # DatiSal
-    datiSAL = None
-    datiSALList = []
-    # DatiDdt
-    datiDDT = None
-    datiDDTList = []
-    # DatiTrasporto
-    datiTrasporto = None
-
-    # <DatiBeniServizi>/<DettaglioLinee>
-    dettaglioLinee = []
-
-    # Dati Riepilogo
-    datiRiepilogo = []
-
-    # Dati Veicoli
-    datiVeicoliData = None
-    datiVeicoliTotalePercorso = None
-
-    # Dati Pagamento
-    datiPagamento = None
-    datiPagamentoList = []
-
-    # Allegati
-    allegati = None
-    allegatiList = []
-
     def __init__(self, fatturaElettronicaBody):
+
+        # datiRitenuta
+        self.datiRitenuta = None
+        self.tipoRitenuta = None
+        self.importoRitenuta = None
+        self.aliquotaRitenuta = None
+        self.causalePagamento = None
+
+        # datiBollo
+        self.datiBollo = None
+        self.bolloVirtuale = None
+        self.importoBollo = None
+
+        # datiCassaPrevidenza
+        self.datiCassaPrevidenzialeList = []
+        # contoMaggiorazione
+        self.scontoMaggiorazioneList = []
+
+        self.importoTotaleDocumento = None
+        self.arrotondamento = None
+        self.causaleList = []
+        self.art73 = False
+        # DatiOrdineAcquisto
+        self.datiOrdineAcquisto = None
+        self.datiOrdineAcquistoList = []
+        # DatiContratto
+        self.datiContratto = None
+        self.datiContrattoList = []
+        # DatiConvenzione
+        self.datiConvenzione = None
+        self.datiConvenzioneList = []
+        # DatiRicezione
+        self.datiRicezione = None
+        self.datiRicezioneList = []
+        # DatiFattureCollegate
+        self.datiFattureCollegate = None
+        self.datiFattureCollegateList = []
+        # DatiSal
+        self.datiSAL = None
+        self.datiSALList = []
+        # DatiDdt
+        self.datiDDT = None
+        self.datiDDTList = []
+        # DatiTrasporto
+        self.datiTrasporto = None
+
+        # <DatiBeniServizi>/<DettaglioLinee>
+        self.dettaglioLinee = []
+
+        # Dati Riepilogo
+        self.datiRiepilogo = []
+
+        # Dati Veicoli
+        self.datiVeicoliData = None
+        self.datiVeicoliTotalePercorso = None
+
+        # Dati Pagamento
+        self.datiPagamento = None
+        self.datiPagamentoList = []
+
+        # Allegati
+        self.allegati = None
+        self.allegatiList = []
+        # <DatiGeneraliDocumento>
+        self.tipoDocumento = None
+        self.divisa = None
+        self.data = None
+        self.numero = None
         self.fatturaElettronicaBody = fatturaElettronicaBody
         # Dati Fatturazione
         self.datiGeneraliDocumento = self.fatturaElettronicaBody.find(
