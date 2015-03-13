@@ -289,6 +289,7 @@ class WizardExportFatturapa(orm.TransientModel):
             raise orm.except_orm(
                 _('Error!'), _('Country not set.'))
         # FIXME: manage address number in <NumeroCivico>
+        # see https://github.com/OCA/partner-contact/pull/96
         NumeroCivico = Sede.find('NumeroCivico')
         Sede.remove(NumeroCivico)
         Sede.find('Indirizzo').text = company.street
