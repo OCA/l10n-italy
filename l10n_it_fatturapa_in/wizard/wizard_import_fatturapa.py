@@ -150,7 +150,6 @@ class WizardImportFatturapa(orm.TransientModel):
                                                 context=context
                                                 )
         # currency
-        # TODO verify if divisa is equal to the code name used in odoo
         currency_id = currency_model.search(
             cr, uid, [('name', '=', xmlDataFattura.divisa)])
         if not currency_id:
