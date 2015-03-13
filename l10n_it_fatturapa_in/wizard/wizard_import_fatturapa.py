@@ -170,9 +170,9 @@ class WizardImportFatturapa(orm.TransientModel):
                                                         invoice_line_data,
                                                         context=context)
             invoice_lines.append(invoice_line_id)
-
         invoice_data = {
             'name': 'Fattura ' + partner.name,
+            'date_invoice': FatturaElettronicaBody.data,
             # 'reference': xmlData.datiOrdineAcquisto,
             'account_id': pay_acc_id,
             'type': 'in_invoice',
