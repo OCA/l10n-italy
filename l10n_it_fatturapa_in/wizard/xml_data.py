@@ -1083,7 +1083,7 @@ class FatturaElettronicaBody():
             'Arrotondamento') is not None and self.datiGeneraliDocumento.find(
             'Arrotondamento').text or None
 
-        for dgcausale in self.datiGeneraliDocumento.findall('causale'):
+        for dgcausale in self.datiGeneraliDocumento.findall('Causale'):
             self.causaleList.append(dgcausale.text)
 
         self.art73 = self.datiGeneraliDocumento.find(

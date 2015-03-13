@@ -170,9 +170,13 @@ class WizardImportFatturapa(orm.TransientModel):
                                                         invoice_line_data,
                                                         context=context)
             invoice_lines.append(invoice_line_id)
+        comment = ''
+        for causale in FatturaElettronicaBody.causaleList:
+            comment += causale + '\n'
         invoice_data = {
             'name': 'Fattura ' + partner.name,
             'date_invoice': FatturaElettronicaBody.data,
+            'supplier_invoice_number': FatturaElettronicaBody.numero,
             # 'reference': xmlData.datiOrdineAcquisto,
             'account_id': pay_acc_id,
             'type': 'in_invoice',
@@ -185,6 +189,7 @@ class WizardImportFatturapa(orm.TransientModel):
             'payment_term': False,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
+            'comment': comment,
         }
         invoice_id = invoice_model.create(cr, uid,
                                           invoice_data,
