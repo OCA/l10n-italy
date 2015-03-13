@@ -232,7 +232,7 @@ class WizardImportFatturapa(orm.TransientModel):
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",
-            'view_mode': 'tree, form',
+            'view_mode': 'tree,form',
             'res_model': 'account.invoice',
             'type': 'ir.actions.act_window',
             'domain': [('id', 'in', new_invoices)],
