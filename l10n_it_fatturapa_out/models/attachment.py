@@ -20,12 +20,6 @@
 
 from openerp.osv import fields, orm
 
-AVAILABLE_STATES = [
-    ('draft', 'Draft'),
-    ('sent', 'Sent'),
-    ('rejected', 'Rejected'),
-    ('accepted', 'Accepted')]
-
 
 class FatturaPAAttachment(orm.Model):
     _name = "fatturapa.attachment.out"
@@ -36,9 +30,7 @@ class FatturaPAAttachment(orm.Model):
     _columns = {
         'ir_attachment_id': fields.many2one(
             'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
-        'state': fields.selection(AVAILABLE_STATES, 'State'),
-    }
-
-    _defaults = {
-        'state': 'draft',
+        'out_invoice_ids': fields.one2many(
+            'account.invoice', 'fatturapa_attachment_out_id',
+            string="Out Invoices", readonly=True),
     }

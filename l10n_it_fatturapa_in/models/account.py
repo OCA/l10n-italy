@@ -28,8 +28,4 @@ class account_invoice(orm.Model):
     _columns = {
         'fatturapa_attachment_in_id': fields.many2one(
             'fatturapa.attachment.in', 'FatturaPA Import File'),
-        'fatturapa_attachment_state': fields.related(
-            'fatturapa_attachment_in_id', 'state', type='selection', store=True,
-            selection=attachment.AVAILABLE_STATES, readonly=True, select=True,
-            string='FatturaPA Import State'),
     }

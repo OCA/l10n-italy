@@ -20,7 +20,6 @@
 ##############################################################################
 
 from openerp.osv import orm
-from openerp import addons
 from openerp.tools.translate import _
 import logging
 _logger = logging.getLogger(__name__)
@@ -152,9 +151,8 @@ class WizardImportFatturapa(orm.TransientModel):
                                                 )
         # currency
         # TODO verify if divisa is equal to the code name used in odoo
-        currency_id = currency_model.search(cr, uid,
-                                            [('name', '=', xmlDataFattura.divisa)]
-                                            )
+        currency_id = currency_model.search(
+            cr, uid, [('name', '=', xmlDataFattura.divisa)])
         if not currency_id:
             raise orm.except_orm(
                 _('Error!'),
@@ -206,36 +204,31 @@ class WizardImportFatturapa(orm.TransientModel):
     def importFatturaPA(self, cr, uid, ids, context=None):
         if not context:
             context = {}
-
         fatturapa_attachment_obj = self.pool['fatturapa.attachment.in']
         fatturapa_attachment_ids = context.get('active_ids', False)
         new_invoices = []
         for fatturapa_attachment in fatturapa_attachment_obj.browse(
                 cr, uid, fatturapa_attachment_ids, context=context):
-            if fatturapa_attachment.state != 'processed':
-                xmlData = XmlData(
-                    fatturapa_attachment.datas.decode('base64')
-                )
-                xmlData.parseXml()
-                fatturapa_attachment_obj.write(
+            if fatturapa_attachment.in_invoice_ids:
+                raise orm.except_orm(
+                    _("Error"), _("File is linked to invoices yet"))
+            xmlData = XmlData(
+                fatturapa_attachment.datas.decode('base64')
+            )
+            xmlData.parseXml()
+            partner_id = self.getPartnerId(cr,
+                                           uid,
+                                           xmlData.cedentePrestatore,
+                                           context)
+            for fattura in xmlData.fatturaElettronicaBody:
+                invoice_id = self.invoiceCreate(
                     cr,
                     uid,
-                    fatturapa_attachment.id,
-                    {'state': 'processed'}
-                    )
-                partner_id = self.getPartnerId(cr,
-                                               uid,
-                                               xmlData.cedentePrestatore,
-                                               context)
-                for fattura in xmlData.fatturaElettronicaBody:
-                    invoice_id = self.invoiceCreate(
-                        cr,
-                        uid,
-                        fatturapa_attachment,
-                        fattura,
-                        partner_id,
-                        context)
-                    new_invoices.append(invoice_id)
+                    fatturapa_attachment,
+                    fattura,
+                    partner_id,
+                    context)
+                new_invoices.append(invoice_id)
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",

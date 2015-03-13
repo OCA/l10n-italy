@@ -7,9 +7,6 @@
 			<field name="model">fatturapa.attachment.in</field>
 			<field name="arch" type="xml">
                 <form string="Import FatturaPA" version="7.0">
-					<header>
-                    	<field name="state" widget="statusbar" statusbar_visible="draft,processed,not_processed,error" statusbar_colors='{"accepted":"blue"}'/>
-                	</header>
                         <div>
                             <field name="name"/>
                             <field name="datas_fname"/>
@@ -30,7 +27,6 @@
 				<tree string="Xml Attachment">
 					<field name="name"/>
 					<field name="create_date" />
-					<field name="state"/>
 				</tree>
 			</field>
 		</record>    
@@ -116,7 +112,6 @@
                             -->
 							<group string="Results">
 								<field name="fatturapa_attachment_in_id"/>
-								<field name="fatturapa_attachment_state"/>
 							</group>
 						</group>
 					</page>

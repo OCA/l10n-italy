@@ -18,7 +18,6 @@
 #
 ##############################################################################
 
-from . import attachment
 from openerp.osv import fields, orm
 
 
@@ -29,8 +28,4 @@ class account_invoice(orm.Model):
         'fatturapa_attachment_out_id': fields.many2one(
             'fatturapa.attachment.out', 'FatturaPA Export File',
             readonly=True),
-        'fatturapa_attachment_state': fields.related(
-            'fatturapa_attachment_out_id', 'state', type='selection',
-            store=True, selection=attachment.AVAILABLE_STATES, readonly=True,
-            select=True, string='FatturaPA Export State'),
     }

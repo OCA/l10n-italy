@@ -12,7 +12,6 @@
 						<group>
 							<group string="Results">
 								<field name="fatturapa_attachment_out_id"/>
-								<field name="fatturapa_attachment_state"/>
 							</group>
 						</group>
 					</page>
