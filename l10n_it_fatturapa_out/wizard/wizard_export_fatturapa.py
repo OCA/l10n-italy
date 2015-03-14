@@ -43,7 +43,8 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DettaglioLineeType,
     DatiBeniServiziType,
     DatiRiepilogoType,
-    DatiGeneraliDocumentoType
+    DatiGeneraliDocumentoType,
+    DatiDocumentiCorrelatiType
     )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -527,17 +528,25 @@ class WizardExportFatturapa(orm.TransientModel):
         for line in invoice.invoice_line:
             for related_document in line.related_documents:
                 doc_type = RELATED_DOCUMENT_TYPES[related_document.type]
+                documento = DatiDocumentiCorrelatiType()
+                if related_document.name:
+                    documento.IdDocumento = related_document.name
+                if related_document.lineRef:
+                    # TODO handle link between document and invoice line
+                    documento.RiferimentoNumeroLinea = related_document.lineRef
+                if related_document.date:
+                    documento.Data = related_document.date
+                if related_document.numitem:
+                    documento.NumItem = related_document.numitem
+                if related_document.code:
+                    documento.CodiceCommessaConvenzione = related_document.code
+                if related_document.cup:
+                    documento.CodiceCUP = related_document.cup
+                if related_document.cig:
+                    documento.CodiceCIG = related_document.cig
                 eval(
                     "body.DatiGenerali." +
-                    doc_type + " = DatiDocumentiCorrelatiType("
-                    "IdDocumento=related_document.name,"
-                    "RiferimentoNumeroLinea=related_document.lineRef,"
-                    "Data=related_document.date,"
-                    "NumItem=related_document.numitem,"
-                    "CodiceCommessaConvenzione=related_document.code,"
-                    "CodiceCUP=related_document.cup,"
-                    "CodiceCIG=related_document.cig,"
-                    "NumItem=related_document.numitem)")
+                    doc_type + ".append(documento)")
         return True
 
     def setDatiTrasporto(self, cr, uid, invoice, body, context=None):
