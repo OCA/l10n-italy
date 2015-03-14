@@ -20,6 +20,14 @@
 
 from openerp.osv import fields, orm
 
+RELATED_DOCUMENT_TYPES = {
+    'order': 'DatiOrdineAcquisto',
+    'contract': 'DatiContratto',
+    'agreement': 'DatiConvenzione',
+    'reception': 'DatiRicezione',
+    'invoice': 'DatiFattureCollegate',
+}
+
 
 class fatturapa_document_type(orm.Model):
     _name = "fatturapa.document_type"
