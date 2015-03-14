@@ -158,6 +158,8 @@ class WizardExportFatturapa(orm.TransientModel):
     def _setCodiceDestinatario(self, cr, uid, partner, context=None):
         if context is None:
             context = {}
+        #TODO check iPa code is required only for P.A. company
+        # but xml invoice can be make also for private company
         code = partner.fatturapa_code
         if not code:
             raise orm.except_orm(
