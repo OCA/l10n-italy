@@ -25,6 +25,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 from .xml_data import XmlData
+from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_1
 
 
 class WizardImportFatturapa(orm.TransientModel):
@@ -218,6 +219,12 @@ class WizardImportFatturapa(orm.TransientModel):
                 fatturapa_attachment.datas.decode('base64')
             )
             xmlData.parseXml()
+
+            # test
+            fatt = fatturapa_v_1_1.CreateFromDocument(fatturapa_attachment.datas.decode('base64'))
+            print fatt.FatturaElettronicaBody[0].DatiGenerali.DatiGeneraliDocumento.TipoDocumento
+            # end test
+
             partner_id = self.getPartnerId(cr,
                                            uid,
                                            xmlData.cedentePrestatore,
