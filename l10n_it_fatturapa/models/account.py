@@ -98,14 +98,18 @@ class fatturapa_related_document_type(orm.Model):
         'invoice_line_id': fields.many2one('account.invoice.line',
                                            'Related Invoice Line',
                                            ondelete='cascade',
-                                           select=True,
-                                           required=True),
+                                           select=True),
+        'invoice_id': fields.many2one('account.invoice',
+                                           'Related Invoice',
+                                           ondelete='cascade',
+                                           select=True),
         'date': fields.date('Date'),
         'numitem': fields.integer('NumItem'),
         'code': fields.char('Order Agreement Code', size=64),
         'cig': fields.char('CIG Code', size=64),
         'cup': fields.char('CUP Code', size=64),
     }
+
 
     def create(self, cr, uid, vals, context=None):
         if not context:
