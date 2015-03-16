@@ -18,10 +18,10 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 
 
-class res_company(orm.Model):
+class res_company(models.Model):
     _inherit = 'res.company'
     _columns = {
         'fatturapa_fiscal_position_id': fields.many2one(
@@ -70,7 +70,7 @@ class res_company(orm.Model):
     }
 
 
-class account_config_settings(orm.TransientModel):
+class account_config_settings(models.TransientModel):
     _inherit = 'account.config.settings'
     _columns = {
         'fatturapa_fiscal_position_id': fields.related(
