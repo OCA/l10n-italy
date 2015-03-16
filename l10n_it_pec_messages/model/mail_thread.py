@@ -27,6 +27,7 @@ import email
 from openerp import SUPERUSER_ID
 from openerp.addons.mail.mail_message import decode
 from openerp.osv import orm
+from openerp import tools
 from openerp.tools.translate import _
 import xml.etree.ElementTree as ET
 
@@ -39,10 +40,9 @@ class MailThread(orm.Model):
             context = {}
         server_pool = self.pool.get('fetchmail.server')
         if 'fetchmail_server_id' in context:
-            id = context.get('fetchmail_server_id')
-            server = server_pool.read(cr, SUPERUSER_ID, [id], ['pec'])
+            srv_id = context.get('fetchmail_server_id')
+            server = server_pool.read(cr, SUPERUSER_ID, [srv_id], ['pec'])
             return server[0]['pec']
-        return False
 
     def parse_daticert(self, cr, uid, daticert, context=None):
         msg_dict = {}
@@ -64,9 +64,11 @@ class MailThread(orm.Model):
                     if child2.tag == 'identificativo':
                         msg_dict['pec_msg_id'] = child2.text
                     if child2.tag == 'consegna':
-                        recipient_id = self._FindOrCreatePartnersPec(
+                        recipient_id = self._FindPartnersPec(
                             cr, uid, message, child2.text, context=context)
-                        msg_dict['recipient_id'] = recipient_id
+                        if recipient_id:
+                            msg_dict['recipient_id'] = recipient_id
+                        msg_dict['recipient_addr'] = child2.text
         return msg_dict
 
     def get_pec_attachments(self, cr, uid, message, context=None):
@@ -109,6 +111,66 @@ class MailThread(orm.Model):
                     smime = attachment
         return (postacert, daticert, smime)
 
+    def _message_extract_payload_receipt(self, message,
+                                         save_original=False):
+        """Extract body as HTML and attachments from the mail message"""
+        attachments = []
+        body = u''
+        if save_original:
+            attachments.append(('original_email.eml', message.as_string()))
+        if not message.is_multipart() or \
+                'text/' in message.get('content-type', ''):
+            encoding = message.get_content_charset()
+            body = message.get_payload(decode=True)
+            body = tools.ustr(body, encoding, errors='replace')
+            if message.get_content_type() == 'text/plain':
+                # text/plain -> <pre/>
+                body = tools.append_content_to_html(u'', body, preserve=True)
+        else:
+            alternative = False
+            for part in message.walk():
+                if part.get_content_type() == 'multipart/alternative':
+                    alternative = True
+                if part.get_content_maintype() == 'multipart':
+                    continue  # skip container
+                filename = part.get_param('filename',
+                                          None,
+                                          'content-disposition')
+                if not filename:
+                    filename = part.get_param('name', None)
+                if filename:
+                    if isinstance(filename, tuple):
+                        # RFC2231
+                        filename = email.utils.collapse_rfc2231_value(
+                            filename).strip()
+                    else:
+                        filename = decode(filename)
+                encoding = part.get_content_charset()  # None if attachment
+                # 1) Explicit Attachments -> attachments
+                if filename or part.get('content-disposition', '')\
+                        .strip().startswith('attachment'):
+                    attachments.append((filename or 'attachment',
+                                        part.get_payload(decode=True))
+                                       )
+                    continue
+                # 2) text/plain -> <pre/>
+                if part.get_content_type() == 'text/plain' and \
+                        (not alternative or not body):
+                    body = tools.append_content_to_html(
+                        body,
+                        tools.ustr(part.get_payload(decode=True),
+                                   encoding, errors='replace'),
+                        preserve=True)
+                # 3) text/html -> raw
+                elif part.get_content_type() == 'text/html':
+                    continue
+                # 4) Anything else -> attachment
+                else:
+                    attachments.append((filename or 'attachment',
+                                        part.get_payload(decode=True))
+                                       )
+        return body, attachments
+
     def message_parse(
         self, cr, uid, message, save_original=False, context=None
     ):
@@ -143,6 +205,11 @@ class MailThread(orm.Model):
             msg_dict = super(MailThread, self).message_parse(
                 cr, uid, message, save_original=True,
                 context=context)
+            if daticert_dict.get('pec_type') == 'avvenuta-consegna':
+                msg_dict['body'], attachs = \
+                    self._message_extract_payload_receipt(
+                    message,
+                    save_original=save_original)
         msg_dict.update(daticert_dict)
         msg_ids = []
         if (
@@ -162,9 +229,24 @@ class MailThread(orm.Model):
                 # I'm going to set this message as notification of the original
                 # message and remove the message_id of this message
                 # (it would be duplicated)
-                context['main_message_id'] = msg_ids[0]
-                context['pec_type'] = daticert_dict.get('pec_type')
-            del msg_dict['message_id']
+                msg_dict['pec_msg_parent_id'] = msg_ids[0]
+                domain = [
+                    ('pec_msg_id', '=', daticert_dict['pec_msg_id']),
+                    ('pec_type', '=', daticert_dict.get('pec_type'))
+                ]
+                if daticert_dict.get('recipient_addr'):
+                    domain.append(('recipient_addr',
+                                   '=',
+                                   daticert_dict.get('recipient_addr'))
+                                  )
+                chk_msgids = message_pool.search(
+                    cr, uid,
+                    domain,
+                    context=context)
+                if not chk_msgids:
+                    context['main_message_id'] = msg_ids[0]
+                    context['pec_type'] = daticert_dict.get('pec_type')
+                    del msg_dict['message_id']
         #if message transport resend original mail with
         #transport error , marks in original message with
         #error, and after the server not save the original message
@@ -188,9 +270,10 @@ class MailThread(orm.Model):
                         'error': True,
                     }, context=context)
 
-        author_id = self._FindOrCreatePartnersPec(
+        author_id = self._FindPartnersPec(
             cr, uid, message, daticert_dict.get('email_from'), context=context)
-        msg_dict['author_id'] = author_id
+        if author_id:
+            msg_dict['author_id'] = author_id
         msg_dict['server_id'] = context.get('fetchmail_server_id')
 
         return msg_dict

@@ -24,40 +24,9 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+import logging
 
-
-class PecNotifications(orm.Model):
-    _name = "pec.notifications"
-    _order = 'name'
-    _columns = {
-        'parent_id': fields.many2one(
-            'mail.message', 'Main messages', select=True,
-            ondelete='set null', help="Related Message."),
-        'name': fields.many2one(
-            'mail.message', 'Notification Message', select=True,
-            ondelete='set null', help="Notification Message."),
-        'recipient': fields.related(
-            'name', 'recipient_id',
-            type='many2one',
-            relation='res.partner',
-            string="Recipient", readonly=True,
-        ),
-        'recipient_addr': fields.related(
-            'name', 'recipient_id', 'pec_mail',
-            type='char',
-            string="Recipient Address", readonly=True,
-        ),
-        'type': fields.related(
-            'name', 'pec_type',
-            type='char',
-            string="Notice Type", readonly=True,
-        ),
-        'error': fields.related(
-            'name', 'err_type',
-            type='char',
-            string="Error", readonly=True,
-        ),
-    }
+_logger = logging.getLogger(__name__)
 
 
 class MailMessage(orm.Model):
@@ -68,11 +37,11 @@ class MailMessage(orm.Model):
         res = {}
         if not context:
             context = {}
-        for id in self.browse(cr, uid, ids, context=context):
-            res[id.id] = False
-            if id.server_id:
-                if id.server_id.out_server_id:
-                    res[id.id] = id.server_id.out_server_id[0].id
+        for msg in self.browse(cr, uid, ids, context=context):
+            res[msg.id] = False
+            if msg.server_id:
+                if msg.server_id.out_server_id:
+                    res[msg.id] = msg.server_id.out_server_id[0].id
         return res
 
     _columns = {
@@ -115,19 +84,24 @@ class MailMessage(orm.Model):
 
         'recipient_id': fields.many2one(
             'res.partner', 'Recipient', readonly=True),
+        'recipient_addr': fields.char(
+            'Recipient Address', size=256, readonly=True),
 
+        'pec_msg_parent_id': fields.many2one(
+            'mail.message', 'Parent Message', readonly=True),
+        'pec_notifications_ids': fields.one2many(
+            'mail.message', 'pec_msg_parent_id',
+            'Related Notifications',  readonly=True),
+        'message_ok': fields.boolean('Message OK'),
+        # TODO
+        # delete delete follow fields when
+        # new implementations are tested
         'reception_message_id': fields.many2one(
             'mail.message', 'Reception Message', readonly=True),
 
         'no_reception_message_id': fields.many2one(
             'mail.message', 'No Reception Message', readonly=True),
 
-        'pec_notifications_ids': fields.one2many(
-            'pec.notifications', 'parent_id',
-            'Related Notifications',  readonly=True),
-        # TODO
-        # delete delete follow fields when
-        # new implementations are tested
         'inprogress_message_id': fields.many2one(
             'mail.message', 'Message In Progress', readonly=True),
 
@@ -169,56 +143,64 @@ class MailMessage(orm.Model):
     }
 
     def CheckStatus(self, cr, uid, ids, context=None):
-        notif_pool = self.pool['pec.notifications']
+        mail_mail_pool = self.pool['mail.mail']
         if context is None:
             context = {}
         if not hasattr(ids, '__iter__'):
             ids = [ids]
         error_lst = []
-        noerror_lst = ids
+        receipt_list = []
+        completed = True
+        res = {}
         if ids:
             for message in self.browse(cr, uid, ids, context=context):
-                if message.reception_message_id is False:
+                mail_sent_ids = mail_mail_pool.search(
+                    cr,
+                    uid,
+                    [('mail_message_id', '=', message.id)],
+                    context=context
+                )
+                if not mail_sent_ids:
+                    _logger.exception(
+                        'No sent mail for message %s \
+                        from %s server %s.', message.id)
+                    error_lst.append(message.id)
+                elif len(mail_sent_ids) > 1:
+                    _logger.exception(
+                        'Too many sent mails for message %s \
+                        from %s server %s.', message.id)
                     error_lst.append(message.id)
                 else:
-                    for partner in message.partner_ids:
-                        if message.id not in error_lst:
-                            existid = notif_pool.search(
-                                cr, uid,
-                                [
-                                    ('parent_id', '=', message.id),
-                                    ('recipient', '=', partner.id)
-                                ],
-                                context=context
-                            )
-                            if not existid:
-                                error_lst.append(message.id)
+                    sent_mail = mail_mail_pool.browse(
+                        cr,
+                        uid,
+                        mail_sent_ids[0],
+                        context=context)
+                    receipt_list = sent_mail.email_to.split(',')
+                    res = {receipt: False for receipt in receipt_list}
+                    res['accettazione'] = False
+                    for notification in message.pec_notifications_ids:
+                        if notification.err_type != 'nessuno':
+                            error_lst.extend([message.id, notification.id])
+                        else:
+                            if notification.pec_type == 'accettazione':
+                                res['accettazione'] = True
+                            elif notification.pec_type == 'avvenuta-consegna':
+                                if notification.recipient_addr in res:
+                                    res[notification.recipient_addr] = True
                             else:
-                                errors = notif_pool.search(
-                                    cr, uid,
-                                    [
-                                        ('id', 'in', existid),
-                                        ('error', '!=', 'nessuno')
-                                    ],
-                                    context=context
-                                )
-                                if errors:
-                                    error_lst.append(message.id)
-                                deliveries = notif_pool.search(
-                                    cr, uid,
-                                    [
-                                        ('id', 'in', existid),
-                                        ('type', '=', 'avvenuta-consegna')
-                                    ],
-                                    context=context
-                                )
-                                if not deliveries:
-                                    error_lst.append(message.id)
+                                pass
+                    for value in res.itervalues():
+                        completed = completed and value
+                    if completed:
+                        self.write(cr,
+                                   uid,
+                                   message.id,
+                                   {'message_ok': completed},
+                                   context=context
+                                   )
         if error_lst:
             self.write(cr, uid, error_lst, {'error': True}, context=context)
-            noerror_lst = [item for item in ids if item not in error_lst]
-        if noerror_lst:
-            self.write(cr, uid, noerror_lst, {'error': False}, context=context)
         return True
 
     def _search(
