@@ -51,7 +51,6 @@ class ResPartner(orm.Model):
         if context is None:
             context = {}
         message_pool = self.pool['mail.message']
-        notif_pool = self.pool['pec.notifications']
         msg_id = super(ResPartner, self).message_post(
             cr, uid, thread_id, body=body, subject=subject, type=type,
             subtype=subtype, parent_id=parent_id, attachments=attachments,
@@ -60,31 +59,8 @@ class ResPartner(orm.Model):
             context.get('main_message_id') and
             context.get('pec_type')
         ):
-            if (
-                context['pec_type'] == 'accettazione'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'reception_message_id': msg_id,
-                    }, context=context)
-            elif (
-                context['pec_type'] == 'non-accettazione'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'no_reception_message_id': msg_id,
-                    }, context=context)
-            else:
-                notif_pool.create(
-                    cr, uid,
-                    {
-                        'parent_id': context['main_message_id'],
-                        'name': msg_id
-                    },
-                    context=context
-                )
-                message_pool.CheckStatus(
-                    cr, uid, context['main_message_id'], context=context)
+            message_pool.CheckStatus(
+                cr, uid, context['main_message_id'], context=context)
         return msg_id
 
     def name_get(self, cr, uid, ids, context=None):
