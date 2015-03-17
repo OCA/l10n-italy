@@ -108,7 +108,7 @@ class account_config_settings(orm.TransientModel):
         'fatturapa_rea_office': fields.related(
             'company_id', 'fatturapa_rea_office',
             type='many2one',
-            relation="res.province",
+            relation="res.country.state",
             string="Rea Office",
             ),
         'fatturapa_rea_number': fields.related(
