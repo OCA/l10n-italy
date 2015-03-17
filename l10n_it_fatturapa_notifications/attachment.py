@@ -27,6 +27,15 @@ class FatturaPANotification(orm.Model):
     _description = "FatturaPA Notification"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
 
+    def _get_file_identifier(
+        self, cr, uid, ids, field_name, arg, context=None
+    ):
+        res = {}
+        for notification in self.browse(cr, uid, ids, context=context):
+            res[notification.id] = self.get_file_identifier(
+                notification.datas_fname)
+        return res
+
     _columns = {
         'ir_attachment_id': fields.many2one(
             'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
@@ -52,45 +61,39 @@ class FatturaPANotification(orm.Model):
                  " uniquely identifies each notification / receipt for the "
                  "sent file",
             readonly=True),
-        'fatturapa_attachment_id': fields.many2one(
-            'ir.attachment', 'FatturaPA', readonly=True),
+        'file_identifier': fields.function(
+            _get_file_identifier, type="char", size=512,
+            string="File identifier", store=True),  # is store=True enough?
         }
 
-    def parse_xml(self, cr, uid, ids, xml, file_name, context=None):
+    def save_notification_xml(
+        self, cr, uid, ids, xml, file_name, context=None
+    ):
         """
         IT accepts an XML string and creates a related 'fatturapa.notification'
         record
+        file_name must be in the form IT01234567890_11111_MT_001.xml
         Returns new record ID
         """
         if context is None:
             context = {}
-        attach_pool = self.pool['ir.attachment']
-        short_f_name = file_name.replace(".xml", "")
-        fattPA, fattPA_seq, mtype, sequence = short_f_name.split("_")
-        fattPAname = fattPA + fattPA_seq
-        fattPAnameXML = fattPAname + '.xml'
-        fattPAnameP7M = fattPAname + '.xml.p7m'
-        fattPAnameZIP = fattPAname + '.zip'
-        attach_ids = attach_pool.search(cr, uid, [
-            '|',
-            ('datas_fname', '=', fattPAnameXML),
-            '|',
-            ('datas_fname', '=', fattPAnameP7M),
-            ('datas_fname', '=', fattPAnameZIP),
-            ], context=context)
-        if not attach_ids:
-            raise orm.except_orm(
-                _("Error"), _("No fatturaPA files found: %s") % fattPAname)
-        if len(attach_ids) > 1:
-            raise orm.except_orm(
-                _("Error"),
-                _("Too many fatturaPA files found: %s") % fattPAname)
+        mtype, sequence = file_name.split("_")[2:]
         res_id = self.create(cr, uid, {
             'name': file_name,
             'datas_fname': file_name,
             'datas': base64.encodestring(xml),
             'message_type': mtype,
             'sequence': sequence,
-            'fatturapa_attachment_id': attach_ids[0],
             }, context=context)
         return res_id
+
+    def get_file_identifier(self, file_name):
+        """
+        Accepts file name and produces file identifier, without file extension
+        See 2.2 at
+http://www.fatturapa.gov.it/export/fatturazione/sdi/Specifiche_tecniche_SdI_v1.1.pdf
+        """
+        file_name = file_name.replace(".xml.p7m", "")
+        file_name = file_name.replace(".xml", "")
+        file_name = file_name.replace(".zip", "")
+        return file_name
