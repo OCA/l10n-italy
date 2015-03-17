@@ -141,7 +141,7 @@ class FatturaPAAttachmentIn(orm.Model):
     _columns = {
         'notification_ids': fields.one2many(
             'fatturapa.notification', 'fatturapa_in_attachment_id',
-            "Notifications"),
+            "Notifications", readonly=True),
         'file_identifier': fields.function(
             _get_file_identifier, type="char", size=512,
             string="File identifier", store=True),
