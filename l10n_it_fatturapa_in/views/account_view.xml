@@ -8,9 +8,11 @@
 			<field name="arch" type="xml">
                 <form string="Import FatturaPA" version="7.0">
                     <div>
-                        <field name="name"/>
-                        <field name="datas_fname"/>
-                        <field name="datas" filename="datas_fname" />
+                        <group>
+                            <field name="name"/>
+                            <field name="datas_fname"/>
+                            <field name="datas" filename="datas_fname" />
+                        </group>
                         <separator string="Invoices"></separator>
                         <field name="in_invoice_ids"></field>
                         <group groups="base.group_no_one" string="History">
