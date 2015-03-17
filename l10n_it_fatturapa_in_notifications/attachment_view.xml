@@ -11,8 +11,10 @@
                     <field name="file_identifier"></field>
                     <field name="meta_data_notification_id"></field>
                     <field name="sdi_identifier"></field>
-                    <separator string="Notifications"></separator>
-                    <field name="notification_ids"></field>
+                </field>
+                <field name="in_invoice_ids" position="after">
+                    <separator string="Notifications" colspan="4"></separator>
+                    <field name="notification_ids" nolabel="1"></field>
                 </field>
             </field>
         </record>
