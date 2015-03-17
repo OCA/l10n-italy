@@ -74,6 +74,10 @@ class FatturaPANotification(orm.Model):
          - EC01 (vale Accettazione)
          - EC02 (vale Rifiuto)
         """
+        if not invoice.fatturapa_attachment_in_id:
+            raise orm.except_orm(
+                _("Error"), _("Invoice %s not linked to XML file")
+                % invoice.number or '')
         attachment_in_pool = self.pool['fatturapa.attachment.in']
         notifica = NotificaEsitoCommittente_Type()
         attachment = invoice.fatturapa_attachment_in_id

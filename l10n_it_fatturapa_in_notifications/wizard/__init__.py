@@ -18,6 +18,4 @@
 #
 ##############################################################################
 
-from . import attachment
-from . import account
-from . import wizard
+from . import send_notification
