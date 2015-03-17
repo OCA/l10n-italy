@@ -67,12 +67,14 @@ class FatturaPANotification(orm.Model):
         }
 
     def save_notification_xml(
-        self, cr, uid, ids, xml, file_name, context=None
+        self, cr, uid, ids, xml, file_name, invoice_type="supplier",
+        context=None
     ):
         """
         IT accepts an XML string and creates a related 'fatturapa.notification'
         record
         file_name must be in the form IT01234567890_11111_MT_001.xml
+        invoice_type is used by derived modules
         Returns new record ID
         """
         if context is None:
