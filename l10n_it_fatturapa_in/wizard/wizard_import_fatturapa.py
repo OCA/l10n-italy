@@ -37,7 +37,7 @@ class WizardImportFatturapa(orm.TransientModel):
 
         return False
 
-    def getPartnerId(self, cr, uid, cedPrest, fatPA, context=None):
+    def getPartnerId(self, cr, uid, cedPrest, context=None):
         partner_model = self.pool['res.partner']
         cf = cedPrest.DatiAnagrafici.CodiceFiscale
         vat = "%s%s" % (
@@ -171,6 +171,11 @@ class WizardImportFatturapa(orm.TransientModel):
             invoice_line_id = invoice_line_model.create(
                 cr, uid, invoice_line_data, context=context)
             invoice_lines.append(invoice_line_id)
+        comment = ''
+        causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
+        if causLst:
+            for item in causLst:
+                comment += item
         invoice_data = {
             'name': 'Fattura ' + partner.name,
             'date_invoice':
@@ -189,8 +194,7 @@ class WizardImportFatturapa(orm.TransientModel):
             'payment_term': False,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
-            'comment':
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale[0],
+            'comment': comment
         }
         invoice_id = invoice_model.create(
             cr, uid, invoice_data, context=context)
@@ -211,15 +215,11 @@ class WizardImportFatturapa(orm.TransientModel):
             if fatturapa_attachment.in_invoice_ids:
                 raise orm.except_orm(
                     _("Error"), _("File is linked to invoices yet"))
-            #~ xmlData = XmlData(
-                #~ fatturapa_attachment.datas.decode('base64')
-            #~ )
-            #~ xmlData.parseXml()
             fatt = fatturapa_v_1_1.CreateFromDocument(
                 fatturapa_attachment.datas.decode('base64'))
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             partner_id = self.getPartnerId(
-                cr, uid, cedentePrestatore, fatt, context=context)
+                cr, uid, cedentePrestatore, context=context)
             for fattura in fatt.FatturaElettronicaBody:
                 #~ fattura = fatt.FatturaElettronicaBody[i]
                 # TODO
