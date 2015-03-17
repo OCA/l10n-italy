@@ -18,12 +18,13 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import fields, orm
 
 
-class res_partner(models.Model):
+class res_partner(orm.Model):
     _inherit = "res.partner"
+
     _columns = {
         'fatturapa_code': fields.char('FatturaPA Code', size=6),
-        'eori_code': fields.char('EORI Code', size=20)
+        'eori_code': fields.char('EORI Code', size=20),
     }

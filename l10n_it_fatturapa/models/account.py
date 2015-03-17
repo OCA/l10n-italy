@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import fields, orm
 
 RELATED_DOCUMENT_TYPES = {
     'order': 'DatiOrdineAcquisto',
@@ -29,7 +29,7 @@ RELATED_DOCUMENT_TYPES = {
 }
 
 
-class fatturapa_document_type(models.Model):
+class fatturapa_document_type(orm.Model):
     _name = "fatturapa.document_type"
     _description = 'FatturaPA Document Type'
 
@@ -39,7 +39,7 @@ class fatturapa_document_type(models.Model):
     }
 
 
-class fatturapa_payment_term(models.Model):
+class fatturapa_payment_term(orm.Model):
     _name = "fatturapa.payment_term"
     _description = 'FatturaPA Payment Term'
     _rec_name = 'code'
@@ -50,7 +50,7 @@ class fatturapa_payment_term(models.Model):
     }
 
 
-class fatturapa_payment_method(models.Model):
+class fatturapa_payment_method(orm.Model):
     _name = "fatturapa.payment_method"
     _description = 'FatturaPA Payment Method'
     _rec_name = 'code'
@@ -61,7 +61,7 @@ class fatturapa_payment_method(models.Model):
     }
 
 
-class fatturapa_fiscal_position(models.Model):
+class fatturapa_fiscal_position(orm.Model):
     _name = "fatturapa.fiscal_position"
     _description = 'FatturaPA Fiscal Position'
 
@@ -71,7 +71,7 @@ class fatturapa_fiscal_position(models.Model):
     }
 
 
-class fatturapa_format(models.Model):
+class fatturapa_format(orm.Model):
     # TODO check possible formats
     _name = "fatturapa.format"
     _description = 'FatturaPA Format'
@@ -82,7 +82,7 @@ class fatturapa_format(models.Model):
     }
 
 
-class fatturapa_related_document_type(models.Model):
+class fatturapa_related_document_type(orm.Model):
     _name = 'fatturapa.related_document_type'
     _description = 'FatturaPA Related Document Type'
 
@@ -119,7 +119,7 @@ class fatturapa_related_document_type(models.Model):
             create(cr, uid, vals, context)
 
 
-class account_payment_term(models.Model):
+class account_payment_term(orm.Model):
     _inherit = 'account.payment.term'
 
     _columns = {
@@ -130,7 +130,7 @@ class account_payment_term(models.Model):
     }
 
 
-class account_invoice_line(models.Model):
+class account_invoice_line(orm.Model):
     _inherit = "account.invoice.line"
 
     _columns = {

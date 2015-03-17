@@ -18,10 +18,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import fields, orm
 
 
-class account_invoice(models.Model):
+class account_invoice(orm.Model):
     _inherit = "account.invoice"
 
     _columns = {

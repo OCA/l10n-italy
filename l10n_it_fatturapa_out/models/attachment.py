@@ -18,10 +18,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import fields, orm
 
 
-class FatturaPAAttachment(models.Model):
+class FatturaPAAttachment(orm.Model):
     _name = "fatturapa.attachment.out"
     _description = "FatturaPA Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
