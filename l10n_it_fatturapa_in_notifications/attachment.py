@@ -20,7 +20,10 @@
 
 from openerp.osv import fields, orm
 from openerp.addons.l10n_it_fatturapa_notifications.bindings.\
-    MessaggiTypes_v_1_1 import NotificaEsitoCommittente_Type
+    MessaggiTypes_v_1_1 import (
+        NotificaEsitoCommittente_Type,
+        RiferimentoFattura_Type
+    )
 from openerp.addons.l10n_it_fatturapa_notifications.bindings import (
     MessaggiTypes_v_1_1)
 from openerp.tools.translate import _
@@ -66,12 +69,35 @@ class FatturaPANotification(orm.Model):
     ):
         """
         It creates 'notifica di esito committente' notification and links it to
-        fatturaPA.
+        fatturaPA attachment
         'esito' can be
          - EC01 (vale Accettazione)
          - EC02 (vale Rifiuto)
         """
+        attachment_in_pool = self.pool['fatturapa.attachment.in']
         notifica = NotificaEsitoCommittente_Type()
+        attachment = invoice.fatturapa_attachment_in_id
+        if not attachment.sdi_identifier:
+            raise orm.except_orm(
+                _("Error"), _("No SDI identifier found for fatturaPA %s")
+                % attachment.file_identifier)
+        notifica.IdentificativoSdI = attachment.sdi_identifier
+        notifica.RiferimentoFattura = RiferimentoFattura_Type(
+            NumeroFattura=invoice.supplier_invoice_number,
+            AnnoFattura=invoice.date_invoice[:4])
+        notifica.Esito = esito
+        if description:
+            notifica.Descrizione = description
+        # TODO?
+        # notifica.MessageIdCommittente
+        xml = notifica.toxml("utf-8")
+        sequence = attachment_in_pool.generate_next_notification_number(
+            cr, uid, attachment, context=context)
+        file_name = '%s_EC_%s.xml' % (attachment.file_identifier, sequence)
+        self.save_notification_xml(
+            self, cr, uid, ids, xml, file_name, invoice_type="supplier",
+            context=context)
+        return True
 
 
 class FatturaPAAttachmentIn(orm.Model):
@@ -90,6 +116,7 @@ class FatturaPAAttachmentIn(orm.Model):
     def _get_meta_data(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for attachment in self.browse(cr, uid, ids, context=context):
+            res[attachment.id] = False
             for notification in attachment.notification_ids:
                 if notification.message_type == 'MT':
                     if attachment.id in res:
@@ -103,8 +130,13 @@ class FatturaPAAttachmentIn(orm.Model):
     def _get_sdi_identifier(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for attachment in self.browse(cr, uid, ids, context=context):
+            res[attachment.id] = False
             if attachment.meta_data_notification_id:
-                pass
+                mt_msg = MessaggiTypes_v_1_1.CreateFromDocument(
+                    attachment.meta_data_notification_id.datas.decode(
+                        'base64'))
+                res[attachment.id] = mt_msg.IdentificativoSdI
+        return res
 
     _columns = {
         'notification_ids': fields.one2many(
@@ -120,3 +152,20 @@ class FatturaPAAttachmentIn(orm.Model):
             _get_sdi_identifier, type="char", size=512,
             string="SDI identifier"),
         }
+
+    def is_number_present(self, fatturapa_att, number):
+        for notification in fatturapa_att.notification_ids:
+            if notification.sequence == number:
+                return True
+        return False
+
+    def generate_next_notification_number(
+        self, cr, uid, fatturapa_att, context=None
+    ):
+        number = len(fatturapa_att) + 1
+        while(True):
+            str_number = str(number).zfill(3)
+            if self.is_number_present(fatturapa_att, str_number):
+                number += 1
+            else:
+                return str_number

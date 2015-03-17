@@ -66,6 +66,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'l10n_it_fatturapa_notifications',
     ],
     "data": [
+        'attachment_view.xml',
     ],
     "test": [],
     "demo": [],

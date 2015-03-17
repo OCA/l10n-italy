@@ -18,5 +18,14 @@
 #
 ##############################################################################
 
-from . import attachment
-from . import account
+from openerp.osv import fields, orm
+
+
+class AccountInvoice(orm.Model):
+    _inherit = "account.invoice"
+    _columns = {
+        'fatturapa_reception_state': fields.selection([
+            ('EC01', 'Accepted'),
+            ('EC02', 'Rejected'),
+            ], string="FatturaPA reception state", readonly=True),
+        }
