@@ -43,7 +43,7 @@ class res_company(orm.Model):
             'Public Administration Reference Code', size=20,
             ),
         'fatturapa_rea_office': fields.many2one(
-            'res.province', 'Rea Office',
+            'res.country.state', 'Rea Office',
             ),
         'fatturapa_rea_number': fields.char(
             'Rea Number', size=20,

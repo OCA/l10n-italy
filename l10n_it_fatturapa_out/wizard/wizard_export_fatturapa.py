@@ -258,7 +258,7 @@ class WizardExportFatturapa(orm.TransientModel):
         if not company.city:
             raise orm.except_orm(
                 _('Error!'), _('City not set.'))
-        if not company.partner_id.province:
+        if not company.partner_id.state_id:
             raise orm.except_orm(
                 _('Error!'), _('Province not set.'))
         if not company.country_id:
@@ -270,7 +270,7 @@ class WizardExportFatturapa(orm.TransientModel):
             Indirizzo=company.street,
             CAP=company.zip,
             Comune=company.city,
-            Provincia=company.partner_id.province.code,
+            Provincia=company.partner_id.state_id.code,
             Nazione=company.country_id.code)
 
         return True
@@ -384,7 +384,7 @@ class WizardExportFatturapa(orm.TransientModel):
         if not partner.city:
             raise orm.except_orm(
                 _('Error!'), _('Partner city not set.'))
-        if not partner.province:
+        if not partner.state_id:
             raise orm.except_orm(
                 _('Error!'), _('Partner province not set.'))
         if not partner.country_id:
@@ -397,7 +397,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 Indirizzo=partner.street,
                 CAP=partner.zip,
                 Comune=partner.city,
-                Provincia=partner.province.code,
+                Provincia=partner.state_id.code,
                 Nazione=partner.country_id.code))
 
         return True
