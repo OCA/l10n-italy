@@ -3,7 +3,7 @@
     <data>
 
         <record id="wizard_fatturapa_import_notification" model="ir.ui.view">
-            <field name="name">Accept fatturaPA</field>
+            <field name="name">Import notification</field>
             <field name="model">wizard.fatturapa.import.notification</field>
             <field name="arch" type="xml">
                 <form string="Import FatturaPA" version="7.0">
