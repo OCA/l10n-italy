@@ -745,7 +745,8 @@ class WizardExportFatturapa(orm.TransientModel):
                 if inv.fatturapa_attachment_out_id:
                     raise orm.except_orm(
                         _("Error"),
-                        _("Invoice %s has FatturaPA Export File yet") % inv.number)
+                        _("Invoice %s has FatturaPA Export File yet") % (
+                            inv.number))
                 invoice_body = FatturaElettronicaBodyType()
                 self.setFatturaElettronicaBody(
                     cr, uid, inv, invoice_body, context=context)
