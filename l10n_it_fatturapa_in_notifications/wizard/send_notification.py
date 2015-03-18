@@ -36,6 +36,15 @@ def send_notification(self, cr, uid, ids, esito, context):
     notification_pool.create_notifica_esito_committente(
         cr, uid, ids, invoice, esito='EC01',
         description=wizard.name, context=context)
+    return {
+        'view_type': 'form',
+        'name': "FatturaPA",
+        'res_id': invoice.fatturapa_attachment_in_id.id,
+        'view_mode': 'form',
+        'res_model': 'fatturapa.attachment.in',
+        'type': 'ir.actions.act_window',
+        'context': context
+        }
 
 
 class SendAcceptNotification(orm.TransientModel):
@@ -45,8 +54,7 @@ class SendAcceptNotification(orm.TransientModel):
         }
 
     def send(self, cr, uid, ids, context=None):
-        send_notification(self, cr, uid, ids, 'EC01', context)
-        return {'type': 'ir.actions.act_window_close'}
+        return send_notification(self, cr, uid, ids, 'EC01', context)
 
 
 class SendRejectNotification(orm.TransientModel):
@@ -56,5 +64,4 @@ class SendRejectNotification(orm.TransientModel):
         }
 
     def send(self, cr, uid, ids, context=None):
-        send_notification(self, cr, uid, ids, 'EC02', context)
-        return {'type': 'ir.actions.act_window_close'}
+        return send_notification(self, cr, uid, ids, 'EC02', context)

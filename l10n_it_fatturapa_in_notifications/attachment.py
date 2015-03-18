@@ -21,7 +21,7 @@
 from openerp.osv import fields, orm
 from openerp.addons.l10n_it_fatturapa_notifications.bindings.\
     MessaggiTypes_v_1_1 import (
-        NotificaEsitoCommittente_Type,
+        NotificaEsitoCommittente,
         RiferimentoFattura_Type
     )
 from openerp.addons.l10n_it_fatturapa_notifications.bindings import (
@@ -42,7 +42,8 @@ class FatturaPANotification(orm.Model):
         context=None
     ):
         res = super(FatturaPANotification, self).save_notification_xml(
-            cr, uid, ids, xml, file_name, context)
+            cr, uid, ids, xml, file_name, invoice_type=invoice_type,
+            context=context)
         if invoice_type == 'supplier':
             fattPA_attach_pool = self.pool['fatturapa.attachment.in']
             notification = self.browse(cr, uid, res, context=context)
@@ -79,7 +80,8 @@ class FatturaPANotification(orm.Model):
                 _("Error"), _("Invoice %s not linked to XML file")
                 % invoice.number or '')
         attachment_in_pool = self.pool['fatturapa.attachment.in']
-        notifica = NotificaEsitoCommittente_Type()
+        # wrong specs from SDI?
+        notifica = NotificaEsitoCommittente(versione='1.0')
         attachment = invoice.fatturapa_attachment_in_id
         if not attachment.sdi_identifier:
             raise orm.except_orm(
@@ -99,7 +101,7 @@ class FatturaPANotification(orm.Model):
             cr, uid, attachment, context=context)
         file_name = '%s_EC_%s.xml' % (attachment.file_identifier, sequence)
         self.save_notification_xml(
-            self, cr, uid, ids, xml, file_name, invoice_type="supplier",
+            cr, uid, ids, xml, file_name, invoice_type="supplier",
             context=context)
         return True
 
@@ -123,7 +125,7 @@ class FatturaPAAttachmentIn(orm.Model):
             res[attachment.id] = False
             for notification in attachment.notification_ids:
                 if notification.message_type == 'MT':
-                    if attachment.id in res:
+                    if res[attachment.id] is not False:
                         raise orm.except_orm(
                             _("Error"),
                             _("Too many MT notifications for fatturaPA %s") %
@@ -133,6 +135,9 @@ class FatturaPAAttachmentIn(orm.Model):
 
     def _get_sdi_identifier(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
+        if context is None:
+            context = {}
+        context['bin_size'] = False
         for attachment in self.browse(cr, uid, ids, context=context):
             res[attachment.id] = False
             if attachment.meta_data_notification_id:
@@ -166,7 +171,7 @@ class FatturaPAAttachmentIn(orm.Model):
     def generate_next_notification_number(
         self, cr, uid, fatturapa_att, context=None
     ):
-        number = len(fatturapa_att) + 1
+        number = len(fatturapa_att.notification_ids) + 1
         while(True):
             str_number = str(number).zfill(3)
             if self.is_number_present(fatturapa_att, str_number):
