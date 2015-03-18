@@ -44,6 +44,20 @@ class MailThread(orm.Model):
             server = server_pool.read(cr, SUPERUSER_ID, [srv_id], ['pec'])
             return server[0]['pec']
 
+    def force_create_partner(self, cr, uid, context=None):
+        if context is None:
+            context = {}
+        server_pool = self.pool.get('fetchmail.server')
+        if 'fetchmail_server_id' in context:
+            srv_id = context.get('fetchmail_server_id')
+            server = server_pool.browse(cr,
+                                        SUPERUSER_ID,
+                                        srv_id,
+                                        context=context)
+            if server:
+                return server.force_create_partner_from_mail
+        return False
+
     def parse_daticert(self, cr, uid, daticert, context=None):
         msg_dict = {}
         root = ET.fromstring(daticert)
@@ -234,6 +248,9 @@ class MailThread(orm.Model):
                     ('pec_msg_id', '=', daticert_dict['pec_msg_id']),
                     ('pec_type', '=', daticert_dict.get('pec_type'))
                 ]
+                # if daticert_dict has a recipient_addr than we have to
+                # add a domain condition so that we can ignore only
+                # notification message that are already present in the system
                 if daticert_dict.get('recipient_addr'):
                     domain.append(('recipient_addr',
                                    '=',
@@ -247,10 +264,10 @@ class MailThread(orm.Model):
                     context['main_message_id'] = msg_ids[0]
                     context['pec_type'] = daticert_dict.get('pec_type')
                     del msg_dict['message_id']
-        #if message transport resend original mail with
-        #transport error , marks in original message with
-        #error, and after the server not save the original message
-        #because is duplicate
+        # if message transport resend original mail with
+        # transport error , marks in original message with
+        # error, and after the server not save the original message
+        # because is duplicate
         if (
             daticert_dict.get('message_id')
             and message['X-Trasporto'] == 'errore'
@@ -270,7 +287,7 @@ class MailThread(orm.Model):
                         'error': True,
                     }, context=context)
 
-        author_id = self._FindPartnersPec(
+        author_id = self._FindOrCreatePartnersPec(
             cr, uid, message, daticert_dict.get('email_from'), context=context)
         if author_id:
             msg_dict['author_id'] = author_id
@@ -304,7 +321,7 @@ class MailThread(orm.Model):
         """
         res = self._FindPartnersPec(
             cr, uid, message, pec_address, context=context)
-        if not res:
+        if not res and self.force_create_partner(cr, uid, context):
             res = self.pool['res.partner'].create(
                 cr, SUPERUSER_ID,
                 {

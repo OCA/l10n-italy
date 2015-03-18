@@ -10,6 +10,7 @@
         <field name="arch" type="xml">
             <field name="date" position="after" >
                 <field name="pec" />
+                <field name="force_create_partner_from_mail" />
             </field>
             <field name="original" position="attributes">
                 <attribute name="attrs">{'invisible': [('pec','=',True)]}</attribute>
