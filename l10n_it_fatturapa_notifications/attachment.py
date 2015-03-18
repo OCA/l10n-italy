@@ -54,8 +54,8 @@ class FatturaPANotification(orm.Model):
             help="Page 32 of http://www.fatturapa.gov.it/export/fatturazione/"
                  "sdi/Specifiche_tecniche_SdI_v1.1.pdf ",
             readonly=True),
-        'sequence': fields.integer(
-            "Sequence",
+        'sequence': fields.char(
+            "Sequence", size=3,
             help="It must be an alphanumeric string with a maximum length of 3"
                  " characters and allowed values [a - z], [A - Z], [0-9] which"
                  " uniquely identifies each notification / receipt for the "
@@ -77,9 +77,10 @@ class FatturaPANotification(orm.Model):
         invoice_type is used by derived modules
         Returns new record ID
         """
+        identifier = self.get_file_identifier(file_name)
         if context is None:
             context = {}
-        mtype, sequence = file_name.split("_")[2:]
+        mtype, sequence = identifier.split("_")[2:]
         res_id = self.create(cr, uid, {
             'name': file_name,
             'datas_fname': file_name,

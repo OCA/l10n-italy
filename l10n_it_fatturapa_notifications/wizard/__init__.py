@@ -18,6 +18,4 @@
 #
 ##############################################################################
 
-from . import attachment
-from . import bindings
-from . import wizard
+from . import import_notification
