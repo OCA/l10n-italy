@@ -46,7 +46,7 @@
             <field name="target">new</field>
         </record>
         <record id="action_wizard_fatturapa_in_reject" model="ir.actions.act_window">
-            <field name="name">Accept fatturaPA</field>
+            <field name="name">Reject fatturaPA</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">wizard.fatturapa.in.reject</field>
             <field name="view_type">form</field>

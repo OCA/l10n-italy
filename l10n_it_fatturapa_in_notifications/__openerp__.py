@@ -31,10 +31,18 @@
 Supplier FatturaPA Notifications
 ================================
 
+This module handles SDI notifications related to supplier invoices (fatturaPA).
+See http://fatturapa.gov.it/export/fatturazione/it/b-2.htm
+
 
 Usage
 =====
 
+Within 'fatturaPA' tab of supplier invoice form, you can click on 2 buttons:
+ - Accept fatturaPA
+ - Reject fatturaPA
+This allows to generate the 'notifica esito committente' message
+http://fatturapa.gov.it/export/fatturazione/sdi/messaggi/v1.0/IT01234567890_11111_EC_001.xml
 
 
 Credits
