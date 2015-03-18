@@ -111,6 +111,61 @@ class WizardImportFatturapa(orm.TransientModel):
             'invoice_line_tax_id': [(6, 0, [account_tax_ids[0]])],
         }
 
+    def _prepareRelDocsLine(
+        self, cr, uid, invoice_id, line, type, context=None
+    ):
+        res = []
+        lineref = line.RiferimentoNumeroLinea or False
+        IdDoc = line.IdDocumento or 'Error'
+        Data = line.Data or False
+        NumItem = int(line.NumItem) or 0
+        Code = line.CodiceCommessaConvenzione or ''
+        Cup = line.CodiceCIG or ''
+        Cig = line.CodiceCUP or ''
+        invoice_lineid = False
+        if lineref:
+            for numline in lineref:
+                invoice_lineid = False
+                invoice_line_model = self.pool['account.invoice.line']
+                invoice_line_ids = invoice_line_model.search(
+                    cr, uid,
+                    [
+                        ('invoice_id', '=', invoice_id),
+                        ('sequence', '=', int(numline)),
+                    ], context=context)
+
+                if invoice_line_ids:
+                    invoice_lineid = invoice_line_ids[0]
+                val = {
+                    'type': type,
+                    'name': IdDoc,
+                    'lineRef': lineref,
+                    'invoice_line_id': invoice_lineid,
+                    'invoice_id': invoice_id,
+                    'date': Data,
+                    'numitem': NumItem,
+                    'code': Code,
+                    'cig': Cig,
+                    'cup': Cup,
+                }
+                res.append(val)
+
+        else:
+            val = {
+                'type': type,
+                'name': IdDoc,
+                'lineRef': lineref,
+                'invoice_line_id': invoice_lineid,
+                'invoice_id': invoice_id,
+                'date': Data,
+                'numitem': NumItem,
+                'code': Code,
+                'cig': Cig,
+                'cup': Cup
+            }
+            res.append(val)
+        return res
+
     def invoiceCreate(
         self, cr, uid, fatturapa_attachment, FatturaBody,
         partner_id, context=None
@@ -122,6 +177,7 @@ class WizardImportFatturapa(orm.TransientModel):
         invoice_model = self.pool['account.invoice']
         currency_model = self.pool['res.currency']
         invoice_line_model = self.pool['account.invoice.line']
+        rel_docs_model = self.pool['fatturapa.related_document_type']
 
         company = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id
@@ -198,6 +254,62 @@ class WizardImportFatturapa(orm.TransientModel):
         }
         invoice_id = invoice_model.create(
             cr, uid, invoice_data, context=context)
+
+        invoice = invoice_model.browse(cr, uid, invoice_id, context=context)
+
+        relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
+
+        relContracts = FatturaBody.DatiGenerali.DatiContratto
+
+        relAgreements = FatturaBody.DatiGenerali.DatiConvenzione
+
+        relReceptions = FatturaBody.DatiGenerali.DatiRicezione
+
+        relInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
+
+        if relOrders:
+            for order in relOrders:
+                doc_datas = self._prepareRelDocsLine(
+                    cr, uid, invoice_id, order, 'order', context=context)
+                if doc_datas:
+                    for doc_data in doc_datas:
+                        rel_docs_model.create(
+                            cr, uid, doc_data, context=context)
+
+        if relContracts:
+            for contract in relContracts:
+                doc_datas = self._prepareRelDocsLine(
+                    cr, uid, invoice_id, contract, 'contract', context=context)
+                if doc_datas:
+                    for doc_data in doc_datas:
+                        rel_docs_model.create(
+                            cr, uid, doc_data, context=context)
+        if relAgreements:
+            for agreement in relAgreements:
+                doc_datas = self._prepareRelDocsLine(
+                    cr, uid, invoice_id, agreement,
+                    'agreement', context=context)
+                if doc_datas:
+                    for doc_data in doc_datas:
+                        rel_docs_model.create(
+                            cr, uid, doc_data, context=context)
+        if relReceptions:
+            for reception in relReceptions:
+                doc_datas = self._prepareRelDocsLine(
+                    cr, uid, invoice_id, reception,
+                    'reception', context=context)
+                if doc_datas:
+                    for doc_data in doc_datas:
+                        rel_docs_model.create(
+                            cr, uid, doc_data, context=context)
+        if relInvoices:
+            for invoice in relInvoices:
+                doc_datas = self._prepareRelDocsLine(
+                    cr, uid, invoice_id, invoice, 'invoice', context=context)
+                if doc_datas:
+                    for doc_data in doc_datas:
+                        rel_docs_model.create(
+                            cr, uid, doc_data, context=context)
         # compute the invoice
         invoice_model.button_compute(
             cr, uid, [invoice_id], context=context,
