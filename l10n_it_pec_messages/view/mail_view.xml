@@ -2,24 +2,6 @@
 <openerp>
 <data>
 
-
-        <record model='ir.ui.view' id='notifications_pec_tree'>
-            <field name="name">pec.notifications.tree</field>
-            <field name="model">pec.notifications</field>
-            <field name="priority">100</field>
-            <field name="arch" type="xml">
-                <tree string="Pec Notifications">
-                    <field name="parent_id" invisible="1" />
-                    <field name="name" />
-                    <field name="recipient" />
-                    <field name="recipient_addr" />
-                    <field name="type" />
-                    <field name="error" />
-                </tree>
-            </field>
-        </record>
-
-
         <record model="ir.ui.view" id="view_message_form_pec">
             <field name="name">mail.message.form.pec</field>
             <field name="model">mail.message</field>
