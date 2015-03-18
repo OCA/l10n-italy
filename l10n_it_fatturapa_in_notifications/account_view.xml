@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="view_invoice_form_fatturapa_in">
+			<field name="name">account.invoice.fatturapa_in</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="l10n_it_fatturapa_in.view_invoice_form_fatturapa_in"/>
+			<field name="arch" type="xml">
+                <field name="fatturapa_attachment_in_id" position="after">
+                    <button name="%(action_wizard_fatturapa_in_accept)d" type="action"
+                                  icon="gtk-apply" string="Accept" colspan="2"
+                                  groups="account.group_account_user"/>
+                    <button name="%(action_wizard_fatturapa_in_reject)d" type="action"
+                                  icon="gtk-no" string="Reject" colspan="2"
+                                  groups="account.group_account_user"/>
+                    <field name="result_notification_id"></field>
+                </field>
+            </field>
+        </record>
+	</data>
+</openerp>

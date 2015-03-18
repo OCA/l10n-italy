@@ -33,9 +33,13 @@ def send_notification(self, cr, uid, ids, esito, context):
     wizard = self.browse(cr, uid, ids[0], context=context)
     invoice = invoice_pool.browse(
         cr, uid, context['active_id'], context=context)
-    notification_pool.create_notifica_esito_committente(
+    if invoice.result_notification_id:
+        raise orm.except_orm(
+            _("Error"), _("Result notification already present"))
+    res_id = notification_pool.create_notifica_esito_committente(
         cr, uid, ids, invoice, esito='EC01',
         description=wizard.name, context=context)
+    invoice.write({'result_notification_id': res_id}, context=context)
     return {
         'view_type': 'form',
         'name': "FatturaPA",

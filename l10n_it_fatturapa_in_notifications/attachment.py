@@ -100,10 +100,10 @@ class FatturaPANotification(orm.Model):
         sequence = attachment_in_pool.generate_next_notification_number(
             cr, uid, attachment, context=context)
         file_name = '%s_EC_%s.xml' % (attachment.file_identifier, sequence)
-        self.save_notification_xml(
+        res_id = self.save_notification_xml(
             cr, uid, ids, xml, file_name, invoice_type="supplier",
             context=context)
-        return True
+        return res_id
 
 
 class FatturaPAAttachmentIn(orm.Model):

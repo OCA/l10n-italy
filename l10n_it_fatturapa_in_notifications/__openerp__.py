@@ -68,6 +68,7 @@ To contribute to this module, please visit http://odoo-community.org.
     "data": [
         'attachment_view.xml',
         'wizard/send_notification_view.xml',
+        'account_view.xml',
     ],
     "test": [],
     "demo": [],
