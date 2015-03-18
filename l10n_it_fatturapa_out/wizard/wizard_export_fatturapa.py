@@ -22,7 +22,7 @@
 import base64
 import re
 import tempfile
-
+from pyxb.exceptions_ import SimpleFacetValueError
 from openerp.osv import orm
 from openerp import addons
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
@@ -742,21 +742,27 @@ class WizardExportFatturapa(orm.TransientModel):
         user_obj = self.pool['res.users']
         company = user_obj.browse(cr, uid, uid).company_id
 
-        self.setFatturaElettronicaHeader(cr, uid, company,
-                                         partner, context=context)
-        for invoice_id in invoice_ids:
-            inv = invoice_obj.browse(cr, uid, invoice_id, context=context)
-            if inv.fatturapa_attachment_out_id:
-                raise orm.except_orm(
-                    _("Error"),
-                    _("Invoice %s has FatturaPA Export File yet") % inv.number)
-            invoice_body = FatturaElettronicaBodyType()
-            self.setFatturaElettronicaBody(
-                cr, uid, inv, invoice_body, context=context)
-            self.fatturapa.FatturaElettronicaBody.append(invoice_body)
-            # TODO DatiVeicoli
+        try:
+            self.setFatturaElettronicaHeader(cr, uid, company,
+                                             partner, context=context)
+            for invoice_id in invoice_ids:
+                inv = invoice_obj.browse(cr, uid, invoice_id, context=context)
+                if inv.fatturapa_attachment_out_id:
+                    raise orm.except_orm(
+                        _("Error"),
+                        _("Invoice %s has FatturaPA Export File yet") % (
+                            inv.number))
+                invoice_body = FatturaElettronicaBodyType()
+                self.setFatturaElettronicaBody(
+                    cr, uid, inv, invoice_body, context=context)
+                self.fatturapa.FatturaElettronicaBody.append(invoice_body)
+                # TODO DatiVeicoli
 
-        self.setProgressivoInvio(cr, uid, context=context)
+            self.setProgressivoInvio(cr, uid, context=context)
+        except SimpleFacetValueError as e:
+            raise orm.except_orm(
+                _("Error"),
+                (unicode(e)))
 
         attach_id = self.saveAttachment(cr, uid, context=context)
 
