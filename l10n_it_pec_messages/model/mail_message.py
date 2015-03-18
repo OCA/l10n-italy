@@ -142,7 +142,7 @@ class MailMessage(orm.Model):
         'direction': 'in'
     }
 
-    def CheckStatus(self, cr, uid, ids, context=None):
+    def CheckNotificationStatus(self, cr, uid, ids, context=None):
         mail_mail_pool = self.pool['mail.mail']
         if context is None:
             context = {}
@@ -161,12 +161,12 @@ class MailMessage(orm.Model):
                     context=context
                 )
                 if not mail_sent_ids:
-                    _logger.exception(
+                    _logger.error(
                         'No sent mail for message %s \
                         from %s server %s.', message.id)
                     error_lst.append(message.id)
                 elif len(mail_sent_ids) > 1:
-                    _logger.exception(
+                    _logger.error(
                         'Too many sent mails for message %s \
                         from %s server %s.', message.id)
                     error_lst.append(message.id)

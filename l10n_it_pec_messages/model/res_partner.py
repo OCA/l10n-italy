@@ -55,11 +55,12 @@ class ResPartner(orm.Model):
             cr, uid, thread_id, body=body, subject=subject, type=type,
             subtype=subtype, parent_id=parent_id, attachments=attachments,
             context=context, content_subtype=content_subtype, **kwargs)
+        # If the message is a notification mail than check its status
         if (
             context.get('main_message_id') and
             context.get('pec_type')
         ):
-            message_pool.CheckStatus(
+            message_pool.CheckNotificationStatus(
                 cr, uid, context['main_message_id'], context=context)
         return msg_id
 
