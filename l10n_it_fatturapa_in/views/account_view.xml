@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-    
-    	<record model="ir.ui.view" id="view_fatturapa_in_attachment_form">
-			<field name="name">fatturapa.attachment.in.form</field>
-			<field name="model">fatturapa.attachment.in</field>
-			<field name="arch" type="xml">
+
+        <record model="ir.ui.view" id="view_fatturapa_in_attachment_form">
+            <field name="name">fatturapa.attachment.in.form</field>
+            <field name="model">fatturapa.attachment.in</field>
+            <field name="arch" type="xml">
                 <form string="Import FatturaPA" version="7.0">
                     <div>
                         <field name="name"/>
@@ -16,30 +16,30 @@
                         <group groups="base.group_no_one" string="History">
                             <label for="create_uid" string="Creation"/>
                             <div name="creation_div">
-                                <field name="create_uid" readonly="1" class="oe_inline"/> on 
+                                <field name="create_uid" readonly="1" class="oe_inline"/> on
                                 <field name="create_date" readonly="1" class="oe_inline"/>
                             </div>
                         </group>
                     </div>
-					<div class="oe_chatter">
-	                    <field name="message_follower_ids" widget="mail_followers"/>
-	                    <field name="message_ids" widget="mail_thread"/>
-	                </div>
-				</form>
-			</field>
-		</record>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
 
-		<record model="ir.ui.view" id="view_fatturapa_in_attachment_tree">
-			<field name="name">fatturapa.attachment.in.tree</field>
-			<field name="model">fatturapa.attachment.in</field>
-			<field name="arch" type="xml">
-				<tree string="Xml Attachment">
-					<field name="name"/>
-					<field name="create_date" />
-				</tree>
-			</field>
-		</record>    
-    	
+        <record model="ir.ui.view" id="view_fatturapa_in_attachment_tree">
+            <field name="name">fatturapa.attachment.in.tree</field>
+            <field name="model">fatturapa.attachment.in</field>
+            <field name="arch" type="xml">
+                <tree string="Xml Attachment">
+                    <field name="name"/>
+                    <field name="create_date" />
+                </tree>
+            </field>
+        </record>
+
 
         <record id="action_fattura_pa_in" model="ir.actions.act_window">
             <field name="name">Incoming fatturaPA files</field>
@@ -50,82 +50,29 @@
         </record>
 
         <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree" parent="document.menu_document_doc"/>
-        
+
         <!-- Extend purchase invoice  -->
-		<record model="ir.ui.view" id="view_invoice_form_fatturapa_in">
-			<field name="name">account.invoice.fatturapa_in</field>
-			<field name="model">account.invoice</field>
-			<field name="inherit_id" ref="account.invoice_supplier_form"/>
-			<field name="arch" type="xml">
-				<xpath expr="//notebook" position="inside">
-					<page string="FatturaPA">
-						<group>
-                            <!--
-							<group string="Purchase Order">
-								<field name="fatturapa_po_enable"/>
-								<field name="fatturapa_po_line_no" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-								<field name="fatturapa_po" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-								<field name="fatturapa_po_cup" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-								<field name="fatturapa_po_cig" 
-									attrs="{'invisible': [('fatturapa_po_enable', '=', False)]}"/>
-							</group>
-							<group string="Contract">
-								<field name="fatturapa_contract_enable"/>
-								<field name="fatturapa_contract_line_no" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_date" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="   " 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_cup" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-								<field name="fatturapa_contract_cig" 
-									attrs="{'invisible': [('fatturapa_contract_enable', '=', False)]}"/>
-							</group>
-							<group string="Agreement">
-								<field name="fatturapa_agreement_enable"/>
-								<field name="fatturapa_agreement_line_no" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_date" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_numitem" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_cup" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-								<field name="fatturapa_agreement_cig" 
-									attrs="{'invisible': [('fatturapa_agreement_enable', '=', False)]}"/>
-							</group>
-							<group string="Reception">
-								<field name="fatturapa_reception_enable"/>
-								<field name="fatturapa_reception_line_no" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_date" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_numitem" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_cup" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-								<field name="fatturapa_reception_cig" 
-									attrs="{'invisible': [('fatturapa_reception_enable', '=', False)]}"/>
-							</group>
-                            -->
-							<group string="Results">
-								<field name="fatturapa_attachment_in_id"/>
-							</group>
-						</group>
-					</page>
-				</xpath>
-			</field>
-		</record>
-      
+        <record model="ir.ui.view" id="view_invoice_form_fatturapa_in">
+            <field name="name">account.invoice.fatturapa_in</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Related Documents ">
+                            <group string="Results">
+                                <field name="related_documents" nolabel = "1"/>
+                            </group>
+                    </page>
+                    <page string="FatturaPA">
+                        <group>
+                            <group string="Results">
+                                <field name="fatturapa_attachment_in_id"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </openerp>
