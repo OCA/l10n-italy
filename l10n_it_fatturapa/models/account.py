@@ -106,7 +106,7 @@ class fatturapa_related_document_type(orm.Model):
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True),
         'date': fields.date('Date'),
-        'numitem': fields.char('NumItem' size=20),
+        'numitem': fields.char('NumItem', size=20),
         'code': fields.char('Order Agreement Code', size=100),
         'cig': fields.char('CIG Code', size=14),
         'cup': fields.char('CUP Code', size=14),
