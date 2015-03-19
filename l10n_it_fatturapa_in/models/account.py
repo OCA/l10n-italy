@@ -18,7 +18,6 @@
 #
 ##############################################################################
 
-from . import attachment
 from openerp.osv import fields, orm
 
 
