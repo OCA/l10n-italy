@@ -613,7 +613,7 @@ class WizardExportFatturapa(orm.TransientModel):
             el.remove(el.find('AltriDatiGestionali'))
             '''
 
-            # TODO: can XML work without this, in case of 'esente IVA'?
+            # TODO: can XML work without Natura, in case of 'esente IVA'?
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
         return True
@@ -629,10 +629,14 @@ class WizardExportFatturapa(orm.TransientModel):
                     _('Error'),
                     _("Too many rates found in tax line %s") % tax_line.name)
             if not rates:
-                raise orm.except_orm(
-                    _('Error'),
-                    _("No rates found in tax line %s") % tax_line.name)
-            rate = rates[0].replace('%', '')
+                try:
+                    rate = float(tax_line.name[:2])
+                except ValueError:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _("No rates found in tax line %s") % tax_line.name)
+            else:
+                rate = rates[0].replace('%', '')
             riepilogo = DatiRiepilogoType(
                 AliquotaIVA='%.2f' % float(rate),
                 ImponibileImporto='%.2f' % tax_line.base,
