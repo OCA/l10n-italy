@@ -521,6 +521,7 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def setRelatedDocumentTypes(self, cr, uid, invoice, body,
                                 context=None):
+        linecount = 1
         for line in invoice.invoice_line:
             for related_document in line.related_documents:
                 doc_type = RELATED_DOCUMENT_TYPES[related_document.type]
@@ -528,8 +529,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 if related_document.name:
                     documento.IdDocumento = related_document.name
                 if related_document.lineRef:
-                    # TODO handle link between document and invoice line
-                    documento.RiferimentoNumeroLinea = related_document.lineRef
+                    documento.RiferimentoNumeroLinea.append(linecount)
                 if related_document.date:
                     documento.Data = related_document.date
                 if related_document.numitem:
@@ -543,6 +543,25 @@ class WizardExportFatturapa(orm.TransientModel):
                 eval(
                     "body.DatiGenerali." +
                     doc_type + ".append(documento)")
+            linecount += 1
+        for related_document in invoice.related_documents:
+            doc_type = RELATED_DOCUMENT_TYPES[related_document.type]
+            documento = DatiDocumentiCorrelatiType()
+            if related_document.name:
+                documento.IdDocumento = related_document.name
+            if related_document.date:
+                documento.Data = related_document.date
+            if related_document.numitem:
+                documento.NumItem = related_document.numitem
+            if related_document.code:
+                documento.CodiceCommessaConvenzione = related_document.code
+            if related_document.cup:
+                documento.CodiceCUP = related_document.cup
+            if related_document.cig:
+                documento.CodiceCIG = related_document.cig
+            eval(
+                "body.DatiGenerali." +
+                doc_type + ".append(documento)")
         return True
 
     def setDatiTrasporto(self, cr, uid, invoice, body, context=None):
