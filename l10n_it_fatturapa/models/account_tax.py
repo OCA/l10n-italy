@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
-#    Copyright 2015 Agile Business Group <http://www.agilebg.com>
+#    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,24 +17,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Italian Localization - FatturaPA',
-    'version': '0.1',
-    'category': 'Localization/Italy',
-    'summary': 'Electronic invoices',
-    'author': 'Davide Corio, Agile Business Group, Innoviu',
-    'website': 'http://www.odoo-italia.org',
-    'license': 'AGPL-3',
-    "depends": [
-        'account', 'l10n_it_base', 'l10n_it_fiscalcode', 'document'],
-    "data": [
-        'data/fatturapa_data.xml',
-        'views/account_view.xml',
-        'views/company_view.xml',
-        'views/partner_view.xml',
-        'views/account_tax_view.xml',
-    ],
-    "test": [],
-    "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": True
-}
+
+from openerp.osv import fields, orm
+
+
+class AccountTax(orm.Model):
+    _inherit = 'account.tax'
+    _columns = {
+        'natura': fields.selection([
+            ('N1', 'escluse ex art. 15'),
+            ('N2', 'non soggette'),
+            ('N3', 'non imponibili'),
+            ('N4', 'esenti'),
+            ('N5', 'regime del margine'),
+            ('N6', 'inversione contabile (reverse charge)'),
+            ], string="Natura"),
+    }
