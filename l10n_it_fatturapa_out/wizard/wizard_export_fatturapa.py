@@ -615,7 +615,7 @@ class WizardExportFatturapa(orm.TransientModel):
             el.remove(el.find('AltriDatiGestionali'))
             '''
 
-            # TODO: can XML work without this, in case of 'esente IVA'?
+            # TODO: can XML work without Natura, in case of 'esente IVA'?
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
         return True
