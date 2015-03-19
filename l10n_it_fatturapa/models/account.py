@@ -87,22 +87,22 @@ class fatturapa_related_document_type(orm.Model):
     _description = 'FatturaPA Related Document Type'
 
     _columns = {
-        'type': fields.selection([('order', 'Order'),
-                                  ('contract', 'Contract'),
-                                  ('agreement', 'Agreement'),
-                                  ('reception', 'Reception'),
-                                  ('invoice', 'Related Invoice')],
-                                 'Document Type', required=True),
+        'type': fields.selection(
+            [
+                ('order', 'Order'),
+                ('contract', 'Contract'),
+                ('agreement', 'Agreement'),
+                ('reception', 'Reception'),
+                ('invoice', 'Related Invoice')
+            ],
+            'Document Type', required=True
+        ),
         'name': fields.char('DocumentID', size=128, required=True),
         'lineRef': fields.integer('LineRef'),
         'invoice_line_id': fields.many2one('account.invoice.line',
-                                           'Related Invoice Line',
-                                           ondelete='cascade',
-                                           select=True),
+            'Related Invoice Line', ondelete='cascade', select=True),
         'invoice_id': fields.many2one('account.invoice',
-                                           'Related Invoice',
-                                           ondelete='cascade',
-                                           select=True),
+            'Related Invoice', ondelete='cascade', select=True),
         'date': fields.date('Date'),
         'numitem': fields.integer('NumItem'),
         'code': fields.char('Order Agreement Code', size=64),
@@ -141,4 +141,16 @@ class account_invoice_line(orm.Model):
         'related_documents': fields.one2many('fatturapa.related_document_type',
                                              'invoice_line_id',
                                              'Related Documents Type'),
+    }
+
+
+
+
+class account_invoice(orm.Model):
+    _inherit = "account.invoice"
+
+    _columns = {
+        'related_documents': fields.one2many('fatturapa.related_document_type',
+                                             'invoice_id',
+                                             'Related Documents'),
     }
