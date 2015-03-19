@@ -42,25 +42,29 @@ class res_company(orm.Model):
         'fatturapa_pub_administration_ref': fields.char(
             'Public Administration Reference Code', size=20,
             ),
-        'fatturapa_rea_office': fields.many2one(
-            'res.country.state', 'Rea Office',
-            ),
-        'fatturapa_rea_number': fields.char(
-            'Rea Number', size=20,
-            ),
-        'fatturapa_rea_capital': fields.float(
-            'Rea Capital',
-            ),
-        'fatturapa_rea_partner': fields.selection(
-            [('SU', 'Single Partner'),
-             ('SM', 'Many Partners')],
-            'Rea Copartner',
-            ),
-        'fatturapa_rea_liquidation': fields.selection(
-            [('LN', 'Company Not in Liquidation'),
-             ('LN', 'Company In Liquidation')],
-            'Rea Liquidation',
-            ),
+        'fatturapa_rea_office': fields.related(
+            'partner_id', 'rea_office', type='many2one',
+            relation='res.country.state', string='REA office'),
+        'fatturapa_rea_number': fields.related(
+            'partner_id', 'rea_code', type='char',
+            size=20, string='Rea Number'),
+        'fatturapa_rea_capital': fields.related(
+            'partner_id', 'rea_capital', type='float',
+            string='Rea Capital'),
+        'fatturapa_rea_partner': fields.related(
+            'partner_id', 'rea_member_type', type='selection',
+            selection=[
+                ('SU', 'Unique Member'),
+                ('SM', 'Multiple Members'),
+                ],
+            string='Member Type'),
+        'fatturapa_rea_liquidation': fields.related(
+            'partner_id', 'rea_liquidation_state', type='selection',
+            selection=[
+                ('LS', 'In liquidation'),
+                ('LN', 'Not in liquidation'),
+                ],
+            string='Liquidation State'),
         'fatturapa_tax_representative': fields.many2one(
             'res.partner', 'Legal Tax Representative'
             ),
@@ -92,12 +96,20 @@ class account_config_settings(orm.TransientModel):
             type='many2one',
             relation="ir.sequence",
             string="Sequence",
-            help='FatturaPA Sequence'
+            help="il progressivo univoco del file è rappresentato da una "
+                 "stringa alfanumerica di lunghezza massima di 5 caratteri "
+                 "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
             ),
         'fatturapa_art73': fields.related(
             'company_id', 'fatturapa_art73',
             type='boolean',
             string="Art73",
+            help="indicates whether the document has been issued in accordance"
+                 " with the terms and conditions established by ministerial "
+                 "decree in accordance with Article 73 of Presidential Decree"
+                 ""
+                 "633/72 (this allows the company to issue the same"
+                 " year more documents with the same number)"
             ),
         'fatturapa_pub_administration_ref': fields.related(
             'company_id', 'fatturapa_pub_administration_ref',
@@ -133,7 +145,7 @@ class account_config_settings(orm.TransientModel):
             'company_id', 'fatturapa_rea_liquidation',
             type='selection',
             selection=[('LN', 'Company Not in Liquidation'),
-                       ('LN', 'Company In Liquidation')],
+                       ('LS', 'Company In Liquidation')],
             string="Rea Liquidation",
             ),
         'fatturapa_tax_representative': fields.related(
@@ -141,12 +153,16 @@ class account_config_settings(orm.TransientModel):
             type='many2one',
             relation="res.partner",
             string="Legal Tax Representative",
+            help="Used when a foreign company needs to send invoices to an"
+                 "Italian PA and has a tax representative in Italy"
             ),
         'fatturapa_sender_partner': fields.related(
             'company_id', 'fatturapa_sender_partner',
             type='many2one',
             relation="res.partner",
             string="Third Party/Sender",
+            help="Used when company sends invoices to a third party and they "
+                 "send invoices to SDI"
             ),
     }
 
@@ -176,8 +192,8 @@ class account_config_settings(orm.TransientModel):
                     company.fatturapa_pub_administration_ref or False
                     ),
                 'fatturapa_rea_office': (
-                    company.fatturapa_pub_administration_ref and
-                    company.fatturapa_pub_administration_ref.id or False
+                    company.fatturapa_rea_office and
+                    company.fatturapa_rea_office.id or False
                     ),
                 'fatturapa_rea_number': (
                     company.fatturapa_rea_number or False
