@@ -97,7 +97,7 @@ class fatturapa_related_document_type(orm.Model):
             ],
             'Document Type', required=True
         ),
-        'name': fields.char('DocumentID', size=128, required=True),
+        'name': fields.char('DocumentID', size=20, required=True),
         'lineRef': fields.integer('LineRef'),
         'invoice_line_id': fields.many2one(
             'account.invoice.line', 'Related Invoice Line',
@@ -106,10 +106,10 @@ class fatturapa_related_document_type(orm.Model):
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True),
         'date': fields.date('Date'),
-        'numitem': fields.char('NumItem'),
-        'code': fields.char('Order Agreement Code', size=64),
-        'cig': fields.char('CIG Code', size=64),
-        'cup': fields.char('CUP Code', size=64),
+        'numitem': fields.char('NumItem' size=20),
+        'code': fields.char('Order Agreement Code', size=100),
+        'cig': fields.char('CIG Code', size=14),
+        'cup': fields.char('CUP Code', size=14),
     }
 
     def create(self, cr, uid, vals, context=None):
