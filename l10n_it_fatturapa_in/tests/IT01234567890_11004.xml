@@ -72,6 +72,11 @@
         <CodiceCUP>123cba2</CodiceCUP>
         <CodiceCIG>456fed2</CodiceCIG>
       </DatiOrdineAcquisto>
+    <DatiOrdineAcquisto>
+        <IdDocumento>123457</IdDocumento>
+        <CodiceCUP>CUP11111111</CodiceCUP>
+        <CodiceCIG>CIG11111111</CodiceCIG>
+    </DatiOrdineAcquisto>
     <DatiContratto>
         <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
         <IdDocumento>123</IdDocumento>

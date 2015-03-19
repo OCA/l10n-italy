@@ -118,7 +118,7 @@ class WizardImportFatturapa(orm.TransientModel):
         lineref = line.RiferimentoNumeroLinea or False
         IdDoc = line.IdDocumento or 'Error'
         Data = line.Data or False
-        NumItem = int(line.NumItem) or 0
+        NumItem = line.NumItem or ''
         Code = line.CodiceCommessaConvenzione or ''
         Cup = line.CodiceCIG or ''
         Cig = line.CodiceCUP or ''
