@@ -27,7 +27,9 @@
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": [
-        'account', 'l10n_it_base', 'l10n_it_fiscalcode', 'document'],
+        'account', 'l10n_it_base', 'l10n_it_fiscalcode', 'document',
+        'stock_invoice_picking_incoterm', 'l10n_it_withholding_tax'
+    ],
     "data": [
         'data/fatturapa_data.xml',
         'views/account_view.xml',

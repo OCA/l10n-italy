@@ -149,7 +149,14 @@ class account_invoice(orm.Model):
     _inherit = "account.invoice"
 
     _columns = {
-        'related_documents': fields.one2many('fatturapa.related_document_type',
-                                             'invoice_id',
-                                             'Related Documents'),
+        'related_documents': fields.one2many(
+            'fatturapa.related_document_type', 'invoice_id',
+            'Related Documents'
+        ),
+        'tax_representative_id': fields.many2one(
+            'res.partner', string="Tax Rapresentative"),
+        'sender': fields.many2one(
+            [('CC', 'assignee / partner'), ('TZ', 'third person')], 'Sender'),
+        'doc_type': fields.many2one(
+            'fatturapa.document_type', string="Document Type"),
     }

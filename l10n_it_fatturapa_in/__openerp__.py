@@ -27,8 +27,7 @@
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'l10n_it_fatturapa',
-    ],
+        'l10n_it_fatturapa'],
     "data": [
         'views/account_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
