@@ -88,20 +88,47 @@ class WizardImportFatturapa(orm.TransientModel):
     ):
 
         account_tax_model = self.pool['account.tax']
-        account_tax_ids = account_tax_model.search(
-            cr, uid,
-            [
-                ('type_tax_use', 'in', ('purchase', 'all')),
-                ('amount', '=', float(line.AliquotaIVA) / 100),
-            ], context=context)
-
-        if not account_tax_ids:
-            raise orm.except_orm(
-                _('Error!'),
-                _('Define a tax with percentage '
-                  'equals to: "%s"'
-                  % line.aliquotaIVA)
-            )
+        if float(line.AliquotaIVA) == 0.0 and line.Natura:
+            account_tax_ids = account_tax_model.search(
+                cr, uid,
+                [
+                    ('type_tax_use', 'in', ('purchase', 'all')),
+                    ('non_taxable_nature', '=', line.Natura),
+                    ('amount', '=', 0.0),
+                ], context=context)
+            if not account_tax_ids:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('No tax with percentage '
+                      '%s and nature %s found')
+                    % (line.AliquotaIVA, line.Natura))
+            if len(account_tax_ids) > 1:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Too many tax with percentage '
+                      '%s and nature %s found')
+                    % (line.AliquotaIVA, line.Natura))
+        else:
+            account_tax_ids = account_tax_model.search(
+                cr, uid,
+                [
+                    ('type_tax_use', 'in', ('purchase', 'all')),
+                    ('amount', '=', float(line.AliquotaIVA) / 100),
+                    # partially deductible VAT must be set by user
+                    ('child_ids', '=', False),
+                ], context=context)
+            if not account_tax_ids:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Define a tax with percentage '
+                      'equals to: "%s"')
+                    % line.AliquotaIVA)
+            if len(account_tax_ids) > 1:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Too many tax with percentage '
+                      'equals to: "%s"')
+                    % line.AliquotaIVA)
         return {
             'name': line.Descrizione,
             'sequence': int(line.NumeroLinea),
