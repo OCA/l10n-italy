@@ -24,6 +24,9 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class MailMessage(orm.Model):
@@ -34,11 +37,11 @@ class MailMessage(orm.Model):
         res = {}
         if not context:
             context = {}
-        for id in self.browse(cr, uid, ids, context=context):
-            res[id.id] = False
-            if id.server_id:
-                if id.server_id.out_server_id:
-                    res[id.id] = id.server_id.out_server_id[0].id
+        for msg in self.browse(cr, uid, ids, context=context):
+            res[msg.id] = False
+            if msg.server_id:
+                if msg.server_id.out_server_id:
+                    res[msg.id] = msg.server_id.out_server_id[0].id
         return res
 
     _columns = {
@@ -63,6 +66,13 @@ class MailMessage(orm.Model):
             ('rilevazione-virus', 'Virus Detected'),
             ], 'Pec Type', readonly=True),
         'error': fields.boolean('Reception Delivery Error'),
+        'err_type': fields.selection([
+            ('nessuno', 'No Error'),
+            ('no-dest', 'Recipient Adress Error'),
+            ('no-dominio', 'Recipient domain Error'),
+            ('virus', 'Virus Detected Error'),
+            ('altro', 'Undefined Error'),
+            ], 'Pec Error Type', readonly=True),
         'cert_datetime': fields.datetime(
             'Certified Date and Time ', readonly=True),
         'pec_msg_id': fields.char(
@@ -72,12 +82,29 @@ class MailMessage(orm.Model):
             'ref-Message-Id',
             help='Ref Message unique identifier', select=1, readonly=True),
 
-        'inprogress_message_id': fields.many2one(
-            'mail.message', 'Message In Progress', readonly=True),
+        'recipient_id': fields.many2one(
+            'res.partner', 'Recipient', readonly=True),
+        'recipient_addr': fields.char(
+            'Recipient Address', size=256, readonly=True),
+
+        'pec_msg_parent_id': fields.many2one(
+            'mail.message', 'Parent Message', readonly=True),
+        'pec_notifications_ids': fields.one2many(
+            'mail.message', 'pec_msg_parent_id',
+            'Related Notifications',  readonly=True),
+        'message_ok': fields.boolean('Message OK'),
+        # TODO
+        # delete delete follow fields when
+        # new implementations are tested
         'reception_message_id': fields.many2one(
             'mail.message', 'Reception Message', readonly=True),
+
         'no_reception_message_id': fields.many2one(
             'mail.message', 'No Reception Message', readonly=True),
+
+        'inprogress_message_id': fields.many2one(
+            'mail.message', 'Message In Progress', readonly=True),
+
         'notice_delivery_err_message_id': fields.many2one(
             'mail.message', 'Notice Error Delivery Message', readonly=True),
         'delivery_message_id': fields.many2one(
@@ -114,6 +141,67 @@ class MailMessage(orm.Model):
     _defaults = {
         'direction': 'in'
     }
+
+    def CheckNotificationStatus(self, cr, uid, ids, context=None):
+        mail_mail_pool = self.pool['mail.mail']
+        if context is None:
+            context = {}
+        if not hasattr(ids, '__iter__'):
+            ids = [ids]
+        error_lst = []
+        receipt_list = []
+        completed = True
+        res = {}
+        if ids:
+            for message in self.browse(cr, uid, ids, context=context):
+                mail_sent_ids = mail_mail_pool.search(
+                    cr,
+                    uid,
+                    [('mail_message_id', '=', message.id)],
+                    context=context
+                )
+                if not mail_sent_ids:
+                    _logger.error(
+                        'No sent mail for message %s \
+                        from %s server %s.', message.id)
+                    error_lst.append(message.id)
+                elif len(mail_sent_ids) > 1:
+                    _logger.error(
+                        'Too many sent mails for message %s \
+                        from %s server %s.', message.id)
+                    error_lst.append(message.id)
+                else:
+                    sent_mail = mail_mail_pool.browse(
+                        cr,
+                        uid,
+                        mail_sent_ids[0],
+                        context=context)
+                    receipt_list = sent_mail.email_to.split(',')
+                    res = {receipt: False for receipt in receipt_list}
+                    res['accettazione'] = False
+                    for notification in message.pec_notifications_ids:
+                        if notification.err_type != 'nessuno':
+                            error_lst.extend([message.id, notification.id])
+                        else:
+                            if notification.pec_type == 'accettazione':
+                                res['accettazione'] = True
+                            elif notification.pec_type == 'avvenuta-consegna':
+                                if notification.recipient_addr in res:
+                                    res[notification.recipient_addr] = True
+                            else:
+                                pass
+                    for value in res.itervalues():
+                        completed = completed and value
+                    if completed:
+                        self.write(cr,
+                                   uid,
+                                   message.id,
+                                   {'message_ok': completed},
+                                   context=context
+                                   )
+        if error_lst:
+            self.write(cr, uid, error_lst, {'error': True}, context=context)
+        return True
 
     def _search(
         self, cr, uid, args, offset=0, limit=None, order=None,

@@ -22,7 +22,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
-from openerp import tools
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 
@@ -68,25 +68,14 @@ class mail_compose_message(osv.TransientModel):
         if context is None:
             context = {}
         if context.get('reply_pec'):
-            message_data = self.pool.get('mail.message').browse(cr, uid, message_id, context=context)
-
-            # create subject
-            re_prefix = _('Re:')
-            reply_subject = tools.ustr(message_data.subject or message_data.record_name or '')
-            if not (reply_subject.startswith('Re:') or reply_subject.startswith(re_prefix)) and message_data.subject:
-                reply_subject = "%s %s" % (re_prefix, reply_subject)
+            result = super(mail_compose_message, self).get_message_data(
+                cr, uid, message_id, context=context)
             # get partner_ids from action context
             partner_ids = context.get('default_partner_ids', [])
-
             # update the result
-            result = {
-                'record_name': message_data.record_name,
-                'model': message_data.model,
-                'res_id': message_data.res_id,
-                'parent_id': message_data.id,
-                'subject': reply_subject,
+            result.update({
                 'partner_ids': partner_ids,
-            }
+            })
             return result
         else:
             return super(mail_compose_message, self).get_message_data(

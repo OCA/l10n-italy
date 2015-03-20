@@ -41,4 +41,9 @@ class FetchmailServer(orm.Model):
         'out_server_id': fields.one2many(
             'ir.mail_server', 'in_server_id',
             'Outgoing Server',  readonly=True),
+        'force_create_partner_from_mail': fields.boolean(
+            "Force Create Partner",
+            help="If checked then if there is no partner"
+                 " to link a fetched mail with,"
+                 "the system creates a contact partner"),
     }

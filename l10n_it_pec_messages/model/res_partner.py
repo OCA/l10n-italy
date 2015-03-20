@@ -55,75 +55,13 @@ class ResPartner(orm.Model):
             cr, uid, thread_id, body=body, subject=subject, type=type,
             subtype=subtype, parent_id=parent_id, attachments=attachments,
             context=context, content_subtype=content_subtype, **kwargs)
+        # If the message is a notification mail than check its status
         if (
             context.get('main_message_id') and
             context.get('pec_type')
         ):
-
-            if (
-                context['pec_type'] == 'presa-in-carico'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'inprogress_message_id': msg_id,
-                    }, context=context)
-            if (
-                context['pec_type'] == 'preavviso-errore-consegna'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'notice_delivery_err_message_id': msg_id,
-                    }, context=context)
-            if (
-                context['pec_type'] == 'accettazione'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'reception_message_id': msg_id,
-                    }, context=context)
-            if (
-                context['pec_type'] == 'non-accettazione'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'no_reception_message_id': msg_id,
-                    }, context=context)
-            if(
-                context['pec_type'] == 'avvenuta-consegna'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'delivery_message_id': msg_id,
-                    }, context=context)
-            if(
-                context['pec_type'] == 'errore-consegna'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'delivery_err_message_id': msg_id,
-                    }, context=context)
-            if(
-                context['pec_type'] == 'rilevazione-virus'
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'virus_message_id': msg_id,
-                    }, context=context)
-
-
-            if(
-                context['pec_type'] in
-                [
-                    'non-accettazione',
-                    'errore-consegna',
-                    'rilevazione-virus'
-                ]
-            ):
-                message_pool.write(
-                    cr, uid, [context['main_message_id']], {
-                        'error': True,
-                    }, context=context)
-
+            message_pool.CheckNotificationStatus(
+                cr, uid, context['main_message_id'], context=context)
         return msg_id
 
     def name_get(self, cr, uid, ids, context=None):
@@ -140,14 +78,10 @@ class ResPartner(orm.Model):
                     record.is_company
                 ):
                     name = "%s, %s" % (record.parent_name, name)
-                    res.append((record.id, name))
                 if record.pec_mail:
                     name = "%s <%s>" % (name, record.pec_mail)
-                    res.append((record.id, name))
+                res.append((record.id, name))
             return res
         else:
             return super(ResPartner, self).name_get(
                 cr, uid, ids, context=context)
-
-
-

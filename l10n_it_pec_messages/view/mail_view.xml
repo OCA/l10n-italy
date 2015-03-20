@@ -18,26 +18,28 @@
                         <page string="Body">
                             <field name="body"/>
                         </page>
-                        <page string="Server Notification Log Message">
-                                <group>
-                                        <field name="inprogress_message_id"/>
-                                        <field name="reception_message_id"/>
-                                        <field name="no_reception_message_id"/>
-                                        <field name="notice_delivery_err_message_id"/>
-                                        <field name="delivery_message_id"/>
-                                        <field name="delivery_err_message_id"/>
-                                        <field name="virus_message_id"/>
-                                </group>
+                        <page string="Server Notification Log Messages">
+                                <field name="pec_notifications_ids"/>
                         </page>
                     </notebook>
                 </field>
                 <field name="model" position="before" >
                     <field name="server_id" />
                     <field name="out_server_id" />
-                    <field name="reception_message_id" />
-                    <field name="delivery_message_id" />
                     <field name="error" />
                 </field>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='message_pec_partner_tree'>
+            <field name="name">res.partner.pec.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Pec">
+                    <field name="name" />
+                    <field name="phone" />
+                    <field name="pec_mail" />
+                </tree>
             </field>
         </record>
 
@@ -46,7 +48,7 @@
             <field name="model">mail.message</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <form string="Pec">
+                <form string="Pec" create="false" edit="false">
                     <field name="email_from" readonly="1" />
                     <field name="date"  readonly="1" />
                     <field name="author_id"  />
@@ -61,7 +63,12 @@
 
                     <notebook colspan="6" >
                         <page string="Recipients">
-                            <field name="partner_ids" nolabel="1" readonly="1"/>
+                            <field name="partner_ids"
+                                        context = " {
+                                              'tree_view_ref' : 'l10n_it_pec_messages.message_pec_partner_tree',
+                                              'pec_messages': True}"
+                                        nolabel="1" readonly="1"
+                            />
                         </page>
                         <page string="Replies">
                             <field name="child_ids" nolabel="1"
@@ -85,7 +92,7 @@
             <field name="model">mail.message</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <tree string="Pec">
+                <tree string="Pec" create="false">
                     <field name="email_from" />
                     <field name="date" />
                     <field name="subject" />
@@ -105,7 +112,7 @@
         </record>
 
         <record model='ir.actions.act_window' id='action_mail_pec'>
-            <field name="name">Leggi Pec</field>
+            <field name="name">Read PEC</field>
             <field name="res_model">mail.message</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -116,17 +123,10 @@
             <field name="context">{
                 'pec_messages': True,
             }</field>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Premi qui per creare un nuovo record
-              </p><p>
-                Ricordati di inserire tutti i campi in celeste!
-              </p>
-            </field>
         </record>
 
         <record model='ir.actions.act_window' id='action_out_mail_pec'>
-            <field name="name">Pec inviate</field>
+            <field name="name">Sent PEC</field>
             <field name="res_model">mail.message</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -139,13 +139,6 @@
             <field name="context">{
                 'pec_messages': True,
             }</field>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Premi qui per creare un nuovo record
-              </p><p>
-                Ricordati di inserire tutti i campi in celeste!
-              </p>
-            </field>
         </record>
 
         <record model="ir.actions.act_window.view" id="message_pec_act_tree">
@@ -183,23 +176,23 @@
         </record>
 
         <record id="mail_pec" model="ir.ui.menu">
-            <field name="name">Leggi PEC</field>
+            <field name="name">Read PEC</field>
             <field name="action" ref="action_mail_pec"/>
             <field name="parent_id" ref="mail_pec_main"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 
         <record id="menu_out_mail_pec" model="ir.ui.menu">
-            <field name="name">PEC Inviate</field>
+            <field name="name">Sent PEC</field>
             <field name="action" ref="action_out_mail_pec"/>
-            <field name="parent_id" ref="mail_pec"/>
+            <field name="parent_id" ref="mail_pec_main"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 
         <record id="mail_write_pec" model="ir.ui.menu">
-            <field name="name">Scrivi PEC</field>
+            <field name="name">Write PEC</field>
             <field name="action" ref="action_email_pec_compose_message_wizard"/>
-            <field name="parent_id" ref="mail_pec"/>
+            <field name="parent_id" ref="mail_pec_main"/>
             <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
         </record>
 

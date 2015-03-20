@@ -39,12 +39,15 @@ message data.
 'consegna', 'accettazione' and the other notification messages are linked to
 the original message that originated them.
 It also correctly parses the mail attachments and attaches the original 'eml'
-PEC message
+PEC message.
+The module adds a 'PEC' menu where to handle PEC messages.
 
 
 Configuration
 -------------
 
+Create a new user associated to the PEC mailbox.
+Set 'Never' for 'Receive Messages by Email'.
 Configure the fetchmail server (incoming mail server, IMAP or POP)
 used to fetch PEC messages and set it as 'PEC'.
 Set the users allowed to use that server.
