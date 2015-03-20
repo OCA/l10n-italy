@@ -33,6 +33,7 @@
         'views/account_view.xml',
         'views/company_view.xml',
         'views/partner_view.xml',
+        'views/account_tax_view.xml',
     ],
     "test": [],
     "demo": ['demo/account_invoice_fatturapa.xml'],

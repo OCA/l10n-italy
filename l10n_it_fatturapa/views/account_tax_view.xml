@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="view_tax_form" model="ir.ui.view">
+            <field name="name">account.tax.form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"></field>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="FatturaPA">
+                        <group>
+                            <field name="natura"></field>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
     </data>
 </openerp>
