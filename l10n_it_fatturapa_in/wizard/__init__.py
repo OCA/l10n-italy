@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-from . import xml_data, wizard_import_fatturapa
+from . import wizard_import_fatturapa
