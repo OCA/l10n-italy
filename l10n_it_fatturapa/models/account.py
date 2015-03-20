@@ -82,6 +82,43 @@ class fatturapa_format(orm.Model):
     }
 
 
+class fatturapa_stamp_tax(orm.Model):
+    # TODO check possible formats
+    _name = "fatturapa.stamp.tax"
+    _description = 'FatturaPA Virtual stamp Tax'
+
+    _columns = {
+        'virtual_stamp': fields.boolean('Virtual Stamp'),
+        'stamp_amount': fields.float('Stamp Amount'),
+    }
+
+class welfare_fund_type(orm.Model):
+    _name = "welfare.fund.type"
+    _description = 'welfare fund type'
+
+    _columns = {
+        'name': fields.char('name'),
+        'description': fields.char('description'),
+    }
+
+class welfare_fund_data_line(orm.Model):
+    # TODO add Natura 2.1.1.7.7
+    _name = "welfare.fund.data.line"
+    _description = 'FatturaPA Virtual stamp Tax'
+
+    _columns = {
+        'fund.type': fields.many2one(
+            'welfare.fund.type', string="Welfare Fund Type"),
+        'welfare_rate_tax': fields.float('Welfare Rate tax'),
+        'welfare_amount_tax': fields.float('Welfare Amount tax'),
+        'welfare_taxable': fields.float('Welfare Taxable'),
+        'subjected_withholding': fields.char(
+            'Subjected at Withholding', size=2),
+        'pa_line_code': fields.char('PA Code for this record', size=20),
+    }
+
+
+
 class fatturapa_related_document_type(orm.Model):
     _name = 'fatturapa.related_document_type'
     _description = 'FatturaPA Related Document Type'
@@ -155,8 +192,15 @@ class account_invoice(orm.Model):
         ),
         'tax_representative_id': fields.many2one(
             'res.partner', string="Tax Rapresentative"),
-        'sender': fields.many2one(
+        'sender': fields.selection(
             [('CC', 'assignee / partner'), ('TZ', 'third person')], 'Sender'),
         'doc_type': fields.many2one(
             'fatturapa.document_type', string="Document Type"),
+        'ftpa_withholding_type': fields.selection(
+            [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
+            'Withholding type'
+        ),
+        'ftpa_withholding_rate': fields.float('Withholding rate'),
+        'ftpa_withholding_payment_reason': fields.char(
+            'Withholding reason', size=2),
     }

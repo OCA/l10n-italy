@@ -59,6 +59,9 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
+                <field name="payment_term" position="after">
+                    <field name="incoterm" widget="selection"/>
+                </field>
                 <xpath expr="//notebook" position="inside">
                     <page string="Related Documents ">
                             <group string="Related Documents">
