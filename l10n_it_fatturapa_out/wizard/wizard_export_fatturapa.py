@@ -21,6 +21,7 @@
 
 import base64
 import tempfile
+from unidecode import unidecode
 from pyxb.exceptions_ import SimpleFacetValueError
 from openerp.osv import orm
 from openerp import addons
@@ -93,7 +94,7 @@ class WizardExportFatturapa(orm.TransientModel):
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
-            'datas': base64.encodestring(self.fatturapa.toxml("utf-8")),
+            'datas': base64.encodestring(self.fatturapa.toxml("latin1")),
         }
         attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
 
@@ -599,7 +600,8 @@ class WizardExportFatturapa(orm.TransientModel):
                 Descrizione=line.name,
                 PrezzoUnitario='%.2f' % line.price_unit,
                 Quantita='%.2f' % line.quantity,
-                UnitaMisura=line.uos_id and line.uos_id.name or None,
+                UnitaMisura=line.uos_id and (
+                    unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA=AliquotaIVA)
             if aliquota == 0.0:
