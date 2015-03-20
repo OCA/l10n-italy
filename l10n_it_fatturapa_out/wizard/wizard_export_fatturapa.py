@@ -20,11 +20,9 @@
 ##############################################################################
 
 import base64
-import tempfile
-from pyxb.exceptions_ import SimpleFacetValueError
 from unidecode import unidecode
+from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 from openerp.osv import orm
-from openerp import addons
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
@@ -44,7 +42,10 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DatiBeniServiziType,
     DatiRiepilogoType,
     DatiGeneraliDocumentoType,
-    DatiDocumentiCorrelatiType
+    DatiDocumentiCorrelatiType,
+    ContattiType,
+    DatiPagamentoType,
+    DettaglioPagamentoType
     )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -60,24 +61,6 @@ class WizardExportFatturapa(orm.TransientModel):
         self.number = False
         super(WizardExportFatturapa, self).__init__(cr, uid, **kwargs)
 
-    def getFile(self, filename, context=None):
-        if context is None:
-            context = {}
-
-        path = addons.get_module_resource(
-            'l10n_it_fatturapa', 'data', filename)
-        with open(path) as test_data:
-            with tempfile.TemporaryFile() as out:
-                base64.encode(test_data, out)
-                out.seek(0)
-                return out.read()
-    '''
-    def setNameSpace(self):
-        register_namespace('ds', "http://www.w3.org/2000/09/xmldsig#")
-        register_namespace(
-            'p', "http://www.fatturapa.gov.it/sdi/fatturapa/v1.1")
-        register_namespace('xsi', "http://www.w3.org/2001/XMLSchema-instance")
-    '''
     def saveAttachment(self, cr, uid, context=None):
         if context is None:
             context = {}
@@ -154,10 +137,10 @@ class WizardExportFatturapa(orm.TransientModel):
     def _setCodiceDestinatario(self, cr, uid, partner, context=None):
         if context is None:
             context = {}
-        code = partner.fatturapa_code
+        code = partner.ipa_code
         if not code:
             raise orm.except_orm(
-                _('Error!'), _('FatturaPA Code not set on partner form.'))
+                _('Error!'), _('IPA Code not set on partner form.'))
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             CodiceDestinatario = code.upper()
 
@@ -220,8 +203,6 @@ class WizardExportFatturapa(orm.TransientModel):
         Anagrafica.remove(Cognome)
         Anagrafica.remove(Titolo)
         '''
-        # TODO
-        # Anagrafica.remove(Anagrafica.find('CodEORI'))
 
         if company.partner_id.fiscalcode:
             CedentePrestatore.DatiAnagrafici.CodiceFiscale = (
@@ -275,7 +256,7 @@ class WizardExportFatturapa(orm.TransientModel):
                                   company, context=None):
         if context is None:
             context = {}
-        # TODO: fill this section
+        # not handled
 
     def _setRea(self, cr, uid, CedentePrestatore, company, context=None):
         if context is None:
@@ -283,18 +264,26 @@ class WizardExportFatturapa(orm.TransientModel):
 
         if company.fatturapa_rea_office and company.fatturapa_rea_number:
             CedentePrestatore.IscrizioneREA = IscrizioneREAType(
-                Ufficio=company.fatturapa_rea_office.name,
-                NumeroREA=company.fatturapa_rea_number,
-                CapitaleSociale=company.fatturapa_rea_capital,
+                Ufficio=(
+                    company.fatturapa_rea_office and
+                    company.fatturapa_rea_office.code or None),
+                NumeroREA=company.fatturapa_rea_number or None,
+                CapitaleSociale=(
+                    company.fatturapa_rea_capital
+                    and '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
-                StatoLiquidazione=company.fatturapa_rea_liquidation
+                StatoLiquidazione=company.fatturapa_rea_liquidation or None
                 )
 
     def _setContatti(self, cr, uid, CedentePrestatore,
                      company, context=None):
         if context is None:
             context = {}
-        # TODO: fill this section
+        CedentePrestatore.Contatti = ContattiType(
+            Telefono=company.partner_id.phone or None,
+            Fax=company.partner_id.fax or None,
+            Email=company.partner_id.email or None
+            )
 
     def _setPubAdministrationRef(self, cr, uid, CedentePrestatore,
                                  company, context=None):
@@ -373,19 +362,19 @@ class WizardExportFatturapa(orm.TransientModel):
 
         if not partner.street:
             raise orm.except_orm(
-                _('Error!'), _('Partner street not set.'))
+                _('Error!'), _('Customer street not set.'))
         if not partner.zip:
             raise orm.except_orm(
-                _('Error!'), _('Partner ZIP not set.'))
+                _('Error!'), _('Customer ZIP not set.'))
         if not partner.city:
             raise orm.except_orm(
-                _('Error!'), _('Partner city not set.'))
+                _('Error!'), _('Customer city not set.'))
         if not partner.state_id:
             raise orm.except_orm(
-                _('Error!'), _('Partner province not set.'))
+                _('Error!'), _('Customer province not set.'))
         if not partner.country_id:
             raise orm.except_orm(
-                _('Error!'), _('Partner country not set.'))
+                _('Error!'), _('Customer country not set.'))
 
         # FIXME: manage address number in <NumeroCivico>
         self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
@@ -503,16 +492,27 @@ class WizardExportFatturapa(orm.TransientModel):
                 _('Error!'),
                 _('Invoice does not have a number.'))
 
-        # TODO: TipoDocumento
+        TipoDocumento = 'TD01'
+        if invoice.type == 'out_refund':
+            TipoDocumento = 'TD04'
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
-            TipoDocumento='TD01',
+            TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
             Numero=invoice.number)
 
         # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
         # ScontoMaggiorazione, ImportoTotaleDocumento, Arrotondamento,
-        # Causale
+
+        if invoice.comment:
+            # max length of Causale is 200
+            caus_list = invoice.comment.split('\n')
+            for causale in caus_list:
+                # Remove non latin chars, but go back to unicode string,
+                # as expected by String200LatinType
+                causale = causale.encode(
+                    'latin', 'ignore').decode('latin')
+                body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
 
         if invoice.company_id.fatturapa_art73:
             body.DatiGenerali.DatiGeneraliDocumento.Art73 = 'SI'
@@ -644,12 +644,17 @@ class WizardExportFatturapa(orm.TransientModel):
                         _('Error'),
                         _("No 'nature' field for tax %s") % tax.name)
                 riepilogo.Natura = tax.non_taxable_nature
+                if not tax.law_reference:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _("No 'law reference' field for tax %s") % tax.name)
+                riepilogo.RiferimentoNormativo = tax.law_reference
+            if tax.payability:
+                riepilogo.EsigibilitaIVA = tax.payability
             # TODO
             '''
             el.remove(el.find('SpeseAccessorie'))
             el.remove(el.find('Arrotondamento'))
-            el.remove(el.find('EsigibilitaIVA'))
-            el.remove(el.find('RiferimentoNormativo'))
             '''
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
@@ -659,34 +664,40 @@ class WizardExportFatturapa(orm.TransientModel):
     def setDatiPagamento(self, cr, uid, invoice, body, context=None):
         if context is None:
             context = {}
-
-        """ TODO
-        DettaglioPagamento = DatiPagamento.find('DettaglioPagamento')
-        if (
-            invoice.payment_term and invoice.payment_term.fatturapa_pt_id
-            and invoice.payment_term.fatturapa_pt_id.code
-        ):
-            DatiPagamento.find(
-                'CondizioniPagamento'
-                ).text = invoice.payment_term.fatturapa_pt_id.code
-        else:
-            raise orm.except_orm(
-                _("Error"), _(""))
-
-        # TODO: multiple installments
-        if (
-            invoice.payment_term and invoice.payment_term.fatturapa_pm_id
-            and invoice.payment_term.fatturapa_pm_id.code
-        ):
-            DettaglioPagamento.find(
-                'ModalitaPagamento'
-                ).text = invoice.payment_term.fatturapa_pm_id.code
-        DettaglioPagamento.find(
-            'DataScadenzaPagamento').text = invoice.date_due
-        DettaglioPagamento.find(
-            'ImportoPagamento').text = unicode(invoice.amount_total)
-        """
-
+        if invoice.payment_term:
+            DatiPagamento = DatiPagamentoType()
+            if not invoice.payment_term.fatturapa_pt_id:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Payment term %s does not have a linked fatturaPA '
+                      'payment term') % invoice.payment_term.name)
+            if not invoice.payment_term.fatturapa_pm_id:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Payment term %s does not have a linked fatturaPA '
+                      'payment method') % invoice.payment_term.name)
+            DatiPagamento.CondizioniPagamento = (
+                invoice.payment_term.fatturapa_pt_id.code)
+            move_line_pool = self.pool['account.move.line']
+            invoice_pool = self.pool['account.invoice']
+            payment_line_ids = invoice_pool.move_line_id_payment_get(
+                cr, uid, [invoice.id])
+            for move_line_id in payment_line_ids:
+                move_line = move_line_pool.browse(
+                    cr, uid, move_line_id, context=context)
+                DettaglioPagamento = DettaglioPagamentoType(
+                    ModalitaPagamento=(
+                        invoice.payment_term.fatturapa_pm_id.code),
+                    DataScadenzaPagamento=move_line.date_maturity,
+                    ImportoPagamento='%.2f' % move_line.debit
+                    )
+                if invoice.partner_bank_id:
+                    DettaglioPagamento.IstitutoFinanziario = (
+                        invoice.partner_bank_id.bank_name)
+                    DettaglioPagamento.IBAN = (
+                        invoice.partner_bank_id.acc_number)
+                DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
+            body.DatiPagamento.append(DatiPagamento)
         return True
 
     def setFatturaElettronicaHeader(self, cr, uid, company,
@@ -751,11 +762,6 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
 
-        # content = self.getFile('fatturapa_v1.1.xml').decode('base64')
-        # self.template = ElementTree(fromstring(content))
-        # tmpl = self.template
-        # root = tmpl.getroot()
-
         self.fatturapa = FatturaElettronica(versione='1.1')
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
@@ -779,9 +785,9 @@ class WizardExportFatturapa(orm.TransientModel):
                 # TODO DatiVeicoli
 
             self.setProgressivoInvio(cr, uid, context=context)
-        except SimpleFacetValueError as e:
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
             raise orm.except_orm(
-                _("Error"),
+                _("XML SDI validation error"),
                 (unicode(e)))
 
         attach_id = self.saveAttachment(cr, uid, context=context)

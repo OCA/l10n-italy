@@ -19,5 +19,3 @@
 ##############################################################################
 
 from . import test_fatturapa_xml_validation
-
-checks = [test_fatturapa_xml_validation]
