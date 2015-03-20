@@ -22,19 +22,12 @@
 #
 ##############################################################################
 {
-    'name': 'IPA Code (IndicePA)',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Italian Localisation module - IPA
-
-Funcionalities:
-
-- Add IPA (IndicePA) Field in Partner Profile
-
-""",
-    'author': 'KTec S.r.l, Odoo Community Association (OCA)',
-    'website': 'http://www.ktec.it',
-    'license': 'AGPL-3',
+    "name": "IPA Code (IndicePA)",
+    "version": "1.0",
+    "category": "Localisation/Italy",
+    "author": "KTec S.r.l, Odoo Community Association (OCA)",
+    "website": "http://www.ktec.it",
+    "license": "AGPL-3",
     "depends": ['base'],
     "data": [
         'view/partner_view.xml',
