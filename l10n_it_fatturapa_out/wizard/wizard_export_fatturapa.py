@@ -23,7 +23,7 @@ import base64
 import re
 import tempfile
 from pyxb.exceptions_ import SimpleFacetValueError
-from unicodedata import normalize
+from unidecode import unidecode
 from openerp.osv import orm
 from openerp import addons
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
@@ -596,7 +596,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 PrezzoUnitario='%.2f' % line.price_unit,
                 Quantita='%.2f' % line.quantity,
                 UnitaMisura=line.uos_id and (
-                    normalize('NFD', line.uos_id.name)[0]) or None,
+                    unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA='%.2f' % (
                     line.invoice_line_tax_id[0].amount*100)
