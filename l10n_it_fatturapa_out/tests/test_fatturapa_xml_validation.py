@@ -23,8 +23,6 @@ import tempfile
 import netsvc
 import openerp.tests.common as test_common
 from openerp import addons
-from lxml import etree
-from io import BytesIO
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
@@ -55,6 +53,19 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         if invoice_id:
             invoice_id = invoice_id and invoice_id[1] or False
 
+        seq_pool = self.registry('ir.sequence')
+        seq_id = self.data_model.get_object_reference(
+            cr, uid, 'l10n_it_fatturapa', 'seq_fatturapa')
+        seq_pool.write(cr, uid, [seq_id[1]], {
+            'implementation': 'no_gap',
+            'number_next_actual': 1,
+            })
+        seq_id = self.data_model.get_object_reference(
+            cr, uid, 'account', 'sequence_sale_journal')
+        seq_pool.write(cr, uid, [seq_id[1]], {
+            'implementation': 'no_gap',
+            'number_next_actual': 13,
+            })
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(
             uid, 'account.invoice', invoice_id, 'invoice_open', cr)
@@ -65,6 +76,13 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
         self.assertTrue(res, 'Export failed.')
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
+        self.assertEqual(attachment.datas_fname, 'IT02780790107_00001.xml')
 
         # XML doc to be validated
-        xml_content = attachment.datas.decode('base64')
+        xml_content = attachment.datas.decode('base64').decode('latin1')
+
+        test_fatt_data = self.getFile('IT02780790107_00001.xml')[1]
+        test_fatt_content = test_fatt_data.decode('base64').decode('latin1')
+
+        self.assertEqual(
+            test_fatt_content.replace('\n', ''), xml_content.replace('\n', ''))
