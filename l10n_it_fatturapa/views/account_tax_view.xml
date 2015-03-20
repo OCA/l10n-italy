@@ -9,7 +9,7 @@
                 <notebook position="inside">
                     <page string="FatturaPA">
                         <group>
-                            <field name="natura"></field>
+                            <field name="non_taxable_nature"></field>
                         </group>
                     </page>
                 </notebook>
