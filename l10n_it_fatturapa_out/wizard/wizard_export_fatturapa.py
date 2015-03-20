@@ -154,10 +154,10 @@ class WizardExportFatturapa(orm.TransientModel):
     def _setCodiceDestinatario(self, cr, uid, partner, context=None):
         if context is None:
             context = {}
-        code = partner.fatturapa_code
+        code = partner.ipa_code
         if not code:
             raise orm.except_orm(
-                _('Error!'), _('FatturaPA Code not set on partner form.'))
+                _('Error!'), _('IPA Code not set on partner form.'))
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             CodiceDestinatario = code.upper()
 
