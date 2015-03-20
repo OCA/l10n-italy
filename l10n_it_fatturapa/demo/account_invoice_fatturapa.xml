@@ -52,7 +52,7 @@
             <field name="website">www.mypa.it</field>
             <field name="fiscalcode">00146089990</field>
             <field name="vat">IT00146089990</field>
-            <field name="ipa_code">UFR7EC</field>
+            <field name="ipa_code">79SRAK</field>
         </record>
 
         <record id="fatturapa_invoice_0" model="account.invoice">
