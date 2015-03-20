@@ -32,7 +32,7 @@ Funcionalities:
 - Add IPA (IndicePA) Field in Partner Profile
 
 """,
-    'author': 'KTec S.r.l.',
+    'author': 'KTec S.r.l, Odoo Community Association (OCA)',
     'website': 'http://www.ktec.it',
     'license': 'AGPL-3',
     "depends": ['base'],
