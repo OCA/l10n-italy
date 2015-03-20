@@ -2,7 +2,7 @@
     :alt: License
 
 IPA Code (IndicePA)
-===========
+===================
 
 This module adds IPA (IndicePA) field to partner
 
