@@ -5,14 +5,25 @@ Italian Localization - FatturaPA
 ================================
 
 Base module to handle FatturaPA data.
+http://fatturapa.gov.it
+
 See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
+
+
+Installation
+============
+
+This module requires PyXB 1.2.4
+http://pyxb.sourceforge.net/
 
 
 Configuration
 =============
 
- * Edit the FatturaPA fields of the partners who will send/receive the electronic invoices
- * Configure payment terms filling the fatturaPA fields related to payment terms and payment methods
+ * Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the
+   electronic invoices. IPA code is mandatory, EORI code is not.
+ * Configure payment terms filling the fatturaPA fields related to payment
+   terms and payment methods.
  * Configure FatturaPA data in Accounting Configuration
 
 Credits
@@ -34,6 +45,8 @@ Maintainer
 
 This module is maintained by the OCA.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
