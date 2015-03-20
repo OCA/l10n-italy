@@ -26,9 +26,7 @@ from openerp import models
 from openerp import fields
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    ipa_code = fields.Char(
-        'IPA Code'
-    )
+    ipa_code = fields.Char(string='IPA Code')
