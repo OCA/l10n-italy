@@ -21,7 +21,7 @@
     'name': 'REA Register',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'summary': 'Manage fields for Repertoire Economic Administrative',
+    'summary': 'Manage fields for  Economic Administrative catalogue',
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'description': """
@@ -37,7 +37,7 @@ http://www.registroimprese.it/il-registro-imprese-e-altre-banche-dati#page=regis
 Usage
 =====
 
-The module adds a page in partner form, where you can
+The module adds fields in page Accounting of partner form, where you can
 add data of registry of businesses
 
 

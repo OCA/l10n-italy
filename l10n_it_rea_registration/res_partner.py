@@ -28,7 +28,7 @@ class resPartner(orm.Model):
         'rea_office': fields.many2one(
             'res.province', string='Office Province'),
         'rea_code': fields.char('REA Code', size=20),
-        'rea_capital': fields.float('Capital', digits=(13, 2)),
+        'rea_capital': fields.float('Capital'),
         'rea_member_type': fields.selection(
             [
                 ('unique', 'Unique Member'),
