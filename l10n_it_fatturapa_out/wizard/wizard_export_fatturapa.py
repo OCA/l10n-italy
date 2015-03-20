@@ -20,7 +20,6 @@
 ##############################################################################
 
 import base64
-import re
 import tempfile
 from pyxb.exceptions_ import SimpleFacetValueError
 from unidecode import unidecode
@@ -590,6 +589,8 @@ class WizardExportFatturapa(orm.TransientModel):
                 raise orm.except_orm(
                     _('Error'),
                     _("Too many taxes for invoice line %s") % line.name)
+            aliquota = line.invoice_line_tax_id[0].amount*100
+            AliquotaIVA = '%.2f' % (aliquota)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
                 Descrizione=line.name,
@@ -598,9 +599,16 @@ class WizardExportFatturapa(orm.TransientModel):
                 UnitaMisura=line.uos_id and (
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
-                AliquotaIVA='%.2f' % (
-                    line.invoice_line_tax_id[0].amount*100)
-                )
+                AliquotaIVA=AliquotaIVA)
+            if aliquota == 0.0:
+                if not line.invoice_line_tax_id[0].non_taxable_nature:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _("No 'nature' field for tax %s") %
+                        line.invoice_line_tax_id[0].name)
+                DettaglioLinea.Natura = line.invoice_line_tax_id[
+                    0
+                    ].non_taxable_nature
             line_no += 1
 
             # not handled
@@ -613,7 +621,6 @@ class WizardExportFatturapa(orm.TransientModel):
             el.remove(el.find('AltriDatiGestionali'))
             '''
 
-            # TODO: can XML work without Natura, in case of 'esente IVA'?
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
         return True
@@ -621,31 +628,24 @@ class WizardExportFatturapa(orm.TransientModel):
     def setDatiRiepilogo(self, cr, uid, invoice, body, context=None):
         if context is None:
             context = {}
-
+        tax_pool = self.pool['account.tax']
         for tax_line in invoice.tax_line:
-            rates = re.findall(r'\d+%', tax_line.name)
-            if len(rates) > 1:
-                raise orm.except_orm(
-                    _('Error'),
-                    _("Too many rates found in tax line %s") % tax_line.name)
-            if not rates:
-                try:
-                    rate = float(tax_line.name[:2])
-                except ValueError:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _("No rates found in tax line %s") % tax_line.name)
-            else:
-                rate = rates[0].replace('%', '')
+            tax_id = self.pool['account.tax'].get_tax_by_invoice_tax(
+                cr, uid, tax_line.name, context=context)
+            tax = tax_pool.browse(cr, uid, tax_id, context=context)
             riepilogo = DatiRiepilogoType(
-                AliquotaIVA='%.2f' % float(rate),
+                AliquotaIVA='%.2f' % tax.amount,
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
                 )
-
+            if tax.amount == 0.0:
+                if not tax.non_taxable_nature:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _("No 'nature' field for tax %s") % tax.name)
+                riepilogo.Natura = tax.non_taxable_nature
             # TODO
             '''
-            el.remove(el.find('Natura'))
             el.remove(el.find('SpeseAccessorie'))
             el.remove(el.find('Arrotondamento'))
             el.remove(el.find('EsigibilitaIVA'))
