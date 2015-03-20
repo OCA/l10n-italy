@@ -25,7 +25,7 @@
             <field name="country_id" ref="base.it"/>
             <field name="phone">06543534343</field>
             <field name="fatturapa_fiscal_position_id" ref="fatturapa_RF01"/>
-            <field name="fatturapa_format_id" ref="fatturapa_format_01"/>
+            <field name="fatturapa_format_id" ref="fatturapa_format_1_1"/>
             <field name="fatturapa_sequence_id" ref="seq_fatturapa"/>
             <field name="fatturapa_art73">True</field>
             <field name="vat">IT02780790107</field>
@@ -52,7 +52,7 @@
             <field name="website">www.mypa.it</field>
             <field name="fiscalcode">00146089990</field>
             <field name="vat">IT00146089990</field>
-            <field name="fatturapa_code">UFR7EC</field>
+            <field name="ipa_code">79SRAK</field>
         </record>
 
         <record id="fatturapa_invoice_0" model="account.invoice">
@@ -68,32 +68,6 @@
             <field eval="14.0" name="amount_untaxed"/>
             <field eval="14.0" name="amount_total"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
-            <field name="fatturapa_po_enable">True</field>
-            <field name="fatturapa_po_line_no">1</field>
-            <field name="fatturapa_po">1</field>
-            <field name="fatturapa_po_cup">abc123</field>
-            <field name="fatturapa_po_cig">abc123</field>
-            <field name="fatturapa_contract_enable">True</field>
-            <field name="fatturapa_contract_line_no">1</field>
-            <field name="fatturapa_contract">1</field>
-            <field name="fatturapa_contract_data">2014-01-07</field>
-            <field name="fatturapa_contract_numitem">1</field>
-            <field name="fatturapa_contract_cup">abc123</field>
-            <field name="fatturapa_contract_cig">abc123</field>
-            <field name="fatturapa_agreement_line_no">1</field>
-            <field name="fatturapa_agreement_enable">True</field>
-            <field name="fatturapa_agreement">1</field>
-            <field name="fatturapa_agreement_data">2014-01-07</field>
-            <field name="fatturapa_agreement_numitem">1</field>
-            <field name="fatturapa_agreement_cup">abc123</field>
-            <field name="fatturapa_agreement_cig">abc123</field>
-            <field name="fatturapa_reception_line_no">1</field>
-            <field name="fatturapa_reception_enable">True</field>
-            <field name="fatturapa_reception">1</field>
-            <field name="fatturapa_reception_data">2014-01-07</field>
-            <field name="fatturapa_reception_numitem">1</field>
-            <field name="fatturapa_reception_cup">abc123</field>
-            <field name="fatturapa_reception_cig">abc123</field>
         </record>
 
         <record id="fatturapa_invoice_0_line_0" model="account.invoice.line">
@@ -103,7 +77,7 @@
             <field name="price_unit" eval="10.0" />
             <field name="price_subtotal" eval="10.0" />
             <field name="company_id" ref="base.main_company"/>
-            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_code_sale_22')])]"/>
+            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
             <field name="product_id" ref="product.product_product_39"/>
             <field name="quantity" eval="1.0" />
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -117,7 +91,7 @@
             <field name="price_unit" eval="4.0"/>
             <field name="price_subtotal" eval="4.0"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_code_sale_22')])]"/>
+            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
             <field name="product_id" ref="product.product_product_43"/>
             <field name="quantity" eval="1.0" />
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
