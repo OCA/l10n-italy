@@ -68,19 +68,3 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
-
-        # We need to use a local schema file since lxml fails trying
-        # to import remote resource
-        dsig_url = "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/\
-xmldsig-core-schema.xsd"
-        dsig_path, dsig_data = self.getFile('xmldsig-core-schema.xsd')
-
-        # Replacing remote resource url with local path
-        xsd_path, xsd_data = self.getFile('fatturapa_v1.0.xsd')
-        xsd_content = xsd_data.decode('base64').decode('utf8')
-        xsd_content = xsd_content.replace(dsig_url, dsig_path)
-
-        xsd_tree = etree.parse(BytesIO(xsd_content.encode('utf8')))
-        schema = etree.XMLSchema(xsd_tree)
-        validation = schema.validate(etree.parse(BytesIO(xml_content)))
-        self.assertTrue(validation, 'FatturaPA XML file not valid')
