@@ -42,7 +42,6 @@ class fatturapa_document_type(orm.Model):
 class fatturapa_payment_term(orm.Model):
     _name = "fatturapa.payment_term"
     _description = 'FatturaPA Payment Term'
-    _rec_name = 'code'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -53,7 +52,6 @@ class fatturapa_payment_term(orm.Model):
 class fatturapa_payment_method(orm.Model):
     _name = "fatturapa.payment_method"
     _description = 'FatturaPA Payment Method'
-    _rec_name = 'code'
 
     _columns = {
         'name': fields.char('Description', size=128),
