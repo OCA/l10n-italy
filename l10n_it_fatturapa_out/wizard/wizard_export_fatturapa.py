@@ -95,7 +95,7 @@ class WizardExportFatturapa(orm.TransientModel):
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
-            'datas': base64.encodestring(self.fatturapa.toxml("utf-8")),
+            'datas': base64.encodestring(self.fatturapa.toxml("latin1")),
         }
         attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
 
