@@ -27,5 +27,5 @@ class account_invoice(orm.Model):
     _columns = {
         'fatturapa_attachment_out_id': fields.many2one(
             'fatturapa.attachment.out', 'FatturaPA Export File',
-            readonly=True),
+            ondelete='restrict', readonly=True),
     }
