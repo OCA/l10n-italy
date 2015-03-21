@@ -57,10 +57,49 @@
         <record model="ir.ui.view" id="view_invoice_form_fatturapa_in">
             <field name="name">account.invoice.fatturapa_in</field>
             <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="inherit_id" ref="l10n_it_withholding_tax.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="payment_term" position="after">
-                    <field name="incoterm" widget="selection"/>
+                <field name="partner_id" position="after">
+                    <field name="tax_representative_id"  readonly="1"/>
+                    <field name="intermediary"  readonly="1"/>
+                </field>
+                <field name="date_invoice" position="before">
+                    <field name="sender"  readonly="1"/>
+                    <field name="doc_type"  readonly="1"/>
+                </field>
+                <field name="has_withholding" position="before">
+                    <field name="ftpa_withholding_type" attrs="{'invisible': [('has_withholding', '=', False)]}"  readonly="1"/>
+                    <field name="ftpa_withholding_rate" attrs="{'invisible': [('has_withholding', '=', False)]}"  readonly="1"/>
+                    <field name="ftpa_withholding_payment_reason" attrs="{'invisible': [('has_withholding', '=', False)]}"  readonly="1"/>
+                </field>
+                <field name="comment" position="before">
+                    <field name="sender"  readonly="1"/>
+                    <field name="doc_type"  readonly="1"/>
+                </field>
+                <field name="tax_line" position="after">
+                    <field name="discount_rise_price_ids" nolabel="1" readonly="1" >
+                        <tree editable="bottom" string="Rise Price Discount">
+                            <field name="name"/>
+                            <field name="percentage"/>
+                            <field name="amount" />
+                        </tree>
+                    </field>
+                    <field name="activity_progress_ids" nolabel="1" readonly="1" >
+                        <tree editable="bottom" string="Progress Work">
+                            <field name="fatturapa_activity_progress"/>
+                        </tree>
+                    </field>
+                </field>
+                <field name="residual" position="after">
+                    <field name="virtual_stamp"  readonly="1" />
+                    <field name="stamp_amount"   readonly="1"/>
+                </field>
+
+                <field name="payment_ids" position="before">
+                    <separator string="FatturaPA Payment"/>
+                        <group>
+                            <field name="payment_terms"  readonly="1"/>
+                        </group>
                 </field>
                 <xpath expr="//notebook" position="inside">
                     <page string="Related Documents ">
@@ -94,11 +133,38 @@
                                 </field>
                             </group>
                     </page>
+                    <page string="Delivery">
+                        <group>
+                            <group string="Delivery"  >
+                                <field name="carrier_id" readonly="1"/>
+                                <field name="transport_vaicle" readonly="1"/>
+                                <field name="description" readonly="1"/>
+                                <field name="pickup_datetime" readonly="1"/>
+                                <field name="transport_date" readonly="1"/>
+                                 <field name="delivery_date" readonly="1" />
+                            </group>
+                            <group >
+                                <field name="unit_weight"  readonly="1"/>
+                                <field name="gross_weight" readonly="1"/>
+                                <field name="net_weight" readonly="1"/>
+                                <field name="number_items" readonly="1"/>
+                                <field name="incoterm" widget="selection" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                             <field name="delivery_address" readonly="1" />
+                        </group>
+                    </page>
                     <page string="FatturaPA">
                         <group>
                             <group string="Results">
-                                <field name="fatturapa_attachment_in_id"/>
+                                <field name="fatturapa_attachment_in_id" readonly="1" />
                             </group>
+                        </group>
+                    </page>
+                    <page string="FatturaPA attachments">
+                        <group string="Attachments">
+                            <field name="fatturapa_doc_attachments" nolabel="1" readonly="1" />
                         </group>
                     </page>
                 </xpath>

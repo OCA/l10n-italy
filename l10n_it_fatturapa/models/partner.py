@@ -28,4 +28,5 @@ class res_partner(orm.Model):
         'fatturapa_code': fields.char('FatturaPA Code', size=6),
         'pa_partner_code': fields.char('PA Code for partner', size=20),
         'eori_code': fields.char('EORI Code', size=20),
+        'license_number': fields.char('License Code', size=20),
     }

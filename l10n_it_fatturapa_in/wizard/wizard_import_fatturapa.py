@@ -82,12 +82,9 @@ class WizardImportFatturapa(orm.TransientModel):
             return partner_ids[0]
         else:
             vals = {
-                'name':
-                angrafica.Denominazione,
-                'firstname':
-                angrafica.Nome
-                'lastname':
-                angrafica.Cognome
+                'name': angrafica.Denominazione,
+                'firstname': angrafica.Nome,
+                'lastname': angrafica.Cognome,
                 'vat': vat,
                 'fiscalcode': cf,
                 'customer': False,
@@ -101,9 +98,9 @@ class WizardImportFatturapa(orm.TransientModel):
 
     def getCedPrest(self, cr, uid, cedPrest, context=None):
         partner_model = self.pool['res.partner']
-        partner_id=self.getPartnerBase(
+        partner_id = self.getPartnerBase(
             cr, uid, cedPrest.DatiAnagrafici, context=context)
-        vals={}
+        vals = {}
         if partner_id:
             vals = {
                 'street': cedPrest.Sede.Indirizzo,
@@ -327,15 +324,34 @@ class WizardImportFatturapa(orm.TransientModel):
 
         relReceptions = FatturaBody.DatiGenerali.DatiRicezione
 
-        relInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
+        RelInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
 
-        datiBollo = FatturaBody.DatiGenerali.DatiFattureCollegate.DatiBollo
+        Witholding = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.DatiRitenuta
 
-        datiCassaPrevidenziale = FatturaBody.DatiGenerali.\
-            DatiFattureCollegate.DatiCassaPrevidenziale
+        Stamps = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.DatiBollo
 
-        scontoMaggiorazione = FatturaBody.DatiGenerali.\
-            DatiFattureCollegate.ScontoMaggiorazione
+        walfares = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.DatiCassaPrevidenziale
+
+        DiscountRises = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.ScontoMaggiorazione
+
+        SalDatas = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.DatiSAL
+
+        DdtDatas = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.DatiDDT
+
+        Delivery = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.DatiTrasporto
+
+        ParentInvoice = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.FatturaPrincipale
+
+        Veicle = FatturaBody.DatiGenerali.DatiVeicoli
+
 
 
         if relOrders:
