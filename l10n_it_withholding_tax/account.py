@@ -44,7 +44,7 @@ class AccountVoucher(orm.Model):
     }
 
     def action_move_line_create(self, cr, uid, ids, context=None):
-        res = super(account_voucher, self).action_move_line_create(
+        res = super(AccountVoucher, self).action_move_line_create(
             cr, uid, ids, context)
         inv_pool = self.pool.get('account.invoice')
         curr_pool = self.pool.get('res.currency')
@@ -52,7 +52,7 @@ class AccountVoucher(orm.Model):
         priod_obj = self.pool.get('account.period')
         for voucher in self.browse(cr, uid, ids, context):
             amounts_by_invoice = super(
-                account_voucher, self).allocated_amounts_grouped_by_invoice(
+                AccountVoucher, self).allocated_amounts_grouped_by_invoice(
                     cr, uid, voucher, context)
             for inv_id in amounts_by_invoice:
                 invoice = inv_pool.browse(cr, uid, inv_id, context)
@@ -163,7 +163,7 @@ class AccountVoucher(orm.Model):
         return res
 
     def cancel_voucher(self, cr, uid, ids, context=None):
-        res = super(account_voucher, self).cancel_voucher(
+        res = super(AccountVoucher, self).cancel_voucher(
             cr, uid, ids, context)
         move_pool = self.pool.get('account.move')
         for voucher in self.browse(cr, uid, ids, context=context):
