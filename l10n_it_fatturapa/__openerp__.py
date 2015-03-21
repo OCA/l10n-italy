@@ -36,6 +36,13 @@ Base module to handle FatturaPA data.
 See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
 
 
+Installation
+============
+
+This module requires PyXB 1.2.4
+http://pyxb.sourceforge.net/
+
+
 Configuration
 =============
 
