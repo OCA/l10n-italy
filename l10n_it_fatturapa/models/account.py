@@ -351,8 +351,8 @@ class account_invoice(orm.Model):
         ),
         #2.1.9 Trasporto TODO
         #2.1.10
-        'related_invoice_code': field.char('Related invoice code'),
-        'related_invoice_date': field.date('Related invoice date'),
+        'related_invoice_code': fields.char('Related invoice code'),
+        'related_invoice_date': fields.date('Related invoice date'),
         #2.4.1
         'payment_method': fields.many2one(
             'fatturapa.payment_method', string="FatturaPA Payment Method"),
