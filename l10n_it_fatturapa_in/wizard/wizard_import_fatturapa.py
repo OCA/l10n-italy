@@ -37,12 +37,32 @@ class WizardImportFatturapa(orm.TransientModel):
 
         return False
 
-    def getPartnerId(self, cr, uid, cedPrest, context=None):
+    def CountryByCode(self, cr, uid, CountryCode, context=None):
+        country_model = self.pool['res.country']
+        return country_model.search(
+            cr, uid, [('code', '=', CountryCode)], context=context)
+
+    def ProvinceByCode(self, cr, uid, provinceCode, context=None):
+        province_model = self.pool['res.province']
+        return province_model.search(
+            cr, uid, [('code', '=', provinceCode)], context=context)
+
+    def getPartnerBase(self, cr, uid, angrafica, context=None):
         partner_model = self.pool['res.partner']
-        cf = cedPrest.DatiAnagrafici.CodiceFiscale
+        cf = angrafica.CodiceFiscale
+        CountryCode = angrafica.IdFiscaleIVA.IdPaese
+        country_ids = self.CountryByCode(
+            cr, uid, CountryCode, context=context)
+        if country_ids:
+            country_id = country_ids[0]
+        else:
+            raise orm.except_orm(
+                _('Error !'),
+                _("Country Code %s not found in system") % CountryCode
+            )
         vat = "%s%s" % (
-            cedPrest.DatiAnagrafici.IdFiscaleIVA.IdPaese,
-            cedPrest.DatiAnagrafici.IdFiscaleIVA.IdCodice
+            angrafica.IdFiscaleIVA.IdPaese,
+            angrafica.IdFiscaleIVA.IdCodice
         )
         partner_ids = partner_model.search(
             cr, uid,
@@ -62,26 +82,41 @@ class WizardImportFatturapa(orm.TransientModel):
             return partner_ids[0]
         else:
             vals = {
-                'name': (
-                    cedPrest.DatiAnagrafici.Anagrafica.Denominazione),
+                'name':
+                angrafica.Denominazione,
+                'firstname':
+                angrafica.Nome
+                'lastname':
+                angrafica.Cognome
                 'vat': vat,
                 'fiscalcode': cf,
                 'customer': False,
                 'supplier': True,
                 # TODO: needs verify
                 'is_company': vat and True or False,
+
+                'country_id': country_id,
+            }
+            return partner_model.create(cr, uid, vals, context=context)
+
+    def getCedPrest(self, cr, uid, cedPrest, context=None):
+        partner_model = self.pool['res.partner']
+        partner_id=self.getPartnerBase(
+            cr, uid, cedPrest.DatiAnagrafici, context=context)
+        vals={}
+        if partner_id:
+            vals = {
                 'street': cedPrest.Sede.Indirizzo,
                 'zip': cedPrest.Sede.CAP,
                 'city': cedPrest.Sede.Comune,
-                # FIXME add logic to get country id from name
-                # 'country_id': xmlData.nazione,
             }
+
             if cedPrest.Contatti:
                 vals['phone'] = cedPrest.Contatti.Telefono
                 vals['email'] = cedPrest.Contatti.Email
                 vals['fax'] = cedPrest.Contatti.Fax
-
-            return partner_model.create(cr, uid, vals, context=context)
+            partner_model.write(cr, uid, partner_id, vals, context=context)
+        return partner_id
 
     def _prepareInvoiceLine(
         self, cr, uid, credit_account_id, line, context=None
@@ -217,15 +252,15 @@ class WizardImportFatturapa(orm.TransientModel):
                 ('type', '=', 'purchase'),
                 ('company_id', '=', company.id)
             ],
-            limit=1
-            )
+            limit=1, context=context)
         if not journal_ids:
             raise orm.except_orm(
                 _('Error!'),
                 _(
                     'Define a purchase journal '
                     'for this company: "%s" (id:%d).'
-                ) % (company.name, company.id))
+                ) % (company.name, company.id)
+            )
         purchase_journal = journal_model.browse(
             cr, uid, journal_ids[0], context=context)
         # currency
@@ -294,6 +329,15 @@ class WizardImportFatturapa(orm.TransientModel):
 
         relInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
 
+        datiBollo = FatturaBody.DatiGenerali.DatiFattureCollegate.DatiBollo
+
+        datiCassaPrevidenziale = FatturaBody.DatiGenerali.\
+            DatiFattureCollegate.DatiCassaPrevidenziale
+
+        scontoMaggiorazione = FatturaBody.DatiGenerali.\
+            DatiFattureCollegate.ScontoMaggiorazione
+
+
         if relOrders:
             for order in relOrders:
                 doc_datas = self._prepareRelDocsLine(
@@ -311,6 +355,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
+
         if relAgreements:
             for agreement in relAgreements:
                 doc_datas = self._prepareRelDocsLine(
@@ -320,6 +365,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
+
         if relReceptions:
             for reception in relReceptions:
                 doc_datas = self._prepareRelDocsLine(
@@ -329,6 +375,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
+
         if relInvoices:
             for invoice in relInvoices:
                 doc_datas = self._prepareRelDocsLine(
