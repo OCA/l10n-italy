@@ -3,16 +3,16 @@
     <data>
 
         <record model="ir.ui.view" id="view_payment_data_form_fatturapa">
-            <field name="name">payment_data.fatturapa.form</field>
-            <field name="model">fatturapa.payment_data</field>
+            <field name="name">fatturapa.payment.data.form</field>
+            <field name="model">fatturapa.payment.data</field>
             <field name="arch" type="xml">
-                <form string="Payment Deta">
+                <form string="Payment Data">
                     <group>
-                        <field name="payment_terms"  readonly="1"/>
+                        <field name="payment_terms" />
                     </group>
                     <group>
                         <group string="Payments Details">
-                            <field name="payment_methods" nolabel="1" readonly="1" >
+                            <field name="payment_methods" nolabel="1" >
                             <tree editable="bottom" string="Payments">
                                     <field name="recipient"/>
                                     <field name="fatturapa_pm_id"/>
@@ -27,7 +27,8 @@
                                     <field name="max_payment_date"/>
                                     <field name="penalty_amount"/>
                                     <field name="penalty_date"/>
-                                    <field name="accountm_move_line_id"/>
+                                    <field name="account_move_line_id"/>
+                                    <field name="payment_data_id"/>
                                 </tree>
                             </field>
                         </group>

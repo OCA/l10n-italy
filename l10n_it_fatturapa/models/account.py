@@ -95,14 +95,17 @@ class fatturapa_payment_detail(orm.Model):
         'max_payment_date': fields.date('Maximum date for Payment'),
         'penalty_amount': fields.date('Amount of Penality'),
         'penalty_date': fields.date('Effective date of Penality'),
+        'account_move_line_id': fields.many2one(
+            'account.move.line', string="Payment Line"),
         'payment_data_id': fields.many2one(
-            'fatturapa.payment_data', 'Related payments Data',
+            'fatturapa.payment.data', 'Related payments Data',
             ondelete='cascade', select=True),
     }
 
+
 class fatturapa_payment_data(orm.Model):
     #_position = ['2.4.2.2']
-    _name = "fatturapa.payment_data"
+    _name = "fatturapa.payment.data"
     _description = 'FatturaPA Payment Data'
 
     _columns = {
@@ -112,7 +115,7 @@ class fatturapa_payment_data(orm.Model):
         #2.4.2
         'payment_methods': fields.one2many(
             'fatturapa.payment_detail', 'payment_data_id'
-            'Payments'
+            'Payments Details'
         ),
         'invoice_id': fields.many2one(
             'account.invoice', 'Related Invoice',
@@ -389,8 +392,8 @@ class account_invoice(orm.Model):
         'vaicle_registration': fields.date('Veicole Registration'),
         'total_travel': fields.char('Travel in hours or Km', size=15),
         #2.4
-        'fatturapa_doc_payments': fields.one2many(
-            'payment_data',  'invoice_id',
+        'fatturapa_payments': fields.one2many(
+            'fatturapa.payment.data',  'invoice_id',
             'FatturaPA Payment Datas'
         ),
         #2.5

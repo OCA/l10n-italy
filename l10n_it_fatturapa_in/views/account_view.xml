@@ -98,7 +98,12 @@
                 <field name="payment_ids" position="before">
                     <separator string="FatturaPA Payment"/>
                         <group>
-                            <field name="payment_terms"  readonly="1"/>
+                            <field name="fatturapa_payments" nolabel="1" readonly="1">
+                                <tree editable="bottom" string="Related Documents">
+                                        <field name="payment_terms"/>
+                                        <field name="payment_methods"/>
+                                </tree>
+                            </field>
                         </group>
                 </field>
                 <xpath expr="//notebook" position="inside">
