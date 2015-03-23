@@ -5,7 +5,7 @@
 #    (<http://www.ktec.it>).
 #
 #    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -26,9 +26,7 @@ from openerp import models
 from openerp import fields
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    ipa_code = fields.Char(
-        'IPA Code'
-    )
+    ipa_code = fields.Char(string='IPA Code')
