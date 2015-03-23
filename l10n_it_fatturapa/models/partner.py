@@ -27,5 +27,6 @@ class res_partner(orm.Model):
     _columns = {
         'eori_code': fields.char('EORI Code', size=20),
         'license_number': fields.char('License Code', size=20),
+        #1.2.6 RiferimentoAmministrazione
         'pa_partner_code': fields.char('PA Code for partner', size=20),
     }

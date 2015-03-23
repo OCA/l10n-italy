@@ -30,7 +30,7 @@ RELATED_DOCUMENT_TYPES = {
 
 
 class fatturapa_worksaddress(orm.Model):
-    #_position = ['1.2.3']
+    #_position = ['1.1.3']
     _name = "fatturapa.format"
     _description = 'FatturaPA Format'
 
@@ -102,7 +102,7 @@ class fatturapa_payment_detail(orm.Model):
             ondelete='cascade', select=True),
     }
 
-
+#used in fatturaPa import
 class fatturapa_payment_data(orm.Model):
     #_position = ['2.4.2.2']
     _name = "fatturapa.payment.data"
@@ -122,6 +122,17 @@ class fatturapa_payment_data(orm.Model):
             ondelete='cascade', select=True),
     }
 
+#used in fatturaPa export
+class account_payment_term(orm.Model):
+    #_position = ['2.4.2.2']
+    _inherit = 'account.payment.term'
+
+    _columns = {
+        'fatturapa_pt_id': fields.many2one(
+            'fatturapa.payment_term', string="FatturaPA Payment Term"),
+        'fatturapa_pm_id': fields.many2one(
+            'fatturapa.payment_method', string="FatturaPA Payment Method"),
+    }
 
 class fatturapa_fiscal_position(orm.Model):
     #_position = ['2.1.1.7.7', '2.2.1.14']
@@ -131,17 +142,6 @@ class fatturapa_fiscal_position(orm.Model):
     _columns = {
         'name': fields.char('Description', size=128),
         'code': fields.char('Code', size=4),
-    }
-
-
-class fatturapa_format(orm.Model):
-    #_position = ['1.1.3']
-    _name = "fatturapa.format"
-    _description = 'FatturaPA Format'
-
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'code': fields.char('Code', size=5),
     }
 
 
@@ -164,7 +164,7 @@ class welfare_fund_data_line(orm.Model):
     _columns = {
         'name': fields.many2one(
             'welfare.fund.type', string="Welfare Fund Type"),
-        'fund_fiscalpos': fields.many2one(
+            'fund_fiscalpos': fields.many2one(
             'fatturapa.fiscal_position',
             string="Welfare Fund Fiscal Position"
         ),
@@ -257,7 +257,7 @@ class faturapa_activity_progress(orm.Model):
 class fattura_attachments(orm.Model):
     _name = "fatturapa.attachments"
     _description = "FatturaPA attachments"
-    _inherit = 'ir.attachment'
+    _inherits = {'ir.attachment': 'ir_attachment_id'}
 
     _columns = {
         'compression': fields.char('Compression', size=10),
