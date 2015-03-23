@@ -43,7 +43,9 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DatiRiepilogoType,
     DatiGeneraliDocumentoType,
     DatiDocumentiCorrelatiType,
-    ContattiType
+    ContattiType,
+    DatiPagamentoType,
+    DettaglioPagamentoType
     )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -644,34 +646,40 @@ class WizardExportFatturapa(orm.TransientModel):
     def setDatiPagamento(self, cr, uid, invoice, body, context=None):
         if context is None:
             context = {}
-
-        """ TODO
-        DettaglioPagamento = DatiPagamento.find('DettaglioPagamento')
-        if (
-            invoice.payment_term and invoice.payment_term.fatturapa_pt_id
-            and invoice.payment_term.fatturapa_pt_id.code
-        ):
-            DatiPagamento.find(
-                'CondizioniPagamento'
-                ).text = invoice.payment_term.fatturapa_pt_id.code
-        else:
-            raise orm.except_orm(
-                _("Error"), _(""))
-
-        # TODO: multiple installments
-        if (
-            invoice.payment_term and invoice.payment_term.fatturapa_pm_id
-            and invoice.payment_term.fatturapa_pm_id.code
-        ):
-            DettaglioPagamento.find(
-                'ModalitaPagamento'
-                ).text = invoice.payment_term.fatturapa_pm_id.code
-        DettaglioPagamento.find(
-            'DataScadenzaPagamento').text = invoice.date_due
-        DettaglioPagamento.find(
-            'ImportoPagamento').text = unicode(invoice.amount_total)
-        """
-
+        if invoice.payment_term:
+            DatiPagamento = DatiPagamentoType()
+            if not invoice.payment_term.fatturapa_pt_id:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Payment term %s does not have a linked fatturaPA '
+                      'payment term') % invoice.payment_term.name)
+            if not invoice.payment_term.fatturapa_pm_id:
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Payment term %s does not have a linked fatturaPA '
+                      'payment method') % invoice.payment_term.name)
+            DatiPagamento.CondizioniPagamento = (
+                invoice.payment_term.fatturapa_pt_id.code)
+            move_line_pool = self.pool['account.move.line']
+            invoice_pool = self.pool['account.invoice']
+            payment_line_ids = invoice_pool.move_line_id_payment_get(
+                cr, uid, [invoice.id])
+            for move_line_id in payment_line_ids:
+                move_line = move_line_pool.browse(
+                    cr, uid, move_line_id, context=context)
+                DettaglioPagamento = DettaglioPagamentoType(
+                    ModalitaPagamento=(
+                        invoice.payment_term.fatturapa_pm_id.code),
+                    DataScadenzaPagamento=move_line.date_maturity,
+                    ImportoPagamento='%.2f' % move_line.debit
+                    )
+                if invoice.partner_bank_id:
+                    DettaglioPagamento.IstitutoFinanziario = (
+                        invoice.partner_bank_id.bank_name)
+                    DettaglioPagamento.IBAN = (
+                        invoice.partner_bank_id.acc_number)
+                DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
+            body.DatiPagamento.append(DatiPagamento)
         return True
 
     def setFatturaElettronicaHeader(self, cr, uid, company,
