@@ -2,6 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+#    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -42,37 +43,52 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.data_model = self.registry('ir.model.data')
         self.attach_model = self.registry('fatturapa.attachment.out')
 
-    def tearDown(self):
-        super(TestFatturaPAXMLValidation, self).tearDown()
-
-    def test_01_xml_export(self):
+    def set_sequences(self, file_number, invoice_number):
         cr, uid = self.cr, self.uid
-
-        invoice_id = self.data_model.get_object_reference(
-            cr, uid, 'l10n_it_fatturapa', 'fatturapa_invoice_0')
-        if invoice_id:
-            invoice_id = invoice_id and invoice_id[1] or False
-
         seq_pool = self.registry('ir.sequence')
         seq_id = self.data_model.get_object_reference(
             cr, uid, 'l10n_it_fatturapa', 'seq_fatturapa')
         seq_pool.write(cr, uid, [seq_id[1]], {
             'implementation': 'no_gap',
-            'number_next_actual': 1,
+            'number_next_actual': file_number,
             })
         seq_id = self.data_model.get_object_reference(
             cr, uid, 'account', 'sequence_sale_journal')
         seq_pool.write(cr, uid, [seq_id[1]], {
             'implementation': 'no_gap',
-            'number_next_actual': 13,
+            'number_next_actual': invoice_number,
             })
+
+    def confirm_invoice(self, invoice_xml_id):
+        cr, uid = self.cr, self.uid
+
+        invoice_id = self.data_model.get_object_reference(
+            cr, uid, 'l10n_it_fatturapa', invoice_xml_id)
+        if invoice_id:
+            invoice_id = invoice_id and invoice_id[1] or False
+
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(
             uid, 'account.invoice', invoice_id, 'invoice_open', cr)
+        return invoice_id
 
+    def run_wizard(self, invoice_id):
+        cr, uid = self.cr, self.uid
         wizard_id = self.wizard_model.create(cr, uid, {})
-        res = self.wizard_model.exportFatturaPA(
+        return self.wizard_model.exportFatturaPA(
             cr, uid, wizard_id, context={'active_ids': [invoice_id]})
+
+    def check_content(self, xml_content, file_name):
+        test_fatt_data = self.getFile(file_name)[1]
+        test_fatt_content = test_fatt_data.decode('base64').decode('latin1')
+        self.assertEqual(
+            test_fatt_content.replace('\n', ''), xml_content.replace('\n', ''))
+
+    def test_0_xml_export(self):
+        cr, uid = self.cr, self.uid
+        self.set_sequences(1, 13)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_0')
+        res = self.run_wizard(invoice_id)
 
         self.assertTrue(res, 'Export failed.')
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
@@ -80,9 +96,14 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64').decode('latin1')
+        self.check_content(xml_content, 'IT02780790107_00001.xml')
 
-        test_fatt_data = self.getFile('IT02780790107_00001.xml')[1]
-        test_fatt_content = test_fatt_data.decode('base64').decode('latin1')
+    def test_1_xml_export(self):
+        cr, uid = self.cr, self.uid
+        self.set_sequences(2, 14)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_1')
+        res = self.run_wizard(invoice_id)
+        attachment = self.attach_model.browse(cr, uid, res['res_id'])
 
-        self.assertEqual(
-            test_fatt_content.replace('\n', ''), xml_content.replace('\n', ''))
+        xml_content = attachment.datas.decode('base64').decode('latin1')
+        self.check_content(xml_content, 'IT02780790107_00002.xml')
