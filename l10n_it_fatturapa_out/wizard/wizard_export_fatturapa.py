@@ -42,7 +42,8 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DatiBeniServiziType,
     DatiRiepilogoType,
     DatiGeneraliDocumentoType,
-    DatiDocumentiCorrelatiType
+    DatiDocumentiCorrelatiType,
+    ContattiType
     )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -200,8 +201,6 @@ class WizardExportFatturapa(orm.TransientModel):
         Anagrafica.remove(Cognome)
         Anagrafica.remove(Titolo)
         '''
-        # TODO
-        # Anagrafica.remove(Anagrafica.find('CodEORI'))
 
         if company.partner_id.fiscalcode:
             CedentePrestatore.DatiAnagrafici.CodiceFiscale = (
@@ -255,7 +254,7 @@ class WizardExportFatturapa(orm.TransientModel):
                                   company, context=None):
         if context is None:
             context = {}
-        # TODO: fill this section
+        # not handled
 
     def _setRea(self, cr, uid, CedentePrestatore, company, context=None):
         if context is None:
@@ -274,7 +273,11 @@ class WizardExportFatturapa(orm.TransientModel):
                      company, context=None):
         if context is None:
             context = {}
-        # TODO: fill this section
+        CedentePrestatore.Contatti = ContattiType(
+            Telefono=company.partner_id.phone or None,
+            Fax=company.partner_id.fax or None,
+            Email=company.partner_id.email or None
+            )
 
     def _setPubAdministrationRef(self, cr, uid, CedentePrestatore,
                                  company, context=None):
