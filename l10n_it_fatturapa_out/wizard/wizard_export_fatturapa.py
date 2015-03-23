@@ -486,9 +486,11 @@ class WizardExportFatturapa(orm.TransientModel):
                 _('Error!'),
                 _('Invoice does not have a number.'))
 
-        # TODO: TipoDocumento
+        TipoDocumento = 'TD01'
+        if invoice.type == 'out_refund':
+            TipoDocumento = 'TD04'
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
-            TipoDocumento='TD01',
+            TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
             Numero=invoice.number)
