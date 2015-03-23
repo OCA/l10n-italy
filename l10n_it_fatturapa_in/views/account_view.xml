@@ -147,7 +147,7 @@
                                 <field name="description" readonly="1"/>
                                 <field name="pickup_datetime" readonly="1"/>
                                 <field name="transport_date" readonly="1"/>
-                                 <field name="delivery_date" readonly="1" />
+                                 <field name="delivery_datetime" readonly="1" />
                             </group>
                             <group >
                                 <field name="unit_weight"  readonly="1"/>

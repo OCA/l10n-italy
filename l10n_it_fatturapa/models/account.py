@@ -75,9 +75,30 @@ class fatturapa_payment_method(orm.Model):
     }
 
 
+#used in fatturaPa import
+class fatturapa_payment_data(orm.Model):
+    #_position = ['2.4.2.2']
+    _name = "fatturapa.payment.data"
+    _description = 'FatturaPA Payment Data'
+
+    _columns = {
+        #2.4.1
+        'payment_terms': fields.many2one(
+            'fatturapa.payment_term', string="FatturaPA Payment Method"),
+        #2.4.2
+        'payment_methods': fields.one2many(
+            'fatturapa.payment.detail', 'payment_data_id',
+            'Payments Details'
+        ),
+        'invoice_id': fields.many2one(
+            'account.invoice', 'Related Invoice',
+            ondelete='cascade', select=True),
+    }
+
+
 class fatturapa_payment_detail(orm.Model):
     #_position = ['2.4.2']
-    _name = "fatturapa.payment_detail"
+    _name = "fatturapa.payment.detail"
     _columns = {
         'recipient': fields.char('Recipient', size=200),
         'fatturapa_pm_id': fields.many2one(
@@ -102,25 +123,6 @@ class fatturapa_payment_detail(orm.Model):
             ondelete='cascade', select=True),
     }
 
-#used in fatturaPa import
-class fatturapa_payment_data(orm.Model):
-    #_position = ['2.4.2.2']
-    _name = "fatturapa.payment.data"
-    _description = 'FatturaPA Payment Data'
-
-    _columns = {
-        #2.4.1
-        'payment_terms': fields.many2one(
-            'fatturapa.payment_term', string="FatturaPA Payment Method"),
-        #2.4.2
-        'payment_methods': fields.one2many(
-            'fatturapa.payment_detail', 'payment_data_id'
-            'Payments Details'
-        ),
-        'invoice_id': fields.many2one(
-            'account.invoice', 'Related Invoice',
-            ondelete='cascade', select=True),
-    }
 
 #used in fatturaPa export
 class account_payment_term(orm.Model):
@@ -133,6 +135,7 @@ class account_payment_term(orm.Model):
         'fatturapa_pm_id': fields.many2one(
             'fatturapa.payment_method', string="FatturaPA Payment Method"),
     }
+
 
 class fatturapa_fiscal_position(orm.Model):
     #_position = ['2.1.1.7.7', '2.2.1.14']
@@ -164,10 +167,9 @@ class welfare_fund_data_line(orm.Model):
     _columns = {
         'name': fields.many2one(
             'welfare.fund.type', string="Welfare Fund Type"),
-            'fund_fiscalpos': fields.many2one(
+        'fund_fiscalpos': fields.many2one(
             'fatturapa.fiscal_position',
-            string="Welfare Fund Fiscal Position"
-        ),
+            string="Welfare Fund Fiscal Position"),
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),
@@ -375,6 +377,7 @@ class account_invoice(orm.Model):
         'carrier_id': fields.many2one(
             'res.partner', string="Carrier"),
         'transport_vaicle': fields.char('Veicle', size=80),
+        'transport_reason': fields.char('Reason', size=80),
         'number_items': fields.integer('number of items'),
         'description':  fields.char('Description', size=100),
         'unit_weight':  fields.char('Weight unit', size=10),
@@ -383,7 +386,7 @@ class account_invoice(orm.Model):
         'pickup_datetime':  fields.datetime('Pick up'),
         'transport_date':  fields.date('Transport Date'),
         'delivery_address':  fields.text('Delivery Address'),
-        'delivery_date':  fields.date('Delivery Date'),
+        'delivery_datetime':  fields.datetime('Delivery Date Time'),
         #2.1.10
         'related_invoice_code': fields.char('Related invoice code'),
         'related_invoice_date': fields.date('Related invoice date'),
