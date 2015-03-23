@@ -171,6 +171,7 @@ class welfare_fund_data_line(orm.Model):
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),
+        'welfare_Iva_tax': fields.float('Welfare  tax'),
         'subjected_withholding': fields.char(
             'Subjected at Withholding', size=2),
         'pa_line_code': fields.char('PA Code for this record', size=20),

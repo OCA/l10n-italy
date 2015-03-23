@@ -225,58 +225,73 @@ class WizardImportFatturapa(orm.TransientModel):
         return res
 
     def _prepareWelfareLine(
-        self, cr, uid, invoice_id, line, type, context=None
+        self, cr, uid, invoice_id, line, context=None
     ):
         res = []
         TipoCassa = line.TipoCassa or False
-        AlCassa = line.IdDocumento or 'Error'
-        ImportoContributoCassa = line.Data or False
-        ImponibileCassa = line.NumItem or ''
-        AliquotaIVA = line.CodiceCommessaConvenzione or ''
-        Ritenuta = line.CodiceCIG or ''
-        Natura = line.CodiceCUP or ''
-        RiferimentoAmministrazione =
-        if lineref:
-            for numline in lineref:
-                invoice_lineid = False
-                invoice_line_model = self.pool['account.invoice.line']
-                invoice_line_ids = invoice_line_model.search(
-                    cr, uid,
-                    [
-                        ('invoice_id', '=', invoice_id),
-                        ('sequence', '=', int(numline)),
-                    ], context=context)
+        AlCassa = (float(line.AlCassa)/100) or 0.0
+        ImportoContributoCassa = float(line.ImportoContributoCassa) or 0.0
+        ImponibileCassa = float(line.ImponibileCassa) or 0.0
+        AliquotaIVA = (float(line.AliquotaIVA)/100) or 0.0
+        Ritenuta = line.Ritenuta or ''
+        Natura = line.Natura or False
+        RiferimentoAmministrazione = line.RiferimentoAmministrazione or ''
+        WelfareTypeModel = self.pool['welfare.fund.type']
+        if not TipoCassa:
+            raise orm.except_orm(
+                _('Error!'),
+                _('TipoCassa is not defined ')
+            )
+        WelfareTypeId = WelfareTypeModel.search(
+            cr, uid,
+            [('name', '=', TipoCassa)],
+            context=context
+        )
+        NaturaId = False
+        if Natura:
+            NaturaIds = WelfareTypeModel.search(
+                cr, uid,
+                [('name', '=', Natura)],
+                context=context
+            )
+            if NaturaIds:
+                NaturaId = NaturaIds[0]
+        if not WelfareTypeId:
+            raise orm.except_orm(
+                _('Error!'),
+                _('TipoCassa type is not compatible ')
+            )
+        res = {
+            'name': WelfareTypeId[0],
+            'welfare_rate_tax': AlCassa,
+            'welfare_amount_tax': ImportoContributoCassa,
+            'welfare_taxable': ImponibileCassa,
+            'welfare_Iva_tax': AliquotaIVA,
+            'subjected_withholding': Ritenuta,
+            'fund_fiscalpos': NaturaId,
+            'pa_line_code': RiferimentoAmministrazione,
+            'invoice_id': invoice_id,
+        }
+        return res
 
-                if invoice_line_ids:
-                    invoice_lineid = invoice_line_ids[0]
-                val = {
-                    'type': type,
-                    'name': IdDoc,
-                    'lineRef': lineref,
-                    'invoice_line_id': invoice_lineid,
-                    'invoice_id': invoice_id,
-                    'date': Data,
-                    'numitem': NumItem,
-                    'code': Code,
-                    'cig': Cig,
-                    'cup': Cup,
-                }
-                res.append(val)
-
-        else:
-            val = {
-                'type': type,
-                'name': IdDoc,
-                'lineRef': lineref,
-                'invoice_line_id': invoice_lineid,
-                'invoice_id': invoice_id,
-                'date': Data,
-                'numitem': NumItem,
-                'code': Code,
-                'cig': Cig,
-                'cup': Cup
-            }
-            res.append(val)
+    def _prepareDiscRisePriceLine(
+        self, cr, uid, invoice_id, line, context=None
+    ):
+        res = []
+        Tipo = line.Tipo or False
+        Percentuale = (float(line.Percentuale)/100) or 0.0
+        Importo = float(line.Importo) or 0.0
+        if not Tipo:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Type Discount or Rise price is not defined ')
+            )
+        res = {
+            'name': Tipo,
+            'percentage': Percentuale,
+            'amount': Importo,
+            'invoice_id': invoice_id,
+        }
         return res
 
     def invoiceCreate(
@@ -291,6 +306,10 @@ class WizardImportFatturapa(orm.TransientModel):
         currency_model = self.pool['res.currency']
         invoice_line_model = self.pool['account.invoice.line']
         rel_docs_model = self.pool['fatturapa.related_document_type']
+        WelfareFundLineModel = self.pool['welfare.fund.data.line']
+        DiscRisePriceModel = self.pool['discount.rise.price']
+        SalModel = self.pool['faturapa.activity.progress']
+        DdTModel = self.pool['fatturapa.related_ddt']
 
         company = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id
@@ -347,14 +366,13 @@ class WizardImportFatturapa(orm.TransientModel):
         if causLst:
             for item in causLst:
                 comment += item
-
         invoice_data = {
             'name': 'Fattura ' + partner.name,
             'date_invoice':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
             'supplier_invoice_number':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
-            'sender':fatt.SoggettoEmittente,
+            'sender': fatt.SoggettoEmittente,
             'account_id': pay_acc_id,
             'type': 'in_invoice',
             'partner_id': partner_id,
@@ -372,18 +390,18 @@ class WizardImportFatturapa(orm.TransientModel):
         Withholding = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiRitenuta
         if Withholding:
-            vals['withholding_amount'] = Withholding.ImportoRitenuta
-            vals['ftpa_withholding_type'] = Withholding.TipoRitenuta
-            vals['ftpa_withholding_rate'] = float(
+            invoice_data['withholding_amount'] = Withholding.ImportoRitenuta
+            invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
+            invoice_data['ftpa_withholding_rate'] = float(
                 Withholding.AliquotaRitenuta)/100
-            vals['ftpa_withholding_payment_reason'] = Withholding.\
+            invoice_data['ftpa_withholding_payment_reason'] = Withholding.\
                 CausalePagamento
         #2.1.1.6
         Stamps = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiBollo
         if Stamps:
-            vals['virtual_stamp'] = Stamps.BolloVirtuale
-            vals['stamp_amount'] = float(Stamps.ImportoBollo)
+            invoice_data['virtual_stamp'] = Stamps.BolloVirtuale
+            invoice_data['stamp_amount'] = float(Stamps.ImportoBollo)
         invoice_id = invoice_model.create(
             cr, uid, invoice_data, context=context)
 
@@ -392,10 +410,20 @@ class WizardImportFatturapa(orm.TransientModel):
         Walfares = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiCassaPrevidenziale
         if Walfares:
-
+            for walfareLine in Walfares:
+                WalferLineVals = self._prepareWelfareLine(
+                    cr, uid, invoice_id, walfareLine, context=context)
+                WelfareFundLineModel.create(
+                    cr, uid, WalferLineVals, context=context)
         #2.1.1.8
         DiscountRises = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.ScontoMaggiorazione
+        if DiscountRises:
+            for DiscRisePriceLine in Walfares:
+                DiscRisePriceVals = self._prepareDiscRisePriceLine(
+                    cr, uid, invoice_id, DiscRisePriceLine, context=context)
+                DiscRisePriceModel.create(
+                    cr, uid, DiscRisePriceVals, context=context)
         #2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
         if relOrders:
@@ -441,7 +469,7 @@ class WizardImportFatturapa(orm.TransientModel):
         #2.1.6
         RelInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
         if RelInvoices:
-            for invoice in relInvoices:
+            for invoice in RelInvoices:
                 doc_datas = self._prepareRelDocsLine(
                     cr, uid, invoice_id, invoice, 'invoice', context=context)
                 if doc_datas:
@@ -451,34 +479,73 @@ class WizardImportFatturapa(orm.TransientModel):
         #2.1.7
         SalDatas = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiSAL
+        if SalDatas:
+            for SalDataLine in SalDatas:
+                SalModel.create(
+                    cr, uid,
+                    {
+                        'fatturapa_activity_progress': (
+                            SalDataLine.RiferimentoFase or 0),
+                        'invoice_id': invoice_id
+                    }, context=context
+                )
         #2.1.8
         DdtDatas = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiDDT
+        if DdtDatas:
+            for DdtDataLine in DdtDatas:
+                if not DdtDataLine.RiferimentoNumeroLinea:
+                    DdTModel.create(
+                        cr, uid,
+                        {
+                            'name': DdtDataLine.NumeroDDT or '',
+                            'date': DdtDataLine.DataDDT or False,
+                            'invoice_id': invoice_id
+                        }, context=context
+                    )
+                else:
+                    for numline in DdtDataLine.RiferimentoNumeroLinea:
+                        invoice_line_ids = invoice_line_model.search(
+                            cr, uid,
+                            [
+                                ('invoice_id', '=', invoice_id),
+                                ('sequence', '=', int(numline)),
+                            ], context=context)
+                        invoice_lineid = False
+                        if invoice_line_ids:
+                            invoice_lineid = invoice_line_ids[0]
+                        DdTModel.create(
+                            cr, uid,
+                            {
+                                'name': DdtDataLine.NumeroDDT or '',
+                                'date': DdtDataLine.DataDDT or False,
+                                'invoice_id': invoice_id,
+                                'invoice_line_id': invoice_lineid
+                            }, context=context
+                        )
         #2.1.9
         Delivery = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiTrasporto
+        if Delivery:
+            pass
         #2.1.10
         ParentInvoice = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.FatturaPrincipale
+        if ParentInvoice:
+            pass
         #2.3
         Veicle = FatturaBody.DatiVeicoli
+        if Veicle:
+            pass
         #2.4
         PaymentsData = FatturaBody.DatiPagamento
+        if PaymentsData:
+            pass
         #2.5
         AttachmentsData = FatturaBody.Allegati
-
-        somedata = {}
-
-
-
-        if DiscountRises:
-        if SalDatas:
-        if DdtDatas:
-        if Delivery:
-        if ParentInvoice:
-        if Veicle:
-        if PaymentsData:
-
+        if AttachmentsData:
+            pass
+#        somedata = {}
         # compute the invoice
         invoice_model.button_compute(
             cr, uid, [invoice_id], context=context,
@@ -527,7 +594,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         _("tipoDocumento %s not handled")
                         % fattura.tipoDocumento)
                 invoice_id = self.invoiceCreate(
-                    cr, uid, fatt,fatturapa_attachment, fattura,
+                    cr, uid, fatt, fatturapa_attachment, fattura,
                     partner_id, context=context)
                 new_invoices.append(invoice_id)
         return {

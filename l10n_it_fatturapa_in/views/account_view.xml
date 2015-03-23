@@ -131,6 +131,7 @@
                                         <field name="fund_fiscalpos"/>
                                         <field name="welfare_rate_tax" readonly="1"/>
                                         <field name="welfare_amount_tax"/>
+                                        <field name="welfare_Iva_tax"/>
                                         <field name="welfare_taxable"/>
                                         <field name="subjected_withholding"/>
                                         <field name="pa_line_code"/>
