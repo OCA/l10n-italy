@@ -20,10 +20,9 @@
 ##############################################################################
 
 import base64
-import tempfile
+from unidecode import unidecode
 from pyxb.exceptions_ import SimpleFacetValueError
 from openerp.osv import orm
-from openerp import addons
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
@@ -59,24 +58,6 @@ class WizardExportFatturapa(orm.TransientModel):
         self.number = False
         super(WizardExportFatturapa, self).__init__(cr, uid, **kwargs)
 
-    def getFile(self, filename, context=None):
-        if context is None:
-            context = {}
-
-        path = addons.get_module_resource(
-            'l10n_it_fatturapa', 'data', filename)
-        with open(path) as test_data:
-            with tempfile.TemporaryFile() as out:
-                base64.encode(test_data, out)
-                out.seek(0)
-                return out.read()
-    '''
-    def setNameSpace(self):
-        register_namespace('ds', "http://www.w3.org/2000/09/xmldsig#")
-        register_namespace(
-            'p', "http://www.fatturapa.gov.it/sdi/fatturapa/v1.1")
-        register_namespace('xsi', "http://www.w3.org/2001/XMLSchema-instance")
-    '''
     def saveAttachment(self, cr, uid, context=None):
         if context is None:
             context = {}
@@ -93,7 +74,7 @@ class WizardExportFatturapa(orm.TransientModel):
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
-            'datas': base64.encodestring(self.fatturapa.toxml("utf-8")),
+            'datas': base64.encodestring(self.fatturapa.toxml("latin1")),
         }
         attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
 
@@ -157,10 +138,10 @@ class WizardExportFatturapa(orm.TransientModel):
     def _setCodiceDestinatario(self, cr, uid, partner, context=None):
         if context is None:
             context = {}
-        code = partner.fatturapa_code
+        code = partner.ipa_code
         if not code:
             raise orm.except_orm(
-                _('Error!'), _('FatturaPA Code not set on partner form.'))
+                _('Error!'), _('IPA Code not set on partner form.'))
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             CodiceDestinatario = code.upper()
 
@@ -599,7 +580,8 @@ class WizardExportFatturapa(orm.TransientModel):
                 Descrizione=line.name,
                 PrezzoUnitario='%.2f' % line.price_unit,
                 Quantita='%.2f' % line.quantity,
-                UnitaMisura=line.uos_id and line.uos_id.name or None,
+                UnitaMisura=line.uos_id and (
+                    unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA=AliquotaIVA)
             if aliquota == 0.0:
@@ -752,11 +734,6 @@ class WizardExportFatturapa(orm.TransientModel):
 
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
-
-        # content = self.getFile('fatturapa_v1.1.xml').decode('base64')
-        # self.template = ElementTree(fromstring(content))
-        # tmpl = self.template
-        # root = tmpl.getroot()
 
         self.fatturapa = FatturaElettronica(versione='1.1')
         invoice_ids = context.get('active_ids', False)

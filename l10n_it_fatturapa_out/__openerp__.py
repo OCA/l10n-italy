@@ -34,6 +34,5 @@
         'views/account_view.xml',
     ],
     "test": [],
-    "demo": ['demo/account_invoice_fatturapa.xml'],
     "installable": True
 }

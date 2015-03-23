@@ -2,6 +2,7 @@
 <openerp>
     <data>
 
+
         <record model="ir.ui.view" id="view_partner_form_fatturapa">
             <field name="name">partner.form.fatturapa</field>
             <field name="model">res.partner</field>
