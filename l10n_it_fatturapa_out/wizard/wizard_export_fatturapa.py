@@ -362,19 +362,19 @@ class WizardExportFatturapa(orm.TransientModel):
 
         if not partner.street:
             raise orm.except_orm(
-                _('Error!'), _('Partner street not set.'))
+                _('Error!'), _('Customer street not set.'))
         if not partner.zip:
             raise orm.except_orm(
-                _('Error!'), _('Partner ZIP not set.'))
+                _('Error!'), _('Customer ZIP not set.'))
         if not partner.city:
             raise orm.except_orm(
-                _('Error!'), _('Partner city not set.'))
+                _('Error!'), _('Customer city not set.'))
         if not partner.state_id:
             raise orm.except_orm(
-                _('Error!'), _('Partner province not set.'))
+                _('Error!'), _('Customer province not set.'))
         if not partner.country_id:
             raise orm.except_orm(
-                _('Error!'), _('Partner country not set.'))
+                _('Error!'), _('Customer country not set.'))
 
         # FIXME: manage address number in <NumeroCivico>
         self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
@@ -773,7 +773,7 @@ class WizardExportFatturapa(orm.TransientModel):
             self.setProgressivoInvio(cr, uid, context=context)
         except SimpleFacetValueError as e:
             raise orm.except_orm(
-                _("Error"),
+                _("XML SDI validation error"),
                 (unicode(e)))
 
         attach_id = self.saveAttachment(cr, uid, context=context)
