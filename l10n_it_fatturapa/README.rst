@@ -20,10 +20,10 @@ http://pyxb.sourceforge.net/
 Configuration
 =============
 
- * Edit the FatturaPA fields of the partners who will send/receive the
-   electronic invoices
+ * Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the
+   electronic invoices. IPA code is mandatory, EORI code is not.
  * Configure payment terms filling the fatturaPA fields related to payment
-   terms and payment methods
+   terms and payment methods.
  * Configure FatturaPA data in Accounting Configuration
 
 Credits
