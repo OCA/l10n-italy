@@ -31,8 +31,8 @@ class resPartner(orm.Model):
         'rea_capital': fields.float('Capital'),
         'rea_member_type': fields.selection(
             [
-                ('unique', 'Unique Member'),
-                ('many', 'Multiple Members'),
+                ('SU', 'Unique Member'),
+                ('SM', 'Multiple Members'),
             ], 'Member Type'
         ),
         'rea_liquidation_state': fields.selection(
