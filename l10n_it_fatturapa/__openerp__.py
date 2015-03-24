@@ -32,6 +32,7 @@
         'l10n_it_fiscalcode',
         'document',
         'l10n_it_ipa',
+        'l10n_it_rea',
         ],
     "data": [
         'data/fatturapa_data.xml',
