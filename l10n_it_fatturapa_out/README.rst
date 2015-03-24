@@ -5,7 +5,10 @@
 Italian Localization - FatturaPA - Emission
 ===========================================
 
-This module allows you to generate the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm">fatturaPA</a> XML file version 1.1 to be sent to the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm">Exchange System</a>.
+This module allows you to generate the fatturaPA XML file version 1.1
+http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
+to be sent to the Exchange System
+http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
 
 Configuration
