@@ -2,41 +2,6 @@
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="view_payment_data_form_fatturapa">
-            <field name="name">fatturapa.payment.data.form</field>
-            <field name="model">fatturapa.payment.data</field>
-            <field name="arch" type="xml">
-                <form string="Payment Data">
-                    <group>
-                        <field name="payment_terms" />
-                    </group>
-                    <group>
-                        <group string="Payments Details">
-                            <field name="payment_methods" nolabel="1" >
-                            <tree editable="bottom" string="Payments">
-                                    <field name="recipient"/>
-                                    <field name="fatturapa_pm_id"/>
-                                    <field name="payment_term_start" />
-                                    <field name="payment_days"/>
-                                    <field name="payment_due_date"/>
-                                    <field name="payment_amount"/>
-                                    <field name="post_office_code"/>
-                                    <field name="recepit_partner_contact"/>
-                                    <field name="payment_bank"/>
-                                    <field name="prepayment_discount"/>
-                                    <field name="max_payment_date"/>
-                                    <field name="penalty_amount"/>
-                                    <field name="penalty_date"/>
-                                    <field name="account_move_line_id"/>
-                                    <field name="payment_data_id"/>
-                                </tree>
-                            </field>
-                        </group>
-                    </group>
-                </form>
-            </field>
-        </record>
-
     <record model="ir.ui.view" id="view_payment_term_form_fatturapa">
         <field name="name">account.payment.term.fatturapa</field>
         <field name="model">account.payment.term</field>

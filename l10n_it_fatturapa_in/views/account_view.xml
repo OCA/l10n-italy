@@ -94,15 +94,41 @@
                     <field name="virtual_stamp"  readonly="1" />
                     <field name="stamp_amount"   readonly="1"/>
                 </field>
-
-                <field name="payment_ids" position="before">
+                <field name="payment_ids"   position="before">
                     <separator string="FatturaPA Payment"/>
                         <group>
-                            <field name="fatturapa_payments" nolabel="1" readonly="1">
-                                <tree editable="bottom" string="Related Documents">
-                                        <field name="payment_terms"/>
-                                        <field name="payment_methods"/>
+                            <field name="fatturapa_payments" nolabel="1" >
+                                <tree string="Related Documents">
+                                    <field name="payment_terms" />
                                 </tree>
+                                <form string="Related Documents" version="7.0">
+                                    <sheet>
+                                        <group>
+                                            <field name="payment_terms" />
+                                        </group>
+                                        <group string="Payments Details">
+                                            <field name="payment_methods" nolabel="1" >
+                                            <tree editable="bottom" string="Payments">
+                                                    <field name="recipient"/>
+                                                    <field name="fatturapa_pm_id"/>
+                                                    <field name="payment_term_start" />
+                                                    <field name="payment_days"/>
+                                                    <field name="payment_due_date"/>
+                                                    <field name="payment_amount"/>
+                                                    <field name="post_office_code"/>
+                                                    <field name="payment_bank_name"/>
+                                                    <field name="prepayment_discount"/>
+                                                    <field name="max_payment_date"/>
+                                                    <field name="penalty_amount"/>
+                                                    <field name="penalty_date"/>
+                                                    <field name="payment_code"/>
+                                                    <field name="account_move_line_id"/>
+                                                    <field name="payment_data_id" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </sheet>
+                                </form>
                             </field>
                         </group>
                 </field>

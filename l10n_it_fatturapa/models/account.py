@@ -108,14 +108,22 @@ class fatturapa_payment_detail(orm.Model):
         'payment_due_date': fields.date('Payment due Date'),
         'payment_amount': fields.float('Payment Amount'),
         'post_office_code': fields.char('Post Office Code', size=20),
-        'recepit_partner_contact': fields.many2one(
-            'res.partner', string="Recepit payment partner contact"),
+        'recepit_name': fields.char("Recepit payment partner contact"),
+        'recepit_surname': fields.char("Recepit payment partner contact"),
+        'recepit_cf': fields.char("Recepit payment partner contact"),
+        'recepit_title': fields.char("Recepit payment partner contact"),
+        'payment_bank_name': fields.char("Bank name"),
+        'payment_bank_iban': fields.char("IBAN"),
+        'payment_bank_abi': fields.char("ABI"),
+        'payment_bank_cab': fields.char("CAB"),
+        'payment_bank_bic': fields.char("BIC"),
         'payment_bank': fields.many2one(
             'res.partner.bank', string="Payment Bank"),
         'prepayment_discount': fields.float('Prepayment Discount'),
         'max_payment_date': fields.date('Maximum date for Payment'),
         'penalty_amount': fields.date('Amount of Penality'),
         'penalty_date': fields.date('Effective date of Penality'),
+        'payment_code': fields.char('Payment code'),
         'account_move_line_id': fields.many2one(
             'account.move.line', string="Payment Line"),
         'payment_data_id': fields.many2one(

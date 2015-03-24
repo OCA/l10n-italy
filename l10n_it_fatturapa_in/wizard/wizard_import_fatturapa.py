@@ -310,34 +310,102 @@ class WizardImportFatturapa(orm.TransientModel):
         }
         return res
 
-    #~ def _preparePayamentsLine(
-        #~ self, cr, uid, payment_id, line, type, context=None
-    #~ ):
-        #~ res = []
-        #~ cond = line.CondizioniPagamento or False
-        #~ details = line.DettaglioPagamento or False
-        #~ if details:
-            #~ for dline in details:
-                #~ BankModel = self.pool['res.bank']
-                #~ PartnerBankModel = self.pool['res.partner.bank']
-                #~ val = {
-                    #~ 'type': type,
-                    #~ 'name': IdDoc,
-                    #~ 'lineRef': lineref,
-                    #~ 'invoice_line_id': invoice_lineid,
-                    #~ 'invoice_id': invoice_id,
-                    #~ 'date': Data,
-                    #~ 'numitem': NumItem,
-                    #~ 'code': Code,
-                    #~ 'cig': Cig,
-                    #~ 'cup': Cup,
-                #~ }
-                #~ if dline.BIC:
-                    #~ bankid = BankModel.search(
-                        #~ cr, uid, [('bic', '=', dline.BIC)], context=context)
-
-                #~ res.append(val)
-        #~ return res
+    def _preparePayamentsLine(
+        self, cr, uid, payment_id, line, partner_id,
+        context=None
+    ):
+        PaymentModel = self.pool['fatturapa.payment.detail']
+        details = line.DettaglioPagamento or False
+        if details:
+            for dline in details:
+                BankModel = self.pool['res.bank']
+                PartnerBankModel = self.pool['res.partner.bank']
+                val = {
+                    'recipient': dline.Beneficiario,
+                    'fatturapa_pm_id':
+                    dline.ModalitaPagamento or False,
+                    'payment_term_start':
+                    dline.DataRiferimentoTerminiPagamento or False,
+                    'payment_days':
+                    dline.GiorniTerminiPagamento or 0,
+                    'payment_due_date':
+                    dline.DataScadenzaPagamento or False,
+                    'payment_amount':
+                    dline.ImportoPagamento or 0.0,
+                    'post_office_code':
+                    dline.CodUfficioPostale or '',
+                    'recepit_surname':
+                    dline.CognomeQuietanzante or '',
+                    'recepit_name':
+                    dline.NomeQuietanzante or '',
+                    'recepit_cf':
+                    dline.CFQuietanzante or '',
+                    'recepit_title':
+                    dline.TitoloQuietanzante or '1',
+                    'payment_bank_name':
+                    dline.IstitutoFinanziario or '',
+                    'payment_bank_iban':
+                    dline.IBAN or '',
+                    'payment_bank_abi':
+                    dline.ABI or '',
+                    'payment_bank_cab':
+                    dline.CAB or '',
+                    'payment_bank_bic':
+                    dline.BIC or '',
+                    'payment_bank': False,
+                    'prepayment_discount':
+                    dline.ScontoPagamentoAnticipato or '',
+                    'max_payment_date':
+                    dline.DataLimitePagamentoAnticipato or '',
+                    'penalty_amount':
+                    dline.PenalitaPagamentiRitardati or 0.0,
+                    'penalty_date':
+                    dline.DataDecorrenzaPenale or '',
+                    'payment_code':
+                    dline.CodicePagamento or '',
+                }
+                bankid = False
+                payment_bank_id = False
+                if dline.BIC:
+                    bankid = BankModel.search(
+                        cr, uid, [('bic', '=', dline.BIC)], context=context)
+                    if not bankid:
+                        if dline.IstitutoFinanziario == '':
+                            raise orm.except_orm(
+                                _('Error!'),
+                                _('Name of Banck is required')
+                            )
+                        bankid = BankModel.create(
+                            cr, uid,
+                            {
+                                'name': dline.IstitutoFinanziario,
+                                'bic': dline.BIC
+                            },
+                            context=context
+                        )
+                if dline.IBAN:
+                    SearchDom = [
+                        ('state', '=', 'iban'),
+                        ('acc_number', '=', dline.IBAN),
+                        ('partner_id', '=', partner_id),
+                    ]
+                    payment_bank_id = PartnerBankModel.search(
+                        cr, uid, SearchDom, context=context)
+                    if not payment_bank_id and bankid:
+                        payment_bank_id = PartnerBankModel.create(
+                            cr, uid,
+                            {
+                                'state': 'iban',
+                                'acc_number': dline.IBAN,
+                                'partner_id': partner_id,
+                                'banck': bankid,
+                                'bank_bic': dline.BIC
+                            },
+                            context=context
+                        )
+                val['payment_bank'] = payment_bank_id
+                PaymentModel.create(cr, uid, val, conext=context)
+        return True
 
     def invoiceCreate(
         self, cr, uid, fatt, fatturapa_attachment, FatturaBody,
@@ -355,6 +423,7 @@ class WizardImportFatturapa(orm.TransientModel):
         DiscRisePriceModel = self.pool['discount.rise.price']
         SalModel = self.pool['faturapa.activity.progress']
         DdTModel = self.pool['fatturapa.related_ddt']
+        PaymentDataModel = self.pool['fatturapa.payment.data']
 
         company = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id
@@ -631,7 +700,25 @@ class WizardImportFatturapa(orm.TransientModel):
         #2.4
         PaymentsData = FatturaBody.DatiPagamento
         if PaymentsData:
-            pass
+            for PaymentLine in PaymentsData:
+                cond = line.CondizioniPagamento or False
+                if not cond:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Payment method not found in document')
+                    )
+                PayDataId = PaymentDataModel.create(
+                    cr, uid,
+                    {
+                        'payment_terms': cond,
+                        'invoice_id': invoice_id
+                    },
+                    context=context
+                )
+                self._CreatePayamentsLine(
+                    cr, uid, PayDataId, PaymentLine, partner_id,
+                    context=context
+                )
         #2.5
         AttachmentsData = FatturaBody.Allegati
         if AttachmentsData:
