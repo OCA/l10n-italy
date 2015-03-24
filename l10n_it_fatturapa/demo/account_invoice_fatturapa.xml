@@ -31,9 +31,7 @@
             <field name="vat">IT02780790107</field>
         </record>
 
-        <record id="account_payment_term_fatturapa" model="account.payment.term">
-            <field name="name">60 gg fmdf</field>
-            <field name="note">60 gg fmdf</field>
+        <record id="account.account_payment_term" model="account.payment.term">
             <field name="fatturapa_pt_id" ref="fatturapa_tp02"/>
             <field name="fatturapa_pm_id" ref="fatturapa_mp05"/>
         </record>
@@ -58,7 +56,7 @@
 <!-- invoice 0 -->
 
         <record id="fatturapa_invoice_0" model="account.invoice">
-            <field name="payment_term" ref="account_payment_term_fatturapa"/>
+            <field name="payment_term" ref="account.account_payment_term"/>
             <field name="journal_id" ref="account.sales_journal"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="user_id" ref="base.user_demo"/>
@@ -96,14 +94,14 @@
 <!-- invoice 1 -->
 
         <record id="fatturapa_invoice_1" model="account.invoice">
-            <field name="payment_term" ref="account_payment_term_fatturapa"/>
+            <field name="payment_term" ref="account.account_payment_term"/>
             <field name="journal_id" ref="account.sales_journal"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="user_id" ref="base.user_demo"/>
             <field name="company_id" ref="base.main_company"/>
             <field name="type">out_invoice</field>
             <field name="account_id" ref="account.a_pay"/>
-            <field name="date_invoice" eval="time.strftime('%Y')+'-01-15'"/>
+            <field name="date_invoice" eval="time.strftime('%Y')+'-02-15'"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
         </record>
 
