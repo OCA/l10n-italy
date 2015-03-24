@@ -28,8 +28,8 @@
             <field name="name">Parcella</field>
         </record>
 
-    	<!-- FatturaPA Fiscal Positions -->
-    	<record id="fatturapa_RF01" model="fatturapa.fiscal_position">
+        <!-- FatturaPA Fiscal Positions -->
+        <record id="fatturapa_RF01" model="fatturapa.fiscal_position">
             <field name="code">RF01</field>
             <field name="name">Regime ordinario</field>
         </record>
@@ -67,7 +67,7 @@
         </record>
         <record id="fatturapa_RF10" model="fatturapa.fiscal_position">
             <field name="code">RF10</field>
-            <field name="name">Intrattenimenti, giochi e altre attività	di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)</field>
+            <field name="name">Intrattenimenti, giochi e altre attività di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)</field>
         </record>
         <record id="fatturapa_RF11" model="fatturapa.fiscal_position">
             <field name="code">RF11</field>
@@ -83,7 +83,7 @@
         </record>
         <record id="fatturapa_RF14" model="fatturapa.fiscal_position">
             <field name="code">RF14</field>
-            <field name="name">Rivendita di beni usati, di oggetti	d’arte, d’antiquariato o da collezione (art.	36, D.L. 41/1995)</field>
+            <field name="name">Rivendita di beni usati, di oggetti  d’arte, d’antiquariato o da collezione (art.    36, D.L. 41/1995)</field>
         </record>
         <record id="fatturapa_RF15" model="fatturapa.fiscal_position">
             <field name="code">RF15</field>
@@ -102,14 +102,14 @@
             <field name="name">Altro</field>
         </record>
 
-    	<!-- FatturaPA Formats -->
-    	<record id="fatturapa_format_1_1" model="fatturapa.format">
+        <!-- FatturaPA Formats -->
+        <record id="fatturapa_format_1_1" model="fatturapa.format">
             <field name="name">Formato di Trasmissione SDI Versione 1.1</field>
             <field name="code">SDI11</field>
         </record>
 
-    	<!-- Invoice Bundle Sequence -->
-    	<record id="seq_type_fatturapa" model="ir.sequence.type">
+        <!-- Invoice Bundle Sequence -->
+        <record id="seq_type_fatturapa" model="ir.sequence.type">
             <field name="name">FatturaPA</field>
             <field name="code">account.invoice.fatturapa</field>
         </record>
@@ -119,8 +119,8 @@
             <field name="padding">5</field>
         </record>
 
-    	<!-- Payment Terms -->
-    	<record id="fatturapa_TP01" model="fatturapa.payment_term">
+        <!-- Payment Terms -->
+        <record id="fatturapa_TP01" model="fatturapa.payment_term">
             <field name="code">TP01</field>
             <field name="name">(pagamento a rate)</field>
         </record>
@@ -137,7 +137,7 @@
             <field name="name">(!!! codice non previsto !!!)</field>
         </record>
 
-    	<!-- Payment Methods -->
+        <!-- Payment Methods -->
         <record id="fatturapa_mp01" model="fatturapa.payment_method">
             <field name="code">MP01</field>
             <field name="name">(contanti)</field>
