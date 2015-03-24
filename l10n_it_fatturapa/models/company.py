@@ -102,6 +102,12 @@ class account_config_settings(orm.TransientModel):
             'company_id', 'fatturapa_art73',
             type='boolean',
             string="Art73",
+            help="indicates whether the document has been issued in accordance"
+                 " with the terms and conditions established by ministerial "
+                 "decree in accordance with Article 73 of Presidential Decree"
+                 ""
+                 "633/72 (this allows the company to issue the same"
+                 " year more documents with the same number)"
             ),
         'fatturapa_pub_administration_ref': fields.related(
             'company_id', 'fatturapa_pub_administration_ref',
@@ -145,12 +151,16 @@ class account_config_settings(orm.TransientModel):
             type='many2one',
             relation="res.partner",
             string="Legal Tax Representative",
+            help="Used when a foreign company needs to send invoices to an"
+                 "Italian PA and has a tax representative in Italy"
             ),
         'fatturapa_sender_partner': fields.related(
             'company_id', 'fatturapa_sender_partner',
             type='many2one',
             relation="res.partner",
             string="Third Party/Sender",
+            help="Used when company sends invoices to a third party and they "
+                 "send invoices to SDI"
             ),
     }
 
