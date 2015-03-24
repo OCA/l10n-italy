@@ -1,11 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-REA data in partner
-===================
-
-REA Registration
-================
+REA Register
+============
 
 The module implement fields of REA data in partner
 http://www.registroimprese.it/il-registro-imprese-e-altre-banche-dati#page=registro-imprese
