@@ -19,6 +19,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
 
 
 class AccountTax(orm.Model):
@@ -32,7 +33,15 @@ class AccountTax(orm.Model):
             ('N5', 'regime del margine'),
             ('N6', 'inversione contabile (reverse charge)'),
             ], string="Non taxable nature"),
+        'payability': fields.selection([
+            ('I', 'Immediate payability'),
+            ('D', 'Deferred payability'),
+            ('S', 'Split payment'),
+            ], string="VAT payability"),
+        'law_reference': fields.char(
+            'Law reference', size=128),
     }
+
     def get_tax_by_invoice_tax(self, cr, uid, invoice_tax, context=None):
         if ' - ' in invoice_tax:
             tax_descr = invoice_tax.split(' - ')[0]
