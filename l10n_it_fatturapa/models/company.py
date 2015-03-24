@@ -44,7 +44,7 @@ class res_company(orm.Model):
             ),
         'fatturapa_rea_office': fields.related(
             'partner_id', 'rea_office', type='many2one',
-            relation='res.province', string='REA office'),
+            relation='res.country.state', string='REA office'),
         'fatturapa_rea_number': fields.related(
             'partner_id', 'rea_code', type='char',
             size=20, string='Rea Number'),
