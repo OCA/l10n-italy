@@ -20,27 +20,29 @@
 #
 #############################################################################
 
-from osv import fields, orm
+from openerp import models, fields, api
 
 
-class res_bank(orm.Model):
+class ResBank(models.Model):
+
     _inherit = "res.bank"
-    _columns = {
-        'abi': fields.char('ABI', size=5),
-        'cab': fields.char('CAB', size=5),
-    }
+
+    abi = fields.Char(size=5, string='ABI')
+    cab = fields.Char(size=5, string='CAB')
 
 
-class res_partner_bank(orm.Model):
+class ResPartnerBank(models.Model):
+
     _inherit = "res.partner.bank"
-    _columns = {
-        'bank_abi': fields.char('ABI', size=5),
-        'bank_cab': fields.char('CAB', size=5),
-    }
 
+    bank_abi = fields.Char(size=5, string='ABI')
+    bank_cab = fields.Char(size=5, string='CAB')
+
+    @api.onchange('bank')
+    @api.cr_uid_ids_context
     def onchange_bank_id(self, cr, uid, ids, bank_id, context=None):
         result = super(
-            res_partner_bank, self).onchange_bank_id(
+            ResPartnerBank, self).onchange_bank_id(
             cr, uid, ids, bank_id, context=context)
         if bank_id:
             bank = self.pool.get('res.bank').browse(
