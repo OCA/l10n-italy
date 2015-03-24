@@ -42,25 +42,29 @@ class res_company(orm.Model):
         'fatturapa_pub_administration_ref': fields.char(
             'Public Administration Reference Code', size=20,
             ),
-        'fatturapa_rea_office': fields.many2one(
-            'res.province', 'Rea Office',
-            ),
-        'fatturapa_rea_number': fields.char(
-            'Rea Number', size=20,
-            ),
-        'fatturapa_rea_capital': fields.float(
-            'Rea Capital',
-            ),
-        'fatturapa_rea_partner': fields.selection(
-            [('SU', 'Single Partner'),
-             ('SM', 'Many Partners')],
-            'Rea Copartner',
-            ),
-        'fatturapa_rea_liquidation': fields.selection(
-            [('LN', 'Company Not in Liquidation'),
-             ('LN', 'Company In Liquidation')],
-            'Rea Liquidation',
-            ),
+        'fatturapa_rea_office': fields.related(
+            'partner_id', 'rea_office', type='many2one',
+            relation='res.province', string='REA office'),
+        'fatturapa_rea_number': fields.related(
+            'partner_id', 'rea_code', type='char',
+            size=20, string='Rea Number'),
+        'fatturapa_rea_capital': fields.related(
+            'partner_id', 'rea_capital', type='float',
+            string='Rea Capital'),
+        'fatturapa_rea_partner': fields.related(
+            'partner_id', 'rea_member_type', type='selection',
+            selection=[
+                ('SU', 'Unique Member'),
+                ('SM', 'Multiple Members'),
+                ],
+            string='Member Type'),
+        'fatturapa_rea_liquidation': fields.related(
+            'partner_id', 'rea_liquidation_state', type='selection',
+            selection=[
+                ('LS', 'In liquidation'),
+                ('LN', 'Not in liquidation'),
+                ],
+            string='Liquidation State'),
         'fatturapa_tax_representative': fields.many2one(
             'res.partner', 'Legal Tax Representative'
             ),
@@ -133,7 +137,7 @@ class account_config_settings(orm.TransientModel):
             'company_id', 'fatturapa_rea_liquidation',
             type='selection',
             selection=[('LN', 'Company Not in Liquidation'),
-                       ('LN', 'Company In Liquidation')],
+                       ('LS', 'Company In Liquidation')],
             string="Rea Liquidation",
             ),
         'fatturapa_tax_representative': fields.related(
@@ -176,8 +180,8 @@ class account_config_settings(orm.TransientModel):
                     company.fatturapa_pub_administration_ref or False
                     ),
                 'fatturapa_rea_office': (
-                    company.fatturapa_pub_administration_ref and
-                    company.fatturapa_pub_administration_ref.id or False
+                    company.fatturapa_rea_office and
+                    company.fatturapa_rea_office.id or False
                     ),
                 'fatturapa_rea_number': (
                     company.fatturapa_rea_number or False
