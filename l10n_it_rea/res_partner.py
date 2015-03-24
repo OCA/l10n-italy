@@ -25,7 +25,7 @@ class resPartner(models.Model):
     _inherit = 'res.partner'
 
     rea_office = fields.Many2one(
-        'res.province', string='Office Province')
+        'res.country.state', string='Office Province')
     rea_code = fields.Char('REA Code', size=20)
     rea_capital = fields.Float('Capital')
     rea_member_type = fields.Selection(
