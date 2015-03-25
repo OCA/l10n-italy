@@ -24,6 +24,8 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from email.utils import getaddresses
+
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -176,7 +178,11 @@ class MailMessage(orm.Model):
                         uid,
                         mail_sent_ids[0],
                         context=context)
-                    receipt_list = sent_mail.email_to.split(',')
+                    receipt_list = [r[1] for r
+                                    in getaddresses(
+                                        [sent_mail.email_to.lower()]
+                                        )
+                                    ]
                     res = {receipt: False for receipt in receipt_list}
                     res['accettazione'] = False
                     for notification in message.pec_notifications_ids:
@@ -186,8 +192,9 @@ class MailMessage(orm.Model):
                             if notification.pec_type == 'accettazione':
                                 res['accettazione'] = True
                             elif notification.pec_type == 'avvenuta-consegna':
-                                if notification.recipient_addr in res:
-                                    res[notification.recipient_addr] = True
+                                raddress = notification.recipient_addr.lower()
+                                if raddress in res:
+                                    res[raddress] = True
                             else:
                                 pass
                     for value in res.itervalues():
