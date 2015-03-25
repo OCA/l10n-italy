@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
+import base64
 from openerp.osv import orm
 from openerp.tools.translate import _
 import logging
@@ -510,7 +510,7 @@ class WizardImportFatturapa(orm.TransientModel):
         causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
         if causLst:
             for item in causLst:
-                comment += item
+                comment += item + '\n'
         invoice_data = {
             'name': 'Fattura ' + partner.name,
             'date_invoice':
@@ -764,18 +764,28 @@ class WizardImportFatturapa(orm.TransientModel):
         if AttachmentsData:
             attach_list = []
             AttachModel = self.pool['fatturapa.attachments']
+
             for attach in AttachmentsData:
+                if not attach.NomeAttachment:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Attachment Name is Required')
+                    )
+                content = attach.Attachment
+                name = attach.NomeAttachment
+                if isinstance(content, unicode):
+                    content = content.encode('utf-8')
                 _attach_dict = {
-                    'name': attach.NomeAttachment or '',
-                    'datas': attach.Attachment or False,
+                    'name': name,
+                    'datas': base64.b64encode(str(content)),
+                    'datas_fname': name,
                     'description': attach.DescrizioneAttachment or '',
                     'compression': attach.AlgoritmoCompressione or '',
                     'format': attach.FormatoAttachment or '',
-                    'invoice_id': invoice_id
+                    'invoice_id': invoice_id,
                 }
-                attach_list.append(_attach_dict)
-            AttachModel.create(
-                cr, uid, attach_list, context=context)
+                AttachModel.create(
+                    cr, uid, _attach_dict, context=context)
 #        somedata = {}
         # compute the invoice
         invoice_model.button_compute(

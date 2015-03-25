@@ -268,6 +268,8 @@ class fattura_attachments(orm.Model):
     _inherits = {'ir.attachment': 'ir_attachment_id'}
 
     _columns = {
+        'ir_attachment_id': fields.many2one(
+            'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
         'compression': fields.char('Compression', size=10),
         'format': fields.char('Format', size=10),
         'invoice_id': fields.many2one(

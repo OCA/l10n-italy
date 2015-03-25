@@ -98,7 +98,7 @@
                                         <field name="payment_terms"></field>
                                     </group>
                                     <group string="Payments Details">
-                                        <field name="payment_methods" nolabel="1">
+                                        <field name="payment_methods" nolabel="1" readonly="1">
                                             <tree editable="bottom" string="Payments">
                                                 <field name="recipient"></field>
                                                 <field name="fatturapa_pm_id"></field>
@@ -187,7 +187,25 @@
                     </page>
                     <page string="FatturaPA attachments">
                         <group string="Attachments">
-                            <field name="fatturapa_doc_attachments" nolabel="1" readonly="1"></field>
+                            <field name="fatturapa_doc_attachments" nolabel="1" readonly="1">
+                                <tree string="Attachments">
+                                    <field name="ir_attachment_id"></field>
+                                    <field name="name"></field>
+                                    <field name="description"></field>
+                                </tree>
+                                <form string="Attachments">
+                                    <group>
+                                        <group>
+                                            <field name="name"></field>
+                                            <field name="description"></field>
+                                        </group>
+                                        <group>
+                                            <field name="ir_attachment_id"></field>
+                                            <field name="invoice_id"></field>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
                         </group>
                     </page>
                 </xpath>
