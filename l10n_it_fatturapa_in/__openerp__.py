@@ -82,6 +82,7 @@ To contribute to this module, please visit http://odoo-community.org.
     "data": [
         'views/account_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
+        'security/ir.model.access.csv',
     ],
     "test": [],
     "demo": [],
