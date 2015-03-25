@@ -32,6 +32,7 @@
         'wizard/wizard_export_fatturapa_view.xml',
         'views/attachment_view.xml',
         'views/account_view.xml',
+        'security/ir.model.access.csv',
     ],
     "test": [],
     "installable": True
