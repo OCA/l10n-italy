@@ -89,7 +89,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'document',
         'l10n_it_ipa',
         'stock_invoice_picking_incoterm',
-        'l10n_it_withholding_tax'
+        'l10n_it_withholding_tax',
         'l10n_it_rea',
         ],
 
