@@ -24,23 +24,13 @@
     'name': 'Italian Localisation - Base Bank ABI/CAB codes',
     'version': '1.0',
     'category': 'Localisation/Italy',
-    'description': """
-
-
-Contributors
-------------
-
-Franco Tampieri <franco@tampieri.info>
-Alessandro Camilli <a.camilli@yahoo.it>
-Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-""",
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'depends': ['base', 'account'],
     'test': [
         'test/abicab.yml',
     ],
-    'website': 'http://www.openerp-italia.org/',
+    'website': 'http://www.odoo-italia.org/',
     'data': ['abicab_view.xml'],
     'installable': True,
 }
