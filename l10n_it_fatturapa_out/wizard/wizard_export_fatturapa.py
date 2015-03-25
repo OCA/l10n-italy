@@ -647,12 +647,13 @@ class WizardExportFatturapa(orm.TransientModel):
                         _('Error'),
                         _("No 'nature' field for tax %s") % tax.name)
                 riepilogo.Natura = tax.non_taxable_nature
+                riepilogo.RiferimentoNormativo = tax.law_reference
+            if tax.payability:
+                riepilogo.EsigibilitaIVA = tax.payability
             # TODO
             '''
             el.remove(el.find('SpeseAccessorie'))
             el.remove(el.find('Arrotondamento'))
-            el.remove(el.find('EsigibilitaIVA'))
-            el.remove(el.find('RiferimentoNormativo'))
             '''
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
