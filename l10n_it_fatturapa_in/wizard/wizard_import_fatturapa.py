@@ -25,6 +25,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_1
+from openerp.addons.base_iban import base_iban
 
 
 class WizardImportFatturapa(orm.TransientModel):
@@ -49,7 +50,7 @@ class WizardImportFatturapa(orm.TransientModel):
 
     def getPartnerBase(self, cr, uid, angrafica, context=None):
         partner_model = self.pool['res.partner']
-        cf = angrafica.CodiceFiscale or ''
+        cf = angrafica.CodiceFiscale or False
         CountryCode = angrafica.IdFiscaleIVA.IdPaese
         country_ids = self.CountryByCode(
             cr, uid, CountryCode, context=context)
@@ -64,8 +65,6 @@ class WizardImportFatturapa(orm.TransientModel):
             angrafica.IdFiscaleIVA.IdPaese,
             angrafica.IdFiscaleIVA.IdCodice
         )
-        print cf
-        print vat
         partner_ids = partner_model.search(
             cr, uid,
             ['|',
@@ -124,7 +123,8 @@ class WizardImportFatturapa(orm.TransientModel):
         vals = {}
         if partner_id:
             vals = {
-                'license_number': Carrier.NumeroLicenzaGuida or '',
+                'license_number':
+                Carrier.DatiAnagraficiVettore.NumeroLicenzaGuida or '',
             }
             partner_model.write(cr, uid, partner_id, vals, context=context)
         return partner_id
@@ -169,7 +169,6 @@ class WizardImportFatturapa(orm.TransientModel):
                     _('Define a tax with percentage '
                       'equals to: "%s"')
                     % line.AliquotaIVA)
-            print account_tax_ids
             if len(account_tax_ids) > 1:
                 raise orm.except_orm(
                     _('Error!'),
@@ -310,20 +309,34 @@ class WizardImportFatturapa(orm.TransientModel):
         }
         return res
 
-    def _preparePayamentsLine(
+    def _CreatePayamentsLine(
         self, cr, uid, payment_id, line, partner_id,
         context=None
     ):
         PaymentModel = self.pool['fatturapa.payment.detail']
+        PaymentMethodModel = self.pool['fatturapa.payment_method']
         details = line.DettaglioPagamento or False
         if details:
             for dline in details:
                 BankModel = self.pool['res.bank']
                 PartnerBankModel = self.pool['res.partner.bank']
+                method_id = PaymentMethodModel.search(
+                    cr, uid,
+                    [('code', '=', dline.ModalitaPagamento)],
+                    context=context
+                )
+                if not method_id:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _(
+                            'Xml Incorrect'
+                            'ModalitaPagamento in line DettaglioPagamento'
+                            'is not defined'
+                        )
+                    )
                 val = {
                     'recipient': dline.Beneficiario,
-                    'fatturapa_pm_id':
-                    dline.ModalitaPagamento or False,
+                    'fatturapa_pm_id': method_id[0],
                     'payment_term_start':
                     dline.DataRiferimentoTerminiPagamento or False,
                     'payment_days':
@@ -354,22 +367,25 @@ class WizardImportFatturapa(orm.TransientModel):
                     dline.BIC or '',
                     'payment_bank': False,
                     'prepayment_discount':
-                    dline.ScontoPagamentoAnticipato or '',
+                    dline.ScontoPagamentoAnticipato or 0.0,
                     'max_payment_date':
-                    dline.DataLimitePagamentoAnticipato or '',
+                    dline.DataLimitePagamentoAnticipato or False,
                     'penalty_amount':
                     dline.PenalitaPagamentiRitardati or 0.0,
                     'penalty_date':
-                    dline.DataDecorrenzaPenale or '',
+                    dline.DataDecorrenzaPenale or False,
                     'payment_code':
                     dline.CodicePagamento or '',
+                    'payment_data_id': payment_id
                 }
                 bankid = False
                 payment_bank_id = False
                 if dline.BIC:
-                    bankid = BankModel.search(
-                        cr, uid, [('bic', '=', dline.BIC)], context=context)
-                    if not bankid:
+                    bankids = BankModel.search(
+                        cr, uid,
+                        [('bic', '=', dline.BIC.strip())], context=context
+                    )
+                    if not bankids:
                         if dline.IstitutoFinanziario == '':
                             raise orm.except_orm(
                                 _('Error!'),
@@ -379,37 +395,51 @@ class WizardImportFatturapa(orm.TransientModel):
                             cr, uid,
                             {
                                 'name': dline.IstitutoFinanziario,
-                                'bic': dline.BIC
+                                'bic': dline.BIC,
                             },
                             context=context
                         )
+                    else:
+                        bankid = bankids[0]
                 if dline.IBAN:
                     SearchDom = [
                         ('state', '=', 'iban'),
-                        ('acc_number', '=', dline.IBAN),
+                        (
+                            'acc_number', '=',
+                            base_iban._pretty_iban(dline.IBAN.strip())
+                        ),
                         ('partner_id', '=', partner_id),
                     ]
-                    payment_bank_id = PartnerBankModel.search(
+                    payment_bank_id = False
+                    payment_bank_ids = PartnerBankModel.search(
                         cr, uid, SearchDom, context=context)
-                    if not payment_bank_id and bankid:
+                    if not payment_bank_ids and not bankid:
+                        raise orm.except_orm(
+                            _('Error!'),
+                            _('BIC is required and not exist in Xml')
+                        )
+                    elif not payment_bank_ids and bankid:
                         payment_bank_id = PartnerBankModel.create(
                             cr, uid,
                             {
                                 'state': 'iban',
-                                'acc_number': dline.IBAN,
+                                'acc_number': dline.IBAN.strip(),
                                 'partner_id': partner_id,
-                                'banck': bankid,
+                                'bank': bankid,
+                                'bank_name': dline.IstitutoFinanziario,
                                 'bank_bic': dline.BIC
                             },
                             context=context
                         )
+                    if payment_bank_ids:
+                        payment_bank_id = payment_bank_ids[0]
                 val['payment_bank'] = payment_bank_id
-                PaymentModel.create(cr, uid, val, conext=context)
+                PaymentModel.create(cr, uid, val, context=context)
         return True
 
     def invoiceCreate(
         self, cr, uid, fatt, fatturapa_attachment, FatturaBody,
-        partner_id, Intermediary_id, context=None
+        partner_id, context=None
     ):
         if context is None:
             context = {}
@@ -424,6 +454,7 @@ class WizardImportFatturapa(orm.TransientModel):
         SalModel = self.pool['faturapa.activity.progress']
         DdTModel = self.pool['fatturapa.related_ddt']
         PaymentDataModel = self.pool['fatturapa.payment.data']
+        PaymentTermsModel = self.pool['fatturapa.payment_term']
 
         company = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id
@@ -490,7 +521,6 @@ class WizardImportFatturapa(orm.TransientModel):
             'account_id': pay_acc_id,
             'type': 'in_invoice',
             'partner_id': partner_id,
-            'intermediary': Intermediary_id,
             'currency_id': currency_id[0],
             'journal_id': len(journal_ids) and journal_ids[0] or False,
             'invoice_line': [(6, 0, invoice_lines)],
@@ -701,16 +731,26 @@ class WizardImportFatturapa(orm.TransientModel):
         PaymentsData = FatturaBody.DatiPagamento
         if PaymentsData:
             for PaymentLine in PaymentsData:
-                cond = line.CondizioniPagamento or False
+                cond = PaymentLine.CondizioniPagamento or False
                 if not cond:
                     raise orm.except_orm(
                         _('Error!'),
-                        _('Payment method not found in document')
+                        _('Payment method Code not found in document')
                     )
+                term_id = False
+                term_ids = PaymentTermsModel.search(
+                    cr, uid, [('code', '=', cond)], context=context)
+                if not term_ids:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Payment method Code %s is incorrect') % cond
+                    )
+                else:
+                    term_id = term_ids[0]
                 PayDataId = PaymentDataModel.create(
                     cr, uid,
                     {
-                        'payment_terms': cond,
+                        'payment_terms': term_id,
                         'invoice_id': invoice_id
                     },
                     context=context
@@ -748,6 +788,7 @@ class WizardImportFatturapa(orm.TransientModel):
             context = {}
         fatturapa_attachment_obj = self.pool['fatturapa.attachment.in']
         fatturapa_attachment_ids = context.get('active_ids', False)
+        invoice_model = self.pool['account.invoice']
         new_invoices = []
         for fatturapa_attachment in fatturapa_attachment_obj.browse(
                 cr, uid, fatturapa_attachment_ids, context=context):
@@ -759,20 +800,13 @@ class WizardImportFatturapa(orm.TransientModel):
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             #1.2
             partner_id = self.getPartnerBase(
-                cr, uid, cedentePrestatore, context=context)
+                cr, uid, cedentePrestatore.DatiAnagrafici, context=context)
             #1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\
                 RappresentanteFiscale
-            if TaxRappresentative:
-                    partner_id = self.getPartnerBase(
-                        cr, uid, TaxRappresentative.DatiAnagrafici,
-                        context=context)
             #1.5
             Intermediary = fatt.FatturaElettronicaHeader.\
                 TerzoIntermediarioOSoggettoEmittente
-            if Intermediary:
-                Intermediary_id = self.getPartnerBase(
-                    cr, uid, Intermediary.DatiAnagrafici, context=context)
             #2
             for fattura in fatt.FatturaElettronicaBody:
                 #~ fattura = fatt.FatturaElettronicaBody[i]
@@ -787,7 +821,27 @@ class WizardImportFatturapa(orm.TransientModel):
                         % fattura.tipoDocumento)
                 invoice_id = self.invoiceCreate(
                     cr, uid, fatt, fatturapa_attachment, fattura,
-                    partner_id, Intermediary_id, context=context)
+                    partner_id, context=context)
+
+                if TaxRappresentative:
+                    tax_partner_id = self.getPartnerBase(
+                        cr, uid, TaxRappresentative.DatiAnagrafici,
+                        context=context)
+                    invoice_model.write(
+                        cr, uid, invoice_id,
+                        {
+                            'tax_representative_id': tax_partner_id
+                        }, context=context
+                    )
+                if Intermediary:
+                    Intermediary_id = self.getPartnerBase(
+                        cr, uid, Intermediary.DatiAnagrafici, context=context)
+                    invoice_model.write(
+                        cr, uid, invoice_id,
+                        {
+                            'intermediary': Intermediary_id
+                        }, context=context
+                    )
                 new_invoices.append(invoice_id)
         return {
             'view_type': 'form',

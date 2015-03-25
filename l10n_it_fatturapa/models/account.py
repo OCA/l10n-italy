@@ -119,7 +119,7 @@ class fatturapa_payment_detail(orm.Model):
             'res.partner.bank', string="Payment Bank"),
         'prepayment_discount': fields.float('Prepayment Discount'),
         'max_payment_date': fields.date('Maximum date for Payment'),
-        'penalty_amount': fields.date('Amount of Penality'),
+        'penalty_amount': fields.float('Amount of Penality'),
         'penalty_date': fields.date('Effective date of Penality'),
         'payment_code': fields.char('Payment code'),
         'account_move_line_id': fields.many2one(
