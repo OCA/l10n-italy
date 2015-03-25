@@ -33,6 +33,8 @@ Italian Localization - FatturaPA
 ================================
 
 Base module to handle FatturaPA data.
+http://fatturapa.gov.it
+
 See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
 
 
@@ -46,11 +48,12 @@ http://pyxb.sourceforge.net/
 Configuration
 =============
 
- * Edit the FatturaPA fields of the partners who will send/receive the
-   electronic invoices
+ * Edit the FatturaPA fields of the partners (in partner form) who will receive
+   (send) the electronic invoices. IPA code is mandatory, EORI code is not.
  * Configure payment terms filling the fatturaPA fields related to payment
-   terms and payment methods
- * Configure FatturaPA data in Accounting Configuration
+   terms and payment methods.
+ * Configure FatturaPA data in Accounting Configuration. Note that a sequence
+   'fatturaPA' is already loaded by the module and selectable.
 
 Credits
 =======
@@ -87,6 +90,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'l10n_it_ipa',
         'stock_invoice_picking_incoterm',
         'l10n_it_withholding_tax'
+        'l10n_it_rea',
         ],
 
     "data": [
@@ -96,6 +100,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'views/company_view.xml',
         'views/partner_view.xml',
         'views/account_tax_view.xml',
+        'security/ir.model.access.csv',
     ],
     "test": [],
     "demo": ['demo/account_invoice_fatturapa.xml'],

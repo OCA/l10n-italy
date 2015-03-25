@@ -31,9 +31,7 @@
             <field name="vat">IT02780790107</field>
         </record>
 
-        <record id="account_payment_term_fatturapa" model="account.payment.term">
-            <field name="name">60 gg fmdf</field>
-            <field name="note">60 gg fmdf</field>
+        <record id="account.account_payment_term" model="account.payment.term">
             <field name="fatturapa_pt_id" ref="fatturapa_tp02"/>
             <field name="fatturapa_pm_id" ref="fatturapa_mp05"/>
         </record>
@@ -55,9 +53,10 @@
             <field name="ipa_code">79SRAK</field>
         </record>
 
+<!-- invoice 0 -->
+
         <record id="fatturapa_invoice_0" model="account.invoice">
-            <field name="date_due" eval="time.strftime('%Y')+'-07-30'"/>
-            <field name="payment_term" ref="account_payment_term_fatturapa"/>
+            <field name="payment_term" ref="account.account_payment_term"/>
             <field name="journal_id" ref="account.sales_journal"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="user_id" ref="base.user_demo"/>
@@ -65,8 +64,6 @@
             <field name="type">out_invoice</field>
             <field name="account_id" ref="account.a_pay"/>
             <field name="date_invoice" eval="time.strftime('%Y')+'-01-07'"/>
-            <field eval="14.0" name="amount_untaxed"/>
-            <field eval="14.0" name="amount_total"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
         </record>
 
@@ -75,8 +72,6 @@
             <field name="account_id" ref="account.a_sale"/>
             <field name="uos_id" ref="product.product_uom_unit"/>
             <field name="price_unit" eval="10.0" />
-            <field name="price_subtotal" eval="10.0" />
-            <field name="company_id" ref="base.main_company"/>
             <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
             <field name="product_id" ref="product.product_product_39"/>
             <field name="quantity" eval="1.0" />
@@ -89,13 +84,59 @@
             <field name="account_id" ref="account.a_sale"/>
             <field name="uos_id" ref="product.product_uom_unit"/>
             <field name="price_unit" eval="4.0"/>
-            <field name="price_subtotal" eval="4.0"/>
-            <field name="company_id" ref="base.main_company"/>
             <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
             <field name="product_id" ref="product.product_product_43"/>
             <field name="quantity" eval="1.0" />
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="name">Zed+ Antivirus</field>
         </record>
+
+<!-- invoice 1 -->
+
+        <record id="fatturapa_invoice_1" model="account.invoice">
+            <field name="payment_term" ref="account.account_payment_term"/>
+            <field name="journal_id" ref="account.sales_journal"/>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="type">out_invoice</field>
+            <field name="account_id" ref="account.a_pay"/>
+            <field name="date_invoice" eval="time.strftime('%Y')+'-02-15'"/>
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+        </record>
+
+        <record id="fatturapa_invoice_1_line_0" model="account.invoice.line">
+            <field name="invoice_id" ref="fatturapa_invoice_1"/>
+            <field name="account_id" ref="account.a_sale"/>
+            <field name="uos_id" ref="product.product_uom_unit"/>
+            <field name="price_unit" eval="10.0" />
+            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+            <field name="product_id" ref="product.product_product_39"/>
+            <field name="quantity" eval="1.0" />
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="name">Toner Cartridge</field>
+        </record>
+
+        <record id="fatturapa_invoice_1_line_1" model="account.invoice.line">
+            <field name="invoice_id" ref="fatturapa_invoice_1"/>
+            <field name="account_id" ref="account.a_sale"/>
+            <field name="uos_id" ref="product.product_uom_unit"/>
+            <field name="price_unit" eval="4.0"/>
+            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+            <field name="product_id" ref="product.product_product_43"/>
+            <field name="quantity" eval="1.0" />
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="name">Zed+ Antivirus</field>
+        </record>
+        
+        <record model="fatturapa.related_document_type" id="related_doc_0">
+            <field name="invoice_id" ref="fatturapa_invoice_1"/>
+            <field name="type">order</field>
+            <field name="name">PO123</field>
+            <field name="cig">123</field>
+            <field name="cup">456</field>
+        </record>
+
+
     </data>
 </openerp>
