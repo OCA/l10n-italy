@@ -31,6 +31,19 @@
                 <Nazione>IT</Nazione>
             </Sede>
         </CedentePrestatore>
+        <RappresentanteFiscale>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03339130126</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>03339130126</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>Rappresentante fiscale</Denominazione>
+                    <CodEORI>1234567890123</CodEORI>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </RappresentanteFiscale>
         <CessionarioCommittente>
             <DatiAnagrafici>
                 <CodiceFiscale>80213330584</CodiceFiscale>
@@ -46,6 +59,19 @@
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>
+        <TerzoIntermediarioOSoggettoEmittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03339130126</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>03339130126</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>Rappresentante fiscale</Denominazione>
+                    <CodEORI>1234567890123</CodEORI>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </TerzoIntermediarioOSoggettoEmittente>
     </FatturaElettronicaHeader>
     <FatturaElettronicaBody>
         <DatiGenerali>
@@ -54,6 +80,14 @@
                 <Divisa>EUR</Divisa>
                 <Data>2014-12-18</Data>
                 <Numero>123</Numero>
+                <DatiCassaPrevidenziale>
+                    <TipoCassa>TC01</TipoCassa>
+                    <AlCassa>4.00</AlCassa>
+                    <ImportoContributoCassa>9.00</ImportoContributoCassa>
+                    <ImponibileCassa>225.00</ImponibileCassa>
+                    <AliquotaIVA>22.00</AliquotaIVA>
+                    <RiferimentoAmministrazione>rif. amm</RiferimentoAmministrazione>
+                </DatiCassaPrevidenziale>
                 <Causale>LA FATTURA FA RIFERIMENTO AD UNA OPERAZIONE AAAA BBBBBBBBBBBBBBBBBB CCC DDDDDDDDDDDDDDD E FFFFFFFFFFFFFFFFFFFF GGGGGGGGGG HHHHHHH II LLLLLLLLLLLLLLLLL MMM NNNNN OO PPPPPPPPPPP QQQQ</Causale>
                 <Causale>SEGUE DESCRIZIONE CAUSALE NEL CASO IN CUI NON SIANO STATI SUFFICIENTI 200 CARATTERI AAAAAAAAAAA BBBBBBBBBBBBBBBBB</Causale>
             </DatiGeneraliDocumento>
