@@ -97,7 +97,7 @@
                 <field name="payment_ids"   position="before">
                     <separator string="FatturaPA Payment"/>
                         <group>
-                            <field name="fatturapa_payments" nolabel="1" >
+                            <field name="fatturapa_payments" nolabel="1" readonly="1" >
                                 <tree string="Related Documents">
                                     <field name="payment_terms" />
                                 </tree>
@@ -108,7 +108,7 @@
                                         </group>
                                         <group string="Payments Details">
                                             <field name="payment_methods" nolabel="1" >
-                                            <tree editable="bottom" string="Payments">
+                                                <tree editable="bottom" string="Payments">
                                                     <field name="recipient"/>
                                                     <field name="fatturapa_pm_id"/>
                                                     <field name="payment_term_start" />
