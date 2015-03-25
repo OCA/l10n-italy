@@ -9,7 +9,7 @@
             </IdTrasmittente>
             <ProgressivoInvio>00001</ProgressivoInvio>
             <FormatoTrasmissione>SDI11</FormatoTrasmissione>
-            <CodiceDestinatario>AAAAAA</CodiceDestinatario>
+            <CodiceDestinatario>79SRAK</CodiceDestinatario>
             <ContattiTrasmittente />
         </DatiTrasmissione>
         <CedentePrestatore>
@@ -33,7 +33,7 @@
         </CedentePrestatore>
         <CessionarioCommittente>
             <DatiAnagrafici>
-                <CodiceFiscale>09876543210</CodiceFiscale>
+                <CodiceFiscale>80213330584</CodiceFiscale>
                 <Anagrafica>
                     <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
                 </Anagrafica>
@@ -130,7 +130,7 @@
                 <DataScadenzaPagamento>2015-04-30</DataScadenzaPagamento>
                 <ImportoPagamento>20.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
-                <IBAN>IT60X0542811101000000123456</IBAN>
+                <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>2.00</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-05-01</DataDecorrenzaPenale>
@@ -140,7 +140,7 @@
                 <DataScadenzaPagamento>2015-05-30</DataScadenzaPagamento>
                 <ImportoPagamento>10.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
-                <IBAN>IT60X 0542811101000000123456</IBAN>
+                <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>1.00</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-05-31</DataDecorrenzaPenale>
@@ -153,7 +153,7 @@
                 <DataScadenzaPagamento>2015-06-30</DataScadenzaPagamento>
                 <ImportoPagamento>2.95</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
-                <IBAN>IT60X05428111010 00000123456</IBAN>
+                <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>0.29</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-07-01</DataDecorrenzaPenale>
