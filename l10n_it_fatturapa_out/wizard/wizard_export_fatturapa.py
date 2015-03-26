@@ -505,16 +505,13 @@ class WizardExportFatturapa(orm.TransientModel):
         # ScontoMaggiorazione, ImportoTotaleDocumento, Arrotondamento,
 
         if invoice.comment:
-            length = 200
             # max length of Causale is 200
-            caus_list = [invoice.comment[i:i+length]
-                         for i in range(0, len(invoice.comment), length)]
+            caus_list = invoice.comment.split('\n')
             for causale in caus_list:
                 # Remove non latin chars, but go back to unicode string,
                 # as expected by String200LatinType
-                # Also, remove \n as not accepted
                 causale = causale.encode(
-                    'latin', 'ignore').decode('latin').replace('\n', ' --- ')
+                    'latin', 'ignore').decode('latin')
                 body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
 
         if invoice.company_id.fatturapa_art73:
