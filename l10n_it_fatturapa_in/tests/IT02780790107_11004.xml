@@ -9,7 +9,7 @@
             </IdTrasmittente>
             <ProgressivoInvio>00001</ProgressivoInvio>
             <FormatoTrasmissione>SDI11</FormatoTrasmissione>
-            <CodiceDestinatario>AAAAAA</CodiceDestinatario>
+            <CodiceDestinatario>79SRAK</CodiceDestinatario>
             <ContattiTrasmittente />
         </DatiTrasmissione>
         <CedentePrestatore>
@@ -31,9 +31,22 @@
                 <Nazione>IT</Nazione>
             </Sede>
         </CedentePrestatore>
+        <RappresentanteFiscale>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03339130126</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>03339130126</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>Rappresentante fiscale</Denominazione>
+                    <CodEORI>1234567890123</CodEORI>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </RappresentanteFiscale>
         <CessionarioCommittente>
             <DatiAnagrafici>
-                <CodiceFiscale>09876543210</CodiceFiscale>
+                <CodiceFiscale>80213330584</CodiceFiscale>
                 <Anagrafica>
                     <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
                 </Anagrafica>
@@ -46,6 +59,19 @@
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>
+        <TerzoIntermediarioOSoggettoEmittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03339130126</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>03339130126</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>Rappresentante fiscale</Denominazione>
+                    <CodEORI>1234567890123</CodEORI>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </TerzoIntermediarioOSoggettoEmittente>
     </FatturaElettronicaHeader>
     <FatturaElettronicaBody>
         <DatiGenerali>
@@ -54,6 +80,14 @@
                 <Divisa>EUR</Divisa>
                 <Data>2014-12-18</Data>
                 <Numero>123</Numero>
+                <DatiCassaPrevidenziale>
+                    <TipoCassa>TC01</TipoCassa>
+                    <AlCassa>4.00</AlCassa>
+                    <ImportoContributoCassa>9.00</ImportoContributoCassa>
+                    <ImponibileCassa>225.00</ImponibileCassa>
+                    <AliquotaIVA>22.00</AliquotaIVA>
+                    <RiferimentoAmministrazione>rif. amm</RiferimentoAmministrazione>
+                </DatiCassaPrevidenziale>
                 <Causale>LA FATTURA FA RIFERIMENTO AD UNA OPERAZIONE AAAA BBBBBBBBBBBBBBBBBB CCC DDDDDDDDDDDDDDD E FFFFFFFFFFFFFFFFFFFF GGGGGGGGGG HHHHHHH II LLLLLLLLLLLLLLLLL MMM NNNNN OO PPPPPPPPPPP QQQQ</Causale>
                 <Causale>SEGUE DESCRIZIONE CAUSALE NEL CASO IN CUI NON SIANO STATI SUFFICIENTI 200 CARATTERI AAAAAAAAAAA BBBBBBBBBBBBBBBBB</Causale>
             </DatiGeneraliDocumento>
@@ -130,7 +164,7 @@
                 <DataScadenzaPagamento>2015-04-30</DataScadenzaPagamento>
                 <ImportoPagamento>20.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
-                <IBAN>IT60X0542811101000000123456</IBAN>
+                <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>2.00</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-05-01</DataDecorrenzaPenale>
@@ -140,7 +174,7 @@
                 <DataScadenzaPagamento>2015-05-30</DataScadenzaPagamento>
                 <ImportoPagamento>10.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
-                <IBAN>IT60X 0542811101000000123456</IBAN>
+                <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>1.00</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-05-31</DataDecorrenzaPenale>
@@ -153,7 +187,7 @@
                 <DataScadenzaPagamento>2015-06-30</DataScadenzaPagamento>
                 <ImportoPagamento>2.95</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
-                <IBAN>IT60X05428111010 00000123456</IBAN>
+                <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>0.29</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-07-01</DataDecorrenzaPenale>
