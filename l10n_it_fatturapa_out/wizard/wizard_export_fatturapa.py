@@ -20,8 +20,8 @@
 ##############################################################################
 
 import base64
-from pyxb.exceptions_ import SimpleFacetValueError
 from unidecode import unidecode
+from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 from openerp.osv import orm
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     FatturaElettronica,
@@ -785,7 +785,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 # TODO DatiVeicoli
 
             self.setProgressivoInvio(cr, uid, context=context)
-        except SimpleFacetValueError as e:
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
             raise orm.except_orm(
                 _("XML SDI validation error"),
                 (unicode(e)))
