@@ -66,6 +66,7 @@ Contributors
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
+* Alessio Gerace <alessio.gerace@agilebg.com>
 
 Maintainer
 ----------
@@ -89,10 +90,14 @@ To contribute to this module, please visit http://odoo-community.org.
         'l10n_it_fiscalcode',
         'document',
         'l10n_it_ipa',
+        'stock_invoice_picking_incoterm',
+        'l10n_it_withholding_tax',
         'l10n_it_rea',
         ],
+
     "data": [
         'data/fatturapa_data.xml',
+        'data/welfare.fund.type.csv',
         'views/account_view.xml',
         'views/company_view.xml',
         'views/partner_view.xml',

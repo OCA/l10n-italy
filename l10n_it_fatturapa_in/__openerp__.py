@@ -58,6 +58,7 @@ Contributors
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
+* Alessio Gerace <alessio.gerace@agilebg.com>
 
 Maintainer
 ----------
@@ -76,9 +77,7 @@ To contribute to this module, please visit http://odoo-community.org.
 """,
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": [
-        'l10n_it_fatturapa',
-    ],
+    "depends": ['l10n_it_fatturapa', 'partner_firstname'],
     "data": [
         'views/account_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
