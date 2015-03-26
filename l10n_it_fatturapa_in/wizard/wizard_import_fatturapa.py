@@ -109,6 +109,28 @@ class WizardImportFatturapa(orm.TransientModel):
                 'city': cedPrest.Sede.Comune,
             }
 
+            if cedPrest.IscrizioneREA:
+                REA = cedPrest.IscrizioneREA
+                if not REA.NumeroREA:
+                    raise orm.except_orm(
+                        _('Error !'),
+                        _("Xml file not contain REA code")
+                        )
+                office_id = False
+                office_ids = self.ProvinceByCode(
+                    cr, uid, REA.NumeroREA, context=context)
+                if not office_ids:
+                    raise orm.except_orm(
+                        _('Error !'),
+                        _("Xml file not contain REA Office Code")
+                        )
+                office_id = office_ids[0]
+                vals['rea_office'] = office_id
+                vals['rea_code'] = REA.NumeroREA
+                vals['rea_capital'] = REA.CapitaleSociale or 0.0
+                vals['rea_member_type'] = REA.SocioUnico or False
+                vals['rea_liquidation_state'] = REA.StatoLiquidazione or False
+
             if cedPrest.Contatti:
                 vals['phone'] = cedPrest.Contatti.Telefono
                 vals['email'] = cedPrest.Contatti.Email
@@ -762,9 +784,7 @@ class WizardImportFatturapa(orm.TransientModel):
         #2.5
         AttachmentsData = FatturaBody.Allegati
         if AttachmentsData:
-            attach_list = []
             AttachModel = self.pool['fatturapa.attachments']
-
             for attach in AttachmentsData:
                 if not attach.NomeAttachment:
                     raise orm.except_orm(
@@ -773,8 +793,6 @@ class WizardImportFatturapa(orm.TransientModel):
                     )
                 content = attach.Attachment
                 name = attach.NomeAttachment
-                if isinstance(content, unicode):
-                    content = content.encode('utf-8')
                 _attach_dict = {
                     'name': name,
                     'datas': base64.b64encode(str(content)),
@@ -809,8 +827,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 fatturapa_attachment.datas.decode('base64'))
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             #1.2
-            partner_id = self.getPartnerBase(
-                cr, uid, cedentePrestatore.DatiAnagrafici, context=context)
+            partner_id = self.getCedPrest(
+                cr, uid, cedentePrestatore, context=context)
             #1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\
                 RappresentanteFiscale

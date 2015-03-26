@@ -16,7 +16,10 @@
                         <field name="in_invoice_ids"></field>
                         <group groups="base.group_no_one" string="History">
                             <label for="create_uid" string="Creation"></label>
-                            <div name="creation_div"><field class="oe_inline" name="create_uid" readonly="1"></field> on <field class="oe_inline" name="create_date" readonly="1"></field></div>
+                            <div name="creation_div">
+                                <field class="oe_inline" name="create_uid" readonly="1"></field> on
+                                <field class="oe_inline" name="create_date" readonly="1"></field>
+                            </div>
                         </group>
                     </div>
                     <div class="oe_chatter">
