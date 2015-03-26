@@ -103,6 +103,8 @@
             <field name="account_id" ref="account.a_pay"/>
             <field name="date_invoice" eval="time.strftime('%Y')+'-02-15'"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="comment">prima riga
+seconda riga</field>
         </record>
 
         <record id="fatturapa_invoice_1_line_0" model="account.invoice.line">
