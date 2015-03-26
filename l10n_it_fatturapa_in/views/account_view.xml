@@ -124,88 +124,90 @@
                     </group>
                 </field>
                 <xpath expr="//notebook" position="inside">
-                    <page string="Related Documents ">
-                        <group string="Related Documents">
-                            <field name="related_documents" nolabel="1" readonly="1">
-                                <tree editable="bottom" string="Related Documents">
-                                    <field name="type"></field>
-                                    <field name="name"></field>
-                                    <field name="lineRef" readonly="1"></field>
-                                    <field name="date"></field>
-                                    <field name="numitem"></field>
-                                    <field name="code"></field>
-                                    <field name="cig"></field>
-                                    <field name="cup"></field>
-                                </tree>
-                            </field>
-                        </group>
-                    </page>
-                    <page string="Welfare Fund">
-                        <group string="Welfare Fund">
-                            <field name="welfare_fund_ids" nolabel="1" readonly="1">
-                                <tree editable="bottom" string="Welfare Fund Details">
-                                    <field name="name"></field>
-                                    <field name="fund_fiscalpos"></field>
-                                    <field name="welfare_rate_tax" readonly="1"></field>
-                                    <field name="welfare_amount_tax"></field>
-                                    <field name="welfare_Iva_tax"></field>
-                                    <field name="welfare_taxable"></field>
-                                    <field name="subjected_withholding"></field>
-                                    <field name="pa_line_code"></field>
-                                </tree>
-                            </field>
-                        </group>
-                    </page>
-                    <page string="Delivery">
-                        <group>
-                            <group string="Delivery">
-                                <field name="carrier_id" readonly="1"></field>
-                                <field name="transport_vaicle" readonly="1"></field>
-                                <field name="description" readonly="1"></field>
-                                <field name="pickup_datetime" readonly="1"></field>
-                                <field name="transport_date" readonly="1"></field>
-                                <field name="delivery_datetime" readonly="1"></field>
-                            </group>
-                            <group>
-                                <field name="unit_weight" readonly="1"></field>
-                                <field name="gross_weight" readonly="1"></field>
-                                <field name="net_weight" readonly="1"></field>
-                                <field name="number_items" readonly="1"></field>
-                                <field name="incoterm" readonly="1" widget="selection"></field>
-                            </group>
-                        </group>
-                        <group>
-                            <field name="delivery_address" readonly="1"></field>
-                        </group>
-                    </page>
                     <page string="FatturaPA">
+                        <notebook>
+                            <page string="FatturaPA attachments">
+                                <group string="Attachments">
+                                    <field name="fatturapa_doc_attachments" nolabel="1" readonly="1">
+                                        <tree string="Attachments">
+                                            <field name="ir_attachment_id"></field>
+                                            <field name="name"></field>
+                                            <field name="description"></field>
+                                        </tree>
+                                        <form string="Attachments">
+                                            <group>
+                                                <group>
+                                                    <field name="name"></field>
+                                                    <field name="description"></field>
+                                                </group>
+                                                <group>
+                                                    <field name="ir_attachment_id"></field>
+                                                    <field name="invoice_id"></field>
+                                                </group>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Delivery">
+                                <group>
+                                    <group string="Delivery">
+                                        <field name="carrier_id" readonly="1"></field>
+                                        <field name="transport_vaicle" readonly="1"></field>
+                                        <field name="description" readonly="1"></field>
+                                        <field name="pickup_datetime" readonly="1"></field>
+                                        <field name="transport_date" readonly="1"></field>
+                                        <field name="delivery_datetime" readonly="1"></field>
+                                    </group>
+                                    <group>
+                                        <field name="unit_weight" readonly="1"></field>
+                                        <field name="gross_weight" readonly="1"></field>
+                                        <field name="net_weight" readonly="1"></field>
+                                        <field name="number_items" readonly="1"></field>
+                                        <field name="incoterm" readonly="1" widget="selection"></field>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="delivery_address" readonly="1"></field>
+                                </group>
+                            </page>
+                            <page string="Related Documents ">
+                                <group string="Related Documents">
+                                    <field name="related_documents" nolabel="1" readonly="1">
+                                        <tree editable="bottom" string="Related Documents">
+                                            <field name="type"></field>
+                                            <field name="name"></field>
+                                            <field name="lineRef" readonly="1"></field>
+                                            <field name="date"></field>
+                                            <field name="numitem"></field>
+                                            <field name="code"></field>
+                                            <field name="cig"></field>
+                                            <field name="cup"></field>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Welfare Fund">
+                                <group string="Welfare Fund">
+                                    <field name="welfare_fund_ids" nolabel="1" readonly="1">
+                                        <tree editable="bottom" string="Welfare Fund Details">
+                                            <field name="name"></field>
+                                            <field name="fund_fiscalpos"></field>
+                                            <field name="welfare_rate_tax" readonly="1"></field>
+                                            <field name="welfare_amount_tax"></field>
+                                            <field name="welfare_Iva_tax"></field>
+                                            <field name="welfare_taxable"></field>
+                                            <field name="subjected_withholding"></field>
+                                            <field name="pa_line_code"></field>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
                         <group>
                             <group string="Results">
                                 <field name="fatturapa_attachment_in_id" readonly="1"></field>
                             </group>
-                        </group>
-                    </page>
-                    <page string="FatturaPA attachments">
-                        <group string="Attachments">
-                            <field name="fatturapa_doc_attachments" nolabel="1" readonly="1">
-                                <tree string="Attachments">
-                                    <field name="ir_attachment_id"></field>
-                                    <field name="name"></field>
-                                    <field name="description"></field>
-                                </tree>
-                                <form string="Attachments">
-                                    <group>
-                                        <group>
-                                            <field name="name"></field>
-                                            <field name="description"></field>
-                                        </group>
-                                        <group>
-                                            <field name="ir_attachment_id"></field>
-                                            <field name="invoice_id"></field>
-                                        </group>
-                                    </group>
-                                </form>
-                            </field>
                         </group>
                     </page>
                 </xpath>
