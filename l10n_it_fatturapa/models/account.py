@@ -193,7 +193,7 @@ class welfare_fund_data_line(orm.Model):
 class discount_rise_price(orm.Model):
     #_position = ['2.1.1.8', '2.2.1.10']
     _name = "discount.rise.price"
-    _description = 'FatturaPA Welfare Fund Data'
+    _description = 'FatturaPA Discount Rise Price Data'
 
     _columns = {
         'name': fields.selection(
