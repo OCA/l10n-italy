@@ -85,11 +85,8 @@ class MailThread(orm.Model):
                         msg_dict['recipient_addr'] = child2.text
         return msg_dict
 
-    def get_pec_attachments(self, cr, uid, message, context=None):
-        postacert = False
-        daticert = False
-        smime = False
-        for part in message.walk():
+    def get_pec_attachments(self, msg, parts={}, num=0):
+        for n, part in enumerate(msg.get_payload()):
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
                 filename = part.get_param('name', None)
@@ -100,30 +97,26 @@ class MailThread(orm.Model):
                         filename).strip()
                 else:
                     filename = decode(filename)
-            if (
-                filename == 'postacert.eml' or
-                filename == 'daticert.xml' or
-                filename == 'smime.p7s'
-            ):
-                if part.is_multipart() and len(part.get_payload()) > 1:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _("Too many payloads for 'postacert.eml' or "
-                          "'daticert.xml'. Not handled"))
-                # http://goo.gl/zPRvxF
-                if part.is_multipart():
-                    # email.message.Message
-                    attachment = part.get_payload()[0]
-                else:
-                    # string
-                    attachment = part.get_payload(decode=True)
-                if filename == 'postacert.eml':
-                    postacert = attachment
-                if filename == 'daticert.xml':
-                    daticert = attachment
-                if filename == 'smime.p7s':
-                    smime = attachment
-        return (postacert, daticert, smime)
+            if num == 0 and n == 1 and part.get_content_type() == \
+                    'application/x-pkcs7-signature' and \
+                    filename == 'smime.p7s':
+                parts['smime.p7s'] = part.get_payload(decode=True)
+            elif num == 1 and n == 1 and part.get_content_type() == \
+                    'application/xml' and \
+                    filename == 'daticert.xml':
+                parts['daticert.xml'] = part.get_payload(decode=True)
+            elif num == 1 and n == 2 and part.get_content_type() == \
+                    'message/rfc822' and \
+                    filename == 'postacert.eml':
+                parts['postacert.eml'] = part.get_payload()[0]
+            else:
+                # here we could manage body text and other mail attributes
+                pass
+            if part.is_multipart():
+                parts = self.get_pec_attachments(part,
+                                                 parts=parts,
+                                                 num=num + 1)
+        return parts
 
     def _message_extract_payload_receipt(self, message,
                                          save_original=False):
@@ -198,8 +191,10 @@ class MailThread(orm.Model):
                 cr, uid, message, save_original=save_original, context=context)
         message_pool = self.pool['mail.message']
         msg_dict = {}
-        postacert, daticert, smime = self.get_pec_attachments(
-            cr, uid, message, context=context)
+        parts = self.get_pec_attachments(message)
+        daticert = 'daticert.xml' in parts and parts['daticert.xml'] or None
+        postacert = 'postacert.eml' in parts and parts['postacert.eml'] or None
+        smime = 'smime.p7s' in parts and parts['smime.p7s'] or None
         if not daticert:
             raise orm.except_orm(
                 _('Error'), _('PEC message does not contain daticert.xml'))
