@@ -21,12 +21,12 @@
 #############################################################################
 
 {
-    'name': 'Italian Localisation - Base Bank ABI/CAB codes',
+    'name': 'Base Bank ABI/CAB codes',
     'version': '1.0',
     'category': 'Localisation/Italy',
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    'depends': ['base', 'account'],
+    'depends': ['account'],
     'test': [
         'test/abicab.yml',
     ],

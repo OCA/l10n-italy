@@ -1,10 +1,10 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-l10n_it_abicab
-===========
+Base Bank ABI/CAB codes
+=======================
 
-This module Adds to res.bank the ABI/CAB data (bank identification numbers).
+This module add to res.bank the ABI/CAB data (bank identification numbers).
 
 
 Contributors
