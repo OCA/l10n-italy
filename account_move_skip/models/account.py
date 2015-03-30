@@ -34,7 +34,8 @@ class One2manyFiltered(oldfields.one2many):
         res = super(One2manyFiltered, self).get(
             cr, obj, ids, name, user=user, offset=offset, context=context,
             values=values)
-        if 'params' in context and company.enable_skip_move_line:
+        if company.enable_skip_move_line and company.skip_move_line_expr and\
+                eval(company.skip_move_line_expr):
             for move_id in res:
                 line_ids = res[move_id]
                 for line in move_line_model.browse(

@@ -12,6 +12,11 @@
                         <field name="enable_skip_move_line" class="oe_inline"/>
                         <label for="enable_skip_move_line"/>
                     </div>
+                    <div name="group_hide_skip_expr" 
+                        attrs="{'invisible': [('enable_skip_move_line', '=', False)]}">
+                        <field name="skip_move_line_expr" class="oe_inline"
+                            placeholder='Expression to check before hide/skip...'/>
+                    </div>
                 </xpath>
             </field>
         </record>

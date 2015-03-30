@@ -26,6 +26,7 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
 
     enable_skip_move_line = fields.Boolean('Hide move line when skip = True')
+    skip_move_line_expr = fields.Text('Expression to check before hide/skip')
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -34,6 +35,9 @@ class AccountConfigSettings(models.TransientModel):
     enable_skip_move_line = fields.Boolean(
         string='Hide move line when skip = True',
         related='company_id.enable_skip_move_line')
+    skip_move_line_expr = fields.Text(
+        string='Expression to check before hide/skip',
+        related='company_id.skip_move_line_expr')
 
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
         res = super(AccountConfigSettings, self).onchange_company_id(
@@ -44,8 +48,12 @@ class AccountConfigSettings(models.TransientModel):
             res['value'].update({
                 'enable_skip_move_line': company.enable_skip_move_line,
                 })
+            res['value'].update({
+                'enable_skip_move_line_expr': company.skip_move_line_expr,
+                })
         else:
             res['value'].update({
                 'enable_skip_move_line': False,
+                'skip_move_line_expr': False,
                 })
         return res
