@@ -43,6 +43,7 @@ class MailThread(orm.Model):
             srv_id = context.get('fetchmail_server_id')
             server = server_pool.read(cr, SUPERUSER_ID, [srv_id], ['pec'])
             return server[0]['pec']
+        return False
 
     def force_create_partner(self, cr, uid, context=None):
         if context is None:
@@ -85,8 +86,26 @@ class MailThread(orm.Model):
                         msg_dict['recipient_addr'] = child2.text
         return msg_dict
 
-    def get_pec_attachments(self, msg, parts={}, num=0):
-        for n, part in enumerate(msg.get_payload()):
+    def _get_msg_anomalia(self, msg):
+        to = None
+        msg_id = None
+        parser = email.Parser.HeaderParser()
+        msg_val = email.message_from_string(
+            parser.parsestr(msg.as_string()).get_payload()
+            )
+        if 'To'in msg_val:
+            to = msg_val['To']
+        if 'X-Riferimento-Message-ID'in msg_val:
+            msg_id = msg_val['X-Riferimento-Message-ID']
+        return to, msg_id
+
+    def _get_msg_delivery(self, msg):
+        for dsn in msg.get_payload():
+            if 'Action' in dsn:
+                return dsn['Action']
+
+    def _get_msg_payload(self, cr, uid, msg, parts={}, num=0):
+        for part in msg.get_payload():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
                 filename = part.get_param('name', None)
@@ -97,25 +116,49 @@ class MailThread(orm.Model):
                         filename).strip()
                 else:
                     filename = decode(filename)
-            if num == 0 and n == 1 and part.get_content_type() == \
+            # Returns the files for a normal pec email
+            if num == 0 and part.get_content_type() == \
                     'application/x-pkcs7-signature' and \
                     filename == 'smime.p7s':
                 parts['smime.p7s'] = part.get_payload(decode=True)
-            elif num == 1 and n == 1 and part.get_content_type() == \
+            elif num == 1 and part.get_content_type() == \
                     'application/xml' and \
                     filename == 'daticert.xml':
                 parts['daticert.xml'] = part.get_payload(decode=True)
-            elif num == 1 and n == 2 and part.get_content_type() == \
+            elif num == 1 and part.get_content_type() == \
                     'message/rfc822' and \
                     filename == 'postacert.eml':
                 parts['postacert.eml'] = part.get_payload()[0]
+            # If something went wrong: get basic info of the original message
+            elif part.get_content_type() == \
+                    'multipart/report':
+                parts['report'] = True
+            elif part.get_content_type() == \
+                    'message/delivery-status':
+                parts['delivery-status'] = self._get_msg_delivery(part)
+            # If rfc822-headers is found get original msg info from payload
+            elif part.get_content_type() == \
+                    'text/rfc822-headers':
+                parts['To'], parts['Msg_ID'] = \
+                    self._get_msg_anomalia(part)
+            # If no rfc822-headers than get info from original daticert.xml
+            elif 'report' in parts and 'Msg_ID' not in parts and \
+                    'daticert.xml' not in parts and \
+                    part.get_content_type() == \
+                    'application/xml' and \
+                    filename == 'daticert.xml':
+                origin_daticert = part.get_payload(decode=True)
+                parsed_daticert = self.parse_daticert(cr, uid, origin_daticert)
+                if 'recipient_addr' in parsed_daticert:
+                    parts['To'] = parsed_daticert['recipient_addr']
+                if 'msgid' in parsed_daticert:
+                    parts['Msg_ID'] = parsed_daticert['msgid']
             else:
-                # here we could manage body text and other mail attributes
                 pass
+            # At last, if msg is multipart then call this method iteratively
             if part.is_multipart():
-                parts = self.get_pec_attachments(part,
-                                                 parts=parts,
-                                                 num=num + 1)
+                parts = self._get_msg_payload(cr, uid, part,
+                                              parts=parts, num=num + 1)
         return parts
 
     def _message_extract_payload_receipt(self, message,
@@ -183,7 +226,6 @@ class MailThread(orm.Model):
     ):
         if context is None:
             context = {}
-
         context['main_message_id'] = False
         context['pec_type'] = False
         if not self.is_server_pec(cr, uid, context=context):
@@ -191,15 +233,28 @@ class MailThread(orm.Model):
                 cr, uid, message, save_original=save_original, context=context)
         message_pool = self.pool['mail.message']
         msg_dict = {}
-        parts = self.get_pec_attachments(message)
+        daticert_dict = {}
+        parts = {}
+        num = 0
+        parts = self._get_msg_payload(cr, uid, message,
+                                      parts=parts, num=num)
         daticert = 'daticert.xml' in parts and parts['daticert.xml'] or None
         postacert = 'postacert.eml' in parts and parts['postacert.eml'] or None
         smime = 'smime.p7s' in parts and parts['smime.p7s'] or None
-        if not daticert:
-            raise orm.except_orm(
-                _('Error'), _('PEC message does not contain daticert.xml'))
-        daticert_dict = self.parse_daticert(
-            cr, uid, daticert, context=context)
+        if daticert:
+            daticert_dict = self.parse_daticert(
+                cr, uid, daticert, context=context)
+        else:
+            if 'To' not in parts and 'Msg_ID' not in parts:
+                raise orm.except_orm(
+                    _('Error'), _('PEC message does not contain daticert.xml'))
+            else:
+                daticert_dict['recipient_addr'] = parts['To']
+                daticert_dict['message_id'] = parts['Msg_ID']
+                daticert_dict['pec_type'] = 'errore-consegna'
+                daticert_dict['pec_msg_id'] = message['Message-ID']
+                daticert_dict['err_type'] = 'no-dest'
+                daticert_dict['email_from'] = message['From']
         if daticert_dict.get('pec_type') == 'posta-certificata':
             if not postacert:
                 raise orm.except_orm(
@@ -214,7 +269,8 @@ class MailThread(orm.Model):
             msg_dict = super(MailThread, self).message_parse(
                 cr, uid, message, save_original=True,
                 context=context)
-            if daticert_dict.get('pec_type') == 'avvenuta-consegna':
+            if daticert_dict.get('pec_type') in \
+                    ('avvenuta-consegna', 'errore-consegna'):
                 msg_dict['body'], attachs = \
                     self._message_extract_payload_receipt(
                     message,
@@ -238,6 +294,8 @@ class MailThread(orm.Model):
                 # I'm going to set this message as notification of the original
                 # message and remove the message_id of this message
                 # (it would be duplicated)
+                # before deletion check if this message is prensent and linked
+                # with main massage id, if false remove message_id else no
                 msg_dict['pec_msg_parent_id'] = msg_ids[0]
                 domain = [
                     ('pec_msg_id', '=', daticert_dict['pec_msg_id']),
