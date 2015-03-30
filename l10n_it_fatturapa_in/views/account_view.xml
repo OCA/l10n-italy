@@ -68,10 +68,6 @@
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_rate" readonly="1"></field>
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_payment_reason" readonly="1"></field>
                 </field>
-                <field name="comment" position="before">
-                    <field name="sender" readonly="1"></field>
-                    <field name="doc_type" readonly="1"></field>
-                </field>
                 <field name="tax_line" position="after">
                     <field name="discount_rise_price_ids" nolabel="1" readonly="1">
                         <tree editable="bottom" string="Rise Price Discount">

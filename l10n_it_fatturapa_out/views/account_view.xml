@@ -7,6 +7,9 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
+                <field name="partner_id" position="before">
+                    <field name="doc_type" required="True"></field>
+                </field>
                 <xpath expr="//notebook" position="inside">
                     <page string="Related Documents ">
                         <group string="Related Documents">
