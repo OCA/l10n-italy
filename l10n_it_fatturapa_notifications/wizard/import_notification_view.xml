@@ -30,10 +30,10 @@
             <field name="view_id" ref="wizard_fatturapa_import_notification"/>
             <field name="target">new</field>
         </record>
-        
+
         <menuitem action="action_wizard_fatturapa_import_notification"
-        	parent="document.menu_document_doc"
-        	name="FatturaPA import notification"
-        	id="menu_action_wizard_fatturapa_import_notification"/>
+            parent="l10n_it_fatturapa.menu_fattura_pa_payables"
+            name="FatturaPA import notification"
+            id="menu_action_wizard_fatturapa_import_notification"/>
     </data>
 </openerp>
