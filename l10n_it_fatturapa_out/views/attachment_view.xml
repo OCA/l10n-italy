@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-            <menuitem name="Fattura PA" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
+
         <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
             <field name="name">fatturapa.attachment.out.form</field>
             <field name="model">fatturapa.attachment.out</field>
@@ -39,7 +39,7 @@
         </record>
 
         <menuitem action="action_fatturapa_attachment"
-            parent="menu_fattura_pa_receivables"
+            parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
             name="FatturaPA Export Files"
             id="fatturapa_attachment_menu"/>
 

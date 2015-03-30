@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
+            <menuitem name="Fattura PA" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
+            <menuitem name="Fattura PA" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
         <record id="view_payment_term_form_fatturapa" model="ir.ui.view">
             <field name="name">account.payment.term.fatturapa</field>
             <field name="model">account.payment.term</field>
