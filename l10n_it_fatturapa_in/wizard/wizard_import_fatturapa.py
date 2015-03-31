@@ -470,6 +470,7 @@ class WizardImportFatturapa(orm.TransientModel):
         invoice_model = self.pool['account.invoice']
         currency_model = self.pool['res.currency']
         invoice_line_model = self.pool['account.invoice.line']
+        ftpa_doctype_poll = self.pool['fatturapa.document_type']
         rel_docs_model = self.pool['fatturapa.related_document_type']
         WelfareFundLineModel = self.pool['welfare.fund.data.line']
         DiscRisePriceModel = self.pool['discount.rise.price']
@@ -520,28 +521,50 @@ class WizardImportFatturapa(orm.TransientModel):
             )
         credit_account_id = purchase_journal.default_credit_account_id.id
         invoice_lines = []
-        #2.2.1
+        comment = ''
+        # 2.1.1
+        docType_id = False
+        invtype = 'in_invoice'
+        docType = FatturaBody.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
+        if docType:
+            docType_ids = ftpa_doctype_poll.search(
+                cr, uid,
+                [
+                    ('code', '=', docType)
+                ],
+                context=context
+            )
+            if docType_ids:
+                docType_id = docType_ids[0]
+            else:
+                raise orm.except_orm(
+                    _("Error"),
+                    _("tipoDocumento %s not handled")
+                    % docType)
+            if docType == 'TD04' or docType == 'TD05':
+                invtype = 'in_refund'
+        # 2.1.1.11
+        causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
+        if causLst:
+            for item in causLst:
+                comment += item + '\n'
+        # 2.2.1
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
             invoice_line_data = self._prepareInvoiceLine(
                 cr, uid, credit_account_id, line, context=context)
             invoice_line_id = invoice_line_model.create(
                 cr, uid, invoice_line_data, context=context)
             invoice_lines.append(invoice_line_id)
-        comment = ''
-        #2.1.1.11
-        causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
-        if causLst:
-            for item in causLst:
-                comment += item + '\n'
+
         invoice_data = {
-            'name': 'Fattura ' + partner.name,
+            'doc_type': docType_id,
             'date_invoice':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
             'supplier_invoice_number':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             'account_id': pay_acc_id,
-            'type': 'in_invoice',
+            'type': invtype,
             'partner_id': partner_id,
             'currency_id': currency_id[0],
             'journal_id': len(journal_ids) and journal_ids[0] or False,
@@ -553,7 +576,7 @@ class WizardImportFatturapa(orm.TransientModel):
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
             'comment': comment
         }
-        #2.1.1.5
+        # 2.1.1.5
         Withholding = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiRitenuta
         if Withholding:
@@ -563,7 +586,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 Withholding.AliquotaRitenuta)/100
             invoice_data['ftpa_withholding_payment_reason'] = Withholding.\
                 CausalePagamento
-        #2.1.1.6
+        # 2.1.1.6
         Stamps = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiBollo
         if Stamps:
@@ -573,7 +596,7 @@ class WizardImportFatturapa(orm.TransientModel):
             cr, uid, invoice_data, context=context)
 
         invoice = invoice_model.browse(cr, uid, invoice_id, context=context)
-        #2.1.1.7
+        # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiCassaPrevidenziale
         if Walfares:
@@ -582,7 +605,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     cr, uid, invoice_id, walfareLine, context=context)
                 WelfareFundLineModel.create(
                     cr, uid, WalferLineVals, context=context)
-        #2.1.1.8
+        # 2.1.1.8
         DiscountRises = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.ScontoMaggiorazione
         if DiscountRises:
@@ -591,7 +614,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     cr, uid, invoice_id, DiscRisePriceLine, context=context)
                 DiscRisePriceModel.create(
                     cr, uid, DiscRisePriceVals, context=context)
-        #2.1.2
+        # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
         if relOrders:
             for order in relOrders:
@@ -601,7 +624,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
-        #2.1.3
+        # 2.1.3
         relContracts = FatturaBody.DatiGenerali.DatiContratto
         if relContracts:
             for contract in relContracts:
@@ -611,7 +634,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
-        #2.1.4
+        # 2.1.4
         relAgreements = FatturaBody.DatiGenerali.DatiConvenzione
         if relAgreements:
             for agreement in relAgreements:
@@ -622,7 +645,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
-        #2.1.5
+        # 2.1.5
         relReceptions = FatturaBody.DatiGenerali.DatiRicezione
         if relReceptions:
             for reception in relReceptions:
@@ -633,7 +656,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
-        #2.1.6
+        # 2.1.6
         RelInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
         if RelInvoices:
             for invoice in RelInvoices:
@@ -643,7 +666,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     for doc_data in doc_datas:
                         rel_docs_model.create(
                             cr, uid, doc_data, context=context)
-        #2.1.7
+        # 2.1.7
         SalDatas = FatturaBody.DatiGenerali.DatiSAL
         if SalDatas:
             for SalDataLine in SalDatas:
@@ -655,7 +678,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         'invoice_id': invoice_id
                     }, context=context
                 )
-        #2.1.8
+        # 2.1.8
         DdtDatas = FatturaBody.DatiGenerali.DatiDDT
         if DdtDatas:
             for DdtDataLine in DdtDatas:
@@ -688,7 +711,7 @@ class WizardImportFatturapa(orm.TransientModel):
                                 'invoice_line_id': invoice_lineid
                             }, context=context
                         )
-        #2.1.9
+        # 2.1.9
         Delivery = FatturaBody.DatiGenerali.DatiTrasporto
         if Delivery:
             delivery_id = self.getCarrirerPartner(
@@ -729,7 +752,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         delivery_dict['incoterm'] = stock_incoterm_id
                 invoice_model.write(
                     cr, uid, invoice_id, delivery_dict, context=context)
-        #2.1.10
+        # 2.1.10
         ParentInvoice = FatturaBody.DatiGenerali.FatturaPrincipale
         if ParentInvoice:
             parentinv_vals = {
@@ -740,7 +763,7 @@ class WizardImportFatturapa(orm.TransientModel):
             }
             invoice_model.write(
                 cr, uid, invoice_id, parentinv_vals, context=context)
-        #2.3
+        # 2.3
         Veicle = FatturaBody.DatiVeicoli
         if Veicle:
             veicle_vals = {
@@ -749,7 +772,7 @@ class WizardImportFatturapa(orm.TransientModel):
             }
             invoice_model.write(
                 cr, uid, invoice_id, veicle_vals, context=context)
-        #2.4
+        # 2.4
         PaymentsData = FatturaBody.DatiPagamento
         if PaymentsData:
             for PaymentLine in PaymentsData:
@@ -781,7 +804,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     cr, uid, PayDataId, PaymentLine, partner_id,
                     context=context
                 )
-        #2.5
+        # 2.5
         AttachmentsData = FatturaBody.Allegati
         if AttachmentsData:
             AttachModel = self.pool['fatturapa.attachments']
@@ -826,31 +849,20 @@ class WizardImportFatturapa(orm.TransientModel):
             fatt = fatturapa_v_1_1.CreateFromDocument(
                 fatturapa_attachment.datas.decode('base64'))
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            #1.2
+            # 1.2
             partner_id = self.getCedPrest(
                 cr, uid, cedentePrestatore, context=context)
-            #1.3
+            # 1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\
                 RappresentanteFiscale
-            #1.5
+            # 1.5
             Intermediary = fatt.FatturaElettronicaHeader.\
                 TerzoIntermediarioOSoggettoEmittente
-            #2
+            # 2
             for fattura in fatt.FatturaElettronicaBody:
-                #~ fattura = fatt.FatturaElettronicaBody[i]
-                # TODO
-                if (
-                    fattura.DatiGenerali.DatiGeneraliDocumento.TipoDocumento in
-                    ('TD04', 'TD05')
-                ):
-                    raise orm.except_orm(
-                        _("Error"),
-                        _("tipoDocumento %s not handled")
-                        % fattura.tipoDocumento)
                 invoice_id = self.invoiceCreate(
                     cr, uid, fatt, fatturapa_attachment, fattura,
                     partner_id, context=context)
-
                 if TaxRappresentative:
                     tax_partner_id = self.getPartnerBase(
                         cr, uid, TaxRappresentative.DatiAnagrafici,

@@ -9,9 +9,9 @@
                 <form string="Import FatturaPA" version="7.0">
                     <div>
                         <group>
-                            <field name="name"></field>
-                            <field name="datas_fname"></field>
                             <field filename="datas_fname" name="datas"></field>
+                            <field name="datas_fname"></field>
+                            <field name="name"></field>
                         </group>
                         <separator string="Invoices"></separator>
                         <field name="in_invoice_ids"></field>
@@ -62,16 +62,12 @@
                 <field name="date_invoice" position="before">
                     <field name="sender" readonly="1"></field>
                     <field name="doc_type" readonly="1"></field>
+                    <field name="protocol_number" ></field>
                 </field>
                 <field name="has_withholding" position="before">
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_type" readonly="1"></field>
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_rate" readonly="1"></field>
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_payment_reason" readonly="1"></field>
-                </field>
-                <field name="comment" position="before">
-                    <field name="protocol_number" ></field>
-                    <field name="sender" readonly="1"></field>
-                    <field name="doc_type" readonly="1"></field>
                 </field>
                 <field name="tax_line" position="after">
                     <field name="discount_rise_price_ids" nolabel="1" readonly="1">
