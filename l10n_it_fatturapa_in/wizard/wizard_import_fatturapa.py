@@ -456,7 +456,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         if dline.IstitutoFinanziario == '':
                             raise orm.except_orm(
                                 _('Error!'),
-                                _('Name of Banck is required')
+                                _('Name of Bank is required')
                             )
                         bankid = BankModel.create(
                             cr, uid,
