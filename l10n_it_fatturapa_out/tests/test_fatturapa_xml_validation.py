@@ -21,16 +21,16 @@
 
 import base64
 import tempfile
-import netsvc
+from openerp import workflow
 import openerp.tests.common as test_common
-from openerp import addons
+from openerp.modules.module import get_module_resource
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def getFile(self, filename):
-        path = addons.get_module_resource('l10n_it_fatturapa_out',
-                                          'tests', 'data', filename)
+        path = get_module_resource('l10n_it_fatturapa_out',
+                                   'tests', 'data', filename)
         with open(path) as test_data:
             with tempfile.TemporaryFile() as out:
                 base64.encode(test_data, out)
@@ -67,8 +67,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         if invoice_id:
             invoice_id = invoice_id and invoice_id[1] or False
 
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(
+        workflow.trg_validate(
             uid, 'account.invoice', invoice_id, 'invoice_open', cr)
         return invoice_id
 
