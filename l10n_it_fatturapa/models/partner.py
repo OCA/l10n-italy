@@ -39,7 +39,7 @@ class res_partner(orm.Model):
         #1.2.1.7
         'register_regdate': fields.date('Register Registration Date'),
         #1.2.1.8
-        'fund_fiscalpos': fields.many2one(
+        'register_fiscalpos': fields.many2one(
             'fatturapa.fiscal_position',
             string="Register Fiscal Position"),
     }

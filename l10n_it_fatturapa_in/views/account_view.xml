@@ -194,7 +194,7 @@
                                     <field name="welfare_fund_ids" nolabel="1" readonly="1">
                                         <tree editable="bottom" string="Welfare Fund Details">
                                             <field name="name"></field>
-                                            <field name="fund_fiscalpos"></field>
+                                            <field name="fund_nature"></field>
                                             <field name="welfare_rate_tax" readonly="1"></field>
                                             <field name="welfare_amount_tax"></field>
                                             <field name="welfare_Iva_tax"></field>

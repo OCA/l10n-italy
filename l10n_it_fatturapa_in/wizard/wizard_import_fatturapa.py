@@ -82,7 +82,6 @@ class WizardImportFatturapa(orm.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname))
 
     def getPartnerBase(self, cr, uid, DatiAnagrafici, context=None):
-        # TODO RegimeFiscale
         partner_model = self.pool['res.partner']
         cf = DatiAnagrafici.CodiceFiscale or False
         CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
@@ -148,13 +147,45 @@ class WizardImportFatturapa(orm.TransientModel):
         partner_model = self.pool['res.partner']
         partner_id = self.getPartnerBase(
             cr, uid, cedPrest.DatiAnagrafici, context=context)
+        fiscalPosModel = self.pool['fatturapa.fiscal_position']
         vals = {}
         if partner_id:
             vals = {
                 'street': cedPrest.Sede.Indirizzo,
                 'zip': cedPrest.Sede.CAP,
                 'city': cedPrest.Sede.Comune,
+                'register': cedPrest.DatiAnagrafici.AlboProfessionale or ''
             }
+            if cedPrest.DatiAnagrafici.ProvinciaAlbo:
+                ProvinciaAlbo = cedPrest.DatiAnagrafici.ProvinciaAlbo
+                prov_ids = self.ProvinceByCode(
+                    cr, uid, ProvinciaAlbo, context=context)
+                if not prov_ids:
+                    raise orm.except_orm(
+                        _('Error !'),
+                        _('ProvinciaAlbo ( %s ) not present in system') %
+                        ProvinciaAlbo
+                        )
+                vals['register_province'] = prov_ids[0]
+
+            vals['register_code'] = (
+                cedPrest.DatiAnagrafici.NumeroIscrizioneAlbo)
+            vals['register_regdate'] = (
+                cedPrest.DatiAnagrafici.DataIscrizioneAlbo)
+
+            if cedPrest.DatiAnagrafici.RegimeFiscale:
+                rfPos = cedPrest.DatiAnagrafici.RegimeFiscale
+                FiscalPosIds = fiscalPosModel.search(
+                    cr, uid,
+                    [('code', '=', rfPos)],
+                    context=context
+                )
+                if not FiscalPosIds:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('RegimeFiscale type is not compatible ')
+                    )
+                vals['register_fiscalpos'] = FiscalPosIds[0]
 
             if cedPrest.IscrizioneREA:
                 REA = cedPrest.IscrizioneREA
@@ -165,11 +196,12 @@ class WizardImportFatturapa(orm.TransientModel):
                         )
                 office_id = False
                 office_ids = self.ProvinceByCode(
-                    cr, uid, REA.NumeroREA, context=context)
+                    cr, uid, REA.Ufficio, context=context)
                 if not office_ids:
                     raise orm.except_orm(
                         _('Error !'),
-                        _("Xml file not contain REA Office Code")
+                        _('REA Office Code ( %s ) not present in system') %
+                        REA.Ufficio
                         )
                 office_id = office_ids[0]
                 vals['rea_office'] = office_id
@@ -331,15 +363,6 @@ class WizardImportFatturapa(orm.TransientModel):
             [('name', '=', TipoCassa)],
             context=context
         )
-        NaturaId = False
-        if Natura:
-            NaturaIds = WelfareTypeModel.search(
-                cr, uid,
-                [('name', '=', Natura)],
-                context=context
-            )
-            if NaturaIds:
-                NaturaId = NaturaIds[0]
         if not WelfareTypeId:
             raise orm.except_orm(
                 _('Error!'),
@@ -352,7 +375,7 @@ class WizardImportFatturapa(orm.TransientModel):
             'welfare_taxable': ImponibileCassa,
             'welfare_Iva_tax': AliquotaIVA,
             'subjected_withholding': Ritenuta,
-            'fund_fiscalpos': NaturaId,
+            'fund_nature': Natura or False,
             'pa_line_code': RiferimentoAmministrazione,
             'invoice_id': invoice_id,
         }
