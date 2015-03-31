@@ -263,6 +263,7 @@ class faturapa_activity_progress(orm.Model):
 
 
 class fattura_attachments(orm.Model):
+    #_position = ['2.5']
     _name = "fatturapa.attachments"
     _description = "FatturaPA attachments"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
@@ -320,6 +321,36 @@ class account_invoice_line(orm.Model):
             'fatturapa.related_ddt', 'invoice_line_id',
             'Related DdT'
         ),
+    }
+
+
+class faturapa_summary_data(orm.Model):
+    #_position = ['2.2.2']
+    _name = "faturapa.summary.data"
+    _columns = {
+        'tax_rate': fields.float('Tax Rate'),
+        'non_taxable_nature': fields.selection([
+            ('N1', 'escluse ex art. 15'),
+            ('N2', 'non soggette'),
+            ('N3', 'non imponibili'),
+            ('N4', 'esenti'),
+            ('N5', 'regime del margine'),
+            ('N6', 'inversione contabile (reverse charge)'),
+            ], string="Non taxable nature"),
+        'incidental charges': fields.float('Incidental Charges'),
+        'rounding': fields.float('Rounding'),
+        'amount_untaxed': fields.float('Amount untaxed'),
+        'amount_tax': fields.float('Amount tax'),
+        'payability': fields.selection([
+            ('I', 'Immediate payability'),
+            ('D', 'Deferred payability'),
+            ('S', 'Split payment'),
+            ], string="VAT payability"),
+        'law_reference': fields.char(
+            'Law reference', size=128),
+        'invoice_id': fields.many2one(
+            'account.invoice', 'Related Invoice',
+            ondelete='cascade', select=True)
     }
 
 
@@ -399,7 +430,11 @@ class account_invoice(orm.Model):
         'related_invoice_code': fields.char('Related invoice code'),
         'related_invoice_date': fields.date('Related invoice date'),
         #2.2.1 invoice lines
-        #2.2.2 TODO
+        #2.2.2
+        'fatturapa_summary_ids': fields.one2many(
+            'faturapa.summary.data',  'invoice_id',
+            'FatturaPA Summary   Datas'
+        ),
         #2.3
         'vaicle_registration': fields.date('Veicole Registration'),
         'total_travel': fields.char('Travel in hours or Km', size=15),
