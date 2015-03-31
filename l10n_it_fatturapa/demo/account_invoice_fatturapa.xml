@@ -18,6 +18,24 @@
             <field name="tax_code_id" ref="tax_code_sale_22"></field>
         </record>
 
+        <record id="tax_code_purchase_0" model="account.tax.code">
+            <field name="name">Esente IVA</field>
+        </record>
+
+        <record id="tax_base_code_purchase_0" model="account.tax.code">
+            <field name="name">IVA a credito 0% (credito)</field>
+        </record>
+
+        <record id="tax_00_minimi" model="account.tax">
+            <field name="name">Esente</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="non_taxable_nature">N4</field>
+            <field name="law_reference">regime contribuenti minimi art.27 c.1-2 DL.98/11</field>
+            <field name="base_code_id" ref="tax_base_code_purchase_0"></field>
+            <field name="tax_code_id" ref="tax_code_purchase_0"></field>
+        </record>
+
         <record id="base.main_company" model="res.company">
             <field name="street">Via Milano, 1</field>
             <field name="zip">00100</field>
@@ -130,7 +148,7 @@ seconda riga</field>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="name">Zed+ Antivirus</field>
         </record>
-        
+
         <record model="fatturapa.related_document_type" id="related_doc_0">
             <field name="invoice_id" ref="fatturapa_invoice_1"/>
             <field name="type">order</field>

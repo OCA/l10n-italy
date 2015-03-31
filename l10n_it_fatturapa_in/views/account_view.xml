@@ -62,6 +62,7 @@
                 <field name="date_invoice" position="before">
                     <field name="sender" readonly="1"></field>
                     <field name="doc_type" readonly="1"></field>
+                    <field name="protocol_number" ></field>
                 </field>
                 <field name="has_withholding" position="before">
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_type" readonly="1"></field>
