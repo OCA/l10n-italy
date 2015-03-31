@@ -22,6 +22,30 @@
 from openerp import models, fields, api
 
 
+class AccountFiscalPositionRCTax(models.Model):
+    _name = 'account.rc.type.tax'
+    _description = 'Tax Mapping for self invoices'
+
+    rc_type_id = fields.Many2one(
+        'account.rc.type',
+        string='RC type',
+        required=True,
+        ondelete='cascade')
+    tax_src_id = fields.Many2one(
+        'account.tax',
+        string='Tax Source',
+        required=True)
+    tax_dest_id = fields.Many2one(
+        'account.tax',
+        string='Replacement Tax')
+
+    _sql_constraints = [
+        ('tax_src_dest_uniq',
+         'unique (rc_type_id,tax_src_id,tax_dest_id)',
+         'Tax mappings can be defined only once per rc type.')
+    ]
+
+
 class AccountRCType(models.Model):
     _name = 'account.rc.type'
     _description = 'Reverse Charge Type'
@@ -54,7 +78,10 @@ class AccountRCType(models.Model):
         'account.account',
         string='Self Invoice Transitory Account',
         help="Transitory account used on self invoices.")
-    tax_id = fields.Many2one('account.tax', string='Self Invoice Line Tax')
+    tax_ids = fields.One2many(
+        'account.rc.type.tax',
+        'rc_type_id',
+        string='Self Invoice Tax Mapping')
     description = fields.Text('Description')
     invoice_text = fields.Text('Text on Invoice')
     self_invoice_text = fields.Text('Text in Self Invoice')
@@ -197,9 +224,12 @@ class AccountInvoice(models.Model):
                 if line.rc:
                     rc_invoice_line = self.rc_inv_line_vals(line)
                     line_tax = line.invoice_line_tax_id
+                    for tax_mapping in rc_type.tax_ids:
+                        if tax_mapping.tax_src_id == line_tax[0]:
+                            tax_code_id = tax_mapping.tax_dest_id.id
                     if line_tax:
                         rc_invoice_line['invoice_line_tax_id'] = [
-                            (6, False, [rc_type.tax_id.id])]
+                            (6, False, [tax_code_id])]
                     rc_invoice_line[
                         'account_id'] = rc_type.transitory_account_id.id
                     rc_invoice_lines.append([0, False, rc_invoice_line])
