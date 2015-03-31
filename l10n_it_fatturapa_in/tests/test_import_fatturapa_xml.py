@@ -78,3 +78,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.fatturapa_summary_ids[0].amount_tax, 5.50)
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].payability, 'D')
+        self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+        self.assertEqual(invoice.partner_id.street, "VIALE ROMA 543")
+        self.assertEqual(invoice.partner_id.province.code, "SS")
+        self.assertEqual(
+            invoice.tax_representative_id.name, "Rappresentante fiscale")
