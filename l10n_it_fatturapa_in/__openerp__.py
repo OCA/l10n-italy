@@ -77,7 +77,12 @@ To contribute to this module, please visit http://odoo-community.org.
 """,
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": ['l10n_it_fatturapa', 'partner_firstname'],
+    "depends": [
+        'l10n_it_fatturapa',
+        'partner_firstname',
+        'stock_invoice_picking_incoterm',
+        'l10n_it_withholding_tax',
+        ],
     "data": [
         'views/account_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',

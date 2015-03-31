@@ -29,7 +29,7 @@ RELATED_DOCUMENT_TYPES = {
 }
 
 
-class fatturapa_worksaddress(orm.Model):
+class fatturapa_format(orm.Model):
     #_position = ['1.1.3']
     _name = "fatturapa.format"
     _description = 'FatturaPA Format'
