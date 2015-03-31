@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <form string="Export FatturaPA" version="7.0">
                     <div>
-                        <field name="name"/>
-                        <field name="datas_fname"/>
                         <field name="datas" filename="datas_fname" />
+                        <field name="datas_fname"/>
+                        <field name="name"/>
                         <separator string="Invoices"></separator>
                         <field name="out_invoice_ids"></field>
                         <group groups="base.group_no_one" string="History">

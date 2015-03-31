@@ -26,5 +26,6 @@ class account_invoice(orm.Model):
 
     _columns = {
         'fatturapa_attachment_in_id': fields.many2one(
-            'fatturapa.attachment.in', 'FatturaPA Import File'),
+            'fatturapa.attachment.in', 'FatturaPA Import File',
+            ondelete='restrict'),
     }
