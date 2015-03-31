@@ -90,8 +90,6 @@ To contribute to this module, please visit http://odoo-community.org.
         'l10n_it_fiscalcode',
         'document',
         'l10n_it_ipa',
-        'stock_invoice_picking_incoterm',
-        'l10n_it_withholding_tax',
         'l10n_it_rea',
         ],
 
