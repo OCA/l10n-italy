@@ -21,7 +21,6 @@
 
 import base64
 import tempfile
-import netsvc
 import openerp.tests.common as test_common
 from openerp import addons
 
@@ -43,19 +42,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.data_model = self.registry('ir.model.data')
         self.attach_model = self.registry('fatturapa.attachment.in')
         self.invoice_model = self.registry('account.invoice')
-
-    def confirm_invoice(self, invoice_xml_id):
-        cr, uid = self.cr, self.uid
-
-        invoice_id = self.data_model.get_object_reference(
-            cr, uid, 'l10n_it_fatturapa', invoice_xml_id)
-        if invoice_id:
-            invoice_id = invoice_id and invoice_id[1] or False
-
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(
-            uid, 'account.invoice', invoice_id, 'invoice_open', cr)
-        return invoice_id
 
     def run_wizard(self, name, file_name):
         cr, uid = self.cr, self.uid
