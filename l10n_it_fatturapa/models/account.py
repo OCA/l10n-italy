@@ -327,6 +327,7 @@ class account_invoice(orm.Model):
    #_position = ['2.1', '2.2', '2.3', '2.4', '2.5']
     _inherit = "account.invoice"
     _columns = {
+        'protocol_number':  fields.char('Protocol Number', size=64),
         #1.2 -- partner_id
         #1.3
         'tax_representative_id': fields.many2one(

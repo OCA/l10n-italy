@@ -159,8 +159,8 @@
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>22.00</AliquotaIVA>
-                <ImponibileImporto>27.00</ImponibileImporto>
-                <Imposta>5.95</Imposta>
+                <ImponibileImporto>25.00</ImponibileImporto>
+                <Imposta>5.50</Imposta>
                 <EsigibilitaIVA>D</EsigibilitaIVA>
             </DatiRiepilogo>
         </DatiBeniServizi>
@@ -179,7 +179,7 @@
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2015-05-30</DataScadenzaPagamento>
-                <ImportoPagamento>10.00</ImportoPagamento>
+                <ImportoPagamento>9.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
@@ -192,11 +192,11 @@
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2015-06-30</DataScadenzaPagamento>
-                <ImportoPagamento>2.95</ImportoPagamento>
+                <ImportoPagamento>1.50</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
-                <PenalitaPagamentiRitardati>0.29</PenalitaPagamentiRitardati>
+                <PenalitaPagamentiRitardati>0.15</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-07-01</DataDecorrenzaPenale>
             </DettaglioPagamento>
         </DatiPagamento>

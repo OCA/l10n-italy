@@ -69,6 +69,7 @@
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_payment_reason" readonly="1"></field>
                 </field>
                 <field name="comment" position="before">
+                    <field name="protocol_number" ></field>
                     <field name="sender" readonly="1"></field>
                     <field name="doc_type" readonly="1"></field>
                 </field>
