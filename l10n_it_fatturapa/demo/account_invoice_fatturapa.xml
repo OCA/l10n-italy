@@ -47,7 +47,10 @@
             <field name="fatturapa_format_id" ref="fatturapa_format_1_1"/>
             <field name="fatturapa_sequence_id" ref="seq_fatturapa"/>
             <field name="fatturapa_art73">True</field>
-            <field name="vat">IT02780790107</field>
+            <field name="vat">IT06363391001</field>
+        </record>
+        <record id="base.main_partner" model="res.partner">
+            <field name="ipa_code">79SRAK</field>
         </record>
 
         <record id="account.account_payment_term" model="account.payment.term">
