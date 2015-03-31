@@ -6,4 +6,5 @@ Odoo Italia Modules
 
 Italian modules for odoo (formerly OpenERP) 7.0
 
-http://www.openerp-italia.org/
+http://www.odoo-italia.org/
+
