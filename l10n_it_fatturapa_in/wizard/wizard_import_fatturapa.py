@@ -48,10 +48,43 @@ class WizardImportFatturapa(orm.TransientModel):
         return province_model.search(
             cr, uid, [('code', '=', provinceCode)], context=context)
 
-    def getPartnerBase(self, cr, uid, angrafica, context=None):
+    def check_partner_base_data(
+        self, cr, uid, partner_id, DatiAnagrafici, context=None
+    ):
+        partner = self.pool['res.partner'].browse(
+            cr, uid, partner_id, context=context)
+        if (
+            DatiAnagrafici.Anagrafica.Denominazione
+            and partner.name != DatiAnagrafici.Anagrafica.Denominazione
+        ):
+            raise orm.except_orm(
+                _('Error!'),
+                _('XML content \'%s\' different from system data \'%s\'. '
+                  'Please fix your data')
+                % (DatiAnagrafici.Anagrafica.Denominazione, partner.name))
+        if (
+            DatiAnagrafici.Anagrafica.Nome
+            and partner.firstname != DatiAnagrafici.Anagrafica.Nome
+        ):
+            raise orm.except_orm(
+                _('Error!'),
+                _('XML content \'%s\' different from system data \'%s\'. '
+                  'Please fix your data')
+                % (DatiAnagrafici.Anagrafica.Nome, partner.firstname))
+        if (
+            DatiAnagrafici.Anagrafica.Cognome
+            and partner.lastname != DatiAnagrafici.Anagrafica.Cognome
+        ):
+            raise orm.except_orm(
+                _('Error!'),
+                _('XML content \'%s\' different from system data \'%s\'. '
+                  'Please fix your data')
+                % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname))
+
+    def getPartnerBase(self, cr, uid, DatiAnagrafici, context=None):
         partner_model = self.pool['res.partner']
-        cf = angrafica.CodiceFiscale or False
-        CountryCode = angrafica.IdFiscaleIVA.IdPaese
+        cf = DatiAnagrafici.CodiceFiscale or False
+        CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
         country_ids = self.CountryByCode(
             cr, uid, CountryCode, context=context)
         if country_ids:
@@ -62,8 +95,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 _("Country Code %s not found in system") % CountryCode
             )
         vat = "%s%s" % (
-            angrafica.IdFiscaleIVA.IdPaese,
-            angrafica.IdFiscaleIVA.IdCodice
+            DatiAnagrafici.IdFiscaleIVA.IdPaese,
+            DatiAnagrafici.IdFiscaleIVA.IdCodice
         )
         partner_ids = partner_model.search(
             cr, uid,
@@ -72,8 +105,8 @@ class WizardImportFatturapa(orm.TransientModel):
              ('fiscalcode', '=', cf or 0),
              ],
             context=context)
+        commercial_partner = False
         if len(partner_ids) > 1:
-            commercial_partner = False
             for partner in self.browse(cr, uid, partner_ids, context=context):
                 if (
                     commercial_partner
@@ -86,22 +119,24 @@ class WizardImportFatturapa(orm.TransientModel):
                           (vat, cf))
                         )
                 commercial_partner = partner.commercial_partner_id.id
-            if commercial_partner:
-                return commercial_partner
         if partner_ids:
-            return partner_ids[0]
+            commercial_partner = partner_ids[0]
+        if commercial_partner:
+            self.check_partner_base_data(
+                cr, uid, commercial_partner, DatiAnagrafici, context=context)
+            return commercial_partner
         else:
             vals = {
-                'name': angrafica.Anagrafica.Denominazione,
-                'firstname': angrafica.Anagrafica.Nome or '',
-                'lastname': angrafica.Anagrafica.Cognome or '',
+                'name': DatiAnagrafici.Anagrafica.Denominazione,
+                'firstname': DatiAnagrafici.Anagrafica.Nome,
+                'lastname': DatiAnagrafici.Anagrafica.Cognome,
                 'vat': vat,
                 'fiscalcode': cf,
                 'customer': False,
                 'supplier': True,
-                # TODO: needs verify
-                'is_company': vat and True or False,
-                'eori_code': angrafica.Anagrafica.CodEORI or '',
+                'is_company': (
+                    DatiAnagrafici.Anagrafica.Denominazione and True or False),
+                'eori_code': DatiAnagrafici.Anagrafica.CodEORI or '',
                 'country_id': country_id,
             }
             return partner_model.create(cr, uid, vals, context=context)
