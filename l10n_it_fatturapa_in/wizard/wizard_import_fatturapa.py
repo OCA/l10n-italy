@@ -108,7 +108,9 @@ class WizardImportFatturapa(orm.TransientModel):
             context=context)
         commercial_partner = False
         if len(partner_ids) > 1:
-            for partner in self.browse(cr, uid, partner_ids, context=context):
+            for partner in partner_model.browse(
+                cr, uid, partner_ids, context=context
+            ):
                 if (
                     commercial_partner
                     and partner.commercial_partner_id.id != commercial_partner
@@ -898,6 +900,20 @@ class WizardImportFatturapa(orm.TransientModel):
             set_total=True)
         return invoice_id
 
+    def check_CessionarioCommittente(
+        self, cr, uid, company, FatturaElettronicaHeader, context=None
+    ):
+        if (
+            company.partner_id.ipa_code !=
+            FatturaElettronicaHeader.DatiTrasmissione.CodiceDestinatario
+        ):
+            raise orm.except_orm(
+                _('Error'),
+                _('XML IPA code (%s) different from company IPA code (%s)')
+                % (
+                    FatturaElettronicaHeader.DatiTrasmissione.
+                    CodiceDestinatario, company.partner_id.ipa_code))
+
     def importFatturaPA(self, cr, uid, ids, context=None):
         if not context:
             context = {}
@@ -947,6 +963,10 @@ class WizardImportFatturapa(orm.TransientModel):
                         }, context=context
                     )
                 new_invoices.append(invoice_id)
+                invoice = invoice_model.browse(cr, uid, invoice_id, context)
+                self.check_CessionarioCommittente(
+                    cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
+                    context=context)
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",
