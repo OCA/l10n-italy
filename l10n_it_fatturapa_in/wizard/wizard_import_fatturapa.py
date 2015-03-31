@@ -478,6 +478,7 @@ class WizardImportFatturapa(orm.TransientModel):
         DdTModel = self.pool['fatturapa.related_ddt']
         PaymentDataModel = self.pool['fatturapa.payment.data']
         PaymentTermsModel = self.pool['fatturapa.payment_term']
+        SummaryDatasModel = self.pool['faturapa.summary.data']
 
         company = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id
@@ -752,6 +753,24 @@ class WizardImportFatturapa(orm.TransientModel):
                         delivery_dict['incoterm'] = stock_incoterm_id
                 invoice_model.write(
                     cr, uid, invoice_id, delivery_dict, context=context)
+        # 2.2.2
+        Summary_datas = FatturaBody.DatiBeniServizi.DatiRiepilogo
+        if Summary_datas:
+            for summary in Summary_datas:
+                summary_line = {
+                    'tax_rate': summary.AliquotaIVA or 0.0,
+                    'non_taxable_nature': summary.Natura or False,
+                    'incidental charges': summary.SpeseAccessorie or 0.0,
+                    'rounding': summary.Arrotondamento or 0.0,
+                    'amount_untaxed': summary.ImponibileImporto or 0.0,
+                    'amount_tax': summary.Imposta or 0.0,
+                    'payability': summary.EsigibilitaIVA or False,
+                    'law_reference': summary.RiferimentoNormativo or '',
+                    'invoice_id': invoice_id,
+                }
+                SummaryDatasModel.create(
+                    cr, uid, summary_line, context=context)
+
         # 2.1.10
         ParentInvoice = FatturaBody.DatiGenerali.FatturaPrincipale
         if ParentInvoice:
