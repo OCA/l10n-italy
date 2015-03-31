@@ -73,12 +73,21 @@ class WizardImportFatturapa(orm.TransientModel):
              ],
             context=context)
         if len(partner_ids) > 1:
-            raise orm.except_orm(
-                _('Error !'),
-                _("Two distinct partners with "
-                  "Vat %s and Fiscalcode %s already present in db" %
-                  (vat, cf))
-                )
+            commercial_partner = False
+            for partner in self.browse(cr, uid, partner_ids, context=context):
+                if (
+                    commercial_partner
+                    and partner.commercial_partner_id.id != commercial_partner
+                ):
+                    raise orm.except_orm(
+                        _('Error !'),
+                        _("Two distinct partners with "
+                          "Vat %s and Fiscalcode %s already present in db" %
+                          (vat, cf))
+                        )
+                commercial_partner = partner.commercial_partner_id.id
+            if commercial_partner:
+                return commercial_partner
         if partner_ids:
             return partner_ids[0]
         else:
