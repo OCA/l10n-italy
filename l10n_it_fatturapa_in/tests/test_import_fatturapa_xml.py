@@ -83,3 +83,4 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.partner_id.province.code, "SS")
         self.assertEqual(
             invoice.tax_representative_id.name, "Rappresentante fiscale")
+        self.assertEqual(invoice.welfare_fund_ids[0].welfare_rate_tax, 0.04)
