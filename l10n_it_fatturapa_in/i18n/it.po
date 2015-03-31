@@ -234,7 +234,7 @@ msgstr "Messages and communication history"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:414
 #, python-format
-msgid "Name of Banck is required"
+msgid "Name of Bank is required"
 msgstr "Il nome della banca e' obbligatorio'"
 
 #. module: l10n_it_fatturapa_in
@@ -357,7 +357,7 @@ msgstr "Tipo di Sconto/Maggiorazione non definito"
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_unread:0
 msgid "Unread Messages"
-msgstr "MEssaggi da leggere"
+msgstr "Messaggi da leggere"
 
 #. module: l10n_it_fatturapa_in
 #: view:account.invoice:0

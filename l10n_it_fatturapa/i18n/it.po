@@ -151,7 +151,7 @@ msgstr "Indirizzo consegna"
 #: field:fatturapa.payment_method,name:0
 #: field:fatturapa.payment_term,name:0
 msgid "Description"
-msgstr "Descrizonie"
+msgstr "Descrizione"
 
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
@@ -178,7 +178,7 @@ msgstr "Id documento"
 #. module: l10n_it_fatturapa
 #: field:res.partner,eori_Codice:0
 msgid "EORI Codice"
-msgstr "Codice EORI "
+msgstr "Codice EORI"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,penalty_date:0
@@ -411,7 +411,7 @@ msgstr "Data Scadenza Limite"
 #. module: l10n_it_fatturapa
 #: field:res.company,fatturapa_rea_partner:0
 msgid "Member Type"
-msgstr "Siceta' a "
+msgstr "Societa' tipo"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_partner:0
@@ -701,7 +701,7 @@ msgstr "Tax Rapresentative"
 #: field:account.config.settings,fatturapa_sender_partner:0
 #: field:res.company,fatturapa_sender_partner:0
 msgid "Third Party/Sender"
-msgstr "Tezo sogetto emittente"
+msgstr "Terzo sogetto emittente"
 
 #. module: l10n_it_fatturapa
 #: Codice:addons/l10n_it_fatturapa/models/account_tax.py:57
