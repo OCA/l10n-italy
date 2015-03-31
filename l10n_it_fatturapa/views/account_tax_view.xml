@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
         <record id="view_tax_form" model="ir.ui.view">
             <field name="name">account.tax.form</field>
             <field name="model">account.tax</field>
@@ -10,12 +11,13 @@
                     <page string="FatturaPA">
                         <group>
                             <field name="non_taxable_nature"></field>
-                            <field name="law_reference" attrs="{'required': [('non_taxable_nature', '!=', False)], 'invisible': [('non_taxable_nature', '=', False)]}"></field>
+                            <field name="law_reference" attrs="{'required': [('non_taxable_nature', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('non_taxable_nature', '=', False),('type_tax_use', '=', 'purchase')]}"></field>
                             <field name="payability"></field>
                         </group>
                     </page>
                 </notebook>
             </field>
         </record>
+
     </data>
 </openerp>
