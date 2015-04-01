@@ -173,9 +173,14 @@ class welfare_fund_data_line(orm.Model):
     _columns = {
         'name': fields.many2one(
             'welfare.fund.type', string="Welfare Fund Type"),
-        'fund_fiscalpos': fields.many2one(
-            'fatturapa.fiscal_position',
-            string="Welfare Fund Fiscal Position"),
+        'fund_nature': fields.selection([
+            ('N1', 'escluse ex art. 15'),
+            ('N2', 'non soggette'),
+            ('N3', 'non imponibili'),
+            ('N4', 'esenti'),
+            ('N5', 'regime del margine'),
+            ('N6', 'inversione contabile (reverse charge)'),
+            ], string="Non taxable nature"),
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),
