@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_partner_form_fatturapa" model="ir.ui.view">
+
+        <record model="ir.ui.view" id="view_partner_form_fatturapa">
             <field name="name">partner.form.fatturapa</field>
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="account.view_partner_property_form"></field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
             <field name="arch" type="xml">
-                <page position="inside" string="Accounting">
-                    <group col="2" colspan="2" groups="account.group_account_invoice">
-                        <separator colspan="2" string="FatturaPA"></separator>
-                        <field name="eori_code"></field>
-                        <field name="license_number"></field>
+                <page string="Accounting" position="inside">
+                    <group colspan="2" col="2" groups="account.group_account_invoice">
+                        <separator string="FatturaPA" colspan="2"/>
+                        <field name="eori_code"/>
+                        <field name="license_number"/>
                     </group>
                 </page>
             </field>
         </record>
+
     </data>
+</openerp>
 </openerp>
