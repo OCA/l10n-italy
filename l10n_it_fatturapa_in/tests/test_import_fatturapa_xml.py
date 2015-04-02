@@ -101,3 +101,14 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].amount_tax, 0.66)
         self.assertEqual(invoice.partner_id.name, "Societa' alpha S.r.l.")
+
+    def test_3_xml_import(self):
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test0', 'IT05979361218_002.xml.p7m')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.partner_id.register_code, 'TO1258B')
+        self.assertEqual(
+            invoice.partner_id.register_fiscalpos.code, 'RF02')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0007')
+        self.assertEqual(invoice.amount_total, 54.00)
