@@ -37,7 +37,7 @@ def send_notification(self, cr, uid, ids, esito, context):
         raise orm.except_orm(
             _("Error"), _("Result notification already present"))
     res_id = notification_pool.create_notifica_esito_committente(
-        cr, uid, ids, invoice, esito='EC01',
+        cr, uid, ids, invoice, esito,
         description=wizard.name, context=context)
     invoice.write({'result_notification_id': res_id}, context=context)
     return {
