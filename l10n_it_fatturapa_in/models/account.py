@@ -30,3 +30,46 @@ class account_invoice(orm.Model):
             ondelete='restrict'),
         'inconsistencies': fields.text('Import Inconsistencies'),
     }
+
+
+class fatturapa_article_code(orm.Model):
+    #_position = ['2.2.1.3']
+    _name = "fatturapa.article.code"
+    _description = 'FatturaPA Article Code'
+
+    _columns = {
+        'name': fields.char('Cod Type', size=35),
+        'code_val': fields.char('Code Value', size=35),
+        'invoice_line_id': fields.many2one(
+            'account.invoice', 'Related Invoice line',
+            ondelete='cascade', select=True
+        )
+    }
+
+
+class account_invoice_line(orm.Model):
+    #_position = [
+    #    '2.2.1.3', '2.2.1.6', '2.2.1.7',
+    #    '2.2.1.8', '2.1.1.10'
+    #]
+    _inherit = "account.invoice.line"
+
+    _columns = {
+        'cod_article_ids': fields.one2many(
+            'fatturapa.article.code', 'invoice_line_id',
+            'Cod. Articles'
+        ),
+        'service_type': fields.selection([
+            ('SC', 'sconto'),
+            ('PR', 'premio'),
+            ('AB', 'abbuono'),
+            ('AC', 'spesa accessoria'),
+            ], string="Service Type"),
+        'ftpa_uom': fields.char('Fattura Pa Unit of Measure', size=10),
+        'service_start': fields.date('Service start at'),
+        'service_end': fields.date('Service end at'),
+        'discount_rise_price_ids': fields.one2many(
+            'discount.rise.price', 'invoice_line_id',
+            'Discount and Rise Price Details'
+        ),
+    }

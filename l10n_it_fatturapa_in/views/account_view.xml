@@ -49,6 +49,47 @@
         </record>
         <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
                               parent="l10n_it_fatturapa.menu_fattura_pa_payables"></menuitem>
+        <!-- Extend purchase invoice line -->
+        <record id="view_invoice_line_form_fatturapa_in" model="ir.ui.view">
+            <field name="name">account.invoice.line.fatturapa.in</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_invoice_line_form_fatturapa"></field>
+            <field name="arch" type="xml">
+                <field name="invoice_line_tax_id" position="before">
+                    <field name="ftpa_uom" />
+                </field>
+                <field name="product_id" position="after">
+                    <field name="service_type" />
+                </field>
+                <separator string="FatturaPA" position="after">
+                    <group>
+                        <group>
+                            <field name="service_start" />
+                        </group>
+                        <group>
+                            <field name="service_end" />
+                        </group>
+                    </group>
+                    <group string="Articles Code">
+                        <field name="cod_article_ids" nolabel="1" readonly="1">
+                            <tree editable="bottom">
+                                <field name="name"></field>
+                                <field name="code_val"></field>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Discount Rise Price">
+                        <field name="discount_rise_price_ids" nolabel="1" readonly="1">
+                            <tree editable="bottom">
+                                <field name="name"></field>
+                                <field name="percentage"></field>
+                                <field name="amount"></field>
+                            </tree>
+                        </field>
+                    </group>
+                </separator>
+            </field>
+        </record>
         <!-- Extend purchase invoice  -->
         <record id="view_invoice_form_fatturapa_in" model="ir.ui.view">
             <field name="name">account.invoice.fatturapa_in</field>
@@ -68,6 +109,9 @@
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_type" readonly="1"></field>
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_rate" readonly="1"></field>
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_payment_reason" readonly="1"></field>
+                </field>
+                <field name="price_unit" position="before">
+                    <field name="ftpa_uom" readonly="1"></field>
                 </field>
                 <field name="tax_line" position="after">
                     <field name="discount_rise_price_ids" nolabel="1" readonly="1">
