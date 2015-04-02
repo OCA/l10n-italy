@@ -54,16 +54,19 @@ class WizardImportFatturapa(orm.TransientModel):
     def check_partner_base_data(
         self, cr, uid, partner_id, DatiAnagrafici, context=None
     ):
+        if context is None:
+            context = {}
         partner = self.pool['res.partner'].browse(
             cr, uid, partner_id, context=context)
         if (
             DatiAnagrafici.Anagrafica.Denominazione
             and partner.name != DatiAnagrafici.Anagrafica.Denominazione
         ):
-            raise orm.except_orm(
-                _('Error!'),
-                _('XML content \'%s\' different from system data \'%s\'. '
-                  'Please fix your data')
+            if context.get('inconsistencies'):
+                context['inconsistencies'] += '\n'
+            context['inconsistencies'] += (
+                "DatiAnagrafici.Anagrafica.Denominazione contains %s. Your "
+                "System contains %s"
                 % (DatiAnagrafici.Anagrafica.Denominazione, partner.name))
         if (
             DatiAnagrafici.Anagrafica.Nome
@@ -943,6 +946,7 @@ class WizardImportFatturapa(orm.TransientModel):
     def importFatturaPA(self, cr, uid, ids, context=None):
         if not context:
             context = {}
+        context['inconsistencies'] = ''
         fatturapa_attachment_obj = self.pool['fatturapa.attachment.in']
         fatturapa_attachment_ids = context.get('active_ids', False)
         invoice_model = self.pool['account.invoice']
@@ -1036,9 +1040,16 @@ class WizardImportFatturapa(orm.TransientModel):
                 self.check_CessionarioCommittente(
                     cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
                     context=context)
+
             # delete decrypted file
             if os.path.isfile(fileName):
                 os.remove(fileName)
+
+            if context.get('inconsistencies'):
+                invoice.write(
+                    {'inconsistencies': context['inconsistencies']},
+                    context=context)
+
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",

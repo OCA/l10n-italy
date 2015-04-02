@@ -28,4 +28,5 @@ class account_invoice(orm.Model):
         'fatturapa_attachment_in_id': fields.many2one(
             'fatturapa.attachment.in', 'FatturaPA Import File',
             ondelete='restrict'),
+        'inconsistencies': fields.text('Import Inconsistencies'),
     }
