@@ -65,8 +65,10 @@ class WizardImportFatturapa(orm.TransientModel):
             if context.get('inconsistencies'):
                 context['inconsistencies'] += '\n'
             context['inconsistencies'] += (
-                _("DatiAnagrafici.Anagrafica.Denominazione contains %s. Your "
-                "System contains %s")
+                _(
+                    "DatiAnagrafici.Anagrafica.Denominazione contains %s."
+                    " Your System contains %s"
+                )
                 % (DatiAnagrafici.Anagrafica.Denominazione, partner.name)
             )
         if (
@@ -206,7 +208,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     if context.get('inconsistencies'):
                         context['inconsistencies'] += '\n'
                     context['inconsistencies'] += (
-                       _("Xml file not contain REA code")
+                        _("Xml file not contain REA code")
                     )
                 else:
                     vals['rea_code'] = REA.NumeroREA
@@ -390,13 +392,8 @@ class WizardImportFatturapa(orm.TransientModel):
             [('name', '=', TipoCassa)],
             context=context
         )
-        if not WelfareTypeId:
-            raise orm.except_orm(
-                _('Error!'),
-                _('TipoCassa type is not compatible ')
-            )
+
         res = {
-            'name': WelfareTypeId[0],
             'welfare_rate_tax': AlCassa,
             'welfare_amount_tax': ImportoContributoCassa,
             'welfare_taxable': ImponibileCassa,
@@ -406,6 +403,15 @@ class WizardImportFatturapa(orm.TransientModel):
             'pa_line_code': RiferimentoAmministrazione,
             'invoice_id': invoice_id,
         }
+        if not WelfareTypeId:
+            if context.get('inconsistencies'):
+                context['inconsistencies'] += '\n'
+            context['inconsistencies'] += (
+                _("TipoCassa type is not compatible ")
+            )
+        else:
+            res['name'] = WelfareTypeId[0]
+
         return res
 
     def _prepareDiscRisePriceLine(
@@ -415,17 +421,20 @@ class WizardImportFatturapa(orm.TransientModel):
         Tipo = line.Tipo or False
         Percentuale = (float(line.Percentuale)/100) or 0.0
         Importo = float(line.Importo) or 0.0
-        if not Tipo:
-            raise orm.except_orm(
-                _('Error!'),
-                _('Type Discount or Rise price is not defined ')
-            )
         res = {
-            'name': Tipo,
             'percentage': Percentuale,
             'amount': Importo,
             context.get('drtype'): id,
         }
+        if not Tipo:
+            if context.get('inconsistencies'):
+                context['inconsistencies'] += '\n'
+            context['inconsistencies'] += (
+                _("Type Discount or Rise price is not defined")
+            )
+        else:
+            res['name'] = Tipo
+
         return res
 
     def _CreatePayamentsLine(
@@ -506,18 +515,20 @@ class WizardImportFatturapa(orm.TransientModel):
                     )
                     if not bankids:
                         if dline.IstitutoFinanziario == '':
-                            raise orm.except_orm(
-                                _('Error!'),
-                                _('Name of Bank is required')
+                            if context.get('inconsistencies'):
+                                context['inconsistencies'] += '\n'
+                            context['inconsistencies'] += (
+                                _("Name of Bank is not Set")
                             )
-                        bankid = BankModel.create(
-                            cr, uid,
-                            {
-                                'name': dline.IstitutoFinanziario,
-                                'bic': dline.BIC,
-                            },
-                            context=context
-                        )
+                        else:
+                            bankid = BankModel.create(
+                                cr, uid,
+                                {
+                                    'name': dline.IstitutoFinanziario,
+                                    'bic': dline.BIC,
+                                },
+                                context=context
+                            )
                     else:
                         bankid = bankids[0]
                 if dline.IBAN:
@@ -533,10 +544,21 @@ class WizardImportFatturapa(orm.TransientModel):
                     payment_bank_ids = PartnerBankModel.search(
                         cr, uid, SearchDom, context=context)
                     if not payment_bank_ids and not bankid:
-                        raise orm.except_orm(
-                            _('Error!'),
-                            _('BIC is required and not exist in Xml')
+                        if context.get('inconsistencies'):
+                            context['inconsistencies'] += '\n'
+                        context['inconsistencies'] += (
+                            _(
+                                'BIC is required and not exist in Xml\n'
+                                'Curr bank data is: \n'
+                                'IBAN: %s\n'
+                                'Bank Name: %s\n'
+                            )
+                            % (
+                                dline.IBAN.strip() or '',
+                                dline.IstitutoFinanziario or ''
+                            )
                         )
+
                     elif not payment_bank_ids and bankid:
                         payment_bank_id = PartnerBankModel.create(
                             cr, uid,
@@ -552,7 +574,9 @@ class WizardImportFatturapa(orm.TransientModel):
                         )
                     if payment_bank_ids:
                         payment_bank_id = payment_bank_ids[0]
-                val['payment_bank'] = payment_bank_id
+
+                if payment_bank_id:
+                    val['payment_bank'] = payment_bank_id
                 PaymentModel.create(cr, uid, val, context=context)
         return True
 
