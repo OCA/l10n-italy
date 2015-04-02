@@ -128,6 +128,9 @@
                 <xpath expr="//notebook" position="inside">
                     <page string="FatturaPA">
                         <notebook>
+                            <page string="Inconsistencies">
+                                <field name="inconsistencies" nolabel="1" colspan="4"></field>
+                            </page>
                             <page string="FatturaPA attachments">
                                 <group string="Attachments">
                                     <field name="fatturapa_doc_attachments" nolabel="1" readonly="1">
