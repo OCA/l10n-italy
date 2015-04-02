@@ -50,7 +50,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             {
                 'name': name,
                 'datas': self.getFile(file_name)[1],
-                'datas_fname': name
+                'datas_fname': file_name
             })
         wizard_id = self.wizard_model.create(cr, uid, {})
         return self.wizard_model.importFatturaPA(

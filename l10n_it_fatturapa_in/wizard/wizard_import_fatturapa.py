@@ -19,6 +19,9 @@
 #
 ##############################################################################
 import base64
+import os
+import shlex
+import subprocess
 from openerp.osv import orm
 from openerp.tools.translate import _
 import logging
@@ -51,35 +54,49 @@ class WizardImportFatturapa(orm.TransientModel):
     def check_partner_base_data(
         self, cr, uid, partner_id, DatiAnagrafici, context=None
     ):
+        if context is None:
+            context = {}
         partner = self.pool['res.partner'].browse(
             cr, uid, partner_id, context=context)
         if (
             DatiAnagrafici.Anagrafica.Denominazione
             and partner.name != DatiAnagrafici.Anagrafica.Denominazione
         ):
-            raise orm.except_orm(
-                _('Error!'),
-                _('XML content \'%s\' different from system data \'%s\'. '
-                  'Please fix your data')
-                % (DatiAnagrafici.Anagrafica.Denominazione, partner.name))
+            if context.get('inconsistencies'):
+                context['inconsistencies'] += '\n'
+            context['inconsistencies'] += (
+                _(
+                    "DatiAnagrafici.Anagrafica.Denominazione contains %s."
+                    " Your System contains %s"
+                )
+                % (DatiAnagrafici.Anagrafica.Denominazione, partner.name)
+            )
         if (
             DatiAnagrafici.Anagrafica.Nome
             and partner.firstname != DatiAnagrafici.Anagrafica.Nome
         ):
-            raise orm.except_orm(
-                _('Error!'),
-                _('XML content \'%s\' different from system data \'%s\'. '
-                  'Please fix your data')
-                % (DatiAnagrafici.Anagrafica.Nome, partner.firstname))
+            if context.get('inconsistencies'):
+                context['inconsistencies'] += '\n'
+            context['inconsistencies'] += (
+                _(
+                    "DatiAnagrafici.Anagrafica.Nome contains %s."
+                    " Your System contains %s"
+                )
+                % (DatiAnagrafici.Anagrafica.Nome, partner.firstname)
+            )
         if (
             DatiAnagrafici.Anagrafica.Cognome
             and partner.lastname != DatiAnagrafici.Anagrafica.Cognome
         ):
-            raise orm.except_orm(
-                _('Error!'),
-                _('XML content \'%s\' different from system data \'%s\'. '
-                  'Please fix your data')
-                % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname))
+            if context.get('inconsistencies'):
+                context['inconsistencies'] += '\n'
+            context['inconsistencies'] += (
+                _(
+                    "DatiAnagrafici.Anagrafica.Cognome contains %s."
+                    " Your System contains %s"
+                )
+                % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
+            )
 
     def getPartnerBase(self, cr, uid, DatiAnagrafici, context=None):
         partner_model = self.pool['res.partner']
@@ -183,17 +200,15 @@ class WizardImportFatturapa(orm.TransientModel):
                 if not FiscalPosIds:
                     raise orm.except_orm(
                         _('Error!'),
-                        _('RegimeFiscale type is not compatible ')
+                        _('RegimeFiscale %s is not present in your system')
+                        % rfPos
                     )
-                vals['register_fiscalpos'] = FiscalPosIds[0]
+                else:
+                    vals['register_fiscalpos'] = FiscalPosIds[0]
 
             if cedPrest.IscrizioneREA:
                 REA = cedPrest.IscrizioneREA
-                if not REA.NumeroREA:
-                    raise orm.except_orm(
-                        _('Error !'),
-                        _("Xml file not contain REA code")
-                        )
+                vals['rea_code'] = REA.NumeroREA
                 office_id = False
                 office_ids = self.ProvinceByCode(
                     cr, uid, REA.Ufficio, context=context)
@@ -205,7 +220,6 @@ class WizardImportFatturapa(orm.TransientModel):
                         )
                 office_id = office_ids[0]
                 vals['rea_office'] = office_id
-                vals['rea_code'] = REA.NumeroREA
                 vals['rea_capital'] = REA.CapitaleSociale or 0.0
                 vals['rea_member_type'] = REA.SocioUnico or False
                 vals['rea_liquidation_state'] = REA.StatoLiquidazione or False
@@ -276,14 +290,28 @@ class WizardImportFatturapa(orm.TransientModel):
                     _('Too many tax with percentage '
                       'equals to: "%s"')
                     % line.AliquotaIVA)
-        return {
+        retLine = {
             'name': line.Descrizione,
             'sequence': int(line.NumeroLinea),
             'account_id': credit_account_id,
-            'price_unit': float(line.PrezzoUnitario),
-            'quantity': float(line.Quantita),
             'invoice_line_tax_id': [(6, 0, [account_tax_ids[0]])],
         }
+        if line.PrezzoUnitario:
+            retLine['price_unit'] = float(line.PrezzoUnitario)
+        if line.Quantita:
+            retLine['quantity'] = float(line.Quantita)
+        if line.TipoCessionePrestazione:
+            retLine['service_type'] = line.TipoCessionePrestazione
+        if line.TipoCessionePrestazione:
+            retLine['service_type'] = line.TipoCessionePrestazione
+        if line.UnitaMisura:
+            retLine['ftpa_uom'] = line.UnitaMisura
+        if line.DataInizioPeriodo:
+            retLine['service_start'] = line.DataInizioPeriodo
+        if line.DataFinePeriodo:
+            retLine['service_end'] = line.DataFinePeriodo
+
+        return retLine
 
     def _prepareRelDocsLine(
         self, cr, uid, invoice_id, line, type, context=None
@@ -307,7 +335,6 @@ class WizardImportFatturapa(orm.TransientModel):
                         ('invoice_id', '=', invoice_id),
                         ('sequence', '=', int(numline)),
                     ], context=context)
-
                 if invoice_line_ids:
                     invoice_lineid = invoice_line_ids[0]
                 val = {
@@ -323,7 +350,6 @@ class WizardImportFatturapa(orm.TransientModel):
                     'cup': Cup,
                 }
                 res.append(val)
-
         else:
             val = {
                 'type': type,
@@ -363,13 +389,8 @@ class WizardImportFatturapa(orm.TransientModel):
             [('name', '=', TipoCassa)],
             context=context
         )
-        if not WelfareTypeId:
-            raise orm.except_orm(
-                _('Error!'),
-                _('TipoCassa type is not compatible ')
-            )
+
         res = {
-            'name': WelfareTypeId[0],
             'welfare_rate_tax': AlCassa,
             'welfare_amount_tax': ImportoContributoCassa,
             'welfare_taxable': ImponibileCassa,
@@ -379,26 +400,29 @@ class WizardImportFatturapa(orm.TransientModel):
             'pa_line_code': RiferimentoAmministrazione,
             'invoice_id': invoice_id,
         }
+        if not WelfareTypeId:
+            raise orm.except_orm(
+                _('Error'),
+                _('TipoCassa %s is not present in your system') % TipoCassa)
+        else:
+            res['name'] = WelfareTypeId[0]
+
         return res
 
     def _prepareDiscRisePriceLine(
-        self, cr, uid, invoice_id, line, context=None
+        self, cr, uid, id, line, context=None
     ):
         res = []
         Tipo = line.Tipo or False
         Percentuale = (float(line.Percentuale)/100) or 0.0
         Importo = float(line.Importo) or 0.0
-        if not Tipo:
-            raise orm.except_orm(
-                _('Error!'),
-                _('Type Discount or Rise price is not defined ')
-            )
         res = {
-            'name': Tipo,
             'percentage': Percentuale,
             'amount': Importo,
-            'invoice_id': invoice_id,
+            context.get('drtype'): id,
         }
+        res['name'] = Tipo
+
         return res
 
     def _CreatePayamentsLine(
@@ -478,19 +502,22 @@ class WizardImportFatturapa(orm.TransientModel):
                         [('bic', '=', dline.BIC.strip())], context=context
                     )
                     if not bankids:
-                        if dline.IstitutoFinanziario == '':
-                            raise orm.except_orm(
-                                _('Error!'),
-                                _('Name of Bank is required')
+                        if not dline.IstitutoFinanziario:
+                            if context.get('inconsistencies'):
+                                context['inconsistencies'] += '\n'
+                            context['inconsistencies'] += (
+                                _("Name of Bank with BIC %s is not set."
+                                  " Can't create bank") % dline.BIC
                             )
-                        bankid = BankModel.create(
-                            cr, uid,
-                            {
-                                'name': dline.IstitutoFinanziario,
-                                'bic': dline.BIC,
-                            },
-                            context=context
-                        )
+                        else:
+                            bankid = BankModel.create(
+                                cr, uid,
+                                {
+                                    'name': dline.IstitutoFinanziario,
+                                    'bic': dline.BIC,
+                                },
+                                context=context
+                            )
                     else:
                         bankid = bankids[0]
                 if dline.IBAN:
@@ -506,10 +533,21 @@ class WizardImportFatturapa(orm.TransientModel):
                     payment_bank_ids = PartnerBankModel.search(
                         cr, uid, SearchDom, context=context)
                     if not payment_bank_ids and not bankid:
-                        raise orm.except_orm(
-                            _('Error!'),
-                            _('BIC is required and not exist in Xml')
+                        if context.get('inconsistencies'):
+                            context['inconsistencies'] += '\n'
+                        context['inconsistencies'] += (
+                            _(
+                                'BIC is required and not exist in Xml\n'
+                                'Curr bank data is: \n'
+                                'IBAN: %s\n'
+                                'Bank Name: %s\n'
+                            )
+                            % (
+                                dline.IBAN.strip() or '',
+                                dline.IstitutoFinanziario or ''
+                            )
                         )
+
                     elif not payment_bank_ids and bankid:
                         payment_bank_id = PartnerBankModel.create(
                             cr, uid,
@@ -525,7 +563,9 @@ class WizardImportFatturapa(orm.TransientModel):
                         )
                     if payment_bank_ids:
                         payment_bank_id = payment_bank_ids[0]
-                val['payment_bank'] = payment_bank_id
+
+                if payment_bank_id:
+                    val['payment_bank'] = payment_bank_id
                 PaymentModel.create(cr, uid, val, context=context)
         return True
 
@@ -620,11 +660,33 @@ class WizardImportFatturapa(orm.TransientModel):
             for item in causLst:
                 comment += item + '\n'
         # 2.2.1
+        CodeArts = self.pool['fatturapa.article.code']
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
             invoice_line_data = self._prepareInvoiceLine(
                 cr, uid, credit_account_id, line, context=context)
             invoice_line_id = invoice_line_model.create(
                 cr, uid, invoice_line_data, context=context)
+
+            if line.CodiceArticolo:
+                for caline in line.CodiceArticolo:
+                    CodeArts.create(
+                        cr, uid,
+                        {
+                            'name': caline.CodiceTipo or '',
+                            'code_val': caline.CodiceValore or '',
+                            'invoice_line_id': invoice_line_id
+                        },
+                        context=context
+                    )
+            if line.ScontoMaggiorazione:
+                context['drtype'] = 'invoice_line_id'
+                for DiscRisePriceLine in line.ScontoMaggiorazione:
+                    DiscRisePriceVals = self._prepareDiscRisePriceLine(
+                        cr, uid, invoice_line_id, DiscRisePriceLine,
+                        context=context
+                    )
+                    DiscRisePriceModel.create(
+                        cr, uid, DiscRisePriceVals, context=context)
             invoice_lines.append(invoice_line_id)
 
         invoice_data = {
@@ -680,7 +742,8 @@ class WizardImportFatturapa(orm.TransientModel):
         DiscountRises = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.ScontoMaggiorazione
         if DiscountRises:
-            for DiscRisePriceLine in Walfares:
+            context['drtype'] = 'invoice_id'
+            for DiscRisePriceLine in DiscountRises:
                 DiscRisePriceVals = self._prepareDiscRisePriceLine(
                     cr, uid, invoice_id, DiscRisePriceLine, context=context)
                 DiscRisePriceModel.create(
@@ -940,6 +1003,7 @@ class WizardImportFatturapa(orm.TransientModel):
     def importFatturaPA(self, cr, uid, ids, context=None):
         if not context:
             context = {}
+        context['inconsistencies'] = ''
         fatturapa_attachment_obj = self.pool['fatturapa.attachment.in']
         fatturapa_attachment_ids = context.get('active_ids', False)
         invoice_model = self.pool['account.invoice']
@@ -949,8 +1013,43 @@ class WizardImportFatturapa(orm.TransientModel):
             if fatturapa_attachment.in_invoice_ids:
                 raise orm.except_orm(
                     _("Error"), _("File is linked to invoices yet"))
-            fatt = fatturapa_v_1_1.CreateFromDocument(
-                fatturapa_attachment.datas.decode('base64'))
+            # decrypt  p7m file
+            if fatturapa_attachment.datas_fname.endswith('.p7m'):
+                temp_file_name = '/tmp/%s' % fatturapa_attachment.datas_fname
+                with open(temp_file_name, 'w') as p7m_file:
+                    p7m_file.write(fatturapa_attachment.datas.decode('base64'))
+                xml_file_name = os.path.splitext(temp_file_name)[0]
+                strcmd = (
+                    'openssl smime -decrypt -verify -inform'
+                    ' DER -in %s -noverify -out %s'
+                ) % (temp_file_name, xml_file_name)
+                cmd = shlex.split(strcmd)
+                try:
+                    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+                    stdoutdata, stderrdata = proc.communicate()
+                    if proc.wait() != 0:
+                        _logger.warning(stdoutdata)
+                        raise Exception(stderrdata)
+                    if not os.path.isfile(xml_file_name):
+                        raise orm.except_osv(
+                            _('Errore'),
+                            _(
+                                'Signed Xml file id not decryptable'
+                            )
+                        )
+                except Exception as e:
+                    raise orm.except_osv(
+                        _('Errore'),
+                        _(
+                            'Signed Xml file %s'
+                        ) % e.args
+                    )
+                with open(xml_file_name, 'r') as fatt_file:
+                    file_content = fatt_file.read()
+                fatt = fatturapa_v_1_1.CreateFromDocument(file_content)
+            elif fatturapa_attachment.datas_fname.endswith('.xml'):
+                fatt = fatturapa_v_1_1.CreateFromDocument(
+                    fatturapa_attachment.datas.decode('base64'))
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(
@@ -990,6 +1089,12 @@ class WizardImportFatturapa(orm.TransientModel):
                 self.check_CessionarioCommittente(
                     cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
                     context=context)
+
+            if context.get('inconsistencies'):
+                invoice.write(
+                    {'inconsistencies': context['inconsistencies']},
+                    context=context)
+
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",

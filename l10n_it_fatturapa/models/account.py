@@ -209,6 +209,10 @@ class discount_rise_price(orm.Model):
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True
         ),
+        'invoice_line_id': fields.many2one(
+            'account.invoice', 'Related Invoice line',
+            ondelete='cascade', select=True
+        ),
     }
 
 
