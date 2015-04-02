@@ -1036,7 +1036,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 self.check_CessionarioCommittente(
                     cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
                     context=context)
-            # decrypt  p7m file
+            # delete decrypted file
             if os.path.isfile(fileName):
                 os.remove(fileName)
         return {
