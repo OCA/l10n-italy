@@ -66,8 +66,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 context['inconsistencies'] += '\n'
             context['inconsistencies'] += (
                 _(
-                    "DatiAnagrafici.Anagrafica.Denominazione contains %s."
-                    " Your System contains %s"
+                    "DatiAnagrafici.Anagrafica.Denominazione contains \"%s\"."
+                    " Your System contains \"%s\""
                 )
                 % (DatiAnagrafici.Anagrafica.Denominazione, partner.name)
             )
@@ -79,8 +79,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 context['inconsistencies'] += '\n'
             context['inconsistencies'] += (
                 _(
-                    "DatiAnagrafici.Anagrafica.Nome contains %s."
-                    " Your System contains %s"
+                    "DatiAnagrafici.Anagrafica.Nome contains \"%s\"."
+                    " Your System contains \"%s\""
                 )
                 % (DatiAnagrafici.Anagrafica.Nome, partner.firstname)
             )
@@ -92,8 +92,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 context['inconsistencies'] += '\n'
             context['inconsistencies'] += (
                 _(
-                    "DatiAnagrafici.Anagrafica.Cognome contains %s."
-                    " Your System contains %s"
+                    "DatiAnagrafici.Anagrafica.Cognome contains \"%s\"."
+                    " Your System contains \"%s\""
                 )
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
             )
@@ -506,7 +506,7 @@ class WizardImportFatturapa(orm.TransientModel):
                             if context.get('inconsistencies'):
                                 context['inconsistencies'] += '\n'
                             context['inconsistencies'] += (
-                                _("Name of Bank with BIC %s is not set."
+                                _("Name of Bank with BIC \"%s\" is not set."
                                   " Can't create bank") % dline.BIC
                             )
                         else:

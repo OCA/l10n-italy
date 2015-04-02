@@ -101,3 +101,15 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].amount_tax, 0.66)
         self.assertEqual(invoice.partner_id.name, "Societa' alpha S.r.l.")
+
+    def test_3_xml_import(self):
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test3', 'IT02780790107_11005.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.supplier_invoice_number, '124')
+        self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+        self.assertEqual(
+            invoice.inconsistencies,
+            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
