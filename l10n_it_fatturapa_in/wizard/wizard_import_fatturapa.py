@@ -19,6 +19,9 @@
 #
 ##############################################################################
 import base64
+import os
+import shlex
+import subprocess
 from openerp.osv import orm
 from openerp.tools.translate import _
 import logging
@@ -949,8 +952,51 @@ class WizardImportFatturapa(orm.TransientModel):
             if fatturapa_attachment.in_invoice_ids:
                 raise orm.except_orm(
                     _("Error"), _("File is linked to invoices yet"))
-            fatt = fatturapa_v_1_1.CreateFromDocument(
-                fatturapa_attachment.datas.decode('base64'))
+            # decrypt  p7m file
+            if fatturapa_attachment.datas_fname.endswith('.p7m'):
+                location = self.pool.get('ir.config_parameter').\
+                    get_param(cr, uid, 'ir_attachment.location')
+                file_path = os.path.join(
+                    location, fatturapa_attachment.store_fname)
+                src_file = os.path.join(
+                    location, fatturapa_attachment.datas_fname)
+                if file_path.find('file://') > -1:
+                    file_path = file_path.replace('file://', '')
+                if src_file.find('file://') > -1:
+                    src_file = src_file.replace('file://', '')
+                fileName, fileExtension = os.path.splitext(src_file)
+                strcmd = (
+                    'openssl smime -decrypt -verify -inform'
+                    ' DER -in %s -noverify -out %s'
+                ) % (file_path, fileName)
+                cmd = shlex.split(strcmd)
+                try:
+                    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+                    stdoutdata, stderrdata = proc.communicate()
+                    if proc.wait() != 0:
+                        _logger.warning(stdoutdata)
+                        raise Exception(stderrdata)
+                    if not os.path.isfile(fileName):
+                        raise orm.except_osv(
+                            _('Errore'),
+                            _(
+                                'Signed Xml file id not decryptable'
+                            )
+                        )
+                except Exception as e:
+                    raise orm.except_osv(
+                        _('Errore'),
+                        _(
+                            'Signed Xml file %s'
+                        ) % e.args
+                    )
+                fatt_file = open(fileName, 'r')
+                data_encoded = base64.encodestring(fatt_file.read())
+                fatt = fatturapa_v_1_1.CreateFromDocument(
+                    data_encoded.decode('base64'))
+            elif fatturapa_attachment.datas_fname.endswith('.xml'):
+                fatt = fatturapa_v_1_1.CreateFromDocument(
+                    fatturapa_attachment.datas.decode('base64'))
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(
@@ -990,6 +1036,9 @@ class WizardImportFatturapa(orm.TransientModel):
                 self.check_CessionarioCommittente(
                     cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
                     context=context)
+            # decrypt  p7m file
+            if os.path.isfile(fileName):
+                os.remove(fileName)
         return {
             'view_type': 'form',
             'name': "PA Supplier Invoices",
