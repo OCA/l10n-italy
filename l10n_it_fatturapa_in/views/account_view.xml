@@ -56,18 +56,18 @@
             <field name="inherit_id" ref="l10n_it_fatturapa.view_invoice_line_form_fatturapa"></field>
             <field name="arch" type="xml">
                 <field name="invoice_line_tax_id" position="before">
-                    <field name="ftpa_uom" />
+                    <field name="ftpa_uom" readonly="1"/>
                 </field>
                 <field name="product_id" position="after">
-                    <field name="service_type" />
+                    <field name="service_type" readonly="1"/>
                 </field>
                 <separator string="FatturaPA" position="after">
                     <group>
                         <group>
-                            <field name="service_start" />
+                            <field name="service_start" readonly="1"/>
                         </group>
                         <group>
-                            <field name="service_end" />
+                            <field name="service_end" readonly="1"/>
                         </group>
                     </group>
                     <group string="Articles Code">
@@ -173,7 +173,7 @@
                     <page string="FatturaPA">
                         <notebook>
                             <page string="Inconsistencies">
-                                <field name="inconsistencies" nolabel="1" colspan="4"></field>
+                                <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>
                             </page>
                             <page string="FatturaPA attachments">
                                 <group string="Attachments">
