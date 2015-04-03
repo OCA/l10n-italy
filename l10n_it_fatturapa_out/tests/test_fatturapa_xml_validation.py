@@ -92,7 +92,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
         self.assertTrue(res, 'Export failed.')
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT02780790107_00001.xml')
+        self.assertEqual(attachment.datas_fname, 'IT06363391001_00001.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64').decode('latin1')
