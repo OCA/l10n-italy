@@ -62,10 +62,16 @@ class AccountInvoice(models.Model):
                     raise Warning(_("The invoice date cannot be later than the"
                                     " date of registration!"))
 
-            date_start = inv.registration_date or inv.date_invoice \
-                or time.strftime('%Y-%m-%d')
-            date_stop = inv.registration_date or inv.date_invoice \
-                or time.strftime('%Y-%m-%d')
+            if inv.type in ['in_invoice', 'in_refund']:
+                date_start = inv.registration_date or inv.date_invoice \
+                    or time.strftime('%Y-%m-%d')
+                date_stop = inv.registration_date or inv.date_invoice \
+                    or time.strftime('%Y-%m-%d')
+            elif inv.type in ['out_invoice', 'out_refund']:
+                date_start = inv.date_invoice or inv.registration_date \
+                    or time.strftime('%Y-%m-%d')
+                date_stop = inv.date_invoice or inv.registration_date \
+                    or time.strftime('%Y-%m-%d')
 
             period_ids = self.pool.get('account.period').search(
                 cr, uid,
