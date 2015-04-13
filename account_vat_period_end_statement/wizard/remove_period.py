@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+# OpenERP, Open Source Management Solution
 #    Copyright (C) 2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2015 Associazione Odoo Italia
@@ -25,30 +25,33 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-class remove_period(orm.TransientModel):
 
+class remove_period(orm.TransientModel):
     def _get_period_ids(self, cr, uid, context=None):
         statement_obj = self.pool.get('account.vat.period.end.statement')
         res = []
         if context.has_key('active_id'):
-            statement = statement_obj.browse(cr, uid, context['active_id'], context)
+            statement = statement_obj.browse(cr, uid, context['active_id'],
+                                             context)
             for period in statement.period_ids:
                 res.append((period.id, period.name))
         return res
 
     _name = 'remove.period.from.vat.statement'
-    
+
     _columns = {
         'period_id': fields.selection(_get_period_ids, 'Period', required=True),
-        }
+    }
 
     def remove_period(self, cr, uid, ids, context=None):
         if 'active_id' not in context:
             raise orm.except_orm(_('Error'), _('Current statement not found'))
-        self.pool.get('account.period').write(cr, uid, [int(self.browse(cr, uid, ids, context)[0].period_id)], {'vat_statement_id': False}, context=context)
-        self.pool.get('account.vat.period.end.statement').compute_amounts(cr, uid, [context['active_id']], context=context)
+        self.pool.get('account.period').write(cr, uid, [
+            int(self.browse(
+                cr, uid, ids, context)[0].period_id)],
+                {'vat_statement_id': False}, context=context)
+        self.pool.get('account.vat.period.end.statement').compute_amounts(
+            cr, uid, [context['active_id']], context=context)
         return {
             'type': 'ir.actions.act_window_close',
-            }
-
-
+        }
