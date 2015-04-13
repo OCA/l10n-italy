@@ -1,8 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Module name
-===========
+Period End VAT Statement
+========================
 
 This module helps to register the VAT statement of period end.
 
