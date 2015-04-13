@@ -57,39 +57,39 @@ class AccountVoucher(orm.Model):
             for inv_id in amounts_by_invoice:
                 invoice = inv_pool.browse(cr, uid, inv_id, context)
 
-                # only for supplier payments
-                if voucher.type != 'payment':
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('Can\'t handle withholding tax with voucher of '
-                          'type other than payment'))
-                if not invoice.company_id.withholding_account_id:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('The company does not have an associated '
-                          'Withholding account'))
-                if not invoice.company_id.withholding_payment_term_id:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('The company does not have an associated '
-                          'Withholding Payment Term'))
-                if not invoice.company_id.withholding_journal_id:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('The company does not have an associated '
-                          'Withholding journal'))
-                if not invoice.company_id.authority_partner_id:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('The company does not have an associated Tax '
-                          'Authority partner'))
-
                 move_ids = []
                 for tax_line in invoice.tax_line:
                     if (
                         tax_line.tax_code_id
                         and tax_line.tax_code_id.withholding_tax
                     ):
+                        # only for supplier payments
+                        if voucher.type != 'payment':
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('Can\'t handle withholding tax with voucher '
+                                  'of type other than payment'))
+                        if not invoice.company_id.withholding_account_id:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('The company does not have an associated '
+                                  'Withholding account'))
+                        if not invoice.company_id.withholding_payment_term_id:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('The company does not have an associated '
+                                  'Withholding Payment Term'))
+                        if not invoice.company_id.withholding_journal_id:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('The company does not have an associated '
+                                  'Withholding journal'))
+                        if not invoice.company_id.authority_partner_id:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('The company does not have an associated Tax'
+                                  ' Authority partner'))
+
                         # compute the new amount proportionally to paid amount
                         new_line_amount = curr_pool.round(
                             cr, uid, voucher.company_id.currency_id,
