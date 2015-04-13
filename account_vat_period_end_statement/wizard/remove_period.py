@@ -4,8 +4,8 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    Copyright (C) 2015 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,7 +25,7 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-class remove_period(orm.Model):
+class remove_period(orm.TransientModel):
 
     def _get_period_ids(self, cr, uid, context=None):
         statement_obj = self.pool.get('account.vat.period.end.statement')
