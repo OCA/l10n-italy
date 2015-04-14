@@ -26,8 +26,6 @@ from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
 import openerp.addons.decimal_precision as dp
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 
 class account_vat_period_end_statement(orm.Model):
@@ -85,12 +83,13 @@ class account_vat_period_end_statement(orm.Model):
 
     def move_line_id_payment_gets(self, cr, uid, ids, *args):
         res = {}
-        if not ids: return res
-        cr.execute('SELECT statement.id, l.id ' \
-                   'FROM account_move_line l ' \
-                   'LEFT JOIN account_vat_period_end_statement statement ON '\
-                   '(statement.move_id=l.move_id) ' \
-                   'WHERE statement.id IN %s ' \
+        if not ids:
+            return res
+        cr.execute('SELECT statement.id, l.id '
+                   'FROM account_move_line l '
+                   'LEFT JOIN account_vat_period_end_statement statement ON '
+                   '(statement.move_id=l.move_id) '
+                   'WHERE statement.id IN %s '
                    'AND l.account_id=statement.authority_vat_account_id',
                    (tuple(ids),))
         for r in cr.fetchall():
@@ -101,7 +100,8 @@ class account_vat_period_end_statement(orm.Model):
     # return the ids of the move lines which has the same
     # account than the statement whose id is in ids
     def move_line_id_payment_get(self, cr, uid, ids, *args):
-        if not ids: return []
+        if not ids:
+            return []
         result = self.move_line_id_payment_gets(cr, uid, ids, *args)
         return result.get(ids[0], [])
 
@@ -112,7 +112,8 @@ class account_vat_period_end_statement(orm.Model):
         ok = True
         for id in res:
             cr.execute(
-                'select reconcile_id from account_move_line where id=%s', (id,))
+                'select reconcile_id from account_move_line'
+                'where id=%s', (id,))
             ok = ok and bool(cr.fetchone()[0])
         return ok
 
@@ -202,10 +203,12 @@ class account_vat_period_end_statement(orm.Model):
                 for m in statement.move_id.line_id:
                     temp_lines = []
                     if m.reconcile_id:
-                        temp_lines = map(lambda x: x.id, m.reconcile_id.line_id)
+                        temp_lines = map(
+                            lambda x: x.id, m.reconcile_id.line_id)
                     elif m.reconcile_partial_id:
-                        temp_lines = map(lambda x: x.id,
-                                         m.reconcile_partial_id.line_partial_ids)
+                        temp_lines = map(
+                            lambda x: x.id,
+                            m.reconcile_partial_id.line_partial_ids)
                     lines += [x for x in temp_lines if x not in lines]
                     src.append(m.id)
 
@@ -254,7 +257,7 @@ class account_vat_period_end_statement(orm.Model):
             states={'confirmed': [('readonly', True)],
                     'paid': [('readonly', True)],
                     'draft': [('readonly', False)]},
-                    digits_compute=dp.get_precision('Account')),
+            digits_compute=dp.get_precision('Account')),
 
         'generic_vat_account_line_ids': fields.one2many(
             'statement.generic.account.line', 'statement_id',
@@ -314,39 +317,30 @@ class account_vat_period_end_statement(orm.Model):
                                                         None, 50),
                    'account.move.line': (_get_statement_from_line, None, 50),
                    'account.move.reconcile': (_get_statement_from_reconcile,
-                                              None, 50),
-                  },
+                                              None, 50)},
             help="It indicates that the statement has been paid and the"
-                 " journal entry of the statement has been reconciled with one "
+                 "journal entry of the statement has been reconciled with one"
                  "or several journal entries of payment."),
-        'residual': fields.function(_amount_residual,
-                                    digits_compute=dp.get_precision('Account'),
-                                    string='Balance',
-                                    store={
-                                        'account.vat.period.end.statement': (
-                                        lambda self, cr, uid, ids, c={}: ids,
-                                        ['debit_vat_account_line_ids',
-                                         'credit_vat_account_line_ids',
-                                         'generic_vat_account_line_ids',
-                                         'move_id', 'state'], 50),
-                                        'statement.credit.account.line': (
-                                        _get_credit_line,
-                                        ['amount', 'statement_id'], 50),
-                                        'statement.debit.account.line': (
-                                        _get_debit_line,
-                                        ['amount', 'statement_id'], 50),
-                                        'statement.generic.account.line': (
-                                        _get_generic_line,
-                                        ['amount', 'statement_id'], 50),
-                                        'account.move': (
-                                        _get_statement_from_move, None, 50),
-                                        'account.move.line': (
-                                        _get_statement_from_line, None, 50),
-                                        'account.move.reconcile': (
-                                        _get_statement_from_reconcile, None,
-                                        50),
-                                    },
-                                    help="Remaining amount due."),
+        'residual': fields.function(
+            _amount_residual,
+            digits_compute=dp.get_precision('Account'),
+            string='Balance',
+            store={'account.vat.period.end.statement': (
+                lambda self, cr, uid, ids, c={}: ids,
+                ['debit_vat_account_line_ids', 'credit_vat_account_line_ids',
+                 'generic_vat_account_line_ids', 'move_id', 'state'], 50),
+                'statement.credit.account.line': (
+                    _get_credit_line, ['amount', 'statement_id'], 50),
+                'statement.debit.account.line': (
+                    _get_debit_line, ['amount', 'statement_id'], 50),
+                'statement.generic.account.line': (
+                    _get_generic_line, ['amount', 'statement_id'], 50),
+                'account.move': (_get_statement_from_move, None, 50),
+                'account.move.line': (_get_statement_from_line, None, 50),
+                'account.move.reconcile': (
+                    _get_statement_from_reconcile, None, 50),
+            },
+            help="Remaining amount due."),
         'payment_ids': fields.function(_compute_lines,
                                        relation='account.move.line',
                                        type="many2many", string='Payments'),
@@ -520,10 +514,10 @@ class account_vat_period_end_statement(orm.Model):
                         math.fabs(statement.authority_vat_amount),
                         date_ref=statement.date, context=context)
                     if len(due_list) == 0:
-                        raise orm.except_orm(_('Error'),
-                                             _(
-                                                 'The payment term %s does not have due dates')
-                                             % statement.payment_term_id.name)
+                        raise orm.except_orm(
+                            _('Error'),
+                            _('The payment term %s does not have due dates')
+                            % statement.payment_term_id.name)
                     for term in due_list:
                         current_line = end_debit_vat_data
                         current_line['credit'] = term[1]
@@ -550,17 +544,21 @@ class account_vat_period_end_statement(orm.Model):
             mod_obj = self.pool.get('ir.model.data')
             act_obj = self.pool.get('ir.actions.act_window')
             period_obj = self.pool.get('account.period')
-            period_ids = period_obj.find(cr, uid, dt=statement.date, context=context)
+            period_ids = period_obj.find(
+                cr, uid, dt=statement.date, context=context)
             if len(period_ids)> 1:
-                raise orm.except_orm(_('Error'), _('Too many periods for date %s') % str(statement.date))
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Too many periods for date %s') % str(statement.date))
             period = period_obj.browse(cr, uid, period_ids[0], context)
-            result = mod_obj.get_object_reference(cr, uid, 'account', 'action_tax_code_tree')
+            result = mod_obj.get_object_reference(
+                cr, uid, 'account', 'action_tax_code_tree')
             id = result and result[1] or False
             result = act_obj.read(cr, uid, [id], context=context)[0]
 
             fiscalyear_id = period.fiscalyear_id.id
-            result['context'] = str({'period_id': period.id, \
-                                     'fiscalyear_id': fiscalyear_id, \
+            result['context'] = str({'period_id': period.id,
+                                     'fiscalyear_id': fiscalyear_id,
                                         'state': 'posted'})
 
             period_code = period.code
@@ -585,8 +583,9 @@ class account_vat_period_end_statement(orm.Model):
                     statement.write(
                         {'previous_debit_vat_amount': prev_statement.residual})
                 elif prev_statement.authority_vat_amount < 0:
+                    prev_amount = prev_statement.authority_vat_amount
                     statement.write({
-                        'previous_credit_vat_amount': - prev_statement.authority_vat_amount})
+                        'previous_credit_vat_amount': - prev_amount})
 
             credit_line_ids = []
             debit_line_ids = []
@@ -645,7 +644,7 @@ class account_vat_period_end_statement(orm.Model):
         partner = self.pool.get('res.partner').browse(cr, uid, partner_id,
                                                       context)
         return {'value': {
-        'authority_vat_account_id': partner.property_account_payable.id}}
+            'authority_vat_account_id': partner.property_account_payable.id}}
 
 
 class statement_debit_account_line(orm.Model):

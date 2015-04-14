@@ -30,7 +30,7 @@ class remove_period(orm.TransientModel):
     def _get_period_ids(self, cr, uid, context=None):
         statement_obj = self.pool.get('account.vat.period.end.statement')
         res = []
-        if context.has_key('active_id'):
+        if context and 'active_id' in context:
             statement = statement_obj.browse(cr, uid, context['active_id'],
                                              context)
             for period in statement.period_ids:
@@ -40,16 +40,18 @@ class remove_period(orm.TransientModel):
     _name = 'remove.period.from.vat.statement'
 
     _columns = {
-        'period_id': fields.selection(_get_period_ids, 'Period', required=True),
+        'period_id': fields.selection(_get_period_ids,
+                                      'Period',
+                                      required=True),
     }
 
     def remove_period(self, cr, uid, ids, context=None):
         if 'active_id' not in context:
             raise orm.except_orm(_('Error'), _('Current statement not found'))
-        self.pool.get('account.period').write(cr, uid, [
-            int(self.browse(
-                cr, uid, ids, context)[0].period_id)],
-                {'vat_statement_id': False}, context=context)
+        self.pool.get('account.period').write(
+            cr, uid,
+            [int(self.browse(cr, uid, ids, context)[0].period_id)],
+            {'vat_statement_id': False}, context=context)
         self.pool.get('account.vat.period.end.statement').compute_amounts(
             cr, uid, [context['active_id']], context=context)
         return {
