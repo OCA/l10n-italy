@@ -248,7 +248,6 @@ class WizardImportFatturapa(orm.TransientModel):
         self, cr, uid, credit_account_id, line, context=None
     ):
         account_tax_model = self.pool['account.tax']
-        ir_values = self.pool.get('ir.values')
         if float(line.AliquotaIVA) == 0.0 and line.Natura:
             account_tax_ids = account_tax_model.search(
                 cr, uid,
