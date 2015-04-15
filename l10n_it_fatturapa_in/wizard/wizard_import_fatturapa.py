@@ -306,9 +306,9 @@ class WizardImportFatturapa(orm.TransientModel):
                         context['inconsistencies'] += '\n'
                     context['inconsistencies'] += (
                         _(
-                              "Too many tax with percentage equals to \"%s\"\n"
-                              "but default tax is of same percentage, "
-                              "fix it if is required    "
+                            "Too many tax with percentage equals to \"%s\"\n"
+                            "but default tax is of same percentage, "
+                            "fix it if is required"
                         ) % line.AliquotaIVA
                     )
         retLine = {
