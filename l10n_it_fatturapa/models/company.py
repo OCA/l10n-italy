@@ -96,7 +96,9 @@ class account_config_settings(orm.TransientModel):
             type='many2one',
             relation="ir.sequence",
             string="Sequence",
-            help='FatturaPA Sequence'
+            help="il progressivo univoco del file è rappresentato da una "
+                 "stringa alfanumerica di lunghezza massima di 5 caratteri "
+                 "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
             ),
         'fatturapa_art73': fields.related(
             'company_id', 'fatturapa_art73',
