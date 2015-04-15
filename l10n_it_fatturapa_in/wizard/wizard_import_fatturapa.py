@@ -285,11 +285,14 @@ class WizardImportFatturapa(orm.TransientModel):
                       'equals to: "%s"')
                     % line.AliquotaIVA)
             if len(account_tax_ids) > 1:
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Too many tax with percentage '
-                      'equals to: "%s"')
-                    % line.AliquotaIVA)
+                if context.get('inconsistencies'):
+                    context['inconsistencies'] += '\n'
+                context['inconsistencies'] += (
+                    _(
+                        "Too many tax with percentage equals to \"%s\"\n"
+                        "fix it if is required"
+                    ) % line.AliquotaIVA
+                )
         retLine = {
             'name': line.Descrizione,
             'sequence': int(line.NumeroLinea),
