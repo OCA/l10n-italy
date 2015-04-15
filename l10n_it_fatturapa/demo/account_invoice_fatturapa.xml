@@ -2,11 +2,11 @@
 <openerp>
     <data noupdate="1">
 
-        <record id="tax_code_sale_22" model="account.tax.code">
+        <record id="tax_code_purchase_22" model="account.tax.code">
             <field name="name">IVA a credito 22%</field>
         </record>
 
-        <record id="tax_base_code_sale_22" model="account.tax.code">
+        <record id="tax_base_code_purchase_22" model="account.tax.code">
             <field name="name">IVA a credito 22% (imponibile)</field>
         </record>
 
@@ -14,8 +14,8 @@
             <field name="name">22%</field>
             <field name="description">22</field>
             <field name="amount">0.22</field>
-            <field name="base_code_id" ref="tax_base_code_sale_22"></field>
-            <field name="tax_code_id" ref="tax_code_sale_22"></field>
+            <field name="base_code_id" ref="tax_base_code_purchase_22"></field>
+            <field name="tax_code_id" ref="tax_code_purchase_22"></field>
         </record>
 
 
@@ -23,12 +23,16 @@
             <field name="name">IVA a credito 22% (SPLIT PAYMENT)</field>
         </record>
 
+        <record id="tax_base_code_purchase_22_SP" model="account.tax.code">
+            <field name="name">IVA a credito 22% (SPLIT PAYMENT) (imponibile)</field>
+        </record>
+
         <record id="tax_22_SP" model="account.tax">
             <field name="name">SP22%</field>
             <field name="description">22 Split Payment</field>
             <field name="amount">0.22</field>
-            <field name="base_code_id" ref="tax_code_purchase_22_SP"></field>
-            <field name="tax_code_id" ref="tax_code_sale_22"></field>
+            <field name="base_code_id" ref="tax_base_code_purchase_22_SP"></field>
+            <field name="tax_code_id" ref="tax_code_purchase_22_SP"></field>
         </record>
 
         <record id="tax_code_purchase_0" model="account.tax.code">
