@@ -248,6 +248,7 @@ class WizardImportFatturapa(orm.TransientModel):
         self, cr, uid, credit_account_id, line, context=None
     ):
         account_tax_model = self.pool['account.tax']
+        #check and if exist default tax genrate object def_purchase_tax
         ir_values = self.pool.get('ir.values')
         company_id = self.pool.get('res.company')._company_default_get(
             cr, uid, 'account.invoice.line', context=context
@@ -256,8 +257,10 @@ class WizardImportFatturapa(orm.TransientModel):
             cr, uid, 'product.product', 'supplier_taxes_id',
             company_id=company_id
         )
-        def_purchase_tax = account_tax_model.browse(
-            cr, uid, supplier_taxes_id, context=context)[0]
+        def_purchase_tax = False
+        if supplier_taxes_id:
+            def_purchase_tax = account_tax_model.browse(
+                cr, uid, supplier_taxes_id, context=context)[0]
         if float(line.AliquotaIVA) == 0.0 and line.Natura:
             account_tax_ids = account_tax_model.search(
                 cr, uid,
@@ -294,6 +297,8 @@ class WizardImportFatturapa(orm.TransientModel):
                     _('Define a tax with percentage '
                       'equals to: "%s"')
                     % line.AliquotaIVA)
+            # check if there are multiple taxes with
+            # same percentage and if true noticed an inconsistencies
             if len(account_tax_ids) > 1:
                 if context.get('inconsistencies'):
                     context['inconsistencies'] += '\n'
@@ -303,6 +308,9 @@ class WizardImportFatturapa(orm.TransientModel):
                         "fix it if is required"
                     ) % line.AliquotaIVA
                 )
+                # if there are multiple taxes with same percentage
+                # and there is a default tax with this percentage,
+                # set taxes list equal to supplier_taxes_id, loaded before
                 if (
                     def_purchase_tax and
                     def_purchase_tax.amount == (float(line.AliquotaIVA) / 100)
