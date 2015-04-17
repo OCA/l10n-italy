@@ -298,7 +298,7 @@ class WizardImportFatturapa(orm.TransientModel):
                       'equals to: "%s"')
                     % line.AliquotaIVA)
             # check if there are multiple taxes with
-            # same percentage and if true noticed an inconsistencies
+            # same percentage and if true report an inconsistencies
             if len(account_tax_ids) > 1:
                 if context.get('inconsistencies'):
                     context['inconsistencies'] += '\n'
