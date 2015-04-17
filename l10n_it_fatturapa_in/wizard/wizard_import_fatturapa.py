@@ -248,7 +248,7 @@ class WizardImportFatturapa(orm.TransientModel):
         self, cr, uid, credit_account_id, line, context=None
     ):
         account_tax_model = self.pool['account.tax']
-        #check and if exist default tax genrate object def_purchase_tax
+        #check if a default tax exists and generate def_purchase_tax object
         ir_values = self.pool.get('ir.values')
         company_id = self.pool.get('res.company')._company_default_get(
             cr, uid, 'account.invoice.line', context=context
