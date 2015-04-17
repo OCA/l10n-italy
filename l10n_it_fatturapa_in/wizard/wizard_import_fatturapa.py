@@ -253,14 +253,14 @@ class WizardImportFatturapa(orm.TransientModel):
         company_id = self.pool.get('res.company')._company_default_get(
             cr, uid, 'account.invoice.line', context=context
         )
-        supplier_taxes_id = ir_values.get_default(
+        supplier_taxes_ids = ir_values.get_default(
             cr, uid, 'product.product', 'supplier_taxes_id',
             company_id=company_id
         )
         def_purchase_tax = False
-        if supplier_taxes_id:
+        if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(
-                cr, uid, supplier_taxes_id, context=context)[0]
+                cr, uid, supplier_taxes_ids, context=context)[0]
         if float(line.AliquotaIVA) == 0.0 and line.Natura:
             account_tax_ids = account_tax_model.search(
                 cr, uid,
@@ -315,7 +315,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     def_purchase_tax and
                     def_purchase_tax.amount == (float(line.AliquotaIVA) / 100)
                 ):
-                    account_tax_ids = supplier_taxes_id
+                    account_tax_ids = supplier_taxes_ids
         retLine = {
             'name': line.Descrizione,
             'sequence': int(line.NumeroLinea),
