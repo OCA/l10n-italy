@@ -375,10 +375,6 @@ class account_vat_period_end_statement(orm.Model):
         for statement in self.browse(cr, uid, ids, context):
             if statement.move_id:
                 statement.move_id.unlink()
-            '''
-            if statement.voucher_id:
-                statement.voucher_id.unlink()
-            '''
         self.write(cr, uid, ids, {'state': 'draft'})
 
     def statement_paid(self, cr, uid, ids, context=None):
@@ -534,38 +530,6 @@ class account_vat_period_end_statement(orm.Model):
             self.write(cr, uid, statement.id, {'state': 'confirmed'})
 
         return True
-
-    """
-    def open_chart_of_taxes(self, cr, uid, ids, context=None):
-        result = {}
-        if context is None:
-            context = {}
-        for statement in self.browse(cr, uid, ids, context):
-            mod_obj = self.pool.get('ir.model.data')
-            act_obj = self.pool.get('ir.actions.act_window')
-            period_obj = self.pool.get('account.period')
-            period_ids = period_obj.find(
-                cr, uid, dt=statement.date, context=context)
-            if len(period_ids)> 1:
-                raise orm.except_orm(
-                    _('Error'),
-                    _('Too many periods for date %s') % str(statement.date))
-            period = period_obj.browse(cr, uid, period_ids[0], context)
-            result = mod_obj.get_object_reference(
-                cr, uid, 'account', 'action_tax_code_tree')
-            id = result and result[1] or False
-            result = act_obj.read(cr, uid, [id], context=context)[0]
-
-            fiscalyear_id = period.fiscalyear_id.id
-            result['context'] = str({'period_id': period.id,
-                                     'fiscalyear_id': fiscalyear_id,
-                                        'state': 'posted'})
-
-            period_code = period.code
-            result['name'] += period_code and (':' + period_code) or ''
-            result['nodestroy'] = True
-        return result
-    """
 
     def compute_amounts(self, cr, uid, ids, context=None):
         debit_line_pool = self.pool.get('statement.debit.account.line')
