@@ -16,28 +16,34 @@
                         </group>
                         <group string="Self Invoicing">
                             <field name="partner_type"
-                                attrs="{'readonly': [('method', '!=', 'selfinvoice')]}"/>
+                                attrs="{
+                                    'readonly': [('method', '!=', 'selfinvoice')],
+                                    'required': [('method', '=', 'selfinvoice')]}"/>
                             <field name="partner_id"
                                 attrs="{'readonly': [('method', '!=', 'selfinvoice')],
-                                    'invisible': [('partner_type', '!=', 'other')]}"/>
+                                    'invisible': [('partner_type', '!=', 'other')],
+                                    'required': [('partner_type', '=', 'other')]}"/>
                             <field name="journal_id"
-                                attrs="{'readonly': [('method', '!=', 'selfinvoice')]}"/>
+                                attrs="{
+                                    'readonly': [('method', '!=', 'selfinvoice')],
+                                    'required': [('method', '=', 'selfinvoice')]}"/>
                             <field name="payment_journal_id"
-                                attrs="{'readonly': [('method', '!=', 'selfinvoice')]}"/>
+                                attrs="{
+                                    'readonly': [('method', '!=', 'selfinvoice')],
+                                    'required': [('method', '=', 'selfinvoice')]}"/>
                             <field name="transitory_account_id"
-                                attrs="{'readonly': [('method', '!=', 'selfinvoice')]}"/>
+                                attrs="{
+                                    'readonly': [('method', '!=', 'selfinvoice')],
+                                    'required': [('method', '=', 'selfinvoice')]}"/>
                             <field name="tax_ids" widget="one2many_list"
-                                attrs="{'readonly': [('method', '!=', 'selfinvoice')]}">
+                                attrs="{
+                                    'readonly': [('method', '!=', 'selfinvoice')],
+                                    'required': [('method', '=', 'selfinvoice')]}">
                                 <tree string="Tax Mapping" editable="bottom">
                                     <field name="tax_src_id" domain="[('parent_id','=',False)]"/>
                                     <field name="tax_dest_id" domain="[('parent_id','=',False)]"/>
                                 </tree>
-                                <form string="Tax Mapping">
-                                    <field name="tax_src_id" domain="[('parent_id','=',False)]"/>
-                                    <field name="tax_dest_id" domain="[('parent_id','=',False)]"/>
-                                </form>
                             </field>
-                                attrs="{'readonly': [('method', '!=', 'selfinvoice')]}"/>
                         </group>
                         <group string="Text on Invoice">
                             <field name="invoice_text"/>

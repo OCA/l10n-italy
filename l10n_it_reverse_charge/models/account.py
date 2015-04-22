@@ -37,8 +37,8 @@ class AccountFiscalPositionRCTax(models.Model):
         required=True)
     tax_dest_id = fields.Many2one(
         'account.tax',
-        string='Replacement Tax')
-
+        string='Replacement Tax',
+        required=True)
     _sql_constraints = [
         ('tax_src_dest_uniq',
          'unique (rc_type_id,tax_src_id,tax_dest_id)',
@@ -50,11 +50,12 @@ class AccountRCType(models.Model):
     _name = 'account.rc.type'
     _description = 'Reverse Charge Type'
 
-    name = fields.Char('Name')
+    name = fields.Char('Name', required=True)
     method = fields.Selection(
         (('integration', 'VAT Integration'),
             ('selfinvoice', 'Self Invoice')),
-        string='Method')
+        string='Method',
+        required=True)
     partner_type = fields.Selection(
         (('supplier', 'Supplier'), ('other', 'Other')),
         string='Self Invoice Partner Type')
@@ -105,15 +106,6 @@ class AccountInvoice(models.Model):
     rc_self_invoice_id = fields.Many2one('account.invoice', 'RC Self Invoice')
     rc_purchase_invoice_id = fields.Many2one(
         'account.invoice', 'RC Purchase Invoice')
-
-    @api.multi
-    def action_move_create(self):
-        super(AccountInvoice, self).action_move_create()
-        if self.fiscal_position.rc_type_id and \
-                self.fiscal_position.rc_type_id.method == 'integration':
-            for line in self.move_id.line_id:
-                if not line.debit and not line.credit:
-                    line.skip = True
 
     def rc_inv_line_vals(self, line):
         return {

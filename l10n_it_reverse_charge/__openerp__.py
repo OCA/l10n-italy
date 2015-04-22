@@ -29,7 +29,7 @@
     'author': 'Abstract',
     'website': 'http://www.abstract.it',
     'depends': [
-        'account', 'base', 'account_move_skip', 'account_invoice_entry_date'],
+        'account', 'base', 'account_invoice_entry_date'],
     'data': [
         'security/ir.model.access.csv',
         'views/account_view.xml',
