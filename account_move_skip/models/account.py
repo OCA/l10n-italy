@@ -58,10 +58,27 @@ class AccountMove(models.Model):
             copy=True),
         }
 
+    def write(self, cr, uid, ids, values, context=None):
+        if not context:
+            context = {}
+        for line in values['line_id']:
+            if line[2] and not line[2]['credit'] and not line[2]['debit']:
+                line[2]['skip'] = True
+        return super(AccountMove, self).write(
+            cr, uid, ids, values, context=context)
+
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
     skip = fields.Boolean('Skip')
 
-
+    def write(
+            self, cr, uid, ids, values, context=None, check=True,
+            update_check=True):
+        if not context:
+            context = {}
+        import ipdb;ipdb.set_trace()
+        return super(AccountMoveLine, self).write(
+            cr, uid, ids, values, context=context, check=check,
+            update_check=update_check)
