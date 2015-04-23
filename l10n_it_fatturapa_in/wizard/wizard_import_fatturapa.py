@@ -99,6 +99,8 @@ class WizardImportFatturapa(orm.TransientModel):
             )
 
     def getPartnerBase(self, cr, uid, DatiAnagrafici, context=None):
+        if not DatiAnagrafici:
+            return False
         partner_model = self.pool['res.partner']
         cf = DatiAnagrafici.CodiceFiscale or False
         CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
