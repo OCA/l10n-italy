@@ -35,6 +35,7 @@ class TestPecMessages(test_common.SingleTransactionCase):
         super(TestPecMessages, self).setUp()
         self.thread_model = self.registry('mail.thread')
         self.message_model = self.registry('mail.message')
+        self.fetchmail_model = self.registry('fetchmail.server')
 
     def test_message_1(self):
         cr, uid = self.cr, self.uid
@@ -58,10 +59,37 @@ class TestPecMessages(test_common.SingleTransactionCase):
         msg = self.message_model.browse(cr, uid, msg_ids[0])
         self.assertEqual(msg.pec_type, 'posta-certificata')
         self.assertEqual(msg.direction, 'in')
-        self.assertEqual(msg.direction, 'in')
         imap_server_id = self.ref('l10n_it_pec_messages.imap_pec_server')
         self.assertEqual(msg.server_id.id, imap_server_id)
         self.assertEqual(msg.email_from, 'thinkstudio@pec.it')
         self.assertEqual(
             msg.message_id,
             u'<NEOEQO$8B558E13C0664DE7004C1EFB790D1A09@pec.it>')
+        self.assertFalse(msg.author_id)
+
+    def test_message_2_with_partner(self):
+        cr, uid = self.cr, self.uid
+        msg = self.getFile('message2')
+        context = {
+            'lang': 'en_US',
+            'tz': False,
+            'uid': 1,
+            'fetchmail_cron_running': True,
+            'server_type': u'imap',
+            'fetchmail_server_id': 1,
+            }
+        imap_server_id = self.ref('l10n_it_pec_messages.imap_pec_server')
+        self.fetchmail_model.write(cr, uid, [imap_server_id], {
+            'force_create_partner_from_mail': True,
+            })
+        self.thread_model.message_process(
+            cr, uid, None, msg, save_original=False, strip_attachments=False,
+            context=context)
+        msg_ids = self.message_model.search(
+            cr, uid, [
+                ('pec_msg_id', '=',
+                    'opec275.20141127151216.06559.08.1.17@pec.aruba.it')])
+        self.assertEqual(len(msg_ids), 1)
+        msg = self.message_model.browse(cr, uid, msg_ids[0])
+        self.assertEqual(msg.author_id.name, u'thinkstudio@pec.it')
+        self.assertEqual(msg.email_from, 'thinkstudio@pec.it')
