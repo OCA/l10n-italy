@@ -105,6 +105,20 @@ class MailThread(orm.Model):
                 return dsn['Action']
 
     def _get_msg_payload(self, cr, uid, msg, parts={}, num=0):
+        """
+        
+	This method recursively checks the message structure
+        and saves the informations (bodies, attachments,
+        pkcs7 signatures, etc.) in a dictionary.
+        
+	The parameters:
+        
+	num msg is the multipart message to process
+        parts is the dictionary where the informations are saved
+        num is an integer that refers to the deepness
+        of the content in the original mail
+        
+	"""
         for part in msg.get_payload():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
