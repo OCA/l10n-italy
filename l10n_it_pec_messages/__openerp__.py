@@ -67,7 +67,6 @@ Contributors
     'depends': [
         'fetchmail', 'mail','l10n_it_pec'
     ],
-    'init_xml': [],
     'data': [
         "security/mail_data.xml",
         "view/fetchmail_view.xml",
@@ -77,7 +76,9 @@ Contributors
         "view/res_users.xml",
         "security/ir.model.access.csv",
     ],
-    'demo_xml': [],
+    'demo': [
+        'demo/pec_data.xml',
+        ],
     'test': [],
     'installable': True,
     'active': False,
