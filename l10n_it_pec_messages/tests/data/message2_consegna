@@ -1,0 +1,198 @@
+Return-Path: <posta-certificata@pec.aruba.it>
+Delivered-To: l.battistini@pec.it
+Received: from smtprm02.pec.ad.aruba.it (localhost [127.0.0.1])
+	by smtprm02.pec.ad.aruba.it (lmtpd) with LMTP id 23888.002;
+	Fri, 14 Nov 2014 18:26:32 +0100 (CET)
+Subject: CONSEGNA: test private
+X-Riferimento-Message-ID: <1415985992.182905912399292.346704098667155-openerp-private@elbati-Vostro-3550>
+Date: Fri, 14 Nov 2014 18:26:32 +0100
+Message-ID: <opec275.20141114182632.23219.07.1.10.48@pec.aruba.it>
+To: l.battistini@pec.it
+From: posta-certificata@pec.aruba.it
+X-Ricevuta: avvenuta-consegna
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg=sha1; boundary="----17B8B201CA8B6BFDD8083A5E6B8E4281"
+
+This is an S/MIME signed message
+
+------17B8B201CA8B6BFDD8083A5E6B8E4281
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----------=_1415985992-23219-15"
+
+This is a multi-part message in MIME format...
+
+------------=_1415985992-23219-15
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+-- Ricevuta di avvenuta consegna del messaggio indirizzato a thinkstudio@pe=
+c.it "posta certificata" --
+
+Il giorno 14/11/2014 alle ore 18:26:32 (+0100) il messaggio con Oggetto
+"test private" inviato da "l.battistini@pec.it"
+ed indirizzato a "thinkstudio@pec.it"
+=E8 stato correttamente consegnato al destinatario.
+Identificativo del messaggio: opec275.20141114182632.23219.07.1.48@pec.arub=
+a.it
+Il messaggio originale =E8 incluso in allegato, per aprirlo cliccare sul fi=
+le "postacert.eml" (nella webmail o in alcuni client di posta l'allegato po=
+trebbe avere come nome l'oggetto del messaggio originale).
+L'allegato daticert.xml contiene informazioni di servizio sulla trasmissione
+
+
+NOTA
+  La presenza o meno del messaggio originale, come allegato della ricevuta =
+di consegna (file postacert.eml),
+ dipende dal tipo di ricevuta di consegna che =E8 stato scelto di ricevere,=
+ secondo la seguente casistica:
+
+
+ - Ricevuta di consegna completa (Default): il messaggio originale
+   completo =E8 allegato alla ricevuta di consegna.
+ - Ricevuta di consegna breve: il messaggio originale  =E8 allegato alla
+   ricevuta di consegna  ma eventuali allegati presenti al suo interno
+   verranno sostituiti con i rispettivi hash.
+ - Ricevuta di consegna sintetica: il messaggio originale non verr=E0
+   allegato nella ricevuta di consegna.
+
+   Per maggiori dettagli consultare:
+    http://kb.aruba.it/KB/a701/ricevuta-di-avvenuta-consegna.aspx?KBSearchI=
+D=3D1358305
+
+------------=_1415985992-23219-15
+Content-Type: application/xml; name="daticert.xml"
+Content-Disposition: inline; filename="daticert.xml"
+Content-Transfer-Encoding: base64
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHBvc3Rh
+Y2VydCB0aXBvPSJhdnZlbnV0YS1jb25zZWduYSIgZXJyb3JlPSJuZXNzdW5v
+Ij4KICAgIDxpbnRlc3RhemlvbmU+CiAgICAgICAgPG1pdHRlbnRlPmwuYmF0
+dGlzdGluaUBwZWMuaXQ8L21pdHRlbnRlPgogICAgICAgIDxkZXN0aW5hdGFy
+aSB0aXBvPSJjZXJ0aWZpY2F0byI+dGhpbmtzdHVkaW9AcGVjLml0PC9kZXN0
+aW5hdGFyaT4KICAgICAgICA8cmlzcG9zdGU+bC5iYXR0aXN0aW5pQHBlYy5p
+dDwvcmlzcG9zdGU+CiAgICAgICAgPG9nZ2V0dG8+dGVzdCBwcml2YXRlPC9v
+Z2dldHRvPgogICAgPC9pbnRlc3RhemlvbmU+CiAgICA8ZGF0aT4KICAgICAg
+ICA8Z2VzdG9yZS1lbWl0dGVudGU+QVJVQkEgUEVDIFMucC5BLjwvZ2VzdG9y
+ZS1lbWl0dGVudGU+CiAgICAgICAgPGRhdGEgem9uYT0iKzAxMDAiPgogICAg
+ICAgICAgICA8Z2lvcm5vPjE0LzExLzIwMTQ8L2dpb3Jubz4KICAgICAgICAg
+ICAgPG9yYT4xODoyNjozMjwvb3JhPgogICAgICAgIDwvZGF0YT4KICAgICAg
+ICA8aWRlbnRpZmljYXRpdm8+b3BlYzI3NS4yMDE0MTExNDE4MjYzMi4yMzIx
+OS4wNy4xLjQ4QHBlYy5hcnViYS5pdDwvaWRlbnRpZmljYXRpdm8+CiAgICAg
+ICAgPG1zZ2lkPiZsdDsxNDE1OTg1OTkyLjE4MjkwNTkxMjM5OTI5Mi4zNDY3
+MDQwOTg2NjcxNTUtb3BlbmVycC1wcml2YXRlQGVsYmF0aS1Wb3N0cm8tMzU1
+MCZndDs8L21zZ2lkPgogICAgICAgIDxyaWNldnV0YSB0aXBvPSJjb21wbGV0
+YSIgLz4KICAgICAgICA8Y29uc2VnbmE+dGhpbmtzdHVkaW9AcGVjLml0PC9j
+b25zZWduYT4KICAgIDwvZGF0aT4KPC9wb3N0YWNlcnQ+Cg==
+
+------------=_1415985992-23219-15
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+Content-Transfer-Encoding: 7bit
+
+Received: from [127.0.1.1] (dynamic-adsl-94-36-46-113.clienti.tiscali.it [94.36.46.113])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtps.pec.aruba.it (Postfix) with ESMTPSA id 2CBD4E0001D5
+	for <thinkstudio@pec.it>; Fri, 14 Nov 2014 18:26:32 +0100 (CET)
+Content-Type: multipart/mixed; boundary="===============0120290343=="
+MIME-Version: 1.0
+Subject: test private
+From: Administrator <l.battistini@pec.it>
+Reply-To: l.battistini@pec.it
+To: "\"Per conto di: thinkstudio@pec.it\"" <thinkstudio@pec.it>
+Date: Fri, 14 Nov 2014 17:26:32 -0000
+Message-ID: <opec275.20141114182632.23219.07.1.48@pec.aruba.it>
+X-Riferimento-Message-ID: <1415985992.182905912399292.346704098667155-openerp-private@elbati-Vostro-3550>
+
+--===============0120290343==
+Content-Type: multipart/alternative; boundary="===============0252540050=="
+MIME-Version: 1.0
+
+--===============0252540050==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+cHJpdgotLQpBZG1pbmlzdHJhdG9yCgpBY2Nlc3MgeW91ciBtZXNzYWdlcyBhbmQgcGVyc29uYWwg
+ZG9jdW1lbnRzIHRocm91Z2ggb3VyIEN1c3RvbWVyIFBvcnRhbCBbMV0KCgpbMV0gaHR0cDovL2xv
+Y2FsaG9zdDo4MDY5P2RiPXRlc3RfNyNhY3Rpb249bG9naW4mdG9rZW49TnVJM2VUSUhmTTROWXdr
+RFRCYUwmdHlwZT1zaWdudXAK
+
+--===============0252540050==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+PHA+cHJpdjwvcD4KPGRpdj48cD4tLTxici8+QWRtaW5pc3RyYXRvcjwvcD48L2Rpdj4KCjxkaXY+
+PHA+PHA+QWNjZXNzIHlvdXIgbWVzc2FnZXMgYW5kIHBlcnNvbmFsIGRvY3VtZW50cyB0aHJvdWdo
+IDxhIGhyZWY9Imh0dHA6Ly9sb2NhbGhvc3Q6ODA2OT9kYj10ZXN0XzcjYWN0aW9uPWxvZ2luJnRv
+a2VuPU51STNlVElIZk00Tll3a0RUQmFMJnR5cGU9c2lnbnVwIj5vdXIgQ3VzdG9tZXIgUG9ydGFs
+PC9hPjwvcD48L3A+PC9kaXY+Cg==
+
+--===============0252540050==--
+
+--===============0120290343==--
+
+------------=_1415985992-23219-15--
+
+------17B8B201CA8B6BFDD8083A5E6B8E4281
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIJqwYJKoZIhvcNAQcCoIIJnDCCCZgCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3
+DQEHAaCCB9kwggOFMIICbaADAgECAgINETANBgkqhkiG9w0BAQUFADBoMQswCQYD
+VQQGEwJJVDEQMA4GA1UECgwHRGlnaXRQQTExMC8GA1UECwwoVWZmaWNpbyBpbnRl
+cm9wZXJhYmlsaXRhJyBlIGNvb3BlcmF6aW9uZTEUMBIGA1UEAwwLRGlnaXRQQSBD
+QTEwHhcNMTQwMjEwMTIzMjIxWhcNMTcwMjEwMTIzMjIxWjBOMSQwIgYDVQQDDBtQ
+b3N0YSBDZXJ0aWZpY2F0YSBBUlVCQSBQRUMxGTAXBgNVBAoMEEFSVUJBIFBFQyBT
+LnAuQS4xCzAJBgNVBAYTAklUMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQ
+rsnZEQpkz8I2NTmt2Jj9QJIvGpKG8r6hUX0YaYGSolucoBrbVTl7IZ+LYyo+cXXu
+e3QcHFAMeO3y0RMsCSDimjDOLDPyN4VXdntoqgwHfauZHgUbIwdOP/7pIXOQRdgb
+Zvm9wKUw8f3OIMNOYek87Bv6+STB9ufoNYCkX6DMhwIDAQABo4HWMIHTMAkGA1Ud
+EwQCMAAwTgYDVR0gBEcwRTBDBgYrTBADAQEwOTA3BggrBgEFBQcCARYraHR0cDov
+L3d3dy5kaWdpdHBhLmdvdi5pdC9tYW51YWxpLW9wZXJhdGl2aTApBgNVHREEIjAg
+gR5wb3N0YS1jZXJ0aWZpY2F0YUBwZWMuYXJ1YmEuaXQwCwYDVR0PBAQDAgeAMB8G
+A1UdIwQYMBaAFP4ityTjTyfZBeDMuL3e9I0j/S/ZMB0GA1UdDgQWBBRM+kCtNZga
+awBvvT5WmMwpANppHjANBgkqhkiG9w0BAQUFAAOCAQEARAIko1J7lpwlybgntB12
+HSIb4ojfs6GW23IxBqURpI1HMYejjeObEsObqd4/etCLoTb+i2n7JT7FOi60mXDT
+Lb/+8jzDBYjvMzqq4DAq7wiOhC5LqOPYX4Yk2N1MEBUXFBNhMo4Th3ACfbuSDPf9
+sQqHIljHYlMxX+CuHyJQbhDPJDjJtIFOACc6GmZXrPGfdrR2zDeOzONTHpdNOluW
+2SdfAbHG76+WKQTSLE6N8MrD6SXVrW+EFb3rE6gMiHorwlhJ7ab3oY8gUZHepoqn
+u9foEeNi1pSES53gFtRZ+VZhrCB2VgYF3+STt3gUIk6ljlud6jErVidFQP5q4M9K
+DzCCBEwwggM0oAMCAQICBAcnSKAwDQYJKoZIhvcNAQEFBQAwWjELMAkGA1UEBhMC
+SUUxEjAQBgNVBAoTCUJhbHRpbW9yZTETMBEGA1UECxMKQ3liZXJUcnVzdDEiMCAG
+A1UEAxMZQmFsdGltb3JlIEN5YmVyVHJ1c3QgUm9vdDAeFw0xMTAxMTQxNjI5NTZa
+Fw0xODAxMTQxNjI4NTBaMGgxCzAJBgNVBAYTAklUMRAwDgYDVQQKDAdEaWdpdFBB
+MTEwLwYDVQQLDChVZmZpY2lvIGludGVyb3BlcmFiaWxpdGEnIGUgY29vcGVyYXpp
+b25lMRQwEgYDVQQDDAtEaWdpdFBBIENBMTCCASIwDQYJKoZIhvcNAQEBBQADggEP
+ADCCAQoCggEBAJmfpChKI1RHcuB986uv558PijbQoLI1r36gz8r4WIFqXVAtbeXd
+HV3yo3ov4VdVkgcV99r6926cDm/ftDNTS360CLTD51WKwn2Wzzo62CJL0pnQmYte
+VItGTS0sP37mMo9HleJHiZdE3YVJvVmINvEN8YOny8bKe1HexMuSlfCTvQn8a6sC
+Gln6iSzbAO37vd1SCLlUlhYN6GD0Ges9wcSN4Ih0Qzjn34IH50l7frZU1iXkESXc
+LtcIB4ikjVxVHZK47rqitgdp3O7Rs51s3oAfEANoi4HTAdjWopREXisrvmfHRrwm
+3U5FDmwtVam+2PjsL7FLzpb9t1JWP08cFXcCAwEAAaOCAQowggEGMBIGA1UdEwEB
+/wQIMAYBAf8CAQAwXAYDVR0gBFUwUzBIBgkrBgEEAbE+AQAwOzA5BggrBgEFBQcC
+ARYtaHR0cDovL2N5YmVydHJ1c3Qub21uaXJvb3QuY29tL3JlcG9zaXRvcnkuY2Zt
+MAcGBStMEAMBMA4GA1UdDwEB/wQEAwIBBjAfBgNVHSMEGDAWgBTlnVkwgkdYzKz6
+CFQ2hns6tQRN8DBCBgNVHR8EOzA5MDegNaAzhjFodHRwOi8vY2RwMS5wdWJsaWMt
+dHJ1c3QuY29tL0NSTC9PbW5pcm9vdDIwMjUuY3JsMB0GA1UdDgQWBBT+Irck408n
+2QXgzLi93vSNI/0v2TANBgkqhkiG9w0BAQUFAAOCAQEAJm1E4NZN66e8hw1MTc8L
+efwQzCL8ywqpEmN/5VMO7NVmL4rCya8BaAU+9oMsD61XH8TPPpCzFCb0Paqh0mkO
+tFFtFYVM95GU7xIi2tzcaqTVYMbPn3UnLJF+iqfItcYvcH9k7lT5iMs9BpSOL5PF
+4HUgeAThqNDT/xMNXPvTVXlNH5OWXkqgcy+mngAdapannx1XJ3MFeOwyJjTi+Yoh
++E+ODbVI03aacRtwlKySdSd44FjN4oQjkA7eVzkbIcyPZIHyaid+b5dYQSUPLvTQ
+FbKAoeXS+iyZmN6yo9uVXwkXwJGGRIopRssJVMJujmwqkTheypl7rp4LotOYLoci
+yzGCAZowggGWAgEBMG4waDELMAkGA1UEBhMCSVQxEDAOBgNVBAoMB0RpZ2l0UEEx
+MTAvBgNVBAsMKFVmZmljaW8gaW50ZXJvcGVyYWJpbGl0YScgZSBjb29wZXJhemlv
+bmUxFDASBgNVBAMMC0RpZ2l0UEEgQ0ExAgINETAJBgUrDgMCGgUAoIGDMBgGCSqG
+SIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE0MTExNDE3MjYz
+MlowIwYJKoZIhvcNAQkEMRYEFPhm7C2Gbviv8rGaPH+Om4934xFNMCQGCSqGSIb3
+DQEJDzEXMBUwCgYIKoZIhvcNAwcwBwYFKw4DAgcwDQYJKoZIhvcNAQEBBQAEgYAk
+CERtXBF2s+LIiQ3zh0/oCKSagHteMj+NFd5/5Bre6gUYl13X8nqkyegIEo0RY02+
+RH/060CnKR9EHO95wMmlRhp63CN+d8RY8qolZvobd5bxtwHoImwfbYMQ2m/aptsS
+qbkg9LSZtjsAu29ArAGX5PSWL9ocCF4Ntr9vCDOf4w==
+
+------17B8B201CA8B6BFDD8083A5E6B8E4281--
+
