@@ -94,7 +94,10 @@ class MailMessage(orm.Model):
         'pec_notifications_ids': fields.one2many(
             'mail.message', 'pec_msg_parent_id',
             'Related Notifications',  readonly=True),
-        'message_ok': fields.boolean('Message OK'),
+        'message_ok': fields.boolean(
+            'Message OK',
+            help="System sets this field to True when both delivery and "
+                 "reception messages are received for this message"),
         # TODO
         # delete delete follow fields when
         # new implementations are tested
