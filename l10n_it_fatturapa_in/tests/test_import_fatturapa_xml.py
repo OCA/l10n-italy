@@ -66,6 +66,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.partner_id.register_fiscalpos.code, 'RF02')
         self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0006')
         self.assertEqual(invoice.amount_total, 54.00)
+        self.assertEqual(invoice.gross_weight, 0.00)
+        self.assertEqual(invoice.net_weight, 0.00)
 
     def test_1_xml_import(self):
         cr, uid = self.cr, self.uid
