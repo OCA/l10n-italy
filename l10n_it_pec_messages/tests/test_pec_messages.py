@@ -35,7 +35,9 @@ class TestPecMessages(test_common.SingleTransactionCase):
         super(TestPecMessages, self).setUp()
         self.thread_model = self.registry('mail.thread')
         self.message_model = self.registry('mail.message')
+        self.mail_model = self.registry('mail.mail')
         self.fetchmail_model = self.registry('fetchmail.server')
+        self.compose_msg_model = self.registry('mail.compose.message')
 
     def test_message_1(self):
         cr, uid = self.cr, self.uid
@@ -69,8 +71,10 @@ class TestPecMessages(test_common.SingleTransactionCase):
 
     def test_message_2_with_partner(self):
         cr, uid = self.cr, self.uid
-        msg = self.getFile('message2')
-        context = {
+        msg_file = self.getFile('message2')
+        accettazione_msg_file = self.getFile('message2_accettazione')
+        consegna_msg_file = self.getFile('message2_consegna')
+        fetch_context = {
             'lang': 'en_US',
             'tz': False,
             'uid': 1,
@@ -83,8 +87,8 @@ class TestPecMessages(test_common.SingleTransactionCase):
             'force_create_partner_from_mail': True,
             })
         self.thread_model.message_process(
-            cr, uid, None, msg, save_original=False, strip_attachments=False,
-            context=context)
+            cr, uid, None, msg_file, save_original=False,
+            strip_attachments=False, context=fetch_context)
         msg_ids = self.message_model.search(
             cr, uid, [
                 ('pec_msg_id', '=',
@@ -93,3 +97,70 @@ class TestPecMessages(test_common.SingleTransactionCase):
         msg = self.message_model.browse(cr, uid, msg_ids[0])
         self.assertEqual(msg.author_id.name, u'thinkstudio@pec.it')
         self.assertEqual(msg.email_from, 'thinkstudio@pec.it')
+        context = {
+            'lang': 'en_US',
+            'search_disable_custom_filters': True,
+            'new_pec_mail': True,
+            'tz': False,
+            'uid': 1,
+            'show_pec_email': True,
+            'active_model': 'mail.message',
+            'reply_pec': True,
+            'default_composition_mode': 'reply',
+            'pec_messages': True,
+            'default_partner_ids': [msg.author_id.id],
+            'active_ids': msg_ids,
+            'active_id': msg_ids[0],
+            }
+        wizard_id = self.compose_msg_model.create(
+            cr, uid, {'body': u'<p>replying to message2</p>'}, context=context)
+        self.compose_msg_model.send_mail(cr, uid, [wizard_id], context=context)
+        sent_msg_ids = self.registry('mail.mail').search(
+            cr, uid, [('parent_id', '=', msg_ids[0])])
+        self.assertEqual(len(sent_msg_ids), 1)
+        sent_msg = self.mail_model.browse(cr, uid, sent_msg_ids[0])
+        self.assertEqual(sent_msg.pec_type, 'posta-certificata')
+        # setting message_id according to test data about
+        # delivery and reception messages
+        sent_msg.write({
+            'message_id': "<1415985992.182905912399292.346704098667155-"
+                          "openerp-private@elbati-Vostro-3550>"
+            })
+
+        # accettazione
+        self.thread_model.message_process(
+            cr, uid, None, accettazione_msg_file, save_original=False,
+            strip_attachments=False, context=fetch_context)
+        accettazione_msg_ids = self.message_model.search(
+            cr, uid, [
+                ('pec_msg_id', '=',
+                    'opec275.20141114182632.23219.07.1.48@pec.aruba.it'),
+                ('pec_type', '=', 'accettazione')])
+        self.assertEqual(len(accettazione_msg_ids), 1)
+        accettazione_msg = self.message_model.browse(
+            cr, uid, accettazione_msg_ids[0])
+        self.assertEqual(
+            accettazione_msg.pec_msg_parent_id.id, sent_msg.mail_message_id.id)
+        self.assertEqual(accettazione_msg.err_type, 'nessuno')
+        # no delivery message received yet
+        sent_msg.refresh()
+        self.assertEqual(sent_msg.message_ok, False)
+
+        # consegna
+        self.thread_model.message_process(
+            cr, uid, None, consegna_msg_file, save_original=False,
+            strip_attachments=False, context=fetch_context)
+        consegna_msg_ids = self.message_model.search(
+            cr, uid, [
+                ('pec_msg_id', '=',
+                    'opec275.20141114182632.23219.07.1.48@pec.aruba.it'),
+                ('pec_type', '=', 'avvenuta-consegna')])
+        consegna_msg = self.message_model.browse(
+            cr, uid, consegna_msg_ids[0])
+        self.assertEqual(
+            consegna_msg.pec_msg_parent_id.id, sent_msg.mail_message_id.id)
+        self.assertEqual(consegna_msg.err_type, 'nessuno')
+        self.assertEqual(len(consegna_msg_ids), 1)
+        # delivery and reception messages received
+        sent_msg.refresh()
+        self.assertEqual(sent_msg.message_ok, True)
