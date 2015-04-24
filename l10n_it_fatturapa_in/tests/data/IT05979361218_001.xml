@@ -67,6 +67,10 @@
                 </DatiCassaPrevidenziale>
                 <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
             </DatiGeneraliDocumento>
+            <DatiTrasporto>
+                <PesoLordo>0.00</PesoLordo>
+                <PesoNetto>0.00</PesoNetto>
+            </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>

@@ -99,6 +99,8 @@ class WizardImportFatturapa(orm.TransientModel):
             )
 
     def getPartnerBase(self, cr, uid, DatiAnagrafici, context=None):
+        if not DatiAnagrafici:
+            return False
         partner_model = self.pool['res.partner']
         cf = DatiAnagrafici.CodiceFiscale or False
         CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
@@ -876,42 +878,42 @@ class WizardImportFatturapa(orm.TransientModel):
         if Delivery:
             delivery_id = self.getCarrirerPartner(
                 cr, uid, Delivery, context=context)
-            if delivery_id:
-                delivery_dict = {
-                    'carrier_id': delivery_id,
-                    'transport_vaicle': Delivery.MezzoTrasporto or '',
-                    'transport_reason': Delivery.CausaleTrasporto or '',
-                    'number_items': Delivery.NumeroColli or 0,
-                    'description': Delivery.Descrizione or '',
-                    'unit_weight': Delivery.UnitaMisuraPeso or 0.0,
-                    'gross_weight': Delivery.PesoLordo or 0.0,
-                    'net_weight': Delivery.PesoNetto or 0.0,
-                    'pickup_datetime': Delivery.DataOraRitiro or False,
-                    'transport_date': Delivery.DataInizioTrasporto or False,
-                    'delivery_datetime': Delivery.DataOraConsegna or False,
-                    'delivery_address': '',
-                }
-                if Delivery.IndirizzoResa:
-                    delivery_dict['delivery_address'] = (
-                        '{0}, {1}\n{2} - {3}\n{4} {5}'.format(
-                            Delivery.IndirizzoResa.Indirizzo or '',
-                            Delivery.IndirizzoResa.NumeroCivico or '',
-                            Delivery.IndirizzoResa.CAP or '',
-                            Delivery.IndirizzoResa.Comune or '',
-                            Delivery.IndirizzoResa.Provincia or '',
-                            Delivery.IndirizzoResa.Nazione or ''
-                        )
+            delivery_dict = {
+                'carrier_id': delivery_id,
+                'transport_vaicle': Delivery.MezzoTrasporto or '',
+                'transport_reason': Delivery.CausaleTrasporto or '',
+                'number_items': Delivery.NumeroColli or 0,
+                'description': Delivery.Descrizione or '',
+                'unit_weight': Delivery.UnitaMisuraPeso or 0.0,
+                'gross_weight': Delivery.PesoLordo or 0.0,
+                'net_weight': Delivery.PesoNetto or 0.0,
+                'pickup_datetime': Delivery.DataOraRitiro or False,
+                'transport_date': Delivery.DataInizioTrasporto or False,
+                'delivery_datetime': Delivery.DataOraConsegna or False,
+                'delivery_address': '',
+            }
+
+            if Delivery.IndirizzoResa:
+                delivery_dict['delivery_address'] = (
+                    '{0}, {1}\n{2} - {3}\n{4} {5}'.format(
+                        Delivery.IndirizzoResa.Indirizzo or '',
+                        Delivery.IndirizzoResa.NumeroCivico or '',
+                        Delivery.IndirizzoResa.CAP or '',
+                        Delivery.IndirizzoResa.Comune or '',
+                        Delivery.IndirizzoResa.Provincia or '',
+                        Delivery.IndirizzoResa.Nazione or ''
                     )
-                if Delivery.TipoResa:
-                    StockModel = self.pool['stock.incoterms']
-                    stock_incoterm_id = StockModel.search(
-                        cr, uid, [('code', '=', Delivery.TipoResa)],
-                        context=context
-                    )
-                    if stock_incoterm_id:
-                        delivery_dict['incoterm'] = stock_incoterm_id
-                invoice_model.write(
-                    cr, uid, invoice_id, delivery_dict, context=context)
+                )
+            if Delivery.TipoResa:
+                StockModel = self.pool['stock.incoterms']
+                stock_incoterm_id = StockModel.search(
+                    cr, uid, [('code', '=', Delivery.TipoResa)],
+                    context=context
+                )
+                if stock_incoterm_id:
+                    delivery_dict['incoterm'] = stock_incoterm_id
+            invoice_model.write(
+                cr, uid, invoice_id, delivery_dict, context=context)
         # 2.2.2
         Summary_datas = FatturaBody.DatiBeniServizi.DatiRiepilogo
         if Summary_datas:
