@@ -29,6 +29,7 @@ _logger = logging.getLogger(__name__)
 
 from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_1
 from openerp.addons.base_iban import base_iban
+from lxml import etree
 
 
 class WizardImportFatturapa(orm.TransientModel):
@@ -250,7 +251,7 @@ class WizardImportFatturapa(orm.TransientModel):
         self, cr, uid, credit_account_id, line, context=None
     ):
         account_tax_model = self.pool['account.tax']
-        #check if a default tax exists and generate def_purchase_tax object
+        # check if a default tax exists and generate def_purchase_tax object
         ir_values = self.pool.get('ir.values')
         company_id = self.pool.get('res.company')._company_default_get(
             cr, uid, 'account.invoice.line', context=context
@@ -1028,6 +1029,13 @@ class WizardImportFatturapa(orm.TransientModel):
                     FatturaElettronicaHeader.DatiTrasmissione.
                     CodiceDestinatario, company.partner_id.ipa_code))
 
+    def strip_xml_content(self, xml):
+        root = etree.XML(xml)
+        for elem in root.iter('*'):
+            if elem.text is not None:
+                elem.text = elem.text.strip()
+        return etree.tostring(root)
+
     def importFatturaPA(self, cr, uid, ids, context=None):
         if not context:
             context = {}
@@ -1074,10 +1082,11 @@ class WizardImportFatturapa(orm.TransientModel):
                     )
                 with open(xml_file_name, 'r') as fatt_file:
                     file_content = fatt_file.read()
-                fatt = fatturapa_v_1_1.CreateFromDocument(file_content)
+                xml_string = file_content
             elif fatturapa_attachment.datas_fname.endswith('.xml'):
-                fatt = fatturapa_v_1_1.CreateFromDocument(
-                    fatturapa_attachment.datas.decode('base64'))
+                xml_string = fatturapa_attachment.datas.decode('base64')
+            xml_string = self.strip_xml_content(xml_string)
+            fatt = fatturapa_v_1_1.CreateFromDocument(xml_string)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(
