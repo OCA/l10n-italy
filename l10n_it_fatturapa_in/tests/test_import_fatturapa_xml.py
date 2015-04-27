@@ -127,6 +127,17 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.supplier_invoice_number, '124')
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(
+            invoice.invoice_line[0].invoice_line_tax_id[0].name, '22%')
+        self.assertEqual(
+            invoice.invoice_line[1].invoice_line_tax_id[0].name, '22%')
+        self.assertEqual(
+            invoice.invoice_line[0].invoice_line_tax_id[0].amount, 0.22)
+        self.assertEqual(
+            invoice.invoice_line[1].invoice_line_tax_id[0].amount, 0.22)
+        self.assertEqual(
             invoice.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\nToo many'
+            ' taxes with percentage equals to "22.00"\nfix it if '
+            'required\nToo many taxes with percentage equals to "22.00"\nfix '
+            'it if required')

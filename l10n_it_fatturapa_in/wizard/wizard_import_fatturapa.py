@@ -280,7 +280,7 @@ class WizardImportFatturapa(orm.TransientModel):
             if len(account_tax_ids) > 1:
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Too many tax with percentage '
+                    _('Too many taxes with percentage '
                       '%s and nature %s found')
                     % (line.AliquotaIVA, line.Natura))
         else:
@@ -306,8 +306,8 @@ class WizardImportFatturapa(orm.TransientModel):
                     context['inconsistencies'] += '\n'
                 context['inconsistencies'] += (
                     _(
-                        "Too many tax with percentage equals to \"%s\"\n"
-                        "fix it if is required"
+                        "Too many taxes with percentage equals to \"%s\"\n"
+                        "fix it if required"
                     ) % line.AliquotaIVA
                 )
                 # if there are multiple taxes with same percentage
