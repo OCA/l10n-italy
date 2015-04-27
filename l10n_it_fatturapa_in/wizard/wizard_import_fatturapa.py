@@ -1059,14 +1059,14 @@ class WizardImportFatturapa(orm.TransientModel):
                         _logger.warning(stdoutdata)
                         raise Exception(stderrdata)
                     if not os.path.isfile(xml_file_name):
-                        raise orm.except_osv(
+                        raise orm.except_orm(
                             _('Errore'),
                             _(
                                 'Signed Xml file id not decryptable'
                             )
                         )
                 except Exception as e:
-                    raise orm.except_osv(
+                    raise orm.except_orm(
                         _('Errore'),
                         _(
                             'Signed Xml file %s'
