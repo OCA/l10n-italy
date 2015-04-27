@@ -152,10 +152,10 @@
             <DettaglioLinee>
                 <NumeroLinea>2</NumeroLinea>
                 <Descrizione>FORNITURE VARIE PER UFFICIO</Descrizione>
-                <Quantita>10.00</Quantita>
-                <PrezzoUnitario>2.00</PrezzoUnitario>
-                <PrezzoTotale>20.00</PrezzoTotale>
-                <AliquotaIVA>22.00</AliquotaIVA>
+                <Quantita>          10.00</Quantita>
+                <PrezzoUnitario>          2.00</PrezzoUnitario>
+                <PrezzoTotale>          20.00</PrezzoTotale>
+                <AliquotaIVA>          22.00</AliquotaIVA>
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>22.00</AliquotaIVA>
