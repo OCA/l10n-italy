@@ -106,19 +106,27 @@ class MailThread(orm.Model):
 
     def _get_msg_payload(self, cr, uid, msg, parts={}, num=0):
         """
-        
-	This method recursively checks the message structure
-        and saves the informations (bodies, attachments,
-        pkcs7 signatures, etc.) in a dictionary.
-        
-	The parameters:
-        
-	num msg is the multipart message to process
-        parts is the dictionary where the informations are saved
-        num is an integer that refers to the deepness
-        of the content in the original mail
-        
-	"""
+        This method recursively checks the message structure
+            and saves the informations (bodies, attachments,
+            pkcs7 signatures, etc.) in a dictionary.
+
+        The method parameters are:
+
+         - msg is the multipart message to process; the first time
+         the method is called it is exactly the Original.eml message,
+         that is: the email as it arrives from the imap server.
+         The method is called recursively when a multipart structure is
+         found, in this case msg is a multipart inside the Original.eml
+         message and the num param is the depth of the multipart inside
+         the Original.eml message.
+         - parts is the dictionary where the informations are saved
+         - num is an integer that refers to the depth
+            of the msg content in the Original.eml message
+
+        Some examples of the structure for the different kind of pec messages
+        can be found in the docs folder of this module
+
+        """
         for part in msg.get_payload():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
