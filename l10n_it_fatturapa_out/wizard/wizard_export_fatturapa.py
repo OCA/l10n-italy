@@ -634,7 +634,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 cr, uid, tax_line.name, context=context)
             tax = tax_pool.browse(cr, uid, tax_id, context=context)
             riepilogo = DatiRiepilogoType(
-                AliquotaIVA='%.2f' % tax.amount,
+                AliquotaIVA='%.2f' % (tax.amount * 100),
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
                 )
