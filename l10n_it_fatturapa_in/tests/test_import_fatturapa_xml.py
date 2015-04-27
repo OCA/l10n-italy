@@ -137,6 +137,10 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.invoice_line[1].price_unit, 2)
         self.assertEqual(
+            invoice.invoice_line[0].cod_article_ids[0].name, 'EAN')
+        self.assertEqual(
+            invoice.invoice_line[0].cod_article_ids[0].code_val, '12345')
+        self.assertEqual(
             invoice.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\nToo many'

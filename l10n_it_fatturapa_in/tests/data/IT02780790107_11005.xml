@@ -143,6 +143,10 @@
         <DatiBeniServizi>
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
+                <CodiceArticolo>
+                    <CodiceTipo>EAN</CodiceTipo>
+                    <CodiceValore>12345</CodiceValore>
+                </CodiceArticolo>
                 <Descrizione>LA DESCRIZIONE DELLA FORNITURA PUO' SUPERARE I CENTO CARATTERI CHE RAPPRESENTAVANO IL PRECEDENTE LIMITE DIMENSIONALE. TALE LIMITE NELLA NUOVA VERSIONE E' STATO PORTATO A MILLE CARATTERI</Descrizione>
                 <Quantita>5.00</Quantita>
                 <PrezzoUnitario>1.00</PrezzoUnitario>

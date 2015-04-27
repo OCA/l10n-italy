@@ -41,7 +41,7 @@ class fatturapa_article_code(orm.Model):
         'name': fields.char('Cod Type', size=35),
         'code_val': fields.char('Code Value', size=35),
         'invoice_line_id': fields.many2one(
-            'account.invoice', 'Related Invoice line',
+            'account.invoice.line', 'Related Invoice line',
             ondelete='cascade', select=True
         )
     }
