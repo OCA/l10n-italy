@@ -1036,6 +1036,81 @@ class WizardImportFatturapa(orm.TransientModel):
                 elem.text = elem.text.strip()
         return etree.tostring(root)
 
+    def check_file_is_pem(self, p7m_file):
+        file_is_pem = True
+        strcmd = (
+            'openssl asn1parse  -inform PEM -in %s'
+        ) % (p7m_file)
+        cmd = shlex.split(strcmd)
+        try:
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            stdoutdata, stderrdata = proc.communicate()
+            if proc.wait() != 0:
+                file_is_pem = False
+        except Exception as e:
+            raise orm.except_orm(
+                _('Errore'),
+                _(
+                    'Check PEM file %s'
+                ) % e.args
+            )
+        return file_is_pem
+
+    def parse_pem_2_der(self, pem_file, tmp_der_file):
+        strcmd = (
+            'openssl asn1parse -in %s -out %s'
+        ) % (pem_file, tmp_der_file)
+        cmd = shlex.split(strcmd)
+        try:
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            stdoutdata, stderrdata = proc.communicate()
+            if proc.wait() != 0:
+                _logger.warning(stdoutdata)
+                raise Exception(stderrdata)
+            if not os.path.isfile(tmp_der_file):
+                raise orm.except_orm(
+                    _('Errore'),
+                    _(
+                        'ASN.1 structure is not parsable in DER'
+                    )
+                )
+        except Exception as e:
+            raise orm.except_orm(
+                _('Errore'),
+                _(
+                    'Parsing PEM to DER  file %s'
+                ) % e.args
+            )
+        return tmp_der_file
+
+    def decrypt_to_xml(self, signed_file, xml_file):
+        strcmd = (
+            'openssl smime -decrypt -verify -inform'
+            ' DER -in %s -noverify -out %s'
+        ) % (signed_file, xml_file)
+        cmd = shlex.split(strcmd)
+        try:
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            stdoutdata, stderrdata = proc.communicate()
+            if proc.wait() != 0:
+                _logger.warning(stdoutdata)
+                raise Exception(stderrdata)
+            if not os.path.isfile(xml_file):
+                raise orm.except_orm(
+                    _('Errore'),
+                    _(
+                        'Signed Xml file not decryptable'
+                    )
+                )
+        except Exception as e:
+            raise orm.except_orm(
+                _('Errore'),
+                _(
+                    'Signed Xml file %s'
+                ) % e.args
+            )
+        return xml_file
+
     def importFatturaPA(self, cr, uid, ids, context=None):
         if not context:
             context = {}
@@ -1056,81 +1131,21 @@ class WizardImportFatturapa(orm.TransientModel):
                     '/tmp/%s_tmp' % fatturapa_attachment.datas_fname)
                 with open(temp_file_name, 'w') as p7m_file:
                     p7m_file.write(fatturapa_attachment.datas.decode('base64'))
-
-                file_has_pem = True
-                # check if temp_file_name is a PEM file
                 xml_file_name = os.path.splitext(temp_file_name)[0]
-                strcmd = (
-                    'openssl asn1parse  -inform PEM -in %s'
-                ) % (temp_file_name)
-                cmd = shlex.split(strcmd)
-                try:
-                    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-                    stdoutdata, stderrdata = proc.communicate()
-                    if proc.wait() != 0:
-                        file_has_pem = False
-                except Exception as e:
-                    raise orm.except_orm(
-                        _('Errore'),
-                        _(
-                            'Check PEM file %s'
-                        ) % e.args
-                    )
+
+                # check if temp_file_name is a PEM file
+                file_is_pem = self.check_file_is_pem(temp_file_name)
+
                 # if temp_file_name is a PEM file
                 # parse it in a DER file
-                if file_has_pem:
-                    strcmd = (
-                        'openssl asn1parse -in %s -out %s'
-                    ) % (temp_file_name, temp_pem_file_name)
-                    cmd = shlex.split(strcmd)
-                    try:
-                        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-                        stdoutdata, stderrdata = proc.communicate()
-                        if proc.wait() != 0:
-                            _logger.warning(stdoutdata)
-                            raise Exception(stderrdata)
-                        if not os.path.isfile(temp_pem_file_name):
-                            raise orm.except_orm(
-                                _('Errore'),
-                                _(
-                                    'ASN.1 structure is not parsable in DER'
-                                )
-                            )
-                        else:
-                            temp_file_name = temp_pem_file_name
-                    except Exception as e:
-                        raise orm.except_orm(
-                            _('Errore'),
-                            _(
-                                'Parsing PEM to DER  file %s'
-                            ) % e.args
-                        )
+                if file_is_pem:
+                    temp_file_name = self.parse_pem_2_der(
+                        temp_file_name, temp_pem_file_name)
+
                 # decrypt signed DER file in XML readable
-                strcmd = (
-                    'openssl smime -decrypt -verify -inform'
-                    ' DER -in %s -noverify -out %s'
-                ) % (temp_file_name, xml_file_name)
-                cmd = shlex.split(strcmd)
-                try:
-                    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-                    stdoutdata, stderrdata = proc.communicate()
-                    if proc.wait() != 0:
-                        _logger.warning(stdoutdata)
-                        raise Exception(stderrdata)
-                    if not os.path.isfile(xml_file_name):
-                        raise orm.except_orm(
-                            _('Errore'),
-                            _(
-                                'Signed Xml file not decryptable'
-                            )
-                        )
-                except Exception as e:
-                    raise orm.except_orm(
-                        _('Errore'),
-                        _(
-                            'Signed Xml file %s'
-                        ) % e.args
-                    )
+                xml_file_name = self.decrypt_to_xml(
+                    temp_file_name, xml_file_name)
+
                 with open(xml_file_name, 'r') as fatt_file:
                     file_content = fatt_file.read()
                 xml_string = file_content
