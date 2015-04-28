@@ -1052,9 +1052,60 @@ class WizardImportFatturapa(orm.TransientModel):
             # decrypt  p7m file
             if fatturapa_attachment.datas_fname.endswith('.p7m'):
                 temp_file_name = '/tmp/%s' % fatturapa_attachment.datas_fname
+                temp_pem_file_name = (
+                    '/tmp/%s_tmp' % fatturapa_attachment.datas_fname)
                 with open(temp_file_name, 'w') as p7m_file:
                     p7m_file.write(fatturapa_attachment.datas.decode('base64'))
+
+                file_has_pem = True
+                # check if temp_file_name is a PEM file
                 xml_file_name = os.path.splitext(temp_file_name)[0]
+                strcmd = (
+                    'openssl asn1parse  -inform PEM -in %s'
+                ) % (temp_file_name)
+                cmd = shlex.split(strcmd)
+                try:
+                    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+                    stdoutdata, stderrdata = proc.communicate()
+                    if proc.wait() != 0:
+                        file_has_pem = False
+                except Exception as e:
+                    raise orm.except_orm(
+                        _('Errore'),
+                        _(
+                            'Check PEM file %s'
+                        ) % e.args
+                    )
+                # if temp_file_name is a PEM file
+                # parse it in a DER file
+                if file_has_pem:
+                    strcmd = (
+                        'openssl asn1parse -in %s -out %s'
+                    ) % (temp_file_name, temp_pem_file_name)
+                    cmd = shlex.split(strcmd)
+                    try:
+                        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+                        stdoutdata, stderrdata = proc.communicate()
+                        if proc.wait() != 0:
+                            _logger.warning(stdoutdata)
+                            raise Exception(stderrdata)
+                        if not os.path.isfile(temp_pem_file_name):
+                            raise orm.except_orm(
+                                _('Errore'),
+                                _(
+                                    'ASN.1 structure is not parsable in DER'
+                                )
+                            )
+                        else:
+                            temp_file_name = temp_pem_file_name
+                    except Exception as e:
+                        raise orm.except_orm(
+                            _('Errore'),
+                            _(
+                                'Parsing PEM to DER  file %s'
+                            ) % e.args
+                        )
+                # decrypt signed DER file in XML readable
                 strcmd = (
                     'openssl smime -decrypt -verify -inform'
                     ' DER -in %s -noverify -out %s'
@@ -1070,7 +1121,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         raise orm.except_orm(
                             _('Errore'),
                             _(
-                                'Signed Xml file id not decryptable'
+                                'Signed Xml file not decryptable'
                             )
                         )
                 except Exception as e:

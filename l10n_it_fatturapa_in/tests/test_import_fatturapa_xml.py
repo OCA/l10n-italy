@@ -53,6 +53,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
                 'datas_fname': file_name
             })
         wizard_id = self.wizard_model.create(cr, uid, {})
+
         return self.wizard_model.importFatturaPA(
             cr, uid, wizard_id, context={'active_ids': [attach_id]})
 
