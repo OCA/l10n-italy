@@ -58,7 +58,7 @@
                     <newline/>
                     <button name="%(l10n_it_pec_messages.action_reply_pec_compose_message_wizard)d"
                             string="Reply" type="action" icon="terp-mail-message-new"
-                            context="{'default_partner_ids':[author_id],'default_composition_mode':'reply','pec_messages': True}"/>
+                            context="{'default_partner_ids':author_id and [author_id] or [],'default_composition_mode':'reply','pec_messages': True}"/>
                     <newline/>
 
                     <notebook colspan="6" >
