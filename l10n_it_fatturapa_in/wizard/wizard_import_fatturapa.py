@@ -1067,19 +1067,19 @@ class WizardImportFatturapa(orm.TransientModel):
             if proc.wait() != 0:
                 _logger.warning(stdoutdata)
                 raise Exception(stderrdata)
-            if not os.path.isfile(tmp_der_file):
-                raise orm.except_orm(
-                    _('Errore'),
-                    _(
-                        'ASN.1 structure is not parsable in DER'
-                    )
-                )
         except Exception as e:
             raise orm.except_orm(
                 _('Errore'),
                 _(
                     'Parsing PEM to DER  file %s'
                 ) % e.args
+            )
+        if not os.path.isfile(tmp_der_file):
+            raise orm.except_orm(
+                _('Errore'),
+                _(
+                    'ASN.1 structure is not parsable in DER'
+                )
             )
         return tmp_der_file
 
@@ -1095,19 +1095,19 @@ class WizardImportFatturapa(orm.TransientModel):
             if proc.wait() != 0:
                 _logger.warning(stdoutdata)
                 raise Exception(stderrdata)
-            if not os.path.isfile(xml_file):
-                raise orm.except_orm(
-                    _('Errore'),
-                    _(
-                        'Signed Xml file not decryptable'
-                    )
-                )
         except Exception as e:
             raise orm.except_orm(
                 _('Errore'),
                 _(
                     'Signed Xml file %s'
                 ) % e.args
+            )
+        if not os.path.isfile(xml_file):
+            raise orm.except_orm(
+                _('Errore'),
+                _(
+                    'Signed Xml file not decryptable'
+                )
             )
         return xml_file
 
@@ -1127,7 +1127,7 @@ class WizardImportFatturapa(orm.TransientModel):
             # decrypt  p7m file
             if fatturapa_attachment.datas_fname.endswith('.p7m'):
                 temp_file_name = '/tmp/%s' % fatturapa_attachment.datas_fname
-                temp_pem_file_name = (
+                temp_der_file_name = (
                     '/tmp/%s_tmp' % fatturapa_attachment.datas_fname)
                 with open(temp_file_name, 'w') as p7m_file:
                     p7m_file.write(fatturapa_attachment.datas.decode('base64'))
@@ -1140,7 +1140,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 # parse it in a DER file
                 if file_is_pem:
                     temp_file_name = self.parse_pem_2_der(
-                        temp_file_name, temp_pem_file_name)
+                        temp_file_name, temp_der_file_name)
 
                 # decrypt signed DER file in XML readable
                 xml_file_name = self.decrypt_to_xml(

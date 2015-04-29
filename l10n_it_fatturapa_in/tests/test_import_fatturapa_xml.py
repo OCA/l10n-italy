@@ -23,6 +23,7 @@ import base64
 import tempfile
 import openerp.tests.common as test_common
 from openerp import addons
+from openerp.osv.orm import except_orm
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
@@ -148,3 +149,13 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             ' taxes with percentage equals to "22.00"\nfix it if '
             'required\nToo many taxes with percentage equals to "22.00"\nfix '
             'it if required')
+
+    def test_5_import_except(self):
+        #File not exist Exception
+        self.assertRaises(
+            Exception, self.run_wizard, 'test5_Eception', '')
+        #fake Signed file is passed , generate orm_exception
+        self.assertRaises(
+            except_orm, self.run_wizard, 'test5_orm_eception',
+            'IT05979361218_fake.xml.p7m'
+        )
