@@ -20,6 +20,7 @@
 
 from openerp.osv import fields, orm
 import base64
+import re
 
 
 class FatturaPANotification(orm.Model):
@@ -96,7 +97,13 @@ class FatturaPANotification(orm.Model):
         See 2.2 at
 http://www.fatturapa.gov.it/export/fatturazione/sdi/Specifiche_tecniche_SdI_v1.1.pdf
         """
-        file_name = file_name.replace(".xml.p7m", "")
-        file_name = file_name.replace(".xml", "")
-        file_name = file_name.replace(".zip", "")
+        insensitive_xml_p7m = re.compile(
+            re.escape('.xml.p7m'), re.IGNORECASE)
+        file_name = insensitive_xml_p7m.sub('', file_name)
+        insensitive_xml_p7m = re.compile(
+            re.escape('.xml'), re.IGNORECASE)
+        file_name = insensitive_xml_p7m.sub('', file_name)
+        insensitive_xml_p7m = re.compile(
+            re.escape('.zip'), re.IGNORECASE)
+        file_name = insensitive_xml_p7m.sub('', file_name)
         return file_name
