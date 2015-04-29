@@ -143,10 +143,10 @@
                     <separator string="FatturaPA Payment"></separator>
                     <group>
                         <field name="fatturapa_payments" nolabel="1" readonly="1">
-                            <tree string="Related Documents">
+                            <tree string="Payments">
                                 <field name="payment_terms"></field>
                             </tree>
-                            <form string="Related Documents" version="7.0">
+                            <form string="Payments" version="7.0">
                                 <sheet>
                                     <group>
                                         <field name="payment_terms"></field>

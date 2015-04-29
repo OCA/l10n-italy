@@ -443,8 +443,8 @@ class WizardImportFatturapa(orm.TransientModel):
     ):
         res = []
         Tipo = line.Tipo or False
-        Percentuale = (float(line.Percentuale)/100) or 0.0
-        Importo = float(line.Importo) or 0.0
+        Percentuale = line.Percentuale and float(line.Percentuale) or 0.0
+        Importo = line.Importo and float(line.Importo) or 0.0
         res = {
             'percentage': Percentuale,
             'amount': Importo,

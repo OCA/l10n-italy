@@ -150,6 +150,16 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             'required\nToo many taxes with percentage equals to "22.00"\nfix '
             'it if required')
 
+    def test_5_xml_import(self):
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test0', 'IT05979361218_003.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0008')
+        self.assertEqual(
+            invoice.invoice_line[0].discount_rise_price_ids[0].name, 'SC')
+        self.assertEqual(
+
     def test_5_import_except(self):
         #File not exist Exception
         self.assertRaises(
