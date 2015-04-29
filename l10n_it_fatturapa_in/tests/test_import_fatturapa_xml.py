@@ -23,6 +23,7 @@ import base64
 import tempfile
 import openerp.tests.common as test_common
 from openerp import addons
+from openerp.osv.orm import except_orm
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
@@ -53,6 +54,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
                 'datas_fname': file_name
             })
         wizard_id = self.wizard_model.create(cr, uid, {})
+
         return self.wizard_model.importFatturaPA(
             cr, uid, wizard_id, context={'active_ids': [attach_id]})
 
@@ -158,3 +160,13 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.invoice_line[0].discount_rise_price_ids[0].name, 'SC')
         self.assertEqual(
             invoice.invoice_line[0].discount_rise_price_ids[0].percentage, 10)
+
+    def test_6_import_except(self):
+        #File not exist Exception
+        self.assertRaises(
+            Exception, self.run_wizard, 'test6_Eception', '')
+        #fake Signed file is passed , generate orm_exception
+        self.assertRaises(
+            except_orm, self.run_wizard, 'test6_orm_eception',
+            'IT05979361218_fake.xml.p7m'
+        )

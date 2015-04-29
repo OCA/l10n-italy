@@ -53,6 +53,79 @@
             <field name="tax_code_id" ref="tax_code_purchase_0"></field>
         </record>
 
+        <record id="tax_code_purchase_0_e15" model="account.tax.code">
+            <field name="name">Esculso art. 15</field>
+        </record>
+
+        <record id="tax_base_code_purchase_0_e15" model="account.tax.code">
+            <field name="name">IVA a credito 0% (credito)</field>
+        </record>
+
+        <record id="tax_00_e15" model="account.tax">
+            <field name="name">Esculso Art. 15</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="non_taxable_nature">N1</field>
+            <field name="law_reference">Escluso Articolo 15</field>
+            <field name="base_code_id" ref="tax_base_code_purchase_0_e15"></field>
+            <field name="tax_code_id" ref="tax_code_purchase_0_e15"></field>
+        </record>
+
+        <record id="tax_code_purchase_0_ns" model="account.tax.code">
+            <field name="name">No Sog.</field>
+        </record>
+
+        <record id="tax_base_code_purchase_0_ns" model="account.tax.code">
+            <field name="name">IVA a credito 0% (credito)</field>
+        </record>
+
+        <record id="tax_00_ns" model="account.tax">
+            <field name="name">Non soggetto Iva</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="non_taxable_nature">N2</field>
+            <field name="law_reference">Non Soggetto Iva legge</field>
+            <field name="base_code_id" ref="tax_base_code_purchase_0_ns"></field>
+            <field name="tax_code_id" ref="tax_code_purchase_0_ns"></field>
+        </record>
+
+        <record id="tax_code_purchase_0_ni" model="account.tax.code">
+            <field name="name">No IMP.</field>
+        </record>
+
+        <record id="tax_base_code_purchase_0_ni" model="account.tax.code">
+            <field name="name">IVA a credito 0% (credito)</field>
+        </record>
+
+        <record id="tax_00_ni" model="account.tax">
+            <field name="name">Non Imponibile</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="non_taxable_nature">N3</field>
+            <field name="law_reference">Non Soggetto Iva legge</field>
+            <field name="base_code_id" ref="tax_base_code_purchase_0_ni"></field>
+            <field name="tax_code_id" ref="tax_code_purchase_0_ni"></field>
+        </record>
+
+
+        <record id="tax_code_purchase_0_rc" model="account.tax.code">
+            <field name="name">Rev. Charge</field>
+        </record>
+
+        <record id="tax_base_code_purchase_0_rc" model="account.tax.code">
+            <field name="name">IVA a credito 0% (credito)</field>
+        </record>
+
+        <record id="tax_00_rc" model="account.tax">
+            <field name="name">Inversione Contabile</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="non_taxable_nature">N6</field>
+            <field name="law_reference">Reverse Charge</field>
+            <field name="base_code_id" ref="tax_base_code_purchase_0_rc"></field>
+            <field name="tax_code_id" ref="tax_code_purchase_0_rc"></field>
+        </record>
+
         <record id="base.main_company" model="res.company">
             <field name="street">Via Milano, 1</field>
             <field name="zip">00100</field>
