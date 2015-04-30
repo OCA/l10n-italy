@@ -112,6 +112,10 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
         notif_id = res_notif.get('res_id')
         notification = self.notifications_model.browse(cr, uid, notif_id)
         self.assertEqual(notification.message_type, 'MT')
+        metadata = self.attach_model.browse(
+            cr, uid, notification.fatturapa_in_attachment_id.id)
+        self.assertEqual(metadata.file_identifier, 'IT05979361218_002')
+        self.assertEqual(metadata.sdi_identifier, 5199973)
         #create accept notifications
         self.run_send_notif_wizard('accept', invoice_id)
         invoice = self.invoice_model.browse(cr, uid, invoice_id)
