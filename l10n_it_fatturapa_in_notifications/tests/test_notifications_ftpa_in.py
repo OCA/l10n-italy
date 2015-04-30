@@ -117,6 +117,6 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
         invoice = self.invoice_model.browse(cr, uid, invoice_id)
         attachment = self.notifications_model.browse(
             cr, uid, invoice.result_notification_id.id)
-        #check notificatin
+        #check notification
         xml_content = attachment.datas.decode('base64').decode('latin1')
         self.check_content(xml_content, 'IT05979361218_002_EC_002.xml')
