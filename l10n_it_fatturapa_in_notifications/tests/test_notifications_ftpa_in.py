@@ -56,7 +56,7 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
         self.invoice_model = self.registry('account.invoice')
         self.notifications_model = self.registry('fatturapa.notification')
 
-    def run_import_invoioce_wizard(self, name, file_name):
+    def run_import_invoice_wizard(self, name, file_name):
         cr, uid = self.cr, self.uid
         attach_id = self.attach_model .create(
             cr, uid,
@@ -102,7 +102,7 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
     def test_0_xml_import(self):
         cr, uid = self.cr, self.uid
         #import source invoice
-        res = self.run_import_invoioce_wizard(
+        res = self.run_import_invoice_wizard(
             'test0', 'IT05979361218_002.xml.p7m')
         invoice_id = res.get('domain')[0][2][0]
         #import metadata
