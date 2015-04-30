@@ -23,7 +23,6 @@ import base64
 import tempfile
 import openerp.tests.common as test_common
 from openerp import addons
-from openerp.osv.orm import except_orm
 
 
 class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
@@ -72,7 +71,8 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
 
     def run_import_notif_wizard(self, file_name):
         cr, uid = self.cr, self.uid
-        wizard_id = self.wizard_notif_model.create(cr, uid,
+        wizard_id = self.wizard_notif_model.create(
+            cr, uid,
             {
                 'name': self.getNotifFile(file_name)[1],
                 'file_name': file_name,
@@ -84,7 +84,8 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
 
     def run_send_notif_wizard(self, message, invoice_id):
         cr, uid = self.cr, self.uid
-        wizard_id = self.wizard_accept_model.create(cr, uid,
+        wizard_id = self.wizard_accept_model.create(
+            cr, uid,
             {
                 'name': message
             }
@@ -110,7 +111,7 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
             'IT05979361218_002_MT_001.XML')
         notif_id = res_notif.get('res_id')
         notification = self.notifications_model.browse(cr, uid, notif_id)
-        self.assertEqual(notification.message_type,'MT')
+        self.assertEqual(notification.message_type, 'MT')
         #create accept notifications
         self.run_send_notif_wizard('accept', invoice_id)
         invoice = self.invoice_model.browse(cr, uid, invoice_id)
@@ -119,5 +120,3 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
         #check notificatin
         xml_content = attachment.datas.decode('base64').decode('latin1')
         self.check_content(xml_content, 'IT05979361218_002_EC_002.xml')
-
-
