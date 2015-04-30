@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
+#    Copyright (C) 2014 Alessio Gerace <alessio.gerace@agilebg.com>
 #    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,4 +19,6 @@
 #
 ##############################################################################
 
-from . import send_notification
+from . import test_notifications_ftpa_in
+
+checks = [test_notifications_ftpa_in]
