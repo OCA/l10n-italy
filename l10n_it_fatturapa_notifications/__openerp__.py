@@ -74,6 +74,7 @@ To contribute to this module, please visit http://odoo-community.org.
     "data": [
         'attachment_view.xml',
         'wizard/import_notification_view.xml',
+        'security/ir.model.access.csv',
     ],
     "test": [],
     "demo": [],
