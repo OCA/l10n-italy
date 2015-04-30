@@ -82,19 +82,42 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
         return self.wizard_notif_model.import_file(
             cr, uid, [wizard_id], context={})
 
+    def run_send_notif_wizard(self, message, invoice_id):
+        cr, uid = self.cr, self.uid
+        wizard_id = self.wizard_accept_model.create(cr, uid,
+            {
+                'name': message
+            }
+        )
+        return self.wizard_accept_model.send(
+            cr, uid, [wizard_id], context={'active_id': invoice_id})
+
     def check_content(self, xml_content, file_name):
-        test_fatt_data = self.getFile(file_name)[1]
+        test_fatt_data = self.getNotifFile(file_name)[1]
         test_fatt_content = test_fatt_data.decode('base64').decode('latin1')
         self.assertEqual(
             test_fatt_content.replace('\n', ''), xml_content.replace('\n', ''))
 
     def test_0_xml_import(self):
         cr, uid = self.cr, self.uid
+        #import source invoice
         res = self.run_import_invoioce_wizard(
             'test0', 'IT05979361218_002.xml.p7m')
         invoice_id = res.get('domain')[0][2][0]
+        #import metadata
+        #check metadata file name is case insensitive
         res_notif = self.run_import_notif_wizard(
-            'IT05979361218_002_MT_001.xml')
+            'IT05979361218_002_MT_001.XML')
         notif_id = res_notif.get('res_id')
         notification = self.notifications_model.browse(cr, uid, notif_id)
         self.assertEqual(notification.message_type,'MT')
+        #create accept notifications
+        self.run_send_notif_wizard('accept', invoice_id)
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        attachment = self.notifications_model.browse(
+            cr, uid, invoice.result_notification_id.id)
+        #check notificatin
+        xml_content = attachment.datas.decode('base64').decode('latin1')
+        self.check_content(xml_content, 'IT05979361218_002_EC_002.xml')
+
+
