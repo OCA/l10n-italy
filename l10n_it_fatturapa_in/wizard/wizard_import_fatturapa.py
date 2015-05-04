@@ -351,8 +351,8 @@ class WizardImportFatturapa(orm.TransientModel):
         Data = line.Data or False
         NumItem = line.NumItem or ''
         Code = line.CodiceCommessaConvenzione or ''
-        Cup = line.CodiceCIG or ''
-        Cig = line.CodiceCUP or ''
+        Cig = line.CodiceCIG or ''
+        Cup = line.CodiceCUP or ''
         invoice_lineid = False
         if lineref:
             for numline in lineref:
