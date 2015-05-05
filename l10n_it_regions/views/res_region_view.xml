@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+    	<record id="view_country_state_form_region" model="ir.ui.view">
+            <field name="name">res.country.state.form.region</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field name="arch" type="xml">
+                <field name="country_id" position="before">
+                	<field name="region_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_region_tree" model="ir.ui.view">
+            <field name="name">res.country.region.tree</field>
+            <field name="model">res.country.region</field>
+            <field name="arch" type="xml">
+                <tree string="Regions">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_region_form" model="ir.ui.view">
+            <field name="name">res.country.region.form</field>
+            <field name="model">res.country.region</field>
+            <field name="arch" type="xml">
+                <form string="Region">
+                	<group>
+                    	<field name="name"/>
+                    	<field name="code"/>
+                	</group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_regions" model="ir.actions.act_window">
+            <field name="name">Regions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.country.region</field>
+            <field name="view_type">form</field>
+            <field name="help">Display and manage the list of all Italian regions.</field>
+        </record>
+
+        <menuitem action="action_regions" id="menu_regions_partner"
+        	parent="base.menu_localisation" sequence="0" groups="base.group_no_one"/>
+
+    </data>
+</openerp>

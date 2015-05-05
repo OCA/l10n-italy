@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
-#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#    Copyright (C) 2015 Abstract (http://www.abstract.it)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,20 +19,24 @@
 ##############################################################################
 
 {
-    'name': 'Base Location Provinces Import',
+    'name': 'Italian Regions Import',
     'version': '0.1',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
-    'summary': 'Import base_location entries (provinces) from Geonames',
+    'summary': 'Import Italian regions from Geonames',
     'description': """
 This module extends l10n_it_base_location_geonames_import in order to correctly
 import Italian regions
 """,
     'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
     'website': 'http://www.abstract.it',
-    'depends': ['l10n_it_base_location_geonames_import'],
+    'depends': [
+        'base',
+        'l10n_it_base_location_geonames_import',
+        'base_location_geonames_import'],
     'data': [
-        ],
+        'security/ir.model.access.csv',
+        'views/res_region_view.xml'],
     'installable': True,
     'active': False,
 }
