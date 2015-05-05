@@ -95,6 +95,12 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.tax_representative_id.name, "Rappresentante fiscale")
         self.assertEqual(invoice.welfare_fund_ids[0].welfare_rate_tax, 0.04)
+        self.assertEqual(
+            invoice.related_documents[0].type, "order")
+        self.assertEqual(
+            invoice.related_documents[0].cig, '456def')
+        self.assertEqual(
+            invoice.related_documents[0].cup, '123abc')
 
     def test_2_xml_import(self):
         cr, uid = self.cr, self.uid
@@ -109,6 +115,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].amount_tax, 0.66)
         self.assertEqual(invoice.partner_id.name, "Societa' alpha S.r.l.")
+
 
     def test_3_xml_import(self):
         cr, uid = self.cr, self.uid
