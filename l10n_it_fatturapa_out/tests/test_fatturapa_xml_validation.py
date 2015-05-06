@@ -107,3 +107,13 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
         xml_content = attachment.datas.decode('base64').decode('latin1')
         self.check_content(xml_content, 'IT06363391001_00002.xml')
+
+    def test_2_xml_export(self):
+        cr, uid = self.cr, self.uid
+        self.set_sequences(3, 15)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_2')
+        res = self.run_wizard(invoice_id)
+        attachment = self.attach_model.browse(cr, uid, res['res_id'])
+        xml_content = attachment.datas.decode('base64').decode('latin1')
+
+        self.check_content(xml_content, 'IT06363391001_00003.xml')
