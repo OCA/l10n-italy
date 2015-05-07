@@ -45,7 +45,8 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DatiDocumentiCorrelatiType,
     ContattiType,
     DatiPagamentoType,
-    DettaglioPagamentoType
+    DettaglioPagamentoType,
+    AllegatiType
     )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -700,6 +701,18 @@ class WizardExportFatturapa(orm.TransientModel):
             body.DatiPagamento.append(DatiPagamento)
         return True
 
+    def setAttachments(self, cr, uid, invoice, body, context=None):
+        if context is None:
+            context = {}
+        if invoice.fatturapa_doc_attachments:
+            for doc_id in invoice.fatturapa_doc_attachments:
+                AttachDoc = AllegatiType(
+                    NomeAttachment=doc_id.datas_fname,
+                    Attachment=doc_id.datas
+                )
+                body.Allegati.append(AttachDoc)
+        return True
+
     def setFatturaElettronicaHeader(self, cr, uid, company,
                                     partner, context=None):
         if context is None:
@@ -732,6 +745,8 @@ class WizardExportFatturapa(orm.TransientModel):
         self.setDatiRiepilogo(
             cr, uid, inv, FatturaElettronicaBody, context=context)
         self.setDatiPagamento(
+            cr, uid, inv, FatturaElettronicaBody, context=context)
+        self.setAttachments(
             cr, uid, inv, FatturaElettronicaBody, context=context)
 
     def getPartnerId(self, cr, uid, invoice_ids, context=None):
