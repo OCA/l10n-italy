@@ -24,7 +24,7 @@ import tempfile
 from openerp import workflow
 import openerp.tests.common as test_common
 from openerp.modules.module import get_module_resource
-
+from datetime import datetime
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
@@ -42,6 +42,63 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.wizard_model = self.registry('wizard.export.fatturapa')
         self.data_model = self.registry('ir.model.data')
         self.attach_model = self.registry('fatturapa.attachment.out')
+        self.invoice_model = self.registry('account.invoice')
+        self.context = {}
+
+    def checkCreateFiscalYear(self, date_to_check):
+        '''
+        with this method you can check if a date
+        passed in param dae_to_check , is in
+        current fiscal year .
+        If not present, it creates a fiscal year and
+        a sequence for sale_journal,
+        consistent with date, in date_to_check.
+        '''
+        cr, uid = self.cr, self.uid
+        self.fy_model = self.registry('account.fiscalyear')
+        if not self.fy_model.find(
+            cr, uid, dt=date_to_check, exception=False
+        ):
+            ds = datetime.strptime(date_to_check, '%Y-%m-%d')
+            seq_id = self.data_model.get_object_reference(
+                cr, uid, 'account', 'sequence_sale_journal')
+            year = ds.date().year
+            name = '%s' % year
+            code = 'FY%s' % year
+            start = '%s-01-01' % year
+            stop = '%s-12-31' % year
+            fy_id = self.fy_model.create(
+                cr, uid,
+                {
+                    'name': name,
+                    'code': code,
+                    'date_start': start,
+                    'date_stop': stop
+                }
+            )
+            self.fy_model.create_period(cr, uid, [fy_id])
+            self.fiscalyear_id = fy_id
+            seq_name = 'seq%s' % name
+            self.context['fiscalyear_id'] = self.fiscalyear_id
+            prefix = 'SAJ/%s/' % year
+            s_id = self.registry('ir.sequence').create(
+                cr, uid,
+                {
+                    'name': seq_name,
+                    'padding': 3,
+                    'prefix': prefix
+                }
+            )
+            self.context['sequence_id'] = s_id
+            self.registry('account.sequence.fiscalyear').create(
+                cr, uid,
+                {
+                    "sequence_id": s_id,
+                    'sequence_main_id': seq_id[1],
+                    "fiscalyear_id": self.fiscalyear_id
+                },
+                context=self.context
+            )
 
     def set_sequences(self, file_number, invoice_number):
         cr, uid = self.cr, self.uid
@@ -51,13 +108,21 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         seq_pool.write(cr, uid, [seq_id[1]], {
             'implementation': 'no_gap',
             'number_next_actual': file_number,
-            })
-        seq_id = self.data_model.get_object_reference(
-            cr, uid, 'account', 'sequence_sale_journal')
-        seq_pool.write(cr, uid, [seq_id[1]], {
-            'implementation': 'no_gap',
-            'number_next_actual': invoice_number,
-            })
+            }
+        )
+        if self.context.get('fiscalyear_id'):
+            seq_id = (0, self.context.get('sequence_id'))
+        else:
+            seq_id = self.data_model.get_object_reference(
+                cr, uid, 'account', 'sequence_sale_journal')
+        seq_pool.write(
+            cr, uid, [seq_id[1]],
+            {
+                'implementation': 'no_gap',
+                'number_next_actual': invoice_number,
+            },
+            context=self.context
+        )
 
     def confirm_invoice(self, invoice_xml_id):
         cr, uid = self.cr, self.uid
@@ -66,9 +131,15 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             cr, uid, 'l10n_it_fatturapa', invoice_xml_id)
         if invoice_id:
             invoice_id = invoice_id and invoice_id[1] or False
-
+        '''
+         this  write updates context with
+         fiscalyear_id
+        '''
+        self.invoice_model.write(
+            cr, uid, invoice_id, {}, context=self.context)
         workflow.trg_validate(
-            uid, 'account.invoice', invoice_id, 'invoice_open', cr)
+            uid, 'account.invoice', invoice_id, 'invoice_open', cr
+        )
         return invoice_id
 
     def run_wizard(self, invoice_id):
@@ -85,6 +156,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_0_xml_export(self):
         cr, uid = self.cr, self.uid
+        self.checkCreateFiscalYear('2014-01-07')
+        self.context['fiscalyear_id'] = self.fiscalyear_id
         self.set_sequences(1, 13)
         invoice_id = self.confirm_invoice('fatturapa_invoice_0')
         res = self.run_wizard(invoice_id)
@@ -99,6 +172,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_1_xml_export(self):
         cr, uid = self.cr, self.uid
+        self.checkCreateFiscalYear('2015-02-15')
         self.set_sequences(2, 14)
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
@@ -106,3 +180,14 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
         xml_content = attachment.datas.decode('base64').decode('latin1')
         self.check_content(xml_content, 'IT06363391001_00002.xml')
+
+    def test_2_xml_export(self):
+        cr, uid = self.cr, self.uid
+        self.checkCreateFiscalYear('2015-02-15')
+        self.set_sequences(3, 15)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_2')
+        res = self.run_wizard(invoice_id)
+        attachment = self.attach_model.browse(cr, uid, res['res_id'])
+        xml_content = attachment.datas.decode('base64').decode('latin1')
+
+        self.check_content(xml_content, 'IT06363391001_00003.xml')
