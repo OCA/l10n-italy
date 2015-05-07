@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
-#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#    Copyright (C) 2015 Abstract (http://www.abstract.it)
+#    @author Davide Corio <davide.corio@abstract.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-from . import geonames_import
 from . import models
+from . import wizards

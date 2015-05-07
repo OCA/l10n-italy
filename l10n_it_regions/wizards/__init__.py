@@ -19,24 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'Italian Regions Import',
-    'version': '0.1',
-    'category': 'Extra Tools',
-    'license': 'AGPL-3',
-    'summary': 'Import Italian regions from Geonames',
-    'description': """
-This module extends l10n_it_base_location_geonames_import in order to correctly
-import Italian regions
-""",
-    'author': "Abstract,Odoo Community Association (OCA)",
-    'website': 'http://www.abstract.it',
-    'depends': [
-        'base',
-        'base_location_geonames_import'],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/res_region_view.xml'],
-    'installable': True,
-    'active': False,
-}
+from . import geonames_import

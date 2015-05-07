@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
-#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#    Copyright (C) 2015 Abstract (http://www.abstract.it)
+#    @author Davide Corio <davide.corio@abstract.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -26,8 +26,17 @@ class better_zip_geonames_import(models.TransientModel):
     _inherit = 'better.zip.geonames.import'
 
     @api.model
-    def select_or_create_region(self, name, code):
-        pass
+    def create_better_zip(self, row, country):
+        res = super(better_zip_geonames_import, self).create_better_zip(
+            row, country)
+        if not res.state_id.region_id:
+            region_model = self.env['res.country.region']
+            region = region_model.search([('code', '=', row[4])])
+            if not region:
+                region = region_model.create(
+                    {'name': row[3], 'code': row[4]})
+            res.state_id.region_id = region.id
+        return res
 
     @api.model
     def select_or_create_state(
