@@ -1,7 +1,8 @@
 # ./fatturapa_v_1_1.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:fac8120e3d9662db350b331106843ea79dd690ee
-# Generated 2015-03-14 09:02:52.700921 by PyXB version 1.2.4 using Python 2.7.8.final.0
+# Generated 2015-03-14 09:02:52.700921
+# by PyXB version 1.2.4 using Python 2.7.8.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Namespace http://www.fatturapa.gov.it/sdi/fatturapa/v1.1
 
@@ -12,11 +13,12 @@ import pyxb.binding.saxer
 import io
 import pyxb.utils.utility
 import pyxb.utils.domutils
-import sys
+# ~ import sys
 import pyxb.utils.six as _six
 # Import bindings for namespaces imported into schema
 from . import _ds as _ImportedBinding__ds
 
+import pyxb.binding.datatypes
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
     'urn:uuid:7a7eaf68-ca20-11e4-ba6a-08edb9323673')
@@ -27,7 +29,6 @@ _PyXBVersion = '1.2.4'
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
-import pyxb.binding.datatypes
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
@@ -58,7 +59,9 @@ def CreateFromDocument(xml_text, default_namespace=None, location_base=None):
 
     if pyxb.XMLStyle_saxer != pyxb._XMLStyle:
         dom = pyxb.utils.domutils.StringToDOM(xml_text)
-        return CreateFromDOM(dom.documentElement, default_namespace=default_namespace)
+        return CreateFromDOM(
+            dom.documentElement,
+            default_namespace=default_namespace)
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     saxer = pyxb.binding.saxer.make_parser(
@@ -76,7 +79,8 @@ def CreateFromDOM(node, default_namespace=None):
     """Create a Python instance from the given DOM node.
     The node tag must correspond to an element declaration in this module.
 
-    @deprecated: Forcing use of DOM interface is unnecessary; use L{CreateFromDocument}."""
+    @deprecated: Forcing use of DOM interface
+    is unnecessary; use L{CreateFromDocument}."""
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     return pyxb.binding.basis.element.AnyCreateFromDOM(node, default_namespace)
@@ -84,7 +88,9 @@ def CreateFromDOM(node, default_namespace=None):
 
 # Atomic simple type:
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}VersioneSchemaType
-class VersioneSchemaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class VersioneSchemaType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -147,7 +153,9 @@ Namespace.addCategoryObject('typeBinding', 'CodiceType', CodiceType)
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}FormatoTrasmissioneType
 
 
-class FormatoTrasmissioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class FormatoTrasmissioneType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -160,10 +168,13 @@ FormatoTrasmissioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(5))
 FormatoTrasmissioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=FormatoTrasmissioneType, enum_prefix=None)
-FormatoTrasmissioneType.SDI11 = FormatoTrasmissioneType._CF_enumeration.addEnumeration(
-    unicode_value='SDI11', tag='SDI11')
-FormatoTrasmissioneType._InitializeFacetMap(FormatoTrasmissioneType._CF_length,
-                                            FormatoTrasmissioneType._CF_enumeration)
+FormatoTrasmissioneType.SDI11 = (
+    FormatoTrasmissioneType._CF_enumeration.addEnumeration(
+        unicode_value='SDI11',
+        tag='SDI11'))
+FormatoTrasmissioneType._InitializeFacetMap(
+    FormatoTrasmissioneType._CF_length,
+    FormatoTrasmissioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding', 'FormatoTrasmissioneType', FormatoTrasmissioneType)
 
@@ -186,15 +197,19 @@ IdDestinatarioCodUfficioType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
 IdDestinatarioCodUfficioType._InitializeFacetMap(
     IdDestinatarioCodUfficioType._CF_maxLength,
-   IdDestinatarioCodUfficioType._CF_minLength)
+    IdDestinatarioCodUfficioType._CF_minLength)
 Namespace.addCategoryObject(
-    'typeBinding', 'IdDestinatarioCodUfficioType', IdDestinatarioCodUfficioType)
+    'typeBinding',
+    'IdDestinatarioCodUfficioType',
+    IdDestinatarioCodUfficioType)
 
 # Atomic simple type:
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}CausalePagamentoType
 
 
-class CausalePagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class CausalePagamentoType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -267,7 +282,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}TipoScontoMaggiorazioneType
 
 
-class TipoScontoMaggiorazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class TipoScontoMaggiorazioneType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -278,22 +295,28 @@ class TipoScontoMaggiorazioneType (pyxb.binding.datatypes.string, pyxb.binding.b
     _Documentation = None
 TipoScontoMaggiorazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
-TipoScontoMaggiorazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=TipoScontoMaggiorazioneType, enum_prefix=None)
-TipoScontoMaggiorazioneType.SC = TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
-    unicode_value='SC', tag='SC')
-TipoScontoMaggiorazioneType.MG = TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
-    unicode_value='MG', tag='MG')
+TipoScontoMaggiorazioneType._CF_enumeration = (
+    pyxb.binding.facets.CF_enumeration(
+        value_datatype=TipoScontoMaggiorazioneType,
+        enum_prefix=None))
+TipoScontoMaggiorazioneType.SC = (
+    TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
+        unicode_value='SC', tag='SC'))
+TipoScontoMaggiorazioneType.MG = (
+    TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
+        unicode_value='MG', tag='MG'))
 TipoScontoMaggiorazioneType._InitializeFacetMap(
     TipoScontoMaggiorazioneType._CF_length,
-   TipoScontoMaggiorazioneType._CF_enumeration)
+    TipoScontoMaggiorazioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding', 'TipoScontoMaggiorazioneType', TipoScontoMaggiorazioneType)
 
 # Atomic simple type: {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}Art73Type
 
 
-class Art73Type (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class Art73Type (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -315,7 +338,9 @@ Namespace.addCategoryObject('typeBinding', 'Art73Type', Art73Type)
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}TipoCassaType
 
 
-class TipoCassaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class TipoCassaType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -379,7 +404,9 @@ Namespace.addCategoryObject('typeBinding', 'TipoCassaType', TipoCassaType)
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}TipoDocumentoType
 
 
-class TipoDocumentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class TipoDocumentoType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -412,7 +439,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}TipoRitenutaType
 
 
-class TipoRitenutaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class TipoRitenutaType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -446,13 +475,18 @@ class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
     _XSDLocation = pyxb.utils.utility.Location(
         '/tmp/fatturapa_v1.1.xsd', 455, 2)
     _Documentation = None
-RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
-RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
+
+RiferimentoNumeroLineaType._CF_maxInclusive = (
+    pyxb.binding.facets.CF_maxInclusive(
+        value_datatype=RiferimentoNumeroLineaType,
+        value=pyxb.binding.datatypes.integer(9999)))
+RiferimentoNumeroLineaType._CF_minInclusive = (
+    pyxb.binding.facets.CF_minInclusive(
+        value_datatype=RiferimentoNumeroLineaType,
+        value=pyxb.binding.datatypes.integer(1)))
 RiferimentoNumeroLineaType._InitializeFacetMap(
     RiferimentoNumeroLineaType._CF_maxInclusive,
-   RiferimentoNumeroLineaType._CF_minInclusive)
+    RiferimentoNumeroLineaType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding', 'RiferimentoNumeroLineaType', RiferimentoNumeroLineaType)
 
@@ -460,7 +494,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}SoggettoEmittenteType
 
 
-class SoggettoEmittenteType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class SoggettoEmittenteType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -473,12 +509,15 @@ SoggettoEmittenteType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
 SoggettoEmittenteType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=SoggettoEmittenteType, enum_prefix=None)
-SoggettoEmittenteType.CC = SoggettoEmittenteType._CF_enumeration.addEnumeration(
-    unicode_value='CC', tag='CC')
-SoggettoEmittenteType.TZ = SoggettoEmittenteType._CF_enumeration.addEnumeration(
-    unicode_value='TZ', tag='TZ')
-SoggettoEmittenteType._InitializeFacetMap(SoggettoEmittenteType._CF_length,
-                                          SoggettoEmittenteType._CF_enumeration)
+SoggettoEmittenteType.CC = (
+    SoggettoEmittenteType._CF_enumeration.addEnumeration(
+        unicode_value='CC', tag='CC'))
+SoggettoEmittenteType.TZ = (
+    SoggettoEmittenteType._CF_enumeration.addEnumeration(
+        unicode_value='TZ', tag='TZ'))
+SoggettoEmittenteType._InitializeFacetMap(
+    SoggettoEmittenteType._CF_length,
+    SoggettoEmittenteType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding', 'SoggettoEmittenteType', SoggettoEmittenteType)
 
@@ -486,7 +525,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}RegimeFiscaleType
 
 
-class RegimeFiscaleType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class RegimeFiscaleType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -545,7 +586,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}CondizioniPagamentoType
 
 
-class CondizioniPagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class CondizioniPagamentoType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -560,16 +603,19 @@ CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 CondizioniPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=CondizioniPagamentoType, enum_prefix=None)
-CondizioniPagamentoType.TP01 = CondizioniPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='TP01', tag='TP01')
-CondizioniPagamentoType.TP02 = CondizioniPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='TP02', tag='TP02')
-CondizioniPagamentoType.TP03 = CondizioniPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='TP03', tag='TP03')
+CondizioniPagamentoType.TP01 = (
+    CondizioniPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='TP01', tag='TP01'))
+CondizioniPagamentoType.TP02 = (
+    CondizioniPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='TP02', tag='TP02'))
+CondizioniPagamentoType.TP03 = (
+    CondizioniPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='TP03', tag='TP03'))
 CondizioniPagamentoType._InitializeFacetMap(
     CondizioniPagamentoType._CF_maxLength,
-   CondizioniPagamentoType._CF_minLength,
-   CondizioniPagamentoType._CF_enumeration)
+    CondizioniPagamentoType._CF_minLength,
+    CondizioniPagamentoType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding', 'CondizioniPagamentoType', CondizioniPagamentoType)
 
@@ -577,7 +623,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}ModalitaPagamentoType
 
 
-class ModalitaPagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class ModalitaPagamentoType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -590,50 +638,93 @@ ModalitaPagamentoType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 ModalitaPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=ModalitaPagamentoType, enum_prefix=None)
-ModalitaPagamentoType.MP01 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP01', tag='MP01')
-ModalitaPagamentoType.MP02 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP02', tag='MP02')
-ModalitaPagamentoType.MP03 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP03', tag='MP03')
-ModalitaPagamentoType.MP04 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP04', tag='MP04')
-ModalitaPagamentoType.MP05 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP05', tag='MP05')
-ModalitaPagamentoType.MP06 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP06', tag='MP06')
-ModalitaPagamentoType.MP07 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP07', tag='MP07')
-ModalitaPagamentoType.MP08 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP08', tag='MP08')
-ModalitaPagamentoType.MP09 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP09', tag='MP09')
-ModalitaPagamentoType.MP10 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP10', tag='MP10')
-ModalitaPagamentoType.MP11 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP11', tag='MP11')
-ModalitaPagamentoType.MP12 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP12', tag='MP12')
-ModalitaPagamentoType.MP13 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP13', tag='MP13')
-ModalitaPagamentoType.MP14 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP14', tag='MP14')
-ModalitaPagamentoType.MP15 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP15', tag='MP15')
-ModalitaPagamentoType.MP16 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP16', tag='MP16')
-ModalitaPagamentoType.MP17 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP17', tag='MP17')
-ModalitaPagamentoType.MP18 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP18', tag='MP18')
-ModalitaPagamentoType.MP19 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP19', tag='MP19')
-ModalitaPagamentoType.MP20 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP20', tag='MP20')
-ModalitaPagamentoType.MP21 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP21', tag='MP21')
-ModalitaPagamentoType._InitializeFacetMap(ModalitaPagamentoType._CF_length,
-                                          ModalitaPagamentoType._CF_enumeration)
+ModalitaPagamentoType.MP01 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP01',
+        tag='MP01'))
+ModalitaPagamentoType.MP02 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP02',
+        tag='MP02'))
+ModalitaPagamentoType.MP03 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP03',
+        tag='MP03'))
+ModalitaPagamentoType.MP04 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP04',
+        tag='MP04'))
+ModalitaPagamentoType.MP05 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP05',
+        tag='MP05'))
+ModalitaPagamentoType.MP06 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP06',
+        tag='MP06'))
+ModalitaPagamentoType.MP07 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP07',
+        tag='MP07'))
+ModalitaPagamentoType.MP08 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP08',
+        tag='MP08'))
+ModalitaPagamentoType.MP09 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP09',
+        tag='MP09'))
+ModalitaPagamentoType.MP10 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP10',
+        tag='MP10'))
+ModalitaPagamentoType.MP11 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP11',
+        tag='MP11'))
+ModalitaPagamentoType.MP12 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP12',
+        tag='MP12'))
+ModalitaPagamentoType.MP13 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP13',
+        tag='MP13'))
+ModalitaPagamentoType.MP14 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP14',
+        tag='MP14'))
+ModalitaPagamentoType.MP15 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP15',
+        tag='MP15'))
+ModalitaPagamentoType.MP16 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP16',
+        tag='MP16'))
+ModalitaPagamentoType.MP17 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP17',
+        tag='MP17'))
+ModalitaPagamentoType.MP18 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP18',
+        tag='MP18'))
+ModalitaPagamentoType.MP19 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP19',
+        tag='MP19'))
+ModalitaPagamentoType.MP20 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP20',
+        tag='MP20'))
+ModalitaPagamentoType.MP21 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP21',
+        tag='MP21'))
+ModalitaPagamentoType._InitializeFacetMap(
+    ModalitaPagamentoType._CF_length,
+    ModalitaPagamentoType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding', 'ModalitaPagamentoType', ModalitaPagamentoType)
 
@@ -675,7 +766,9 @@ Namespace.addCategoryObject('typeBinding', 'BICType', BICType)
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}RitenutaType
 
 
-class RitenutaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class RitenutaType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -697,7 +790,9 @@ Namespace.addCategoryObject('typeBinding', 'RitenutaType', RitenutaType)
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}EsigibilitaIVAType
 
 
-class EsigibilitaIVAType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class EsigibilitaIVAType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -728,7 +823,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}NaturaType
 
 
-class NaturaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class NaturaType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -814,7 +911,9 @@ Namespace.addCategoryObject('typeBinding', 'CodEORIType', CodEORIType)
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}SocioUnicoType
 
 
-class SocioUnicoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class SocioUnicoType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -835,7 +934,9 @@ Namespace.addCategoryObject('typeBinding', 'SocioUnicoType', SocioUnicoType)
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}StatoLiquidazioneType
 
 
-class StatoLiquidazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class StatoLiquidazioneType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -846,10 +947,14 @@ class StatoLiquidazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.e
     _Documentation = None
 StatoLiquidazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=StatoLiquidazioneType, enum_prefix=None)
-StatoLiquidazioneType.LS = StatoLiquidazioneType._CF_enumeration.addEnumeration(
-    unicode_value='LS', tag='LS')
-StatoLiquidazioneType.LN = StatoLiquidazioneType._CF_enumeration.addEnumeration(
-    unicode_value='LN', tag='LN')
+StatoLiquidazioneType.LS = (
+    StatoLiquidazioneType._CF_enumeration.addEnumeration(
+        unicode_value='LS',
+        tag='LS'))
+StatoLiquidazioneType.LN = (
+    StatoLiquidazioneType._CF_enumeration.addEnumeration(
+        unicode_value='LN',
+        tag='LN'))
 StatoLiquidazioneType._InitializeFacetMap(
     StatoLiquidazioneType._CF_enumeration)
 Namespace.addCategoryObject(
@@ -859,7 +964,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}TipoCessionePrestazioneType
 
 
-class TipoCessionePrestazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class TipoCessionePrestazioneType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -870,19 +977,29 @@ class TipoCessionePrestazioneType (pyxb.binding.datatypes.string, pyxb.binding.b
     _Documentation = None
 TipoCessionePrestazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
-TipoCessionePrestazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=TipoCessionePrestazioneType, enum_prefix=None)
-TipoCessionePrestazioneType.SC = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='SC', tag='SC')
-TipoCessionePrestazioneType.PR = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='PR', tag='PR')
-TipoCessionePrestazioneType.AB = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='AB', tag='AB')
-TipoCessionePrestazioneType.AC = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='AC', tag='AC')
+TipoCessionePrestazioneType._CF_enumeration = (
+    pyxb.binding.facets.CF_enumeration(
+        value_datatype=TipoCessionePrestazioneType,
+        enum_prefix=None))
+TipoCessionePrestazioneType.SC = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='SC',
+        tag='SC'))
+TipoCessionePrestazioneType.PR = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='PR',
+        tag='PR'))
+TipoCessionePrestazioneType.AB = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='AB',
+        tag='AB'))
+TipoCessionePrestazioneType.AC = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='AC',
+        tag='AC'))
 TipoCessionePrestazioneType._InitializeFacetMap(
     TipoCessionePrestazioneType._CF_length,
-   TipoCessionePrestazioneType._CF_enumeration)
+    TipoCessionePrestazioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding', 'TipoCessionePrestazioneType', TipoCessionePrestazioneType)
 
@@ -1213,7 +1330,9 @@ Namespace.addCategoryObject(
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}BolloVirtualeType
 
 
-class BolloVirtualeType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+class BolloVirtualeType (
+        pyxb.binding.datatypes.string,
+        pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
@@ -1357,9 +1476,11 @@ class RiferimentoFaseType (pyxb.binding.datatypes.integer):
         '/tmp/fatturapa_v1.1.xsd', 1270, 2)
     _Documentation = None
 RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
+    value_datatype=RiferimentoFaseType,
+    value=pyxb.binding.datatypes.integer(999))
 RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
+    value_datatype=RiferimentoFaseType,
+    value=pyxb.binding.datatypes.integer(1))
 RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_maxInclusive,
                                         RiferimentoFaseType._CF_minInclusive)
 Namespace.addCategoryObject(
@@ -1466,13 +1587,17 @@ class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
     _XSDLocation = pyxb.utils.utility.Location(
         '/tmp/fatturapa_v1.1.xsd', 1303, 2)
     _Documentation = None
-GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
-GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
+GiorniTerminePagamentoType._CF_maxInclusive = (
+    pyxb.binding.facets.CF_maxInclusive(
+        value_datatype=GiorniTerminePagamentoType,
+        value=pyxb.binding.datatypes.integer(999)))
+GiorniTerminePagamentoType._CF_minInclusive = (
+    pyxb.binding.facets.CF_minInclusive(
+        value_datatype=GiorniTerminePagamentoType,
+        value=pyxb.binding.datatypes.integer(0)))
 GiorniTerminePagamentoType._InitializeFacetMap(
     GiorniTerminePagamentoType._CF_maxInclusive,
-   GiorniTerminePagamentoType._CF_minInclusive)
+    GiorniTerminePagamentoType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding', 'GiorniTerminePagamentoType', GiorniTerminePagamentoType)
 
@@ -1515,7 +1640,8 @@ Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
 
 class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}FatturaElettronicaHeaderType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+FatturaElettronicaHeaderType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -1530,8 +1656,17 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
     # Element DatiTrasmissione uses Python identifier DatiTrasmissione
     __DatiTrasmissione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiTrasmissione'), 'DatiTrasmissione',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaHeaderType_DatiTrasmissione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 21, 6), )
+            None,
+            'DatiTrasmissione'),
+        'DatiTrasmissione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaHeaderType_DatiTrasmissione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            21,
+            6),
+    )
 
     DatiTrasmissione = property(
         __DatiTrasmissione.value, __DatiTrasmissione.set, None, None)
@@ -1539,8 +1674,17 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
     # Element CedentePrestatore uses Python identifier CedentePrestatore
     __CedentePrestatore = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CedentePrestatore'), 'CedentePrestatore',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaHeaderType_CedentePrestatore', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 22, 6), )
+            None,
+            'CedentePrestatore'),
+        'CedentePrestatore',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaHeaderType_CedentePrestatore',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            22,
+            6),
+    )
 
     CedentePrestatore = property(
         __CedentePrestatore.value, __CedentePrestatore.set, None, None)
@@ -1549,8 +1693,17 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
     # RappresentanteFiscale
     __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RappresentanteFiscale'), 'RappresentanteFiscale',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaHeaderType_RappresentanteFiscale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 23, 6), )
+            None,
+            'RappresentanteFiscale'),
+        'RappresentanteFiscale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaHeaderType_RappresentanteFiscale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            23,
+            6),
+    )
 
     RappresentanteFiscale = property(
         __RappresentanteFiscale.value, __RappresentanteFiscale.set, None, None)
@@ -1559,27 +1712,62 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
     # CessionarioCommittente
     __CessionarioCommittente = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CessionarioCommittente'), 'CessionarioCommittente',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaHeaderType_CessionarioCommittente', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 24, 6), )
+            None,
+            'CessionarioCommittente'),
+        'CessionarioCommittente',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaHeaderType_CessionarioCommittente',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            24,
+            6),
+    )
 
     CessionarioCommittente = property(
-        __CessionarioCommittente.value, __CessionarioCommittente.set, None, None)
+        __CessionarioCommittente.value,
+        __CessionarioCommittente.set,
+        None,
+        None)
 
     # Element TerzoIntermediarioOSoggettoEmittente uses Python identifier
     # TerzoIntermediarioOSoggettoEmittente
-    __TerzoIntermediarioOSoggettoEmittente = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(
-            None, 'TerzoIntermediarioOSoggettoEmittente'), 'TerzoIntermediarioOSoggettoEmittente',
-                                                                                     '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaHeaderType_TerzoIntermediarioOSoggettoEmittente', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 25, 6), )
-
+    __TerzoIntermediarioOSoggettoEmittente = (
+        pyxb.binding.content.ElementDeclaration(
+            pyxb.namespace.ExpandedName(
+                None,
+                'TerzoIntermediarioOSoggettoEmittente'),
+            'TerzoIntermediarioOSoggettoEmittente',
+            '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+            'FatturaElettronicaHeaderType_'
+            'TerzoIntermediarioOSoggettoEmittente',
+            False,
+            pyxb.utils.utility.Location(
+                '/tmp/fatturapa_v1.1.xsd',
+                25,
+                6),
+        )
+    )
     TerzoIntermediarioOSoggettoEmittente = property(
-        __TerzoIntermediarioOSoggettoEmittente.value, __TerzoIntermediarioOSoggettoEmittente.set, None, None)
+        __TerzoIntermediarioOSoggettoEmittente.value,
+        __TerzoIntermediarioOSoggettoEmittente.set,
+        None,
+        None)
 
     # Element SoggettoEmittente uses Python identifier SoggettoEmittente
     __SoggettoEmittente = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'SoggettoEmittente'), 'SoggettoEmittente',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaHeaderType_SoggettoEmittente', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 26, 6), )
+            None,
+            'SoggettoEmittente'),
+        'SoggettoEmittente',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaHeaderType_SoggettoEmittente',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            26,
+            6),
+    )
 
     SoggettoEmittente = property(
         __SoggettoEmittente.value, __SoggettoEmittente.set, None, None)
@@ -1589,14 +1777,17 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
         __CedentePrestatore.name(): __CedentePrestatore,
         __RappresentanteFiscale.name(): __RappresentanteFiscale,
         __CessionarioCommittente.name(): __CessionarioCommittente,
-        __TerzoIntermediarioOSoggettoEmittente.name(): __TerzoIntermediarioOSoggettoEmittente,
+        __TerzoIntermediarioOSoggettoEmittente.name():
+        __TerzoIntermediarioOSoggettoEmittente,
         __SoggettoEmittente.name(): __SoggettoEmittente
     })
     _AttributeMap.update({
 
     })
 Namespace.addCategoryObject(
-    'typeBinding', 'FatturaElettronicaHeaderType', FatturaElettronicaHeaderType)
+    'typeBinding',
+    'FatturaElettronicaHeaderType',
+    FatturaElettronicaHeaderType)
 
 
 # Complex type
@@ -1604,7 +1795,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}FatturaElettronicaBodyType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+FatturaElettronicaBodyType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -1617,8 +1809,19 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element DatiGenerali uses Python identifier DatiGenerali
-    __DatiGenerali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiGenerali'), 'DatiGenerali', '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaBodyType_DatiGenerali', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 31, 6), )
+    __DatiGenerali = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiGenerali'),
+        'DatiGenerali',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaBodyType_DatiGenerali',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            31,
+            6),
+    )
 
     DatiGenerali = property(
         __DatiGenerali.value, __DatiGenerali.set, None, None)
@@ -1626,28 +1829,70 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
     # Element DatiBeniServizi uses Python identifier DatiBeniServizi
     __DatiBeniServizi = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiBeniServizi'), 'DatiBeniServizi',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaBodyType_DatiBeniServizi', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 32, 6), )
+            None,
+            'DatiBeniServizi'),
+        'DatiBeniServizi',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaBodyType_DatiBeniServizi',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            32,
+            6),
+    )
 
     DatiBeniServizi = property(
         __DatiBeniServizi.value, __DatiBeniServizi.set, None, None)
 
     # Element DatiVeicoli uses Python identifier DatiVeicoli
-    __DatiVeicoli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiVeicoli'), 'DatiVeicoli', '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaBodyType_DatiVeicoli', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 33, 6), )
+    __DatiVeicoli = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiVeicoli'),
+        'DatiVeicoli',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaBodyType_DatiVeicoli',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            33,
+            6),
+    )
 
     DatiVeicoli = property(__DatiVeicoli.value, __DatiVeicoli.set, None, None)
 
     # Element DatiPagamento uses Python identifier DatiPagamento
-    __DatiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiPagamento'), 'DatiPagamento', '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaBodyType_DatiPagamento', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 34, 6), )
+    __DatiPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiPagamento'),
+        'DatiPagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaBodyType_DatiPagamento',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            34,
+            6),
+    )
 
     DatiPagamento = property(
         __DatiPagamento.value, __DatiPagamento.set, None, None)
 
     # Element Allegati uses Python identifier Allegati
-    __Allegati = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Allegati'), 'Allegati', '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaBodyType_Allegati', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 35, 6), )
+    __Allegati = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Allegati'),
+        'Allegati',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaBodyType_Allegati',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            35,
+            6),
+    )
 
     Allegati = property(__Allegati.value, __Allegati.set, None, None)
 
@@ -1671,7 +1916,7 @@ Namespace.addCategoryObject(
 class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati di trasmissione della Fattura Elettronica
+           Blocco relativo ai dati di trasmissione della Fattura Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -1685,8 +1930,19 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdTrasmittente uses Python identifier IdTrasmittente
-    __IdTrasmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdTrasmittente'), 'IdTrasmittente', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasmissioneType_IdTrasmittente', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 51, 6), )
+    __IdTrasmittente = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdTrasmittente'),
+        'IdTrasmittente',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasmissioneType_IdTrasmittente',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            51,
+            6),
+    )
 
     IdTrasmittente = property(
         __IdTrasmittente.value, __IdTrasmittente.set, None, None)
@@ -1694,8 +1950,17 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     # Element ProgressivoInvio uses Python identifier ProgressivoInvio
     __ProgressivoInvio = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ProgressivoInvio'), 'ProgressivoInvio',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasmissioneType_ProgressivoInvio', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 52, 6), )
+            None,
+            'ProgressivoInvio'),
+        'ProgressivoInvio',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasmissioneType_ProgressivoInvio',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            52,
+            6),
+    )
 
     ProgressivoInvio = property(
         __ProgressivoInvio.value, __ProgressivoInvio.set, None, None)
@@ -1703,8 +1968,17 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     # Element FormatoTrasmissione uses Python identifier FormatoTrasmissione
     __FormatoTrasmissione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'FormatoTrasmissione'), 'FormatoTrasmissione',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasmissioneType_FormatoTrasmissione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 53, 6), )
+            None,
+            'FormatoTrasmissione'),
+        'FormatoTrasmissione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasmissioneType_FormatoTrasmissione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            53,
+            6),
+    )
 
     FormatoTrasmissione = property(
         __FormatoTrasmissione.value, __FormatoTrasmissione.set, None, None)
@@ -1712,8 +1986,17 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     # Element CodiceDestinatario uses Python identifier CodiceDestinatario
     __CodiceDestinatario = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CodiceDestinatario'), 'CodiceDestinatario',
-                                                                   '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasmissioneType_CodiceDestinatario', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 54, 6), )
+            None,
+            'CodiceDestinatario'),
+        'CodiceDestinatario',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasmissioneType_CodiceDestinatario',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            54,
+            6),
+    )
 
     CodiceDestinatario = property(
         __CodiceDestinatario.value, __CodiceDestinatario.set, None, None)
@@ -1721,8 +2004,17 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     # Element ContattiTrasmittente uses Python identifier ContattiTrasmittente
     __ContattiTrasmittente = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ContattiTrasmittente'), 'ContattiTrasmittente',
-                                                                     '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasmissioneType_ContattiTrasmittente', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 55, 6), )
+            None,
+            'ContattiTrasmittente'),
+        'ContattiTrasmittente',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasmissioneType_ContattiTrasmittente',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            55,
+            6),
+    )
 
     ContattiTrasmittente = property(
         __ContattiTrasmittente.value, __ContattiTrasmittente.set, None, None)
@@ -1746,7 +2038,8 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}IdFiscaleType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+IdFiscaleType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -1758,14 +2051,36 @@ class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdPaese uses Python identifier IdPaese
-    __IdPaese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdPaese'), 'IdPaese', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IdFiscaleType_IdPaese', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 65, 6), )
+    __IdPaese = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdPaese'),
+        'IdPaese',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IdFiscaleType_IdPaese',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            65,
+            6),
+    )
 
     IdPaese = property(__IdPaese.value, __IdPaese.set, None, None)
 
     # Element IdCodice uses Python identifier IdCodice
-    __IdCodice = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdCodice'), 'IdCodice', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IdFiscaleType_IdCodice', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 66, 6), )
+    __IdCodice = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdCodice'),
+        'IdCodice',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IdFiscaleType_IdCodice',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            66,
+            6),
+    )
 
     IdCodice = property(__IdCodice.value, __IdCodice.set, None, None)
 
@@ -1784,7 +2099,8 @@ Namespace.addCategoryObject('typeBinding', 'IdFiscaleType', IdFiscaleType)
 # with content type ELEMENT_ONLY
 class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}ContattiTrasmittenteType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+ContattiTrasmittenteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -1797,14 +2113,36 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Telefono uses Python identifier Telefono
-    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Telefono'), 'Telefono', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ContattiTrasmittenteType_Telefono', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 95, 6), )
+    __Telefono = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Telefono'),
+        'Telefono',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ContattiTrasmittenteType_Telefono',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            95,
+            6),
+    )
 
     Telefono = property(__Telefono.value, __Telefono.set, None, None)
 
     # Element Email uses Python identifier Email
-    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Email'), 'Email', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ContattiTrasmittenteType_Email', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 96, 6), )
+    __Email = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Email'),
+        'Email',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ContattiTrasmittenteType_Email',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            96,
+            6),
+    )
 
     Email = property(__Email.value, __Email.set, None, None)
 
@@ -1825,7 +2163,7 @@ Namespace.addCategoryObject(
 class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai Dati Generali della Fattura Elettronica
+                    Blocco relativo ai Dati Generali della Fattura Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -1841,8 +2179,17 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     # DatiGeneraliDocumento
     __DatiGeneraliDocumento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiGeneraliDocumento'), 'DatiGeneraliDocumento',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiGeneraliDocumento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 106, 6), )
+            None,
+            'DatiGeneraliDocumento'),
+        'DatiGeneraliDocumento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiGeneraliDocumento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            106,
+            6),
+    )
 
     DatiGeneraliDocumento = property(
         __DatiGeneraliDocumento.value, __DatiGeneraliDocumento.set, None, None)
@@ -1850,15 +2197,35 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     # Element DatiOrdineAcquisto uses Python identifier DatiOrdineAcquisto
     __DatiOrdineAcquisto = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiOrdineAcquisto'), 'DatiOrdineAcquisto',
-                                                                   '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiOrdineAcquisto', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 107, 6), )
+            None,
+            'DatiOrdineAcquisto'),
+        'DatiOrdineAcquisto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiOrdineAcquisto',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            107,
+            6),
+    )
 
     DatiOrdineAcquisto = property(
         __DatiOrdineAcquisto.value, __DatiOrdineAcquisto.set, None, None)
 
     # Element DatiContratto uses Python identifier DatiContratto
-    __DatiContratto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiContratto'), 'DatiContratto', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiContratto', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 108, 6), )
+    __DatiContratto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiContratto'),
+        'DatiContratto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiContratto',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            108,
+            6),
+    )
 
     DatiContratto = property(
         __DatiContratto.value, __DatiContratto.set, None, None)
@@ -1866,15 +2233,35 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     # Element DatiConvenzione uses Python identifier DatiConvenzione
     __DatiConvenzione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiConvenzione'), 'DatiConvenzione',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiConvenzione', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 109, 6), )
+            None,
+            'DatiConvenzione'),
+        'DatiConvenzione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiConvenzione',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            109,
+            6),
+    )
 
     DatiConvenzione = property(
         __DatiConvenzione.value, __DatiConvenzione.set, None, None)
 
     # Element DatiRicezione uses Python identifier DatiRicezione
-    __DatiRicezione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiRicezione'), 'DatiRicezione', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiRicezione', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 110, 6), )
+    __DatiRicezione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiRicezione'),
+        'DatiRicezione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiRicezione',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            110,
+            6),
+    )
 
     DatiRicezione = property(
         __DatiRicezione.value, __DatiRicezione.set, None, None)
@@ -1882,27 +2269,69 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     # Element DatiFattureCollegate uses Python identifier DatiFattureCollegate
     __DatiFattureCollegate = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiFattureCollegate'), 'DatiFattureCollegate',
-                                                                     '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiFattureCollegate', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 111, 6), )
+            None,
+            'DatiFattureCollegate'),
+        'DatiFattureCollegate',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiFattureCollegate',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            111,
+            6),
+    )
 
     DatiFattureCollegate = property(
         __DatiFattureCollegate.value, __DatiFattureCollegate.set, None, None)
 
     # Element DatiSAL uses Python identifier DatiSAL
-    __DatiSAL = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiSAL'), 'DatiSAL', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiSAL', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 112, 6), )
+    __DatiSAL = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiSAL'),
+        'DatiSAL',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiSAL',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            112,
+            6),
+    )
 
     DatiSAL = property(__DatiSAL.value, __DatiSAL.set, None, None)
 
     # Element DatiDDT uses Python identifier DatiDDT
-    __DatiDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiDDT'), 'DatiDDT', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiDDT', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 113, 6), )
+    __DatiDDT = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiDDT'),
+        'DatiDDT',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiDDT',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            113,
+            6),
+    )
 
     DatiDDT = property(__DatiDDT.value, __DatiDDT.set, None, None)
 
     # Element DatiTrasporto uses Python identifier DatiTrasporto
-    __DatiTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiTrasporto'), 'DatiTrasporto', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_DatiTrasporto', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 114, 6), )
+    __DatiTrasporto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiTrasporto'),
+        'DatiTrasporto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_DatiTrasporto',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            114,
+            6),
+    )
 
     DatiTrasporto = property(
         __DatiTrasporto.value, __DatiTrasporto.set, None, None)
@@ -1910,8 +2339,17 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     # Element FatturaPrincipale uses Python identifier FatturaPrincipale
     __FatturaPrincipale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'FatturaPrincipale'), 'FatturaPrincipale',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliType_FatturaPrincipale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 115, 6), )
+            None,
+            'FatturaPrincipale'),
+        'FatturaPrincipale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliType_FatturaPrincipale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            115,
+            6),
+    )
 
     FatturaPrincipale = property(
         __FatturaPrincipale.value, __FatturaPrincipale.set, None, None)
@@ -1940,7 +2378,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiGeneraliDocumentoType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiGeneraliDocumentoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -1953,40 +2392,106 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element TipoDocumento uses Python identifier TipoDocumento
-    __TipoDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoDocumento'), 'TipoDocumento', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_TipoDocumento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 120, 6), )
+    __TipoDocumento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoDocumento'),
+        'TipoDocumento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_TipoDocumento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            120,
+            6),
+    )
 
     TipoDocumento = property(
         __TipoDocumento.value, __TipoDocumento.set, None, None)
 
     # Element Divisa uses Python identifier Divisa
-    __Divisa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Divisa'), 'Divisa', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_Divisa', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 121, 6), )
+    __Divisa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Divisa'),
+        'Divisa',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_Divisa',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            121,
+            6),
+    )
 
     Divisa = property(__Divisa.value, __Divisa.set, None, None)
 
     # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Data'), 'Data', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_Data', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 122, 6), )
+    __Data = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Data'),
+        'Data',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_Data',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            122,
+            6),
+    )
 
     Data = property(__Data.value, __Data.set, None, None)
 
     # Element Numero uses Python identifier Numero
-    __Numero = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Numero'), 'Numero', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_Numero', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 123, 6), )
+    __Numero = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Numero'),
+        'Numero',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_Numero',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            123,
+            6),
+    )
 
     Numero = property(__Numero.value, __Numero.set, None, None)
 
     # Element DatiRitenuta uses Python identifier DatiRitenuta
-    __DatiRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiRitenuta'), 'DatiRitenuta', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_DatiRitenuta', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 124, 6), )
+    __DatiRitenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiRitenuta'),
+        'DatiRitenuta',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_DatiRitenuta',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            124,
+            6),
+    )
 
     DatiRitenuta = property(
         __DatiRitenuta.value, __DatiRitenuta.set, None, None)
 
     # Element DatiBollo uses Python identifier DatiBollo
-    __DatiBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiBollo'), 'DatiBollo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_DatiBollo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 125, 6), )
+    __DatiBollo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiBollo'),
+        'DatiBollo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_DatiBollo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            125,
+            6),
+    )
 
     DatiBollo = property(__DatiBollo.value, __DatiBollo.set, None, None)
 
@@ -1994,17 +2499,38 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
     # DatiCassaPrevidenziale
     __DatiCassaPrevidenziale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiCassaPrevidenziale'), 'DatiCassaPrevidenziale',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_DatiCassaPrevidenziale', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 126, 6), )
+            None,
+            'DatiCassaPrevidenziale'),
+        'DatiCassaPrevidenziale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_DatiCassaPrevidenziale',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            126,
+            6),
+    )
 
     DatiCassaPrevidenziale = property(
-        __DatiCassaPrevidenziale.value, __DatiCassaPrevidenziale.set, None, None)
+        __DatiCassaPrevidenziale.value,
+        __DatiCassaPrevidenziale.set,
+        None,
+        None)
 
     # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
     __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 127, 6), )
+            None,
+            'ScontoMaggiorazione'),
+        'ScontoMaggiorazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_ScontoMaggiorazione',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            127,
+            6),
+    )
 
     ScontoMaggiorazione = property(
         __ScontoMaggiorazione.value, __ScontoMaggiorazione.set, None, None)
@@ -2013,29 +2539,73 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
     # ImportoTotaleDocumento
     __ImportoTotaleDocumento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ImportoTotaleDocumento'), 'ImportoTotaleDocumento',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_ImportoTotaleDocumento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 128, 6), )
+            None,
+            'ImportoTotaleDocumento'),
+        'ImportoTotaleDocumento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_ImportoTotaleDocumento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            128,
+            6),
+    )
 
     ImportoTotaleDocumento = property(
-        __ImportoTotaleDocumento.value, __ImportoTotaleDocumento.set, None, None)
+        __ImportoTotaleDocumento.value,
+        __ImportoTotaleDocumento.set,
+        None,
+        None)
 
     # Element Arrotondamento uses Python identifier Arrotondamento
     __Arrotondamento = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(None, 'Arrotondamento'), 'Arrotondamento',
-                                                               '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_Arrotondamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 129, 6), )
+        pyxb.namespace.ExpandedName(
+            None,
+            'Arrotondamento'),
+        'Arrotondamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_Arrotondamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            129,
+            6),
+    )
 
     Arrotondamento = property(
         __Arrotondamento.value, __Arrotondamento.set, None, None)
 
     # Element Causale uses Python identifier Causale
-    __Causale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Causale'), 'Causale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_Causale', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 130, 6), )
+    __Causale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Causale'),
+        'Causale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_Causale',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            130,
+            6),
+    )
 
     Causale = property(__Causale.value, __Causale.set, None, None)
 
     # Element Art73 uses Python identifier Art73
-    __Art73 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Art73'), 'Art73', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiGeneraliDocumentoType_Art73', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 131, 6), )
+    __Art73 = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Art73'),
+        'Art73',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiGeneraliDocumentoType_Art73',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            131,
+            6),
+    )
 
     Art73 = property(__Art73.value, __Art73.set, None, None)
 
@@ -2065,7 +2635,8 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiRitenutaType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiRitenutaType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2077,8 +2648,19 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element TipoRitenuta uses Python identifier TipoRitenuta
-    __TipoRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoRitenuta'), 'TipoRitenuta', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRitenutaType_TipoRitenuta', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 136, 6), )
+    __TipoRitenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoRitenuta'),
+        'TipoRitenuta',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRitenutaType_TipoRitenuta',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            136,
+            6),
+    )
 
     TipoRitenuta = property(
         __TipoRitenuta.value, __TipoRitenuta.set, None, None)
@@ -2086,8 +2668,17 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
     # Element ImportoRitenuta uses Python identifier ImportoRitenuta
     __ImportoRitenuta = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ImportoRitenuta'), 'ImportoRitenuta',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRitenutaType_ImportoRitenuta', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 137, 6), )
+            None,
+            'ImportoRitenuta'),
+        'ImportoRitenuta',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRitenutaType_ImportoRitenuta',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            137,
+            6),
+    )
 
     ImportoRitenuta = property(
         __ImportoRitenuta.value, __ImportoRitenuta.set, None, None)
@@ -2095,8 +2686,17 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
     # Element AliquotaRitenuta uses Python identifier AliquotaRitenuta
     __AliquotaRitenuta = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'AliquotaRitenuta'), 'AliquotaRitenuta',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRitenutaType_AliquotaRitenuta', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 138, 6), )
+            None,
+            'AliquotaRitenuta'),
+        'AliquotaRitenuta',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRitenutaType_AliquotaRitenuta',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            138,
+            6),
+    )
 
     AliquotaRitenuta = property(
         __AliquotaRitenuta.value, __AliquotaRitenuta.set, None, None)
@@ -2104,8 +2704,17 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
     # Element CausalePagamento uses Python identifier CausalePagamento
     __CausalePagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CausalePagamento'), 'CausalePagamento',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRitenutaType_CausalePagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 139, 6), )
+            None,
+            'CausalePagamento'),
+        'CausalePagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRitenutaType_CausalePagamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            139,
+            6),
+    )
 
     CausalePagamento = property(
         __CausalePagamento.value, __CausalePagamento.set, None, None)
@@ -2128,7 +2737,8 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiBolloType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiBolloType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2140,15 +2750,37 @@ class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element BolloVirtuale uses Python identifier BolloVirtuale
-    __BolloVirtuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'BolloVirtuale'), 'BolloVirtuale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiBolloType_BolloVirtuale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 144, 6), )
+    __BolloVirtuale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'BolloVirtuale'),
+        'BolloVirtuale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiBolloType_BolloVirtuale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            144,
+            6),
+    )
 
     BolloVirtuale = property(
         __BolloVirtuale.value, __BolloVirtuale.set, None, None)
 
     # Element ImportoBollo uses Python identifier ImportoBollo
-    __ImportoBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ImportoBollo'), 'ImportoBollo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiBolloType_ImportoBollo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 145, 6), )
+    __ImportoBollo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImportoBollo'),
+        'ImportoBollo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiBolloType_ImportoBollo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            145,
+            6),
+    )
 
     ImportoBollo = property(
         __ImportoBollo.value, __ImportoBollo.set, None, None)
@@ -2168,7 +2800,8 @@ Namespace.addCategoryObject('typeBinding', 'DatiBolloType', DatiBolloType)
 # with content type ELEMENT_ONLY
 class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiCassaPrevidenzialeType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiCassaPrevidenzialeType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2181,14 +2814,36 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element TipoCassa uses Python identifier TipoCassa
-    __TipoCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoCassa'), 'TipoCassa', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_TipoCassa', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 150, 6), )
+    __TipoCassa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoCassa'),
+        'TipoCassa',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_TipoCassa',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            150,
+            6),
+    )
 
     TipoCassa = property(__TipoCassa.value, __TipoCassa.set, None, None)
 
     # Element AlCassa uses Python identifier AlCassa
-    __AlCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AlCassa'), 'AlCassa', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_AlCassa', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 151, 6), )
+    __AlCassa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'AlCassa'),
+        'AlCassa',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_AlCassa',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            151,
+            6),
+    )
 
     AlCassa = property(__AlCassa.value, __AlCassa.set, None, None)
 
@@ -2196,36 +2851,90 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
     # ImportoContributoCassa
     __ImportoContributoCassa = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ImportoContributoCassa'), 'ImportoContributoCassa',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_ImportoContributoCassa', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 152, 6), )
+            None,
+            'ImportoContributoCassa'),
+        'ImportoContributoCassa',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_ImportoContributoCassa',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            152,
+            6),
+    )
 
     ImportoContributoCassa = property(
-        __ImportoContributoCassa.value, __ImportoContributoCassa.set, None, None)
+        __ImportoContributoCassa.value,
+        __ImportoContributoCassa.set,
+        None,
+        None)
 
     # Element ImponibileCassa uses Python identifier ImponibileCassa
     __ImponibileCassa = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ImponibileCassa'), 'ImponibileCassa',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_ImponibileCassa', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 153, 6), )
+            None,
+            'ImponibileCassa'),
+        'ImponibileCassa',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_ImponibileCassa',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            153,
+            6),
+    )
 
     ImponibileCassa = property(
         __ImponibileCassa.value, __ImponibileCassa.set, None, None)
 
     # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA'), 'AliquotaIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_AliquotaIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 154, 6), )
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'AliquotaIVA'),
+        'AliquotaIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_AliquotaIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            154,
+            6),
+    )
 
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
     # Element Ritenuta uses Python identifier Ritenuta
-    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Ritenuta'), 'Ritenuta', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_Ritenuta', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 155, 6), )
+    __Ritenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Ritenuta'),
+        'Ritenuta',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_Ritenuta',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            155,
+            6),
+    )
 
     Ritenuta = property(__Ritenuta.value, __Ritenuta.set, None, None)
 
     # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Natura'), 'Natura', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_Natura', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 156, 6), )
+    __Natura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Natura'),
+        'Natura',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_Natura',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            156,
+            6),
+    )
 
     Natura = property(__Natura.value, __Natura.set, None, None)
 
@@ -2233,11 +2942,23 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
     # RiferimentoAmministrazione
     __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione',
-                                                                           '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiCassaPrevidenzialeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 157, 6), )
+            None,
+            'RiferimentoAmministrazione'),
+        'RiferimentoAmministrazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiCassaPrevidenzialeType_RiferimentoAmministrazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            157,
+            6),
+    )
 
     RiferimentoAmministrazione = property(
-        __RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
+        __RiferimentoAmministrazione.value,
+        __RiferimentoAmministrazione.set,
+        None,
+        None)
 
     _ElementMap.update({
         __TipoCassa.name(): __TipoCassa,
@@ -2261,7 +2982,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}ScontoMaggiorazioneType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+ScontoMaggiorazioneType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2274,20 +2996,53 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Tipo uses Python identifier Tipo
-    __Tipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Tipo'), 'Tipo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ScontoMaggiorazioneType_Tipo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 162, 6), )
+    __Tipo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Tipo'),
+        'Tipo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ScontoMaggiorazioneType_Tipo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            162,
+            6),
+    )
 
     Tipo = property(__Tipo.value, __Tipo.set, None, None)
 
     # Element Percentuale uses Python identifier Percentuale
-    __Percentuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Percentuale'), 'Percentuale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ScontoMaggiorazioneType_Percentuale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 163, 6), )
+    __Percentuale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Percentuale'),
+        'Percentuale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ScontoMaggiorazioneType_Percentuale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            163,
+            6),
+    )
 
     Percentuale = property(__Percentuale.value, __Percentuale.set, None, None)
 
     # Element Importo uses Python identifier Importo
-    __Importo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Importo'), 'Importo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ScontoMaggiorazioneType_Importo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 164, 6), )
+    __Importo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Importo'),
+        'Importo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ScontoMaggiorazioneType_Importo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            164,
+            6),
+    )
 
     Importo = property(__Importo.value, __Importo.set, None, None)
 
@@ -2307,7 +3062,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiSALType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiSALType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2321,8 +3077,17 @@ class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
     # Element RiferimentoFase uses Python identifier RiferimentoFase
     __RiferimentoFase = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoFase'), 'RiferimentoFase',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiSALType_RiferimentoFase', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 441, 6), )
+            None,
+            'RiferimentoFase'),
+        'RiferimentoFase',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiSALType_RiferimentoFase',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            441,
+            6),
+    )
 
     RiferimentoFase = property(
         __RiferimentoFase.value, __RiferimentoFase.set, None, None)
@@ -2341,7 +3106,8 @@ Namespace.addCategoryObject('typeBinding', 'DatiSALType', DatiSALType)
 # with content type ELEMENT_ONLY
 class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiDocumentiCorrelatiType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiDocumentiCorrelatiType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2357,27 +3123,72 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
     # RiferimentoNumeroLinea
     __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDocumentiCorrelatiType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 446, 6), )
+            None,
+            'RiferimentoNumeroLinea'),
+        'RiferimentoNumeroLinea',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDocumentiCorrelatiType_RiferimentoNumeroLinea',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            446,
+            6),
+    )
 
     RiferimentoNumeroLinea = property(
-        __RiferimentoNumeroLinea.value, __RiferimentoNumeroLinea.set, None, None)
+        __RiferimentoNumeroLinea.value,
+        __RiferimentoNumeroLinea.set,
+        None,
+        None)
 
     # Element IdDocumento uses Python identifier IdDocumento
-    __IdDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdDocumento'), 'IdDocumento', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDocumentiCorrelatiType_IdDocumento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 447, 6), )
+    __IdDocumento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdDocumento'),
+        'IdDocumento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDocumentiCorrelatiType_IdDocumento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            447,
+            6),
+    )
 
     IdDocumento = property(__IdDocumento.value, __IdDocumento.set, None, None)
 
     # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Data'), 'Data', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDocumentiCorrelatiType_Data', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 448, 6), )
+    __Data = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Data'),
+        'Data',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDocumentiCorrelatiType_Data',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            448,
+            6),
+    )
 
     Data = property(__Data.value, __Data.set, None, None)
 
     # Element NumItem uses Python identifier NumItem
-    __NumItem = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumItem'), 'NumItem', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDocumentiCorrelatiType_NumItem', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 449, 6), )
+    __NumItem = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumItem'),
+        'NumItem',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDocumentiCorrelatiType_NumItem',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            449,
+            6),
+    )
 
     NumItem = property(__NumItem.value, __NumItem.set, None, None)
 
@@ -2385,21 +3196,55 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
     # CodiceCommessaConvenzione
     __CodiceCommessaConvenzione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CodiceCommessaConvenzione'), 'CodiceCommessaConvenzione',
-                                                                          '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDocumentiCorrelatiType_CodiceCommessaConvenzione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 450, 6), )
+            None,
+            'CodiceCommessaConvenzione'),
+        'CodiceCommessaConvenzione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDocumentiCorrelatiType_CodiceCommessaConvenzione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            450,
+            6),
+    )
 
     CodiceCommessaConvenzione = property(
-        __CodiceCommessaConvenzione.value, __CodiceCommessaConvenzione.set, None, None)
+        __CodiceCommessaConvenzione.value,
+        __CodiceCommessaConvenzione.set,
+        None,
+        None)
 
     # Element CodiceCUP uses Python identifier CodiceCUP
-    __CodiceCUP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceCUP'), 'CodiceCUP', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDocumentiCorrelatiType_CodiceCUP', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 451, 6), )
+    __CodiceCUP = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceCUP'),
+        'CodiceCUP',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDocumentiCorrelatiType_CodiceCUP',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            451,
+            6),
+    )
 
     CodiceCUP = property(__CodiceCUP.value, __CodiceCUP.set, None, None)
 
     # Element CodiceCIG uses Python identifier CodiceCIG
-    __CodiceCIG = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceCIG'), 'CodiceCIG', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDocumentiCorrelatiType_CodiceCIG', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 452, 6), )
+    __CodiceCIG = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceCIG'),
+        'CodiceCIG',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDocumentiCorrelatiType_CodiceCIG',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            452,
+            6),
+    )
 
     CodiceCIG = property(__CodiceCIG.value, __CodiceCIG.set, None, None)
 
@@ -2423,7 +3268,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiDDTType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiDDTType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2435,14 +3281,36 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element NumeroDDT uses Python identifier NumeroDDT
-    __NumeroDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroDDT'), 'NumeroDDT', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDDTType_NumeroDDT', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 463, 6), )
+    __NumeroDDT = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroDDT'),
+        'NumeroDDT',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDDTType_NumeroDDT',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            463,
+            6),
+    )
 
     NumeroDDT = property(__NumeroDDT.value, __NumeroDDT.set, None, None)
 
     # Element DataDDT uses Python identifier DataDDT
-    __DataDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataDDT'), 'DataDDT', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDDTType_DataDDT', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 464, 6), )
+    __DataDDT = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataDDT'),
+        'DataDDT',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDDTType_DataDDT',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            464,
+            6),
+    )
 
     DataDDT = property(__DataDDT.value, __DataDDT.set, None, None)
 
@@ -2450,11 +3318,23 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
     # RiferimentoNumeroLinea
     __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiDDTType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 465, 6), )
+            None,
+            'RiferimentoNumeroLinea'),
+        'RiferimentoNumeroLinea',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiDDTType_RiferimentoNumeroLinea',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            465,
+            6),
+    )
 
     RiferimentoNumeroLinea = property(
-        __RiferimentoNumeroLinea.value, __RiferimentoNumeroLinea.set, None, None)
+        __RiferimentoNumeroLinea.value,
+        __RiferimentoNumeroLinea.set,
+        None,
+        None)
 
     _ElementMap.update({
         __NumeroDDT.name(): __NumeroDDT,
@@ -2472,7 +3352,8 @@ Namespace.addCategoryObject('typeBinding', 'DatiDDTType', DatiDDTType)
 # content type ELEMENT_ONLY
 class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiTrasportoType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiTrasportoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2487,15 +3368,35 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
     # DatiAnagraficiVettore
     __DatiAnagraficiVettore = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DatiAnagraficiVettore'), 'DatiAnagraficiVettore',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_DatiAnagraficiVettore', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 470, 6), )
+            None,
+            'DatiAnagraficiVettore'),
+        'DatiAnagraficiVettore',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_DatiAnagraficiVettore',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            470,
+            6),
+    )
 
     DatiAnagraficiVettore = property(
         __DatiAnagraficiVettore.value, __DatiAnagraficiVettore.set, None, None)
 
     # Element MezzoTrasporto uses Python identifier MezzoTrasporto
-    __MezzoTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'MezzoTrasporto'), 'MezzoTrasporto', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_MezzoTrasporto', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 471, 6), )
+    __MezzoTrasporto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'MezzoTrasporto'),
+        'MezzoTrasporto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_MezzoTrasporto',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            471,
+            6),
+    )
 
     MezzoTrasporto = property(
         __MezzoTrasporto.value, __MezzoTrasporto.set, None, None)
@@ -2503,48 +3404,121 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
     # Element CausaleTrasporto uses Python identifier CausaleTrasporto
     __CausaleTrasporto = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CausaleTrasporto'), 'CausaleTrasporto',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_CausaleTrasporto', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 472, 6), )
+            None,
+            'CausaleTrasporto'),
+        'CausaleTrasporto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_CausaleTrasporto',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            472,
+            6),
+    )
 
     CausaleTrasporto = property(
         __CausaleTrasporto.value, __CausaleTrasporto.set, None, None)
 
     # Element NumeroColli uses Python identifier NumeroColli
-    __NumeroColli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroColli'), 'NumeroColli', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_NumeroColli', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 473, 6), )
+    __NumeroColli = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroColli'),
+        'NumeroColli',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_NumeroColli',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            473,
+            6),
+    )
 
     NumeroColli = property(__NumeroColli.value, __NumeroColli.set, None, None)
 
     # Element Descrizione uses Python identifier Descrizione
-    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Descrizione'), 'Descrizione', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_Descrizione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 474, 6), )
+    __Descrizione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Descrizione'),
+        'Descrizione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_Descrizione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            474,
+            6),
+    )
 
     Descrizione = property(__Descrizione.value, __Descrizione.set, None, None)
 
     # Element UnitaMisuraPeso uses Python identifier UnitaMisuraPeso
     __UnitaMisuraPeso = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'UnitaMisuraPeso'), 'UnitaMisuraPeso',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_UnitaMisuraPeso', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 475, 6), )
+            None,
+            'UnitaMisuraPeso'),
+        'UnitaMisuraPeso',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_UnitaMisuraPeso',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            475,
+            6),
+    )
 
     UnitaMisuraPeso = property(
         __UnitaMisuraPeso.value, __UnitaMisuraPeso.set, None, None)
 
     # Element PesoLordo uses Python identifier PesoLordo
-    __PesoLordo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PesoLordo'), 'PesoLordo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_PesoLordo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 476, 6), )
+    __PesoLordo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'PesoLordo'),
+        'PesoLordo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_PesoLordo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            476,
+            6),
+    )
 
     PesoLordo = property(__PesoLordo.value, __PesoLordo.set, None, None)
 
     # Element PesoNetto uses Python identifier PesoNetto
-    __PesoNetto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PesoNetto'), 'PesoNetto', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_PesoNetto', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 477, 6), )
+    __PesoNetto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'PesoNetto'),
+        'PesoNetto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_PesoNetto',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            477,
+            6),
+    )
 
     PesoNetto = property(__PesoNetto.value, __PesoNetto.set, None, None)
 
     # Element DataOraRitiro uses Python identifier DataOraRitiro
-    __DataOraRitiro = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataOraRitiro'), 'DataOraRitiro', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_DataOraRitiro', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 478, 6), )
+    __DataOraRitiro = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataOraRitiro'),
+        'DataOraRitiro',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_DataOraRitiro',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            478,
+            6),
+    )
 
     DataOraRitiro = property(
         __DataOraRitiro.value, __DataOraRitiro.set, None, None)
@@ -2552,21 +3526,52 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
     # Element DataInizioTrasporto uses Python identifier DataInizioTrasporto
     __DataInizioTrasporto = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataInizioTrasporto'), 'DataInizioTrasporto',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_DataInizioTrasporto', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 479, 6), )
+            None,
+            'DataInizioTrasporto'),
+        'DataInizioTrasporto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_DataInizioTrasporto',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            479,
+            6),
+    )
 
     DataInizioTrasporto = property(
         __DataInizioTrasporto.value, __DataInizioTrasporto.set, None, None)
 
     # Element TipoResa uses Python identifier TipoResa
-    __TipoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoResa'), 'TipoResa', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_TipoResa', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 480, 6), )
+    __TipoResa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoResa'),
+        'TipoResa',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_TipoResa',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            480,
+            6),
+    )
 
     TipoResa = property(__TipoResa.value, __TipoResa.set, None, None)
 
     # Element IndirizzoResa uses Python identifier IndirizzoResa
-    __IndirizzoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IndirizzoResa'), 'IndirizzoResa', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_IndirizzoResa', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 481, 6), )
+    __IndirizzoResa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IndirizzoResa'),
+        'IndirizzoResa',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_IndirizzoResa',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            481,
+            6),
+    )
 
     IndirizzoResa = property(
         __IndirizzoResa.value, __IndirizzoResa.set, None, None)
@@ -2574,8 +3579,17 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
     # Element DataOraConsegna uses Python identifier DataOraConsegna
     __DataOraConsegna = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataOraConsegna'), 'DataOraConsegna',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiTrasportoType_DataOraConsegna', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 482, 6), )
+            None,
+            'DataOraConsegna'),
+        'DataOraConsegna',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiTrasportoType_DataOraConsegna',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            482,
+            6),
+    )
 
     DataOraConsegna = property(
         __DataOraConsegna.value, __DataOraConsegna.set, None, None)
@@ -2607,7 +3621,8 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}IndirizzoType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+IndirizzoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2619,39 +3634,105 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Indirizzo uses Python identifier Indirizzo
-    __Indirizzo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Indirizzo'), 'Indirizzo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IndirizzoType_Indirizzo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 487, 6), )
+    __Indirizzo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Indirizzo'),
+        'Indirizzo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IndirizzoType_Indirizzo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            487,
+            6),
+    )
 
     Indirizzo = property(__Indirizzo.value, __Indirizzo.set, None, None)
 
     # Element NumeroCivico uses Python identifier NumeroCivico
-    __NumeroCivico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroCivico'), 'NumeroCivico', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IndirizzoType_NumeroCivico', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 488, 6), )
+    __NumeroCivico = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroCivico'),
+        'NumeroCivico',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IndirizzoType_NumeroCivico',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            488,
+            6),
+    )
 
     NumeroCivico = property(
         __NumeroCivico.value, __NumeroCivico.set, None, None)
 
     # Element CAP uses Python identifier CAP
-    __CAP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CAP'), 'CAP', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IndirizzoType_CAP', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 489, 6), )
+    __CAP = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CAP'),
+        'CAP',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IndirizzoType_CAP',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            489,
+            6),
+    )
 
     CAP = property(__CAP.value, __CAP.set, None, None)
 
     # Element Comune uses Python identifier Comune
-    __Comune = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Comune'), 'Comune', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IndirizzoType_Comune', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 490, 6), )
+    __Comune = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Comune'),
+        'Comune',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IndirizzoType_Comune',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            490,
+            6),
+    )
 
     Comune = property(__Comune.value, __Comune.set, None, None)
 
     # Element Provincia uses Python identifier Provincia
-    __Provincia = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Provincia'), 'Provincia', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IndirizzoType_Provincia', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 491, 6), )
+    __Provincia = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Provincia'),
+        'Provincia',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IndirizzoType_Provincia',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            491,
+            6),
+    )
 
     Provincia = property(__Provincia.value, __Provincia.set, None, None)
 
     # Element Nazione uses Python identifier Nazione
-    __Nazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Nazione'), 'Nazione', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IndirizzoType_Nazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 492, 6), )
+    __Nazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Nazione'),
+        'Nazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IndirizzoType_Nazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            492,
+            6),
+    )
 
     Nazione = property(__Nazione.value, __Nazione.set, None, None)
 
@@ -2674,7 +3755,8 @@ Namespace.addCategoryObject('typeBinding', 'IndirizzoType', IndirizzoType)
 # with content type ELEMENT_ONLY
 class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}FatturaPrincipaleType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+FatturaPrincipaleType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2690,18 +3772,39 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
     # NumeroFatturaPrincipale
     __NumeroFatturaPrincipale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'NumeroFatturaPrincipale'), 'NumeroFatturaPrincipale',
-                                                                        '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaPrincipaleType_NumeroFatturaPrincipale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 497, 6), )
+            None,
+            'NumeroFatturaPrincipale'),
+        'NumeroFatturaPrincipale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaPrincipaleType_NumeroFatturaPrincipale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            497,
+            6),
+    )
 
     NumeroFatturaPrincipale = property(
-        __NumeroFatturaPrincipale.value, __NumeroFatturaPrincipale.set, None, None)
+        __NumeroFatturaPrincipale.value,
+        __NumeroFatturaPrincipale.set,
+        None,
+        None)
 
     # Element DataFatturaPrincipale uses Python identifier
     # DataFatturaPrincipale
     __DataFatturaPrincipale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataFatturaPrincipale'), 'DataFatturaPrincipale',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaPrincipaleType_DataFatturaPrincipale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 498, 6), )
+            None,
+            'DataFatturaPrincipale'),
+        'DataFatturaPrincipale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaPrincipaleType_DataFatturaPrincipale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            498,
+            6),
+    )
 
     DataFatturaPrincipale = property(
         __DataFatturaPrincipale.value, __DataFatturaPrincipale.set, None, None)
@@ -2723,7 +3826,7 @@ Namespace.addCategoryObject(
 class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati del Cedente / Prestatore
+                              Blocco relativo ai dati del Cedente / Prestatore
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2737,15 +3840,37 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpwww_fatturapa_gov_itsdifatturapav1_1_CedentePrestatoreType_DatiAnagrafici', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 523, 6), )
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagrafici'),
+        'DatiAnagrafici',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CedentePrestatoreType_DatiAnagrafici',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            523,
+            6),
+    )
 
     DatiAnagrafici = property(
         __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
     # Element Sede uses Python identifier Sede
-    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Sede'), 'Sede', '__httpwww_fatturapa_gov_itsdifatturapav1_1_CedentePrestatoreType_Sede', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 524, 6), )
+    __Sede = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Sede'),
+        'Sede',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CedentePrestatoreType_Sede',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            524,
+            6),
+    )
 
     Sede = property(__Sede.value, __Sede.set, None, None)
 
@@ -2753,22 +3878,53 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     # StabileOrganizzazione
     __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'StabileOrganizzazione'), 'StabileOrganizzazione',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_CedentePrestatoreType_StabileOrganizzazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 525, 6), )
+            None,
+            'StabileOrganizzazione'),
+        'StabileOrganizzazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CedentePrestatoreType_StabileOrganizzazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            525,
+            6),
+    )
 
     StabileOrganizzazione = property(
         __StabileOrganizzazione.value, __StabileOrganizzazione.set, None, None)
 
     # Element IscrizioneREA uses Python identifier IscrizioneREA
-    __IscrizioneREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IscrizioneREA'), 'IscrizioneREA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_CedentePrestatoreType_IscrizioneREA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 526, 6), )
+    __IscrizioneREA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IscrizioneREA'),
+        'IscrizioneREA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CedentePrestatoreType_IscrizioneREA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            526,
+            6),
+    )
 
     IscrizioneREA = property(
         __IscrizioneREA.value, __IscrizioneREA.set, None, None)
 
     # Element Contatti uses Python identifier Contatti
-    __Contatti = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Contatti'), 'Contatti', '__httpwww_fatturapa_gov_itsdifatturapav1_1_CedentePrestatoreType_Contatti', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 527, 6), )
+    __Contatti = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Contatti'),
+        'Contatti',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CedentePrestatoreType_Contatti',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            527,
+            6),
+    )
 
     Contatti = property(__Contatti.value, __Contatti.set, None, None)
 
@@ -2776,11 +3932,23 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     # RiferimentoAmministrazione
     __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione',
-                                                                           '__httpwww_fatturapa_gov_itsdifatturapav1_1_CedentePrestatoreType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 528, 6), )
+            None,
+            'RiferimentoAmministrazione'),
+        'RiferimentoAmministrazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CedentePrestatoreType_RiferimentoAmministrazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            528,
+            6),
+    )
 
     RiferimentoAmministrazione = property(
-        __RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
+        __RiferimentoAmministrazione.value,
+        __RiferimentoAmministrazione.set,
+        None,
+        None)
 
     _ElementMap.update({
         __DatiAnagrafici.name(): __DatiAnagrafici,
@@ -2802,7 +3970,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiAnagraficiCedenteType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiAnagraficiCedenteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2815,37 +3984,90 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 533, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        'IdFiscaleIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_IdFiscaleIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            533,
+            6),
+    )
 
     IdFiscaleIVA = property(
         __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_CodiceFiscale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 534, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        'CodiceFiscale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_CodiceFiscale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            534,
+            6),
+    )
 
     CodiceFiscale = property(
         __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_Anagrafica', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 535, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        'Anagrafica',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_Anagrafica',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            535,
+            6),
+    )
 
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     # Element AlboProfessionale uses Python identifier AlboProfessionale
     __AlboProfessionale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'AlboProfessionale'), 'AlboProfessionale',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_AlboProfessionale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 536, 6), )
+            None,
+            'AlboProfessionale'),
+        'AlboProfessionale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_AlboProfessionale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            536,
+            6),
+    )
 
     AlboProfessionale = property(
         __AlboProfessionale.value, __AlboProfessionale.set, None, None)
 
     # Element ProvinciaAlbo uses Python identifier ProvinciaAlbo
-    __ProvinciaAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ProvinciaAlbo'), 'ProvinciaAlbo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_ProvinciaAlbo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 537, 6), )
+    __ProvinciaAlbo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'ProvinciaAlbo'),
+        'ProvinciaAlbo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_ProvinciaAlbo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            537,
+            6),
+    )
 
     ProvinciaAlbo = property(
         __ProvinciaAlbo.value, __ProvinciaAlbo.set, None, None)
@@ -2853,8 +4075,17 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
     # Element NumeroIscrizioneAlbo uses Python identifier NumeroIscrizioneAlbo
     __NumeroIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'NumeroIscrizioneAlbo'), 'NumeroIscrizioneAlbo',
-                                                                     '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_NumeroIscrizioneAlbo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 538, 6), )
+            None,
+            'NumeroIscrizioneAlbo'),
+        'NumeroIscrizioneAlbo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_NumeroIscrizioneAlbo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            538,
+            6),
+    )
 
     NumeroIscrizioneAlbo = property(
         __NumeroIscrizioneAlbo.value, __NumeroIscrizioneAlbo.set, None, None)
@@ -2862,15 +4093,35 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
     # Element DataIscrizioneAlbo uses Python identifier DataIscrizioneAlbo
     __DataIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataIscrizioneAlbo'), 'DataIscrizioneAlbo',
-                                                                   '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_DataIscrizioneAlbo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 539, 6), )
+            None,
+            'DataIscrizioneAlbo'),
+        'DataIscrizioneAlbo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_DataIscrizioneAlbo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            539,
+            6),
+    )
 
     DataIscrizioneAlbo = property(
         __DataIscrizioneAlbo.value, __DataIscrizioneAlbo.set, None, None)
 
     # Element RegimeFiscale uses Python identifier RegimeFiscale
-    __RegimeFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RegimeFiscale'), 'RegimeFiscale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCedenteType_RegimeFiscale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 540, 6), )
+    __RegimeFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'RegimeFiscale'),
+        'RegimeFiscale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCedenteType_RegimeFiscale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            540,
+            6),
+    )
 
     RegimeFiscale = property(
         __RegimeFiscale.value, __RegimeFiscale.set, None, None)
@@ -2898,7 +4149,7 @@ Namespace.addCategoryObject(
 class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Il campo Denominazione è in alternativa ai campi Nome e Cognome
+        Il campo Denominazione è in alternativa ai campi Nome e Cognome
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2911,33 +4162,88 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Denominazione uses Python identifier Denominazione
-    __Denominazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Denominazione'), 'Denominazione', '__httpwww_fatturapa_gov_itsdifatturapav1_1_AnagraficaType_Denominazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 653, 10), )
+    __Denominazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Denominazione'),
+        'Denominazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AnagraficaType_Denominazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            653,
+            10),
+    )
 
     Denominazione = property(
         __Denominazione.value, __Denominazione.set, None, None)
 
     # Element Nome uses Python identifier Nome
-    __Nome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Nome'), 'Nome', '__httpwww_fatturapa_gov_itsdifatturapav1_1_AnagraficaType_Nome', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 656, 10), )
+    __Nome = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Nome'),
+        'Nome',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AnagraficaType_Nome',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            656,
+            10),
+    )
 
     Nome = property(__Nome.value, __Nome.set, None, None)
 
     # Element Cognome uses Python identifier Cognome
-    __Cognome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Cognome'), 'Cognome', '__httpwww_fatturapa_gov_itsdifatturapav1_1_AnagraficaType_Cognome', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 657, 10), )
+    __Cognome = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Cognome'),
+        'Cognome',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AnagraficaType_Cognome',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            657,
+            10),
+    )
 
     Cognome = property(__Cognome.value, __Cognome.set, None, None)
 
     # Element Titolo uses Python identifier Titolo
-    __Titolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Titolo'), 'Titolo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_AnagraficaType_Titolo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 660, 6), )
+    __Titolo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Titolo'),
+        'Titolo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AnagraficaType_Titolo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            660,
+            6),
+    )
 
     Titolo = property(__Titolo.value, __Titolo.set, None, None)
 
     # Element CodEORI uses Python identifier CodEORI
-    __CodEORI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodEORI'), 'CodEORI', '__httpwww_fatturapa_gov_itsdifatturapav1_1_AnagraficaType_CodEORI', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 661, 6), )
+    __CodEORI = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodEORI'),
+        'CodEORI',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AnagraficaType_CodEORI',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            661,
+            6),
+    )
 
     CodEORI = property(__CodEORI.value, __CodEORI.set, None, None)
 
@@ -2959,7 +4265,8 @@ Namespace.addCategoryObject('typeBinding', 'AnagraficaType', AnagraficaType)
 # with content type ELEMENT_ONLY
 class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiAnagraficiVettoreType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiAnagraficiVettoreType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -2972,30 +4279,72 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiVettoreType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 666, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        'IdFiscaleIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiVettoreType_IdFiscaleIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            666,
+            6),
+    )
 
     IdFiscaleIVA = property(
         __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiVettoreType_CodiceFiscale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 667, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        'CodiceFiscale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiVettoreType_CodiceFiscale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            667,
+            6),
+    )
 
     CodiceFiscale = property(
         __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiVettoreType_Anagrafica', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 668, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        'Anagrafica',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiVettoreType_Anagrafica',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            668,
+            6),
+    )
 
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     # Element NumeroLicenzaGuida uses Python identifier NumeroLicenzaGuida
     __NumeroLicenzaGuida = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'NumeroLicenzaGuida'), 'NumeroLicenzaGuida',
-                                                                   '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiVettoreType_NumeroLicenzaGuida', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 669, 6), )
+            None,
+            'NumeroLicenzaGuida'),
+        'NumeroLicenzaGuida',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiVettoreType_NumeroLicenzaGuida',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            669,
+            6),
+    )
 
     NumeroLicenzaGuida = property(
         __NumeroLicenzaGuida.value, __NumeroLicenzaGuida.set, None, None)
@@ -3018,7 +4367,8 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}IscrizioneREAType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+IscrizioneREAType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -3030,37 +4380,88 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Ufficio uses Python identifier Ufficio
-    __Ufficio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Ufficio'), 'Ufficio', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IscrizioneREAType_Ufficio', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 674, 6), )
+    __Ufficio = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Ufficio'),
+        'Ufficio',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IscrizioneREAType_Ufficio',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            674,
+            6),
+    )
 
     Ufficio = property(__Ufficio.value, __Ufficio.set, None, None)
 
     # Element NumeroREA uses Python identifier NumeroREA
-    __NumeroREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroREA'), 'NumeroREA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IscrizioneREAType_NumeroREA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 675, 6), )
+    __NumeroREA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroREA'),
+        'NumeroREA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IscrizioneREAType_NumeroREA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            675,
+            6),
+    )
 
     NumeroREA = property(__NumeroREA.value, __NumeroREA.set, None, None)
 
     # Element CapitaleSociale uses Python identifier CapitaleSociale
     __CapitaleSociale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CapitaleSociale'), 'CapitaleSociale',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_IscrizioneREAType_CapitaleSociale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 676, 6), )
+            None,
+            'CapitaleSociale'),
+        'CapitaleSociale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IscrizioneREAType_CapitaleSociale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            676,
+            6),
+    )
 
     CapitaleSociale = property(
         __CapitaleSociale.value, __CapitaleSociale.set, None, None)
 
     # Element SocioUnico uses Python identifier SocioUnico
-    __SocioUnico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'SocioUnico'), 'SocioUnico', '__httpwww_fatturapa_gov_itsdifatturapav1_1_IscrizioneREAType_SocioUnico', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 677, 6), )
+    __SocioUnico = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'SocioUnico'),
+        'SocioUnico',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IscrizioneREAType_SocioUnico',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            677,
+            6),
+    )
 
     SocioUnico = property(__SocioUnico.value, __SocioUnico.set, None, None)
 
     # Element StatoLiquidazione uses Python identifier StatoLiquidazione
     __StatoLiquidazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'StatoLiquidazione'), 'StatoLiquidazione',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_IscrizioneREAType_StatoLiquidazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 678, 6), )
+            None,
+            'StatoLiquidazione'),
+        'StatoLiquidazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'IscrizioneREAType_StatoLiquidazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            678,
+            6),
+    )
 
     StatoLiquidazione = property(
         __StatoLiquidazione.value, __StatoLiquidazione.set, None, None)
@@ -3084,7 +4485,8 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class ContattiType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}ContattiType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+ContattiType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -3096,20 +4498,53 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Telefono uses Python identifier Telefono
-    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Telefono'), 'Telefono', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ContattiType_Telefono', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 683, 6), )
+    __Telefono = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Telefono'),
+        'Telefono',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ContattiType_Telefono',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            683,
+            6),
+    )
 
     Telefono = property(__Telefono.value, __Telefono.set, None, None)
 
     # Element Fax uses Python identifier Fax
-    __Fax = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Fax'), 'Fax', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ContattiType_Fax', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 684, 6), )
+    __Fax = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Fax'),
+        'Fax',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ContattiType_Fax',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            684,
+            6),
+    )
 
     Fax = property(__Fax.value, __Fax.set, None, None)
 
     # Element Email uses Python identifier Email
-    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Email'), 'Email', '__httpwww_fatturapa_gov_itsdifatturapav1_1_ContattiType_Email', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 685, 6), )
+    __Email = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Email'),
+        'Email',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'ContattiType_Email',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            685,
+            6),
+    )
 
     Email = property(__Email.value, __Email.set, None, None)
 
@@ -3130,7 +4565,7 @@ Namespace.addCategoryObject('typeBinding', 'ContattiType', ContattiType)
 class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati del Rappresentante Fiscale
+            Blocco relativo ai dati del Rappresentante Fiscale
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3145,8 +4580,18 @@ class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
 
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
     __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici',
-                                                               '__httpwww_fatturapa_gov_itsdifatturapav1_1_RappresentanteFiscaleType_DatiAnagrafici', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 695, 6), )
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagrafici'),
+        'DatiAnagrafici',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'RappresentanteFiscaleType_DatiAnagrafici',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            695,
+            6),
+    )
 
     DatiAnagrafici = property(
         __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
@@ -3162,11 +4607,14 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiAnagraficiRappresentanteType
+# {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+# DatiAnagraficiRappresentanteType
 # with content type ELEMENT_ONLY
-class DatiAnagraficiRappresentanteType (pyxb.binding.basis.complexTypeDefinition):
+class DatiAnagraficiRappresentanteType(
+        pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -3179,22 +4627,55 @@ class DatiAnagraficiRappresentanteType (pyxb.binding.basis.complexTypeDefinition
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiRappresentanteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 700, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        'IdFiscaleIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiRappresentanteType_IdFiscaleIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            700,
+            6),
+    )
 
     IdFiscaleIVA = property(
         __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiRappresentanteType_CodiceFiscale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 701, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        'CodiceFiscale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiRappresentanteType_CodiceFiscale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            701,
+            6),
+    )
 
     CodiceFiscale = property(
         __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiRappresentanteType_Anagrafica', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 702, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        'Anagrafica',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiRappresentanteType_Anagrafica',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            702,
+            6),
+    )
 
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
@@ -3207,7 +4688,9 @@ class DatiAnagraficiRappresentanteType (pyxb.binding.basis.complexTypeDefinition
 
     })
 Namespace.addCategoryObject(
-    'typeBinding', 'DatiAnagraficiRappresentanteType', DatiAnagraficiRappresentanteType)
+    'typeBinding',
+    'DatiAnagraficiRappresentanteType',
+    DatiAnagraficiRappresentanteType)
 
 
 # Complex type
@@ -3216,7 +4699,7 @@ Namespace.addCategoryObject(
 class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati del Cessionario / Committente
+            Blocco relativo ai dati del Cessionario / Committente
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3231,15 +4714,36 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
 
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
     __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici',
-                                                               '__httpwww_fatturapa_gov_itsdifatturapav1_1_CessionarioCommittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 712, 6), )
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagrafici'),
+        'DatiAnagrafici',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CessionarioCommittenteType_DatiAnagrafici',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            712,
+            6),
+    )
 
     DatiAnagrafici = property(
         __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
     # Element Sede uses Python identifier Sede
-    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Sede'), 'Sede', '__httpwww_fatturapa_gov_itsdifatturapav1_1_CessionarioCommittenteType_Sede', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 713, 6), )
+    __Sede = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Sede'),
+        'Sede',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CessionarioCommittenteType_Sede',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            713,
+            6),
+    )
 
     Sede = property(__Sede.value, __Sede.set, None, None)
 
@@ -3259,7 +4763,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiAnagraficiCessionarioType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiAnagraficiCessionarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -3272,22 +4777,55 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 718, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        'IdFiscaleIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCessionarioType_IdFiscaleIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            718,
+            6),
+    )
 
     IdFiscaleIVA = property(
         __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCessionarioType_CodiceFiscale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 719, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        'CodiceFiscale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCessionarioType_CodiceFiscale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            719,
+            6),
+    )
 
     CodiceFiscale = property(
         __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiCessionarioType_Anagrafica', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 720, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        'Anagrafica',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiCessionarioType_Anagrafica',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            720,
+            6),
+    )
 
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
@@ -3300,7 +4838,9 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
 
     })
 Namespace.addCategoryObject(
-    'typeBinding', 'DatiAnagraficiCessionarioType', DatiAnagraficiCessionarioType)
+    'typeBinding',
+    'DatiAnagraficiCessionarioType',
+    DatiAnagraficiCessionarioType)
 
 
 # Complex type
@@ -3309,7 +4849,7 @@ Namespace.addCategoryObject(
 class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica
+        Blocco relativo ai dati di Beni Servizi della Fattura   Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3324,15 +4864,36 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
 
     # Element DettaglioLinee uses Python identifier DettaglioLinee
     __DettaglioLinee = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(None, 'DettaglioLinee'), 'DettaglioLinee',
-                                                               '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiBeniServiziType_DettaglioLinee', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 730, 6), )
+        pyxb.namespace.ExpandedName(
+            None,
+            'DettaglioLinee'),
+        'DettaglioLinee',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiBeniServiziType_DettaglioLinee',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            730,
+            6),
+    )
 
     DettaglioLinee = property(
         __DettaglioLinee.value, __DettaglioLinee.set, None, None)
 
     # Element DatiRiepilogo uses Python identifier DatiRiepilogo
-    __DatiRiepilogo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiRiepilogo'), 'DatiRiepilogo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiBeniServiziType_DatiRiepilogo', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 731, 6), )
+    __DatiRiepilogo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiRiepilogo'),
+        'DatiRiepilogo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiBeniServiziType_DatiRiepilogo',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            731,
+            6),
+    )
 
     DatiRiepilogo = property(
         __DatiRiepilogo.value, __DatiRiepilogo.set, None, None)
@@ -3354,10 +4915,10 @@ Namespace.addCategoryObject(
 class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati dei Veicoli della Fattura
-                                Elettronica (da indicare nei casi di cessioni tra Paesi
-                                membri di mezzi di trasporto nuovi, in base all'art. 38,
-                                comma 4 del dl 331 del 1993)
+                    Blocco relativo ai dati dei Veicoli della Fattura
+                    Elettronica (da indicare nei casi di cessioni tra Paesi
+                    membri di mezzi di trasporto nuovi, in base all'art. 38,
+                    comma 4 del dl 331 del 1993)
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3370,14 +4931,36 @@ class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Data'), 'Data', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiVeicoliType_Data', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 744, 6), )
+    __Data = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Data'),
+        'Data',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiVeicoliType_Data',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            744,
+            6),
+    )
 
     Data = property(__Data.value, __Data.set, None, None)
 
     # Element TotalePercorso uses Python identifier TotalePercorso
-    __TotalePercorso = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TotalePercorso'), 'TotalePercorso', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiVeicoliType_TotalePercorso', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 745, 6), )
+    __TotalePercorso = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TotalePercorso'),
+        'TotalePercorso',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiVeicoliType_TotalePercorso',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            745,
+            6),
+    )
 
     TotalePercorso = property(
         __TotalePercorso.value, __TotalePercorso.set, None, None)
@@ -3398,7 +4981,7 @@ Namespace.addCategoryObject('typeBinding', 'DatiVeicoliType', DatiVeicoliType)
 class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati di Pagamento della Fattura	Elettronica
+            Blocco relativo ai dati di Pagamento della Fattura  Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3413,8 +4996,17 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element CondizioniPagamento uses Python identifier CondizioniPagamento
     __CondizioniPagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CondizioniPagamento'), 'CondizioniPagamento',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiPagamentoType_CondizioniPagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 755, 6), )
+            None,
+            'CondizioniPagamento'),
+        'CondizioniPagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiPagamentoType_CondizioniPagamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            755,
+            6),
+    )
 
     CondizioniPagamento = property(
         __CondizioniPagamento.value, __CondizioniPagamento.set, None, None)
@@ -3422,8 +5014,17 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element DettaglioPagamento uses Python identifier DettaglioPagamento
     __DettaglioPagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DettaglioPagamento'), 'DettaglioPagamento',
-                                                                   '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiPagamentoType_DettaglioPagamento', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 756, 6), )
+            None,
+            'DettaglioPagamento'),
+        'DettaglioPagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiPagamentoType_DettaglioPagamento',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            756,
+            6),
+    )
 
     DettaglioPagamento = property(
         __DettaglioPagamento.value, __DettaglioPagamento.set, None, None)
@@ -3444,7 +5045,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DettaglioPagamentoType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DettaglioPagamentoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -3457,8 +5059,19 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Beneficiario uses Python identifier Beneficiario
-    __Beneficiario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Beneficiario'), 'Beneficiario', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_Beneficiario', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 782, 6), )
+    __Beneficiario = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Beneficiario'),
+        'Beneficiario',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_Beneficiario',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            782,
+            6),
+    )
 
     Beneficiario = property(
         __Beneficiario.value, __Beneficiario.set, None, None)
@@ -3466,38 +5079,82 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element ModalitaPagamento uses Python identifier ModalitaPagamento
     __ModalitaPagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ModalitaPagamento'), 'ModalitaPagamento',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_ModalitaPagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 783, 6), )
+            None,
+            'ModalitaPagamento'),
+        'ModalitaPagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_ModalitaPagamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            783,
+            6),
+    )
 
     ModalitaPagamento = property(
         __ModalitaPagamento.value, __ModalitaPagamento.set, None, None)
 
     # Element DataRiferimentoTerminiPagamento uses Python identifier
     # DataRiferimentoTerminiPagamento
-    __DataRiferimentoTerminiPagamento = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(
-            None, 'DataRiferimentoTerminiPagamento'), 'DataRiferimentoTerminiPagamento',
-                                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_DataRiferimentoTerminiPagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 784, 6), )
+    __DataRiferimentoTerminiPagamento = (
+        pyxb.binding.content.ElementDeclaration(
+            pyxb.namespace.ExpandedName(
+                None,
+                'DataRiferimentoTerminiPagamento'),
+            'DataRiferimentoTerminiPagamento',
+            '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+            'DettaglioPagamentoType_DataRiferimentoTerminiPagamento',
+            False,
+            pyxb.utils.utility.Location(
+                '/tmp/fatturapa_v1.1.xsd',
+                784,
+                6),
+        )
+    )
 
     DataRiferimentoTerminiPagamento = property(
-        __DataRiferimentoTerminiPagamento.value, __DataRiferimentoTerminiPagamento.set, None, None)
+        __DataRiferimentoTerminiPagamento.value,
+        __DataRiferimentoTerminiPagamento.set,
+        None,
+        None)
 
     # Element GiorniTerminiPagamento uses Python identifier
     # GiorniTerminiPagamento
     __GiorniTerminiPagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'GiorniTerminiPagamento'), 'GiorniTerminiPagamento',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_GiorniTerminiPagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 785, 6), )
+            None,
+            'GiorniTerminiPagamento'),
+        'GiorniTerminiPagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_GiorniTerminiPagamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            785,
+            6),
+    )
 
     GiorniTerminiPagamento = property(
-        __GiorniTerminiPagamento.value, __GiorniTerminiPagamento.set, None, None)
+        __GiorniTerminiPagamento.value,
+        __GiorniTerminiPagamento.set,
+        None,
+        None)
 
     # Element DataScadenzaPagamento uses Python identifier
     # DataScadenzaPagamento
     __DataScadenzaPagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataScadenzaPagamento'), 'DataScadenzaPagamento',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_DataScadenzaPagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 786, 6), )
+            None,
+            'DataScadenzaPagamento'),
+        'DataScadenzaPagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_DataScadenzaPagamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            786,
+            6),
+    )
 
     DataScadenzaPagamento = property(
         __DataScadenzaPagamento.value, __DataScadenzaPagamento.set, None, None)
@@ -3505,8 +5162,17 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element ImportoPagamento uses Python identifier ImportoPagamento
     __ImportoPagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ImportoPagamento'), 'ImportoPagamento',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_ImportoPagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 787, 6), )
+            None,
+            'ImportoPagamento'),
+        'ImportoPagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_ImportoPagamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            787,
+            6),
+    )
 
     ImportoPagamento = property(
         __ImportoPagamento.value, __ImportoPagamento.set, None, None)
@@ -3514,8 +5180,17 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element CodUfficioPostale uses Python identifier CodUfficioPostale
     __CodUfficioPostale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CodUfficioPostale'), 'CodUfficioPostale',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_CodUfficioPostale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 788, 6), )
+            None,
+            'CodUfficioPostale'),
+        'CodUfficioPostale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_CodUfficioPostale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            788,
+            6),
+    )
 
     CodUfficioPostale = property(
         __CodUfficioPostale.value, __CodUfficioPostale.set, None, None)
@@ -3523,8 +5198,17 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element CognomeQuietanzante uses Python identifier CognomeQuietanzante
     __CognomeQuietanzante = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CognomeQuietanzante'), 'CognomeQuietanzante',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_CognomeQuietanzante', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 789, 6), )
+            None,
+            'CognomeQuietanzante'),
+        'CognomeQuietanzante',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_CognomeQuietanzante',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            789,
+            6),
+    )
 
     CognomeQuietanzante = property(
         __CognomeQuietanzante.value, __CognomeQuietanzante.set, None, None)
@@ -3532,15 +5216,35 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element NomeQuietanzante uses Python identifier NomeQuietanzante
     __NomeQuietanzante = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'NomeQuietanzante'), 'NomeQuietanzante',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_NomeQuietanzante', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 790, 6), )
+            None,
+            'NomeQuietanzante'),
+        'NomeQuietanzante',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_NomeQuietanzante',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            790,
+            6),
+    )
 
     NomeQuietanzante = property(
         __NomeQuietanzante.value, __NomeQuietanzante.set, None, None)
 
     # Element CFQuietanzante uses Python identifier CFQuietanzante
-    __CFQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CFQuietanzante'), 'CFQuietanzante', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_CFQuietanzante', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 791, 6), )
+    __CFQuietanzante = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CFQuietanzante'),
+        'CFQuietanzante',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_CFQuietanzante',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            791,
+            6),
+    )
 
     CFQuietanzante = property(
         __CFQuietanzante.value, __CFQuietanzante.set, None, None)
@@ -3548,8 +5252,17 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element TitoloQuietanzante uses Python identifier TitoloQuietanzante
     __TitoloQuietanzante = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'TitoloQuietanzante'), 'TitoloQuietanzante',
-                                                                   '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_TitoloQuietanzante', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 792, 6), )
+            None,
+            'TitoloQuietanzante'),
+        'TitoloQuietanzante',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_TitoloQuietanzante',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            792,
+            6),
+    )
 
     TitoloQuietanzante = property(
         __TitoloQuietanzante.value, __TitoloQuietanzante.set, None, None)
@@ -3557,33 +5270,86 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element IstitutoFinanziario uses Python identifier IstitutoFinanziario
     __IstitutoFinanziario = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'IstitutoFinanziario'), 'IstitutoFinanziario',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_IstitutoFinanziario', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 793, 6), )
+            None,
+            'IstitutoFinanziario'),
+        'IstitutoFinanziario',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_IstitutoFinanziario',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            793,
+            6),
+    )
 
     IstitutoFinanziario = property(
         __IstitutoFinanziario.value, __IstitutoFinanziario.set, None, None)
 
     # Element IBAN uses Python identifier IBAN
-    __IBAN = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IBAN'), 'IBAN', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_IBAN', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 794, 6), )
+    __IBAN = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IBAN'),
+        'IBAN',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_IBAN',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            794,
+            6),
+    )
 
     IBAN = property(__IBAN.value, __IBAN.set, None, None)
 
     # Element ABI uses Python identifier ABI
-    __ABI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ABI'), 'ABI', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_ABI', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 795, 6), )
+    __ABI = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'ABI'),
+        'ABI',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_ABI',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            795,
+            6),
+    )
 
     ABI = property(__ABI.value, __ABI.set, None, None)
 
     # Element CAB uses Python identifier CAB
-    __CAB = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CAB'), 'CAB', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_CAB', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 796, 6), )
+    __CAB = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CAB'),
+        'CAB',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_CAB',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            796,
+            6),
+    )
 
     CAB = property(__CAB.value, __CAB.set, None, None)
 
     # Element BIC uses Python identifier BIC
-    __BIC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'BIC'), 'BIC', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_BIC', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 797, 6), )
+    __BIC = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'BIC'),
+        'BIC',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_BIC',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            797,
+            6),
+    )
 
     BIC = property(__BIC.value, __BIC.set, None, None)
 
@@ -3591,37 +5357,82 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # ScontoPagamentoAnticipato
     __ScontoPagamentoAnticipato = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ScontoPagamentoAnticipato'), 'ScontoPagamentoAnticipato',
-                                                                          '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_ScontoPagamentoAnticipato', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 798, 6), )
+            None,
+            'ScontoPagamentoAnticipato'),
+        'ScontoPagamentoAnticipato',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_ScontoPagamentoAnticipato',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            798,
+            6),
+    )
 
     ScontoPagamentoAnticipato = property(
-        __ScontoPagamentoAnticipato.value, __ScontoPagamentoAnticipato.set, None, None)
+        __ScontoPagamentoAnticipato.value,
+        __ScontoPagamentoAnticipato.set,
+        None,
+        None)
 
     # Element DataLimitePagamentoAnticipato uses Python identifier
     # DataLimitePagamentoAnticipato
     __DataLimitePagamentoAnticipato = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataLimitePagamentoAnticipato'), 'DataLimitePagamentoAnticipato',
-                                                                              '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_DataLimitePagamentoAnticipato', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 799, 6), )
+            None,
+            'DataLimitePagamentoAnticipato'),
+        'DataLimitePagamentoAnticipato',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_DataLimitePagamentoAnticipato',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            799,
+            6),
+    )
 
     DataLimitePagamentoAnticipato = property(
-        __DataLimitePagamentoAnticipato.value, __DataLimitePagamentoAnticipato.set, None, None)
+        __DataLimitePagamentoAnticipato.value,
+        __DataLimitePagamentoAnticipato.set,
+        None,
+        None)
 
     # Element PenalitaPagamentiRitardati uses Python identifier
     # PenalitaPagamentiRitardati
     __PenalitaPagamentiRitardati = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'PenalitaPagamentiRitardati'), 'PenalitaPagamentiRitardati',
-                                                                           '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_PenalitaPagamentiRitardati', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 800, 6), )
+            None,
+            'PenalitaPagamentiRitardati'),
+        'PenalitaPagamentiRitardati',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_PenalitaPagamentiRitardati',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            800,
+            6),
+    )
 
     PenalitaPagamentiRitardati = property(
-        __PenalitaPagamentiRitardati.value, __PenalitaPagamentiRitardati.set, None, None)
+        __PenalitaPagamentiRitardati.value,
+        __PenalitaPagamentiRitardati.set,
+        None,
+        None)
 
     # Element DataDecorrenzaPenale uses Python identifier DataDecorrenzaPenale
     __DataDecorrenzaPenale = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataDecorrenzaPenale'), 'DataDecorrenzaPenale',
-                                                                     '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_DataDecorrenzaPenale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 801, 6), )
+            None,
+            'DataDecorrenzaPenale'),
+        'DataDecorrenzaPenale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_DataDecorrenzaPenale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            801,
+            6),
+    )
 
     DataDecorrenzaPenale = property(
         __DataDecorrenzaPenale.value, __DataDecorrenzaPenale.set, None, None)
@@ -3629,8 +5440,17 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     # Element CodicePagamento uses Python identifier CodicePagamento
     __CodicePagamento = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'CodicePagamento'), 'CodicePagamento',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioPagamentoType_CodicePagamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 802, 6), )
+            None,
+            'CodicePagamento'),
+        'CodicePagamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioPagamentoType_CodicePagamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            802,
+            6),
+    )
 
     CodicePagamento = property(
         __CodicePagamento.value, __CodicePagamento.set, None, None)
@@ -3638,24 +5458,37 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap.update({
         __Beneficiario.name(): __Beneficiario,
         __ModalitaPagamento.name(): __ModalitaPagamento,
-        __DataRiferimentoTerminiPagamento.name(): __DataRiferimentoTerminiPagamento,
-        __GiorniTerminiPagamento.name(): __GiorniTerminiPagamento,
-        __DataScadenzaPagamento.name(): __DataScadenzaPagamento,
+        __DataRiferimentoTerminiPagamento.name():
+        __DataRiferimentoTerminiPagamento,
+        __GiorniTerminiPagamento.name():
+        __GiorniTerminiPagamento,
+        __DataScadenzaPagamento.name():
+        __DataScadenzaPagamento,
         __ImportoPagamento.name(): __ImportoPagamento,
-        __CodUfficioPostale.name(): __CodUfficioPostale,
-        __CognomeQuietanzante.name(): __CognomeQuietanzante,
-        __NomeQuietanzante.name(): __NomeQuietanzante,
-        __CFQuietanzante.name(): __CFQuietanzante,
-        __TitoloQuietanzante.name(): __TitoloQuietanzante,
-        __IstitutoFinanziario.name(): __IstitutoFinanziario,
+        __CodUfficioPostale.name():
+        __CodUfficioPostale,
+        __CognomeQuietanzante.name():
+        __CognomeQuietanzante,
+        __NomeQuietanzante.name():
+        __NomeQuietanzante,
+        __CFQuietanzante.name():
+        __CFQuietanzante,
+        __TitoloQuietanzante.name():
+        __TitoloQuietanzante,
+        __IstitutoFinanziario.name():
+        __IstitutoFinanziario,
         __IBAN.name(): __IBAN,
         __ABI.name(): __ABI,
         __CAB.name(): __CAB,
         __BIC.name(): __BIC,
-        __ScontoPagamentoAnticipato.name(): __ScontoPagamentoAnticipato,
-        __DataLimitePagamentoAnticipato.name(): __DataLimitePagamentoAnticipato,
-        __PenalitaPagamentiRitardati.name(): __PenalitaPagamentiRitardati,
-        __DataDecorrenzaPenale.name(): __DataDecorrenzaPenale,
+        __ScontoPagamentoAnticipato.name():
+        __ScontoPagamentoAnticipato,
+        __DataLimitePagamentoAnticipato.name():
+        __DataLimitePagamentoAnticipato,
+        __PenalitaPagamentiRitardati.name():
+        __PenalitaPagamentiRitardati,
+        __DataDecorrenzaPenale.name():
+        __DataDecorrenzaPenale,
         __CodicePagamento.name(): __CodicePagamento
     })
     _AttributeMap.update({
@@ -3666,14 +5499,16 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}TerzoIntermediarioSoggettoEmittenteType
+# {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+# TerzoIntermediarioSoggettoEmittenteType
 # with content type ELEMENT_ONLY
-class TerzoIntermediarioSoggettoEmittenteType (pyxb.binding.basis.complexTypeDefinition):
+class TerzoIntermediarioSoggettoEmittenteType(
+        pyxb.binding.basis.complexTypeDefinition):
 
     """
-                                Blocco relativo ai dati del Terzo Intermediario che
-                                emette fattura elettronica per conto del
-                                Cedente/Prestatore
+    Blocco relativo ai dati del Terzo Intermediario che
+    emette fattura elettronica per conto del
+    Cedente/Prestatore
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3688,8 +5523,18 @@ class TerzoIntermediarioSoggettoEmittenteType (pyxb.binding.basis.complexTypeDef
 
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
     __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici',
-                                                               '__httpwww_fatturapa_gov_itsdifatturapav1_1_TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 934, 6), )
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagrafici'),
+        'DatiAnagrafici',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            934,
+            6),
+    )
 
     DatiAnagrafici = property(
         __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
@@ -3701,15 +5546,19 @@ class TerzoIntermediarioSoggettoEmittenteType (pyxb.binding.basis.complexTypeDef
 
     })
 Namespace.addCategoryObject(
-    'typeBinding', 'TerzoIntermediarioSoggettoEmittenteType', TerzoIntermediarioSoggettoEmittenteType)
+    'typeBinding',
+    'TerzoIntermediarioSoggettoEmittenteType',
+    TerzoIntermediarioSoggettoEmittenteType)
 
 
 # Complex type
 # {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiAnagraficiTerzoIntermediarioType
 # with content type ELEMENT_ONLY
-class DatiAnagraficiTerzoIntermediarioType (pyxb.binding.basis.complexTypeDefinition):
+class DatiAnagraficiTerzoIntermediarioType(
+        pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -3722,22 +5571,55 @@ class DatiAnagraficiTerzoIntermediarioType (pyxb.binding.basis.complexTypeDefini
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 939, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        'IdFiscaleIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            939,
+            6),
+    )
 
     IdFiscaleIVA = property(
         __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiTerzoIntermediarioType_CodiceFiscale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 940, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        'CodiceFiscale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiTerzoIntermediarioType_CodiceFiscale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            940,
+            6),
+    )
 
     CodiceFiscale = property(
         __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiAnagraficiTerzoIntermediarioType_Anagrafica', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 941, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        'Anagrafica',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiAnagraficiTerzoIntermediarioType_Anagrafica',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            941,
+            6),
+    )
 
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
@@ -3750,7 +5632,9 @@ class DatiAnagraficiTerzoIntermediarioType (pyxb.binding.basis.complexTypeDefini
 
     })
 Namespace.addCategoryObject(
-    'typeBinding', 'DatiAnagraficiTerzoIntermediarioType', DatiAnagraficiTerzoIntermediarioType)
+    'typeBinding',
+    'DatiAnagraficiTerzoIntermediarioType',
+    DatiAnagraficiTerzoIntermediarioType)
 
 
 # Complex type
@@ -3773,8 +5657,18 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
 
     # Element NomeAttachment uses Python identifier NomeAttachment
     __NomeAttachment = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(None, 'NomeAttachment'), 'NomeAttachment',
-                                                               '__httpwww_fatturapa_gov_itsdifatturapav1_1_AllegatiType_NomeAttachment', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 951, 6), )
+        pyxb.namespace.ExpandedName(
+            None,
+            'NomeAttachment'),
+        'NomeAttachment',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AllegatiType_NomeAttachment',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            951,
+            6),
+    )
 
     NomeAttachment = property(
         __NomeAttachment.value, __NomeAttachment.set, None, None)
@@ -3783,8 +5677,17 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     # AlgoritmoCompressione
     __AlgoritmoCompressione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'AlgoritmoCompressione'), 'AlgoritmoCompressione',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_AllegatiType_AlgoritmoCompressione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 952, 6), )
+            None,
+            'AlgoritmoCompressione'),
+        'AlgoritmoCompressione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AllegatiType_AlgoritmoCompressione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            952,
+            6),
+    )
 
     AlgoritmoCompressione = property(
         __AlgoritmoCompressione.value, __AlgoritmoCompressione.set, None, None)
@@ -3792,8 +5695,17 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     # Element FormatoAttachment uses Python identifier FormatoAttachment
     __FormatoAttachment = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'FormatoAttachment'), 'FormatoAttachment',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_AllegatiType_FormatoAttachment', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 953, 6), )
+            None,
+            'FormatoAttachment'),
+        'FormatoAttachment',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AllegatiType_FormatoAttachment',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            953,
+            6),
+    )
 
     FormatoAttachment = property(
         __FormatoAttachment.value, __FormatoAttachment.set, None, None)
@@ -3802,15 +5714,35 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     # DescrizioneAttachment
     __DescrizioneAttachment = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DescrizioneAttachment'), 'DescrizioneAttachment',
-                                                                      '__httpwww_fatturapa_gov_itsdifatturapav1_1_AllegatiType_DescrizioneAttachment', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 954, 6), )
+            None,
+            'DescrizioneAttachment'),
+        'DescrizioneAttachment',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AllegatiType_DescrizioneAttachment',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            954,
+            6),
+    )
 
     DescrizioneAttachment = property(
         __DescrizioneAttachment.value, __DescrizioneAttachment.set, None, None)
 
     # Element Attachment uses Python identifier Attachment
-    __Attachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Attachment'), 'Attachment', '__httpwww_fatturapa_gov_itsdifatturapav1_1_AllegatiType_Attachment', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 955, 6), )
+    __Attachment = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Attachment'),
+        'Attachment',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AllegatiType_Attachment',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            955,
+            6),
+    )
 
     Attachment = property(__Attachment.value, __Attachment.set, None, None)
 
@@ -3832,7 +5764,8 @@ Namespace.addCategoryObject('typeBinding', 'AllegatiType', AllegatiType)
 # content type ELEMENT_ONLY
 class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DettaglioLineeType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+DettaglioLineeType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -3845,8 +5778,19 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element NumeroLinea uses Python identifier NumeroLinea
-    __NumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroLinea'), 'NumeroLinea', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_NumeroLinea', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 960, 6), )
+    __NumeroLinea = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroLinea'),
+        'NumeroLinea',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_NumeroLinea',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            960,
+            6),
+    )
 
     NumeroLinea = property(__NumeroLinea.value, __NumeroLinea.set, None, None)
 
@@ -3854,42 +5798,107 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     # TipoCessionePrestazione
     __TipoCessionePrestazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'TipoCessionePrestazione'), 'TipoCessionePrestazione',
-                                                                        '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_TipoCessionePrestazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 961, 6), )
+            None,
+            'TipoCessionePrestazione'),
+        'TipoCessionePrestazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_TipoCessionePrestazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            961,
+            6),
+    )
 
     TipoCessionePrestazione = property(
-        __TipoCessionePrestazione.value, __TipoCessionePrestazione.set, None, None)
+        __TipoCessionePrestazione.value,
+        __TipoCessionePrestazione.set,
+        None,
+        None)
 
     # Element CodiceArticolo uses Python identifier CodiceArticolo
-    __CodiceArticolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceArticolo'), 'CodiceArticolo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_CodiceArticolo', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 962, 6), )
+    __CodiceArticolo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceArticolo'),
+        'CodiceArticolo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_CodiceArticolo',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            962,
+            6),
+    )
 
     CodiceArticolo = property(
         __CodiceArticolo.value, __CodiceArticolo.set, None, None)
 
     # Element Descrizione uses Python identifier Descrizione
-    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Descrizione'), 'Descrizione', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_Descrizione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 963, 6), )
+    __Descrizione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Descrizione'),
+        'Descrizione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_Descrizione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            963,
+            6),
+    )
 
     Descrizione = property(__Descrizione.value, __Descrizione.set, None, None)
 
     # Element Quantita uses Python identifier Quantita
-    __Quantita = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Quantita'), 'Quantita', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_Quantita', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 964, 6), )
+    __Quantita = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Quantita'),
+        'Quantita',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_Quantita',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            964,
+            6),
+    )
 
     Quantita = property(__Quantita.value, __Quantita.set, None, None)
 
     # Element UnitaMisura uses Python identifier UnitaMisura
-    __UnitaMisura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'UnitaMisura'), 'UnitaMisura', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_UnitaMisura', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 965, 6), )
+    __UnitaMisura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'UnitaMisura'),
+        'UnitaMisura',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_UnitaMisura',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            965,
+            6),
+    )
 
     UnitaMisura = property(__UnitaMisura.value, __UnitaMisura.set, None, None)
 
     # Element DataInizioPeriodo uses Python identifier DataInizioPeriodo
     __DataInizioPeriodo = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataInizioPeriodo'), 'DataInizioPeriodo',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_DataInizioPeriodo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 966, 6), )
+            None,
+            'DataInizioPeriodo'),
+        'DataInizioPeriodo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_DataInizioPeriodo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            966,
+            6),
+    )
 
     DataInizioPeriodo = property(
         __DataInizioPeriodo.value, __DataInizioPeriodo.set, None, None)
@@ -3897,15 +5906,35 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     # Element DataFinePeriodo uses Python identifier DataFinePeriodo
     __DataFinePeriodo = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'DataFinePeriodo'), 'DataFinePeriodo',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_DataFinePeriodo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 967, 6), )
+            None,
+            'DataFinePeriodo'),
+        'DataFinePeriodo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_DataFinePeriodo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            967,
+            6),
+    )
 
     DataFinePeriodo = property(
         __DataFinePeriodo.value, __DataFinePeriodo.set, None, None)
 
     # Element PrezzoUnitario uses Python identifier PrezzoUnitario
-    __PrezzoUnitario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PrezzoUnitario'), 'PrezzoUnitario', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_PrezzoUnitario', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 968, 6), )
+    __PrezzoUnitario = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'PrezzoUnitario'),
+        'PrezzoUnitario',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_PrezzoUnitario',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            968,
+            6),
+    )
 
     PrezzoUnitario = property(
         __PrezzoUnitario.value, __PrezzoUnitario.set, None, None)
@@ -3913,34 +5942,87 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
     __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 969, 6), )
+            None,
+            'ScontoMaggiorazione'),
+        'ScontoMaggiorazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_ScontoMaggiorazione',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            969,
+            6),
+    )
 
     ScontoMaggiorazione = property(
         __ScontoMaggiorazione.value, __ScontoMaggiorazione.set, None, None)
 
     # Element PrezzoTotale uses Python identifier PrezzoTotale
-    __PrezzoTotale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PrezzoTotale'), 'PrezzoTotale', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_PrezzoTotale', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 970, 6), )
+    __PrezzoTotale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'PrezzoTotale'),
+        'PrezzoTotale',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_PrezzoTotale',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            970,
+            6),
+    )
 
     PrezzoTotale = property(
         __PrezzoTotale.value, __PrezzoTotale.set, None, None)
 
     # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA'), 'AliquotaIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_AliquotaIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 971, 6), )
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'AliquotaIVA'),
+        'AliquotaIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_AliquotaIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            971,
+            6),
+    )
 
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
     # Element Ritenuta uses Python identifier Ritenuta
-    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Ritenuta'), 'Ritenuta', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_Ritenuta', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 972, 6), )
+    __Ritenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Ritenuta'),
+        'Ritenuta',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_Ritenuta',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            972,
+            6),
+    )
 
     Ritenuta = property(__Ritenuta.value, __Ritenuta.set, None, None)
 
     # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Natura'), 'Natura', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_Natura', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 973, 6), )
+    __Natura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Natura'),
+        'Natura',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_Natura',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            973,
+            6),
+    )
 
     Natura = property(__Natura.value, __Natura.set, None, None)
 
@@ -3948,17 +6030,38 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     # RiferimentoAmministrazione
     __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione',
-                                                                           '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 974, 6), )
+            None,
+            'RiferimentoAmministrazione'),
+        'RiferimentoAmministrazione',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_RiferimentoAmministrazione',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            974,
+            6),
+    )
 
     RiferimentoAmministrazione = property(
-        __RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
+        __RiferimentoAmministrazione.value,
+        __RiferimentoAmministrazione.set,
+        None,
+        None)
 
     # Element AltriDatiGestionali uses Python identifier AltriDatiGestionali
     __AltriDatiGestionali = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'AltriDatiGestionali'), 'AltriDatiGestionali',
-                                                                    '__httpwww_fatturapa_gov_itsdifatturapav1_1_DettaglioLineeType_AltriDatiGestionali', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 975, 6), )
+            None,
+            'AltriDatiGestionali'),
+        'AltriDatiGestionali',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DettaglioLineeType_AltriDatiGestionali',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            975,
+            6),
+    )
 
     AltriDatiGestionali = property(
         __AltriDatiGestionali.value, __AltriDatiGestionali.set, None, None)
@@ -3993,7 +6096,8 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}CodiceArticoloType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+CodiceArticoloType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -4006,14 +6110,36 @@ class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element CodiceTipo uses Python identifier CodiceTipo
-    __CodiceTipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceTipo'), 'CodiceTipo', '__httpwww_fatturapa_gov_itsdifatturapav1_1_CodiceArticoloType_CodiceTipo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 980, 6), )
+    __CodiceTipo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceTipo'),
+        'CodiceTipo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CodiceArticoloType_CodiceTipo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            980,
+            6),
+    )
 
     CodiceTipo = property(__CodiceTipo.value, __CodiceTipo.set, None, None)
 
     # Element CodiceValore uses Python identifier CodiceValore
-    __CodiceValore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceValore'), 'CodiceValore', '__httpwww_fatturapa_gov_itsdifatturapav1_1_CodiceArticoloType_CodiceValore', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 981, 6), )
+    __CodiceValore = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceValore'),
+        'CodiceValore',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'CodiceArticoloType_CodiceValore',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            981,
+            6),
+    )
 
     CodiceValore = property(
         __CodiceValore.value, __CodiceValore.set, None, None)
@@ -4034,7 +6160,8 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}AltriDatiGestionaliType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+AltriDatiGestionaliType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -4047,16 +6174,36 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element TipoDato uses Python identifier TipoDato
-    __TipoDato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoDato'), 'TipoDato', '__httpwww_fatturapa_gov_itsdifatturapav1_1_AltriDatiGestionaliType_TipoDato', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 986, 6), )
+    __TipoDato = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoDato'),
+        'TipoDato',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AltriDatiGestionaliType_TipoDato',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            986,
+            6),
+    )
 
     TipoDato = property(__TipoDato.value, __TipoDato.set, None, None)
 
     # Element RiferimentoTesto uses Python identifier RiferimentoTesto
     __RiferimentoTesto = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoTesto'), 'RiferimentoTesto',
-                                                                 '__httpwww_fatturapa_gov_itsdifatturapav1_1_AltriDatiGestionaliType_RiferimentoTesto', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 987, 6), )
+            None,
+            'RiferimentoTesto'),
+        'RiferimentoTesto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AltriDatiGestionaliType_RiferimentoTesto',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            987,
+            6),
+    )
 
     RiferimentoTesto = property(
         __RiferimentoTesto.value, __RiferimentoTesto.set, None, None)
@@ -4064,8 +6211,17 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
     # Element RiferimentoNumero uses Python identifier RiferimentoNumero
     __RiferimentoNumero = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoNumero'), 'RiferimentoNumero',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_AltriDatiGestionaliType_RiferimentoNumero', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 988, 6), )
+            None,
+            'RiferimentoNumero'),
+        'RiferimentoNumero',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AltriDatiGestionaliType_RiferimentoNumero',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            988,
+            6),
+    )
 
     RiferimentoNumero = property(
         __RiferimentoNumero.value, __RiferimentoNumero.set, None, None)
@@ -4073,8 +6229,17 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
     # Element RiferimentoData uses Python identifier RiferimentoData
     __RiferimentoData = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoData'), 'RiferimentoData',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_AltriDatiGestionaliType_RiferimentoData', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 989, 6), )
+            None,
+            'RiferimentoData'),
+        'RiferimentoData',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'AltriDatiGestionaliType_RiferimentoData',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            989,
+            6),
+    )
 
     RiferimentoData = property(
         __RiferimentoData.value, __RiferimentoData.set, None, None)
@@ -4097,7 +6262,9 @@ Namespace.addCategoryObject(
 # content type ELEMENT_ONLY
 class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}DatiRiepilogoType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+
+    DatiRiepilogoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -4109,29 +6276,71 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA'), 'AliquotaIVA', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_AliquotaIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1006, 6), )
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'AliquotaIVA'),
+        'AliquotaIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRiepilogoType_AliquotaIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1006,
+            6),
+    )
 
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
     # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Natura'), 'Natura', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_Natura', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1007, 6), )
+    __Natura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Natura'),
+        'Natura',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRiepilogoType_Natura',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1007,
+            6),
+    )
 
     Natura = property(__Natura.value, __Natura.set, None, None)
 
     # Element SpeseAccessorie uses Python identifier SpeseAccessorie
     __SpeseAccessorie = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'SpeseAccessorie'), 'SpeseAccessorie',
-                                                                '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_SpeseAccessorie', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1008, 6), )
+            None,
+            'SpeseAccessorie'),
+        'SpeseAccessorie',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRiepilogoType_SpeseAccessorie',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1008,
+            6),
+    )
 
     SpeseAccessorie = property(
         __SpeseAccessorie.value, __SpeseAccessorie.set, None, None)
 
     # Element Arrotondamento uses Python identifier Arrotondamento
-    __Arrotondamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Arrotondamento'), 'Arrotondamento', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_Arrotondamento', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1009, 6), )
+    __Arrotondamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Arrotondamento'),
+        'Arrotondamento',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRiepilogoType_Arrotondamento',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1009,
+            6),
+    )
 
     Arrotondamento = property(
         __Arrotondamento.value, __Arrotondamento.set, None, None)
@@ -4139,22 +6348,52 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
     # Element ImponibileImporto uses Python identifier ImponibileImporto
     __ImponibileImporto = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'ImponibileImporto'), 'ImponibileImporto',
-                                                                  '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_ImponibileImporto', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1010, 6), )
+            None,
+            'ImponibileImporto'),
+        'ImponibileImporto',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRiepilogoType_ImponibileImporto',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1010,
+            6),
+    )
 
     ImponibileImporto = property(
         __ImponibileImporto.value, __ImponibileImporto.set, None, None)
 
     # Element Imposta uses Python identifier Imposta
-    __Imposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Imposta'), 'Imposta', '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_Imposta', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1011, 6), )
+    __Imposta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Imposta'),
+        'Imposta',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRiepilogoType_Imposta',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1011,
+            6),
+    )
 
     Imposta = property(__Imposta.value, __Imposta.set, None, None)
 
     # Element EsigibilitaIVA uses Python identifier EsigibilitaIVA
     __EsigibilitaIVA = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA'), 'EsigibilitaIVA',
-                                                               '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_EsigibilitaIVA', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1012, 6), )
+        pyxb.namespace.ExpandedName(
+            None,
+            'EsigibilitaIVA'),
+        'EsigibilitaIVA',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'DatiRiepilogoType_EsigibilitaIVA',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1012,
+            6),
+    )
 
     EsigibilitaIVA = property(
         __EsigibilitaIVA.value, __EsigibilitaIVA.set, None, None)
@@ -4162,8 +6401,17 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
     # Element RiferimentoNormativo uses Python identifier RiferimentoNormativo
     __RiferimentoNormativo = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'RiferimentoNormativo'), 'RiferimentoNormativo',
-                                                                     '__httpwww_fatturapa_gov_itsdifatturapav1_1_DatiRiepilogoType_RiferimentoNormativo', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1013, 6), )
+            None,
+            'RiferimentoNormativo'),
+        'RiferimentoNormativo',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1'
+        '_DatiRiepilogoType_RiferimentoNormativo',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1013,
+            6),
+    )
 
     RiferimentoNormativo = property(
         __RiferimentoNormativo.value, __RiferimentoNormativo.set, None, None)
@@ -4190,7 +6438,10 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
 
-    """Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}FatturaElettronicaType with content type ELEMENT_ONLY"""
+    """
+    Complex type {http://www.fatturapa.gov.it/sdi/fatturapa/v1.1}
+    FatturaElettronicaType with content type ELEMENT_ONLY
+    """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
@@ -4206,32 +6457,76 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
     # FatturaElettronicaHeader
     __FatturaElettronicaHeader = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'FatturaElettronicaHeader'), 'FatturaElettronicaHeader',
-                                                                         '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaType_FatturaElettronicaHeader', False, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 13, 6), )
+            None,
+            'FatturaElettronicaHeader'),
+        'FatturaElettronicaHeader',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1'
+        '_FatturaElettronicaType_FatturaElettronicaHeader',
+        False,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            13,
+            6),
+    )
 
     FatturaElettronicaHeader = property(
-        __FatturaElettronicaHeader.value, __FatturaElettronicaHeader.set, None, None)
+        __FatturaElettronicaHeader.value,
+        __FatturaElettronicaHeader.set,
+        None,
+        None)
 
     # Element FatturaElettronicaBody uses Python identifier
     # FatturaElettronicaBody
     __FatturaElettronicaBody = pyxb.binding.content.ElementDeclaration(
         pyxb.namespace.ExpandedName(
-            None, 'FatturaElettronicaBody'), 'FatturaElettronicaBody',
-                                                                       '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaType_FatturaElettronicaBody', True, pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 14, 6), )
+            None,
+            'FatturaElettronicaBody'),
+        'FatturaElettronicaBody',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1'
+        '_FatturaElettronicaType_FatturaElettronicaBody',
+        True,
+        pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            14,
+            6),
+    )
 
     FatturaElettronicaBody = property(
-        __FatturaElettronicaBody.value, __FatturaElettronicaBody.set, None, None)
+        __FatturaElettronicaBody.value,
+        __FatturaElettronicaBody.set,
+        None,
+        None)
 
     # Element {http://www.w3.org/2000/09/xmldsig#}Signature uses Python
     # identifier Signature
-    __Signature = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), 'Signature', '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature', False, pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0), )
+    __Signature = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            _Namespace_ds,
+            'Signature'),
+        'Signature',
+        '__httpwww_fatturapa_gov_itsdifatturapav1_1_'
+        'FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature',
+        False,
+        pyxb.utils.utility.Location(
+            'http://www.w3.org/TR/2002/REC-xmldsig-'
+            'core-20020212/xmldsig-core-schema.xsd',
+            43,
+            0),
+    )
 
     Signature = property(__Signature.value, __Signature.set, None, None)
 
     # Attribute versione uses Python identifier versione
-    __versione = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(
-        None, 'versione'), 'versione', '__httpwww_fatturapa_gov_itsdifatturapav1_1_FatturaElettronicaType_versione', VersioneSchemaType, required=True)
+    __versione = pyxb.binding.content.AttributeUse(
+        pyxb.namespace.ExpandedName(
+            None,
+            'versione'),
+        'versione',
+        (
+            '__httpwww_fatturapa_gov_itsdifatturapav1_'
+            '1_FatturaElettronicaType_versione'),
+        VersioneSchemaType,
+        required=True)
     __versione._DeclarationLocation = pyxb.utils.utility.Location(
         '/tmp/fatturapa_v1.1.xsd', 17, 4)
     __versione._UseLocation = pyxb.utils.utility.Location(
@@ -4253,42 +6548,90 @@ Namespace.addCategoryObject(
 
 FatturaElettronica = pyxb.binding.basis.element(
     pyxb.namespace.ExpandedName(
-        Namespace, 'FatturaElettronica'), FatturaElettronicaType,
-                                                documentation='\n\t\t\t\tXML schema per fattura elettronica Sistema Di Interscambio SDI 1.1\n\t\t\t', location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 4, 2))
+        Namespace,
+        'FatturaElettronica'),
+    FatturaElettronicaType,
+    documentation=(
+        '\n\t\t\t\tXML schema per fattura elettronica '
+        'Sistema Di Interscambio SDI 1.1\n\t\t\t'),
+    location=pyxb.utils.utility.Location(
+        '/tmp/fatturapa_v1.1.xsd',
+        4,
+        2))
 Namespace.addCategoryObject(
-    'elementBinding', FatturaElettronica.name().localName(), FatturaElettronica)
+    'elementBinding',
+    FatturaElettronica.name().localName(),
+    FatturaElettronica)
 
 
 FatturaElettronicaHeaderType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiTrasmissione'),
-                                         DatiTrasmissioneType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 21, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiTrasmissione'),
+        DatiTrasmissioneType,
+        scope=FatturaElettronicaHeaderType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            21,
+            6)))
 
 FatturaElettronicaHeaderType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CedentePrestatore'),
-                                         CedentePrestatoreType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 22, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CedentePrestatore'),
+        CedentePrestatoreType,
+        scope=FatturaElettronicaHeaderType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            22,
+            6)))
 
 FatturaElettronicaHeaderType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'),
-                                         RappresentanteFiscaleType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 23, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'RappresentanteFiscale'),
+        RappresentanteFiscaleType,
+        scope=FatturaElettronicaHeaderType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            23,
+            6)))
 
 FatturaElettronicaHeaderType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CessionarioCommittente'),
-                                         CessionarioCommittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 24, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CessionarioCommittente'),
+        CessionarioCommittenteType,
+        scope=FatturaElettronicaHeaderType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            24,
+            6)))
 
 FatturaElettronicaHeaderType._AddElement(
     pyxb.binding.basis.element(
         pyxb.namespace.ExpandedName(
             None, 'TerzoIntermediarioOSoggettoEmittente'),
-                                         TerzoIntermediarioSoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 25, 6)))
+        TerzoIntermediarioSoggettoEmittenteType,
+        scope=FatturaElettronicaHeaderType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 25, 6)))
 
 FatturaElettronicaHeaderType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'SoggettoEmittente'),
-                                         SoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 26, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'SoggettoEmittente'),
+        SoggettoEmittenteType,
+        scope=FatturaElettronicaHeaderType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            26,
+            6)))
 
 
 def _BuildAutomaton():
@@ -4299,50 +6642,85 @@ def _BuildAutomaton():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 23, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            23,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 25, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            25,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 26, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            26,
+            6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiTrasmissione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 21, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiTrasmissione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 21, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CedentePrestatore')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 22, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CedentePrestatore')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 22, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 23, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RappresentanteFiscale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 23, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CessionarioCommittente')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 24, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CessionarioCommittente')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 24, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TerzoIntermediarioOSoggettoEmittente')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 25, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'TerzoIntermediarioOSoggettoEmittente')
+        ), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 25, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'SoggettoEmittente')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 26, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'SoggettoEmittente')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 26, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
@@ -4384,26 +6762,63 @@ FatturaElettronicaHeaderType._Automaton = _BuildAutomaton()
 
 FatturaElettronicaBodyType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiGenerali'),
-                                       DatiGeneraliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 31, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiGenerali'),
+        DatiGeneraliType,
+        scope=FatturaElettronicaBodyType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            31,
+            6)))
 
 FatturaElettronicaBodyType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiBeniServizi'),
-                                       DatiBeniServiziType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 32, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiBeniServizi'),
+        DatiBeniServiziType,
+        scope=FatturaElettronicaBodyType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            32,
+            6)))
 
 FatturaElettronicaBodyType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiVeicoli'),
-                                       DatiVeicoliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 33, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiVeicoli'),
+        DatiVeicoliType,
+        scope=FatturaElettronicaBodyType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            33,
+            6)))
 
 FatturaElettronicaBodyType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiPagamento'),
-                                       DatiPagamentoType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 34, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiPagamento'),
+        DatiPagamentoType,
+        scope=FatturaElettronicaBodyType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            34,
+            6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Allegati'), AllegatiType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 35, 6)))
+FatturaElettronicaBodyType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Allegati'),
+        AllegatiType,
+        scope=FatturaElettronicaBodyType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            35,
+            6)))
 
 
 def _BuildAutomaton_():
@@ -4414,45 +6829,75 @@ def _BuildAutomaton_():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 33, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            33,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 34, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            34,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 35, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            35,
+            6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiGenerali')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 31, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiGenerali')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 31, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiBeniServizi')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 32, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiBeniServizi')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 32, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiVeicoli')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 33, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiVeicoli')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 33, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 34, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiPagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 34, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Allegati')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 35, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Allegati')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 35, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
@@ -4492,28 +6937,63 @@ FatturaElettronicaBodyType._Automaton = _BuildAutomaton_()
 
 DatiTrasmissioneType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IdTrasmittente'),
-                                 IdFiscaleType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 51, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdTrasmittente'),
+        IdFiscaleType,
+        scope=DatiTrasmissioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            51,
+            6)))
 
 DatiTrasmissioneType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ProgressivoInvio'),
-                                 String10Type, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 52, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ProgressivoInvio'),
+        String10Type,
+        scope=DatiTrasmissioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            52,
+            6)))
 
 DatiTrasmissioneType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione'),
-                                 FormatoTrasmissioneType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 53, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'FormatoTrasmissione'),
+        FormatoTrasmissioneType,
+        scope=DatiTrasmissioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            53,
+            6)))
 
 DatiTrasmissioneType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodiceDestinatario'),
-                                 CodiceDestinatarioType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 54, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceDestinatario'),
+        CodiceDestinatarioType,
+        scope=DatiTrasmissioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            54,
+            6)))
 
 DatiTrasmissioneType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente'),
-                                 ContattiTrasmittenteType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 55, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ContattiTrasmittente'),
+        ContattiTrasmittenteType,
+        scope=DatiTrasmissioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            55,
+            6)))
 
 
 def _BuildAutomaton_2():
@@ -4524,37 +7004,57 @@ def _BuildAutomaton_2():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 55, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            55,
+            6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdTrasmittente')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 51, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdTrasmittente')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 51, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ProgressivoInvio')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 52, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ProgressivoInvio')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 52, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 53, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FormatoTrasmissione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 53, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceDestinatario')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 54, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceDestinatario')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 54, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ContattiTrasmittente')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 55, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ContattiTrasmittente')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 55, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
@@ -4583,12 +7083,28 @@ DatiTrasmissioneType._Automaton = _BuildAutomaton_2()
 
 
 IdFiscaleType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdPaese'),
-                               NazioneType, scope=IdFiscaleType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 65, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdPaese'),
+        NazioneType,
+        scope=IdFiscaleType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            65,
+            6)))
 
 IdFiscaleType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdCodice'),
-                               CodiceType, scope=IdFiscaleType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 66, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdCodice'),
+        CodiceType,
+        scope=IdFiscaleType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            66,
+            6)))
 
 
 def _BuildAutomaton_3():
@@ -4600,14 +7116,20 @@ def _BuildAutomaton_3():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdPaese')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 65, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IdFiscaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdPaese')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 65, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdCodice')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 66, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IdFiscaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdCodice')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 66, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -4622,11 +7144,28 @@ IdFiscaleType._Automaton = _BuildAutomaton_3()
 
 
 ContattiTrasmittenteType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'),
-                               TelFaxType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 95, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Telefono'),
+        TelFaxType,
+        scope=ContattiTrasmittenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            95,
+            6)))
 
-ContattiTrasmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Email'), EmailType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 96, 6)))
+ContattiTrasmittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Email'),
+        EmailType,
+        scope=ContattiTrasmittenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            96,
+            6)))
 
 
 def _BuildAutomaton_4():
@@ -4637,23 +7176,39 @@ def _BuildAutomaton_4():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 95, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            95,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 96, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            96,
+            6))
     counters.add(cc_1)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Telefono')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 95, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiTrasmittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Telefono')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 95, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Email')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 96, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiTrasmittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Email')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 96, 6))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -4673,51 +7228,123 @@ ContattiTrasmittenteType._Automaton = _BuildAutomaton_4()
 
 DatiGeneraliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento'),
-                             DatiGeneraliDocumentoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 106, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiGeneraliDocumento'),
+        DatiGeneraliDocumentoType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            106,
+            6)))
 
 DatiGeneraliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto'),
-                             DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 107, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiOrdineAcquisto'),
+        DatiDocumentiCorrelatiType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            107,
+            6)))
 
 DatiGeneraliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiContratto'),
-                             DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 108, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiContratto'),
+        DatiDocumentiCorrelatiType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            108,
+            6)))
 
 DatiGeneraliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiConvenzione'),
-                             DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 109, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiConvenzione'),
+        DatiDocumentiCorrelatiType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            109,
+            6)))
 
 DatiGeneraliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiRicezione'),
-                             DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 110, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiRicezione'),
+        DatiDocumentiCorrelatiType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            110,
+            6)))
 
 DatiGeneraliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate'),
-                             DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 111, 6)))
-
-DatiGeneraliType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiSAL'),
-                               DatiSALType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 112, 6)))
-
-DatiGeneraliType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiDDT'),
-                               DatiDDTType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 113, 6)))
-
-DatiGeneraliType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiTrasporto'),
-                             DatiTrasportoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 114, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiFattureCollegate'),
+        DatiDocumentiCorrelatiType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            111,
+            6)))
 
 DatiGeneraliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'FatturaPrincipale'),
-                             FatturaPrincipaleType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 115, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiSAL'),
+        DatiSALType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            112,
+            6)))
+
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiDDT'),
+        DatiDDTType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            113,
+            6)))
+
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiTrasporto'),
+        DatiTrasportoType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            114,
+            6)))
+
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'FatturaPrincipale'),
+        FatturaPrincipaleType,
+        scope=DatiGeneraliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            115,
+            6)))
 
 
 def _BuildAutomaton_5():
@@ -4728,99 +7355,174 @@ def _BuildAutomaton_5():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 107, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            107,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 108, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            108,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 109, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            109,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 110, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            110,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 111, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            111,
+            6))
     counters.add(cc_4)
     cc_5 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 112, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            112,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 113, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            113,
+            6))
     counters.add(cc_6)
     cc_7 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 114, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            114,
+            6))
     counters.add(cc_7)
     cc_8 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 115, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            115,
+            6))
     counters.add(cc_8)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiGeneraliDocumento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 106, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiGeneraliDocumento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 106, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiOrdineAcquisto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 107, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiOrdineAcquisto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 107, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiContratto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 108, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiContratto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 108, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiConvenzione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 109, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiConvenzione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 109, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiRicezione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 110, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiRicezione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 110, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiFattureCollegate')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 111, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiFattureCollegate')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 111, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiSAL')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 112, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiSAL')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 112, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiDDT')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 113, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiDDT')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 113, 6))
     st_7 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiTrasporto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 114, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiTrasporto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 114, 6))
     st_8 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FatturaPrincipale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 115, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FatturaPrincipale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 115, 6))
     st_9 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
@@ -4958,53 +7660,147 @@ DatiGeneraliType._Automaton = _BuildAutomaton_5()
 
 DatiGeneraliDocumentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'TipoDocumento'),
-                                      TipoDocumentoType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 120, 6)))
-
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Divisa'), DivisaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 121, 6)))
-
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Data'), DataFatturaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 122, 6)))
-
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Numero'), String20Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 123, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoDocumento'),
+        TipoDocumentoType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            120,
+            6)))
 
 DatiGeneraliDocumentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiRitenuta'),
-                                      DatiRitenutaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 124, 6)))
-
-DatiGeneraliDocumentoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiBollo'),
-                               DatiBolloType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 125, 6)))
-
-DatiGeneraliDocumentoType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale'),
-                                      DatiCassaPrevidenzialeType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 126, 6)))
-
-DatiGeneraliDocumentoType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'),
-                                      ScontoMaggiorazioneType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 127, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Divisa'),
+        DivisaType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            121,
+            6)))
 
 DatiGeneraliDocumentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento'),
-                                      Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 128, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Data'),
+        DataFatturaType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            122,
+            6)))
 
 DatiGeneraliDocumentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Arrotondamento'),
-                                      Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 129, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Numero'),
+        String20Type,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            123,
+            6)))
 
 DatiGeneraliDocumentoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Causale'),
-                               String200LatinType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 130, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiRitenuta'),
+        DatiRitenutaType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            124,
+            6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Art73'), Art73Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 131, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiBollo'),
+        DatiBolloType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            125,
+            6)))
+
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiCassaPrevidenziale'),
+        DatiCassaPrevidenzialeType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            126,
+            6)))
+
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'ScontoMaggiorazione'),
+        ScontoMaggiorazioneType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            127,
+            6)))
+
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImportoTotaleDocumento'),
+        Amount2DecimalType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            128,
+            6)))
+
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Arrotondamento'),
+        Amount2DecimalType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            129,
+            6)))
+
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Causale'),
+        String200LatinType,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            130,
+            6)))
+
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Art73'),
+        Art73Type,
+        scope=DatiGeneraliDocumentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            131,
+            6)))
 
 
 def _BuildAutomaton_6():
@@ -5015,107 +7811,183 @@ def _BuildAutomaton_6():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 124, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            124,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 125, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            125,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 126, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            126,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 127, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            127,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 128, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            128,
+            6))
     counters.add(cc_4)
     cc_5 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 129, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            129,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 130, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            130,
+            6))
     counters.add(cc_6)
     cc_7 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 131, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            131,
+            6))
     counters.add(cc_7)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'TipoDocumento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 120, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoDocumento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 120, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Divisa')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 121, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Divisa')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 121, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 122, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Data')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 122, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Numero')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 123, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Numero')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 123, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiRitenuta')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 124, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiRitenuta')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 124, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiBollo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 125, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiBollo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 125, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 126, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiCassaPrevidenziale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 126, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 127, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 127, 6))
     st_7 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 128, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoTotaleDocumento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 128, 6))
     st_8 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Arrotondamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 129, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Arrotondamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 129, 6))
     st_9 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Causale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 130, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Causale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 130, 6))
     st_10 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Art73')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 131, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Art73')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 131, 6))
     st_11 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
@@ -5243,23 +8115,51 @@ DatiGeneraliDocumentoType._Automaton = _BuildAutomaton_6()
 
 DatiRitenutaType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'TipoRitenuta'),
-                             TipoRitenutaType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 136, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoRitenuta'),
+        TipoRitenutaType,
+        scope=DatiRitenutaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            136,
+            6)))
 
 DatiRitenutaType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ImportoRitenuta'),
-                             Amount2DecimalType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 137, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImportoRitenuta'),
+        Amount2DecimalType,
+        scope=DatiRitenutaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            137,
+            6)))
 
 DatiRitenutaType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta'),
-                             RateType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 138, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'AliquotaRitenuta'),
+        RateType,
+        scope=DatiRitenutaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            138,
+            6)))
 
 DatiRitenutaType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CausalePagamento'),
-                             CausalePagamentoType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 139, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CausalePagamento'),
+        CausalePagamentoType,
+        scope=DatiRitenutaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            139,
+            6)))
 
 
 def _BuildAutomaton_7():
@@ -5271,26 +8171,38 @@ def _BuildAutomaton_7():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'TipoRitenuta')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 136, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoRitenuta')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 136, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImportoRitenuta')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 137, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoRitenuta')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 137, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AliquotaRitenuta')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 138, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaRitenuta')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 138, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CausalePagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 139, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CausalePagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 139, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
@@ -5314,13 +8226,27 @@ DatiRitenutaType._Automaton = _BuildAutomaton_7()
 
 DatiBolloType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'BolloVirtuale'),
-                          BolloVirtualeType, scope=DatiBolloType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 144, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'BolloVirtuale'),
+        BolloVirtualeType,
+        scope=DatiBolloType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            144,
+            6)))
 
 DatiBolloType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ImportoBollo'),
-                          Amount2DecimalType, scope=DatiBolloType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 145, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImportoBollo'),
+        Amount2DecimalType,
+        scope=DatiBolloType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            145,
+            6)))
 
 
 def _BuildAutomaton_8():
@@ -5332,14 +8258,20 @@ def _BuildAutomaton_8():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'BolloVirtuale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 144, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBolloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'BolloVirtuale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 144, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImportoBollo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 145, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBolloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoBollo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 145, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -5354,38 +8286,100 @@ DatiBolloType._Automaton = _BuildAutomaton_8()
 
 
 DatiCassaPrevidenzialeType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoCassa'),
-                               TipoCassaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 150, 6)))
-
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'AlCassa'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 151, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoCassa'),
+        TipoCassaType,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            150,
+            6)))
 
 DatiCassaPrevidenzialeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa'),
-                                       Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 152, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'AlCassa'),
+        RateType,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            151,
+            6)))
 
 DatiCassaPrevidenzialeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ImponibileCassa'),
-                                       Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 153, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImportoContributoCassa'),
+        Amount2DecimalType,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            152,
+            6)))
 
 DatiCassaPrevidenzialeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'AliquotaIVA'),
-                                       RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 154, 6)))
-
-DatiCassaPrevidenzialeType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'),
-                               RitenutaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 155, 6)))
-
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Natura'), NaturaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 156, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImponibileCassa'),
+        Amount2DecimalType,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            153,
+            6)))
 
 DatiCassaPrevidenzialeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'),
-                                       String20Type, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 157, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'AliquotaIVA'),
+        RateType,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            154,
+            6)))
+
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Ritenuta'),
+        RitenutaType,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            155,
+            6)))
+
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Natura'),
+        NaturaType,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            156,
+            6)))
+
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoAmministrazione'),
+        String20Type,
+        scope=DatiCassaPrevidenzialeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            157,
+            6)))
 
 
 def _BuildAutomaton_9():
@@ -5396,66 +8390,111 @@ def _BuildAutomaton_9():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 153, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            153,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 155, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            155,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 156, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            156,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 157, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            157,
+            6))
     counters.add(cc_3)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'TipoCassa')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 150, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoCassa')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 150, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'AlCassa')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 151, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AlCassa')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 151, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 152, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoContributoCassa')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 152, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ImponibileCassa')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 153, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImponibileCassa')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 153, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 154, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 154, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Ritenuta')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 155, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Ritenuta')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 155, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 156, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Natura')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 156, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 157, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'RiferimentoAmministrazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 157, 6))
     st_7 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
@@ -5509,17 +8548,41 @@ def _BuildAutomaton_9():
 DatiCassaPrevidenzialeType._Automaton = _BuildAutomaton_9()
 
 
-ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Tipo'), TipoScontoMaggiorazioneType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 162, 6)))
+ScontoMaggiorazioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Tipo'),
+        TipoScontoMaggiorazioneType,
+        scope=ScontoMaggiorazioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            162,
+            6)))
 
 ScontoMaggiorazioneType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Percentuale'),
-                                    RateType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 163, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Percentuale'),
+        RateType,
+        scope=ScontoMaggiorazioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            163,
+            6)))
 
 ScontoMaggiorazioneType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Importo'),
-                               Amount2DecimalType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 164, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Importo'),
+        Amount2DecimalType,
+        scope=ScontoMaggiorazioneType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            164,
+            6)))
 
 
 def _BuildAutomaton_10():
@@ -5530,29 +8593,48 @@ def _BuildAutomaton_10():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 163, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            163,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 164, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            164,
+            6))
     counters.add(cc_1)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Tipo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 162, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ScontoMaggiorazioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Tipo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 162, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Percentuale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 163, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ScontoMaggiorazioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Percentuale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 163, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Importo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 164, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ScontoMaggiorazioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Importo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 164, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
@@ -5578,8 +8660,15 @@ ScontoMaggiorazioneType._Automaton = _BuildAutomaton_10()
 
 DatiSALType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoFase'),
-                        RiferimentoFaseType, scope=DatiSALType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 441, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoFase'),
+        RiferimentoFaseType,
+        scope=DatiSALType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            441,
+            6)))
 
 
 def _BuildAutomaton_11():
@@ -5591,8 +8680,11 @@ def _BuildAutomaton_11():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiSALType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoFase')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 441, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiSALType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoFase')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 441, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
@@ -5604,32 +8696,87 @@ DatiSALType._Automaton = _BuildAutomaton_11()
 
 DatiDocumentiCorrelatiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'),
-                                       RiferimentoNumeroLineaType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 446, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoNumeroLinea'),
+        RiferimentoNumeroLineaType,
+        scope=DatiDocumentiCorrelatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            446,
+            6)))
 
 DatiDocumentiCorrelatiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IdDocumento'),
-                                       String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 447, 6)))
-
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Data'), pyxb.binding.datatypes.date, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 448, 6)))
-
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'NumItem'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 449, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdDocumento'),
+        String20Type,
+        scope=DatiDocumentiCorrelatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            447,
+            6)))
 
 DatiDocumentiCorrelatiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione'),
-                                       String100LatinType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 450, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Data'),
+        pyxb.binding.datatypes.date,
+        scope=DatiDocumentiCorrelatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            448,
+            6)))
 
 DatiDocumentiCorrelatiType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCUP'),
-                               String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 451, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumItem'),
+        String20Type,
+        scope=DatiDocumentiCorrelatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            449,
+            6)))
 
 DatiDocumentiCorrelatiType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCIG'),
-                               String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 452, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceCommessaConvenzione'),
+        String100LatinType,
+        scope=DatiDocumentiCorrelatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            450,
+            6)))
+
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceCUP'),
+        String15Type,
+        scope=DatiDocumentiCorrelatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            451,
+            6)))
+
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceCIG'),
+        String15Type,
+        scope=DatiDocumentiCorrelatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            452,
+            6)))
 
 
 def _BuildAutomaton_12():
@@ -5640,68 +8787,120 @@ def _BuildAutomaton_12():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 446, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            446,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 448, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            448,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 449, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            449,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 450, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            450,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 451, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            451,
+            6))
     counters.add(cc_4)
     cc_5 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 452, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            452,
+            6))
     counters.add(cc_5)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 446, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 446, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdDocumento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 447, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdDocumento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 447, 6))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 448, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Data')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 448, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NumItem')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 449, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumItem')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 449, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceCommessaConvenzione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 450, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'CodiceCommessaConvenzione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 450, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceCUP')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 451, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceCUP')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 451, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceCIG')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 452, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceCIG')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 452, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
@@ -5768,17 +8967,40 @@ DatiDocumentiCorrelatiType._Automaton = _BuildAutomaton_12()
 
 
 DatiDDTType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroDDT'),
-                               String20Type, scope=DatiDDTType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 463, 6)))
-
-DatiDDTType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataDDT'),
-                               pyxb.binding.datatypes.date, scope=DatiDDTType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 464, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroDDT'),
+        String20Type,
+        scope=DatiDDTType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            463,
+            6)))
 
 DatiDDTType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'),
-                        RiferimentoNumeroLineaType, scope=DatiDDTType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 465, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataDDT'),
+        pyxb.binding.datatypes.date,
+        scope=DatiDDTType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            464,
+            6)))
+
+DatiDDTType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoNumeroLinea'),
+        RiferimentoNumeroLineaType,
+        scope=DatiDDTType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            465,
+            6)))
 
 
 def _BuildAutomaton_13():
@@ -5789,25 +9011,39 @@ def _BuildAutomaton_13():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 465, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            465,
+            6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NumeroDDT')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 463, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDDTType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroDDT')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 463, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DataDDT')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 464, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDDTType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataDDT')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 464, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 465, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDDTType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 465, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
@@ -5829,65 +9065,159 @@ DatiDDTType._Automaton = _BuildAutomaton_13()
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore'),
-                              DatiAnagraficiVettoreType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 470, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagraficiVettore'),
+        DatiAnagraficiVettoreType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            470,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'MezzoTrasporto'),
-                              String80LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 471, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'MezzoTrasporto'),
+        String80LatinType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            471,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CausaleTrasporto'),
-                              String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 472, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CausaleTrasporto'),
+        String100LatinType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            472,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NumeroColli'),
-                              NumeroColliType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 473, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroColli'),
+        NumeroColliType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            473,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Descrizione'),
-                              String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 474, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Descrizione'),
+        String100LatinType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            474,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso'),
-                              String10Type, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 475, 6)))
-
-DatiTrasportoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoLordo'),
-                               PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 476, 6)))
-
-DatiTrasportoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoNetto'),
-                               PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 477, 6)))
-
-DatiTrasportoType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataOraRitiro'),
-                              pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 478, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'UnitaMisuraPeso'),
+        String10Type,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            475,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto'),
-                              pyxb.binding.datatypes.date, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 479, 6)))
-
-DatiTrasportoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoResa'),
-                               TipoResaType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 480, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'PesoLordo'),
+        PesoType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            476,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IndirizzoResa'),
-                              IndirizzoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 481, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'PesoNetto'),
+        PesoType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            477,
+            6)))
 
 DatiTrasportoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataOraConsegna'),
-                              pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 482, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataOraRitiro'),
+        pyxb.binding.datatypes.dateTime,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            478,
+            6)))
+
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataInizioTrasporto'),
+        pyxb.binding.datatypes.date,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            479,
+            6)))
+
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoResa'),
+        TipoResaType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            480,
+            6)))
+
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IndirizzoResa'),
+        IndirizzoType,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            481,
+            6)))
+
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataOraConsegna'),
+        pyxb.binding.datatypes.dateTime,
+        scope=DatiTrasportoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            482,
+            6)))
 
 
 def _BuildAutomaton_14():
@@ -5898,133 +9228,237 @@ def _BuildAutomaton_14():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 470, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            470,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 471, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            471,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 472, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            472,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 473, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            473,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 474, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            474,
+            6))
     counters.add(cc_4)
     cc_5 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 475, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            475,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 476, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            476,
+            6))
     counters.add(cc_6)
     cc_7 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 477, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            477,
+            6))
     counters.add(cc_7)
     cc_8 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 478, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            478,
+            6))
     counters.add(cc_8)
     cc_9 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 479, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            479,
+            6))
     counters.add(cc_9)
     cc_10 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 480, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            480,
+            6))
     counters.add(cc_10)
     cc_11 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 481, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            481,
+            6))
     counters.add(cc_11)
     cc_12 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 482, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            482,
+            6))
     counters.add(cc_12)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagraficiVettore')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 470, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagraficiVettore')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 470, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'MezzoTrasporto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 471, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'MezzoTrasporto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 471, 6))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CausaleTrasporto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 472, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CausaleTrasporto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 472, 6))
     st_2 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NumeroColli')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 473, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroColli')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 473, 6))
     st_3 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Descrizione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 474, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Descrizione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 474, 6))
     st_4 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 475, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'UnitaMisuraPeso')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 475, 6))
     st_5 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'PesoLordo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 476, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PesoLordo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 476, 6))
     st_6 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'PesoNetto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 477, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PesoNetto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 477, 6))
     st_7 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DataOraRitiro')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 478, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataOraRitiro')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 478, 6))
     st_8 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataInizioTrasporto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 479, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataInizioTrasporto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 479, 6))
     st_9 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'TipoResa')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 480, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoResa')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 480, 6))
     st_10 = fac.State(symbol, is_initial=True,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IndirizzoResa')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 481, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IndirizzoResa')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 481, 6))
     st_11 = fac.State(symbol, is_initial=True,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_12, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DataOraConsegna')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 482, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataOraConsegna')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 482, 6))
     st_12 = fac.State(symbol, is_initial=True,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
@@ -6241,31 +9675,77 @@ DatiTrasportoType._Automaton = _BuildAutomaton_14()
 
 
 IndirizzoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Indirizzo'),
-                               String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 487, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Indirizzo'),
+        String60LatinType,
+        scope=IndirizzoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            487,
+            6)))
 
 IndirizzoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NumeroCivico'),
-                          NumeroCivicoType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 488, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroCivico'),
+        NumeroCivicoType,
+        scope=IndirizzoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            488,
+            6)))
 
 IndirizzoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CAP'), CAPType,
-                          scope=IndirizzoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 489, 6)))
-
-IndirizzoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Comune'),
-                               String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 490, 6)))
-
-IndirizzoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Provincia'),
-                               ProvinciaType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 491, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CAP'),
+        CAPType,
+        scope=IndirizzoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            489,
+            6)))
 
 IndirizzoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Nazione'), NazioneType,
-                          scope=IndirizzoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 492, 6), unicode_default='IT'))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Comune'),
+        String60LatinType,
+        scope=IndirizzoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            490,
+            6)))
+
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Provincia'),
+        ProvinciaType,
+        scope=IndirizzoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            491,
+            6)))
+
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Nazione'),
+        NazioneType,
+        scope=IndirizzoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            492,
+            6),
+        unicode_default='IT'))
 
 
 def _BuildAutomaton_15():
@@ -6276,45 +9756,73 @@ def _BuildAutomaton_15():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 488, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            488,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 491, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            491,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Indirizzo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 487, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Indirizzo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 487, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroCivico')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 488, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroCivico')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 488, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CAP')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 489, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CAP')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 489, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Comune')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 490, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Comune')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 490, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Provincia')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 491, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Provincia')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 491, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Nazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 492, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Nazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 492, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
@@ -6354,13 +9862,27 @@ IndirizzoType._Automaton = _BuildAutomaton_15()
 
 FatturaPrincipaleType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale'),
-                                  String20Type, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 497, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroFatturaPrincipale'),
+        String20Type,
+        scope=FatturaPrincipaleType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            497,
+            6)))
 
 FatturaPrincipaleType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale'),
-                                  pyxb.binding.datatypes.date, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 498, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataFatturaPrincipale'),
+        pyxb.binding.datatypes.date,
+        scope=FatturaPrincipaleType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            498,
+            6)))
 
 
 def _BuildAutomaton_16():
@@ -6372,14 +9894,20 @@ def _BuildAutomaton_16():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroFatturaPrincipale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 497, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaPrincipaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroFatturaPrincipale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 497, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataFatturaPrincipale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 498, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaPrincipaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataFatturaPrincipale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 498, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -6395,31 +9923,75 @@ FatturaPrincipaleType._Automaton = _BuildAutomaton_16()
 
 CedentePrestatoreType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'),
-                                  DatiAnagraficiCedenteType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 523, 6)))
-
-CedentePrestatoreType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Sede'),
-                               IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 524, 6)))
-
-CedentePrestatoreType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'),
-                                  IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 525, 6)))
-
-CedentePrestatoreType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IscrizioneREA'),
-                                  IscrizioneREAType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 526, 6)))
-
-CedentePrestatoreType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Contatti'),
-                               ContattiType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 527, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagrafici'),
+        DatiAnagraficiCedenteType,
+        scope=CedentePrestatoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            523,
+            6)))
 
 CedentePrestatoreType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'),
-                                  String20Type, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 528, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Sede'),
+        IndirizzoType,
+        scope=CedentePrestatoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            524,
+            6)))
+
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'StabileOrganizzazione'),
+        IndirizzoType,
+        scope=CedentePrestatoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            525,
+            6)))
+
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IscrizioneREA'),
+        IscrizioneREAType,
+        scope=CedentePrestatoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            526,
+            6)))
+
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Contatti'),
+        ContattiType,
+        scope=CedentePrestatoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            527,
+            6)))
+
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoAmministrazione'),
+        String20Type,
+        scope=CedentePrestatoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            528,
+            6)))
 
 
 def _BuildAutomaton_17():
@@ -6430,55 +10002,94 @@ def _BuildAutomaton_17():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 525, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            525,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 526, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            526,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 527, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            527,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 528, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            528,
+            6))
     counters.add(cc_3)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 523, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 523, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Sede')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 524, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Sede')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 524, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'StabileOrganizzazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 525, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'StabileOrganizzazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 525, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IscrizioneREA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 526, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IscrizioneREA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 526, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Contatti')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 527, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Contatti')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 527, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 528, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'RiferimentoAmministrazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 528, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
@@ -6530,42 +10141,99 @@ CedentePrestatoreType._Automaton = _BuildAutomaton_17()
 
 DatiAnagraficiCedenteType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'),
-                                      IdFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 533, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        IdFiscaleType,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            533,
+            6)))
 
 DatiAnagraficiCedenteType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale'),
-                                      CodiceFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 534, 6)))
-
-DatiAnagraficiCedenteType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'),
-                               AnagraficaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 535, 6)))
-
-DatiAnagraficiCedenteType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'AlboProfessionale'),
-                                      String60LatinType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 536, 6)))
-
-DatiAnagraficiCedenteType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo'),
-                                      ProvinciaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 537, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        CodiceFiscaleType,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            534,
+            6)))
 
 DatiAnagraficiCedenteType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo'),
-                                      String60Type, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 538, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        AnagraficaType,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            535,
+            6)))
 
 DatiAnagraficiCedenteType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo'),
-                                      pyxb.binding.datatypes.date, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 539, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'AlboProfessionale'),
+        String60LatinType,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            536,
+            6)))
 
 DatiAnagraficiCedenteType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RegimeFiscale'),
-                                      RegimeFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 540, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ProvinciaAlbo'),
+        ProvinciaType,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            537,
+            6)))
+
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroIscrizioneAlbo'),
+        String60Type,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            538,
+            6)))
+
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataIscrizioneAlbo'),
+        pyxb.binding.datatypes.date,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            539,
+            6)))
+
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'RegimeFiscale'),
+        RegimeFiscaleType,
+        scope=DatiAnagraficiCedenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            540,
+            6)))
 
 
 def _BuildAutomaton_18():
@@ -6576,66 +10244,115 @@ def _BuildAutomaton_18():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 534, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            534,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 536, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            536,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 537, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            537,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 538, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            538,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 539, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            539,
+            6))
     counters.add(cc_4)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 533, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 533, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 534, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 534, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 535, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 535, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'AlboProfessionale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 536, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AlboProfessionale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 536, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 537, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ProvinciaAlbo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 537, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 538, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroIscrizioneAlbo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 538, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 539, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataIscrizioneAlbo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 539, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'RegimeFiscale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 540, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RegimeFiscale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 540, 6))
     st_7 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
@@ -6707,25 +10424,63 @@ DatiAnagraficiCedenteType._Automaton = _BuildAutomaton_18()
 
 AnagraficaType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Denominazione'),
-                           String80LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 653, 10)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Denominazione'),
+        String80LatinType,
+        scope=AnagraficaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            653,
+            10)))
 
 AnagraficaType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Nome'), String60LatinType,
-                           scope=AnagraficaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 656, 10)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Nome'),
+        String60LatinType,
+        scope=AnagraficaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            656,
+            10)))
 
 AnagraficaType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Cognome'),
-                               String60LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 657, 10)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Cognome'),
+        String60LatinType,
+        scope=AnagraficaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            657,
+            10)))
 
 AnagraficaType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Titolo'),
-                               TitoloType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 660, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Titolo'),
+        TitoloType,
+        scope=AnagraficaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            660,
+            6)))
 
 AnagraficaType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodEORI'),
-                               CodEORIType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 661, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodEORI'),
+        CodEORIType,
+        scope=AnagraficaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            661,
+            6)))
 
 
 def _BuildAutomaton_19():
@@ -6736,41 +10491,66 @@ def _BuildAutomaton_19():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 660, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            660,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 661, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            661,
+            6))
     counters.add(cc_1)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Denominazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 653, 10))
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Denominazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 653, 10))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Nome')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 656, 10))
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Nome')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 656, 10))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Cognome')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 657, 10))
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Cognome')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 657, 10))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Titolo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 660, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Titolo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 660, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodEORI')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 661, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodEORI')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 661, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
@@ -6806,22 +10586,51 @@ AnagraficaType._Automaton = _BuildAutomaton_19()
 
 DatiAnagraficiVettoreType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'),
-                                      IdFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 666, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        IdFiscaleType,
+        scope=DatiAnagraficiVettoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            666,
+            6)))
 
 DatiAnagraficiVettoreType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale'),
-                                      CodiceFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 667, 6)))
-
-DatiAnagraficiVettoreType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'),
-                               AnagraficaType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 668, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        CodiceFiscaleType,
+        scope=DatiAnagraficiVettoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            667,
+            6)))
 
 DatiAnagraficiVettoreType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida'),
-                                      String20Type, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 669, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        AnagraficaType,
+        scope=DatiAnagraficiVettoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            668,
+            6)))
+
+DatiAnagraficiVettoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroLicenzaGuida'),
+        String20Type,
+        scope=DatiAnagraficiVettoreType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            669,
+            6)))
 
 
 def _BuildAutomaton_20():
@@ -6832,34 +10641,56 @@ def _BuildAutomaton_20():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 667, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            667,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 669, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            669,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 666, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 666, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 667, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 667, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 668, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 668, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 669, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroLicenzaGuida')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 669, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
@@ -6888,26 +10719,64 @@ DatiAnagraficiVettoreType._Automaton = _BuildAutomaton_20()
 
 
 IscrizioneREAType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ufficio'),
-                               ProvinciaType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 674, 6)))
-
-IscrizioneREAType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroREA'),
-                               String20Type, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 675, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Ufficio'),
+        ProvinciaType,
+        scope=IscrizioneREAType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            674,
+            6)))
 
 IscrizioneREAType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CapitaleSociale'),
-                              Amount2DecimalType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 676, 6)))
-
-IscrizioneREAType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SocioUnico'),
-                               SocioUnicoType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 677, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroREA'),
+        String20Type,
+        scope=IscrizioneREAType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            675,
+            6)))
 
 IscrizioneREAType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'StatoLiquidazione'),
-                              StatoLiquidazioneType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 678, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CapitaleSociale'),
+        Amount2DecimalType,
+        scope=IscrizioneREAType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            676,
+            6)))
+
+IscrizioneREAType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'SocioUnico'),
+        SocioUnicoType,
+        scope=IscrizioneREAType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            677,
+            6)))
+
+IscrizioneREAType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'StatoLiquidazione'),
+        StatoLiquidazioneType,
+        scope=IscrizioneREAType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            678,
+            6)))
 
 
 def _BuildAutomaton_21():
@@ -6918,39 +10787,64 @@ def _BuildAutomaton_21():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 676, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            676,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 677, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            677,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Ufficio')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 674, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Ufficio')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 674, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NumeroREA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 675, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroREA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 675, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CapitaleSociale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 676, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CapitaleSociale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 676, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'SocioUnico')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 677, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'SocioUnico')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 677, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'StatoLiquidazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 678, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'StatoLiquidazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 678, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
@@ -6987,17 +10881,40 @@ IscrizioneREAType._Automaton = _BuildAutomaton_21()
 
 
 ContattiType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'),
-                               TelFaxType, scope=ContattiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 683, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Telefono'),
+        TelFaxType,
+        scope=ContattiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            683,
+            6)))
 
 ContattiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Fax'), TelFaxType,
-                         scope=ContattiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 684, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Fax'),
+        TelFaxType,
+        scope=ContattiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            684,
+            6)))
 
 ContattiType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Email'),
-                               EmailType, scope=ContattiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 685, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Email'),
+        EmailType,
+        scope=ContattiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            685,
+            6)))
 
 
 def _BuildAutomaton_22():
@@ -7008,33 +10925,57 @@ def _BuildAutomaton_22():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 683, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            683,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 684, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            684,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 685, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            685,
+            6))
     counters.add(cc_2)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Telefono')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 683, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Telefono')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 683, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Fax')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 684, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Fax')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 684, 6))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Email')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 685, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Email')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 685, 6))
     st_2 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
@@ -7062,8 +11003,15 @@ ContattiType._Automaton = _BuildAutomaton_22()
 
 RappresentanteFiscaleType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'),
-                                      DatiAnagraficiRappresentanteType, scope=RappresentanteFiscaleType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 695, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagrafici'),
+        DatiAnagraficiRappresentanteType,
+        scope=RappresentanteFiscaleType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            695,
+            6)))
 
 
 def _BuildAutomaton_23():
@@ -7075,8 +11023,11 @@ def _BuildAutomaton_23():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 695, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        RappresentanteFiscaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 695, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
@@ -7086,14 +11037,41 @@ def _BuildAutomaton_23():
 RappresentanteFiscaleType._Automaton = _BuildAutomaton_23()
 
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 700, 6)))
+DatiAnagraficiRappresentanteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        IdFiscaleType,
+        scope=DatiAnagraficiRappresentanteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            700,
+            6)))
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 701, 6)))
+DatiAnagraficiRappresentanteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        CodiceFiscaleType,
+        scope=DatiAnagraficiRappresentanteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            701,
+            6)))
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 702, 6)))
+DatiAnagraficiRappresentanteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        AnagraficaType,
+        scope=DatiAnagraficiRappresentanteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            702,
+            6)))
 
 
 def _BuildAutomaton_24():
@@ -7104,24 +11082,38 @@ def _BuildAutomaton_24():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 701, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            701,
+            6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 700, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiRappresentanteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 700, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 701, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiRappresentanteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 701, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 702, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiRappresentanteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 702, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
@@ -7145,11 +11137,27 @@ DatiAnagraficiRappresentanteType._Automaton = _BuildAutomaton_24()
 
 CessionarioCommittenteType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'),
-                                       DatiAnagraficiCessionarioType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 712, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiAnagrafici'),
+        DatiAnagraficiCessionarioType,
+        scope=CessionarioCommittenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            712,
+            6)))
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Sede'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 713, 6)))
+CessionarioCommittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Sede'),
+        IndirizzoType,
+        scope=CessionarioCommittenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            713,
+            6)))
 
 
 def _BuildAutomaton_25():
@@ -7161,14 +11169,20 @@ def _BuildAutomaton_25():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 712, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CessionarioCommittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 712, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Sede')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 713, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CessionarioCommittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Sede')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 713, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -7184,16 +11198,39 @@ CessionarioCommittenteType._Automaton = _BuildAutomaton_25()
 
 DatiAnagraficiCessionarioType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'),
-                                          IdFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 718, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        IdFiscaleType,
+        scope=DatiAnagraficiCessionarioType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            718,
+            6)))
 
 DatiAnagraficiCessionarioType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale'),
-                                          CodiceFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 719, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        CodiceFiscaleType,
+        scope=DatiAnagraficiCessionarioType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            719,
+            6)))
 
-DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 720, 6)))
+DatiAnagraficiCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        AnagraficaType,
+        scope=DatiAnagraficiCessionarioType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            720,
+            6)))
 
 
 def _BuildAutomaton_26():
@@ -7204,27 +11241,46 @@ def _BuildAutomaton_26():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 718, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            718,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 719, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            719,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 718, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 718, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 719, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 719, 6))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 720, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 720, 6))
     st_2 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
@@ -7250,13 +11306,27 @@ DatiAnagraficiCessionarioType._Automaton = _BuildAutomaton_26()
 
 DatiBeniServiziType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DettaglioLinee'),
-                                DettaglioLineeType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 730, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DettaglioLinee'),
+        DettaglioLineeType,
+        scope=DatiBeniServiziType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            730,
+            6)))
 
 DatiBeniServiziType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DatiRiepilogo'),
-                                DatiRiepilogoType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 731, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DatiRiepilogo'),
+        DatiRiepilogoType,
+        scope=DatiBeniServiziType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            731,
+            6)))
 
 
 def _BuildAutomaton_27():
@@ -7268,14 +11338,20 @@ def _BuildAutomaton_27():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DettaglioLinee')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 730, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBeniServiziType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DettaglioLinee')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 730, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiRiepilogo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 731, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBeniServiziType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiRiepilogo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 731, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -7294,13 +11370,28 @@ DatiBeniServiziType._Automaton = _BuildAutomaton_27()
 
 
 DatiVeicoliType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'),
-                               pyxb.binding.datatypes.date, scope=DatiVeicoliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 744, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Data'),
+        pyxb.binding.datatypes.date,
+        scope=DatiVeicoliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            744,
+            6)))
 
 DatiVeicoliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'TotalePercorso'),
-                            String15Type, scope=DatiVeicoliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 745, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'TotalePercorso'),
+        String15Type,
+        scope=DatiVeicoliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            745,
+            6)))
 
 
 def _BuildAutomaton_28():
@@ -7312,14 +11403,20 @@ def _BuildAutomaton_28():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 744, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiVeicoliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Data')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 744, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TotalePercorso')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 745, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiVeicoliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TotalePercorso')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 745, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -7335,13 +11432,27 @@ DatiVeicoliType._Automaton = _BuildAutomaton_28()
 
 DatiPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CondizioniPagamento'),
-                              CondizioniPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 755, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CondizioniPagamento'),
+        CondizioniPagamentoType,
+        scope=DatiPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            755,
+            6)))
 
 DatiPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DettaglioPagamento'),
-                              DettaglioPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 756, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DettaglioPagamento'),
+        DettaglioPagamentoType,
+        scope=DatiPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            756,
+            6)))
 
 
 def _BuildAutomaton_29():
@@ -7353,14 +11464,20 @@ def _BuildAutomaton_29():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CondizioniPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 755, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CondizioniPagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 755, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DettaglioPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 756, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DettaglioPagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 756, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -7378,100 +11495,255 @@ DatiPagamentoType._Automaton = _BuildAutomaton_29()
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Beneficiario'),
-                                   String200LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 782, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Beneficiario'),
+        String200LatinType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            782,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ModalitaPagamento'),
-                                   ModalitaPagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 783, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ModalitaPagamento'),
+        ModalitaPagamentoType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            783,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento'),
-                                   pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 784, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataRiferimentoTerminiPagamento'),
+        pyxb.binding.datatypes.date,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            784,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento'),
-                                   GiorniTerminePagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 785, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'GiorniTerminiPagamento'),
+        GiorniTerminePagamentoType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            785,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento'),
-                                   pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 786, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataScadenzaPagamento'),
+        pyxb.binding.datatypes.date,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            786,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ImportoPagamento'),
-                                   Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 787, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImportoPagamento'),
+        Amount2DecimalType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            787,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodUfficioPostale'),
-                                   String20Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 788, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodUfficioPostale'),
+        String20Type,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            788,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante'),
-                                   String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 789, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CognomeQuietanzante'),
+        String60LatinType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            789,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NomeQuietanzante'),
-                                   String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 790, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'NomeQuietanzante'),
+        String60LatinType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            790,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CFQuietanzante'),
-                                   CodiceFiscalePFType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 791, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CFQuietanzante'),
+        CodiceFiscalePFType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            791,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante'),
-                                   TitoloType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 792, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'TitoloQuietanzante'),
+        TitoloType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            792,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario'),
-                                   String80LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 793, 6)))
-
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'IBAN'), IBANType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 794, 6)))
-
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'ABI'), ABIType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 795, 6)))
-
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'CAB'), CABType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 796, 6)))
-
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'BIC'), BICType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 797, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'IstitutoFinanziario'),
+        String80LatinType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            793,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato'),
-                                   Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 798, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'IBAN'),
+        IBANType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            794,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato'),
-                                   pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 799, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ABI'),
+        ABIType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            795,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati'),
-                                   Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 800, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CAB'),
+        CABType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            796,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale'),
-                                   pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 801, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'BIC'),
+        BICType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            797,
+            6)))
 
 DettaglioPagamentoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodicePagamento'),
-                                   String60Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 802, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ScontoPagamentoAnticipato'),
+        Amount2DecimalType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            798,
+            6)))
+
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataLimitePagamentoAnticipato'),
+        pyxb.binding.datatypes.date,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            799,
+            6)))
+
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'PenalitaPagamentiRitardati'),
+        Amount2DecimalType,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            800,
+            6)))
+
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataDecorrenzaPenale'),
+        pyxb.binding.datatypes.date,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            801,
+            6)))
+
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodicePagamento'),
+        String60Type,
+        scope=DettaglioPagamentoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            802,
+            6)))
 
 
 def _BuildAutomaton_30():
@@ -7482,201 +11754,364 @@ def _BuildAutomaton_30():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 782, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            782,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 784, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            784,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 785, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            785,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 786, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            786,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 788, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            788,
+            6))
     counters.add(cc_4)
     cc_5 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 789, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            789,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 790, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            790,
+            6))
     counters.add(cc_6)
     cc_7 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 791, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            791,
+            6))
     counters.add(cc_7)
     cc_8 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 792, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            792,
+            6))
     counters.add(cc_8)
     cc_9 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 793, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            793,
+            6))
     counters.add(cc_9)
     cc_10 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 794, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            794,
+            6))
     counters.add(cc_10)
     cc_11 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 795, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            795,
+            6))
     counters.add(cc_11)
     cc_12 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 796, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            796,
+            6))
     counters.add(cc_12)
     cc_13 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 797, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            797,
+            6))
     counters.add(cc_13)
     cc_14 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 798, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            798,
+            6))
     counters.add(cc_14)
     cc_15 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 799, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            799,
+            6))
     counters.add(cc_15)
     cc_16 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 800, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            800,
+            6))
     counters.add(cc_16)
     cc_17 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 801, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            801,
+            6))
     counters.add(cc_17)
     cc_18 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 802, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            802,
+            6))
     counters.add(cc_18)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Beneficiario')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 782, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Beneficiario')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 782, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ModalitaPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 783, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ModalitaPagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 783, 6))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataRiferimentoTerminiPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 784, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'DataRiferimentoTerminiPagamento')
+        ), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 784, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'GiorniTerminiPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 785, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'GiorniTerminiPagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 785, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataScadenzaPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 786, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataScadenzaPagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 786, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ImportoPagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 787, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoPagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 787, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodUfficioPostale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 788, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodUfficioPostale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 788, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 789, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CognomeQuietanzante')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 789, 6))
     st_7 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NomeQuietanzante')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 790, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NomeQuietanzante')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 790, 6))
     st_8 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CFQuietanzante')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 791, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CFQuietanzante')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 791, 6))
     st_9 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 792, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TitoloQuietanzante')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 792, 6))
     st_10 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 793, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IstitutoFinanziario')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 793, 6))
     st_11 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IBAN')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 794, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IBAN')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 794, 6))
     st_12 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'ABI')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 795, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ABI')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 795, 6))
     st_13 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_12, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CAB')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 796, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CAB')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 796, 6))
     st_14 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_13, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'BIC')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 797, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'BIC')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 797, 6))
     st_15 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_14, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ScontoPagamentoAnticipato')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 798, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'ScontoPagamentoAnticipato')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 798, 6))
     st_16 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_16)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_15, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataLimitePagamentoAnticipato')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 799, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'DataLimitePagamentoAnticipato')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 799, 6))
     st_17 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_17)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_16, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'PenalitaPagamentiRitardati')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 800, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'PenalitaPagamentiRitardati')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 800, 6))
     st_18 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_18)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_17, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataDecorrenzaPenale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 801, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataDecorrenzaPenale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 801, 6))
     st_19 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_19)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_18, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodicePagamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 802, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodicePagamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 802, 6))
     st_20 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_20)
@@ -8026,8 +12461,13 @@ def _BuildAutomaton_30():
 DettaglioPagamentoType._Automaton = _BuildAutomaton_30()
 
 
-TerzoIntermediarioSoggettoEmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'DatiAnagrafici'), DatiAnagraficiTerzoIntermediarioType, scope=TerzoIntermediarioSoggettoEmittenteType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 934, 6)))
+TerzoIntermediarioSoggettoEmittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'),
+        DatiAnagraficiTerzoIntermediarioType,
+        scope=TerzoIntermediarioSoggettoEmittenteType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 934, 6)))
 
 
 def _BuildAutomaton_31():
@@ -8039,8 +12479,11 @@ def _BuildAutomaton_31():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TerzoIntermediarioSoggettoEmittenteType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 934, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        TerzoIntermediarioSoggettoEmittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 934, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
@@ -8050,14 +12493,41 @@ def _BuildAutomaton_31():
 TerzoIntermediarioSoggettoEmittenteType._Automaton = _BuildAutomaton_31()
 
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 939, 6)))
+DatiAnagraficiTerzoIntermediarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'IdFiscaleIVA'),
+        IdFiscaleType,
+        scope=DatiAnagraficiTerzoIntermediarioType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            939,
+            6)))
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 940, 6)))
+DatiAnagraficiTerzoIntermediarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceFiscale'),
+        CodiceFiscaleType,
+        scope=DatiAnagraficiTerzoIntermediarioType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            940,
+            6)))
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 941, 6)))
+DatiAnagraficiTerzoIntermediarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Anagrafica'),
+        AnagraficaType,
+        scope=DatiAnagraficiTerzoIntermediarioType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            941,
+            6)))
 
 
 def _BuildAutomaton_32():
@@ -8068,27 +12538,46 @@ def _BuildAutomaton_32():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 939, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            939,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 940, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            940,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 939, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiTerzoIntermediarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 939, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 940, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiTerzoIntermediarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 940, 6))
     st_1 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 941, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiTerzoIntermediarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 941, 6))
     st_2 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
@@ -8114,27 +12603,63 @@ DatiAnagraficiTerzoIntermediarioType._Automaton = _BuildAutomaton_32()
 
 AllegatiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NomeAttachment'),
-                         String60LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 951, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'NomeAttachment'),
+        String60LatinType,
+        scope=AllegatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            951,
+            6)))
 
 AllegatiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione'),
-                         String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 952, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'AlgoritmoCompressione'),
+        String10Type,
+        scope=AllegatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            952,
+            6)))
 
 AllegatiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'FormatoAttachment'),
-                         String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 953, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'FormatoAttachment'),
+        String10Type,
+        scope=AllegatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            953,
+            6)))
 
 AllegatiType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment'),
-                         String100LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 954, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DescrizioneAttachment'),
+        String100LatinType,
+        scope=AllegatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            954,
+            6)))
 
 AllegatiType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Attachment'),
-                               pyxb.binding.datatypes.base64Binary, scope=AllegatiType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 955, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Attachment'),
+        pyxb.binding.datatypes.base64Binary,
+        scope=AllegatiType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            955,
+            6)))
 
 
 def _BuildAutomaton_33():
@@ -8145,42 +12670,72 @@ def _BuildAutomaton_33():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 952, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            952,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 953, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            953,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 954, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            954,
+            6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NomeAttachment')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 951, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NomeAttachment')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 951, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AlgoritmoCompressione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 952, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AlgoritmoCompressione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 952, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FormatoAttachment')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 953, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FormatoAttachment')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 953, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DescrizioneAttachment')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 954, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DescrizioneAttachment')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 954, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Attachment')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 955, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Attachment')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 955, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
@@ -8226,80 +12781,195 @@ AllegatiType._Automaton = _BuildAutomaton_33()
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'NumeroLinea'),
-                               NumeroLineaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 960, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'NumeroLinea'),
+        NumeroLineaType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            960,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione'),
-                               TipoCessionePrestazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 961, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoCessionePrestazione'),
+        TipoCessionePrestazioneType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            961,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodiceArticolo'),
-                               CodiceArticoloType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 962, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceArticolo'),
+        CodiceArticoloType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            962,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Descrizione'),
-                               String1000LatinType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 963, 6)))
-
-DettaglioLineeType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Quantita'),
-                               QuantitaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 964, 6)))
-
-DettaglioLineeType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'UnitaMisura'),
-                               String10Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 965, 6)))
-
-DettaglioLineeType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo'),
-                               pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 966, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Descrizione'),
+        String1000LatinType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            963,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'DataFinePeriodo'),
-                               pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 967, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Quantita'),
+        QuantitaType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            964,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'PrezzoUnitario'),
-                               Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 968, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'UnitaMisura'),
+        String10Type,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            965,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'),
-                               ScontoMaggiorazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 969, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataInizioPeriodo'),
+        pyxb.binding.datatypes.date,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            966,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'PrezzoTotale'),
-                               Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 970, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'DataFinePeriodo'),
+        pyxb.binding.datatypes.date,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            967,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'AliquotaIVA'),
-                               RateType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 971, 6)))
-
-DettaglioLineeType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'),
-                               RitenutaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 972, 6)))
-
-DettaglioLineeType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'),
-                               NaturaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 973, 6)))
-
-DettaglioLineeType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'),
-                               String20Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 974, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'PrezzoUnitario'),
+        Amount8DecimalType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            968,
+            6)))
 
 DettaglioLineeType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali'),
-                               AltriDatiGestionaliType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 975, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'ScontoMaggiorazione'),
+        ScontoMaggiorazioneType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            969,
+            6)))
+
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'PrezzoTotale'),
+        Amount8DecimalType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            970,
+            6)))
+
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'AliquotaIVA'),
+        RateType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            971,
+            6)))
+
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Ritenuta'),
+        RitenutaType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            972,
+            6)))
+
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Natura'),
+        NaturaType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            973,
+            6)))
+
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoAmministrazione'),
+        String20Type,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            974,
+            6)))
+
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'AltriDatiGestionali'),
+        AltriDatiGestionaliType,
+        scope=DettaglioLineeType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            975,
+            6)))
 
 
 def _BuildAutomaton_34():
@@ -8310,136 +12980,240 @@ def _BuildAutomaton_34():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 961, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            961,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 962, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            962,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 964, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            964,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 965, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            965,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 966, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            966,
+            6))
     counters.add(cc_4)
     cc_5 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 967, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            967,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 969, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            969,
+            6))
     counters.add(cc_6)
     cc_7 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 972, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            972,
+            6))
     counters.add(cc_7)
     cc_8 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 973, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            973,
+            6))
     counters.add(cc_8)
     cc_9 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 974, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            974,
+            6))
     counters.add(cc_9)
     cc_10 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 975, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            975,
+            6))
     counters.add(cc_10)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'NumeroLinea')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 960, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroLinea')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 960, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TipoCessionePrestazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 961, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoCessionePrestazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 961, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceArticolo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 962, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceArticolo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 962, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Descrizione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 963, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Descrizione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 963, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Quantita')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 964, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Quantita')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 964, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'UnitaMisura')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 965, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'UnitaMisura')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 965, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataInizioPeriodo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 966, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataInizioPeriodo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 966, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'DataFinePeriodo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 967, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataFinePeriodo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 967, 6))
     st_7 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'PrezzoUnitario')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 968, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PrezzoUnitario')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 968, 6))
     st_8 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 969, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 969, 6))
     st_9 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'PrezzoTotale')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 970, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PrezzoTotale')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 970, 6))
     st_10 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 971, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 971, 6))
     st_11 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Ritenuta')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 972, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Ritenuta')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 972, 6))
     st_12 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 973, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Natura')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 973, 6))
     st_13 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 974, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'RiferimentoAmministrazione')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 974, 6))
     st_14 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AltriDatiGestionali')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 975, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AltriDatiGestionali')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 975, 6))
     st_15 = fac.State(symbol, is_initial=False,
                       final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
@@ -8572,13 +13346,28 @@ DettaglioLineeType._Automaton = _BuildAutomaton_34()
 
 
 CodiceArticoloType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceTipo'),
-                               String35Type, scope=CodiceArticoloType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 980, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceTipo'),
+        String35Type,
+        scope=CodiceArticoloType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            980,
+            6)))
 
 CodiceArticoloType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'CodiceValore'),
-                               String35Type, scope=CodiceArticoloType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 981, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'CodiceValore'),
+        String35Type,
+        scope=CodiceArticoloType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            981,
+            6)))
 
 
 def _BuildAutomaton_35():
@@ -8590,14 +13379,20 @@ def _BuildAutomaton_35():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceTipo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 980, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CodiceArticoloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceTipo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 980, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'CodiceValore')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 981, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        CodiceArticoloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceValore')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 981, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
@@ -8612,23 +13407,52 @@ CodiceArticoloType._Automaton = _BuildAutomaton_35()
 
 
 AltriDatiGestionaliType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoDato'),
-                               String10Type, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 986, 6)))
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'TipoDato'),
+        String10Type,
+        scope=AltriDatiGestionaliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            986,
+            6)))
 
 AltriDatiGestionaliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoTesto'),
-                                    String60LatinType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 987, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoTesto'),
+        String60LatinType,
+        scope=AltriDatiGestionaliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            987,
+            6)))
 
 AltriDatiGestionaliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoNumero'),
-                                    Amount8DecimalType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 988, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoNumero'),
+        Amount8DecimalType,
+        scope=AltriDatiGestionaliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            988,
+            6)))
 
 AltriDatiGestionaliType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoData'),
-                                    pyxb.binding.datatypes.date, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 989, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoData'),
+        pyxb.binding.datatypes.date,
+        scope=AltriDatiGestionaliType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            989,
+            6)))
 
 
 def _BuildAutomaton_36():
@@ -8639,39 +13463,66 @@ def _BuildAutomaton_36():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 987, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            987,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 988, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            988,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 989, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            989,
+            6))
     counters.add(cc_2)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'TipoDato')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 986, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoDato')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 986, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoTesto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 987, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoTesto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 987, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoNumero')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 988, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNumero')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 988, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoData')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 989, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoData')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 989, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
@@ -8707,41 +13558,99 @@ AltriDatiGestionaliType._Automaton = _BuildAutomaton_36()
 
 DatiRiepilogoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'AliquotaIVA'),
-                              RateType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1006, 6)))
-
-DatiRiepilogoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'),
-                               NaturaType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1007, 6)))
-
-DatiRiepilogoType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'SpeseAccessorie'),
-                              Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1008, 6)))
-
-DatiRiepilogoType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'Arrotondamento'),
-                              Amount8DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1009, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'AliquotaIVA'),
+        RateType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1006,
+            6)))
 
 DatiRiepilogoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'ImponibileImporto'),
-                              Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1010, 6)))
-
-DatiRiepilogoType._AddElement(
-    pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Imposta'),
-                               Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1011, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Natura'),
+        NaturaType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1007,
+            6)))
 
 DatiRiepilogoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA'),
-                              EsigibilitaIVAType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1012, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'SpeseAccessorie'),
+        Amount2DecimalType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1008,
+            6)))
 
 DatiRiepilogoType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo'),
-                              String100LatinType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1013, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'Arrotondamento'),
+        Amount8DecimalType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1009,
+            6)))
+
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'ImponibileImporto'),
+        Amount2DecimalType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1010,
+            6)))
+
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'Imposta'),
+        Amount2DecimalType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1011,
+            6)))
+
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'EsigibilitaIVA'),
+        EsigibilitaIVAType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1012,
+            6)))
+
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None,
+            'RiferimentoNormativo'),
+        String100LatinType,
+        scope=DatiRiepilogoType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1013,
+            6)))
 
 
 def _BuildAutomaton_37():
@@ -8752,68 +13661,117 @@ def _BuildAutomaton_37():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1007, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1007,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1008, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1008,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1009, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1009,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1012, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1012,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1013, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            1013,
+            6))
     counters.add(cc_4)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1006, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1006, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1007, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Natura')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1007, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'SpeseAccessorie')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1008, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'SpeseAccessorie')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1008, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Arrotondamento')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1009, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Arrotondamento')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1009, 6))
     st_3 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImponibileImporto')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1010, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImponibileImporto')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1010, 6))
     st_4 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(
-        pyxb.namespace.ExpandedName(None, 'Imposta')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1011, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Imposta')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1011, 6))
     st_5 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'EsigibilitaIVA')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1012, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'EsigibilitaIVA')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1012, 6))
     st_6 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNormativo')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 1013, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNormativo')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 1013, 6))
     st_7 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
@@ -8877,19 +13835,42 @@ DatiRiepilogoType._Automaton = _BuildAutomaton_37()
 
 FatturaElettronicaType._AddElement(
     pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader'),
-                                   FatturaElettronicaHeaderType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 13, 6)))
-
-FatturaElettronicaType._AddElement(
-    pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody'),
-                                   FatturaElettronicaBodyType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 14, 6)))
+        pyxb.namespace.ExpandedName(
+            None,
+            'FatturaElettronicaHeader'),
+        FatturaElettronicaHeaderType,
+        scope=FatturaElettronicaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            13,
+            6)))
 
 FatturaElettronicaType._AddElement(
     pyxb.binding.basis.element(
         pyxb.namespace.ExpandedName(
-            _Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType,
-                                   scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0)))
+            None,
+            'FatturaElettronicaBody'),
+        FatturaElettronicaBodyType,
+        scope=FatturaElettronicaType,
+        location=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            14,
+            6)))
+
+FatturaElettronicaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            _Namespace_ds,
+            'Signature'),
+        _ImportedBinding__ds.SignatureType,
+        scope=FatturaElettronicaType,
+        location=pyxb.utils.utility.Location(
+            (
+                'http://www.w3.org/TR/2002/REC-xmldsig-core-'
+                '20020212/xmldsig-core-schema.xsd'
+            ),
+            43,
+            0)))
 
 
 def _BuildAutomaton_38():
@@ -8900,25 +13881,40 @@ def _BuildAutomaton_38():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=1, metadata=pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 15, 6))
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd',
+            15,
+            6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FatturaElettronicaHeader')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 13, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None,
+                'FatturaElettronicaHeader')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 13, 6))
     st_0 = fac.State(symbol, is_initial=True,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FatturaElettronicaBody')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 14, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FatturaElettronicaBody')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 14, 6))
     st_1 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(
-        pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature')), pyxb.utils.utility.Location('/tmp/fatturapa_v1.1.xsd', 15, 6))
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                _Namespace_ds, 'Signature')), pyxb.utils.utility.Location(
+            '/tmp/fatturapa_v1.1.xsd', 15, 6))
     st_2 = fac.State(symbol, is_initial=False,
                      final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
