@@ -45,9 +45,16 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.invoice_model = self.registry('account.invoice')
         self.context = {}
 
-    def checkFiscalYear(self, date_to_check):
+    def checkCreateFiscalYear(self, date_to_check):
+        '''
+        with this method you can check if a date
+        passed in param dae_to_check , is in
+        current fiscal year .
+        If not present, it creates a fiscal year and
+        a sequence for sale_journal,
+        consistent with date, in date_to_check.
+        '''
         cr, uid = self.cr, self.uid
-
         self.fy_model = self.registry('account.fiscalyear')
         if not self.fy_model.find(
             cr, uid, dt=date_to_check, exception=False
@@ -74,7 +81,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             seq_name = 'seq%s' % name
             self.context['fiscalyear_id'] = self.fiscalyear_id
             prefix = 'SAJ/%s/' % year
-            print fy_id
             s_id = self.registry('ir.sequence').create(
                 cr, uid,
                 {
@@ -109,7 +115,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         else:
             seq_id = self.data_model.get_object_reference(
                 cr, uid, 'account', 'sequence_sale_journal')
-        print self.context
         seq_pool.write(
             cr, uid, [seq_id[1]],
             {
@@ -147,7 +152,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_0_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkFiscalYear('2014-01-07')
+        self.checkCreateFiscalYear('2014-01-07')
         self.context['fiscalyear_id'] = self.fiscalyear_id
         self.set_sequences(1, 13)
         invoice_id = self.confirm_invoice('fatturapa_invoice_0')
@@ -163,7 +168,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_1_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkFiscalYear('2015-02-15')
+        self.checkCreateFiscalYear('2015-02-15')
         self.set_sequences(2, 14)
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
@@ -174,7 +179,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_2_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkFiscalYear('2015-02-15')
+        self.checkCreateFiscalYear('2015-02-15')
         self.set_sequences(3, 15)
         invoice_id = self.confirm_invoice('fatturapa_invoice_2')
         res = self.run_wizard(invoice_id)
