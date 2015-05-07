@@ -14,6 +14,8 @@ import pyxb.utils.utility
 import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
+# Import bindings for namespaces imported into schema
+from . import _ds as _ImportedBinding__ds
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
@@ -25,8 +27,6 @@ _PyXBVersion = '1.2.4'
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
-# Import bindings for namespaces imported into schema
-import _ds as _ImportedBinding__ds
 import pyxb.binding.datatypes
 
 # NOTE: All namespace declarations are reserved within the binding
