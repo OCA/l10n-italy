@@ -19,4 +19,5 @@
 #
 ##############################################################################
 
-from . import res_region
+from . import partner
+from . import region

@@ -19,25 +19,17 @@
 #
 ##############################################################################
 
-{
-    'name': 'Italian Regions Import',
-    'version': '0.1',
-    'category': 'Extra Tools',
-    'license': 'AGPL-3',
-    'summary': 'Import Italian regions from Geonames',
-    'description': """
-This module extends l10n_it_base_location_geonames_import in order to correctly
-import Italian regions
-""",
-    'author': "Abstract,Odoo Community Association (OCA)",
-    'website': 'http://www.abstract.it',
-    'depends': [
-        'base',
-        'base_location_geonames_import'],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/partner_view.xml',
-        'views/region_view.xml'],
-    'installable': True,
-    'active': False,
-}
+from openerp import models, fields, api
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    region_id = fields.Many2one('res.country.region', 'Region')
+
+    @api.one
+    @api.onchange('zip_id')
+    def onchange_zip_id(self):
+        super(ResPartner, self).onchange_zip_id()
+        if self.zip_id:
+            self.region_id = self.zip_id.state_id.region_id.id
