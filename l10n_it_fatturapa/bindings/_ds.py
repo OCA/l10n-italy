@@ -1487,8 +1487,6 @@ RSAKeyValue = pyxb.binding.basis.element(
             '12/xmldsig-core-schema.xsd', 306, 0))
 Namespace.addCategoryObject('elementBinding', RSAKeyValue.name().localName(), RSAKeyValue)
 
-
-
 SignatureType._AddElement(pyxb.binding.basis.element(
         pyxb.namespace.ExpandedName(Namespace, 'SignatureValue'), SignatureValueType, scope=SignatureType, location=pyxb.utils.utility.Location(
             'http://www.w3.org/TR/2002/REC-xmldsig-core-200202'
@@ -1590,21 +1588,27 @@ def _BuildAutomaton():
     return fac.Automaton(states, counters, False, containing_state=None)
 SignatureType._Automaton = _BuildAutomaton()
 
-
-
-
-SignedInfoType._AddElement(pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(Namespace, 'CanonicalizationMethod'), CanonicalizationMethodType, scope=SignedInfoType, location=pyxb.utils.utility.Location(
+SignedInfoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(Namespace, 'CanonicalizationMethod'),
+        CanonicalizationMethodType, scope=SignedInfoType,
+        location=pyxb.utils.utility.Location(
             'http://www.w3.org/TR/2002/REC-xmldsig-core-200202'
             '12/xmldsig-core-schema.xsd', 75, 2)))
 
-SignedInfoType._AddElement(pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(Namespace, 'SignatureMethod'), SignatureMethodType, scope=SignedInfoType, location=pyxb.utils.utility.Location(
+SignedInfoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(Namespace, 'SignatureMethod'),
+        SignatureMethodType, scope=SignedInfoType,
+        location=pyxb.utils.utility.Location(
             'http://www.w3.org/TR/2002/REC-xmldsig-core-200202'
             '12/xmldsig-core-schema.xsd', 84, 2)))
 
-SignedInfoType._AddElement(pyxb.binding.basis.element(
-        pyxb.namespace.ExpandedName(Namespace, 'Reference'), ReferenceType, scope=SignedInfoType, location=pyxb.utils.utility.Location(
+SignedInfoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(Namespace, 'Reference'),
+        ReferenceType, scope=SignedInfoType,
+        location=pyxb.utils.utility.Location(
             'http://www.w3.org/TR/2002/REC-xmldsig-core-200202'
             '12/xmldsig-core-schema.xsd', 96, 0)))
 
