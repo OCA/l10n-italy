@@ -206,7 +206,7 @@ class discount_rise_price(orm.Model):
         'percentage': fields.float('Percentage'),
         'amount': fields.float('Amount'),
         'invoice_id': fields.many2one(
-            'account.invoice', 'Related Invoice',
+            'account.invoice.line', 'Related Invoice',
             ondelete='cascade', select=True
         ),
     }
