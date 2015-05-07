@@ -176,7 +176,7 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="type">out_invoice</field>
             <field name="account_id" ref="account.a_pay"/>
-            <field name="date_invoice" eval="time.strftime('%Y')+'-01-07'"/>
+            <field name="date_invoice" eval="'2015-01-07'"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
         </record>
 
@@ -214,7 +214,7 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="type">out_invoice</field>
             <field name="account_id" ref="account.a_pay"/>
-            <field name="date_invoice" eval="time.strftime('%Y')+'-02-15'"/>
+            <field name="date_invoice" eval="'2015-02-15'"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="comment">prima riga
 seconda riga</field>
@@ -252,6 +252,67 @@ seconda riga</field>
             <field name="cup">456</field>
         </record>
 
+<!-- invoice 2 -->
+
+        <record id="fatturapa_invoice_2" model="account.invoice">
+            <field name="payment_term" ref="account.account_payment_term"/>
+            <field name="journal_id" ref="account.sales_journal"/>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="type">out_invoice</field>
+            <field name="account_id" ref="account.a_pay"/>
+            <field name="date_invoice" eval="'2015-02-15'"/>
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="comment">prima riga
+seconda riga</field>
+        </record>
+
+        <record id="fatturapa_invoice_2_line_0" model="account.invoice.line">
+            <field name="invoice_id" ref="fatturapa_invoice_2"/>
+            <field name="account_id" ref="account.a_sale"/>
+            <field name="uos_id" ref="product.product_uom_unit"/>
+            <field name="price_unit" eval="10.0" />
+            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+            <field name="product_id" ref="product.product_product_39"/>
+            <field name="quantity" eval="1.0" />
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="name">Toner Cartridge</field>
+        </record>
+
+        <record id="fatturapa_invoice_2_line_1" model="account.invoice.line">
+            <field name="invoice_id" ref="fatturapa_invoice_2"/>
+            <field name="account_id" ref="account.a_sale"/>
+            <field name="uos_id" ref="product.product_uom_unit"/>
+            <field name="price_unit" eval="4.0"/>
+            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+            <field name="product_id" ref="product.product_product_43"/>
+            <field name="quantity" eval="1.0" />
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="name">Zed+ Antivirus</field>
+        </record>
+
+        <record model="fatturapa.related_document_type" id="related_doc_1">
+            <field name="invoice_id" ref="fatturapa_invoice_2"/>
+            <field name="type">order</field>
+            <field name="name">PO123</field>
+            <field name="cig">123</field>
+            <field name="cup">456</field>
+        </record>
+
+        <record model="fatturapa.attachments" id="related_attach_0">
+            <field name="invoice_id" ref="fatturapa_invoice_2"/>
+            <field name="name">test1.pdf</field>
+            <field name="datas">bWlncmF0aW9uIHRlc3Q=</field>
+            <field name="datas_fname">test1.pdf</field>
+        </record>
+
+        <record model="fatturapa.attachments" id="related_attach_1">
+            <field name="invoice_id" ref="fatturapa_invoice_2"/>
+            <field name="name">test2.pdf</field>
+            <field name="datas">bWlncmF0aW9uIHRlc3P=</field>
+            <field name="datas_fname">test2.pdf</field>
+        </record>
 
     </data>
 </openerp>
