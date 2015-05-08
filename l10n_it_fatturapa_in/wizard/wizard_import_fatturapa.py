@@ -25,11 +25,13 @@ import subprocess
 from openerp.osv import orm
 from openerp.tools.translate import _
 import logging
-_logger = logging.getLogger(__name__)
+
 
 from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_1
 from openerp.addons.base_iban import base_iban
 from lxml import etree
+
+_logger = logging.getLogger(__name__)
 
 
 class WizardImportFatturapa(orm.TransientModel):
@@ -60,8 +62,8 @@ class WizardImportFatturapa(orm.TransientModel):
         partner = self.pool['res.partner'].browse(
             cr, uid, partner_id, context=context)
         if (
-            DatiAnagrafici.Anagrafica.Denominazione
-            and partner.name != DatiAnagrafici.Anagrafica.Denominazione
+            DatiAnagrafici.Anagrafica.Denominazione and
+            partner.name != DatiAnagrafici.Anagrafica.Denominazione
         ):
             if context.get('inconsistencies'):
                 context['inconsistencies'] += '\n'
@@ -73,8 +75,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Denominazione, partner.name)
             )
         if (
-            DatiAnagrafici.Anagrafica.Nome
-            and partner.firstname != DatiAnagrafici.Anagrafica.Nome
+            DatiAnagrafici.Anagrafica.Nome and
+            partner.firstname != DatiAnagrafici.Anagrafica.Nome
         ):
             if context.get('inconsistencies'):
                 context['inconsistencies'] += '\n'
@@ -86,8 +88,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Nome, partner.firstname)
             )
         if (
-            DatiAnagrafici.Anagrafica.Cognome
-            and partner.lastname != DatiAnagrafici.Anagrafica.Cognome
+            DatiAnagrafici.Anagrafica.Cognome and
+            partner.lastname != DatiAnagrafici.Anagrafica.Cognome
         ):
             if context.get('inconsistencies'):
                 context['inconsistencies'] += '\n'
@@ -131,8 +133,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 cr, uid, partner_ids, context=context
             ):
                 if (
-                    commercial_partner
-                    and partner.commercial_partner_id.id != commercial_partner
+                    commercial_partner and
+                    partner.commercial_partner_id.id != commercial_partner
                 ):
                     raise orm.except_orm(
                         _('Error !'),

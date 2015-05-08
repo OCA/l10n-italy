@@ -116,7 +116,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.fatturapa_summary_ids[0].amount_tax, 0.66)
         self.assertEqual(invoice.partner_id.name, "Societa' alpha S.r.l.")
 
-
     def test_3_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test3', 'IT05979361218_002.xml.p7m')
@@ -169,10 +168,10 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.invoice_line[0].discount_rise_price_ids[0].percentage, 10)
 
     def test_6_import_except(self):
-        #File not exist Exception
+        # File not exist Exception
         self.assertRaises(
             Exception, self.run_wizard, 'test6_Eception', '')
-        #fake Signed file is passed , generate orm_exception
+        # fake Signed file is passed , generate orm_exception
         self.assertRaises(
             except_orm, self.run_wizard, 'test6_orm_eception',
             'IT05979361218_fake.xml.p7m'

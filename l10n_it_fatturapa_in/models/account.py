@@ -33,7 +33,7 @@ class account_invoice(orm.Model):
 
 
 class fatturapa_article_code(orm.Model):
-    #_position = ['2.2.1.3']
+    # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
     _description = 'FatturaPA Article Code'
 
@@ -48,10 +48,10 @@ class fatturapa_article_code(orm.Model):
 
 
 class account_invoice_line(orm.Model):
-    #_position = [
-    #    '2.2.1.3', '2.2.1.6', '2.2.1.7',
-    #    '2.2.1.8', '2.1.1.10'
-    #]
+    # _position = [
+    #     '2.2.1.3', '2.2.1.6', '2.2.1.7',
+    #     '2.2.1.8', '2.1.1.10'
+    # ]
     _inherit = "account.invoice.line"
 
     _columns = {
