@@ -270,8 +270,8 @@ class WizardExportFatturapa(orm.TransientModel):
                     company.fatturapa_rea_office.code or None),
                 NumeroREA=company.fatturapa_rea_number or None,
                 CapitaleSociale=(
-                    company.fatturapa_rea_capital
-                    and '%.2f' % company.fatturapa_rea_capital or None),
+                    company.fatturapa_rea_capital and
+                    '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
                 )
