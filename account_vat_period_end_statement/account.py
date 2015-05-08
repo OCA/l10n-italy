@@ -25,7 +25,7 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
-import decimal_precision as dp
+from openerp.addons.decimal_precision import decimal_precision as dp
 
 
 class account_vat_period_end_statement(orm.Model):
