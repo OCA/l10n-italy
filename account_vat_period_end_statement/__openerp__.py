@@ -25,10 +25,10 @@
 
 {
     "name": "Period End VAT Statement",
-    "version": "0.3",
+    "version": "1.0",
     'category': 'Generic Modules/Accounting',
     "depends": ["account_voucher", "report_webkit"],
-    "author": ["Agile Business Group", "OpenERP Italian Community"],
+    "author": "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'data': [
         'wizard/add_period.xml',
@@ -40,5 +40,4 @@
     ],
     'demo': [],
     'installable': True,
-    'active': False,
 }
