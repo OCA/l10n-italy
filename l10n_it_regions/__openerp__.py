@@ -33,7 +33,8 @@ import Italian regions
     'website': 'http://www.abstract.it',
     'depends': [
         'base',
-        'base_location_geonames_import'],
+        'base_location_geonames_import',
+        'l10n_it_base_location_geonames_import'],
     'data': [
         'security/ir.model.access.csv',
         'views/partner_view.xml',
