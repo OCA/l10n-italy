@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_ipa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-26 20:00+0000\n"
+"PO-Revision-Date: 2014-11-26 21:03+0000\n"
+"Last-Translator: Luigi Di Naro <luigi.dinaro@ktec.it>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.6.9\n"
+
+#. module: l10n_it_ipa
+#: field:res.partner,ipa_code:0
+msgid "IPA Code"
+msgstr "Codice IPA"
+
+#. module: l10n_it_ipa
+#: model:ir.model,name:l10n_it_ipa.model_res_partner
+msgid "Partner"
+msgstr "Partner"

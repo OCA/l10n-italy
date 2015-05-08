@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2013
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
@@ -9,7 +9,7 @@
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -21,9 +21,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import operator
 from report import report_sxw
-import pooler
 import time
 
 
@@ -44,7 +42,7 @@ class DeliverySlip(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'invoice_address': self._get_invoice_address,
-            })
+        })
 
 report_sxw.report_sxw('report.ddt_webkit',
                       'stock.picking',

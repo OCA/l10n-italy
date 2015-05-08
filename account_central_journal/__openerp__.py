@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 ISA s.r.l. (<http://www.isa.it>).
@@ -17,30 +17,30 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
     'name': 'Account Central Journal',
     'version': '3',
-    'author': "ISA S.r.l.",
+    'author': "ISA S.r.l.,Odoo Community Association (OCA)",
     'website': 'http://www.isa.it',
     'category': 'Generic Modules/Accounting',
     'description': """
 Managing the printing of the "Central Journal" """,
-    'depends' : [
+    'depends': [
         'base',
         'account',
         'report_webkit',
-        ],
-    'init_xml' : [],
+    ],
+    'init_xml': [],
     'update_xml': [
         'report/webkit_model.xml',
         'report/report.xml',
         'wizard/central_journal_report.xml',
         'account_view.xml',
-        ],
+    ],
     'demo_xml': [],
-    'test':[],
+    'test': [],
     'installable': True,
     'active': False,
     'certificate': '',

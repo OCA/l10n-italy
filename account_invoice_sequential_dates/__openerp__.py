@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2010-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,26 +17,26 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Check invoice date consistency',
     'version': '0.1',
     'category': 'Tools',
-    'description': """This module customizes OpenERP in order to make invoices with consistent dates.
+    'description': """This module customizes OpenERP in order to make invoices
+with consistent dates.
 
 Functionalities:
 
 - Check invoice date consistency
 
 """,
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account',],
-    "data" : [],
-    "demo_xml" : [],
+    "depends": ['account', ],
+    "data": [],
+    "demo_xml": [],
     "active": False,
     "installable": True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

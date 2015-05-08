@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012 ISA s.r.l. (<http://www.isa.it>).
@@ -17,30 +17,31 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 import time
 from report import report_sxw
-from osv import osv
-from tools.translate import _
+
 
 class central_journal_report(report_sxw.rml_parse):
-    
-    def _set_wizard_params(self,form_values):
-        if form_values['date_move_line_from'] :
-            date_move_line_from=form_values['date_move_line_from']
-            filter=("date",">=",date_move_line_from)
-            self.filters.append(filter)
-        if form_values['date_move_line_to'] :
-            date_move_line_to=form_values['date_move_line_to']
-            filter=("date","<=",date_move_line_to)
-            self.filters.append(filter)
+
+    def _set_wizard_params(self, form_values):
+        if form_values['date_move_line_from']:
+            date_move_line_from = form_values['date_move_line_from']
+            _filter = ("date", ">=", date_move_line_from)
+            self.filters.append(_filter)
+        if form_values['date_move_line_to']:
+            date_move_line_to = form_values['date_move_line_to']
+            _filter = ("date", "<=", date_move_line_to)
+            self.filters.append(_filter)
         return True
 
     def _get_print_info(self, fiscalyear_id):
         fiscalyear_obj = self.pool.get('account.fiscalyear')
-        fiscalyear_ids=fiscalyear_obj.search(self.cr,self.uid,[('id','=',fiscalyear_id),])
-        fiscalyear_data=fiscalyear_obj.browse(self.cr,self.uid,fiscalyear_ids)[0]
+        fiscalyear_ids = fiscalyear_obj.search(
+            self.cr, self.uid, [('id', '=', fiscalyear_id), ])
+        fiscalyear_data = fiscalyear_obj.browse(
+            self.cr, self.uid, fiscalyear_ids)[0]
         print_info = {
             'start_row': fiscalyear_data.progressive_line_number,
             'start_page': fiscalyear_data.progressive_page_number,
@@ -50,10 +51,13 @@ class central_journal_report(report_sxw.rml_parse):
         }
         return print_info
 
-    def _set_print_info(self, fiscalyear_id, end_date_print, end_row, end_page, end_debit, end_credit):
+    def _set_print_info(
+        self, fiscalyear_id, end_date_print, end_row, end_page, end_debit,
+        end_credit
+    ):
         fiscalyear_obj = self.pool.get('account.fiscalyear')
-        fiscalyear_ids=fiscalyear_obj.search(self.cr,self.uid,[('id','=',fiscalyear_id),])
-        fiscalyear_data=fiscalyear_obj.browse(self.cr,self.uid,fiscalyear_ids)[0]
+        fiscalyear_ids = fiscalyear_obj.search(
+            self.cr, self.uid, [('id', '=', fiscalyear_id), ])
         print_info = {
             'date_last_print': end_date_print,
             'progressive_line_number': end_row,
@@ -61,21 +65,23 @@ class central_journal_report(report_sxw.rml_parse):
             'progressive_debit': end_debit,
             'progressive_credit': end_credit,
         }
-        res = fiscalyear_obj.write(self.cr, self.uid, fiscalyear_ids, print_info)
+        res = fiscalyear_obj.write(
+            self.cr, self.uid, fiscalyear_ids, print_info)
         return res
 
     def _get_movements(self):
         move_line_obj = self.pool.get('account.move.line')
-        line_ids=move_line_obj.search(self.cr,self.uid,self.filters,order="date, move_id asc")
-        report_lines=move_line_obj.browse(self.cr,self.uid,line_ids)
+        line_ids = move_line_obj.search(
+            self.cr, self.uid, self.filters, order="date, move_id asc")
+        report_lines = move_line_obj.browse(self.cr, self.uid, line_ids)
         return report_lines
 
     def __init__(self, cr, uid, name, context):
-        self.filters=[]
+        self.filters = []
         super(central_journal_report, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'time': time,
-            'cr':cr,
+            'cr': cr,
             'uid': uid,
             'get_print_info': self._get_print_info,
             'set_print_info': self._set_print_info,
@@ -83,7 +89,8 @@ class central_journal_report(report_sxw.rml_parse):
             'get_movements': self._get_movements,
         })
 
-report_sxw.report_sxw('report.central_journal_report',
-                       'account.move.line', 
-                       'addons/account_central_journal/report/central_journal_report.mako',
-                       parser=central_journal_report)
+report_sxw.report_sxw(
+    'report.central_journal_report',
+    'account.move.line',
+    'addons/account_central_journal/report/central_journal_report.mako',
+    parser=central_journal_report)

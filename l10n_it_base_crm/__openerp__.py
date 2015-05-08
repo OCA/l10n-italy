@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-#    Copyright (C) 2013 Associazione OpenERP Italia 
+#    Copyright (C) 2013 Associazione OpenERP Italia
 #                 (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
     'name': "Italian Localisation - CRM",
@@ -31,12 +31,12 @@ Funcionalities:
 - Campi provincia e regione su Lead/Opportunity
 - Automatistmi su crm.lead
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": ['crm','l10n_it_base'],
+    "depends": ['crm', 'l10n_it_base'],
     "data": ['crm/crm_view.xml'
-    ],
+             ],
     "demo": [],
     'test': [
     ],

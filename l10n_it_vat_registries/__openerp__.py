@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
@@ -19,24 +19,30 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Italian Localisation - VAT Registries',
     'version': '0.2',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - VAT Registries\nhttp://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
-    'author': 'OpenERP Italian Community',
+    'description': """Accounting reports for Italian localization
+- VAT Registries
+http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['report_webkit', 'l10n_it_base', 'l10n_it_fiscalcode', 'l10n_it_partially_deductible_vat'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
+    "depends": [
+        'report_webkit',
+        'l10n_it_base',
+        'l10n_it_fiscalcode',
+        'l10n_it_partially_deductible_vat'],
+    "init_xml": [
+    ],
+    "update_xml": [
         'reports.xml',
         'wizard/print_registro_iva.xml',
         'account_view.xml',
-        ],
-    "demo_xml" : [],
+    ],
+    "demo_xml": [],
     "active": False,
     "installable": True
 }
