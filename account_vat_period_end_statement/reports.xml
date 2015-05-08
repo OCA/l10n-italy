@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <report
+            auto="False"
+            id="print_vat_period_end_statement"
+            model="account.vat.period.end.statement"
+            name="account.print.vat.period.end.statement"
+            file="account_vat_period_end_statement/report/vat_period_end_statement.mako"
+            string="VAT Statement Summary"
+            report_type="webkit" />
+
+    </data>
+</openerp>
+
