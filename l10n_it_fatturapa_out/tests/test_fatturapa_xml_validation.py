@@ -25,6 +25,7 @@ from openerp import workflow
 import openerp.tests.common as test_common
 from openerp.modules.module import get_module_resource
 from datetime import datetime
+from lxml import etree
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
@@ -149,10 +150,12 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             cr, uid, wizard_id, context={'active_ids': [invoice_id]})
 
     def check_content(self, xml_content, file_name):
+        parser = etree.XMLParser(remove_blank_text=True)
         test_fatt_data = self.getFile(file_name)[1]
-        test_fatt_content = test_fatt_data.decode('base64').decode('latin1')
-        self.assertEqual(
-            test_fatt_content.replace('\n', ''), xml_content.replace('\n', ''))
+        test_fatt_content = test_fatt_data.decode('base64')
+        test_fatt = etree.fromstring(test_fatt_content, parser)
+        xml = etree.fromstring(xml_content, parser)
+        self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
 
     def test_0_xml_export(self):
         cr, uid = self.cr, self.uid
@@ -167,7 +170,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(attachment.datas_fname, 'IT06363391001_00001.xml')
 
         # XML doc to be validated
-        xml_content = attachment.datas.decode('base64').decode('latin1')
+        xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00001.xml')
 
     def test_1_xml_export(self):
@@ -178,7 +181,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
 
-        xml_content = attachment.datas.decode('base64').decode('latin1')
+        xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00002.xml')
 
     def test_2_xml_export(self):
@@ -188,6 +191,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         invoice_id = self.confirm_invoice('fatturapa_invoice_2')
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
-        xml_content = attachment.datas.decode('base64').decode('latin1')
+        xml_content = attachment.datas.decode('base64')
 
         self.check_content(xml_content, 'IT06363391001_00003.xml')
