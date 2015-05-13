@@ -695,8 +695,12 @@ class WizardExportFatturapa(orm.TransientModel):
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
                         invoice.partner_bank_id.bank_name)
-                    DettaglioPagamento.IBAN = (
-                        invoice.partner_bank_id.acc_number)
+                    if invoice.partner_bank_id.acc_number:
+                        DettaglioPagamento.IBAN = (
+                            ''.join(invoice.partner_bank_id.acc_number.split()))
+                    if invoice.partner_bank_id.bank_bic:
+                        DettaglioPagamento.BIC   = (
+                            invoice.partner_bank_id.bank_bic)
                 DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
             body.DatiPagamento.append(DatiPagamento)
         return True
