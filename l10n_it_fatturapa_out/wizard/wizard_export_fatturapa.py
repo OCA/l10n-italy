@@ -47,7 +47,7 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DatiPagamentoType,
     DettaglioPagamentoType,
     AllegatiType
-    )
+)
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
 from openerp.tools.translate import _
@@ -199,15 +199,14 @@ class WizardExportFatturapa(orm.TransientModel):
             Denominazione=company.name)
 
         # not using for now
-        '''
-        Anagrafica = DatiAnagrafici.find('Anagrafica')
-        Nome = Anagrafica.find('Nome')
-        Cognome = Anagrafica.find('Cognome')
-        Titolo = Anagrafica.find('Titolo')
-        Anagrafica.remove(Nome)
-        Anagrafica.remove(Cognome)
-        Anagrafica.remove(Titolo)
-        '''
+
+        # Anagrafica = DatiAnagrafici.find('Anagrafica')
+        # Nome = Anagrafica.find('Nome')
+        # Cognome = Anagrafica.find('Cognome')
+        # Titolo = Anagrafica.find('Titolo')
+        # Anagrafica.remove(Nome)
+        # Anagrafica.remove(Cognome)
+        # Anagrafica.remove(Titolo)
 
         if company.partner_id.fiscalcode:
             CedentePrestatore.DatiAnagrafici.CodiceFiscale = (
@@ -278,7 +277,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
-                )
+            )
 
     def _setContatti(self, cr, uid, CedentePrestatore,
                      company, context=None):
@@ -288,7 +287,7 @@ class WizardExportFatturapa(orm.TransientModel):
             Telefono=company.partner_id.phone or None,
             Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
-            )
+        )
 
     def _setPubAdministrationRef(self, cr, uid, CedentePrestatore,
                                  company, context=None):
@@ -345,15 +344,14 @@ class WizardExportFatturapa(orm.TransientModel):
                 Denominazione=partner.name)
 
         # not using for now
-        '''
-        Anagrafica = DatiAnagrafici.find('Anagrafica')
-        Nome = Anagrafica.find('Nome')
-        Cognome = Anagrafica.find('Cognome')
-        Titolo = Anagrafica.find('Titolo')
-        Anagrafica.remove(Nome)
-        Anagrafica.remove(Cognome)
-        Anagrafica.remove(Titolo)
-        '''
+
+        # Anagrafica = DatiAnagrafici.find('Anagrafica')
+        # Nome = Anagrafica.find('Nome')
+        # Cognome = Anagrafica.find('Cognome')
+        # Titolo = Anagrafica.find('Titolo')
+        # Anagrafica.remove(Nome)
+        # Anagrafica.remove(Cognome)
+        # Anagrafica.remove(Titolo)
 
         if partner.eori_code:
             self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -402,30 +400,30 @@ class WizardExportFatturapa(orm.TransientModel):
             # companies sending invoices to italian PA only
             raise orm.except_orm(
                 _("Error"), _("RappresentanteFiscale not handled"))
-        '''
-            partner = company.fatturapa_tax_representative
 
-        DatiAnagrafici = RappresentanteFiscale.find('DatiAnagrafici')
+            # partner = company.fatturapa_tax_representative
 
-        if not partner.fiscalcode:
-            raise orm.except_orm(
-                _('Error!'), _('RappresentanteFiscale Partner '
-                               'fiscalcode not set.'))
+        # DatiAnagrafici = RappresentanteFiscale.find('DatiAnagrafici')
 
-        DatiAnagrafici.find('CodiceFiscale').text = partner.fiscalcode
+        # if not partner.fiscalcode:
+            # raise orm.except_orm(
+            # _('Error!'), _('RappresentanteFiscale Partner '
+            # 'fiscalcode not set.'))
 
-        if not partner.vat:
-            raise orm.except_orm(
-                _('Error!'), _('RappresentanteFiscale Partner VAT not set.'))
-        DatiAnagrafici.find(
-            'IdFiscaleIVA/IdPaese').text = partner.vat[0:2]
-        DatiAnagrafici.find(
-            'IdFiscaleIVA/IdCodice').text = partner.vat[2:]
-        DatiAnagrafici.find('Anagrafica/Denominazione').text = partner.name
-        if partner.eori_code:
-            DatiAnagrafici.find(
-                'Anagrafica/CodEORI').text = partner.codiceEORI
-        '''
+        # DatiAnagrafici.find('CodiceFiscale').text = partner.fiscalcode
+
+        # if not partner.vat:
+            # raise orm.except_orm(
+            # _('Error!'), _('RappresentanteFiscale Partner VAT not set.'))
+        # DatiAnagrafici.find(
+            # 'IdFiscaleIVA/IdPaese').text = partner.vat[0:2]
+        # DatiAnagrafici.find(
+            # 'IdFiscaleIVA/IdCodice').text = partner.vat[2:]
+        # DatiAnagrafici.find('Anagrafica/Denominazione').text = partner.name
+        # if partner.eori_code:
+            # DatiAnagrafici.find(
+            # 'Anagrafica/CodEORI').text = partner.codiceEORI
+
         return True
 
     def setCessionarioCommittente(self, cr, uid, partner, context=None):
@@ -445,31 +443,30 @@ class WizardExportFatturapa(orm.TransientModel):
                 _("Error"),
                 _("TerzoIntermediarioOSoggettoEmittente not handled"))
 
-        '''
-        DatiAnagrafici = TerzoIntermediarioOSoggettoEmittente.find(
-            'DatiAnagrafici'
-            )
+        # DatiAnagrafici = TerzoIntermediarioOSoggettoEmittente.find(
+            # 'DatiAnagrafici'
+            # )
 
-        if not partner.fiscalcode:
-            raise orm.except_orm(
-                _('Error!'), _('TerzoIntermediarioOSoggettoEmittente Partner '
-                               'fiscalcode not set.'))
+        # if not partner.fiscalcode:
+            # raise orm.except_orm(
+            # _('Error!'), _('TerzoIntermediarioOSoggettoEmittente Partner '
+            # 'fiscalcode not set.'))
 
-        DatiAnagrafici.find('CodiceFiscale').text = partner.fiscalcode
+        # DatiAnagrafici.find('CodiceFiscale').text = partner.fiscalcode
 
-        if not partner.vat:
-            raise orm.except_orm(
-                _('Error!'), _('TerzoIntermediarioOSoggettoEmittente '
-                               'Partner VAT not set.'))
-        DatiAnagrafici.find(
-            'IdFiscaleIVA/IdPaese').text = partner.vat[0:2]
-        DatiAnagrafici.find(
-            'IdFiscaleIVA/IdCodice').text = partner.vat[2:]
-        DatiAnagrafici.find('Anagrafica/Denominazione').text = partner.name
-        if partner.eori_code:
-            DatiAnagrafici.find(
-                'Anagrafica/CodEORI').text = partner.codiceEORI
-        '''
+        # if not partner.vat:
+            # raise orm.except_orm(
+            # _('Error!'), _('TerzoIntermediarioOSoggettoEmittente '
+            # 'Partner VAT not set.'))
+        # DatiAnagrafici.find(
+            # 'IdFiscaleIVA/IdPaese').text = partner.vat[0:2]
+        # DatiAnagrafici.find(
+            # 'IdFiscaleIVA/IdCodice').text = partner.vat[2:]
+        # DatiAnagrafici.find('Anagrafica/Denominazione').text = partner.name
+        # if partner.eori_code:
+            # DatiAnagrafici.find(
+            # 'Anagrafica/CodEORI').text = partner.codiceEORI
+
         return True
 
     def setSoggettoEmittente(self, cr, uid, context=None):
@@ -594,7 +591,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 raise orm.except_orm(
                     _('Error'),
                     _("Too many taxes for invoice line %s") % line.name)
-            aliquota = line.invoice_line_tax_id[0].amount*100
+            aliquota = line.invoice_line_tax_id[0].amount * 100
             AliquotaIVA = '%.2f' % (aliquota)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
@@ -613,18 +610,17 @@ class WizardExportFatturapa(orm.TransientModel):
                         line.invoice_line_tax_id[0].name)
                 DettaglioLinea.Natura = line.invoice_line_tax_id[
                     0
-                    ].non_taxable_nature
+                ].non_taxable_nature
             line_no += 1
 
             # not handled
-            '''
-            el.remove(el.find('DataInizioPeriodo'))
-            el.remove(el.find('DataFinePeriodo'))
-            el.remove(el.find('ScontoMaggiorazione'))
-            el.remove(el.find('Ritenuta'))
-            el.remove(el.find('RiferimentoAmministrazione'))
-            el.remove(el.find('AltriDatiGestionali'))
-            '''
+
+            # el.remove(el.find('DataInizioPeriodo'))
+            # el.remove(el.find('DataFinePeriodo'))
+            # el.remove(el.find('ScontoMaggiorazione'))
+            # el.remove(el.find('Ritenuta'))
+            # el.remove(el.find('RiferimentoAmministrazione'))
+            # el.remove(el.find('AltriDatiGestionali'))
 
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
@@ -642,7 +638,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 AliquotaIVA='%.2f' % (tax.amount * 100),
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
-                )
+            )
             if tax.amount == 0.0:
                 if not tax.non_taxable_nature:
                     raise orm.except_orm(
@@ -657,10 +653,9 @@ class WizardExportFatturapa(orm.TransientModel):
             if tax.payability:
                 riepilogo.EsigibilitaIVA = tax.payability
             # TODO
-            '''
-            el.remove(el.find('SpeseAccessorie'))
-            el.remove(el.find('Arrotondamento'))
-            '''
+
+            # el.remove(el.find('SpeseAccessorie'))
+            # el.remove(el.find('Arrotondamento'))
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
 
@@ -695,15 +690,18 @@ class WizardExportFatturapa(orm.TransientModel):
                         invoice.payment_term.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento='%.2f' % move_line.debit
-                    )
+                )
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
                         invoice.partner_bank_id.bank_name)
                     if invoice.partner_bank_id.acc_number:
                         DettaglioPagamento.IBAN = (
-                            ''.join(invoice.partner_bank_id.acc_number.split()))
+                            ''.join(
+                                invoice.partner_bank_id.acc_number.split()
+                            )
+                        )
                     if invoice.partner_bank_id.bank_bic:
-                        DettaglioPagamento.BIC   = (
+                        DettaglioPagamento.BIC = (
                             invoice.partner_bank_id.bank_bic)
                 DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
             body.DatiPagamento.append(DatiPagamento)
@@ -835,4 +833,4 @@ class WizardExportFatturapa(orm.TransientModel):
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
             'context': context
-            }
+        }

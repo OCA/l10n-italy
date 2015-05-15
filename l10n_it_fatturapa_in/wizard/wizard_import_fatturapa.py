@@ -1038,6 +1038,14 @@ class WizardImportFatturapa(orm.TransientModel):
                 elem.text = elem.text.strip()
         return etree.tostring(root)
 
+    def remove_x509_sign(self, xml):
+        root = etree.XML(xml)
+        for elem in root.iter('*'):
+            if elem.tag.find('Signature') > -1:
+                elem.getparent().remove(elem)
+                break
+        return etree.tostring(root)
+
     def check_file_is_pem(self, p7m_file):
         file_is_pem = True
         strcmd = (
@@ -1153,6 +1161,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 xml_string = file_content
             elif fatturapa_attachment.datas_fname.endswith('.xml'):
                 xml_string = fatturapa_attachment.datas.decode('base64')
+            xml_string = self.remove_x509_sign(xml_string)
             xml_string = self.strip_xml_content(xml_string)
             fatt = fatturapa_v_1_1.CreateFromDocument(xml_string)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
