@@ -24,8 +24,8 @@
 -
   !record {model: account.tax, id: tax10}:
     name: Tax 10.0
-    amount: 10.0
-    type: fixed
+    amount: 0.1
+    type: percent
     sequence: 1
     company_id: base.main_company
     type_tax_use: all
