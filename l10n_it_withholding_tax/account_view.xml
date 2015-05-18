@@ -49,6 +49,19 @@
                 </field>
             </field>
         </record>
-        
+
+        <!-- tax code -->
+
+        <record id="wh_view_tax_form" model="ir.ui.view">
+            <field name="name">wh.account_tax.form</field>
+            <field name="model">account.tax.code</field>
+            <field name="inherit_id" ref="account.view_tax_code_form"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="withholding_tax" />
+                </field>
+            </field>
+        </record> 
+
     </data>
 </openerp>
