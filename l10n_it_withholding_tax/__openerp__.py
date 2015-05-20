@@ -26,27 +26,8 @@
     'name': "Italian Localisation - Withholding tax",
     'version': '1.0',
     'category': 'Localisation/Italy',
-    'description': """
-Withholding tax for supplier invoices
-=====================================
-
-
-Configuration
-=============
-
-In accounting configuration you have to set
- - Withholding tax payment term
- - Payable account for withholding taxes to pay
- - Withholding tax journal
-
-You have to set the flag 'Withholding Tax' in tax codes related to
-withholding taxes
-
-Configure withholding tax like the following
-http://goo.gl/ZqWbiK
-where 260200 account is not payable
-""",
-    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
+    'author': "Agile Business Group, Odoo Italian Community, "
+              "Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": ['account_voucher_cash_basis'],
