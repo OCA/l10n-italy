@@ -1038,7 +1038,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 elem.text = elem.text.strip()
         return etree.tostring(root)
 
-    def remove_x509_sign(self, xml):
+    def remove_xades_sign(self, xml):
         root = etree.XML(xml)
         for elem in root.iter('*'):
             if elem.tag.find('Signature') > -1:
@@ -1161,7 +1161,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 xml_string = file_content
             elif fatturapa_attachment.datas_fname.endswith('.xml'):
                 xml_string = fatturapa_attachment.datas.decode('base64')
-            xml_string = self.remove_x509_sign(xml_string)
+            xml_string = self.remove_xades_sign(xml_string)
             xml_string = self.strip_xml_content(xml_string)
             fatt = fatturapa_v_1_1.CreateFromDocument(xml_string)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
