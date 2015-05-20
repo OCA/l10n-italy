@@ -71,7 +71,7 @@ class StockDdT(models.Model):
             [('code', '=', 'stock.ddt')])[0].id
 
     @api.one
-    @api.depends('picking_ids')
+    @api.depends('picking_ids', 'picking_ids.invoice_state')
     def _compute_invoice_state(self):
         for picking in self.picking_ids:
             self.invoice_state = 'none'
