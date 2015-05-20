@@ -70,6 +70,17 @@ class StockDdT(models.Model):
         return self.env['ir.sequence'].search(
             [('code', '=', 'stock.ddt')])[0].id
 
+    @api.one
+    @api.depends('picking_ids')
+    def _compute_invoice_state(self):
+        for picking in self.picking_ids:
+            self.invoice_state = 'none'
+            if picking.invoice_state == 'invoiced':
+                self.invoice_state = 'invoiced'
+            elif picking.invoice_state == '2binvoiced':
+                self.invoice_state = '2binvoiced'
+                break
+
     name = fields.Char(string='Number')
     date = fields.Datetime(required=True, default=fields.Datetime.now)
     delivery_date = fields.Datetime()
@@ -105,6 +116,14 @@ class StockDdT(models.Model):
          ('cancelled', 'Cancelled')],
         string='State',
         default='draft'
+    )
+    invoice_state = fields.Selection(
+        [("invoiced", "Invoiced"),
+         ("2binvoiced", "To Be Invoiced"),
+         ("none", "Not Applicable")],
+        string="Invoice Control",
+        compute='_compute_invoice_state',
+        store=True
     )
 
     def _get_lines(self):
