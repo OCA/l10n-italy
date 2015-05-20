@@ -81,8 +81,19 @@
                     <field name="date"/>
                     <field name="delivery_date"/>
                     <field name="partner_id"/>
+                    <field name="invoice_state"/>
                     <field name="state"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="stock_ddt_search" model="ir.ui.view">
+            <field name="name">stock.ddt.search</field>
+            <field name="model">stock.ddt</field>
+            <field name="arch" type="xml">
+                <search string="Ddt">
+                    <filter icon="terp-check" name="to_invoice" string="To Invoice" domain="[('invoice_state','=', '2binvoiced')]"/>
+                </search>
             </field>
         </record>
 
