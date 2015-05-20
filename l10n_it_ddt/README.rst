@@ -38,6 +38,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------
