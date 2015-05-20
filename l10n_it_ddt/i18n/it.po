@@ -1,19 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ddt
+# 	* l10n_it_ddt
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-09 10:38+0000\n"
-"PO-Revision-Date: 2015-04-09 10:38+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2015-05-20 09:39+0000\n"
+"PO-Revision-Date: 2015-05-20 11:52+0100\n"
+"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. module: l10n_it_ddt
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
@@ -65,15 +66,14 @@ msgid "Carriage Conditions"
 msgstr "Resa merce"
 
 #. module: l10n_it_ddt
-#: field:stock.ddt,carrier_id:0
-#: view:website:l10n_it_ddt.delivery_data
+#: field:stock.ddt,carrier_id:0 view:website:l10n_it_ddt.delivery_data
 msgid "Carrier"
 msgstr "Corriere"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Carrier's Signature"
-msgstr "Firma del Corrier"
+msgstr "Firma del Corriere"
 
 #. module: l10n_it_ddt
 #: view:stock.ddt:l10n_it_ddt.stock_ddt_form
@@ -98,8 +98,7 @@ msgstr "Crea fattura"
 
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,create_uid:0
-#: field:ddt.create.invoice,create_uid:0
-#: field:ddt.from.pickings,create_uid:0
+#: field:ddt.create.invoice,create_uid:0 field:ddt.from.pickings,create_uid:0
 #: field:stock.ddt,create_uid:0
 #: field:stock.picking.carriage_condition,create_uid:0
 #: field:stock.picking.goods_description,create_uid:0
@@ -111,8 +110,7 @@ msgstr "Creato da"
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,create_date:0
 #: field:ddt.create.invoice,create_date:0
-#: field:ddt.from.pickings,create_date:0
-#: field:stock.ddt,create_date:0
+#: field:ddt.from.pickings,create_date:0 field:stock.ddt,create_date:0
 #: field:stock.picking.carriage_condition,create_date:0
 #: field:stock.picking.goods_description,create_date:0
 #: field:stock.picking.transportation_method,create_date:0
@@ -141,16 +139,15 @@ msgid "DDT from Pickings"
 msgstr "DDT from Pickings"
 
 #. module: l10n_it_ddt
-#: field:ddt.create.invoice,date:0
-#: field:stock.ddt,date:0
+#: field:ddt.create.invoice,date:0 field:stock.ddt,date:0
+#: view:website:l10n_it_ddt.delivery_data
 msgid "Date"
 msgstr "Data"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt
 #: view:stock.ddt:l10n_it_ddt.stock_ddt_form
-#: view:stock.ddt:l10n_it_ddt.stock_ddt_tree
-#: field:stock.picking,ddt_id:0
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_tree field:stock.picking,ddt_id:0
 msgid "DdT"
 msgstr "DdT"
 
@@ -165,8 +162,12 @@ msgid "DdT Data"
 msgstr "Dati DdT"
 
 #. module: l10n_it_ddt
-#: field:add.pickings.to.ddt,ddt_id:0
-#: field:stock.move,ddt_id:0
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_search
+msgid "Ddt"
+msgstr "Ddt"
+
+#. module: l10n_it_ddt
+#: field:add.pickings.to.ddt,ddt_id:0 field:stock.move,ddt_id:0
 msgid "Ddt id"
 msgstr "Ddt id"
 
@@ -230,10 +231,8 @@ msgid "Gross Weight"
 msgstr "Peso Lordo"
 
 #. module: l10n_it_ddt
-#: field:add.pickings.to.ddt,id:0
-#: field:ddt.create.invoice,id:0
-#: field:ddt.from.pickings,id:0
-#: field:stock.ddt,id:0
+#: field:add.pickings.to.ddt,id:0 field:ddt.create.invoice,id:0
+#: field:ddt.from.pickings,id:0 field:stock.ddt,id:0
 #: field:stock.picking.carriage_condition,id:0
 #: field:stock.picking.goods_description,id:0
 #: field:stock.picking.transportation_method,id:0
@@ -247,15 +246,23 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_ddt
+#: field:stock.ddt,invoice_state:0
+msgid "Invoice Control"
+msgstr "Invoice Control"
+
+#. module: l10n_it_ddt
+#: selection:stock.ddt,invoice_state:0
+msgid "Invoiced"
+msgstr "Invoiced"
+
+#. module: l10n_it_ddt
 #: field:ddt.create.invoice,journal_id:0
 msgid "Journal"
 msgstr "Journal"
 
 #. module: l10n_it_ddt
-#: field:add.pickings.to.ddt,write_uid:0
-#: field:ddt.create.invoice,write_uid:0
-#: field:ddt.from.pickings,write_uid:0
-#: field:stock.ddt,write_uid:0
+#: field:add.pickings.to.ddt,write_uid:0 field:ddt.create.invoice,write_uid:0
+#: field:ddt.from.pickings,write_uid:0 field:stock.ddt,write_uid:0
 #: field:stock.picking.carriage_condition,write_uid:0
 #: field:stock.picking.goods_description,write_uid:0
 #: field:stock.picking.transportation_method,write_uid:0
@@ -265,8 +272,7 @@ msgstr "Autore ultimo aggiornamento"
 
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,write_date:0
-#: field:ddt.create.invoice,write_date:0
-#: field:ddt.from.pickings,write_date:0
+#: field:ddt.create.invoice,write_date:0 field:ddt.from.pickings,write_date:0
 #: field:stock.ddt,write_date:0
 #: field:stock.picking.carriage_condition,write_date:0
 #: field:stock.picking.goods_description,write_date:0
@@ -306,8 +312,12 @@ msgid "Net Weight"
 msgstr "Peso Netto"
 
 #. module: l10n_it_ddt
-#: view:stock.ddt:l10n_it_ddt.stock_ddt_form
-#: field:stock.ddt,note:0
+#: selection:stock.ddt,invoice_state:0
+msgid "Not Applicable"
+msgstr "Not Applicable"
+
+#. module: l10n_it_ddt
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_form field:stock.ddt,note:0
 #: field:stock.picking.carriage_condition,note:0
 #: field:stock.picking.goods_description,note:0
 #: field:stock.picking.transportation_method,note:0
@@ -331,10 +341,8 @@ msgid "Number of Packages"
 msgstr "Colli"
 
 #. module: l10n_it_ddt
-#: field:sale.order,parcels:0
-#: field:stock.ddt,parcels:0
-#: field:stock.picking,parcels:0
-#: view:website:l10n_it_ddt.delivery_data
+#: field:sale.order,parcels:0 field:stock.ddt,parcels:0
+#: field:stock.picking,parcels:0 view:website:l10n_it_ddt.delivery_data
 msgid "Parcels"
 msgstr "Colli"
 
@@ -372,8 +380,7 @@ msgstr "Picking ids"
 
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
-#: view:stock.ddt:l10n_it_ddt.stock_ddt_form
-#: field:stock.ddt,picking_ids:0
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_form field:stock.ddt,picking_ids:0
 msgid "Pickings"
 msgstr "Ordini di consegna"
 
@@ -552,8 +559,18 @@ msgid "Stock Move"
 msgstr "Movimento di magazzino"
 
 #. module: l10n_it_ddt
+#: selection:stock.ddt,invoice_state:0
+msgid "To Be Invoiced"
+msgstr "To Be Invoiced"
+
+#. module: l10n_it_ddt
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_search
+msgid "To Invoice"
+msgstr "Da Fatturare"
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
-msgid "Trasnsportation Reason"
+msgid "Transportation Reason"
 msgstr "Causale del trasporto"
 
 #. module: l10n_it_ddt
@@ -567,4 +584,3 @@ msgstr "Vedi DdT"
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "or"
 msgstr "or"
-

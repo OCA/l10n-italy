@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-09 10:38+0000\n"
-"PO-Revision-Date: 2015-04-09 10:38+0000\n"
+"POT-Creation-Date: 2015-05-20 09:56+0000\n"
+"PO-Revision-Date: 2015-05-20 09:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -143,6 +143,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: field:ddt.create.invoice,date:0
 #: field:stock.ddt,date:0
+#: view:website:l10n_it_ddt.delivery_data
 msgid "Date"
 msgstr ""
 
@@ -162,6 +163,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_stock_ddt_data
 msgid "DdT Data"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_search
+msgid "Ddt"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -247,6 +253,16 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: field:stock.ddt,invoice_state:0
+msgid "Invoice Control"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: selection:stock.ddt,invoice_state:0
+msgid "Invoiced"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: field:ddt.create.invoice,journal_id:0
 msgid "Journal"
 msgstr ""
@@ -303,6 +319,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Net Weight"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: selection:stock.ddt,invoice_state:0
+msgid "Not Applicable"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -552,8 +573,18 @@ msgid "Stock Move"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: selection:stock.ddt,invoice_state:0
+msgid "To Be Invoiced"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_search
+msgid "To Invoice"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
-msgid "Trasnsportation Reason"
+msgid "Transportation Reason"
 msgstr ""
 
 #. module: l10n_it_ddt
