@@ -28,6 +28,7 @@
     'author': 'Davide Corio, Odoo Community Association (OCA), '
               'Agile Business Group',
     'website': 'http://www.odoo-italia.org/',
+    'license': 'AGPL-3',
     'depends': ['sale_stock', 'stock_account'],
     'data': [
         'security/ir.model.access.csv',
