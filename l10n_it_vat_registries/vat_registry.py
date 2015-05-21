@@ -190,7 +190,7 @@ class Parser(report_sxw.rml_parse):
             objects, data, ids, report_type=report_type)
 
 
-class report_registro_iva_venidte(osv.AbstractModel):
+class report_registro_iva_vendite(osv.AbstractModel):
     _name = 'report.l10n_it_vat_registries.report_registro_iva'
     _inherit = 'report.abstract_report'
     _template = 'l10n_it_vat_registries.report_registro_iva'
