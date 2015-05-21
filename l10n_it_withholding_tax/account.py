@@ -50,6 +50,8 @@ class AccountVoucher(orm.Model):
         curr_pool = self.pool.get('res.currency')
         term_pool = self.pool.get('account.payment.term')
         priod_obj = self.pool.get('account.period')
+        move_pool = self.pool.get('account.move')
+        move_line_pool = self.pool.get('account.move.line')
         for voucher in self.browse(cr, uid, ids, context):
             amounts_by_invoice = super(
                 AccountVoucher, self).allocated_amounts_grouped_by_invoice(
@@ -60,8 +62,8 @@ class AccountVoucher(orm.Model):
                 move_ids = []
                 for tax_line in invoice.tax_line:
                     if (
-                        tax_line.tax_code_id
-                        and tax_line.tax_code_id.withholding_tax
+                        tax_line.tax_code_id and
+                        tax_line.tax_code_id.withholding_tax
                     ):
                         # only for supplier payments
                         if voucher.type != 'payment':
@@ -94,8 +96,8 @@ class AccountVoucher(orm.Model):
                         new_line_amount = curr_pool.round(
                             cr, uid, voucher.company_id.currency_id,
                             ((
-                                amounts_by_invoice[invoice.id]['allocated']
-                                + amounts_by_invoice[invoice.id]['write-off']
+                                amounts_by_invoice[invoice.id]['allocated'] +
+                                amounts_by_invoice[invoice.id]['write-off']
                             ) / invoice.amount_total) * abs(tax_line.amount))
 
                         # compute the due date
@@ -153,9 +155,31 @@ class AccountVoucher(orm.Model):
                                 }),
                             ]
                         }
-                        move_id = self.pool.get('account.move').create(
+                        move_id = move_pool.create(
                             cr, uid, new_move, context=context)
                         move_ids.append(move_id)
+                        move = move_pool.browse(
+                            cr, uid, move_id, context=context)
+
+                        reconcile_ids = []
+                        for invoice_move_line in invoice.move_id.line_id:
+                            if (
+                                invoice_move_line.account_id.id ==
+                                invoice.account_id.id and
+                                invoice_move_line.tax_code_id.withholding_tax
+                            ):
+                                reconcile_ids.append(invoice_move_line.id)
+                        for move_line in move.line_id:
+                            if (
+                                move_line.account_id.id ==
+                                invoice.account_id.id
+                            ):
+                                reconcile_ids.append(move_line.id)
+                        move_line_pool.reconcile_partial(
+                            cr, uid, reconcile_ids,
+                            writeoff_acc_id=voucher.writeoff_acc_id.id,
+                            writeoff_period_id=voucher.period_id.id,
+                            writeoff_journal_id=voucher.journal_id.id)
                 if move_ids:
                     voucher.write(
                         {'withholding_move_ids': [

@@ -30,6 +30,8 @@
     company_id: base.main_company
     type_tax_use: all
     tax_code_id: tax_case
+    account_collected_id: account.ova
+    account_paid_id: account.ova
 -
   I create withholding Tax
 -
@@ -41,6 +43,8 @@
     company_id: base.main_company
     type_tax_use: all
     tax_code_id: tax_case_wh
+    account_collected_id: account.a_pay
+    account_paid_id: account.a_pay
 -
   I set the context
 -
