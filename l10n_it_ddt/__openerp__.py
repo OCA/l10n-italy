@@ -44,5 +44,4 @@
     ],
     'test': ['tests/new_ddt.yml'],
     'installable': True,
-    'active': False,
 }
