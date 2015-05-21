@@ -16,7 +16,7 @@ import pyxb.utils.domutils
 # ~ import sys
 import pyxb.utils.six as _six
 # Import bindings for namespaces imported into schema
-import _ds as _ImportedBinding__ds
+from . import _ds as _ImportedBinding__ds
 
 import pyxb.binding.datatypes
 # Unique identifier for bindings created at the same time
