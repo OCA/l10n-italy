@@ -170,7 +170,7 @@ class Parser(report_sxw.rml_parse):
         return end_date.strftime('%Y-%m-%d')
 
     def __init__(self, cr, uid, name, context):
-        super(Parser, self).__init__(cr, uid, name, context)
+        super(Parser, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'get_move': self._get_move,
             'tax_lines': self._get_tax_lines,
