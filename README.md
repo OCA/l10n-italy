@@ -22,3 +22,6 @@ Odoo Italia Association
 
 http://www.odoo-italia.org/
 
+Translation Status
+------------------
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0)
