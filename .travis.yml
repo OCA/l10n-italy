@@ -1,4 +1,9 @@
-sudo: required
+addons:
+  apt:
+    packages:
+      - expect-dev  # provides unbuffer utility
+      - python-lxml # because pip installation is slow
+
 language: python
 python:
   - "2.7"
@@ -22,7 +27,6 @@ install:
   - travis_install_nightly
   - pip install unidecode==0.04.17
   - pip install PyXB==1.2.4
-  - pip install lxml==2.3.3
 
 script:
   - travis_run_tests
