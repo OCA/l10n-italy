@@ -8,3 +8,6 @@ Italian modules for odoo (formerly OpenERP) 7.0
 
 http://www.odoo-italia.org/
 
+Translation Status
+------------------
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0)
