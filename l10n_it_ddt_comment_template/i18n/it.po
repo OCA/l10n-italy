@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_ddt_comment_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-25 10:09+0000\n"
+"PO-Revision-Date: 2015-05-25 12:18+0100\n"
+"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: l10n_it_ddt_comment_template
+#: field:stock.ddt,note2:0
+msgid "Bottom Comment"
+msgstr "Commento in basso"
+
+#. module: l10n_it_ddt_comment_template
+#: field:stock.ddt,comment_template2_id:0
+msgid "Bottom Comment Template"
+msgstr " Template commento in basso"
+
+#. module: l10n_it_ddt_comment_template
+#: view:stock.ddt:l10n_it_ddt_comment_template.stock_ddt_form_add_comment
+msgid "Bottom Comments"
+msgstr "Commenti in basso"
+
+#. module: l10n_it_ddt_comment_template
+#: view:stock.ddt:l10n_it_ddt_comment_template.stock_ddt_form_add_comment
+msgid "Comments"
+msgstr "Commenti"
+
+#. module: l10n_it_ddt_comment_template
+#: model:ir.model,name:l10n_it_ddt_comment_template.model_stock_ddt
+msgid "DdT"
+msgstr "DdT"
+
+#. module: l10n_it_ddt_comment_template
+#: model:ir.ui.menu,name:l10n_it_ddt_comment_template.menu_ddt_comment_template
+msgid "Document Comments"
+msgstr "Commenti del documento"
+
+#. module: l10n_it_ddt_comment_template
+#: view:stock.ddt:l10n_it_ddt_comment_template.stock_ddt_form_add_comment
+msgid "Load a template"
+msgstr "Carica un template"
+
+#. module: l10n_it_ddt_comment_template
+#: view:stock.ddt:l10n_it_ddt_comment_template.stock_ddt_form_add_comment
+msgid ""
+"The comments will be displayed on the printed document. You can load a "
+"predefined template, write your own text or load a template and then modify "
+"it only for this document."
+msgstr ""
+"I commenti saranno visualizzati sulla stampa. Si può caricare un template "
+"predefinito e solo per questo documento, si può scrivere il proprio testo o "
+"caricare un template e modificarlo."
+
+#. module: l10n_it_ddt_comment_template
+#: field:stock.ddt,note1:0
+msgid "Top Comment"
+msgstr "Commento in alto"
+
+#. module: l10n_it_ddt_comment_template
+#: field:stock.ddt,comment_template1_id:0
+msgid "Top Comment Template"
+msgstr "Template commento in alto"
+
+#. module: l10n_it_ddt_comment_template
+#: view:stock.ddt:l10n_it_ddt_comment_template.stock_ddt_form_add_comment
+msgid "Top Comments"
+msgstr "Commenti in alto"
