@@ -26,17 +26,9 @@
             <field name="res_model">ddt.create.invoice</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
+            <field name="domain">[('state','=',('done'))]</field>
             <field name="view_id" ref="view_ddt_create_invoice"/>
             <field name="target">new</field>
-        </record>
-
-        <record model="ir.values" id="ddt_create_invoice">
-            <field name="model_id" ref="l10n_it_ddt.model_stock_ddt" />
-            <field name="name">Create Invoice</field>
-            <field name="key2">client_action_multi</field>
-            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_create_invoice'))" />
-            <field name="key">action</field>
-            <field name="model">stock.ddt</field>
         </record>
 
     </data>

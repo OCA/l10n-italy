@@ -20,7 +20,8 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api
+from openerp import fields, models, api, _
+from openerp.exceptions import Warning
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -94,8 +95,6 @@ class StockDdT(models.Model):
         compute='_get_lines')
     partner_id = fields.Many2one(
         'res.partner', string='Partner', required=True)
-    delivery_address_id = fields.Many2one(
-        'res.partner', string='Delivery Address', required=False)
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', 'Carriage Condition')
     goods_description_id = fields.Many2one(
@@ -113,6 +112,7 @@ class StockDdT(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'),
          ('confirmed', 'Confirmed'),
+         ('done', 'Done'),
          ('cancelled', 'Cancelled')],
         string='State',
         default='draft'
@@ -132,19 +132,23 @@ class StockDdT(models.Model):
                 ddt.ddt_lines |= picking.move_lines
 
     @api.multi
-    def set_number(self):
+    def action_confirm(self):
         for ddt in self:
             if not ddt.name:
                 ddt.write({
                     'name': ddt.sequence.get(ddt.sequence.code),
                 })
-
-    @api.multi
-    def action_confirm(self):
         self.write({'state': 'confirmed'})
 
     @api.multi
+    def action_done(self):
+        self.write({'state': 'done'})
+
+    @api.multi
     def action_cancel(self):
+        for ddt in self:
+            if self.invoice_state == 'invoiced':
+                raise Warning(_("Invoiced ddt not cancelable"))
         self.write({'state': 'cancelled'})
 
     @api.multi
@@ -158,7 +162,9 @@ class StockDdT(models.Model):
     def name_get(self):
         result = []
         for ddt in self:
-            result.append((ddt.id, "%s" % (ddt.name or 'N/A')))
+            result.append((ddt.id, "%s" % (
+                ddt.name or str(
+                    'N/A: ' + ddt.partner_id.name + ' ' + ddt.date))))
         return result
 
 

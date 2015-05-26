@@ -9,10 +9,13 @@
                 <form string="DdT">
                     <header>
                         <button name="ddt_confirm" states="draft" string="Confirm" class="oe_highlight"/>
+                        <button name="ddt_done" states="confirmed" string="Done"/>
                         <button name="ddt_draft_cancel" states="draft" string="Cancel"/>
                         <button name="ddt_confirmed_cancel" states="confirmed" string="Cancel"/>
+                        <button name="ddt_done_cancel" states="done" string="Cancel"/>
                         <button name="action_reopen" states="cancelled" string="Reopen" type="object"/>
-                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirmed,cancelled"/>
+                        <button name="%(action_ddt_create_invoice)d" type="action" string="Create Invoice" states="done"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirmed,done,cancelled"/>
                     </header>
                     <sheet>
                         <div class="oe_title oe_left">
@@ -30,11 +33,9 @@
                                     domain="[('code', '=', 'stock.ddt')]"
                                     widget="selection"/>
                                 <field name="partner_id"/>
-                                <field name="delivery_address_id"/>
                             </group>
                             <group>
                                 <field name="date"/>
-                                <field name="delivery_date"/>
                             </group>
                         </group>
                         <notebook>

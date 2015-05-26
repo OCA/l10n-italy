@@ -79,6 +79,12 @@
                 <t t-foreach="docs" t-as="o">
                     <t t-call="report.external_layout">
                         <div class="page">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div t-field="o.partner_id"
+                                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                                </div>
+                            </div>
                             <h1>
                                 Delivery note: <span t-field="o.name"></span>
                             </h1>
