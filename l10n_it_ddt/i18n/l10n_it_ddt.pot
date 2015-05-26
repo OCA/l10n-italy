@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 09:56+0000\n"
-"PO-Revision-Date: 2015-05-20 09:56+0000\n"
+"POT-Creation-Date: 2015-05-29 13:10+0000\n"
+"PO-Revision-Date: 2015-05-29 13:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,7 @@ msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_create_invoice
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_form
 msgid "Create Invoice"
 msgstr ""
 
@@ -177,11 +178,6 @@ msgid "Ddt id"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: field:stock.ddt,delivery_address_id:0
-msgid "Delivery Address"
-msgstr ""
-
-#. module: l10n_it_ddt
 #: field:stock.ddt,delivery_date:0
 msgid "Delivery date"
 msgstr ""
@@ -213,6 +209,12 @@ msgstr ""
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_action_good_description_tree
 #: view:stock.picking.goods_description:l10n_it_ddt.view_goods_description_tree
 msgid "Descriptions of Goods"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: view:stock.ddt:l10n_it_ddt.stock_ddt_form
+#: selection:stock.ddt,state:0
+msgid "Done"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -260,6 +262,12 @@ msgstr ""
 #. module: l10n_it_ddt
 #: selection:stock.ddt,invoice_state:0
 msgid "Invoiced"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock.py:151
+#, python-format
+msgid "Invoiced ddt not cancelable"
 msgstr ""
 
 #. module: l10n_it_ddt

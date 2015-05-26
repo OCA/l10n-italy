@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
               <form string="Add Pickings to DDT">
                     <separator string="DDT" />
-                    <field name="ddt_id" domain="[('state', '=', 'draft')]"/>
+                    <field name="ddt_id" domain="[('state', 'in', ['draft', 'confirmed'])]"/>
                     <footer>
                         <button name="add_to_ddt" string="Add to DDT" type="object" class="oe_highlight"/>
                         or
