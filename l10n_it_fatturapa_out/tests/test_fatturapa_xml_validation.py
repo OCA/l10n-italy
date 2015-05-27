@@ -173,7 +173,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_1_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2015-02-15')
+        self.checkCreateFiscalYear('2015-06-15')
         self.set_sequences(2, 14)
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
@@ -184,7 +184,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_2_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2015-02-15')
+        self.checkCreateFiscalYear('2015-06-15')
         self.set_sequences(3, 15)
         invoice_id = self.confirm_invoice('fatturapa_invoice_2')
         res = self.run_wizard(invoice_id)
