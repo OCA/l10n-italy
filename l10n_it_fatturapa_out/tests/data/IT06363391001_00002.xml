@@ -62,7 +62,7 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2015-02-15</Data>
+                <Data>2015-06-15</Data>
                 <Numero>SAJ/2015/014</Numero>
                 <Causale>prima riga</Causale>
                 <Causale>seconda riga</Causale>
@@ -103,7 +103,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2015-03-31</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2015-07-31</DataScadenzaPagamento>
                 <ImportoPagamento>17.08</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>
