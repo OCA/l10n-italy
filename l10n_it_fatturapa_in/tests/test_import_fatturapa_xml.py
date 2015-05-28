@@ -162,6 +162,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(cr, uid, invoice_id)
         self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0008')
+        self.assertEqual(invoice.sender, 'TZ')
+        self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
         self.assertEqual(
             invoice.invoice_line[0].discount_rise_price_ids[0].name, 'SC')
         self.assertEqual(
