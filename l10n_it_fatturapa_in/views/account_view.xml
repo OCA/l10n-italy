@@ -183,6 +183,22 @@
                             <page string="Inconsistencies">
                                 <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>
                             </page>
+                            <page string="Summary Data">
+                                <group string="Summary Data">
+                                    <field name="fatturapa_summary_ids" nolabel="1" readonly="1">
+                                        <tree editable="bottom" string="Summary Data">
+                                            <field name="tax_rate"></field>
+                                            <field name="non_taxable_nature"></field>
+                                            <field name="incidental charges" readonly="1"></field>
+                                            <field name="rounding"></field>
+                                            <field name="amount_untaxed"></field>
+                                            <field name="amount_tax"></field>
+                                            <field name="payability"></field>
+                                            <field name="law_reference"></field>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
                             <page string="FatturaPA attachments">
                                 <group string="Attachments">
                                     <field name="fatturapa_doc_attachments" nolabel="1" readonly="1">
