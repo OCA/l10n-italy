@@ -150,10 +150,28 @@ class WizardImportFatturapa(orm.TransientModel):
                 cr, uid, commercial_partner, DatiAnagrafici, context=context)
             return commercial_partner
         else:
+            name = ''
+            firstname = ''
+            lastname = ''
+            if DatiAnagrafici.Anagrafica.Nome:
+                firstname = DatiAnagrafici.Anagrafica.Nome
+            if DatiAnagrafici.Anagrafica.Cognome:
+                lastname = DatiAnagrafici.Anagrafica.Cognome
+            if not DatiAnagrafici.Anagrafica.Denominazione:
+                if firstname and lastname:
+                    name = '%s %s' % (firstname, lastname)
+                elif firstname:
+                    name = firstname
+                elif lastname:
+                    name = lastname
+                else:
+                    name = vat
+            else:
+                name = DatiAnagrafici.Anagrafica.Denominazione
             vals = {
-                'name': DatiAnagrafici.Anagrafica.Denominazione,
-                'firstname': DatiAnagrafici.Anagrafica.Nome,
-                'lastname': DatiAnagrafici.Anagrafica.Cognome,
+                'name': name,
+                'firstname': firstname,
+                'lastname': lastname,
                 'vat': vat,
                 'fiscalcode': cf,
                 'customer': False,
