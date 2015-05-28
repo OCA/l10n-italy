@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-15 15:32+0000\n"
-"PO-Revision-Date: 2015-04-15 15:32+0000\n"
+"POT-Creation-Date: 2015-05-28 13:48+0000\n"
+"PO-Revision-Date: 2015-05-28 13:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1090
+#, python-format
+msgid "ASN.1 structure is not parsable in DER"
+msgstr "ASN.1 non parsabile in DER "
 
 #. module: l10n_it_fatturapa_in
 #: view:account.invoice.line:0
@@ -26,7 +32,7 @@ msgid "Attachment"
 msgstr "Allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:971
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:998
 #, python-format
 msgid "Attachment Name is Required"
 msgstr "Il nome dell'allegato e' obbligatorio''"
@@ -37,7 +43,7 @@ msgid "Attachments"
 msgstr "Allegati"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:543
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:570
 #, python-format
 msgid "BIC is required and not exist in Xml\n"
 "Curr bank data is: \n"
@@ -54,6 +60,12 @@ msgstr "Il Campo BIC/SWIFT e'  necessario per la creazione della banca\n"
 #: view:wizard.import.fatturapa:0
 msgid "Cancel"
 msgstr "Abbandona"
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1063
+#, python-format
+msgid "Check PEM file %s"
+msgstr "Check PEM file %s"
 
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.article.code,name:0
@@ -76,7 +88,7 @@ msgid "Confirm?"
 msgstr "Continuare ?"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:112
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:117
 #, python-format
 msgid "Country Code %s not found in system"
 msgstr "Codice Nazione %s non presente nel sistema"
@@ -87,33 +99,33 @@ msgid "Creation"
 msgstr "Creazione"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:94
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:97
 #, python-format
 msgid "DatiAnagrafici.Anagrafica.Cognome contains \"%s\". Your System contains \"%s\""
 msgstr "DatiAnagrafici.Anagrafica.Cognome contiene \"%s\". Nel sistema e' registrato \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:68
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:71
 #, python-format
 msgid "DatiAnagrafici.Anagrafica.Denominazione contains \"%s\". Your System contains \"%s\""
 msgstr "DatiAnagrafici.Anagrafica.Denominazione contiene \"%s\". Nel sistema e' registrato \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:81
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:84
 #, python-format
 msgid "DatiAnagrafici.Anagrafica.Nome contains \"%s\". Your System contains \"%s\""
 msgstr "DatiAnagrafici.Anagrafica.Nome contiene \"%s\". Nel sistema e' registrato \"%s\""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:198
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:612
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:639
 #, python-format
 msgid "Define a purchase journal for this company: \"%s\" (id:%d)."
 msgstr "Definire un registro acquisti': \"%s\" (id:%d)."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:101
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:285
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:302
 #, python-format
 msgid "Define a tax with percentage equals to: \"%s\""
 msgstr "Nel sistema non e' presente un imposta con aliquota': \"%s\""
@@ -136,20 +148,20 @@ msgstr "Dettagli Sconto/Maggiorazione"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:329
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:343
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:409
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:656
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1001
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1019
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:436
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:683
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1028
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1136
 #, python-format
 msgid "Error"
 msgstr "Errore"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:56
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:111
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:135
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:182
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:217
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:116
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:140
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:187
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:222
 #, python-format
 msgid "Error !"
 msgstr "Errore !"
@@ -157,25 +169,28 @@ msgstr "Errore !"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:100
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:197
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:202
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:207
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:216
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:262
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:268
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:284
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:388
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:450
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:611
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:631
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:938
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:946
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:970
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:279
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:285
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:301
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:415
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:477
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:638
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:658
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:965
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:973
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:997
 #, python-format
 msgid "Error!"
 msgstr "Errore!"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1039
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1046
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1062
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1082
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1089
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1110
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1117
 #, python-format
 msgid "Errore"
 msgstr "Errore"
@@ -188,7 +203,7 @@ msgstr "Fattura PA  V1.1 Schema"
 #. module: l10n_it_fatturapa_in
 #: field:account.invoice.line,ftpa_uom:0
 msgid "Fattura Pa Unit of Measure"
-msgstr "Fattura Pa Unit of Measure"
+msgstr "Fattura Pa Unita' di Misura"
 
 #. module: l10n_it_fatturapa_in
 #: view:account.invoice:0
@@ -232,7 +247,7 @@ msgstr "Fattura PA Importazione File"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:329
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1019
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1136
 #, python-format
 msgid "File is linked to invoices yet"
 msgstr "A questo file corrisponde gia' una fattura'"
@@ -328,32 +343,38 @@ msgid "Messages and communication history"
 msgstr "Messages and communication history"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:513
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:540
 #, python-format
 msgid "Name of Bank with BIC \"%s\" is not set. Can't create bank"
 msgstr "Nessun nome di baca con BIC \"%s\" presente. Impossibile creare la Banca"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:217
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:632
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:659
 #, python-format
 msgid "No currency found with code %s"
 msgstr "Nessuna valuta trovata con codice %s"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:263
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:280
 #, python-format
 msgid "No tax with percentage %s and nature %s found"
 msgstr "Nessun imposta configurata con aliquota %s e natura %s"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:947
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1083
+#, python-format
+msgid "Parsing PEM to DER  file %s"
+msgstr "Parsing PEM to DER  file %s"
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:974
 #, python-format
 msgid "Payment method Code %s is incorrect"
 msgstr "Il codice del metodo di pagamaneto %s non e' corretto'"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:939
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:966
 #, python-format
 msgid "Payment method Code not found in document"
 msgstr "Nel File Fattura PA xml manca il codice di pagamento"
@@ -374,22 +395,22 @@ msgid "Progress Work"
 msgstr "Progressivo avanzamento lavori"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:183
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:188
 #, python-format
 msgid "ProvinciaAlbo ( %s ) not present in system"
-msgstr "ProvinciaAlbo ( %s ) not present in system"
+msgstr "ProvinciaAlbo ( %s ) non presente nel sistema"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:218
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:223
 #, python-format
 msgid "REA Office Code ( %s ) not present in system"
 msgstr "REA  codice provincia ( %s ) non prensente nel sistema"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:203
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:208
 #, python-format
 msgid "RegimeFiscale %s is not present in your system"
-msgstr "RegimeFiscale %s is not present in your system"
+msgstr "RegimeFiscale %s non presente nel sistema"
 
 #. module: l10n_it_fatturapa_in
 #: view:account.invoice:0
@@ -432,16 +453,16 @@ msgid "Service start at"
 msgstr "Data inizio periodo"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1047
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1111
 #, python-format
 msgid "Signed Xml file %s"
 msgstr "File Xml firmato %s"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1040
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1118
 #, python-format
-msgid "Signed Xml file id not decryptable"
-msgstr "Il File Xml firmato non e' decriptabile'"
+msgid "Signed Xml file not decryptable"
+msgstr "Signed Xml file not decryptable"
 
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_summary:0
@@ -449,30 +470,35 @@ msgid "Summary"
 msgstr "Riepilogo"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:410
+#: view:account.invoice:0
+msgid "Summary Data"
+msgstr "Dati Riepilogo"
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:437
 #, python-format
 msgid "TipoCassa %s is not present in your system"
 msgstr "TipoCassa %s non presente nel sistema"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:389
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:416
 #, python-format
 msgid "TipoCassa is not defined "
 msgstr "TipoCassa non definito nell xml "
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:269
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:286
 #, python-format
-msgid "Too many tax with percentage %s and nature %s found"
-msgstr "Ci sono troppe imposte con aliquota %s e natura %s presenti nel sistema"
+msgid "Too many taxes with percentage %s and nature %s found"
+msgstr "Troppi codici iva con aliquota %s e natura %s trovati"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:292
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:311
 #, python-format
-msgid "Too many tax with percentage equals to \"%s\"\n"
-"fix it if is required"
-msgstr "trovate imposte multiple con percentuale \"%s\"\n"
-"sistemare le imposte se necessario"
+msgid "Too many taxes with percentage equals to \"%s\"\n"
+"fix it if required"
+msgstr "Troppi codici iva con aliquota to \"%s\"\n"
+"verificare la correttezza dell' imposta e modicare se neccessario"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:59
@@ -481,7 +507,7 @@ msgid "Two distinct partners with Vat % and Fiscalcode % already present in db"
 msgstr "Due fornitori con  P.IVA % e Codice Fiscale % registrati nel sistema"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:138
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:143
 #, python-format
 msgid "Two distinct partners with Vat %s and Fiscalcode %s already present in db"
 msgstr "Due fornitori con  P.IVA % e Codice Fiscale % registrati nel sistema"
@@ -502,7 +528,7 @@ msgid "Welfare Fund Details"
 msgstr "Dettagli cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1002
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1029
 #, python-format
 msgid "XML IPA code (%s) different from company IPA code (%s)"
 msgstr "il codice IPA nel XML (%s) e' diverso dal codice IPA dell'ente (%s)"
@@ -513,7 +539,7 @@ msgid "Xml Attachment"
 msgstr "Allegato Fattura PA XML"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:451
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:478
 #, python-format
 msgid "Xml IncorrectModalitaPagamento in line DettaglioPagamentois not defined"
 msgstr "Xml non corretto,una linea di DettaglioPagamento non riporta la ModalitaPagamento"
@@ -545,7 +571,7 @@ msgstr "spesa accessoria"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:344
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:657
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:684
 #, python-format
 msgid "tipoDocumento %s not handled"
 msgstr "tipoDocumento %s  non gestito"
