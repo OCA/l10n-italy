@@ -3,7 +3,4 @@ account-invoicing
 account-financial-tools
 webkit-tools
 account-payment
-<<<<<<< HEAD
-=======
 stock-logistics-workflow
->>>>>>> 6f6eb0fee57fefcc35cc66331a25b6c22f1eff41
