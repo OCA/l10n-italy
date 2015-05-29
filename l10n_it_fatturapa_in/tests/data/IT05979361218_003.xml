@@ -45,6 +45,20 @@
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>
+        <TerzoIntermediarioOSoggettoEmittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>05979361228</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>MRORSS90E25B111T</CodiceFiscale>
+                <Anagrafica>
+                    <Nome>MARIO</Nome>
+                    <Cognome>ROSSI</Cognome>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </TerzoIntermediarioOSoggettoEmittente>
+        <SoggettoEmittente>TZ</SoggettoEmittente>
     </FatturaElettronicaHeader>
     <FatturaElettronicaBody>
         <DatiGenerali>

@@ -151,9 +151,6 @@ class WizardImportFatturapa(orm.TransientModel):
             return commercial_partner
         else:
             vals = {
-                'name': DatiAnagrafici.Anagrafica.Denominazione,
-                'firstname': DatiAnagrafici.Anagrafica.Nome,
-                'lastname': DatiAnagrafici.Anagrafica.Cognome,
                 'vat': vat,
                 'fiscalcode': cf,
                 'customer': False,
@@ -163,6 +160,13 @@ class WizardImportFatturapa(orm.TransientModel):
                 'eori_code': DatiAnagrafici.Anagrafica.CodEORI or '',
                 'country_id': country_id,
             }
+            if DatiAnagrafici.Anagrafica.Nome:
+                vals['firstname'] = DatiAnagrafici.Anagrafica.Nome
+            if DatiAnagrafici.Anagrafica.Cognome:
+                vals['lastname'] = DatiAnagrafici.Anagrafica.Cognome
+            if DatiAnagrafici.Anagrafica.Denominazione:
+                vals['name'] = DatiAnagrafici.Anagrafica.Denominazione
+
             return partner_model.create(cr, uid, vals, context=context)
 
     def getCedPrest(self, cr, uid, cedPrest, context=None):
