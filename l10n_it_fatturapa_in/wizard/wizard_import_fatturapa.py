@@ -345,6 +345,9 @@ class WizardImportFatturapa(orm.TransientModel):
             retLine['service_start'] = line.DataInizioPeriodo
         if line.DataFinePeriodo:
             retLine['service_end'] = line.DataFinePeriodo
+        if line.PrezzoTotale and line.PrezzoUnitario and line.Quantita:
+            retLine['discount'] = self._computeDiscount(
+                cr, uid, line, context=context)
 
         return retLine
 
@@ -459,6 +462,16 @@ class WizardImportFatturapa(orm.TransientModel):
         res['name'] = Tipo
 
         return res
+
+    def _computeDiscount(
+        self, cr, uid, DettaglioLinea, context=None
+    ):
+        line_total = float(DettaglioLinea.PrezzoTotale)
+        line_unit = line_total / float(DettaglioLinea.Quantita)
+        discount = (
+            1 - (line_unit / float(DettaglioLinea.PrezzoUnitario))
+            ) * 100.0
+        return discount
 
     def _CreatePayamentsLine(
         self, cr, uid, payment_id, line, partner_id,
