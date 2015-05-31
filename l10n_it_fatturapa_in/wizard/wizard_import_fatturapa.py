@@ -476,6 +476,43 @@ class WizardImportFatturapa(orm.TransientModel):
             ) * 100.0
         return discount
 
+    def _addGlobalDiscount(
+        self, cr, uid, invoice_id, DatiGeneraliDocumento, context=None
+    ):
+        discount = 0.0
+        if DatiGeneraliDocumento.ScontoMaggiorazione:
+            invoice = self.pool['account.invoice'].browse(
+                cr, uid, invoice_id, context=context)
+            invoice.button_compute(context=context, set_total=True)
+            for DiscRise in DatiGeneraliDocumento.ScontoMaggiorazione:
+                if DiscRise.Percentuale:
+                    amount = (
+                        invoice.amount_total * (
+                            float(DiscRise.Percentuale) / 100))
+                    if DiscRise.Tipo == 'SC':
+                        discount -= amount
+                    elif DiscRise.Tipo == 'MG':
+                        discount += amount
+                elif DiscRise.Importo:
+                    if DiscRise.Tipo == 'SC':
+                        discount -= float(DiscRise.Importo)
+                    elif DiscRise.Tipo == 'MG':
+                        discount += float(DiscRise.Importo)
+            journal = self.get_purchase_journal(
+                cr, uid, invoice.company_id, context=context)
+            credit_account_id = journal.default_credit_account_id.id
+            line_vals = {
+                'invoice_id': invoice_id,
+                'name': _(
+                    "Global invoice discount from DatiGeneraliDocumento"),
+                'account_id': credit_account_id,
+                'price_unit': discount,
+                'quantity': 1,
+                }
+            self.pool['account.invoice.line'].create(
+                cr, uid, line_vals, context=context)
+        return True
+
     def _CreatePayamentsLine(
         self, cr, uid, payment_id, line, partner_id,
         context=None
@@ -620,32 +657,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 PaymentModel.create(cr, uid, val, context=context)
         return True
 
-    def invoiceCreate(
-        self, cr, uid, fatt, fatturapa_attachment, FatturaBody,
-        partner_id, context=None
-    ):
-        if context is None:
-            context = {}
-        partner_model = self.pool['res.partner']
+    def get_purchase_journal(self, cr, uid, company, context=None):
         journal_model = self.pool['account.journal']
-        invoice_model = self.pool['account.invoice']
-        currency_model = self.pool['res.currency']
-        invoice_line_model = self.pool['account.invoice.line']
-        ftpa_doctype_poll = self.pool['fatturapa.document_type']
-        rel_docs_model = self.pool['fatturapa.related_document_type']
-        WelfareFundLineModel = self.pool['welfare.fund.data.line']
-        DiscRisePriceModel = self.pool['discount.rise.price']
-        SalModel = self.pool['faturapa.activity.progress']
-        DdTModel = self.pool['fatturapa.related_ddt']
-        PaymentDataModel = self.pool['fatturapa.payment.data']
-        PaymentTermsModel = self.pool['fatturapa.payment_term']
-        SummaryDatasModel = self.pool['faturapa.summary.data']
-
-        company = self.pool['res.users'].browse(
-            cr, uid, uid, context=context).company_id
-        partner = partner_model.browse(cr, uid, partner_id, context=context)
-        pay_acc_id = partner.property_account_payable.id
-        # FIXME: takes the first purchase journal without any check.
         journal_ids = journal_model.search(
             cr, uid,
             [
@@ -663,6 +676,32 @@ class WizardImportFatturapa(orm.TransientModel):
             )
         purchase_journal = journal_model.browse(
             cr, uid, journal_ids[0], context=context)
+        return purchase_journal
+
+    def invoiceCreate(
+        self, cr, uid, fatt, fatturapa_attachment, FatturaBody,
+        partner_id, context=None
+    ):
+        if context is None:
+            context = {}
+        partner_model = self.pool['res.partner']
+        invoice_model = self.pool['account.invoice']
+        currency_model = self.pool['res.currency']
+        invoice_line_model = self.pool['account.invoice.line']
+        ftpa_doctype_poll = self.pool['fatturapa.document_type']
+        rel_docs_model = self.pool['fatturapa.related_document_type']
+        WelfareFundLineModel = self.pool['welfare.fund.data.line']
+        DiscRisePriceModel = self.pool['discount.rise.price']
+        SalModel = self.pool['faturapa.activity.progress']
+        DdTModel = self.pool['fatturapa.related_ddt']
+        PaymentDataModel = self.pool['fatturapa.payment.data']
+        PaymentTermsModel = self.pool['fatturapa.payment_term']
+        SummaryDatasModel = self.pool['faturapa.summary.data']
+
+        company = self.pool['res.users'].browse(
+            cr, uid, uid, context=context).company_id
+        partner = partner_model.browse(cr, uid, partner_id, context=context)
+        pay_acc_id = partner.property_account_payable.id
         # currency 2.1.1.2
         currency_id = currency_model.search(
             cr, uid,
@@ -681,6 +720,8 @@ class WizardImportFatturapa(orm.TransientModel):
                     % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
                 )
             )
+        purchase_journal = self.get_purchase_journal(
+            cr, uid, company, context=context)
         credit_account_id = purchase_journal.default_credit_account_id.id
         invoice_lines = []
         comment = ''
@@ -751,7 +792,7 @@ class WizardImportFatturapa(orm.TransientModel):
             'type': invtype,
             'partner_id': partner_id,
             'currency_id': currency_id[0],
-            'journal_id': len(journal_ids) and journal_ids[0] or False,
+            'journal_id': purchase_journal.id,
             'invoice_line': [(6, 0, invoice_lines)],
             # 'origin': xmlData.datiOrdineAcquisto,
             'fiscal_position': False,
@@ -1030,7 +1071,11 @@ class WizardImportFatturapa(orm.TransientModel):
                 }
                 AttachModel.create(
                     cr, uid, _attach_dict, context=context)
-#        somedata = {}
+
+        self._addGlobalDiscount(
+            cr, uid, invoice_id,
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento, context=context)
+
         # compute the invoice
         invoice_model.button_compute(
             cr, uid, [invoice_id], context=context,
@@ -1051,17 +1096,54 @@ class WizardImportFatturapa(orm.TransientModel):
                     FatturaElettronicaHeader.DatiTrasmissione.
                     CodiceDestinatario, company.partner_id.ipa_code))
 
-    def checkImponibileImporto(
-        self, cr, uid, invoice, DatiRiepilogo, context=None
-    ):
+    def compute_xml_amount_untaxed(self, cr, uid, DatiRiepilogo, context=None):
         amount_untaxed = 0.0
         for Riepilogo in DatiRiepilogo:
             amount_untaxed += float(Riepilogo.ImponibileImporto)
-        if invoice.amount_untaxed != amount_untaxed:
-            raise orm.except_orm(
-                _('Error'),
-                _('Computed amount untaxed is different from'
-                  ' DatiRiepilogo'))
+        return amount_untaxed
+
+    def check_invoice_amount(
+        self, cr, uid, invoice, FatturaElettronicaBody, context=None
+    ):
+        if context is None:
+            context = {}
+        if (
+            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+            ScontoMaggiorazione and
+            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+            ImportoTotaleDocumento
+        ):
+            # assuming that, if someone uses
+            # DatiGeneraliDocumento.ScontoMaggiorazione, also fills
+            # DatiGeneraliDocumento.ImportoTotaleDocumento
+            ImportoTotaleDocumento = float(
+                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+                ImportoTotaleDocumento)
+            if invoice.amount_total != ImportoTotaleDocumento:
+                if context.get('inconsistencies'):
+                    context['inconsistencies'] += '\n'
+                context['inconsistencies'] += (
+                    _('Invoice total %s is different from '
+                      'ImportoTotaleDocumento %s')
+                    % (invoice.amount_total, ImportoTotaleDocumento)
+                )
+        else:
+            # else, we can only check DatiRiepilogo if
+            # DatiGeneraliDocumento.ScontoMaggiorazione is not present,
+            # because otherwise DatiRiepilogo and openerp invoice total would
+            # differ
+            amount_untaxed = self.compute_xml_amount_untaxed(
+                cr, uid,
+                FatturaElettronicaBody.DatiBeniServizi.DatiRiepilogo,
+                context=context)
+            if invoice.amount_untaxed != amount_untaxed:
+                if context.get('inconsistencies'):
+                    context['inconsistencies'] += '\n'
+                context['inconsistencies'] += (
+                    _('Computed amount untaxed %s is different from'
+                      ' DatiRiepilogo %s')
+                    % (invoice.amount_untaxed, amount_untaxed)
+                )
 
     def strip_xml_content(self, xml):
         root = etree.XML(xml)
@@ -1235,9 +1317,9 @@ class WizardImportFatturapa(orm.TransientModel):
                 self.check_CessionarioCommittente(
                     cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
                     context=context)
-                self.checkImponibileImporto(
+                self.check_invoice_amount(
                     cr, uid, invoice,
-                    fattura.DatiBeniServizi.DatiRiepilogo,
+                    fattura,
                     context=context)
 
             if context.get('inconsistencies'):
