@@ -200,3 +200,18 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         invoice = self.invoice_model.browse(cr, uid, invoice_id)
         self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0010')
         self.assertEqual(invoice.amount_total, 1288.61)
+        self.assertFalse(invoice.inconsistencies)
+
+    def test_9_xml_import(self):
+        cr, uid = self.cr, self.uid
+        # using DatiGeneraliDocumento.ScontoMaggiorazione without
+        # ImportoTotaleDocumento
+        res = self.run_wizard('test9', 'IT05979361218_006.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0011')
+        self.assertEqual(invoice.amount_total, 1288.61)
+        self.assertEqual(
+            invoice.inconsistencies,
+            'Computed amount untaxed 1030.42 is different from'
+            ' DatiRiepilogo 1173.6')
