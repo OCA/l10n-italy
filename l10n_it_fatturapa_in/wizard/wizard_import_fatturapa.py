@@ -345,7 +345,10 @@ class WizardImportFatturapa(orm.TransientModel):
             retLine['service_start'] = line.DataInizioPeriodo
         if line.DataFinePeriodo:
             retLine['service_end'] = line.DataFinePeriodo
-        if line.PrezzoTotale and line.PrezzoUnitario and line.Quantita:
+        if (
+            line.PrezzoTotale and line.PrezzoUnitario and line.Quantita and
+            line.ScontoMaggiorazione
+        ):
             retLine['discount'] = self._computeDiscount(
                 cr, uid, line, context=context)
 
@@ -1048,6 +1051,18 @@ class WizardImportFatturapa(orm.TransientModel):
                     FatturaElettronicaHeader.DatiTrasmissione.
                     CodiceDestinatario, company.partner_id.ipa_code))
 
+    def checkImponibileImporto(
+        self, cr, uid, invoice, DatiRiepilogo, context=None
+    ):
+        amount_untaxed = 0.0
+        for Riepilogo in DatiRiepilogo:
+            amount_untaxed += float(Riepilogo.ImponibileImporto)
+        if invoice.amount_untaxed != amount_untaxed:
+            raise orm.except_orm(
+                _('Error'),
+                _('Computed amount untaxed is different from'
+                  ' DatiRiepilogo'))
+
     def strip_xml_content(self, xml):
         root = etree.XML(xml)
         for elem in root.iter('*'):
@@ -1219,6 +1234,10 @@ class WizardImportFatturapa(orm.TransientModel):
                 invoice = invoice_model.browse(cr, uid, invoice_id, context)
                 self.check_CessionarioCommittente(
                     cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
+                    context=context)
+                self.checkImponibileImporto(
+                    cr, uid, invoice,
+                    fattura.DatiBeniServizi.DatiRiepilogo,
                     context=context)
 
             if context.get('inconsistencies'):

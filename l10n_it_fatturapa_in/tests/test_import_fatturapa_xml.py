@@ -186,6 +186,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_7_xml_import(self):
         cr, uid = self.cr, self.uid
+        # 2 lines with quantity != 1 and discounts
         res = self.run_wizard('test7', 'IT05979361218_004.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(cr, uid, invoice_id)
