@@ -151,10 +151,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\nToo many'
-            ' taxes with percentage equals to "22.00"\nfix it if '
-            'required\nToo many taxes with percentage equals to "22.00"\nfix '
-            'it if required')
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
 
     def test_5_xml_import(self):
         cr, uid = self.cr, self.uid
