@@ -171,7 +171,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.amount_tax, 0)
         self.assertEqual(invoice.amount_total, 9)
 
-
     def test_6_import_except(self):
         # File not exist Exception
         self.assertRaises(
