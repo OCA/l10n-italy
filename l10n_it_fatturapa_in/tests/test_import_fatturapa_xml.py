@@ -167,7 +167,21 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.invoice_line[0].discount_rise_price_ids[0].percentage, 10)
 
-    def test_6_import_except(self):
+    def test_6_xml_import(self):
+        # Fix Date format
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test6', 'IT05979361218_004.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0009')
+        self.assertEqual(
+            invoice.date_invoice, '2015-03-16')
+        self.assertEqual(
+            invoice.fatturapa_payments[0].payment_methods[0].payment_due_date,
+            '2015-06-03'
+        )
+
+    def test_7_import_except(self):
         # File not exist Exception
         self.assertRaises(
             Exception, self.run_wizard, 'test6_Eception', '')
