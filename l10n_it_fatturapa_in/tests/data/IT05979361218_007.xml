@@ -6,7 +6,7 @@
                 <IdPaese>IT</IdPaese>
                 <IdCodice>05979361218</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>004</ProgressivoInvio>
+            <ProgressivoInvio>007</ProgressivoInvio>
             <FormatoTrasmissione>SDI11</FormatoTrasmissione>
             <CodiceDestinatario>79SRAK</CodiceDestinatario>
         </DatiTrasmissione>
