@@ -6,7 +6,7 @@
                 <IdPaese>IT</IdPaese>
                 <IdCodice>05979361218</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>003</ProgressivoInvio>
+            <ProgressivoInvio>005</ProgressivoInvio>
             <FormatoTrasmissione>SDI11</FormatoTrasmissione>
             <CodiceDestinatario>79SRAK</CodiceDestinatario>
         </DatiTrasmissione>
@@ -44,20 +44,6 @@
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>
-        <TerzoIntermediarioOSoggettoEmittente>
-            <DatiAnagrafici>
-                <IdFiscaleIVA>
-                    <IdPaese>IT</IdPaese>
-                    <IdCodice>05979361228</IdCodice>
-                </IdFiscaleIVA>
-                <CodiceFiscale>MRORSS90E25B111T</CodiceFiscale>
-                <Anagrafica>
-                    <Nome>MARIO</Nome>
-                    <Cognome>ROSSI</Cognome>
-                </Anagrafica>
-            </DatiAnagrafici>
-        </TerzoIntermediarioOSoggettoEmittente>
-        <SoggettoEmittente>TZ</SoggettoEmittente>
     </FatturaElettronicaHeader>
     <FatturaElettronicaBody>
         <DatiGenerali>
@@ -65,31 +51,59 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2015-02-16</Data>
-                <Numero>FT/2015/0008</Numero>
+                <Numero>FT/2015/0010</Numero>
+				<ScontoMaggiorazione>
+					<Tipo>SC</Tipo>
+					<Percentuale>10.00</Percentuale>
+				</ScontoMaggiorazione>
+                <ImportoTotaleDocumento>1288.61</ImportoTotaleDocumento>
                 <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
             </DatiGeneraliDocumento>
         </DatiGenerali>
-        <DatiBeniServizi>
-            <DettaglioLinee>
-                <NumeroLinea>1</NumeroLinea>
-                <Descrizione>Prodotto di test al giorno</Descrizione>
-                <Quantita>1.00</Quantita>
-                <PrezzoUnitario>10.00</PrezzoUnitario>
-                <ScontoMaggiorazione>
-                    <Tipo>SC</Tipo>
-                    <Percentuale>10.00</Percentuale>
-                </ScontoMaggiorazione>
-                <PrezzoTotale>9.00</PrezzoTotale>
-                <AliquotaIVA>0.00</AliquotaIVA>
-                <Natura>N4</Natura>
-            </DettaglioLinee>
-            <DatiRiepilogo>
-                <AliquotaIVA>0.00</AliquotaIVA>
-                <Natura>N4</Natura>
-                <ImponibileImporto>9.00</ImponibileImporto>
-                <Imposta>0.00</Imposta>
-                <RiferimentoNormativo>Operazioni senza addebito imposta regime contribuenti minimi art.27 c.1-2 DL.98/11</RiferimentoNormativo>
-            </DatiRiepilogo>
-        </DatiBeniServizi>
+		<DatiBeniServizi>
+			<DettaglioLinee>
+				<NumeroLinea>1</NumeroLinea>
+				<CodiceArticolo>
+					<CodiceTipo>SA</CodiceTipo>
+					<CodiceValore>123456-01</CodiceValore>
+				</CodiceArticolo>
+				<Descrizione>USB</Descrizione>
+				<Quantita>4.00</Quantita>
+				<UnitaMisura>PZ</UnitaMisura>
+				<PrezzoUnitario>177.00</PrezzoUnitario>
+				<ScontoMaggiorazione>
+					<Tipo>SC</Tipo>
+					<Percentuale>10.00</Percentuale>
+				</ScontoMaggiorazione>
+				<PrezzoTotale>637.20</PrezzoTotale>
+				<AliquotaIVA>22.00</AliquotaIVA>
+			</DettaglioLinee>
+			
+			<DettaglioLinee>
+				<NumeroLinea>2</NumeroLinea>
+				<CodiceArticolo>
+					<CodiceTipo>SA</CodiceTipo>
+					<CodiceValore>123456-04</CodiceValore>
+				</CodiceArticolo>
+				<Descrizione>USB</Descrizione>
+				<Quantita>1.00</Quantita>
+				<UnitaMisura>PZ</UnitaMisura>
+				<PrezzoUnitario>596.00</PrezzoUnitario>
+				<ScontoMaggiorazione>
+					<Tipo>SC</Tipo>
+					<Percentuale>10.00</Percentuale>
+				</ScontoMaggiorazione>
+				<PrezzoTotale>536.40</PrezzoTotale>
+				<AliquotaIVA>22.00</AliquotaIVA>
+			</DettaglioLinee>
+			
+			<DatiRiepilogo>
+				<AliquotaIVA>22.00</AliquotaIVA>
+				<ImponibileImporto>1173.60</ImponibileImporto>
+				<Imposta>258.19</Imposta>
+				<EsigibilitaIVA>S</EsigibilitaIVA>
+				<RiferimentoNormativo>SCISSIONE PAGAMENTI Split Payment art.17-ter del DPR 633/1972</RiferimentoNormativo>				
+			</DatiRiepilogo>
+		</DatiBeniServizi>
     </FatturaElettronicaBody>
 </ns1:FatturaElettronica>
