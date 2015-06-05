@@ -1256,7 +1256,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 xml_file_name = os.path.splitext(temp_file_name)[0]
 
                 # check if temp_file_name is a PEM file
-                file_is_pem = self.check_file_is_pem(temp_file_name.lower())
+                file_is_pem = self.check_file_is_pem(temp_file_name)
 
                 # if temp_file_name is a PEM file
                 # parse it in a DER file
