@@ -1247,7 +1247,8 @@ class WizardImportFatturapa(orm.TransientModel):
                     _("Error"), _("File is linked to invoices yet"))
             # decrypt  p7m file
             if fatturapa_attachment.datas_fname.lower().endswith('.p7m'):
-                temp_file_name = '/tmp/%s' % fatturapa_attachment.datas_fname.lower()
+                temp_file_name = (
+                    '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
                 temp_der_file_name = (
                     '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
                 with open(temp_file_name, 'w') as p7m_file:
