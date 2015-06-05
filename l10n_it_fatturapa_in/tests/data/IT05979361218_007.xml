@@ -16,7 +16,6 @@
                     <IdPaese>IT</IdPaese>
                     <IdCodice>05979361218</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>XXXZZZ90E25B111T</CodiceFiscale>
                 <Anagrafica>
                     <Denominazione>SOCIETA' ALPHA BETA SRL</Denominazione>
                 </Anagrafica>
@@ -82,13 +81,13 @@
             <CondizioniPagamento>TP01</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2015-06-03T10:21:58+00:00</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2015-06-03+02:00</DataScadenzaPagamento>
                 <ImportoPagamento>9.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>2.00</PenalitaPagamentiRitardati>
-                <DataDecorrenzaPenale>2015-06-04+1:00</DataDecorrenzaPenale>
+                <DataDecorrenzaPenale>2015-06-04+02:00</DataDecorrenzaPenale>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>
