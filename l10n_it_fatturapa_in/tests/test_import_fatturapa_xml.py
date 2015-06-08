@@ -206,7 +206,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         cr, uid = self.cr, self.uid
         # using DatiGeneraliDocumento.ScontoMaggiorazione without
         # ImportoTotaleDocumento
-        res = self.run_wizard('test9', 'IT05979361218_006.xml')
+        # add test file name case sensitive
+        res = self.run_wizard('test9', 'IT05979361218_006.XML')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(cr, uid, invoice_id)
         self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0011')
