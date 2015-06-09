@@ -1157,31 +1157,6 @@ class WizardImportFatturapa(orm.TransientModel):
                 break
         return etree.tostring(root)
 
-    def fix_date_format(self, xml):
-        root = etree.XML(xml)
-        dtlst = [
-            'DataIscrizioneAlbo',
-            'Data',
-            'DataDDT',
-            'DataInizioTrasporto',
-            'DataFatturaPrincipale',
-            'DataInizioPeriodo',
-            'DataFinePeriodo',
-            'RiferimentoData',
-            'DataRiferimentoTerminiPagamento',
-            'DataScadenzaPagamento',
-            'DataLimitePagamentoAnticipato',
-            'DataDecorrenzaPenale'
-        ]
-        for elem in root.iter('*'):
-            if elem.tag in dtlst:
-                if (
-                    elem.text is not None and
-                    len(elem.text) > 10
-                ):
-                    elem.text = elem.text[:10]
-        return etree.tostring(root)
-
     def check_file_is_pem(self, p7m_file):
         file_is_pem = True
         strcmd = (
@@ -1299,15 +1274,6 @@ class WizardImportFatturapa(orm.TransientModel):
                 xml_string = fatturapa_attachment.datas.decode('base64')
             xml_string = self.remove_xades_sign(xml_string)
             xml_string = self.strip_xml_content(xml_string)
-            # Fix Date format
-            # Date format must be YYYY-MM-DD
-            # DateType in XSD implements
-            # restrict xs:date minInclusive YYYY-MM-DD  and date should be
-            # in others not parsable ISO 8601:2004 formats like:
-            # YYYY-MM-DDT00:00:00+00:00
-            # YYYY-MM-DD+00:00
-            # YYYY-MM-DDT00:00:00Z
-            xml_string = self.fix_date_format(xml_string)
             fatt = fatturapa_v_1_1.CreateFromDocument(xml_string)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2

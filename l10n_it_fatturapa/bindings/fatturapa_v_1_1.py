@@ -1630,10 +1630,6 @@ class DataFatturaType (pyxb.binding.datatypes.date):
     _XSDLocation = pyxb.utils.utility.Location(
         '/tmp/fatturapa_v1.1.xsd', 1314, 2)
     _Documentation = None
-DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=DataFatturaType,
-    value=pyxb.binding.datatypes.date('1970-01-01'))
-DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
 
 # Complex type
