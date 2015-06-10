@@ -1630,6 +1630,7 @@ class DataFatturaType (pyxb.binding.datatypes.date):
     _XSDLocation = pyxb.utils.utility.Location(
         '/tmp/fatturapa_v1.1.xsd', 1314, 2)
     _Documentation = None
+DataFatturaType._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
 
 # Complex type
