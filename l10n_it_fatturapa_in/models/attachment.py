@@ -37,7 +37,4 @@ class FatturaPAAttachmentIn(orm.Model):
     }
 
     def set_name(self, cr, uid, ids, datas_fname, context=None):
-        print datas_fname
-        res={'value': {}}
-        res['value']['name'] = datas_fname
-        return res
+        return {'value': {'name': datas_fname}}
