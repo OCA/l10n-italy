@@ -37,6 +37,7 @@
                 </xpath>
             </field>
         </record>
+
         <record id="view_invoice_line_form_fatturapa" model="ir.ui.view">
             <field name="name">account.invoice.line.fatturapa</field>
             <field name="model">account.invoice.line</field>
@@ -44,7 +45,6 @@
             <field name="arch" type="xml">
                 <field name="name" position="after">
                     <separator string="FatturaPA"></separator>
-                    <field name="admin_ref"/>
                     <group>
                         <group string="Related Documents">
                             <field name="related_documents" nolabel="1">
