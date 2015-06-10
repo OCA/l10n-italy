@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Payment Term -->
+
+        <record id="account_payment_term_riba" model="account.payment.term">
+            <field name="name">RiBA 30 Days End of Month</field>
+            <field name="note">RiBA 30 Days End of Month</field>
+            <field name="riba" eval="True"></field>
+        </record>
+        <record id="account_payment_term_line" model="account.payment.term.line">
+            <field name="value">balance</field>
+            <field eval="30" name="days"/>
+            <field eval="-1" name="days2"/>
+            <field ref="account_payment_term_riba" name="payment_id"/>
+        </record>
+
+        <!-- banks -->
+
+        <record id="res_bank_1" model="res.bank">
+            <field name="name">Bank</field>
+            <field name="bic">CPHBBE75</field>
+        </record>
+
+        <record id="company_bank" model="res.partner.bank">
+            <field name="name">company account</field>
+            <field name="acc_number">BE74126201326907</field>
+            <field name="partner_id" ref="base.main_partner"></field>
+            <field name="state">iban</field>
+            <field name="bank_bic">CPHBBE75</field>
+            <field name="bank" ref="res_bank_1"></field>
+        </record>
+
+        <record id="customer_bank" model="res.partner.bank">
+            <field name="name">customer account</field>
+            <field name="acc_number">IT86Y0200809440000005235152</field>
+            <field name="partner_id" ref="base.res_partner_12"></field>
+            <field name="state">iban</field>
+            <field name="bank_bic">CPHBBE75</field>
+            <field name="bank" ref="res_bank_1"></field>
+        </record>
+
+        <!-- accounts -->
+
+        <record id="sbf_effects" model="account.account">
+            <field name="code">SBF</field>
+            <field name="name">SBF effects (test)</field>
+            <field ref="account.cas" name="parent_id"/>
+            <field name="type">receivable</field>
+            <field eval="True" name="reconcile"/>
+            <field name="user_type" ref="account.data_account_type_receivable"/>
+        </record>
+
+        <record id="riba_account" model="account.account">
+            <field name="code">RiBa</field>
+            <field name="name">RiBa account (test)</field>
+            <field ref="account.cas" name="parent_id"/>
+            <field name="type">other</field>
+            <field name="user_type" ref="account.data_account_type_asset"/>
+        </record>
+
+        <record id="unsolved_account" model="account.account">
+            <field name="code">UNSOLVED</field>
+            <field name="name">Overdue effects account (test)</field>
+            <field ref="account.cas" name="parent_id"/>
+            <field name="type">receivable</field>
+            <field eval="True" name="reconcile"/>
+            <field name="user_type" ref="account.data_account_type_receivable"/>
+        </record>
+
+        <!-- Config -->
+
+        <record id="sbf_riba_config" model="riba.configurazione">
+            <field name="name">Salvo Buon Fine</field>
+            <field name="tipo">sbf</field>
+            <field name="bank_id" eval="company_bank"></field>
+            <field name="acceptance_journal_id" ref="account.bank_journal"></field>
+            <field name="accreditation_journal_id" ref="account.bank_journal"></field>
+            <field name="acceptance_account_id" ref="sbf_effects"></field>
+            <field name="accreditation_account_id" ref="riba_account"></field>
+            <field name="bank_account_id" ref="account.bnk"></field>
+            <field name="bank_expense_account_id" ref="account.a_expense"></field>
+            <field name="unsolved_journal_id" ref="account.bank_journal"></field>
+            <field name="overdue_effects_account_id" ref="unsolved_account"></field>
+            <field name="protest_charge_account_id" ref="account.a_expense"></field>
+        </record>
+    </data>
+</openerp>
