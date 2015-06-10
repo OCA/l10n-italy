@@ -191,6 +191,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.amount_untaxed, 1173.60)
         self.assertEqual(invoice.amount_tax, 258.19)
         self.assertEqual(invoice.amount_total, 1431.79)
+        self.assertEqual(invoice.invoice_line[0].admin_ref, 'D122353')
 
     def test_8_xml_import(self):
         cr, uid = self.cr, self.uid

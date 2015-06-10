@@ -348,6 +348,8 @@ class WizardImportFatturapa(orm.TransientModel):
         ):
             retLine['discount'] = self._computeDiscount(
                 cr, uid, line, context=context)
+        if line.RiferimentoAmministrazione:
+            retLine['admin_ref'] = line.RiferimentoAmministrazione
 
         return retLine
 
