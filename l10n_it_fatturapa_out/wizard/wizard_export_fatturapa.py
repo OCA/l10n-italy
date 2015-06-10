@@ -609,18 +609,18 @@ class WizardExportFatturapa(orm.TransientModel):
                         line.invoice_line_tax_id[0].name)
                 DettaglioLinea.Natura = line.invoice_line_tax_id[
                     0
-                    ].non_taxable_nature
+                ].non_taxable_nature
+            if line.admin_ref:
+                DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
             line_no += 1
 
             # not handled
-            '''
-            el.remove(el.find('DataInizioPeriodo'))
-            el.remove(el.find('DataFinePeriodo'))
-            el.remove(el.find('ScontoMaggiorazione'))
-            el.remove(el.find('Ritenuta'))
-            el.remove(el.find('RiferimentoAmministrazione'))
-            el.remove(el.find('AltriDatiGestionali'))
-            '''
+
+            # el.remove(el.find('DataInizioPeriodo'))
+            # el.remove(el.find('DataFinePeriodo'))
+            # el.remove(el.find('ScontoMaggiorazione'))
+            # el.remove(el.find('Ritenuta'))
+            # el.remove(el.find('AltriDatiGestionali'))
 
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 

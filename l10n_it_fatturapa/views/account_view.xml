@@ -44,6 +44,7 @@
             <field name="arch" type="xml">
                 <field name="name" position="after">
                     <separator string="FatturaPA"></separator>
+                    <field name="admin_ref"/>
                     <group>
                         <group string="Related Documents">
                             <field name="related_documents" nolabel="1">
