@@ -63,8 +63,9 @@
                 </field>
                 <separator string="FatturaPA" position="after">
                     <group>
+                    <field name="admin_ref" readonly="1"/>
                         <group>
-                            <field name="service_start" readonly="1"/>
+                             <field name="service_start" readonly="1"/>
                         </group>
                         <group>
                             <field name="service_end" readonly="1"/>
@@ -138,6 +139,9 @@
                 <field name="residual" position="after">
                     <field name="virtual_stamp" readonly="1"></field>
                     <field name="stamp_amount" readonly="1"></field>
+                </field>
+                <field name="invoice_line" position="attributes">
+                    <attribute name="context">{'form_view_ref' : 'l10n_it_fatturapa_in.view_invoice_line_form_fatturapa_in'}</attribute>
                 </field>
                 <field name="payment_ids" position="before">
                     <separator string="FatturaPA Payment"></separator>

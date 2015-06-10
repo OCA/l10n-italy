@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="view_invoice_line_form_fatturapa_out" model="ir.ui.view">
+            <field name="name">account.invoice.line.fatturapa.out</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_invoice_line_form_fatturapa"></field>
+            <field name="arch" type="xml">
+                <separator string="FatturaPA" position="after">
+                    <group>
+                        <field name="admin_ref" readonly="0"/>
+                    </group>
+                </separator>
+            </field>
+        </record>
+
         <record id="view_invoice_form_fatturapa" model="ir.ui.view">
             <field name="name">account.invoice.fatturapa</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"></field>
             <field name="arch" type="xml">
+                <field name="invoice_line" position="attributes">
+                    <attribute name="context">{'form_view_ref':'l10n_it_fatturapa_out.view_invoice_line_form_fatturapa_out'}</attribute>
+                </field>
                 <xpath expr="//notebook" position="inside">
                     <page string="Related Documents ">
                         <group string="Related Documents">
