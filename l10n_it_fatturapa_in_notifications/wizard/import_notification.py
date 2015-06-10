@@ -18,5 +18,12 @@
 #
 ##############################################################################
 
-from . import send_notification
-from . import import_notification
+from openerp.osv import fields, orm
+import base64
+
+
+class ImportNotification(orm.TransientModel):
+    _name = 'wizard.fatturapa.import.notification'
+    defaults = {
+        'invoice_type': 'supplier'
+        }
