@@ -278,6 +278,7 @@ seconda riga</field>
             <field name="quantity" eval="1.0" />
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="name">Toner Cartridge</field>
+            <field name="admin_ref">D122353</field>
         </record>
 
         <record id="fatturapa_invoice_2_line_1" model="account.invoice.line">
