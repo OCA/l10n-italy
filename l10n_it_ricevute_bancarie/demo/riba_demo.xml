@@ -71,9 +71,9 @@
 
         <!-- Config -->
 
-        <record id="sbf_riba_config" model="riba.configurazione">
+        <record id="sbf_riba_config" model="riba.configuration">
             <field name="name">Salvo Buon Fine</field>
-            <field name="tipo">sbf</field>
+            <field name="type">sbf</field>
             <field name="bank_id" eval="company_bank"></field>
             <field name="acceptance_journal_id" ref="account.bank_journal"></field>
             <field name="accreditation_journal_id" ref="account.bank_journal"></field>
