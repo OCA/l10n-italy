@@ -330,6 +330,7 @@ class account_invoice_line(orm.Model):
             'fatturapa.related_ddt', 'invoice_line_id',
             'Related DdT'
         ),
+        'admin_ref': fields.char('Administration ref.', size=20),
     }
 
 

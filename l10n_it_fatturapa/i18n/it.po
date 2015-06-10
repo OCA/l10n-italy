@@ -995,3 +995,8 @@ msgstr "terzo intermediario"
 msgid "welfare fund type"
 msgstr "tipo cassa previdenziale"
 
+
+#. module: l10n_it_fatturapa
+#: field:account.invoice.line,admin_ref:0
+msgid "Administration ref."
+msgstr "Riferimento Amministrazione"

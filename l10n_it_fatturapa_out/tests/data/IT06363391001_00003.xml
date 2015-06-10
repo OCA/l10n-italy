@@ -83,6 +83,7 @@
                 <PrezzoUnitario>10.00</PrezzoUnitario>
                 <PrezzoTotale>10.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
+                <RiferimentoAmministrazione>D122353</RiferimentoAmministrazione>
             </DettaglioLinee>
             <DettaglioLinee>
                 <NumeroLinea>2</NumeroLinea>
