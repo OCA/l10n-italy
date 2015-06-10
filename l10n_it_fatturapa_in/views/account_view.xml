@@ -61,9 +61,8 @@
                 <field name="product_id" position="after">
                     <field name="service_type" readonly="1"/>
                 </field>
-                <separator string="FatturaPA" position="after">
+                <xpath expr="//div[contains(@id, 'admin_ref')]" position="after">
                     <group>
-                    <field name="admin_ref" readonly="1"/>
                         <group>
                              <field name="service_start" readonly="1"/>
                         </group>
@@ -88,7 +87,7 @@
                             </tree>
                         </field>
                     </group>
-                </separator>
+                </xpath>
             </field>
         </record>
         <!-- Extend purchase invoice  -->
@@ -139,9 +138,6 @@
                 <field name="residual" position="after">
                     <field name="virtual_stamp" readonly="1"></field>
                     <field name="stamp_amount" readonly="1"></field>
-                </field>
-                <field name="invoice_line" position="attributes">
-                    <attribute name="context">{'form_view_ref' : 'l10n_it_fatturapa_in.view_invoice_line_form_fatturapa_in'}</attribute>
                 </field>
                 <field name="payment_ids" position="before">
                     <separator string="FatturaPA Payment"></separator>
