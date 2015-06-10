@@ -107,7 +107,7 @@ class riba_unsolved(orm.TransientModel):
             raise orm.except_orm(_('Error'), _('No active ID found'))
         move_pool = self.pool.get('account.move')
         invoice_pool = self.pool.get('account.invoice')
-        move_line_pool = self.pool.get('account.move.line')
+        move_line_pool = self.pool.get('account.move.line')  # TODO is it necessary?
         distinta_line = self.pool.get('riba.distinta.line').browse(cr, uid, active_id, context=context)
         wizard = self.browse(cr,uid,ids)[0]
         if not wizard.unsolved_journal_id or not wizard.effects_account_id or not wizard.riba_bank_account_id or not wizard.overdue_effects_account_id or not wizard.bank_account_id or not wizard.bank_expense_account_id:
@@ -119,6 +119,7 @@ class riba_unsolved(orm.TransientModel):
                 (0,0, {
                     'name':  _('Effects'),
                     'account_id': wizard.effects_account_id.id,
+                    'partner_id': distinta_line.partner_id.id,
                     'credit': wizard.effects_amount,
                     'debit': 0.0,
                     }),
@@ -152,17 +153,36 @@ class riba_unsolved(orm.TransientModel):
             }
         move_id = move_pool.create(cr, uid, move_vals, context=context)
         
+        to_be_reconciled = []
         for move_line in move_pool.browse(cr, uid, move_id, context=context).line_id:
             if move_line.account_id.id == wizard.overdue_effects_account_id.id:
                 for riba_move_line in distinta_line.move_line_ids:
-                    invoice_pool.write(cr, uid, riba_move_line.move_line_id.invoice.id, {
+                    invoice_ids = []
+                    if riba_move_line.move_line_id.invoice:
+                        invoice_ids = [riba_move_line.move_line_id.invoice.id]
+                    elif riba_move_line.move_line_id.unsolved_invoice_ids:
+                        invoice_ids = [
+                            i.id for i in
+                            riba_move_line.move_line_id.unsolved_invoice_ids
+                            ]
+                    invoice_pool.write(cr, uid, invoice_ids, {
                         'unsolved_move_line_ids': [(4, move_line.id)],
                         }, context=context)
-        
+            if move_line.account_id.id == wizard.effects_account_id.id:
+                to_be_reconciled.append(move_line.id)
+        for acceptance_move_line in distinta_line.acceptance_move_id.line_id:
+            if (
+                acceptance_move_line.account_id.id
+                == wizard.effects_account_id.id
+            ):
+                to_be_reconciled.append(acceptance_move_line.id)
+
         distinta_line.write({
             'unsolved_move_id': move_id,
             'state': 'unsolved',
             })
+        move_line_pool.reconcile_partial(
+            cr, uid, to_be_reconciled, context=context)
         wf_service.trg_validate(
             uid, 'riba.distinta', distinta_line.distinta_id.id, 'unsolved', cr)
         return {
