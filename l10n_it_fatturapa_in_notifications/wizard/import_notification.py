@@ -18,8 +18,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
-import base64
+from openerp.osv import orm
 
 
 class ImportNotification(orm.TransientModel):
