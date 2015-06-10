@@ -35,3 +35,6 @@ class FatturaPAAttachmentIn(orm.Model):
             'account.invoice', 'fatturapa_attachment_in_id',
             string="In Invoices", readonly=True),
     }
+
+    def set_name(self, cr, uid, ids, datas_fname, context=None):
+        return {'value': {'name': datas_fname}}

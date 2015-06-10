@@ -10,7 +10,7 @@
                     <div>
                         <group>
                             <field filename="datas_fname" name="datas"></field>
-                            <field name="datas_fname"></field>
+                            <field name="datas_fname"  on_change="set_name(datas_fname)"></field>
                             <field name="name"></field>
                         </group>
                         <separator string="Invoices"></separator>
