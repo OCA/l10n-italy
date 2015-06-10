@@ -216,3 +216,17 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.inconsistencies,
             'Computed amount untaxed 1030.42 is different from'
             ' DatiRiepilogo 1173.6')
+
+    def test_10_xml_import(self):
+        # Fix Date format
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test6', 'IT05979361218_007.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0009')
+        self.assertEqual(
+            invoice.date_invoice, '2015-03-16')
+        self.assertEqual(
+            invoice.fatturapa_payments[0].payment_methods[0].payment_due_date,
+            '2015-06-03'
+        )
