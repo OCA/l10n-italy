@@ -23,7 +23,7 @@ import base64
 
 
 class ImportNotification(orm.TransientModel):
-    _name = 'wizard.fatturapa.import.notification'
-    defaults = {
+    _inherit = 'wizard.fatturapa.import.notification'
+    _defaults = {
         'invoice_type': 'supplier'
         }
