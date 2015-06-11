@@ -1036,7 +1036,7 @@ class String10Type (pyxb.binding.datatypes.normalizedString):
         '/tmp/fatturapa_v1.1.xsd', 1146, 2)
     _Documentation = None
 String10Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,10})')
+String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,10})')
 String10Type._InitializeFacetMap(String10Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String10Type', String10Type)
 
@@ -1053,7 +1053,7 @@ class String15Type (pyxb.binding.datatypes.normalizedString):
         '/tmp/fatturapa_v1.1.xsd', 1151, 2)
     _Documentation = None
 String15Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,15})')
+String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,15})')
 String15Type._InitializeFacetMap(String15Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String15Type', String15Type)
 
@@ -1070,7 +1070,7 @@ class String20Type (pyxb.binding.datatypes.normalizedString):
         '/tmp/fatturapa_v1.1.xsd', 1156, 2)
     _Documentation = None
 String20Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,20})')
+String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,20})')
 String20Type._InitializeFacetMap(String20Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String20Type', String20Type)
 
@@ -1087,7 +1087,7 @@ class String35Type (pyxb.binding.datatypes.normalizedString):
         '/tmp/fatturapa_v1.1.xsd', 1161, 2)
     _Documentation = None
 String35Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,35})')
+String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,35})')
 String35Type._InitializeFacetMap(String35Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String35Type', String35Type)
 
@@ -1104,7 +1104,7 @@ class String60Type (pyxb.binding.datatypes.normalizedString):
         '/tmp/fatturapa_v1.1.xsd', 1166, 2)
     _Documentation = None
 String60Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,60})')
+String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,60})')
 String60Type._InitializeFacetMap(String60Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String60Type', String60Type)
 
@@ -1121,7 +1121,7 @@ class String80Type (pyxb.binding.datatypes.normalizedString):
         '/tmp/fatturapa_v1.1.xsd', 1171, 2)
     _Documentation = None
 String80Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,80})')
+String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,80})')
 String80Type._InitializeFacetMap(String80Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String80Type', String80Type)
 
@@ -1138,7 +1138,7 @@ class String100Type (pyxb.binding.datatypes.normalizedString):
         '/tmp/fatturapa_v1.1.xsd', 1176, 2)
     _Documentation = None
 String100Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,100})')
+String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,100})')
 String100Type._InitializeFacetMap(String100Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String100Type', String100Type)
 
@@ -1156,7 +1156,7 @@ class String60LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String60LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,60}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,60}')
 String60LatinType._InitializeFacetMap(String60LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding', 'String60LatinType', String60LatinType)
@@ -1175,7 +1175,7 @@ class String80LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String80LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,80}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,80}')
 String80LatinType._InitializeFacetMap(String80LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding', 'String80LatinType', String80LatinType)
@@ -1195,7 +1195,7 @@ class String100LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String100LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,100}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,100}')
 String100LatinType._InitializeFacetMap(String100LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding', 'String100LatinType', String100LatinType)
@@ -1215,7 +1215,7 @@ class String200LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String200LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String200LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,200}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,200}')
 String200LatinType._InitializeFacetMap(String200LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding', 'String200LatinType', String200LatinType)
@@ -1235,7 +1235,7 @@ class String1000LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String1000LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String1000LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,1000}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,1000}')
 String1000LatinType._InitializeFacetMap(String1000LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding', 'String1000LatinType', String1000LatinType)
