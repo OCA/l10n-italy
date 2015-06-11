@@ -28,16 +28,28 @@ from openerp import netsvc
 class riba_accreditation(orm.TransientModel):
     
     def _get_accreditation_journal_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'accreditation_journal_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta(
+            cr, uid, 'accreditation_journal_id', context=context)
     
     def _get_accreditation_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'accreditation_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta(
+            cr, uid, 'accreditation_account_id', context=context)
     
     def _get_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'bank_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta(
+            cr, uid, 'bank_account_id', context=context)
     
     def _get_bank_expense_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta( cr, uid, 'bank_expense_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta(
+            cr, uid, 'bank_expense_account_id', context=context)
     
     def _get_accreditation_amount(self, cr, uid, context=None):
         if context is None:
@@ -54,14 +66,18 @@ class riba_accreditation(orm.TransientModel):
     _name = "riba.accreditation"
     _description = "Bank accreditation"
     _columns = {
-        'accreditation_journal_id' : fields.many2one('account.journal', "Accreditation journal", 
+        'accreditation_journal_id': fields.many2one(
+            'account.journal', "Accreditation journal",
             domain=[('type', '=', 'bank')]),
-        'accreditation_account_id' : fields.many2one('account.account', "Ri.Ba. bank account"),
+        'accreditation_account_id': fields.many2one(
+            'account.account', "Ri.Ba. bank account"),
         'accreditation_amount': fields.float('Credit amount'),
-        'bank_account_id' : fields.many2one('account.account', "Bank account", 
-            domain=[('type', '=', 'liquidity')]),
+        'bank_account_id': fields.many2one('account.account', "Bank account",
+                                           domain=[(
+                                               'type', '=', 'liquidity')]),
         'bank_amount': fields.float('Versed amount'),
-        'bank_expense_account_id' : fields.many2one('account.account', "Bank Expenses account"),
+        'bank_expense_account_id': fields.many2one(
+            'account.account', "Bank Expenses account"),
         'expense_amount': fields.float('Expenses amount'),
         }
 

@@ -70,6 +70,9 @@ class account_move_line(orm.Model):
             'partner_id', 'bank_ids', 'iban', type='char', string='IBAN',
             store=False),
     }
+    _defaults = {
+        'distinta_line_ids': None,
+    }
 
     def fields_view_get(
         self, cr, uid, view_id=None, view_type='form',
