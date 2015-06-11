@@ -38,7 +38,7 @@ class riba_unsolved(orm.TransientModel):
             context = {}
         if not context.get('active_id', False):
             return False
-        return self.pool.get('riba.distinta.line').browse(cr, uid, context['active_id'], context=context).amount
+        return self.pool.get('riba.list.line').browse(cr, uid, context['active_id'], context=context).amount
     
     def _get_riba_bank_account_id(self, cr, uid, context=None):
         return self.pool.get('riba.configuration').get_default_value_by_distinta_line( cr, uid, 'accreditation_account_id', context=context)
@@ -91,11 +91,11 @@ class riba_unsolved(orm.TransientModel):
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
-        line_pool = self.pool.get('riba.distinta.line')
+        line_pool = self.pool.get('riba.list.line')
         line_pool.write(cr, uid, active_id,
             {'state': 'unsolved'}, context=context)
         wf_service.trg_validate(
-            uid, 'riba.distinta', line_pool.browse(cr, uid, active_id).distinta_id.id, 'unsolved', cr)
+            uid, 'riba.list', line_pool.browse(cr, uid, active_id).distinta_id.id, 'unsolved', cr)
         return {'type': 'ir.actions.act_window_close'}
         
     def create_move(self, cr, uid, ids, context=None):
@@ -108,7 +108,7 @@ class riba_unsolved(orm.TransientModel):
         move_pool = self.pool.get('account.move')
         invoice_pool = self.pool.get('account.invoice')
         move_line_pool = self.pool.get('account.move.line')  # TODO is it necessary?
-        distinta_line = self.pool.get('riba.distinta.line').browse(cr, uid, active_id, context=context)
+        distinta_line = self.pool.get('riba.list.line').browse(cr, uid, active_id, context=context)
         wizard = self.browse(cr,uid,ids)[0]
         if not wizard.unsolved_journal_id or not wizard.effects_account_id or not wizard.riba_bank_account_id or not wizard.overdue_effects_account_id or not wizard.bank_account_id or not wizard.bank_expense_account_id:
             raise orm.except_orm(_('Error'), _('Every account is mandatory'))
@@ -184,7 +184,7 @@ class riba_unsolved(orm.TransientModel):
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
         wf_service.trg_validate(
-            uid, 'riba.distinta', distinta_line.distinta_id.id, 'unsolved', cr)
+            uid, 'riba.list', distinta_line.distinta_id.id, 'unsolved', cr)
         return {
             'name': _('Unsolved Entry'),
             'view_type': 'form',
