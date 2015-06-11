@@ -34,7 +34,7 @@ class res_partner(orm.Model):
         # 1.2.1.5
         'register_province': fields.many2one(
             'res.country.state', string='Register Province'),
-        #1.2.1.6
+        # 1.2.1.6
         'register_code': fields.char('Register Code', size=60),
         # 1.2.1.7
         'register_regdate': fields.date('Register Registration Date'),
