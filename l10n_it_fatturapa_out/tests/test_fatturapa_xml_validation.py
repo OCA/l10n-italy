@@ -27,6 +27,7 @@ from openerp.modules.module import get_module_resource
 from datetime import datetime
 from lxml import etree
 
+
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def getFile(self, filename):
