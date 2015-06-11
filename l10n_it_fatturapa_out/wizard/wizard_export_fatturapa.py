@@ -47,7 +47,7 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DatiPagamentoType,
     DettaglioPagamentoType,
     AllegatiType
-    )
+)
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
 from openerp.tools.translate import _

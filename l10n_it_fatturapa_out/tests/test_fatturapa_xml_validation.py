@@ -132,10 +132,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             cr, uid, 'l10n_it_fatturapa', invoice_xml_id)
         if invoice_id:
             invoice_id = invoice_id and invoice_id[1] or False
-        '''
-         this  write updates context with
-         fiscalyear_id
-        '''
+        # this  write updates context with
+        # fiscalyear_id
         self.invoice_model.write(
             cr, uid, invoice_id, {}, context=self.context)
         workflow.trg_validate(
