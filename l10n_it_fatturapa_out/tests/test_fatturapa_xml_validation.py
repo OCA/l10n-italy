@@ -27,6 +27,7 @@ from openerp.modules.module import get_module_resource
 from datetime import datetime
 from lxml import etree
 
+
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def getFile(self, filename):
@@ -45,6 +46,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.attach_model = self.registry('fatturapa.attachment.out')
         self.invoice_model = self.registry('account.invoice')
         self.context = {}
+        self.maxDiff = None
 
     def checkCreateFiscalYear(self, date_to_check):
         '''
