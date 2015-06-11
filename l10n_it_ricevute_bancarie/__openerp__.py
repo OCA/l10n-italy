@@ -68,7 +68,11 @@ Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQ
         # "security/ir.model.access.csv",
     ],
     'demo': ["demo/riba_demo.xml"],
-    'test': [],
+    'test': [
+        'test/riba_invoice.yml',
+        'test/issue_riba.yml',
+        'test/unsolved_riba.yml',
+        ],
     'installable': True,
     'active': False,
 }
