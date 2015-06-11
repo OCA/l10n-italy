@@ -17,7 +17,7 @@
       "tz": False, "active_model": "account.move.line", "active_ids": [riba_move_line_id],
       "active_id": riba_move_line_id, })
     riba_list_id = action['res_id']
-    list_pool = self.pool['riba.distinta']
+    list_pool = self.pool['riba.list']
     list_pool.confirm(cr, uid, [riba_list_id], context=context)
     list = list_pool.browse(cr, uid, riba_list_id)
     assert (list.state == 'accepted'), ("RiBa list is not accepted, but %s" % list.state)
@@ -27,7 +27,7 @@
     accr_context = {
         "lang": 'en_US',
         "tz": False,
-        "active_model": "riba.distinta",
+        "active_model": "riba.list",
         "active_ids": [riba_list_id],
         "active_id": riba_list_id, 
         }
