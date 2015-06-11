@@ -28,29 +28,49 @@ from openerp import netsvc
 class riba_unsolved(orm.TransientModel):
     
     def _get_unsolved_journal_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta_line( cr, uid, 'unsolved_journal_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'unsolved_journal_id', context=context)
     
     def _get_effects_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta_line( cr, uid, 'acceptance_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'acceptance_account_id', context=context)
     
     def _get_effects_amount(self, cr, uid, context=None):
         if context is None:
             context = {}
         if not context.get('active_id', False):
             return False
-        return self.pool.get('riba.list.line').browse(cr, uid, context['active_id'], context=context).amount
+        return self.pool.get(
+            'riba.list.line'
+        ).browse(cr, uid, context['active_id'], context=context).amount
     
     def _get_riba_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta_line( cr, uid, 'accreditation_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'accreditation_account_id', context=context)
     
     def _get_overdue_effects_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta_line( cr, uid, 'overdue_effects_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'overdue_effects_account_id', context=context)
     
     def _get_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta_line( cr, uid, 'bank_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'bank_account_id', context=context)
     
     def _get_bank_expense_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configuration').get_default_value_by_distinta_line( cr, uid, 'protest_charge_account_id', context=context)
+        return self.pool.get(
+            'riba.configuration'
+        ).get_default_value_by_distinta_line(
+            cr, uid, 'protest_charge_account_id', context=context)
         
     
     _name = "riba.unsolved"
