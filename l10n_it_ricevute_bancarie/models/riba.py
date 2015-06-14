@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
+#    Copyright (C) 2012 Andrea Cometa.
+#    Email: info@andreacometa.it
+#    Web site: http://www.andreacometa.it
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
 #

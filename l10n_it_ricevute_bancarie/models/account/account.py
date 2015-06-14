@@ -32,7 +32,7 @@ class account_payment_term(orm.Model):
     _inherit = 'account.payment.term'
 
     _columns = {
-        'riba': fields.boolean('Riba', default=False),
+        'riba': fields.boolean('Riba'),
     }
 
 
@@ -58,8 +58,7 @@ class account_move_line(orm.Model):
 
     _columns = {
         'distinta_line_ids': fields.one2many(
-            'riba.list.move.line', 'move_line_id', "Dettaglio riba",
-            default=None),
+            'riba.list.move.line', 'move_line_id', "Dettaglio riba"),
         'riba': fields.related(
             'invoice', 'payment_term', 'riba', type='boolean', string='RiBa',
             store=False),

@@ -74,25 +74,3 @@ class riba_configuration(orm.Model):
         'protest_charge_account_id': fields.many2one(
             'account.account', "Protest charge account"),
     }
-
-    def get_default_value_by_list(self, cr, uid, field_name, context=None):
-        if context is None:
-            context = {}
-        if not context.get('active_id', False):
-            return False
-        ribalist_pool = self.pool['riba.list']
-        ribalist = ribalist_pool.browse(cr, uid, context['active_id'],
-                                        context=context)
-        return (ribalist.config[field_name] and
-                ribalist.config[field_name].id or False)
-
-    def get_default_value_by_list_line(self, cr, uid, field_name,
-                                       context=None):
-        if context is None:
-            context = {}
-        if not context.get('active_id', False):
-            return False
-        ribalist_line = self.pool['riba.list.line'].browse(
-            cr, uid, context['active_id'], context=context)
-        return (ribalist_line.list_id.config[field_name] and
-                ribalist_line.list_id.config[field_name].id or False)
