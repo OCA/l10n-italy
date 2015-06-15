@@ -74,8 +74,8 @@ class riba_issue(models.TransientModel):
         grouped_lines = {}
         move_lines = move_line_obj.search(
             [('id', 'in', self._context['active_ids'])])
-        #move_lines = move_line_obj.browse(move_line_ids)
-        #import pdb; pdb.set_trace()
+        # move_lines = move_line_obj.browse(move_line_ids)
+        # import pdb; pdb.set_trace()
         for move_line in move_lines:
             if move_line.partner_id.group_riba:
                 if not grouped_lines.get((move_line.partner_id.id,
@@ -94,7 +94,8 @@ class riba_issue(models.TransientModel):
             else:
                 raise exceptions.Warning(
                     _('Attention!'),
-                    _('Partner %s has not bank!!!') % move_line.partner_id.name)
+                    _('Partner %s has not bank!!!') %
+                    move_line.partner_id.name)
             if move_line.partner_id.group_riba:
                 for key in grouped_lines:
                     if (key[0] == move_line.partner_id.id and
@@ -103,8 +104,8 @@ class riba_issue(models.TransientModel):
                             countme, bank_id.id, rd_id,
                             move_line.date_maturity, move_line.partner_id.id,
                             self.configuration_id.acceptance_account_id.id)
-                        total = 0.0
-                        invoice_date_group = ''
+                        # total = 0.0
+                        # invoice_date_group = ''
                         for grouped_line in grouped_lines[key]:
                             riba_list_move_line.create({
                                 'riba_line_id': rdl_id,

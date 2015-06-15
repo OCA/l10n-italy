@@ -25,7 +25,7 @@
 ##############################################################################
 
 from openerp import fields, models, api, _, exceptions, workflow
-import time
+# import time
 import openerp.addons.decimal_precision as dp
 # from openerp import netsvc
 
@@ -264,7 +264,7 @@ class riba_list_line(models.Model):
                 line.state = 'paid'
                 workflow.trg_validate(
                     self.env.user.id, 'riba.list',
-                    line.list_id.id, 'paid', cr)
+                    line.list_id.id, 'paid', self.env.cr)
         return res
 
     @api.one
@@ -272,14 +272,15 @@ class riba_list_line(models.Model):
         res = {}
         if not self:
             return res
-        cr.execute('SELECT list_line.id, l.id '
-                   'FROM account_move_line l '
-                   'LEFT JOIN riba_list_line list_line ON '
-                   '(list_line.acceptance_move_id=l.move_id) '
-                   'WHERE list_line.id IN %s '
-                   'AND l.account_id=list_line.acceptance_account_id',
-                   (tuple([line.id for line in self]),))
-        for r in cr.fetchall():
+        self.env.cr.execute(
+            'SELECT list_line.id, l.id '
+            'FROM account_move_line l '
+            'LEFT JOIN riba_list_line list_line ON '
+            '(list_line.acceptance_move_id=l.move_id) '
+            'WHERE list_line.id IN %s '
+            'AND l.account_id=list_line.acceptance_account_id', (
+                tuple([line.id for line in self]),))
+        for r in self.env.cr.fetchall():
             res.setdefault(r[0], [])
             res[r[0]].append(r[1])
         return res
@@ -302,10 +303,10 @@ class riba_list_line(models.Model):
             return False
         ok = True
         for id in res:
-            cr.execute(
+            self.env.cr.execute(
                 'select reconcile_id from account_move_line where id=%s',
                 (id,))
-            ok = ok and bool(cr.fetchone()[0])
+            ok = ok and bool(self.env.cr.fetchone()[0])
         return ok
 
     def _get_riba_line_from_move_line(self, cr, uid, ids, context=None):

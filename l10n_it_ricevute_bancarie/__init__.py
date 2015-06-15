@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
