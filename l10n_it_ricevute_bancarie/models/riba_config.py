@@ -83,8 +83,8 @@ class riba_configuration(orm.Model):
         ribalist_pool = self.pool['riba.list']
         ribalist = ribalist_pool.browse(cr, uid, context['active_id'],
                                         context=context)
-        return (ribalist.config[field_name] and
-                ribalist.config[field_name].id or False)
+        return (ribalist.config_id[field_name] and
+                ribalist.config_id[field_name].id or False)
 
     def get_default_value_by_list_line(self, cr, uid, field_name,
                                        context=None):
@@ -94,5 +94,5 @@ class riba_configuration(orm.Model):
             return False
         ribalist_line = self.pool['riba.list.line'].browse(
             cr, uid, context['active_id'], context=context)
-        return (ribalist_line.list_id.config[field_name] and
-                ribalist_line.list_id.config[field_name].id or False)
+        return (ribalist_line.list_id.config_id[field_name] and
+                ribalist_line.list_id.config_id[field_name].id or False)
