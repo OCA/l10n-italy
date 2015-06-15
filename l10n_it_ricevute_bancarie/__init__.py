@@ -53,6 +53,11 @@ from . import wizard
 =======
 ##############################################################################
 
+<<<<<<< HEAD
 import models
 import wizard
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
+=======
+from . import models
+from . import wizard
+>>>>>>> ac21d11... fix import statement
