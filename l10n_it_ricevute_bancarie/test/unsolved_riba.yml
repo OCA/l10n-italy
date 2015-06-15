@@ -1,0 +1,88 @@
+-
+  I create another invoice to test unsolved riba
+-
+  !record {model: account.invoice, id: account_invoice_riba_2}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: '[PCSC234] PC Assemble SC234'
+        price_unit: 100.0
+        quantity: 1.0
+        product_id: product.product_product_3
+        uos_id: product.product_uom_unit
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_12
+    payment_term: account_payment_term_riba
+-
+  I call the "Confirm Draft Invoices" wizard
+-
+  !record {model: account.invoice.confirm, id: account_invoice_confirm_0}:
+    {}
+-
+  I click on Confirm Invoices Button
+-
+  !python {model: account.invoice.confirm}: |
+    self.invoice_confirm(cr, uid, [ref("account_invoice_confirm_0")], {"lang": 'en_US',
+      "tz": False, "active_model": "account.invoice", "active_ids": [ref("account_invoice_riba_2")],
+      "type": "out_invoice", "active_id": ref("account_invoice_riba_2"), })
+-
+  I call the wizards
+-
+  !record {model: riba.emissione, id: riba_emissione_1, view: emissione_riba_view}:
+    configurazione: sbf_riba_config
+-
+  I run the wizards
+-
+  !python {model: riba.emissione}: |
+    invoice = self.pool['account.invoice'].browse(
+      cr, uid, ref('account_invoice_riba_2'), context=context)
+    for move_line in invoice.move_id.line_id:
+      if move_line.account_id.id == ref('account.a_recv'):
+        riba_move_line_id = move_line.id
+        break
+    action = self.crea_distinta(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
+      "tz": False, "active_model": "account.move.line", "active_ids": [riba_move_line_id],
+      "active_id": riba_move_line_id, })
+    riba_list_id = action['res_id']
+    list_pool = self.pool['riba.distinta']
+    list_pool.confirm(cr, uid, [riba_list_id], context=context)
+    list = list_pool.browse(cr, uid, riba_list_id)
+    assert (list.state == 'accepted'), ("RiBa list is not accepted, but %s" % list.state)
+    assert (len(list.line_ids) == 1), ("RiBa list must have 1 line, %s found" % len(list.line_ids))
+    invoice.refresh()
+    assert (invoice.state == 'paid'), ("Invoice state is not paid, but %s" % invoice.state)
+    accreditation_pool = self.pool['riba.accreditation']
+    accr_context = {
+        "lang": 'en_US',
+        "tz": False,
+        "active_model": "riba.distinta",
+        "active_ids": [riba_list_id],
+        "active_id": riba_list_id, 
+        }
+    accr_id = accreditation_pool.create(cr, uid, {
+      'bank_amount': 95,
+      'expense_amount': 5,
+      }, context=accr_context)
+    accreditation_pool.create_move(cr, uid, [accr_id], context=accr_context)
+    list.refresh()
+    assert (list.state == 'accredited'), ("RiBa list is not accredited, but %s" % list.state)
+    # unsolved wizard
+    unsolved_pool = self.pool['riba.unsolved']
+    unsolved_context = {
+        "lang": 'en_US',
+        "tz": False,
+        "active_model": "riba.distinta.line",
+        "active_ids": [list.line_ids[0].id],
+        "active_id": list.line_ids[0].id, 
+        }
+    unsolved_id = unsolved_pool.create(cr, uid, {
+      'bank_amount': 102,
+      'expense_amount': 2,
+      }, context=unsolved_context)
+    unsolved_pool.create_move(cr, uid, [unsolved_id], context=unsolved_context)
+    list.refresh()
+    assert (list.state == 'unsolved'), ("RiBa list is not closed, but %s" % list.state)
+    invoice.refresh()
+    assert (invoice.unsolved_move_line_ids), ("Unsolved invoice is missing")
