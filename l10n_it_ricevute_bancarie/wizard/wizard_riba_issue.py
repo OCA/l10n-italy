@@ -52,7 +52,7 @@ class riba_issue(models.TransientModel):
             return riba_list_line.create(rdl)
 
         """
-        Qui creiamo la distinta
+            Qui creiamo la distinta
         """
         # wizard_obj = self.browse(cr, uid, ids)[0]
         # active_ids = context and context.get('active_ids', [])
