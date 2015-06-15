@@ -231,3 +231,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.fatturapa_payments[0].payment_methods[0].payment_due_date,
             '2015-06-03'
         )
+        self.assertEqual(
+            invoice.fatturapa_payments[0].payment_methods[0].
+            fatturapa_pm_id.code,
+            'MP18'
+        )

@@ -532,9 +532,8 @@ class WizardImportFatturapa(orm.TransientModel):
                     raise orm.except_orm(
                         _('Error!'),
                         _(
-                            'Xml Incorrect'
-                            'ModalitaPagamento in line DettaglioPagamento'
-                            'is not defined'
+                            'ModalitaPagamento %s not defined in your system'
+                            % dline.ModalitaPagamento
                         )
                     )
                 val = {

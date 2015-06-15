@@ -78,9 +78,9 @@
             </DatiRiepilogo>
         </DatiBeniServizi>
         <DatiPagamento>
-            <CondizioniPagamento>TP01</CondizioniPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
-                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <ModalitaPagamento>MP18</ModalitaPagamento>
                 <DataScadenzaPagamento>2015-06-03+02:00</DataScadenzaPagamento>
                 <ImportoPagamento>9.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
