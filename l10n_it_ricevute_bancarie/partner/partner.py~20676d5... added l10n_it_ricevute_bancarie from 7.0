@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
-<<<<<<< HEAD
-##############################################################################
-#    
-=======
 #
 #
->>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -27,18 +22,18 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-<<<<<<< HEAD
-##############################################################################
-
-import wizard_emissione_riba
-import riba_file_export
-import wizard_accreditation
-import wizard_unsolved
-=======
 #
 
-from . import wizard_emissione_riba
-from . import riba_file_export
-from . import wizard_accreditation
-from . import wizard_unsolved
->>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+from openerp.osv import fields, orm
+
+
+class res_partner(orm.Model):
+
+    _name = "res.partner"
+    _inherit = "res.partner"
+
+    _columns = {
+        'group_riba': fields.boolean(
+            "Group Ri.Ba.",
+            help="Group Ri.Ba. by customer while issuing"),
+    }

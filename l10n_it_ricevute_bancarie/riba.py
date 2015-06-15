@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 ##############################################################################
 #    
+=======
+#
+#
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -22,36 +27,70 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+<<<<<<< HEAD
 ##############################################################################
 
 from openerp.osv import fields, orm
 import time
+=======
+#
+
+from openerp.osv import fields, orm
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 import decimal_precision as dp
 import netsvc
 from tools.translate import _
 
+<<<<<<< HEAD
 class riba_distinta(orm.Model):
     
+=======
+
+class riba_distinta(orm.Model):
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def _get_acceptance_move_ids(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for distinta in self.browse(cr, uid, ids, context=context):
             move_ids = []
             for line in distinta.line_ids:
+<<<<<<< HEAD
                 if line.acceptance_move_id and line.acceptance_move_id.id not in move_ids:
                     move_ids.append(line.acceptance_move_id.id)
             res[distinta.id] = move_ids
         return res
     
+=======
+                if (
+                    line.acceptance_move_id
+                    and line.acceptance_move_id.id not in move_ids
+                ):
+                    move_ids.append(line.acceptance_move_id.id)
+            res[distinta.id] = move_ids
+        return res
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def _get_unsolved_move_ids(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for distinta in self.browse(cr, uid, ids, context=context):
             move_ids = []
             for line in distinta.line_ids:
+<<<<<<< HEAD
                 if line.unsolved_move_id and line.unsolved_move_id.id not in move_ids:
                     move_ids.append(line.unsolved_move_id.id)
             res[distinta.id] = move_ids
         return res
     
+=======
+                if (
+                    line.unsolved_move_id
+                    and line.unsolved_move_id.id not in move_ids
+                ):
+                    move_ids.append(line.unsolved_move_id.id)
+            res[distinta.id] = move_ids
+        return res
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def _get_payment_ids(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for distinta in self.browse(cr, uid, ids, context=context):
@@ -67,9 +106,19 @@ class riba_distinta(orm.Model):
     _description = 'Distinta Riba'
 
     _columns = {
+<<<<<<< HEAD
         'name': fields.char('Reference', size=128, required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'config': fields.many2one('riba.configurazione', 'Configuration', 
             select=True, required=True, readonly=True, states={'draft': [('readonly', False)]}, 
+=======
+        'name': fields.char(
+            'Reference', size=128, required=True, readonly=True,
+            states={'draft': [('readonly', False)]}),
+        'config': fields.many2one(
+            'riba.configurazione', 'Configuration',
+            select=True, required=True, readonly=True,
+            states={'draft': [('readonly', False)]},
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
             help='Riba configuration to be used'),
         'state': fields.selection([
             ('draft', 'Draft'),
@@ -78,20 +127,50 @@ class riba_distinta(orm.Model):
             ('paid', 'Paid'),
             ('unsolved', 'Unsolved'),
             ('cancel', 'Canceled')], 'State', select=True, readonly=True),
+<<<<<<< HEAD
         'line_ids': fields.one2many('riba.distinta.line', 'distinta_id',
             'Riba deadlines', readonly=True, states={'draft': [('readonly', False)]}),
         'user_id': fields.many2one('res.users', 'User', required=True, readonly=True, states={'draft': [('readonly', False)]}),
+=======
+        'line_ids': fields.one2many(
+            'riba.distinta.line', 'distinta_id',
+            'Riba deadlines', readonly=True,
+            states={'draft': [('readonly', False)]}),
+        'user_id': fields.many2one(
+            'res.users', 'User', required=True, readonly=True,
+            states={'draft': [('readonly', False)]}),
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         'date_created': fields.date('Creation date', readonly=True),
         'date_accepted': fields.date('Acceptance date', readonly=True),
         'date_accreditation': fields.date('Accreditation date', readonly=True),
         'date_paid': fields.date('Paid date', readonly=True),
         'date_unsolved': fields.date('Unsolved date', readonly=True),
+<<<<<<< HEAD
         'company_id': fields.many2one('res.company', 'Company', required=True, readonly=True, states={'draft':[('readonly',False)]}),
         'acceptance_move_ids': fields.function(_get_acceptance_move_ids, type='many2many', relation='account.move', method=True, string="Acceptance Entries"),
         'accreditation_move_id': fields.many2one('account.move', 'Accreditation Entry', readonly=True),
         'payment_ids': fields.function(_get_payment_ids, relation='account.move.line', type="many2many", string='Payments'),
         'unsolved_move_ids': fields.function(_get_unsolved_move_ids, type='many2many', relation='account.move', method=True, string="Unsolved Entries"),
         'type': fields.related('config', 'tipo', type='char', size=32, string='Type', readonly=True),
+=======
+        'company_id': fields.many2one(
+            'res.company', 'Company', required=True, readonly=True,
+            states={'draft': [('readonly', False)]}),
+        'acceptance_move_ids': fields.function(
+            _get_acceptance_move_ids, type='many2many',
+            relation='account.move', method=True, string="Acceptance Entries"),
+        'accreditation_move_id': fields.many2one(
+            'account.move', 'Accreditation Entry', readonly=True),
+        'payment_ids': fields.function(
+            _get_payment_ids, relation='account.move.line', type="many2many",
+            string='Payments'),
+        'unsolved_move_ids': fields.function(
+            _get_unsolved_move_ids, type='many2many', relation='account.move',
+            method=True, string="Unsolved Entries"),
+        'type': fields.related(
+            'config', 'tipo', type='char', size=32, string='Type',
+            readonly=True),
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         'registration_date': fields.date(
             'Registration Date',
             states={'draft': [('readonly', False)],
@@ -103,6 +182,7 @@ class riba_distinta(orm.Model):
     }
 
     _defaults = {
+<<<<<<< HEAD
         'user_id': lambda self,cr,uid,context: uid,
         'date_created': fields.date.context_today,
         'name': lambda self,cr,uid,context: self.pool.get('ir.sequence').get(cr, uid, 'riba.distinta'),
@@ -115,11 +195,33 @@ class riba_distinta(orm.Model):
             if distinta.state not in ('draft',  'cancel'):
                 raise orm.except_orm(_('Error'),_('Distinta %s is in state %s. You can only delete documents in state draft or canceled') % (distinta.name, distinta.state))
         super(riba_distinta,self).unlink(cr, uid, ids, context=context)
+=======
+        'user_id': lambda self, cr, uid, context: uid,
+        'date_created': fields.date.context_today,
+        'name': lambda self, cr, uid, context: self.pool.get(
+            'ir.sequence').get(cr, uid, 'riba.distinta'),
+        'company_id': lambda self, cr, uid, c: self.pool.get(
+            'res.company'
+        )._company_default_get(cr, uid, 'riba.distinta', context=c),
+        'registration_date': fields.date.context_today,
+    }
+
+    def unlink(self, cr, uid, ids, context=None):
+        for distinta in self.browse(cr, uid, ids, context=context):
+            if distinta.state not in ('draft', 'cancel'):
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Distinta %s is in state %s. You can only delete '
+                      'documents in state draft or canceled')
+                    % (distinta.name, distinta.state))
+        super(riba_distinta, self).unlink(cr, uid, ids, context=context)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         return True
 
     def confirm(self, cr, uid, ids, context=None):
         line_pool = self.pool.get('riba.distinta.line')
         for distinta in self.browse(cr, uid, ids, context=context):
+<<<<<<< HEAD
             line_pool.confirm(cr, uid, [line.id for line in distinta.line_ids], context=context)
         return True
     
@@ -129,6 +231,19 @@ class riba_distinta(orm.Model):
             }, context=context)
         return True
     
+=======
+            line_pool.confirm(
+                cr, uid, [line.id for line in distinta.line_ids],
+                context=context)
+        return True
+
+    def riba_new(self, cr, uid, ids, context=None):
+        self.write(cr, uid, ids, {
+            'state': 'draft',
+        }, context=context)
+        return True
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def riba_cancel(self, cr, uid, ids, context=None):
         for distinta in self.browse(cr, uid, ids, context=context):
             # TODO remove ervery other move
@@ -141,67 +256,113 @@ class riba_distinta(orm.Model):
                 distinta.accreditation_move_id.unlink()
         self.write(cr, uid, ids, {
             'state': 'cancel',
+<<<<<<< HEAD
             }, context=context)
         return True
     
+=======
+        }, context=context)
+        return True
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def riba_accepted(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'accepted',
             'date_accepted': fields.date.context_today(
                 self, cr, uid, context),
+<<<<<<< HEAD
             }, context=context)
         return True
     
+=======
+        }, context=context)
+        return True
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def riba_accredited(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'accredited',
             'date_accreditation': fields.date.context_today(
                 self, cr, uid, context),
+<<<<<<< HEAD
             }, context=context)
+=======
+        }, context=context)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         for distinta in self.browse(cr, uid, ids, context=context):
             for line in distinta.line_ids:
                 line.write({'state': 'accredited'})
         return True
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def riba_paid(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'paid',
             'date_paid': fields.date.context_today(
                 self, cr, uid, context),
+<<<<<<< HEAD
             }, context=context)
         return True
     
+=======
+        }, context=context)
+        return True
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def riba_unsolved(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'unsolved',
             'date_unsolved': fields.date.context_today(
                 self, cr, uid, context),
+<<<<<<< HEAD
             }, context=context)
         return True
         
+=======
+        }, context=context)
+        return True
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def test_accepted(self, cr, uid, ids, *args):
         for distinta in self.browse(cr, uid, ids):
             for line in distinta.line_ids:
                 if line.state != 'confirmed':
                     return False
         return True
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def test_unsolved(self, cr, uid, ids, *args):
         for distinta in self.browse(cr, uid, ids):
             for line in distinta.line_ids:
                 if line.state != 'unsolved':
                     return False
         return True
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def test_paid(self, cr, uid, ids, *args):
         for distinta in self.browse(cr, uid, ids):
             for line in distinta.line_ids:
                 if line.state != 'paid':
                     return False
         return True
+<<<<<<< HEAD
         
     def action_cancel_draft(self, cr, uid, ids, *args):
         self.write(cr, uid, ids, {'state':'draft'})
+=======
+
+    def action_cancel_draft(self, cr, uid, ids, *args):
+        self.write(cr, uid, ids, {'state': 'draft'})
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         wf_service = netsvc.LocalService("workflow")
         for distinta_id in ids:
             wf_service.trg_delete(uid, 'riba.distinta', distinta_id, cr)
@@ -210,7 +371,11 @@ class riba_distinta(orm.Model):
 
 
 class riba_distinta_line(orm.Model):
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def _get_line_values(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
@@ -221,6 +386,7 @@ class riba_distinta_line(orm.Model):
             for move_line in line.move_line_ids:
                 res[line.id]['amount'] += move_line.amount
                 if not res[line.id]['invoice_date']:
+<<<<<<< HEAD
                     res[line.id]['invoice_date'] = str(move_line.move_line_id.invoice.date_invoice)
                 else:
                     res[line.id]['invoice_date'] += ', '+str(move_line.move_line_id.invoice.date_invoice)
@@ -228,11 +394,25 @@ class riba_distinta_line(orm.Model):
                     res[line.id]['invoice_number'] = str(move_line.move_line_id.invoice.internal_number)
                 else:
                     res[line.id]['invoice_number'] += ', '+str(move_line.move_line_id.invoice.internal_number)
+=======
+                    res[line.id]['invoice_date'] = str(
+                        move_line.move_line_id.invoice.date_invoice)
+                else:
+                    res[line.id]['invoice_date'] += ', ' + str(
+                        move_line.move_line_id.invoice.date_invoice)
+                if not res[line.id]['invoice_number']:
+                    res[line.id]['invoice_number'] = str(
+                        move_line.move_line_id.invoice.internal_number)
+                else:
+                    res[line.id]['invoice_number'] += ', ' + str(
+                        move_line.move_line_id.invoice.internal_number)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         return res
 
     def _reconciled(self, cr, uid, ids, name, args, context=None):
         wf_service = netsvc.LocalService("workflow")
         res = {}
+<<<<<<< HEAD
         for id in ids:
             res[id] = self.test_paid(cr, uid, [id])
             if res[id]:
@@ -240,19 +420,39 @@ class riba_distinta_line(orm.Model):
                 wf_service.trg_validate(
                     uid, 'riba.distinta',
                     self.browse(cr, uid, id).distinta_id.id, 'paid', cr)
+=======
+        for rec_id in ids:
+            res[rec_id] = self.test_paid(cr, uid, [rec_id])
+            if res[rec_id]:
+                self.write(cr, uid, rec_id, {'state': 'paid'}, context=context)
+                wf_service.trg_validate(
+                    uid, 'riba.distinta',
+                    self.browse(cr, uid, rec_id).distinta_id.id, 'paid', cr)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         return res
 
     def move_line_id_payment_gets(self, cr, uid, ids, *args):
         res = {}
+<<<<<<< HEAD
         if not ids: return res
         cr.execute('SELECT distinta_line.id, l.id '\
                    'FROM account_move_line l '\
                    'LEFT JOIN riba_distinta_line distinta_line ON (distinta_line.acceptance_move_id=l.move_id) '\
                    'WHERE distinta_line.id IN %s '\
+=======
+        if not ids:
+            return res
+        cr.execute('SELECT distinta_line.id, l.id '
+                   'FROM account_move_line l '
+                   'LEFT JOIN riba_distinta_line distinta_line ON '
+                   '(distinta_line.acceptance_move_id=l.move_id) '
+                   'WHERE distinta_line.id IN %s '
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
                    'AND l.account_id=distinta_line.acceptance_account_id',
                    (tuple(ids),))
         for r in cr.fetchall():
             res.setdefault(r[0], [])
+<<<<<<< HEAD
             res[r[0]].append( r[1] )
         return res
 
@@ -260,22 +460,52 @@ class riba_distinta_line(orm.Model):
     # whose id is in ids
     def move_line_id_payment_get(self, cr, uid, ids, *args):
         if not ids: return []
+=======
+            res[r[0]].append(r[1])
+        return res
+
+    # return the ids of the move lines which has the same account than the
+    # statement whose id is in ids
+    def move_line_id_payment_get(self, cr, uid, ids, *args):
+        if not ids:
+            return []
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         result = self.move_line_id_payment_gets(cr, uid, ids, *args)
         return result.get(ids[0], [])
 
     def test_paid(self, cr, uid, ids, *args):
+<<<<<<< HEAD
+=======
+        for line in self.browse(cr, uid, ids):
+            if line.state == 'unsolved':
+                return False
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         res = self.move_line_id_payment_get(cr, uid, ids)
         if not res:
             return False
         ok = True
+<<<<<<< HEAD
         for id in res:
             cr.execute('select reconcile_id from account_move_line where id=%s', (id,))
             ok = ok and  bool(cr.fetchone()[0])
+=======
+        for rec_id in res:
+            cr.execute(
+                'select reconcile_id from account_move_line where id=%s',
+                (rec_id,))
+            ok = ok and bool(cr.fetchone()[0])
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         return ok
 
     def _get_riba_line_from_move_line(self, cr, uid, ids, context=None):
         move = {}
+<<<<<<< HEAD
         for line in self.pool.get('account.move.line').browse(cr, uid, ids, context=context):
+=======
+        for line in self.pool.get('account.move.line').browse(
+            cr, uid, ids, context=context
+        ):
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
             if line.reconcile_partial_id:
                 for line2 in line.reconcile_partial_id.line_partial_ids:
                     move[line2.move_id.id] = True
@@ -285,12 +515,23 @@ class riba_distinta_line(orm.Model):
         line_ids = []
         if move:
             line_ids = self.pool.get('riba.distinta.line').search(
+<<<<<<< HEAD
                 cr, uid, [('acceptance_move_id','in',move.keys())], context=context)
+=======
+                cr, uid, [('acceptance_move_id', 'in', move.keys())],
+                context=context)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         return line_ids
 
     def _get_line_from_reconcile(self, cr, uid, ids, context=None):
         move = {}
+<<<<<<< HEAD
         for r in self.pool.get('account.move.reconcile').browse(cr, uid, ids, context=context):
+=======
+        for r in self.pool.get('account.move.reconcile').browse(
+            cr, uid, ids, context=context
+        ):
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
             for line in r.line_partial_ids:
                 move[line.move_id.id] = True
             for line in r.line_id:
@@ -298,7 +539,12 @@ class riba_distinta_line(orm.Model):
         line_ids = []
         if move:
             line_ids = self.pool.get('riba.distinta.line').search(
+<<<<<<< HEAD
                 cr, uid, [('acceptance_move_id','in',move.keys())], context=context)
+=======
+                cr, uid, [('acceptance_move_id', 'in', move.keys())],
+                context=context)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         return line_ids
 
     def _compute_lines(self, cr, uid, ids, name, args, context=None):
@@ -310,23 +556,39 @@ class riba_distinta_line(orm.Model):
                 for m in riba_line.acceptance_move_id.line_id:
                     temp_lines = []
                     if m.reconcile_id and m.credit == 0.0:
+<<<<<<< HEAD
                         temp_lines = map(lambda x: x.id, m.reconcile_id.line_id)
                     elif m.reconcile_partial_id and m.credit == 0.0:
                         temp_lines = map(lambda x: x.id, m.reconcile_partial_id.line_partial_ids)
+=======
+                        temp_lines = map(
+                            lambda x: x.id, m.reconcile_id.line_id)
+                    elif m.reconcile_partial_id and m.credit == 0.0:
+                        temp_lines = map(
+                            lambda x: x.id,
+                            m.reconcile_partial_id.line_partial_ids)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
                     lines += [x for x in temp_lines if x not in lines]
                     src.append(m.id)
 
             lines = filter(lambda x: x not in src, lines)
             result[riba_line.id] = lines
         return result
+<<<<<<< HEAD
         
     # TODO estendere la account_due_list per visualizzare e filtrare in base alle riba ?
+=======
+
+    # TODO estendere la account_due_list per visualizzare e filtrare in base
+    # alle riba ?
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     _name = 'riba.distinta.line'
     _description = 'Riba details'
     _rec_name = 'sequence'
 
     _columns = {
         'sequence': fields.integer('Number'),
+<<<<<<< HEAD
         'move_line_ids': fields.one2many('riba.distinta.move.line', 'riba_line_id', 'Credit move lines'),
         'acceptance_move_id': fields.many2one('account.move', 'Acceptance Entry', readonly=True),
         'unsolved_move_id': fields.many2one('account.move', 'Unsolved Entry', readonly=True),
@@ -339,12 +601,39 @@ class riba_distinta_line(orm.Model):
         'invoice_date' : fields.function(_get_line_values, string="Invoice Date", type='char', size=256, method=True, multi="line"),
         'invoice_number' : fields.function(_get_line_values, string="Invoice Number", type='char', size=256, method=True, multi="line"),
         'due_date' : fields.date("Due date", readonly=True),
+=======
+        'move_line_ids': fields.one2many(
+            'riba.distinta.move.line', 'riba_line_id', 'Credit move lines'),
+        'acceptance_move_id': fields.many2one(
+            'account.move', 'Acceptance Entry', readonly=True),
+        'unsolved_move_id': fields.many2one(
+            'account.move', 'Unsolved Entry', readonly=True),
+        'acceptance_account_id': fields.many2one(
+            'account.account', 'Acceptance Account'),
+        'amount': fields.function(
+            _get_line_values, method=True, string="Amount", multi="line"),
+        'bank_id': fields.many2one('res.partner.bank', 'Debitor Bank'),
+        'iban': fields.related(
+            'bank_id', 'iban', type='char', string='IBAN', store=False,
+            readonly=True),
+        'distinta_id': fields.many2one(
+            'riba.distinta', 'Distinta', required=True, ondelete='cascade'),
+        'partner_id': fields.many2one('res.partner', "Cliente", readonly=True),
+        'invoice_date': fields.function(
+            _get_line_values, string="Invoice Date", type='char', size=256,
+            method=True, multi="line"),
+        'invoice_number': fields.function(
+            _get_line_values, string="Invoice Number", type='char', size=256,
+            method=True, multi="line"),
+        'due_date': fields.date("Due date", readonly=True),
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         'state': fields.selection([
             ('draft', 'Draft'),
             ('confirmed', 'Confirmed'),
             ('accredited', 'Accredited'),
             ('paid', 'Paid'),
             ('unsolved', 'Unsolved'),
+<<<<<<< HEAD
             ], 'State', select=True, readonly=True),
         'reconciled': fields.function(_reconciled, string='Paid/Reconciled', type='boolean',
             store={
@@ -356,6 +645,28 @@ class riba_distinta_line(orm.Model):
         'type': fields.related('distinta_id', 'type', type='char', size=32, string='Type', readonly=True),
     }
     
+=======
+        ], 'State', select=True, readonly=True),
+        'reconciled': fields.function(
+            _reconciled, string='Paid/Reconciled', type='boolean',
+            store={
+                'riba.distinta.line': (lambda self, cr, uid, ids, c={}: ids, [
+                    'acceptance_move_id'], 50),
+                'account.move.line': (_get_riba_line_from_move_line, None, 50),
+                'account.move.reconcile': (_get_line_from_reconcile, None, 50),
+            },
+            help="It indicates that the line has been paid and the journal "
+                 "entry of the line has been reconciled with one or several "
+                 "journal entries of payment."),
+        'payment_ids': fields.function(
+            _compute_lines, relation='account.move.line', type="many2many",
+            string='Payments'),
+        'type': fields.related(
+            'distinta_id', 'type', type='char', size=32, string='Type',
+            readonly=True),
+    }
+
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     def confirm(self, cr, uid, ids, context=None):
         move_pool = self.pool.get('account.move')
         move_line_pool = self.pool.get('account.move.line')
@@ -363,21 +674,39 @@ class riba_distinta_line(orm.Model):
         for line in self.browse(cr, uid, ids, context=context):
             journal = line.distinta_id.config.acceptance_journal_id
             total_credit = 0.0
+<<<<<<< HEAD
             move_id= move_pool.create(cr, uid, {
                 'ref': 'Ri.Ba. %s - line %s' % (line.distinta_id.name, line.sequence),
                 'journal_id': journal.id,
                 'date': line.distinta_id.registration_date,
                 }, context=context)
+=======
+            move_id = move_pool.create(cr, uid, {
+                'ref': 'Ri.Ba. %s - line %s' % (
+                    line.distinta_id.name, line.sequence),
+                'journal_id': journal.id,
+                'date': line.distinta_id.registration_date,
+            }, context=context)
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
             to_be_reconciled = []
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
                 move_line_id = move_line_pool.create(cr, uid, {
+<<<<<<< HEAD
                     'name': riba_move_line.move_line_id.invoice.number,
+=======
+                    'name': (
+                        riba_move_line.move_line_id.invoice
+                        and riba_move_line.move_line_id.invoice.number
+                        or riba_move_line.move_line_id.name
+                        ),
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
                     'partner_id': line.partner_id.id,
                     'account_id': riba_move_line.move_line_id.account_id.id,
                     'credit': riba_move_line.amount,
                     'debit': 0.0,
                     'move_id': move_id,
+<<<<<<< HEAD
                     }, context=context)
                 to_be_reconciled.append([move_line_id, riba_move_line.move_line_id.id])
             move_line_pool.create(cr, uid, {
@@ -401,6 +730,35 @@ class riba_distinta_line(orm.Model):
                 'acceptance_move_id': move_id,
                 'state': 'confirmed',
                 })
+=======
+                }, context=context)
+                to_be_reconciled.append(
+                    [move_line_id, riba_move_line.move_line_id.id])
+            move_line_pool.create(
+                cr, uid, {
+                    'name': 'Ri.Ba. %s - line %s' % (
+                        line.distinta_id.name, line.sequence),
+                    'account_id': (
+                        line.acceptance_account_id.id or
+                        line.distinta_id.config.acceptance_account_id.id
+                        # in questo modo se la riga non ha conto accettazione
+                        # viene prelevato il conto in configurazione riba
+                    ),
+                    'partner_id': line.partner_id.id,
+                    'date_maturity': line.due_date,
+                    'credit': 0.0,
+                    'debit': total_credit,
+                    'move_id': move_id,
+                }, context=context)
+            move_pool.post(cr, uid, [move_id], context=context)
+            for reconcile_ids in to_be_reconciled:
+                move_line_pool.reconcile_partial(
+                    cr, uid, reconcile_ids, context=context)
+            line.write({
+                'acceptance_move_id': move_id,
+                'state': 'confirmed',
+            })
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
             wf_service.trg_validate(
                 uid, 'riba.distinta', line.distinta_id.id, 'accepted', cr)
         return True
@@ -413,8 +771,18 @@ class riba_distinta_move_line(orm.Model):
     _rec_name = 'amount'
 
     _columns = {
+<<<<<<< HEAD
         'amount' : fields.float('Amount', digits_compute=dp.get_precision('Account')),
         'move_line_id': fields.many2one('account.move.line', 'Credit move line'),
         'riba_line_id': fields.many2one('riba.distinta.line', 'Distinta line', ondelete='cascade'),
     }
 
+=======
+        'amount': fields.float(
+            'Amount', digits_compute=dp.get_precision('Account')),
+        'move_line_id': fields.many2one(
+            'account.move.line', 'Credit move line'),
+        'riba_line_id': fields.many2one(
+            'riba.distinta.line', 'Distinta line', ondelete='cascade'),
+    }
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0

@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 ##############################################################################
 #    
+=======
+#
+#
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -22,7 +27,11 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+<<<<<<< HEAD
 ##############################################################################
+=======
+#
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 
 {
     "name": "Ricevute Bancarie",
@@ -30,6 +39,7 @@
     "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "http://www.openerp-italia.org",
+<<<<<<< HEAD
     "license": "AGPL-3",
     "description": """
 Gestione delle Ricevute Bancarie
@@ -51,6 +61,53 @@ Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQ
     """,
     'images': [],
     'depends': ['account','account_voucher', 'l10n_it_fiscalcode', 'account_due_list'],
+=======
+    "description": """
+Gestione delle Ricevute Bancarie
+--------------------------------
+Nella configurazione delle Ri.Ba. è possibile specificare se si tratti di
+'salvo buon fine' o 'al dopo incasso'. I due tipi di Ri.Ba. hanno un flusso
+completamente diverso. In caso di 'al dopo incasso', nessuna registrazione
+verrà effettuata automaticamente e le fatture risulteranno pagate solo al
+momento dell'effettivo incasso.
+
+E' possibile specificare diverse configurazioni (dal menù
+configurazioni -> varie -> Ri.Ba.). Per ognuna, in caso di 'salvo buon fine',
+è necessario specificare almeno il sezionale ed il conto da
+utilizzare al momento dell'accettazione della distinta da parte della banca.
+La configurazione relativa alla fase di accredito, verrà usata nel momento in
+cui la banca accredita l'importo della distinta. Mentre quella relativa
+all'insoluto verrà utilizzato in caso di
+mancato pagamento da parte del cliente.
+
+Per utilizzare il meccanismo delle Ri.Ba. è necessario configurare un termine
+di pagamento di tipo 'Ri.Ba.'.
+
+Per emettere una distinta bisogna andare su Ri.Ba. -> emetti Ri.Ba. e
+selezionare i pagamenti per i quali emettere la distinta.
+Se per il cliente è stato abilitato il raggruppo, i pagamenti dello stesso
+cliente e con la stessa data di scadenza andranno a costituire un solo elemento
+della distinta.
+
+I possibili stati della distinta sono: bozza, accettata, accreditata, pagata,
+insoluta, annullata.
+Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
+contabili, le quali verranno riepilogate nel tab 'contabilità'.
+Questo tab è presente sia sulla distinta che sulle sue righe.
+
+Qui
+http://goo.gl/jpRhJp abbiamo un esempio delle tipiche registrazioni generate
+da un flusso 'salvo buon fine'.
+    """,
+    'images': [],
+    'depends': [
+        'account',
+        'account_voucher',
+        'l10n_it_fiscalcode',
+        'account_due_list',
+        'base_iban',
+    ],
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     'init_xml': [],
     'data': [
         "partner/partner_view.xml",
@@ -65,8 +122,20 @@ Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQ
         "riba_workflow.xml",
         "security/ir.model.access.csv",
     ],
+<<<<<<< HEAD
     'demo_xml': [],
     'test': [],
     'installable': False,
+=======
+    'demo_xml': [
+        'demo/riba_demo.xml',
+        ],
+    'test': [
+        'test/riba_invoice.yml',
+        'test/issue_riba.yml',
+        'test/unsolved_riba.yml',
+        ],
+    'installable': True,
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     'active': False,
 }

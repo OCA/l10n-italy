@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 ##############################################################################
 #    
+=======
+#
+#
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -22,6 +27,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+<<<<<<< HEAD
 ##############################################################################
 
 import configurazione
@@ -30,3 +36,12 @@ import riba
 import account
 import wizard
 
+=======
+#
+
+from . import configurazione
+from . import partner
+from . import riba
+from . import account
+from . import wizard
+>>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
