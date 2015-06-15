@@ -135,7 +135,7 @@ class riba_unsolved(orm.TransientModel):
             raise orm.except_orm(_('Error'), _('No active ID found'))
         move_pool = self.pool['account.move']
         invoice_pool = self.pool['account.invoice']
-        move_line_pool = self.pool['account.move.line']  # TODO is it nec?
+        move_line_pool = self.pool['account.move.line']
         distinta_line = self.pool['riba.list.line'].browse(cr, uid, active_id,
                                                            context=context)
         wizard = self.browse(cr, uid, ids)[0]
