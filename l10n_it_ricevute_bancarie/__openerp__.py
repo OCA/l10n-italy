@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#
+##############################################################################
 #
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
@@ -22,14 +22,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
+##############################################################################
 
 {
     "name": "Ricevute Bancarie",
     "version": "1.3",
-    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
+    "author": "Odoo Italian Community",
     "category": "Accounting & Finance",
-    "website": "http://www.openerp-italia.org",
+    "website": "http://www.odoo-italia.org",
     "description": """
 Gestione delle Ricevute Bancarie
 --------------------------------
@@ -72,26 +72,21 @@ da un flusso 'salvo buon fine'.
         'account',
         'account_voucher',
         'l10n_it_fiscalcode',
-        'account_due_list',
-        'base_iban',
-    ],
-    'init_xml': [],
+        'account_due_list'],
     'data': [
-        "partner/partner_view.xml",
-        "configurazione_view.xml",
+        "views/partner_view.xml",
+        "views/configuration_view.xml",
         "riba_sequence.xml",
-        "wizard/wizard_accreditation.xml",
-        "wizard/wizard_unsolved.xml",
-        "riba_view.xml",
-        "account/account_view.xml",
-        "wizard/wizard_emissione_riba.xml",
-        "wizard/riba_file_export.xml",
+        "views/wizard_accreditation.xml",
+        "views/wizard_unsolved.xml",
+        "views/riba_view.xml",
+        "views/account_view.xml",
+        "views/wizard_riba_issue.xml",
+        "views/wizard_riba_file_export.xml",
         "riba_workflow.xml",
-        "security/ir.model.access.csv",
+        # "security/ir.model.access.csv",
     ],
-    'demo_xml': [
-        'demo/riba_demo.xml',
-        ],
+    'demo': ["demo/riba_demo.xml"],
     'test': [
         'test/riba_invoice.yml',
         'test/issue_riba.yml',

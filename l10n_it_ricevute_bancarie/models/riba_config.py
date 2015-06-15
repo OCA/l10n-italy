@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#
+##############################################################################
 #
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
@@ -22,25 +22,24 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
+##############################################################################
 
 from openerp.osv import fields, orm
 
 
-class riba_configurazione(orm.Model):
+class riba_configuration(orm.Model):
 
-    _name = "riba.configurazione"
-    _description = "Parametri di configurazione per le Ricevute Bancarie"
+    _name = "riba.configuration"
+    _description = "Configuration parameters for Ricevute Bancarie"
 
     _columns = {
-        'name': fields.char("Descrizione", size=64, required=True),
-        'tipo': fields.selection(
+        'name': fields.char("Description", size=64, required=True),
+        'type': fields.selection(
             (('sbf', 'Salvo buon fine'), ('incasso', 'Al dopo incasso')),
-            "Modalità Emissione", required=True),
+            "Issuing mode", required=True),
         'bank_id': fields.many2one(
-            'res.partner.bank', "Banca",
-            required=True, help="Bank account used for Ri.Ba. issuing"),
-
+            'res.partner.bank', "Bank", required=True,
+            help="Bank account used for Ri.Ba. issuing"),
         'acceptance_journal_id': fields.many2one(
             'account.journal', "Acceptance journal",
             domain=[('type', '=', 'bank')],
@@ -49,9 +48,10 @@ class riba_configurazione(orm.Model):
             'account.account', "Acceptance account",
             domain=[('type', '=', 'receivable')],
             help='Account used when Ri.Ba. is accepted by the bank'),
-
-        'company_id': fields.many2one('res.company', 'Company', required=True),
-
+        'company_id': fields.many2one(
+            'res.company', 'Company', required=True,
+            default=lambda self: self.env['res.company']._company_default_get(
+                'riba.configuration')),
         'accreditation_journal_id': fields.many2one(
             'account.journal', "Accreditation journal",
             domain=[('type', '=', 'bank')],
@@ -59,12 +59,11 @@ class riba_configurazione(orm.Model):
         'accreditation_account_id': fields.many2one(
             'account.account', "Ri.Ba. bank account",
             help='Account used when Ri.Ba. is accepted by the bank'),
-        'bank_account_id': fields.many2one('account.account', "Bank account",
-                                           domain=[(
-                                               'type', '=', 'liquidity')]),
+        'bank_account_id': fields.many2one(
+            'account.account', "Bank account",
+            domain=[('type', '=', 'liquidity')]),
         'bank_expense_account_id': fields.many2one(
             'account.account', "Bank Expenses account"),
-
         'unsolved_journal_id': fields.many2one(
             'account.journal', "Unsolved journal",
             domain=[('type', '=', 'bank')],
@@ -76,32 +75,24 @@ class riba_configurazione(orm.Model):
             'account.account', "Protest charge account"),
     }
 
-    _defaults = {
-        'company_id': lambda self, cr, uid, c: self.pool.get(
-            'res.company'
-        )._company_default_get(cr, uid, 'riba.configurazione', context=c),
-    }
-
-    def get_default_value_by_distinta(self, cr, uid, field_name, context=None):
+    def get_default_value_by_list(self, cr, uid, field_name, context=None):
         if context is None:
             context = {}
         if not context.get('active_id', False):
             return False
-        distinta_pool = self.pool.get('riba.distinta')
-        distinta = distinta_pool.browse(
-            cr, uid, context['active_id'], context=context)
-        return distinta.config[field_name] and distinta.config[
-            field_name].id or False
+        ribalist_pool = self.pool['riba.list']
+        ribalist = ribalist_pool.browse(cr, uid, context['active_id'],
+                                        context=context)
+        return (ribalist.config_id[field_name] and
+                ribalist.config_id[field_name].id or False)
 
-    def get_default_value_by_distinta_line(
-        self, cr, uid, field_name, context=None
-    ):
+    def get_default_value_by_list_line(self, cr, uid, field_name,
+                                       context=None):
         if context is None:
             context = {}
         if not context.get('active_id', False):
             return False
-        distinta_line = self.pool.get('riba.distinta.line').browse(
+        ribalist_line = self.pool['riba.list.line'].browse(
             cr, uid, context['active_id'], context=context)
-        return distinta_line.distinta_id.config[
-            field_name
-        ] and distinta_line.distinta_id.config[field_name].id or False
+        return (ribalist_line.list_id.config_id[field_name] and
+                ribalist_line.list_id.config_id[field_name].id or False)

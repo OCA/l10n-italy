@@ -70,7 +70,7 @@ $ricevute_bancarie = array bidimensionale con i seguenti index:
 
 import base64
 from openerp.osv import fields, orm
-from tools.translate import _
+from openerp.tools.translate import _
 import datetime
 
 
@@ -201,7 +201,7 @@ class riba_file_export(orm.TransientModel):
 
     def act_getfile(self, cr, uid, ids, context=None):
         active_ids = context and context.get('active_ids', [])
-        order_obj = self.pool.get('riba.distinta').browse(
+        order_obj = self.pool['riba.list'].browse(
             cr, uid, active_ids, context=context)[0]
         credit_bank = order_obj.config.bank_id
         name_company = order_obj.config.company_id.partner_id.name

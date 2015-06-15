@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#
+##############################################################################
 #
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
@@ -22,7 +22,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
+##############################################################################
 
 from openerp.osv import fields, orm
 
@@ -33,9 +33,6 @@ class account_payment_term(orm.Model):
 
     _columns = {
         'riba': fields.boolean('Riba'),
-    }
-    _defaults = {
-        'riba': False,
     }
 
 
@@ -61,9 +58,10 @@ class account_move_line(orm.Model):
 
     _columns = {
         'distinta_line_ids': fields.one2many(
-            'riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
-        'riba': fields.related('invoice', 'payment_term', 'riba',
-                               type='boolean', string='RiBa', store=False),
+            'riba.list.move.line', 'move_line_id', "Dettaglio riba"),
+        'riba': fields.related(
+            'invoice', 'payment_term', 'riba', type='boolean', string='RiBa',
+            store=False),
         'unsolved_invoice_ids': fields.many2many(
             'account.invoice', 'invoice_unsolved_line_rel', 'line_id',
             'invoice_id', 'Unsolved Invoices'),
@@ -77,7 +75,7 @@ class account_move_line(orm.Model):
 
     def fields_view_get(
         self, cr, uid, view_id=None, view_type='form',
-        context=None, toolbar=False, submenu=False
+        context={}, toolbar=False, submenu=False
     ):
         # Special view for account.move.line object
         # (for ex. tree view contains user defined fields)
