@@ -58,7 +58,7 @@ class riba_accreditation(orm.TransientModel):
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-from openerp import netsvc
+from openerp import workflow
 
 
 class riba_accreditation(orm.TransientModel):
@@ -168,11 +168,11 @@ class riba_accreditation(orm.TransientModel):
     def skip(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
-        wf_service.trg_validate(
+        workflow.trg_validate(
             uid, 'riba.list', active_id, 'accredited', cr)
         return {'type': 'ir.actions.act_window_close'}
 <<<<<<< HEAD
@@ -183,7 +183,7 @@ class riba_accreditation(orm.TransientModel):
     def create_move(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
@@ -272,7 +272,7 @@ class riba_accreditation(orm.TransientModel):
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
         move_id = move_pool.create(cr, uid, move_vals, context=context)
         distinta.write({'accreditation_move_id': move_id})
-        wf_service.trg_validate(
+        workflow.trg_validate(
             uid, 'riba.list', active_id, 'accredited', cr)
         return {
             'name': _('Accreditation Entry'),

@@ -52,7 +52,7 @@ class riba_unsolved(orm.TransientModel):
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-from openerp import netsvc
+from openerp import workflow
 
 
 class riba_unsolved(orm.TransientModel):
@@ -192,7 +192,7 @@ class riba_unsolved(orm.TransientModel):
     def skip(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
@@ -211,8 +211,12 @@ class riba_unsolved(orm.TransientModel):
         line_pool = self.pool['riba.list.line']
         line_pool.write(cr, uid, active_id, {'state': 'unsolved'},
                         context=context)
+<<<<<<< HEAD
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
         wf_service.trg_validate(
+=======
+        workflow.trg_validate(
+>>>>>>> 162e855... fix pointless-string-statement
             uid, 'riba.list',
             line_pool.browse(cr, uid, active_id).list_id.id, 'unsolved',
             cr)
@@ -222,7 +226,7 @@ class riba_unsolved(orm.TransientModel):
     def create_move(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
@@ -382,8 +386,12 @@ class riba_unsolved(orm.TransientModel):
 =======
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
+<<<<<<< HEAD
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
         wf_service.trg_validate(
+=======
+        workflow.trg_validate(
+>>>>>>> 162e855... fix pointless-string-statement
             uid, 'riba.list', distinta_line.list_id.id, 'unsolved', cr)
         return {
             'name': _('Unsolved Entry'),
