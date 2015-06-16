@@ -122,7 +122,7 @@ class riba_unsolved(orm.TransientModel):
                         context=context)
         wf_service.trg_validate(
             uid, 'riba.list',
-            line_pool.browse(cr, uid, active_id).distinta_id.id, 'unsolved',
+            line_pool.browse(cr, uid, active_id).list_id.id, 'unsolved',
             cr)
         return {'type': 'ir.actions.act_window_close'}
 
@@ -148,7 +148,7 @@ class riba_unsolved(orm.TransientModel):
             raise orm.except_orm(_('Error'), _('Every account is mandatory'))
         move_vals = {
             'ref': _('Unsolved Ri.Ba. %s - line %s') % (
-                distinta_line.distinta_id.name, distinta_line.sequence),
+                distinta_line.list_id.name, distinta_line.sequence),
             'journal_id': wizard.unsolved_journal_id.id,
             'line_id': [
                 (0, 0, {
@@ -220,7 +220,7 @@ class riba_unsolved(orm.TransientModel):
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
         wf_service.trg_validate(
-            uid, 'riba.list', distinta_line.distinta_id.id, 'unsolved', cr)
+            uid, 'riba.list', distinta_line.list_id.id, 'unsolved', cr)
         return {
             'name': _('Unsolved Entry'),
             'view_type': 'form',

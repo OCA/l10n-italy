@@ -75,7 +75,7 @@ class account_move_line(orm.Model):
 
     def fields_view_get(
         self, cr, uid, view_id=None, view_type='form',
-        context={}, toolbar=False, submenu=False
+        context=None, toolbar=False, submenu=False
     ):
         # Special view for account.move.line object
         # (for ex. tree view contains user defined fields)

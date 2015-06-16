@@ -72,7 +72,8 @@ da un flusso 'salvo buon fine'.
         'account',
         'account_voucher',
         'l10n_it_fiscalcode',
-        'account_due_list'],
+        'account_due_list',
+        'base_iban'],
     'data': [
         "views/partner_view.xml",
         "views/configuration_view.xml",
