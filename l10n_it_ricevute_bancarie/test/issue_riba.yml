@@ -16,7 +16,7 @@
     action = self.create_list(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
       "tz": False, "active_model": "account.move.line", "active_ids": [riba_move_line_id],
       "active_id": riba_move_line_id, })
-    riba_list_id = action[0]['res_id']
+    riba_list_id = action and action[0]['res_id'] or False
     list_pool = self.pool['riba.list']
     list_pool.confirm(cr, uid, [riba_list_id], context=context)
     list = list_pool.browse(cr, uid, riba_list_id)
@@ -40,7 +40,7 @@
     assert (list.state == 'accredited'), ("RiBa list is not accredited, but %s" % list.state)
     # voucher payment
     voucher_pool = self.pool['account.voucher']
-    from openerp import netsvc
+    from openerp import workflow
     vals = {}
     journal_id = voucher_pool.default_get(cr, uid, ['journal_id']).get('journal_id',None)
     voucher = voucher_pool.recompute_voucher_lines(cr, uid, [], ref("base.res_partner_12"), journal_id, 450.0, ref('base.EUR'), 'receipt', False)
@@ -65,7 +65,6 @@
     voucher_id = voucher_pool.browse(cr, uid, id)
     assert (voucher_id.writeoff_amount == 0.0), "Writeoff amount is not 0.0"
     assert (voucher_id.state=='draft'), "Voucher is not in draft state"
-    wf_service = netsvc.LocalService("workflow")
-    wf_service.trg_validate(uid, 'account.voucher', voucher_id.id, 'proforma_voucher', cr)
+    workflow.trg_validate(uid, 'account.voucher', voucher_id.id, 'proforma_voucher', cr)
     list.refresh()
     assert (list.state == 'paid'), ("RiBa list is not closed, but %s" % list.state)

@@ -23,7 +23,7 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-from openerp import netsvc
+from openerp import workflow
 
 
 class riba_unsolved(orm.TransientModel):
@@ -113,14 +113,14 @@ class riba_unsolved(orm.TransientModel):
     def skip(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
         line_pool = self.pool['riba.list.line']
         line_pool.write(cr, uid, active_id, {'state': 'unsolved'},
                         context=context)
-        wf_service.trg_validate(
+        workflow.trg_validate(
             uid, 'riba.list',
             line_pool.browse(cr, uid, active_id).list_id.id, 'unsolved',
             cr)
@@ -129,7 +129,7 @@ class riba_unsolved(orm.TransientModel):
     def create_move(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        wf_service = netsvc.LocalService("workflow")
+        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
@@ -219,7 +219,7 @@ class riba_unsolved(orm.TransientModel):
             })
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
-        wf_service.trg_validate(
+        workflow.trg_validate(
             uid, 'riba.list', distinta_line.list_id.id, 'unsolved', cr)
         return {
             'name': _('Unsolved Entry'),
