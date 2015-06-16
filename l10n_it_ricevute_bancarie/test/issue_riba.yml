@@ -1,22 +1,22 @@
 -
   I call the wizards
 -
-  !record {model: riba.emissione, id: riba_emissione_1, view: emissione_riba_view}:
-    configurazione: sbf_riba_config
+  !record {model: riba.issue, id: riba_emissione_1, view: riba_issue_view}:
+    configuration_id: sbf_riba_config
 -
   I run the wizards
 -
-  !python {model: riba.emissione}: |
+  !python {model: riba.issue}: |
     invoice = self.pool['account.invoice'].browse(
       cr, uid, ref('account_invoice_riba'), context=context)
     for move_line in invoice.move_id.line_id:
       if move_line.account_id.id == ref('account.a_recv'):
         riba_move_line_id = move_line.id
         break
-    action = self.crea_distinta(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
+    action = self.create_list(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
       "tz": False, "active_model": "account.move.line", "active_ids": [riba_move_line_id],
       "active_id": riba_move_line_id, })
-    riba_list_id = action['res_id']
+    riba_list_id = action[0]['res_id']
     list_pool = self.pool['riba.list']
     list_pool.confirm(cr, uid, [riba_list_id], context=context)
     list = list_pool.browse(cr, uid, riba_list_id)
@@ -40,7 +40,7 @@
     assert (list.state == 'accredited'), ("RiBa list is not accredited, but %s" % list.state)
     # voucher payment
     voucher_pool = self.pool['account.voucher']
-    import netsvc
+    from openerp import netsvc
     vals = {}
     journal_id = voucher_pool.default_get(cr, uid, ['journal_id']).get('journal_id',None)
     voucher = voucher_pool.recompute_voucher_lines(cr, uid, [], ref("base.res_partner_12"), journal_id, 450.0, ref('base.EUR'), 'receipt', False)

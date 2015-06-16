@@ -120,6 +120,7 @@ class account_move_line(orm.Model):
 
     def fields_view_get(
         self, cr, uid, view_id=None, view_type='form',
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/account/account.py
 <<<<<<< HEAD
         context={}, toolbar=False, submenu=False
@@ -129,6 +130,9 @@ class account_move_line(orm.Model):
 =======
         context={}, toolbar=False, submenu=False
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/account/account.py
+=======
+        context=None, toolbar=False, submenu=False
+>>>>>>> 154323a... fixed errors in tests and added dep needed
     ):
         # Special view for account.move.line object
         # (for ex. tree view contains user defined fields)

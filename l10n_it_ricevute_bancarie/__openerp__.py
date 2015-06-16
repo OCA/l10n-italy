@@ -117,6 +117,7 @@ da un flusso 'salvo buon fine'.
         'account_voucher',
         'l10n_it_fiscalcode',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'account_due_list',
         'base_iban',
     ],
@@ -125,6 +126,10 @@ da un flusso 'salvo buon fine'.
 =======
         'account_due_list'],
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
+=======
+        'account_due_list',
+        'base_iban'],
+>>>>>>> 154323a... fixed errors in tests and added dep needed
     'data': [
         "views/partner_view.xml",
         "views/configuration_view.xml",

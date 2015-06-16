@@ -205,4 +205,7 @@ class riba_configuration(orm.Model):
             cr, uid, context['active_id'], context=context)
         return (ribalist_line.list_id.config_id[field_name] and
                 ribalist_line.list_id.config_id[field_name].id or False)
+<<<<<<< HEAD
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
+=======
+>>>>>>> 154323a... fixed errors in tests and added dep needed

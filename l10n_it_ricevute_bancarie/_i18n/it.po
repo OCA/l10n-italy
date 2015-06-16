@@ -269,7 +269,7 @@ msgstr "Accredito"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.accreditation:0
-#: view:riba.emissione:0
+#: view:riba.issue:0
 #: view:riba.unsolved:0
 msgid "Create"
 msgstr "Crea"
@@ -292,7 +292,7 @@ msgstr "Stato"
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_da_emettere
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.emissione_riba_action
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_da_emettere
-#: view:riba.emissione:0
+#: view:riba.issue:0
 msgid "Issue Ri.Ba."
 msgstr "Emetti Ri.Ba."
 
@@ -318,7 +318,7 @@ msgid "Paid/Reconciled"
 msgstr "Pagato/Riconciliato"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.emissione,configurazione:0
+#: field:riba.issue,configurazione:0
 msgid "Configurazione"
 msgstr "Configurazione"
 
@@ -665,7 +665,7 @@ msgid "General"
 msgstr "Generale"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.emissione:0
+#: view:riba.issue:0
 msgid "This wizard generates the Ri.Ba. list, do you confirm?"
 msgstr "Questo wizard genererà la distinta Ri.Ba., confermi?"
 
@@ -677,7 +677,7 @@ msgstr "Fattura"
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.accreditation:0
 #: view:riba.list:0
-#: view:riba.emissione:0
+#: view:riba.issue:0
 #: view:riba.file.export:0
 #: view:riba.unsolved:0
 msgid "Cancel"
