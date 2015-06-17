@@ -107,14 +107,16 @@ class riba_list(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(
             'riba.list'))
     acceptance_move_ids = fields.Many2many(
-        'account.move.line', compute='_get_acceptance_move_ids',
+        'account.move.line',
+        compute='_get_acceptance_move_ids',
         string="Acceptance Entries")
     accreditation_move_id = fields.Many2one(
         'account.move', 'Accreditation Entry', readonly=True)
     payment_ids = fields.Many2many(
         'account.move.line', compute='_get_payment_ids', string='Payments')
     unsolved_move_ids = fields.Many2many(
-        'account.move.line', compute='_get_unsolved_move_ids',
+        'account.move.line',
+        compute='_get_unsolved_move_ids',
         string="Unsolved Entries")
     type = fields.Selection(
         string="Type", related='config_id.type', readonly=True)
