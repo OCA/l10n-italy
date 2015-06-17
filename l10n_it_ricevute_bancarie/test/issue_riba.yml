@@ -67,4 +67,4 @@
     assert (voucher_id.state=='draft'), "Voucher is not in draft state"
     workflow.trg_validate(uid, 'account.voucher', voucher_id.id, 'proforma_voucher', cr)
     list.refresh()
-    assert (list.state == 'paid'), ("RiBa list is not closed, but %s" % list.state)
+    assert (list.state == 'accredited'), ("RiBa list is not closed, but %s" % list.state)
