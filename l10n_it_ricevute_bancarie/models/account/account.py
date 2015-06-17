@@ -80,7 +80,7 @@ class account_move_line(orm.Model):
         # Special view for account.move.line object
         # (for ex. tree view contains user defined fields)
         result = super(account_move_line, self).fields_view_get(
-            cr, uid, view_id, view_type, context, toolbar=toolbar,
+            cr, uid, view_id, view_type, context=context, toolbar=toolbar,
             submenu=submenu)
         try:
             view_payments_tree_id = self.pool.get(
