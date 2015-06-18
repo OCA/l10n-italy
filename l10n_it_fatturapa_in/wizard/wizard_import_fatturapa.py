@@ -976,7 +976,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     context=context
                 )
                 if stock_incoterm_id:
-                    delivery_dict['incoterm'] = stock_incoterm_id
+                    delivery_dict['incoterm'] = stock_incoterm_id[0]
             invoice_model.write(
                 cr, uid, invoice_id, delivery_dict, context=context)
         # 2.2.2

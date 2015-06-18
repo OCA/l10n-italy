@@ -128,6 +128,8 @@
                         <Denominazione>Trasporto spa</Denominazione>
                     </Anagrafica>
                 </DatiAnagraficiVettore>
+                <UnitaMisuraPeso>KGM</UnitaMisuraPeso>
+                <TipoResa>DAP</TipoResa>
                 <IndirizzoResa>
                     <Indirizzo>strada dei test</Indirizzo>
                     <NumeroCivico>150/B</NumeroCivico>
