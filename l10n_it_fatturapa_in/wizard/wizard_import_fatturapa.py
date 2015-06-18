@@ -380,7 +380,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 val = {
                     'type': type,
                     'name': IdDoc,
-                    'lineRef': lineref,
+                    'lineRef': numline,
                     'invoice_line_id': invoice_lineid,
                     'invoice_id': invoice_id,
                     'date': Data,
@@ -394,7 +394,6 @@ class WizardImportFatturapa(orm.TransientModel):
             val = {
                 'type': type,
                 'name': IdDoc,
-                'lineRef': lineref,
                 'invoice_line_id': invoice_lineid,
                 'invoice_id': invoice_id,
                 'date': Data,

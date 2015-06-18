@@ -58,7 +58,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         return self.wizard_model.importFatturaPA(
             cr, uid, wizard_id, context={'active_ids': [attach_id]})
 
-    def test_0_xml_import(self):
+    def test_00_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test0', 'IT05979361218_001.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -71,7 +71,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.gross_weight, 0.00)
         self.assertEqual(invoice.net_weight, 0.00)
 
-    def test_1_xml_import(self):
+    def test_01_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test1', 'IT02780790107_11004.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -102,7 +102,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             invoice.related_documents[0].cup, '123abc')
 
-    def test_2_xml_import(self):
+    def test_02_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test2', 'IT03638121008_X11111.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -116,7 +116,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.fatturapa_summary_ids[0].amount_tax, 0.66)
         self.assertEqual(invoice.partner_id.name, "Societa' alpha S.r.l.")
 
-    def test_3_xml_import(self):
+    def test_03_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test3', 'IT05979361218_002.xml.p7m')
         invoice_id = res.get('domain')[0][2][0]
@@ -127,7 +127,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0007')
         self.assertEqual(invoice.amount_total, 54.00)
 
-    def test_4_xml_import(self):
+    def test_04_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test4', 'IT02780790107_11005.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -153,7 +153,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
 
-    def test_5_xml_import(self):
+    def test_05_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test5', 'IT05979361218_003.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -171,7 +171,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.amount_tax, 0)
         self.assertEqual(invoice.amount_total, 9)
 
-    def test_6_import_except(self):
+    def test_06_import_except(self):
         # File not exist Exception
         self.assertRaises(
             Exception, self.run_wizard, 'test6_Exception', '')
@@ -181,7 +181,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             'IT05979361218_fake.xml.p7m'
         )
 
-    def test_7_xml_import(self):
+    def test_07_xml_import(self):
         cr, uid = self.cr, self.uid
         # 2 lines with quantity != 1 and discounts
         res = self.run_wizard('test7', 'IT05979361218_004.xml')
@@ -193,7 +193,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.amount_total, 1431.79)
         self.assertEqual(invoice.invoice_line[0].admin_ref, 'D122353')
 
-    def test_8_xml_import(self):
+    def test_08_xml_import(self):
         cr, uid = self.cr, self.uid
         # using ImportoTotaleDocumento
         res = self.run_wizard('test8', 'IT05979361218_005.xml')
@@ -203,7 +203,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.amount_total, 1288.61)
         self.assertFalse(invoice.inconsistencies)
 
-    def test_9_xml_import(self):
+    def test_09_xml_import(self):
         cr, uid = self.cr, self.uid
         # using DatiGeneraliDocumento.ScontoMaggiorazione without
         # ImportoTotaleDocumento
@@ -236,3 +236,19 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             fatturapa_pm_id.code,
             'MP18'
         )
+
+    def test_11_xml_import(self):
+        # DatiOrdineAcquisto with RiferimentoNumeroLinea referring to
+        # not existing invoice line
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test11', 'IT02780790107_11006.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(
+            len(invoice.invoice_line[0].related_documents), 0)
+        self.assertEqual(
+            invoice.invoice_line[0].sequence, 1)
+        self.assertEqual(
+            invoice.related_documents[0].type, "order")
+        self.assertEqual(
+            invoice.related_documents[0].lineRef, 60)
