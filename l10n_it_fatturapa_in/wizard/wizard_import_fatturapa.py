@@ -945,7 +945,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 cr, uid, Delivery, context=context)
             delivery_dict = {
                 'carrier_id': delivery_id,
-                'transport_vaicle': Delivery.MezzoTrasporto or '',
+                'transport_vehicle': Delivery.MezzoTrasporto or '',
                 'transport_reason': Delivery.CausaleTrasporto or '',
                 'number_items': Delivery.NumeroColli or 0,
                 'description': Delivery.Descrizione or '',
@@ -1009,11 +1009,11 @@ class WizardImportFatturapa(orm.TransientModel):
             invoice_model.write(
                 cr, uid, invoice_id, parentinv_vals, context=context)
         # 2.3
-        Veicle = FatturaBody.DatiVeicoli
-        if Veicle:
+        Vehicle = FatturaBody.DatiVeicoli
+        if Vehicle:
             veicle_vals = {
-                'vaicle_registration': Veicle.Data or False,
-                'total_travel': Veicle.TotalePercorso or '',
+                'vehicle_registration': Vehicle.Data or False,
+                'total_travel': Vehicle.TotalePercorso or '',
             }
             invoice_model.write(
                 cr, uid, invoice_id, veicle_vals, context=context)

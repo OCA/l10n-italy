@@ -814,12 +814,12 @@ msgid "VAT payability"
 msgstr "Esigibilita' Iva"
 
 #. module: l10n_it_fatturapa
-#: field:account.invoice,transport_vaicle:0
-msgid "Veicle"
+#: field:account.invoice,transport_vehicle:0
+msgid "Vehicle"
 msgstr "Veicolo"
 
 #. module: l10n_it_fatturapa
-#: field:account.invoice,vaicle_registration:0
+#: field:account.invoice,Vehicle_registration:0
 msgid "Veicole Registration"
 msgstr "Data immatricolazione "
 

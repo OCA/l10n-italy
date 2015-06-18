@@ -226,7 +226,7 @@
                                 <group>
                                     <group string="Delivery">
                                         <field name="carrier_id" readonly="1"></field>
-                                        <field name="transport_vaicle" readonly="1"></field>
+                                        <field name="transport_vehicle" readonly="1"></field>
                                         <field name="description" readonly="1"></field>
                                         <field name="pickup_datetime" readonly="1"></field>
                                         <field name="transport_date" readonly="1"></field>

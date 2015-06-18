@@ -426,7 +426,7 @@ class account_invoice(orm.Model):
         #  2.1.9
         'carrier_id': fields.many2one(
             'res.partner', string="Carrier"),
-        'transport_vaicle': fields.char('Veicle', size=80),
+        'transport_vehicle': fields.char('Vehicle', size=80),
         'transport_reason': fields.char('Reason', size=80),
         'number_items': fields.integer('number of items'),
         'description': fields.char('Description', size=100),
@@ -447,7 +447,7 @@ class account_invoice(orm.Model):
             'FatturaPA Summary   Datas'
         ),
         #  2.3
-        'vaicle_registration': fields.date('Veicole Registration'),
+        'Vehicle_registration': fields.date('Veicole Registration'),
         'total_travel': fields.char('Travel in hours or Km', size=15),
         #  2.4
         'fatturapa_payments': fields.one2many(
