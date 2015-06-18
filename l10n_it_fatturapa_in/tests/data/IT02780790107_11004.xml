@@ -83,7 +83,6 @@
                     <TipoCassa>TC01</TipoCassa>
                     <AlCassa>4.00</AlCassa>
                     <ImportoContributoCassa>9.00</ImportoContributoCassa>
-                    <ImponibileCassa>225.00</ImponibileCassa>
                     <AliquotaIVA>22.00</AliquotaIVA>
                     <RiferimentoAmministrazione>rif. amm</RiferimentoAmministrazione>
                 </DatiCassaPrevidenziale>

@@ -410,10 +410,14 @@ class WizardImportFatturapa(orm.TransientModel):
     ):
         res = []
         TipoCassa = line.TipoCassa or False
-        AlCassa = (float(line.AlCassa)/100) or 0.0
-        ImportoContributoCassa = float(line.ImportoContributoCassa) or 0.0
-        ImponibileCassa = float(line.ImponibileCassa) or 0.0
-        AliquotaIVA = (float(line.AliquotaIVA)/100) or 0.0
+        AlCassa = line.AlCassa and (float(line.AlCassa)/100) or None
+        ImportoContributoCassa = (
+            line.ImportoContributoCassa and
+            float(line.ImportoContributoCassa) or None)
+        ImponibileCassa = (
+            line.ImponibileCassa and float(line.ImponibileCassa) or None)
+        AliquotaIVA = (
+            line.AliquotaIVA and (float(line.AliquotaIVA)/100) or None)
         Ritenuta = line.Ritenuta or ''
         Natura = line.Natura or False
         RiferimentoAmministrazione = line.RiferimentoAmministrazione or ''
