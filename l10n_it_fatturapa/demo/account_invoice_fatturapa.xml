@@ -214,7 +214,7 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="type">out_invoice</field>
             <field name="account_id" ref="account.a_pay"/>
-            <field name="date_invoice" eval="'2015-06-15'"/>
+            <field name="date_invoice" eval="'2014-06-15'"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="comment">prima riga
 seconda riga</field>
@@ -262,7 +262,7 @@ seconda riga</field>
             <field name="company_id" ref="base.main_company"/>
             <field name="type">out_invoice</field>
             <field name="account_id" ref="account.a_pay"/>
-            <field name="date_invoice" eval="'2015-06-15'"/>
+            <field name="date_invoice" eval="'2014-06-15'"/>
             <field name="partner_id" ref="res_partner_fatturapa_0"/>
             <field name="comment">prima riga
 seconda riga</field>
