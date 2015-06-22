@@ -19,6 +19,7 @@
 #
 ##############################################################################
 from openerp import models
+from openerp import api
 from openerp import fields
 
 
@@ -30,14 +31,22 @@ class ateco_category(models.Model):
         'Name',
         required=True
     )
+
     code = fields.Char(
         'ATECO Code',
         size=9,
         required=False
     )
+
+    complete_name = fields.Char(
+        compute="_get_complete_name",
+        string="Complete name"
+    )
+
     description = fields.Text(
         'Description'
     )
+
     parent_id = fields.Many2one(
         'ateco.category',
         'Parent Category',
@@ -48,10 +57,37 @@ class ateco_category(models.Model):
         'parent_id',
         'Child Categories'
     )
-    partner_ids = fields.Many2many(
-        'res.partner',
-        'ateco_category_partner_rel',
-        'ateco_id',
-        'partner_id',
+
+    partner_ids = fields.One2many(
+        'res.partner.ateco',
+        'ateco_category_id',
         'Partners'
     )
+
+    def _get_complete_name(self):
+        """Concatenate code and name fields"""
+        for res in self:
+            code = res.code
+            if code:
+                name = u"{} - {}".format(code, res.name)
+            else:
+                name = res.name
+            res.complete_name = name
+
+    @api.multi
+    def name_get(self):
+        return [(i.id, i.complete_name) for i in self]
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        """Search in name and code fields"""
+        args = args or []
+        if name:
+            recs = self.search([
+                '|',
+                ('code', operator, name),
+                ('name', operator, name)
+            ] + args, limit=limit)
+        else:
+            recs = self.browse()
+        return recs.name_get()

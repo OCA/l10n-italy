@@ -8,13 +8,18 @@
             <field name="arch" type="xml">
                 <form string="Ateco Category">
                     <group>
-                    <field name="code"/>
-                    <field name="name" select="1"/>
-                    <field name="parent_id"/>
+                        <field name="code"/>
+                        <field name="name" select="1"/>
+                        <field name="parent_id"/>
                     </group>
                     <group string="Partner" colspan="4">
                         <field name="partner_ids" nolabel="1"
-                               colspan="4"/>
+                               colspan="4" readonly="1">
+                               <tree>
+                                    <field name="partner_id" />
+                                    <field name="main_category" />
+                               </tree>
+                        </field>
                     </group>
                 </form>
             </field>

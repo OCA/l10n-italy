@@ -2,6 +2,22 @@
 <openerp>
     <data>
 
+        <record id="view_partner_ateco_form" model="ir.ui.view">
+            <field name="name">partner.ateco.form</field>
+            <field name="model">res.partner.ateco</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Partner Ateco Category">
+                    <group>
+                        <field name="ateco_category_id" />
+                        <field name="partner_id" />
+                        <field name="main_category" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
         <record model="ir.ui.view" id="view_partner_form_inherit_ateco">
             <field name="name">partner.form.ateco</field>
             <field name="model">res.partner</field>
@@ -14,7 +30,13 @@
                         <group colspan="4" string="Ateco categories">
                             <field colspan="4"
                                    name="ateco_category_ids"
-                                   nolabel="1" />
+                                   context="{'partner_id': id}"
+                                   nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="ateco_category_id" />
+                                    <field name="main_category" />
+                                </tree>
+                            </field>
                         </group>
                     </page>
                 </notebook>
