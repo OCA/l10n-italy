@@ -257,3 +257,14 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice.related_documents[0].type, "order")
         self.assertEqual(
             invoice.related_documents[0].lineRef, 60)
+
+    def test_12_xml_import(self):
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test12', 'IT05979361218_008.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0012')
+        self.assertEqual(invoice.sender, 'TZ')
+        self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
+        self.assertEqual(invoice.intermediary.firstname, 'MARIO')
+        self.assertEqual(invoice.intermediary.lastname, 'ROSSI')

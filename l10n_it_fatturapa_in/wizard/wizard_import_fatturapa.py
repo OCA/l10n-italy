@@ -106,20 +106,12 @@ class WizardImportFatturapa(orm.TransientModel):
             return False
         partner_model = self.pool['res.partner']
         cf = DatiAnagrafici.CodiceFiscale or False
-        CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-        country_ids = self.CountryByCode(
-            cr, uid, CountryCode, context=context)
-        if country_ids:
-            country_id = country_ids[0]
-        else:
-            raise orm.except_orm(
-                _('Error !'),
-                _("Country Code %s not found in system") % CountryCode
+        vat = False
+        if DatiAnagrafici.IdFiscaleIVA:
+            vat = "%s%s" % (
+                DatiAnagrafici.IdFiscaleIVA.IdPaese,
+                DatiAnagrafici.IdFiscaleIVA.IdCodice
             )
-        vat = "%s%s" % (
-            DatiAnagrafici.IdFiscaleIVA.IdPaese,
-            DatiAnagrafici.IdFiscaleIVA.IdCodice
-        )
         partner_ids = partner_model.search(
             cr, uid,
             ['|',
@@ -143,13 +135,42 @@ class WizardImportFatturapa(orm.TransientModel):
                           (vat, cf))
                         )
                 commercial_partner = partner.commercial_partner_id.id
+        if not partner_ids:
+            if DatiAnagrafici.Anagrafica.Denominazione:
+                partner_ids = partner_model.search(
+                    cr, uid,
+                    [('name', '=', DatiAnagrafici.Anagrafica.Denominazione)],
+                    context=context)
+            elif (
+                DatiAnagrafici.Anagrafica.Nome and
+                DatiAnagrafici.Anagrafica.Cognome
+            ):
+                partner_ids = partner_model.search(
+                    cr, uid,
+                    [
+                        ('firstname', '=', DatiAnagrafici.Anagrafica.Nome),
+                        ('lastname', '=', DatiAnagrafici.Anagrafica.Cognome),
+                    ],
+                    context=context)
         if partner_ids:
             commercial_partner = partner_ids[0]
-        if commercial_partner:
             self.check_partner_base_data(
                 cr, uid, commercial_partner, DatiAnagrafici, context=context)
             return commercial_partner
         else:
+            # partner to be created
+            country_id = False
+            if DatiAnagrafici.IdFiscaleIVA:
+                CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
+                country_ids = self.CountryByCode(
+                    cr, uid, CountryCode, context=context)
+                if country_ids:
+                    country_id = country_ids[0]
+                else:
+                    raise orm.except_orm(
+                        _('Error !'),
+                        _("Country Code %s not found in system") % CountryCode
+                    )
             vals = {
                 'vat': vat,
                 'fiscalcode': cf,
