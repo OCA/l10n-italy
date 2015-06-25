@@ -1265,8 +1265,10 @@ class WizardImportFatturapa(orm.TransientModel):
         fatturapa_attachment_ids = context.get('active_ids', False)
         invoice_model = self.pool['account.invoice']
         new_invoices = []
-        for fatturapa_attachment in fatturapa_attachment_obj.browse(
-                cr, uid, fatturapa_attachment_ids, context=context):
+        for fatturapa_attachment_id in fatturapa_attachment_ids:
+            ctx = context.copy()
+            fatturapa_attachment = fatturapa_attachment_obj.browse(
+                cr, uid, fatturapa_attachment_id, context=ctx)
             if fatturapa_attachment.in_invoice_ids:
                 raise orm.except_orm(
                     _("Error"), _("File is linked to invoices yet"))
@@ -1304,7 +1306,7 @@ class WizardImportFatturapa(orm.TransientModel):
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(
-                cr, uid, cedentePrestatore, context=context)
+                cr, uid, cedentePrestatore, context=ctx)
             # 1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\
                 RappresentanteFiscale
@@ -1315,40 +1317,40 @@ class WizardImportFatturapa(orm.TransientModel):
             for fattura in fatt.FatturaElettronicaBody:
                 invoice_id = self.invoiceCreate(
                     cr, uid, fatt, fatturapa_attachment, fattura,
-                    partner_id, context=context)
+                    partner_id, context=ctx)
                 if TaxRappresentative:
                     tax_partner_id = self.getPartnerBase(
                         cr, uid, TaxRappresentative.DatiAnagrafici,
-                        context=context)
+                        context=ctx)
                     invoice_model.write(
                         cr, uid, invoice_id,
                         {
                             'tax_representative_id': tax_partner_id
-                        }, context=context
+                        }, context=ctx
                     )
                 if Intermediary:
                     Intermediary_id = self.getPartnerBase(
-                        cr, uid, Intermediary.DatiAnagrafici, context=context)
+                        cr, uid, Intermediary.DatiAnagrafici, context=ctx)
                     invoice_model.write(
                         cr, uid, invoice_id,
                         {
                             'intermediary': Intermediary_id
-                        }, context=context
+                        }, context=ctx
                     )
                 new_invoices.append(invoice_id)
-                invoice = invoice_model.browse(cr, uid, invoice_id, context)
+                invoice = invoice_model.browse(cr, uid, invoice_id, ctx)
                 self.check_CessionarioCommittente(
                     cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
-                    context=context)
+                    context=ctx)
                 self.check_invoice_amount(
                     cr, uid, invoice,
                     fattura,
-                    context=context)
+                    context=ctx)
 
-            if context.get('inconsistencies'):
+            if ctx.get('inconsistencies'):
                 invoice.write(
-                    {'inconsistencies': context['inconsistencies']},
-                    context=context)
+                    {'inconsistencies': ctx['inconsistencies']},
+                    context=ctx)
 
         return {
             'view_type': 'form',

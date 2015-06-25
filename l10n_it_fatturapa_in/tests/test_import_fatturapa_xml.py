@@ -58,6 +58,22 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         return self.wizard_model.importFatturaPA(
             cr, uid, wizard_id, context={'active_ids': [attach_id]})
 
+    def run_wizard_multi(self, file_name_list):
+        cr, uid = self.cr, self.uid
+        active_ids = []
+        for file_name in file_name_list:
+            active_ids.append(self.attach_model .create(
+                cr, uid,
+                {
+                    'name': file_name,
+                    'datas': self.getFile(file_name)[1],
+                    'datas_fname': file_name
+                }))
+        wizard_id = self.wizard_model.create(cr, uid, {})
+
+        return self.wizard_model.importFatturaPA(
+            cr, uid, wizard_id, context={'active_ids': active_ids})
+
     def test_00_xml_import(self):
         cr, uid = self.cr, self.uid
         res = self.run_wizard('test0', 'IT05979361218_001.xml')
@@ -268,3 +284,23 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
         self.assertEqual(invoice.intermediary.lastname, 'ROSSI')
+
+    def test_13_xml_import(self):
+        # inconsistencies must not be duplicated
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard_multi([
+            'IT02780790107_11005.xml',
+            'IT02780790107_11005.xml',
+            ])
+        invoice1_id = res.get('domain')[0][2][0]
+        invoice2_id = res.get('domain')[0][2][1]
+        invoice1 = self.invoice_model.browse(cr, uid, invoice1_id)
+        invoice2 = self.invoice_model.browse(cr, uid, invoice2_id)
+        self.assertEqual(
+            invoice1.inconsistencies,
+            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
+        self.assertEqual(
+            invoice2.inconsistencies,
+            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
