@@ -69,7 +69,7 @@
                     <CodiceTipo>EAN</CodiceTipo>
                     <CodiceValore>12345</CodiceValore>
                 </CodiceArticolo>
-                <Descrizione>LA DESCRIZIONE</Descrizione>
+                <Descrizione>   </Descrizione>
                 <Quantita>5.00</Quantita>
                 <PrezzoUnitario>1.00</PrezzoUnitario>
                 <PrezzoTotale>5.00</PrezzoTotale>
