@@ -19,6 +19,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
 import netsvc
 
 
@@ -37,13 +38,17 @@ class AccountInvoice(orm.Model):
     def action_cancel_draft(self, cr, uid, ids, *args):
         if not hasattr(ids, '__iter__'):
             ids = [ids]
-        invoice = self.browse(cr, uid, ids[0])
-        if invoice.rejected:
-            return True
-        else:
-            return super(
-                AccountInvoice, self).action_cancel_draft(
-                    cr, uid, ids, *args)
+        for inv_id in ids:
+            invoice = self.browse(cr, uid, inv_id)
+            if invoice.rejected:
+                raise orm.except_orm(
+                    _('Attention'),
+                    _('Is not possible remove an invoice rejected')
+                )
+            else:
+                return super(
+                    AccountInvoice, self).action_cancel_draft(
+                        cr, uid, [inv_id], *args)
 
     def action_cancel_reject(self, cr, uid, ids, context=None):
         wf_service = netsvc.LocalService("workflow")

@@ -23,6 +23,7 @@ import base64
 import tempfile
 import openerp.tests.common as test_common
 from openerp import addons
+from openerp.osv.orm import except_orm
 
 
 class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
@@ -166,3 +167,6 @@ class TestFatturaPaInNotifications(test_common.SingleTransactionCase):
         # check if rejected field is True and invoice is cancelled
         self.assertEqual(invoice.rejected, True)
         self.assertEqual(invoice.state, 'cancel')
+        self.assertRaises(
+            except_orm, invoice.action_cancel_draft
+        )
