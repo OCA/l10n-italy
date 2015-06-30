@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:MetadatiInvioFile xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://www.fatturapa.gov.it/sdi/messaggi/v1.0" versione="1.0">
+    <IdentificativoSdI>5199979</IdentificativoSdI>
+    <NomeFile>IT02780790107_11007.xml</NomeFile>
+    <CodiceDestinatario>79SRAK</CodiceDestinatario>
+    <Formato>SDI11</Formato>
+    <TentativiInvio>1</TentativiInvio>
+    <MessageId>24533698</MessageId>
+</ns3:MetadatiInvioFile>

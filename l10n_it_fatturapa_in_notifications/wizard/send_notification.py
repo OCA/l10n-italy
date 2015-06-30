@@ -68,4 +68,9 @@ class SendRejectNotification(orm.TransientModel):
         }
 
     def send(self, cr, uid, ids, context=None):
-        return send_notification(self, cr, uid, ids, 'EC02', context)
+        res = send_notification(self, cr, uid, ids, 'EC02', context)
+        invoice_pool = self.pool['account.invoice']
+        invoice = invoice_pool.browse(
+            cr, uid, context['active_id'], context=context)
+        invoice.action_cancel_reject(context=context)
+        return res

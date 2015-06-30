@@ -19,11 +19,37 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+import netsvc
 
 
 class AccountInvoice(orm.Model):
     _inherit = "account.invoice"
     _columns = {
         'result_notification_id': fields.many2one(
-            'fatturapa.notification', "Result notification", readonly=True)
+            'fatturapa.notification', "Result notification", readonly=True),
+        'rejected': fields.boolean('Rejected')
         }
+
+    _defaults = {
+        'rejected': False
+    }
+
+    def action_cancel_draft(self, cr, uid, ids, *args):
+        if not hasattr(ids, '__iter__'):
+            ids = [ids]
+        invoice = self.browse(cr, uid, ids[0])
+        if invoice.rejected:
+            return True
+        else:
+            return super(
+                AccountInvoice, self).action_cancel_draft(
+                    cr, uid, ids, *args)
+
+    def action_cancel_reject(self, cr, uid, ids, context=None):
+        wf_service = netsvc.LocalService("workflow")
+        for inv_id in ids:
+            self.write(cr, uid, inv_id, {'rejected': True}, context=context)
+            wf_service.trg_validate(
+                uid, 'account.invoice', inv_id, 'invoice_cancel', cr
+            )
+        return True
