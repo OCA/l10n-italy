@@ -319,9 +319,12 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         # check: filling check_total invoice field with summary data take from
         # ''DatitRiepilogo'
         self.assertEqual(invoice.check_total, 56.50)
+        print invoice.inconsistencies
         self.assertEqual(
             invoice.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n'
-            u'Define a tax with percentage equals to: "15.55"\n'
-            'Define a tax with percentage equals to: "15.55"')
+            u'XML contains tax with percentage "15.55"'
+            ' but it does not exist in your system\n'
+            'XML contains tax with percentage "15.55"'
+            ' but it does not exist in your system')

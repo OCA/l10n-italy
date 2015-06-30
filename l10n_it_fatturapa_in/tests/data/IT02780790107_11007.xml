@@ -53,6 +53,7 @@
                 <Divisa>EUR</Divisa>
                 <Data>2015-06-18</Data>
                 <Numero>136</Numero>
+                <ImportoTotaleDocumento>56.50</ImportoTotaleDocumento>
             </DatiGeneraliDocumento>
             <DatiOrdineAcquisto>
                 <RiferimentoNumeroLinea>60</RiferimentoNumeroLinea>
