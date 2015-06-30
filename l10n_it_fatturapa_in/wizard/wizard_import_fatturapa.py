@@ -325,8 +325,10 @@ class WizardImportFatturapa(orm.TransientModel):
                 if context.get('inconsistencies'):
                     context['inconsistencies'] += '\n'
                 context['inconsistencies'] += (
-                    _('Define a tax with percentage '
-                      'equals to: "%s"') % line.AliquotaIVA
+                    _(
+                        'XML contains tax with percentage "%s" '
+                        'but it does not exist in your system'
+                    ) % line.AliquotaIVA
                 )
             # check if there are multiple taxes with
             # same percentage
@@ -1126,28 +1128,17 @@ class WizardImportFatturapa(orm.TransientModel):
             amount_untaxed += float(Riepilogo.ImponibileImporto)
         return amount_untaxed
 
-    def compute_xml_amount_total(self, cr, uid, DatiRiepilogo, context=None):
-        amount_total = 0.0
-        for Riepilogo in DatiRiepilogo:
-            amount_total += float(Riepilogo.ImponibileImporto)
-            amount_total += float(Riepilogo.Imposta)
-            # 2.2.2.3
-            if Riepilogo.SpeseAccessorie:
-                amount_total += float(Riepilogo.SpeseAccessorie)
-            # 2.2.2.4 TODO arrotondamento
-        return amount_total
-
     def check_invoice_amount(
         self, cr, uid, invoice, FatturaElettronicaBody, context=None
     ):
         if context is None:
             context = {}
-        xml_total = self.compute_xml_amount_total(
-            cr, uid,
-            FatturaElettronicaBody.DatiBeniServizi.DatiRiepilogo,
-            context=context)
 
-        invoice.write({'check_total': xml_total}, context=context)
+        invoice.write(
+            {
+                'check_total': FatturaElettronicaBody.DatiGenerali.
+                DatiGeneraliDocumento.ImportoTotaleDocumento
+            }, context=context)
         if (
             FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
             ScontoMaggiorazione and
