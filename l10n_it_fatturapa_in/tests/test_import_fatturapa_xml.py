@@ -304,3 +304,24 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             invoice2.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
+
+    def test_14_xml_import(self):
+        # check: no tax code found , write inconsisteance and anyway
+        # create draft
+        cr, uid = self.cr, self.uid
+        res = self.run_wizard('test14', 'IT02780790107_11007.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(cr, uid, invoice_id)
+        self.assertEqual(invoice.supplier_invoice_number, '136')
+        self.assertEqual(invoice.partner_id.name, 'SOCIETA\' ALPHA SRL')
+        self.assertEqual(invoice.amount_untaxed, 25.00)
+        self.assertEqual(invoice.amount_tax, 0.0)
+        # check: filling check_total invoice field with summary data take from
+        # ''DatitRiepilogo'
+        self.assertEqual(invoice.check_total, 56.50)
+        self.assertEqual(
+            invoice.inconsistencies,
+            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n'
+            u'Define a tax with percentage equals to: "15.55"\n'
+            'Define a tax with percentage equals to: "15.55"')
