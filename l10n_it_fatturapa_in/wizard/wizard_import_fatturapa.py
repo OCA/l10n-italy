@@ -322,11 +322,14 @@ class WizardImportFatturapa(orm.TransientModel):
                     ('child_ids', '=', False),
                 ], context=context)
             if not account_tax_ids:
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Define a tax with percentage '
-                      'equals to: "%s"')
-                    % line.AliquotaIVA)
+                if context.get('inconsistencies'):
+                    context['inconsistencies'] += '\n'
+                context['inconsistencies'] += (
+                    _(
+                        'XML contains tax with percentage "%s" '
+                        'but it does not exist in your system'
+                    ) % line.AliquotaIVA
+                )
             # check if there are multiple taxes with
             # same percentage
             if len(account_tax_ids) > 1:
@@ -347,8 +350,9 @@ class WizardImportFatturapa(orm.TransientModel):
             'name': line.Descrizione,
             'sequence': int(line.NumeroLinea),
             'account_id': credit_account_id,
-            'invoice_line_tax_id': [(6, 0, [account_tax_ids[0]])],
         }
+        if account_tax_ids:
+            retLine['invoice_line_tax_id'] = [(6, 0, [account_tax_ids[0]])]
         if line.PrezzoUnitario:
             retLine['price_unit'] = float(line.PrezzoUnitario)
         if line.Quantita:
@@ -1129,6 +1133,12 @@ class WizardImportFatturapa(orm.TransientModel):
     ):
         if context is None:
             context = {}
+
+        invoice.write(
+            {
+                'check_total': FatturaElettronicaBody.DatiGenerali.
+                DatiGeneraliDocumento.ImportoTotaleDocumento
+            }, context=context)
         if (
             FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
             ScontoMaggiorazione and
