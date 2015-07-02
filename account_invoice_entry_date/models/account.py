@@ -51,9 +51,10 @@ class AccountInvoice(models.Model):
         for inv in self.browse(cr, uid, ids):
             date_invoice = inv.date_invoice
             reg_date = inv.registration_date
+            today = time.strftime('%Y-%m-%d')
             if not inv.registration_date:
                 if not inv.date_invoice:
-                    reg_date = time.strftime('%Y-%m-%d')
+                    reg_date = today
                 else:
                     reg_date = inv.date_invoice
 
@@ -64,14 +65,14 @@ class AccountInvoice(models.Model):
 
             if inv.type in ['in_invoice', 'in_refund']:
                 date_start = inv.registration_date or inv.date_invoice \
-                    or time.strftime('%Y-%m-%d')
+                    or today
                 date_stop = inv.registration_date or inv.date_invoice \
-                    or time.strftime('%Y-%m-%d')
+                    or today
             elif inv.type in ['out_invoice', 'out_refund']:
                 date_start = inv.date_invoice or inv.registration_date \
-                    or time.strftime('%Y-%m-%d')
+                    or today
                 date_stop = inv.date_invoice or inv.registration_date \
-                    or time.strftime('%Y-%m-%d')
+                    or today
 
             period_ids = self.pool.get('account.period').search(
                 cr, uid,
@@ -87,8 +88,7 @@ class AccountInvoice(models.Model):
                 cr, uid, [inv.id], {
                     'registration_date': reg_date, 'period_id': period_id})
 
-            mov_date = reg_date or inv.date_invoice or time.strftime(
-                '%Y-%m-%d')
+            mov_date = reg_date or inv.date_invoice or today
 
             self.pool.get('account.move').write(
                 cr, uid, [inv.move_id.id], {'state': 'draft'})
