@@ -43,12 +43,11 @@ class AccountInvoice(orm.Model):
             if invoice.rejected:
                 raise orm.except_orm(
                     _('Attention'),
-                    _('Is not possible remove an invoice rejected')
+                    _('It is not possible to activate a rejected invoice')
                 )
-            else:
-                return super(
-                    AccountInvoice, self).action_cancel_draft(
-                        cr, uid, [inv_id], *args)
+        return super(
+            AccountInvoice, self).action_cancel_draft(
+                cr, uid, ids, *args)
 
     def action_cancel_reject(self, cr, uid, ids, context=None):
         wf_service = netsvc.LocalService("workflow")
