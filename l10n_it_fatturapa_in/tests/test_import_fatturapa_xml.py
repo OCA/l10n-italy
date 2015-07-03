@@ -319,7 +319,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         # check: filling check_total invoice field with summary data take from
         # ''DatitRiepilogo'
         self.assertEqual(invoice.check_total, 56.50)
-        print invoice.inconsistencies
         self.assertEqual(
             invoice.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
