@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
+#    Copyright (C) 2014 KTec S.r.l.
+#    (<http://www.ktec.it>).
+#
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
 #
@@ -18,31 +21,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Pec Mail',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Italian Localisation module - Pec Mail
 
-Funcionalities:
-
-- Add Pec Mail Field in Partner Profile
-
-Contributors
-------------
-Franco Tampieri <franco.tampieri@abstract.it>
-Alessio Gerace <alessio.gerace@gmail.com>
-""",
-    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
-    'website': 'http://www.odoo-italia.org',
-    'license': 'AGPL-3',
-    "depends": ['base'],
-    "data": [
-        'view/partner_view.xml',
-    ],
-    "qweb": [],
-    "demo": [],
-    "test": [],
-    "active": False,
-    'installable': True
-}
+from . import partner

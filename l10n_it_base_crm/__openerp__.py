@@ -31,7 +31,7 @@ Funcionalities:
 - Campi provincia e regione su Lead/Opportunity
 - Automatistmi su crm.lead
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['crm', 'l10n_it_base'],

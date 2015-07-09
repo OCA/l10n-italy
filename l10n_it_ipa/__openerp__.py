@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
+#    Copyright (C) 2014 KTec S.r.l.
+#    (<http://www.ktec.it>).
+#
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
 #
@@ -19,23 +22,48 @@
 #
 ##############################################################################
 {
-    'name': 'Pec Mail',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Italian Localisation module - Pec Mail
+    "name": "IPA Code (IndicePA)",
+    "version": "1.0",
+    "category": "Localisation/Italy",
+    "author": "KTec S.r.l, Odoo Community Association (OCA)",
+    "website": "http://www.ktec.it",
+    "description": """
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :alt: License
 
-Funcionalities:
+IPA Code (IndicePA)
+===================
 
-- Add Pec Mail Field in Partner Profile
+This module adds IPA (IndicePA) field to partner
+http://www.indicepa.gov.it
+
+
+Credits
+=======
 
 Contributors
 ------------
-Franco Tampieri <franco.tampieri@abstract.it>
-Alessio Gerace <alessio.gerace@gmail.com>
+
+* Luigi Di Naro <luigi.dinaro@ktec.it>
+* Alex Comba <alex.comba@agilebg.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+
+Maintainer
+----------
+
+.. image:: http://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: http://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+To contribute to this module, please visit http://odoo-community.org.
 """,
-    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
-    'website': 'http://www.odoo-italia.org',
-    'license': 'AGPL-3',
+    "license": "AGPL-3",
     "depends": ['base'],
     "data": [
         'view/partner_view.xml',

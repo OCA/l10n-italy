@@ -27,7 +27,7 @@
     'description': """Accounting reports for Italian localization
 - VAT Registries
 http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
-    'author': 'OpenERP Italian Community',
+    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends": [

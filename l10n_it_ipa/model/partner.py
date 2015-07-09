@@ -1,9 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
+##############################################################################
 #
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    http://www.openerp-italia.org>
+#    Copyright 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,19 +16,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
-{
-    'name': 'Account Invoice entry Date',
-    'version': '0.1',
-    'category': 'Generic Modules/Accounting',
-    'description': """This module allows to specify the date to be used by the
-move created while confirming (supplier) invoice""",
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
-    'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
-    "depends": ['account', ],
-    "data": ['invoice_view.xml'],
-    "demo": [],
-    "active": False,
-    "installable": True
-}
+##############################################################################
+
+from openerp.osv import fields, orm
+
+
+class ResPartner(orm.Model):
+    _inherit = 'res.partner'
+    _columns = {
+        'ipa_code': fields.char('IPA Code', size=128),
+        }
