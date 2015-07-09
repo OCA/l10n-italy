@@ -104,7 +104,7 @@ class MailThread(orm.Model):
             if 'Action' in dsn:
                 return dsn['Action']
 
-    def _get_msg_payload(self, cr, uid, msg, parts={}, num=0):
+    def _get_msg_payload(self, cr, uid, msg, parts=None, num=0):
         """
         This method recursively checks the message structure
             and saves the informations (bodies, attachments,
@@ -127,6 +127,8 @@ class MailThread(orm.Model):
         can be found in the docs folder of this module
 
         """
+        if parts is None:
+            parts = {}
         for part in msg.get_payload():
             filename = part.get_param('filename', None, 'content-disposition')
             if not filename:
@@ -262,7 +264,6 @@ class MailThread(orm.Model):
                                       parts=parts, num=num)
         daticert = 'daticert.xml' in parts and parts['daticert.xml'] or None
         postacert = 'postacert.eml' in parts and parts['postacert.eml'] or None
-        smime = 'smime.p7s' in parts and parts['smime.p7s'] or None
         if daticert:
             daticert_dict = self.parse_daticert(
                 cr, uid, daticert, context=context)

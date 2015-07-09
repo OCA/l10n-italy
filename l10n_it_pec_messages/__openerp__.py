@@ -65,7 +65,7 @@ Contributors
 """,
     'images': [],
     'depends': [
-        'fetchmail', 'mail','l10n_it_pec'
+        'fetchmail', 'mail', 'l10n_it_pec',
     ],
     'data': [
         "security/mail_data.xml",
