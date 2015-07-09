@@ -1,0 +1,196 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-05-12 20:12+0000\n"
+"PO-Revision-Date: 2011-05-12 20:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_sale
+#: field:account.invoice,goods_description_id:0
+#: field:res.partner,goods_description_id:0
+#: field:stock.picking,goods_description_id:0
+msgid "Description of goods"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:stock.picking.carriage_condition,note:0
+#: field:stock.picking.goods_description,note:0
+#: field:stock.picking.transportation_reason,note:0
+msgid "Note"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_transportation_reason_tree
+#: model:ir.ui.menu,name:l10n_it_sale.menu_action_transportation_reason_tree
+#: view:stock.picking.transportation_reason:0
+msgid "Reasons for transportation"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_wizard_assign_ddt
+#: view:stock.picking:0
+#: view:wizard.assign.ddt:0
+msgid "Assign DDT"
+msgstr ""
+
+#. module: l10n_it_sale
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.module.module,shortdesc:l10n_it_sale.module_meta_information
+msgid "Italian Localisation - Sale"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:sale.order,validity:0
+msgid "Validity"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_wizard_assign_ddt
+msgid "wizard.assign.ddt"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:res.partner:0
+msgid "Notes"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:account.invoice:0
+msgid "Shipping"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:stock.picking,ddt_number:0
+msgid "DDT"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:stock.picking,ddt_date:0
+msgid "DDT date"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:account.invoice:0
+msgid "Payments"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_stock_picking_carriage_condition
+#: view:stock.picking.carriage_condition:0
+#: field:stock.picking.carriage_condition,name:0
+msgid "Carriage Condition"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:account.invoice,transportation_reason_id:0
+#: model:ir.model,name:l10n_it_sale.model_stock_picking_transportation_reason
+#: field:res.partner,transportation_reason_id:0
+#: field:stock.picking,transportation_reason_id:0
+#: view:stock.picking.transportation_reason:0
+msgid "Reason for transportation"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:wizard.assign.ddt:0
+msgid "Assign"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:wizard.assign.ddt:0
+msgid "This will assign the DDT number"
+msgstr ""
+
+#. module: l10n_it_sale
+#: code:addons/l10n_it_sale/wizard/assign_ddt.py:32
+#, python-format
+msgid "DTT number already assigned"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:stock.picking.transportation_reason,name:0
+msgid "Reason For Transportation"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_goods_description_tree
+#: model:ir.ui.menu,name:l10n_it_sale.menu_action_good_description_tree
+#: view:stock.picking.goods_description:0
+msgid "Descriptions of Goods"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_stock_picking_goods_description
+#: view:stock.picking.goods_description:0
+#: field:stock.picking.goods_description,name:0
+msgid "Description of Goods"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.actions.act_window,name:l10n_it_sale.action_carriage_condition_tree
+#: model:ir.ui.menu,name:l10n_it_sale.menu_action_carriage_condition_tree
+#: view:stock.picking.carriage_condition:0
+msgid "Carriage Conditions"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_sale
+#: field:account.invoice,carriage_condition_id:0
+#: field:res.partner,carriage_condition_id:0
+#: field:stock.picking,carriage_condition_id:0
+msgid "Carriage condition"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:wizard.assign.ddt:0
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.model,name:l10n_it_sale.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: l10n_it_sale
+#: view:res.partner:0
+msgid "Default shipping conditions"
+msgstr ""
+
+#. module: l10n_it_sale
+#: model:ir.module.module,description:l10n_it_sale.module_meta_information
+msgid "OpenERP Italian Localization - Sale version\n"
+"\n"
+"Functionalities:\n"
+"\n"
+"- Documento di trasporto\n"
+"\n"
+""
+msgstr ""
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+	<record model="ir.ui.view" id="view_lead_form_inherit_province">
+		<field name="name">lead.form.province</field>
+		<field name="model">crm.lead</field>
+		<field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+           <field name="country_id" position="before">
+               <div class="province_format">
+                   <field name="province" placeholder="Province" select="2"/>
+                   <field name="region" placeholder="Region"/>
+               </div>           
+		    </field>
+		</field>
+	 </record>
+
+	 <record model="ir.ui.view" id="view_lead_form_inherit_city">
+		<field name="name">lead.form.city</field>
+		<field name="model">crm.lead</field>
+		<field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+		   <field name="city" position="replace" >
+                <field name="city" placeholder="City" style="width: 70%%" on_change="on_change_city(city)"/>
+		   </field>
+		</field>
+	 </record>
+
+	</data>
+</openerp>

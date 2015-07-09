@@ -1,0 +1,28 @@
+-
+  I create the wizard record
+-
+  !record {model: wizard.compute.fc, id: wizard_fc_1}:
+    fiscalcode_surname: 'Tampieri'
+    fiscalcode_firstname: 'Franco'
+    birth_date: '1976-07-04'
+    birth_city: l10n_it_base.4059
+    sex: 'M'
+
+-
+  I run the wizard
+-
+  !python {model: wizard.compute.fc}: |
+    self.view_init(cr, uid, [ref("wizard_fc_1")], {"lang": 'en_US',
+      "active_model": "res.partner", "tz": False, "active_ids":
+      [ref("base.res_partner_12")], "active_id": ref("base.res_partner_12"),
+    })
+    self.compute_fc(cr, uid, [ref("wizard_fc_1")], {"lang": 'en_US',
+      "active_model": "res.partner", "tz": False, "active_ids":
+      [ref("base.res_partner_12")], "active_id": ref("base.res_partner_12"),
+    })
+
+-
+  I check the fiscal code
+-
+  !assert {model: res.partner, id: base.res_partner_12}:
+    - fiscalcode == 'TMPFNC76L04E289A'

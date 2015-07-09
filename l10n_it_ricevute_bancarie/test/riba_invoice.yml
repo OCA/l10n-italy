@@ -1,0 +1,50 @@
+-
+  I create an invoice and confirm it
+-
+  !record {model: account.invoice, id: account_invoice_riba}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: '[PCSC234] PC Assemble SC234'
+        price_unit: 450.0
+        quantity: 1.0
+        product_id: product.product_product_3
+        uos_id: product.product_uom_unit
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_12
+    payment_term: account_payment_term_riba
+-
+  I call the "Confirm Draft Invoices" wizard
+-
+  !record {model: account.invoice.confirm, id: account_invoice_confirm_0}:
+    {}
+-
+  I click on Confirm Invoices Button
+-
+  !python {model: account.invoice.confirm}: |
+    self.invoice_confirm(cr, uid, [ref("account_invoice_confirm_0")], {"lang": 'en_US',
+      "tz": False, "active_model": "account.invoice", "active_ids": [ref("account_invoice_riba")],
+      "type": "out_invoice", "active_id": ref("account_invoice_riba"), })
+-
+  I check the riba credit
+-
+  !python {model: account.invoice}: |
+    invoice = self.browse(cr, uid, ref('account_invoice_riba'), context=context)
+    for move_line in invoice.move_id.line_id:
+      if move_line.account_id.id == ref('account.a_recv'):
+        line_ids = self.pool['account.move.line'].search(cr, uid, [
+          '&',
+            '|',
+              ('riba','=','True'),('unsolved_invoice_ids','!=',False),
+            ('account_id.type','=','receivable'),
+          ('reconcile_id', '=', False),
+          ('distinta_line_ids', '=', False)
+          ], context=context)
+        assert (len(line_ids) == 1), (
+          "There must be 1 riba line, %s found" % len(line_ids))
+        assert (line_ids[0] == move_line.id), (
+          "invoice riba credit line (%s) is different from found riba line (%s)"
+          % (move_line.name, line_ids[0]))
+        break

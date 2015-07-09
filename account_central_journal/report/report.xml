@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="central_journal_report_id" model="ir.actions.report.xml">
+            <field name="name">central_journal</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.move.line</field>
+            <field name="report_name">central_journal_report</field>
+            <field name="report_rml">account_central_journal/report/central_journal_report.mako</field>
+            <field name="report_type">webkit</field>
+            <field name="webkit_header" ref="ir_header_central_journal_report"/>
+        </record>
+    </data>
+</openerp>
+

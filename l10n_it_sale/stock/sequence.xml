@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+    Sequence types for pickings
+    -->
+
+        <record id="seq_type_ddt" model="ir.sequence.type">
+            <field name="name">DDT</field>
+            <field name="code">stock.ddt</field>
+        </record>
+        <record id="seq_ddt" model="ir.sequence">
+            <field name="name">DDT</field>
+            <field name="code">stock.ddt</field>
+            <field name="prefix">DDT/</field>
+        </record>
+    </data>
+</openerp>

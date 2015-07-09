@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="invoice_form_inherit_contractual_conditions">
+			<field name="name">invoice.form.contractual.conditions</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form"/>
+			<field name="arch" type="xml">
+				<page string="Payments" position="after">
+					<page string="Shipping">
+						<group colspan="2">
+							<field name="carriage_condition_id" string="Carriage condition"/>
+							<field name="goods_description_id" string="Description of goods"/>
+							<field name="transportation_reason_id" string="Reason for transportation"/>
+						</group>
+					</page>
+
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>
+

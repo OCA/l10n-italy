@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <report id="ddt_webkit"
+            name="ddt_webkit"
+            auto="False"
+            model="stock.picking.out"
+            file="l10n_it_DDT_webkit/report/ddt.mako"
+            string="DDT"
+            report_type="webkit"
+            header="True"
+            webkit_header="base_headers_webkit.base_reports_portrait_header" />
+
+  </data>
+</openerp>

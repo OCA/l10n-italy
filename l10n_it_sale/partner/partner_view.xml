@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_partner_form_inherit_shipping_conditions">
+			<field name="name">partner.form.shipping.conditions</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<page string="Sales &amp; Purchases" position="inside">
+					<group colspan="2" col="2" groups="base.group_sale_salesman">
+						<separator string="Default shipping conditions" colspan="2"/>
+						<field name="carriage_condition_id" groups="base.group_sale_salesman"/>
+						<field name="goods_description_id" groups="base.group_sale_salesman"/>
+						<field name="transportation_reason_id" groups="base.group_sale_salesman"/>
+					</group>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

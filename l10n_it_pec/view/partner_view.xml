@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_pec_form" model="ir.ui.view">
+            <field name="name">res.partner.pec.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="pec_mail" widget="email"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_partner_pec_tree" model="ir.ui.view">
+            <field name="name">res.partner.pec.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="pec_mail" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="res_partner_kanban_pec_view">
+            <field name="name">res.partner.pec.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                <field name="pec_mail"/>
+                </field>
+                    <xpath expr="//div[contains(@class, 'oe_kanban_details')]/ul" position="inside">
+                        <li t-if="record.pec_mail.raw_value">
+                            <a t-attf-href="mailto:#{record.pec_mail.raw_value}"><field name="pec_mail"/></a><span> (PEC)</span>
+                        </li>
+                    </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,130 @@
+-
+  In order to test tax computation I create a new customer invoice
+-
+  !record {model: account.invoice, id: account_invoice_customer0}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_sale
+        name: '123.57'
+        price_unit: 123.57
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_20I5
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_3
+    
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_customer0")])  
+-  
+    Then I verify the amount.
+    123.57 * 0.2 = 24.714 = 24.71
+-  
+    !assert {model: account.invoice, id: account_invoice_customer0}:
+        - amount_tax == 24.71
+-
+  In order to test tax computation I create a new customer invoice
+-
+  !record {model: account.invoice, id: account_invoice_customer1}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_sale
+        name: '123.57'
+        price_unit: 123.57
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_20I5
+      - account_id: account.a_sale
+        name: '123.57'
+        price_unit: 123.57
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_20
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_3
+    
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_customer1")])  
+-  
+    Then I verify the amount.
+    123.57 + 123.57 = 247.14
+    247.14 × 0.2 = 49.428 = 49.43
+-  
+    !assert {model: account.invoice, id: account_invoice_customer1}:
+        - amount_tax == 49.43
+-
+  In order to test tax computation I create a new customer invoice
+-
+  !record {model: account.invoice, id: account_invoice_customer3}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_sale
+        name: '123.57'
+        price_unit: 123.57
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_2010
+      - account_id: account.a_sale
+        name: '123.57'
+        price_unit: 123.57
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_20
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_3
+    
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_customer3")])  
+-  
+    Then I verify the amount.
+    123.57 + 123.57 = 247.14
+    247.14 × 0.2 = 49.428 = 49.43
+-  
+    !assert {model: account.invoice, id: account_invoice_customer3}:
+        - amount_tax == 49.43
+-
+  In order to test tax computation I create a new customer invoice
+-
+  !record {model: account.invoice, id: account_invoice_customer2}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_sale
+        name: '100.03'
+        price_unit: 100.03
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_20I5
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_3
+    
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_customer2")])  
+-  
+    Then I verify the amount.
+    100.03 × 0.2 = 20.006 = 20.01
+-  
+    !assert {model: account.invoice, id: account_invoice_customer2}:
+        - amount_tax == 20.01

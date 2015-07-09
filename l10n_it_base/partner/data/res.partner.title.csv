@@ -1,0 +1,17 @@
+id,name,shortcut,domain
+di,Ditta individuale,DI,partner
+snc,S.n.c.,S.n.c.,partner
+sas,S.a.s.,S.a.s.,partner
+spa,S.p.A.,S.p.A.,partner
+srl,S.r.l.,S.r.l.,partner
+sapa,S.a.p.a.,S.a.p.a.,partner
+if,Impresa Famigliare,IF,partner
+pf,Persona Fisica,PF,partner
+spettle,Spett.le,Spett.le,contact
+ing,Ing.,Ing.,contact
+egrsigra,Egr. Sig.ra,Egr. Sig.ra,contact
+dott,Dott.,Dott.,contact
+notaio,Notaio,Notaio,contact
+arch,Arch.,Arch.,contact
+avv,Avv.,Avv.,contact
+egrsig,Egr. Sig.,Egr. Sig.,contact
