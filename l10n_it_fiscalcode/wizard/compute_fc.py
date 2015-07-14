@@ -21,8 +21,18 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import except_orm
+import logging
 import datetime
-from codicefiscale import build
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from codicefiscale import build
+except ImportError:
+    _logger.warning(
+        'codicefiscale library not found. '
+        'If you plan to use it, please install the codicefiscale library '
+        'from https://pypi.python.org/pypi/codicefiscale')
 
 
 class wizard_compute_fc(models.TransientModel):
