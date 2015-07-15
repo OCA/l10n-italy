@@ -23,7 +23,7 @@
             </t>
             <table style="width:100%; font-size: small;" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr style="page-break-inside: avoid">
                             <th class="left_without_line">Numero</th>
                             <th class="left_without_line">Data registrazione</th>
                             <t t-if="registry_type != 'corrispettivi'">
@@ -47,7 +47,7 @@
                             <t t-foreach="tax_lines(move)" t-as="line">
                                 <t t-set="line_class_left" t-value="'left_with_line' if line['index'] == 0 else 'left_without_line'"/>
                                 <t t-set="line_class_right" t-value="'right_with_line' if line['index'] == 0 else 'right_without_line'"/>
-                                  <tr>
+                                  <tr style="page-break-inside: avoid">
                                     <!-- numero -->
                                     <td t-att-class="line_class_left"><t t-if="line['index'] == 0"><div t-esc="counter" style="page-break-inside: avoid"/></t></td>
                                     <!-- Data registrazione -->
