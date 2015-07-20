@@ -1,120 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>  
-		
-		<!-- 
-	    Journal
-	    -->
-	    <record id="account_intrastat_journal_form_view" model="ir.ui.view">
-			<field name="name">account.intrastat.journal.form.view</field>
-			<field name="model">account.journal</field>
+        
+        <!-- 
+        Journal
+        -->
+        <record id="account_intrastat_journal_form_view" model="ir.ui.view">
+            <field name="name">account.intrastat.journal.form.view</field>
+            <field name="model">account.journal</field>
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='sequence_id']" position="after">
                     <group string="Intrastat" colspan="4">
-	                	<field name="intrastat"/>
-	                	<field name="intrastat_code_type" attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
-	                	<field name="intrastat_move_type" attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
-	                </group>
-           		</xpath>
+                        <field name="intrastat"/>
+                        <field name="intrastat_code_type" attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
+                        <field name="intrastat_move_type" attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
+                    </group>
+                </xpath>
             </field>
-		</record>
-		
-	    <!--
+        </record>
+        
+        <!--
         INVOICE CUSTOMER
         -->
-		<record model="ir.ui.view" id="account_intrastat_invoice_form">
-			<field name="name">account.intrastat.invoice.form</field>
-			<field name="model">account.invoice</field>
-			<field name="inherit_id" ref="account.invoice_form"/>
-			<field name="arch" type="xml">
-			<!-- 
-			    <xpath expr="//field[@name='fiscal_position']" position="attributes">
-				    <attribute name="on_change">onchange_fiscal_position_id(fiscal_position)</attribute>
-				</xpath> -->
-			    <xpath expr="//field[@name='journal_id']" position="after">
-				    <!-- <field name="intrastat" on_change="onchange_intrastat(intrastat)"/> -->
-				    <field name="intrastat"/>
-				</xpath>
-				
-				<xpath expr="//page[@string='Invoice Lines']" position="after">
-					<page string="Intrastat" attrs="{'invisible': [('intrastat', '=', False)]}">
-						<group>
-							<field name="intrastat_line_ids" nolabel="1">
-								<tree>
-									<field name="intrastat_code_type"/>
-					                <field name="intrastat_code_good" attrs="{'invisible': [('intrastat_code_type', '=', 'service')], 
-					                	'required': [('intrastat_code_type', '=', 'good')]}"/>
-					            	<field name="intrastat_code_service" attrs="{'invisible': [('intrastat_code_type', '=', 'good')], 
-					            		'required': [('intrastat_code_type', '=', 'service')]}"/>
-					            	<field name="amount_euro"/>
-					            	<field name="amount_currency"/>
-					            	<field name="transation_nature"/>
-					            	<field name="weight_kg"/>
-					            	<field name="additional_units"/>
-					            	<field name="statistic_amount_euro"/>
-					            </tree>
-					            <form>
-					             	<group>
-						            	<group>
-						            		<field name="intrastat_code_type"/>
-						            		<field name="intrastat_code_good" attrs="{'invisible': [('intrastat_code_type', '=', 'service')], 
-					                			'required': [('intrastat_code_type', '=', 'good')]}"/>
-					            			<field name="intrastat_code_service" attrs="{'invisible': [('intrastat_code_type', '=', 'good')], 
-					            				'required': [('intrastat_code_type', '=', 'service')]}"/>
-						            		<field name="amount_euro"/>
-						            		<field name="amount_currency"/>
-						            		<field name="statistic_amount_euro"/>	
-						            	</group>
-						            	<group>
-						            		<field name="transation_nature"/>
-						            		<field name="weight_kg"/>
-					            			<field name="additional_units"/>
-						            	</group>
-						            	<newline/>
-	                                	<group>
-						            		<field name="delivery_code"/>
-						            		<field name="transport_code"/>
-					            			<field name="country_origin_id"/>
-					            			<field name="country_good_origin_id"/>
-					            			<field name="province_destination_id"/>
-						            	</group>
-					            	</group>
-					            </form>
-							</field>
-						</group>
-					</page>
-	            </xpath>
-			    
-			</field>
-		</record>
-	    
-		<!-- 
-	    Payment Terms
-	    -->
-	    <record id="account_intrastat_payment_term_form_view" model="ir.ui.view">
-			<field name="name">account.intrastat.payment.term.form.view</field>
-			<field name="model">account.payment.term</field>
-			<field name="inherit_id" ref="account.view_payment_term_form"/>
-			<field name="arch" type="xml">
-				
-				<xpath expr="//field[@name='line_ids']" position="after">
-					<group string="INTRASTAT Classification">
-					    <field name="intrastat_code"/>
-					</group>
-				</xpath>
-				
-			</field>
-		</record>
-		
-    	<!-- 
+        <record model="ir.ui.view" id="account_intrastat_invoice_form">
+            <field name="name">account.intrastat.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+            <!-- 
+                <xpath expr="//field[@name='fiscal_position']" position="attributes">
+                    <attribute name="on_change">onchange_fiscal_position_id(fiscal_position)</attribute>
+                </xpath> -->
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <!-- <field name="intrastat" on_change="onchange_intrastat(intrastat)"/> -->
+                    <field name="intrastat"/>
+                </xpath>
+                
+                <xpath expr="//page[@string='Invoice Lines']" position="after">
+                    <page string="Intrastat" attrs="{'invisible': [('intrastat', '=', False)]}">
+                        <group>
+                            <field name="intrastat_line_ids" nolabel="1">
+                                <tree>
+                                    <field name="intrastat_code_type"/>
+                                    <field name="intrastat_code_good" attrs="{'invisible': [('intrastat_code_type', '=', 'service')], 
+                                        'required': [('intrastat_code_type', '=', 'good')]}"/>
+                                    <field name="intrastat_code_service" attrs="{'invisible': [('intrastat_code_type', '=', 'good')], 
+                                        'required': [('intrastat_code_type', '=', 'service')]}"/>
+                                    <field name="amount_euro"/>
+                                    <field name="amount_currency"/>
+                                    <field name="transation_nature"/>
+                                    <field name="weight_kg"/>
+                                    <field name="additional_units"/>
+                                    <field name="statistic_amount_euro"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="intrastat_code_type"/>
+                                            <field name="intrastat_code_good" attrs="{'invisible': [('intrastat_code_type', '=', 'service')], 
+                                                'required': [('intrastat_code_type', '=', 'good')]}"/>
+                                            <field name="intrastat_code_service" attrs="{'invisible': [('intrastat_code_type', '=', 'good')], 
+                                                'required': [('intrastat_code_type', '=', 'service')]}"/>
+                                            <field name="amount_euro"/>
+                                            <field name="amount_currency"/>
+                                            <field name="statistic_amount_euro"/>    
+                                        </group>
+                                        <group>
+                                            <field name="transation_nature"/>
+                                            <field name="weight_kg"/>
+                                            <field name="additional_units"/>
+                                        </group>
+                                        <newline/>
+                                        <group>
+                                            <field name="delivery_code"/>
+                                            <field name="transport_code"/>
+                                            <field name="country_origin_id"/>
+                                            <field name="country_good_origin_id"/>
+                                            <field name="province_destination_id"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+                
+            </field>
+        </record>
+        
+        <!-- 
+        Payment Terms
+        -->
+        <record id="account_intrastat_payment_term_form_view" model="ir.ui.view">
+            <field name="name">account.intrastat.payment.term.form.view</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="account.view_payment_term_form"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//field[@name='line_ids']" position="after">
+                    <group string="INTRASTAT Classification">
+                        <field name="intrastat_code"/>
+                    </group>
+                </xpath>
+                
+            </field>
+        </record>
+        
+        <!-- 
         STATEMENT
          -->
         <record id="account_intrastat_statement_tree_view" model="ir.ui.view">
             <field name="name">account.intrastat.statement.tree.view</field>
             <field name="model">account.intrastat.statement</field>
             <field name="arch" type="xml">
-            	
+                
                 <tree string="INTRASTAT Statement" version="7.0">
                     <field name="fiscalyear_id"/>
                     <field name="period_type"/>
@@ -127,144 +127,144 @@
             <field name="name">account.intrastat.statement.form.view</field>
             <field name="model">account.intrastat.statement</field>
             <field name="arch" type="xml">
-            	<form string="INTRASTAT Statement">
-	            	<sheet>
-	                  	<group>
-	                    	<field name="fiscalyear_id"/>
-	                    	<field name="period_type"/>
-	                    	<field name="period_number" />
-	                    	<field name="vat_taxpayer" />
-	                    </group>
-	                    <newline/>
-	                    <group>
-	                    	<field name="name"/>
-	                    </group>
-	                    <newline/>
-	                    <notebook>
-	                    	<page string="Sale">
-	                    		<group>
-	                    			<group string="Goods Sale">
-	                    				<field name="section1_operation_number" />
-	                    				<field name="section1_operation_amount" />
-	                    			</group>
-	                    			<group string="Goods Refund">
-	                    				<field name="section2_operation_number" />
-	                    				<field name="section2_operation_amount" />
-	                    			</group>
-	                    			<newline/>
-	                    			<group string="Services Sale">
-	                    				<field name="section3_operation_number" />
-	                    				<field name="section3_operation_amount" />
-	                    			</group>
-	                    			<group string="Services Refund">
-	                    				<field name="section4_operation_number" />
-	                    				<field name="section4_operation_amount" /> 
-	                    			</group>
-	                    		</group>
-	                    		<newline/>
-	                    		<notebook>
-	                    			<page string="Goods Sale">
-	                    				<field name="section1_ids" nolabel="1">
-							        	    <tree>
-							        	    	<field name="progressive"/>
-							        	    	<field name="country_customer_id"/>
-							        	    	<field name="vat_code"/>
-							        	    	<field name="code"/>
-							        	    	<field name="country_destination_id"/>
-							        	    	<field name="province_origin_id"/>
-							        	    	<field name="amount_euro"/>
-							        	    </tree>
-							        	</field>
-	                    			</page>
-	                    			<page string="Goods Refund">
-	                    				<field name="section2_ids" nolabel="1">
-							        	    <tree>
-							        	    	<field name="progressive"/>
-							        	    	<field name="year"/>
-							        	    	<field name="quarterly"/>
-							        	    	<field name="month"/>
-							        	    	<field name="country_customer_id"/>
-							        	    	<field name="vat_code"/>
-							        	    	<field name="code"/>
-							        	    	<field name="sign_variation"/>
-							        	    	<field name="amount_euro"/>
-							        	    </tree>
-							        	</field>
-	                    			</page>
-	                    			<page string="Services Sale">
-	                    				<field name="section3_ids" nolabel="1">
-							        	    <tree>
-							        	    	<field name="progressive"/>
-							        	    	<field name="country_customer_id"/>
-							        	    	<field name="vat_code"/>
-							        	    	<field name="code"/>
-							        	    	<field name="invoice_number"/>
-							        	    	<field name="invoice_date"/>
-							        	    	<field name="amount_euro"/>
-							        	    </tree>
-							        	</field>
-	                    			</page>
-	                    			<page string="Services Refund">
-	                    				<field name="section4_ids" nolabel="1">
-							        	    <tree>
-							        	    	<field name="progressive"/>
-							        	    	<field name="custom"/>
-							        	    	<field name="country_customer_id"/>
-							        	    	<field name="vat_code"/>
-							        	    	<field name="code"/>
-							        	    	<field name="invoice_number"/>
-							        	    	<field name="invoice_date"/>
-							        	    	<field name="amount_euro"/>
-							        	    </tree>
-							        	</field>
-	                    			</page>
-	                    		</notebook>
-	                    	</page>
-	                    	<page string="Purchase">
-	                    		<!-- 
-	                    		<field name="purchase_ids" nolabel="1">
-					        	    <tree>
-					        	    	<field name="progressive"/>
-					        	    </tree>
-					        	</field>
-					        	 -->
-	                    	</page>
-	                    </notebook>
-	            	</sheet>
+                <form string="INTRASTAT Statement">
+                    <sheet>
+                        <group>
+                            <field name="fiscalyear_id"/>
+                            <field name="period_type"/>
+                            <field name="period_number" />
+                            <field name="vat_taxpayer" />
+                        </group>
+                        <newline/>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <newline/>
+                        <notebook>
+                            <page string="Sale">
+                                <group>
+                                    <group string="Goods Sale">
+                                        <field name="section1_operation_number" />
+                                        <field name="section1_operation_amount" />
+                                    </group>
+                                    <group string="Goods Refund">
+                                        <field name="section2_operation_number" />
+                                        <field name="section2_operation_amount" />
+                                    </group>
+                                    <newline/>
+                                    <group string="Services Sale">
+                                        <field name="section3_operation_number" />
+                                        <field name="section3_operation_amount" />
+                                    </group>
+                                    <group string="Services Refund">
+                                        <field name="section4_operation_number" />
+                                        <field name="section4_operation_amount" /> 
+                                    </group>
+                                </group>
+                                <newline/>
+                                <notebook>
+                                    <page string="Goods Sale">
+                                        <field name="section1_ids" nolabel="1">
+                                            <tree>
+                                                <field name="progressive"/>
+                                                <field name="country_customer_id"/>
+                                                <field name="vat_code"/>
+                                                <field name="code"/>
+                                                <field name="country_destination_id"/>
+                                                <field name="province_origin_id"/>
+                                                <field name="amount_euro"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+                                    <page string="Goods Refund">
+                                        <field name="section2_ids" nolabel="1">
+                                            <tree>
+                                                <field name="progressive"/>
+                                                <field name="year"/>
+                                                <field name="quarterly"/>
+                                                <field name="month"/>
+                                                <field name="country_customer_id"/>
+                                                <field name="vat_code"/>
+                                                <field name="code"/>
+                                                <field name="sign_variation"/>
+                                                <field name="amount_euro"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+                                    <page string="Services Sale">
+                                        <field name="section3_ids" nolabel="1">
+                                            <tree>
+                                                <field name="progressive"/>
+                                                <field name="country_customer_id"/>
+                                                <field name="vat_code"/>
+                                                <field name="code"/>
+                                                <field name="invoice_number"/>
+                                                <field name="invoice_date"/>
+                                                <field name="amount_euro"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+                                    <page string="Services Refund">
+                                        <field name="section4_ids" nolabel="1">
+                                            <tree>
+                                                <field name="progressive"/>
+                                                <field name="custom"/>
+                                                <field name="country_customer_id"/>
+                                                <field name="vat_code"/>
+                                                <field name="code"/>
+                                                <field name="invoice_number"/>
+                                                <field name="invoice_date"/>
+                                                <field name="amount_euro"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </page>
+                            <page string="Purchase">
+                                <!-- 
+                                <field name="purchase_ids" nolabel="1">
+                                    <tree>
+                                        <field name="progressive"/>
+                                    </tree>
+                                </field>
+                                 -->
+                            </page>
+                        </notebook>
+                    </sheet>
                 </form>
             </field>
         </record>
         
         <record id="account_intrastat_statement_action" model="ir.actions.act_window">
-			<field name="name">Intrastat Statements</field>
-			<field name="type">ir.actions.act_window</field>
-	        <field name="res_model">account.intrastat.statement</field>
-	        <field name="view_type">form</field>
-	        <field name="view_mode">tree,form</field>
-	        <field name="view_id" ref="account_intrastat_statement_tree_view"/>
-	        <field name="help"></field>
-	        <!-- <field name="search_view_id" ref="openforce_salesman_commission_item_search_view" /> -->
-    	</record>
-    	    	
-    	<menuitem action="account_intrastat_statement_action" id="menu_account_intrastat_statement" 
-    		parent="account.menu_account_end_year_treatments" sequence="100"/>
-    		
-    	<menuitem id="menu_account_intrastat_configuration" name="Intrastat" 
+            <field name="name">Intrastat Statements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.intrastat.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_intrastat_statement_tree_view"/>
+            <field name="help"></field>
+            <!-- <field name="search_view_id" ref="openforce_salesman_commission_item_search_view" /> -->
+        </record>
+                
+        <menuitem action="account_intrastat_statement_action" id="menu_account_intrastat_statement" 
+            parent="account.menu_account_end_year_treatments" sequence="100"/>
+            
+        <menuitem id="menu_account_intrastat_configuration" name="Intrastat" 
              parent="account.menu_finance_configuration" sequence="45"/>
     
-    	<!--
-    	CUSTOM
-     	-->
-     	<record id="account_intrastat_custom_view_tree" model="ir.ui.view">
+        <!--
+        CUSTOM
+        -->
+        <record id="account_intrastat_custom_view_tree" model="ir.ui.view">
             <field name="name">account.intrastat.custom.view.tree</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-	            <tree string="Custom" version="7.0">
-	            	<field name="code"/>
-	            	<field name="name"/>
-	            	<field name="date_start"/>
-	            	<field name="date_stop"/>
-	            </tree>
+                <tree string="Custom" version="7.0">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_stop"/>
+                </tree>
             </field>
         </record>
         
@@ -272,18 +272,18 @@
             <field name="name">account.intrastat.custom.view.form</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-            	<form string="Custom" version="7.0">
-            	    <group>
-		            	<group>
-		            	    <field name="code"/>
-	            			<field name="name"/>
-		            	</group>
-		            	<group>
-		            		<field name="date_start"/>
-		            		<field name="date_stop"/>
-		            	</group>
-	            	</group>
-	            </form>
+                <form string="Custom" version="7.0">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_stop"/>
+                        </group>
+                    </group>
+                </form>
             </field>
         </record>
         
@@ -295,107 +295,56 @@
         
         <menuitem id="menu_account_intrastat_custom" name="Customs" 
             action="action_account_intrastat_custom" parent="menu_account_intrastat_configuration" sequence="10"/>
-     
-     
-     	<!--
-    	CODE GOOD
-     	-->
-     	<record id="account_intrastat_code_good_view_tree" model="ir.ui.view">
-            <field name="name">account.intrastat.code.good.view.tree</field>
-            <field name="model">account.intrastat.code.good</field>
+
+        <!--
+        CODES
+        -->
+        <record id="view_tree_report_intrastat_code" model="ir.ui.view">
+            <field name="name">views.tree.report.intrastat.code</field>
+            <field name="model">report.intrastat.code</field>
             <field name="arch" type="xml">
-	            <tree string="Code Good" version="7.0">
-	            	<field name="code"/>
-	            	<field name="name"/>
-	            	<field name="date_start"/>
-	            	<field name="date_stop"/>
-	            </tree>
+                <tree string="Codes">
+                    <field name="active"/>
+                    <field name="type"/>
+                    <field name="name"/>
+                </tree>
             </field>
         </record>
-        
-        <record id="account_intrastat_code_good_view_form" model="ir.ui.view">
-            <field name="name">account.intrastat.code.good.view.form</field>
-            <field name="model">account.intrastat.code.good</field>
+
+        <record id="view_form_report_intrastat_code" model="ir.ui.view">
+            <field name="name">views.form.report.intrastat.code</field>
+            <field name="model">report.intrastat.code</field>
+            <field name="inherit_id" ref="report_intrastat.view_report_intrastat_code_form"/>
             <field name="arch" type="xml">
-            	<form string="Code Good" version="7.0">
-            	    <group>
-		            	<group>
-		            	    <field name="code"/>
-	            			<field name="name"/>
-		            	</group>
-		            	<group>
-		            		<field name="date_start"/>
-		            		<field name="date_stop"/>
-		            	</group>
-	            	</group>
-	            </form>
+                <xpath expr="//group" position="after">
+                    <group>
+                        <field name="type"/>
+                        <field name="active"/>
+                    </group>
+                </xpath>
             </field>
         </record>
-        
-        <record id="action_account_intrastat_code_good" model="ir.actions.act_window">
-            <field name="name">Code Goods</field>
-            <field name="res_model">account.intrastat.code.good</field>
-            <field name="view_id" ref="account_intrastat_code_good_view_tree"/>
+
+        <record id="action_report_intrastat_code" model="ir.actions.act_window">
+            <field name="name">Codes</field>
+            <field name="res_model">report.intrastat.code</field>
+            <field name="view_id" ref="view_tree_report_intrastat_code"/>
         </record>
-        
-        <menuitem id="menu_account_intrastat_code_good" name="Code Goods" 
-            action="action_account_intrastat_code_good" parent="menu_account_intrastat_configuration" sequence="20"/>
-       
-       <!--
-    	CODE SERVICE
-     	-->
-     	<record id="account_intrastat_code_service_view_tree" model="ir.ui.view">
-            <field name="name">account.intrastat.code.service.view.tree</field>
-            <field name="model">account.intrastat.code.service</field>
-            <field name="arch" type="xml">
-	            <tree string="Code service" version="7.0">
-	            	<field name="code"/>
-	            	<field name="name"/>
-	            	<field name="date_start"/>
-	            	<field name="date_stop"/>
-	            </tree>
-            </field>
-        </record>
-        
-        <record id="account_intrastat_code_service_view_form" model="ir.ui.view">
-            <field name="name">account.intrastat.code.service.view.form</field>
-            <field name="model">account.intrastat.code.service</field>
-            <field name="arch" type="xml">
-            	<form string="Code service" version="7.0">
-            	    <group>
-		            	<group>
-		            	    <field name="code"/>
-	            			<field name="name"/>
-		            	</group>
-		            	<group>
-		            		<field name="date_start"/>
-		            		<field name="date_stop"/>
-		            	</group>
-	            	</group>
-	            </form>
-            </field>
-        </record>
-        
-        <record id="action_account_intrastat_code_service" model="ir.actions.act_window">
-            <field name="name">Code services</field>
-            <field name="res_model">account.intrastat.code.service</field>
-            <field name="view_id" ref="account_intrastat_code_service_view_tree"/>
-        </record>
-        
-        <menuitem id="menu_account_intrastat_code_service" name="Code Services" 
-            action="action_account_intrastat_code_service" parent="menu_account_intrastat_configuration" sequence="25"/>
-    
-    	<!--
-    	TRANSPORT
-     	-->
-     	<record id="account_intrastat_transport_view_tree" model="ir.ui.view">
+
+        <menuitem id="menu_report_intrastat_code" name="Codes Intrastat"
+            action="action_report_intrastat_code" parent="menu_account_intrastat_configuration" sequence="20"/>
+
+        <!--
+        TRANSPORT
+        -->
+        <record id="account_intrastat_transport_view_tree" model="ir.ui.view">
             <field name="name">account.intrastat.transport.view.tree</field>
             <field name="model">account.intrastat.transport</field>
             <field name="arch" type="xml">
-	            <tree string="Transport" version="7.0">
-	            	<field name="code"/>
-	            	<field name="name"/>
-	            </tree>
+                <tree string="Transport" version="7.0">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
             </field>
         </record>
         
@@ -403,12 +352,12 @@
             <field name="name">account.intrastat.transport.view.form</field>
             <field name="model">account.intrastat.transport</field>
             <field name="arch" type="xml">
-            	<form string="Transport" version="7.0">
-            	    <group>
-	            	    <field name="code"/>
-            			<field name="name"/>
-	            	</group>
-	            </form>
+                <form string="Transport" version="7.0">
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </form>
             </field>
         </record>
         
@@ -422,17 +371,17 @@
             action="action_account_intrastat_transport" parent="menu_account_intrastat_configuration" sequence="30"/>
      
      
-    	<!--
-    	TRANSATION NATURE
-     	-->
-     	<record id="account_intrastat_transation_nature_view_tree" model="ir.ui.view">
+        <!--
+        TRANSATION NATURE
+        -->
+        <record id="account_intrastat_transation_nature_view_tree" model="ir.ui.view">
             <field name="name">account.intrastat.transation.nature.view.tree</field>
             <field name="model">account.intrastat.transation.nature</field>
             <field name="arch" type="xml">
-	            <tree string="Transation Nature" version="7.0">
-	            	<field name="code"/>
-	            	<field name="name"/>
-	            </tree>
+                <tree string="Transation Nature" version="7.0">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
             </field>
         </record>
         
@@ -440,12 +389,12 @@
             <field name="name">account.intrastat.transation.nature.view.form</field>
             <field name="model">account.intrastat.transation.nature</field>
             <field name="arch" type="xml">
-            	<form string="Transation Nature" version="7.0">
-            	    <group>
-	            	    <field name="code"/>
-            			<field name="name"/>
-	            	</group>
-	            </form>
+                <form string="Transation Nature" version="7.0">
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </form>
             </field>
         </record>
         
@@ -457,6 +406,6 @@
         
         <menuitem id="menu_account_transation_nature" name="Transation Nature" 
             action="action_account_intrastat_transation_nature_transport" parent="menu_account_intrastat_configuration" sequence="40"/>
-    	
+        
     </data>
 </openerp>
