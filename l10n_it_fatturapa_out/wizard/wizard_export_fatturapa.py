@@ -430,38 +430,11 @@ class WizardExportFatturapa(orm.TransientModel):
             self, cr, uid, company, context=None):
         if context is None:
             context = {}
-
         if company.fatturapa_sender_partner:
             # TODO
             raise orm.except_orm(
                 _("Error"),
                 _("TerzoIntermediarioOSoggettoEmittente not handled"))
-
-        '''
-        DatiAnagrafici = TerzoIntermediarioOSoggettoEmittente.find(
-            'DatiAnagrafici'
-            )
-
-        if not partner.fiscalcode:
-            raise orm.except_orm(
-                _('Error!'), _('TerzoIntermediarioOSoggettoEmittente Partner '
-                               'fiscalcode not set.'))
-
-        DatiAnagrafici.find('CodiceFiscale').text = partner.fiscalcode
-
-        if not partner.vat:
-            raise orm.except_orm(
-                _('Error!'), _('TerzoIntermediarioOSoggettoEmittente '
-                               'Partner VAT not set.'))
-        DatiAnagrafici.find(
-            'IdFiscaleIVA/IdPaese').text = partner.vat[0:2]
-        DatiAnagrafici.find(
-            'IdFiscaleIVA/IdCodice').text = partner.vat[2:]
-        DatiAnagrafici.find('Anagrafica/Denominazione').text = partner.name
-        if partner.eori_code:
-            DatiAnagrafici.find(
-                'Anagrafica/CodEORI').text = partner.codiceEORI
-        '''
         return True
 
     def setSoggettoEmittente(self, cr, uid, context=None):
