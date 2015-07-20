@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': 'Account Central Journal',
+    'name': 'L10n it Account Central Journal',
     'version': '3',
     'author': "ISA S.r.l.",
     'website': 'http://www.isa.it',
@@ -33,7 +33,7 @@ Managing the printing of the "Central Journal" """,
         'report_webkit',
         ],
     'init_xml' : [],
-    'update_xml': [
+    'data': [
         'report/webkit_model.xml',
         'report/report.xml',
         'wizard/central_journal_report.xml',
@@ -41,7 +41,7 @@ Managing the printing of the "Central Journal" """,
         ],
     'demo_xml': [],
     'test':[],
-    'installable': False,
+    'installable': True,
     'active': False,
     'certificate': '',
 }

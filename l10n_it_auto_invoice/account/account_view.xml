@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <!-- FISCAL POSITION FORM -->
+
+    <record id="intra_cee_view_account_position_form" model="ir.ui.view">
+        <field name="name">intra_cee.account_position.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/separator[@string='Taxes Mapping']" position="before">
+                <group>
+                    <separator string="Intra CEE Configuration" colspan="4" />
+                    <group col="6">
+                        <field name="active_intra_cee" />
+                        <field name="active_reverse_charge" />
+                        <field name="active_extra_ue_service" />
+                    </group>
+                </group>
+                <group>
+                    <group col="6">
+                        <field name="account_transient_id"
+                            attrs="{'required':['|', '|', ('active_intra_cee', '=', True), ('active_reverse_charge', '=', True), ('active_extra_ue_service', '=', True)]}"/>
+                        <field name="journal_transfer_entry_id"
+                            attrs="{'required':['|', '|', ('active_intra_cee', '=', True), ('active_reverse_charge', '=', True), ('active_extra_ue_service', '=', True)]}"/>
+                        <field name="journal_auto_invoice_id"
+                            attrs="{'required':['|', '|', ('active_intra_cee', '=', True), ('active_reverse_charge', '=', True), ('active_extra_ue_service', '=', True)]}"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="extra_ue_service_tax_id" colspan="4"
+                        attrs="{'required':[('active_extra_ue_service', '=', True)]}"/>
+                    <field name="extra_ue_line_detail" colspan="4"
+                        attrs="{'required':[('active_extra_ue_service', '=', True)]}"
+                        help="Text accept mako markdown. for example ${object.partner_id.name} for partner or ${object.number} for invoice number, etc..."/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- TAX FORM -->
+
+    <record id="intra_cee_view_tax_form" model="ir.ui.view">
+        <field name="name">intra_cee.account_tax.form</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Misc']" position="after">
+                <group string="Auto Invoice" attrs="{'invisible': [('type_tax_use','=','sale')],}">
+                    <field name="auto_invoice_tax_id" />
+                </group>
+                <newline />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- SUPPLIER INVOICE FORM -->
+
+    <record id="intra_cee_invoice_supplier_form" model="ir.ui.view">
+        <field name="name">intra_cee.invoice_supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <field name="move_id" position="after">
+                <field name="transfer_entry_id" groups="account.group_account_user"
+                    readonly="True"/>
+                <field name="auto_invoice_id" groups="account.group_account_user"
+                    readonly="True"/>
+            </field>
+            <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="after">
+                <field name="reverse_charge" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="auto_invoice_invoice_line_form" model="ir.ui.view">
+        <field name="name">auto_invoice.invoice.line.form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="before">
+                <field name="reverse_charge" />
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>

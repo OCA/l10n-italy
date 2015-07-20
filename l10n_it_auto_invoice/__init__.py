@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Author: Alessandro Camilli (a.camilli@openforce.it)
-#    Copyright (C) 2015
-#    Openforce di Camilli Alessandro (www.openforce.it)
+#
+#    Copyright (C) 2014 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>)
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -13,12 +13,12 @@
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-
-from . import models
+import company
+import account

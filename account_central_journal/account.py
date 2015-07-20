@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import fields, orm
-from tools.translate import _
-import decimal_precision as dp
+from openerp.osv import fields, orm
+from openerp.tools.translate import _
+import openerp.addons.decimal_precision as dp
 
 class account_fiscalyear(orm.Model):
     _inherit = "account.fiscalyear"

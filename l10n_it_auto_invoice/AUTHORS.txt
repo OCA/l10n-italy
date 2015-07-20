@@ -1,0 +1,6 @@
+Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+Andrea Gallina <a.gallina@apuliasoftware.it>
+
+/* Bug and Fix */
+
+Alessandro Camilli <a.camilli@yahoo.it>
