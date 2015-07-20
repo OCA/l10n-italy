@@ -109,18 +109,18 @@ class Parser(report_sxw.rml_parse):
         res = []
         res_dict = {}
         tax_code_obj = self.pool.get('account.tax.code')
+        journal_ids = self.localcontext['data']['form']['journal_ids']
         for period_id in self.localcontext['data']['form']['period_ids']:
             for tax_code in tax_code_obj.browse(
-                self.cr, self.uid,
-                tax_code_ids, context={
-                    'period_id': period_id,
-                }
+                self.cr, self.uid, tax_code_ids
             ):
+                # taking the first and only, as tax_code is 1 record
+                tax_sum = tax_code.sum_by_period_and_journals(
+                    period_id, journal_ids)[0]
                 if not res_dict.get(tax_code.id):
                     res_dict[tax_code.id] = 0.0
                 res_dict[tax_code.id] += (
-                    tax_code.sum_period
-                    * self.localcontext['data']['form']['tax_sign'])
+                    tax_sum * self.localcontext['data']['form']['tax_sign'])
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
