@@ -169,19 +169,6 @@ class account_intrastat_statement(models.Model):
     section4_operation_amount = fields.Integer(string='Operation Amount',
         store=True, readonly=True, compute='_compute_amount_s4')
     
-    '''
-    def onchange_period_number(self, cr, uid, ids, period_type, period_number, context=None):
-        if not period_type:
-            return False
-        if period_type == 'M' and (period_number < 1 or period_number > 12):
-            raise orm.except_orm(_('Error!'), _('For Month, Period must be from 1 to 12'))
-        if period_type == 'T' and (period_number < 1 or period_number > 12):
-            raise orm.except_orm(_('Error!'), _('For Quarterly, Period must be from 1 to 4'))    
-        
-        ## Compone name statement
-        
-        return True'''
-
 ## ==================================
 ## STATEMENT SALES
 ## ==================================   
@@ -214,6 +201,8 @@ class account_intrastat_statement_sale_section1(models.Model):
         string='Country Destination')
     province_origin_id = fields.Many2one('res.country.state', 
         string='Province Origin')
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
 
 class account_intrastat_statement_sale_section2(models.Model):
     _name = 'account.intrastat.statement.sale.section2'
@@ -242,6 +231,8 @@ class account_intrastat_statement_sale_section2(models.Model):
         string='Code Good')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
         digits=dp.get_precision('Account'))
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
 
 class account_intrastat_statement_sale_section3(models.Model):
     _name = 'account.intrastat.statement.sale.section3'
@@ -272,15 +263,18 @@ class account_intrastat_statement_sale_section3(models.Model):
         ('X', 'Other'),
         ], 'Payment Method')
     country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
     
 class account_intrastat_statement_sale_section4(models.Model):
     _name = 'account.intrastat.statement.sale.section4'
     _description = 'Account INTRASTAT - Statement - Sale Section 4'
     
-    statement_sale_id = fields.Many2one('account.intrastat.statement', 
-        string='Statement Sale', required=True, readonly=True)
-    progressive = fields.Integer(string='Progressive', required=True, 
-        readonly=True)
+    statement_sale_id = fields.Many2one(
+        'account.intrastat.statement', string='Statement Sale', 
+        required=True, readonly=True)
+    progressive = fields.Integer(
+        string='Progressive', required=True, readonly=True)
     custom = fields.Many2one('account.intrastat.custom', 'Custom')
     year = fields.Many2one('account.fiscalyear', 
         string='Year Ref of Variation')
@@ -307,6 +301,8 @@ class account_intrastat_statement_sale_section4(models.Model):
         ('X', 'Other'),
         ], 'Payment Method')
     country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
 
 ## ==================================
 ## STATEMENT PURCHASE
@@ -364,6 +360,8 @@ class account_intrastat_statement_purchase_section1(models.Model):
         string='Country Good Origin')
     province_destination_id = fields.Many2one('res.country.state', 
         string='Province Destination')
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
 
 class account_intrastat_statement_purchase_section2(models.Model):
     _name = 'account.intrastat.statement.purchase.section2'
@@ -393,6 +391,8 @@ class account_intrastat_statement_purchase_section2(models.Model):
         string='Code Good')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
         digits=dp.get_precision('Account'))
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
 
 class account_intrastat_statement_purchase_section3(models.Model):
     _name = 'account.intrastat.statement.purchase.section3'
@@ -424,6 +424,8 @@ class account_intrastat_statement_purchase_section3(models.Model):
         ('X', 'Other'),
         ], 'Payment Method')
     country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
 
 
 class account_intrastat_statement_purchase_section4(models.Model):
@@ -461,3 +463,5 @@ class account_intrastat_statement_purchase_section4(models.Model):
         ('X', 'Other'),
         ], 'Payment Method')
     country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', readonly=True)
