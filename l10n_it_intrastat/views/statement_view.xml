@@ -40,6 +40,7 @@
                 <xpath expr="//page[@string='Invoice Lines']" position="after">
                     <page string="Intrastat" attrs="{'invisible': [('intrastat', '=', False)]}">
                         <group>
+                        	<button name="compute_intrastat_lines" states="draft,sent" string="Recompute Intrastat Lines" type="object"/>
                             <field name="intrastat_line_ids" nolabel="1">
                                 <tree>
                                     <field name="intrastat_code_type"/>

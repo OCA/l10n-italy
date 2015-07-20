@@ -40,7 +40,18 @@ class account_invoice(models.Model):
             if not total_amount == inv.amount_untaxed:
                 raise Warning(_('Total Intrastat must be ugual to\
                     Total Invoice Untaxed'))
-
+    
+    @api.one
+    def compute_intrastat_lines(self):
+        
+        for line in self.invoice_line:
+            # Code competence
+            product_template = line.product_id.product_tmpl_id
+            intrastat_id = product_template.get_intrastat_id() 
+            print "xxx"
+            
+        
+        return True
 
 class account_invoice_intrastat(models.Model):
     _name = 'account.invoice.intrastat'
@@ -88,7 +99,7 @@ class account_invoice_intrastat(models.Model):
         string='Country Goods Origin')
     province_destination_id = fields.Many2one('res.country.state',
         string='rovince Destination')
-
+    
 
 class account_payment_term(models.Model):
     _inherit = 'account.payment.term'
