@@ -36,28 +36,17 @@ class account_intrastat_custom(models.Model):
     name = fields.Char(string='Name')
     date_start = fields.Date(string='Date start')
     date_stop = fields.Date(string='Date stop')
-    
 
-class account_intrastat_code_good(models.Model):
-    _name = 'account.intrastat.code.good'
-    _description = 'Account INTRASTAT - Code Good'
-    
-    code = fields.Char(string='Code', size=8)
-    name = fields.Char(string='Name')
-    date_start = fields.Date(string='Date start')
-    date_stop = fields.Date(string='Date stop')
-    
-    
-class account_intrastat_code_service(models.Model):
-    _name = 'account.intrastat.code.service'
-    _description = 'Account INTRASTAT - Code Service'
-    
-    code = fields.Char(string='Code', size=6)
-    name = fields.Char(string='Name')
-    date_start = fields.Date(string='Date start')
-    date_stop = fields.Date(string='Date stop')
-    
-    
+
+class report_intrastat_code(models.Model):
+
+    _inherit = 'report.intrastat.code'
+
+    active = fields.Boolean(default=True)
+    type = fields.Selection(
+        [('good', 'Good'), ('service', 'Service')])
+
+
 class account_intrastat_transport(models.Model):
     _name = 'account.intrastat.transport'
     _description = 'Account INTRASTAT - Transport'
@@ -65,7 +54,7 @@ class account_intrastat_transport(models.Model):
     code = fields.Char(string='Code', size=1, required=True)
     name = fields.Char(string='Name')
 
-    
+
 class account_intrastat_transation_nature(models.Model):
     _name = 'account.intrastat.transation.nature'
     _description = 'Account INTRASTAT - Transation Nature'
@@ -80,48 +69,56 @@ class account_intrastat_transation_nature(models.Model):
 class account_intrastat_statement(models.Model):
     _name = 'account.intrastat.statement'
     _description = 'Account INTRASTAT - Statement'
-    
+
     @api.one
     def _default_company(self):
-        company_id = self._context.get('company_id', self.env.user.company_id.id)
+        company_id = self._context.get('company_id',
+                                       self.env.user.company_id.id)
         return company_id
-    
+
     @api.one
     @api.depends('section1_ids.amount_euro')
     def _compute_amount_s1(self):
         self.section1_operation_number = len(self.section1_ids)
-        self.section1_operation_amount = sum(line.amount_euro for line in self.section1_ids)
+        self.section1_operation_amount = sum(line.amount_euro
+                                             for line in self.section1_ids)
+
     @api.one
     @api.depends('section2_ids.amount_euro')
     def _compute_amount_s2(self):
         self.section2_operation_number = len(self.section2_ids)
-        self.section2_operation_amount = sum(line.amount_euro for line in self.section2_ids)
+        self.section2_operation_amount = sum(line.amount_euro
+                                             for line in self.section2_ids)
+
     @api.one
     @api.depends('section3_ids.amount_euro')
     def _compute_amount_s3(self):
         self.section3_operation_number = len(self.section3_ids)
-        self.section3_operation_amount = sum(line.amount_euro for line in self.section3_ids)
+        self.section3_operation_amount = sum(line.amount_euro
+                                             for line in self.section3_ids)
+
     @api.one
     @api.depends('section4_ids.amount_euro')
     def _compute_amount_s4(self):
         self.section4_operation_number = len(self.section4_ids)
-        self.section4_operation_amount = sum(line.amount_euro for line in self.section4_ids)
-    
+        self.section4_operation_amount = sum(line.amount_euro
+                                             for line in self.section4_ids)
+
     name = fields.Char(string='Name', required=True)
     company_id = fields.Many2one('res.company', string='Company',
-        default="_default_company")
+                                 default="_default_company")
     vat_taxpayer = fields.Char(string='Vat taxpayer', required=True)
     fiscalyear_id = fields.Many2one('account.fiscalyear', 
-        string='Year')
+                                    string='Year')
     period_type = fields.Selection([
         ('M', 'Month'),
         ('T', 'Quarterly'),
         ], 'Payment Type', required=True)
-    period_number = fields.Char(string='Period', 
+    period_number = fields.Char(
+        string='Period',
         help="Values accepted:\
         - Month : From 1 to 12 \
-        - Quarterly: From 1 to 4",required=True)
-    
+        - Quarterly: From 1 to 4", required=True)
     sale = fields.Boolean(string='Sale', default=True)
     purchase = fields.Boolean(string='Purchase', default=True)
     

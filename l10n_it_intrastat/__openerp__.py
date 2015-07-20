@@ -30,7 +30,7 @@
     'author': 'Alessandro Camilli - Openforce',
     'website': 'http://www.openforce.it',
     'license': 'AGPL-3',
-    "depends": ['account', 'stock'],
+    "depends": ['account', 'stock', 'report_intrastat'],
     "data": ['data/account.intrastat.transation.nature.csv',
              'data/account.intrastat.transport.csv',
              'security/ir.model.access.csv',
