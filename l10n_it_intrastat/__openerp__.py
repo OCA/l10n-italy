@@ -33,7 +33,7 @@
     "depends": ['account', 'stock'],
     "data": ['data/account.intrastat.transation.nature.csv',
              'data/account.intrastat.transport.csv',
-             'security/ir.model.access.csv',
+             #'security/ir.model.access.csv',
              'views/statement_view.xml',
              ],
     "demo": [],
