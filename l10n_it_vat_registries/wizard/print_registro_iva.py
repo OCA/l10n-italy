@@ -80,6 +80,7 @@ class wizard_registro_iva(models.TransientModel):
         datas = {}
         datas_form = {}
         datas_form['period_ids'] = [p.id for p in wizard.period_ids]
+        datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['tax_sign'] = wizard.tax_sign
         datas_form['registry_type'] = wizard.type
         report_name = 'l10n_it_vat_registries.report_registro_iva'
