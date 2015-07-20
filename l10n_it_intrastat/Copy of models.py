@@ -1,0 +1,594 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#    
+#    Author: Alessandro Camilli (a.camilli@openforce.it)
+#    Copyright (C) 2014
+#    Openforce di Camilli Alessandro (www.openforce.it)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+from openerp import models, fields, api, _
+import openerp.addons.decimal_precision as dp
+from openerp.exceptions import except_orm, Warning, RedirectWarning
+from datetime import datetime, time, timedelta
+
+'''
+class account_fiscal_position(orm.Model):
+    _inherit = 'account.fiscal.position'
+    _columns = {
+        'intrastat': fields.boolean('Subject to Intrastat'),
+        'intrastat_journal_id': fields.many2one('account.journal', 
+                                            'Journal to Use'),
+        }'''
+    
+class account_journal(models.Model):
+    _inherit = 'account.journal'
+    
+    intrastat = fields.Boolean(string="Subject to Intrastat")
+    intrastat_code_type = fields.Selection([
+            ('service','Service'),
+            ('good','Good'),
+            ], string='Code Type')
+    intrastat_move_type = fields.Selection([
+            ('sale', 'Sales'),
+            ('purchase', 'Purchases'),
+            ('refund_sale', 'Refund Sale'),
+            ('refund_purchase', 'Refund Purchase')
+            ], string='Move Type')
+    
+class account_invoice(models.Model):
+    _inherit = "account.invoice"
+    
+    intrastat = fields.Boolean(string="Subject to Intrastat",
+        states={'draft': [('readonly', False)]})
+    intrastat_line_ids = fields.One2many('account.invoice.intrastat',
+             'invoice_id', string='Intrastat',
+        readonly=True, states={'draft': [('readonly', False)]}, copy=True)
+    
+    @api.multi
+    def action_move_create(self):
+        
+        super(account_invoice, self).action_move_create()
+        import pdb
+        pdb.set_trace()
+        for inv in self:
+            total_amount = 0
+            for int_line in inv.intrastat_line_ids:
+                # Currency of invoice
+                total_amount += int_line.amount_currency
+            if not total_amount == inv.amount_untaxed:
+                raise Warning(_('Total Intrastat must be ugual to\
+                    Total Invoice Untaxed'))
+                
+    
+class account_invoice_intrastat(models.Model):
+    _name = 'account.invoice.intrastat'
+    
+    @api.one
+    @api.depends('amount_currency')
+    def _compute_amount_euro(self):
+        company_currency = self.invoice_id.company_id.currency_id
+        self.amount_euro = company_currency.compute(self.amount_currency, 
+                                                    company_currency)
+    
+    invoice_id = fields.Many2one('account.invoice', string='Invoice', 
+        required=True)
+    intrastat_type_data = fields.Selection([
+        ('all', 'All (Fiscal and Statistic'),
+        ('fiscal', 'Fiscal'),
+        ('statistic', 'Statistic'),
+        ], 'Data Type', default='all', required=True)
+    intrastat_code_type = fields.Selection([
+        ('service', 'Service'),
+        ('good', 'Good')
+        ], 'Code Type', required=True, default='good')
+    intrastat_code_good = fields.Many2one('account.intrastat.code.good', 
+        string='INTRASTAT Code for goods')
+    intrastat_code_service = fields.Many2one('account.intrastat.code.service', 
+        string='INTRASTAT Code for services')
+    amount_euro = fields.Float(string='Amount Euro', compute='_compute_amount_euro', 
+        digits=dp.get_precision('Account'), store=True, readonly=True)
+    amount_currency = fields.Float(string='Amount Currency', 
+        digits=dp.get_precision('Account'))
+    transation_nature = fields.Many2one('account.intrastat.transation.nature', 
+        string='Transation Nature')
+    weight_kg = fields.Float(string='Weight kg')
+    additional_units = fields.Float(string='Additional Units')
+    statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
+        digits=dp.get_precision('Account'))
+    
+    delivery_code = fields.Many2one('stock.incoterms', 
+        string='Delivery')
+    transport_code = fields.Many2one('account.intrastat.transport', 
+        string='Transport')
+    country_origin_id = fields.Many2one('res.country', 
+        string='Country Origin')
+    country_good_origin_id = fields.Many2one('res.country', 
+        string='Country Goods Origin')
+    province_destination_id = fields.Many2one('res.country.state', 
+        string='rovince Destination')
+    
+
+class product_category(models.Model):
+    _inherit = 'product.category'
+    
+    intrastat_code_good = fields.Many2one('account.intrastat.code.good', 
+        string='INTRASTAT Code for goods')
+    intrastat_code_service = fields.Many2one('account.intrastat.code.service', 
+        string='INTRASTAT Code for services')
+    
+
+class product_template(models.Model):
+    _inherit = 'product.template'
+    
+    intrastat_code_good = fields.Many2one('account.intrastat.code.good', 
+        string='INTRASTAT Code for goods')
+    intrastat_code_service = fields.Many2one('account.intrastat.code.service', 
+        string='INTRASTAT Code for services')
+    
+
+class account_payment_term(models.Model):
+    _inherit = 'account.payment.term'
+    
+    intrastat_code = fields.Selection([
+        ('B', 'Transfer'),
+        ('A', 'Accreditation'),
+        ('X', 'Other'),
+        ], 'Payment Method')
+        
+## ==================================
+## INTRASTAT TABLES
+## ==================================
+class account_intrastat_custom(models.Model):
+    _name = 'account.intrastat.custom'
+    _description = 'Account INTRASTAT - Customs'
+    
+    code = fields.Char(string='Code', size=6)
+    name = fields.Char(string='Name')
+    date_start = fields.Date(string='Date start')
+    date_stop = fields.Date(string='Date stop')
+    
+
+class account_intrastat_code_good(models.Model):
+    _name = 'account.intrastat.code.good'
+    _description = 'Account INTRASTAT - Code Good'
+    
+    code = fields.Char(string='Code', size=8)
+    name = fields.Char(string='Name')
+    date_start = fields.Date(string='Date start')
+    date_stop = fields.Date(string='Date stop')
+    
+    
+class account_intrastat_code_service(models.Model):
+    _name = 'account.intrastat.code.service'
+    _description = 'Account INTRASTAT - Code Service'
+    
+    code = fields.Char(string='Code', size=6)
+    name = fields.Char(string='Name')
+    date_start = fields.Date(string='Date start')
+    date_stop = fields.Date(string='Date stop')
+    
+    
+class account_intrastat_transport(models.Model):
+    _name = 'account.intrastat.transport'
+    _description = 'Account INTRASTAT - Transport'
+    
+    code = fields.Char(string='Code', size=1, required=True)
+    name = fields.Char(string='Name')
+
+    
+class account_intrastat_transation_nature(models.Model):
+    _name = 'account.intrastat.transation.nature'
+    _description = 'Account INTRASTAT - Transation Nature'
+    
+    code = fields.Char(string='Code', size=1, required=True)
+    name = fields.Char(string='Name')
+
+
+## ==================================
+## INTRASTAT STATEMENT
+## ==================================
+class account_intrastat_statement(models.Model):
+    _name = 'account.intrastat.statement'
+    _description = 'Account INTRASTAT - Statement'
+    
+    @api.one
+    def _default_company(self):
+        company_id = self._context.get('company_id', self.env.user.company_id.id)
+        return company_id
+    
+    name = fields.Char(string='Name', required=True)
+    company_id = fields.Many2one('res.company', string='Company',
+        default="_default_company")
+    vat_taxpayer = fields.Char(string='Vat taxpayer', required=True)
+    fiscalyear_id = fields.Many2one('account.fiscalyear', 
+        string='Year')
+    period_type = fields.Selection([
+        ('M', 'Month'),
+        ('T', 'Quarterly'),
+        ], 'Payment Type', required=True)
+    period_number = fields.Char(string='Period', 
+        help="Values accepted:\
+        - Month : From 1 to 12 \
+        - Quarterly: From 1 to 4",required=True)
+    sale = fields.Boolean(string='Sale', default=True)
+    purchase = fields.Boolean(string='Purchase', default=True)
+    
+    sale_ids = fields.One2many('account.intrastat.statement.sale',
+             'statement_id', string='Sales')
+    purchase_ids = fields.One2many('account.intrastat.statement.purchase',
+             'statement_id', string='Purchases')
+    intrastat_type_data = fields.Selection([
+        ('all', 'All (Fiscal and Statistic'),
+        ('fiscal', 'Fiscal'),
+        ('statistic', 'Statistic'),
+        ], 'Data Type', required=True, default='all')
+    intrastat_code_type = fields.Selection([
+        ('service', 'Service'),
+        ('good', 'Good')
+        ], 'Code Type', required=True, default='good')
+    
+    '''
+    def onchange_period_number(self, cr, uid, ids, period_type, period_number, context=None):
+        if not period_type:
+            return False
+        if period_type == 'M' and (period_number < 1 or period_number > 12):
+            raise orm.except_orm(_('Error!'), _('For Month, Period must be from 1 to 12'))
+        if period_type == 'T' and (period_number < 1 or period_number > 12):
+            raise orm.except_orm(_('Error!'), _('For Quarterly, Period must be from 1 to 4'))    
+        
+        ## Compone name statement
+        
+        return True'''
+
+## ==================================
+## STATEMENT SALEs
+## ==================================   
+class account_intrastat_statement_sale(models.Model):
+    _name = 'account.intrastat.statement.sale'
+    _description = 'Account INTRASTAT - Statement - Sale'
+    
+    @api.one
+    @api.depends('section1_ids.amount_euro')
+    def _compute_amount_s1(self):
+        self.section1_operation_number = len(self.section1_ids)
+        self.section1_operation_amount = sum(line.amount_euro for line in self.section1_ids)
+    @api.one
+    @api.depends('section2_ids.amount_euro')
+    def _compute_amount_s2(self):
+        self.section2_operation_number = len(self.section2_ids)
+        self.section2_operation_amount = sum(line.amount_euro for line in self.section2_ids)
+    @api.one
+    @api.depends('section3_ids.amount_euro')
+    def _compute_amount_s3(self):
+        self.section3_operation_number = len(self.section3_ids)
+        self.section3_operation_amount = sum(line.amount_euro for line in self.section3_ids)
+    @api.one
+    @api.depends('section4_ids.amount_euro')
+    def _compute_amount_s4(self):
+        self.section4_operation_number = len(self.section4_ids)
+        self.section4_operation_amount = sum(line.amount_euro for line in self.section4_ids)
+    
+    statement_id = fields.Many2one('account.intrastat.statement', 
+        string='Statement', required=True, readonly=True)
+    
+    section1_ids = fields.One2many(
+        'account.intrastat.statement.sale.section1',
+        'statement_sale_id', string='Sale - Section 1')
+    section1_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_s1')
+    section1_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_s1')
+    
+    section2_ids = fields.One2many(
+        'account.intrastat.statement.sale.section2',
+        'statement_sale_id', string='Sale - Section 2')
+    section2_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_s2')
+    section2_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_s2')
+    
+    section3_ids = fields.One2many(
+        'account.intrastat.statement.sale.section3',
+        'statement_sale_id', string='Sale - Section 3')
+    section3_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_s3')
+    section3_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_s3')
+    
+    section4_ids = fields.One2many(
+        'account.intrastat.statement.sale.section4',
+        'statement_sale_id', string='Sale - Section 4')
+    section4_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_s4')
+    section4_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_s4')
+
+
+class account_intrastat_statement_sale_section1(models.Model):
+    _name = 'account.intrastat.statement.sale.section1'
+    _description = 'Account INTRASTAT - Statement - Sale Section 1'
+    
+    statement_sale_id = fields.Many2one('account.intrastat.statement.sale', 
+        string='Statement Sale', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True)
+    country_customer_id = fields.Many2one('res.country', 
+        string='Country Customer')
+    vat_code = fields.Integer(string='Vat Code Customer')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    transation_nature = fields.Many2one('account.intrastat.transation.nature', 
+        string='Transation Nature')
+    code = fields.Many2one('account.intrastat.code.good', 
+        string='Code Good')
+    weight_kg = fields.Float(string='Weight kg')
+    additional_units = fields.Float(string='Additional Units')
+    statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
+        digits=dp.get_precision('Account'))
+    delivery_code = fields.Many2one('stock.incoterms', 
+        string='Delivery')
+    transport_code = fields.Many2one('account.intrastat.transport', 
+        string='Transport')
+    country_destination_id = fields.Many2one('res.country', 
+        string='Country Destination')
+    province_origin_id = fields.Many2one('res.country.state', 
+        string='Province Origin')
+
+class account_intrastat_statement_sale_section2(models.Model):
+    _name = 'account.intrastat.statement.sale.section2'
+    _description = 'Account INTRASTAT - Statement - Sale Section 2'
+    
+    statement_sale_id = fields.Many2one('account.intrastat.statement.sale', 
+        string='Statement Sale', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True, 
+        readonly=True)
+    
+    month = fields.Integer(string='Month Ref of Refund')
+    quarterly = fields.Integer(string='Quarterly Ref of Refund')
+    year = fields.Many2one('account.fiscalyear', string='Year Ref of Refund')
+    country_customer_id = fields.Many2one('res.country', 
+        string='Country Customer')
+    vat_code = fields.Integer(string='Vat Code Customer')
+    sign_variation = fields.Selection([
+        ('+', '+'),
+        ('-', '-'),
+        ], 'Sign Variation')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    transation_nature = fields.Many2one('account.intrastat.transation.nature', 
+        string='Transation Nature')
+    code = fields.Many2one('account.intrastat.code.good', 
+        string='Code Good')
+    statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
+        digits=dp.get_precision('Account'))
+
+class account_intrastat_statement_sale_section3(models.Model):
+    _name = 'account.intrastat.statement.sale.section3'
+    _description = 'Account INTRASTAT - Statement - Sale Section 3'
+    
+    statement_sale_id = fields.Many2one('account.intrastat.statement.sale', 
+        string='Statement Sale', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True, 
+        readonly=True)
+    
+    country_customer_id = fields.Many2one('res.country', 
+        string='Country Customer')
+    vat_code = fields.Integer(string='Vat Code Customer')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    
+    invoice_number = fields.Char(string='Invoice Number')
+    invoice_date = fields.Char(string='Invoice Date')
+    code = fields.Many2one('account.intrastat.code.service', 
+        string='Code Service')
+    supply_method = fields.Selection([
+        ('I', 'Instant'),
+        ('R', 'Repeatedly'),
+        ], 'Supply Method')
+    payment_method = fields.Selection([
+        ('B', 'Transfer'),
+        ('A', 'Accreditation'),
+        ('X', 'Other'),
+        ], 'Payment Method')
+    country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    
+class account_intrastat_statement_sale_section4(models.Model):
+    _name = 'account.intrastat.statement.sale.section4'
+    _description = 'Account INTRASTAT - Statement - Sale Section 4'
+    
+    statement_sale_id = fields.Many2one('account.intrastat.statement.sale', 
+        string='Statement Sale', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True, 
+        readonly=True)
+    custom = fields.Many2one('account.intrastat.custom', 'Custom')
+    year = fields.Many2one('account.fiscalyear', 
+        string='Year Ref of Variation')
+    protocol = fields.Integer(string='Protocol number', size=6)
+    progressive_to_modify_id =  fields.Many2one(
+        'account.intrastat.statement.sale.section1', 'Progressive to Modify')
+    country_customer_id = fields.Many2one('res.country', 
+        string='Country Customer')
+    vat_code = fields.Integer(string='Vat Code Customer')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    
+    invoice_number = fields.Char(string='Invoice Number')
+    invoice_date = fields.Char(string='Invoice Date')
+    code = fields.Many2one('account.intrastat.code.service', 
+        string='Code Service')
+    supply_method = fields.Selection([
+        ('I', 'Instant'),
+        ('R', 'Repeatedly'),
+        ], 'Supply Method')
+    payment_method = fields.Selection([
+        ('B', 'Transfer'),
+        ('A', 'Accreditation'),
+        ('X', 'Other'),
+        ], 'Payment Method')
+    country_payment_id= fields.Many2one('res.country', 'Country Payment')
+
+## ==================================
+## STATEMENT PURCHASE
+## ==================================
+    
+class account_intrastat_statement_purchase(models.Model):
+    _name = 'account.intrastat.statement.purchase'
+    _description = 'Account INTRASTAT - Statement - Purchase'
+    
+    statement_id = fields.Many2one('account.intrastat.statement', 
+        string='Statement', required=True, readonly=True)
+    section1_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section1',
+        'statement_purchase_id', string='Purchase - Section 1')
+    section2_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section2',
+        'statement_purchase_id', string='Purchase - Section 2')
+    section3_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section3',
+        'statement_purchase_id', string='Purchase - Section 3')
+    section4_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section4',
+        'statement_purchase_id', string='Purchase - Section 4')
+
+class account_intrastat_statement_purchase_section1(models.Model):
+    _name = 'account.intrastat.statement.purchase.section1'
+    _description = 'Account INTRASTAT - Statement - Purchase Section 1'
+    
+    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
+        string='Statement Purchase', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True)
+    
+    country_supplier_id = fields.Many2one('res.country', 
+        string='Country Supplier')
+    vat_code = fields.Integer(string='Vat Code Purchase')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    amount_currency = fields.Float(string='Amount Currency', 
+        digits=dp.get_precision('Account'))
+    transation_nature = fields.Many2one('account.intrastat.transation.nature', 
+        string='Transation Nature')
+    code = fields.Many2one('account.intrastat.code.good', 
+        string='Code Good')
+    weight_kg = fields.Float(string='Weight kg')
+    additional_units = fields.Float(string='Additional Units')
+    statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
+        digits=dp.get_precision('Account'))
+    delivery_code = fields.Many2one('stock.incoterms', 
+        string='Delivery')
+    transport_code = fields.Many2one('account.intrastat.transport', 
+        string='Transport')
+    country_origin_id = fields.Many2one('res.country', 
+        string='Country Origin')
+    country_good_origin_id = fields.Many2one('res.country', 
+        string='Country Good Origin')
+    province_destination_id = fields.Many2one('res.country.state', 
+        string='Province Destination')
+
+class account_intrastat_statement_purchase_section2(models.Model):
+    _name = 'account.intrastat.statement.purchase.section2'
+    _description = 'Account INTRASTAT - Statement - Purchase Section 2'
+    
+    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
+        string='Statement Purchase', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True)
+    
+    month = fields.Integer(string='Month Ref of Refund')
+    quarterly = fields.Integer(string='Quarterly Ref of Refund')
+    year = fields.Many2one('account.fiscalyear', string='Year Ref of Refund')
+    country_supplier_id = fields.Many2one('res.country', 
+        string='Country Supplier')
+    vat_code = fields.Integer(string='Vat Code Customer')
+    sign_variation = fields.Selection([
+        ('+', '+'),
+        ('-', '-'),
+        ], 'Sign Variation')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    amount_currency = fields.Float(string='Amount Currency', 
+        digits=dp.get_precision('Account'))
+    transation_nature = fields.Many2one('account.intrastat.transation.nature', 
+        string='Transation Nature')
+    code = fields.Many2one('account.intrastat.code.good', 
+        string='Code Good')
+    statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
+        digits=dp.get_precision('Account'))
+
+class account_intrastat_statement_purchase_section3(models.Model):
+    _name = 'account.intrastat.statement.purchase.section3'
+    _description = 'Account INTRASTAT - Statement - Purchase Section 3'
+    
+    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
+        string='Statement Purchase', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True)
+    
+    country_supplier_id = fields.Many2one('res.country', 
+        string='Country Supplier')
+    vat_code = fields.Integer(string='Vat Code Supplier')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    amount_currency = fields.Float(string='Amount Currency', 
+        digits=dp.get_precision('Account'))
+    
+    invoice_number = fields.Char(string='Invoice Number')
+    invoice_date = fields.Char(string='Invoice Date')
+    code = fields.Many2one('account.intrastat.code.service', 
+        string='Code Service')
+    supply_method = fields.Selection([
+        ('I', 'Instant'),
+        ('R', 'Repeatedly'),
+        ], 'Supply Method')
+    payment_method = fields.Selection([
+        ('B', 'Transfer'),
+        ('A', 'Accreditation'),
+        ('X', 'Other'),
+        ], 'Payment Method')
+    country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    
+class account_intrastat_statement_purchase_section4(models.Model):
+    _name = 'account.intrastat.statement.purchase.section4'
+    _description = 'Account INTRASTAT - Statement - Purchase Section 4'
+    
+    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
+        string='Statement Purchase', required=True, readonly=True)
+    progressive = fields.Integer(string='Progressive', required=True)
+    
+    custom = fields.Many2one('account.intrastat.custom', 'Custom')
+    year = fields.Many2one('account.fiscalyear', string='Year Ref of Variation')
+    protocol = fields.Integer(string='Protocol number', size=6)
+    progressive_to_modify_id =  fields.Many2one(
+        'account.intrastat.statement.purchase.section1', 'Progressive to Modify')
+    country_supplier_id = fields.Many2one('res.country', 
+        string='Country Supplier')
+    vat_code = fields.Integer(string='Vat Code Supplier')
+    amount_euro = fields.Float(string='Amount Euro', 
+        digits=dp.get_precision('Account'))
+    amount_currency = fields.Float(string='Amount Currency', 
+        digits=dp.get_precision('Account'))
+    
+    invoice_number = fields.Char(string='Invoice Number')
+    invoice_date = fields.Char(string='Invoice Date')
+    code = fields.Many2one('account.intrastat.code.service', 
+        string='Code Service')
+    supply_method = fields.Selection([
+        ('I', 'Instant'),
+        ('R', 'Repeatedly'),
+        ], 'Supply Method')
+    payment_method = fields.Selection([
+        ('B', 'Transfer'),
+        ('A', 'Accreditation'),
+        ('X', 'Other'),
+        ], 'Payment Method')
+    country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    
