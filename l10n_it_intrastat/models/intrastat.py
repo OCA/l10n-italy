@@ -162,28 +162,28 @@ class account_intrastat_statement(models.Model):
     #
     sale_section1_ids = fields.One2many(
         'account.intrastat.statement.sale.section1',
-        'statement_sale_id', string='Sale - Section 1')
+        'statement_id', string='Sale - Section 1')
     sale_section1_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_sale_s1')
     sale_section1_operation_amount = fields.Integer(string='Operation Amount',
         store=True, readonly=True, compute='_compute_amount_sale_s1')
     sale_section2_ids = fields.One2many(
         'account.intrastat.statement.sale.section2',
-        'statement_sale_id', string='Sale - Section 2')
+        'statement_id', string='Sale - Section 2')
     sale_section2_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_sale_s2')
     sale_section2_operation_amount = fields.Integer(string='Operation Amount',
         store=True, readonly=True, compute='_compute_amount_sale_s2')
     sale_section3_ids = fields.One2many(
         'account.intrastat.statement.sale.section3',
-        'statement_sale_id', string='Sale - Section 3')
+        'statement_id', string='Sale - Section 3')
     sale_section3_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_sale_s3')
     sale_section3_operation_amount = fields.Integer(string='Operation Amount',
         store=True, readonly=True, compute='_compute_amount_sale_s3')
     sale_section4_ids = fields.One2many(
         'account.intrastat.statement.sale.section4',
-        'statement_sale_id', string='Sale - Section 4')
+        'statement_id', string='Sale - Section 4')
     sale_section4_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_sale_s4')
     sale_section4_operation_amount = fields.Integer(string='Operation Amount',
@@ -193,7 +193,7 @@ class account_intrastat_statement(models.Model):
     #
     purchase_section1_ids = fields.One2many(
         'account.intrastat.statement.purchase.section1',
-        'statement_purchase_id', string='Purchase - Section 1')
+        'statement_id', string='Purchase - Section 1')
     purchase_section1_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_purchase_s1')
     purchase_section1_operation_amount = fields.Integer(
@@ -201,7 +201,7 @@ class account_intrastat_statement(models.Model):
         store=True, readonly=True, compute='_compute_amount_purchase_s1')
     purchase_section2_ids = fields.One2many(
         'account.intrastat.statement.purchase.section2',
-        'statement_purchase_id', string='Purchase - Section 2')
+        'statement_id', string='Purchase - Section 2')
     purchase_section2_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_purchase_s2')
     purchase_section2_operation_amount = fields.Integer(
@@ -209,7 +209,7 @@ class account_intrastat_statement(models.Model):
         store=True, readonly=True, compute='_compute_amount_purchase_s2')
     purchase_section3_ids = fields.One2many(
         'account.intrastat.statement.purchase.section3',
-        'statement_purchase_id', string='Purchase - Section 3')
+        'statement_id', string='Purchase - Section 3')
     purchase_section3_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_purchase_s3')
     purchase_section3_operation_amount = fields.Integer(
@@ -217,7 +217,7 @@ class account_intrastat_statement(models.Model):
         store=True, readonly=True, compute='_compute_amount_purchase_s3')
     purchase_section4_ids = fields.One2many(
         'account.intrastat.statement.purchase.section4',
-        'statement_purchase_id', string='Purchase - Section 4')
+        'statement_id', string='Purchase - Section 4')
     purchase_section4_operation_number = fields.Integer(string='Operation Nr',
         store=True, readonly=True, compute='_compute_amount_purchase_s4')
     purchase_section4_operation_amount = fields.Integer(
@@ -232,8 +232,9 @@ class account_intrastat_statement_sale_section1(models.Model):
     _name = 'account.intrastat.statement.sale.section1'
     _description = 'Account INTRASTAT - Statement - Sale Section 1'
     
-    statement_sale_id = fields.Many2one('account.intrastat.statement', 
-        string='Statement Sale', required=True, readonly=True)
+    statement_id = fields.Many2one(
+        'account.intrastat.statement', string='Statement', 
+        required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
     country_customer_id = fields.Many2one('res.country', 
         string='Country Customer')
@@ -263,8 +264,9 @@ class account_intrastat_statement_sale_section2(models.Model):
     _name = 'account.intrastat.statement.sale.section2'
     _description = 'Account INTRASTAT - Statement - Sale Section 2'
     
-    statement_sale_id = fields.Many2one('account.intrastat.statement', 
-        string='Statement Sale', required=True, readonly=True)
+    statement_id = fields.Many2one(
+        'account.intrastat.statement', string='Statement', 
+        required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True, 
         readonly=True)
     
@@ -293,8 +295,9 @@ class account_intrastat_statement_sale_section3(models.Model):
     _name = 'account.intrastat.statement.sale.section3'
     _description = 'Account INTRASTAT - Statement - Sale Section 3'
     
-    statement_sale_id = fields.Many2one('account.intrastat.statement', 
-        string='Statement Sale', required=True, readonly=True)
+    statement_id = fields.Many2one(
+        'account.intrastat.statement', string='Statement', 
+        required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True, 
         readonly=True)
     
@@ -325,8 +328,8 @@ class account_intrastat_statement_sale_section4(models.Model):
     _name = 'account.intrastat.statement.sale.section4'
     _description = 'Account INTRASTAT - Statement - Sale Section 4'
     
-    statement_sale_id = fields.Many2one(
-        'account.intrastat.statement', string='Statement Sale', 
+    statement_id = fields.Many2one(
+        'account.intrastat.statement', string='Statement', 
         required=True, readonly=True)
     progressive = fields.Integer(
         string='Progressive', required=True, readonly=True)
@@ -367,8 +370,8 @@ class account_intrastat_statement_purchase_section1(models.Model):
     _name = 'account.intrastat.statement.purchase.section1'
     _description = 'Account INTRASTAT - Statement - Purchase Section 1'
     
-    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
-        string='Statement Purchase', required=True, readonly=True)
+    statement_id = fields.Many2one('account.intrastat.statement', 
+        string='Statement', required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
     
     country_supplier_id = fields.Many2one('res.country', 
@@ -403,8 +406,8 @@ class account_intrastat_statement_purchase_section2(models.Model):
     _name = 'account.intrastat.statement.purchase.section2'
     _description = 'Account INTRASTAT - Statement - Purchase Section 2'
     
-    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
-        string='Statement Purchase', required=True, readonly=True)
+    statement_id = fields.Many2one('account.intrastat.statement', 
+        string='Statement', required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
     
     month = fields.Integer(string='Month Ref of Refund')
@@ -434,8 +437,8 @@ class account_intrastat_statement_purchase_section3(models.Model):
     _name = 'account.intrastat.statement.purchase.section3'
     _description = 'Account INTRASTAT - Statement - Purchase Section 3'
     
-    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
-        string='Statement Purchase', required=True, readonly=True)
+    statement_id = fields.Many2one('account.intrastat.statement', 
+        string='Statement', required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
     
     country_supplier_id = fields.Many2one('res.country', 
@@ -468,8 +471,8 @@ class account_intrastat_statement_purchase_section4(models.Model):
     _name = 'account.intrastat.statement.purchase.section4'
     _description = 'Account INTRASTAT - Statement - Purchase Section 4'
     
-    statement_purchase_id = fields.Many2one('account.intrastat.statement.purchase', 
-        string='Statement Purchase', required=True, readonly=True)
+    statement_id = fields.Many2one('account.intrastat.statement', 
+        string='Statement', required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
     
     custom = fields.Many2one('account.intrastat.custom', 'Custom')
