@@ -25,9 +25,6 @@ from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
 
 
-## =========================
-## INTRASTAT TABLES
-## ==================================
 class account_intrastat_custom(models.Model):
     _name = 'account.intrastat.custom'
     _description = 'Account INTRASTAT - Customs'

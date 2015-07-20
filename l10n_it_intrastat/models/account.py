@@ -1,3 +1,23 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
+#    Copyright (C) 2015
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 
 from openerp import models, fields, api, _
@@ -30,12 +50,10 @@ class account_invoice(models.Model):
     @api.multi
     def action_move_create(self):
         super(account_invoice, self).action_move_create()
-        for inv in self:
-            total_amount = 0
-            for int_line in inv.intrastat_line_ids:
-                # Currency of invoice
-                total_amount += int_line.amount_currency
-            if not total_amount == inv.amount_untaxed:
+        for invoice in self:
+            total_amount = sum(
+                l.amount_currency for l in invoice.intrastat_line_ids)
+            if not total_amount == invoice.amount_untaxed:
                 raise Warning(_('Total Intrastat must be ugual to\
                     Total Invoice Untaxed'))
 
@@ -61,10 +79,8 @@ class account_invoice_intrastat(models.Model):
         ('service', 'Service'),
         ('good', 'Good')
         ], 'Code Type', required=True, default='good')
-    intrastat_code_good = fields.Many2one('account.intrastat.code.good',
-                                          string='INTRASTAT Code for goods')
-    intrastat_code_service = fields.Many2one(
-        'account.intrastat.code.service', string='INTRASTAT Code for services')
+    instrastat_code_id = fields.Many2one('report.intrastat.code',
+                                         string='Intrastat Code')
     amount_euro = fields.Float(
         string='Amount Euro', compute='_compute_amount_euro',
         digits=dp.get_precision('Account'), store=True, readonly=True)
