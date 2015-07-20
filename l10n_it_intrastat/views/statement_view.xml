@@ -46,10 +46,7 @@
                             <field name="intrastat_line_ids" nolabel="1">
                                 <tree>
                                     <field name="intrastat_code_type"/>
-                                    <field name="intrastat_code_good" attrs="{'invisible': [('intrastat_code_type', '=', 'service')], 
-                                        'required': [('intrastat_code_type', '=', 'good')]}"/>
-                                    <field name="intrastat_code_service" attrs="{'invisible': [('intrastat_code_type', '=', 'good')], 
-                                        'required': [('intrastat_code_type', '=', 'service')]}"/>
+                                    <field name="intrastat_code_id"/>
                                     <field name="amount_euro"/>
                                     <field name="amount_currency"/>
                                     <field name="transation_nature"/>
@@ -61,13 +58,10 @@
                                     <group>
                                         <group>
                                             <field name="intrastat_code_type"/>
-                                            <field name="intrastat_code_good" attrs="{'invisible': [('intrastat_code_type', '=', 'service')], 
-                                                'required': [('intrastat_code_type', '=', 'good')]}"/>
-                                            <field name="intrastat_code_service" attrs="{'invisible': [('intrastat_code_type', '=', 'good')], 
-                                                'required': [('intrastat_code_type', '=', 'service')]}"/>
+                                            <field name="intrastat_code_id" />
                                             <field name="amount_euro"/>
                                             <field name="amount_currency"/>
-                                            <field name="statistic_amount_euro"/>    
+                                            <field name="statistic_amount_euro"/>
                                         </group>
                                         <group>
                                             <field name="transation_nature"/>

@@ -79,8 +79,8 @@ class account_invoice_intrastat(models.Model):
         ('service', 'Service'),
         ('good', 'Good')
         ], 'Code Type', required=True, default='good')
-    instrastat_code_id = fields.Many2one('report.intrastat.code',
-                                         string='Intrastat Code')
+    intrastat_code_id = fields.Many2one('report.intrastat.code',
+                                        string='Intrastat Code')
     amount_euro = fields.Float(
         string='Amount Euro', compute='_compute_amount_euro',
         digits=dp.get_precision('Account'), store=True, readonly=True)
