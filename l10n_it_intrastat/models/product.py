@@ -26,5 +26,5 @@ from openerp import models, fields
 class product_category(models.Model):
     _inherit = 'product.category'
 
-    intrastat_id = fields.Many2one('report.intrastat.code',
-                                   string='Intrastat Code')
+    intrastat_code_id = fields.Many2one('report.intrastat.code',
+                                        string='Intrastat Code')
