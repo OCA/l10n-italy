@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Author: Alessandro Camilli (a.camilli@openforce.it)
+#
+#    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
 #    Copyright (C) 2015
-#    Openforce di Camilli Alessandro (www.openforce.it)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,4 +20,4 @@
 ##############################################################################
 
 
-from . import models
+from . import intrastat

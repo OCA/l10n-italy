@@ -19,27 +19,25 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
     'name': 'Account - Intrastat',
     'version': '0.1',
     'category': 'Account',
     'description': """
     Taxation and customs European Union statements.
-""",
+    """,
     'author': 'Alessandro Camilli - Openforce',
     'website': 'http://www.openforce.it',
     'license': 'AGPL-3',
-    "depends" : ['account', 'stock'],
-    "data" : [
-              'data/account.intrastat.transation.nature.csv',
-              'data/account.intrastat.transport.csv',
-              'security/ir.model.access.csv',
-              #'views/res_config_view.xml',
-              'views/statement_view.xml',
-              ],
-    "demo" : [],
+    "depends": ['account', 'stock'],
+    "data": ['data/account.intrastat.transation.nature.csv',
+             'data/account.intrastat.transport.csv',
+             'security/ir.model.access.csv',
+             'views/statement_view.xml',
+             ],
+    "demo": [],
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
