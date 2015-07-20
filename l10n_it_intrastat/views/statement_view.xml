@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>  
-        
+    <data>
+
         <!-- 
-        Journal
+        Fiscal Position
         -->
-        <record id="account_intrastat_journal_form_view" model="ir.ui.view">
-            <field name="name">account.intrastat.journal.form.view</field>
-            <field name="model">account.journal</field>
-            <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <record id="view_intrastat_account_position_form" model="ir.ui.view">
+            <field name="name">intrastat.account.fiscal.position.form</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="inherit_id" ref="account.view_account_position_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='sequence_id']" position="after">
-                    <group string="Intrastat" colspan="4">
+                <xpath expr="//separator[@string='Notes']" position="before">
+                    <separator string="Intrastat"/>
+                    <group colspan="4">
                         <field name="intrastat"/>
-                        <field name="intrastat_code_type" attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
-                        <field name="intrastat_move_type" attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
+                        <field name="intrastat_code_type"
+                               attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
+                        <field name="intrastat_move_type"
+                               attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
                     </group>
                 </xpath>
             </field>
         </record>
-        
+
         <!--
         INVOICE CUSTOMER
         -->

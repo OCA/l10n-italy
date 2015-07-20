@@ -3,8 +3,8 @@ import openerp.addons.decimal_precision as dp
 from openerp.exceptions import except_orm, Warning, RedirectWarning
 
 
-class account_journal(models.Model):
-    _inherit = 'account.journal'
+class account_fiscal_position(models.Model):
+    _inherit = 'account.fiscal.position'
 
     intrastat = fields.Boolean(string="Subject to Intrastat")
     intrastat_code_type = fields.Selection([
