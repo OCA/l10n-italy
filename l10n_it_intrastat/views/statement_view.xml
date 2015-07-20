@@ -144,32 +144,32 @@
                             <page string="Sale">
                                 <group>
                                     <group string="Goods Sale">
-                                        <field name="section1_operation_number" />
-                                        <field name="section1_operation_amount" />
+                                        <field name="sale_section1_operation_number" />
+                                        <field name="sale_section1_operation_amount" />
                                     </group>
                                     <group string="Goods Refund">
-                                        <field name="section2_operation_number" />
-                                        <field name="section2_operation_amount" />
+                                        <field name="sale_section2_operation_number" />
+                                        <field name="sale_section2_operation_amount" />
                                     </group>
                                     <newline/>
                                     <group string="Services Sale">
-                                        <field name="section3_operation_number" />
-                                        <field name="section3_operation_amount" />
+                                        <field name="sale_section3_operation_number" />
+                                        <field name="sale_section3_operation_amount" />
                                     </group>
                                     <group string="Services Refund">
-                                        <field name="section4_operation_number" />
-                                        <field name="section4_operation_amount" /> 
+                                        <field name="sale_section4_operation_number" />
+                                        <field name="sale_section4_operation_amount" /> 
                                     </group>
                                 </group>
                                 <newline/>
                                 <notebook>
                                     <page string="Goods Sale">
-                                        <field name="section1_ids" nolabel="1">
+                                        <field name="sale_section1_ids" nolabel="1">
                                             <tree>
                                                 <field name="progressive"/>
                                                 <field name="country_customer_id"/>
                                                 <field name="vat_code"/>
-                                                <field name="code"/>
+                                                <field name="intrastat_code_id"/>
                                                 <field name="country_destination_id"/>
                                                 <field name="province_origin_id"/>
                                                 <field name="amount_euro"/>
@@ -177,7 +177,7 @@
                                         </field>
                                     </page>
                                     <page string="Goods Refund">
-                                        <field name="section2_ids" nolabel="1">
+                                        <field name="sale_section2_ids" nolabel="1">
                                             <tree>
                                                 <field name="progressive"/>
                                                 <field name="year"/>
@@ -185,19 +185,19 @@
                                                 <field name="month"/>
                                                 <field name="country_customer_id"/>
                                                 <field name="vat_code"/>
-                                                <field name="code"/>
+                                                <field name="intrastat_code_id"/>
                                                 <field name="sign_variation"/>
                                                 <field name="amount_euro"/>
                                             </tree>
                                         </field>
                                     </page>
                                     <page string="Services Sale">
-                                        <field name="section3_ids" nolabel="1">
+                                        <field name="sale_section3_ids" nolabel="1">
                                             <tree>
                                                 <field name="progressive"/>
                                                 <field name="country_customer_id"/>
                                                 <field name="vat_code"/>
-                                                <field name="code"/>
+                                                <field name="intrastat_code_id"/>
                                                 <field name="invoice_number"/>
                                                 <field name="invoice_date"/>
                                                 <field name="amount_euro"/>
@@ -205,13 +205,13 @@
                                         </field>
                                     </page>
                                     <page string="Services Refund">
-                                        <field name="section4_ids" nolabel="1">
+                                        <field name="sale_section4_ids" nolabel="1">
                                             <tree>
                                                 <field name="progressive"/>
                                                 <field name="custom"/>
                                                 <field name="country_customer_id"/>
                                                 <field name="vat_code"/>
-                                                <field name="code"/>
+                                                <field name="intrastat_code_id"/>
                                                 <field name="invoice_number"/>
                                                 <field name="invoice_date"/>
                                                 <field name="amount_euro"/>

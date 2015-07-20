@@ -77,32 +77,58 @@ class account_intrastat_statement(models.Model):
         return company_id
 
     @api.one
-    @api.depends('section1_ids.amount_euro')
-    def _compute_amount_s1(self):
-        self.section1_operation_number = len(self.section1_ids)
-        self.section1_operation_amount = sum(line.amount_euro
-                                             for line in self.section1_ids)
-
+    @api.depends('sale_section1_ids.amount_euro')
+    def _compute_amount_sale_s1(self):
+        self.sale_section1_operation_number = len(self.sale_section1_ids)
+        self.sale_section1_operation_amount = sum(
+            line.amount_euro for line in self.sale_section1_ids)
     @api.one
-    @api.depends('section2_ids.amount_euro')
-    def _compute_amount_s2(self):
-        self.section2_operation_number = len(self.section2_ids)
-        self.section2_operation_amount = sum(line.amount_euro
-                                             for line in self.section2_ids)
-
+    @api.depends('sale_section2_ids.amount_euro')
+    def _compute_amount_sale_s2(self):
+        self.sale_section2_operation_number = len(self.sale_section2_ids)
+        self.sale_section2_operation_amount = sum(
+            line.amount_euro for line in self.sale_section2_ids)
     @api.one
-    @api.depends('section3_ids.amount_euro')
-    def _compute_amount_s3(self):
-        self.section3_operation_number = len(self.section3_ids)
-        self.section3_operation_amount = sum(line.amount_euro
-                                             for line in self.section3_ids)
-
+    @api.depends('sale_section3_ids.amount_euro')
+    def _compute_amount_sale_s3(self):
+        self.sale_section3_operation_number = len(self.sale_section3_ids)
+        self.sale_section3_operation_amount = sum(
+            line.amount_euro for line in self.sale_section3_ids)
     @api.one
-    @api.depends('section4_ids.amount_euro')
-    def _compute_amount_s4(self):
-        self.section4_operation_number = len(self.section4_ids)
-        self.section4_operation_amount = sum(line.amount_euro
-                                             for line in self.section4_ids)
+    @api.depends('sale_section4_ids.amount_euro')
+    def _compute_amount_sale_s4(self):
+        self.sale_section4_operation_number = len(self.sale_section4_ids)
+        self.sale_section4_operation_amount = sum(
+            line.amount_euro for line in self.sale_section4_ids)
+        
+    @api.one
+    @api.depends('purchase_section1_ids.amount_euro')
+    def _compute_amount_purchase_s1(self):
+        self.purchase_section1_operation_number = len(
+            self.purchase_section1_ids)
+        self.purchase_section1_operation_amount = sum(
+            line.amount_euro for line in self.purchase_section1_ids)
+    @api.one
+    @api.depends('purchase_section2_ids.amount_euro')
+    def _compute_amount_purchase_s2(self):
+        self.purchase_section2_operation_number = len(
+            self.purchase_section2_ids)
+        self.purchase_section2_operation_amount = sum(
+            line.amount_euro for line in self.purchase_section2_ids)
+    @api.one
+    @api.depends('purchase_section3_ids.amount_euro')
+    def _compute_amount_purchase_s3(self):
+        self.purchase_section3_operation_number = len(
+            self.purchase_section3_ids)
+        self.purchase_section3_operation_amount = sum(
+            line.amount_euro for line in self.purchase_section3_ids)
+    @api.one
+    @api.depends('purchase_section4_ids.amount_euro')
+    def _compute_amount_purchase_s4(self):
+        self.purchase_section4_operation_number = len(
+            self.purchase_section4_ids)
+        self.purchase_section4_operation_amount = sum(
+            line.amount_euro for line in self.purchase_section4_ids)
 
     name = fields.Char(string='Name', required=True)
     company_id = fields.Many2one('res.company', string='Company',
@@ -134,37 +160,69 @@ class account_intrastat_statement(models.Model):
     #
     # SALE sections
     #
-    section1_ids = fields.One2many(
+    sale_section1_ids = fields.One2many(
         'account.intrastat.statement.sale.section1',
         'statement_sale_id', string='Sale - Section 1')
-    section1_operation_number = fields.Integer(string='Operation Nr',
-        store=True, readonly=True, compute='_compute_amount_s1')
-    section1_operation_amount = fields.Integer(string='Operation Amount',
-        store=True, readonly=True, compute='_compute_amount_s1')
-    
-    section2_ids = fields.One2many(
+    sale_section1_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_sale_s1')
+    sale_section1_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_sale_s1')
+    sale_section2_ids = fields.One2many(
         'account.intrastat.statement.sale.section2',
         'statement_sale_id', string='Sale - Section 2')
-    section2_operation_number = fields.Integer(string='Operation Nr',
-        store=True, readonly=True, compute='_compute_amount_s2')
-    section2_operation_amount = fields.Integer(string='Operation Amount',
-        store=True, readonly=True, compute='_compute_amount_s2')
-    
-    section3_ids = fields.One2many(
+    sale_section2_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_sale_s2')
+    sale_section2_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_sale_s2')
+    sale_section3_ids = fields.One2many(
         'account.intrastat.statement.sale.section3',
         'statement_sale_id', string='Sale - Section 3')
-    section3_operation_number = fields.Integer(string='Operation Nr',
-        store=True, readonly=True, compute='_compute_amount_s3')
-    section3_operation_amount = fields.Integer(string='Operation Amount',
-        store=True, readonly=True, compute='_compute_amount_s3')
-    
-    section4_ids = fields.One2many(
+    sale_section3_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_sale_s3')
+    sale_section3_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_sale_s3')
+    sale_section4_ids = fields.One2many(
         'account.intrastat.statement.sale.section4',
         'statement_sale_id', string='Sale - Section 4')
-    section4_operation_number = fields.Integer(string='Operation Nr',
-        store=True, readonly=True, compute='_compute_amount_s4')
-    section4_operation_amount = fields.Integer(string='Operation Amount',
-        store=True, readonly=True, compute='_compute_amount_s4')
+    sale_section4_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_sale_s4')
+    sale_section4_operation_amount = fields.Integer(string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_sale_s4')
+    #
+    # PURCHASE sections
+    #
+    purchase_section1_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section1',
+        'statement_purchase_id', string='Purchase - Section 1')
+    purchase_section1_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_purchase_s1')
+    purchase_section1_operation_amount = fields.Integer(
+        string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_purchase_s1')
+    purchase_section2_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section2',
+        'statement_purchase_id', string='Purchase - Section 2')
+    purchase_section2_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_purchase_s2')
+    purchase_section2_operation_amount = fields.Integer(
+        string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_purchase_s2')
+    purchase_section3_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section3',
+        'statement_purchase_id', string='Purchase - Section 3')
+    purchase_section3_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_purchase_s3')
+    purchase_section3_operation_amount = fields.Integer(
+        string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_purchase_s3')
+    purchase_section4_ids = fields.One2many(
+        'account.intrastat.statement.purchase.section4',
+        'statement_purchase_id', string='Purchase - Section 4')
+    purchase_section4_operation_number = fields.Integer(string='Operation Nr',
+        store=True, readonly=True, compute='_compute_amount_purchase_s4')
+    purchase_section4_operation_amount = fields.Integer(
+        string='Operation Amount',
+        store=True, readonly=True, compute='_compute_amount_purchase_s4')
     
 ## ==================================
 ## STATEMENT SALES
@@ -184,8 +242,8 @@ class account_intrastat_statement_sale_section1(models.Model):
         digits=dp.get_precision('Account'))
     transation_nature = fields.Many2one('account.intrastat.transation.nature', 
         string='Transation Nature')
-    code = fields.Many2one('account.intrastat.code.good', 
-        string='Code Good')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Good')
     weight_kg = fields.Float(string='Weight kg')
     additional_units = fields.Float(string='Additional Units')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
@@ -224,8 +282,8 @@ class account_intrastat_statement_sale_section2(models.Model):
         digits=dp.get_precision('Account'))
     transation_nature = fields.Many2one('account.intrastat.transation.nature', 
         string='Transation Nature')
-    code = fields.Many2one('account.intrastat.code.good', 
-        string='Code Good')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Good')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
         digits=dp.get_precision('Account'))
     invoice_id = fields.Many2one(
@@ -248,8 +306,8 @@ class account_intrastat_statement_sale_section3(models.Model):
     
     invoice_number = fields.Char(string='Invoice Number')
     invoice_date = fields.Char(string='Invoice Date')
-    code = fields.Many2one('account.intrastat.code.service', 
-        string='Code Service')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Service')
     supply_method = fields.Selection([
         ('I', 'Instant'),
         ('R', 'Repeatedly'),
@@ -286,8 +344,8 @@ class account_intrastat_statement_sale_section4(models.Model):
     
     invoice_number = fields.Char(string='Invoice Number')
     invoice_date = fields.Char(string='Invoice Date')
-    code = fields.Many2one('account.intrastat.code.service', 
-        string='Code Service')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Service')
     supply_method = fields.Selection([
         ('I', 'Instant'),
         ('R', 'Repeatedly'),
@@ -305,25 +363,6 @@ class account_intrastat_statement_sale_section4(models.Model):
 ## STATEMENT PURCHASE
 ## ==================================
     
-class account_intrastat_statement_purchase(models.Model):
-    _name = 'account.intrastat.statement.purchase'
-    _description = 'Account INTRASTAT - Statement - Purchase'
-    
-    statement_id = fields.Many2one('account.intrastat.statement', 
-        string='Statement', required=True, readonly=True)
-    section1_ids = fields.One2many(
-        'account.intrastat.statement.purchase.section1',
-        'statement_purchase_id', string='Purchase - Section 1')
-    section2_ids = fields.One2many(
-        'account.intrastat.statement.purchase.section2',
-        'statement_purchase_id', string='Purchase - Section 2')
-    section3_ids = fields.One2many(
-        'account.intrastat.statement.purchase.section3',
-        'statement_purchase_id', string='Purchase - Section 3')
-    section4_ids = fields.One2many(
-        'account.intrastat.statement.purchase.section4',
-        'statement_purchase_id', string='Purchase - Section 4')
-
 class account_intrastat_statement_purchase_section1(models.Model):
     _name = 'account.intrastat.statement.purchase.section1'
     _description = 'Account INTRASTAT - Statement - Purchase Section 1'
@@ -341,8 +380,8 @@ class account_intrastat_statement_purchase_section1(models.Model):
         digits=dp.get_precision('Account'))
     transation_nature = fields.Many2one('account.intrastat.transation.nature', 
         string='Transation Nature')
-    code = fields.Many2one('account.intrastat.code.good', 
-        string='Code Good')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Good')
     weight_kg = fields.Float(string='Weight kg')
     additional_units = fields.Float(string='Additional Units')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
@@ -384,8 +423,8 @@ class account_intrastat_statement_purchase_section2(models.Model):
         digits=dp.get_precision('Account'))
     transation_nature = fields.Many2one('account.intrastat.transation.nature', 
         string='Transation Nature')
-    code = fields.Many2one('account.intrastat.code.good', 
-        string='Code Good')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Good')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
         digits=dp.get_precision('Account'))
     invoice_id = fields.Many2one(
@@ -409,8 +448,8 @@ class account_intrastat_statement_purchase_section3(models.Model):
     
     invoice_number = fields.Char(string='Invoice Number')
     invoice_date = fields.Char(string='Invoice Date')
-    code = fields.Many2one('account.intrastat.code.service', 
-        string='Code Service')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Service')
     supply_method = fields.Selection([
         ('I', 'Instant'),
         ('R', 'Repeatedly'),
@@ -448,8 +487,8 @@ class account_intrastat_statement_purchase_section4(models.Model):
     
     invoice_number = fields.Char(string='Invoice Number')
     invoice_date = fields.Char(string='Invoice Date')
-    code = fields.Many2one('account.intrastat.code.service', 
-        string='Code Service')
+    intrastat_code_id = fields.Many2one('report.intrastat.code', 
+        string='Intrastat Code Service')
     supply_method = fields.Selection([
         ('I', 'Instant'),
         ('R', 'Repeatedly'),
