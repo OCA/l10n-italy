@@ -121,7 +121,7 @@
             <field name="inherit_id" ref="l10n_it_account.view_tax_code_form_vat"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <field name="vat_statement_type"/>
+                <field name="vat_statement_type" position="after">
                     <field name="vat_statement_account_id"/>
                     <field name="vat_statement_sign"/>
                 </field>
