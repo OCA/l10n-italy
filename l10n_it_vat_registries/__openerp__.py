@@ -47,6 +47,7 @@ http://goo.gl/b4y9Hx""",
         'security/ir.model.access.csv',
         'security/vat_register_security.xml',
         'account_journal_view.xml',
+        'account_tax_register_view.xml',
     ],
     "active": False,
     "installable": True
