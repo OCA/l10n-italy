@@ -38,6 +38,38 @@ class account_fiscal_position(models.Model):
          ], string='Move Type')
 
 
+class account_invoice_line(models.Model):
+    _inherit = "account.invoice.line"
+    
+    def _prepare_intrastat_line(self):
+        res = {
+            'intrastat_code_id' : False,
+            'intrastat_code_type' : False,
+            'amount_currency' : False,
+            'weight_kg' : False,
+        }
+        # Code competence
+        product_template = self.product_id.product_tmpl_id
+        intrastat_data = product_template.get_intrastat_data()
+        res.update({'intrastat_code_id': intrastat_data['intrastat_code_id']})
+        # Type
+        res.update({'intrastat_code_type': intrastat_data['intrastat_type']})
+        # Amount
+        amount_currency = self.price_subtotal
+        res.update({'amount_currency': amount_currency})
+        # Weight
+        weight_kg = 0
+        res.update({'weight_kg': weight_kg})
+        
+        # Country Origin
+        country_id = False
+        if self.invoice_id.type in ('out_invoice', 'out_refund'):
+            country_id = self.invoice_id.company_id.partner_id.country_id.id
+            
+        
+        return res
+    
+
 class account_invoice(models.Model):
     _inherit = "account.invoice"
 
@@ -59,15 +91,43 @@ class account_invoice(models.Model):
     
     @api.one
     def compute_intrastat_lines(self):
-        
+        intrastat_lines = []
+        # Unlink existing lines
+        for int_line in self.intrastat_line_ids:
+            int_line.unlink()
+        i_line_by_code = {}
+        lines_to_split = []
         for line in self.invoice_line:
-            # Code competence
+            # Lines to compute
+            if not line.product_id:
+                continue
             product_template = line.product_id.product_tmpl_id
-            intrastat_id = product_template.get_intrastat_id() 
-            print "xxx"
+            intrastat_data = product_template.get_intrastat_data()
+            if not 'intrastat_code_id' in intrastat_data \
+                or not intrastat_data['intrastat_code_id'] \
+                or intrastat_data['intrastat_code_id'] == 'exclude':
+                continue
+            # lines to split at the end
+            if intrastat_data['intrastat_code_id'] == 'misc':
+                lines_to_split.append(line)
+                continue
             
-        
-        return True
+            # Group by intrastat code
+            intra_line = line._prepare_intrastat_line()
+            if intra_line['intrastat_code_id'] in i_line_by_code:
+                i_line_by_code[intra_line['intrastat_code_id']]['amount_currency']+=\
+                    intra_line['amount_currency']
+                i_line_by_code[intra_line['intrastat_code_id']]['weight_kg']+=\
+                    intra_line['weight_kg']
+            else:
+                i_line_by_code[intra_line['intrastat_code_id']] = intra_line
+        # Lines to split
+        # >>>>>>>> TO DO <<<<<<
+           
+        for key, val in i_line_by_code.iteritems():
+            intrastat_lines.append((0,0,val))
+        if intrastat_lines:
+            self.write({'intrastat_line_ids' : intrastat_lines})
 
 class account_invoice_intrastat(models.Model):
     _name = 'account.invoice.intrastat'

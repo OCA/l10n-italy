@@ -43,12 +43,15 @@
                 <xpath expr="//page[@string='Invoice Lines']" position="after">
                     <page string="Intrastat" attrs="{'invisible': [('intrastat', '=', False)]}">
                         <group>
-                        	<button name="compute_intrastat_lines" states="draft,sent" string="Recompute Intrastat Lines" type="object"/>
+                        	<group>
+                        		<button name="compute_intrastat_lines" states="draft,sent" string="Recompute Intrastat Lines" type="object"/>
+                            </group>
+                            <newline/>
+                            <group>
                             <field name="intrastat_line_ids" nolabel="1">
                                 <tree>
                                     <field name="intrastat_code_type"/>
                                     <field name="intrastat_code_id"/>
-                                    <field name="amount_euro"/>
                                     <field name="amount_currency"/>
                                     <field name="transation_nature"/>
                                     <field name="weight_kg"/>
@@ -60,8 +63,8 @@
                                         <group>
                                             <field name="intrastat_code_type"/>
                                             <field name="intrastat_code_id" />
-                                            <field name="amount_euro"/>
                                             <field name="amount_currency"/>
+                                            <field name="amount_euro"/>
                                             <field name="statistic_amount_euro"/>
                                         </group>
                                         <group>
@@ -80,6 +83,7 @@
                                     </group>
                                 </form>
                             </field>
+                            </group>
                         </group>
                     </page>
                 </xpath>
