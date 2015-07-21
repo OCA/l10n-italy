@@ -3,7 +3,7 @@
 #
 #    Copyright (C) 2011 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014 Agile Business Group sagl
+#    Copyright (C) 2014-2015 Agile Business Group
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@ class wizard_registro_iva(models.TransientModel):
         ('corrispettivi', 'Corrispettivi'),
         ], 'Layout', required=True,
         default='customer')
+    tax_register_id = fields.Many2one('account.tax.register', 'VAT register')
     journal_ids = fields.Many2many(
         'account.journal',
         'registro_iva_journals_rel',
@@ -66,6 +67,10 @@ class wizard_registro_iva(models.TransientModel):
         help="Use -1 you have negative tax \
         amounts and you want to print them prositive")
     message = fields.Char(string='Message', size=64, readonly=True)
+
+    @api.onchange('tax_register_id')
+    def on_change_vat_register(self):
+        self.journal_ids = self.tax_register_id.journal_ids
 
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)

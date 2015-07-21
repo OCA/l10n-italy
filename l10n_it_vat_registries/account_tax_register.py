@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014-2015 Agile Business Group
+#    Copyright (C) 2015 Agile Business Group
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,8 +18,15 @@
 #
 #
 
-from . import wizard
-from . import vat_registry
-from . import account
-from . import account_tax_register
-from . import account_journal
+from openerp import models, fields
+
+
+class AccountTaxRegister(models.Model):
+    _name = 'account.tax.register'
+    name = fields.Char('Name')
+    company_id = fields.Many2one(
+        'res.company', 'Company', required=True,
+        default=lambda self: self.env['res.company']._company_default_get(
+            'account.tax.register'))
+    journal_ids = fields.One2many(
+        'account.journal', 'tax_register_id', 'Journals', readonly=True)
