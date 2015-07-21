@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014-2015 Agile Business Group
+#    Copyright (C) 2015 Agile Business Group
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,8 +18,13 @@
 #
 #
 
-from . import wizard
-from . import vat_registry
-from . import account
-from . import account_tax_register
-from . import account_journal
+from openerp import models, fields
+
+
+class AccountJournal(models.Model):
+    _inherit = 'account.journal'
+    tax_register_id = fields.Many2one(
+        'account.tax.register', 'VAT register',
+        help="You can group several journals within 1 register. In printing "
+             "wizard, you will be able to select the register in order to load"
+             " that group of journals")
