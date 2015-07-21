@@ -27,7 +27,7 @@
     "name": "Period End VAT Statement",
     "version": "1.0",
     'category': 'Generic Modules/Accounting',
-    "depends": ["account_voucher", "report_webkit"],
+    "depends": ["l10n_it_account", "account_voucher", "report_webkit"],
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'data': [
