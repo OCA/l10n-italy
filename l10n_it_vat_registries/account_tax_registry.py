@@ -21,12 +21,12 @@
 from openerp import models, fields
 
 
-class AccountTaxRegister(models.Model):
-    _name = 'account.tax.register'
+class AccountTaxRegistry(models.Model):
+    _name = 'account.tax.registry'
     name = fields.Char('Name')
     company_id = fields.Many2one(
         'res.company', 'Company', required=True,
         default=lambda self: self.env['res.company']._company_default_get(
-            'account.tax.register'))
+            'account.tax.registry'))
     journal_ids = fields.One2many(
-        'account.journal', 'tax_register_id', 'Journals', readonly=True)
+        'account.journal', 'tax_registry_id', 'Journals', readonly=True)

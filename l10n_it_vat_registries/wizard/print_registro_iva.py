@@ -52,7 +52,7 @@ class wizard_registro_iva(models.TransientModel):
         ('corrispettivi', 'Corrispettivi'),
         ], 'Layout', required=True,
         default='customer')
-    tax_register_id = fields.Many2one('account.tax.register', 'VAT register')
+    tax_registry_id = fields.Many2one('account.tax.registry', 'VAT registry')
     journal_ids = fields.Many2many(
         'account.journal',
         'registro_iva_journals_rel',
@@ -68,9 +68,9 @@ class wizard_registro_iva(models.TransientModel):
         amounts and you want to print them prositive")
     message = fields.Char(string='Message', size=64, readonly=True)
 
-    @api.onchange('tax_register_id')
-    def on_change_vat_register(self):
-        self.journal_ids = self.tax_register_id.journal_ids
+    @api.onchange('tax_registry_id')
+    def on_change_vat_registry(self):
+        self.journal_ids = self.tax_registry_id.journal_ids
 
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)
