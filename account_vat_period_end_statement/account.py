@@ -710,19 +710,15 @@ class account_tax_code(orm.Model):
     _columns = {
         'vat_statement_account_id': fields.many2one(
             'account.account',
-            "Account used for VAT statement. The tax code balance will be "
+            "Account used for VAT statement",
+            help="The tax code balance will be "
             "associated to this account after selecting the period in "
             "VAT statement"),
-        'vat_statement_type': fields.selection(
-            [('credit', 'Credit'), ('debit', 'Debit')], 'Type',
-            help="This establish whether amount will "
-                 "be loaded as debit or credit"),
         'vat_statement_sign': fields.integer(
             'Sign used in statement',
             help="If tax code period sum is usually negative, set '-1' here"),
     }
     _defaults = {
-        'vat_statement_type': 'debit',
         'vat_statement_sign': 1,
     }
 
