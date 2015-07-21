@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, models
+from openerp import fields, models
 
 
 class AccountTaxCode(models.Model):
