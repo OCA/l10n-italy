@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="account.view_account_journal_form"></field>
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
-                    <field name="tax_register_id"></field>
+                    <field name="tax_registry_id"></field>
                 </field>
             </field>
         </record>

@@ -23,8 +23,8 @@ from openerp import models, fields
 
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
-    tax_register_id = fields.Many2one(
-        'account.tax.register', 'VAT register',
-        help="You can group several journals within 1 register. In printing "
-             "wizard, you will be able to select the register in order to load"
+    tax_registry_id = fields.Many2one(
+        'account.tax.registry', 'VAT registry',
+        help="You can group several journals within 1 registry. In printing "
+             "wizard, you will be able to select the registry in order to load"
              " that group of journals")
