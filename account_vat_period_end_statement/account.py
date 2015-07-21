@@ -710,7 +710,8 @@ class account_tax_code(orm.Model):
     _columns = {
         'vat_statement_account_id': fields.many2one(
             'account.account',
-            "Account used for VAT statement. The tax code balance will be "
+            "Account used for VAT statement",
+            help="The tax code balance will be "
             "associated to this account after selecting the period in "
             "VAT statement"),
         'vat_statement_sign': fields.integer(
