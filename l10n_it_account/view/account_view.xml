@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="view_tax_code_form_vat" model="ir.ui.view">
+          <field name="name">account.tax.code.form.vat</field>
+          <field name="model">account.tax.code</field>
+          <field name="inherit_id" ref="account.view_tax_code_form"></field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <separator string="Description" position="before">
+                  <group colspan="2" col="2">
+                      <separator string="VAT statement" colspan="4"/>
+                      <field name="vat_statement_type"/>
+                  </group>
+              </separator>
+          </field>
+      </record>
+
+    </data>
+</openerp>
