@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="l10n_it_account_a4_portrait" model="report.paperformat">
+        <field name="name">Italian Accounting Reports A4 Portrait</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+      </record>
+
+      <record id="l10n_it_account_a4_landscape" model="report.paperformat">
+        <field name="name">Italian Accounting Reports A4 Landscape</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+      </record>
+
+      <template id="l10n_it_account.internal_layout">
+          <!-- Multicompany -->
+          <t t-if="o and 'company_id' in o">
+              <t t-set="company" t-value="o.company_id"></t>
+          </t>
+          <t t-if="not o or not 'company_id' in o">
+              <t t-set="company" t-value="res_company"></t>
+          </t>
+
+          <div class="header">
+              <div class="row">
+                  <div class="col-xs-4">
+                      <h3 t-esc="title"/>
+                  </div>
+                  <div class="col-xs-4 col-xs-offset-4 text-right">
+                      <h3><span t-esc="company.name"/></h3>
+                  </div>
+              </div>
+          </div>
+          <t t-raw="0" />
+          <div class="footer">
+              <div class="row">
+                  <div class="col-xs-4">
+
+                  </div>
+                  <div class="col-xs-4 col-xs-offset-4 text-right">
+                    <ul class="list-inline">
+                        <li><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/></li>
+                        <li>/</li>
+                        <li><span class="page"/></li>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+      </template>
+
+    </data>
+</openerp>
