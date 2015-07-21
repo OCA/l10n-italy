@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <report 
+            id="action_report_registro_iva" 
+            model="account.move" 
+            string="Customer Invoices VAT Registry Supplier"
+            report_type="qweb-pdf"
+            name="l10n_it_vat_registries.report_registro_iva" 
+            file="l10n_it_vat_registries.report_registro_iva"
+            menu="False"
+            auto="False"
+        />
+    </data>
+</openerp>
+
