@@ -31,9 +31,5 @@
         'views/account_view.xml',
         'reports/account_reports_view.xml',
     ],
-    "qweb": [],
-    "demo": [],
-    "test": [],
-    "active": False,
     'installable': True
 }
