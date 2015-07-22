@@ -138,9 +138,32 @@ class account_invoice_intrastat(models.Model):
         company_currency = self.invoice_id.company_id.currency_id
         self.amount_euro = company_currency.compute(self.amount_currency,
                                                     company_currency)
+    @api.one
+    @api.depends('invoice_id.partner_id')
+    def _compute_partner_data(self):
+        self.country_partner_id = self.invoice_id.partner_id.country_id.id
+    
+    #-------------
+    # Defaults
+    #-------------
+    
+    @api.model
+    def _default_province_origin(self):
+        if self.invoice_id.company_id.partner_id.state_id:
+            return self.invoice_id.company_id.partner_id.state_id
+        else:
+            return False
+    
+    @api.model
+    def _default_country_destination(self):
+        if self.invoice_id.partner_id.country_id:
+            return self.invoice_id.partner_id.country_id
+        else:
+            return False
+    
 
-    invoice_id = fields.Many2one('account.invoice', string='Invoice',
-                                 required=True)
+    invoice_id = fields.Many2one(
+        'account.invoice', string='Invoice', required=True)
     intrastat_type_data = fields.Selection([
         ('all', 'All (Fiscal and Statistic'),
         ('fiscal', 'Fiscal'),
@@ -150,30 +173,102 @@ class account_invoice_intrastat(models.Model):
         ('service', 'Service'),
         ('good', 'Good')
         ], 'Code Type', required=True, default='good')
-    intrastat_code_id = fields.Many2one('report.intrastat.code',
-                                        string='Intrastat Code')
+    intrastat_code_id = fields.Many2one(
+        'report.intrastat.code', string='Intrastat Code', required=True)
+    statement_section = fields.Selection([
+        ('sale_s1', 'Sale s1'),
+        ('sale_s2', 'Sale s2'),
+        ('sale_s3', 'Sale s3'),
+        ('sale_s4', 'Sale s4'),
+        ('purchase_s1', 'Purchase s1'),
+        ('purchase_s2', 'Purchase s2'),
+        ('purchase_s3', 'Purchase s3'),
+        ('purchase_s4', 'Purchase s4'),
+        ], 'Statement Section', 
+        #compute='_compute_statement_section', store=True, readonly=True)
+        )
+    # common values
     amount_euro = fields.Float(
         string='Amount Euro', compute='_compute_amount_euro',
         digits=dp.get_precision('Account'), store=True, readonly=True)
     amount_currency = fields.Float(
         string='Amount Currency', digits=dp.get_precision('Account'))
-    transation_nature = fields.Many2one('account.intrastat.transation.nature',
+    transation_nature_id = fields.Many2one('account.intrastat.transation.nature',
                                         string='Transation Nature')
     weight_kg = fields.Float(string='Weight kg')
     additional_units = fields.Float(string='Additional Units')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro',
                                          digits=dp.get_precision('Account'))
-    delivery_code = fields.Many2one('stock.incoterms',
+    delivery_code_id = fields.Many2one('stock.incoterms',
                                     string='Delivery')
-    transport_code = fields.Many2one('account.intrastat.transport',
+    transport_code_id = fields.Many2one('account.intrastat.transport',
                                      string='Transport')
+    country_partner_id = fields.Many2one(
+        'res.country', string='Country Partner', 
+        compute='_compute_partner_data', store=True, readonly=True)
     country_origin_id = fields.Many2one('res.country',
                                         string='Country Origin')
     country_good_origin_id = fields.Many2one('res.country',
                                              string='Country Goods Origin')
+    
     province_destination_id = fields.Many2one('res.country.state',
                                               string='Province Destination')
-
+    ## Sale - section1
+    country_destination_id = fields.Many2one(
+         'res.country', string='Country Destination',
+         default ="_default_country_destination")
+    province_origin_id = fields.Many2one(
+         'res.country.state', string='Province Origin',
+         default ="_default_province_origin")
+    ## Sale - section2
+    ## Sale - section3
+    supply_method = fields.Selection([
+        ('I', 'Instant'),
+        ('R', 'Repeatedly'),
+        ], 'Supply Method')
+    payment_method = fields.Selection([
+        ('B', 'Transfer'),
+        ('A', 'Accreditation'),
+        ('X', 'Other'),
+        ], 'Payment Method')
+    country_payment_id= fields.Many2one('res.country', 'Country Payment')
+    
+    def _get_statement_section(self):
+        '''
+        Compute where the invoice intrastat data will be computed.
+        This field is used to show the right values to fill in
+        '''
+        section = False
+        # Purchase
+        if self.invoice_id.type in ('in_invoice', 'in_refund'):
+            if self.intrastat_code_type == 'good':
+                if self.invoice_id.type == 'in_invoice':
+                    section = 'purchase_s1'
+                else:
+                    section = 'purchase_s2'
+            else:
+                if self.invoice_id.type == 'in_invoice':
+                    section = 'purchase_s3'
+                else:
+                    section = 'purchase_s4'
+        # Sale
+        elif self.invoice_id.type in ('out_invoice', 'out_refund'):
+            if self.intrastat_code_type == 'good':
+                if self.invoice_id.type == 'out_invoice':
+                    section = 'sale_s1'
+                else:
+                    section = 'sale_s2'
+            else:
+                if self.invoice_id.type == 'out_invoice':
+                    section = 'sale_s3'
+                else:
+                    section = 'sale_s4'
+        return section
+    
+    @api.onchange('intrastat_code_type')
+    def change_intrastat_code_type(self):
+        self.statement_section = self._get_statement_section()
+    
 class account_payment_term(models.Model):
     _inherit = 'account.payment.term'
 

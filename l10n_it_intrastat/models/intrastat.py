@@ -241,9 +241,10 @@ class account_intrastat_statement_sale_section1(models.Model):
         'account.intrastat.statement', string='Statement', 
         required=True, readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
-    country_customer_id = fields.Many2one('res.country',
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
                                           string='Country Customer')
-    vat_code = fields.Integer(string='Vat Code Customer')
+    vat_code = fields.Char(string='Vat Code Customer')
     amount_euro = fields.Float(string='Amount Euro', 
                                digits=dp.get_precision('Account'))
     transation_nature = fields.Many2one('account.intrastat.transation.nature', 
@@ -254,9 +255,9 @@ class account_intrastat_statement_sale_section1(models.Model):
     additional_units = fields.Float(string='Additional Units')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro', 
                                          digits=dp.get_precision('Account'))
-    delivery_code = fields.Many2one('stock.incoterms', 
+    delivery_code_id = fields.Many2one('stock.incoterms', 
                                     string='Delivery')
-    transport_code = fields.Many2one('account.intrastat.transport', 
+    transport_code_id = fields.Many2one('account.intrastat.transport', 
                                      string='Transport')
     country_destination_id = fields.Many2one('res.country', 
                                              string='Country Destination')
@@ -279,16 +280,17 @@ class account_intrastat_statement_sale_section2(models.Model):
     month = fields.Integer(string='Month Ref of Refund')
     quarterly = fields.Integer(string='Quarterly Ref of Refund')
     year = fields.Many2one('account.fiscalyear', string='Year Ref of Refund')
-    country_customer_id = fields.Many2one('res.country', 
-                                          string='Country Customer')
-    vat_code = fields.Integer(string='Vat Code Customer')
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
+                                          string='Country Partner')
+    vat_code = fields.Char(string='Vat Code Customer')
     sign_variation = fields.Selection([
         ('+', '+'),
         ('-', '-'),
         ], 'Sign Variation')
     amount_euro = fields.Float(string='Amount Euro', 
                                digits=dp.get_precision('Account'))
-    transation_nature = fields.Many2one('account.intrastat.transation.nature', 
+    transation_nature_id = fields.Many2one('account.intrastat.transation.nature', 
                                         string='Transation Nature')
     intrastat_code_id = fields.Many2one('report.intrastat.code', 
                                         string='Intrastat Code Good')
@@ -307,13 +309,14 @@ class account_intrastat_statement_sale_section3(models.Model):
                                    readonly=True)
     progressive = fields.Integer(string='Progressive', required=True, 
                                  readonly=True)
-    country_customer_id = fields.Many2one('res.country', 
-                                          string='Country Customer')
-    vat_code = fields.Integer(string='Vat Code Customer')
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
+                                          string='Country Partner')
+    vat_code = fields.Char(string='Vat Code Customer')
     amount_euro = fields.Float(string='Amount Euro', 
                                digits=dp.get_precision('Account'))
     invoice_number = fields.Char(string='Invoice Number')
-    invoice_date = fields.Char(string='Invoice Date')
+    invoice_date = fields.Date(string='Invoice Date')
     intrastat_code_id = fields.Many2one('report.intrastat.code', 
                                         string='Intrastat Code Service')
     supply_method = fields.Selection([
@@ -345,14 +348,15 @@ class account_intrastat_statement_sale_section4(models.Model):
     protocol = fields.Integer(string='Protocol number', size=6)
     progressive_to_modify_id =  fields.Many2one(
         'account.intrastat.statement.sale.section1', 'Progressive to Modify')
-    country_customer_id = fields.Many2one('res.country', 
-                                          string='Country Customer')
-    vat_code = fields.Integer(string='Vat Code Customer')
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
+                                          string='Country Partner')
+    vat_code = fields.Char(string='Vat Code Customer')
     amount_euro = fields.Float(string='Amount Euro', 
                                digits=dp.get_precision('Account'))
     
     invoice_number = fields.Char(string='Invoice Number')
-    invoice_date = fields.Char(string='Invoice Date')
+    invoice_date = fields.Date(string='Invoice Date')
     intrastat_code_id = fields.Many2one('report.intrastat.code', 
                                         string='Intrastat Code Service')
     supply_method = fields.Selection([
@@ -377,9 +381,10 @@ class account_intrastat_statement_purchase_section1(models.Model):
                                    string='Statement', required=True,
                                    readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
-    country_supplier_id = fields.Many2one('res.country',
-                                          string='Country Supplier')
-    vat_code = fields.Integer(string='Vat Code Purchase')
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
+                                          string='Country Partner')
+    vat_code = fields.Char(string='Vat Code Partner')
     amount_euro = fields.Float(string='Amount Euro',
                                digits=dp.get_precision('Account'))
     amount_currency = fields.Float(string='Amount Currency', 
@@ -417,9 +422,10 @@ class account_intrastat_statement_purchase_section2(models.Model):
     month = fields.Integer(string='Month Ref of Refund')
     quarterly = fields.Integer(string='Quarterly Ref of Refund')
     year = fields.Many2one('account.fiscalyear', string='Year Ref of Refund')
-    country_supplier_id = fields.Many2one('res.country', 
-                                          string='Country Supplier')
-    vat_code = fields.Integer(string='Vat Code Customer')
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
+                                          string='Country Partner')
+    vat_code = fields.Char(string='Vat Code Partner')
     sign_variation = fields.Selection([
         ('+', '+'),
         ('-', '-'),
@@ -446,15 +452,16 @@ class account_intrastat_statement_purchase_section3(models.Model):
                                    string='Statement', required=True,
                                    readonly=True)
     progressive = fields.Integer(string='Progressive', required=True)
-    country_supplier_id = fields.Many2one('res.country',
-                                          string='Country Supplier')
-    vat_code = fields.Integer(string='Vat Code Supplier')
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
+                                          string='Country Partner')
+    vat_code = fields.Char(string='Vat Code Partner')
     amount_euro = fields.Float(string='Amount Euro', 
                                digits=dp.get_precision('Account'))
     amount_currency = fields.Float(string='Amount Currency',
                                    digits=dp.get_precision('Account'))
     invoice_number = fields.Char(string='Invoice Number')
-    invoice_date = fields.Char(string='Invoice Date')
+    invoice_date = fields.Date(string='Invoice Date')
     intrastat_code_id = fields.Many2one('report.intrastat.code', 
                                         string='Intrastat Code Service')
     supply_method = fields.Selection([
@@ -485,9 +492,10 @@ class account_intrastat_statement_purchase_section4(models.Model):
     progressive_to_modify_id = fields.Many2one(
         'account.intrastat.statement.purchase.section1',
         'Progressive to Modify')
-    country_supplier_id = fields.Many2one('res.country',
-                                          string='Country Supplier')
-    vat_code = fields.Integer(string='Vat Code Supplier')
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    country_partner_id = fields.Many2one('res.country',
+                                          string='Country Partner')
+    vat_code = fields.Char(string='Vat Code Partner')
     amount_euro = fields.Float(string='Amount Euro',
                                digits=dp.get_precision('Account'))
     amount_currency = fields.Float(string='Amount Currency',
