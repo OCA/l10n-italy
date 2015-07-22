@@ -30,3 +30,11 @@ class AccountTaxCode(models.Model):
         string='Type',
         help="This establish whether amount will be loaded as debit or credit",
         default='debit')
+
+
+class AccountTax(models.Model):
+    _inherit = "account.tax"
+
+    undeductable = fields.Boolean(
+        string='Undeductable',
+        help="Partially or totally undeductable.")
