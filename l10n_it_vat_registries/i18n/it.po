@@ -166,10 +166,16 @@ msgid "Message"
 msgstr "Messaggio"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:68
+#: code:addons/l10n_it_vat_registries/vat_registry.py:76
 #, python-format
 msgid "Move %s contains different invoices"
 msgstr "La registrazione %s contiene diverse fatture"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/vat_registry.py:85
+#, python-format
+msgid "base"
+msgstr "imponibile"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,name:0
