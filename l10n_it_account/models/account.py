@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from openerp import fields, models
+from openerp import fields, models, _
 
 
 class AccountTaxCode(models.Model):
-    _inherit = "account.tax.code"
+    _inherit = 'account.tax.code'
 
     vat_statement_type = fields.Selection(
         (('credit', 'Credit'), ('debit', 'Debit')),
@@ -33,8 +33,23 @@ class AccountTaxCode(models.Model):
 
 
 class AccountTax(models.Model):
-    _inherit = "account.tax"
+    _inherit = 'account.tax'
 
     undeductable = fields.Boolean(
         string='Undeductable',
         help="Partially or totally undeductable.")
+
+
+class AccountAccount(models.Model):
+    _inherit = 'account.account'
+
+    negative_user_type = fields.Many2one(
+        'account.account.type',
+        string='Negative Account Type',
+        help="Used on balance sheet to report this account when its balance is \
+        negative")
+    negative_parent_id = fields.Many2one(
+        'account.account',
+        string='Negative Parent',
+        help="Used on balance sheet to report this account when its balance is \
+        negative")
