@@ -24,7 +24,7 @@
         <field name="format">A4</field>
         <field name="page_height">0</field>
         <field name="page_width">0</field>
-        <field name="orientation">Portrait</field>
+        <field name="orientation">Landscape</field>
         <field name="margin_top">15</field>
         <field name="margin_bottom">15</field>
         <field name="margin_left">5</field>
