@@ -28,7 +28,7 @@
     'license': 'AGPL-3',
     "depends": ['base', 'account'],
     "data": [
-        'view/account_view.xml',
+        'views/account_view.xml',
     ],
     "qweb": [],
     "demo": [],
