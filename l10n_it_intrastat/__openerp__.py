@@ -41,6 +41,7 @@
         #'security/ir.model.access.csv',
         'views/statement_view.xml',
         'views/product.xml',
+        'data/account.intrastat.custom.csv',
         ],
     "demo": [],
     "active": False,
