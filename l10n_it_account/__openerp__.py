@@ -31,6 +31,5 @@
         'views/account_view.xml',
         'reports/account_reports_view.xml',
     ],
-    "active": False,
     'installable': True
 }
