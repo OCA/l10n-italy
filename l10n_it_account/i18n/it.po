@@ -91,3 +91,26 @@ msgstr "Isato sul bilancio per riportare questo conto quando il suo bilancio è 
 msgid "VAT statement"
 msgstr "Liquidazione IVA"
 
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/account_tax.py:76
+#, python-format
+msgid "Invoices: Base code already used in other purchase tax."
+msgstr "Fatture: Conto imponibile già utilizzato in un'altra imposta d'acquisto."
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/account_tax.py:81
+#, python-format
+msgid "Invoices: Tax code already used in other purchase tax."
+msgstr "Fatture: Conto imposta già utilizzato in un'altra imposta d'acquisto."
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/account_tax.py:76
+#, python-format
+msgid "Refunds: Base code already used in other purchase tax."
+msgstr "Note di credito: Conto imponibile già utilizzato in un'altra imposta d'acquisto."
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/account_tax.py:81
+#, python-format
+msgid "Refunds : Tax code already used in other purchase tax."
+msgstr "Note di credito: Conto imposta già utilizzato in un'altra imposta d'acquisto."
