@@ -10,15 +10,15 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Vat statement">
-                    <field name="journal_id"   widget="selection" select="1"/>
-                    <group col="2" colspan="2">
+                    <group>
+                        <field name="journal_id"   widget="selection" select="1"/>
                         <field name="date"  select="1" />
                         <!-- TODO check if it's manageable
                         <button name="open_chart_of_taxes" string="View chart of taxes for selected period" type="object"/>
                         -->
+                        <field name="move_id"  select="1"/>
+                        <field name="payment_term_id"  select="1"/>
                     </group>
-                    <field name="move_id"  select="1"/>
-                    <field name="payment_term_id"  select="1"/>
                     <notebook colspan="4">
                         <page string="Periods">
                             <button type='action' name="%(action_add_period)d" string="Add period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))]}"></button>
@@ -74,12 +74,14 @@
                             <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"></button>
                         </page>
                         <page string="Tax Authority">
-                            <field name="authority_partner_id"  select="1" on_change="on_change_partner_id(authority_partner_id)"/>
-                            <field name="authority_vat_amount" />
-                            <field name="authority_vat_account_id"  select="1" />
-                            <field name="residual" />
-                            <separator string="Payments" colspan="4"/>
-                            <field name="payment_ids" nolabel="1" colspan="4"/>
+                            <group>
+                                <field name="authority_partner_id"  select="1" on_change="on_change_partner_id(authority_partner_id)"/>
+                                <field name="authority_vat_amount" />
+                                <field name="authority_vat_account_id"  select="1" />
+                                <field name="residual" />
+                                <separator string="Payments" colspan="4"/>
+                                <field name="payment_ids" nolabel="1" colspan="4"/>
+                            </group>
                         </page>
                     </notebook>
                     <field name="state"  select="1"/>
@@ -116,17 +118,13 @@
         <record id="view_tax_code_form" model="ir.ui.view">
             <field name="name">account.tax.code.form</field>
             <field name="model">account.tax.code</field>
-            <field name="inherit_id" ref="account.view_tax_code_form"></field>
+            <field name="inherit_id" ref="l10n_it_account.view_tax_code_form_vat"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <separator string="Description" position="before">
-                    <group colspan="2" col="2">
-                        <separator string="VAT statement" colspan="4"/>
-                        <field name="vat_statement_account_id"/>
-                        <field name="vat_statement_type"/>
-                        <field name="vat_statement_sign"/>
-                    </group>
-                </separator>
+                <field name="vat_statement_type" position="after">
+                    <field name="vat_statement_account_id"/>
+                    <field name="vat_statement_sign"/>
+                </field>
             </field>
         </record>
 

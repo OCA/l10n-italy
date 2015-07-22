@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    Copyright (C) 2015 Abstract srl (<http://www.abstract.it>)
+#    Copyright (C) 2015 Agile Business Group sagl (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,5 +18,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import add_period
-import remove_period
+
+from openerp import fields, models
+
+
+class AccountTaxCode(models.Model):
+    _inherit = "account.tax.code"
+
+    vat_statement_type = fields.Selection(
+        (('credit', 'Credit'), ('debit', 'Debit')),
+        string='Type',
+        help="This establish whether amount will be loaded as debit or credit",
+        default='debit')
