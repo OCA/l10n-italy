@@ -29,6 +29,7 @@
     "depends": ['base', 'account'],
     "data": [
         'views/account_view.xml',
+        'reports/account_reports_view.xml',
     ],
     "qweb": [],
     "demo": [],
