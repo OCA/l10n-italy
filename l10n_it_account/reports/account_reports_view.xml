@@ -46,7 +46,7 @@
           <div class="header">
               <div class="row">
                   <div class="col-xs-4">
-                      <h3>Accounting Report</h3>
+                      <h3 t-esc="title"/>
                   </div>
                   <div class="col-xs-4 col-xs-offset-4 text-right">
                       <h3><span t-esc="company.name"/></h3>
@@ -57,14 +57,13 @@
           <div class="footer">
               <div class="row">
                   <div class="col-xs-4">
-                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+
                   </div>
                   <div class="col-xs-4 col-xs-offset-4 text-right">
                     <ul class="list-inline">
-                        <li>Page:</li>
-                        <li><span class="page"/></li>
+                        <li><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/></li>
                         <li>/</li>
-                        <li><span class="topage"/></li>
+                        <li><span class="page"/></li>
                     </ul>
                   </div>
               </div>
