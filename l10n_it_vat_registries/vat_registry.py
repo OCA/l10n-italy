@@ -157,7 +157,7 @@ class Parser(report_sxw.rml_parse):
         total_tax = 0
         total_base = 0
         for tax in list_tax_obj:
-            if tax.undeductable:
+            if tax.nondeductible:
                 #detraibile / indetraibile
                 #recupero il valore dell'imponibile
                 total_base = self._calcs_total(tax.base_code_id)
@@ -193,7 +193,7 @@ class Parser(report_sxw.rml_parse):
                 for id_tax in ids_tax:
 
                     current_tax_obj = obj_tax.browse(self.cr, self.uid, id_tax)
-                    if current_tax_obj.parent_id.undeductable:
+                    if current_tax_obj.parent_id.nondeductible:
                         id_tax = current_tax_obj.parent_id.id
                     if id_tax not in list_tax:
                         list_tax.append(id_tax)
