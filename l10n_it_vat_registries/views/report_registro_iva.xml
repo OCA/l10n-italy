@@ -10,17 +10,17 @@
 
 <template id="report_registro_iva">
     <t t-call="report.html_container">
-    <t t-call="report.internal_layout">
+    <t t-if="registry_type == 'customer'">
+        <t t-set="title" t-value="'Fatture Emesse'"/>
+    </t>
+    <t t-if="registry_type == 'supplier'">
+        <t t-set="title" t-value="'Fatture Ricevute'"/>
+    </t>
+    <t t-if="registry_type == 'corrispettivi'">
+        <t t-set="title" t-value="'Corrispettivi '"/>
+    </t>
+    <t t-call="l10n_it_account.internal_layout">
         <div class="page">
-            <t t-if="registry_type == 'customer'">
-                <h2>Fatture Emesse</h2>
-            </t>
-            <t t-if="registry_type == 'supplier'">
-                <h2>Fatture Ricevute</h2>
-            </t>
-            <t t-if="registry_type == 'corrispettivi'">
-                <h2>Corrispettivi</h2>
-            </t>
             <table style="width:100%; font-size: small;" cellspacing="0">
                     <thead>
                         <t t-if="registry_type == 'corrispettivi'">
@@ -36,11 +36,12 @@
                             <tr style="page-break-inside: avoid">
                                 <th class="left_without_line">DATA REG.</th>
                                 <th class="left_without_line">NUM. REG.</th>
-                                <th class="left_without_line">CAUSALE</th>
+                                <th class="left_without_line">CAUS.</th>
                                 <th class="left_without_line">DT FATT.</th>
                                 <th class="left_without_line">NUM FATT.</th>
-                                <th class="left_without_line">P.IVA</th>
                                 <th class="left_without_line">RAGIONE SOCIALE</th>
+                                <th class="left_without_line">P.IVA</th>
+                                <th class="left_without_line"></th>
                                 <th class="right_without_line">TOTALE</th>
                             </tr>
                             <tr style="page-break-inside: avoid">
@@ -49,9 +50,10 @@
                                 <th class="left_with_line_bottom"></th>
                                 <th class="left_with_line_bottom"></th>
                                 <th class="left_with_line_bottom"></th>
-                                <th class="left_with_line_bottom"></th>
                                 <th class="left_with_line_bottom">IMPOSTA</th>
-                                <th class="right_with_line_bottom">IMPORTO</th>
+                                <th class="right_with_line_bottom">IMPONIBILE</th>
+                                <th class="right_with_line_bottom">IMPOSTA</th>
+                                <th class="right_with_line_bottom"></th>
                             </tr>
                          </t>
                     </thead>
@@ -62,7 +64,7 @@
                             <t t-foreach="tax_lines(move)" t-as="line">
                                 <t t-set="line_class_left" t-value="left_without_line"/>
                                 <t t-set="line_class_right" t-value="right_without_line"/>
-                                <t t-if="registry_type == 'corrispettivi'">  
+                                <t t-if="registry_type == 'corrispettivi'">
                                      <tr style="page-break-inside: avoid">
                                     <!-- numero -->
                                     <td class="left_without_line"><t t-if="line['index'] == 0"><div t-esc="counter" style="page-break-inside: avoid"/></t></td>
@@ -76,46 +78,44 @@
                                     <td class="right_without_line"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></t></td>
                                     <!-- importo -->
                                     <td class="right_without_line"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="formatLang(line['amount'])"/></t></td>
-                                  </tr>  
-                                </t>  
-                                <t t-if="registry_type != 'corrispettivi'">  
+                                  </tr>
+                                </t>
+                                <t t-if="registry_type != 'corrispettivi'">
                                     <t t-if="line['index'] == 0">
                                         <tr style="page-break-inside: avoid; border:1px solid #fff;" >
                                             <!-- Data registrazione -->
-                                            <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></td>
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></td>
                                             <!-- Numero registrazione -->
-                                            <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
                                             <!-- Causale -->
-                                            <td class="left_without_line">
+                                            <td class="left_without_line_bold">
                                                 <t t-if="move.journal_id.type == 'sale' or move.journal_id.type == 'purchase'">
-                                                    Fattura
+                                                    FA
                                                 </t>
                                                 <t t-if="move.journal_id.type == 'sale_refund' or move.journal_id.type == 'purchase_refund'">
-                                                    Nota di credito
+                                                    NC
                                                 </t>
-                                            </td>   
+                                            </td>
                                              <!-- Data fattura -->
-                                            <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['invoice_date'], date=True)"/></td>
- 
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(line['invoice_date'], date=True)"/></td>
                                             <t t-if="move.journal_id.type == 'purchase' or move.journal_id.type == 'purchase_refund'">
                                                 <!-- Numero fattura (fornitore)-->
-                                                <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="line['supplier_invoice_number']"/></td>
+                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['supplier_invoice_number']"/></td>
                                             </t>
                                             <t t-if="move.journal_id.type == 'sale'  or move.journal_id.type == 'sale_refund'">
                                                 <!-- Numero fattura -->
-                                                <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
+                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
                                             </t>
-                                            <!-- PIVA -->
-                                            <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move.partner_id.vat"/></td>
                                             <!-- Ragione sociale -->
-                                            <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></td>
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></td>
+                                            <!-- PIVA -->
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.vat"/></td>
+                                            <td class="left_without_line"></td>
                                             <!-- totale -->
-                                            <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></td>
-                                            
-                                        </tr> 
-                                    </t>  
+                                            <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></td>
+                                        </tr>
+                                    </t>
                                     <tr style="page-break-inside: avoid; ">
-                                        <td class="left_without_line"></td>
                                         <td class="left_without_line"></td>
                                         <td class="left_without_line"></td>
                                         <td class="left_without_line"></td>
@@ -123,16 +123,13 @@
                                         <td class="left_without_line"></td>
                                         <!--  imposta -->
                                         <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></td>
-                                        <!-- importo -->
-                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['amount'])"/></td>
-                                       
-                                    </tr> 
-                                   
-                                </t>   
-                                  
-                                  
-                                  
-
+                                        <!-- base -->
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['base'])"/></td>
+                                        <!-- tax -->
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['tax'])"/></td>
+                                        <td class="left_without_line"></td>
+                                    </tr>
+                                </t>
                             </t>
                         </t>
                     </tbody>
@@ -181,8 +178,6 @@
                             </table>
                         </td>
                     </tr>
-                    
-                    
                 </table>
             </div>
         </div>
