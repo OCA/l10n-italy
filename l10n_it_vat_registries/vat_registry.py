@@ -34,6 +34,7 @@ class Parser(report_sxw.rml_parse):
 
     def _tax_amounts_by_code(self, move):
         res = {}
+        tax_obj = self.pool.get('account.tax')
         for move_line in move.line_id:
             if (
                 move_line.tax_code_id
@@ -46,13 +47,25 @@ class Parser(report_sxw.rml_parse):
                     ) or (self.localcontext['registry_type'] == 'customer'
                     and move_line.tax_code_id.vat_statement_type == 'debit'):
 
-                    if not res.get(move_line.tax_code_id.id):
-                        res[move_line.tax_code_id.id] = 0.0
-                        self.localcontext['used_tax_codes'][
+                    for tax in tax_obj.browse(self.cr, self.uid, self._compute_list_tax([move_line.tax_code_id.id])):
+                        if not res.get(tax.id):
+                            res[tax.id] = {'name': tax.name,
+                                         'base': 0,
+                                         'tax': 0,
+                                         }
+                            self.localcontext['used_tax_codes'][
                             move_line.tax_code_id.id] = True
-                    res[move_line.tax_code_id.id] += (
-                        move_line.tax_amount
-                        * self.localcontext['data']['form']['tax_sign'])
+
+                        if move_line.tax_code_id.is_base:
+                            #recupero il valore dell'imponibile
+                            res[tax.id]['base'] += (
+                            move_line.tax_amount
+                            * self.localcontext['data']['form']['tax_sign'])
+                        else:
+                            #recupero il valore dell'imposta
+                            res[tax.id]['tax'] += (
+                            move_line.tax_amount
+                            * self.localcontext['data']['form']['tax_sign'])
         return res
 
     def _get_move(self, move_ids):
@@ -62,7 +75,6 @@ class Parser(report_sxw.rml_parse):
 
     def _get_tax_lines(self, move):
         res = []
-        tax_code_obj = self.pool.get('account.tax.code')
         # index è usato per non ripetere la stampa dei dati fattura quando ci
         # sono più codici IVA
         index = 0
@@ -75,16 +87,10 @@ class Parser(report_sxw.rml_parse):
                 invoice = move_line.invoice
         amounts_by_code = self._tax_amounts_by_code(move)
         for tax_code_id in amounts_by_code:
-            tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
-            name = tax_code.name
-
-            if tax_code.is_base:
-                if not 'imponibile' in name:
-                    name = name + '(%s)' % ('base')
             tax_item = {
-                'tax_code_name': name,
-                'tax_code_type': tax_code.vat_statement_type,
-                'amount': amounts_by_code[tax_code_id],
+                'tax_code_name': amounts_by_code[tax_code_id]['name'],
+                'base': amounts_by_code[tax_code_id]['base'],
+                'tax': amounts_by_code[tax_code_id]['tax'],
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice
                                  or move.date or ''),
@@ -170,7 +176,6 @@ class Parser(report_sxw.rml_parse):
                 #recupero il valore dell'imposta
                 total_tax = self._calcs_total(tax.tax_code_id)
                 total_deduct = total_tax
-
             res.append(
                         (tax.name, total_base, total_tax, total_deduct, total_undeduct))
         return res
