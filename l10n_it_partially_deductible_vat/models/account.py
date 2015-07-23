@@ -178,7 +178,8 @@ class AccountInvoiceTax(models.Model):
         tax_grouped = super(AccountInvoiceTax, self).compute(invoice)
         tax_obj = self.env['account.tax']
         tax_code_obj = self.env['account.tax.code']
-        cur = invoice.currency_id.with_context(date=invoice.date_invoice or fields.Date.context_today(invoice))
+        cur = invoice.currency_id.with_context(date=invoice.date_invoice 
+                                               or fields.Date.context_today(invoice))
         tax_difference = self.tax_difference(cur, tax_grouped)
         if cur.is_zero(tax_difference):
             return tax_grouped
@@ -208,13 +209,15 @@ class AccountInvoiceTax(models.Model):
                             # calcolo l'importo del tax.code relativo all'imposta (la parte indetraibile non lo muove)
                             if invoice.type in ('out_invoice', 'in_invoice'):
                                 inv_tax['tax_amount'] = cur.with_context(
-                                    date=invoice.date_invoice or fields.Date.context_today(invoice)).compute(
+                                    date=invoice.date_invoice or 
+                                    fields.Date.context_today(invoice)).compute(
                                     inv_tax['amount'] * main_tax['tax_sign'],
                                     company_currency,
                                     round=False)
                             else:
                                 inv_tax['tax_amount'] = cur.with_context(
-                                    date=invoice.date_invoice or fields.Date.context_today(invoice)).compute(
+                                    date=invoice.date_invoice 
+                                    or fields.Date.context_today(invoice)).compute(
                                     inv_tax['amount'] * main_tax['ref_tax_sign'],
                                     company_currency,
                                     round=False)
@@ -261,16 +264,19 @@ class AccountInvoiceLine(models.Model):
             for tax in taxes:
                 if inv.type in ('out_invoice', 'in_invoice'):
                     tax_code_id = tax['base_code_id']
-                    if self.env['account.tax'].browse(tax['id']).include_base_amount: #WIP
+                    # Changed for https://github.com/OCA/OCB/commit/d83befdb0f4cdc34f1d2aad7f91f07efe7d3bccf
+                    # Else it would put a wrong amount in base tax
+                    if self.env['account.tax'].browse(tax['id']).include_base_amount:
                         tax_amount = tax['price_unit'] * line.quantity * tax['base_sign']
                     else:
-                        tax_amount = line.price_subtotal * tax['base_sign'] # VERIFY if include_base_amount is ok
+                        tax_amount = line.price_subtotal * tax['base_sign']
                 else:
                     tax_code_id = tax['ref_base_code_id']
                     if self.env['account.tax'].browse(tax['id']).include_base_amount:
                         tax_amount = tax['price_unit'] * line.quantity * tax['ref_base_sign']
                     else:
-                        tax_amount = line.price_subtotal * tax['base_sign'] # VERIFY if include_base_amount is ok
+                        tax_amount = line.price_subtotal * tax['base_sign']
+                    # End change
 
                 if tax_code_found:
                     if not tax_code_id:

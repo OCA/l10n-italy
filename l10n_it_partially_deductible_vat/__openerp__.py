@@ -4,7 +4,8 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-2014 Agile Business Group sagl
+#    (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,21 +24,18 @@
 ##############################################################################
 
 {
-    "name" : "Italy - Partially Deductible VAT 8.0",
-    "version" : "4.0.0.0",
+    "name" : "Italy - Partially Deductible VAT",
+    "version" : "0.1",
     "depends" : ['account'],
-    "author" : "OpenERP Italian Community, SimplERP srl",
+    "author" : "OpenERP Italian Community,Odoo Community Association (OCA),
+               SimplERP srl",
     "description": """
     Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile. Senza questo modulo non è possibile calcolare correttamente imponibili, imposte e conti imposte relativi all'IVA parzialmente detraibile.
     La configurazione dell'IVA parzialmente detraibile deve essere quella utilizzata dal modulo 'l10n_it', anche se non viene usato tale modulo.
     """,
     "license": "AGPL-3",
     "category" : "Localisation/Italy",
-    'website': 'http://www.simplerp.it',
-    'data': [
-        ],
-    'demo': [
-        ],
+    'website': 'http://www.openerp-italia.org/',
     'test': [
         'test/account_tax.xml',
         'test/tax_computation.yml',
