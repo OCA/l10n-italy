@@ -35,9 +35,9 @@ class AccountTaxCode(models.Model):
 class AccountTax(models.Model):
     _inherit = 'account.tax'
 
-    undeductable = fields.Boolean(
-        string='Undeductable',
-        help="Partially or totally undeductable.")
+    nondeductible = fields.Boolean(
+        string='Non deductible',
+        help="Partially or totally non deductible.")
 
 
 class AccountAccount(models.Model):
