@@ -340,6 +340,7 @@ class account_invoice_intrastat(models.Model):
     @api.onchange('intrastat_code_type')
     def change_intrastat_code_type(self):
         self.statement_section = self._get_statement_section()
+        self.intrastat_code_id = False
     
     
 class account_payment_term(models.Model):
