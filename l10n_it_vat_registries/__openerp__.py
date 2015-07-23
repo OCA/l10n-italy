@@ -37,7 +37,8 @@ http://goo.gl/b4y9Hx""",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'account'
+        'account',
+        'l10n_it_account'
         ],
     "data": [
         'reports.xml',
