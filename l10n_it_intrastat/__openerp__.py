@@ -43,6 +43,7 @@
         'security/ir.model.access.csv',
         'views/statement_view.xml',
         'views/product.xml',
+        'views/config_view.xml',
         ],
     "demo": [],
     "active": False,

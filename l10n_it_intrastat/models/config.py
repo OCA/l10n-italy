@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
-#    Copyright (C) 2015
+#    
+#    Author: Alessandro Camilli (a.camilli@openforce.it)
+#    Copyright (C) 2014
+#    Openforce di Camilli Alessandro (www.openforce.it)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,8 +20,21 @@
 #
 ##############################################################################
 
+from openerp import models, fields, api
 
-from . import product
-from . import account
-from . import intrastat
-from . import config
+
+class res_company(models.Model):
+    _inherit = 'res.company'
+    
+    intrastat_uom_kg_id = fields.Many2one(
+        'product.uom', string="Unit of measure for Kg",
+        )
+
+
+class account_config_settings(models.TransientModel):
+    _inherit = 'account.config.settings'
+
+    intrastat_uom_kg_id = fields.Many2one(
+        'product.uom', string="Unit of measure for Kg",
+        related='company_id.intrastat_uom_kg_id',
+        )

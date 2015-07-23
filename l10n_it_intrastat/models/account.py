@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
+#    Author: Openforce di Camilli Alessandro (www.openforce.it)
+#    Copyright (C) 2015
 #    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
 #    Copyright (C) 2015
 #
@@ -58,8 +60,8 @@ class account_invoice_line(models.Model):
             'payment_method' : False,
             'country_payment_id' : False,
         }
-        # Code competence
         product_template = self.product_id.product_tmpl_id
+        # Code competence
         intrastat_data = product_template.get_intrastat_data()
         res.update({'intrastat_code_id': intrastat_data['intrastat_code_id']})
         # Type
@@ -68,7 +70,24 @@ class account_invoice_line(models.Model):
         amount_currency = self.price_subtotal
         res.update({'amount_currency': amount_currency})
         # Weight
+        intrastat_uom_kg = self.invoice_id.company_id.intrastat_uom_kg_id
+        # ...Weight compute in Kg
+        # ...If Uom has the same category of kg -> Convert to Kg
+        # ...Else the weight will be product weight * qty
         weight_kg = 0
+        weight_line = self.quantity * product_template.weight
+        if intrastat_uom_kg and product_template.uom_id.category_id.id == \
+            intrastat_uom_kg.category_id.id:
+                weight_line_kg = self.env['product.uom']._compute_qty(
+                    #self.env.cr,
+                    #self.env.user.id,
+                    product_template.uom_id.id,
+                    self.quantity,
+                    intrastat_uom_kg.id
+                    )
+                weight_kg = weight_line_kg
+        else:
+            weight_kg = weight_line
         res.update({'weight_kg': weight_kg})
         # ---------
         # Origin
@@ -78,18 +97,27 @@ class account_invoice_line(models.Model):
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             country_origin_id = \
                 self.invoice_id.company_id.partner_id.country_id.id
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            country_origin_id = \
+                self.invoice_id.partner_id.country_id.id
         res.update({'country_origin_id': country_origin_id})
         # Country Good Origin
         country_good_origin_id = False
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             country_good_origin_id = \
                 self.invoice_id.company_id.partner_id.country_id.id
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            country_good_origin_id = \
+                self.invoice_id.partner_id.country_id.id
         res.update({'country_good_origin_id': country_good_origin_id})
         # Province Origin
         province_origin_id = False
         if self.invoice_id.type in ('out_invoice', 'out_refund'):    
             province_origin_id = \
                 self.invoice_id.partner_id.state_id.id
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            province_origin_id = \
+                self.invoice_id.company_id.partner_id.state_id.id
         res.update({'province_origin_id': province_origin_id})
         # ---------
         # Destination
@@ -99,12 +127,18 @@ class account_invoice_line(models.Model):
         if self.invoice_id.type in ('out_invoice', 'out_refund'):    
             country_destination_id = \
                 self.invoice_id.partner_id.country_id.id
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            country_destination_id = \
+                self.invoice_id.company_id.partner_id.country_id.id
         res.update({'country_destination_id': country_destination_id})
         # Province Destination
         province_destination_id = False
         if self.invoice_id.type in ('out_invoice', 'out_refund'):    
             province_destination_id = \
                 self.invoice_id.partner_id.state_id.id
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            province_destination_id = \
+                self.invoice_id.company_id.partner_id.state_id.id
         res.update({'province_destination_id': province_destination_id})
         # ---------
         # Transportation
@@ -125,6 +159,9 @@ class account_invoice_line(models.Model):
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             country_payment_id = \
                 self.invoice_id.partner_id.country_id.id
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            country_payment_id = \
+                self.invoice_id.company_id.partner_id.country_id.id
         res.update({'country_payment_id': country_payment_id})
         return res
     

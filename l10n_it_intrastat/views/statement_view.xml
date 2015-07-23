@@ -106,7 +106,7 @@
             <field name="model">account.invoice.intrastat</field>
             <field name="arch" type="xml">
             	<form>	
-	               	<field name="statement_section" invisible="1"/>
+	               	<field name="statement_section" readonly="1"/>
 	                   <group>
 	                       <group>
 	                           <field name="intrastat_code_type"/>
