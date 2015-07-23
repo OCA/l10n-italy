@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-22 09:14+0000\n"
-"PO-Revision-Date: 2015-07-22 09:14+0000\n"
+"POT-Creation-Date: 2015-07-23 13:48+0000\n"
+"PO-Revision-Date: 2015-07-23 13:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_account
+msgid "Account"
+msgstr "Conto"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_account_type
+msgid "Account Type"
+msgstr "Tipo conto"
 
 #. module: l10n_it_account
 #: selection:account.tax.code,vat_statement_type:0
@@ -31,9 +41,24 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_account
-#: help:account.tax,undeductable:0
-msgid "Partially or totally undeductable."
-msgstr "Partially or totally undeductable."
+#: field:account.account,negative_user_type:0
+msgid "Negative Account Type"
+msgstr "Tipo onto se negativo"
+
+#. module: l10n_it_account
+#: field:account.account,negative_parent_id:0
+msgid "Negative Parent"
+msgstr "Mastro se negativo"
+
+#. module: l10n_it_account
+#: field:account.tax,nondeductible:0
+msgid "Non-deductible"
+msgstr "Indetraibile"
+
+#. module: l10n_it_account
+#: help:account.tax,nondeductible:0
+msgid "Partially or totally non-deductible."
+msgstr "Parzialmente o totalmente indetraibile"
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax
@@ -56,9 +81,10 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: l10n_it_account
-#: field:account.tax,undeductable:0
-msgid "Undeductable"
-msgstr "Indetraibile"
+#: help:account.account,negative_parent_id:0
+#: help:account.account,negative_user_type:0
+msgid "Used on balance sheet to report this account when its balance is         negative"
+msgstr "Isato sul bilancio per riportare questo conto quando il suo bilancio è negativo"
 
 #. module: l10n_it_account
 #: view:account.tax.code:l10n_it_account.view_tax_code_form_vat
