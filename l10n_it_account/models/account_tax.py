@@ -3,8 +3,7 @@
 #
 #    Copyright (C) 2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2015 Agile Business Group <http://www.agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,11 +20,11 @@
 #
 #
 
-from openerp.osv import osv
+from openerp.osv import orm
 from openerp.tools.translate import _
 
 
-class account_tax(osv.osv):
+class account_tax(orm.Model):
     _inherit = 'account.tax'
 
     def copy_data(self, cr, uid, id, default=None, context=None):
@@ -40,22 +39,22 @@ class account_tax(osv.osv):
             if 'base_code_id' in vals:
                 if vals['base_code_id']:
                     if self.exist(cr, uid, 'base_code_id', vals['base_code_id']):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                              _('Invoices: Base code already used in other purchase tax.'))
             if 'tax_code_id' in vals:
                 if vals['tax_code_id']:
                     if self.exist(cr, uid, 'tax_code_id', vals['tax_code_id']):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                              _('Invoices: Tax code already used in other purchase tax.'))
             if 'ref_base_code_id' in vals:
                 if vals['ref_base_code_id']:
                     if self.exist(cr, uid, 'ref_base_code_id', vals['ref_base_code_id']):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                              _('Refunds: Base code already used in other purchase tax.'))
             if 'ref_tax_code_id' in vals:
                 if vals['ref_tax_code_id']:
                     if self.exist(cr, uid, 'ref_tax_code_id', vals['ref_tax_code_id']):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                              _('Refunds: Tax code already used in other purchase tax.'))
 
         return super(account_tax, self).create(cr, uid, vals, context=context)
@@ -81,19 +80,19 @@ class account_tax(osv.osv):
             if type_tax_use == 'purchase':
                 if base_code_id:
                     if self.exist(cr, uid, 'base_code_id', base_code_id, tax_code.id):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                                  _('Invoices: Base code already used in other purchase tax.'))
                 if tax_code_id:
                     if self.exist(cr, uid, 'tax_code_id', tax_code_id, tax_code.id):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                                  _('Invoices: Tax code already used in other purchase tax.'))
                 if ref_base_code_id:
                     if self.exist(cr, uid, 'ref_base_code_id', ref_base_code_id, tax_code.id):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                                  _('Refunds: Base code already used in other purchase tax.'))
                 if ref_tax_code_id:
                     if self.exist(cr, uid, 'ref_tax_code_id', ref_tax_code_id, tax_code.id):
-                        raise osv.except_osv(_('Error!'),
+                        raise orm.except_orm(_('Error!'),
                                                  _('Refunds: Tax code already used in other purchase tax.'))
 
         return super(account_tax, self).write(cr, uid, ids, vals, context=context)
