@@ -17,14 +17,14 @@
           </field>
       </record>
 
-      <record id="view_tax_form_undeductable" model="ir.ui.view">
-          <field name="name">account.tax.form.undeductable</field>
+      <record id="view_tax_form_nondeductible" model="ir.ui.view">
+          <field name="name">account.tax.form.nondeductible</field>
           <field name="model">account.tax</field>
           <field name="inherit_id" ref="account.view_tax_form"></field>
           <field name="type">form</field>
           <field name="arch" type="xml">
               <field name="child_depend" position="after">
-                  <field name="undeductable"/>
+                  <field name="nondeductible"/>
               </field>
           </field>
       </record>
