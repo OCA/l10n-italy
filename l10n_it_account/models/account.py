@@ -36,8 +36,8 @@ class AccountTax(models.Model):
     _inherit = 'account.tax'
 
     nondeductible = fields.Boolean(
-        string='Non deductible',
-        help="Partially or totally non deductible.")
+        string='Non-deductible',
+        help="Partially or totally non-deductible.")
 
 
 class AccountAccount(models.Model):
