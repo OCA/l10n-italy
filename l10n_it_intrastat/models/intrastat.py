@@ -43,6 +43,7 @@ class report_intrastat_code(models.Model):
     active = fields.Boolean(default=True)
     type = fields.Selection(
         [('good', 'Good'), ('service', 'Service')])
+    description = fields.Char('Description', translate=True)
 
 
 class account_intrastat_transport(models.Model):
