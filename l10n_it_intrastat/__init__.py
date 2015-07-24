@@ -3,7 +3,7 @@
 #    
 #    Author: Alessandro Camilli per Apulia Software srl
 #    Copyright (C) 2015
-#    info@apuliasoftware.it - www.apuliasoftware.it
+#    info@apuliasoftware.it - www.apuliasoftware.it - www.openforce.it
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
