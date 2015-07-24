@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2015 Agile Business Group
+#    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,15 +16,17 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
-from openerp.osv import fields, osv
-from openerp.tools.translate import _
+from openerp import models, fields
 
-class account_tax_code(osv.osv):
-    _inherit = "account.tax.code"
-    
-    _columns = {
-        'is_base': fields.boolean('Is base', help="This tax code is used for base amounts (field used by VAT registries)"),
-        'exclude_from_registries': fields.boolean('Exclude from VAT registries'),
-        }
+
+class AccountTaxRegistry(models.Model):
+    _name = 'account.tax.registry'
+    name = fields.Char('Name')
+    company_id = fields.Many2one(
+        'res.company', 'Company', required=True,
+        default=lambda self: self.env['res.company']._company_default_get(
+            'account.tax.registry'))
+    journal_ids = fields.One2many(
+        'account.journal', 'tax_registry_id', 'Journals', readonly=True)

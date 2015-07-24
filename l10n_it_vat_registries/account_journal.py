@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2015 Agile Business Group
+#    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,6 +16,15 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
-import print_registro_iva
+from openerp import models, fields
+
+
+class AccountJournal(models.Model):
+    _inherit = 'account.journal'
+    tax_registry_id = fields.Many2one(
+        'account.tax.registry', 'VAT registry',
+        help="You can group several journals within 1 registry. In printing "
+             "wizard, you will be able to select the registry in order to load"
+             " that group of journals")
