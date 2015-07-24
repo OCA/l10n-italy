@@ -28,15 +28,19 @@
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['report_webkit', 'l10n_it_base', 'l10n_it_fiscalcode', 'l10n_it_partially_deductible_vat'],
-    "init_xml" : [
+    "depends": [
+                'report_webkit',
+                'l10n_it_base',
+                'l10n_it_fiscalcode',
+                'l10n_it_partially_deductible_vat'],
+    "init_xml": [
         ],
-    "update_xml" : [
+    "update_xml": [
         'reports.xml',
         'wizard/print_registro_iva.xml',
         'account_view.xml',
         ],
-    "demo_xml" : [],
+    "demo_xml": [],
     "active": False,
-    'installable': False
+    'installable': True
 }

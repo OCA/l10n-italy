@@ -29,15 +29,15 @@
           </field>
       </record>
 
-      <record id="view_account_form_negative" model="ir.ui.view">
-          <field name="name">account.form.negative</field>
+      <record id="view_account_form_inverse" model="ir.ui.view">
+          <field name="name">account.form.inverse</field>
           <field name="model">account.account</field>
           <field name="inherit_id" ref="account.view_account_form"></field>
           <field name="type">form</field>
           <field name="arch" type="xml">
               <field name="user_type" position="after">
-                  <field name="negative_user_type"/>
-                  <field name="negative_parent_id"/>
+                  <field name="inverse_user_type"/>
+                  <field name="inverse_parent_id"/>
               </field>
           </field>
       </record>
