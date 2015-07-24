@@ -30,13 +30,6 @@ class account_fiscal_position(models.Model):
     _inherit = 'account.fiscal.position'
 
     intrastat = fields.Boolean(string="Subject to Intrastat")
-    intrastat_code_type = fields.Selection([('service', 'Service'),
-                                            ('good', 'Good'),
-                                            ], string='Code Type')
-    intrastat_move_type = fields.Selection(
-        [('sale', 'Sales'), ('purchase', 'Purchases'),
-         ('refund_sale', 'Refund Sale'), ('refund_purchase', 'Refund Purchase')
-         ], string='Move Type')
 
 
 class account_invoice_line(models.Model):
@@ -48,6 +41,7 @@ class account_invoice_line(models.Model):
             'intrastat_code_type' : False,
             'amount_currency' : False,
             'weight_kg' : False,
+            'additional_units' : False,
             # origin
             'country_origin_id' : False,
             'country_good_origin_id' : False,
@@ -89,6 +83,7 @@ class account_invoice_line(models.Model):
         else:
             weight_kg = weight_line
         res.update({'weight_kg': weight_kg})
+        res.update({'additional_units': weight_kg})
         # ---------
         # Origin
         # ---------
@@ -215,17 +210,17 @@ class account_invoice(models.Model):
                     intra_line['amount_currency']
                 i_line_by_code[intra_line['intrastat_code_id']]['weight_kg']+=\
                     intra_line['weight_kg']
+                i_line_by_code[intra_line['intrastat_code_id']]['weight_kg']+=\
+                    intra_line['weight_kg']
             else:
                 intra_line['statement_section'] = \
                     self.env['account.invoice.intrastat'].\
                         with_context(
                             intrastat_code_type = \
                                 intra_line['intrastat_code_type'],
-                            invoice_type=self.type ).\
+                            invoice_type=self.type).\
                         _get_statement_section()
                 i_line_by_code[intra_line['intrastat_code_id']] = intra_line
-        # Lines to split
-        # >>>>>>>> TO DO <<<<<<
            
         for key, val in i_line_by_code.iteritems():
             intrastat_lines.append((0,0,val))
@@ -352,8 +347,8 @@ class account_invoice_intrastat(models.Model):
         'res.country', string='Country Goods Origin')
     ## Destination ##
     delivery_code_id = fields.Many2one('stock.incoterms', string='Delivery')
-    transport_code_id = fields.Many2one('account.intrastat.transport',
-                                        string='Transport')
+    transport_code_id = fields.Many2one(
+        'account.intrastat.transport', string='Transport', required=True)
     province_destination_id = fields.Many2one('res.country.state',
                                               string='province destination')
     country_destination_id = fields.Many2one(
@@ -373,7 +368,14 @@ class account_invoice_intrastat(models.Model):
         ], 'Payment Method')
     country_payment_id= fields.Many2one('res.country', 'Country Payment')
                                 
+    @api.onchange('weight_kg')
+    def change_weight_kg(self):
+        self.additional_units = self.weight_kg
     
+    @api.onchange('amount_euro')
+    def change_amount_euro(self):
+        self.statistic_amount_euro = self.amount_euro 
+        
     @api.onchange('intrastat_code_type')
     def change_intrastat_code_type(self):
         self.statement_section = self._get_statement_section()

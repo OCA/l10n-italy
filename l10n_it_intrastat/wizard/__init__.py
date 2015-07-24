@@ -21,5 +21,4 @@
 ##############################################################################
 
 
-from . import models
-from . import wizard
+from . import export_file

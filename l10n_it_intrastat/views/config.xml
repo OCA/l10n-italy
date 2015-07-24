@@ -10,6 +10,7 @@
             <xpath expr="//separator[@string='Bank &amp; Cash']" position="before">
             	<group string="Intrastat">
                 	<field name="intrastat_uom_kg_id"/>
+                	<field name="intrastat_ua_code"/>
              	</group>
            	</xpath>
         </field>

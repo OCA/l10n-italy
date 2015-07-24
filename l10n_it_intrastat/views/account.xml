@@ -13,10 +13,6 @@
                     <separator string="Intrastat"/>
                     <group colspan="4">
                         <field name="intrastat"/>
-                        <field name="intrastat_code_type"
-                               attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
-                        <field name="intrastat_move_type"
-                               attrs="{'invisible': [('intrastat', '=', False)], 'required': [('intrastat', '=', True)]}"/>
                     </group>
                 </xpath>
             </field>
@@ -93,8 +89,8 @@
                     <field name="intrastat_code_type"/>
                     <field name="intrastat_code_id"/>
                     <field name="transation_nature_id"/>
+                    <field name="transport_code_id"/>
                     <field name="weight_kg"/>
-                    <field name="additional_units"/>
                     <field name="amount_currency" sum="Total"/>
                 </tree>
         	</field>
