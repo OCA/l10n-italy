@@ -165,9 +165,9 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
     ):
         if context is None:
             context = {}
-        if type != 'credit' or type != 'debit':
+        if type != 'credit' and type != 'debit':
             raise orm.except_orm(
-                _('Error'), _('Type account neither credit or debit !'))
+                _('Error'), _('Type account neither credit and debit !'))
 
         account_amounts = {}
         for line in statement_account_line:
