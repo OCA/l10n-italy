@@ -151,7 +151,6 @@ class Parser(report_sxw.rml_parse):
         tax_obj = self.pool.get('account.tax')
         list_tax = self._compute_list_tax(tax_code_ids)
         list_tax_obj = tax_obj.browse(self.cr, self.uid, list_tax)
-        #import pdb;pdb.set_trace()
         total_undeduct = 0
         total_deduct = 0
         total_tax = 0
@@ -160,21 +159,26 @@ class Parser(report_sxw.rml_parse):
             if tax.nondeductible:
                 #detraibile / indetraibile
                 #recupero il valore dell'imponibile
-                total_base = self._calcs_total(tax.base_code_id)
+                if tax.base_code_id:
+                    total_base = self._calcs_total(tax.base_code_id)
                 for child in tax.child_ids:
                     # deductibile
                     if child.tax_code_id \
                         and child.tax_code_id.vat_statement_account_id.id:
-                        total_deduct = self._calcs_total(child.tax_code_id)
+                        if child.tax_code_id:
+                            total_deduct = self._calcs_total(child.tax_code_id)
                     # undeductibile
                     else:
-                        total_undeduct = self._calcs_total(child.tax_code_id)
+                        if child.tax_code_id:
+                            total_undeduct = self._calcs_total(child.tax_code_id)
                 total_tax = total_deduct + total_undeduct
             else:
                 #recupero il valore dell'imponibile
-                total_base = self._calcs_total(tax.base_code_id)
+                if tax.base_code_id:
+                    total_base = self._calcs_total(tax.base_code_id)
                 #recupero il valore dell'imposta
-                total_tax = self._calcs_total(tax.tax_code_id)
+                if tax.tax_code_id:
+                    total_tax = self._calcs_total(tax.tax_code_id)
                 total_deduct = total_tax
             res.append(
                         (tax.name, total_base, total_tax, total_deduct, total_undeduct))
