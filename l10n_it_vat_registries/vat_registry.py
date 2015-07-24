@@ -151,11 +151,11 @@ class Parser(report_sxw.rml_parse):
         tax_obj = self.pool.get('account.tax')
         list_tax = self._compute_list_tax(tax_code_ids)
         list_tax_obj = tax_obj.browse(self.cr, self.uid, list_tax)
-        total_undeduct = 0
-        total_deduct = 0
-        total_tax = 0
-        total_base = 0
         for tax in list_tax_obj:
+            total_undeduct = 0
+            total_deduct = 0
+            total_tax = 0
+            total_base = 0
             if tax.nondeductible:
                 #detraibile / indetraibile
                 #recupero il valore dell'imponibile
