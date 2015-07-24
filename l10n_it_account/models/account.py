@@ -43,13 +43,13 @@ class AccountTax(models.Model):
 class AccountAccount(models.Model):
     _inherit = 'account.account'
 
-    negative_user_type = fields.Many2one(
+    inverse_user_type = fields.Many2one(
         'account.account.type',
-        string='Negative Account Type',
+        string='Inverse Account Type',
         help="Used on balance sheet to report this account when its balance is \
         negative")
-    negative_parent_id = fields.Many2one(
+    inverse_parent_id = fields.Many2one(
         'account.account',
-        string='Negative Parent',
+        string='Inverse Parent',
         help="Used on balance sheet to report this account when its balance is \
         negative")
