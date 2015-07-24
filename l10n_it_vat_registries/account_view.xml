@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_tax_code_form" model="ir.ui.view">
+            <field name="name">account.tax.code.form</field>
+            <field name="model">account.tax.code</field>
+            <field name="inherit_id" ref="account.view_tax_code_form"></field>
+            <field name="arch" type="xml">
+                <field name="sign" position="after">
+                    <field name="is_base"/>
+                    <field name="exclude_from_registries"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
+

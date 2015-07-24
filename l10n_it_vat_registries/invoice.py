@@ -64,7 +64,10 @@ class Parser(report_sxw.rml_parse):
                 }
             res.append(tax_item)
             index += 1
+<<<<<<< HEAD
 
+=======
+>>>>>>> [FIX] terms
         return res
 
     def _get_invoice_total(self, move):
