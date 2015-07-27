@@ -3,6 +3,8 @@
 #
 #    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
 #    Copyright (C) 2015
+#    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
+#    Openforce di Camilli Alessandro - www.openforce.it
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
