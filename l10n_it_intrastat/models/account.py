@@ -350,7 +350,7 @@ class account_invoice_intrastat(models.Model):
     ## Destination ##
     delivery_code_id = fields.Many2one('stock.incoterms', string='Delivery')
     transport_code_id = fields.Many2one(
-        'account.intrastat.transport', string='Transport', required=True)
+        'account.intrastat.transport', string='Transport')
     province_destination_id = fields.Many2one('res.country.state',
                                               string='province destination')
     country_destination_id = fields.Many2one(
