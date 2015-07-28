@@ -24,17 +24,20 @@
 ##############################################################################
 
 {
-    "name" : "Italy - Partially Deductible VAT",
-    "version" : "0.1",
-    "depends" : ['account'],
-    "author" : "OpenERP Italian Community,Odoo Community Association (OCA),"
-               "SimplERP srl",
+    "name": "Italy - Partially Deductible VAT",
+    "version": "0.1",
+    "depends": ['account'],
+    "author": "OpenERP Italian Community,Odoo Community Association (OCA),"
+              "SimplERP srl",
     "description": """
-    Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile. Senza questo modulo non è possibile calcolare correttamente imponibili, imposte e conti imposte relativi all'IVA parzialmente detraibile.
-    La configurazione dell'IVA parzialmente detraibile deve essere quella utilizzata dal modulo 'l10n_it', anche se non viene usato tale modulo.
+    Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile.
+    Senza questo modulo non è possibile calcolare correttamente imponibili,
+    imposte e conti imposte relativi all'IVA parzialmente detraibile.
+    La configurazione dell'IVA parzialmente detraibile deve essere quella
+    utilizzata dal modulo 'l10n_it', anche se non viene usato tale modulo.
     """,
     "license": "AGPL-3",
-    "category" : "Localisation/Italy",
+    "category": "Localisation/Italy",
     'website': 'http://www.odoo-italia.org/',
     'test': [
         'test/account_tax.xml',
