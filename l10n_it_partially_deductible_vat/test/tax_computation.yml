@@ -1,130 +1,190 @@
 -
-  In order to test tax computation I create a new customer invoice
+  In order to test tax computation I create a new supplier invoice with normal tax
 -
-  !record {model: account.invoice, id: account_invoice_customer0}:
-    account_id: account.a_recv
+  I set the context that will be used for the encoding of all the invoices of this file
+-
+  !context
+    'type': 'in_invoice'
+-
+  !record {view: account.invoice_supplier_form, model: account.invoice, id: account_invoice_supplier01}:
+    account_id: account.a_pay
+    type: in_invoice
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
     invoice_line:
-      - account_id: account.a_sale
-        name: '123.57'
-        price_unit: 123.57
+      - account_id: account.a_expense
+        name: '113.49'
+        price_unit: 113.49
         quantity: 1.0
         invoice_line_tax_id:
-            - tax_20I5
-    journal_id: account.sales_journal
-    partner_id: base.res_partner_3
-    
+            - tax_22
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier01, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
 -  
     Compute the total tax.
 -  
     !python {model: account.invoice}: |
-        self.button_compute(cr, uid, [ref("account_invoice_customer0")])  
+        self.button_compute(cr, uid, [ref("account_invoice_supplier01")])  
 -  
     Then I verify the amount.
-    123.57 * 0.2 = 24.714 = 24.71
+    113.49 * 0.22 = 24.9678 = 24.97
 -  
-    !assert {model: account.invoice, id: account_invoice_customer0}:
-        - amount_tax == 24.71
+    !assert {model: account.invoice, id: account_invoice_supplier01}:
+        - amount_tax == 24.97
 -
-  In order to test tax computation I create a new customer invoice
+  In order to test tax computation I create a new supplier invoice with partial deductible VAT
 -
-  !record {model: account.invoice, id: account_invoice_customer1}:
-    account_id: account.a_recv
+  !record {model: account.invoice, id: account_invoice_supplier0, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
     invoice_line:
-      - account_id: account.a_sale
-        name: '123.57'
-        price_unit: 123.57
+      - account_id: account.a_expense
+        name: '113.49'
+        price_unit: 113.49
         quantity: 1.0
         invoice_line_tax_id:
-            - tax_20I5
-      - account_id: account.a_sale
-        name: '123.57'
-        price_unit: 123.57
-        quantity: 1.0
-        invoice_line_tax_id:
-            - tax_20
-    journal_id: account.sales_journal
-    partner_id: base.res_partner_3
-    
+            - tax_22I5
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier01, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
 -  
     Compute the total tax.
 -  
     !python {model: account.invoice}: |
-        self.button_compute(cr, uid, [ref("account_invoice_customer1")])  
+        self.button_compute(cr, uid, [ref("account_invoice_supplier0")])  
 -  
     Then I verify the amount.
-    123.57 + 123.57 = 247.14
-    247.14 × 0.2 = 49.428 = 49.43
+    113.49 * 0.22 = 24.9678 = 24.97
 -  
-    !assert {model: account.invoice, id: account_invoice_customer1}:
-        - amount_tax == 49.43
+    !assert {model: account.invoice, id: account_invoice_supplier0}:
+        - amount_tax == 24.97
 -
-  In order to test tax computation I create a new customer invoice
+  In order to test tax computation I create a new supplier invoice
 -
-  !record {model: account.invoice, id: account_invoice_customer3}:
-    account_id: account.a_recv
+  !record {model: account.invoice, id: account_invoice_supplier1, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
     invoice_line:
-      - account_id: account.a_sale
-        name: '123.57'
-        price_unit: 123.57
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
         quantity: 1.0
         invoice_line_tax_id:
-            - tax_2010
-      - account_id: account.a_sale
-        name: '123.57'
-        price_unit: 123.57
+            - tax_22I5
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
         quantity: 1.0
         invoice_line_tax_id:
-            - tax_20
-    journal_id: account.sales_journal
-    partner_id: base.res_partner_3
-    
+            - tax_22
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier01, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
 -  
     Compute the total tax.
 -  
     !python {model: account.invoice}: |
-        self.button_compute(cr, uid, [ref("account_invoice_customer3")])  
+        self.button_compute(cr, uid, [ref("account_invoice_supplier1")])  
 -  
     Then I verify the amount.
-    123.57 + 123.57 = 247.14
-    247.14 × 0.2 = 49.428 = 49.43
+    123.59 + 123.59 = 247.18
+    247.18 × 0.22 = 54.3796 = 54.38
 -  
-    !assert {model: account.invoice, id: account_invoice_customer3}:
-        - amount_tax == 49.43
+    !assert {model: account.invoice, id: account_invoice_supplier1}:
+        - amount_tax == 54.38
 -
-  In order to test tax computation I create a new customer invoice
+  In order to test tax computation I create a new supplier invoice
 -
-  !record {model: account.invoice, id: account_invoice_customer2}:
-    account_id: account.a_recv
+  !record {model: account.invoice, id: account_invoice_supplier3, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
     company_id: base.main_company
     currency_id: base.EUR
     date_invoice: !eval time.strftime('%Y-%m-%d')
     invoice_line:
-      - account_id: account.a_sale
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_2210
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_22
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier01, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_supplier3")])  
+-  
+    Then I verify the amount.
+    123.59 + 123.59 = 247.18
+    247.18 × 0.22 = 54.3796 = 54.38
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier3}:
+        - amount_tax == 54.38
+-
+  In order to test tax computation I create a new supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier2, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_expense
         name: '100.03'
         price_unit: 100.03
         quantity: 1.0
         invoice_line_tax_id:
-            - tax_20I5
-    journal_id: account.sales_journal
-    partner_id: base.res_partner_3
-    
+            - tax_22I5
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice    
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier01, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
 -  
     Compute the total tax.
 -  
     !python {model: account.invoice}: |
-        self.button_compute(cr, uid, [ref("account_invoice_customer2")])  
+        self.button_compute(cr, uid, [ref("account_invoice_supplier2")])  
 -  
     Then I verify the amount.
-    100.03 × 0.2 = 20.006 = 20.01
+    100.03 × 0.22 = 22.0066 = 22.01
 -  
-    !assert {model: account.invoice, id: account_invoice_customer2}:
-        - amount_tax == 20.01
+    !assert {model: account.invoice, id: account_invoice_supplier2}:
+        - amount_tax == 22.01
