@@ -94,6 +94,7 @@ class riba_distinta(osv.osv):
         'type': fields.related('config', 'tipo', type='char', size=32, string='Type', readonly=True),
     }
 
+    _order = 'name desc'
     _defaults = {
         'user_id': lambda self,cr,uid,context: uid,
         'date_created': fields.date.context_today,
