@@ -25,7 +25,7 @@
 from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
 from openerp.exceptions import except_orm, ValidationError
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 class account_intrastat_custom(models.Model):
     _name = 'account.intrastat.custom'
@@ -568,9 +568,12 @@ class account_intrastat_statement(models.Model):
             period_date_start = datetime(date_start_year.year, 
                                          self.period_number, 
                                          1)
-            period_date_stop = datetime(date_start_year.year, 
-                                        self.period_number, 
-                                        31)
+            # Last date of month
+            period_date_work = datetime(date_start_year.year, 
+                                        self.period_number + 1, 
+                                        1)
+            period_date_stop = period_date_work - timedelta(days = 1)
+            
         else:
             if self.period_number == 1:
                 period_date_start = datetime(date_start_year.year, 1, 1)
