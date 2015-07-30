@@ -32,14 +32,3 @@ class res_company(models.Model):
         )
     intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4)
 
-
-class account_config_settings(models.TransientModel):
-    _inherit = 'account.config.settings'
-
-    intrastat_uom_kg_id = fields.Many2one(
-        'product.uom', string="Unit of measure for Kg",
-        related='company_id.intrastat_uom_kg_id',
-        )
-    intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4,
-        related='company_id.intrastat_ua_code'
-        )

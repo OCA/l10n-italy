@@ -1,20 +1,22 @@
 <?xml version="1.0" ?>
 <openerp>
 	<data>
-
-    <record id="view_account_config_settings" model="ir.ui.view">
-        <field name="name">view_account_config_settings</field>
-        <field name="model">account.config.settings</field>
-        <field name="inherit_id" ref="account.view_account_config_settings"/>
+    
+	<record id="view_intrastat_company_form" model="ir.ui.view">
+        <field name="name">view_form_intrastat_company</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//separator[@string='Bank &amp; Cash']" position="before">
+        
+            <xpath expr="//page[@string='Configuration']/group" position="after">
             	<group string="Intrastat">
-                	<field name="intrastat_uom_kg_id"/>
                 	<field name="intrastat_ua_code"/>
+                	<field name="intrastat_uom_kg_id"/>
              	</group>
            	</xpath>
+           	
         </field>
     </record>
-
+	
   </data>
 </openerp>
