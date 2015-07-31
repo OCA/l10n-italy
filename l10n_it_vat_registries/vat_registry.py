@@ -32,7 +32,7 @@ _logger = logging.getLogger(__name__)
 
 class Parser(report_sxw.rml_parse):
 
-    def _tax_amounts_by_code(self, move):
+    def _tax_amounts_by_tax_id(self, move):
         res = {}
         tax_obj = self.pool.get('account.tax')
         for move_line in move.line_id:
@@ -41,13 +41,22 @@ class Parser(report_sxw.rml_parse):
                 and not move_line.tax_code_id.exclude_from_registries
                 and move_line.tax_amount
             ):
-                #eslcudo i conti imposta in base alla natura della stampa e al tipo conto imposta
-                if (self.localcontext['registry_type'] == 'supplier'
-                    and move_line.tax_code_id.vat_statement_type == 'credit'
-                    ) or (self.localcontext['registry_type'] == 'customer'
-                    and move_line.tax_code_id.vat_statement_type == 'debit'):
+                #eslcudo i conti imposta in base alla natura della
+                #stampa e al tipo conto imposta
+                 if (
+                    (
+                        self.localcontext['registry_type'] == 'supplier' and
+                        move_line.tax_code_id.vat_statement_type == 'credit'
+                    ) or
+                    ((
+                        self.localcontext['registry_type'] == 'customer' or
+                        self.localcontext['registry_type'] == 'corrispettivi'
+                    ) and
+                        move_line.tax_code_id.vat_statement_type == 'debit')
+                ):
 
-                    for tax in tax_obj.browse(self.cr, self.uid, self._compute_list_tax([move_line.tax_code_id.id])):
+                    for tax in tax_obj.browse(self.cr, self.uid,
+                        self._compute_tax_list([move_line.tax_code_id.id])):
                         if not res.get(tax.id):
                             res[tax.id] = {'name': tax.name,
                                          'base': 0,
@@ -85,12 +94,12 @@ class Parser(report_sxw.rml_parse):
                     raise Exception(
                         _("Move %s contains different invoices") % move.name)
                 invoice = move_line.invoice
-        amounts_by_code = self._tax_amounts_by_code(move)
-        for tax_code_id in amounts_by_code:
+        amounts_by_tax_id = self._tax_amounts_by_tax_id(move)
+        for tax_code_id in amounts_by_tax_id:
             tax_item = {
-                'tax_code_name': amounts_by_code[tax_code_id]['name'],
-                'base': amounts_by_code[tax_code_id]['base'],
-                'tax': amounts_by_code[tax_code_id]['tax'],
+                'tax_code_name': amounts_by_tax_id[tax_code_id]['name'],
+                'base': amounts_by_tax_id[tax_code_id]['base'],
+                'tax': amounts_by_tax_id[tax_code_id]['tax'],
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice
                                  or move.date or ''),
@@ -153,7 +162,7 @@ class Parser(report_sxw.rml_parse):
     def _compute_totals_tax(self, tax_code_ids):
         res = []
         tax_obj = self.pool.get('account.tax')
-        list_tax = self._compute_list_tax(tax_code_ids)
+        list_tax = self._compute_tax_list(tax_code_ids)
         list_tax_obj = tax_obj.browse(self.cr, self.uid, list_tax)
         for tax in list_tax_obj:
             total_undeduct = 0
@@ -174,7 +183,8 @@ class Parser(report_sxw.rml_parse):
                     # undeductibile
                     else:
                         if child.tax_code_id:
-                            total_undeduct = self._calcs_total(child.tax_code_id)
+                            total_undeduct = self._calcs_total(
+                                child.tax_code_id)
                 total_tax = total_deduct + total_undeduct
             else:
                 #recupero il valore dell'imponibile
@@ -185,18 +195,22 @@ class Parser(report_sxw.rml_parse):
                     total_tax = self._calcs_total(tax.tax_code_id)
                 total_deduct = total_tax
             res.append(
-                        (tax.name, total_base, total_tax, total_deduct, total_undeduct))
+                        (tax.name, total_base, total_tax, total_deduct,
+                             total_undeduct))
         return res
 
-    def _compute_list_tax(self, tax_code_ids):
+    def _compute_tax_list(self, tax_code_ids):
         list_tax = []
-        ##### controllo codici iva ######
+        #assumendo l'univocità fra tax code e tax risale
+        #e memorizza i codici imposta, cercandoli a partire
+        #dai codici conto imposta passati alla funzione
         obj_tax = self.pool.get('account.tax')
         for tax_code_id in tax_code_ids:
-            ids_tax = obj_tax.search(self.cr, self.uid, ['|', ('base_code_id', '=', tax_code_id),
-                                                        '|', ('tax_code_id', '=', tax_code_id),
-                                                        '|', ('ref_base_code_id', '=', tax_code_id),
-                                                        ('ref_tax_code_id', '=', tax_code_id)])
+            ids_tax = obj_tax.search(self.cr, self.uid, [
+                               '|', ('base_code_id', '=', tax_code_id),
+                               '|', ('tax_code_id', '=', tax_code_id),
+                               '|', ('ref_base_code_id', '=', tax_code_id),
+                              ('ref_tax_code_id', '=', tax_code_id)])
             if ids_tax:
                 for id_tax in ids_tax:
 
@@ -221,17 +235,8 @@ class Parser(report_sxw.rml_parse):
         return res_dict[tax_code.id]
 
     def _get_tax_codes(self):
-        return self._compute_totals_tax(self.localcontext['used_tax_codes'].keys())
-
-    def _get_tax_codes_totals(self):
-        parent_codes = {}
-        tax_code_obj = self.pool.get('account.tax.code')
-        for tax_code in tax_code_obj.browse(
-            self.cr, self.uid,
-            self.localcontext['used_tax_codes'].keys()
-        ):
-            parent_codes.update(self.build_parent_tax_codes(tax_code))
-        return self._compute_totals(parent_codes.keys())
+        return self._compute_totals_tax(
+            self.localcontext['used_tax_codes'].keys())
 
     def _get_start_date(self):
         period_obj = self.pool.get('account.period')
@@ -263,7 +268,6 @@ class Parser(report_sxw.rml_parse):
             'get_move': self._get_move,
             'tax_lines': self._get_tax_lines,
             'tax_codes': self._get_tax_codes,
-            'tax_codes_totals': self._get_tax_codes_totals,
             'used_tax_codes': {},
             'start_date': self._get_start_date,
             'end_date': self._get_end_date,
