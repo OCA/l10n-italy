@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2015 Abstract srl (<http://www.abstract.it>)
 #    Copyright (C) 2015 Agile Business Group (<http://www.agilebg.com>)
+#    Copyright (C) 2015 Link It Spa (<http://www.linkgroup.it/>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
