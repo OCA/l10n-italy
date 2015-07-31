@@ -19,25 +19,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, _
-
-
-class AccountTaxCode(models.Model):
-    _inherit = 'account.tax.code'
-
-    vat_statement_type = fields.Selection(
-        (('credit', 'Credit'), ('debit', 'Debit')),
-        string='Type',
-        help="This establish whether amount will be loaded as debit or credit",
-        default='debit')
-
-
-class AccountTax(models.Model):
-    _inherit = 'account.tax'
-
-    nondeductible = fields.Boolean(
-        string='Non-deductible',
-        help="Partially or totally non-deductible.")
+from openerp import fields, models
 
 
 class AccountAccount(models.Model):
