@@ -22,7 +22,6 @@
 import base64
 import tempfile
 from openerp import workflow
-from openerp import addons
 import openerp.tests.common as test_common
 from openerp.modules.module import get_module_resource
 from datetime import datetime
@@ -41,8 +40,10 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
                 return filepath, out.read()
 
     def getAttacment(self, name):
-        path = get_module_resource('l10n_it_fatturapa_out',
-                                          'tests', 'data', 'attah_base.pdf')
+        path = get_module_resource(
+            'l10n_it_fatturapa_out',
+            'tests', 'data', 'attah_base.pdf'
+        )
         currDir = os.path.dirname(path)
         new_file = '%s/%s' % (currDir, name)
         shutil.copyfile(path, new_file)
@@ -217,7 +218,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         cr, uid = self.cr, self.uid
         self.checkCreateFiscalYear('2015-06-15')
         self.set_sequences(3, 15)
-        invoice_id = self.confirm_invoice('fatturapa_invoice_2',attach=True)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_2', attach=True)
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
         xml_content = attachment.datas.decode('base64')
