@@ -12,6 +12,8 @@
             	<group string="Intrastat">
                 	<field name="intrastat_ua_code"/>
                 	<field name="intrastat_uom_kg_id"/>
+                	<field name="intrastat_delegated_name"/>
+                	<field name="intrastat_delegated_vat"/>
              	</group>
            	</xpath>
            	
