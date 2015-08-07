@@ -32,3 +32,7 @@ class res_company(models.Model):
         )
     intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4)
 
+    intrastat_delegated_vat = fields.Char(string="Delegated person VAT",
+                                          size=16)
+
+    intrastat_delegated_name = fields.Char(string="Delegated person", size=255)
