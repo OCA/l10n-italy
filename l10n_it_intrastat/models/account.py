@@ -171,6 +171,10 @@ class account_invoice(models.Model):
     intrastat_line_ids = fields.One2many(
         'account.invoice.intrastat', 'invoice_id', string='Intrastat',
         readonly=True, states={'draft': [('readonly', False)]}, copy=True)
+    
+    @api.onchange('fiscal_position')
+    def change_fiscal_position(self):
+        self.intrastat = self.fiscal_position.intrastat
 
     @api.multi
     def action_move_create(self):
