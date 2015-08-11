@@ -28,15 +28,13 @@
     "version": "0.1",
     "depends": ['account'],
     "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
-    "description": """
-    """,
     "license": "AGPL-3",
     "category": "Localisation/Italy",
     'website': 'http://www.odoo-italia.org/',
     'test': [
         'test/account_tax.xml',
         'test/tax_computation.yml',
-        ],
+    ],
     'installable': True,
     'active': False,
 }
