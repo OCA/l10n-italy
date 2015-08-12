@@ -4,7 +4,7 @@
 #    Copyright (C) 2011-2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2012-2014 Agile Business Group sagl
+#    Copyright (C) 2012-2015 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,20 @@ Accounting reports for Italian localization
 VAT Registries
 ==============
 
-http://goo.gl/b4y9Hx""",
-    'author': 'Agile Business Group',
+http://goo.gl/b4y9Hx
+
+
+Configuration
+=============
+
+You need to configure which tax codes are 'base', setting the 'is base' field
+and which taxes are partially or totally non deductible, setting the
+'non-deductible' field.
+Also, you need to configure the 'vat statement type' on every tax code
+(debit tax codes already have the default 'debit' value)
+Consider using the mass_editing module
+""",
+    'author': 'Agile Business Group,Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
