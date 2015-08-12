@@ -61,7 +61,10 @@ class TestTax(TransactionCase):
             'ref_base_code_id': tax_code_base_22cr.id,
             }
         # creating 22crSP with the same tax codes as 22cr
-        self.assertRaises(except_orm, self.tax_model.create, tax_22sp_vals)
+        with self.assertRaises(except_orm):
+            self.tax_model.create(tax_22sp_vals)
+        # deleting because assertRaises does not perform rollback
+        self.tax_model.search([('name', '=' ,'22crSP')]).unlink()
         tax_22sp_vals.update({
             'tax_code_id': tax_code_22cr_sp.id,
             'ref_tax_code_id': tax_code_22cr_sp.id,
@@ -82,8 +85,8 @@ class TestTax(TransactionCase):
         # but with 'sale' type
         self.tax_model.create(tax_22sp_debit_vals)
         # editing 22cr using 22crSP tax code
-        self.assertRaises(
-            except_orm, tax_22_cr.write, {'tax_code_id': tax_code_22cr_sp.id})
+        with self.assertRaises(except_orm):
+            tax_22_cr.write({'tax_code_id': tax_code_22cr_sp.id})
         # if 22cr becomes sale, I can use that tax code
         tax_22_cr.write({
             'tax_code_id': tax_code_22cr_sp.id,
