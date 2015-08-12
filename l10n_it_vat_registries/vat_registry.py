@@ -3,7 +3,7 @@
 #
 #    Copyright (C) 2011-2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014 Agile Business Group sagl
+#    Copyright (C) 2014-2015 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -162,29 +162,26 @@ class Parser(report_sxw.rml_parse):
     def _compute_totals_tax(self, tax_code_ids):
         res = []
         tax_obj = self.pool.get('account.tax')
-        list_tax = self._compute_tax_list(tax_code_ids)
-        list_tax_obj = tax_obj.browse(self.cr, self.uid, list_tax)
-        for tax in list_tax_obj:
+        tax_list = self._compute_tax_list(tax_code_ids)
+        tax_list_obj = tax_obj.browse(self.cr, self.uid, tax_list)
+        for tax in tax_list_obj:
             total_undeduct = 0
             total_deduct = 0
             total_tax = 0
             total_base = 0
             if tax.nondeductible:
-                #detraibile / indetraibile
-                #recupero il valore dell'imponibile
+                # detraibile / indetraibile
+                # recupero il valore dell'imponibile
                 if tax.base_code_id:
                     total_base = self._calcs_total(tax.base_code_id)
                 for child in tax.child_ids:
                     # deductibile
-                    if child.tax_code_id \
-                        and child.tax_code_id.vat_statement_account_id.id:
-                        if child.tax_code_id:
-                            total_deduct = self._calcs_total(child.tax_code_id)
+                    if child.tax_code_id and not child.account_collected_id:
+                        total_deduct = self._calcs_total(child.tax_code_id)
                     # undeductibile
-                    else:
-                        if child.tax_code_id:
-                            total_undeduct = self._calcs_total(
-                                child.tax_code_id)
+                    elif child.tax_code_id:
+                        total_undeduct = self._calcs_total(
+                            child.tax_code_id)
                 total_tax = total_deduct + total_undeduct
             else:
                 #recupero il valore dell'imponibile
@@ -200,26 +197,32 @@ class Parser(report_sxw.rml_parse):
         return res
 
     def _compute_tax_list(self, tax_code_ids):
-        list_tax = []
-        #assumendo l'univocità fra tax code e tax risale
-        #e memorizza i codici imposta, cercandoli a partire
-        #dai codici conto imposta passati alla funzione
+        # assumendo l'univocità fra tax code e tax senza genitore, risale
+        # e memorizza gli account.tax, cercandoli a partire
+        # dai conti imposta passati al metodo
+        tax_list = []
         obj_tax = self.pool.get('account.tax')
         for tax_code_id in tax_code_ids:
-            ids_tax = obj_tax.search(self.cr, self.uid, [
-                               '|', ('base_code_id', '=', tax_code_id),
-                               '|', ('tax_code_id', '=', tax_code_id),
-                               '|', ('ref_base_code_id', '=', tax_code_id),
-                              ('ref_tax_code_id', '=', tax_code_id)])
-            if ids_tax:
-                for id_tax in ids_tax:
+            tax_ids = obj_tax.search(self.cr, self.uid, [
+                '&',
+                '|', 
+                ('base_code_id', '=', tax_code_id),
+                '|', 
+                ('tax_code_id', '=', tax_code_id),
+                '|', 
+                ('ref_base_code_id', '=', tax_code_id),
+                ('ref_tax_code_id', '=', tax_code_id),
+                ('parent_id', '=', False),
+            ])
+            if tax_ids:
+                for tax_id in tax_ids:
 
-                    current_tax_obj = obj_tax.browse(self.cr, self.uid, id_tax)
+                    current_tax_obj = obj_tax.browse(self.cr, self.uid, tax_id)
                     if current_tax_obj.parent_id.nondeductible:
-                        id_tax = current_tax_obj.parent_id.id
-                    if id_tax not in list_tax:
-                        list_tax.append(id_tax)
-        return list_tax
+                        tax_id = current_tax_obj.parent_id.id
+                    if tax_id not in tax_list:
+                        tax_list.append(tax_id)
+        return tax_list
 
     def _calcs_total(self, tax_code):
         journal_ids = self.localcontext['data']['form']['journal_ids']
