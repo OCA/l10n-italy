@@ -134,7 +134,7 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
                 if test_base_code.id != base_code.id:
                     raise orm.except_orm(
                         _('Error'),
-                        _('Not every tax linked to tax code %s is linked'
+                        _('Not every tax linked to tax code %s is linked to '
                           'the same base code')
                         % tax_code.name)
             if tax_code.sum_period or base_code.sum_period:
