@@ -29,7 +29,7 @@ Document
                 	Periods detail 
                 	-->
                 	<t t-foreach="statement.period_ids" t-as="period"> 
-                   		<h3><span t-esc="'Summary'"/> <span t-esc="period.name"/> </h3>
+                   		<h3><span>Summary</span> <span t-esc="period.name"/> </h3>
                    		
                    		<!-- Purchase -->
                    		<t t-set="tax_code_amounts" t-value="tax_codes_amounts(period.id, [l.tax_code_id.id for l in statement.credit_vat_account_line_ids])"/>
@@ -49,14 +49,14 @@ Document
                 	-->
                 	<t t-set="total_statement" t-value="(0)"/>
                 	
-                	<h3><span t-esc="'Total Statement'"/> </h3>
+                	<h3>Total Statement</h3>
                 	
                 	<table class="table table-condensed">
                 		<!-- tot debit -->
 	               		<t t-set="vat_accounts" t-value="account_vat_amounts('debit', statement.debit_vat_account_line_ids)"/>
 	               		<t t-foreach="vat_accounts" t-as="account_id">
 	               			<tr>
-	               				<td class="text-right"><span t-esc="'Total debit vat'" /></td>
+	               				<td class="text-right">Total debit vat</td>
 	               				<td class="text-right"><span t-esc="formatLang(vat_accounts[account_id]['amount'])" /></td>
 	               			</tr>
 	               			<!-- sum -->
@@ -67,7 +67,7 @@ Document
                 		<t t-set="vat_accounts" t-value="account_vat_amounts('credit', statement.credit_vat_account_line_ids)"/>
 	               		<t t-foreach="vat_accounts" t-as="account_id">
 	               			<tr>
-	               				<td class="text-right"><span t-esc="'Total credit vat'" /></td>
+	               				<td class="text-right">Total credit vat</td>
 	               				<td class="text-right"><span t-esc="formatLang(vat_accounts[account_id]['amount'])" /></td>
 	               			</tr>
 	               			<!-- sum -->
@@ -76,7 +76,7 @@ Document
 	               		
 	               		<!-- tot statement -->
 	               		<tr>
-              				<td class="text-right"><strong><span t-esc="'Total Statement'" /></strong></td>
+              				<td class="text-right"><strong>Total Statement</strong></td>
               				<td class="text-right"><strong><span t-esc="formatLang(total_statement)" /></strong></td>
               			</tr>
 	               	</table>
@@ -88,14 +88,14 @@ Document
 	              	<table class="table table-condensed">
 	               		<!-- previous credit -->
 	               		<tr>
-               				<td class="text-right"><span t-esc="'Previous credit vat'" /></td>
+               				<td class="text-right">Previous credit vat</td>
                				<td class="text-right"><span t-esc="formatLang(statement.previous_credit_vat_amount)"/></td>
                				<!-- sum -->
 	               			<t t-set="total_to_pay" t-value="(total_to_pay - statement.previous_credit_vat_amount)"/>
                			</tr>
                			<!-- previous debit -->
                			<tr>
-               				<td class="text-right"><span t-esc="'Previous debit vat'" /></td>
+               				<td class="text-right">Previous debit vat</td>
                				<td class="text-right"><span t-esc="formatLang(statement.previous_debit_vat_amount)"/></td>
                				<!-- sum -->
 	               			<t t-set="total_to_pay" t-value="(total_to_pay + statement.previous_debit_vat_amount)"/>
@@ -114,12 +114,12 @@ Document
                			<!-- Total to pay -->
                			<tr>
                				<span t-if="(total_to_pay >= 0)">
-               					<td class="text-right"><strong><span t-esc="'Total To Pay'"/></strong></td>
+               					<td class="text-right"><strong>Total To Pay</strong></td>
                					<td class="text-right"><strong><span t-esc="formatLang(total_to_pay)"/></strong></td>
                				</span>
                				
                				<span t-if="not (total_to_pay >= 0)">
-               					<td class="text-right"><strong><span t-esc="'Total Credit'"/></strong></td>
+               					<td class="text-right"><strong>Total Credit</strong></td>
                					<td class="text-right"><strong><span t-esc="formatLang((total_to_pay * -1))"/></strong></td>
                				</span> 
                			</tr>
@@ -144,13 +144,13 @@ Tax Code
 	<table class="table table-condensed">
 		<thead>
            	<tr class="text-center">
-               	<th style="width:10%;"><span t-esc="'Vat code'" /></th>
-               	<th style="width:30%;"><span t-esc="'Description'" /></th>
-               	<th style="width:15%;" class="text-right"><span t-esc="'Base'" /></th>
-               	<th style="width:15%;" class="text-right"><span t-esc="'Vat'" /></th>
+               	<th style="width:10%;">Vat code</th>
+               	<th style="width:30%;">Description</th>
+               	<th style="width:15%;" class="text-right">Base</th>
+               	<th style="width:15%;" class="text-right">Vat</th>
                	<span t-if="(tax_code_type == 'credit')">
-               		<th style="width:15%;" class="text-right"><span t-esc="'Deductible'" /></th>
-               		<th style="width:15%;" class="text-right"><span t-esc="'Undeductible'" /></th>
+               		<th style="width:15%;" class="text-right">Deductible</th>
+               		<th style="width:15%;" class="text-right">Undeductible</th>
 				</span>
 				<span t-if="not (tax_code_type == 'credit')">
 					<th style="width:15%;"></th>
@@ -259,9 +259,9 @@ Layout
             	<h3 class="text-center">Vat End Period Statement</h3>
             </div>
             <div class="col-xs-3">
-            	<span t-esc="'Anno:'" class="text-right"/>
+            	<span class="text-right">Anno:</span>
             	<span t-esc="statement.period_ids[0].fiscalyear_id.name" class="text-right"/>
-            	<span t-esc="'Pag.'" class="text-right"/>
+            	<span class="text-right">Pag.</span>
             	<span class="page"/>
             </div>
         </div>
@@ -271,7 +271,7 @@ Layout
 	        	<strong><span t-esc="company.name" class=""/></strong>
        		</div>
        		<div class="col-xs-2">
-       			<span class="text-right" t-esc="'Vat:'" />
+       			<span class="text-right">Vat:</span>
        		</div>
        		<div class="col-xs-2">
        			<span t-esc="company.partner_id.vat" class=""/>
@@ -285,7 +285,7 @@ Layout
 	       		<span t-esc="company.state_id.code" class=""/>
        		</div>
        		<div class="col-xs-2">
-       			<span class="text-right" t-esc="'Fiscalcode:'" />
+       			<span class="text-right">Fiscalcode:</span>
        		</div>
        		<div class="col-xs-2">
        			<span t-esc="company.partner_id.fiscalcode" class=""/>
