@@ -31,8 +31,6 @@ class res_company(models.Model):
         'product.uom', string="Unit of measure for Kg",
         )
     intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4)
-
     intrastat_delegated_vat = fields.Char(string="Delegated person VAT",
                                           size=16)
-
     intrastat_delegated_name = fields.Char(string="Delegated person", size=255)

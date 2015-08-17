@@ -148,6 +148,7 @@ class account_intrastat_statement(models.Model):
     def _compute_progressive(self):
         '''
         Assign univoque progressive to statement
+        TODO: why not a sequence?
         '''
         # From last statement
         st = self.search([], order='number', limit=1)
@@ -161,7 +162,7 @@ class account_intrastat_statement(models.Model):
         return self.env['ir.sequence'].get('intrastat.statement.sequence')
             
     number = fields.Integer(
-        string='Number', readonly=True, default=_compute_progressive)
+        string='Number', default=_compute_progressive)
     date = fields.Date(
         string='Submission Date', default=fields.Date.today(), required=True)
     company_id = fields.Many2one(
