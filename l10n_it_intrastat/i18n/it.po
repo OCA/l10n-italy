@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-24 20:41+0000\n"
-"PO-Revision-Date: 2015-07-24 20:41+0000\n"
+"POT-Creation-Date: 2015-08-17 15:07+0000\n"
+"PO-Revision-Date: 2015-08-17 15:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#: help:account.config.settings,module_payment_authorize:0
+#. module: l10n_it_intrastat
+msgid "-It installs the module payment_authorize."
+msgstr "-It installs the module payment_authorize."
 
 #: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_code_good
 #. module: l10n_it_intrastat
@@ -314,6 +319,16 @@ msgstr "Data inizio"
 msgid "Date stop"
 msgstr "Data fine"
 
+#: field:res.company,intrastat_delegated_name:0
+#. module: l10n_it_intrastat
+msgid "Delegated person"
+msgstr "Delegated person"
+
+#: field:res.company,intrastat_delegated_vat:0
+#. module: l10n_it_intrastat
+msgid "Delegated person VAT"
+msgstr "Delegated person VAT"
+
 #: field:account.intrastat.statement.purchase.section1,delivery_code_id:0
 #: field:account.intrastat.statement.sale.section1,delivery_code_id:0
 #: field:account.invoice.intrastat,delivery_code_id:0
@@ -363,7 +378,12 @@ msgstr "File"
 #: field:account.intrastat.export.file,name:0
 #. module: l10n_it_intrastat
 msgid "File Name"
-msgstr "File Name"
+msgstr "Nome file"
+
+#: field:res.company,intrastat_export_file_name:0
+#. module: l10n_it_intrastat
+msgid "File name for export"
+msgstr "Nome file per export"
 
 #: selection:account.intrastat.statement,special_cases:0
 #. module: l10n_it_intrastat
@@ -462,13 +482,13 @@ msgstr "INTRASTAT Dichiarazione"
 msgid "Instant"
 msgstr "Instant"
 
-#: view:account.config.settings:l10n_it_intrastat.view_account_config_settings
 #: view:account.fiscal.position:l10n_it_intrastat.view_intrastat_account_position_form
 #: view:account.invoice:l10n_it_intrastat.account_intrastat_invoice_form
 #: view:account.invoice:l10n_it_intrastat.account_intrastat_invoice_supplier_form
 #: field:account.invoice,intrastat_line_ids:0
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_configuration
 #: view:product.category:l10n_it_intrastat.view_instrastat_product_category_form
+#: view:res.company:l10n_it_intrastat.view_intrastat_company_form
 #. module: l10n_it_intrastat
 msgid "Intrastat"
 msgstr "Intrastat"
@@ -632,7 +652,7 @@ msgstr "Periodo Normale"
 #: field:account.intrastat.statement,number:0
 #. module: l10n_it_intrastat
 msgid "Number"
-msgstr "Numero"
+msgstr "Numbero"
 
 #: field:account.intrastat.statement,purchase_section1_operation_amount:0
 #: field:account.intrastat.statement,purchase_section2_operation_amount:0
@@ -705,13 +725,13 @@ msgstr "Termine di pagamento"
 msgid "Period"
 msgstr "Periodo"
 
-#: code:addons/l10n_it_intrastat/models/intrastat.py:728
+#: code:addons/l10n_it_intrastat/models/intrastat.py:736
 #. module: l10n_it_intrastat
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 12"
 msgstr "Periodo non Valido! Per MESE, i valori possibili sono da 1 a 12"
 
-#: code:addons/l10n_it_intrastat/models/intrastat.py:732
+#: code:addons/l10n_it_intrastat/models/intrastat.py:740
 #. module: l10n_it_intrastat
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 4"
@@ -1005,7 +1025,7 @@ msgstr "Modalità di erogazione"
 msgid "Total"
 msgstr "Totale"
 
-#: code:addons/l10n_it_intrastat/models/account.py:180
+#: code:addons/l10n_it_intrastat/models/account.py:186
 #. module: l10n_it_intrastat
 #, python-format
 msgid "Total Intrastat must be ugual to                    Total Invoice Untaxed"
@@ -1129,4 +1149,9 @@ msgstr "or"
 #. module: l10n_it_intrastat
 msgid "province destination"
 msgstr "province destination"
+
+#: field:account.config.settings,module_payment_authorize:0
+#. module: l10n_it_intrastat
+msgid "unknown"
+msgstr "unknown"
 

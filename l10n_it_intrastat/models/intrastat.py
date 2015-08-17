@@ -308,7 +308,10 @@ class account_intrastat_statement(models.Model):
         prg = self._get_progressive_interchange()
         file_name = ''
         date_obj = datetime.strptime(self.date, '%Y-%m-%d')
-        file_name = '%s%s%s.%s%s' % (self.company_id.intrastat_ua_code,
+        if self.company_id.intrastat_export_file_name:
+            file_name = self.company_id.intrastat_export_file_name
+        else:
+            file_name = '%s%s%s.%s%s' % (self.company_id.intrastat_ua_code,
                                 '{:2s}'.format(str(date_obj.month).zfill(2)),
                                 '{:2s}'.format(str(date_obj.day).zfill(2)),
                                 'I', # doc intrastat

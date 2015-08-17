@@ -14,6 +14,7 @@
                 	<field name="intrastat_uom_kg_id"/>
                 	<field name="intrastat_delegated_name"/>
                 	<field name="intrastat_delegated_vat"/>
+                	<field name="intrastat_export_file_name"/>
              	</group>
            	</xpath>
            	

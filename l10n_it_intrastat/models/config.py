@@ -34,3 +34,4 @@ class res_company(models.Model):
     intrastat_delegated_vat = fields.Char(string="Delegated person VAT",
                                           size=16)
     intrastat_delegated_name = fields.Char(string="Delegated person", size=255)
+    intrastat_export_file_name = fields.Char(string="File name for export")
