@@ -806,7 +806,9 @@ class account_intrastat_statement_sale_section1(models.Model):
                 inv_intra_line.additional_units and
                 round(inv_intra_line.additional_units) or 0,
             'statistic_amount_euro': 
-                round(inv_intra_line.statistic_amount_euro) or 0,
+                round(inv_intra_line.statistic_amount_euro) or
+                (company_id.intrastat_sale_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
             'delivery_code_id': (
                 inv_intra_line.delivery_code_id and
                 inv_intra_line.delivery_code_id.id) or (
@@ -919,7 +921,9 @@ class account_intrastat_statement_sale_section2(models.Model):
                 False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'statistic_amount_euro': 
-                round(inv_intra_line.statistic_amount_euro) or 0,
+                round(inv_intra_line.statistic_amount_euro) or
+                (company_id.intrastat_sale_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
         }
         return res
     
@@ -1222,7 +1226,9 @@ class account_intrastat_statement_purchase_section1(models.Model):
                 inv_intra_line.additional_units and \
                 round(inv_intra_line.additional_units) or 0,
             'statistic_amount_euro': 
-                round(inv_intra_line.statistic_amount_euro) or 0,
+                round(inv_intra_line.statistic_amount_euro) or
+                (company_id.intrastat_purchase_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
             'delivery_code_id': (
                 inv_intra_line.delivery_code_id and
                 inv_intra_line.delivery_code_id.id) or (
@@ -1344,7 +1350,9 @@ class account_intrastat_statement_purchase_section2(models.Model):
                 False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'statistic_amount_euro':
-                round(inv_intra_line.statistic_amount_euro) or 0,
+                round(inv_intra_line.statistic_amount_euro) or
+                (company_id.intrastat_purchase_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
         }
         return res
     
