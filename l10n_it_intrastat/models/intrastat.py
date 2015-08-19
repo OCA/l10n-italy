@@ -820,10 +820,7 @@ class account_intrastat_statement_sale_section1(models.Model):
                 company_id.intrastat_sale_transport_code_id.id) or False,
             'country_destination_id': (
                 inv_intra_line.country_destination_id and
-                inv_intra_line.country_destination_id.id) or (
-                company_id.intrastat_sale_country_destination_id and
-                company_id.intrastat_sale_country_destination_id.id) or
-                False,
+                inv_intra_line.country_destination_id.id) or False,
             'province_origin_id': inv_intra_line.province_origin_id \
                 and inv_intra_line.province_origin_id.id or False,
         }
