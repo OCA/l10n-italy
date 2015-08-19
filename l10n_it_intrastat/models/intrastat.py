@@ -210,7 +210,7 @@ class account_intrastat_statement(models.Model):
         ], 'Code Type', required=True, default='good')
     
     sale_statement_sequence = fields.Integer(
-        string='Statement Sequence', readonly=True, 
+        string='Statement Sequence',
         default=_get_sequence)
     sale_section1_ids = fields.One2many(
         'account.intrastat.statement.sale.section1',
@@ -250,7 +250,7 @@ class account_intrastat_statement(models.Model):
         compute='_compute_amount_sale_s4')
 
     purchase_statement_sequence = fields.Integer(
-        string='Statement Sequence', readonly=True, 
+        string='Statement Sequence',
         default=_get_sequence)
     purchase_section1_ids = fields.One2many(
         'account.intrastat.statement.purchase.section1',
