@@ -42,6 +42,8 @@ class account_invoice_line(models.Model):
             'intrastat_code_id' : False,
             'intrastat_code_type' : False,
             'amount_currency' : False,
+            'amount_euro' : False,
+            'statistic_amount_euro' : False,
             'weight_kg' : False,
             'additional_units' : False,
             # origin
@@ -64,7 +66,13 @@ class account_invoice_line(models.Model):
         res.update({'intrastat_code_type': intrastat_data['intrastat_type']})
         # Amount
         amount_currency = self.price_subtotal
+        company_currency = self.invoice_id.company_id.currency_id
+        amount_euro = company_currency.compute(amount_currency,
+                                               company_currency)
+        statistic_amount_euro = amount_euro
         res.update({'amount_currency': amount_currency})
+        res.update({'amount_euro': amount_euro})
+        res.update({'statistic_amount_euro': statistic_amount_euro})
         # Weight
         intrastat_uom_kg = self.invoice_id.company_id.intrastat_uom_kg_id
         # ...Weight compute in Kg
@@ -214,6 +222,8 @@ class account_invoice(models.Model):
             if intra_line['intrastat_code_id'] in i_line_by_code:
                 i_line_by_code[intra_line['intrastat_code_id']]['amount_currency']+=\
                     intra_line['amount_currency']
+                i_line_by_code[intra_line['intrastat_code_id']]['statistic_amount_euro']+=\
+                    intra_line['statistic_amount_euro']
                 i_line_by_code[intra_line['intrastat_code_id']]['weight_kg']+=\
                     intra_line['weight_kg']
                 i_line_by_code[intra_line['intrastat_code_id']]['weight_kg']+=\
@@ -243,7 +253,7 @@ class account_invoice_intrastat(models.Model):
         company_currency = self.invoice_id.company_id.currency_id
         self.amount_euro = company_currency.compute(self.amount_currency,
                                                     company_currency)
-        self.statistic_amount_euro = self.amount_euro
+        
     @api.one
     @api.depends('invoice_id.partner_id')
     def _compute_partner_data(self):
@@ -303,7 +313,7 @@ class account_invoice_intrastat(models.Model):
             return self.invoice_id.partner_id.country_id
         else:
             return False
-    
+
 
     invoice_id = fields.Many2one(
         'account.invoice', string='Invoice', required=True)
@@ -340,7 +350,7 @@ class account_invoice_intrastat(models.Model):
     weight_kg = fields.Float(string='Weight kg')
     additional_units = fields.Float(string='Additional Units')
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro',
-                                         digits=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     country_partner_id = fields.Many2one(
         'res.country', string='Country Partner', 
         compute='_compute_partner_data', store=True, readonly=True)
