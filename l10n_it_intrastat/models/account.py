@@ -4,7 +4,13 @@
 #    Copyright (C) 2015
 #    Author: Alessandro Camilli per Apulia Software srl
 #    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
+<<<<<<< HEAD
 #    info@apuliasoftware.it - www.apuliasoftware.it - www.openforce.it
+=======
+#    Copyright (C) 2015
+#    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
+#    Openforce di Camilli Alessandro - www.openforce.it
+>>>>>>> 969fc6f34e012727da43d0ff339c1119bf96c2e9
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -30,13 +36,6 @@ class account_fiscal_position(models.Model):
     _inherit = 'account.fiscal.position'
 
     intrastat = fields.Boolean(string="Subject to Intrastat")
-    intrastat_code_type = fields.Selection([('service', 'Service'),
-                                            ('good', 'Good'),
-                                            ], string='Code Type')
-    intrastat_move_type = fields.Selection(
-        [('sale', 'Sales'), ('purchase', 'Purchases'),
-         ('refund_sale', 'Refund Sale'), ('refund_purchase', 'Refund Purchase')
-         ], string='Move Type')
 
 
 class account_invoice_line(models.Model):
@@ -48,6 +47,7 @@ class account_invoice_line(models.Model):
             'intrastat_code_type' : False,
             'amount_currency' : False,
             'weight_kg' : False,
+            'additional_units' : False,
             # origin
             'country_origin_id' : False,
             'country_good_origin_id' : False,
@@ -89,6 +89,7 @@ class account_invoice_line(models.Model):
         else:
             weight_kg = weight_line
         res.update({'weight_kg': weight_kg})
+        res.update({'additional_units': weight_kg})
         # ---------
         # Origin
         # ---------
@@ -174,6 +175,10 @@ class account_invoice(models.Model):
     intrastat_line_ids = fields.One2many(
         'account.invoice.intrastat', 'invoice_id', string='Intrastat',
         readonly=True, states={'draft': [('readonly', False)]}, copy=True)
+    
+    @api.onchange('fiscal_position')
+    def change_fiscal_position(self):
+        self.intrastat = self.fiscal_position.intrastat
 
     @api.multi
     def action_move_create(self):
@@ -215,17 +220,17 @@ class account_invoice(models.Model):
                     intra_line['amount_currency']
                 i_line_by_code[intra_line['intrastat_code_id']]['weight_kg']+=\
                     intra_line['weight_kg']
+                i_line_by_code[intra_line['intrastat_code_id']]['weight_kg']+=\
+                    intra_line['weight_kg']
             else:
                 intra_line['statement_section'] = \
                     self.env['account.invoice.intrastat'].\
                         with_context(
                             intrastat_code_type = \
                                 intra_line['intrastat_code_type'],
-                            invoice_type=self.type ).\
+                            invoice_type=self.type).\
                         _get_statement_section()
                 i_line_by_code[intra_line['intrastat_code_id']] = intra_line
-        # Lines to split
-        # >>>>>>>> TO DO <<<<<<
            
         for key, val in i_line_by_code.iteritems():
             intrastat_lines.append((0,0,val))
@@ -352,8 +357,8 @@ class account_invoice_intrastat(models.Model):
         'res.country', string='Country Goods Origin')
     ## Destination ##
     delivery_code_id = fields.Many2one('stock.incoterms', string='Delivery')
-    transport_code_id = fields.Many2one('account.intrastat.transport',
-                                        string='Transport')
+    transport_code_id = fields.Many2one(
+        'account.intrastat.transport', string='Transport')
     province_destination_id = fields.Many2one('res.country.state',
                                               string='province destination')
     country_destination_id = fields.Many2one(
@@ -373,7 +378,14 @@ class account_invoice_intrastat(models.Model):
         ], 'Payment Method')
     country_payment_id= fields.Many2one('res.country', 'Country Payment')
                                 
+    @api.onchange('weight_kg')
+    def change_weight_kg(self):
+        self.additional_units = self.weight_kg
     
+    @api.onchange('amount_euro')
+    def change_amount_euro(self):
+        self.statistic_amount_euro = self.amount_euro 
+        
     @api.onchange('intrastat_code_type')
     def change_intrastat_code_type(self):
         self.statement_section = self._get_statement_section()

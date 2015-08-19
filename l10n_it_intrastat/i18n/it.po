@@ -1,0 +1,1157 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_intrastat
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-17 15:07+0000\n"
+"PO-Revision-Date: 2015-08-17 15:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: help:account.config.settings,module_payment_authorize:0
+#. module: l10n_it_intrastat
+msgid "-It installs the module payment_authorize."
+msgstr "-It installs the module payment_authorize."
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_code_good
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Code Good"
+msgstr "Account INTRASTAT - Code Good"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_code_service
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Code Service"
+msgstr "Account INTRASTAT - Code Service"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_custom
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Customs"
+msgstr "Account INTRASTAT - Customs"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement"
+msgstr "Account INTRASTAT - Statement"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_purchase
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Purchase"
+msgstr "Account INTRASTAT - Statement - Purchase"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_purchase_section1
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Purchase Section 1"
+msgstr "Account INTRASTAT - Statement - Purchase Section 1"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_purchase_section2
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Purchase Section 2"
+msgstr "Account INTRASTAT - Statement - Purchase Section 2"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_purchase_section3
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Purchase Section 3"
+msgstr "Account INTRASTAT - Statement - Purchase Section 3"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_purchase_section4
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Purchase Section 4"
+msgstr "Account INTRASTAT - Statement - Purchase Section 4"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_sale_section1
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Sale Section 1"
+msgstr "Account INTRASTAT - Statement - Sale Section 1"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_sale_section2
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Sale Section 2"
+msgstr "Account INTRASTAT - Statement - Sale Section 2"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_sale_section3
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Sale Section 3"
+msgstr "Account INTRASTAT - Statement - Sale Section 3"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_statement_sale_section4
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Statement - Sale Section 4"
+msgstr "Account INTRASTAT - Statement - Sale Section 4"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_transation_nature
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Transation Nature"
+msgstr "Account INTRASTAT - Transation Nature"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_transport
+#. module: l10n_it_intrastat
+msgid "Account INTRASTAT - Transport"
+msgstr "Account INTRASTAT - Transport"
+
+#: selection:account.intrastat.statement.purchase.section3,payment_method:0
+#: selection:account.intrastat.statement.purchase.section4,payment_method:0
+#: selection:account.intrastat.statement.sale.section3,payment_method:0
+#: selection:account.intrastat.statement.sale.section4,payment_method:0
+#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.payment.term,intrastat_code:0
+#. module: l10n_it_intrastat
+msgid "Accreditation"
+msgstr "Accreditation"
+
+#: field:account.intrastat.statement.purchase.section1,additional_units:0
+#: field:account.intrastat.statement.sale.section1,additional_units:0
+#: field:account.invoice.intrastat,additional_units:0
+#. module: l10n_it_intrastat
+msgid "Additional Units"
+msgstr "Unità supplementari"
+
+#: selection:account.intrastat.statement,intrastat_type_data:0
+#: selection:account.invoice.intrastat,intrastat_type_data:0
+#. module: l10n_it_intrastat
+msgid "All (Fiscal and Statistic"
+msgstr "Tutte (Fiscali e statistici)"
+
+#: field:account.intrastat.statement.purchase.section1,amount_currency:0
+#: field:account.intrastat.statement.purchase.section2,amount_currency:0
+#: field:account.intrastat.statement.purchase.section3,amount_currency:0
+#: field:account.intrastat.statement.purchase.section4,amount_currency:0
+#: field:account.invoice.intrastat,amount_currency:0
+#. module: l10n_it_intrastat
+msgid "Amount Currency"
+msgstr "Importo in valuta"
+
+#: field:account.intrastat.statement.purchase.section1,amount_euro:0
+#: field:account.intrastat.statement.purchase.section2,amount_euro:0
+#: field:account.intrastat.statement.purchase.section3,amount_euro:0
+#: field:account.intrastat.statement.purchase.section4,amount_euro:0
+#: field:account.intrastat.statement.sale.section1,amount_euro:0
+#: field:account.intrastat.statement.sale.section2,amount_euro:0
+#: field:account.intrastat.statement.sale.section3,amount_euro:0
+#: field:account.intrastat.statement.sale.section4,amount_euro:0
+#: field:account.invoice.intrastat,amount_euro:0
+#. module: l10n_it_intrastat
+msgid "Amount Euro"
+msgstr "Importo in Euro"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Cancel"
+msgstr "Annulla"
+
+#: selection:account.intrastat.statement,content_type:0
+#. module: l10n_it_intrastat
+msgid "Change Period in quarterly: only first and second month             operations"
+msgstr "Cambio di periodicità - le operazioni riepilogate nell’elenco trimestrale sono riferite al primo e al secondo mese"
+
+#: selection:account.intrastat.statement,content_type:0
+#. module: l10n_it_intrastat
+msgid "Change Period in quarterly: only first month operations"
+msgstr "Cambio di periodicità - le operazioni riepilogate nell’elenco trimestrale sono riferite solo al primo mese"
+
+#: selection:account.intrastat.statement,special_cases:0
+#. module: l10n_it_intrastat
+msgid "Change VAT or Close Activity"
+msgstr "Cessazione di attività o variazione della partita IVA"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Close"
+msgstr "Chiudi"
+
+#: field:account.intrastat.custom,code:0
+#: field:account.intrastat.transation.nature,code:0
+#: field:account.intrastat.transport,code:0
+#. module: l10n_it_intrastat
+msgid "Code"
+msgstr "Codice"
+
+#: field:account.intrastat.statement,intrastat_code_type:0
+#: field:account.invoice.intrastat,intrastat_code_type:0
+#. module: l10n_it_intrastat
+msgid "Code Type"
+msgstr "Tipo codice"
+
+#: model:ir.actions.act_window,name:l10n_it_intrastat.action_report_intrastat_code
+#: view:report.intrastat.code:l10n_it_intrastat.view_tree_report_intrastat_code
+#. module: l10n_it_intrastat
+msgid "Codes"
+msgstr "Codici"
+
+#: model:ir.ui.menu,name:l10n_it_intrastat.menu_report_intrastat_code
+#. module: l10n_it_intrastat
+msgid "Codes Intrastat"
+msgstr "Intrastat Nomenclature Combinate"
+
+#: model:ir.model,name:l10n_it_intrastat.model_res_company
+#. module: l10n_it_intrastat
+msgid "Companies"
+msgstr "Aziende"
+
+#: field:account.intrastat.statement,company_id:0
+#. module: l10n_it_intrastat
+msgid "Company"
+msgstr "Azienda"
+
+#: field:account.intrastat.statement,content_type:0
+#. module: l10n_it_intrastat
+msgid "Content Type"
+msgstr "Contenuto degli elenchi"
+
+#: field:account.intrastat.statement.sale.section1,country_partner_id:0
+#. module: l10n_it_intrastat
+msgid "Country Customer"
+msgstr "Nazione acquirente"
+
+#: field:account.intrastat.statement.sale.section1,country_destination_id:0
+#: field:account.invoice.intrastat,country_destination_id:0
+#. module: l10n_it_intrastat
+msgid "Country Destination"
+msgstr "Nazione destinazione"
+
+#: field:account.intrastat.statement.purchase.section1,country_good_origin_id:0
+#. module: l10n_it_intrastat
+msgid "Country Good Origin"
+msgstr "Nazione Origine Merce"
+
+#: field:account.invoice.intrastat,country_good_origin_id:0
+#. module: l10n_it_intrastat
+msgid "Country Goods Origin"
+msgstr "Nazione origine merci"
+
+#: field:account.intrastat.statement.purchase.section1,country_origin_id:0
+#: field:account.invoice.intrastat,country_origin_id:0
+#. module: l10n_it_intrastat
+msgid "Country Origin"
+msgstr "Nazione origine"
+
+#: field:account.intrastat.statement.purchase.section1,country_partner_id:0
+#: field:account.intrastat.statement.purchase.section2,country_partner_id:0
+#: field:account.intrastat.statement.purchase.section3,country_partner_id:0
+#: field:account.intrastat.statement.purchase.section4,country_partner_id:0
+#: field:account.intrastat.statement.sale.section2,country_partner_id:0
+#: field:account.intrastat.statement.sale.section3,country_partner_id:0
+#: field:account.intrastat.statement.sale.section4,country_partner_id:0
+#: field:account.invoice.intrastat,country_partner_id:0
+#. module: l10n_it_intrastat
+msgid "Country Partner"
+msgstr "Nazione Partner"
+
+#: field:account.intrastat.statement.purchase.section3,country_payment_id:0
+#: field:account.intrastat.statement.purchase.section4,country_payment_id:0
+#: field:account.intrastat.statement.sale.section3,country_payment_id:0
+#: field:account.intrastat.statement.sale.section4,country_payment_id:0
+#: field:account.invoice.intrastat,country_payment_id:0
+#. module: l10n_it_intrastat
+msgid "Country Payment"
+msgstr "Nazione pagamento"
+
+#: field:account.intrastat.custom,create_uid:0
+#: field:account.intrastat.export.file,create_uid:0
+#: field:account.intrastat.statement,create_uid:0
+#: field:account.intrastat.statement.purchase.section1,create_uid:0
+#: field:account.intrastat.statement.purchase.section2,create_uid:0
+#: field:account.intrastat.statement.purchase.section3,create_uid:0
+#: field:account.intrastat.statement.purchase.section4,create_uid:0
+#: field:account.intrastat.statement.sale.section1,create_uid:0
+#: field:account.intrastat.statement.sale.section2,create_uid:0
+#: field:account.intrastat.statement.sale.section3,create_uid:0
+#: field:account.intrastat.statement.sale.section4,create_uid:0
+#: field:account.intrastat.transation.nature,create_uid:0
+#: field:account.intrastat.transport,create_uid:0
+#: field:account.invoice.intrastat,create_uid:0
+#. module: l10n_it_intrastat
+msgid "Created by"
+msgstr "Created by"
+
+#: field:account.intrastat.custom,create_date:0
+#: field:account.intrastat.export.file,create_date:0
+#: field:account.intrastat.statement,create_date:0
+#: field:account.intrastat.statement.purchase.section1,create_date:0
+#: field:account.intrastat.statement.purchase.section2,create_date:0
+#: field:account.intrastat.statement.purchase.section3,create_date:0
+#: field:account.intrastat.statement.purchase.section4,create_date:0
+#: field:account.intrastat.statement.sale.section1,create_date:0
+#: field:account.intrastat.statement.sale.section2,create_date:0
+#: field:account.intrastat.statement.sale.section3,create_date:0
+#: field:account.intrastat.statement.sale.section4,create_date:0
+#: field:account.intrastat.transation.nature,create_date:0
+#: field:account.intrastat.transport,create_date:0
+#: field:account.invoice.intrastat,create_date:0
+#. module: l10n_it_intrastat
+msgid "Created on"
+msgstr "Created on"
+
+#: view:account.intrastat.custom:l10n_it_intrastat.account_intrastat_custom_view_form
+#: view:account.intrastat.custom:l10n_it_intrastat.account_intrastat_custom_view_tree
+#: field:account.intrastat.statement,custom_id:0
+#: field:account.intrastat.statement.purchase.section4,custom_id:0
+#: field:account.intrastat.statement.sale.section4,custom_id:0
+#. module: l10n_it_intrastat
+msgid "Custom"
+msgstr "Sezione doganale"
+
+#: model:ir.actions.act_window,name:l10n_it_intrastat.action_account_intrastat_custom
+#: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_custom
+#. module: l10n_it_intrastat
+msgid "Customs"
+msgstr "Sezione doganale"
+
+#: field:account.intrastat.statement,intrastat_type_data:0
+#: field:account.invoice.intrastat,intrastat_type_data:0
+#. module: l10n_it_intrastat
+msgid "Data Type"
+msgstr "Tipo dati"
+
+#: field:account.intrastat.custom,date_start:0
+#. module: l10n_it_intrastat
+msgid "Date start"
+msgstr "Data inizio"
+
+#: field:account.intrastat.custom,date_stop:0
+#. module: l10n_it_intrastat
+msgid "Date stop"
+msgstr "Data fine"
+
+#: field:res.company,intrastat_delegated_name:0
+#. module: l10n_it_intrastat
+msgid "Delegated person"
+msgstr "Delegated person"
+
+#: field:res.company,intrastat_delegated_vat:0
+#. module: l10n_it_intrastat
+msgid "Delegated person VAT"
+msgstr "Delegated person VAT"
+
+#: field:account.intrastat.statement.purchase.section1,delivery_code_id:0
+#: field:account.intrastat.statement.sale.section1,delivery_code_id:0
+#: field:account.invoice.intrastat,delivery_code_id:0
+#. module: l10n_it_intrastat
+msgid "Delivery"
+msgstr "Consegna"
+
+#: view:account.invoice.intrastat:l10n_it_intrastat.view_form_invoice_intrastat_form
+#. module: l10n_it_intrastat
+msgid "Destination"
+msgstr "Destinazione"
+
+#: selection:product.category,intrastat_type:0
+#: selection:product.template,intrastat_type:0
+#. module: l10n_it_intrastat
+msgid "Exclude"
+msgstr "Escludi"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Export"
+msgstr "Esporta"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Export Complete"
+msgstr "Export Completato"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Export File"
+msgstr "Export File"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#: code:addons/l10n_it_intrastat/wizard/export_file.py:62
+#: model:ir.actions.act_window,name:l10n_it_intrastat.action_wizard_wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+#, python-format
+msgid "Export Intrastat File"
+msgstr "Export Intrastat File"
+
+#: field:account.intrastat.export.file,data:0
+#. module: l10n_it_intrastat
+msgid "File"
+msgstr "File"
+
+#: field:account.intrastat.export.file,name:0
+#. module: l10n_it_intrastat
+msgid "File Name"
+msgstr "Nome file"
+
+#: field:res.company,intrastat_export_file_name:0
+#. module: l10n_it_intrastat
+msgid "File name for export"
+msgstr "Nome file per export"
+
+#: selection:account.intrastat.statement,special_cases:0
+#. module: l10n_it_intrastat
+msgid "First Statement"
+msgstr "Primo elenco presentato"
+
+#: selection:account.intrastat.statement,special_cases:0
+#. module: l10n_it_intrastat
+msgid "First Statement in Change VAT or Close Activity"
+msgstr "Primo elenco presentato da un soggetto che, nel periodo di riferimento ha, contestualmente, cessato l’attività oppure ha variato la propria partita IVA riferite solo al primo mese"
+
+#: selection:account.intrastat.statement,intrastat_type_data:0
+#: selection:account.invoice.intrastat,intrastat_type_data:0
+#. module: l10n_it_intrastat
+msgid "Fiscal"
+msgstr "Fiscale"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_fiscal_position
+#. module: l10n_it_intrastat
+msgid "Fiscal Position"
+msgstr "Posizione fiscale"
+
+#: selection:account.intrastat.statement,intrastat_code_type:0
+#: selection:account.invoice.intrastat,intrastat_code_type:0
+#: selection:product.category,intrastat_type:0
+#: selection:product.template,intrastat_type:0
+#. module: l10n_it_intrastat
+msgid "Good"
+msgstr "Merce"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Goods Purchase - Section 1"
+msgstr "Acquisti Merci - Section 1"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Goods Refund - Section 2"
+msgstr "Rettifica Merci - Section 2"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Goods Refund Purchase - Section 2"
+msgstr "Rettifica Merci - Section 2"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Goods Refund Purchase - Section 4"
+msgstr "Rettifica Merci - Section 4"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Goods Sale - Section 1"
+msgstr "Vendita Merci - Section 1"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Here is the exported file:"
+msgstr "Ecco il file esportato:"
+
+#: field:account.intrastat.custom,id:0
+#: field:account.intrastat.export.file,id:0
+#: field:account.intrastat.statement,id:0
+#: field:account.intrastat.statement.purchase.section1,id:0
+#: field:account.intrastat.statement.purchase.section2,id:0
+#: field:account.intrastat.statement.purchase.section3,id:0
+#: field:account.intrastat.statement.purchase.section4,id:0
+#: field:account.intrastat.statement.sale.section1,id:0
+#: field:account.intrastat.statement.sale.section2,id:0
+#: field:account.intrastat.statement.sale.section3,id:0
+#: field:account.intrastat.statement.sale.section4,id:0
+#: field:account.intrastat.transation.nature,id:0
+#: field:account.intrastat.transport,id:0
+#: field:account.invoice.intrastat,id:0
+#. module: l10n_it_intrastat
+msgid "ID"
+msgstr "ID"
+
+#: view:account.payment.term:l10n_it_intrastat.account_intrastat_payment_term_form_view
+#. module: l10n_it_intrastat
+msgid "INTRASTAT Classification"
+msgstr "INTRASTAT Classificazione"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_tree_view
+#. module: l10n_it_intrastat
+msgid "INTRASTAT Statement"
+msgstr "INTRASTAT Dichiarazione"
+
+#: selection:account.intrastat.statement.purchase.section3,supply_method:0
+#: selection:account.intrastat.statement.purchase.section4,supply_method:0
+#: selection:account.intrastat.statement.sale.section3,supply_method:0
+#: selection:account.intrastat.statement.sale.section4,supply_method:0
+#: selection:account.invoice.intrastat,supply_method:0
+#. module: l10n_it_intrastat
+msgid "Instant"
+msgstr "Instant"
+
+#: view:account.fiscal.position:l10n_it_intrastat.view_intrastat_account_position_form
+#: view:account.invoice:l10n_it_intrastat.account_intrastat_invoice_form
+#: view:account.invoice:l10n_it_intrastat.account_intrastat_invoice_supplier_form
+#: field:account.invoice,intrastat_line_ids:0
+#: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_configuration
+#: view:product.category:l10n_it_intrastat.view_instrastat_product_category_form
+#: view:res.company:l10n_it_intrastat.view_intrastat_company_form
+#. module: l10n_it_intrastat
+msgid "Intrastat"
+msgstr "Intrastat"
+
+#: field:account.invoice.intrastat,intrastat_code_id:0
+#: field:product.category,intrastat_code_id:0
+#. module: l10n_it_intrastat
+msgid "Intrastat Code"
+msgstr "Intrastat Nomenclatura Combinata"
+
+#: field:account.intrastat.statement.purchase.section1,intrastat_code_id:0
+#: field:account.intrastat.statement.purchase.section2,intrastat_code_id:0
+#: field:account.intrastat.statement.sale.section1,intrastat_code_id:0
+#: field:account.intrastat.statement.sale.section2,intrastat_code_id:0
+#. module: l10n_it_intrastat
+msgid "Intrastat Code Good"
+msgstr "Intrastat Nomenclatura Merce"
+
+#: field:account.intrastat.statement.purchase.section3,intrastat_code_id:0
+#: field:account.intrastat.statement.purchase.section4,intrastat_code_id:0
+#: field:account.intrastat.statement.sale.section3,intrastat_code_id:0
+#: field:account.intrastat.statement.sale.section4,intrastat_code_id:0
+#. module: l10n_it_intrastat
+msgid "Intrastat Code Service"
+msgstr "Intrastat Nomenclatura Servizi"
+
+#: model:ir.actions.act_window,name:l10n_it_intrastat.account_intrastat_statement_action
+#: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_statement
+#. module: l10n_it_intrastat
+msgid "Intrastat Statements"
+msgstr "Dichiarazioni Intrastat"
+
+#: field:product.category,intrastat_type:0
+#: field:product.template,intrastat_type:0
+#. module: l10n_it_intrastat
+msgid "Intrastat Type"
+msgstr "Tipo Intrastat"
+
+#: model:ir.model,name:l10n_it_intrastat.model_report_intrastat_code
+#. module: l10n_it_intrastat
+msgid "Intrastat code"
+msgstr "Codice Intrastat"
+
+#: field:account.intrastat.statement.purchase.section1,invoice_id:0
+#: field:account.intrastat.statement.purchase.section2,invoice_id:0
+#: field:account.intrastat.statement.purchase.section3,invoice_id:0
+#: field:account.intrastat.statement.purchase.section4,invoice_id:0
+#: field:account.intrastat.statement.sale.section1,invoice_id:0
+#: field:account.intrastat.statement.sale.section2,invoice_id:0
+#: field:account.intrastat.statement.sale.section3,invoice_id:0
+#: field:account.intrastat.statement.sale.section4,invoice_id:0
+#: field:account.invoice.intrastat,invoice_id:0
+#: model:ir.model,name:l10n_it_intrastat.model_account_invoice
+#. module: l10n_it_intrastat
+msgid "Invoice"
+msgstr "Fattura"
+
+#: field:account.intrastat.statement.purchase.section3,invoice_date:0
+#: field:account.intrastat.statement.purchase.section4,invoice_date:0
+#: field:account.intrastat.statement.sale.section3,invoice_date:0
+#: field:account.intrastat.statement.sale.section4,invoice_date:0
+#: field:account.invoice.intrastat,invoice_date:0
+#. module: l10n_it_intrastat
+msgid "Invoice Date"
+msgstr "Data Fattura"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_invoice_line
+#. module: l10n_it_intrastat
+msgid "Invoice Line"
+msgstr "Righe Fattura"
+
+#: field:account.intrastat.statement.purchase.section3,invoice_number:0
+#: field:account.intrastat.statement.purchase.section4,invoice_number:0
+#: field:account.intrastat.statement.sale.section3,invoice_number:0
+#: field:account.intrastat.statement.sale.section4,invoice_number:0
+#: field:account.invoice.intrastat,invoice_number:0
+#. module: l10n_it_intrastat
+msgid "Invoice Number"
+msgstr "Numero Fattura"
+
+#: view:account.invoice.intrastat:l10n_it_intrastat.view_form_invoice_intrastat_form
+#. module: l10n_it_intrastat
+msgid "Invoice Ref"
+msgstr "Riferimento Fattura"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_journal
+#. module: l10n_it_intrastat
+msgid "Journal"
+msgstr "Sezionale"
+
+#: field:account.intrastat.custom,write_uid:0
+#: field:account.intrastat.export.file,write_uid:0
+#: field:account.intrastat.statement,write_uid:0
+#: field:account.intrastat.statement.purchase.section1,write_uid:0
+#: field:account.intrastat.statement.purchase.section2,write_uid:0
+#: field:account.intrastat.statement.purchase.section3,write_uid:0
+#: field:account.intrastat.statement.purchase.section4,write_uid:0
+#: field:account.intrastat.statement.sale.section1,write_uid:0
+#: field:account.intrastat.statement.sale.section2,write_uid:0
+#: field:account.intrastat.statement.sale.section3,write_uid:0
+#: field:account.intrastat.statement.sale.section4,write_uid:0
+#: field:account.intrastat.transation.nature,write_uid:0
+#: field:account.intrastat.transport,write_uid:0
+#: field:account.invoice.intrastat,write_uid:0
+#. module: l10n_it_intrastat
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#: field:account.intrastat.custom,write_date:0
+#: field:account.intrastat.export.file,write_date:0
+#: field:account.intrastat.statement,write_date:0
+#: field:account.intrastat.statement.purchase.section1,write_date:0
+#: field:account.intrastat.statement.purchase.section2,write_date:0
+#: field:account.intrastat.statement.purchase.section3,write_date:0
+#: field:account.intrastat.statement.purchase.section4,write_date:0
+#: field:account.intrastat.statement.sale.section1,write_date:0
+#: field:account.intrastat.statement.sale.section2,write_date:0
+#: field:account.intrastat.statement.sale.section3,write_date:0
+#: field:account.intrastat.statement.sale.section4,write_date:0
+#: field:account.intrastat.transation.nature,write_date:0
+#: field:account.intrastat.transport,write_date:0
+#: field:account.invoice.intrastat,write_date:0
+#. module: l10n_it_intrastat
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#: selection:product.category,intrastat_type:0
+#: selection:product.template,intrastat_type:0
+#. module: l10n_it_intrastat
+msgid "Miscellaneous"
+msgstr "Varie"
+
+#: selection:account.intrastat.statement,period_type:0
+#. module: l10n_it_intrastat
+msgid "Month"
+msgstr "Mese"
+
+#: field:account.intrastat.statement.purchase.section2,month:0
+#: field:account.intrastat.statement.sale.section2,month:0
+#. module: l10n_it_intrastat
+msgid "Month Ref of Refund"
+msgstr "Mese di riferimento del riepilogo da rettificare"
+
+#: field:account.intrastat.custom,name:0
+#: field:account.intrastat.transation.nature,name:0
+#: field:account.intrastat.transport,name:0
+#. module: l10n_it_intrastat
+msgid "Name"
+msgstr "Nome"
+
+#: selection:account.intrastat.statement,special_cases:0
+#. module: l10n_it_intrastat
+msgid "None of the above cases"
+msgstr "Nessuno dei casi precedenti"
+
+#: selection:account.intrastat.statement,content_type:0
+#. module: l10n_it_intrastat
+msgid "Normal Period"
+msgstr "Periodo Normale"
+
+#: field:account.intrastat.statement,number:0
+#. module: l10n_it_intrastat
+msgid "Number"
+msgstr "Numero"
+
+#: field:account.intrastat.statement,purchase_section1_operation_amount:0
+#: field:account.intrastat.statement,purchase_section2_operation_amount:0
+#: field:account.intrastat.statement,purchase_section3_operation_amount:0
+#: field:account.intrastat.statement,purchase_section4_operation_amount:0
+#: field:account.intrastat.statement,sale_section1_operation_amount:0
+#: field:account.intrastat.statement,sale_section2_operation_amount:0
+#: field:account.intrastat.statement,sale_section3_operation_amount:0
+#: field:account.intrastat.statement,sale_section4_operation_amount:0
+#. module: l10n_it_intrastat
+msgid "Operation Amount"
+msgstr "Importo Operazioni"
+
+#: field:account.intrastat.statement,purchase_section1_operation_number:0
+#: field:account.intrastat.statement,purchase_section2_operation_number:0
+#: field:account.intrastat.statement,purchase_section3_operation_number:0
+#: field:account.intrastat.statement,purchase_section4_operation_number:0
+#: field:account.intrastat.statement,sale_section1_operation_number:0
+#: field:account.intrastat.statement,sale_section2_operation_number:0
+#: field:account.intrastat.statement,sale_section3_operation_number:0
+#: field:account.intrastat.statement,sale_section4_operation_number:0
+#. module: l10n_it_intrastat
+msgid "Operation Nr"
+msgstr "Nr Operazioni"
+
+#: view:account.invoice.intrastat:l10n_it_intrastat.view_form_invoice_intrastat_form
+#. module: l10n_it_intrastat
+msgid "Origin"
+msgstr "Origine"
+
+#: selection:account.intrastat.statement.purchase.section3,payment_method:0
+#: selection:account.intrastat.statement.purchase.section4,payment_method:0
+#: selection:account.intrastat.statement.sale.section3,payment_method:0
+#: selection:account.intrastat.statement.sale.section4,payment_method:0
+#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.payment.term,intrastat_code:0
+#. module: l10n_it_intrastat
+msgid "Other"
+msgstr "Altro"
+
+#: field:account.intrastat.statement.purchase.section1,partner_id:0
+#: field:account.intrastat.statement.purchase.section2,partner_id:0
+#: field:account.intrastat.statement.purchase.section3,partner_id:0
+#: field:account.intrastat.statement.purchase.section4,partner_id:0
+#: field:account.intrastat.statement.sale.section1,partner_id:0
+#: field:account.intrastat.statement.sale.section2,partner_id:0
+#: field:account.intrastat.statement.sale.section3,partner_id:0
+#: field:account.intrastat.statement.sale.section4,partner_id:0
+#. module: l10n_it_intrastat
+msgid "Partner"
+msgstr "Partner"
+
+#: field:account.intrastat.statement.purchase.section3,payment_method:0
+#: field:account.intrastat.statement.purchase.section4,payment_method:0
+#: field:account.intrastat.statement.sale.section3,payment_method:0
+#: field:account.intrastat.statement.sale.section4,payment_method:0
+#: field:account.invoice.intrastat,payment_method:0
+#: field:account.payment.term,intrastat_code:0
+#. module: l10n_it_intrastat
+msgid "Payment Method"
+msgstr "Metodo di pagamento"
+
+#: model:ir.model,name:l10n_it_intrastat.model_account_payment_term
+#. module: l10n_it_intrastat
+msgid "Payment Term"
+msgstr "Termine di pagamento"
+
+#: field:account.intrastat.statement,period_number:0
+#. module: l10n_it_intrastat
+msgid "Period"
+msgstr "Periodo"
+
+#: code:addons/l10n_it_intrastat/models/intrastat.py:736
+#. module: l10n_it_intrastat
+#, python-format
+msgid "Period Not Valid! Range accepted: from 1 to 12"
+msgstr "Periodo non Valido! Per MESE, i valori possibili sono da 1 a 12"
+
+#: code:addons/l10n_it_intrastat/models/intrastat.py:740
+#. module: l10n_it_intrastat
+#, python-format
+msgid "Period Not Valid! Range accepted: from 1 to 4"
+msgstr "Period Not Valid! Range acPeriodo non Valido! Per TRIMESTRE, i valori possibili sono da 1 a 4"
+
+#: field:account.intrastat.statement,period_type:0
+#. module: l10n_it_intrastat
+msgid "Period Type"
+msgstr "Tipo periodo"
+
+#: model:ir.model,name:l10n_it_intrastat.model_product_category
+#. module: l10n_it_intrastat
+msgid "Product Category"
+msgstr "Categoria Prodotto"
+
+#: model:ir.model,name:l10n_it_intrastat.model_product_template
+#. module: l10n_it_intrastat
+msgid "Product Template"
+msgstr "Modello Prodotto"
+
+#: field:account.intrastat.statement.purchase.section1,progressive:0
+#: field:account.intrastat.statement.purchase.section2,progressive:0
+#: field:account.intrastat.statement.purchase.section3,progressive:0
+#: field:account.intrastat.statement.purchase.section4,progressive:0
+#: field:account.intrastat.statement.sale.section1,progressive:0
+#: field:account.intrastat.statement.sale.section2,progressive:0
+#: field:account.intrastat.statement.sale.section3,progressive:0
+#: field:account.intrastat.statement.sale.section4,progressive:0
+#. module: l10n_it_intrastat
+msgid "Progressive"
+msgstr "Progressivo"
+
+#: field:account.intrastat.statement.purchase.section4,progressive_to_modify_id:0
+#: field:account.intrastat.statement.sale.section4,progressive_to_modify_id:0
+#. module: l10n_it_intrastat
+msgid "Progressive to Modify"
+msgstr "Progressivo della sezione 3 da rettificare"
+
+#: field:account.intrastat.statement.purchase.section4,protocol:0
+#: field:account.intrastat.statement.sale.section4,protocol:0
+#. module: l10n_it_intrastat
+msgid "Protocol number"
+msgstr "Protocollo della dichiarazione da rettificare"
+
+#: field:account.intrastat.statement.purchase.section1,province_destination_id:0
+#. module: l10n_it_intrastat
+msgid "Province Destination"
+msgstr "Provincia di Destinazione"
+
+#: field:account.intrastat.statement.sale.section1,province_origin_id:0
+#: field:account.invoice.intrastat,province_origin_id:0
+#. module: l10n_it_intrastat
+msgid "Province Origin"
+msgstr "Provincia di Origine"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#: field:account.intrastat.statement,purchase:0
+#. module: l10n_it_intrastat
+msgid "Purchase"
+msgstr "Acquisti"
+
+#: field:account.intrastat.statement,purchase_section1_ids:0
+#. module: l10n_it_intrastat
+msgid "Purchase - Section 1"
+msgstr "Acquisti - Sezione 1"
+
+#: field:account.intrastat.statement,purchase_section2_ids:0
+#. module: l10n_it_intrastat
+msgid "Purchase - Section 2"
+msgstr "Acquisti - Sezione 2"
+
+#: field:account.intrastat.statement,purchase_section3_ids:0
+#. module: l10n_it_intrastat
+msgid "Purchase - Section 3"
+msgstr "Acquisti - Sezione 3"
+
+#: field:account.intrastat.statement,purchase_section4_ids:0
+#. module: l10n_it_intrastat
+msgid "Purchase - Section 4"
+msgstr "Acquisti - Sezione 4"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Purchase s1"
+msgstr "Acquisti s1"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Purchase s2"
+msgstr "Acquisti s2"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Purchase s3"
+msgstr "Acquisti s3"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Purchase s4"
+msgstr "Acquisti s4"
+
+#: selection:account.intrastat.statement,period_type:0
+#. module: l10n_it_intrastat
+msgid "Quarterly"
+msgstr "Trimestre"
+
+#: field:account.intrastat.statement.purchase.section2,quarterly:0
+#: field:account.intrastat.statement.sale.section2,quarterly:0
+#. module: l10n_it_intrastat
+msgid "Quarterly Ref of Refund"
+msgstr "Trimestre di riferimento del riepilogo da rettificare"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Recompute"
+msgstr "Ricalcola"
+
+#: view:account.invoice:l10n_it_intrastat.account_intrastat_invoice_form
+#: view:account.invoice:l10n_it_intrastat.account_intrastat_invoice_supplier_form
+#. module: l10n_it_intrastat
+msgid "Recompute Intrastat Lines"
+msgstr "Ricalcola Linee Intrastat"
+
+#: selection:account.intrastat.statement.purchase.section3,supply_method:0
+#: selection:account.intrastat.statement.purchase.section4,supply_method:0
+#: selection:account.intrastat.statement.sale.section3,supply_method:0
+#: selection:account.intrastat.statement.sale.section4,supply_method:0
+#: selection:account.invoice.intrastat,supply_method:0
+#. module: l10n_it_intrastat
+msgid "Repeatedly"
+msgstr "Repeatedly"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#: field:account.intrastat.statement,sale:0
+#. module: l10n_it_intrastat
+msgid "Sale"
+msgstr "Vendite"
+
+#: field:account.intrastat.statement,sale_section1_ids:0
+#. module: l10n_it_intrastat
+msgid "Sale - Section 1"
+msgstr "Vendite - Sezione 1"
+
+#: field:account.intrastat.statement,sale_section2_ids:0
+#. module: l10n_it_intrastat
+msgid "Sale - Section 2"
+msgstr "Vendite - Sezione 2"
+
+#: field:account.intrastat.statement,sale_section3_ids:0
+#. module: l10n_it_intrastat
+msgid "Sale - Section 3"
+msgstr "Vendite - Sezione 3"
+
+#: field:account.intrastat.statement,sale_section4_ids:0
+#. module: l10n_it_intrastat
+msgid "Sale - Section 4"
+msgstr "Vendite - Sezione 4"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Sale s1"
+msgstr "Vendite s1"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Sale s2"
+msgstr "Vendite s2"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Sale s3"
+msgstr "Vendite s3"
+
+#: selection:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Sale s4"
+msgstr "Vendite s4"
+
+#: selection:account.intrastat.statement,intrastat_code_type:0
+#: selection:account.invoice.intrastat,intrastat_code_type:0
+#: selection:product.category,intrastat_type:0
+#: selection:product.template,intrastat_type:0
+#. module: l10n_it_intrastat
+msgid "Service"
+msgstr "Servizio"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Services Purchase - Section 3"
+msgstr "Servizi Acquisti - Sezione 3"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Services Refund - Section 4"
+msgstr "Rettifica Servizi - Sezioni 4"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Services Refund Purchase - Section 4"
+msgstr "Rettifica Servizi - Sezione 4"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat
+msgid "Services Sale - Section 3"
+msgstr "Vendita Servizi - Sezione 3"
+
+#: field:account.intrastat.statement.purchase.section2,sign_variation:0
+#: field:account.intrastat.statement.sale.section2,sign_variation:0
+#. module: l10n_it_intrastat
+msgid "Sign Variation"
+msgstr "Segno Variazione"
+
+#: field:account.intrastat.statement,special_cases:0
+#. module: l10n_it_intrastat
+msgid "Special Cases"
+msgstr "Casi Speciali"
+
+#: field:account.intrastat.export.file,state:0
+#. module: l10n_it_intrastat
+msgid "State"
+msgstr "Stato"
+
+#: field:account.intrastat.statement.purchase.section1,statement_id:0
+#: field:account.intrastat.statement.purchase.section2,statement_id:0
+#: field:account.intrastat.statement.purchase.section3,statement_id:0
+#: field:account.intrastat.statement.purchase.section4,statement_id:0
+#: field:account.intrastat.statement.sale.section1,statement_id:0
+#: field:account.intrastat.statement.sale.section2,statement_id:0
+#: field:account.intrastat.statement.sale.section3,statement_id:0
+#: field:account.intrastat.statement.sale.section4,statement_id:0
+#. module: l10n_it_intrastat
+msgid "Statement"
+msgstr "Dichiarazione"
+
+#: field:account.invoice.intrastat,statement_section:0
+#. module: l10n_it_intrastat
+msgid "Statement Section"
+msgstr "Sezione Dichiarazione"
+
+#: field:account.intrastat.statement,purchase_statement_sequence:0
+#: field:account.intrastat.statement,sale_statement_sequence:0
+#. module: l10n_it_intrastat
+msgid "Statement Sequence"
+msgstr "Statement Sequence"
+
+#: selection:account.intrastat.statement,intrastat_type_data:0
+#: selection:account.invoice.intrastat,intrastat_type_data:0
+#. module: l10n_it_intrastat
+msgid "Statistic"
+msgstr "Statistico"
+
+#: field:account.intrastat.statement.purchase.section1,statistic_amount_euro:0
+#: field:account.intrastat.statement.purchase.section2,statistic_amount_euro:0
+#: field:account.intrastat.statement.sale.section1,statistic_amount_euro:0
+#: field:account.intrastat.statement.sale.section2,statistic_amount_euro:0
+#: field:account.invoice.intrastat,statistic_amount_euro:0
+#. module: l10n_it_intrastat
+msgid "Statistic Amount Euro"
+msgstr "Importo statistico Euro"
+
+#: field:account.fiscal.position,intrastat:0
+#: field:account.invoice,intrastat:0
+#. module: l10n_it_intrastat
+msgid "Subject to Intrastat"
+msgstr "Soggetto a Intrastat"
+
+#: field:account.intrastat.statement,date:0
+#. module: l10n_it_intrastat
+msgid "Submission Date"
+msgstr "Data Presentazione"
+
+#: field:account.intrastat.statement.purchase.section3,supply_method:0
+#: field:account.intrastat.statement.purchase.section4,supply_method:0
+#: field:account.intrastat.statement.sale.section3,supply_method:0
+#: field:account.intrastat.statement.sale.section4,supply_method:0
+#: field:account.invoice.intrastat,supply_method:0
+#. module: l10n_it_intrastat
+msgid "Supply Method"
+msgstr "Modalità di erogazione"
+
+#: view:account.intrastat.statement.purchase.section1:l10n_it_intrastat.view_tree_statement_purchase_section1
+#: view:account.intrastat.statement.purchase.section2:l10n_it_intrastat.view_tree_statement_purchase_section2
+#: view:account.intrastat.statement.purchase.section3:l10n_it_intrastat.view_tree_statement_purchase_section3
+#: view:account.intrastat.statement.purchase.section4:l10n_it_intrastat.view_tree_statement_purchase_section4
+#: view:account.intrastat.statement.sale.section1:l10n_it_intrastat.view_tree_statement_sale_section1
+#: view:account.intrastat.statement.sale.section2:l10n_it_intrastat.view_tree_statement_sale_section2
+#: view:account.intrastat.statement.sale.section3:l10n_it_intrastat.view_tree_statement_sale_section3
+#: view:account.intrastat.statement.sale.section4:l10n_it_intrastat.view_tree_statement_sale_section4
+#: view:account.invoice.intrastat:l10n_it_intrastat.view_tree_invoice_intrastat_form
+#. module: l10n_it_intrastat
+msgid "Total"
+msgstr "Totale"
+
+#: code:addons/l10n_it_intrastat/models/account.py:186
+#. module: l10n_it_intrastat
+#, python-format
+msgid "Total Intrastat must be ugual to                    Total Invoice Untaxed"
+msgstr "Total Intrastat must be ugual to                    Total Invoice Untaxed"
+
+#: field:account.intrastat.statement.purchase.section1,transation_nature_id:0
+#: field:account.intrastat.statement.purchase.section2,transation_nature_id:0
+#: field:account.intrastat.statement.sale.section1,transation_nature_id:0
+#: field:account.intrastat.statement.sale.section2,transation_nature_id:0
+#: view:account.intrastat.transation.nature:l10n_it_intrastat.account_intrastat_transation_nature_view_form
+#: view:account.intrastat.transation.nature:l10n_it_intrastat.account_intrastat_transation_nature_view_tree
+#: field:account.invoice.intrastat,transation_nature_id:0
+#: model:ir.actions.act_window,name:l10n_it_intrastat.action_account_intrastat_transation_nature_transport
+#: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_transation_nature
+#. module: l10n_it_intrastat
+msgid "Transation Nature"
+msgstr "Transation Nature"
+
+#: selection:account.intrastat.statement.purchase.section3,payment_method:0
+#: selection:account.intrastat.statement.purchase.section4,payment_method:0
+#: selection:account.intrastat.statement.sale.section3,payment_method:0
+#: selection:account.intrastat.statement.sale.section4,payment_method:0
+#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.payment.term,intrastat_code:0
+#. module: l10n_it_intrastat
+msgid "Transfer"
+msgstr "Transfer"
+
+#: field:account.intrastat.statement.purchase.section1,transport_code_id:0
+#: field:account.intrastat.statement.sale.section1,transport_code_id:0
+#: view:account.intrastat.transport:l10n_it_intrastat.account_intrastat_transport_view_form
+#: view:account.intrastat.transport:l10n_it_intrastat.account_intrastat_transport_view_tree
+#: field:account.invoice.intrastat,transport_code_id:0
+#: model:ir.actions.act_window,name:l10n_it_intrastat.action_account_intrastat_transport
+#: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_transport
+#. module: l10n_it_intrastat
+msgid "Transport"
+msgstr "Transport"
+
+#: field:res.company,intrastat_uom_kg_id:0
+#. module: l10n_it_intrastat
+msgid "Unit of measure for Kg"
+msgstr "Unit of measure for Kg"
+
+#: field:res.company,intrastat_ua_code:0
+#. module: l10n_it_intrastat
+msgid "User ID (UA Code)"
+msgstr "User ID (UA Code)"
+
+#: help:account.intrastat.statement,period_number:0
+#. module: l10n_it_intrastat
+msgid "Values accepted:        - Month : From 1 to 12         - Quarterly: From 1 to 4"
+msgstr "Values accepted:        - Month : From 1 to 12         - Quarterly: From 1 to 4"
+
+#: field:account.intrastat.statement.sale.section1,vat_code:0
+#: field:account.intrastat.statement.sale.section2,vat_code:0
+#: field:account.intrastat.statement.sale.section3,vat_code:0
+#: field:account.intrastat.statement.sale.section4,vat_code:0
+#. module: l10n_it_intrastat
+msgid "Vat Code Customer"
+msgstr "Vat Code Customer"
+
+#: field:account.intrastat.statement.purchase.section1,vat_code:0
+#: field:account.intrastat.statement.purchase.section2,vat_code:0
+#: field:account.intrastat.statement.purchase.section3,vat_code:0
+#: field:account.intrastat.statement.purchase.section4,vat_code:0
+#. module: l10n_it_intrastat
+msgid "Vat Code Partner"
+msgstr "Vat Code Partner"
+
+#: field:account.intrastat.statement,vat_delegate:0
+#. module: l10n_it_intrastat
+msgid "Vat delegate"
+msgstr "Vat delegate"
+
+#: field:account.intrastat.statement,vat_taxpayer:0
+#. module: l10n_it_intrastat
+msgid "Vat taxpayer"
+msgstr "Vat taxpayer"
+
+#: field:account.intrastat.statement.purchase.section1,weight_kg:0
+#: field:account.intrastat.statement.sale.section1,weight_kg:0
+#: field:account.invoice.intrastat,weight_kg:0
+#. module: l10n_it_intrastat
+msgid "Weight kg"
+msgstr "Weight kg"
+
+#: field:account.intrastat.statement,fiscalyear_id:0
+#. module: l10n_it_intrastat
+msgid "Year"
+msgstr "Year"
+
+#: field:account.intrastat.statement.purchase.section2,year_id:0
+#: field:account.intrastat.statement.sale.section2,year_id:0
+#. module: l10n_it_intrastat
+msgid "Year Ref of Refund"
+msgstr "Year Ref of Refund"
+
+#: field:account.intrastat.statement.purchase.section4,year_id:0
+#: field:account.intrastat.statement.sale.section4,year_id:0
+#. module: l10n_it_intrastat
+msgid "Year Ref of Variation"
+msgstr "Year Ref of Variation"
+
+#: selection:account.intrastat.export.file,state:0
+#. module: l10n_it_intrastat
+msgid "choose"
+msgstr "choose"
+
+#: selection:account.intrastat.export.file,state:0
+#. module: l10n_it_intrastat
+msgid "get"
+msgstr "get"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "or"
+msgstr "or"
+
+#: field:account.invoice.intrastat,province_destination_id:0
+#. module: l10n_it_intrastat
+msgid "province destination"
+msgstr "province destination"
+
+#: field:account.config.settings,module_payment_authorize:0
+#. module: l10n_it_intrastat
+msgid "unknown"
+msgstr "unknown"
+

@@ -3,7 +3,12 @@
 #    
 #    Author: Alessandro Camilli per Apulia Software srl
 #    Copyright (C) 2015
+<<<<<<< HEAD
 #    info@apuliasoftware.it - www.apuliasoftware.it - www.openforce.it
+=======
+#    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
+#    Openforce di Camilli Alessandro - www.openforce.it
+>>>>>>> 969fc6f34e012727da43d0ff339c1119bf96c2e9
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -27,8 +32,13 @@
     'description': """
     Taxation and customs European Union statements.
     """,
+<<<<<<< HEAD
     'author': 'Alessandro Camilli per Apulia Software srl',
     'website': 'http://www.apuliasoftware.it',
+=======
+    'author': 'Openforce di Alessandro Camilli per Apulia Software srl',
+    'website': 'http://apuliasoftware.it/',
+>>>>>>> 969fc6f34e012727da43d0ff339c1119bf96c2e9
     'license': 'AGPL-3',
     "depends": [
         'account',
@@ -36,12 +46,14 @@
         'stock',
         'report_intrastat'],
     "data": [
-        #'data/account.intrastat.transation.nature.csv',
-        #'data/account.intrastat.transport.csv',
-        #'data/account.intrastat.custom.csv',
-        #'data/report.intrastat.code.csv',
+        'data/account.intrastat.transation.nature.csv',
+        'data/account.intrastat.transport.csv',
+        'data/account.intrastat.custom.csv',
+        'data/report.intrastat.code.csv',
+        'data/sequence.xml',
         'security/ir.model.access.csv',
-        'views/statement.xml',
+        'wizard/export_file_view.xml',
+        'views/intrastat.xml',
         'views/product.xml',
         'views/account.xml',
         'views/config.xml',

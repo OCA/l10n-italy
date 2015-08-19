@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #    
+<<<<<<< HEAD
 #    Copyright (C) 2015
 #    Author: Alessandro Camilli per Apulia Software srl
 #    info@apuliasoftware.it - www.apuliasoftware.it - www.openforce.it
+=======
+#    Author: Alessandro Camilli (a.camilli@openforce.it)
+#    Copyright (C) 2015
+#    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
+#    Openforce di Camilli Alessandro - www.openforce.it
+>>>>>>> 969fc6f34e012727da43d0ff339c1119bf96c2e9
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -29,12 +36,8 @@ class res_company(models.Model):
     intrastat_uom_kg_id = fields.Many2one(
         'product.uom', string="Unit of measure for Kg",
         )
-
-
-class account_config_settings(models.TransientModel):
-    _inherit = 'account.config.settings'
-
-    intrastat_uom_kg_id = fields.Many2one(
-        'product.uom', string="Unit of measure for Kg",
-        related='company_id.intrastat_uom_kg_id',
-        )
+    intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4)
+    intrastat_delegated_vat = fields.Char(string="Delegated person VAT",
+                                          size=16)
+    intrastat_delegated_name = fields.Char(string="Delegated person", size=255)
+    intrastat_export_file_name = fields.Char(string="File name for export")

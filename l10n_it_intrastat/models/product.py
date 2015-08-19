@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
+#    Author: Alessandro Camilli (a.camilli@openforce.it)
 #    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
 #    Copyright (C) 2015
+#    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
+#    Openforce di Camilli Alessandro - www.openforce.it
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -60,11 +63,9 @@ class product_template(models.Model):
         intrastat_id = False
         # From Product
         if self.intrastat_id:
-            #intrastat_id = self.intrastat_id
             res['intrastat_code_id'] = self.intrastat_id.id
             res['intrastat_type'] = self.intrastat_type
         elif self.categ_id and self.categ_id.intrastat_code_id: 
-            #intrastat_id = self.categ_id.intrastat_code_id
             res['intrastat_code_id'] = self.categ_id.intrastat_code_id.id
             res['intrastat_type'] = self.categ_id.intrastat_type
         return res
