@@ -37,8 +37,8 @@ class res_company(models.Model):
     intrastat_export_file_name = fields.Char(string="File name for export")
 
     ### default values sale section
-    intrastat_sale_statistic_amount = fields.Boolean(
-        string='Force Statistic Amount Euro')
+    #intrastat_sale_statistic_amount = fields.Boolean(
+    #    string='Force Statistic Amount Euro')
     intrastat_sale_transation_nature_id = fields.Many2one(
         'account.intrastat.transation.nature', string='Transation Nature')
     intrastat_sale_delivery_code_id = fields.Many2one(
@@ -49,8 +49,8 @@ class res_company(models.Model):
     #    'res.country', string='Country Destination')
 
     ### default values purchase section
-    intrastat_purchase_statistic_amount = fields.Boolean(
-        string='Force Statistic Amount Euro')
+    #intrastat_purchase_statistic_amount = fields.Boolean(
+    #    string='Force Statistic Amount Euro')
     intrastat_purchase_transation_nature_id = fields.Many2one(
         'account.intrastat.transation.nature', string='Transation Nature')
     intrastat_purchase_delivery_code_id = fields.Many2one(
