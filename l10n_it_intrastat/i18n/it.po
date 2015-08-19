@@ -652,7 +652,7 @@ msgstr "Periodo Normale"
 #: field:account.intrastat.statement,number:0
 #. module: l10n_it_intrastat
 msgid "Number"
-msgstr "Numbero"
+msgstr "Numero"
 
 #: field:account.intrastat.statement,purchase_section1_operation_amount:0
 #: field:account.intrastat.statement,purchase_section2_operation_amount:0
