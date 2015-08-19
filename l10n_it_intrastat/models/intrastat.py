@@ -782,6 +782,9 @@ class account_intrastat_statement_sale_section1(models.Model):
         
     @api.model
     def _prepare_statement_line(self, inv_intra_line):
+        company_id = self._context.get(
+            'company_id', self.env.user.company_id)
+        # import pdb;pdb.set_trace()
         res = {
             'invoice_id' : inv_intra_line.invoice_id.id or False,
             'partner_id' : inv_intra_line.invoice_id.partner_id.id or False,
@@ -791,21 +794,36 @@ class account_intrastat_statement_sale_section1(models.Model):
                 and inv_intra_line.invoice_id.partner_id.vat[2:] \
                 or False,
             'amount_euro': round(inv_intra_line.amount_euro) or 0,
-            'transation_nature_id': inv_intra_line.transation_nature_id.id \
-                or False,
+            'transation_nature_id': (
+                inv_intra_line.transation_nature_id and
+                inv_intra_line.transation_nature_id.id) or (
+                company_id.intrastat_sale_transation_nature_id and
+                company_id.intrastat_sale_transation_nature_id.id) or
+                False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'weight_kg': round(inv_intra_line.weight_kg) or 0,
             'additional_units': 
-                inv_intra_line.additional_units and \
+                inv_intra_line.additional_units and
                 round(inv_intra_line.additional_units) or 0,
             'statistic_amount_euro': 
-                round(inv_intra_line.statistic_amount_euro) or 0,
-            'delivery_code_id': inv_intra_line.delivery_code_id and \
-                inv_intra_line.delivery_code_id.id or False,
-            'transport_code_id': inv_intra_line.transport_code_id and \
-                inv_intra_line.transport_code_id.id or False,
-            'country_destination_id': inv_intra_line.country_destination_id \
-                and inv_intra_line.country_destination_id.id or False,
+                round(inv_intra_line.statistic_amount_euro) or
+                round(company_id.intrastat_sale_statistic_amount) or 0,
+            'delivery_code_id': (
+                inv_intra_line.delivery_code_id and
+                inv_intra_line.delivery_code_id.id) or (
+                company_id.intrastat_sale_delivery_code_id and
+                company_id.intrastat_sale_delivery_code_id.id) or False,
+            'transport_code_id': (
+                inv_intra_line.transport_code_id and
+                inv_intra_line.transport_code_id.id) or (
+                company_id.intrastat_sale_transport_code_id and
+                company_id.intrastat_sale_transport_code_id.id) or False,
+            'country_destination_id': (
+                inv_intra_line.country_destination_id and
+                inv_intra_line.country_destination_id.id) or (
+                company_id.intrastat_sale_country_destination_id and
+                company_id.intrastat_sale_country_destination_id.id) or
+                False,
             'province_origin_id': inv_intra_line.province_origin_id \
                 and inv_intra_line.province_origin_id.id or False,
         }
@@ -886,6 +904,8 @@ class account_intrastat_statement_sale_section2(models.Model):
     
     @api.model
     def _prepare_statement_line(self, inv_intra_line):
+        company_id = self._context.get(
+            'company_id', self.env.user.company_id)
         res = {
             'invoice_id' : inv_intra_line.invoice_id.id or False,
             'partner_id' : inv_intra_line.invoice_id.partner_id.id or False,
@@ -895,11 +915,16 @@ class account_intrastat_statement_sale_section2(models.Model):
                 and inv_intra_line.invoice_id.partner_id.vat[2:] \
                 or False,
             'amount_euro': round(inv_intra_line.amount_euro) or 0,
-            'transation_nature_id': inv_intra_line.transation_nature_id.id \
-                or False,
+            'transation_nature_id': (
+                inv_intra_line.transation_nature_id and
+                inv_intra_line.transation_nature_id.id) or (
+                company_id.intrastat_sale_transation_nature_id and
+                company_id.intrastat_sale_transation_nature_id.id) or
+                False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'statistic_amount_euro': 
-                round(inv_intra_line.statistic_amount_euro) or 0,
+                round(inv_intra_line.statistic_amount_euro) or
+                round(company_id.intrastat_sale_statistic_amount) or 0,
         }
         return res
     
@@ -1176,6 +1201,8 @@ class account_intrastat_statement_purchase_section1(models.Model):
             
     @api.model
     def _prepare_statement_line(self, inv_intra_line):
+        company_id = self._context.get(
+            'company_id', self.env.user.company_id)
         res = {
             'invoice_id' : inv_intra_line.invoice_id.id or False,
             'partner_id' : inv_intra_line.invoice_id.partner_id.id or False,
@@ -1186,8 +1213,12 @@ class account_intrastat_statement_purchase_section1(models.Model):
                 or False,
             'amount_euro': round(inv_intra_line.amount_euro) or 0,
             'amount_currency': round(inv_intra_line.amount_currency) or 0,
-            'transation_nature_id': inv_intra_line.transation_nature_id.id \
-                or False,
+            'transation_nature_id': (
+                inv_intra_line.transation_nature_id and
+                inv_intra_line.transation_nature_id.id) or (
+                company_id.intrastat_purchase_transation_nature_id and
+                company_id.intrastat_purchase_transation_nature_id.id) or
+                False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'weight_kg': 
                 inv_intra_line.weight_kg and round(inv_intra_line.weight_kg) 
@@ -1196,11 +1227,19 @@ class account_intrastat_statement_purchase_section1(models.Model):
                 inv_intra_line.additional_units and \
                 round(inv_intra_line.additional_units) or 0,
             'statistic_amount_euro': 
-                round(inv_intra_line.statistic_amount_euro) or 0,
-            'delivery_code_id': inv_intra_line.delivery_code_id and \
-                inv_intra_line.delivery_code_id.id or False,
-            'transport_code_id': inv_intra_line.transport_code_id and \
-                inv_intra_line.transport_code_id.id or False,
+                round(inv_intra_line.statistic_amount_euro) or
+                round(company_id.intrastat_purchase_statistic_amount) or 0,
+            'delivery_code_id': (
+                inv_intra_line.delivery_code_id and
+                inv_intra_line.delivery_code_id.id) or (
+                company_id.intrastat_purchase_delivery_code_id and
+                company_id.intrastat_purchase_delivery_code_id.id) or
+                False,
+            'transport_code_id': (
+                inv_intra_line.transport_code_id and
+                inv_intra_line.transport_code_id.id) or (
+                company_id.intrastat_purchase_transport_code_id and
+                company_id.intrastat_purchase_transport_code_id.id) or False,
             'country_origin_id': inv_intra_line.country_origin_id and \
                 inv_intra_line.country_origin_id.id or False,
             'country_good_origin_id': inv_intra_line.country_good_origin_id \
@@ -1291,6 +1330,8 @@ class account_intrastat_statement_purchase_section2(models.Model):
     
     @api.model
     def _prepare_statement_line(self, inv_intra_line):
+        company_id = self._context.get(
+            'company_id', self.env.user.company_id)
         res = {
             'invoice_id' : inv_intra_line.invoice_id.id or False,
             'partner_id' : inv_intra_line.invoice_id.partner_id.id or False,
@@ -1301,10 +1342,16 @@ class account_intrastat_statement_purchase_section2(models.Model):
                 or False,
             'amount_euro': round(inv_intra_line.amount_euro) or 0,
             'amount_currency': round(inv_intra_line.amount_currency) or 0,
-            'transation_nature_id': inv_intra_line.transation_nature_id.id \
-                or False,
+            'transation_nature_id': (
+                inv_intra_line.transation_nature_id and
+                inv_intra_line.transation_nature_id.id) or (
+                company_id.intrastat_purchase_transation_nature_id and
+                company_id.intrastat_purchase_transation_nature_id.id) or
+                False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
-            'statistic_amount_euro': inv_intra_line.statistic_amount_euro or 0,
+            'statistic_amount_euro':
+                round(inv_intra_line.statistic_amount_euro) or
+                round(company_id.intrastat_purchase_statistic_amount) or 0,
         }
         return res
     
