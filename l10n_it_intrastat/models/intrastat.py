@@ -308,7 +308,9 @@ class account_intrastat_statement(models.Model):
         prg = self._get_progressive_interchange()
         file_name = ''
         date_obj = datetime.strptime(self.date, '%Y-%m-%d')
-        if self.company_id.intrastat_export_file_name:
+        if self.env.context.get('export_filename'):
+            file_name = self.env.context.get('export_filename')
+        elif self.company_id.intrastat_export_file_name:
             file_name = self.company_id.intrastat_export_file_name
         else:
             file_name = '%s%s%s.%s%s' % (self.company_id.intrastat_ua_code,
@@ -468,8 +470,10 @@ class account_intrastat_statement(models.Model):
     @api.model
     def generate_file_export(self):
         file_content = ''
-        rec_head = self._prepare_export_head()
-        file_content += rec_head
+        # Head
+        if not self.env.context.get('export_without_head'):
+            rec_head = self._prepare_export_head()
+            file_content += rec_head
         # Purchase
         if self.purchase_section1_operation_number \
             or self.purchase_section2_operation_number \

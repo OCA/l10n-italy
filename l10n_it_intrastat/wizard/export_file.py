@@ -39,7 +39,6 @@ class account_intrastat_export_file(models.TransientModel):
 
     @api.multi
     def act_getfile(self):
-        
         statement_id = self.env.context.get('active_id')
         statement = self.env['account.intrastat.statement'].browse(statement_id)
         file = statement.generate_file_export()
