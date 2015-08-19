@@ -22,6 +22,7 @@
 ##############################################################################
 
 from openerp import models, fields, api
+import openerp.addons.decimal_precision as dp
 
 
 class res_company(models.Model):
@@ -35,3 +36,25 @@ class res_company(models.Model):
                                           size=16)
     intrastat_delegated_name = fields.Char(string="Delegated person", size=255)
     intrastat_export_file_name = fields.Char(string="File name for export")
+
+    ### default values sale section
+    intrastat_sale_statistic_amount = fields.Integer(
+        string='Statistic Amount Euro', digits=dp.get_precision('Account'))
+    intrastat_sale_transation_nature_id = fields.Many2one(
+        'account.intrastat.transation.nature', string='Transation Nature')
+    intrastat_sale_delivery_code_id = fields.Many2one(
+        'stock.incoterms', string='Delivery')
+    intrastat_sale_transport_code_id = fields.Many2one(
+        'account.intrastat.transport', string='Transport')
+    #intrastat_sale_country_destination_id = fields.Many2one(
+    #    'res.country', string='Country Destination')
+
+    ### default values purchase section
+    intrastat_purchase_statistic_amount = fields.Integer(
+        string='Statistic Amount Euro', digits=dp.get_precision('Account'))
+    intrastat_purchase_transation_nature_id = fields.Many2one(
+        'account.intrastat.transation.nature', string='Transation Nature')
+    intrastat_purchase_delivery_code_id = fields.Many2one(
+        'stock.incoterms', string='Delivery')
+    intrastat_purchase_transport_code_id = fields.Many2one(
+        'account.intrastat.transport', string='Transport')
