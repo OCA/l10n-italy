@@ -28,13 +28,8 @@
     'description': """
     Taxation and customs European Union statements.
     """,
-<<<<<<< HEAD
-    'author': 'Alessandro Camilli per Apulia Software srl',
-    'website': 'http://www.apuliasoftware.it',
-=======
     'author': 'Openforce di Alessandro Camilli per Apulia Software srl',
     'website': 'http://apuliasoftware.it/',
->>>>>>> 969fc6f34e012727da43d0ff339c1119bf96c2e9
     'license': 'AGPL-3',
     "depends": [
         'account',
