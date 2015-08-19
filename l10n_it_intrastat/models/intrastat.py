@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #    
-<<<<<<< HEAD
-#    Copyright (C) 2015
-#    Author: Alessandro Camilli per Apulia Software srl
-#    info@apuliasoftware.it - www.apuliasoftware.it - www.openforce.it
-=======
 #    Author: Alessandro Camilli (a.camilli@openforce.it)
 #    Copyright (C) 2015
 #    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
 #    Openforce di Camilli Alessandro - www.openforce.it
->>>>>>> 969fc6f34e012727da43d0ff339c1119bf96c2e9
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
