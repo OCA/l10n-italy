@@ -22,13 +22,14 @@
 						<field name="intrastat_sale_transation_nature_id"/>
 						<field name="intrastat_sale_delivery_code_id"/>
 						<field name="intrastat_sale_transport_code_id"/>
-						<!-- <field name="intrastat_sale_country_destination_id"/> -->
+						<field name="intrastat_sale_province_origin_id"/>
 					</group>
 					<group string="Default purchase values">
 						<field name="intrastat_purchase_statistic_amount"/>
 						<field name="intrastat_purchase_transation_nature_id"/>
 						<field name="intrastat_purchase_delivery_code_id"/>
 						<field name="intrastat_purchase_transport_code_id"/>
+						<field name="intrastat_purchase_province_destination_id" />
 					</group>
 				</group>
            	</xpath>

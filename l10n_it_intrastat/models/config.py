@@ -45,8 +45,8 @@ class res_company(models.Model):
         'stock.incoterms', string='Delivery')
     intrastat_sale_transport_code_id = fields.Many2one(
         'account.intrastat.transport', string='Transport')
-    #intrastat_sale_country_destination_id = fields.Many2one(
-    #    'res.country', string='Country Destination')
+    intrastat_sale_province_origin_id = fields.Many2one(
+        'res.country.state', string='Province Origin')
 
     ### default values purchase section
     intrastat_purchase_statistic_amount = fields.Boolean(
@@ -57,3 +57,5 @@ class res_company(models.Model):
         'stock.incoterms', string='Delivery')
     intrastat_purchase_transport_code_id = fields.Many2one(
         'account.intrastat.transport', string='Transport')
+    intrastat_purchase_province_destination_id = fields.Many2one(
+        'res.country.state', string='Province Destination')

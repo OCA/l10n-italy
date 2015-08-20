@@ -821,8 +821,11 @@ class account_intrastat_statement_sale_section1(models.Model):
             'country_destination_id': (
                 inv_intra_line.country_destination_id and
                 inv_intra_line.country_destination_id.id) or False,
-            'province_origin_id': inv_intra_line.province_origin_id \
-                and inv_intra_line.province_origin_id.id or False,
+            'province_origin_id': (
+                inv_intra_line.province_origin_id and
+                inv_intra_line.province_origin_id.id) or
+                (company_id.intrastat_sale_province_origin_id and
+                 company_id.intrastat_sale_province_origin_id.id) or False,
         }
         return res
     
@@ -1243,8 +1246,12 @@ class account_intrastat_statement_purchase_section1(models.Model):
                 inv_intra_line.country_origin_id.id or False,
             'country_good_origin_id': inv_intra_line.country_good_origin_id \
                 and inv_intra_line.country_good_origin_id.id or False,
-            'province_destination_id': inv_intra_line.province_destination_id \
-                and inv_intra_line.province_destination_id.id or False
+            'province_destination_id': (
+                inv_intra_line.province_destination_id and
+                inv_intra_line.province_destination_id.id) or (
+                company_id.intrastat_purchase_province_destination_id and
+                company_id.intrastat_purchase_province_destination_id.id) or
+                False
         }
         return res
     
