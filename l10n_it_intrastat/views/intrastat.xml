@@ -25,6 +25,10 @@
             <field name="model">account.intrastat.statement</field>
             <field name="arch" type="xml">
                 <form string="INTRASTAT Statement">
+                	<header>
+                        <button name="compute_statement" string="Recompute" type="object"/>
+                        <button name="%(action_wizard_wizard_account_intrastat_export_file)d" string="Export File" type="action"/>
+                    </header>
                     <sheet>
                         <group>
 	                        <group>
@@ -44,11 +48,6 @@
 	                        </group>
                         </group>
                         <newline/>
-                        <group>
-                        	<button name="compute_statement" string="Recompute" type="object"/>
-                        	<button name="%(action_wizard_wizard_account_intrastat_export_file)d" 
-                        		string="Export File" type="action"/>
-                        </group>
                         <notebook>
                             <page string="Sale">
                                 <group>
