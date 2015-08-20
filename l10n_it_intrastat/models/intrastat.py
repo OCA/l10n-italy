@@ -474,11 +474,13 @@ class account_intrastat_statement(models.Model):
         if not self.env.context.get('export_without_head'):
             rec_head = self._prepare_export_head()
             file_content += rec_head
+        content_sale = self.env.context.get('sale')
+        content_purchase = self.env.context.get('purchase')
         # Purchase
-        if self.purchase_section1_operation_number \
-            or self.purchase_section2_operation_number \
-            or self.purchase_section3_operation_number \
-            or self.purchase_section4_operation_number:
+        if (self.purchase_section1_operation_number or
+            self.purchase_section2_operation_number or
+            self.purchase_section3_operation_number or
+            self.purchase_section4_operation_number) and content_purchase:
             # frontispiece
             rec_frontispiece = self._prepare_export_frontispiece("purchase")
             file_content += rec_frontispiece
@@ -512,10 +514,10 @@ class account_intrastat_statement(models.Model):
                 file_content += rcd
             
         # Sale
-        if self.sale_section1_operation_number \
-            or self.sale_section2_operation_number \
-            or self.sale_section3_operation_number \
-            or self.sale_section4_operation_number:
+        if (self.sale_section1_operation_number or
+            self.sale_section2_operation_number or
+            self.sale_section3_operation_number or
+            self.sale_section4_operation_number) and content_sale:
             # frontispiece
             rec_frontispiece = self._prepare_export_frontispiece("sale")
             file_content += rec_frontispiece
