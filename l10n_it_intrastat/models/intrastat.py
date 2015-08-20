@@ -784,7 +784,6 @@ class account_intrastat_statement_sale_section1(models.Model):
     def _prepare_statement_line(self, inv_intra_line):
         company_id = self._context.get(
             'company_id', self.env.user.company_id)
-        # import pdb;pdb.set_trace()
         res = {
             'invoice_id' : inv_intra_line.invoice_id.id or False,
             'partner_id' : inv_intra_line.invoice_id.partner_id.id or False,
@@ -1259,7 +1258,12 @@ class account_intrastat_statement_purchase_section1(models.Model):
         # Ammontare delle operazioni in euro
         rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
         # Ammontare delle operazioni in valuta
-        rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        # >> da valorizzare solo per operazione Paesi non Euro
+        if not self.invoice_id.company_id.currency_id.id == \
+                self.invoice_id.currency_id.id:
+            rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        else:
+            rcd += '{:13s}'.format(str(0).zfill(13))
         # Codice della natura della transazione
         rcd += '{:1s}'.format(
             self.transation_nature_id and self.transation_nature_id.code or '')
@@ -1377,7 +1381,12 @@ class account_intrastat_statement_purchase_section2(models.Model):
         # Ammontare delle operazioni in euro
         rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
         # Ammontare delle operazioni in valuta
-        rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        # >> da valorizzare solo per operazione Paesi non Euro
+        if not self.invoice_id.company_id.currency_id.id == \
+                self.invoice_id.currency_id.id:
+            rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        else:
+            rcd += '{:13s}'.format(str(0).zfill(13))
         # Codice della natura della transazione
         rcd += '{:1s}'.format(
             self.transation_nature_id and self.transation_nature_id.code or '')
@@ -1457,7 +1466,12 @@ class account_intrastat_statement_purchase_section3(models.Model):
         # Ammontare delle operazioni in euro
         rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
         # Ammontare delle operazioni in valuta
-        rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        # >> da valorizzare solo per operazione Paesi non Euro
+        if not self.invoice_id.company_id.currency_id.id == \
+                self.invoice_id.currency_id.id:
+            rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        else:
+            rcd += '{:13s}'.format(str(0).zfill(13))
         # Numero Fattura
         rcd += '{:15s}'.format(str(self.invoice_number).zfill(15))
         # Data Fattura
@@ -1572,7 +1586,12 @@ class account_intrastat_statement_purchase_section4(models.Model):
         # Ammontare delle operazioni in euro
         rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
         # Ammontare delle operazioni in valuta
-        rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        # >> da valorizzare solo per operazione Paesi non Euro
+        if not self.invoice_id.company_id.currency_id.id == \
+                self.invoice_id.currency_id.id:
+            rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
+        else:
+            rcd += '{:13s}'.format(str(0).zfill(13))
         # Numero Fattura
         rcd += '{:15s}'.format(str(self.invoice_number).zfill(15))
         # Data Fattura
