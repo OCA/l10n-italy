@@ -474,11 +474,13 @@ class account_intrastat_statement(models.Model):
         if not self.env.context.get('export_without_head'):
             rec_head = self._prepare_export_head()
             file_content += rec_head
+        content_sale = self.env.context.get('sale')
+        content_purchase = self.env.context.get('purchase')
         # Purchase
-        if self.purchase_section1_operation_number \
-            or self.purchase_section2_operation_number \
-            or self.purchase_section3_operation_number \
-            or self.purchase_section4_operation_number:
+        if (self.purchase_section1_operation_number or
+            self.purchase_section2_operation_number or
+            self.purchase_section3_operation_number or
+            self.purchase_section4_operation_number) and content_purchase:
             # frontispiece
             rec_frontispiece = self._prepare_export_frontispiece("purchase")
             file_content += rec_frontispiece
@@ -512,10 +514,10 @@ class account_intrastat_statement(models.Model):
                 file_content += rcd
             
         # Sale
-        if self.sale_section1_operation_number \
-            or self.sale_section2_operation_number \
-            or self.sale_section3_operation_number \
-            or self.sale_section4_operation_number:
+        if (self.sale_section1_operation_number or
+            self.sale_section2_operation_number or
+            self.sale_section3_operation_number or
+            self.sale_section4_operation_number) and content_sale:
             # frontispiece
             rec_frontispiece = self._prepare_export_frontispiece("sale")
             file_content += rec_frontispiece
@@ -806,7 +808,8 @@ class account_intrastat_statement_sale_section1(models.Model):
                 round(inv_intra_line.additional_units) or 0,
             'statistic_amount_euro': 
                 round(inv_intra_line.statistic_amount_euro) or
-                round(company_id.intrastat_sale_statistic_amount) or 0,
+                (company_id.intrastat_sale_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
             'delivery_code_id': (
                 inv_intra_line.delivery_code_id and
                 inv_intra_line.delivery_code_id.id) or (
@@ -820,8 +823,11 @@ class account_intrastat_statement_sale_section1(models.Model):
             'country_destination_id': (
                 inv_intra_line.country_destination_id and
                 inv_intra_line.country_destination_id.id) or False,
-            'province_origin_id': inv_intra_line.province_origin_id \
-                and inv_intra_line.province_origin_id.id or False,
+            'province_origin_id': (
+                inv_intra_line.province_origin_id and
+                inv_intra_line.province_origin_id.id) or
+                (company_id.intrastat_sale_province_origin_id and
+                 company_id.intrastat_sale_province_origin_id.id) or False,
         }
         return res
     
@@ -920,7 +926,8 @@ class account_intrastat_statement_sale_section2(models.Model):
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'statistic_amount_euro': 
                 round(inv_intra_line.statistic_amount_euro) or
-                round(company_id.intrastat_sale_statistic_amount) or 0,
+                (company_id.intrastat_sale_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
         }
         return res
     
@@ -1224,7 +1231,8 @@ class account_intrastat_statement_purchase_section1(models.Model):
                 round(inv_intra_line.additional_units) or 0,
             'statistic_amount_euro': 
                 round(inv_intra_line.statistic_amount_euro) or
-                round(company_id.intrastat_purchase_statistic_amount) or 0,
+                (company_id.intrastat_purchase_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
             'delivery_code_id': (
                 inv_intra_line.delivery_code_id and
                 inv_intra_line.delivery_code_id.id) or (
@@ -1240,8 +1248,12 @@ class account_intrastat_statement_purchase_section1(models.Model):
                 inv_intra_line.country_origin_id.id or False,
             'country_good_origin_id': inv_intra_line.country_good_origin_id \
                 and inv_intra_line.country_good_origin_id.id or False,
-            'province_destination_id': inv_intra_line.province_destination_id \
-                and inv_intra_line.province_destination_id.id or False
+            'province_destination_id': (
+                inv_intra_line.province_destination_id and
+                inv_intra_line.province_destination_id.id) or (
+                company_id.intrastat_purchase_province_destination_id and
+                company_id.intrastat_purchase_province_destination_id.id) or
+                False
         }
         return res
     
@@ -1352,7 +1364,8 @@ class account_intrastat_statement_purchase_section2(models.Model):
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'statistic_amount_euro':
                 round(inv_intra_line.statistic_amount_euro) or
-                round(company_id.intrastat_purchase_statistic_amount) or 0,
+                (company_id.intrastat_purchase_statistic_amount and
+                 round(inv_intra_line.amount_euro)) or 0,
         }
         return res
     
