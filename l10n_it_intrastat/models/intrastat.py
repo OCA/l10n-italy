@@ -289,6 +289,58 @@ class account_intrastat_statement(models.Model):
         string='Operation Amount', store=True, readonly=True,
         compute='_compute_amount_purchase_s4')
     
+    
+    @api.model
+    def create(self, vals):
+        statement = super(account_intrastat_statement, self).create(vals)
+        statement._normalize_statement()
+        return statement;
+
+
+    @api.multi
+    def write(self, vals):
+        res = super(account_intrastat_statement, self).write(vals)
+        self._normalize_statement()
+        return res;
+
+
+    @api.one
+    def _normalize_statement(self):
+        # Unlink lines sale/purchase sections
+        if not self.sale:
+            self.with_context(unlink_section='sale')._unlink_sections()
+        if not self.purchase:
+            self.with_context(unlink_section='purchase')._unlink_sections()
+        return True
+    
+    
+    @api.one
+    def _unlink_sections(self):
+        # Unlink lines sale/purchase sections
+        section_to_unlink = self.env.context.get('unlink_section', 'all')
+        # sale
+        if section_to_unlink in ['all', 'sale']:
+            for line in self.sale_section1_ids:
+                line.unlink()
+            for line in self.sale_section2_ids:
+                line.unlink()
+            for line in self.sale_section3_ids:
+                line.unlink()
+            for line in self.sale_section4_ids:
+                line.unlink()
+        # purchase
+        if section_to_unlink in ['all', 'purchase']:
+            for line in self.purchase_section1_ids:
+                line.unlink()
+            for line in self.purchase_section2_ids:
+                line.unlink()
+            for line in self.purchase_section3_ids:
+                line.unlink()
+            for line in self.purchase_section4_ids:
+                line.unlink()
+        return True
+    
+    
     @api.model
     def _get_progressive_interchange(self):
         prg = 0
@@ -298,6 +350,7 @@ class account_intrastat_statement(models.Model):
             if st.id == self.id:
                 break
         return prg
+    
         
     @api.model
     def _get_file_name(self):
@@ -320,6 +373,7 @@ class account_intrastat_statement(models.Model):
                                 '{:2s}'.format(str(prg).zfill(2))
                                 )
         return file_name
+    
     
     @api.model
     def _prepare_export_head(self):
@@ -555,22 +609,7 @@ class account_intrastat_statement(models.Model):
     @api.one
     def compute_statement(self):
         # Unlink existing lines
-        for line in self.sale_section1_ids:
-            line.unlink()
-        for line in self.sale_section2_ids:
-            line.unlink()
-        for line in self.sale_section3_ids:
-            line.unlink()
-        for line in self.sale_section4_ids:
-            line.unlink()
-        for line in self.purchase_section1_ids:
-            line.unlink()
-        for line in self.purchase_section2_ids:
-            line.unlink()
-        for line in self.purchase_section3_ids:
-            line.unlink()
-        for line in self.purchase_section4_ids:
-            line.unlink()
+        self._unlink_sections()
         # Setting period
         date_start_year = datetime.strptime(self.fiscalyear_id.date_start, 
                                             '%Y-%m-%d')
@@ -602,6 +641,14 @@ class account_intrastat_statement(models.Model):
         domain = [('move_id.date', '>=', period_date_start),
                   ('move_id.date', '<=', period_date_stop),
                   ('intrastat', '=', True)]
+        # ... sale - purchase
+        inv_type = []
+        if self.sale:
+            inv_type += ['out_invoice', 'out_refund']
+        if self.purchase:
+            inv_type += ['in_invoice', 'in_refund']
+        domain.append(('type', 'in', inv_type))
+        
         statement_lines_sale_s1 = []
         statement_lines_sale_s2 = []
         statement_lines_sale_s3 = []

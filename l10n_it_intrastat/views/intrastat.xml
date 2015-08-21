@@ -13,6 +13,8 @@
                 <tree string="INTRASTAT Statement" version="7.0">
                     <field name="number"/>
                     <field name="date"/>
+                    <field name="sale"/>
+                    <field name="purchase"/>
                     <field name="fiscalyear_id"/>
                     <field name="period_type"/>
                     <field name="period_number"/>
@@ -48,8 +50,16 @@
 	                        </group>
                         </group>
                         <newline/>
+                        <group>
+                        	<group>
+                        		<field name="sale"/>
+                        		<field name="purchase"/>
+                        	</group>
+                        	<group>
+                        	</group>
+                        </group>
                         <notebook>
-                            <page string="Sale">
+                            <page string="Sale" attrs="{'invisible':[('sale','=', False)]}">
                                 <group>
                                 	<field name="sale_statement_sequence" />
                                     <group string="Goods Sale - Section 1">
@@ -90,7 +100,7 @@
                                     </page>
                                 </notebook>
                             </page>
-                            <page string="Purchase">
+                            <page string="Purchase" attrs="{'invisible':[('purchase','=', False)]}">
                             	<group>
                             		<field name="purchase_statement_sequence" />
                                     <group string="Goods Purchase - Section 1">
@@ -138,6 +148,22 @@
             </field>
         </record>
         
+        <record id="view_search_account_intrastat_statement" model="ir.ui.view">
+            <field name="name">view.search.account.intrastat.statement</field>
+            <field name="model">account.intrastat.statement</field>
+            <field name="arch" type="xml">
+                <search string="Intrastat Statements">
+                    <filter icon="terp-sale" string="Sale" domain="[('sale','=',True)]"/>
+                    <filter icon="terp-purchase" string="Purchase" domain="[('purchase','=',True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Year" icon="terp-folder-orange" domain="" context="{'group_by':'fiscalyear_id'}"/>
+                        <filter string="Sale" icon="terp-stock_symbol-selection" domain="" context="{'group_by':'sale'}"/>
+                        <filter string="Purchase" icon="terp-stock_symbol-selection" domain="" context="{'group_by':'purchase'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
         <record id="account_intrastat_statement_action" model="ir.actions.act_window">
             <field name="name">Intrastat Statements</field>
             <field name="type">ir.actions.act_window</field>
@@ -146,7 +172,7 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="account_intrastat_statement_tree_view"/>
             <field name="help"></field>
-            <!-- <field name="search_view_id" ref="openforce_salesman_commission_item_search_view" /> -->
+            <field name="search_view_id" ref="view_search_account_intrastat_statement" />
         </record>
                 
         <menuitem action="account_intrastat_statement_action" id="menu_account_intrastat_statement" 
