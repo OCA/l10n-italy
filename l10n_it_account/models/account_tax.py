@@ -48,9 +48,9 @@ class account_tax(orm.Model):
         if default is None:
             default = {}
         tmp_default = dict(default, base_code_id='', tax_code_id='',
-        ref_base_code_id='', ref_tax_code_id='')
-        return super(account_tax, self).copy_data(cr, uid, id,
-        default=tmp_default, context=context)
+                           ref_base_code_id='', ref_tax_code_id='')
+        return super(account_tax, self).copy_data(
+            cr, uid, id, default=tmp_default, context=context)
 
     def create(self, cr, uid, vals, context=None):
         res = super(account_tax, self).create(cr, uid, vals, context=context)
