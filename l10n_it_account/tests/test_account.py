@@ -64,7 +64,7 @@ class TestTax(TransactionCase):
         with self.assertRaises(except_orm):
             self.tax_model.create(tax_22sp_vals)
         # deleting because assertRaises does not perform rollback
-        self.tax_model.search([('name', '=' ,'22crSP')]).unlink()
+        self.tax_model.search([('name', '=', '22crSP')]).unlink()
         tax_22sp_vals.update({
             'tax_code_id': tax_code_22cr_sp.id,
             'ref_tax_code_id': tax_code_22cr_sp.id,
