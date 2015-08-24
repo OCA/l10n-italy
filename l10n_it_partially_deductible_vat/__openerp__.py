@@ -25,7 +25,7 @@
 
 {
     "name": "Italy - Partially Deductible VAT",
-    "version": "0.1",
+    "version": "1.0.0",
     "depends": ['account'],
     "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -36,5 +36,4 @@
         'test/tax_computation.yml',
     ],
     'installable': True,
-    'active': False,
 }
