@@ -104,10 +104,12 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
 
         return res
 
-    def _build_codes_dict(self, tax_code, res={}, context=None):
+    def _build_codes_dict(self, tax_code, res=None, context=None):
 
         if context is None:
             context = {}
+        if res is None:
+            res = {}
         tax_pool = self.pool.get('account.tax')
 
         # search for taxes linked to that code
@@ -149,9 +151,11 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
 
         return res
 
-    def _get_tax_codes_amounts(self, period_id, tax_code_ids=[], context=None):
+    def _get_tax_codes_amounts(self, period_id, tax_code_ids=None, context=None):
         if context is None:
             context = {}
+        if tax_code_ids is None:
+            tax_code_ids = []
         res = {}
         code_pool = self.pool.get('account.tax.code')
         context['period_id'] = period_id
@@ -162,10 +166,12 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
         return res
 
     def _get_account_vat_amounts(
-        self, type='credit', statement_account_line=[], context=None
+        self, type='credit', statement_account_line=None, context=None
     ):
         if context is None:
             context = {}
+        if statement_account_line is None:
+            statement_account_line = []
         if type != 'credit' and type != 'debit':
             raise orm.except_orm(
                 _('Error'), _('Type account neither credit and debit !'))
