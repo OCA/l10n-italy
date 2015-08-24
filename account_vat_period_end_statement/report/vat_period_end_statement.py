@@ -151,7 +151,8 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
 
         return res
 
-    def _get_tax_codes_amounts(self, period_id, tax_code_ids=None, context=None):
+    def _get_tax_codes_amounts(self, period_id, tax_code_ids=None,
+                               context=None):
         if context is None:
             context = {}
         if tax_code_ids is None:
