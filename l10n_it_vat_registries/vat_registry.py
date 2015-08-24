@@ -37,13 +37,13 @@ class Parser(report_sxw.rml_parse):
         tax_obj = self.pool.get('account.tax')
         for move_line in move.line_id:
             if (
-                move_line.tax_code_id
-                and not move_line.tax_code_id.exclude_from_registries
-                and move_line.tax_amount
+                move_line.tax_code_id and not
+                move_line.tax_code_id.exclude_from_registries and
+                move_line.tax_amount
             ):
-                #eslcudo i conti imposta in base alla natura della
-                #stampa e al tipo conto imposta
-                 if (
+                # eslcudo i conti imposta in base alla natura della
+                # stampa e al tipo conto imposta
+                if (
                     (
                         self.localcontext['registry_type'] == 'supplier' and
                         move_line.tax_code_id.vat_statement_type == 'credit'
@@ -56,25 +56,26 @@ class Parser(report_sxw.rml_parse):
                 ):
 
                     for tax in tax_obj.browse(self.cr, self.uid,
-                        self._compute_tax_list([move_line.tax_code_id.id])):
+                                              self._compute_tax_list(
+                                                  [move_line.tax_code_id.id])):
                         if not res.get(tax.id):
                             res[tax.id] = {'name': tax.name,
-                                         'base': 0,
-                                         'tax': 0,
-                                         }
+                                           'base': 0,
+                                           'tax': 0,
+                                           }
                             self.localcontext['used_tax_codes'][
-                            move_line.tax_code_id.id] = True
+                                move_line.tax_code_id.id] = True
 
                         if move_line.tax_code_id.is_base:
-                            #recupero il valore dell'imponibile
+                            # recupero il valore dell'imponibile
                             res[tax.id]['base'] += (
-                            move_line.tax_amount
-                            * self.localcontext['data']['form']['tax_sign'])
+                                move_line.tax_amount *
+                                self.localcontext['data']['form']['tax_sign'])
                         else:
-                            #recupero il valore dell'imposta
+                            # recupero il valore dell'imposta
                             res[tax.id]['tax'] += (
-                            move_line.tax_amount
-                            * self.localcontext['data']['form']['tax_sign'])
+                                move_line.tax_amount *
+                                self.localcontext['data']['form']['tax_sign'])
         return res
 
     def _get_move(self, move_ids):
@@ -101,8 +102,8 @@ class Parser(report_sxw.rml_parse):
                 'base': amounts_by_tax_id[tax_code_id]['base'],
                 'tax': amounts_by_tax_id[tax_code_id]['tax'],
                 'index': index,
-                'invoice_date': (invoice and invoice.date_invoice
-                                 or move.date or ''),
+                'invoice_date': (invoice and invoice.date_invoice or
+                                 move.date or ''),
                 'supplier_invoice_number': (
                     invoice and invoice.supplier_invoice_number or '')
             }
@@ -180,16 +181,16 @@ class Parser(report_sxw.rml_parse):
                             child.tax_code_id)
                 total_tax = total_deduct + total_undeduct
             else:
-                #recupero il valore dell'imponibile
+                # recupero il valore dell'imponibile
                 if tax.base_code_id:
                     total_base = self._calcs_total(tax.base_code_id)
-                #recupero il valore dell'imposta
+                # recupero il valore dell'imposta
                 if tax.tax_code_id:
                     total_tax = self._calcs_total(tax.tax_code_id)
                 total_deduct = total_tax
-            res.append(
-                        (tax.name, total_base, total_tax, total_deduct,
-                             total_undeduct))
+            res.append((
+                tax.name, total_base, total_tax, total_deduct,
+                total_undeduct))
         return res
 
     def _compute_tax_list(self, tax_code_ids):
@@ -199,16 +200,12 @@ class Parser(report_sxw.rml_parse):
         tax_list = []
         obj_tax = self.pool.get('account.tax')
         for tax_code_id in tax_code_ids:
-            tax_ids = obj_tax.search(self.cr, self.uid, [
-                '&',
-                '|', 
-                ('base_code_id', '=', tax_code_id),
-                '|', 
-                ('tax_code_id', '=', tax_code_id),
-                '|', 
-                ('ref_base_code_id', '=', tax_code_id),
-                ('ref_tax_code_id', '=', tax_code_id),
-                ('parent_id', '=', False),
+            tax_ids = obj_tax.search(self.cr, self.uid, ['&', '|', (
+                'base_code_id', '=', tax_code_id), '|', (
+                'tax_code_id', '=', tax_code_id), '|', (
+                'ref_base_code_id', '=', tax_code_id), (
+                'ref_tax_code_id', '=', tax_code_id), (
+                'parent_id', '=', False),
             ])
             if tax_ids:
                 for tax_id in tax_ids:
