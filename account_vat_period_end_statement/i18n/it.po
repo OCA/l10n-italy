@@ -370,17 +370,17 @@ msgstr "Importo IVA debiti precedenti"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Previous credit vat"
-msgstr "Previous credit vat"
+msgstr "Iva a credito periodo precedente"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Previous debit vat"
-msgstr "Previous debit vat"
+msgstr "Iva a debito periodo precedente"
 
 #. module: account_vat_period_end_statement
 #: model:ir.actions.report.xml,name:account_vat_period_end_statement.action_report_account_vat_period_end_statement
 msgid "Print Vat Period End Statement"
-msgstr "Print Vat Period End Statement"
+msgstr "STAMPA LIQUIDAZIONE IVA"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -427,7 +427,7 @@ msgstr "Stato"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Summary"
-msgstr "Sommario"
+msgstr "Periodo Iva"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -491,7 +491,7 @@ msgstr "Credito totale"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Total Statement"
-msgstr "Liquidazione totale"
+msgstr "Riepilogo Liquidazione"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
@@ -501,18 +501,18 @@ msgstr "Totale da pagare"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Total credit vat"
-msgstr "Total credit vat"
+msgstr "Totale iva a credito"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Total debit vat"
-msgstr "Total debit vat"
+msgstr "Totale iva a debito"
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:170
 #, python-format
 msgid "Type account neither credit and debit !"
-msgstr "Type account neither credit and debit !"
+msgstr "Tipo conto deve essere di credito o di debito!"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
@@ -542,17 +542,17 @@ msgstr "Liquidazioni IVA"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Vat"
-msgstr "Vat"
+msgstr "Imposta"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_layout_header
 msgid "Vat End Period Statement"
-msgstr "Vat End Period Statement"
+msgstr "STAMPA LIQUIDAZIONE IVA"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Vat code"
-msgstr "Vat code"
+msgstr "Codice Iva"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -564,16 +564,11 @@ msgstr "Liquidazione IVA"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_layout_header
 msgid "Vat:"
-msgstr "Vat:"
+msgstr "Imposta:"
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/account.py:406
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
 msgstr "Non è possibile eliminare una liquidazione confermata o pagata"
-
-#. module: account_vat_period_end_statement
-#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_style
-msgid "account_vat_period_end_statement.report_vatperiodendstatement_style"
-msgstr "account_vat_period_end_statement.report_vatperiodendstatement_style"
 

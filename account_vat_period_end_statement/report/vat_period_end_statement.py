@@ -7,6 +7,7 @@
 #    Copyright (C) 2015 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2015 Openforce di Alessandro Camilli
+#    Copyright (C) 2015 Link It S.p.a. (<http://www.linkgroup.it/>)
 #    <http://www.openforce.it>
 #
 #    This program is free software: you can redistribute it and/or modify
