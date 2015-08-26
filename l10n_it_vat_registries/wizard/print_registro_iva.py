@@ -67,10 +67,19 @@ class wizard_registro_iva(models.TransientModel):
         help="Use -1 you have negative tax \
         amounts and you want to print them prositive")
     message = fields.Char(string='Message', size=64, readonly=True)
+    only_totals = fields.Boolean(
+        string='Prints only totals')
+    fiscal_page_base = fields.Integer('Last printed page', required=True)
 
     @api.onchange('tax_registry_id')
     def on_change_vat_registry(self):
         self.journal_ids = self.tax_registry_id.journal_ids
+        self.type = self.tax_registry_id.type
+        if self.type:
+            if self.type == 'supplier':
+                self.tax_sign = -1
+            else:
+                self.tax_sign = 1
 
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)
@@ -87,7 +96,13 @@ class wizard_registro_iva(models.TransientModel):
         datas_form['period_ids'] = [p.id for p in wizard.period_ids]
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['tax_sign'] = wizard.tax_sign
+        datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.type
+        if wizard.tax_registry_id:
+            datas_form['tax_registry_name'] = wizard.tax_registry_id.name
+        else:
+            datas_form['tax_registry_name'] = ''
+        datas_form['only_totals'] = wizard.only_totals
         report_name = 'l10n_it_vat_registries.report_registro_iva'
         datas = {
             'ids': move_ids,

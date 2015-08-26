@@ -69,6 +69,11 @@ msgid "Customer Invoices VAT Registry Supplier"
 msgstr "Customer Invoices VAT Registry Supplier"
 
 #. module: l10n_it_vat_registries
+#: model:ir.actions.report.xml,name:l10n_it_vat_registries.action_report_registro_iva
+msgid "Invoices VAT Registry"
+msgstr "Stampa registro IVA"
+
+#. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Data fattura"
 msgstr "Data fattura"
@@ -293,13 +298,13 @@ msgstr "Registro IVA"
 #: field:account.journal,tax_registry_id:0
 #: field:wizard.registro.iva,tax_registry_id:0
 msgid "VAT registry"
-msgstr "VAT registry"
+msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,name:l10n_it_vat_registries.action_account_tax_registry_form
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_action_account_tax_registry_form
 msgid "VAT registries"
-msgstr "VAT registries"
+msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: help:account.journal,tax_registry_id:0
@@ -311,3 +316,27 @@ msgstr "E' possibile raggruppare diversi sezionali in un unico registro. Nel wiz
 msgid "or"
 msgstr "o"
 
+#. module: l10n_it_vat_registries
+#: selection:account.tax.registry,type:0
+msgid "Customer Invoices"
+msgstr "Fatture emesse"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax.registry,type:0
+msgid "Supplier Invoices"
+msgstr "Fatture ricevute"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax.registry,type:0
+msgid "Corrispettivi"
+msgstr "Corrispettivi"
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,only_totals:0
+msgid "Prints only totals"
+msgstr "Stampa solo totali"
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,only_totals:0
+msgid "Last printed page"
+msgstr "Ultima pagina stampata"
