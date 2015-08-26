@@ -9,12 +9,12 @@
         <field name="page_height">0</field>
         <field name="page_width">0</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">15</field>
+        <field name="margin_top">30</field>
         <field name="margin_bottom">15</field>
         <field name="margin_left">5</field>
         <field name="margin_right">5</field>
         <field name="header_line" eval="False" />
-        <field name="header_spacing">10</field>
+        <field name="header_spacing">30</field>
         <field name="dpi">90</field>
       </record>
 
@@ -45,11 +45,15 @@
 
           <div class="header">
               <div class="row">
-                  <div class="col-xs-4">
-                      <h3 t-esc="title"/>
+                  <div class="col-xs-4  ">
+                      <h3><span t-esc="company.name"/></h3>
+                      <span t-esc="company.street" class=""/><br/>
+                      <span t-esc="company.zip" class=""/> - <span t-esc="company.city" class=""/> - <span t-esc="company.state_id.code" class=""/><br/>
+                      <span class="text-right">Vat:</span><span t-esc="company.partner_id.vat" class=""/><br/>
+                      <span class="text-right">Fiscalcode:</span><span t-esc="company.partner_id.fiscalcode" class=""/>
                   </div>
                   <div class="col-xs-4 col-xs-offset-4 text-right">
-                      <h3><span t-esc="company.name"/></h3>
+                      <h3 t-esc="title"/>
                   </div>
               </div>
           </div>
@@ -60,7 +64,8 @@
 
                   </div>
                   <div class="col-xs-4 col-xs-offset-4 text-right">
-                    <ul class="list-inline">
+                    <span style="display: none;" id="count_fiscal_page_base" t-esc="count_fiscal_page_base" />
+                    <ul class="list-inline">Pag:
                         <li><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/></li>
                         <li>/</li>
                         <li><span class="page"/></li>
