@@ -8,6 +8,7 @@
                 <form>
                     <group>
                         <field name="name"></field>
+                        <field name="type"></field>
                     </group>
                     <separator string="Journals"></separator>
                     <field name="journal_ids"></field>
