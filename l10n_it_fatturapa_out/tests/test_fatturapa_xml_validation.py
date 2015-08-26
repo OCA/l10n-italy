@@ -22,7 +22,6 @@
 import base64
 import tempfile
 import netsvc
-from openerp import workflow
 import openerp.tests.common as test_common
 from openerp import addons
 from datetime import datetime
@@ -32,7 +31,6 @@ import os
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
-
 
     def getFilePath(self, filepath):
         with open(filepath) as test_data:
@@ -52,8 +50,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         return self.getFilePath(new_file)
 
     def getFile(self, filename):
-        path = addons.get_module_resource('l10n_it_fatturapa_out',
-                                   'tests', 'data', filename)
+        path = addons.get_module_resource(
+            'l10n_it_fatturapa_out', 'tests', 'data', filename)
         return self.getFilePath(path)
 
     def setUp(self):
@@ -165,8 +163,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         # this  write updates context with
         # fiscalyear_id
         if attach:
-            self.AttachFileAtInvoice(invoice_id, 'test1.pdf')
-            self.AttachFileAtInvoice(invoice_id, 'test2.pdf')
+            self.attachFileToInvoice(invoice_id, 'test1.pdf')
+            self.attachFileToInvoice(invoice_id, 'test2.pdf')
         self.invoice_model.write(
             cr, uid, invoice_id, {}, context=self.context)
         wf_service = netsvc.LocalService("workflow")
