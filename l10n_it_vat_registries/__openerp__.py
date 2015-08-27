@@ -22,29 +22,9 @@
 #
 #
 {
-    'name': 'Italian Localisation - VAT Registries',
+    'name': 'Italian Localization - VAT Registries',
     'version': '8.0.2.0.0',
-    'category': 'Localisation/Italy',
-    'description': """
-Accounting reports for Italian localization
-
-
-VAT Registries
-==============
-
-http://goo.gl/b4y9Hx
-
-
-Configuration
-=============
-
-You need to configure which tax codes are 'base', setting the 'is base' field
-and which taxes are partially or totally non deductible, setting the
-'non-deductible' field.
-Also, you need to configure the 'vat statement type' on every tax code
-(debit tax codes already have the default 'debit' value)
-Consider using the mass_editing module
-""",
+    'category': 'Localization/Italy',
     'author': 'Agile Business Group,Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',

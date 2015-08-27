@@ -38,6 +38,7 @@ Contributors
 * Sergio Corato <sergiocorato@gmail.com>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
+* Alessandro Camilli <camillialex@gmail.com>
 
 Maintainer
 ----------
