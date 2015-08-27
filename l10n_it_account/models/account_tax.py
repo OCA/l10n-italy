@@ -35,9 +35,13 @@ class AccountTaxCode(orm.Model):
         string='Type',
         help="This establish whether amount will be loaded as debit or credit",
         default='debit')
+    is_base = fields.Boolean(
+        string='Is base',
+        help="This tax code is used for base amounts \
+         (field used by VAT registries)")
 
 
-class account_tax(orm.Model):
+class AccountTax(orm.Model):
     _inherit = 'account.tax'
 
     nondeductible = fields.Boolean(
@@ -49,17 +53,17 @@ class account_tax(orm.Model):
             default = {}
         tmp_default = dict(default, base_code_id='', tax_code_id='',
                            ref_base_code_id='', ref_tax_code_id='')
-        return super(account_tax, self).copy_data(
+        return super(AccountTax, self).copy_data(
             cr, uid, id, default=tmp_default, context=context)
 
     def create(self, cr, uid, vals, context=None):
-        res = super(account_tax, self).create(cr, uid, vals, context=context)
+        res = super(AccountTax, self).create(cr, uid, vals, context=context)
         tax = self.browse(cr, uid, res, context)
         self.check_tax(cr, uid, tax, context=context)
         return res
 
     def write(self, cr, uid, ids, vals, context=None):
-        res = super(account_tax, self).write(
+        res = super(AccountTax, self).write(
             cr, uid, ids, vals, context=context)
         for tax in self.browse(cr, uid, ids, context):
             self.check_tax(cr, uid, tax, context=context)
