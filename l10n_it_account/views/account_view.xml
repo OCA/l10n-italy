@@ -12,6 +12,7 @@
                   <group colspan="2" col="2">
                       <separator string="VAT statement" colspan="4"/>
                       <field name="vat_statement_type"/>
+                      <field name="is_base"/>
                   </group>
               </separator>
           </field>
