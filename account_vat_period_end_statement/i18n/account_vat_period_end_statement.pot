@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-13 09:37+0000\n"
-"PO-Revision-Date: 2015-08-13 09:37+0000\n"
+"POT-Creation-Date: 2015-08-27 15:35+0000\n"
+"PO-Revision-Date: 2015-08-27 15:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -59,11 +59,6 @@ msgstr ""
 #: field:statement.debit.account.line,amount:0
 #: field:statement.generic.account.line,amount:0
 msgid "Amount"
-msgstr ""
-
-#. module: account_vat_period_end_statement
-#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_layout_header
-msgid "Anno:"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -191,9 +186,9 @@ msgstr ""
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/account.py:550
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:125
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:136
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:170
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:128
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:139
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:178
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:45
 #: code:addons/account_vat_period_end_statement/wizard/remove_period.py:50
@@ -205,11 +200,6 @@ msgstr ""
 #: code:addons/account_vat_period_end_statement/account.py:405
 #, python-format
 msgid "Error!"
-msgstr ""
-
-#. module: account_vat_period_end_statement
-#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_layout_header
-msgid "Fiscalcode:"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -259,7 +249,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:126
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:129
 #, python-format
 msgid "No base code found for tax code %s"
 msgstr ""
@@ -271,7 +261,7 @@ msgid "No period found or more than one period found for the given date."
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:137
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:140
 #, python-format
 msgid "Not every tax linked to tax code %s is linked to the same base code"
 msgstr ""
@@ -290,11 +280,6 @@ msgstr ""
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Other VAT Credits / Debits or Tax Compensations (Positive amounts for credits, negative for debits)"
-msgstr ""
-
-#. module: account_vat_period_end_statement
-#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_layout_header
-msgid "Pag."
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -383,6 +368,11 @@ msgid "Print Vat Period End Statement"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Purchase"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Recompute amounts"
 msgstr ""
@@ -407,6 +397,17 @@ msgstr ""
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_report
 msgid "Report"
+msgstr ""
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.\n"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE"
+msgstr ""
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Sale"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -509,7 +510,7 @@ msgid "Total debit vat"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:170
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:178
 #, python-format
 msgid "Type account neither credit and debit !"
 msgstr ""
@@ -545,11 +546,6 @@ msgid "Vat"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_layout_header
-msgid "Vat End Period Statement"
-msgstr ""
-
-#. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Vat code"
 msgstr ""
@@ -562,18 +558,8 @@ msgid "Vat statement"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_layout_header
-msgid "Vat:"
-msgstr ""
-
-#. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/account.py:406
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
-msgstr ""
-
-#. module: account_vat_period_end_statement
-#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_style
-msgid "account_vat_period_end_statement.report_vatperiodendstatement_style"
 msgstr ""
 
