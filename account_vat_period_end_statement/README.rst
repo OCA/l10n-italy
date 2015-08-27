@@ -25,7 +25,7 @@ The statement can be paid like every other debit: by voucher or 'move.line'
 reconciliation.
 
 Specification:
-http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_statement
+http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
 
 Credits
 =======
