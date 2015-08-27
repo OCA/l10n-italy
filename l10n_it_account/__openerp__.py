@@ -21,13 +21,13 @@
 ##############################################################################
 {
     'name': 'Italian Localization - Account',
-    'version': '0.1',
-    'category': 'Localization/Italy',
+    'version': '8.0.1.0.0',
+    'category': 'Hidden',
     'description': "Accounting-related modules helpers""",
     'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends": ['base', 'account'],
+    "depends": ['base', 'account', 'l10n_it_fiscalcode'],
     "data": [
         'views/account_view.xml',
         'reports/account_reports_view.xml',
