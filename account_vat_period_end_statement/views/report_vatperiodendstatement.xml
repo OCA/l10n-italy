@@ -2,27 +2,6 @@
 <openerp>
 <data>
 
- <template id="report.minimal_layout">
-    <t t-raw="'&lt;base href=%s&gt;' % base_url"/>
-    &lt;!DOCTYPE html&gt;
-    <html style="height: 0;">
-        <head>
-            <link href="/report/static/src/css/reset.min.css" rel="stylesheet"/>
-            <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-            <link href="/website/static/src/css/website.css" rel="stylesheet"/>
-            <link href="/web/static/lib/fontawesome/css/font-awesome.css" rel="stylesheet"/>
-            <link rel="stylesheet" href="/l10n_it_vat_registries/static/src/css/l10n_it_vat_registries.css"/>
-            <style type='text/css'><t t-raw="css"/></style>
-            <t t-if="subst is True">
-                <script src='/account_vat_period_end_statement/static/src/js/subst.js'></script>
-            </t>
-        </head>
-        <body class="container" onload="subst()">
-            <t t-raw="body"/>
-        </body>
-    </html>
-</template>
-
 <!--
 Document 
  -->
@@ -166,7 +145,10 @@ Tax Code
     <t t-set="total_base" t-value="(0)"/>
     
     
-    <h4> <span t-esc="tax_code_section" /> </h4>
+    <h4>
+        <span t-if="(tax_code_section == 'sale')">Sale</span>
+        <span t-if="(tax_code_section == 'purchase')">Purchase</span>
+    </h4>
 	<table class="table table-condensed">
 		<thead>
            	<tr class="text-center">
@@ -244,7 +226,9 @@ Main
  -->
 <template id="report_vatperiodendstatement">
 	<t t-call="report.html_container">
-	    <t t-set="count_fiscal_page_base" t-value="fiscal_page_base"/>
+        <!-- not used
+	    <t t-set="l10n_it_count_fiscal_page_base" t-value="fiscal_page_base"/>
+        -->
         <t t-set="title" t-value="'Vat End Period Statement'"/>
         <t t-foreach="doc_ids" t-as="doc_id">
         	<t t-set="statement" t-value="statement(doc_id)"/>

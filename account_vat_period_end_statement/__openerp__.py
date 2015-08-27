@@ -25,7 +25,7 @@
 
 {
     "name": "Period End VAT Statement",
-    "version": "1.0",
+    "version": "8.0.2.0.0",
     'category': 'Generic Modules/Accounting',
     "depends": [
         "l10n_it_account",
