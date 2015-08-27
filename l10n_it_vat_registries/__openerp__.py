@@ -23,7 +23,7 @@
 #
 {
     'name': 'Italian Localisation - VAT Registries',
-    'version': '1.0',
+    'version': '8.0.2.0.0',
     'category': 'Localisation/Italy',
     'description': """
 Accounting reports for Italian localization
