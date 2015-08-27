@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-21 15:46+0000\n"
-"PO-Revision-Date: 2015-07-21 15:46+0000\n"
+"POT-Creation-Date: 2015-08-27 15:38+0000\n"
+"PO-Revision-Date: 2015-08-27 15:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,17 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "CAUS."
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/vat_registry.py:182
+#, python-format
+msgid "Can't compute base amount for tax %s"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 msgid "Cancel"
 msgstr ""
@@ -36,7 +47,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
+#: selection:account.tax.registry,type:0
 #: selection:wizard.registro.iva,type:0
 msgid "Corrispettivi"
 msgstr ""
@@ -54,18 +65,19 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: selection:account.tax.registry,type:0
 #: selection:wizard.registro.iva,type:0
 msgid "Customer Invoices"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: model:ir.actions.report.xml,name:l10n_it_vat_registries.action_report_registro_iva
-msgid "Customer Invoices VAT Registry Supplier"
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "DATA REG."
 msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Data fattura"
+msgid "DT FATT."
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -80,27 +92,17 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Dettaglio"
+msgid "Descrizione Imposta"
 msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Dettaglio imponibili"
+msgid "Detraibile"
 msgstr ""
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.code,exclude_from_registries:0
 msgid "Exclude from VAT registries"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Fatture Emesse"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Fatture Ricevute"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -112,12 +114,27 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Imponibile"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Importo"
 msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Imposta"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Indetraibile"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.report.xml,name:l10n_it_vat_registries.action_report_registro_iva
+msgid "Invoices VAT Registry"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -151,8 +168,19 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,fiscal_page_base:0
+msgid "Last printed page"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,type:0
 #: field:wizard.registro.iva,type:0
 msgid "Layout"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+msgid "Layuot"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -161,9 +189,19 @@ msgid "Message"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:68
+#: code:addons/l10n_it_vat_registries/vat_registry.py:95
 #, python-format
 msgid "Move %s contains different invoices"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "NUM FATT."
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "NUM. REG."
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -172,7 +210,7 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:84
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:93
 #, python-format
 msgid "No documents found in the current selection"
 msgstr ""
@@ -184,12 +222,7 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Numero fattura"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Numero registrazione"
+msgid "P.IVA"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -204,8 +237,13 @@ msgid "Print"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,only_totals:0
+msgid "Prints only totals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Ragione sociale"
+msgid "RAGIONE SOCIALE"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -219,13 +257,14 @@ msgid "Select periods you want retrieve documents from"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Sezionale"
+#: selection:account.tax.registry,type:0
+#: selection:wizard.registro.iva,type:0
+msgid "Supplier Invoices"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: selection:wizard.registro.iva,type:0
-msgid "Supplier Invoices"
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "TOTALE"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -244,6 +283,12 @@ msgid "Tax amount sign"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/vat_registry.py:239
+#, python-format
+msgid "Tax code %s is not linked to 1 and only 1 tax"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: help:account.tax.code,is_base:0
 msgid "This tax code is used for base amounts          (field used by VAT registries)"
 msgstr ""
@@ -255,12 +300,12 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Totali"
+msgid "Totale generale euro"
 msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Totali imponibili"
+msgid "Totali"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -279,15 +324,15 @@ msgid "VAT Registry"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: field:account.journal,tax_registry_id:0
-#: field:wizard.registro.iva,tax_registry_id:0
-msgid "VAT registry"
-msgstr ""
-
-#. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,name:l10n_it_vat_registries.action_account_tax_registry_form
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_action_account_tax_registry_form
 msgid "VAT registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: field:account.journal,tax_registry_id:0
+#: field:wizard.registro.iva,tax_registry_id:0
+msgid "VAT registry"
 msgstr ""
 
 #. module: l10n_it_vat_registries

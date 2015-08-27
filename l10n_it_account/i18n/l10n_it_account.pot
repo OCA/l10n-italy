@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 13:47+0000\n"
-"PO-Revision-Date: 2015-07-23 13:47+0000\n"
+"POT-Creation-Date: 2015-08-27 15:33+0000\n"
+"PO-Revision-Date: 2015-08-27 15:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,6 @@ msgstr ""
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account
 msgid "Account"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_account_type
-msgid "Account Type"
 msgstr ""
 
 #. module: l10n_it_account
@@ -41,18 +36,37 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_account
-#: field:account.account,negative_user_type:0
-msgid "Negative Account Type"
+#: code:addons/l10n_it_account/models/account_tax.py:83
+#: code:addons/l10n_it_account/models/account_tax.py:92
+#: code:addons/l10n_it_account/models/account_tax.py:101
+#: code:addons/l10n_it_account/models/account_tax.py:110
+#, python-format
+msgid "Error!"
 msgstr ""
 
 #. module: l10n_it_account
-#: field:account.account,negative_parent_id:0
-msgid "Negative Parent"
+#: view:website:l10n_it_account.internal_layout
+msgid "Fiscalcode:"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:account.account,inverse_user_type:0
+msgid "Inverse Account Type"
+msgstr ""
+
+#. module: l10n_it_account
+#: field:account.account,inverse_parent_id:0
+msgid "Inverse Parent"
 msgstr ""
 
 #. module: l10n_it_account
 #: field:account.tax,nondeductible:0
 msgid "Non-deductible"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:website:l10n_it_account.internal_layout
+msgid "Pag:"
 msgstr ""
 
 #. module: l10n_it_account
@@ -71,6 +85,15 @@ msgid "Tax Code"
 msgstr ""
 
 #. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_tax.py:84
+#: code:addons/l10n_it_account/models/account_tax.py:93
+#: code:addons/l10n_it_account/models/account_tax.py:102
+#: code:addons/l10n_it_account/models/account_tax.py:111
+#, python-format
+msgid "Tax code %s already used in other purchase tax"
+msgstr ""
+
+#. module: l10n_it_account
 #: help:account.tax.code,vat_statement_type:0
 msgid "This establish whether amount will be loaded as debit or credit"
 msgstr ""
@@ -81,13 +104,18 @@ msgid "Type"
 msgstr ""
 
 #. module: l10n_it_account
-#: help:account.account,negative_parent_id:0
-#: help:account.account,negative_user_type:0
+#: help:account.account,inverse_parent_id:0
+#: help:account.account,inverse_user_type:0
 msgid "Used on balance sheet to report this account when its balance is         negative"
 msgstr ""
 
 #. module: l10n_it_account
 #: view:account.tax.code:l10n_it_account.view_tax_code_form_vat
 msgid "VAT statement"
+msgstr ""
+
+#. module: l10n_it_account
+#: view:website:l10n_it_account.internal_layout
+msgid "Vat:"
 msgstr ""
 
