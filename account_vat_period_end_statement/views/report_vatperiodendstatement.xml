@@ -145,7 +145,10 @@ Tax Code
     <t t-set="total_base" t-value="(0)"/>
     
     
-    <h4> <span t-esc="tax_code_section" /> </h4>
+    <h4>
+        <span t-if="(tax_code_section == 'sale')">Sale</span>
+        <span t-if="(tax_code_section == 'purchase')">Purchase</span>
+    </h4>
 	<table class="table table-condensed">
 		<thead>
            	<tr class="text-center">

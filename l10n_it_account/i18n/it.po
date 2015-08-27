@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 13:48+0000\n"
-"PO-Revision-Date: 2015-07-23 13:48+0000\n"
+"POT-Creation-Date: 2015-08-27 15:33+0000\n"
+"PO-Revision-Date: 2015-08-27 15:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,6 @@ msgstr ""
 #: model:ir.model,name:l10n_it_account.model_account_account
 msgid "Account"
 msgstr "Conto"
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_account_type
-msgid "Account Type"
-msgstr "Tipo conto"
 
 #. module: l10n_it_account
 #: selection:account.tax.code,vat_statement_type:0
@@ -41,19 +36,38 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_account
-#: field:account.account,negative_user_type:0
-msgid "Negative Account Type"
-msgstr "Tipo onto se negativo"
+#: code:addons/l10n_it_account/models/account_tax.py:83
+#: code:addons/l10n_it_account/models/account_tax.py:92
+#: code:addons/l10n_it_account/models/account_tax.py:101
+#: code:addons/l10n_it_account/models/account_tax.py:110
+#, python-format
+msgid "Error!"
+msgstr "Error!"
 
 #. module: l10n_it_account
-#: field:account.account,negative_parent_id:0
-msgid "Negative Parent"
-msgstr "Mastro se negativo"
+#: view:website:l10n_it_account.internal_layout
+msgid "Fiscalcode:"
+msgstr "Codice fisacle:"
+
+#. module: l10n_it_account
+#: field:account.account,inverse_user_type:0
+msgid "Inverse Account Type"
+msgstr "Tipo di conto inverso"
+
+#. module: l10n_it_account
+#: field:account.account,inverse_parent_id:0
+msgid "Inverse Parent"
+msgstr "Inverse Parent"
 
 #. module: l10n_it_account
 #: field:account.tax,nondeductible:0
 msgid "Non-deductible"
 msgstr "Indetraibile"
+
+#. module: l10n_it_account
+#: view:website:l10n_it_account.internal_layout
+msgid "Pag:"
+msgstr "Pag:"
 
 #. module: l10n_it_account
 #: help:account.tax,nondeductible:0
@@ -71,6 +85,15 @@ msgid "Tax Code"
 msgstr "Codice imposta"
 
 #. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_tax.py:84
+#: code:addons/l10n_it_account/models/account_tax.py:93
+#: code:addons/l10n_it_account/models/account_tax.py:102
+#: code:addons/l10n_it_account/models/account_tax.py:111
+#, python-format
+msgid "Tax code %s already used in other purchase tax"
+msgstr "Il conto imposta %s è già usato in un'altra imposta d'acquisto"
+
+#. module: l10n_it_account
 #: help:account.tax.code,vat_statement_type:0
 msgid "This establish whether amount will be loaded as debit or credit"
 msgstr "Questo stabilisce se il saldo debba essere caricato come debito o come credito"
@@ -81,10 +104,10 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: l10n_it_account
-#: help:account.account,negative_parent_id:0
-#: help:account.account,negative_user_type:0
+#: help:account.account,inverse_parent_id:0
+#: help:account.account,inverse_user_type:0
 msgid "Used on balance sheet to report this account when its balance is         negative"
-msgstr "Isato sul bilancio per riportare questo conto quando il suo bilancio è negativo"
+msgstr "Used on balance sheet to report this account when its balance is         negative"
 
 #. module: l10n_it_account
 #: view:account.tax.code:l10n_it_account.view_tax_code_form_vat
@@ -92,25 +115,7 @@ msgid "VAT statement"
 msgstr "Liquidazione IVA"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/account_tax.py:76
-#, python-format
-msgid "Invoices: Base code already used in other purchase tax."
-msgstr "Fatture: Conto imponibile già utilizzato in un'altra imposta d'acquisto."
+#: view:website:l10n_it_account.internal_layout
+msgid "Vat:"
+msgstr "IVA:"
 
-#. module: l10n_it_account
-#: code:addons/l10n_it_account/account_tax.py:81
-#, python-format
-msgid "Invoices: Tax code already used in other purchase tax."
-msgstr "Fatture: Conto imposta già utilizzato in un'altra imposta d'acquisto."
-
-#. module: l10n_it_account
-#: code:addons/l10n_it_account/account_tax.py:76
-#, python-format
-msgid "Refunds: Base code already used in other purchase tax."
-msgstr "Note di credito: Conto imponibile già utilizzato in un'altra imposta d'acquisto."
-
-#. module: l10n_it_account
-#: code:addons/l10n_it_account/account_tax.py:81
-#, python-format
-msgid "Refunds : Tax code already used in other purchase tax."
-msgstr "Note di credito: Conto imposta già utilizzato in un'altra imposta d'acquisto."
