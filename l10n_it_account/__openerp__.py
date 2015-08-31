@@ -32,5 +32,6 @@
         'views/account_view.xml',
         'reports/account_reports_view.xml',
     ],
-    'installable': True
+    'installable': True,
+    'post_init_hook': 'post_init_hook',
 }
