@@ -35,6 +35,10 @@ class AccountTaxCode(orm.Model):
         string='Type',
         help="This establish whether amount will be loaded as debit or credit",
         default='debit')
+    is_base = fields.Boolean(
+        string='Is base',
+        help="This tax code is used for base amounts \
+         (field used by VAT registries)")
 
 
 class account_tax(orm.Model):
