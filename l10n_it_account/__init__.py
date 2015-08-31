@@ -23,7 +23,6 @@
 ##############################################################################
 
 from . import models
-from . import reports
 
 import logging
 from openerp import SUPERUSER_ID
