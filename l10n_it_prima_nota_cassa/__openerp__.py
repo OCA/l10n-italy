@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -26,14 +26,14 @@
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account', 'report_webkit'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
+    "depends": [
+        'account',
+        'report_webkit'
+    ],
+    "data": [
         'reports.xml',
         'wizard/wizard_print_prima_nota_cassa.xml',
-        ],
-    "demo_xml" : [],
+    ],
     "active": False,
-    'installable': False
+    'installable': True
 }

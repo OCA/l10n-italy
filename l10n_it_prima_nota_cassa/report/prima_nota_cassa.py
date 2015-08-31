@@ -21,9 +21,9 @@
 ##############################################################################
 
 import time
-from report import report_sxw
-from account.report.common_report_header import common_report_header
-from tools.translate import _
+from openerp.report import report_sxw
+from openerp.addons.account.report.common_report_header import common_report_header
+from openerp import _
 
 class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
     _name = 'report.account.prima_nota_cassa'

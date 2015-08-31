@@ -45,7 +45,7 @@ class account_report_prima_nota_cassa(models.TransientModel):
             data['form'].update({'initial_balance': False})
         return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
 
-    initial_balance = fields.boolean(
+    initial_balance = fields.Boolean(
         'Include initial balances',
         help="""It adds initial balance row on report which display previous
 sum amount of debit/credit/balance""")
