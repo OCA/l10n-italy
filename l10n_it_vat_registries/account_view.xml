@@ -7,7 +7,6 @@
             <field name="inherit_id" ref="account.view_tax_code_form"></field>
             <field name="arch" type="xml">
                 <field name="sign" position="after">
-                    <field name="is_base"/>
                     <field name="exclude_from_registries"/>
                 </field>
             </field>

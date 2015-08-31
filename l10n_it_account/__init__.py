@@ -50,3 +50,12 @@ def post_init_hook(cr, registry):
     tax_model.write(cr, SUPERUSER_ID, unded_tax_ids, {
         'nondeductible': True,
         })
+
+    logging.getLogger('openerp.addons.l10n_it_account').info(
+        'Setting values for account.tax.code new field: Is base')
+    base_tax_code_ids = tax_code_model.search(cr, SUPERUSER_ID, [
+        ('name', '=ilike', '%imponibile%'),
+        ])
+    tax_code_model.write(cr, SUPERUSER_ID, base_tax_code_ids, {
+        'is_base': True,
+        })
