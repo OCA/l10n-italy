@@ -21,16 +21,20 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+# from osv import fields, osv
+from openerp import fields
+from openerp import models
+from openerp import api
 
-class account_report_prima_nota_cassa(osv.osv_memory):
+
+class account_report_prima_nota_cassa(models.TransientModel):
     _inherit = "account.common.account.report"
     _name = 'account.report.prima_nota_cassa'
     _description = "Print Prima Nota Cassa"
 
-
-    def _get_all_journal(self, cr, uid, context=None):
-        return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
+    @api.multi
+    def _get_all_journal(self):
+        return self.env['account.journal'].search([('type','in',['cash','bank'])])
 
     def _print_report(self, cr, uid, ids, data, context=None):
         if context is None:
@@ -41,14 +45,15 @@ class account_report_prima_nota_cassa(osv.osv_memory):
             data['form'].update({'initial_balance': False})
         return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
 
-    _columns = {
-        'initial_balance': fields.boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance'),
-    }
+    initial_balance = fields.boolean(
+        'Include initial balances',
+        help="""It adds initial balance row on report which display previous
+sum amount of debit/credit/balance""")
+
     _defaults = {
         'journal_ids': _get_all_journal,
     }
 
-
-account_report_prima_nota_cassa()
+    #'journal_ids': fields.many2many('account.journal', string='Journals', required=True),
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
