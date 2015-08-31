@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 15:39+0000\n"
-"PO-Revision-Date: 2015-08-27 15:39+0000\n"
+"POT-Creation-Date: 2015-08-31 12:04+0000\n"
+"PO-Revision-Date: 2015-08-31 12:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "CAUS."
 #: code:addons/l10n_it_vat_registries/vat_registry.py:182
 #, python-format
 msgid "Can't compute base amount for tax %s"
-msgstr "Can't compute base amount for tax %s"
+msgstr "Impossibile calcolare l'imponibile per l'imposta %s"
 
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
@@ -141,11 +141,6 @@ msgstr "Indetraibile"
 #: model:ir.actions.report.xml,name:l10n_it_vat_registries.action_report_registro_iva
 msgid "Invoices VAT Registry"
 msgstr "Stampa registro IVA"
-
-#. module: l10n_it_vat_registries
-#: field:account.tax.code,is_base:0
-msgid "Is base"
-msgstr "E' imponibile"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_journal
@@ -292,11 +287,6 @@ msgstr "Segno importo imposta"
 #, python-format
 msgid "Tax code %s is not linked to 1 and only 1 tax"
 msgstr "Tax code %s is not linked to 1 and only 1 tax"
-
-#. module: l10n_it_vat_registries
-#: help:account.tax.code,is_base:0
-msgid "This tax code is used for base amounts          (field used by VAT registries)"
-msgstr "This tax code is used for base amounts          (field used by VAT registries)"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
