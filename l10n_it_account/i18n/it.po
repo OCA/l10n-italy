@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 15:33+0000\n"
-"PO-Revision-Date: 2015-08-27 15:33+0000\n"
+"POT-Creation-Date: 2015-08-31 12:02+0000\n"
+"PO-Revision-Date: 2015-08-31 12:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,10 +36,10 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_tax.py:83
-#: code:addons/l10n_it_account/models/account_tax.py:92
-#: code:addons/l10n_it_account/models/account_tax.py:101
-#: code:addons/l10n_it_account/models/account_tax.py:110
+#: code:addons/l10n_it_account/models/account_tax.py:87
+#: code:addons/l10n_it_account/models/account_tax.py:96
+#: code:addons/l10n_it_account/models/account_tax.py:105
+#: code:addons/l10n_it_account/models/account_tax.py:114
 #, python-format
 msgid "Error!"
 msgstr "Error!"
@@ -58,6 +58,11 @@ msgstr "Tipo di conto inverso"
 #: field:account.account,inverse_parent_id:0
 msgid "Inverse Parent"
 msgstr "Inverse Parent"
+
+#. module: l10n_it_account
+#: field:account.tax.code,is_base:0
+msgid "Is base"
+msgstr "E' imponibile"
 
 #. module: l10n_it_account
 #: field:account.tax,nondeductible:0
@@ -85,10 +90,10 @@ msgid "Tax Code"
 msgstr "Codice imposta"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_tax.py:84
-#: code:addons/l10n_it_account/models/account_tax.py:93
-#: code:addons/l10n_it_account/models/account_tax.py:102
-#: code:addons/l10n_it_account/models/account_tax.py:111
+#: code:addons/l10n_it_account/models/account_tax.py:88
+#: code:addons/l10n_it_account/models/account_tax.py:97
+#: code:addons/l10n_it_account/models/account_tax.py:106
+#: code:addons/l10n_it_account/models/account_tax.py:115
 #, python-format
 msgid "Tax code %s already used in other purchase tax"
 msgstr "Il conto imposta %s è già usato in un'altra imposta d'acquisto"
@@ -97,6 +102,11 @@ msgstr "Il conto imposta %s è già usato in un'altra imposta d'acquisto"
 #: help:account.tax.code,vat_statement_type:0
 msgid "This establish whether amount will be loaded as debit or credit"
 msgstr "Questo stabilisce se il saldo debba essere caricato come debito o come credito"
+
+#. module: l10n_it_account
+#: help:account.tax.code,is_base:0
+msgid "This tax code is used for base amounts          (field used by VAT registries)"
+msgstr "Questo conto imposta è usato per gli imponibili          (campo usato dai registri IVA)"
 
 #. module: l10n_it_account
 #: field:account.tax.code,vat_statement_type:0
