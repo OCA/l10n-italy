@@ -30,6 +30,13 @@ class res_company(models.Model):
     intrastat_uom_kg_id = fields.Many2one(
         'product.uom', string="Unit of measure for Kg",
         )
+    intrastat_weight_from_product = fields.Selection([
+        ('none', 'None'),
+        ('gross', 'Gross weight'),
+        ('net', 'Net weight'),
+        ], 'Weight from Product', default='net', required=True)
+    intrastat_additional_unit_from_weight = fields.Boolean(
+        string='Additional Unit from Weight', default=True)
     intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4)
     intrastat_delegated_vat = fields.Char(string="Delegated person VAT",
                                           size=16)

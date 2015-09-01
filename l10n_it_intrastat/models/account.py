@@ -75,11 +75,19 @@ class account_invoice_line(models.Model):
         res.update({'statistic_amount_euro': statistic_amount_euro})
         # Weight
         intrastat_uom_kg = self.invoice_id.company_id.intrastat_uom_kg_id
+        intrastat_weight_from_product = \
+            self.invoice_id.company_id.intrastat_weight_from_product
         # ...Weight compute in Kg
         # ...If Uom has the same category of kg -> Convert to Kg
         # ...Else the weight will be product weight * qty
         weight_kg = 0
-        weight_line = self.quantity * product_template.weight
+        if intrastat_weight_from_product == 'net':
+            product_weight = product_template.weight_net
+        elif intrastat_weight_from_product == 'gross':
+            product_weight = product_template.weight
+        else:
+            product_weight = 0
+        weight_line = self.quantity * product_weight
         if intrastat_uom_kg and product_template.uom_id.category_id.id == \
             intrastat_uom_kg.category_id.id:
                 weight_line_kg = self.env['product.uom']._compute_qty(
@@ -386,7 +394,8 @@ class account_invoice_intrastat(models.Model):
                                 
     @api.onchange('weight_kg')
     def change_weight_kg(self):
-        self.additional_units = self.weight_kg
+        if self.invoice_id.company_id.intrastat_additional_unit_from_weight:
+            self.additional_units = self.weight_kg
     
     @api.onchange('amount_euro')
     def change_amount_euro(self):

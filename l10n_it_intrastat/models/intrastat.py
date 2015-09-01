@@ -42,6 +42,7 @@ class report_intrastat_code(models.Model):
     _inherit = 'report.intrastat.code'
 
     active = fields.Boolean(default=True)
+    additional_unit_required = fields.Boolean(default=False)
     type = fields.Selection(
         [('good', 'Good'), ('service', 'Service')])
     description = fields.Char('Description', translate=True)
@@ -825,6 +826,9 @@ class account_intrastat_statement_sale_section1(models.Model):
                                         string='Intrastat Code Good')
     weight_kg = fields.Integer(string='Weight kg')
     additional_units = fields.Integer(string='Additional Units')
+    additional_units_required = fields.Boolean(
+        string='Additional Units Required', store=True,
+        related='intrastat_code_id.additional_unit_required')
     statistic_amount_euro = fields.Integer(string='Statistic Amount Euro', 
                                          digits=dp.get_precision('Account'))
     delivery_code_id = fields.Many2one('stock.incoterms', 
@@ -839,7 +843,8 @@ class account_intrastat_statement_sale_section1(models.Model):
                                  string='Invoice', readonly=True)
     @api.onchange('weight_kg')
     def change_weight_kg(self):
-        self.additional_units = self.weight_kg 
+        if self.statement_id.company_id.intrastat_additional_unit_from_weight:
+            self.additional_units = self.weight_kg 
         
     @api.model
     def _prepare_statement_line(self, inv_intra_line):
@@ -1291,6 +1296,9 @@ class account_intrastat_statement_purchase_section1(models.Model):
         'report.intrastat.code', string='Intrastat Code Good')
     weight_kg = fields.Integer(string='Weight kg')
     additional_units = fields.Integer(string='Additional Units')
+    additional_units_required = fields.Boolean(
+        string='Additional Units Required', store=True,
+        related='intrastat_code_id.additional_unit_required')
     statistic_amount_euro = fields.Integer(string='Statistic Amount Euro', 
                                          digits=dp.get_precision('Account'))
     delivery_code_id = fields.Many2one('stock.incoterms', 
@@ -1305,9 +1313,11 @@ class account_intrastat_statement_purchase_section1(models.Model):
                                               string='Province Destination')
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  readonly=True)
+    
     @api.onchange('weight_kg')
     def change_weight_kg(self):
-        self.additional_units = self.weight_kg 
+        if self.statement_id.company_id.intrastat_additional_unit_from_weight:
+            self.additional_units = self.weight_kg 
             
     @api.model
     def _prepare_statement_line(self, inv_intra_line):

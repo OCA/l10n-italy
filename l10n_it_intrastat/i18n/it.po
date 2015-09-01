@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-17 15:07+0000\n"
-"PO-Revision-Date: 2015-08-17 15:07+0000\n"
+"POT-Creation-Date: 2015-09-01 10:43+0000\n"
+"PO-Revision-Date: 2015-09-01 10:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,12 +105,23 @@ msgstr "Account INTRASTAT - Transport"
 msgid "Accreditation"
 msgstr "Accreditation"
 
+#: field:res.company,intrastat_additional_unit_from_weight:0
+#. module: l10n_it_intrastat
+msgid "Additional Unit from Weight"
+msgstr "Unità Aggiuntive dal Peso"
+
 #: field:account.intrastat.statement.purchase.section1,additional_units:0
 #: field:account.intrastat.statement.sale.section1,additional_units:0
 #: field:account.invoice.intrastat,additional_units:0
 #. module: l10n_it_intrastat
 msgid "Additional Units"
 msgstr "Unità supplementari"
+
+#: field:account.intrastat.statement.purchase.section1,additional_units_required:0
+#: field:account.intrastat.statement.sale.section1,additional_units_required:0
+#. module: l10n_it_intrastat
+msgid "Additional Units Required"
+msgstr "Unità Aggiuntive Obbligatorie"
 
 #: selection:account.intrastat.statement,intrastat_type_data:0
 #: selection:account.invoice.intrastat,intrastat_type_data:0
@@ -319,6 +330,16 @@ msgstr "Data inizio"
 msgid "Date stop"
 msgstr "Data fine"
 
+#: view:res.company:l10n_it_intrastat.view_intrastat_company_form
+#. module: l10n_it_intrastat
+msgid "Default purchase values"
+msgstr "Default purchase values"
+
+#: view:res.company:l10n_it_intrastat.view_intrastat_company_form
+#. module: l10n_it_intrastat
+msgid "Default sale values"
+msgstr "Default sale values"
+
 #: field:res.company,intrastat_delegated_name:0
 #. module: l10n_it_intrastat
 msgid "Delegated person"
@@ -332,6 +353,8 @@ msgstr "Delegated person VAT"
 #: field:account.intrastat.statement.purchase.section1,delivery_code_id:0
 #: field:account.intrastat.statement.sale.section1,delivery_code_id:0
 #: field:account.invoice.intrastat,delivery_code_id:0
+#: field:res.company,intrastat_purchase_delivery_code_id:0
+#: field:res.company,intrastat_sale_delivery_code_id:0
 #. module: l10n_it_intrastat
 msgid "Delivery"
 msgstr "Consegna"
@@ -349,11 +372,6 @@ msgstr "Escludi"
 
 #: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
 #. module: l10n_it_intrastat
-msgid "Export"
-msgstr "Esporta"
-
-#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
-#. module: l10n_it_intrastat
 msgid "Export Complete"
 msgstr "Export Completato"
 
@@ -363,12 +381,27 @@ msgid "Export File"
 msgstr "Export File"
 
 #: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
-#: code:addons/l10n_it_intrastat/wizard/export_file.py:62
+#: code:addons/l10n_it_intrastat/wizard/export_file.py:61
 #: model:ir.actions.act_window,name:l10n_it_intrastat.action_wizard_wizard_account_intrastat_export_file
 #. module: l10n_it_intrastat
 #, python-format
 msgid "Export Intrastat File"
 msgstr "Export Intrastat File"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Export acquisti.cee"
+msgstr "Export acquisti.cee"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Export cessioni.cee"
+msgstr "Export cessioni.cee"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat
+msgid "Export file invio"
+msgstr "Export file invio"
 
 #: field:account.intrastat.export.file,data:0
 #. module: l10n_it_intrastat
@@ -378,7 +411,7 @@ msgstr "File"
 #: field:account.intrastat.export.file,name:0
 #. module: l10n_it_intrastat
 msgid "File Name"
-msgstr "Nome file"
+msgstr "File Name"
 
 #: field:res.company,intrastat_export_file_name:0
 #. module: l10n_it_intrastat
@@ -405,6 +438,12 @@ msgstr "Fiscale"
 #. module: l10n_it_intrastat
 msgid "Fiscal Position"
 msgstr "Posizione fiscale"
+
+#: field:res.company,intrastat_purchase_statistic_amount:0
+#: field:res.company,intrastat_sale_statistic_amount:0
+#. module: l10n_it_intrastat
+msgid "Force Statistic Amount Euro"
+msgstr "Force Statistic Amount Euro"
 
 #: selection:account.intrastat.statement,intrastat_code_type:0
 #: selection:account.invoice.intrastat,intrastat_code_type:0
@@ -438,6 +477,16 @@ msgstr "Rettifica Merci - Section 4"
 #. module: l10n_it_intrastat
 msgid "Goods Sale - Section 1"
 msgstr "Vendita Merci - Section 1"
+
+#: selection:res.company,intrastat_weight_from_product:0
+#. module: l10n_it_intrastat
+msgid "Gross weight"
+msgstr "Peso Lordo"
+
+#: view:account.intrastat.statement:l10n_it_intrastat.view_search_account_intrastat_statement
+#. module: l10n_it_intrastat
+msgid "Group By"
+msgstr "Group By"
 
 #: view:account.intrastat.export.file:l10n_it_intrastat.wizard_account_intrastat_export_file
 #. module: l10n_it_intrastat
@@ -515,6 +564,7 @@ msgstr "Intrastat Nomenclatura Merce"
 msgid "Intrastat Code Service"
 msgstr "Intrastat Nomenclatura Servizi"
 
+#: view:account.intrastat.statement:l10n_it_intrastat.view_search_account_intrastat_statement
 #: model:ir.actions.act_window,name:l10n_it_intrastat.account_intrastat_statement_action
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_statement
 #. module: l10n_it_intrastat
@@ -639,6 +689,16 @@ msgstr "Mese di riferimento del riepilogo da rettificare"
 msgid "Name"
 msgstr "Nome"
 
+#: selection:res.company,intrastat_weight_from_product:0
+#. module: l10n_it_intrastat
+msgid "Net weight"
+msgstr "Peso Netto"
+
+#: selection:res.company,intrastat_weight_from_product:0
+#. module: l10n_it_intrastat
+msgid "None"
+msgstr "Nessuno"
+
 #: selection:account.intrastat.statement,special_cases:0
 #. module: l10n_it_intrastat
 msgid "None of the above cases"
@@ -652,7 +712,7 @@ msgstr "Periodo Normale"
 #: field:account.intrastat.statement,number:0
 #. module: l10n_it_intrastat
 msgid "Number"
-msgstr "Numero"
+msgstr "Numbero"
 
 #: field:account.intrastat.statement,purchase_section1_operation_amount:0
 #: field:account.intrastat.statement,purchase_section2_operation_amount:0
@@ -725,13 +785,13 @@ msgstr "Termine di pagamento"
 msgid "Period"
 msgstr "Periodo"
 
-#: code:addons/l10n_it_intrastat/models/intrastat.py:736
+#: code:addons/l10n_it_intrastat/models/intrastat.py:790
 #. module: l10n_it_intrastat
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 12"
 msgstr "Periodo non Valido! Per MESE, i valori possibili sono da 1 a 12"
 
-#: code:addons/l10n_it_intrastat/models/intrastat.py:740
+#: code:addons/l10n_it_intrastat/models/intrastat.py:794
 #. module: l10n_it_intrastat
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 4"
@@ -777,17 +837,20 @@ msgid "Protocol number"
 msgstr "Protocollo della dichiarazione da rettificare"
 
 #: field:account.intrastat.statement.purchase.section1,province_destination_id:0
+#: field:res.company,intrastat_purchase_province_destination_id:0
 #. module: l10n_it_intrastat
 msgid "Province Destination"
 msgstr "Provincia di Destinazione"
 
 #: field:account.intrastat.statement.sale.section1,province_origin_id:0
 #: field:account.invoice.intrastat,province_origin_id:0
+#: field:res.company,intrastat_sale_province_origin_id:0
 #. module: l10n_it_intrastat
 msgid "Province Origin"
 msgstr "Provincia di Origine"
 
 #: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#: view:account.intrastat.statement:l10n_it_intrastat.view_search_account_intrastat_statement
 #: field:account.intrastat.statement,purchase:0
 #. module: l10n_it_intrastat
 msgid "Purchase"
@@ -865,6 +928,7 @@ msgid "Repeatedly"
 msgstr "Repeatedly"
 
 #: view:account.intrastat.statement:l10n_it_intrastat.account_intrastat_statement_form_view
+#: view:account.intrastat.statement:l10n_it_intrastat.view_search_account_intrastat_statement
 #: field:account.intrastat.statement,sale:0
 #. module: l10n_it_intrastat
 msgid "Sale"
@@ -1025,7 +1089,7 @@ msgstr "Modalità di erogazione"
 msgid "Total"
 msgstr "Totale"
 
-#: code:addons/l10n_it_intrastat/models/account.py:186
+#: code:addons/l10n_it_intrastat/models/account.py:202
 #. module: l10n_it_intrastat
 #, python-format
 msgid "Total Intrastat must be ugual to                    Total Invoice Untaxed"
@@ -1040,6 +1104,8 @@ msgstr "Total Intrastat must be ugual to                    Total Invoice Untaxe
 #: field:account.invoice.intrastat,transation_nature_id:0
 #: model:ir.actions.act_window,name:l10n_it_intrastat.action_account_intrastat_transation_nature_transport
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_transation_nature
+#: field:res.company,intrastat_purchase_transation_nature_id:0
+#: field:res.company,intrastat_sale_transation_nature_id:0
 #. module: l10n_it_intrastat
 msgid "Transation Nature"
 msgstr "Transation Nature"
@@ -1061,6 +1127,8 @@ msgstr "Transfer"
 #: field:account.invoice.intrastat,transport_code_id:0
 #: model:ir.actions.act_window,name:l10n_it_intrastat.action_account_intrastat_transport
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_transport
+#: field:res.company,intrastat_purchase_transport_code_id:0
+#: field:res.company,intrastat_sale_transport_code_id:0
 #. module: l10n_it_intrastat
 msgid "Transport"
 msgstr "Transport"
@@ -1068,7 +1136,7 @@ msgstr "Transport"
 #: field:res.company,intrastat_uom_kg_id:0
 #. module: l10n_it_intrastat
 msgid "Unit of measure for Kg"
-msgstr "Unit of measure for Kg"
+msgstr "Unità di misura per Kg"
 
 #: field:res.company,intrastat_ua_code:0
 #. module: l10n_it_intrastat
@@ -1106,13 +1174,19 @@ msgstr "Vat delegate"
 msgid "Vat taxpayer"
 msgstr "Vat taxpayer"
 
+#: field:res.company,intrastat_weight_from_product:0
+#. module: l10n_it_intrastat
+msgid "Weight from Product"
+msgstr "Peso dal Prodotto"
+
 #: field:account.intrastat.statement.purchase.section1,weight_kg:0
 #: field:account.intrastat.statement.sale.section1,weight_kg:0
 #: field:account.invoice.intrastat,weight_kg:0
 #. module: l10n_it_intrastat
 msgid "Weight kg"
-msgstr "Weight kg"
+msgstr "Peso kg"
 
+#: view:account.intrastat.statement:l10n_it_intrastat.view_search_account_intrastat_statement
 #: field:account.intrastat.statement,fiscalyear_id:0
 #. module: l10n_it_intrastat
 msgid "Year"
