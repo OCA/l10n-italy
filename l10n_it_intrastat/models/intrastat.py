@@ -955,7 +955,7 @@ class account_intrastat_statement_sale_section2(models.Model):
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive', readonly=True, 
+    progressive = fields.Integer(string='Progressive', 
                                  default=_default_progressive)
     
     month = fields.Integer(string='Month Ref of Refund')
@@ -1061,7 +1061,7 @@ class account_intrastat_statement_sale_section3(models.Model):
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive', readonly=True,
+    progressive = fields.Integer(string='Progressive',
                                  default=_default_progressive)
     partner_id = fields.Many2one('res.partner', string='Partner')
     country_partner_id = fields.Many2one('res.country',
@@ -1159,7 +1159,7 @@ class account_intrastat_statement_sale_section4(models.Model):
         'account.intrastat.statement', string='Statement', 
         readonly=True, ondelete="cascade")
     progressive = fields.Integer(
-        string='Progressive', readonly=True,
+        string='Progressive',
         default=_default_progressive)
     custom_id = fields.Many2one('account.intrastat.custom', 'Custom')
     year_id = fields.Many2one('account.fiscalyear', 
