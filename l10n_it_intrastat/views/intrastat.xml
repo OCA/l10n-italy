@@ -83,19 +83,19 @@
                                 <newline/>
                                 <notebook>
                                     <page string="Goods Sale - Section 1">
-                                        <field name="sale_section1_ids" nolabel="1">
+                                        <field name="sale_section1_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                     <page string="Goods Refund - Section 2">
-                                        <field name="sale_section2_ids" nolabel="1">
+                                        <field name="sale_section2_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                     <page string="Services Sale - Section 3">
-                                        <field name="sale_section3_ids" nolabel="1">
+                                        <field name="sale_section3_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                     <page string="Services Refund - Section 4">
-                                        <field name="sale_section4_ids" nolabel="1">
+                                        <field name="sale_section4_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                 </notebook>
@@ -124,19 +124,19 @@
                                 <newline/>
                                 <notebook>
                                 	<page string="Goods Purchase - Section 1">
-                                        <field name="purchase_section1_ids" nolabel="1">
+                                        <field name="purchase_section1_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                     <page string="Goods Refund Purchase - Section 2">
-                                    	<field name="purchase_section2_ids" nolabel="1">
+                                    	<field name="purchase_section2_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                     <page string="Services Purchase - Section 3">
-                                    	<field name="purchase_section3_ids" nolabel="1">
+                                    	<field name="purchase_section3_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                     <page string="Goods Refund Purchase - Section 4">
-                                    	<field name="purchase_section4_ids" nolabel="1">
+                                    	<field name="purchase_section4_ids" nolabel="1" context="{'statement_id': id}">
                                         </field>
                                     </page>
                                 </notebook>
@@ -263,7 +263,7 @@
 				<form>
 					<group>
 						<group>
-							<field name="partner_id" required="1"/>
+							<field name="partner_id" required="1" />
 							<field name="country_partner_id" required="1"/>
 							<field name="vat_code" required="1"/>
 						</group>

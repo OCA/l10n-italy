@@ -797,10 +797,22 @@ class account_intrastat_statement_sale_section1(models.Model):
     _name = 'account.intrastat.statement.sale.section1'
     _description = 'Account INTRASTAT - Statement - Sale Section 1'
     
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one(
         'account.intrastat.statement', string='Statement', 
         readonly=True, ondelete="cascade")
-    progressive = fields.Integer(string='Progressive')
+    progressive = fields.Integer(string='Progressive', 
+                                 default=_default_progressive)
     partner_id = fields.Many2one('res.partner', string='Partner')
     country_partner_id = fields.Many2one('res.country',
                                           string='Country Customer')
@@ -923,11 +935,23 @@ class account_intrastat_statement_sale_section2(models.Model):
     _name = 'account.intrastat.statement.sale.section2'
     _description = 'Account INTRASTAT - Statement - Sale Section 2'
     
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive', readonly=True)
+    progressive = fields.Integer(string='Progressive', readonly=True, 
+                                 default=_default_progressive)
     
     month = fields.Integer(string='Month Ref of Refund')
     quarterly = fields.Integer(string='Quarterly Ref of Refund')
@@ -1017,11 +1041,23 @@ class account_intrastat_statement_sale_section3(models.Model):
     _name = 'account.intrastat.statement.sale.section3'
     _description = 'Account INTRASTAT - Statement - Sale Section 3'
     
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive', readonly=True)
+    progressive = fields.Integer(string='Progressive', readonly=True,
+                                 default=_default_progressive)
     partner_id = fields.Many2one('res.partner', string='Partner')
     country_partner_id = fields.Many2one('res.country',
                                           string='Country Partner')
@@ -1103,11 +1139,23 @@ class account_intrastat_statement_sale_section4(models.Model):
     _name = 'account.intrastat.statement.sale.section4'
     _description = 'Account INTRASTAT - Statement - Sale Section 4'
     
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one(
         'account.intrastat.statement', string='Statement', 
         readonly=True, ondelete="cascade")
     progressive = fields.Integer(
-        string='Progressive', readonly=True)
+        string='Progressive', readonly=True,
+        default=_default_progressive)
     custom_id = fields.Many2one('account.intrastat.custom', 'Custom')
     year_id = fields.Many2one('account.fiscalyear', 
                            string='Year Ref of Variation')
@@ -1212,11 +1260,23 @@ class account_intrastat_statement_purchase_section1(models.Model):
     _name = 'account.intrastat.statement.purchase.section1'
     _description = 'Account INTRASTAT - Statement - Purchase Section 1'
     
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive')
+    progressive = fields.Integer(string='Progressive',
+                                 default=_default_progressive)
     partner_id = fields.Many2one('res.partner', string='Partner')
     country_partner_id = fields.Many2one('res.country',
                                           string='Country Partner')
@@ -1359,11 +1419,23 @@ class account_intrastat_statement_purchase_section2(models.Model):
     _name = 'account.intrastat.statement.purchase.section2'
     _description = 'Account INTRASTAT - Statement - Purchase Section 2'
     
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one('account.intrastat.statement', 
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive')
+    progressive = fields.Integer(string='Progressive',
+                                 default=_default_progressive)
     month = fields.Integer(string='Month Ref of Refund')
     quarterly = fields.Integer(string='Quarterly Ref of Refund')
     year_id = fields.Many2one('account.fiscalyear', string='Year Ref of Refund')
@@ -1461,11 +1533,23 @@ class account_intrastat_statement_purchase_section3(models.Model):
     _name = 'account.intrastat.statement.purchase.section3'
     _description = 'Account INTRASTAT - Statement - Purchase Section 3'
     
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive',)
+    progressive = fields.Integer(string='Progressive',
+                                 default=_default_progressive)
     partner_id = fields.Many2one('res.partner', string='Partner')
     country_partner_id = fields.Many2one('res.country',
                                           string='Country Partner')
@@ -1556,11 +1640,24 @@ class account_intrastat_statement_purchase_section3(models.Model):
 class account_intrastat_statement_purchase_section4(models.Model):
     _name = 'account.intrastat.statement.purchase.section4'
     _description = 'Account INTRASTAT - Statement - Purchase Section 4'
+    
+    @api.model
+    def _default_progressive(self):
+        statement_id = self._context.get('statement_id')
+        progressive = 1
+        if statement_id:
+            domain = [('statement_id', '=', statement_id)]
+            line = self.search(domain, order='progressive desc', limit=1)
+            if line: 
+                progressive = line.progressive + 1
+        return progressive
+    
     statement_id = fields.Many2one('account.intrastat.statement', 
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    progressive = fields.Integer(string='Progressive')
+    progressive = fields.Integer(string='Progressive',
+                                 default=_default_progressive)
     custom_id = fields.Many2one('account.intrastat.custom', 'Custom')
     year_id = fields.Many2one('account.fiscalyear',
                            string='Year Ref of Variation')
