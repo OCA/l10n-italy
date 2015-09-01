@@ -322,7 +322,7 @@ msgstr "Registro IVA"
 #: model:ir.actions.act_window,name:l10n_it_vat_registries.action_account_tax_registry_form
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_action_account_tax_registry_form
 msgid "VAT registries"
-msgstr "Registro IVA"
+msgstr "Registri IVA"
 
 #. module: l10n_it_vat_registries
 #: field:account.journal,tax_registry_id:0
@@ -339,4 +339,3 @@ msgstr "E' possibile raggruppare diversi sezionali in un unico registro. Nel wiz
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 msgid "or"
 msgstr "o"
-
