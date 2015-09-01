@@ -10,205 +10,205 @@ msgstr ""
 "POT-Creation-Date: 2015-07-24 23:40+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_central_journal
 #: model:ir.actions.act_window,name:account_central_journal.central_journal_report_action
 #: model:ir.ui.menu,name:account_central_journal.menu_central_journal_report_action
 msgid "Print Central Journal"
-msgstr "Giornale Centralizzato"
+msgstr "Print Central Journal"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:139
 msgid "Account code"
-msgstr "Codice Conto"
+msgstr "Account code"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:148
 #: report:addons/account_central_journal/report/central_journal_report.mako:174
 msgid "Progressives =>"
-msgstr "Progressivi =>"
+msgstr "Progressives =>"
 
 #. module: account_central_journal
 #: model:ir.model,name:account_central_journal.model_wizard_central_journal_report
 #: view:wizard.central.journal.report:0
 msgid "Printing parameters of the Center Journal"
-msgstr "Parametri di stampa del Giornale Centralizzato"
+msgstr "Printing parameters of the Center Journal"
 
 #. module: account_central_journal
 #: field:wizard.central.journal.report,print_state:0
 msgid "State"
-msgstr "Stato"
+msgstr "State"
 
 #. module: account_central_journal
 #: selection:wizard.central.journal.report,print_state:0
 msgid "Draft"
-msgstr "Bozza"
+msgstr "Draft"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:138
 msgid "Account move"
-msgstr "Movimento"
+msgstr "Account move"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:142
 msgid "Debit"
-msgstr "Dare"
+msgstr "Debit"
 
 #. module: account_central_journal
 #: view:wizard.central.journal.report:0
 msgid "Print"
-msgstr "Stampa"
+msgstr "Print"
 
 #. module: account_central_journal
 #: field:account.fiscalyear,progressive_credit:0
 msgid "Progressive Credit"
-msgstr "Progressivo Avere"
+msgstr "Progressive Credit"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:137
 msgid "Ref"
-msgstr "Rif."
+msgstr "Ref"
 
 #. module: account_central_journal
 #: field:account.fiscalyear,date_last_print:0
 msgid "Last printed date"
-msgstr "Data ultima stampa"
+msgstr "Last printed date"
 
 #. module: account_central_journal
 #: selection:wizard.central.journal.report,print_state:0
 msgid "Printed"
-msgstr "Stampato"
+msgstr "Printed"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:140
 msgid "Account name"
-msgstr "Conto"
+msgstr "Account name"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:136
 msgid "Date"
-msgstr "Data"
+msgstr "Date"
 
 #. module: account_central_journal
 #: code:addons/account_central_journal/wizard/central_journal_report.py:55
 #: code:addons/account_central_journal/wizard/central_journal_report.py:58
 #, python-format
 msgid "Wrong dates !"
-msgstr "Date errate !"
+msgstr "Wrong dates !"
 
 #. module: account_central_journal
 #: view:wizard.central.journal.report:0
 msgid "Dates movements"
-msgstr "Date dei movimenti"
+msgstr "Dates movements"
 
 #. module: account_central_journal
 #: field:account.fiscalyear,progressive_debit:0
 msgid "Progressive Debit"
-msgstr "Progressivo Dare"
+msgstr "Progressive Debit"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:128
 #: field:wizard.central.journal.report,date_move_line_to:0
 msgid "to date"
-msgstr "alla data"
+msgstr "to date"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:141
 msgid "Name"
-msgstr "Descrizione movimento"
+msgstr "Name"
 
 #. module: account_central_journal
 #: field:account.fiscalyear,progressive_line_number:0
 msgid "Progressive line"
-msgstr "Progressivo della riga"
+msgstr "Progressive line"
 
 #. module: account_central_journal
 #: code:addons/account_central_journal/wizard/central_journal_report.py:58
 #, python-format
 msgid "The end date can not be greater than today's date."
-msgstr "La data finale non può essere maggiore della data odierna"
+msgstr "The end date can not be greater than today's date."
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:143
 msgid "Credit"
-msgstr "Avere"
+msgstr "Credit"
 
 #. module: account_central_journal
 #: model:ir.model,name:account_central_journal.model_account_fiscalyear
 #: field:wizard.central.journal.report,fiscalyear:0
 msgid "Fiscal Year"
-msgstr "Anno Fiscale"
+msgstr "Fiscal Year"
 
 #. module: account_central_journal
 #: code:addons/account_central_journal/wizard/central_journal_report.py:55
 #, python-format
 msgid "The end date must be greater than the initial date."
-msgstr "La data finale deve essere maggiore della data iniziale"
+msgstr "The end date must be greater than the initial date."
 
 #. module: account_central_journal
 #: view:wizard.central.journal.report:0
 msgid "Reference"
-msgstr "Riferimento"
+msgstr "Reference"
 
 #. module: account_central_journal
 #: model:ir.actions.report.xml,name:account_central_journal.central_journal_report_id
 msgid "central_journal"
-msgstr "Giornale Centralizzato Report Webkit"
+msgstr "central_journal"
 
 #. module: account_central_journal
 #: field:account.fiscalyear,progressive_page_number:0
 msgid "Progressive of the page"
-msgstr "Progressivo della pagina"
+msgstr "Progressive of the page"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:128
 msgid "TEST PRINTING"
-msgstr "STAMPA DI PROVA"
+msgstr "TEST PRINTING"
 
 #. module: account_central_journal
 #: view:account.fiscalyear:0
 msgid "Central journal info"
-msgstr "Informazione del Giornale Centralizzato"
+msgstr "Central journal info"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:131
 msgid "Page:"
-msgstr "Pagina:"
+msgstr "Page:"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:128
 #: field:wizard.central.journal.report,date_move_line_from:0
 #: field:wizard.central.journal.report,date_move_line_from_view:0
 msgid "From date"
-msgstr "Dalla data"
+msgstr "From date"
 
 #. module: account_central_journal
 #: selection:wizard.central.journal.report,print_state:0
 msgid "Ready for printing"
-msgstr "Pronto per la stampa"
+msgstr "Ready for printing"
 
 #. module: account_central_journal
 #: view:wizard.central.journal.report:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancel"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:135
 msgid "Row"
-msgstr "N.riga"
+msgstr "Row"
 
 #. module: account_central_journal
 #: view:wizard.central.journal.report:0
 msgid "Final print"
-msgstr "Stampa definitiva"
+msgstr "Final print"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:120
 msgid "ACCOUNT JOURNAL"
-msgstr "Giornale di Contabilità"
+msgstr "ACCOUNT JOURNAL"

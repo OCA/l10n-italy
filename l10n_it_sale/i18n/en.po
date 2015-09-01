@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2015-07-24 23:41+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_sale
@@ -23,7 +23,7 @@ msgstr ""
 #: field:stock.picking,goods_description_id:0
 #: field:stock.picking.out,goods_description_id:0
 msgid "Description of goods"
-msgstr "Aspetto dei Beni"
+msgstr "Description of goods"
 
 #. module: l10n_it_sale
 #: field:stock.picking.carriage_condition,note:0
@@ -37,7 +37,7 @@ msgstr "Note"
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_transportation_reason_tree
 #: view:stock.picking.transportation_reason:0
 msgid "Reasons for transportation"
-msgstr "Causale del trasporto"
+msgstr "Reasons for transportation"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking
@@ -48,17 +48,17 @@ msgstr "Picking List"
 #: model:ir.actions.act_window,name:l10n_it_sale.action_wizard_assign_ddt
 #: view:stock.picking.out:0 view:wizard.assign.ddt:0
 msgid "Assign DDT"
-msgstr "Assegna DDT"
+msgstr "Assign DDT"
 
 #. module: l10n_it_sale
 #: view:res.partner:0
 msgid "Sales & Purchases"
-msgstr ""
+msgstr "Sales & Purchases"
 
 #. module: l10n_it_sale
 #: field:sale.order,validity:0
 msgid "Validity"
-msgstr "Validità"
+msgstr "Validity"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_wizard_assign_ddt
@@ -68,7 +68,7 @@ msgstr "wizard.assign.ddt"
 #. module: l10n_it_sale
 #: view:account.invoice:0
 msgid "Shipping"
-msgstr "Trasporto"
+msgstr "Shipping"
 
 #. module: l10n_it_sale
 #: field:stock.picking,ddt_number:0 field:stock.picking.out,ddt_number:0
@@ -78,19 +78,19 @@ msgstr "DDT"
 #. module: l10n_it_sale
 #: field:stock.picking,ddt_date:0 field:stock.picking.out,ddt_date:0
 msgid "DDT date"
-msgstr "Data DDT"
+msgstr "DDT date"
 
 #. module: l10n_it_sale
 #: view:account.invoice:0
 msgid "Payments"
-msgstr "Pagamenti"
+msgstr "Payments"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking_carriage_condition
 #: view:stock.picking.carriage_condition:0
 #: field:stock.picking.carriage_condition,name:0
 msgid "Carriage Condition"
-msgstr "Resa merce"
+msgstr "Carriage Condition"
 
 #. module: l10n_it_sale
 #: view:account.invoice:0 field:account.invoice,transportation_reason_id:0
@@ -100,59 +100,59 @@ msgstr "Resa merce"
 #: field:stock.picking.out,transportation_reason_id:0
 #: view:stock.picking.transportation_reason:0
 msgid "Reason for transportation"
-msgstr "Causale del trasporto"
+msgstr "Reason for transportation"
 
 #. module: l10n_it_sale
 #: view:wizard.assign.ddt:0
 msgid "Assign"
-msgstr "Assegna"
+msgstr "Assign"
 
 #. module: l10n_it_sale
 #: view:wizard.assign.ddt:0
 msgid "This will assign the DDT number"
-msgstr "Questo assegnerà il numero del DDT"
+msgstr "This will assign the DDT number"
 
 #. module: l10n_it_sale
 #: code:addons/l10n_it_sale/wizard/assign_ddt.py:37
 #, python-format
 msgid "DTT number already assigned"
-msgstr "Numero DDT già assegnato"
+msgstr "DTT number already assigned"
 
 #. module: l10n_it_sale
 #: field:stock.picking.transportation_reason,name:0
 msgid "Reason For Transportation"
-msgstr "Causale del trasporto"
+msgstr "Reason For Transportation"
 
 #. module: l10n_it_sale
 #: model:ir.actions.act_window,name:l10n_it_sale.action_goods_description_tree
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_good_description_tree
 #: view:stock.picking.goods_description:0
 msgid "Descriptions of Goods"
-msgstr "Aspetto dei Beni"
+msgstr "Descriptions of Goods"
 
 #. module: l10n_it_sale
 #: view:res.partner:0
 msgid "Default shipping conditions"
-msgstr "Dati DDT"
+msgstr "Default shipping conditions"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking_goods_description
 #: view:stock.picking.goods_description:0
 #: field:stock.picking.goods_description,name:0
 msgid "Description of Goods"
-msgstr "Aspetto dei Beni"
+msgstr "Description of Goods"
 
 #. module: l10n_it_sale
 #: model:ir.actions.act_window,name:l10n_it_sale.action_carriage_condition_tree
 #: model:ir.ui.menu,name:l10n_it_sale.menu_action_carriage_condition_tree
 #: view:stock.picking.carriage_condition:0
 msgid "Carriage Conditions"
-msgstr "Resa merce"
+msgstr "Carriage Conditions"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_account_invoice
 msgid "Invoice"
-msgstr "Fattura"
+msgstr "Invoice"
 
 #. module: l10n_it_sale
 #: view:account.invoice:0 field:account.invoice,carriage_condition_id:0
@@ -160,12 +160,12 @@ msgstr "Fattura"
 #: field:stock.picking,carriage_condition_id:0
 #: field:stock.picking.out,carriage_condition_id:0
 msgid "Carriage condition"
-msgstr "Resa merce"
+msgstr "Carriage condition"
 
 #. module: l10n_it_sale
 #: view:wizard.assign.ddt:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancel"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_res_partner
@@ -175,9 +175,9 @@ msgstr "Partner"
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_sale_order
 msgid "Sales Order"
-msgstr "Ordine di vendita"
+msgstr "Sales Order"
 
 #. module: l10n_it_sale
 #: model:ir.model,name:l10n_it_sale.model_stock_picking_out
 msgid "Delivery Orders"
-msgstr ""
+msgstr "Delivery Orders"

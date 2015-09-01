@@ -10,17 +10,17 @@ msgstr ""
 "POT-Creation-Date: 2015-07-24 23:40+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_partially_deductible_vat
 #: model:ir.model,name:l10n_it_partially_deductible_vat.model_account_invoice_tax
 msgid "Invoice Tax"
-msgstr "Imposta della fattura"
+msgstr "Invoice Tax"
 
 #. module: l10n_it_partially_deductible_vat
 #: code:addons/l10n_it_partially_deductible_vat/account.py:55
@@ -29,43 +29,43 @@ msgstr "Imposta della fattura"
 #: code:addons/l10n_it_partially_deductible_vat/account.py:81
 #, python-format
 msgid "The taxes %s have different rates"
-msgstr ""
+msgstr "The taxes %s have different rates"
 
 #. module: l10n_it_partially_deductible_vat
 #: field:account.tax.code,tax_ids:0
 msgid "Taxes"
-msgstr ""
+msgstr "Taxes"
 
 #. module: l10n_it_partially_deductible_vat
 #: code:addons/l10n_it_partially_deductible_vat/account.py:182
 #, python-format
 msgid "No tax codes for invoice tax %s"
-msgstr "Nessun conto imposta per l'imposta %s"
+msgstr "No tax codes for invoice tax %s"
 
 #. module: l10n_it_partially_deductible_vat
 #: model:ir.model,name:l10n_it_partially_deductible_vat.model_account_tax
 msgid "Tax"
-msgstr ""
+msgstr "Tax"
 
 #. module: l10n_it_partially_deductible_vat
 #: field:account.tax.code,base_tax_ids:0
 msgid "Base Taxes"
-msgstr ""
+msgstr "Base Taxes"
 
 #. module: l10n_it_partially_deductible_vat
 #: model:ir.model,name:l10n_it_partially_deductible_vat.model_account_tax_code
 msgid "Tax Code"
-msgstr ""
+msgstr "Tax Code"
 
 #. module: l10n_it_partially_deductible_vat
 #: field:account.tax.code,ref_base_tax_ids:0
 msgid "Ref Base Taxes"
-msgstr ""
+msgstr "Ref Base Taxes"
 
 #. module: l10n_it_partially_deductible_vat
 #: field:account.tax.code,ref_tax_ids:0
 msgid "Ref Taxes"
-msgstr ""
+msgstr "Ref Taxes"
 
 #. module: l10n_it_partially_deductible_vat
 #: code:addons/l10n_it_partially_deductible_vat/account.py:54
@@ -84,4 +84,4 @@ msgstr "Error"
 #: code:addons/l10n_it_partially_deductible_vat/account.py:86
 #, python-format
 msgid "No taxes associated to tax code %s"
-msgstr ""
+msgstr "No taxes associated to tax code %s"

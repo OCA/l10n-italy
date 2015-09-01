@@ -10,36 +10,36 @@ msgstr ""
 "POT-Creation-Date: 2015-07-24 23:40+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_invoice_entry_date
 #: code:addons/account_invoice_entry_date/invoice.py:62
 #, python-format
 msgid "The invoice date cannot be later than the date of registration!"
-msgstr "La data di fatturazione non può essere successiva alla data di registrazione!"
+msgstr "The invoice date cannot be later than the date of registration!"
 
 #. module: account_invoice_entry_date
 #: field:account.invoice,registration_date:0
 msgid "Registration Date"
-msgstr "Data di registrazione"
+msgstr "Registration Date"
 
 #. module: account_invoice_entry_date
 #: help:account.invoice,registration_date:0
 msgid "Keep empty to use the current date"
-msgstr "Lasciare vuoto per utilizzare la data corrente"
+msgstr "Keep empty to use the current date"
 
 #. module: account_invoice_entry_date
 #: model:ir.model,name:account_invoice_entry_date.model_account_invoice
 msgid "Invoice"
-msgstr "Fattura"
+msgstr "Invoice"
 
 #. module: account_invoice_entry_date
 #: code:addons/account_invoice_entry_date/invoice.py:61
 #, python-format
 msgid "Error date !"
-msgstr "Data errata !"
+msgstr "Error date !"

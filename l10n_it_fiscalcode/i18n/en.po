@@ -10,75 +10,75 @@ msgstr ""
 "POT-Creation-Date: 2015-07-24 23:40+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_fiscalcode
 #: help:res.partner,individual:0
 msgid "If checked the C.F. is referred to a Individual Person"
-msgstr "Se selezionato il Cofice Fiscale farà riferimento a quello di una Persona Fisica"
+msgstr "If checked the C.F. is referred to a Individual Person"
 
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,birth_date:0
 msgid "Date of birth"
-msgstr "Data di nascita"
+msgstr "Date of birth"
 
 #. module: l10n_it_fiscalcode
 #: field:res.partner,fiscalcode:0 view:wizard.compute.fc:0
 msgid "Fiscal Code"
-msgstr "Codice Fiscale"
+msgstr "Fiscal Code"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.actions.act_window,name:l10n_it_fiscalcode.action_compute_fc
 #: model:ir.model,name:l10n_it_fiscalcode.model_wizard_compute_fc
 msgid "Compute Fiscal Code"
-msgstr "Calcola il Codice Fiscale"
+msgstr "Compute Fiscal Code"
 
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,fiscalcode_firstname:0
 msgid "First name"
-msgstr "Nome"
+msgstr "First name"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:136
 #, python-format
 msgid "One or more fields are missing"
-msgstr ""
+msgstr "One or more fields are missing"
 
 #. module: l10n_it_fiscalcode
 #: view:wizard.compute.fc:0
 msgid "Individual Data"
-msgstr "Dati Persona Fisica"
+msgstr "Individual Data"
 
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,birth_city:0
 msgid "City of birth"
-msgstr "Città di Nascita"
+msgstr "City of birth"
 
 #. module: l10n_it_fiscalcode
 #: view:wizard.compute.fc:0
 msgid "Compute"
-msgstr "Calcola"
+msgstr "Compute"
 
 #. module: l10n_it_fiscalcode
 #: constraint:res.partner:0
 msgid "The fiscal code doesn't seem to be correct."
-msgstr "Il Codice Fiscale non sembra corretto per una Persona Fisica."
+msgstr "The fiscal code doesn't seem to be correct."
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:138
 #, python-format
 msgid "Cataster code is missing"
-msgstr ""
+msgstr "Cataster code is missing"
 
 #. module: l10n_it_fiscalcode
 #: sql_constraint:res.partner:0
 msgid "The fiscal code must be unique per company !"
-msgstr "Il codice fiscale deve essere unico!"
+msgstr "The fiscal code must be unique per company !"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:136
@@ -86,12 +86,12 @@ msgstr "Il codice fiscale deve essere unico!"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:148
 #, python-format
 msgid "Error"
-msgstr "Errore"
+msgstr "Error"
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
 msgid "Male"
-msgstr "Maschio"
+msgstr "Male"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:149
@@ -99,37 +99,37 @@ msgstr "Maschio"
 msgid ""
 "Existing fiscal code %s is different from the computed one (%s). If you want"
 " to use the computed one, remove the existing one"
-msgstr "Il codice fiscale esistente %s è diverso da quello calcolato (%s). Se si vuole usare quello calcolato, rimuovere quello esistente."
+msgstr "Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one"
 
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,fiscalcode_surname:0
 msgid "Surname"
-msgstr "Cognome"
+msgstr "Surname"
 
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,sex:0
 msgid "Sex"
-msgstr "Sesso"
+msgstr "Sex"
 
 #. module: l10n_it_fiscalcode
 #: help:res.partner,fiscalcode:0
 msgid "Italian Fiscal Code"
-msgstr "Codice fiscale Italiano"
+msgstr "Italian Fiscal Code"
 
 #. module: l10n_it_fiscalcode
 #: field:res.partner,individual:0
 msgid "Individual"
-msgstr "Persona Fisica"
+msgstr "Individual"
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
 msgid "Female"
-msgstr "Femmina"
+msgstr "Female"
 
 #. module: l10n_it_fiscalcode
 #: view:wizard.compute.fc:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancel"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_partner
@@ -139,4 +139,4 @@ msgstr "Partner"
 #. module: l10n_it_fiscalcode
 #: view:res.partner:0
 msgid "Compute F.C."
-msgstr "Calcola C.F."
+msgstr "Compute F.C."

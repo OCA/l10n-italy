@@ -1,0 +1,93 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_it_DDT_webkit
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-24 23:40+0000\n"
+"PO-Revision-Date: 2015-05-27 19:59+0000\n"
+"Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:54
+msgid "Origin"
+msgstr "Origin"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:74
+msgid "Scheduled Date"
+msgstr "Scheduled Date"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:72
+msgid "Reason For Transportation"
+msgstr "Reason For Transportation"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:88
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:56
+msgid "Weight"
+msgstr "Weight"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:71
+msgid "Description of goods"
+msgstr "Description of goods"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:57
+msgid "Nr. package"
+msgstr "Nr. package"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:36
+msgid "Invoice address:"
+msgstr "Invoice address:"
+
+#. module: l10n_it_DDT_webkit
+#: model:ir.actions.report.xml,name:l10n_it_DDT_webkit.ddt_webkit
+msgid "DDT"
+msgstr "DDT"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:55
+msgid "DDT date"
+msgstr "DDT date"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:89
+msgid "Serial Number"
+msgstr "Serial Number"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:53
+msgid "Contact"
+msgstr "Contact"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:73
+msgid "Carriage condition"
+msgstr "Carriage condition"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:75
+msgid "Delivery Method"
+msgstr "Delivery Method"
+
+#. module: l10n_it_DDT_webkit
+#: report:addons/l10n_it_DDT_webkit/report/ddt.mako:90
+msgid "Quantity"
+msgstr "Quantity"

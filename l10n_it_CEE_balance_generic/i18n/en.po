@@ -10,39 +10,39 @@ msgstr ""
 "POT-Creation-Date: 2015-07-24 23:40+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_CEE_balance_generic
 #: model:ir.model,name:l10n_it_CEE_balance_generic.model_account_account
 msgid "Account"
-msgstr "Conto"
+msgstr "Account"
 
 #. module: l10n_it_CEE_balance_generic
 #: model:account.account.type,name:l10n_it_CEE_balance_generic.account_type_legalview3
 msgid "Voce Bilancio"
-msgstr ""
+msgstr "Voce Bilancio"
 
 #. module: l10n_it_CEE_balance_generic
 #: model:account.account.type,name:l10n_it_CEE_balance_generic.account_type_legalview4
 msgid "Sotto-voce Bilancio"
-msgstr ""
+msgstr "Sotto-voce Bilancio"
 
 #. module: l10n_it_CEE_balance_generic
 #: view:account.account:0 field:account.account,parent_consol_ids:0
 msgid "Consolidated Parents"
-msgstr "Conti di livello superiore consolidati"
+msgstr "Consolidated Parents"
 
 #. module: l10n_it_CEE_balance_generic
 #: model:account.account.type,name:l10n_it_CEE_balance_generic.account_type_legalview2
 msgid "Titolo Bilancio"
-msgstr ""
+msgstr "Titolo Bilancio"
 
 #. module: l10n_it_CEE_balance_generic
 #: model:account.account.type,name:l10n_it_CEE_balance_generic.account_type_legalview1
 msgid "Sezione Bilancio"
-msgstr ""
+msgstr "Sezione Bilancio"

@@ -10,18 +10,18 @@ msgstr ""
 "POT-Creation-Date: 2015-07-24 23:40+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_base
 #: model:ir.model,name:l10n_it_base.model_res_city view:res.city:0
 #: field:res.city,name:0 view:res.partner:0
 msgid "City"
-msgstr "Città"
+msgstr "City"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.dott
@@ -48,12 +48,12 @@ msgstr "DI"
 #. module: l10n_it_base
 #: field:res.province,code:0
 msgid "Province Code"
-msgstr "Codice provincia"
+msgstr "Province Code"
 
 #. module: l10n_it_base
 #: field:res.city,web_site:0
 msgid "Web Site"
-msgstr "Sito web"
+msgstr "Web Site"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.pf
@@ -74,7 +74,7 @@ msgstr "Impresa Famigliare"
 #. module: l10n_it_base
 #: field:res.city,cadaster_code:0
 msgid "Cadaster Code"
-msgstr "Codice catastale"
+msgstr "Cadaster Code"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.notaio
@@ -85,18 +85,18 @@ msgstr "Notaio"
 #. module: l10n_it_base
 #: field:res.region,name:0
 msgid "Region Name"
-msgstr "Nome regione"
+msgstr "Region Name"
 
 #. module: l10n_it_base
 #: help:res.region,name:0
 msgid "The full name of the region."
-msgstr "Il nome intero della regione"
+msgstr "The full name of the region."
 
 #. module: l10n_it_base
 #: model:ir.actions.act_window,name:l10n_it_base.action_province
 #: model:ir.ui.menu,name:l10n_it_base.menu_province_partner
 msgid "Provinces"
-msgstr "Province"
+msgstr "Provinces"
 
 #. module: l10n_it_base
 #: model:res.partner.title,shortcut:l10n_it_base.pf
@@ -113,7 +113,7 @@ msgstr "S.a.s."
 #: model:ir.actions.act_window,name:l10n_it_base.action_city
 #: model:ir.ui.menu,name:l10n_it_base.menu_city_partner
 msgid "Cities"
-msgstr "Città"
+msgstr "Cities"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.spettle
@@ -124,14 +124,14 @@ msgstr "Spett.le"
 #. module: l10n_it_base
 #: help:res.province,code:0
 msgid "The province code in two chars."
-msgstr "Il codice di due caratteri della provincia."
+msgstr "The province code in two chars."
 
 #. module: l10n_it_base
 #: model:ir.model,name:l10n_it_base.model_res_province
 #: field:res.city,province_id:0 view:res.partner:0
 #: field:res.partner,province:0 view:res.province:0
 msgid "Province"
-msgstr "Provincia"
+msgstr "Province"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.ing
@@ -142,23 +142,23 @@ msgstr "Ing."
 #. module: l10n_it_base
 #: field:res.city,istat_code:0
 msgid "ISTAT code"
-msgstr "Codice ISTAT"
+msgstr "ISTAT code"
 
 #. module: l10n_it_base
 #: field:res.city,zip:0 view:res.partner:0
 msgid "ZIP"
-msgstr "CAP"
+msgstr "ZIP"
 
 #. module: l10n_it_base
 #: field:res.region,country_id:0
 msgid "Country"
-msgstr "Nazione"
+msgstr "Country"
 
 #. module: l10n_it_base
 #: model:ir.model,name:l10n_it_base.model_res_region field:res.city,region:0
 #: view:res.partner:0 field:res.partner,region:0 field:res.province,region:0
 msgid "Region"
-msgstr "Regione"
+msgstr "Region"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.snc
@@ -175,7 +175,7 @@ msgstr "S.r.l."
 #. module: l10n_it_base
 #: field:res.city,phone_prefix:0
 msgid "Telephone Prefix"
-msgstr "Prefisso telefonico"
+msgstr "Telephone Prefix"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.avv
@@ -191,7 +191,7 @@ msgstr "IF"
 #. module: l10n_it_base
 #: field:res.partner,province_code:0
 msgid "Province code"
-msgstr ""
+msgstr "Province code"
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.egrsigra
@@ -208,7 +208,7 @@ msgstr "S.a.p.a."
 #. module: l10n_it_base
 #: help:res.province,name:0
 msgid "The full name of the province."
-msgstr "Il nome completo della provincia."
+msgstr "The full name of the province."
 
 #. module: l10n_it_base
 #: model:res.partner.title,name:l10n_it_base.egrsig
@@ -219,7 +219,7 @@ msgstr "Egr. Sig."
 #. module: l10n_it_base
 #: field:res.province,name:0
 msgid "Province Name"
-msgstr "Nome Provincia"
+msgstr "Province Name"
 
 #. module: l10n_it_base
 #: model:ir.model,name:l10n_it_base.model_res_partner
