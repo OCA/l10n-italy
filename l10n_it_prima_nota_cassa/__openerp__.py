@@ -22,7 +22,7 @@
     'name': 'Italian Localisation - Prima Nota Cassa',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports - Prima Nota Cassa - Webkit""",
+    'description': """Accounting reports - Prima Nota Cassa""",
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
