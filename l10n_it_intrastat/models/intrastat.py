@@ -96,9 +96,14 @@ class account_intrastat_statement(models.Model):
     @api.depends('sale_section2_ids.amount_euro')
     def _compute_amount_sale_s2(self):
         self.sale_section2_operation_number = len(self.sale_section2_ids)
-        self.sale_section2_operation_amount = sum(
-            line.amount_euro for line in self.sale_section2_ids)
-
+        amount_total = 0
+        for line in self.sale_section2_ids:
+            if line.sign_variation == '-':
+                amount_total -= line.amount_euro
+            else:
+                amount_total += line.amount_euro
+        self.sale_section2_operation_amount = amount_total
+            
     @api.one
     @api.depends('sale_section3_ids.amount_euro')
     def _compute_amount_sale_s3(self):
@@ -126,9 +131,14 @@ class account_intrastat_statement(models.Model):
     def _compute_amount_purchase_s2(self):
         self.purchase_section2_operation_number = len(
             self.purchase_section2_ids)
-        self.purchase_section2_operation_amount = sum(
-            line.amount_euro for line in self.purchase_section2_ids)
-
+        amount_total = 0
+        for line in self.purchase_section2_ids:
+            if line.sign_variation == '-':
+                amount_total -= line.amount_euro
+            else:
+                amount_total += line.amount_euro
+        self.purchase_section2_operation_amount = amount_total
+        
     @api.one
     @api.depends('purchase_section3_ids.amount_euro')
     def _compute_amount_purchase_s3(self):
@@ -448,6 +458,18 @@ class account_intrastat_statement(models.Model):
         return prefix
     
     @api.model
+    def _format_negative_number_frontispiece(self, number):
+        if number >= 0:
+            return str(number)
+        # interchange last values with p for 0, q for 1 ...and y for 9
+        interchange = ['p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y']
+        last_char = str(number)[-1:]
+        number = list(str(number * -1))
+        # change last number
+        number[len(number)-1] = interchange[int(last_char)] 
+        return ''.join(number)
+    
+    @api.model
     def _prepare_export_frontispiece(self, type):
         rcd = self._prepare_export_prefix(type)
         rcd += '{:1s}'.format("0")
@@ -488,13 +510,17 @@ class account_intrastat_statement(models.Model):
         if type == "purchase":
             rcd += '{:5s}'.format(
                 str(self.purchase_section2_operation_number).zfill(5))
+            amount_format = self._format_negative_number_frontispiece(
+                                self.purchase_section2_operation_amount)
             rcd += '{:13s}'.format(
-                str(self.purchase_section2_operation_amount).zfill(13))
+                str(amount_format).zfill(13)) 
         else:
             rcd += '{:5s}'.format(
                 str(self.sale_section2_operation_number).zfill(5))
+            amount_format = self._format_negative_number_frontispiece(
+                                self.sale_section2_operation_amount)
             rcd += '{:13s}'.format(
-                str(self.sale_section2_operation_amount).zfill(13))    
+                str(amount_format).zfill(13))    
         # Numero dettagli della sezione 3
         if type == "purchase":
             rcd += '{:5s}'.format(
