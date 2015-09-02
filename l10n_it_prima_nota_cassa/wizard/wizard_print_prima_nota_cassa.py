@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #    Copyright (C) 2011-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -34,16 +34,22 @@ class account_report_prima_nota_cassa(models.TransientModel):
 
     @api.multi
     def _get_all_journal(self):
-        return self.env['account.journal'].search([('type','in',['cash','bank'])])
+        return self.env['account.journal'].search([
+            ('type', 'in', ['cash', 'bank'])])
 
     def _print_report(self, cr, uid, ids, data, context=None):
         if context is None:
             context = {}
         data = self.pre_print_report(cr, uid, ids, data, context=context)
-        data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
-        if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
+        data['form'].update(self.read(cr, uid, ids, ['landscape', 'initial_balance', 'amount_currency', 'sortby'])[0])
+        # GTK client problem onchange does not consider in save record
+        if not data['form']['fiscalyear_id']:
             data['form'].update({'initial_balance': False})
-        return { 'type': 'ir.actions.report.xml', 'report_name': 'l10n_it_prima_nota_cassa.report_primanotacassa', 'datas': data}
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'l10n_it_prima_nota_cassa.report_primanotacassa',
+            'datas': data
+        }
 
     initial_balance = fields.Boolean(
         'Include initial balances',
@@ -53,7 +59,5 @@ sum amount of debit/credit/balance""")
     _defaults = {
         'journal_ids': _get_all_journal,
     }
-
-    #'journal_ids': fields.many2many('account.journal', string='Journals', required=True),
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
