@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -21,12 +21,13 @@
 ##############################################################################
 
 import time
+from openerp.osv import osv
 from openerp.report import report_sxw
 from openerp.addons.account.report.common_report_header import common_report_header
-from openerp import _
+
 
 class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-    _name = 'report.account.prima_nota_cassa'
+    # _name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
         new_ids = ids
@@ -44,7 +45,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             ctx['periods'] = data['form']['periods']
         elif data['form']['filter'] == 'filter_date':
             ctx['date_from'] = data['form']['date_from']
-            ctx['date_to'] =  data['form']['date_to']
+            ctx['date_to'] = data['form']['date_to']
         ctx['state'] = data['form']['target_move']
         self.context.update(ctx)
         if (data['model'] == 'ir.ui.menu'):
@@ -61,7 +62,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         self.period_sql = ""
         self.sold_accounts = {}
         self.sortby = 'sort_date'
-        self.localcontext.update( {
+        self.localcontext.update({
             'time': time,
             'lines': self.lines,
             'sum_debit_account': self._sum_debit_account,
@@ -84,12 +85,13 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
     def _sum_currency_amount_account(self, account):
         self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
                 FROM account_move_line l \
-                WHERE l.account_id = %s AND %s' %(account.id, self.query))
+                WHERE l.account_id = %s AND %s' % (account.id, self.query))
         sum_currency = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
-                            FROM account_move_line l \
-                            WHERE l.account_id = %s AND %s '%(account.id, self.init_query))
+            self.cr.execute(
+                'SELECT sum(l.amount_currency) AS tot_currency \
+                 FROM account_move_line l \
+                 WHERE l.account_id = %s AND %s ' % (account.id, self.init_query))
             sum_currency += self.cr.fetchone()[0] or 0.0
         return sum_currency
 
@@ -99,32 +101,32 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
 
         currency_obj = self.pool.get('res.currency')
         journal_obj = self.pool.get('account.journal')
-        
-        cash_bank_journals = journal_obj.search(self.cr, self.uid, [ ('type','in',('bank','cash')) ] )
-        
+
+        cash_bank_journals = journal_obj.search(self.cr, self.uid, [('type','in',('bank','cash'))])
+
         cash_bank_accounts = [journal_obj.browse(self.cr, self.uid, j).default_credit_account_id.id for j in cash_bank_journals] + \
             [journal_obj.browse(self.cr, self.uid, j).default_debit_account_id.id for j in cash_bank_journals]
-        
-        ids_acc = [acc for acc in self.pool.get('account.account')._get_children_and_consol(self.cr, self.uid, account.id) \
-            if acc in cash_bank_accounts]
-        
+
+        ids_acc = [acc for acc in self.pool.get('account.account')._get_children_and_consol(self.cr, self.uid, account.id)
+                   if acc in cash_bank_accounts]
+
         currency = account.currency_id and account.currency_id or account.company_id.currency_id
-        
+
         return ids_acc
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
         account_ids = self.get_children_accounts(main_account)
-        
+
         move_state = ['draft','posted']
         if self.target_move == 'posted':
             move_state = ['posted', '']
 
         # Then select all account_move_line of this account
         if self.sortby == 'sort_journal_partner':
-            sql_sort='j.code, p.name, l.move_id'
+            sql_sort = 'j.code, p.name, l.move_id'
         else:
-            sql_sort='l.date, l.move_id'
+            sql_sort = 'l.date, l.move_id'
         sql = """
             SELECT
                 l.id AS lid,
@@ -155,46 +157,46 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
             LEFT JOIN account_period per on (per.id=l.period_id)
             JOIN account_journal j on (l.journal_id=j.id)
             WHERE %s
-                AND m.state IN %s 
+                AND m.state IN %s
                 AND l.account_id in %%s
             ORDER by %s
-        """ %(self.query, tuple(move_state), sql_sort)
+        """ % (self.query, tuple(move_state), sql_sort)
         self.cr.execute(sql, (tuple(account_ids),))
         res = self.cr.dictfetchall()
         for l in res:
-            l['move'] = l['move_name'] != '/' and l['move_name'] or ('*'+str(l['mmove_id']))
+            l['move'] = l['move_name'] != '/' and l['move_name'] or ('*' + str(l['mmove_id']))
             l['partner'] = l['partner_name'] or ''
             # Modification of amount Currency
             if l['credit'] > 0:
-                if l['amount_currency'] != None:
+                if l['amount_currency'] is not None:
                     l['amount_currency'] = abs(l['amount_currency']) * -1
-            if l['amount_currency'] != None:
+            if l['amount_currency'] is not None:
                 self.tot_currency = self.tot_currency + l['amount_currency']
         return res
 
     def _sum_total_debit(self, account):
         move_state = ['draft','posted']
-        
-        account_ids = self.get_children_accounts(main_account)
-        
+
         if self.target_move == 'posted':
             move_state = ['posted','']
-        self.cr.execute('SELECT sum(debit) \
-                FROM account_move_line l \
-                JOIN account_move am ON (am.id = l.move_id) \
-                WHERE (l.account_id = %s) \
-                AND (am.state IN %s) \
-                AND '+ self.query +' '
-                ,(account.id, tuple(move_state)))
+        self.cr.execute(
+            'SELECT sum(debit) \
+             FROM account_move_line l \
+             JOIN account_move am ON (am.id = l.move_id) \
+             WHERE (l.account_id = %s) \
+             AND (am.state IN %s) \
+             AND ' + self.query + ' ',
+            (account.id, tuple(move_state)))
         sum_debit = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(debit) \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND '+ self.init_query +' '
-                    ,(account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT sum(debit) \
+                 FROM account_move_line l \
+                 JOIN account_move am ON (am.id = l.move_id) \
+                 WHERE (l.account_id = %s) \
+                 AND (am.state IN %s) \
+                 AND ' + self.init_query + ' ',
+                (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_debit += self.cr.fetchone()[0] or 0.0
         return sum_debit
@@ -205,22 +207,24 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         move_state = ['draft','posted']
         if self.target_move == 'posted':
             move_state = ['posted','']
-        self.cr.execute('SELECT sum(debit) \
-                FROM account_move_line l \
-                JOIN account_move am ON (am.id = l.move_id) \
-                WHERE (l.account_id = %s) \
-                AND (am.state IN %s) \
-                AND '+ self.query +' '
-                ,(account.id, tuple(move_state)))
+        self.cr.execute(
+            'SELECT sum(debit) \
+             FROM account_move_line l \
+             JOIN account_move am ON (am.id = l.move_id) \
+             WHERE (l.account_id = %s) \
+             AND (am.state IN %s) \
+             AND ' + self.query + ' ',
+            (account.id, tuple(move_state)))
         sum_debit = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(debit) \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND '+ self.init_query +' '
-                    ,(account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT sum(debit) \
+                 FROM account_move_line l \
+                 JOIN account_move am ON (am.id = l.move_id) \
+                 WHERE (l.account_id = %s) \
+                 AND (am.state IN %s) \
+                 AND ' + self.init_query + ' ',
+                (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_debit += self.cr.fetchone()[0] or 0.0
         return sum_debit
@@ -231,22 +235,24 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         move_state = ['draft','posted']
         if self.target_move == 'posted':
             move_state = ['posted','']
-        self.cr.execute('SELECT sum(credit) \
-                FROM account_move_line l \
-                JOIN account_move am ON (am.id = l.move_id) \
-                WHERE (l.account_id = %s) \
-                AND (am.state IN %s) \
-                AND '+ self.query +' '
-                ,(account.id, tuple(move_state)))
+        self.cr.execute(
+            'SELECT sum(credit) \
+             FROM account_move_line l \
+             JOIN account_move am ON (am.id = l.move_id) \
+             WHERE (l.account_id = %s) \
+             AND (am.state IN %s) \
+             AND ' + self.query + ' ',
+            (account.id, tuple(move_state)))
         sum_credit = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT sum(credit) \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND '+ self.init_query +' '
-                    ,(account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT sum(credit) \
+                 FROM account_move_line l \
+                 JOIN account_move am ON (am.id = l.move_id) \
+                 WHERE (l.account_id = %s) \
+                 AND (am.state IN %s) \
+                 AND ' + self.init_query + ' ',
+                (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_credit += self.cr.fetchone()[0] or 0.0
         return sum_credit
@@ -257,22 +263,24 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         move_state = ['draft','posted']
         if self.target_move == 'posted':
             move_state = ['posted','']
-        self.cr.execute('SELECT (sum(debit) - sum(credit)) as tot_balance \
-                FROM account_move_line l \
-                JOIN account_move am ON (am.id = l.move_id) \
-                WHERE (l.account_id = %s) \
-                AND (am.state IN %s) \
-                AND '+ self.query +' '
-                ,(account.id, tuple(move_state)))
+        self.cr.execute(
+            'SELECT (sum(debit) - sum(credit)) as tot_balance \
+             FROM account_move_line l \
+             JOIN account_move am ON (am.id = l.move_id) \
+             WHERE (l.account_id = %s) \
+             AND (am.state IN %s) \
+             AND ' + self.query + ' ',
+            (account.id, tuple(move_state)))
         sum_balance = self.cr.fetchone()[0] or 0.0
         if self.init_balance:
-            self.cr.execute('SELECT (sum(debit) - sum(credit)) as tot_balance \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND '+ self.init_query +' '
-                    ,(account.id, tuple(move_state)))
+            self.cr.execute(
+                'SELECT (sum(debit) - sum(credit)) as tot_balance \
+                 FROM account_move_line l \
+                 JOIN account_move am ON (am.id = l.move_id) \
+                 WHERE (l.account_id = %s) \
+                 AND (am.state IN %s) \
+                 AND ' + self.init_query + ' ',
+                (account.id, tuple(move_state)))
             # Add initial balance to the result
             sum_balance += self.cr.fetchone()[0] or 0.0
         return sum_balance
@@ -280,7 +288,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
     def _get_account(self, data):
         if data['model'] == 'account.account':
             return self.pool.get('account.account').browse(self.cr, self.uid, data['form']['id']).company_id.name
-        return super(print_prima_nota_cassa ,self)._get_account(data)
+        return super(print_prima_nota_cassa, self)._get_account(data)
 
     def _get_sortby(self, data):
         if self.sortby == 'sort_date':
@@ -288,10 +296,16 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         elif self.sortby == 'sort_journal_partner':
             return 'Journal & Partner'
         return 'Date'
-        
-report_sxw.report_sxw('report.account.print.prima_nota_cassa',
-                      'account.account',
-                      'addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako',
-                      parser=print_prima_nota_cassa)
+
+# report_sxw.report_sxw('report.account.print.prima_nota_cassa',
+#                       'account.account',
+#                       'addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako',
+#                       parser=print_prima_nota_cassa)
 
 
+class report_primanotacassa(osv.AbstractModel):
+    # _name = 'report.account.report_centraljournal'
+    _name = 'report.l10n_it_prima_nota_cassa.report_primanotacassa'
+    _inherit = 'report.abstract_report'
+    _template = 'l10n_it_prima_nota_cassa.report_primanotacassa'
+    _wrapped_report_class = print_prima_nota_cassa

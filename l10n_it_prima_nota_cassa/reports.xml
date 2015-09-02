@@ -3,13 +3,14 @@
     <data>
 
         <report
-            auto="False"
             id="prima_nota_cassa"
             model="account.account"
-            name="account.print.prima_nota_cassa"
-            file="l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako"
             string="Prima Nota Cassa"
-            report_type="webkit" />
+            report_type="qweb-html"
+            name="l10n_it_prima_nota_cassa.report_primanotacassa"
+            file="l10n_it_prima_nota_cassa.report_primanotacassa"
+            attachment_use="False"
+            />
 
     </data>
 </openerp>

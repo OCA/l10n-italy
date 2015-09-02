@@ -28,10 +28,11 @@
     'license': 'AGPL-3',
     "depends": [
         'account',
-        'report_webkit'
+        'report'
     ],
     "data": [
         'reports.xml',
+        'views/prima_nota_cassa.xml',
         'wizard/wizard_print_prima_nota_cassa.xml',
     ],
     "active": False,

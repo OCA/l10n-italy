@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import report
+import report_primanotacassa
 import wizard
