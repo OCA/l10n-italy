@@ -157,11 +157,6 @@ msgid "Prima Nota Cassa"
 msgstr "Prima Nota Cassa"
 
 #. module: l10n_it_prima_nota_cassa
-#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
-msgid "Prime entry"
-msgstr "Prima Nota Cassa"
-
-#. module: l10n_it_prima_nota_cassa
 #: model:ir.model,name:l10n_it_prima_nota_cassa.model_account_report_prima_nota_cassa
 msgid "Print Prima Nota Cassa"
 msgstr "Stampa Prima Nota"

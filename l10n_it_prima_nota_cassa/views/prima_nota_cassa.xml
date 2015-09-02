@@ -6,7 +6,7 @@
         <t t-foreach="docs" t-as="o">
             <t t-call="report.internal_layout">
                 <div class="page">
-                    <h2>Prime entry</h2>
+                    <h2>Prima Nota Cassa</h2>
 
                     <div class="row mt32">
                         <div class="col-xs-3">
