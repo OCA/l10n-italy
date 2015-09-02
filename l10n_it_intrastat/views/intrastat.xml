@@ -283,7 +283,7 @@
 		                	<field name="statistic_amount_euro"/>
 						</group>
 						<group>
-							<field name="year_id"/>
+							<field name="year_id" required="1"/>
                    			<field name="quarterly"/>
                    			<field name="month"/>
 						</group>
@@ -503,7 +503,7 @@
 		                	<field name="statistic_amount_euro"/>
 						</group>
 						<group>
-							<field name="year_id"/>
+							<field name="year_id" required="1"/>
                    			<field name="quarterly"/>
                    			<field name="month"/>
 						</group>

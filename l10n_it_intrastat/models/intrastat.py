@@ -1041,7 +1041,9 @@ class account_intrastat_statement_sale_section2(models.Model):
         # Trimestre di riferimento del riepilogo da rettificare
         rcd += '{:1s}'.format(str(self.quarterly).zfill(1))
         # Anno periodo di ref da modificare
-        date_start_year = datetime.strptime(self.year_id.date_start, 
+        date_start_year = False
+        if self.year_id:
+            date_start_year = datetime.strptime(self.year_id.date_start, 
                                             '%Y-%m-%d')
         rcd += '{:2s}'.format(
             date_start_year and str(date_start_year.year)[2:] or '')
