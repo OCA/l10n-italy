@@ -38,11 +38,11 @@ l'utente dovrà specificare l'importo della ritenuta.
 
 Requisiti
 ---------
-http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
+http://wiki.odoo-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto
 
 Howto
 -----
-http://planet.domsense.com/2012/06/come-registrare-in-openerp-le-fatture-fornitore-con-ritenuta-dacconto/
+http://goo.gl/Mt1j7L
 """,
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
