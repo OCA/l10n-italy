@@ -151,7 +151,8 @@ class Parser(report_sxw.rml_parse):
             for child in tax.child_ids:
                 # deductibile
                 if child.tax_code_id and child.account_collected_id:
-                    total_deduct = self.compute_tax_code_total(child.tax_code_id)
+                    total_deduct = self.compute_tax_code_total(
+                        child.tax_code_id)
                 # undeductibile
                 elif child.tax_code_id:
                     total_undeduct = self.compute_tax_code_total(
