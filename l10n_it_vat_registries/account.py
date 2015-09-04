@@ -26,11 +26,6 @@ from openerp import models, fields, api
 
 class account_tax_code(models.Model):
     _inherit = "account.tax.code"
-
-    is_base = fields.Boolean(
-        string='Is base',
-        help="This tax code is used for base amounts \
-         (field used by VAT registries)")
     exclude_from_registries = fields.Boolean(
         string='Exclude from VAT registries')
 
