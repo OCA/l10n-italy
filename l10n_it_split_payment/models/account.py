@@ -116,3 +116,14 @@ class AccountInvoice(models.Model):
                 move.post()
                 invoice.reconcile_sp(credit_line)
         return res
+
+    @api.multi
+    def action_cancel(self):
+        res = super(AccountInvoice, self).action_cancel()
+        moves = self.env['account.move']
+        for inv in self:
+            moves += inv.sp_move_id
+        if moves:
+            moves.button_cancel()
+            moves.unlink()
+        return res
