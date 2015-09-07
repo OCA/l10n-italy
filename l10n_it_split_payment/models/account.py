@@ -49,14 +49,10 @@ class AccountInvoice(models.Model):
     @api.one
     @api.depends('invoice_line.price_subtotal', 'tax_line.amount')
     def _compute_amount(self):
-        self.amount_untaxed = sum(
-            line.price_subtotal for line in self.invoice_line)
+        super(AccountInvoice, self)._compute_amount()
         if self.fiscal_position.split_payment:
-            self.amount_sp = sum(line.amount for line in self.tax_line)
+            self.amount_sp = self.amount_tax
             self.amount_tax = 0
-        else:
-            self.amount_tax = sum(line.amount for line in self.tax_line)
-            self.amount_sp = 0
         self.amount_total = self.amount_untaxed + self.amount_tax
 
     def reconcile_sp(self, sp_line):
