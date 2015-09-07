@@ -20,9 +20,7 @@
         <field name="arch" type="xml">
 						<field name="move_id" position="after">
 							<field name="split_payment" invisible="1"/>
-							<field name="sp_type" invisible="1"/>
-							<field name="sp_move_id" readonly="1"
-								attrs="{'invisible': [('sp_type', '!=', '2-entries')]}"/>
+							<field name="sp_move_id" readonly="1"/>
 						</field>
             <field name="amount_tax" position="after">
 							<field name="amount_sp" widget="monetary"
