@@ -29,25 +29,6 @@ class AccountFiscalPosition(models.Model):
     split_payment = fields.Boolean('Split Payment')
 
 
-class AccountInvoiceTax(models.Model):
-    _inherit = 'account.invoice.tax'
-
-    @api.v8
-    def compute(self, invoice):
-        res = super(AccountInvoiceTax, self).compute(invoice)
-        fp = invoice.fiscal_position
-        if fp and fp.split_payment:
-            for group in res:
-                account_id = res[group]['account_id']
-                for map in fp.account_ids:
-                    if map.account_src_id.id == account_id:
-                        res[group]['account_id'] = map.account_dest_id.id
-                        new_group = (group[0], group[1], map.account_dest_id.id)
-                        res[new_group] = res[group]
-                        res.pop(group)
-        return res
-
-
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
