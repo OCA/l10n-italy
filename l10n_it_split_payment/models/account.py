@@ -60,8 +60,6 @@ class AccountInvoice(models.Model):
     split_payment = fields.Boolean(
         'Split Payment',
         related='fiscal_position.split_payment')
-    sp_type = fields.Selection(
-        string='Split Payment Type', related='company_id.sp_type')
     sp_move_id = fields.Many2one(
         'account.move',
         string='Split Payment Write-off')
