@@ -58,66 +58,61 @@ class AccountInvoice(models.Model):
             self.amount_sp = 0
         self.amount_total = self.amount_untaxed + self.amount_tax
 
+    def reconcile_sp(self, sp_line):
+        reconcile_set = sp_line
+        for line in self.move_id.line_id:
+            if line.account_id.id == sp_line.account_id.id:
+                reconcile_set += line
+        reconcile_set.reconcile_partial()
+
+    def _build_credit_vals(self):
+        return {
+            'name': _('Split Payment Write Off'),
+            'partner_id': self.partner_id.id,
+            'account_id': self.account_id.id,
+            'journal_id': self.journal_id.id,
+            'period_id': self.period_id.id,
+            'date': self.date_invoice,
+            'credit': self.amount_sp,
+            'debit': 0,
+            }
+
+    def _build_debit_line(self):
+        return {
+            'name': _('Split Payment Write Off'),
+            'partner_id': self.partner_id.id,
+            'account_id': self.company_id.sp_account_id.id,
+            'journal_id': self.journal_id.id,
+            'period_id': self.period_id.id,
+            'date': self.date_invoice,
+            'debit': self.amount_sp,
+            'credit': 0,
+            }
+
     @api.multi
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()
-        if self.fiscal_position and self.fiscal_position.split_payment:
-            line_model = self.env['account.move.line']
-            sp_type = self.company_id.sp_type
-            sp_account_id = self.company_id.sp_account_id
-            if sp_type == '1-entry':
-                credit_line = {
-                    'name': _('Split Payment Write Off'),
-                    'move_id': self.move_id.id,
-                    'partner_id': self.partner_id.id,
-                    'account_id': self.account_id.id,
-                    'journal_id': self.journal_id.id,
-                    'period_id': self.period_id.id,
-                    'date': self.date_invoice,
-                    'credit': self.amount_sp,
-                    'debit': 0}
-                line_model.create(credit_line)
-                write_off_line = {
-                    'name': _('Split Payment Write Off'),
-                    'move_id': self.move_id.id,
-                    'partner_id': self.partner_id.id,
-                    'account_id': sp_account_id.id,
-                    'journal_id': self.journal_id.id,
-                    'period_id': self.period_id.id,
-                    'date': self.date_invoice,
-                    'debit': self.amount_sp,
-                    'credit': 0}
-                line_model.create(write_off_line)
-            else:
-                sp_journal_id = self.company_id.sp_journal_id
+        for invoice in self:
+            if (
+                invoice.fiscal_position and
+                invoice.fiscal_position.split_payment
+            ):
+                line_model = self.env['account.move.line']
+                credit_line_vals = invoice._build_credit_vals()
+                write_off_line_vals = invoice._build_debit_line()
+                sp_journal_id = invoice.company_id.sp_journal_id
                 move_model = self.env['account.move']
                 move_data = {
                     'journal_id': sp_journal_id.id,
-                    'date': self.date_invoice,
-                    'period_id': self.period_id.id,
+                    'date': invoice.date_invoice,
+                    'period_id': invoice.period_id.id,
                 }
                 move = move_model.create(move_data)
-                credit_line = {
-                    'name': _('Split Payment Write Off'),
-                    'move_id': move.id,
-                    'partner_id': self.partner_id.id,
-                    'account_id': self.account_id.id,
-                    'journal_id': move.journal_id.id,
-                    'period_id': move.period_id.id,
-                    'date': move.date,
-                    'credit': self.amount_sp,
-                    'debit': 0}
-                line_model.create(credit_line)
-                write_off_line = {
-                    'name': _('Split Payment Write Off'),
-                    'move_id': move.id,
-                    'partner_id': self.partner_id.id,
-                    'account_id': sp_account_id.id,
-                    'journal_id': move.journal_id.id,
-                    'period_id': move.period_id.id,
-                    'date': move.date,
-                    'debit': self.amount_sp,
-                    'credit': 0}
-                line_model.create(write_off_line)
-                self.sp_move_id = move.id
+                credit_line_vals['move_id'] = move.id
+                write_off_line_vals['move_id'] = move.id
+                invoice.sp_move_id = move.id
+                credit_line = line_model.create(credit_line_vals)
+                line_model.create(write_off_line_vals)
+                move.post()
+                invoice.reconcile_sp(credit_line)
         return res
