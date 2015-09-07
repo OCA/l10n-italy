@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2015 Abstract (http://www.abstract.it)
 #    Author: Davide Corio <davide.corio@abstract.it>
+#    Copyright 2015 Lorenzo Battistini - Agile Business Group
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,11 +22,9 @@
 
 {
     'name': 'Split Payment',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Split Payment',
-    'description': """
-    """,
     'author': 'Abstract',
     'website': 'http://www.abstract.it',
     'depends': [
@@ -35,5 +34,4 @@
         'views/config_view.xml',
     ],
     'installable': True,
-    'active': False,
 }
