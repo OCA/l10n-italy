@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2015 Abstract (http://www.abstract.it)
 #    Author: Davide Corio <davide.corio@abstract.it>
+#    Copyright 2015 Lorenzo Battistini - Agile Business Group
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
