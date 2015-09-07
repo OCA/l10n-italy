@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2015 Abstract (http://www.abstract.it)
 #    Author: Davide Corio <davide.corio@abstract.it>
+#    Copyright 2015 Lorenzo Battistini - Agile Business Group
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,16 +20,11 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields
 
 
 class res_company(models.Model):
     _inherit = 'res.company'
-    sp_type = fields.Selection(
-        (('1-entry', 'Write-off on invoice journal entry'),
-            ('2-entries', 'Write-off on dedicated journal entry')),
-        string='Split payment write-off method',
-        help='Method used to post the split payment journal entry')
     sp_account_id = fields.Many2one(
         'account.account',
         string='Split Payment Write-off Account',
@@ -42,10 +38,6 @@ class res_company(models.Model):
 class account_config_settings(models.TransientModel):
     _inherit = 'account.config.settings'
 
-    sp_type = fields.Selection(
-        related='company_id.sp_type',
-        string="Split payment write-off method",
-        help='Method used to post the split payment journal entry')
     sp_account_id = fields.Many2one(
         related='company_id.sp_account_id',
         string='Split Payment Write-off account',
