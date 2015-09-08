@@ -53,6 +53,7 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
             'statement': self._get_statement,
             'tax_codes_amounts': self._get_tax_codes_amounts,
             'account_vat_amounts': self._get_account_vat_amounts,
+            'l10n_it_count_fiscal_page_base': self._get_fiscal_page_base,
         })
         self.context = context
 
@@ -63,6 +64,14 @@ class vat_period_end_statement_report(report_sxw.rml_parse):
             statement = statement_obj.browse(
                 self.cr, self.uid, statement_id, self.context)
         return statement
+
+    def _get_fiscal_page_base(self, statement_id):
+        statement_obj = self.pool['account.vat.period.end.statement']
+        statement = False
+        if statement_id:
+            statement = statement_obj.browse(
+                self.cr, self.uid, statement_id, self.context)
+        return statement.fiscal_page_base
 
     def _compute_tax_amount(self, tax, tax_code, base_code, context=None):
         '''

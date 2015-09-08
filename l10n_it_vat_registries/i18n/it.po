@@ -170,7 +170,7 @@ msgstr "Utimo aggiornamento il"
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,fiscal_page_base:0
 msgid "Last printed page"
-msgstr "Last printed page"
+msgstr "Ultima pagina stampata"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,type:0
