@@ -63,6 +63,10 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.fatturapa_attach = self.registry('fatturapa.attachments')
         self.context = {}
         self.maxDiff = None
+        self.company = self.env.ref('base.main_company')
+        self.company.sp_account_id = self.env.ref('account.ova')
+        self.company.sp_journal_id = self.env.ref(
+            'account.miscellaneous_journal')
 
     def AttachFileAtInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -224,3 +228,13 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         xml_content = attachment.datas.decode('base64')
 
         self.check_content(xml_content, 'IT06363391001_00003.xml')
+
+    def test_3_xml_export(self):
+        cr, uid = self.cr, self.uid
+        self.checkCreateFiscalYear('2015-06-15')
+        self.set_sequences(4, 16)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_3')
+        res = self.run_wizard(invoice_id)
+        attachment = self.attach_model.browse(cr, uid, res['res_id'])
+        xml_content = attachment.datas.decode('base64')
+        self.check_content(xml_content, 'IT06363391001_00004.xml')
