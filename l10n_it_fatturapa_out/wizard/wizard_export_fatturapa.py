@@ -652,11 +652,12 @@ class WizardExportFatturapa(orm.TransientModel):
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(
                     cr, uid, move_line_id, context=context)
+                ImportoPagamento = '%.2f' % move_line.debit
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
-                    ImportoPagamento='%.2f' % move_line.debit
+                    ImportoPagamento=ImportoPagamento
                     )
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
