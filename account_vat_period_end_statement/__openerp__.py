@@ -4,6 +4,7 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
 #    Copyright (C) 2015 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
 #
@@ -33,16 +34,18 @@
         "report",
         "l10n_it_fiscalcode",
         ],
-    "author": "Agile Business Group, Odoo Community Association (OCA)",
+    "author": "Agile Business Group, Odoo Community Association (OCA)"
+              ", LinkIt Spa",
     'website': 'http://www.agilebg.com',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
-        'account_view.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'reports.xml',
         'views/report_vatperiodendstatement.xml',
+        'views/config.xml',
+        'views/account_view.xml',
     ],
     'demo': [],
     'installable': True,

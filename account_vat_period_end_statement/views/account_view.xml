@@ -18,6 +18,9 @@
                         -->
                         <field name="move_id"  select="1"/>
                         <field name="payment_term_id"  select="1"/>
+                        <field name="interest" on_change="onchange_interest(interest)"/>
+                    <field name="interest_percent"
+                        attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
                     </group>
                     <notebook colspan="4">
                         <page string="Periods">
@@ -81,6 +84,11 @@
                                 <field name="residual" />
                                 <separator string="Payments" colspan="4"/>
                                 <field name="payment_ids" nolabel="1" colspan="4"/>
+                            </group>
+                        </page>
+                        <page string="Print Options">
+                            <group colspan="4" string="Page Number">
+                                <field name="fiscal_page_base"/>
                             </group>
                         </page>
                     </notebook>
