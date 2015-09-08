@@ -24,6 +24,9 @@ amount to pay ('Balance').
 The statement can be paid like every other debit: by voucher or 'move.line'
 reconciliation.
 
+If you need to calculate interest, you can add default information in your
+company data (percentage and account).
+
 Specification:
 http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
 
@@ -34,6 +37,7 @@ Contributors
 ------------
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Elena Carlesso <ecarlesso@linkgroup.it>
 * Marco Marchiori <marcomarkiori@gmail.com>
 * Sergio Corato <sergiocorato@gmail.com>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
