@@ -56,12 +56,17 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
+        cr, uid = self.cr, self.uid
         self.wizard_model = self.registry('wizard.export.fatturapa')
         self.data_model = self.registry('ir.model.data')
         self.attach_model = self.registry('fatturapa.attachment.out')
         self.invoice_model = self.registry('account.invoice')
         self.fatturapa_attach = self.registry('fatturapa.attachments')
         self.context = {}
+        self.maxDiff = None
+        account_ova_id = self.data_model.get_object_reference(
+            cr, uid, 'account', 'ova')[1]
+        self.company.write({'sp_account_id': account_ova_id})
 
     def attachFileToInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -224,3 +229,13 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         xml_content = attachment.datas.decode('base64')
 
         self.check_content(xml_content, 'IT06363391001_00003.xml')
+
+    def test_3_xml_export(self):
+        cr, uid = self.cr, self.uid
+        self.checkCreateFiscalYear('2015-06-15')
+        self.set_sequences(4, 16)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_3')
+        res = self.run_wizard(invoice_id)
+        attachment = self.attach_model.browse(cr, uid, res['res_id'])
+        xml_content = attachment.datas.decode('base64')
+        self.check_content(xml_content, 'IT06363391001_00004.xml')

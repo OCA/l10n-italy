@@ -662,6 +662,19 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
+    def _compute_split_payments(
+        self, cr, uid, invoice, payment_line_ids, context=None
+    ):
+        move_line_pool = self.pool['account.move.line']
+        res = {}
+        for payment_line in move_line_pool.browse(
+            cr, uid, payment_line_ids, context
+        ):
+            inv_total = invoice.amount_sp + invoice.amount_total
+            res[payment_line.id] = (
+                invoice.amount_total * payment_line.debit) / inv_total
+        return res
+
     def setDatiPagamento(self, cr, uid, invoice, body, context=None):
         if context is None:
             context = {}
@@ -683,15 +696,24 @@ class WizardExportFatturapa(orm.TransientModel):
             invoice_pool = self.pool['account.invoice']
             payment_line_ids = invoice_pool.move_line_id_payment_get(
                 cr, uid, [invoice.id])
+            sp = (
+                invoice.fiscal_position and
+                invoice.fiscal_position.split_payment or False)
+            if sp:
+                split_payments = self._compute_split_payments(
+                    cr, uid, invoice, payment_line_ids, context=context)
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(
                     cr, uid, move_line_id, context=context)
+                ImportoPagamento = '%.2f' % move_line.debit
+                if sp:
+                    ImportoPagamento = '%.2f' % split_payments[move_line_id]
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
-                    ImportoPagamento='%.2f' % move_line.debit
-                )
+                    ImportoPagamento=ImportoPagamento
+                    )
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
                         invoice.partner_bank_id.bank_name)
