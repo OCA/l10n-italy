@@ -564,3 +564,44 @@ msgstr "Liquidazione IVA"
 msgid "You cannot delete a confirmed or paid statement"
 msgstr "Non è possibile eliminare una liquidazione confermata o pagata"
 
+#: help:res.company,of_account_end_vat_statement_interest:0
+#: help:res.company,of_account_end_vat_statement_interest_account_id:0
+#: help:res.company,of_account_end_vat_statement_interest_percent:0
+#. module: account_vat_period_end_statement
+msgid "Apply interest on end vat statement"
+msgstr "Applica interessi su liquidazione"
+
+#: field:account.vat.period.end.statement,interest:0
+#. module: account_vat_period_end_statement
+msgid "Compute Interest"
+msgstr "Calcola interessi"
+
+#: field:account.vat.period.end.statement,interest_percent:0
+#. module: account_vat_period_end_statement
+msgid "Interest - Percent"
+msgstr "% interessi"
+
+#: field:res.company,of_account_end_vat_statement_interest:0
+#. module: account_vat_period_end_statement
+msgid "Interest on End Vat Statement"
+msgstr "Interessi su liquidazione"
+
+#: field:res.company,of_account_end_vat_statement_interest_percent:0
+#. module: account_vat_period_end_statement
+msgid "Interest on End Vat Statement - %"
+msgstr "Interessi su liquidazione - %"
+
+#: field:res.company,of_account_end_vat_statement_interest_account_id:0
+#. module: account_vat_period_end_statement
+msgid "Interest on End Vat Statement - Account"
+msgstr "Interessi su liquidazione - Conto"
+
+#: view:account.vat.period.end.statement:0
+#. module: account_vat_period_end_statement
+msgid "Last printed page"
+msgstr "Ultima pagina stampata"
+
+#: view:account.vat.period.end.statement:0
+#. module: account_vat_period_end_statement
+msgid "Print Options"
+msgstr "Opzioni di stampa"
