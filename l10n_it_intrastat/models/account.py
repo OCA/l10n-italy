@@ -196,11 +196,12 @@ class account_invoice(models.Model):
     def action_move_create(self):
         super(account_invoice, self).action_move_create()
         for invoice in self:
-            total_amount = sum(
-                l.amount_currency for l in invoice.intrastat_line_ids)
-            if not total_amount == invoice.amount_untaxed:
-                raise Warning(_('Total Intrastat must be ugual to\
-                    Total Invoice Untaxed'))
+            if invoice.intrastat:
+                total_amount = sum(
+                    l.amount_currency for l in invoice.intrastat_line_ids)
+                if not total_amount == invoice.amount_untaxed:
+                    raise Warning(_('Total Intrastat must be ugual to\
+                        Total Invoice Untaxed'))
     
     @api.one
     def compute_intrastat_lines(self):
