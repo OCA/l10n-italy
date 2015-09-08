@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="delivery_data">
+
+            <style type="text/css">
+                table.delivery_data td h6 { margin: 0; }
+                .signature { min-height: 4em; }
+            </style>
+
+            <table class="table table-condensed table-bordered delivery_data">
+                <tr>
+                    <td>
+                        <h6>Transportation Reason</h6>
+                        <div class="signature" t-field="ddt.transportation_reason_id"></div>
+                    </td>
+                    <td>
+                        <h6>Carriage Condition</h6>
+                        <div class="signature" t-field="ddt.carriage_condition_id"></div>
+                    </td>
+                    <td>
+                        <h6>Goods Description</h6>
+                        <div class="signature" t-field="ddt.goods_description_id"></div>
+                    </td>
+                    <td>
+                        <h6>Gross Weight</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Net Weight</h6>
+                        <div class="signature"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Carrier</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Date</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Pick up time</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Parcels</h6>
+                        <div t-field="ddt.parcels"></div>
+                    </td>
+                    <td>
+                        <h6>Size</h6>
+                        <div class="signature"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Carrier's Signature</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Driver's Signature</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Recipient's Signature</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td colspan="2"><h6>Notes</h6>
+                        <div class="signature" t-field="ddt.note"></div>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+        <template id="report_ddt">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div t-field="o.partner_id"
+                                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                                </div>
+                            </div>
+                            <h1>
+                                Delivery note: <span t-field="o.name"></span>
+                            </h1>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><strong>Description</strong></th>
+                                        <th class="text-right"><strong>Quantity</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.ddt_lines" t-as="line">
+                                        <td><span t-field="line.name"></span></td>
+                                        <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <t t-call="l10n_it_ddt.delivery_data">
+                                <t t-set="ddt" t-value="o"/>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_ddt_main">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'l10n_it_ddt.report_ddt')"/>
+                </t>
+            </t>
+        </template>
+
+        <report
+            string="DDT"
+            id="action_report_ddt"
+            model="stock.ddt"
+            report_type="qweb-pdf"
+            name="l10n_it_ddt.report_ddt_main"
+            file="l10n_it_ddt.report_ddt_main"/>
+
+    </data>
+</openerp>
