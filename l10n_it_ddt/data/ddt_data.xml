@@ -12,7 +12,13 @@
             <field name="code">stock.ddt</field>
             <field name="prefix">DDT/</field>
         </record>
-        
+
+        <!-- DdT Type -->
+        <record id="ddt_type_ddt" model="stock.ddt.type">
+            <field name="name">DdT</field>
+            <field name="sequence_id" ref="seq_ddt" />
+        </record>
+
         <!-- carriage conditions -->
         <record id="carriage_condition_PF" model="stock.picking.carriage_condition">
             <field name="name">PORTO FRANCO</field>

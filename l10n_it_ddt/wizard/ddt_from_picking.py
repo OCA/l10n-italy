@@ -21,10 +21,7 @@
 ##############################################################################
 
 
-from openerp import fields
-from openerp import models
-from openerp import api
-from openerp import _
+from openerp import fields, models, api, _
 from openerp.exceptions import Warning
 
 
@@ -54,6 +51,8 @@ class DdTFromPickings(models.TransientModel):
                     _("Selected Pickings have different Partner"))
             partner = picking.partner_id
             values['partner_id'] = partner.id
+            values['partner_invoice_id'] = partner.id
+            values['partner_shipping_id'] = partner.id
         parcels = 0
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.parcels:
@@ -115,22 +114,26 @@ class DdTFromPickings(models.TransientModel):
                     picking.sale_id.transportation_method_id)
                 values['transportation_method_id'] = (
                     transportation_method_id.id)
-        ddt = self.env['stock.ddt'].create(values)
-        for picking in self.picking_ids:
-            picking.ddt_id = ddt.id
+        picking_ids = [p.id for p in self.picking_ids]
+        values.update({
+            'picking_ids': [(6, 0, picking_ids)]
+            })
+        ddt = self.env['stock.picking.package.preparation'].create(values)
         # ----- Show new ddt
         ir_model_data = self.env['ir.model.data']
-        form_res = ir_model_data.get_object_reference('l10n_it_ddt',
-                                                      'stock_ddt_form')
+        form_res = ir_model_data.get_object_reference(
+            'stock_picking_package_preparation',
+            'stock_picking_package_preparation_form')
         form_id = form_res and form_res[1] or False
-        tree_res = ir_model_data.get_object_reference('l10n_it_ddt',
-                                                      'stock_ddt_tree')
+        tree_res = ir_model_data.get_object_reference(
+            'stock_picking_package_preparation',
+            'stock_picking_package_preparation_tree')
         tree_id = tree_res and tree_res[1] or False
         return {
             'name': 'DdT',
             'view_type': 'form',
             'view_mode': 'form,tree',
-            'res_model': 'stock.ddt',
+            'res_model': 'stock.picking.package.preparation',
             'res_id': ddt.id,
             'view_id': False,
             'views': [(form_id, 'form'), (tree_id, 'tree')],

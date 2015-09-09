@@ -4,6 +4,8 @@
 #    Copyright (C) 2014 Abstract (http://www.abstract.it)
 #    @author Davide Corio <davide.corio@abstract.it>
 #    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
+#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -25,24 +27,29 @@
     'version': '1.0',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
-    'author': 'Davide Corio, Odoo Community Association (OCA), '
-              'Agile Business Group',
+    'author': 'Davide Corio, Odoo Community Association (OCA),'
+              'Agile Business Group, Francesco Apruzzese, Apulia Software',
     'website': 'http://www.odoo-italia.org/',
     'license': 'AGPL-3',
-    'depends': ['sale_stock', 'stock_account'],
+    'depends': [
+        'sale',
+        'sale_stock',
+        'stock',
+        'stock_account',
+        'stock_picking_package_preparation',
+        'stock_picking_package_preparation_line',
+        ],
     'data': [
         'security/ir.model.access.csv',
-        'data/stock_data.xml',
-        'views/account_view.xml',
-        'views/partner_view.xml',
-        'views/sale_view.xml',
-        'wizard/ddt_from_pickings_view.xml',
-        'wizard/ddt_create_invoice_view.xml',
-        'views/stock_view.xml',
+        'data/ddt_data.xml',
+        'wizard/ddt_create_invoice.xml',
+        'views/stock_picking_package_preparation.xml',
+        'views/partner.xml',
+        'views/account.xml',
+        'views/sale.xml',
         'wizard/add_picking_to_ddt.xml',
-        'workflow/stock_ddt_workflow.xml',
-        'views/report_ddt.xml'
-    ],
-    'test': ['tests/new_ddt.yml'],
+        'wizard/ddt_from_picking.xml',
+        ],
+    'test': [],
     'installable': True,
 }

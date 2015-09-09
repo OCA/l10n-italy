@@ -3,6 +3,8 @@
 #
 #    Copyright (C) 2014 Abstract (http://www.abstract.it)
 #    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
+#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -75,11 +77,11 @@ class DdTCreateInvoice(models.TransientModel):
 
     @api.multi
     def create_invoice(self):
-        ddt_model = self.env['stock.ddt']
+        ddt_model = self.env['stock.picking.package.preparation']
         picking_pool = self.pool['stock.picking']
 
         ddts = ddt_model.browse(self.env.context['active_ids'])
-        partners = set([ddt.partner_id for ddt in ddts])
+        partners = set([ddt.partner_invoice_id for ddt in ddts])
         if len(partners) > 1:
             raise Warning(_("Selected DDTs belong to different partners"))
         pickings = []
@@ -91,11 +93,13 @@ class DdTCreateInvoice(models.TransientModel):
                     if move.invoice_state != "2binvoiced":
                         raise Warning(
                             _("Move %s is not invoiceable") % move.name)
+        # ----- Force to use partner invoice from ddt as invoice partner
         invoices = picking_pool.action_invoice_create(
             self.env.cr,
             self.env.uid,
             pickings,
-            self.journal_id.id, group=True, context=None)
+            self.journal_id.id, group=True,
+            context={'ddt_partner_id': ddts[0].partner_invoice_id.id})
         invoice_obj = self.env['account.invoice'].browse(invoices)
         invoice_obj.write({
             'carriage_condition_id': ddts[0].carriage_condition_id.id,
@@ -104,6 +108,7 @@ class DdTCreateInvoice(models.TransientModel):
             'transportation_method_id': ddts[0].transportation_method_id.id,
             'parcels': ddts[0].parcels,
             })
+        # ----- Show invoice
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference('account',
                                                       'invoice_form')

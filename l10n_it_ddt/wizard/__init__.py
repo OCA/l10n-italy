@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-#    Copyright (C) Francesco Apruzzese
+#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 #
 ##############################################################################
 
-from . import ddt_from_pickings
-from . import ddt_create_invoice
+
 from . import add_picking_to_ddt
+from . import ddt_from_picking
+from . import ddt_create_invoice

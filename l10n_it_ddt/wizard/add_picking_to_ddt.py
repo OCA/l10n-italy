@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    Author: Nicola Malcontenti Agile Business Group
-#    Copyright (C) Francesco Apruzzese
-#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
+#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,10 +21,7 @@
 ##############################################################################
 
 
-from openerp import fields
-from openerp import models
-from openerp import api
-from openerp import _
+from openerp import fields, models, api, _
 from openerp.exceptions import Warning
 
 
@@ -32,14 +29,15 @@ class AddPickingToDdt(models.TransientModel):
 
     _name = "add.pickings.to.ddt"
 
-    ddt_id = fields.Many2one('stock.ddt')
+    ddt_id = fields.Many2one('stock.picking.package.preparation')
 
     @api.multi
     def add_to_ddt(self):
         pickings = self.env['stock.picking'].browse(
             self.env.context['active_ids'])
         for picking in pickings:
-            if picking.ddt_id:
+            if picking.ddt_ids and \
+                    self.ddt_id.id in [d.id for d in picking.ddt_ids]:
                 raise Warning(
                     _("Picking %s already in ddt") % picking.name)
             elif picking.partner_id != self.ddt_id.partner_id:
@@ -70,19 +68,21 @@ class AddPickingToDdt(models.TransientModel):
                 raise Warning(
                     _("Selected Picking %s have"
                       " different transportation reason") % picking.name)
-            picking.ddt_id = self.ddt_id
+            self.ddt_id.picking_ids = [(4, picking.id)]
         ir_model_data = self.env['ir.model.data']
-        form_res = ir_model_data.get_object_reference('l10n_it_ddt',
-                                                      'stock_ddt_form')
+        form_res = ir_model_data.get_object_reference(
+            'stock_picking_package_preparation',
+            'stock_picking_package_preparation_form')
         form_id = form_res and form_res[1] or False
-        tree_res = ir_model_data.get_object_reference('l10n_it_ddt',
-                                                      'stock_ddt_tree')
+        tree_res = ir_model_data.get_object_reference(
+            'stock_picking_package_preparation',
+            'stock_picking_package_preparation_tree')
         tree_id = tree_res and tree_res[1] or False
         return {
             'name': 'DdT',
             'view_type': 'form',
             'view_mode': 'form,tree',
-            'res_model': 'stock.ddt',
+            'res_model': 'stock.picking.package.preparation',
             'res_id': self.ddt_id.id,
             'view_id': False,
             'views': [(form_id, 'form'), (tree_id, 'tree')],

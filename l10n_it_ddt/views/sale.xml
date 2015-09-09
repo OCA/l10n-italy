@@ -32,13 +32,14 @@
                 </xpath>
             </field>
         </record>
+
         <record id="view_order_form_view_ddt" model="ir.ui.view">
             <field name="name">sale.order.form.view.ddt</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_view_delivery']" position="after">
-                    <button name="action_view_ddt" string="View DdT" type="object" class="oe_highlight" 
+                    <button name="action_view_ddt" string="View DdT" type="object" class="oe_highlight"
                        attrs="{'invisible': ['|',('picking_ids','=',False),('picking_ids','=',[])]}" groups="base.group_user"/>
                 </xpath>
             </field>

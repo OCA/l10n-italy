@@ -4,6 +4,8 @@
 #    Copyright (C) 2014 Abstract (http://www.abstract.it)
 #    @author Davide Corio <davide.corio@abstract.it>
 #    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
+#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,7 +23,8 @@
 ##############################################################################
 
 
-from . import account
+from . import stock_picking_package_preparation
 from . import partner
-from . import sale
+from . import account
 from . import stock
+from . import sale
