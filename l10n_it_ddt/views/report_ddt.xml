@@ -35,11 +35,11 @@
                 <tr>
                     <td>
                         <h6>Carrier</h6>
-                        <div class="signature"></div>
+                        <div class="signature" t-field="ddt.carrier_id.name"></div>
                     </td>
                     <td>
                         <h6>Date</h6>
-                        <div class="signature"></div>
+                        <div class="signature" t-field="ddt.date"></div>
                     </td>
                     <td>
                         <h6>Pick up time</h6>
@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         <h6>Parcels</h6>
-                        <div t-field="ddt.parcels"></div>
+                        <div class="signature" t-field="ddt.parcels"></div>
                     </td>
                     <td>
                         <h6>Size</h6>
@@ -81,13 +81,19 @@
                         <div class="page">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <div t-field="o.partner_id"
+                                    <h2>Destinatario</h2>
+                                    <div t-field="o.partner_shipping_id"
                                         t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                                    <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h2>Cessionario</h2>
+                                    <div t-field="o.partner_invoice_id"
+                                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                                    <div t-if="o.partner_invoice_id">VAT number: <span t-field="o.partner_invoice_id.vat"/></div>
                                 </div>
                             </div>
-                            <h1>
-                                Delivery note: <span t-field="o.ddt_number"></span>
-                            </h1>
+                            <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
