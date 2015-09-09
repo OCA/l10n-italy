@@ -446,8 +446,11 @@ class account_intrastat_statement(models.Model):
         prefix = '' 
         # Campo fisso: “EUROX”
         prefix += 'EUROX' 
-        # Partita IVA del presentatore
-        prefix += '{:11s}'.format(self.vat_taxpayer)
+        # Partita IVA del presentatore o delegato
+        if self.vat_delegate:
+            prefix += '{:11s}'.format(self.vat_delegate)
+        else:
+            prefix += '{:11s}'.format(self.vat_taxpayer)
         # Numero progressivo dell’elenco
         if type == 'sale':
             prefix += '{:6s}'.format(\
@@ -803,6 +806,8 @@ class account_intrastat_statement(models.Model):
     def change_company_id(self):
         self.vat_taxpayer = self.company_id.partner_id.vat \
             and self.company_id.partner_id.vat[2:] or False
+        self.vat_delegate = self.company_id.intrastat_delegated_vat \
+            or False
     
     @api.onchange('period_number')
     @api.constrains('period_type', 'period_number')
