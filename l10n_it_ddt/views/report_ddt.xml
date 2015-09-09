@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                             <h1>
-                                Delivery note: <span t-field="o.name"></span>
+                                Delivery note: <span t-field="o.ddt_number"></span>
                             </h1>
                             <table class="table table-condensed">
                                 <thead>
@@ -96,7 +96,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr t-foreach="o.ddt_lines" t-as="line">
+                                    <tr t-foreach="o.line_ids" t-as="line">
                                         <td><span t-field="line.name"></span></td>
                                         <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
                                     </tr>
@@ -122,7 +122,7 @@
         <report
             string="DDT"
             id="action_report_ddt"
-            model="stock.ddt"
+            model="stock.picking.package.preparation"
             report_type="qweb-pdf"
             name="l10n_it_ddt.report_ddt_main"
             file="l10n_it_ddt.report_ddt_main"/>
