@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data noupdate="0">
-    <menuitem name="Document Comments"
-      id="menu_ddt_comment_template"
-      action="base_comment_template.action_base_comment_template"
-      parent="stock.menu_stock_configuration"/>
-  </data>
-</openerp>
