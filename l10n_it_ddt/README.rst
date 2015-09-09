@@ -1,10 +1,11 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-DDT Module
-==========
+==================================================
+Italian Localization - DDT: Documento di trasporto
+==================================================
 
-This is a total refactoring of the previews module (l10n_it_sale v7).
+This modules extends stock_picking_package_preparation module adding DDT data
 
 Usage
 =====
@@ -13,14 +14,13 @@ With this module we have the possibility to keep pickings and DDTs
 separated.
 
 You can create a DDT From a Sale Order, setting True field create_ddt that
-automatically create the DDT on Sale Order Confirmation; or by selecting 
-pickings and using the "DdT from Pickings" action to automatically create a DdT. 
+automatically create the DDT on Sale Order Confirmation; or by adding 
+pickings to 'package preparations'. 
 
-Yoy can add Pickings to an existing DDT using the "Add Pickings to DdT"
-action, and so automatically update lines and tab Pickings on selected DDT
+Yoy can add lines to an existing DDT using the "details" tab.
 
 Finally you can create your invoice directly from selected DDTS using the 
-"Create Invoice" action that create a new Invoice with the ddt lines as 
+"Create Invoice" button that create a new Invoice with the ddt lines as 
 invoice lines
 
 For further information, please visit:
