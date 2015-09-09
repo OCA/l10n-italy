@@ -25,11 +25,11 @@
                     </td>
                     <td>
                         <h6>Gross Weight</h6>
-                        <div class="signature"></div>
+                        <div class="signature" t-field="ddt.weight"></div>
                     </td>
                     <td>
                         <h6>Net Weight</h6>
-                        <div class="signature"></div>
+                        <div class="signature" t-field="ddt.net_weight"></div>
                     </td>
                 </tr>
                 <tr>
@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <h6>Size</h6>
-                        <div class="signature"></div>
+                        <div class="signature" t-field="ddt.volume"></div>
                     </td>
                 </tr>
                 <tr>

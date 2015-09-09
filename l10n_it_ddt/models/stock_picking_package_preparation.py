@@ -94,6 +94,7 @@ class StockPickingPackagePreparation(models.Model):
         'res.partner', string='Carrier')
     parcels = fields.Integer()
     display_name = fields.Char(string='Name', compute='_compute_display_name')
+    volume = fields.Float('Volume')
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):

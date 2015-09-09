@@ -54,6 +54,9 @@
                         <field name="carrier_id"/>
                         <field name="parcels"
                                attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                        <field name="volume"/>
+                        <field name="weight"/>
+                        <field name="net_weight"/>
                     </group>
                 </page>
             </page>
