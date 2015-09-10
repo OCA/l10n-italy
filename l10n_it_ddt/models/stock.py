@@ -20,7 +20,7 @@
 ##############################################################################
 
 
-from openerp import fields, models, api, workflow
+from openerp import fields, models, api
 
 
 class StockPicking(models.Model):
@@ -45,3 +45,21 @@ class StockPicking(models.Model):
         if context.get('ddt_partner_id', False):
             values['partner_id'] = context['ddt_partner_id']
         return values
+
+    def _parse_ddt_ids(self, values):
+        if values.get('ddt_ids') and isinstance(
+            values['ddt_ids'], (long, int)
+        ):
+            # due to many2one widget
+            values['ddt_ids'] = [(6, 0, [values['ddt_ids']])]
+        return values
+
+    @api.multi
+    def write(self, values):
+        values = self._parse_ddt_ids(values)
+        return super(StockPicking, self).write(values)
+
+    @api.model
+    def create(self, values):
+        values = self._parse_ddt_ids(values)
+        return super(StockPicking, self).create(values)

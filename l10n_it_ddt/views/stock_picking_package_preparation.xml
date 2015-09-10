@@ -35,6 +35,8 @@
             <button name="action_draft" position="after">
                 <button name="%(action_ddt_create_invoice)d" type="action" string="Create Invoice"
                         attrs="{'invisible':['|', ('state', '!=', 'done'), ('ddt_type_id', '=', False)]}"/>
+                <button name="set_done" type="object" string="Set done"
+                        attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
             </button>
             <field name="name" position="after">
                 <field name="ddt_number" readonly="1"
@@ -73,6 +75,13 @@
                     </group>
                 </page>
             </page>
+            <page string="Transfers" position="attributes">
+                <attribute name="invisible">context.get('invisible_pickings',False)</attribute>
+            </page>
+            <field name="note" position="replace"></field>
+            <notebook position="after">
+                <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
+            </notebook>
         </field>
     </record>
 

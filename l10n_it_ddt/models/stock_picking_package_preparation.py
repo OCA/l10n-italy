@@ -75,8 +75,11 @@ class StockPickingPackagePreparation(models.Model):
     _inherit = 'stock.picking.package.preparation'
     _rec_name = 'display_name'
 
-    ddt_type_id = fields.Many2one('stock.ddt.type',
-                                  string='DdT Type')
+    def _default_ddt_type(self):
+        return self.env['stock.ddt.type'].search([], limit=1)
+
+    ddt_type_id = fields.Many2one(
+        'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
     ddt_number = fields.Char(string='DdT Number')
     partner_invoice_id = fields.Many2one('res.partner')
     partner_shipping_id = fields.Many2one('res.partner')
@@ -113,6 +116,18 @@ class StockPickingPackagePreparation(models.Model):
                 package.ddt_number = package.ddt_type_id.sequence_id.get(
                     package.ddt_type_id.sequence_id.code)
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
+
+    @api.multi
+    def set_done(self):
+        for picking in self.picking_ids:
+            if picking.state != 'done':
+                raise exceptions.Warning(
+                    _("Not every picking is in done status"))
+        for package in self:
+            if not package.ddt_number:
+                package.ddt_number = package.ddt_type_id.sequence_id.get(
+                    package.ddt_type_id.sequence_id.code)
+        self.write({'state': 'done', 'date_done': fields.Datetime.now()})
 
     @api.one
     @api.depends('name', 'ddt_number', 'partner_id', 'date')
