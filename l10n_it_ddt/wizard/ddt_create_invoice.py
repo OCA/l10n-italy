@@ -108,6 +108,7 @@ class DdTCreateInvoice(models.TransientModel):
             'transportation_method_id': ddts[0].transportation_method_id.id,
             'parcels': ddts[0].parcels,
             })
+        ddts.invoice_id = invoices[0]
         # ----- Show invoice
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference('account',

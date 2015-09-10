@@ -94,8 +94,8 @@ class SaleOrder(models.Model):
                 picking_ids = [p.id for p in order.picking_ids]
                 ddt_data = {
                     'partner_id': order.partner_id.id,
-                    'partner_invoice_id': order.partner_id.id,
-                    'partner_shipping_id': order.partner_id.id,
+                    'partner_invoice_id': order.partner_invoice_id.id,
+                    'partner_shipping_id': order.partner_shipping_id.id,
                     'carriage_condition_id': order.carriage_condition_id.id,
                     'goods_description_id': order.goods_description_id.id,
                     'transportation_reason_id':

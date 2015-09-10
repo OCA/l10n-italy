@@ -95,12 +95,15 @@ class StockPickingPackagePreparation(models.Model):
     parcels = fields.Integer()
     display_name = fields.Char(string='Name', compute='_compute_display_name')
     volume = fields.Float('Volume')
+    invoice_id = fields.Many2one(
+        'account.invoice', string="Invoice", readonly=True)
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
         if self.ddt_type_id:
-            self.partner_invoice_id = self.partner_id
-            self.partner_shipping_id = self.partner_id
+            addr = self.partner_id.address_get(['delivery', 'invoice'])
+            self.partner_invoice_id = addr['invoice']
+            self.partner_shipping_id = addr['delivery']
 
     @api.multi
     def action_put_in_pack(self):

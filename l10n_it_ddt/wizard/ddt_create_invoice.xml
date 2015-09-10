@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
               <form string="DdT Create Invoice">
                   <group>
-                    <field name="journal_id"/>
+                    <field name="journal_id" domain="[('type', 'in', ['sale', 'sale_refund'])]"/>
                     <field name="date"/>
                   </group>
                     <footer>
