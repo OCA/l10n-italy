@@ -128,6 +128,7 @@ class StockPickingPackagePreparation(models.Model):
                 package.ddt_number = package.ddt_type_id.sequence_id.get(
                     package.ddt_type_id.sequence_id.code)
         self.write({'state': 'done', 'date_done': fields.Datetime.now()})
+        return True
 
     @api.one
     @api.depends('name', 'ddt_number', 'partner_id', 'date')
