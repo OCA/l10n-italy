@@ -114,8 +114,32 @@ class AccountInvoice(models.Model):
                 invoice.reconcile_sp(credit_line)
         return res
 
+    def _is_unreconciliable(self):
+        inv_credit_lines = 0
+        for line in self.move_id.line_id:
+            if line.account_id.type == 'receivable':
+                inv_credit_lines += 1
+        for line in self.sp_move_id.line_id:
+            if line.account_id.type == 'receivable':
+                if line.reconcile_partial_id:
+                    if len(
+                        line.reconcile_partial_id.line_partial_ids
+                    ) == inv_credit_lines + 1:
+                        # if reconciliation only contains invoice credit
+                        # + split payment
+                        return True
+        return False
+
+    def _unreconcile_sp(self):
+        for line in self.sp_move_id.line_id:
+            if line.account_id.type == 'receivable':
+                line.reconcile_partial_id.unlink()
+
     @api.multi
     def action_cancel(self):
+        for inv in self:
+            if inv._is_unreconciliable():
+                inv._unreconcile_sp()
         res = super(AccountInvoice, self).action_cancel()
         moves = self.env['account.move']
         for inv in self:

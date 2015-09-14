@@ -28,12 +28,15 @@ class TestSP(TransactionCase):
         self.company.sp_account_id = self.env.ref('account.ova')
         self.company.sp_journal_id = self.env.ref(
             'account.miscellaneous_journal')
+        self.company.sp_journal_id.update_posted = True
         self.a_recv = self.env.ref('account.a_recv')
+        self.sales_journal = self.env.ref('account.sales_journal')
+        self.sales_journal.update_posted = True
 
     def test_invoice(self):
         invoice = self.invoice_model.create({
             'partner_id': self.env.ref('base.res_partner_3').id,
-            'journal_id': self.env.ref('account.sales_journal').id,
+            'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
             'fiscal_position': self.sp_fp.id,
             })
@@ -64,3 +67,4 @@ class TestSP(TransactionCase):
                     len(line.reconcile_partial_id.line_partial_ids), 2)
         self.assertTrue(vat_line)
         self.assertTrue(credit_line)
+        invoice.action_cancel()
