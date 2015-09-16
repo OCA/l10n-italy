@@ -24,7 +24,7 @@
 
 from openerp import models, api, fields
 from openerp.tools.translate import _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 
 
 class DdTCreateInvoice(models.TransientModel):
@@ -46,33 +46,33 @@ class DdTCreateInvoice(models.TransientModel):
                 carriage_condition_id and
                 ddt.carriage_condition_id.id != carriage_condition_id
             ):
-                raise Warning(
+                raise UserError(
                     _("Selected DDTs have different Carriage Conditions"))
             if (
                 goods_description_id and
                 ddt.goods_description_id.id != goods_description_id
             ):
-                raise Warning(
+                raise UserError(
                     _("Selected DDTs have different Descriptions of Goods"))
             if (
                 transportation_reason_id and
                 ddt.transportation_reason_id.id != transportation_reason_id
             ):
-                raise Warning(
+                raise UserError(
                     _("Selected DDTs have different "
                       "Reasons for Transportation"))
             if (
                 transportation_method_id and
                 ddt.transportation_method_id.id != transportation_method_id
             ):
-                raise Warning(
+                raise UserError(
                     _("Selected DDTs have different "
                       "Methods of Transportation"))
             if (
                 parcels and
                 ddt.parcels != parcels
             ):
-                raise Warning(
+                raise UserError(
                     _("Selected DDTs have different parcels"))
 
     @api.multi
@@ -83,7 +83,7 @@ class DdTCreateInvoice(models.TransientModel):
         ddts = ddt_model.browse(self.env.context['active_ids'])
         partners = set([ddt.partner_invoice_id for ddt in ddts])
         if len(partners) > 1:
-            raise Warning(_("Selected DDTs belong to different partners"))
+            raise UserError(_("Selected DDTs belong to different partners"))
         pickings = []
         self.check_ddt_data(ddts)
         for ddt in ddts:
@@ -91,7 +91,7 @@ class DdTCreateInvoice(models.TransientModel):
                 pickings.append(picking.id)
                 for move in picking.move_lines:
                     if move.invoice_state != "2binvoiced":
-                        raise Warning(
+                        raise UserError(
                             _("Move %s is not invoiceable") % move.name)
         # ----- Force to use partner invoice from ddt as invoice partner
         invoices = picking_pool.action_invoice_create(

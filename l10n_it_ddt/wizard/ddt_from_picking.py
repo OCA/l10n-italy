@@ -22,7 +22,7 @@
 
 
 from openerp import fields, models, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 
 
 class DdTFromPickings(models.TransientModel):
@@ -47,7 +47,7 @@ class DdTFromPickings(models.TransientModel):
         partner = False
         for picking in self.picking_ids:
             if partner and partner != picking.partner_id:
-                raise Warning(
+                raise UserError(
                     _("Selected Pickings have different Partner"))
             partner = picking.partner_id
             values['partner_id'] = partner.id
@@ -57,7 +57,7 @@ class DdTFromPickings(models.TransientModel):
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.parcels:
                 if parcels and parcels != picking.sale_id.parcels:
-                    raise Warning(
+                    raise UserError(
                         _("Selected Pickings have different parcels"))
                 parcels = picking.sale_id.parcels
                 values['parcels'] = parcels
@@ -67,7 +67,7 @@ class DdTFromPickings(models.TransientModel):
                 if carriage_condition_id and (
                         carriage_condition_id != (
                             picking.sale_id.carriage_condition_id)):
-                    raise Warning(
+                    raise UserError(
                         _("Selected Pickings have"
                           " different carriage condition"))
                 carriage_condition_id = (
@@ -80,7 +80,7 @@ class DdTFromPickings(models.TransientModel):
                 if goods_description_id and (
                     goods_description_id != (
                         picking.sale_id.goods_description_id)):
-                    raise Warning(
+                    raise UserError(
                         _("Selected Pickings have "
                           "different goods description"))
                 goods_description_id = picking.sale_id.goods_description_id
@@ -93,7 +93,7 @@ class DdTFromPickings(models.TransientModel):
                 if transportation_reason_id and (
                         transportation_reason_id != (
                             picking.sale_id.transportation_reason_id)):
-                    raise Warning(
+                    raise UserError(
                         _("Selected Pickings have"
                             " different transportation reason"))
                 transportation_reason_id = (
@@ -107,7 +107,7 @@ class DdTFromPickings(models.TransientModel):
                 if transportation_method_id and (
                     transportation_method_id != (
                         picking.sale_id.transportation_method_id)):
-                    raise Warning(
+                    raise UserError(
                         _("Selected Pickings have"
                           " different transportation reason"))
                 transportation_method_id = (
