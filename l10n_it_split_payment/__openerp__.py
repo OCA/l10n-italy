@@ -25,8 +25,9 @@
     'version': '8.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Split Payment',
-    'author': 'Abstract',
+    'author': 'Abstract, Odoo Community Association (OCA)',
     'website': 'http://www.abstract.it',
+    'license': 'AGPL-3',
     'depends': [
         'account'],
     'data': [
