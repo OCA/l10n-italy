@@ -23,7 +23,7 @@
 from openerp import models, fields
 
 
-class res_company(models.Model):
+class ResCompany(models.Model):
     _inherit = 'res.company'
     sp_account_id = fields.Many2one(
         'account.account',
@@ -35,7 +35,7 @@ class res_company(models.Model):
         help='Journal used to write off the VAT amount')
 
 
-class account_config_settings(models.TransientModel):
+class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'
 
     sp_account_id = fields.Many2one(
