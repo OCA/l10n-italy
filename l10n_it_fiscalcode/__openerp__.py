@@ -49,7 +49,6 @@ External depends:
         ],
     'qweb': [],
     'demo': [],
-    'test': [],
     'test': [
         'test/fiscalcode.yml',
         ],
