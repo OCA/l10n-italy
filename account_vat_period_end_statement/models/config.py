@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Author: Alessandro Camilli (a.camilli@openforce.it)
 #    Copyright (C) 2015
 #    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
@@ -21,17 +21,18 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields
 
 
-class res_company(models.Model):
+class ResCompany(models.Model):
     _inherit = 'res.company'
-        
-    of_account_end_vat_statement_interest = fields.Boolean('Interest on End Vat Statement', 
-                    help="Apply interest on end vat statement")
-    of_account_end_vat_statement_interest_percent = fields.Float('Interest on End Vat Statement - %', 
-                    help="Apply interest on end vat statement")
-    of_account_end_vat_statement_interest_account_id = fields.Many2one('account.account', 'Interest on End Vat Statement - Account', 
-                    help="Apply interest on end vat statement")
 
-    
+    of_account_end_vat_statement_interest = fields.Boolean(
+        'Interest on End Vat Statement',
+        help="Apply interest on end vat statement")
+    of_account_end_vat_statement_interest_percent = fields.Float(
+        'Interest on End Vat Statement - %',
+        help="Apply interest on end vat statement")
+    of_account_end_vat_statement_interest_account_id = fields.Many2one(
+        'account.account', 'Interest on End Vat Statement - Account',
+        help="Apply interest on end vat statement")
