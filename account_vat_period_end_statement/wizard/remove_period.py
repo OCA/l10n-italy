@@ -26,7 +26,7 @@ from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
 
-class remove_period(orm.TransientModel):
+class RemovePeriod(orm.TransientModel):
 
     def _get_period_ids(self, cr, uid, context=None):
         statement_obj = self.pool.get('account.vat.period.end.statement')
