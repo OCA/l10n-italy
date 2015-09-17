@@ -26,7 +26,7 @@ from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
 
-class add_period(orm.TransientModel):
+class AddPeriod(orm.TransientModel):
 
     _name = 'add.period.to.vat.statement'
 
