@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #
 #
 #    Copyright (C) 2011 Associazione OpenERP Italia
@@ -22,10 +22,10 @@
 #
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 
 
-class wizard_registro_iva(models.TransientModel):
+class WizardRegistroIva(models.TransientModel):
 
     @api.model
     def _get_period(self):
@@ -90,7 +90,7 @@ class wizard_registro_iva(models.TransientModel):
             ('state', '=', 'posted'),
             ], order='date, name')
         if not move_ids:
-            raise Warning(_('No documents found in the current selection'))
+            raise UserError(_('No documents found in the current selection'))
         datas = {}
         datas_form = {}
         datas_form['period_ids'] = [p.id for p in wizard.period_ids]

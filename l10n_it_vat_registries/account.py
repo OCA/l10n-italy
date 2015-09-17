@@ -24,7 +24,7 @@
 from openerp import models, fields, api
 
 
-class account_tax_code(models.Model):
+class AccountTaxCode(models.Model):
     _inherit = "account.tax.code"
     exclude_from_registries = fields.Boolean(
         string='Exclude from VAT registries')
