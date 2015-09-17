@@ -3,7 +3,7 @@
 #
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
-#    Copyright 2014 Agile Business Group http://www.agilebg.com
+#    Copyright 2014-2015 Agile Business Group http://www.agilebg.com
 #    @authors
 #       Alessio Gerace <alessio.gerace@gmail.com>
 #       Lorenzo Battistini <lorenzo.battistini@agilebg.com>
@@ -26,9 +26,10 @@
 {
     "name": "Pec Messages",
     "version": "1.0",
-    "author": "Agile Business Group",
+    "author": "Agile Business Group, Odoo Community Association (OCA)",
     "category": "Certified Mailing",
     "website": "http://www.agilebg.com",
+    "license": "AGPL-3",
     "description": """
 Pec Messages Management
 -----------------------
@@ -63,7 +64,6 @@ Contributors
  - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
  - Roberto Onnis <roberto.onnis@innoviu.com>
 """,
-    'images': [],
     'depends': [
         'fetchmail', 'mail', 'l10n_it_pec',
     ],
@@ -79,7 +79,6 @@ Contributors
     'demo': [
         'demo/pec_data.xml',
         ],
-    'test': [],
     'installable': True,
     'active': False,
 }
