@@ -122,24 +122,32 @@
 	                       
 	                       <!-- Origin -->
 	                       <group name="intra_origin" string="Origin">
-	                       	<field name="province_origin_id"
-	                           	attrs="{
-	                           	'invisible': [
-	                           		('statement_section', '!=', 'sale_s1')],
-	                           	'required': [
-	                           		('statement_section', '=', 'sale_s1')]}"/>
-	                       	<field name="country_origin_id"/>
-	                           <field name="country_good_origin_id"/>
+		                       	<field name="province_origin_id"
+		                           	attrs="{
+		                           	'invisible': [
+		                           		('statement_section', 'not in', ['sale_s1'])],
+		                           	'required': [
+		                           		('statement_section', 'in', ['sale_s1'])]}"/>
+		                       	<field name="country_origin_id"/>
+	                          	<field name="country_good_origin_id"/>
 	                       </group>
 	                       
 	                       <!-- Destination -->
 	                       <group name="intra_destination" string="Destination">
 	                           <field name="delivery_code_id"/>
 	                           <field name="transport_code_id"/>
-	                           <field name="province_destination_id"/>
+	                           <field name="province_destination_id"
+	                           	attrs="{
+	                           	'invisible': [
+	                           		('statement_section', 'not in', ['purchase_s1'])],
+	                           	'required': [
+	                           		('statement_section', 'in', ['purchase_s1'])]}"/>
 	                           <field name="country_destination_id"
-	                           	attrs="{'invisible': [('statement_section', '!=', 'sale_s1')],
-	                           	'required': [('statement_section', '=', 'sale_s1')]}" />
+	                           	attrs="{
+	                           	'invisible': [
+	                           		('statement_section', 'not in', ['sale_s1'])],
+	                           	'required': [
+	                           		('statement_section', 'in', ['sale_s1'])]}" />
 	                       </group>
 	                       
 	                       <!-- Invoice Ref -->
