@@ -656,6 +656,21 @@ class account_intrastat_statement(models.Model):
                 rcd += line._prepare_export_line()
                 file_content += rcd
         
+        # Validtation data
+        if not file_content:
+            raise ValidationError(
+                _('Nothing to export'))
+        if not self.sale_section1_ids \
+                and not self.sale_section2_ids\
+                and not self.sale_section3_ids\
+                and not self.sale_section4_ids\
+                and not self.purchase_section1_ids\
+                and not self.purchase_section2_ids\
+                and not self.purchase_section3_ids\
+                and not self.purchase_section4_ids:
+            raise ValidationError(
+                _('Statement without lines'))
+        
         return file_content
     
     @api.one

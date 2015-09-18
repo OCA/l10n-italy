@@ -46,6 +46,9 @@ class account_invoice_line(models.Model):
             'statistic_amount_euro' : False,
             'weight_kg' : False,
             'additional_units' : False,
+            'transport_code_id' : False,
+            'transation_nature_id' : False,
+            'delivery_code_id' : False,
             # origin
             'country_origin_id' : False,
             'country_good_origin_id' : False,
@@ -58,6 +61,7 @@ class account_invoice_line(models.Model):
             'payment_method' : False,
             'country_payment_id' : False,
         }
+        company_id = self.invoice_id.company_id
         product_template = self.product_id.product_tmpl_id
         # Code competence
         intrastat_data = product_template.get_intrastat_data()
@@ -102,6 +106,51 @@ class account_invoice_line(models.Model):
             weight_kg = weight_line
         res.update({'weight_kg': weight_kg})
         res.update({'additional_units': weight_kg})
+        # Transport
+        if self.invoice_id.type in ('out_invoice', 'out_refund'):
+            res.update({
+                'transport_code_id': 
+                    company_id.intrastat_sale_transport_code_id \
+                    and company_id.intrastat_sale_transport_code_id.id\
+                    or False
+                })
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            res.update({
+                'transport_code_id': 
+                    company_id.intrastat_purchase_transport_code_id \
+                    and company_id.intrastat_purchase_transport_code_id.id\
+                    or False
+                }) 
+        # Transation
+        if self.invoice_id.type in ('out_invoice', 'out_refund'):
+            res.update({
+                'transation_nature_id': 
+                    company_id.intrastat_sale_transation_nature_id and\
+                    company_id.intrastat_sale_transation_nature_id.id
+                    or False
+                })
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            res.update({
+                'transation_nature_id': 
+                    company_id.intrastat_purchase_transation_nature_id and\
+                    company_id.intrastat_purchase_transation_nature_id.id
+                    or False
+                }) 
+        # Delivery
+        if self.invoice_id.type in ('out_invoice', 'out_refund'):
+            res.update({
+                'delivery_code_id': 
+                    company_id.intrastat_sale_delivery_code_id and\
+                    company_id.intrastat_sale_delivery_code_id.id
+                    or False
+                })
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            res.update({
+                'delivery_code_id': 
+                    company_id.intrastat_purchase_delivery_code_id and\
+                    company_id.intrastat_purchase_delivery_code_id.id
+                    or False
+                }) 
         # ---------
         # Origin
         # ---------
@@ -127,7 +176,10 @@ class account_invoice_line(models.Model):
         province_origin_id = False
         if self.invoice_id.type in ('out_invoice', 'out_refund'):    
             province_origin_id = \
-                self.invoice_id.company_id.partner_id.state_id.id
+                (company_id.intrastat_sale_province_origin_id \
+                 and company_id.intrastat_sale_province_origin_id.id
+                 ) or \
+                company_id.partner_id.state_id.id
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             province_origin_id = \
                 self.invoice_id.partner_id.state_id.id
@@ -151,6 +203,9 @@ class account_invoice_line(models.Model):
                 self.invoice_id.partner_id.state_id.id
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             province_destination_id = \
+                (company_id.intrastat_purchase_province_destination_id \
+                 and company_id.intrastat_purchase_province_destination_id.id
+                 ) or \
                 self.invoice_id.company_id.partner_id.state_id.id
         res.update({'province_destination_id': province_destination_id})
         # ---------
