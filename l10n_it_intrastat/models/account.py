@@ -127,10 +127,10 @@ class account_invoice_line(models.Model):
         province_origin_id = False
         if self.invoice_id.type in ('out_invoice', 'out_refund'):    
             province_origin_id = \
-                self.invoice_id.partner_id.state_id.id
+                self.invoice_id.company_id.partner_id.state_id.id
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             province_origin_id = \
-                self.invoice_id.company_id.partner_id.state_id.id
+                self.invoice_id.partner_id.state_id.id
         res.update({'province_origin_id': province_origin_id})
         # ---------
         # Destination

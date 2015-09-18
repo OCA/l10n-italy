@@ -471,7 +471,7 @@ class account_intrastat_statement(models.Model):
         # change last number
         number[len(number)-1] = interchange[int(last_char)] 
         return ''.join(number)
-    
+
     @api.model
     def _prepare_export_frontispiece(self, type):
         rcd = self._prepare_export_prefix(type)
