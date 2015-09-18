@@ -390,6 +390,9 @@ class account_intrastat_statement(models.Model):
     def _prepare_export_head(self):
         rcd = ''
         # Codice utente abilitato (mittente)
+        if not self.company_id.intrastat_ua_code:
+            raise ValidationError(
+            _('Missing Intrasta UA code : see company configuration'))
         rcd += '{:4s}'.format(self.company_id.intrastat_ua_code)
         # Riservato a SDA
         rcd += '{:12s}'.format("")
