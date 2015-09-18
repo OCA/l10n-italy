@@ -97,7 +97,7 @@ class account_invoice_line(models.Model):
                 weight_line_kg = self.env['product.uom']._compute_qty(
                     #self.env.cr,
                     #self.env.user.id,
-                    product_template.uom_id.id,
+                    self.uos_id.id,
                     self.quantity,
                     intrastat_uom_kg.id
                     )
