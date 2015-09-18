@@ -358,6 +358,9 @@ class account_invoice_intrastat(models.Model):
                                         string='Transation Nature')
     weight_kg = fields.Float(string='Weight kg')
     additional_units = fields.Float(string='Additional Units')
+    additional_units_uom = fields.Char(string='Additional Units UOM', 
+        readonly=True, related="intrastat_code_id.additional_unit_uom_id.name")
+    
     statistic_amount_euro = fields.Float(string='Statistic Amount Euro',
         digits=dp.get_precision('Account'))
     country_partner_id = fields.Many2one(

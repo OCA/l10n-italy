@@ -224,6 +224,7 @@
 							<field name="weight_kg" required="1"/>
 							<field name="additional_units"
 								attrs="{'required':[('additional_units_required','=', True )]}"/>
+		                	<field name="additional_units_uom"/>
 		                	<field name="amount_euro"/>
 		                	<field name="statistic_amount_euro"/>
 						</group>
@@ -441,7 +442,11 @@
 						<group>
 							<field name="intrastat_code_id" required="1"/>
 							<field name="weight_kg" required="1"/>
-							<field name="additional_units"/>
+							<field name="additional_units"
+								attrs="{
+								'required':[('additional_units_required','=', True )]}"
+								/>
+							<field name="additional_units_uom"/>
 		                	<field name="amount_euro"/>
 		                	<field name="statistic_amount_euro"/>
 		                	<field name="amount_currency"/>
@@ -675,6 +680,7 @@
                     <field name="type"/>
                     <field name="name"/>
                     <field name="additional_unit_required"/>
+                    <field name="additional_unit_uom_id"/>
                 </tree>
             </field>
         </record>
@@ -687,6 +693,7 @@
                 <xpath expr="//group" position="after">
                     <group>
                         <field name="additional_unit_required"/>
+                        <field name="additional_unit_uom_id"/>
                         <field name="type"/>
                         <field name="active"/>
                     </group>

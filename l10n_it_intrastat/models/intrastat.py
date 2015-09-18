@@ -42,7 +42,10 @@ class report_intrastat_code(models.Model):
     _inherit = 'report.intrastat.code'
 
     active = fields.Boolean(default=True)
-    additional_unit_required = fields.Boolean(default=False)
+    additional_unit_required = fields.Boolean(default=False,
+        string='Unit of Measure Additional Required')
+    additional_unit_uom_id = fields.Many2one('product.uom', 
+        string='Unit of Measure Additional')
     type = fields.Selection(
         [('good', 'Good'), ('service', 'Service')])
     description = fields.Char('Description', translate=True)
@@ -879,6 +882,8 @@ class account_intrastat_statement_sale_section1(models.Model):
     additional_units_required = fields.Boolean(
         string='Additional Units Required', store=True,
         related='intrastat_code_id.additional_unit_required')
+    additional_units_uom = fields.Char(string='Additional Units UOM', 
+        readonly=True, related="intrastat_code_id.additional_unit_uom_id.name")
     statistic_amount_euro = fields.Integer(string='Statistic Amount Euro', 
                                          digits=dp.get_precision('Account'))
     delivery_code_id = fields.Many2one('stock.incoterms', 
@@ -1361,6 +1366,8 @@ class account_intrastat_statement_purchase_section1(models.Model):
     additional_units_required = fields.Boolean(
         string='Additional Units Required', store=True,
         related='intrastat_code_id.additional_unit_required')
+    additional_units_uom = fields.Char(string='Additional Units UOM', 
+        readonly=True, related="intrastat_code_id.additional_unit_uom_id.name")
     statistic_amount_euro = fields.Integer(string='Statistic Amount Euro', 
                                          digits=dp.get_precision('Account'))
     delivery_code_id = fields.Many2one('stock.incoterms', 

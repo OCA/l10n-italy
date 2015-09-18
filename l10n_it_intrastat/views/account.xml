@@ -114,6 +114,7 @@
 	                           <field name="transation_nature_id"/>
 	                           <field name="weight_kg"/>
 	                           <field name="additional_units"/>
+	                           <field name="additional_units_uom"/>
 	                       </group>
 	                       <newline/>
 	                       <group name="intrastat_partner">
