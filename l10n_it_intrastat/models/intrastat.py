@@ -46,6 +46,22 @@ class report_intrastat_code(models.Model):
     type = fields.Selection(
         [('good', 'Good'), ('service', 'Service')])
     description = fields.Char('Description', translate=True)
+    
+    
+class res_country(models.Model):
+
+    _inherit = 'res.country'
+    
+    @api.model
+    def intrastat_validate(self):
+        control_ISO_code = self._context.get('control_ISO_code', False)
+        if not self:
+            raise ValidationError(
+                _('Missing Country' ))
+        if control_ISO_code and not self.code:
+            raise ValidationError(
+                _('Country %s without ISO code') % (self.name,) )
+        return True
 
 
 class account_intrastat_transport(models.Model):
@@ -933,6 +949,8 @@ class account_intrastat_statement_sale_section1(models.Model):
     def _prepare_export_line(self):
         rcd = ''
         # Codice dello Stato membro dell’acquirente
+        self.country_partner_id.with_context(control_ISO_code=True).\
+            intrastat_validate()
         rcd += '{:2s}'.format(self.country_partner_id.code or '')
         # Codice IVA dell’acquirente
         rcd += '{:12s}'.format(self.vat_code or '')
@@ -1146,6 +1164,8 @@ class account_intrastat_statement_sale_section3(models.Model):
     def _prepare_export_line(self):
         rcd = ''
         # Codice dello Stato membro dell’acquirente
+        self.country_partner_id.with_context(control_ISO_code=True).\
+            intrastat_validate()
         rcd += '{:2s}'.format(self.country_partner_id.code or '')
         # Codice IVA del fornitore
         rcd += '{:12s}'.format(self.vat_code or '')
@@ -1265,10 +1285,16 @@ class account_intrastat_statement_sale_section4(models.Model):
                 str(self.progressive_to_modify_id.progressive).zfill(5) \
                 or '')
         # Codice dello Stato membro dell’acquirente
-        rcd += '{:2s}'.format(
-            self.country_partner_id.code or self.partner_id.country_id \
-            and self.partner_id.country_id.code 
-            or '')
+        # Test anche che ci sia il codice nazione
+        country_id = self.country_partner_id \
+            or self.partner_id.country_id
+        if country_id:
+            self.country_id.with_context(control_ISO_code=True).\
+                intrastat_validate()
+        else:
+            raise ValidationError(
+                _('Partner without Country') )
+        rcd += '{:2s}'.format(country_id.code or '')
         # Codice IVA dell’acquirente
         rcd += '{:12s}'.format(self.vat_code or '')
         # Ammontare delle operazioni in euro
@@ -1414,6 +1440,8 @@ class account_intrastat_statement_purchase_section1(models.Model):
     def _prepare_export_line(self):
         rcd = ''
         # Codice dello Stato membro del fornitore
+        self.country_partner_id.with_context(control_ISO_code=True).\
+            intrastat_validate()
         rcd += '{:2s}'.format(self.country_partner_id.code or '')
         # Codice IVA del fornitore
         rcd += '{:12s}'.format(self.vat_code or '')
@@ -1547,6 +1575,8 @@ class account_intrastat_statement_purchase_section2(models.Model):
         rcd += '{:2s}'.format(
             date_start_year and str(date_start_year.year)[2:] or '')
         # Codice dello Stato membro del fornitore
+        self.country_partner_id.with_context(control_ISO_code=True).\
+            intrastat_validate()
         rcd += '{:2s}'.format(self.country_partner_id.code or '')
         # Codice IVA del fornitore
         rcd += '{:12s}'.format(self.vat_code or '')
@@ -1646,6 +1676,8 @@ class account_intrastat_statement_purchase_section3(models.Model):
     def _prepare_export_line(self):
         rcd = ''
         # Codice dello Stato membro del fornitore
+        self.country_partner_id.with_context(control_ISO_code=True).\
+            intrastat_validate()
         rcd += '{:2s}'.format(self.country_partner_id.code or '')
         # Codice IVA del fornitore
         rcd += '{:12s}'.format(self.vat_code or '')
@@ -1776,10 +1808,16 @@ class account_intrastat_statement_purchase_section4(models.Model):
                 str(self.progressive_to_modify_id.progressive).zfill(5) \
                 or '')
         # Codice dello Stato membro dell’acquirente
-        rcd += '{:2s}'.format(
-            self.country_partner_id.code or self.partner_id.country_id \
-            and self.partner_id.country_id.code 
-            or '')
+        # Test anche che ci sia il codice nazione
+        country_id = self.country_partner_id \
+            or self.partner_id.country_id
+        if country_id:
+            self.country_id.with_context(control_ISO_code=True).\
+            intrastat_validate()
+        else:
+            raise ValidationError(
+                _('Partner without Country') )
+        rcd += '{:2s}'.format(country_id.code or '')
         # Codice IVA dell’acquirente
         rcd += '{:12s}'.format(self.vat_code or '')
         # Ammontare delle operazioni in euro
