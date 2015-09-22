@@ -133,17 +133,17 @@ class StockPickingPackagePreparation(models.Model):
     @api.one
     @api.depends('name', 'ddt_number', 'partner_id', 'date')
     def _compute_display_name(self):
-        name = ''
+        name = u''
         if self.name:
             name = self.name
         if self.ddt_number and self.name:
-            name = '[{package}] {ddt}'.format(package=self.name,
-                                              ddt=self.ddt_number)
+            name = u'[{package}] {ddt}'.format(package=self.name,
+                                               ddt=self.ddt_number)
         if self.ddt_number and not self.name:
             name = self.ddt_number
         if not name:
-            name = '{partner} of {date}'.format(partner=self.partner_id.name,
-                                                date=self.date)
+            name = u'{partner} of {date}'.format(partner=self.partner_id.name,
+                                                 date=self.date)
         self.display_name = name
 
 
