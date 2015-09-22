@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_ipa
+# * l10n_it_base_location_geonames_import
 # 
 # Translators:
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 13:08+0000\n"
-"PO-Revision-Date: 2015-07-29 10:53+0000\n"
+"POT-Creation-Date: 2015-09-08 12:53+0000\n"
+"PO-Revision-Date: 2015-09-02 08:16+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -18,17 +18,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: l10n_it_ipa
-#: field:res.partner,ipa_code:0
-msgid "IPA Code"
-msgstr "Codice IPA"
-
-#. module: l10n_it_ipa
-#: view:res.partner:l10n_it_ipa.view_partner_ipa_form
-msgid "IPA123"
-msgstr "IPA123"
-
-#. module: l10n_it_ipa
-#: model:ir.model,name:l10n_it_ipa.model_res_partner
-msgid "Partner"
-msgstr "Partner"
+#. module: l10n_it_base_location_geonames_import
+#: model:ir.model,name:l10n_it_base_location_geonames_import.model_better_zip_geonames_import
+msgid "Import Better Zip from Geonames"
+msgstr "Importa dati postali da Geonames"
