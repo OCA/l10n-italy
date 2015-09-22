@@ -592,6 +592,8 @@ class AccountVatPeriodEndStatement(orm.Model):
         return True
 
     def compute_amounts(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
         statement_generic_account_line_obj = self.pool[
             'statement.generic.account.line']
         decimal_precision_obj = self.pool['decimal.precision']
@@ -628,9 +630,10 @@ class AccountVatPeriodEndStatement(orm.Model):
                     cr, uid, debit_tax_code_id, context)
                 total = 0.0
                 for period in statement.period_ids:
-                    context['period_id'] = period.id
+                    ctx = context.copy()
+                    ctx['period_id'] = period.id
                     total += tax_code_pool.browse(
-                        cr, uid, debit_tax_code_id, context).sum_period
+                        cr, uid, debit_tax_code_id, ctx).sum_period
                 debit_line_ids.append({
                     'account_id': debit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': debit_tax_code.id,
@@ -646,9 +649,10 @@ class AccountVatPeriodEndStatement(orm.Model):
                     cr, uid, credit_tax_code_id, context)
                 total = 0.0
                 for period in statement.period_ids:
-                    context['period_id'] = period.id
+                    ctx = context.copy()
+                    ctx['period_id'] = period.id
                     total += tax_code_pool.browse(
-                        cr, uid, credit_tax_code_id, context).sum_period
+                        cr, uid, credit_tax_code_id, ctx).sum_period
                 credit_line_ids.append({
                     'account_id': credit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': credit_tax_code.id,
