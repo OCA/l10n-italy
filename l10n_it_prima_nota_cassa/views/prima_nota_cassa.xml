@@ -40,6 +40,7 @@
                               <th>Date</th>
                               <th>Journal</th>
                               <th>Partner</th>
+                              <th>Ref</th>
                               <th>Entry</th>
                               <th>Description</th>
                               <th>Debit</th>
@@ -53,6 +54,7 @@
                               <td><span t-esc="formatLang(line['ldate'], date=True) or ''" /></td>
                               <td><span t-esc="line['jname']  or ''" /></td>
                               <td><span t-esc="line['partner_name']  or ''" /></td>
+                              <td><span t-esc="line['lref']  or ''" /></td>
                               <td><span t-esc="line['move']  or ''" /></td>
                               <td><span t-esc="line['lname']  or ''" /></td>
                               <td><span t-esc="formatLang(line['debit'], digits=get_digits(dp='Account')) " /></td>
