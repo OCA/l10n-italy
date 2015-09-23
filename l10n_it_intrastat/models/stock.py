@@ -21,37 +21,22 @@
 #
 ##############################################################################
 
-{
-    'name': 'Account - Intrastat',
-    'version': '0.1',
-    'category': 'Account',
-    'description': """
-    Taxation and customs European Union statements.
-    """,
-    'author': 'Openforce di Alessandro Camilli per Apulia Software srl',
-    'website': 'http://apuliasoftware.it/',
-    'license': 'AGPL-3',
-    "depends": [
-        'account',
-        'product',
-        'stock',
-        'stock_account',
-        'report_intrastat'],
-    "data": [
-        'data/account.intrastat.transation.nature.csv',
-        'data/account.intrastat.transport.csv',
-        'data/account.intrastat.custom.csv',
-        'data/report.intrastat.code.csv',
-        'data/sequence.xml',
-        'security/ir.model.access.csv',
-        'wizard/export_file_view.xml',
-        'views/intrastat.xml',
-        'views/product.xml',
-        'views/account.xml',
-        'views/config.xml',
-        ],
-    "demo": [],
-    "active": False,
-    "installable": True
-}
 
+from openerp import models, fields, api
+
+
+class stock_picking(models.Model):
+    
+    _inherit = "stock.picking"
+    
+    @api.model
+    def _get_invoice_vals(self, key, inv_type, journal_id, move, context=None):
+        
+        res = super(stock_picking, self)._get_invoice_vals(
+            key, inv_type, journal_id, move)
+        
+        partner, currency_id, company_id, user_id = key
+        
+        res['intrastat'] = partner.property_account_position.intrastat
+        
+        return res
