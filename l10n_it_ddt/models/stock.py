@@ -41,6 +41,7 @@ class StockPicking(models.Model):
 
     @api.depends('ddt_ids')
     def _get_package_id(self):
+        # 1 picking can always be linked to only 1 DDT
         for picking in self:
             if picking.ddt_ids:
                 picking.package_id = picking.ddt_ids[0]
@@ -64,3 +65,30 @@ class StockPicking(models.Model):
         if context.get('ddt_partner_id', False):
             values['partner_id'] = context['ddt_partner_id']
         return values
+
+    @api.multi
+    def write(self, values):
+        pack_to_update = self.env['stock.picking.package.preparation']
+        for picking in self:
+            pack_to_update |= picking.package_id
+        res = super(StockPicking, self).write(values)
+        if pack_to_update:
+            pack_to_update._update_line_ids()
+        return res
+
+    @api.multi
+    def unlink(self):
+        pack_to_update = self.env['stock.picking.package.preparation']
+        for picking in self:
+            pack_to_update |= picking.package_id
+        res = super(StockPicking, self).unlink()
+        if pack_to_update:
+            pack_to_update._update_line_ids()
+        return res
+
+    @api.model
+    def create(self, values):
+        picking = super(StockPicking, self).create(values)
+        if picking.package_id:
+            picking.package_id._update_line_ids()
+        return picking
