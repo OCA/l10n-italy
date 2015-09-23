@@ -7,7 +7,17 @@
             <field name="inherit_id" ref="stock.view_picking_form"></field>
             <field name="arch" type="xml">
                 <field name="move_type" position="after">
-                    <field name="ddt_ids" widget="many2one" domain="[('partner_shipping_id', '=', partner_id),('invoice_id', '=', False)]" context="{'default_partner_id': partner_id, 'invisible_pickings': True}"></field>
+                    <field name="package_id" domain="[('partner_shipping_id', '=', partner_id),('invoice_id', '=', False)]" context="{'default_partner_id': partner_id, 'invisible_pickings': True}"></field>
+                </field>
+            </field>
+        </record>
+        <record id="vpicktree" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"></field>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="package_id"></field>
                 </field>
             </field>
         </record>

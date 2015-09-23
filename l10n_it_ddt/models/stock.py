@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 #    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+#    Copyright 2015 Lorenzo Battistini - Agile Business Group
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -34,6 +35,24 @@ class StockPicking(models.Model):
         column2='stock_picking_package_preparation_id',
         string='DdT',
         copy=False, )
+    package_id = fields.Many2one(
+        'stock.picking.package.preparation', string="DdT",
+        compute="_get_package_id", inverse="_set_package_id", store=True)
+
+    @api.depends('ddt_ids')
+    def _get_package_id(self):
+        for picking in self:
+            if picking.ddt_ids:
+                picking.package_id = picking.ddt_ids[0]
+            else:
+                picking.package_id = None
+
+    def _set_package_id(self):
+        for picking in self:
+            if picking.package_id:
+                picking.ddt_ids = [(6, 0, [picking.package_id.id])]
+            else:
+                picking.ddt_ids = [(6, 0, [])]
 
     def _get_invoice_vals(self, cr, uid, key, inv_type, journal_id, move,
                           context=None):
@@ -45,21 +64,3 @@ class StockPicking(models.Model):
         if context.get('ddt_partner_id', False):
             values['partner_id'] = context['ddt_partner_id']
         return values
-
-    def _parse_ddt_ids(self, values):
-        if values.get('ddt_ids') and isinstance(
-            values['ddt_ids'], (long, int)
-        ):
-            # due to many2one widget
-            values['ddt_ids'] = [(6, 0, [values['ddt_ids']])]
-        return values
-
-    @api.multi
-    def write(self, values):
-        values = self._parse_ddt_ids(values)
-        return super(StockPicking, self).write(values)
-
-    @api.model
-    def create(self, values):
-        values = self._parse_ddt_ids(values)
-        return super(StockPicking, self).create(values)
