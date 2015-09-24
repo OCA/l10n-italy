@@ -25,7 +25,7 @@
                     <thead>
                         <tr class="first_th_row">
                             <t t-if="registry_type == 'corrispettivi'">
-                                <td colspan="3" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
+                                <td colspan="4" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
                             </t>
                             <t t-if="registry_type != 'corrispettivi'">
                                 <td colspan="9" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
@@ -33,40 +33,32 @@
                         </tr>
                        
                         <t t-if="print_details > 0 ">
-                        
-                            <t t-if="registry_type == 'corrispettivi'">
-                                <tr style="page-break-inside: avoid">
-                                    <th class="left_with_line_bottom">Numero</th>
-                                    <th class="left_with_line_bottom">Data registrazione</th>
-                                    <th class="right_with_line_bottom">Totale</th>
-                                    <th class="right_with_line_bottom">Imposta</th>
-                                    <th class="right_with_line_bottom">Importo</th>
-                                </tr>
-                            </t>
-                            <t t-if="registry_type != 'corrispettivi'">
-                                <tr style="page-break-inside: avoid">
-                                    <th class="left_without_line">DATA REG.</th>
-                                    <th class="left_without_line">NUM. REG.</th>
+                            <tr style="page-break-inside: avoid">
+                                <th class="left_without_line">DATA REG.</th>
+                                <th class="left_without_line">NUM. REG.</th>
+                                <t t-if="registry_type != 'corrispettivi'">
                                     <th class="left_without_line">CAUS.</th>
                                     <th class="left_without_line">DT FATT.</th>
                                     <th class="left_without_line">NUM FATT.</th>
                                     <th class="left_without_line">RAGIONE SOCIALE</th>
                                     <th class="left_without_line">P.IVA</th>
-                                    <th class="left_without_line"></th>
-                                    <th class="right_without_line">TOTALE</th>
-                                </tr>
-                                <tr style="page-break-inside: avoid">
+                                </t>
+                                <th class="left_without_line"></th>
+                                <th class="right_without_line">TOTALE</th>
+                            </tr>
+                            <tr style="page-break-inside: avoid">
+                                <t t-if="registry_type != 'corrispettivi'">
                                     <th class="left_with_line_bottom"></th>
                                     <th class="left_with_line_bottom"></th>
                                     <th class="left_with_line_bottom"></th>
                                     <th class="left_with_line_bottom"></th>
                                     <th class="left_with_line_bottom"></th>
-                                    <th class="left_with_line_bottom">Descrizione Imposta</th>
-                                    <th class="right_with_line_bottom">Imponibile</th>
-                                    <th class="right_with_line_bottom">Imposta</th>
-                                    <th class="right_with_line_bottom"></th>
-                                </tr>
-                            </t>
+                                </t>
+                                <th class="left_with_line_bottom">Descrizione Imposta</th>
+                                <th class="right_with_line_bottom">Imponibile</th>
+                                <th class="right_with_line_bottom">Imposta</th>
+                                <th class="right_with_line_bottom"></th>
+                            </tr>
                         </t>    
                     </thead>
                     
@@ -78,29 +70,13 @@
                                 <t t-if="print_details > 0 ">
                                     <t t-set="line_class_left" t-value="left_without_line"/>
                                     <t t-set="line_class_right" t-value="right_without_line"/>
-                                    <t t-if="registry_type == 'corrispettivi'">
-                                        <tr style="page-break-inside: avoid">
-                                            <!-- numero -->
-                                            <td class="left_without_line"><t t-if="line['index'] == 0"><div t-esc="counter" style="page-break-inside: avoid"/></t></td>
+                                    <t t-if="line['index'] == 0">
+                                        <tr style="page-break-inside: avoid; border:1px solid #fff;" >
                                             <!-- Data registrazione -->
-                                            <td class="left_without_line"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></t></td>
-                                            <!-- sezionale -->
-                                            <td class="left_without_line"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="move.journal_id.name"/></t></td>
-                                            <!-- totale -->
-                                            <td class="right_without_line"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></t></td>
-                                            <!--  imposta -->
-                                            <td class="right_without_line"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></t></td>
-                                            <!-- importo -->
-                                            <td class="right_without_line"><t t-if="line['index'] == 0"><div style="page-break-inside: avoid" t-esc="formatLang(line['amount'])"/></t></td>
-                                        </tr>
-                                    </t>
-                                    <t t-if="registry_type != 'corrispettivi'">
-                                        <t t-if="line['index'] == 0">
-                                            <tr style="page-break-inside: avoid; border:1px solid #fff;" >
-                                                <!-- Data registrazione -->
-                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></td>
-                                                <!-- Numero registrazione -->
-                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></td>
+                                            <!-- Numero registrazione -->
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
+                                            <t t-if="registry_type != 'corrispettivi'">
                                                 <!-- Causale -->
                                                 <td class="left_without_line_bold">
                                                     <t t-if="move.journal_id.type == 'sale' or move.journal_id.type == 'purchase'">
@@ -124,26 +100,28 @@
                                                 <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></td>
                                                 <!-- PIVA -->
                                                 <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.vat"/></td>
-                                                <td class="left_without_line"></td>
-                                                <!-- totale -->
-                                                <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></td>
-                                            </tr>
-                                        </t>
-                                        <tr style="page-break-inside: avoid; ">
+                                            </t>
                                             <td class="left_without_line"></td>
-                                            <td class="left_without_line"></td>
-                                            <td class="left_without_line"></td>
-                                            <td class="left_without_line"></td>
-                                            <td class="left_without_line"></td>
-                                            <!--  imposta -->
-                                            <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></td>
-                                            <!-- base -->
-                                            <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['base'])"/></td>
-                                            <!-- tax -->
-                                            <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['tax'])"/></td>
-                                            <td class="left_without_line"></td>
+                                            <!-- totale -->
+                                            <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></td>
                                         </tr>
                                     </t>
+                                    <tr style="page-break-inside: avoid; ">
+                                        <t t-if="registry_type != 'corrispettivi'">
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                        </t>
+                                        <!--  imposta -->
+                                        <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></td>
+                                        <!-- base -->
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['base'])"/></td>
+                                        <!-- tax -->
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['tax'])"/></td>
+                                        <td class="left_without_line"></td>
+                                    </tr>
                                 </t>
                             </t>
                         </t>
