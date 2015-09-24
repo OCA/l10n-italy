@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="tax_code_credit_22" model="account.tax.code">
+            <field name="name">IVA a credito 22%</field>
+        </record>
+
+        <record id="tax_base_code_credit_22" model="account.tax.code">
+            <field name="name">IVA a credito 22% (imponibile)</field>
+        </record>
+
+        <record id="tax_code_credit_22_50" model="account.tax.code">
+            <field name="name">IVA a credito 22% det 50%</field>
+        </record>
+
+        <record id="tax_code_credit_22_50I" model="account.tax.code">
+            <field name="name">IVA a credito 22% det 50% I</field>
+        </record>
+
+        <record id="tax_base_code_credit_22_50" model="account.tax.code">
+            <field name="name">IVA a credito 22% det 50%(imponibile)</field>
+        </record>
+
+        <record id="tax_code_credit_22_10" model="account.tax.code">
+            <field name="name">IVA a credito 22% det 10%</field>
+        </record>
+
+        <record id="tax_code_credit_22_10I" model="account.tax.code">
+            <field name="name">IVA a credito 22% det 10%I</field>
+        </record>
+
+        <record id="tax_base_code_credit_22_10" model="account.tax.code">
+            <field name="name">IVA a credito 22% det 10%(imponibile)</field>
+        </record>
+
+        <record id="tax_22" model="account.tax">
+            <field name="name">IVA al 22 %</field>
+            <field name="type">percent</field>
+            <field name="amount">0.22</field>
+            <field name="base_code_id" ref="tax_base_code_credit_22"></field>
+            <field name="tax_code_id" ref="tax_code_credit_22"></field>
+        </record>
+
+        <record id="tax_22I5" model="account.tax">
+            <field name="name">IVA al 22% detraibile al 50%</field>
+            <field name="amount">0.22</field>
+            <field name="type">percent</field>
+            <field name="child_depend">1</field>
+            <field name="base_code_id" ref="tax_base_code_credit_22_50"></field>
+        </record>
+
+        <record id="tax_22I5b" model="account.tax">
+            <field name="name">IVA al 22% detraibile al 50% (I)</field>
+            <field name="amount">0.5</field>
+            <field name="sequence">100</field>
+            <field name="type">percent</field>
+            <field name="parent_id" ref="tax_22I5"></field>
+            <field name="tax_code_id" ref="tax_code_credit_22_50I"></field>
+        </record>
+
+        <record id="tax_22I5a" model="account.tax">
+            <field name="name">IVA al 22% detraibile al 50% (D)</field>
+            <field name="amount">0</field>
+            <field name="type">balance</field>
+            <field name="sequence">200</field>
+            <field name="parent_id" ref="tax_22I5"></field>
+            <field name="tax_code_id" ref="tax_code_credit_22_50"></field>
+        </record>
+
+        <record id="tax_2210" model="account.tax">
+            <field name="name">IVA al 22% detraibile al 10%</field>
+            <field name="amount">0.22</field>
+            <field name="child_depend">1</field>
+            <field name="base_code_id" ref="tax_base_code_credit_22_10"></field>
+        </record>
+
+        <record id="tax_2210b" model="account.tax">
+            <field name="name">IVA al 22% detraibile al 10% (I)</field>
+            <field name="amount">0.9</field>
+            <field name="parent_id" ref="tax_2210"></field>
+            <field name="tax_code_id" ref="tax_code_credit_22_10I"></field>
+        </record>
+
+        <record id="tax_2210a" model="account.tax">
+            <field name="name">IVA al 22% detraibile al 10% (D)</field>
+            <field name="amount">0</field>
+            <field name="type">balance</field>
+            <field name="parent_id" ref="tax_2210"></field>
+            <field name="tax_code_id" ref="tax_code_credit_22_10"></field>
+        </record>
+        
+    </data>
+</openerp>

@@ -1,0 +1,240 @@
+-
+  I set the main company with round_globally true
+-
+  !python {model: res.company, id: base.main_company}: |
+     self.tax_calculation_rounding_method = 'round_globally'
+-
+  In order to test tax computation I create a new supplier invoice with normal tax
+-
+  I set the context that will be used for the encoding of all the invoices of this file
+-
+  !context
+    'type': 'in_invoice'
+-
+  !record {view: account.invoice_supplier_form, model: account.invoice, id: account_invoice_supplier01}:
+    account_id: account.a_pay
+    type: in_invoice
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_expense
+        name: '113.49'
+        price_unit: 113.49
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_22
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier01, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_supplier01")])  
+-  
+    Then I verify the amount.
+    113.49 * 0.22 = 24.9678 = 24.97
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier01}:
+        - amount_tax == 24.97
+-
+  I change the state of invoice to open by clicking Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_supplier01}
+-
+  I check that the invoice state is now "Open"
+-
+  !assert {model: account.invoice, id: account_invoice_supplier01}:
+    - state == 'open'
+-
+  I verify that account move is created
+-
+  !python {model: account.invoice}: |
+    move_obj = self.pool['account.move']
+    inv = self.browse(cr, uid, ref('account_invoice_supplier01'))
+    move = inv.move_id
+    get_period = move_obj._get_period(cr, uid, {'lang': u'en_US', 'active_model': 'ir.ui.menu',
+      'active_ids': [ref('account.menu_action_move_journal_line_form')], 'tz': False, 'active_id': ref('account.menu_action_move_journal_line_form')})
+    amt = move_obj._search_amount(cr, uid, move_obj, 'amount', [('amount', '=', 138.46)], {'lang': u'en_US', 'active_model': 'ir.ui.menu',
+      'active_ids': [ref('account.menu_action_move_journal_line_form')], 'tz': False, 'active_id': ref('account.menu_action_move_journal_line_form')})
+    ids = amt[0][2]
+    amt_compute = move_obj._amount_compute(cr, uid, list(ids), 'amount', None, {'lang': u'en_US', 'active_model': 'ir.ui.menu',
+      'active_ids': [ref('account.menu_action_move_journal_line_form')], 'tz': False, 'active_id': ref('account.menu_action_move_journal_line_form')}, where ='')
+    move_amount = amt_compute.values()
+    assert(inv.move_id and move.period_id.id == get_period and move_amount[0] == 138.46), ('Journal Entries has not been created')
+-
+  In order to test tax computation I create a new supplier invoice with partial deductible VAT
+-
+  !record {model: account.invoice, id: account_invoice_supplier0, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_expense
+        name: '113.49'
+        price_unit: 113.49
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_22I5
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier0, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_supplier0")])  
+-  
+    Then I verify the amount.
+    113.49 * 0.22 = 24.9678 = 24.97
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier0}:
+        - amount_tax == 24.97
+-
+  I change the state of invoice to open by clicking Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_supplier0}
+-
+  I check that the invoice state is now "Open"
+-
+  !assert {model: account.invoice, id: account_invoice_supplier0}:
+    - state == 'open'
+-
+  I verify that account move is created with correct amount
+-
+  !python {model: account.invoice}: |
+      inv = self.browse(cr, uid, [ref("account_invoice_supplier0")])
+      move = inv.move_id
+      tax_amount = 0
+      for line in move.line_id:
+          if line.tax_code_id and 'imp' in (line.tax_code_id.name):
+            tax_amount += abs(line.tax_amount)
+      assert( tax_amount == inv.amount_untaxed), ('Tax amount in move entries incorrect')
+-
+  In order to test tax computation I create a new supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier1, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_22I5
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_22
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier1, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_supplier1")])  
+-  
+    Then I verify the amount.
+    123.59 + 123.59 = 247.18
+    247.18 × 0.22 = 54.3796 = 54.38
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier1}:
+        - amount_tax == 54.38
+-
+  In order to test tax computation I create a new supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier3, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_2210
+      - account_id: account.a_expense
+        name: '123.59'
+        price_unit: 123.59
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_22
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier3, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_supplier3")])  
+-  
+    Then I verify the amount.
+    123.59 + 123.59 = 247.18
+    247.18 × 0.22 = 54.3796 = 54.38
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier3}:
+        - amount_tax == 54.38
+-
+  In order to test tax computation I create a new supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier2, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
+    company_id: base.main_company
+    currency_id: base.EUR
+    date_invoice: !eval time.strftime('%Y-%m-%d')
+    invoice_line:
+      - account_id: account.a_expense
+        name: '100.03'
+        price_unit: 100.03
+        quantity: 1.0
+        invoice_line_tax_id:
+            - tax_22I5
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+    type: in_invoice    
+-
+    I check it is a received invoice
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier2, string: This is not a supplier invoice}:
+        - type == 'in_invoice'
+-  
+    Compute the total tax.
+-  
+    !python {model: account.invoice}: |
+        self.button_compute(cr, uid, [ref("account_invoice_supplier2")])  
+-  
+    Then I verify the amount.
+    100.03 × 0.22 = 22.0066 = 22.01
+-  
+    !assert {model: account.invoice, id: account_invoice_supplier2}:
+        - amount_tax == 22.01
