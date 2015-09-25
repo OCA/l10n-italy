@@ -20,7 +20,7 @@ withholding taxes
 
 Configure withholding tax like the following
 
-.. image:: static/description/images/tax_configuration.png
+.. image:: /l10n_it_withholding_tax/static/description/images/tax_configuration.png
    :alt: withholding tax
 
 

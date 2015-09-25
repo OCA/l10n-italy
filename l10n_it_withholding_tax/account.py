@@ -195,3 +195,28 @@ class AccountVoucher(orm.Model):
                 move_pool.button_cancel(cr, uid, [move.id])
                 move_pool.unlink(cr, uid, [move.id])
         return res
+
+
+class AccountInvoice(orm.Model):
+    _inherit = "account.invoice"
+
+    def _has_withholding_tax(self, cr, uid, invoice, context=None):
+        for tax_line in invoice.tax_line:
+            if (
+                tax_line.tax_code_id and
+                tax_line.tax_code_id.withholding_tax
+            ):
+                return True
+        return False
+
+    def invoice_pay_customer(self, cr, uid, ids, context=None):
+        for invoice in self.browse(cr, uid, ids, context=context):
+            if self._has_withholding_tax(cr, uid, invoice, context):
+                raise orm.except_orm(
+                    _('Warning'),
+                    _("Impossible to register payment for invoice with "
+                      "withholding tax by this wizard. Please use "
+                      "'supplier payments' menu"))
+        res = super(AccountInvoice, self).invoice_pay_customer(
+            cr, uid, ids, context)
+        return res
