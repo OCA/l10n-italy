@@ -14,8 +14,8 @@
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
-            <field name="parser_loc">l10n_it_account_report/invoice.py</field>
-            <field name="report_rml">l10n_it_account_report/templates/fattura.odt</field>
+            <field name="parser_loc">l10n_it_invoice_report/invoice.py</field>
+            <field name="report_rml">l10n_it_invoice_report/templates/fattura.odt</field>
             <field name="parser_state">loc</field>
         </record>
 

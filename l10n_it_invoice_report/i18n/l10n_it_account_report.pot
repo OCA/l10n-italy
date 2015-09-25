@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_account_report
+#	* l10n_it_invoice_report
 #
 msgid ""
 msgstr ""
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_it_account_report
-#: model:ir.actions.report.xml,name:l10n_it_account_report.invoice_report_id
+#. module: l10n_it_invoice_report
+#: model:ir.actions.report.xml,name:l10n_it_invoice_report.invoice_report_id
 msgid "Print Fattura"
 msgstr ""
 
