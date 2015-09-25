@@ -29,7 +29,8 @@
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
 #    "depends" : ['l10n_it_account', 'report_aeroo'],
-    "depends" : ['l10n_it_fiscalcode', 'report_aeroo'],
+# depends on report_aeroo, too, but that is not in OCA
+    "depends" : ['l10n_it_fiscalcode'],
     "init_xml" : [
         ],
     "update_xml" : [
