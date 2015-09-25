@@ -22,6 +22,7 @@
 
 import openerp.addons.decimal_precision as dp
 from openerp import models, fields, api, _
+from openerp.exceptions import Warning as UserError
 
 
 class AccountFiscalPosition(models.Model):
@@ -75,6 +76,10 @@ class AccountInvoice(models.Model):
             }
 
     def _build_debit_line(self):
+        if not self.company_id.sp_account_id:
+            raise UserError(
+                _("Please set 'Split Payment Write-off Account' field in"
+                  " accounting configuration"))
         return {
             'name': _('Split Payment Write Off'),
             'partner_id': self.partner_id.id,
@@ -97,6 +102,10 @@ class AccountInvoice(models.Model):
                 line_model = self.env['account.move.line']
                 credit_line_vals = invoice._build_credit_vals()
                 write_off_line_vals = invoice._build_debit_line()
+                if not invoice.company_id.sp_journal_id:
+                    raise UserError(
+                        _("Please set 'Split Payment Write-off Journal' field "
+                          "in accounting configuration"))
                 sp_journal_id = invoice.company_id.sp_journal_id
                 move_model = self.env['account.move']
                 move_data = {
