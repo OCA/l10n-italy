@@ -14,11 +14,7 @@
                     <div>
                         <div>
                             <label for="sp_account_id"/>
-                            <field name="sp_account_id" class="oe_inline" required="1"/>
-                        </div>
-                        <div>
-                            <label for="sp_journal_id"/>
-                            <field name="sp_journal_id" class="oe_inline" required="1"/>
+                            <field name="sp_account_id" class="oe_inline"/>
                         </div>
                     </div>
                 </group>
