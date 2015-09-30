@@ -8,9 +8,13 @@
         <field name="name">ddt.stock.picking.package.preparation.search</field>
         <field name="model">stock.picking.package.preparation</field>
         <field name="arch" type="xml">
-            <search string="Search Sales Order">
+            <search string="Search DDT">
                 <filter string="To be invoiced" domain="[('invoice_id','=',False)]" name="to_be_invoiced"/>
                 <filter string="Invoiced" domain="[('invoice_id','!=',False)]" name="invoiced"/>
+                <field name="ddt_number"/>
+                <field name="partner_id"/>
+                <field name="partner_invoice_id"/>
+                <field name="partner_shipping_id"/>
             </search>
         </field>
     </record>
