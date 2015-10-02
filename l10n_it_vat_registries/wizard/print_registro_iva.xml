@@ -14,7 +14,7 @@
                         <separator string="Journals" colspan="4"/>
                         <field name="tax_registry_id"></field>
                         <field name="journal_ids" colspan="4" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase','sale_refund','purchase_refund'))]"/>
-                        <separator string="Layuot" colspan="4"/>
+                        <separator string="Layout" colspan="4"/>
                         <field name="type"/>
                         <field name="tax_sign" />
                         <field name="only_totals" />

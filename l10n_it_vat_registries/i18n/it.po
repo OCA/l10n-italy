@@ -170,8 +170,8 @@ msgstr "Layout"
 
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
-msgid "Layuot"
-msgstr "Layuot"
+msgid "Layout"
+msgstr "Layout"
 
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,message:0
