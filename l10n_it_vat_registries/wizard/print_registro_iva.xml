@@ -41,8 +41,13 @@
         </record>
 
         <menuitem
+          id="menu_finance_legal_statement_taxes"
+          name="Taxes"
+          parent="account.menu_finance_legal_statement"/>
+
+        <menuitem
             name="VAT Registries"
-            parent="account.menu_finance_reporting"
+            parent="menu_finance_legal_statement_taxes"
             action="action_registro_iva"
             id="menu_registro_iva"
             icon="STOCK_PRINT"/>

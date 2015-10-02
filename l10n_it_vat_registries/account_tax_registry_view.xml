@@ -15,7 +15,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="action_account_tax_registry_form" model="ir.actions.act_window">
             <field name="name">VAT registries</field>
             <field name="res_model">account.tax.registry</field>
