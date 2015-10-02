@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-31 12:04+0000\n"
-"PO-Revision-Date: 2015-08-31 12:04+0000\n"
+"POT-Creation-Date: 2015-10-02 22:02+0000\n"
+"PO-Revision-Date: 2015-10-02 22:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "CAUS."
 msgstr "CAUS."
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:182
+#: code:addons/l10n_it_vat_registries/vat_registry.py:183
 #, python-format
 msgid "Can't compute base amount for tax %s"
 msgstr "Impossibile calcolare l'imponibile per l'imposta %s"
@@ -87,11 +87,6 @@ msgstr "DT FATT."
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Data registrazione"
-msgstr "Data registrazione"
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Descrizione"
 msgstr "Descrizione"
 
@@ -121,11 +116,6 @@ msgstr "ID"
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Imponibile"
 msgstr "Imponibile"
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Importo"
-msgstr "Importo"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -217,11 +207,6 @@ msgstr "Nessun documento trovato per la selezione corrente"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Numero"
-msgstr "Numero"
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "P.IVA"
 msgstr "P.IVA"
 
@@ -283,15 +268,15 @@ msgid "Tax amount sign"
 msgstr "Segno importo imposta"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:239
+#: code:addons/l10n_it_vat_registries/vat_registry.py:240
 #, python-format
 msgid "Tax code %s is not linked to 1 and only 1 tax"
 msgstr "Tax code %s is not linked to 1 and only 1 tax"
 
 #. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Totale"
-msgstr "Totale"
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
+msgid "Taxes"
+msgstr "Imposte"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -339,3 +324,4 @@ msgstr "E' possibile raggruppare diversi sezionali in un unico registro. Nel wiz
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 msgid "or"
 msgstr "o"
+

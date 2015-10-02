@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-31 12:03+0000\n"
-"PO-Revision-Date: 2015-08-31 12:03+0000\n"
+"POT-Creation-Date: 2015-10-02 22:02+0000\n"
+"PO-Revision-Date: 2015-10-02 22:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgid "CAUS."
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:182
+#: code:addons/l10n_it_vat_registries/vat_registry.py:183
 #, python-format
 msgid "Can't compute base amount for tax %s"
 msgstr ""
@@ -82,11 +82,6 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Data registrazione"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Descrizione"
 msgstr ""
 
@@ -115,11 +110,6 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Imponibile"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Importo"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -212,11 +202,6 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Numero"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "P.IVA"
 msgstr ""
 
@@ -278,14 +263,14 @@ msgid "Tax amount sign"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:239
+#: code:addons/l10n_it_vat_registries/vat_registry.py:240
 #, python-format
 msgid "Tax code %s is not linked to 1 and only 1 tax"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: view:website:l10n_it_vat_registries.report_registro_iva
-msgid "Totale"
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
+msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_vat_registries
