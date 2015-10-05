@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="l10n_it_account_a4_portrait" model="report.paperformat">
+        <field name="name">Italian Accounting Reports A4 Portrait</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+      </record>
+
+      <record id="l10n_it_account_a4_landscape" model="report.paperformat">
+        <field name="name">Italian Accounting Reports A4 Landscape</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+      </record>
+
+      <template id="l10n_it_account.internal_layout">
+          <!-- Multicompany -->
+          <t t-if="o and 'company_id' in o">
+              <t t-set="company" t-value="o.company_id"></t>
+          </t>
+          <t t-if="not o or not 'company_id' in o">
+              <t t-set="company" t-value="res_company"></t>
+          </t>
+
+          <div class="header">
+              <div class="row">
+                  <div class="col-xs-4  ">
+                      <h3><span t-esc="company.name"/></h3>
+                      <span t-esc="company.street" class=""/><br/>
+                      <span t-esc="company.zip" class=""/> - <span t-esc="company.city" class=""/> - <span t-esc="company.state_id.code" class=""/><br/>
+                      <span class="text-right">Vat:</span><span t-esc="company.partner_id.vat" class=""/><br/>
+                      <span class="text-right">Fiscalcode:</span><span t-esc="company.partner_id.fiscalcode" class=""/>
+                  </div>
+                  <div class="col-xs-4 col-xs-offset-4 text-right">
+                      <h3 t-esc="title"/>
+                  </div>
+              </div>
+          </div>
+          <t t-raw="0" />
+          <div class="footer">
+              <div class="row">
+                  <div class="col-xs-4">
+
+                  </div>
+                  <div class="col-xs-4 col-xs-offset-4 text-right">
+                    <span style="display: none;" id="l10n_it_count_fiscal_page_base" t-esc="l10n_it_count_fiscal_page_base" />
+                    <ul class="list-inline">Pag:
+                        <li><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/></li>
+                        <li>/</li>
+                        <li><span class="page"/></li>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+      </template>
+
+
+        <template id="minimal_layout" inherit_id="report.minimal_layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet" href="/l10n_it_vat_registries/static/src/css/l10n_it_vat_registries.css"/>
+            </xpath>
+            <xpath expr="//head/t/script" position="replace">
+                <script>
+                function subst() {
+                    var vars = {};
+                    var x = document.location.search.substring(1).split('&amp;');
+                    for (var i in x) {
+                        var z = x[i].split('=', 2);
+                        vars[z[0]] = unescape(z[1]);
+                    }
+                    var x=['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+                    for (var i in x) {
+                        var y = document.getElementsByClassName(x[i]);
+
+                        fiscal_page_base = 0
+                        if (document.getElementById('l10n_it_count_fiscal_page_base')!=null){
+                            if (document.getElementById('l10n_it_count_fiscal_page_base').innerHTML){
+                                fiscal_page_base = parseInt(document.getElementById('l10n_it_count_fiscal_page_base').innerHTML);
+                            }
+                        }
+
+                        for (var j=0; j&lt;y.length; ++j)
+                            if (x[i] == 'page') {
+                                y[j].textContent = parseInt(eval(vars[x[i]]) + fiscal_page_base);
+                            }
+                            else {
+                                y[j].textContent = vars[x[i]];
+                            }
+                        }
+                    }
+            </script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

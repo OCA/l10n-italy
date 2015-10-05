@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_tax_registry_manager,account.tax_registry,model_account_tax_registry,account.group_account_manager,1,1,1,1
+access_account_tax_registry_invoice,account.tax_registry invoice,model_account_tax_registry,account.group_account_invoice,1,0,0,0
+access_account_tax_registry_sale_manager,account.tax_registry sale manager,model_account_tax_registry,base.group_sale_salesman,1,0,0,0
