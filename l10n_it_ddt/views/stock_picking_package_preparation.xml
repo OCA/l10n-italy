@@ -95,7 +95,8 @@
         <field name="inherit_id" ref="stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='line_ids']/form//field[@name='name']" position="after">
-                <field name="invoiceable" />
+                <label for="invoiceable" />
+                <field name="invoiceable" nolabel="1" />
             </xpath>
         </field>
     </record>
