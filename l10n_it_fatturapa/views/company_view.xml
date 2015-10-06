@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_config_settings" model="ir.ui.view">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">account.config.settings</field>
+            <field name="inherit_id" ref="account.view_account_config_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group[6]" position="after">
+                    <separator string="Fattura PA"/>
+                    <group name="fatturapa_settings">
+                        <label for="id" string="Configuration"/>
+                        <div>
+                            <div>
+                                <label for="fatturapa_fiscal_position_id"/>
+                                <field name="fatturapa_fiscal_position_id" required="1" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_format_id"/>
+                                <field name="fatturapa_format_id" required="1" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_sequence_id"/>
+                                <field name="fatturapa_sequence_id" required="1" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_art73"/>
+                                <field name="fatturapa_art73" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_tax_representative"/>
+                                <field name="fatturapa_tax_representative" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_sender_partner"/>
+                                <field name="fatturapa_sender_partner" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_rea_office"/>
+                                <field name="fatturapa_rea_office" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_rea_number"/>
+                                <field name="fatturapa_rea_number" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_rea_capital"/>
+                                <field name="fatturapa_rea_capital" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_rea_partner"/>
+                                <field name="fatturapa_rea_partner" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_rea_liquidation"/>
+                                <field name="fatturapa_rea_liquidation" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+	</data>
+</openerp>
