@@ -19,19 +19,30 @@
 #
 ##############################################################################
 
-from openerp import fields, models
+from openerp import fields, models, api
+import openerp.addons.decimal_precision as dp
 
 
 class AccountAccount(models.Model):
     _inherit = 'account.account'
 
+    default_user_type = fields.Many2one(
+        'account.account.type',
+        string='Default Account Type',
+        help="Used on balance sheet to report this account when its balance \
+        has standard sign")
+    default_parent_id = fields.Many2one(
+        'account.account',
+        string='Default Parent',
+        help="Used on balance sheet to report this account when its balance \
+        has standard sign")
     inverse_user_type = fields.Many2one(
         'account.account.type',
         string='Inverse Account Type',
-        help="Used on balance sheet to report this account when its balance is \
-        negative")
+        help="Used on balance sheet to report this account when its balance \
+        has opposite sign")
     inverse_parent_id = fields.Many2one(
         'account.account',
         string='Inverse Parent',
-        help="Used on balance sheet to report this account when its balance is \
-        negative")
+        help="Used on balance sheet to report this account when its balance \
+        has opposite sign")
