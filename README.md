@@ -34,10 +34,13 @@ addon | version | summary
 [l10n_it_ateco](l10n_it_ateco/) | 1.0 | Ateco codes
 [l10n_it_base](l10n_it_base/) | 0.1 | Italian Localisation - Base
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 0.1 | Import base_location entries (provinces) from Geonames
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 0.1 | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 0.1 | Electronic invoices emission
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 0.1 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 1.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 0.1 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 0.1 | Manage fields for Economic Administrative catalogue
+[l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Italian Localization - VAT Registries
 
 Unported addons
