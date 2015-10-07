@@ -325,16 +325,16 @@ class WizardExportFatturapa(orm.TransientModel):
             context = {}
         self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
-
+        if not partner.vat and not partner.fiscalcode:
+            raise orm.except_orm(
+                _('Error!'), _('Partner VAT and Fiscalcode not set.'))
         if partner.fiscalcode:
             self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
-        if not partner.vat:
-            raise orm.except_orm(
-                _('Error!'), _('Partner VAT not set.'))
-        self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-            DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+        if partner.vat:
+            self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
         self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici.Anagrafica = AnagraficaType(
                 Denominazione=partner.name)
