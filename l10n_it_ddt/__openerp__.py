@@ -50,7 +50,6 @@
         'wizard/add_picking_to_ddt.xml',
         'wizard/ddt_from_picking.xml',
         'views/report_ddt.xml',
-        'views/stock.xml',
         ],
     'test': [],
     'installable': True,

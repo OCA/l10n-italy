@@ -35,25 +35,6 @@ class StockPicking(models.Model):
         column2='stock_picking_package_preparation_id',
         string='DdT',
         copy=False, )
-    package_id = fields.Many2one(
-        'stock.picking.package.preparation', string="DdT",
-        compute="_get_package_id", inverse="_set_package_id", store=True)
-
-    @api.depends('ddt_ids')
-    def _get_package_id(self):
-        # 1 picking can always be linked to only 1 DDT
-        for picking in self:
-            if picking.ddt_ids:
-                picking.package_id = picking.ddt_ids[0]
-            else:
-                picking.package_id = None
-
-    def _set_package_id(self):
-        for picking in self:
-            if picking.package_id:
-                picking.ddt_ids = [(6, 0, [picking.package_id.id])]
-            else:
-                picking.ddt_ids = [(6, 0, [])]
 
     def _get_invoice_vals(self, cr, uid, key, inv_type, journal_id, move,
                           context=None):
