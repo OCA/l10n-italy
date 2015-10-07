@@ -89,10 +89,6 @@ class AccountInvoice(models.Model):
                 invoice.fiscal_position and
                 invoice.fiscal_position.split_payment
             ):
-                if not invoice.company_id.sp_journal_id:
-                    raise UserError(
-                        _("Please set 'Split Payment Write-off Journal' field "
-                          "in accounting configuration"))
                 self._compute_split_payments()
                 line_model = self.env['account.move.line']
                 write_off_line_vals = invoice._build_debit_line()

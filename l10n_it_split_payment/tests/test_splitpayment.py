@@ -27,9 +27,6 @@ class TestSP(TransactionCase):
             })
         self.company = self.env.ref('base.main_company')
         self.company.sp_account_id = self.env.ref('account.ova')
-        self.company.sp_journal_id = self.env.ref(
-            'account.miscellaneous_journal')
-        self.company.sp_journal_id.update_posted = True
         self.a_recv = self.env.ref('account.a_recv')
         self.sales_journal = self.env.ref('account.sales_journal')
         self.sales_journal.update_posted = True
