@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'REA Register',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Localisation/Italy',
     'summary': 'Manage fields for  Economic Administrative catalogue',
     'author': 'Agile Business Group, Odoo Community Association (OCA)',
