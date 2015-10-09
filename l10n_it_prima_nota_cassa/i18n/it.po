@@ -1,0 +1,199 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_prima_nota_cassa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-02 13:20+0000\n"
+"PO-Revision-Date: 2015-09-02 13:20+0000\n"
+"Last-Translator: Davide Corio <davide.corio@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,display_account:0
+msgid "All"
+msgstr "Tutti"
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,target_move:0
+msgid "All Entries"
+msgstr "Tutti i movimenti"
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,target_move:0
+msgid "All Posted Entries"
+msgstr "Tutti i movimenti confermati"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,chart_account_id:0
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Chart of Account"
+msgstr "Piano dei Conti"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,company_id:0
+msgid "Company"
+msgstr "Azienda"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Credit"
+msgstr "Avere"
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,filter:0
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Debit"
+msgstr "Dare"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,display_account:0
+msgid "Display Accounts"
+msgstr "Mostra Conti"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,date_to:0
+msgid "End Date"
+msgstr "Data Fine"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,period_to:0
+msgid "End Period"
+msgstr "Periodo Finale"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Entry"
+msgstr "Entry"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,filter:0
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Filter by"
+msgstr "Filtra per"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,fiscalyear_id:0
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Fiscal Year"
+msgstr "Anno Fiscale"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,id:0
+#: field:report.l10n_it_prima_nota_cassa.report_primanotacassa,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,initial_balance:0
+msgid "Include initial balances"
+msgstr "Includi saldi iniziali"
+
+#. module: l10n_it_prima_nota_cassa
+#: help:account.report.prima_nota_cassa,initial_balance:0
+msgid "It adds initial balance row on report which display previous\n"
+"sum amount of debit/credit/balance"
+msgstr "It adds initial balance row on report which display previous\n"
+"sum amount of debit/credit/balance"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Journal"
+msgstr "Sezionale"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,journal_ids:0
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Journals"
+msgstr "Sezionali"
+
+#. module: l10n_it_prima_nota_cassa
+#: help:account.report.prima_nota_cassa,fiscalyear_id:0
+msgid "Keep empty for all open fiscal year"
+msgstr "Lasciare vuoto per tutti gli anni fiscali aperti"
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,filter:0
+msgid "No Filters"
+msgstr "Nessun Filtro"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,filter:0
+msgid "Periods"
+msgstr "Periodi"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:account.report.prima_nota_cassa:l10n_it_prima_nota_cassa.account_report_prima_nota_cassa
+#: model:ir.actions.act_window,name:l10n_it_prima_nota_cassa.action_account_prima_nota_cassa
+#: model:ir.actions.report.xml,name:l10n_it_prima_nota_cassa.prima_nota_cassa
+#: model:ir.ui.menu,name:l10n_it_prima_nota_cassa.menu_print_prima_nota_cassa
+msgid "Prima Nota Cassa"
+msgstr "Prima Nota Cassa"
+
+#. module: l10n_it_prima_nota_cassa
+#: model:ir.model,name:l10n_it_prima_nota_cassa.model_account_report_prima_nota_cassa
+msgid "Print Prima Nota Cassa"
+msgstr "Stampa Prima Nota"
+
+#. module: l10n_it_prima_nota_cassa
+#: help:account.report.prima_nota_cassa,chart_account_id:0
+msgid "Select Charts of Accounts"
+msgstr "Seleziona Piano dei Conti"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,date_from:0
+msgid "Start Date"
+msgstr "Data Inizio"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,period_from:0
+msgid "Start Period"
+msgstr "Periodo Iniziale"
+
+#. module: l10n_it_prima_nota_cassa
+#: field:account.report.prima_nota_cassa,target_move:0
+#: view:website:l10n_it_prima_nota_cassa.report_primanotacassa
+msgid "Target Moves"
+msgstr "Movimenti"
+
+#. module: l10n_it_prima_nota_cassa
+#: view:account.report.prima_nota_cassa:l10n_it_prima_nota_cassa.account_report_prima_nota_cassa
+msgid "This report prints a summary of all cash and bank moves in a given date or period range. It is possible to restrict analysis to single cash or bank accounts on the second tab."
+msgstr "Questo report stampa un sommario di tutti i movimenti di cassa e banca in un dato periodo o data. E' possibile restringere l'analisi ad un singolo conto bancario o cassa usando il secondo tab."
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,display_account:0
+msgid "With balance is not equal to 0"
+msgstr "Con saldo diverso da 0"
+
+#. module: l10n_it_prima_nota_cassa
+#: selection:account.report.prima_nota_cassa,display_account:0
+msgid "With movements"
+msgstr "Con movimenti"
+

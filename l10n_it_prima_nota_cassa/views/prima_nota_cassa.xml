@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_primanotacassa">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="report.internal_layout">
+                <div class="page">
+                    <h2>Prima Nota Cassa</h2>
+
+                    <div class="row mt32">
+                        <div class="col-xs-3">
+                            <strong><span>Chart of Account</span>:</strong>
+                            <p t-esc="get_account(data)"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong><span>Fiscal Year</span>:</strong>
+                            <p t-esc="get_fiscalyear(data)"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong><span>Journals</span>:</strong>
+                            <p t-esc="', '.join([ lt or '' for lt in get_journal(data)])" />
+                        </div>
+                        <div class="col-xs-3">
+                            <strong><span>Filter by</span>:</strong>
+                            <p><span t-esc="get_filter(data) or ''" /></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb32">
+                        <div class="col-xs-3">
+                            <strong><span>Target Moves</span>:</strong>
+                            <p t-esc="get_target_move(data)"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-condensed">
+                        <thead>
+                          <tr>
+                              <th>Date</th>
+                              <th>Journal</th>
+                              <th>Partner</th>
+                              <th>Ref</th>
+                              <th>Entry</th>
+                              <th>Description</th>
+                              <th>Debit</th>
+                              <th>Credit</th>
+                              <th>Balance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr t-foreach="lines(o)" t-as="line"
+                              style="page-break-inside: avoid; vertical-align:text-top;">
+                              <td><span t-esc="formatLang(line['ldate'], date=True) or ''" /></td>
+                              <td><span t-esc="line['jname']  or ''" /></td>
+                              <td><span t-esc="line['partner_name']  or ''" /></td>
+                              <td><span t-esc="line['lref']  or ''" /></td>
+                              <td><span t-esc="line['move']  or ''" /></td>
+                              <td><span t-esc="line['lname']  or ''" /></td>
+                              <td><span t-esc="formatLang(line['debit'], digits=get_digits(dp='Account')) " /></td>
+                              <td><span t-esc="formatLang(line['credit'], digits=get_digits(dp='Account')) " /></td>
+                              <td><span t-esc="line['debit'] - line['credit'] " /></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
