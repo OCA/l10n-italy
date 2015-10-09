@@ -27,19 +27,19 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[account_invoice_entry_date](account_invoice_entry_date/) | 0.1 | Account Invoice entry Date
+[account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Account Invoice entry Date
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.2.0.0 | Period End VAT Statement
-[l10n_it_abicab](l10n_it_abicab/) | 1.0 | Base Bank ABI/CAB codes
+[l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Italian Localization - Account
-[l10n_it_ateco](l10n_it_ateco/) | 1.0 | Ateco codes
-[l10n_it_base](l10n_it_base/) | 0.1 | Italian Localisation - Base
-[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 0.1 | Import base_location entries (provinces) from Geonames
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 0.1 | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 0.1 | Electronic invoices emission
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 0.1 | Italian Localisation - Fiscal Code
-[l10n_it_ipa](l10n_it_ipa/) | 1.0 | IPA Code (IndicePA)
-[l10n_it_pec](l10n_it_pec/) | 0.1 | Pec Mail
-[l10n_it_rea](l10n_it_rea/) | 0.1 | Manage fields for Economic Administrative catalogue
+[l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Ateco codes
+[l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
+[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.0 | Electronic invoices emission
+[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.0 | Italian Localisation - Fiscal Code
+[l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 | IPA Code (IndicePA)
+[l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 | Pec Mail
+[l10n_it_rea](l10n_it_rea/) | 8.0.0.1.0 | Manage fields for Economic Administrative catalogue
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Italian Localization - VAT Registries
 
