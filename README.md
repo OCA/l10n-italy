@@ -52,7 +52,6 @@ addon | version | summary
 [account_invoice_sequential_dates](__unported__/account_invoice_sequential_dates/) | 0.1 (unported) | Check invoice date consistency
 [l10n_it_CEE_balance_generic](__unported__/l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](__unported__/l10n_it_DDT_webkit/) | 1.0 (unported) | DDT report using Webkit Library
-[l10n_it_base](__unported__/l10n_it_base/) | 0.1 (unported) | Italian Localisation - Base
 [l10n_it_base_crm](__unported__/l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
 [l10n_it_bill_of_entry](__unported__/l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](__unported__/l10n_it_corrispettivi/) | 0.1 (unported) | Italian Localisation - Corrispettivi
