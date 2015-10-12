@@ -51,7 +51,7 @@ class StockPicking(models.Model):
     def write(self, values):
         pack_to_update = self.env['stock.picking.package.preparation']
         for picking in self:
-            pack_to_update |= picking.package_id
+            pack_to_update |= picking.ddt_ids
         res = super(StockPicking, self).write(values)
         if pack_to_update:
             pack_to_update._update_line_ids()
@@ -61,7 +61,7 @@ class StockPicking(models.Model):
     def unlink(self):
         pack_to_update = self.env['stock.picking.package.preparation']
         for picking in self:
-            pack_to_update |= picking.package_id
+            pack_to_update |= picking.ddt_ids
         res = super(StockPicking, self).unlink()
         if pack_to_update:
             pack_to_update._update_line_ids()
@@ -70,6 +70,6 @@ class StockPicking(models.Model):
     @api.model
     def create(self, values):
         picking = super(StockPicking, self).create(values)
-        if picking.package_id:
-            picking.package_id._update_line_ids()
+        if picking.ddt_ids:
+            picking.ddt_ids._update_line_ids()
         return picking
