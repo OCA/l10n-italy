@@ -77,6 +77,8 @@ class AccountTax(orm.Model):
         tax amount, base amount, deductible amount and non deductible amount
         are all printed on the same line
         """
+        if tax.company_id.skip_it_account_check:
+            return
         if tax.type_tax_use == 'purchase' and not tax.parent_id:
             if tax.base_code_id:
                 if self.exist(
