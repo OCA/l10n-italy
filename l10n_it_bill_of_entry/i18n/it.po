@@ -1,0 +1,181 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_bill_of_entry
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-18 18:13+0000\n"
+"PO-Revision-Date: 2013-07-18 20:17+0100\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: l10n_it_bill_of_entry
+#: view:account.invoice:0
+msgid "Supplier invoices"
+msgstr "Fatture fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: field:account.invoice,customs_doc_type:0
+msgid "Customs Doc Type"
+msgstr "Tipo documento doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_account_config_settings
+msgid "account.config.settings"
+msgstr "account.config.settings"
+
+#. module: l10n_it_bill_of_entry
+#: selection:account.invoice,customs_doc_type:0
+msgid "Supplier Invoice"
+msgstr "Fattura fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:62
+#, python-format
+msgid "Forwarder invoice %s does not have lines with 'Adavance Customs Vat'"
+msgstr "La fattura fornitore %s non ha riga con 'IVA anticipata'"
+
+#. module: l10n_it_bill_of_entry
+#: field:account.invoice,bill_of_entry_storno_id:0
+msgid "Bill of Entry Storno"
+msgstr "Storno bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: selection:account.invoice,customs_doc_type:0
+msgid "Bill of Entry"
+msgstr "Bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: field:account.invoice,supplier_invoice_ids:0
+msgid "Supplier Invoices"
+msgstr "Fatture fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: view:account.invoice:0
+msgid "Make Bill of Entry"
+msgstr "Genera bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: field:account.invoice,supplier_bill_of_entry_ids:0
+msgid "Supplier Bill of Entries"
+msgstr "Bolle doganali fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: view:account.invoice:0
+msgid "Customs"
+msgstr "Dogana"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:98
+#, python-format
+msgid "Extra CEE expenses"
+msgstr "Uscite extra CEE"
+
+#. module: l10n_it_bill_of_entry
+#: view:account.invoice:0
+msgid "Bill of entries"
+msgstr "Bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: view:account.config.settings:0
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: l10n_it_bill_of_entry
+#: view:account.config.settings:0
+msgid "Bill of entry"
+msgstr "Bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: field:account.config.settings,bill_of_entry_journal_id:0
+#: field:res.company,bill_of_entry_journal_id:0
+msgid "Bill of entry Storno journal"
+msgstr "Sezionale di storno bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_bill_of_entry
+#: help:account.config.settings,bill_of_entry_journal_id:0
+#: help:res.company,bill_of_entry_journal_id:0
+msgid "Journal used for reconciliation of customs supplier"
+msgstr "Sezionale usato per la riconciliazione del fotnirore dogana"
+
+#. module: l10n_it_bill_of_entry
+#: field:account.invoice,forwarder_bill_of_entry_ids:0
+msgid "Forward Bill of Entries"
+msgstr "Bolla doganale spedizioniere"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:52
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:61
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:65
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:93
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:83
+#, python-format
+msgid "Customs supplier"
+msgstr "Fornitore dogana"
+
+#. module: l10n_it_bill_of_entry
+#: selection:account.invoice,customs_doc_type:0
+#: field:account.invoice,forwarder_invoice_id:0
+msgid "Forwarder Invoice"
+msgstr "Fatture spedizioniere"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:52
+#, python-format
+msgid "Bill of entry %s is in state %s"
+msgstr "La bolla doganale %s è in stato %s"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Righe Fattura"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:76
+#, python-format
+msgid "Customs expenses"
+msgstr "Spese doganali"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_wizard_select_invoice_template
+msgid "wizard.select.invoice.template"
+msgstr "wizard.select.invoice.template"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:94
+#, python-format
+msgid "Can't handle more than 1 tax for line %s"
+msgstr "Impossibile gestire più di un'imposta per la riga %s"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_bill_of_entry
+#: field:account.invoice.line,advance_customs_vat:0
+msgid "Advance Customs Vat"
+msgstr "IVA doganale anticipata"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n_it_bill_of_entry/account_invoice.py:65
+#, python-format
+msgid "No Bill of entry Storno journal configured"
+msgstr "Nessun sezionale di storno bolla doganale configurato"
