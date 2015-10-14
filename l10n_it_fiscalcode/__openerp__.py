@@ -53,5 +53,5 @@ External depends:
         'test/fiscalcode.yml',
         ],
     'active': False,
-    'installable': True
+    'installable': False
 }
