@@ -31,7 +31,7 @@
         'views/account_view.xml',
         'reports/account_reports_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     # this post_init script only works when you install account and
     # l10n_it_account in 2 different instants
     'post_init_hook': 'post_init_hook',
