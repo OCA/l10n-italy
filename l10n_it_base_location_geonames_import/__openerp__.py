@@ -37,6 +37,6 @@ Italian provinces
     'test': [
         'test/import.yml',
         ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
