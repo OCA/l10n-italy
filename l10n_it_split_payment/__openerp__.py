@@ -34,5 +34,5 @@
         'views/account_view.xml',
         'views/config_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
