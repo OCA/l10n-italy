@@ -49,5 +49,5 @@
         'views/account_view.xml',
     ],
     'demo': [],
-    'installable': True,
+    'installable': False,
 }
