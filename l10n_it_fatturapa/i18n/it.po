@@ -3,13 +3,14 @@
 # * l10n_it_fatturapa
 # 
 # Translators:
+# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-09 12:56+0000\n"
-"PO-Revision-Date: 2015-10-07 11:09+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2015-10-14 12:43+0000\n"
+"PO-Revision-Date: 2015-10-15 06:50+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,12 +61,12 @@ msgstr "Importo della penalita'"
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,amount_tax:0
 msgid "Amount tax"
-msgstr ""
+msgstr "Importo imposta"
 
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,amount_untaxed:0
 msgid "Amount untaxed"
-msgstr ""
+msgstr "Importo imponibile"
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_art73:0
@@ -76,7 +77,7 @@ msgstr "Art73"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,ir_attachment_id:0
 msgid "Attachment"
-msgstr ""
+msgstr "Allegato"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_bic:0
@@ -96,12 +97,12 @@ msgstr "CAB"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_document_type,cig:0
 msgid "CIG Code"
-msgstr ""
+msgstr "Codice CIG"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_document_type,cup:0
 msgid "CUP Code"
-msgstr ""
+msgstr "Codice CUP"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,carrier_id:0
@@ -113,7 +114,7 @@ msgstr "Trasportatore"
 #: field:fatturapa.format,code:0 field:fatturapa.payment_method,code:0
 #: field:fatturapa.payment_term,code:0
 msgid "Code"
-msgstr ""
+msgstr "Codice"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_res_company
@@ -203,7 +204,7 @@ msgstr "Indirizzo consegna"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,delivery_datetime:0
 msgid "Delivery Date Time"
-msgstr ""
+msgstr "Data ora di consegna"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,description:0 field:fatturapa.document_type,name:0
@@ -237,7 +238,7 @@ msgstr "Id documento"
 #. module: l10n_it_fatturapa
 #: field:res.partner,eori_code:0
 msgid "EORI Code"
-msgstr ""
+msgstr "Codice EORI"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,penalty_date:0
@@ -306,7 +307,7 @@ msgstr "Fattura PA Tipo Documento"
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_fiscal_position
 msgid "FatturaPA Fiscal Position"
-msgstr ""
+msgstr "Posizione fiscale fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_format_id:0
@@ -352,7 +353,7 @@ msgstr "Fattura PA Tipo docuemto correlato"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,fatturapa_summary_ids:0
 msgid "FatturaPA Summary   Datas"
-msgstr ""
+msgstr "Dati riepilogo fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_data_line
@@ -363,19 +364,19 @@ msgstr "Fattura PA Cassa Previdenza"
 #: field:account.invoice,fatturapa_doc_attachments:0
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_attachments
 msgid "FatturaPA attachments"
-msgstr ""
+msgstr "Allegati fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_fiscal_position_id:0
 #: field:res.company,fatturapa_fiscal_position_id:0
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Posizione fiscale"
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_fiscal_position_id:0
 #: help:res.company,fatturapa_fiscal_position_id:0
 msgid "Fiscal position used by FatturaPA"
-msgstr ""
+msgstr "Posizione fiscale usata da fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_format_id:0
@@ -528,7 +529,7 @@ msgstr "Rappresentante Fiscale"
 #. module: l10n_it_fatturapa
 #: field:res.partner,license_number:0
 msgid "License Code"
-msgstr ""
+msgstr "Codice licenza"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_ddt,lineRef:0
@@ -673,7 +674,7 @@ msgstr "Data Riferimento Termini Pagamento"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_code:0
 msgid "Payment code"
-msgstr ""
+msgstr "Codice pagamento"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_due_date:0
@@ -708,18 +709,18 @@ msgstr "Sconto Pagamento Anticipato"
 #. module: l10n_it_fatturapa
 #: field:res.partner,register:0
 msgid "Professional Register"
-msgstr ""
+msgstr "Registro professionale"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,protocol_number:0
 msgid "Protocol Number"
-msgstr ""
+msgstr "Numero protocollo"
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_pub_administration_ref:0
 #: field:res.company,fatturapa_pub_administration_ref:0
 msgid "Public Administration Reference Code"
-msgstr ""
+msgstr "Codice di riferimento pubblica amministrazione"
 
 #. module: l10n_it_fatturapa
 #: field:res.company,fatturapa_rea_office:0
@@ -756,7 +757,7 @@ msgstr "Rea Ufficio"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,transport_reason:0
 msgid "Reason"
-msgstr ""
+msgstr "Ragione"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,recepit_cf:0
@@ -779,7 +780,7 @@ msgstr "Destinatario"
 #. module: l10n_it_fatturapa
 #: field:res.partner,register_code:0
 msgid "Register Code"
-msgstr ""
+msgstr "Codice registro"
 
 #. module: l10n_it_fatturapa
 #: field:res.partner,register_fiscalpos:0
@@ -860,7 +861,7 @@ msgstr "Maggiorazione"
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,rounding:0
 msgid "Rounding"
-msgstr ""
+msgstr "Arrotondamento"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_22_SP
