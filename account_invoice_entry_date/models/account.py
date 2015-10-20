@@ -38,7 +38,8 @@ class AccountInvoice(models.Model):
             'close': [('readonly', True)]
             },
         select=True,
-        help="Keep empty to use the current date")
+        help="Keep empty to use the current date",
+        copy=False)
 
     def action_move_create(self, cr, uid, ids, context=None):
 
