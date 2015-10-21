@@ -34,8 +34,7 @@ class One2manyFiltered(oldfields.one2many):
         res = super(One2manyFiltered, self).get(
             cr, obj, ids, name, user=user, offset=offset, context=context,
             values=values)
-        if company.enable_skip_move_line and company.skip_move_line_expr and\
-                eval(company.skip_move_line_expr):
+        if company.enable_skip_move_line:
             for move_id in res:
                 line_ids = res[move_id]
                 for line in move_line_model.browse(
@@ -64,8 +63,15 @@ class AccountMove(models.Model):
         for line in values.get('line_id', []):
             if line[2] and not line[2]['credit'] and not line[2]['debit']:
                 line[2]['skip'] = True
-        return super(AccountMove, self).write(
-            cr, uid, ids, values, context=context)
+        return super(AccountMove, self).write(cr, uid, ids, values, context)
+
+    def create(self, cr, uid, values, context=None):
+        if not context:
+            context = {}
+        for line in values.get('line_id', []):
+            if line[2] and not line[2]['credit'] and not line[2]['debit']:
+                line[2]['skip'] = True
+        return super(AccountMove, self).create(cr, uid, values, context)
 
 
 class AccountMoveLine(models.Model):
