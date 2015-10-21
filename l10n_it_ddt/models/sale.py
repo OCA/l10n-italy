@@ -85,25 +85,28 @@ class SaleOrder(models.Model):
             })
         return inv_id
 
+    def _preparare_ddt_data(self, cr, uid, order, context=None):
+        picking_ids = [p.id for p in order.picking_ids]
+        return {
+            'partner_id': order.partner_id.id,
+            'partner_invoice_id': order.partner_invoice_id.id,
+            'partner_shipping_id': order.partner_shipping_id.id,
+            'carriage_condition_id': order.carriage_condition_id.id,
+            'goods_description_id': order.goods_description_id.id,
+            'transportation_reason_id':
+            order.transportation_reason_id.id,
+            'transportation_method_id':
+            order.transportation_method_id.id,
+            'picking_ids': [(6, 0, picking_ids)],
+            }
+
     def action_ship_create(self, cr, uid, ids, context=None):
         res = super(SaleOrder, self).action_ship_create(
             cr, uid, ids, context=context)
         ddt_pool = self.pool['stock.picking.package.preparation']
         for order in self.browse(cr, uid, ids, context):
             if order.create_ddt:
-                picking_ids = [p.id for p in order.picking_ids]
-                ddt_data = {
-                    'partner_id': order.partner_id.id,
-                    'partner_invoice_id': order.partner_invoice_id.id,
-                    'partner_shipping_id': order.partner_shipping_id.id,
-                    'carriage_condition_id': order.carriage_condition_id.id,
-                    'goods_description_id': order.goods_description_id.id,
-                    'transportation_reason_id':
-                    order.transportation_reason_id.id,
-                    'transportation_method_id':
-                    order.transportation_method_id.id,
-                    'picking_ids': [(6, 0, picking_ids)],
-                    }
+                ddt_data = self._preparare_ddt_data(cr, uid, order, context)
                 ddt_pool.create(cr, uid, ddt_data, context)
         return res
 
