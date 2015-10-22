@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_l10n_it_config_settings" model="ir.ui.view">
+            <field name="name">l10n_it settings</field>
+            <field name="model">l10n_it.config.settings</field>
+            <field name="inherit_id" ref="l10n_it_base.view_l10n_it_config_settings"></field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group[2]/div" position="inside">
+                    <div>
+                        <label for="skip_it_account_check"/>
+                        <field name="skip_it_account_check"
+                            class="oe_inline"
+                        />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
