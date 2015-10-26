@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-09 12:56+0000\n"
-"PO-Revision-Date: 2015-10-07 11:09+0000\n"
+"POT-Creation-Date: 2015-10-23 07:11+0000\n"
+"PO-Revision-Date: 2015-10-23 07:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,12 @@ msgstr ""
 #: help:res.company,sp_account_id:0
 msgid "Account used to write off the VAT amount"
 msgstr "Account used to write off the VAT amount"
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:104
+#, python-format
+msgid "Can't handle supplier invoices with split payment"
+msgstr "Can't handle supplier invoices with split payment"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company

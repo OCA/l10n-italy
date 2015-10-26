@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 13:07+0000\n"
+"POT-Creation-Date: 2015-10-23 07:11+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
@@ -33,7 +33,7 @@ msgid "Registration Date"
 msgstr "Registration Date"
 
 #. module: account_invoice_entry_date
-#: code:addons/account_invoice_entry_date/models/account.py:62
+#: code:addons/account_invoice_entry_date/models/account.py:63
 #, python-format
 msgid "The invoice date cannot be later than the date of registration!"
 msgstr "The invoice date cannot be later than the date of registration!"
