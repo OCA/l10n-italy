@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-31 12:01+0000\n"
-"PO-Revision-Date: 2015-08-31 12:01+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-10-23 07:11+0000\n"
+"PO-Revision-Date: 2015-10-22 15:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,6 +19,16 @@ msgstr ""
 #: model:ir.model,name:l10n_it_account.model_account_account
 msgid "Account"
 msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_res_company
+msgid "Companies"
+msgstr "Companies"
+
+#. module: l10n_it_account
+#: field:l10n_it.config.settings,company_id:0
+msgid "Company"
+msgstr "Company"
 
 #. module: l10n_it_account
 #: selection:account.tax.code,vat_statement_type:0
@@ -36,10 +46,10 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_tax.py:87
-#: code:addons/l10n_it_account/models/account_tax.py:96
-#: code:addons/l10n_it_account/models/account_tax.py:105
-#: code:addons/l10n_it_account/models/account_tax.py:114
+#: code:addons/l10n_it_account/models/account_tax.py:88
+#: code:addons/l10n_it_account/models/account_tax.py:97
+#: code:addons/l10n_it_account/models/account_tax.py:106
+#: code:addons/l10n_it_account/models/account_tax.py:115
 #, python-format
 msgid "Error!"
 msgstr ""
@@ -80,6 +90,18 @@ msgid "Partially or totally non-deductible."
 msgstr ""
 
 #. module: l10n_it_account
+#: help:res.company,skip_it_account_check:0
+msgid ""
+"Set this for not Italian companies, to skip checking things like tax codes "
+"consistencies"
+msgstr "Set this for not Italian companies, to skip checking things like tax codes consistencies"
+
+#. module: l10n_it_account
+#: field:res.company,skip_it_account_check:0
+msgid "Skip Italian checks"
+msgstr "Skip Italian checks"
+
+#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax
 msgid "Tax"
 msgstr ""
@@ -90,10 +112,10 @@ msgid "Tax Code"
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_tax.py:88
-#: code:addons/l10n_it_account/models/account_tax.py:97
-#: code:addons/l10n_it_account/models/account_tax.py:106
-#: code:addons/l10n_it_account/models/account_tax.py:115
+#: code:addons/l10n_it_account/models/account_tax.py:89
+#: code:addons/l10n_it_account/models/account_tax.py:98
+#: code:addons/l10n_it_account/models/account_tax.py:107
+#: code:addons/l10n_it_account/models/account_tax.py:116
 #, python-format
 msgid "Tax code %s already used in other purchase tax"
 msgstr ""
