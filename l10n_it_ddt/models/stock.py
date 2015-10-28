@@ -49,12 +49,14 @@ class StockPicking(models.Model):
 
     @api.multi
     def write(self, values):
-        pack_to_update = self.env['stock.picking.package.preparation']
-        for picking in self:
-            pack_to_update |= picking.ddt_ids
+        if 'move_lines' in values:
+            pack_to_update = self.env['stock.picking.package.preparation']
+            for picking in self:
+                pack_to_update |= picking.ddt_ids
         res = super(StockPicking, self).write(values)
-        if pack_to_update:
-            pack_to_update._update_line_ids()
+        if 'move_lines' in values:
+            if pack_to_update:
+                pack_to_update._update_line_ids()
         return res
 
     @api.multi
