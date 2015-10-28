@@ -163,3 +163,11 @@ class TestDdt(TransactionCase):
                 self.assertTrue(line.product_uom_qty in [1, 2])
             if line.product_id == self.product2:
                 self.assertTrue(line.product_uom_qty in [2, 3])
+
+    def test_keep_changed_description(self):
+        self.picking.action_confirm()
+        self.picking.action_assign()
+        self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
+        self.ddt.line_ids[0].name = 'Changed for test'
+        self.ddt.action_put_in_pack()
+        self.assertEqual(self.ddt.line_ids[0].name, 'Changed for test')
