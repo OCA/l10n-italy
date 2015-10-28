@@ -177,15 +177,26 @@ class riba_file_export(osv.osv_memory):
         arrayRiba = []
         for line in order_obj.line_ids:
             debit_bank = line.bank_id
-            if not line.partner_id.address:
-                raise osv.except_osv('Error', _('No address specified for ') + line.partner_id.name)
-            debitor_address = line.partner_id.address
-            if debitor_address[0].street:
-               debitor_street = debitor_address[0].street
+            debitor_address_ids = self.pool['res.partner'].address_get(
+                cr, uid, [line.partner_id.id], ['invoice', 'default'])
+            if not debitor_address_ids:
+                raise osv.except_osv(
+                    'Error',
+                    _('No address specified for ') + line.partner_id.name)
+            address_ids = (
+                'invoice' in debitor_address_ids and
+                debitor_address_ids['invoice'] or
+                debitor_address_ids['default'])
+            debitor_address = self.pool['res.partner.address'].browse(
+                cr, uid, address_ids)
+            if debitor_address.street or debitor_address.street2:
+               debitor_street = "{s1} {s2}".format(
+                   s1=debitor_address.street or '',
+                   s2=debitor_address.street2 or '')
             else:
                raise osv.except_osv('Error', _('No Street specified for ') + line.partner_id.name)
-            if debitor_address[0].zip:
-               debitor_zip = debitor_address[0].zip
+            if debitor_address.zip:
+               debitor_zip = debitor_address.zip
             else:
                raise osv.except_osv('Error', _('No CAP specified for ') + line.partner_id.name)
             if not debit_bank.iban:
@@ -193,15 +204,15 @@ class riba_file_export(osv.osv_memory):
             debit_abi = debit_bank.iban[5:10]
             debit_cab = debit_bank.iban[10:15]
             debitor_city = ''
-            if debitor_address[0].city:
-                debitor_city = debitor_address[0].city
+            if debitor_address.city:
+                debitor_city = debitor_address.city
             else:
                 raise osv.except_osv('Error', _('No City specified for ') + line.partner_id.name) 
             debitor_province = ''
-            if debitor_address[0].province:
-                debitor_province = debitor_address[0].province.code
+            if debitor_address.province:
+                debitor_province = debitor_address.province.code
             if not line.due_date: # ??? VERIFICARE
-                due_date =  '000000'
+                due_date = '000000'
             else:
                 due_date = datetime.datetime.strptime(line.due_date[:10], '%Y-%m-%d').strftime("%d%m%y")
 
