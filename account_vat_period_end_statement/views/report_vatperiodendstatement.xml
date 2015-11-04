@@ -169,17 +169,10 @@ Tax Code
     	<t t-foreach="tax_code_amounts" t-as="tax_code">
     		<!-- Prepare values -->
     		<t t-set="code" t-value="(tax_code_amounts[tax_code]['code'])"/>
-    		<t t-set="tax_code_base" t-value="(tax_code_amounts[tax_code]['base'])"/>
-    		<t t-set="tax_code_vat" t-value="(tax_code_amounts[tax_code]['vat'])"/>
-    		<t t-set="tax_code_vat_deductible" t-value="(tax_code_amounts[tax_code]['vat_deductible'])"/>
-    		<t t-set="tax_code_vat_undeductible" t-value="(tax_code_amounts[tax_code]['vat_undeductible'])"/>
-    		<!-- Credit have negative values : in the report will be positive -->
-    	    <span t-if="(tax_code_type == 'credit')">
-    			<t t-set="tax_code_base" t-value="(-1 * tax_code_base)"/>
-    			<t t-set="tax_code_vat" t-value="(-1 * tax_code_vat)"/>
-    			<t t-set="tax_code_vat_deductible" t-value="(-1 * tax_code_vat_deductible)"/>
-    			<t t-set="tax_code_vat_undeductible" t-value="(-1 * tax_code_vat_undeductible)"/>
-    		</span>
+    		<t t-set="tax_code_base" t-value="abs(tax_code_amounts[tax_code]['base'])"/>
+    		<t t-set="tax_code_vat" t-value="abs(tax_code_amounts[tax_code]['vat'])"/>
+    		<t t-set="tax_code_vat_deductible" t-value="abs(tax_code_amounts[tax_code]['vat_deductible'])"/>
+    		<t t-set="tax_code_vat_undeductible" t-value="abs(tax_code_amounts[tax_code]['vat_undeductible'])"/>
     		<!-- print values  -->
     		<tr>
     			<td><span t-esc="code"/></td>
