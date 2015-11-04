@@ -41,7 +41,6 @@
         'views/report_registro_iva.xml',
         'security/ir.model.access.csv',
         'security/vat_registry_security.xml',
-        'account_journal_view.xml',
         'account_tax_registry_view.xml',
     ],
     "installable": True,
