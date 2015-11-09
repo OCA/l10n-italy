@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-23 07:11+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
 "PO-Revision-Date: 2015-10-22 15:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
@@ -90,6 +90,7 @@ msgid "Partially or totally non-deductible."
 msgstr ""
 
 #. module: l10n_it_account
+#: help:l10n_it.config.settings,skip_it_account_check:0
 #: help:res.company,skip_it_account_check:0
 msgid ""
 "Set this for not Italian companies, to skip checking things like tax codes "
@@ -97,6 +98,7 @@ msgid ""
 msgstr "Set this for not Italian companies, to skip checking things like tax codes consistencies"
 
 #. module: l10n_it_account
+#: field:l10n_it.config.settings,skip_it_account_check:0
 #: field:res.company,skip_it_account_check:0
 msgid "Skip Italian checks"
 msgstr "Skip Italian checks"
