@@ -107,6 +107,18 @@ class StockPickingPackagePreparation(models.Model):
             addr = self.partner_id.address_get(['delivery', 'invoice'])
             self.partner_invoice_id = addr['invoice']
             self.partner_shipping_id = addr['delivery']
+            self.carriage_condition_id = \
+                self.partner_id.carriage_condition_id.id \
+                if self.partner_id.carriage_condition_id else False
+            self.goods_description_id = \
+                self.partner_id.goods_description_id.id \
+                if self.partner_id.goods_description_id else False
+            self.transportation_reason_id = \
+                self.partner_id.transportation_reason_id.id \
+                if self.partner_id.transportation_reason_id else False
+            self.transportation_method_id = \
+                self.partner_id.transportation_method_id.id \
+                if self.partner_id.transportation_method_id else False
 
     @api.multi
     def action_put_in_pack(self):
