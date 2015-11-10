@@ -6,8 +6,11 @@
 Document 
  -->
 <template id="report_vatperiodendstatement_document">
+        <t t-set="title" t-value="'Vat End Period Statement'"/>
+        <t t-set="statement" t-value="statement(o)"/>
+        <t t-set="l10n_it_count_fiscal_page_base" t-value="l10n_it_count_fiscal_page_base(o)"/>
         <t t-call="l10n_it_account.internal_layout">
-			<div class="page"> 
+			  <div class="page"> 
             	<!-- 
             	Periods detail 
             	-->
@@ -226,12 +229,8 @@ Main
  -->
 <template id="report_vatperiodendstatement">
 	<t t-call="report.html_container">
-
-        <t t-set="title" t-value="'Vat End Period Statement'"/>
         <t t-foreach="doc_ids" t-as="doc_id">
-        	<t t-set="statement" t-value="statement(doc_id)"/>
-            <t t-set="l10n_it_count_fiscal_page_base" t-value="l10n_it_count_fiscal_page_base(doc_id)"/>
-			<t t-call="account_vat_period_end_statement.report_vatperiodendstatement_document"/>
+			     <t t-raw="translate_doc(doc_id, doc_model, 'company_id.partner_id.lang','account_vat_period_end_statement.report_vatperiodendstatement_document')"/>
         </t>
     </t>
 </template>
