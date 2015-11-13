@@ -20,21 +20,26 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import fields, orm
 
 
-class ResCompany(models.Model):
+class ResCompany(orm.Model):
     _inherit = 'res.company'
-    sp_account_id = fields.Many2one(
-        'account.account',
-        string='Split Payment Write-off Account',
-        help='Account used to write off the VAT amount')
+    _columns = {
+        'sp_account_id': fields.many2one(
+            'account.account',
+            string='Split Payment Write-off Account',
+            help='Account used to write off the VAT amount'),
+        }
 
 
-class AccountConfigSettings(models.TransientModel):
+class AccountConfigSettings(orm.TransientModel):
     _inherit = 'account.config.settings'
 
-    sp_account_id = fields.Many2one(
-        related='company_id.sp_account_id',
-        string='Split Payment Write-off account',
-        help='Account used to write off the VAT amount')
+    _columns = {
+        'sp_account_id': fields.related(
+            'company_id', 'sp_account_id', type='many2one',
+            relation='account.account',
+            string='Split Payment Write-off account',
+            help='Account used to write off the VAT amount'),
+        }

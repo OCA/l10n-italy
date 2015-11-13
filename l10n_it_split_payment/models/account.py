@@ -21,64 +21,126 @@
 ##############################################################################
 
 import openerp.addons.decimal_precision as dp
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
+
+from openerp.osv import fields, orm
 
 
-class AccountFiscalPosition(models.Model):
+class AccountFiscalPosition(orm.Model):
     _inherit = 'account.fiscal.position'
+    _columns = {
+        'split_payment': fields.boolean('Split Payment'),
+        }
 
-    split_payment = fields.Boolean('Split Payment')
 
+class AccountInvoice(orm.Model):
 
-class AccountInvoice(models.Model):
+    def _compute_amounts(self, cr, uid, ids, field_name, arg, context=None):
+        amount_res = self.pool['account.invoice']._amount_all(
+            cr, uid, ids, field_name, arg, context)
+        for invoice in self.browse(cr, uid, ids, context):
+            amount_res[invoice.id]['amount_sp'] = 0
+            if invoice.fiscal_position.split_payment:
+                amount_res[invoice.id]['amount_sp'] = amount_res[
+                    invoice.id]['amount_tax']
+                amount_res[invoice.id]['amount_tax'] = 0
+                amount_res[invoice.id]['amount_total'] = amount_res[
+                    invoice.id]['amount_untaxed'] + amount_res[
+                        invoice.id]['amount_tax']
+        return amount_res
+
+    def _get_invoice_by_tax(self, cr, uid, ids, context=None):
+        return self.pool['account.invoice']._get_invoice_tax(
+            cr, uid, ids, context=context)
+
+    def _get_invoice_by_line(self, cr, uid, ids, context=None):
+        return self.pool['account.invoice']._get_invoice_line(
+            cr, uid, ids, context=context)
+
     _inherit = 'account.invoice'
+    _columns = {
+        'amount_sp': fields.function(
+            _compute_amounts, string='Split Payment',
+            digits_compute=dp.get_precision('Account'),
+            store={
+                'account.invoice': (lambda self, cr, uid, ids, c={}: ids, [
+                    'invoice_line'], 20),
+                'account.invoice.tax': (_get_invoice_by_tax, None, 20),
+                'account.invoice.line': (_get_invoice_by_line, [
+                    'price_unit', 'invoice_line_tax_id', 'quantity',
+                    'discount', 'invoice_id'], 20),
+                },
+            multi='all'
+            ),
+        'amount_untaxed': fields.function(
+            _compute_amounts, digits_compute=dp.get_precision('Account'),
+            string='Subtotal', track_visibility='always',
+            store={
+                'account.invoice': (lambda self, cr, uid, ids, c={}: ids, [
+                    'invoice_line'], 20),
+                'account.invoice.tax': (_get_invoice_by_tax, None, 20),
+                'account.invoice.line': (_get_invoice_by_line, [
+                    'price_unit', 'invoice_line_tax_id', 'quantity',
+                    'discount', 'invoice_id'], 20),
+            },
+            multi='all'),
+        'amount_tax': fields.function(
+            _compute_amounts, digits_compute=dp.get_precision('Account'),
+            string='Tax',
+            store={
+                'account.invoice': (lambda self, cr, uid, ids, c={}: ids, [
+                    'invoice_line'], 20),
+                'account.invoice.tax': (_get_invoice_by_tax, None, 20),
+                'account.invoice.line': (_get_invoice_by_line, [
+                    'price_unit', 'invoice_line_tax_id', 'quantity',
+                    'discount', 'invoice_id'], 20),
+            },
+            multi='all'),
+        'amount_total': fields.function(
+            _compute_amounts, digits_compute=dp.get_precision('Account'),
+            string='Total',
+            store={
+                'account.invoice': (lambda self, cr, uid, ids, c={}: ids, [
+                    'invoice_line'], 20),
+                'account.invoice.tax': (_get_invoice_by_tax, None, 20),
+                'account.invoice.line': (_get_invoice_by_line, [
+                    'price_unit', 'invoice_line_tax_id', 'quantity',
+                    'discount', 'invoice_id'], 20),
+            },
+            multi='all'),
+        'split_payment': fields.related(
+            'fiscal_position', 'split_payment', type='boolean',
+            string='Split Payment'),
+        }
 
-    amount_sp = fields.Float(
-        string='Split Payment',
-        digits=dp.get_precision('Account'),
-        store=True,
-        readonly=True,
-        compute='_compute_amount')
-    split_payment = fields.Boolean(
-        'Split Payment',
-        related='fiscal_position.split_payment')
-
-    @api.one
-    @api.depends('invoice_line.price_subtotal', 'tax_line.amount')
-    def _compute_amount(self):
-        super(AccountInvoice, self)._compute_amount()
-        if self.fiscal_position.split_payment:
-            self.amount_sp = self.amount_tax
-            self.amount_tax = 0
-        self.amount_total = self.amount_untaxed + self.amount_tax
-
-    def _build_debit_line(self):
-        if not self.company_id.sp_account_id:
-            raise UserError(
+    def _build_debit_line(self, invoice):
+        if not invoice.company_id.sp_account_id:
+            raise orm.except_orm(
+                _('Error'),
                 _("Please set 'Split Payment Write-off Account' field in"
                   " accounting configuration"))
         vals = {
             'name': _('Split Payment Write Off'),
-            'partner_id': self.partner_id.id,
-            'account_id': self.company_id.sp_account_id.id,
-            'journal_id': self.journal_id.id,
-            'period_id': self.period_id.id,
-            'date': self.date_invoice,
-            'debit': self.amount_sp,
+            'partner_id': invoice.partner_id.id,
+            'account_id': invoice.company_id.sp_account_id.id,
+            'journal_id': invoice.journal_id.id,
+            'period_id': invoice.period_id.id,
+            'date': invoice.date_invoice,
+            'debit': invoice.amount_sp,
             'credit': 0,
             }
-        if self.type == 'out_refund':
+        if invoice.type == 'out_refund':
             vals['debit'] = 0
-            vals['credit'] = self.amount_sp
+            vals['credit'] = invoice.amount_sp
         return vals
 
-    @api.multi
-    def _compute_split_payments(self):
-        for invoice in self:
+    def _compute_split_payments(self, cr, uid, ids, context=None):
+        for invoice in self.browse(cr, uid, ids, context):
             payment_line_ids = invoice.move_line_id_payment_get()
-            move_line_pool = self.env['account.move.line']
-            for payment_line in move_line_pool.browse(payment_line_ids):
+            move_line_pool = self.pool['account.move.line']
+            for payment_line in move_line_pool.browse(
+                cr, uid, payment_line_ids, context
+            ):
                 inv_total = invoice.amount_sp + invoice.amount_total
                 if invoice.type == 'out_invoice':
                     payment_line_amount = (
@@ -91,20 +153,24 @@ class AccountInvoice(models.Model):
                     payment_line.write(
                         {'credit': payment_line_amount}, update_check=False)
 
-    @api.multi
-    def action_move_create(self):
-        res = super(AccountInvoice, self).action_move_create()
-        for invoice in self:
+    def action_move_create(self, cr, uid, ids, context=None):
+        res = super(AccountInvoice, self).action_move_create(
+            cr, uid, ids, context=context)
+        for invoice in self.browse(cr, uid, ids, context):
             if (
                 invoice.fiscal_position and
                 invoice.fiscal_position.split_payment
             ):
                 if invoice.type in ['in_invoice', 'in_refund']:
-                    raise UserError(
+                    raise orm.except_orm(
+                        _('Error'),
                         _("Can't handle supplier invoices with split payment"))
-                self._compute_split_payments()
-                line_model = self.env['account.move.line']
-                write_off_line_vals = invoice._build_debit_line()
+                invoice._compute_split_payments()
+                line_model = self.pool['account.move.line']
+                write_off_line_vals = self._build_debit_line(invoice)
                 write_off_line_vals['move_id'] = invoice.move_id.id
-                line_model.create(write_off_line_vals)
+                line_model.create(
+                    cr, uid, write_off_line_vals, context=context)
+                # trigger recompute of amount_residual
+                self.write(cr, uid, ids, {'invoice_line': []}, context=context)
         return res

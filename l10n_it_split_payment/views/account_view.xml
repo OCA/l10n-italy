@@ -7,9 +7,9 @@
         <field name="model">account.fiscal.position</field>
         <field name="inherit_id" ref="account.view_account_position_form"/>
         <field name="arch" type="xml">
-            <field name="country_group_id" position="after">
-							<field name="split_payment"/>
-						</field>
+            <field name="company_id" position="after">
+                <field name="split_payment"/>
+            </field>
         </field>
     </record>
 
