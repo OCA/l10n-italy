@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
 #    Copyright 2014-2015 Agile Business Group http://www.agilebg.com
 #    @authors
 #       Alessio Gerace <alessio.gerace@gmail.com>
@@ -21,6 +19,7 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 ##############################################################################
 
 {
