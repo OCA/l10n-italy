@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="ir_mail_server_form_pec">
+        <field name="name">ir.mail_server.form.pec</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_form"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after" >
+                <field name="pec" />
+                <field name="in_server_id" attrs="{'required':[('pec', '=', True)]}" />
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>
