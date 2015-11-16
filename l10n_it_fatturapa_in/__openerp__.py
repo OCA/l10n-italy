@@ -23,7 +23,8 @@
     'version': '0.1',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
-    'author': 'Agile Business Group, Innoviu',
+    'author': 'Agile Business Group, Innoviu, '
+              'Odoo Community Association (OCA)',
     'description': """
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License

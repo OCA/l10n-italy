@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 #  ./_ds.py
-#  -*- coding: utf-8 -*-
 #  PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
 #  Generated 2015-03-14 12:49:07.884494 by
 #   PyXB version 1.2.4 using Python 2.7.8.final.0

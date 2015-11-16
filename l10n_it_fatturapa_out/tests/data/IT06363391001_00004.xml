@@ -11,7 +11,7 @@
             <CodiceDestinatario>79SRAK</CodiceDestinatario>
             <ContattiTrasmittente>
                 <Telefono>06543534343</Telefono>
-                <Email>info@yourcompany.example.com</Email>
+                <Email>info@yourcompany.com</Email>
             </ContattiTrasmittente>
         </DatiTrasmissione>
         <CedentePrestatore>
@@ -21,7 +21,7 @@
                     <IdCodice>06363391001</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
-                    <Denominazione>YourCompany</Denominazione>
+                    <Denominazione>Your Company</Denominazione>
                 </Anagrafica>
                 <RegimeFiscale>RF01</RegimeFiscale>
             </DatiAnagrafici>
@@ -29,12 +29,12 @@
                 <Indirizzo>Via Milano, 1</Indirizzo>
                 <CAP>00100</CAP>
                 <Comune>Roma</Comune>
-                <Provincia>AK</Provincia>
+                <Provincia>RM</Provincia>
                 <Nazione>IT</Nazione>
             </Sede>
             <Contatti>
                 <Telefono>06543534343</Telefono>
-                <Email>info@yourcompany.example.com</Email>
+                <Email>info@yourcompany.com</Email>
             </Contatti>
         </CedentePrestatore>
         <CessionarioCommittente>
@@ -52,7 +52,7 @@
                 <Indirizzo>Via Roma, 1</Indirizzo>
                 <CAP>10100</CAP>
                 <Comune>Torino</Comune>
-                <Provincia>AK</Provincia>
+                <Provincia>TO</Provincia>
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>

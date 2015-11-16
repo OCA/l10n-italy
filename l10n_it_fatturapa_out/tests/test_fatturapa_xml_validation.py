@@ -62,10 +62,14 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.attach_model = self.registry('fatturapa.attachment.out')
         self.invoice_model = self.registry('account.invoice')
         self.fatturapa_attach = self.registry('fatturapa.attachments')
+        self.company_model = self.registry('res.company')
         self.context = {}
         self.maxDiff = None
+        company_id = self.data_model.get_object_reference(
+            cr, uid, 'base', 'main_company')[1]
         account_ova_id = self.data_model.get_object_reference(
             cr, uid, 'account', 'ova')[1]
+        self.company = self.company_model.browse(cr, uid, company_id)
         self.company.write({'sp_account_id': account_ova_id})
 
     def attachFileToInvoice(self, InvoiceId, filename):
