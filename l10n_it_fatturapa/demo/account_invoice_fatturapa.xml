@@ -11,7 +11,7 @@
         </record>
 
         <record id="tax_22" model="account.tax">
-            <field name="name">22%</field>
+            <field name="name">22% ftPA</field>
             <field name="description">22</field>
             <field name="amount">0.22</field>
             <field name="base_code_id" ref="tax_base_code_purchase_22"></field>
