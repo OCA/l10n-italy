@@ -15,6 +15,7 @@ class TestSP(TransactionCase):
         super(TestSP, self).setUp()
         cr, uid = self.cr, self.uid
         self.tax_model = self.registry('account.tax')
+        self.tax_code_model = self.registry('account.tax.code')
         self.invoice_model = self.registry('account.invoice')
         self.term_model = self.registry('account.payment.term')
         self.inv_line_model = self.registry('account.invoice.line')
@@ -22,9 +23,19 @@ class TestSP(TransactionCase):
         self.company_model = self.registry('res.company')
         self.data_model = self.registry('ir.model.data')
         self.journal_model = self.registry('account.journal')
+        self.taxcode22_id = self.tax_code_model.create(cr, uid, {
+            'name': '22% SP',
+            })
+        self.taxcode22base_id = self.tax_code_model.create(cr, uid, {
+            'name': '22% SP (base)',
+            })
         self.tax22_id = self.tax_model.create(cr, uid, {
-            'name': '22%',
+            'name': '22% SP',
             'amount': 0.22,
+            'tax_code_id': self.taxcode22_id,
+            'base_code_id': self.taxcode22base_id,
+            'ref_tax_code_id': self.taxcode22_id,
+            'ref_base_code_id': self.taxcode22base_id,
             })
         self.sp_fp_id = self.fp_model.create(cr, uid, {
             'name': 'Split payment',

@@ -98,7 +98,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(
             len(invoice.invoice_line[0].invoice_line_tax_id), 1)
         self.assertEqual(
-            invoice.invoice_line[0].invoice_line_tax_id[0].name, '22%')
+            invoice.invoice_line[0].invoice_line_tax_id[0].name, '22% ftPA')
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].amount_untaxed, 25.00)
         self.assertEqual(
@@ -156,9 +156,9 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(invoice.supplier_invoice_number, '124')
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(
-            invoice.invoice_line[0].invoice_line_tax_id[0].name, '22%')
+            invoice.invoice_line[0].invoice_line_tax_id[0].name, '22% ftPA')
         self.assertEqual(
-            invoice.invoice_line[1].invoice_line_tax_id[0].name, '22%')
+            invoice.invoice_line[1].invoice_line_tax_id[0].name, '22% ftPA')
         self.assertEqual(
             invoice.invoice_line[0].invoice_line_tax_id[0].amount, 0.22)
         self.assertEqual(

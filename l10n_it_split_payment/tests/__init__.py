@@ -8,5 +8,5 @@
 from . import test_splitpayment
 
 fast_suite = [
-	test_splitpayment,
+    test_splitpayment,
 ]
