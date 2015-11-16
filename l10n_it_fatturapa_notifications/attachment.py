@@ -51,7 +51,7 @@ class FatturaPANotification(orm.Model):
             ('DT', 'Notifica decorrenza termini'),
             ('AT', 'Attestazione di avvenuta trasmissione della fattura con '
                    'impossibilità di recapito'),
-            ], string="Message Type",
+        ], string="Message Type",
             help="Page 32 of http://www.fatturapa.gov.it/export/fatturazione/"
                  "sdi/Specifiche_tecniche_SdI_v1.1.pdf ",
             readonly=True),
@@ -65,7 +65,7 @@ class FatturaPANotification(orm.Model):
         'file_identifier': fields.function(
             _get_file_identifier, type="char", size=512,
             string="File identifier", store=True),  # is store=True enough?
-        }
+    }
 
     def save_notification_xml(
         self, cr, uid, ids, xml, file_name, invoice_type="supplier",
@@ -88,7 +88,7 @@ class FatturaPANotification(orm.Model):
             'datas': base64.encodestring(xml),
             'message_type': mtype,
             'sequence': sequence,
-            }, context=context)
+        }, context=context)
         return res_id
 
     def get_file_identifier(self, file_name):

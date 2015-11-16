@@ -30,8 +30,8 @@ class ImportNotification(orm.TransientModel):
         'invoice_type': fields.selection([
             ('supplier', 'Supplier'),
             ('customer', 'Customer')
-            ], string="Invoice type", required=True),
-        }
+        ], string="Invoice type", required=True),
+    }
 
     def import_file(self, cr, uid, ids, context=None):
         notification_pool = self.pool['fatturapa.notification']
@@ -50,4 +50,4 @@ class ImportNotification(orm.TransientModel):
             'res_model': 'fatturapa.notification',
             'type': 'ir.actions.act_window',
             'context': context
-            }
+        }
