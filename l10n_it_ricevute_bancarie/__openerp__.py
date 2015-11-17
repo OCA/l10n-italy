@@ -89,11 +89,11 @@ da un flusso 'salvo buon fine'.
         # "security/ir.model.access.csv",
     ],
     'demo': ["demo/riba_demo.xml"],
-    # 'test': [
-    #     'test/riba_invoice.yml',
-    #     'test/issue_riba.yml',
-    #     'test/unsolved_riba.yml',
-    #     ],
+    'test': [
+        'test/riba_invoice.yml',
+        'test/issue_riba.yml',
+        'test/unsolved_riba.yml',
+        ],
     'installable': True,
     'active': False,
 }
