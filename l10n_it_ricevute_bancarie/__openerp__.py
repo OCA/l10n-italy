@@ -156,12 +156,16 @@ da un flusso 'salvo buon fine'.
 =======
     'demo': ["demo/riba_demo.xml"],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
+=======
+>>>>>>> 1c849ef... [FIX] Restore Yaml Test
     'test': [
         'test/riba_invoice.yml',
         'test/issue_riba.yml',
         'test/unsolved_riba.yml',
         ],
+<<<<<<< HEAD
 =======
     # 'test': [
     #     'test/riba_invoice.yml',
@@ -169,6 +173,8 @@ da un flusso 'salvo buon fine'.
     #     'test/unsolved_riba.yml',
     #     ],
 >>>>>>> 67ced3e... [IMP] Management of due cost for Ri.Ba.
+=======
+>>>>>>> 1c849ef... [FIX] Restore Yaml Test
     'installable': True,
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     'active': False,
