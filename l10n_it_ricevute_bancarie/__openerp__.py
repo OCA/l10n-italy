@@ -140,6 +140,7 @@ da un flusso 'salvo buon fine'.
         "views/account_view.xml",
         "views/wizard_riba_issue.xml",
         "views/wizard_riba_file_export.xml",
+        "views/account_config_view.xml",
         "riba_workflow.xml",
         # "security/ir.model.access.csv",
     ],
@@ -154,12 +155,20 @@ da un flusso 'salvo buon fine'.
         ],
 =======
     'demo': ["demo/riba_demo.xml"],
+<<<<<<< HEAD
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
     'test': [
         'test/riba_invoice.yml',
         'test/issue_riba.yml',
         'test/unsolved_riba.yml',
         ],
+=======
+    # 'test': [
+    #     'test/riba_invoice.yml',
+    #     'test/issue_riba.yml',
+    #     'test/unsolved_riba.yml',
+    #     ],
+>>>>>>> 67ced3e... [IMP] Management of due cost for Ri.Ba.
     'installable': True,
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     'active': False,

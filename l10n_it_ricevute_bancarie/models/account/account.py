@@ -50,6 +50,9 @@ class account_payment_term(orm.Model):
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/account/account.py
 
 from openerp.osv import fields, orm
+from openerp import api, _
+from openerp.exceptions import Warning
+import openerp.addons.decimal_precision as dp
 
 
 class account_payment_term(orm.Model):
@@ -58,7 +61,12 @@ class account_payment_term(orm.Model):
 
     _columns = {
         'riba': fields.boolean('Riba'),
+<<<<<<< HEAD
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+        'payment_cost': fields.float(
+            'Payment Cost', digits_compute=dp.get_precision('Account'),),
+>>>>>>> 67ced3e... [IMP] Management of due cost for Ri.Ba.
     }
 
 
@@ -199,5 +207,103 @@ class account_invoice(orm.Model):
                     'unsolved_invoice_ids', 'reconcile_id'], 10),
                 }
             ),
+<<<<<<< HEAD
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+
+>>>>>>> 67ced3e... [IMP] Management of due cost for Ri.Ba.
         }
+
+    def _get_first_date_due(self):
+        pterm = self.env['account.payment.term'].browse(self.payment_term.id)
+        pterm_list = pterm.compute(value=1, date_ref=self.date_invoice)[0]
+        return min(line[0] for line in pterm_list)
+
+    def month_check(self, invoice_date_due, all_date_due):
+        """
+
+        :param invoice_date_due: first date due of invoice
+        :param all_date_due: list of date of dues for partner
+        :return: True if month of invoice_date_due is in a list of all_date_due
+        """
+        check = False
+        for d in all_date_due:
+            if invoice_date_due[:7] == d[:7]:
+                check = True
+        return check
+
+    @api.multi
+    def action_move_create(self):
+        for invoice in self:
+            # ---- Add a line with payment cost for each due only for fist due
+            # ---- of the month
+            if invoice.type != 'out_invoice':
+                continue
+            if not invoice.payment_term:
+                continue
+            if not invoice.payment_term.riba:
+                continue
+            if invoice.payment_term.payment_cost == 0.0:
+                continue
+            if not invoice.company_id.due_cost_service_id:
+                raise Warning('Set a Service for Due Cost in Company Config')
+            # ---- Apply Due Cost on invoice only on first due of the month
+            # ---- Get Date of first due
+            first_date_due = self._get_first_date_due()
+            move_line = self.env['account.move.line'].search([
+                ('partner_id', '=', invoice.partner_id.id)])
+            # ---- Filtered recordset with date_maturity
+            move_line = move_line.filtered(
+                lambda l: l.date_maturity is not False)
+            # ---- Sorted
+            move_line = move_line.sorted(key=lambda r: r.date_maturity)
+            # ---- Get date
+            previous_date_due = move_line.mapped('date_maturity')
+            if not self.month_check(first_date_due, previous_date_due):
+                # ---- Get Line values for service product
+                line_obj = self.env['account.invoice.line']
+                line_vals = line_obj.product_id_change(
+                    invoice.company_id.due_cost_service_id.id,
+                    invoice.company_id.due_cost_service_id.uom_id.id,
+                    partner_id=invoice.partner_id.id,
+                    qty=1,
+                )
+                # ---- Update Line Values with product, invoice and due cost
+                line_vals['value'].update({
+                    'product_id': invoice.company_id.due_cost_service_id.id,
+                    'invoice_id': invoice.id,
+                    'price_unit': invoice.payment_term.payment_cost * len(
+                         invoice.payment_term.line_ids),
+                    'due_cost_line': True,
+                })
+                # ---- Update Line Value with tax if is set on product
+                if invoice.company_id.due_cost_service_id.taxes_id:
+                    line_vals['value'].update({
+                        'invoice_line_tax_id': [(
+                            4,
+                            invoice.company_id.due_cost_service_id.taxes_id.id)]
+                    })
+                line_obj.create(line_vals['value'])
+                # ---- recompute invocie taxes
+                invoice.button_reset_taxes()
+        super(account_invoice, self).action_move_create()
+
+    @api.multi
+    def action_cancel_draft(self):
+        # ---- Delete Due Cost Line of invoice when set Back to Draft
+        # ---- line was added on new validate
+        for invoice in self:
+            for line in invoice.invoice_line:
+                if line.due_cost_line:
+                    line.unlink()
+        super(account_invoice, self).action_cancel_draft()
+
+
+class AccountInvoiceLine(orm.Model):
+
+    _inherit = 'account.invoice.line'
+
+    _columns = {
+        'due_cost_line': fields.boolean('Due Cost Line'),
+    }
+
