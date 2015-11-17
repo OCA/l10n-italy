@@ -90,7 +90,5 @@ To contribute to this module, please visit http://odoo-community.org.
         'wizard/wizard_import_fatturapa_view.xml',
         'security/ir.model.access.csv',
     ],
-    "test": [],
-    "demo": [],
     "installable": True
 }

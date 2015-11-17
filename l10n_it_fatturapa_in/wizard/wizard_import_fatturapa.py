@@ -540,7 +540,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 cr, uid, line_vals, context=context)
         return True
 
-    def _CreatePayamentsLine(
+    def _createPayamentsLine(
         self, cr, uid, payment_id, line, partner_id,
         context=None
     ):
@@ -1070,7 +1070,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     },
                     context=context
                 )
-                self._CreatePayamentsLine(
+                self._createPayamentsLine(
                     cr, uid, PayDataId, PaymentLine, partner_id,
                     context=context
                 )
