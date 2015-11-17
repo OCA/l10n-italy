@@ -86,7 +86,7 @@ da un flusso 'salvo buon fine'.
         "views/wizard_riba_file_export.xml",
         "views/account_config_view.xml",
         "riba_workflow.xml",
-        # "security/ir.model.access.csv",
+        "security/ir.model.access.csv",
     ],
     'demo': ["demo/riba_demo.xml"],
     'test': [
