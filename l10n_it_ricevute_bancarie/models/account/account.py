@@ -166,13 +166,9 @@ class account_invoice(orm.Model):
         for invoice in self:
             # ---- Add a line with payment cost for each due only for fist due
             # ---- of the month
-            if invoice.type != 'out_invoice':
-                continue
-            if not invoice.payment_term:
-                continue
-            if not invoice.payment_term.riba:
-                continue
-            if invoice.payment_term.payment_cost == 0.0:
+            if invoice.type != 'out_invoice' or not invoice.payment_term \
+                    or not invoice.payment_term.riba \
+                    or invoice.payment_term.payment_cost == 0.0:
                 continue
             if not invoice.company_id.due_cost_service_id:
                 raise Warning('Set a Service for Due Cost in Company Config')
