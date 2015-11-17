@@ -221,7 +221,6 @@ class account_invoice(orm.Model):
 
     def month_check(self, invoice_date_due, all_date_due):
         """
-
         :param invoice_date_due: first date due of invoice
         :param all_date_due: list of date of dues for partner
         :return: True if month of invoice_date_due is in a list of all_date_due
@@ -269,19 +268,18 @@ class account_invoice(orm.Model):
                     qty=1,
                 )
                 # ---- Update Line Values with product, invoice and due cost
+                n_dues = len(invoice.payment_term.line_ids)
                 line_vals['value'].update({
                     'product_id': invoice.company_id.due_cost_service_id.id,
                     'invoice_id': invoice.id,
-                    'price_unit': invoice.payment_term.payment_cost * len(
-                         invoice.payment_term.line_ids),
+                    'price_unit': invoice.payment_term.payment_cost * n_dues,
                     'due_cost_line': True,
                 })
                 # ---- Update Line Value with tax if is set on product
                 if invoice.company_id.due_cost_service_id.taxes_id:
+                    tax = invoice.company_id.due_cost_service_id.taxes_id
                     line_vals['value'].update({
-                        'invoice_line_tax_id': [(
-                            4,
-                            invoice.company_id.due_cost_service_id.taxes_id.id)]
+                        'invoice_line_tax_id': [(4, tax.id)]
                     })
                 line_obj.create(line_vals['value'])
                 # ---- recompute invocie taxes
@@ -306,4 +304,3 @@ class AccountInvoiceLine(orm.Model):
     _columns = {
         'due_cost_line': fields.boolean('Due Cost Line'),
     }
-
