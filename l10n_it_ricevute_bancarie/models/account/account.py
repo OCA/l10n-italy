@@ -156,11 +156,10 @@ class account_invoice(orm.Model):
         :param all_date_due: list of date of dues for partner
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
-        check = False
         for d in all_date_due:
             if invoice_date_due[:7] == d[:7]:
-                check = True
-        return check
+                return True
+        return False
 
     @api.multi
     def action_move_create(self):
