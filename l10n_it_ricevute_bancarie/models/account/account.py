@@ -226,6 +226,16 @@ class account_invoice(orm.Model):
                     line.unlink()
         super(account_invoice, self).action_cancel_draft()
 
+    @api.v7
+    @api.one
+    def copy(self, default=None):
+        # Delete Due Cost Line of invoice when copying
+        res = super(account_invoice, self).copy(default)
+        if res:
+            for line in res.invoice_line:
+                if line.due_cost_line:
+                    line.unlink()
+
 
 class AccountInvoiceLine(orm.Model):
 
