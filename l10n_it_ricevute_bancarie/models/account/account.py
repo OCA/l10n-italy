@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/account/account.py
 <<<<<<< HEAD
 ##############################################################################
@@ -10,6 +11,10 @@
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/account/account.py
 #
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+##############################################################################
+#
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -31,6 +36,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/account/account.py
 <<<<<<< HEAD
 ##############################################################################
@@ -48,6 +54,9 @@ class account_payment_term(orm.Model):
 =======
 ##############################################################################
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/account/account.py
+=======
+##############################################################################
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
 
 from openerp.osv import fields, orm
 from openerp import api, _
@@ -62,11 +71,16 @@ class account_payment_term(orm.Model):
     _columns = {
         'riba': fields.boolean('Riba'),
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 =======
         'payment_cost': fields.float(
             'Payment Cost', digits_compute=dp.get_precision('Account'),),
 >>>>>>> 67ced3e... [IMP] Management of due cost for Ri.Ba.
+=======
+        'payment_cost': fields.float(
+            'Payment Cost', digits_compute=dp.get_precision('Account'),),
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
     }
 
 
@@ -74,10 +88,14 @@ class res_bank_add_field(orm.Model):
     _inherit = 'res.bank'
     _columns = {
 <<<<<<< HEAD
+<<<<<<< HEAD
         'banca_estera' : fields.boolean('Banca Estera'),
 =======
         'banca_estera': fields.boolean('Banca Estera'),
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+        'banca_estera': fields.boolean('Banca Estera'),
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
     }
 
 
@@ -85,12 +103,18 @@ class res_partner_bank_add(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
 <<<<<<< HEAD
+<<<<<<< HEAD
         'codice_sia' : fields.char('Codice SIA', size=5, help="Identification Code of the Company in the System Interbank")    
 =======
         'codice_sia': fields.char(
             'Codice SIA', size=5,
             help="Identification Code of the Company in the System Interbank")
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+        'codice_sia': fields.char(
+            'Codice SIA', size=5,
+            help="Identification Code of the Company in the System Interbank")
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
     }
 
 
@@ -99,6 +123,7 @@ class account_move_line(orm.Model):
     _inherit = "account.move.line"
 
     _columns = {
+<<<<<<< HEAD
 <<<<<<< HEAD
         'distinta_line_ids' : fields.one2many('riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
         'riba': fields.related('invoice', 'payment_term', 'riba', 
@@ -109,6 +134,8 @@ class account_move_line(orm.Model):
     _defaults = {
         'distinta_line_ids' : None,
 =======
+=======
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
         'distinta_line_ids': fields.one2many(
             'riba.list.move.line', 'move_line_id', "Dettaglio riba"),
         'riba': fields.related(
@@ -123,11 +150,15 @@ class account_move_line(orm.Model):
     }
     _defaults = {
         'distinta_line_ids': None,
+<<<<<<< HEAD
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
     }
 
     def fields_view_get(
         self, cr, uid, view_id=None, view_type='form',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/account/account.py
 <<<<<<< HEAD
@@ -141,6 +172,9 @@ class account_move_line(orm.Model):
 =======
         context=None, toolbar=False, submenu=False
 >>>>>>> 154323a... fixed errors in tests and added dep needed
+=======
+        context=None, toolbar=False, submenu=False
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
     ):
         # Special view for account.move.line object
         # (for ex. tree view contains user defined fields)
@@ -165,10 +199,13 @@ class account_move_line(orm.Model):
 
 class account_invoice(orm.Model):
 <<<<<<< HEAD
+<<<<<<< HEAD
     _inherit = "account.invoice"
     _columns = {
         'unsolved_move_line_ids': fields.many2many('account.move.line', 'invoice_unsolved_line_rel', 'invoice_id', 'line_id', 'Unsolved journal items'),
 =======
+=======
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
 
     def _get_is_unsolved(self, cr, uid, ids, name, arg, context=None):
         res = {}
@@ -208,10 +245,14 @@ class account_invoice(orm.Model):
                 }
             ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 =======
 
 >>>>>>> 67ced3e... [IMP] Management of due cost for Ri.Ba.
+=======
+
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
         }
 
     def month_check(self, invoice_date_due, all_date_due):

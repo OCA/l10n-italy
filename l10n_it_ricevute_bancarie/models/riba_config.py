@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/configurazione.py
 <<<<<<< HEAD
 ##############################################################################
@@ -10,6 +11,10 @@
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
 #
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+##############################################################################
+#
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -31,6 +36,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/configurazione.py
 <<<<<<< HEAD
 ##############################################################################
@@ -42,21 +48,29 @@ from openerp.osv import fields, orm
 =======
 ##############################################################################
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
+=======
+##############################################################################
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
 
 from openerp.osv import fields, orm
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/configurazione.py
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 class riba_configurazione(orm.Model):
 =======
 class riba_configuration(orm.Model):
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
+=======
+class riba_configuration(orm.Model):
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
 
     _name = "riba.configuration"
     _description = "Configuration parameters for Ricevute Bancarie"
 
     _columns = {
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/configurazione.py
 <<<<<<< HEAD
         'name' : fields.char("Descrizione", size=64, required=True),
@@ -100,6 +114,10 @@ class riba_configuration(orm.Model):
         'name': fields.char("Description", size=64, required=True),
         'type': fields.selection(
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
+=======
+        'name': fields.char("Description", size=64, required=True),
+        'type': fields.selection(
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
             (('sbf', 'Salvo buon fine'), ('incasso', 'Al dopo incasso')),
             "Issuing mode", required=True),
         'bank_id': fields.many2one(
@@ -140,6 +158,7 @@ class riba_configuration(orm.Model):
             'account.account', "Protest charge account"),
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/configurazione.py
     _defaults = {
         'company_id': lambda self, cr, uid, c: self.pool.get(
@@ -152,10 +171,14 @@ class riba_configuration(orm.Model):
 =======
     def get_default_value_by_list(self, cr, uid, field_name, context=None):
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
+=======
+    def get_default_value_by_list(self, cr, uid, field_name, context=None):
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
         if context is None:
             context = {}
         if not context.get('active_id', False):
             return False
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/configurazione.py
         distinta_pool = self.pool.get('riba.distinta')
 <<<<<<< HEAD
@@ -174,6 +197,8 @@ class riba_configuration(orm.Model):
     ):
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 =======
+=======
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
         ribalist_pool = self.pool['riba.list']
         ribalist = ribalist_pool.browse(cr, uid, context['active_id'],
                                         context=context)
@@ -182,11 +207,15 @@ class riba_configuration(orm.Model):
 
     def get_default_value_by_list_line(self, cr, uid, field_name,
                                        context=None):
+<<<<<<< HEAD
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
+=======
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
         if context is None:
             context = {}
         if not context.get('active_id', False):
             return False
+<<<<<<< HEAD
 <<<<<<< HEAD:l10n_it_ricevute_bancarie/configurazione.py
 <<<<<<< HEAD
         distinta_line = self.pool.get('riba.distinta.line').browse(cr, uid, context['active_id'], context=context)
@@ -201,11 +230,16 @@ class riba_configuration(orm.Model):
         ] and distinta_line.distinta_id.config[field_name].id or False
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 =======
+=======
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
         ribalist_line = self.pool['riba.list.line'].browse(
             cr, uid, context['active_id'], context=context)
         return (ribalist_line.list_id.config_id[field_name] and
                 ribalist_line.list_id.config_id[field_name].id or False)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/riba_config.py
 =======
 >>>>>>> 154323a... fixed errors in tests and added dep needed
+=======
+>>>>>>> fa59811570f60676a72c643bb1f38701b41fb594
