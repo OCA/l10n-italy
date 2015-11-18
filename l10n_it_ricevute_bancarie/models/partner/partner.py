@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-<<<<<<< HEAD:l10n_it_ricevute_bancarie/models/partner/partner.py
-<<<<<<< HEAD:l10n_it_ricevute_bancarie/partner/partner.py
-#    
-=======
 #
->>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/partner/partner.py
-=======
-#
->>>>>>> fa59811570f60676a72c643bb1f38701b41fb594:l10n_it_ricevute_bancarie/models/partner/partner.py
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
