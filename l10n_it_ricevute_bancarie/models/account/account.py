@@ -145,11 +145,6 @@ class account_invoice(orm.Model):
 
         }
 
-    def _get_first_date_due(self):
-        pterm = self.env['account.payment.term'].browse(self.payment_term.id)
-        pterm_list = pterm.compute(value=1, date_ref=self.date_invoice)[0]
-        return min(line[0] for line in pterm_list)
-
     def month_check(self, invoice_date_due, all_date_due):
         """
         :param invoice_date_due: first date due of invoice
@@ -174,7 +169,6 @@ class account_invoice(orm.Model):
                 raise Warning('Set a Service for Due Cost in Company Config')
             # ---- Apply Due Cost on invoice only on first due of the month
             # ---- Get Date of first due
-            first_date_due = self._get_first_date_due()
             move_line = self.env['account.move.line'].search([
                 ('partner_id', '=', invoice.partner_id.id)])
             # ---- Filtered recordset with date_maturity
@@ -184,32 +178,42 @@ class account_invoice(orm.Model):
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
             # ---- Get date
             previous_date_due = move_line.mapped('date_maturity')
-            if not self.month_check(first_date_due, previous_date_due):
-                # ---- Get Line values for service product
-                line_obj = self.env['account.invoice.line']
-                line_vals = line_obj.product_id_change(
-                    invoice.company_id.due_cost_service_id.id,
-                    invoice.company_id.due_cost_service_id.uom_id.id,
-                    partner_id=invoice.partner_id.id,
-                    qty=1,
-                )
-                # ---- Update Line Values with product, invoice and due cost
-                n_dues = len(invoice.payment_term.line_ids)
-                line_vals['value'].update({
-                    'product_id': invoice.company_id.due_cost_service_id.id,
-                    'invoice_id': invoice.id,
-                    'price_unit': invoice.payment_term.payment_cost * n_dues,
-                    'due_cost_line': True,
-                })
-                # ---- Update Line Value with tax if is set on product
-                if invoice.company_id.due_cost_service_id.taxes_id:
-                    tax = invoice.company_id.due_cost_service_id.taxes_id
+            pterm = self.env['account.payment.term'].browse(
+                self.payment_term.id)
+            pterm_list = pterm.compute(value=1, date_ref=self.date_invoice)
+            for pay_date in pterm_list[0]:
+                if not self.month_check(pay_date[0], previous_date_due):
+                    # ---- Get Line values for service product
+                    service_prod = invoice.company_id.due_cost_service_id
+                    line_obj = self.env['account.invoice.line']
+                    line_vals = line_obj.product_id_change(
+                        service_prod.id,
+                        service_prod.uom_id.id,
+                        partner_id=invoice.partner_id.id,
+                        qty=1,
+                    )
+                    # ---- Update Line Values with product,
+                    # ---- invoice and due cost
                     line_vals['value'].update({
-                        'invoice_line_tax_id': [(4, tax.id)]
+                        'product_id': service_prod.id,
+                        'invoice_id': invoice.id,
+                        'price_unit': invoice.payment_term.payment_cost,
+                        'due_cost_line': True,
+                        'name': _('{line_name} for {month}-{year}').format(
+                            line_name=line_vals['value']['name'],
+                            month=pay_date[0][5:7],
+                            year=pay_date[0][:4],
+                        )
                     })
-                line_obj.create(line_vals['value'])
-                # ---- recompute invocie taxes
-                invoice.button_reset_taxes()
+                    # ---- Update Line Value with tax if is set on product
+                    if invoice.company_id.due_cost_service_id.taxes_id:
+                        tax = invoice.company_id.due_cost_service_id.taxes_id
+                        line_vals['value'].update({
+                            'invoice_line_tax_id': [(4, tax.id)]
+                        })
+                    line_obj.create(line_vals['value'])
+                    # ---- recompute invocie taxes
+                    invoice.button_reset_taxes()
         super(account_invoice, self).action_move_create()
 
     @api.multi

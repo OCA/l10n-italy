@@ -94,12 +94,17 @@ class TestInvoiceDueCost(TransactionCase):
         # ---- Validate Invoice
         self.invoice.signal_workflow('invoice_open')
         # ---- Test Invoice has 2 line
-        self.assertEquals(len(self.invoice.invoice_line), 2)
+        self.assertEquals(len(self.invoice.invoice_line), 3)
         # ---- Test Invoice Line for service cost
         self.assertEqual(self.invoice.invoice_line[1].product_id.id,
                          self.service_due_cost.id)
+        # ---- Test Invoice Line for service cost
+        self.assertEqual(self.invoice.invoice_line[2].product_id.id,
+                         self.service_due_cost.id)
         # ---- Test Cost line is equal to 10.00
-        self.assertEqual(self.invoice.invoice_line[1].price_unit, 10.00)
+        self.assertEqual(
+            (self.invoice.invoice_line[1].price_unit +
+             self.invoice.invoice_line[2].price_unit), 10.00)
 
     def test_not_add_due_cost(self):
         # create 2 invoice for partner in same month on the second one no
