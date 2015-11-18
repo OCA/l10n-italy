@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
+<<<<<<< HEAD:l10n_it_ricevute_bancarie/partner/__init__.py
 #    
+=======
+#
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/partner/__init__.py
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -19,6 +23,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+<<<<<<< HEAD:l10n_it_ricevute_bancarie/partner/__init__.py
 
-import account
+import partner
+=======
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/models/partner/__init__.py
 

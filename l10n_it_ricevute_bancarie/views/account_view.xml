@@ -142,16 +142,21 @@
                 </field>
             </field>
         </record>
+<<<<<<< HEAD:l10n_it_ricevute_bancarie/account/account_view.xml
 <<<<<<< HEAD
 =======
         
+=======
+
+
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/views/account_view.xml
         <record id="view_account_invoice_filter_unsolved" model="ir.ui.view">
             <field name="name">account.invoice.select.unsolved</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.view_account_invoice_filter"></field>
             <field name="arch" type="xml">
                 <filter name="unpaid" position="after">
-                    <filter name="unsolved" string="Unsolved" domain="[('is_unsolved','=',True)]" help="Unsolved Invoices"/>
+                   <filter name="unsolved" string="Unsolved" domain="[('is_unsolved','=',True)]" help="Unsolved Invoices"/>
                 </filter>
             </field>
         </record>

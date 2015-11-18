@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
@@ -24,15 +24,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
-
-class res_partner(orm.Model):
-
-    _name = "res.partner"
-    _inherit = "res.partner"
-
-    _columns = {
-        'group_riba' : fields.boolean("Group Ri.Ba.", 
-            help="Group Ri.Ba. by customer while issuing"),
-    }
-
+from . import riba_config
+from . import partner
+from . import riba
+from . import account

@@ -120,7 +120,7 @@ import datetime
 =======
 import base64
 from openerp.osv import fields, orm
-from tools.translate import _
+from openerp.tools.translate import _
 import datetime
 
 
@@ -300,6 +300,7 @@ class riba_file_export(orm.TransientModel):
 
     def act_getfile(self, cr, uid, ids, context=None):
         active_ids = context and context.get('active_ids', [])
+<<<<<<< HEAD:l10n_it_ricevute_bancarie/wizard/riba_file_export.py
 <<<<<<< HEAD
         order_obj = self.pool.get('riba.distinta').browse(cr, uid, active_ids, context=context)[0]
         credit_bank = order_obj.config.bank_id
@@ -308,6 +309,9 @@ class riba_file_export(orm.TransientModel):
            raise orm.except_orm('Error', _('No IBAN specified'))
 =======
         order_obj = self.pool.get('riba.distinta').browse(
+=======
+        order_obj = self.pool['riba.list'].browse(
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba:l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py
             cr, uid, active_ids, context=context)[0]
         credit_bank = order_obj.config.bank_id
         name_company = order_obj.config.company_id.partner_id.name

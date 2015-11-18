@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 <<<<<<< HEAD
+<<<<<<< HEAD
 ##############################################################################
 #    
 =======
 #
+=======
+##############################################################################
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
 #
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 #    Copyright (C) 2012 Andrea Cometa.
@@ -28,16 +32,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 ##############################################################################
 =======
 #
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
+=======
+##############################################################################
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
 
 {
     "name": "Ricevute Bancarie",
     "version": "1.3",
-    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
+    "author": "Odoo Italian Community",
     "category": "Accounting & Finance",
+<<<<<<< HEAD
     "website": "http://www.openerp-italia.org",
 <<<<<<< HEAD
     "license": "AGPL-3",
@@ -62,6 +71,9 @@ Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQ
     'images': [],
     'depends': ['account','account_voucher', 'l10n_it_fiscalcode', 'account_due_list'],
 =======
+=======
+    "website": "http://www.odoo-italia.org",
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
     "description": """
 Gestione delle Ricevute Bancarie
 --------------------------------
@@ -104,24 +116,29 @@ da un flusso 'salvo buon fine'.
         'account',
         'account_voucher',
         'l10n_it_fiscalcode',
+<<<<<<< HEAD
         'account_due_list',
         'base_iban',
     ],
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
     'init_xml': [],
+=======
+        'account_due_list'],
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
     'data': [
-        "partner/partner_view.xml",
-        "configurazione_view.xml",
+        "views/partner_view.xml",
+        "views/configuration_view.xml",
         "riba_sequence.xml",
-        "wizard/wizard_accreditation.xml",
-        "wizard/wizard_unsolved.xml",
-        "riba_view.xml",
-        "account/account_view.xml",
-        "wizard/wizard_emissione_riba.xml",
-        "wizard/riba_file_export.xml",
+        "views/wizard_accreditation.xml",
+        "views/wizard_unsolved.xml",
+        "views/riba_view.xml",
+        "views/account_view.xml",
+        "views/wizard_riba_issue.xml",
+        "views/wizard_riba_file_export.xml",
         "riba_workflow.xml",
-        "security/ir.model.access.csv",
+        # "security/ir.model.access.csv",
     ],
+<<<<<<< HEAD
 <<<<<<< HEAD
     'demo_xml': [],
     'test': [],
@@ -130,6 +147,9 @@ da un flusso 'salvo buon fine'.
     'demo_xml': [
         'demo/riba_demo.xml',
         ],
+=======
+    'demo': ["demo/riba_demo.xml"],
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
     'test': [
         'test/riba_invoice.yml',
         'test/issue_riba.yml',

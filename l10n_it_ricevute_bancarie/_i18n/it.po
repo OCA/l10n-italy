@@ -66,7 +66,7 @@ msgid "Ri.Ba. bank account"
 msgstr "Banca conto Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,bank_id:0
+#: field:riba.list.line,bank_id:0
 msgid "Debitor Bank"
 msgstr "Banca debitore"
 
@@ -83,17 +83,17 @@ msgstr "Effetti insoluti"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.configurazione,company_id:0
-#: field:riba.distinta,company_id:0
+#: field:riba.list,company_id:0
 msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,invoice_date:0
+#: field:riba.list.line,invoice_date:0
 msgid "Invoice Date"
 msgstr "Data fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Move line"
 msgstr "Riga contabile"
 
@@ -144,7 +144,7 @@ msgid "No SIA Code specified for: "
 msgstr "Nessun codice SIA specificato per:"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Move lines"
 msgstr "Righe contabili"
 
@@ -159,9 +159,9 @@ msgid "Total Debit"
 msgstr "Debito totale"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: field:riba.distinta.line,amount:0
-#: field:riba.distinta.move.line,amount:0
+#: view:riba.list:0
+#: field:riba.list.line,amount:0
+#: field:riba.list.move.line,amount:0
 msgid "Amount"
 msgstr "Importo"
 
@@ -187,7 +187,7 @@ msgid "riba.unsolved"
 msgstr "riba.unsolved"
 
 #. module: l10n_it_ricevute_bancarie
-#: help:riba.distinta.line,reconciled:0
+#: help:riba.list.line,reconciled:0
 msgid "It indicates that the line has been paid and the journal entry of the line has been reconciled with one or several journal entries of payment."
 msgstr "Indica che la riga è stata pagata e la registrazione della riga è stata riconciliata con una o più registrazioni di pagamento"
 
@@ -198,31 +198,31 @@ msgstr "riba.file.export"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.configurazione:0
-#: view:riba.distinta:0
-#: selection:riba.distinta,state:0
-#: selection:riba.distinta.line,state:0
+#: view:riba.list:0
+#: selection:riba.list,state:0
+#: selection:riba.list.line,state:0
 msgid "Unsolved"
 msgstr "Insoluto"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,config:0
+#: field:riba.list,config:0
 msgid "Configuration"
 msgstr "Configurazione"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,name:0
+#: field:riba.list,name:0
 msgid "Reference"
 msgstr "Riferimento"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:170
-#: field:riba.distinta.line,unsolved_move_id:0
+#: field:riba.list.line,unsolved_move_id:0
 #, python-format
 msgid "Unsolved Entry"
 msgstr "Registrazione insoluto"
 
 #. module: l10n_it_ricevute_bancarie
-#: help:riba.distinta,config:0
+#: help:riba.list,config:0
 msgid "Riba configuration to be used"
 msgstr "Configurazione Ri.Ba. da usare"
 
@@ -232,7 +232,7 @@ msgid "The date of your Journal Entry is not in the defined period! You should c
 msgstr "The date of your Journal Entry is not in the defined period! You should change the date or remove this constraint from the journal."
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Reset to Draft"
 msgstr "Reimposta a bozza"
 
@@ -252,13 +252,13 @@ msgid "Banca Estera"
 msgstr "Banca Estera"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: selection:riba.distinta.line,state:0
+#: view:riba.list:0
+#: selection:riba.list.line,state:0
 msgid "Confirmed"
 msgstr "Confermata"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,date_paid:0
+#: field:riba.list,date_paid:0
 msgid "Paid date"
 msgstr "Data pagamento"
 
@@ -282,8 +282,8 @@ msgid "Bank Expenses account"
 msgstr "Conto spese bancarie"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,state:0
-#: field:riba.distinta.line,state:0
+#: field:riba.list,state:0
+#: field:riba.list.line,state:0
 msgid "State"
 msgstr "Stato"
 
@@ -302,8 +302,8 @@ msgid "Unsolved Ri.Ba."
 msgstr "Ri.Ba. insolute"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,type:0
-#: field:riba.distinta.line,type:0
+#: field:riba.list,type:0
+#: field:riba.list.line,type:0
 msgid "Type"
 msgstr "Tipo"
 
@@ -313,7 +313,7 @@ msgid "Journal used when Ri.Ba. is unsolved"
 msgstr "Sezionale utilizzato quando la Ri.Ba. è insoluta"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,reconciled:0
+#: field:riba.list.line,reconciled:0
 msgid "Paid/Reconciled"
 msgstr "Pagato/Riconciliato"
 
@@ -344,8 +344,8 @@ msgid "get"
 msgstr "get"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: selection:riba.distinta,state:0
+#: view:riba.list:0
+#: selection:riba.list,state:0
 msgid "Accepted"
 msgstr "Accettata"
 
@@ -360,13 +360,13 @@ msgid "Distinta Ri.Ba."
 msgstr "Distinta Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: field:riba.distinta,acceptance_move_ids:0
+#: view:riba.list:0
+#: field:riba.list,acceptance_move_ids:0
 msgid "Acceptance Entries"
 msgstr "Registrazioni di accettazione"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,date_unsolved:0
+#: field:riba.list,date_unsolved:0
 msgid "Unsolved date"
 msgstr "Data insoluto"
 
@@ -376,14 +376,14 @@ msgid "Ri.Ba."
 msgstr "Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.move.line,riba_line_id:0
+#: field:riba.list.move.line,riba_line_id:0
 msgid "Distinta line"
 msgstr "Riga distinta"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:131
-#: view:riba.distinta:0
-#: field:riba.distinta,accreditation_move_id:0
+#: view:riba.list:0
+#: field:riba.list,accreditation_move_id:0
 #, python-format
 msgid "Accreditation Entry"
 msgstr "Registrazione accredito"
@@ -395,12 +395,12 @@ msgid "Unsolved journal"
 msgstr "Sezionale insoluti"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,move_line_ids:0
+#: field:riba.list.line,move_line_ids:0
 msgid "Credit move lines"
 msgstr "Righe contabili di credito"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,due_date:0
+#: field:riba.list.line,due_date:0
 msgid "Due date"
 msgstr "Data scadenza"
 
@@ -426,7 +426,7 @@ msgid "Group by..."
 msgstr "Raggruppa per..."
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,date_accreditation:0
+#: field:riba.list,date_accreditation:0
 msgid "Accreditation date"
 msgstr "Data accredito"
 
@@ -469,7 +469,7 @@ msgid "You can also skip this step and set the line status to 'unsolved' anyway"
 msgstr "E' anche possibile saltare questo passo e impostare comunque lo stato della riga a 'insoluta'"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Detail"
 msgstr "Dettaglio"
 
@@ -479,9 +479,9 @@ msgid "Emissione Ricevute Bancarie"
 msgstr "Emissione Ricevute Bancarie"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: selection:riba.distinta,state:0
-#: selection:riba.distinta.line,state:0
+#: view:riba.list:0
+#: selection:riba.list,state:0
+#: selection:riba.list.line,state:0
 msgid "Draft"
 msgstr "Bozza"
 
@@ -491,9 +491,9 @@ msgid "unknown"
 msgstr "sconosciuto"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: selection:riba.distinta,state:0
-#: selection:riba.distinta.line,state:0
+#: view:riba.list:0
+#: selection:riba.list,state:0
+#: selection:riba.list.line,state:0
 msgid "Paid"
 msgstr "Pagata"
 
@@ -509,12 +509,12 @@ msgid "Riba details"
 msgstr "Dettagli Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,user_id:0
+#: field:riba.list,user_id:0
 msgid "User"
 msgstr "Utente"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,unsolved_move_ids:0
+#: field:riba.list,unsolved_move_ids:0
 msgid "Unsolved Entries"
 msgstr "Registrazioni insoluti"
 
@@ -557,12 +557,12 @@ msgid "This wizard generates the journal entry related to an unsolved payment"
 msgstr "Questo wizard genererà la registrazione relativa ad un pagamento insoluto"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,date_created:0
+#: field:riba.list,date_created:0
 msgid "Creation date"
 msgstr "Data creazione"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Invoice entries"
 msgstr "Registrazioni fattura"
 
@@ -572,7 +572,7 @@ msgid "Journal used when Ri.Ba. amount is accredited by the bank"
 msgstr "Sezionale utilizzato quando l'import della Ri.Ba. viene accreditato dalla banca"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,line_ids:0
+#: field:riba.list,line_ids:0
 msgid "Riba deadlines"
 msgstr "Scadenze Ri.Ba."
 
@@ -600,7 +600,7 @@ msgid "Error"
 msgstr "Errore"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,date_accepted:0
+#: field:riba.list,date_accepted:0
 msgid "Acceptance date"
 msgstr "Data accettazione"
 
@@ -616,7 +616,7 @@ msgid "No Street specified for "
 msgstr "Nessun indirizzo specificato per"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,partner_id:0
+#: field:riba.list.line,partner_id:0
 msgid "Cliente"
 msgstr "Cliente"
 
@@ -631,7 +631,7 @@ msgid "Invoice Number must be unique per Company!"
 msgstr "Invoice Number must be unique per Company!"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Distinte Ri.Ba."
 msgstr "Distinte Ri.Ba."
 
@@ -646,7 +646,7 @@ msgid "Bank Accounts"
 msgstr "Conti Bancari"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,sequence:0
+#: field:riba.list.line,sequence:0
 msgid "Number"
 msgstr "Numero"
 
@@ -660,7 +660,7 @@ msgid "No active ID found"
 msgstr "Nessun ID trovato"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "General"
 msgstr "Generale"
 
@@ -676,7 +676,7 @@ msgstr "Fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.accreditation:0
-#: view:riba.distinta:0
+#: view:riba.list:0
 #: view:riba.emissione:0
 #: view:riba.file.export:0
 #: view:riba.unsolved:0
@@ -689,12 +689,12 @@ msgid "Group by invoice"
 msgstr "Raggruppa per fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,acceptance_account_id:0
+#: field:riba.list.line,acceptance_account_id:0
 msgid "Acceptance Account"
 msgstr "Conto accettazione"
 
 #. module: l10n_it_ricevute_bancarie
-#: selection:riba.distinta,state:0
+#: selection:riba.list,state:0
 msgid "Canceled"
 msgstr "Annullata"
 
@@ -715,7 +715,7 @@ msgid "Company must be the same for its related account and period."
 msgstr "Company must be the same for its related account and period."
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Other Info"
 msgstr "Altre info"
 
@@ -730,14 +730,14 @@ msgid "Acceptance"
 msgstr "Accettazione"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: selection:riba.distinta,state:0
-#: selection:riba.distinta.line,state:0
+#: view:riba.list:0
+#: selection:riba.list,state:0
+#: selection:riba.list.line,state:0
 msgid "Accredited"
 msgstr "Accreditata"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.move.line,move_line_id:0
+#: field:riba.list.move.line,move_line_id:0
 msgid "Credit move line"
 msgstr "Riga credito"
 
@@ -747,7 +747,7 @@ msgid "Skip and confirm the unsolved state"
 msgstr "Salta e conferma lo stato di insoluto"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Ri.Ba. - Distinta"
 msgstr "Ri.Ba. - Distinta"
 
@@ -791,7 +791,7 @@ msgid "Riba"
 msgstr "Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,invoice_number:0
+#: field:riba.list.line,invoice_number:0
 msgid "Invoice Number"
 msgstr "Numero fattura"
 
@@ -831,9 +831,9 @@ msgid "Al dopo incasso"
 msgstr "Al dopo incasso"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
-#: field:riba.distinta,payment_ids:0
-#: field:riba.distinta.line,payment_ids:0
+#: view:riba.list:0
+#: field:riba.list,payment_ids:0
+#: field:riba.list.line,payment_ids:0
 msgid "Payments"
 msgstr "Pagamenti"
 
@@ -867,7 +867,7 @@ msgid "No City specified for "
 msgstr "Nessuna città specificata per"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,distinta_id:0
+#: field:riba.list.line,distinta_id:0
 msgid "Distinta"
 msgstr "Distinta"
 
@@ -882,7 +882,7 @@ msgid "Distinte"
 msgstr "Distinte"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,acceptance_move_id:0
+#: field:riba.list.line,acceptance_move_id:0
 msgid "Acceptance Entry"
 msgstr "Registrazione di accettazione"
 
@@ -919,7 +919,7 @@ msgid "File"
 msgstr "File"
 
 #. module: l10n_it_ricevute_bancarie
-#: view:riba.distinta:0
+#: view:riba.list:0
 msgid "Accounting"
 msgstr "Contabilità"
 

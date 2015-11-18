@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 <<<<<<< HEAD
+<<<<<<< HEAD
 ##############################################################################
 #    
 =======
 #
+=======
+##############################################################################
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
 #
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0
 #    Copyright (C) 2012 Andrea Cometa.
@@ -28,6 +32,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 ##############################################################################
 
 import wizard_emissione_riba
@@ -36,9 +41,12 @@ import wizard_accreditation
 import wizard_unsolved
 =======
 #
+=======
+##############################################################################
+>>>>>>> 8fe6aa6... added l10n_it_ricevute_bancarie from 8.0-riba
 
-from . import wizard_emissione_riba
-from . import riba_file_export
+from . import wizard_riba_issue
+from . import wizard_riba_file_export
 from . import wizard_accreditation
 from . import wizard_unsolved
 >>>>>>> 20676d5... added l10n_it_ricevute_bancarie from 7.0

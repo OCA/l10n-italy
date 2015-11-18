@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        
+
         <!-- Payment Term -->
-        
+
         <record id="account_payment_term_riba" model="account.payment.term">
             <field name="name">RiBA 30 Days End of Month</field>
             <field name="note">RiBA 30 Days End of Month</field>
@@ -15,14 +15,14 @@
             <field eval="-1" name="days2"/>
             <field ref="account_payment_term_riba" name="payment_id"/>
         </record>
-        
+
         <!-- banks -->
 
         <record id="res_bank_1" model="res.bank">
             <field name="name">Bank</field>
             <field name="bic">CPHBBE75</field>
         </record>
-        
+
         <record id="company_bank" model="res.partner.bank">
             <field name="name">company account</field>
             <field name="acc_number">BE74126201326907</field>
@@ -31,7 +31,7 @@
             <field name="bank_bic">CPHBBE75</field>
             <field name="bank" ref="res_bank_1"></field>
         </record>
-        
+
         <record id="customer_bank" model="res.partner.bank">
             <field name="name">customer account</field>
             <field name="acc_number">IT86Y0200809440000005235152</field>
@@ -40,9 +40,9 @@
             <field name="bank_bic">CPHBBE75</field>
             <field name="bank" ref="res_bank_1"></field>
         </record>
-        
+
         <!-- accounts -->
-        
+
         <record id="sbf_effects" model="account.account">
             <field name="code">SBF</field>
             <field name="name">SBF effects (test)</field>
@@ -51,7 +51,7 @@
             <field eval="True" name="reconcile"/>
             <field name="user_type" ref="account.data_account_type_receivable"/>
         </record>
-        
+
         <record id="riba_account" model="account.account">
             <field name="code">RiBa</field>
             <field name="name">RiBa account (test)</field>
@@ -59,7 +59,7 @@
             <field name="type">other</field>
             <field name="user_type" ref="account.data_account_type_asset"/>
         </record>
-        
+
         <record id="unsolved_account" model="account.account">
             <field name="code">UNSOLVED</field>
             <field name="name">Overdue effects account (test)</field>
@@ -68,12 +68,12 @@
             <field eval="True" name="reconcile"/>
             <field name="user_type" ref="account.data_account_type_receivable"/>
         </record>
-        
+
         <!-- Config -->
-        
-        <record id="sbf_riba_config" model="riba.configurazione">
+
+        <record id="sbf_riba_config" model="riba.configuration">
             <field name="name">Salvo Buon Fine</field>
-            <field name="tipo">sbf</field>
+            <field name="type">sbf</field>
             <field name="bank_id" eval="company_bank"></field>
             <field name="acceptance_journal_id" ref="account.bank_journal"></field>
             <field name="accreditation_journal_id" ref="account.bank_journal"></field>
