@@ -19,15 +19,17 @@
 ##############################################################################
 {
     'name': 'FatturaPA - Notifications',
-    'version': '0.1',
+    'version': '7.0.1.0.0',
     'category': 'Hidden',
     'summary': 'Electronic invoices notifications',
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'description': """
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
+=======================
 FatturaPA Notifications
 =======================
 
@@ -43,6 +45,21 @@ to be called by other modules.
 It also adds the 'Import notification' wizard that allows to load XML
 notification files and link them to fatturaPA
 
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/122/7.0
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/l10n-italy/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed `feedback
+<https://github.com/OCA/
+l10n-italy/issues/new?body=module:%20
+l10n_it_fatturapa_notifications%0Aversion:%20
+7.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
