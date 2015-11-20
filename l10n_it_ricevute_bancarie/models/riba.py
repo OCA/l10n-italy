@@ -25,9 +25,7 @@
 ##############################################################################
 
 from openerp import fields, models, api, _, exceptions, workflow
-# import time
 import openerp.addons.decimal_precision as dp
-# from openerp import netsvc
 
 
 class RibaList(models.Model):

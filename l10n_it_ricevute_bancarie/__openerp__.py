@@ -67,7 +67,6 @@ Qui
 http://goo.gl/jpRhJp abbiamo un esempio delle tipiche registrazioni generate
 da un flusso 'salvo buon fine'.
     """,
-    'images': [],
     'depends': [
         'account',
         'account_voucher',
