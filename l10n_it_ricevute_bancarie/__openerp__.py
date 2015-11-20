@@ -27,9 +27,10 @@
 {
     "name": "Ricevute Bancarie",
     "version": "1.3",
-    "author": "Odoo Italian Community",
+    "author": "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "http://www.odoo-italia.org",
+    "license": "AGPL-3",
     "description": """
 Gestione delle Ricevute Bancarie
 --------------------------------
@@ -94,5 +95,4 @@ da un flusso 'salvo buon fine'.
         'test/unsolved_riba.yml',
     ],
     'installable': True,
-    'active': False,
 }

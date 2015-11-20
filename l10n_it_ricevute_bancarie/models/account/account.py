@@ -26,7 +26,7 @@
 
 from openerp.osv import fields, orm
 from openerp import api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 import openerp.addons.decimal_precision as dp
 
 
@@ -166,7 +166,7 @@ class AccountInvoice(orm.Model):
                     or invoice.payment_term.payment_cost == 0.0:
                 continue
             if not invoice.company_id.due_cost_service_id:
-                raise Warning('Set a Service for Due Cost in Company Config')
+                raise UserError('Set a Service for Due Cost in Company Config')
             # ---- Apply Due Cost on invoice only on first due of the month
             # ---- Get Date of first due
             move_line = self.env['account.move.line'].search([
