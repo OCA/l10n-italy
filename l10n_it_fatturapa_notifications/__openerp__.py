@@ -45,10 +45,6 @@ to be called by other modules.
 It also adds the 'Import notification' wizard that allows to load XML
 notification files and link them to fatturaPA
 
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/122/7.0
-
 Bug Tracker
 ===========
 

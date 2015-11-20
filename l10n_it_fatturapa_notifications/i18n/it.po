@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-02 08:38+0000\n"
-"PO-Revision-Date: 2015-07-02 08:38+0000\n"
+"POT-Creation-Date: 2015-11-20 10:04+0000\n"
+"PO-Revision-Date: 2015-11-20 10:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "File XML di notifica"
 #. module: l10n_it_fatturapa_notifications
 #: view:wizard.fatturapa.import.notification:0
 msgid "or"
-msgstr "or"
+msgstr "o"
 
 #. module: l10n_it_fatturapa_notifications
 #: code:_description:0

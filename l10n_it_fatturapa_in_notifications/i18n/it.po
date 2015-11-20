@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-02 08:26+0000\n"
-"PO-Revision-Date: 2015-07-02 08:26+0000\n"
+"POT-Creation-Date: 2015-11-20 10:05+0000\n"
+"PO-Revision-Date: 2015-11-20 10:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -189,20 +189,10 @@ msgid "Too many fatturaPA found with ID %s"
 msgstr "Troppe fatturaPA con ID %s"
 
 #. module: l10n_it_fatturapa_in_notifications
-#: field:account.invoice,transport_vehicle:0
-msgid "Vehicle"
-msgstr "Veicolo"
-
-#. module: l10n_it_fatturapa_in_notifications
-#: field:account.invoice,Vehicle_registration:0
-msgid "Veicole Registration"
-msgstr "Data immatricolazione "
-
-#. module: l10n_it_fatturapa_in_notifications
 #: view:wizard.fatturapa.in.accept:0
 #: view:wizard.fatturapa.in.reject:0
 msgid "or"
-msgstr "or"
+msgstr "o"
 
 #. module: l10n_it_fatturapa_in_notifications
 #: code:_description:0

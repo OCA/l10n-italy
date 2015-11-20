@@ -46,10 +46,6 @@ Within 'fatturaPA' tab of supplier invoice form, you can click on 2 buttons:
 This allows to generate the 'notifica esito committente' message
 http://fatturapa.gov.it/export/fatturazione/sdi/messaggi/v1.0/IT01234567890_11111_EC_001.xml
 
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/122/7.0
-
 Bug Tracker
 ===========
 
