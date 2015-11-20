@@ -30,7 +30,7 @@ from openerp.exceptions import Warning
 import openerp.addons.decimal_precision as dp
 
 
-class account_payment_term(orm.Model):
+class AccountPaymentTerm(orm.Model):
     # flag riba utile a distinguere la modalità di pagamento
     _inherit = 'account.payment.term'
 
@@ -41,14 +41,14 @@ class account_payment_term(orm.Model):
     }
 
 
-class res_bank_add_field(orm.Model):
+class ResBankAddField(orm.Model):
     _inherit = 'res.bank'
     _columns = {
         'banca_estera': fields.boolean('Banca Estera'),
     }
 
 
-class res_partner_bank_add(orm.Model):
+class ResPartnerBankAdd(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
         'codice_sia': fields.char(
@@ -58,7 +58,7 @@ class res_partner_bank_add(orm.Model):
 
 
 # se distinta_line_ids == None allora non è stata emessa
-class account_move_line(orm.Model):
+class AccountMoveLine(orm.Model):
     _inherit = "account.move.line"
 
     _columns = {
@@ -84,7 +84,7 @@ class account_move_line(orm.Model):
     ):
         # Special view for account.move.line object
         # (for ex. tree view contains user defined fields)
-        result = super(account_move_line, self).fields_view_get(
+        result = super(AccountMoveLine, self).fields_view_get(
             cr, uid, view_id, view_type, context=context, toolbar=toolbar,
             submenu=submenu)
         try:
@@ -103,7 +103,7 @@ class account_move_line(orm.Model):
             return result
 
 
-class account_invoice(orm.Model):
+class AccountInvoice(orm.Model):
 
     def _get_is_unsolved(self, cr, uid, ids, name, arg, context=None):
         res = {}
@@ -137,13 +137,13 @@ class account_invoice(orm.Model):
                 'account.invoice': (
                     lambda self, cr, uid, ids, c={}: ids, [
                         'unsolved_move_line_ids'], 10
-                    ),
+                ),
                 'account.move.line': (_get_invoice_by_move_line, [
                     'unsolved_invoice_ids', 'reconcile_id'], 10),
-                }
-            ),
+            }
+        ),
 
-        }
+    }
 
     def month_check(self, invoice_date_due, all_date_due):
         """
@@ -214,7 +214,7 @@ class account_invoice(orm.Model):
                     line_obj.create(line_vals['value'])
                     # ---- recompute invocie taxes
                     invoice.button_reset_taxes()
-        super(account_invoice, self).action_move_create()
+        super(AccountInvoice, self).action_move_create()
 
     @api.multi
     def action_cancel_draft(self):
@@ -224,13 +224,13 @@ class account_invoice(orm.Model):
             for line in invoice.invoice_line:
                 if line.due_cost_line:
                     line.unlink()
-        super(account_invoice, self).action_cancel_draft()
+        super(AccountInvoice, self).action_cancel_draft()
 
     @api.v7
     @api.one
     def copy(self, default=None):
         # Delete Due Cost Line of invoice when copying
-        res = super(account_invoice, self).copy(default)
+        res = super(AccountInvoice, self).copy(default)
         if res:
             for line in res.invoice_line:
                 if line.due_cost_line:

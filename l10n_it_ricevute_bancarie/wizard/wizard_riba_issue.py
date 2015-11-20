@@ -30,7 +30,7 @@ from openerp import fields, models, exceptions, api, _
 # -------------------------------------------------------
 #        RIBA ISSUE
 # -------------------------------------------------------
-class riba_issue(models.TransientModel):
+class RibaIssue(models.TransientModel):
     _name = "riba.issue"
     _description = "Ricevute bancarie issue"
     configuration_id = fields.Many2one(
@@ -109,7 +109,7 @@ class riba_issue(models.TransientModel):
                                 'riba_line_id': rdl_id,
                                 'amount': grouped_line.amount_residual,
                                 'move_line_id': grouped_line.id,
-                                })
+                            })
                         del grouped_lines[key]
                         break
             else:
@@ -121,7 +121,7 @@ class riba_issue(models.TransientModel):
                     'riba_line_id': rdl_id,
                     'amount': move_line.amount_residual,
                     'move_line_id': move_line.id,
-                    })
+                })
 
             countme += 1
 
@@ -142,4 +142,4 @@ class riba_issue(models.TransientModel):
             'res_id': rd_id or False,
         }
 
-riba_issue()
+RibaIssue()

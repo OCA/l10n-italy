@@ -93,7 +93,7 @@ da un flusso 'salvo buon fine'.
         'test/riba_invoice.yml',
         'test/issue_riba.yml',
         'test/unsolved_riba.yml',
-        ],
+    ],
     'installable': True,
     'active': False,
 }

@@ -26,7 +26,7 @@ from openerp.tools.translate import _
 from openerp import workflow
 
 
-class riba_unsolved(orm.TransientModel):
+class RibaUnsolved(orm.TransientModel):
 
     def _get_unsolved_journal_id(self, cr, uid, context=None):
         return self.pool.get(
@@ -96,7 +96,7 @@ class riba_unsolved(orm.TransientModel):
         'bank_expense_account_id': fields.many2one('account.account',
                                                    "Bank Expenses account"),
         'expense_amount': fields.float('Expenses amount'),
-        }
+    }
 
     _defaults = {
         'unsolved_journal_id': _get_unsolved_journal_id,
@@ -108,7 +108,7 @@ class riba_unsolved(orm.TransientModel):
         'overdue_effects_amount': _get_effects_amount,
         'bank_account_id': _get_bank_account_id,
         'bank_expense_account_id': _get_bank_expense_account_id,
-        }
+    }
 
     def skip(self, cr, uid, ids, context=None):
         if context is None:
@@ -157,13 +157,13 @@ class riba_unsolved(orm.TransientModel):
                     'partner_id': distinta_line.partner_id.id,
                     'credit': wizard.effects_amount,
                     'debit': 0.0,
-                    }),
+                }),
                 (0, 0, {
                     'name':  _('Ri.Ba. Bank'),
                     'account_id': wizard.riba_bank_account_id.id,
                     'debit': wizard.riba_bank_amount,
                     'credit': 0.0,
-                    }),
+                }),
                 (0, 0, {
                     'name':  _('Overdue Effects'),
                     'account_id': wizard.overdue_effects_account_id.id,
@@ -171,21 +171,21 @@ class riba_unsolved(orm.TransientModel):
                     'credit': 0.0,
                     'partner_id': distinta_line.partner_id.id,
                     'date_maturity': distinta_line.due_date,
-                    }),
+                }),
                 (0, 0, {
                     'name':  _('Bank'),
                     'account_id': wizard.bank_account_id.id,
                     'credit': wizard.bank_amount,
                     'debit': 0.0,
-                    }),
+                }),
                 (0, 0, {
                     'name':  _('Expenses'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,
-                    }),
-                ]
-            }
+                }),
+            ]
+        }
         move_id = move_pool.create(cr, uid, move_vals, context=context)
 
         to_be_reconciled = []
@@ -200,10 +200,10 @@ class riba_unsolved(orm.TransientModel):
                         invoice_ids = [
                             i.id for i in
                             riba_move_line.move_line_id.unsolved_invoice_ids
-                            ]
+                        ]
                     invoice_pool.write(cr, uid, invoice_ids, {
                         'unsolved_move_line_ids': [(4, move_line.id)],
-                        }, context=context)
+                    }, context=context)
             if move_line.account_id.id == wizard.effects_account_id.id:
                 to_be_reconciled.append(move_line.id)
         for acceptance_move_line in distinta_line.acceptance_move_id.line_id:
@@ -216,7 +216,7 @@ class riba_unsolved(orm.TransientModel):
         distinta_line.write({
             'unsolved_move_id': move_id,
             'state': 'unsolved',
-            })
+        })
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
         workflow.trg_validate(

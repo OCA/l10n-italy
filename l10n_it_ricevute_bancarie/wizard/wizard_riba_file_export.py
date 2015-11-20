@@ -74,7 +74,7 @@ from openerp.tools.translate import _
 import datetime
 
 
-class riba_file_export(orm.TransientModel):
+class RibaFileExport(orm.TransientModel):
 
     _progressivo = 0
     _assuntrice = 0

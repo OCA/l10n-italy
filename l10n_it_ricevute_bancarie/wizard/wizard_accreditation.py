@@ -26,7 +26,7 @@ from openerp.tools.translate import _
 from openerp import workflow
 
 
-class riba_accreditation(orm.TransientModel):
+class RibaAccreditation(orm.TransientModel):
 
     def _get_accreditation_journal_id(self, cr, uid, context=None):
         return self.pool.get(
@@ -81,7 +81,7 @@ class riba_accreditation(orm.TransientModel):
         'bank_expense_account_id': fields.many2one(
             'account.account', "Bank Expenses account"),
         'expense_amount': fields.float('Expenses amount'),
-        }
+    }
 
     _defaults = {
         'accreditation_journal_id': _get_accreditation_journal_id,
@@ -89,7 +89,7 @@ class riba_accreditation(orm.TransientModel):
         'bank_account_id': _get_bank_account_id,
         'bank_expense_account_id': _get_bank_expense_account_id,
         'accreditation_amount': _get_accreditation_amount,
-        }
+    }
 
     def skip(self, cr, uid, ids, context=None):
         if context is None:
@@ -128,21 +128,21 @@ class riba_accreditation(orm.TransientModel):
                     'account_id': wizard.accreditation_account_id.id,
                     'credit': wizard.accreditation_amount,
                     'debit': 0.0,
-                    }),
+                }),
                 (0, 0, {
                     'name':  _('Bank'),
                     'account_id': wizard.bank_account_id.id,
                     'debit': wizard.bank_amount,
                     'credit': 0.0,
-                    }),
+                }),
                 (0, 0, {
                     'name':  _('Bank'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,
-                    }),
-                ]
-            }
+                }),
+            ]
+        }
         move_id = move_pool.create(cr, uid, move_vals, context=context)
         distinta.write({'accreditation_move_id': move_id})
         workflow.trg_validate(

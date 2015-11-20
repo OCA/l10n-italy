@@ -30,7 +30,7 @@ import openerp.addons.decimal_precision as dp
 # from openerp import netsvc
 
 
-class riba_list(models.Model):
+class RibaList(models.Model):
 
     @api.multi
     def _get_acceptance_move_ids(self):
@@ -137,7 +137,7 @@ class riba_list(models.Model):
                     _('Error'),
                     _('List %s is in state %s. You can only delete documents \
 in state draft or canceled') % (list.name, list.state))
-        super(riba_list, self).unlink()  # cr, uid, ids, context=context)
+        super(RibaList, self).unlink()  # cr, uid, ids, context=context)
 
     @api.multi
     def confirm(self):  # , cr, uid, ids, context=None):
@@ -221,7 +221,7 @@ in state draft or canceled') % (list.name, list.state))
             list.state = 'draft'
 
 
-class riba_list_line(models.Model):
+class RibaListLine(models.Model):
     # TODO estendere la account_due_list per visualizzare e filtrare
     # in base alle riba ?
     _name = 'riba.list.line'
@@ -392,7 +392,7 @@ class riba_list_line(models.Model):
         ('accredited', 'Accredited'),
         ('paid', 'Paid'),
         ('unsolved', 'Unsolved'),
-        ], 'State', select=True, readonly=True, track_visibility='onchange')
+    ], 'State', select=True, readonly=True, track_visibility='onchange')
     reconciled = fields.Boolean(
         compute='_reconciled', string='Paid/Reconciled',
         store=True,
@@ -425,7 +425,7 @@ payment.")
                                                 line.sequence),
                 'journal_id': journal.id,
                 'date': line.list_id.registration_date,
-                }, self._context)
+            }, self._context)
             to_be_reconciled = []
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
@@ -449,13 +449,13 @@ payment.")
                     line.list_id.config_id.acceptance_account_id.id
                     # in questo modo se la riga non ha conto accettazione
                     # viene prelevato il conto in configuration riba
-                    ),
+                ),
                 'partner_id': line.partner_id.id,
                 'date_maturity': line.due_date,
                 'credit': 0.0,
                 'debit': total_credit,
                 'move_id': move_id,
-                }, self._context)
+            }, self._context)
             move_pool.post(
                 self._cr, self.env.user.id, [move_id], self._context)
             for reconcile_ids in to_be_reconciled:
@@ -465,13 +465,13 @@ payment.")
             line.write({
                 'acceptance_move_id': move_id,
                 'state': 'confirmed',
-                })
+            })
             workflow.trg_validate(
                 self.env.user.id, 'riba.list', line.list_id.id, 'accepted',
                 self._cr)
 
 
-class riba_list_move_line(models.Model):
+class RibaListMoveLine(models.Model):
 
     _name = 'riba.list.move.line'
     _description = 'Riba details'
