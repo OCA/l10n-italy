@@ -123,6 +123,8 @@ class TestInvoiceDueCost(TransactionCase):
     def test_delete_due_cost_line(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        # ---- Set allow cancel on invoice Journal
+        self.invoice.journal_id.update_posted = True
         # ---- Validate Invoice
         self.invoice.signal_workflow('invoice_open')
         # ---- Cancel Invoice
