@@ -22,7 +22,7 @@
     'version': '7.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Supplier electronic invoices notifications',
-    'author': 'Agile Business Group',
+    'author': 'Agile Business Group, Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'description': """
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
@@ -95,7 +95,5 @@ To contribute to this module, please visit http://odoo-community.org.
         'wizard/send_notification_view.xml',
         'account_view.xml',
     ],
-    "test": [],
-    "demo": [],
     "installable": True
 }

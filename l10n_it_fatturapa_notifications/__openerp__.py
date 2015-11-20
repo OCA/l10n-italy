@@ -22,7 +22,7 @@
     'version': '7.0.1.0.0',
     'category': 'Hidden',
     'summary': 'Electronic invoices notifications',
-    'author': 'Agile Business Group',
+    'author': 'Agile Business Group, Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'description': """
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
@@ -93,7 +93,5 @@ To contribute to this module, please visit http://odoo-community.org.
         'wizard/import_notification_view.xml',
         'security/ir.model.access.csv',
     ],
-    "test": [],
-    "demo": [],
     "installable": True
 }
