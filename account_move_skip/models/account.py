@@ -61,7 +61,8 @@ class AccountMove(models.Model):
         if not context:
             context = {}
         for line in values.get('line_id', []):
-            if line[2] and not line[2]['credit'] and not line[2]['debit']:
+            if line[2] and not line[2].get('credit', True) and not line[2].get(
+                    'debit', True):
                 line[2]['skip'] = True
         return super(AccountMove, self).write(cr, uid, ids, values, context)
 
