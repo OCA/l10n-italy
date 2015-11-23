@@ -45,7 +45,7 @@
     action = self.create_list(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
       "tz": False, "active_model": "account.move.line", "active_ids": [riba_move_line_id],
       "active_id": riba_move_line_id, })
-    riba_list_id = action and action[0]['res_id'] or False
+    riba_list_id = action and action['res_id'] or False
     list_pool = self.pool['riba.distinta']
     list_pool.confirm(cr, uid, [riba_list_id], context=context)
     list = list_pool.browse(cr, uid, riba_list_id)
