@@ -30,41 +30,26 @@ import openerp.addons.decimal_precision as dp
 
 class RibaList(models.Model):
 
-    @api.multi
+    @api.one
     def _get_acceptance_move_ids(self):
-        res = {}
-        for riba_list in self:
-            move_ids = []
-            for line in riba_list.line_ids:
-                if (line.acceptance_move_id and
-                        line.acceptance_move_id.id not in move_ids):
-                    move_ids.append(line.acceptance_move_id.id)
-            res[riba_list.id] = move_ids
-        return res
+        move_ids = self.env['account.move']
+        for line in self.line_ids:
+            move_ids |= line.acceptance_move_id
+        self.acceptance_move_ids = move_ids
 
-    @api.multi
+    @api.one
     def _get_unsolved_move_ids(self):
-        res = {}
-        for riba_list in self:
-            move_ids = []
-            for line in riba_list.line_ids:
-                if (line.unsolved_move_id and
-                        line.unsolved_move_id.id not in move_ids):
-                    move_ids.append(line.unsolved_move_id.id)
-            res[riba_list.id] = move_ids
-        return res
+        move_ids = self.env['account.move']
+        for line in self.line_ids:
+            move_ids |= line.unsolved_move_id
+        self.unsolved_move_ids = move_ids
 
-    @api.multi
+    @api.one
     def _get_payment_ids(self):
-        res = {}
-        for riba_list in self:
-            move_line_ids = []
-            for line in riba_list.line_ids:
-                for payment in line.payment_ids:
-                    if payment.id not in move_line_ids:
-                        move_line_ids.append(payment.id)
-            res[riba_list.id] = move_line_ids
-        return res
+        move_lines = self.env['account.move.line']
+        for line in self.line_ids:
+            move_lines |= line.payment_ids
+        self.payment_ids = move_lines
 
     _name = 'riba.distinta'
     _description = 'Riba list'
@@ -105,7 +90,7 @@ class RibaList(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(
             'riba.distinta'))
     acceptance_move_ids = fields.Many2many(
-        'account.move.line',
+        'account.move',
         compute='_get_acceptance_move_ids',
         string="Acceptance Entries")
     accreditation_move_id = fields.Many2one(
@@ -113,7 +98,7 @@ class RibaList(models.Model):
     payment_ids = fields.Many2many(
         'account.move.line', compute='_get_payment_ids', string='Payments')
     unsolved_move_ids = fields.Many2many(
-        'account.move.line',
+        'account.move',
         compute='_get_unsolved_move_ids',
         string="Unsolved Entries")
     type = fields.Selection(
@@ -225,26 +210,25 @@ class RibaListLine(models.Model):
     _description = 'Riba details'
     _rec_name = 'sequence'
 
-    @api.multi
+    @api.one
     def _get_line_values(self):
-        for line in self:
-            line.amount = 0.0
-            line.invoice_date = ""
-            line.invoice_number = ""
-            for move_line in line.move_line_ids:
-                line.amount += move_line.amount
-                if not line.invoice_date:
-                    line.invoice_date = str(
-                        move_line.move_line_id.invoice.date_invoice)
-                else:
-                    line.invoice_date = "%s, %s" % (line.invoice_date, str(
-                        move_line.move_line_id.invoice.date_invoice))
-                if not line.invoice_number:
-                    line.invoice_number = str(
-                        move_line.move_line_id.invoice.internal_number)
-                else:
-                    line.invoice_number = "%s, %s" % (line.invoice_number, str(
-                        move_line.move_line_id.invoice.internal_number))
+        self.amount = 0.0
+        self.invoice_date = ""
+        self.invoice_number = ""
+        for move_line in self.move_line_ids:
+            self.amount += move_line.amount
+            if not self.invoice_date:
+                self.invoice_date = str(
+                    move_line.move_line_id.invoice.date_invoice)
+            else:
+                self.invoice_date = "%s, %s" % (self.invoice_date, str(
+                    move_line.move_line_id.invoice.date_invoice))
+            if not self.invoice_number:
+                self.invoice_number = str(
+                    move_line.move_line_id.invoice.internal_number)
+            else:
+                self.invoice_number = "%s, %s" % (self.invoice_number, str(
+                    move_line.move_line_id.invoice.internal_number))
 
     amount = fields.Float(
         compute='_get_line_values', string="Amount")
@@ -292,28 +276,25 @@ class RibaListLine(models.Model):
                     self.write({'state': 'paid'})
         return reconcilied
 
-    @api.multi
+    @api.one
     def _compute_lines(self):
-        result = {}
-        for riba_line in self:
-            src = []
-            lines = []
-            if riba_line.acceptance_move_id:
-                for m in riba_line.acceptance_move_id.line_id:
-                    temp_lines = []
-                    if m.reconcile_id and m.credit == 0.0:
-                        temp_lines = map(
-                            lambda x: x.id, m.reconcile_id.line_id)
-                    elif m.reconcile_partial_id and m.credit == 0.0:
-                        temp_lines = map(
-                            lambda x: x.id,
-                            m.reconcile_partial_id.line_partial_ids)
-                    lines += [x for x in temp_lines if x not in lines]
-                    src.append(m.id)
+        src = []
+        lines = []
+        if self.acceptance_move_id:
+            for m in self.acceptance_move_id.line_id:
+                temp_lines = []
+                if m.reconcile_id and m.credit == 0.0:
+                    temp_lines = map(
+                        lambda x: x.id, m.reconcile_id.line_id)
+                elif m.reconcile_partial_id and m.credit == 0.0:
+                    temp_lines = map(
+                        lambda x: x.id,
+                        m.reconcile_partial_id.line_partial_ids)
+                lines += [x for x in temp_lines if x not in lines]
+                src.append(m.id)
 
-            lines = filter(lambda x: x not in src, lines)
-            result[riba_line.id] = lines
-        return result
+        lines = filter(lambda x: x not in src, lines)
+        self.payment_ids = self.env['account.move.line'].browse(lines)
 
     sequence = fields.Integer('Number')
     move_line_ids = fields.One2many(

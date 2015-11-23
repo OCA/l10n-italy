@@ -4,10 +4,10 @@
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-2015 Agile Business Group <http://www.agilebg.com>
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
