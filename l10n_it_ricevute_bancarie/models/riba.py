@@ -33,37 +33,37 @@ class RibaList(models.Model):
     @api.multi
     def _get_acceptance_move_ids(self):
         res = {}
-        for list in self:
+        for riba_list in self:
             move_ids = []
-            for line in list.line_ids:
+            for line in riba_list.line_ids:
                 if (line.acceptance_move_id and
                         line.acceptance_move_id.id not in move_ids):
                     move_ids.append(line.acceptance_move_id.id)
-            res[list.id] = move_ids
+            res[riba_list.id] = move_ids
         return res
 
     @api.multi
     def _get_unsolved_move_ids(self):
         res = {}
-        for list in self:
+        for riba_list in self:
             move_ids = []
-            for line in list.line_ids:
+            for line in riba_list.line_ids:
                 if (line.unsolved_move_id and
                         line.unsolved_move_id.id not in move_ids):
                     move_ids.append(line.unsolved_move_id.id)
-            res[list.id] = move_ids
+            res[riba_list.id] = move_ids
         return res
 
     @api.multi
     def _get_payment_ids(self):
         res = {}
-        for list in self:
+        for riba_list in self:
             move_line_ids = []
-            for line in list.line_ids:
+            for line in riba_list.line_ids:
                 for payment in line.payment_ids:
                     if payment.id not in move_line_ids:
                         move_line_ids.append(payment.id)
-            res[list.id] = move_line_ids
+            res[riba_list.id] = move_line_ids
         return res
 
     _name = 'riba.distinta'
@@ -129,12 +129,13 @@ class RibaList(models.Model):
 
     @api.multi
     def unlink(self):
-        for list in self:
-            if list.state not in ('draft',  'cancel'):
+        for riba_list in self:
+            if riba_list.state not in ('draft',  'cancel'):
                 raise exceptions.Warning(
                     _('Error'),
                     _('List %s is in state %s. You can only delete documents'
-                      ' in state draft or canceled') % (list.name, list.state))
+                      ' in state draft or canceled')
+                    % (riba_list.name, riba_list.state))
         super(RibaList, self).unlink()
 
     @api.multi
@@ -149,15 +150,15 @@ class RibaList(models.Model):
 
     @api.multi
     def riba_cancel(self):
-        for list in self:
+        for riba_list in self:
             # TODO remove ervery other move
-            for line in list.line_ids:
+            for line in riba_list.line_ids:
                 if line.acceptance_move_id:
                     line.acceptance_move_id.unlink()
                 if line.unsolved_move_id:
                     line.unsolved_move_id.unlink()
-            if list.accreditation_move_id:
-                list.accreditation_move_id.unlink()
+            if riba_list.accreditation_move_id:
+                riba_list.accreditation_move_id.unlink()
             line.state = 'cancel'
 
     @api.one
@@ -169,8 +170,8 @@ class RibaList(models.Model):
     def riba_accredited(self):
         self.state = 'accredited'
         self.date_accreditation = fields.Date.context_today(self)
-        for list in self:
-            for line in list.line_ids:
+        for riba_list in self:
+            for line in riba_list.line_ids:
                 line.state = 'accredited'
 
     @api.one
@@ -185,36 +186,36 @@ class RibaList(models.Model):
 
     @api.multi
     def test_accepted(self):
-        for list in self:
-            for line in list.line_ids:
+        for riba_list in self:
+            for line in riba_list.line_ids:
                 if line.state != 'confirmed':
                     return False
         return True
 
     @api.multi
     def test_unsolved(self):
-        for list in self:
-            for line in list.line_ids:
+        for riba_list in self:
+            for line in riba_list.line_ids:
                 if line.state != 'unsolved':
                     return False
         return True
 
     @api.multi
     def test_paid(self):
-        for list in self:
-            for line in list.line_ids:
+        for riba_list in self:
+            for line in riba_list.line_ids:
                 if line.state != 'paid':
                     return False
         return True
 
     @api.multi
     def action_cancel_draft(self):
-        for list in self:
+        for riba_list in self:
             workflow.trg_delete(
-                self.env.user.id, 'riba.distinta', list.id, self._cr)
+                self.env.user.id, 'riba.distinta', riba_list.id, self._cr)
             workflow.trg_create(
-                self.env.user.id, 'riba.distinta', list.id, self._cr)
-            list.state = 'draft'
+                self.env.user.id, 'riba.distinta', riba_list.id, self._cr)
+            riba_list.state = 'draft'
 
 
 class RibaListLine(models.Model):
@@ -252,91 +253,44 @@ class RibaListLine(models.Model):
     invoice_number = fields.Char(
         compute='_get_line_values', string="Invoice Number", size=256)
 
-    @api.multi
-    def _reconciled(self):
-        res = {}
-        for line in self:
-            res[line.id] = line.test_paid()
-            if res[line.id]:
-                line.state = 'paid'
-                workflow.trg_validate(
-                    self.env.user.id, 'riba.distinta',
-                    line.distinta_id.id, 'paid', self.env.cr)
-        return res
-
     @api.one
-    def move_line_id_payment_gets(self):
-        res = {}
-        if not self:
-            return res
-        self.env.cr.execute(
-            'SELECT distinta_line.id, l.id '
-            'FROM account_move_line l '
-            'LEFT JOIN riba_distinta_line distinta_line ON '
-            '(distinta_line.acceptance_move_id=l.move_id) '
-            'WHERE distinta_line.id IN %s '
-            'AND l.account_id=distinta_line.acceptance_account_id', (
-                tuple([line.id for line in self]),))
-        for r in self.env.cr.fetchall():
-            res.setdefault(r[0], [])
-            res[r[0]].append(r[1])
-        return res
+    @api.depends(
+        'acceptance_move_id.line_id.reconcile_id',
+        'acceptance_move_id.line_id.account_id')
+    def _reconciled(self):
+        self.reconciled = self.test_reconcilied()
+        if self.state == 'paid':
+            self.distinta_id.signal_workflow('paid')
 
-    # return the ids of the move lines which has the same account than the
-    # statement whose id is in ids
     @api.multi
     def move_line_id_payment_get(self):
-        if not self:
+        # return the move line ids with the same account as the distinta line
+        if not self.id:
             return []
-        ids = [x.id for x in self]
-        result = self.move_line_id_payment_gets(ids)
-        return result.get(ids[0], [])
+        query = """ SELECT l.id
+                    FROM account_move_line l, riba_distinta_line rdl
+                    WHERE rdl.id = %s AND l.move_id = rdl.acceptance_move_id
+                    AND l.account_id = rdl.acceptance_account_id
+                """
+        self._cr.execute(query, (self.id,))
+        return [row[0] for row in self._cr.fetchall()]
 
     @api.multi
-    def test_paid(self):
-        ids = [x.id for x in self]
-        res = self.move_line_id_payment_get(ids)
-        if not res:
+    def test_reconcilied(self):
+        # check whether all corresponding account move lines are reconciled
+        line_ids = self.move_line_id_payment_get()
+        if not line_ids:
             return False
-        ok = True
-        for id in res:
-            self.env.cr.execute(
-                'select reconcile_id from account_move_line where id=%s',
-                (id,))
-            ok = ok and bool(self.env.cr.fetchone()[0])
-        return ok
-
-    def _get_riba_line_from_move_line(self, cr, uid, ids, context=None):
-        move = {}
-        for line in self.pool['account.move.line'].browse(cr, uid, ids,
-                                                          context=context):
-            if line.reconcile_partial_id:
-                for line2 in line.reconcile_partial_id.line_partial_ids:
-                    move[line2.move_id.id] = True
-            if line.reconcile_id:
-                for line2 in line.reconcile_id.line_id:
-                    move[line2.move_id.id] = True
-        line_ids = []
-        if move:
-            line_ids = self.pool['riba.distinta.line'].search(
-                cr, uid, [('acceptance_move_id', 'in', move.keys())],
-                context=context)
-        return line_ids
-
-    def _get_line_from_reconcile(self, cr, uid, ids, context=None):
-        move = {}
-        for r in self.pool['account.move.reconcile'].browse(cr, uid, ids,
-                                                            context=context):
-            for line in r.line_partial_ids:
-                move[line.move_id.id] = True
-            for line in r.line_id:
-                move[line.move_id.id] = True
-        line_ids = []
-        if move:
-            line_ids = self.pool.get('riba.distinta.line').search(
-                cr, uid, [('acceptance_move_id', 'in', move.keys())],
-                context=context)
-        return line_ids
+        query = "SELECT reconcile_id FROM account_move_line WHERE id IN %s"
+        self._cr.execute(query, (tuple(line_ids),))
+        reconcilied = all(row[0] for row in self._cr.fetchall())
+        if reconcilied:
+            for line in self:
+                if line.state != 'unsolved':
+                    # Unsolved state is directly set by unsolved wizard.
+                    # In that case, line is reconcilied, but not 'paid'
+                    self.write({'state': 'paid'})
+        return reconcilied
 
     @api.multi
     def _compute_lines(self):
@@ -389,17 +343,9 @@ class RibaListLine(models.Model):
     reconciled = fields.Boolean(
         compute='_reconciled', string='Paid/Reconciled',
         store=True,
-        help="It indicates that the line has been paid and the journal \
-entry of the line has been reconciled with one or several journal entries of \
-payment.")
-    """
-    store={
-        'riba.list.line': (lambda self, cr, uid, ids, c={}: ids,
-                           ['acceptance_move_id'], 50),
-        'account.move.line': (_get_riba_line_from_move_line, None, 50),
-        'account.move.reconcile': (_get_line_from_reconcile, None, 50),
-    },
-    """
+        help="It indicates that the journal entry "
+             "of the line has been reconciled with one or several journal "
+             "entries")
     payment_ids = fields.Many2many(
         'account.move.line', compute='_compute_lines', string='Payments')
     type = fields.Char(
@@ -458,9 +404,7 @@ payment.")
                 'acceptance_move_id': move_id,
                 'state': 'confirmed',
             })
-            workflow.trg_validate(
-                self.env.user.id, 'riba.distinta', line.distinta_id.id,
-                'accepted', self._cr)
+            line.distinta_id.signal_workflow('accepted')
 
 
 class RibaListMoveLine(models.Model):

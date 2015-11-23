@@ -120,10 +120,8 @@ class RibaUnsolved(orm.TransientModel):
         line_pool = self.pool['riba.distinta.line']
         line_pool.write(cr, uid, active_id, {'state': 'unsolved'},
                         context=context)
-        workflow.trg_validate(
-            uid, 'riba.distinta',
-            line_pool.browse(cr, uid, active_id).distinta_id.id, 'unsolved',
-            cr)
+        line_pool.browse(
+            cr, uid, active_id).distinta_id.signal_workflow('unsolved')
         return {'type': 'ir.actions.act_window_close'}
 
     def create_move(self, cr, uid, ids, context=None):
@@ -219,8 +217,7 @@ class RibaUnsolved(orm.TransientModel):
         })
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
-        workflow.trg_validate(
-            uid, 'riba.distinta', distinta_line.distinta_id.id, 'unsolved', cr)
+        distinta_line.distinta_id.signal_workflow('unsolved')
         return {
             'name': _('Unsolved Entry'),
             'view_type': 'form',

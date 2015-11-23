@@ -51,7 +51,6 @@
     list = list_pool.browse(cr, uid, riba_list_id)
     assert (list.state == 'accepted'), ("RiBa list is not accepted, but %s" % list.state)
     assert (len(list.line_ids) == 1), ("RiBa list must have 1 line, %s found" % len(list.line_ids))
-    invoice.refresh()
     assert (invoice.state == 'paid'), ("Invoice state is not paid, but %s" % invoice.state)
     accreditation_pool = self.pool['riba.accreditation']
     accr_context = {
@@ -66,7 +65,6 @@
       'expense_amount': 5,
       }, context=accr_context)
     accreditation_pool.create_move(cr, uid, [accr_id], context=accr_context)
-    list.refresh()
     assert (list.state == 'accredited'), ("RiBa list is not accredited, but %s" % list.state)
     # unsolved wizard
     unsolved_pool = self.pool['riba.unsolved']
@@ -82,7 +80,5 @@
       'expense_amount': 2,
       }, context=unsolved_context)
     unsolved_pool.create_move(cr, uid, [unsolved_id], context=unsolved_context)
-    list.refresh()
     assert (list.state == 'unsolved'), ("RiBa list is not closed, but %s" % list.state)
-    invoice.refresh()
     assert (invoice.unsolved_move_line_ids), ("Unsolved invoice is missing")
