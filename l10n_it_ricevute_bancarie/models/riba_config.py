@@ -80,7 +80,7 @@ class RibaConfiguration(orm.Model):
             context = {}
         if not context.get('active_id', False):
             return False
-        ribalist_pool = self.pool['riba.list']
+        ribalist_pool = self.pool['riba.distinta']
         ribalist = ribalist_pool.browse(cr, uid, context['active_id'],
                                         context=context)
         return (ribalist.config_id[field_name] and
@@ -92,7 +92,7 @@ class RibaConfiguration(orm.Model):
             context = {}
         if not context.get('active_id', False):
             return False
-        ribalist_line = self.pool['riba.list.line'].browse(
+        ribalist_line = self.pool['riba.distinta.line'].browse(
             cr, uid, context['active_id'], context=context)
-        return (ribalist_line.list_id.config_id[field_name] and
-                ribalist_line.list_id.config_id[field_name].id or False)
+        return (ribalist_line.distinta_id.config_id[field_name] and
+                ribalist_line.distinta_id.config_id[field_name].id or False)

@@ -63,7 +63,7 @@ class AccountMoveLine(orm.Model):
 
     _columns = {
         'distinta_line_ids': fields.one2many(
-            'riba.list.move.line', 'move_line_id', "Dettaglio riba"),
+            'riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
         'riba': fields.related(
             'invoice', 'payment_term', 'riba', type='boolean', string='RiBa',
             store=False),

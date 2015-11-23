@@ -66,13 +66,13 @@ class RibaList(models.Model):
             res[list.id] = move_line_ids
         return res
 
-    _name = 'riba.list'
+    _name = 'riba.distinta'
     _description = 'Riba list'
 
     name = fields.Char(
         'Reference', size=128, required=True, readonly=True,
         states={'draft': [('readonly', False)]},
-        default=(lambda self: self.env['ir.sequence'].get('riba.list')))
+        default=(lambda self: self.env['ir.sequence'].get('riba.distinta')))
     config_id = fields.Many2one(
         'riba.configuration', string='Configuration', select=True,
         required=True, readonly=True, states={'draft': [('readonly', False)]},
@@ -86,7 +86,7 @@ class RibaList(models.Model):
         ('cancel', 'Canceled')], 'State', select=True, readonly=True,
         default='draft')
     line_ids = fields.One2many(
-        'riba.list.line', 'list_id', 'Riba deadlines', readonly=True,
+        'riba.distinta.line', 'distinta_id', 'Riba deadlines', readonly=True,
         states={'draft': [('readonly', False)]})
     user_id = fields.Many2one(
         'res.users', 'User', required=True, readonly=True,
@@ -103,7 +103,7 @@ class RibaList(models.Model):
         'res.company', 'Company', required=True, readonly=True,
         states={'draft': [('readonly', False)]},
         default=lambda self: self.env['res.company']._company_default_get(
-            'riba.list'))
+            'riba.distinta'))
     acceptance_move_ids = fields.Many2many(
         'account.move.line',
         compute='_get_acceptance_move_ids',
@@ -213,16 +213,16 @@ in state draft or canceled') % (list.name, list.state))
         # wf_service = netsvc.LocalService("workflow")
         for list in self:
             workflow.trg_delete(
-                self.env.user.id, 'riba.list', list.id, self._cr)
+                self.env.user.id, 'riba.distinta', list.id, self._cr)
             workflow.trg_create(
-                self.env.user.id, 'riba.list', list.id, self._cr)
+                self.env.user.id, 'riba.distinta', list.id, self._cr)
             list.state = 'draft'
 
 
 class RibaListLine(models.Model):
     # TODO estendere la account_due_list per visualizzare e filtrare
     # in base alle riba ?
-    _name = 'riba.list.line'
+    _name = 'riba.distinta.line'
     _description = 'Riba details'
     _rec_name = 'sequence'
 
@@ -265,8 +265,8 @@ class RibaListLine(models.Model):
             if res[line.id]:
                 line.state = 'paid'
                 workflow.trg_validate(
-                    self.env.user.id, 'riba.list',
-                    line.list_id.id, 'paid', self.env.cr)
+                    self.env.user.id, 'riba.distinta',
+                    line.distinta_id.id, 'paid', self.env.cr)
         return res
 
     @api.one
@@ -275,12 +275,12 @@ class RibaListLine(models.Model):
         if not self:
             return res
         self.env.cr.execute(
-            'SELECT list_line.id, l.id '
+            'SELECT distinta_line.id, l.id '
             'FROM account_move_line l '
-            'LEFT JOIN riba_list_line list_line ON '
-            '(list_line.acceptance_move_id=l.move_id) '
-            'WHERE list_line.id IN %s '
-            'AND l.account_id=list_line.acceptance_account_id', (
+            'LEFT JOIN riba_distinta_line distinta_line ON '
+            '(distinta_line.acceptance_move_id=l.move_id) '
+            'WHERE distinta_line.id IN %s '
+            'AND l.account_id=distinta_line.acceptance_account_id', (
                 tuple([line.id for line in self]),))
         for r in self.env.cr.fetchall():
             res.setdefault(r[0], [])
@@ -323,7 +323,7 @@ class RibaListLine(models.Model):
                     move[line2.move_id.id] = True
         line_ids = []
         if move:
-            line_ids = self.pool['riba.list.line'].search(
+            line_ids = self.pool['riba.distinta.line'].search(
                 cr, uid, [('acceptance_move_id', 'in', move.keys())],
                 context=context)
         return line_ids
@@ -338,7 +338,7 @@ class RibaListLine(models.Model):
                 move[line.move_id.id] = True
         line_ids = []
         if move:
-            line_ids = self.pool.get('riba.list.line').search(
+            line_ids = self.pool.get('riba.distinta.line').search(
                 cr, uid, [('acceptance_move_id', 'in', move.keys())],
                 context=context)
         return line_ids
@@ -368,7 +368,7 @@ class RibaListLine(models.Model):
 
     sequence = fields.Integer('Number')
     move_line_ids = fields.One2many(
-        'riba.list.move.line', 'riba_line_id', string='Credit move lines')
+        'riba.distinta.move.line', 'riba_line_id', string='Credit move lines')
     acceptance_move_id = fields.Many2one(
         'account.move', string='Acceptance Entry', readonly=True)
     unsolved_move_id = fields.Many2one(
@@ -379,8 +379,8 @@ class RibaListLine(models.Model):
     iban = fields.Char(
         related='bank_id.iban', string='IBAN', store=False,
         readonly=True)
-    list_id = fields.Many2one(
-        'riba.list', string='List', required=True, ondelete='cascade')
+    distinta_id = fields.Many2one(
+        'riba.distinta', string='List', required=True, ondelete='cascade')
     partner_id = fields.Many2one(
         'res.partner', string="Cliente", readonly=True)
     due_date = fields.Date("Due date", readonly=True)
@@ -408,7 +408,7 @@ payment.")
     payment_ids = fields.Many2many(
         'account.move.line', compute='_compute_lines', string='Payments')
     type = fields.Char(
-        relation='list_id.type', size=32, string='Type', readonly=True)
+        relation='distinta_id.type', size=32, string='Type', readonly=True)
 
     @api.multi
     def confirm(self):  # , cr, uid, ids, context=None):
@@ -416,13 +416,13 @@ payment.")
         move_line_pool = self.pool['account.move.line']
         # wf_service = netsvc.LocalService("workflow")
         for line in self:  # .browse(cr, uid, ids, context=context):
-            journal = line.list_id.config_id.acceptance_journal_id
+            journal = line.distinta_id.config_id.acceptance_journal_id
             total_credit = 0.0
             move_id = move_pool.create(self._cr, self.env.user.id, {
-                'ref': 'Ri.Ba. %s - line %s' % (line.list_id.name,
+                'ref': 'Ri.Ba. %s - line %s' % (line.distinta_id.name,
                                                 line.sequence),
                 'journal_id': journal.id,
-                'date': line.list_id.registration_date,
+                'date': line.distinta_id.registration_date,
             }, self._context)
             to_be_reconciled = []
             for riba_move_line in line.move_line_ids:
@@ -440,11 +440,11 @@ payment.")
                 to_be_reconciled.append([move_line_id,
                                          riba_move_line.move_line_id.id])
             move_line_pool.create(self._cr, self.env.user.id, {
-                'name': 'Ri.Ba. %s - line %s' % (line.list_id.name,
+                'name': 'Ri.Ba. %s - line %s' % (line.distinta_id.name,
                                                  line.sequence),
                 'account_id': (
                     line.acceptance_account_id.id or
-                    line.list_id.config_id.acceptance_account_id.id
+                    line.distinta_id.config_id.acceptance_account_id.id
                     # in questo modo se la riga non ha conto accettazione
                     # viene prelevato il conto in configuration riba
                 ),
@@ -465,13 +465,13 @@ payment.")
                 'state': 'confirmed',
             })
             workflow.trg_validate(
-                self.env.user.id, 'riba.list', line.list_id.id, 'accepted',
+                self.env.user.id, 'riba.distinta', line.distinta_id.id, 'accepted',
                 self._cr)
 
 
 class RibaListMoveLine(models.Model):
 
-    _name = 'riba.list.move.line'
+    _name = 'riba.distinta.move.line'
     _description = 'Riba details'
     _rec_name = 'amount'
 
@@ -480,4 +480,4 @@ class RibaListMoveLine(models.Model):
     move_line_id = fields.Many2one(
         'account.move.line', string='Credit move line')
     riba_line_id = fields.Many2one(
-        'riba.list.line', string='List line', ondelete='cascade')
+        'riba.distinta.line', string='List line', ondelete='cascade')

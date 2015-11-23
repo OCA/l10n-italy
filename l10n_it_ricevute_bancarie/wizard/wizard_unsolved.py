@@ -46,7 +46,7 @@ class RibaUnsolved(orm.TransientModel):
         if not context.get('active_id', False):
             return False
         return self.pool.get(
-            'riba.list.line'
+            'riba.distinta.line'
         ).browse(cr, uid, context['active_id'], context=context).amount
 
     def _get_riba_bank_account_id(self, cr, uid, context=None):
@@ -117,12 +117,12 @@ class RibaUnsolved(orm.TransientModel):
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
-        line_pool = self.pool['riba.list.line']
+        line_pool = self.pool['riba.distinta.line']
         line_pool.write(cr, uid, active_id, {'state': 'unsolved'},
                         context=context)
         workflow.trg_validate(
-            uid, 'riba.list',
-            line_pool.browse(cr, uid, active_id).list_id.id, 'unsolved',
+            uid, 'riba.distinta',
+            line_pool.browse(cr, uid, active_id).distinta_id.id, 'unsolved',
             cr)
         return {'type': 'ir.actions.act_window_close'}
 
@@ -136,7 +136,7 @@ class RibaUnsolved(orm.TransientModel):
         move_pool = self.pool['account.move']
         invoice_pool = self.pool['account.invoice']
         move_line_pool = self.pool['account.move.line']
-        distinta_line = self.pool['riba.list.line'].browse(cr, uid, active_id,
+        distinta_line = self.pool['riba.distinta.line'].browse(cr, uid, active_id,
                                                            context=context)
         wizard = self.browse(cr, uid, ids)[0]
         if (not wizard.unsolved_journal_id or
@@ -148,7 +148,7 @@ class RibaUnsolved(orm.TransientModel):
             raise orm.except_orm(_('Error'), _('Every account is mandatory'))
         move_vals = {
             'ref': _('Unsolved Ri.Ba. %s - line %s') % (
-                distinta_line.list_id.name, distinta_line.sequence),
+                distinta_line.distinta_id.name, distinta_line.sequence),
             'journal_id': wizard.unsolved_journal_id.id,
             'line_id': [
                 (0, 0, {
@@ -220,7 +220,7 @@ class RibaUnsolved(orm.TransientModel):
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
         workflow.trg_validate(
-            uid, 'riba.list', distinta_line.list_id.id, 'unsolved', cr)
+            uid, 'riba.distinta', distinta_line.distinta_id.id, 'unsolved', cr)
         return {
             'name': _('Unsolved Entry'),
             'view_type': 'form',

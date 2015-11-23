@@ -33,7 +33,7 @@
             <field name="name">Ri.Ba. Unsolved</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">riba.unsolved</field>
-            <field name="src_model">riba.list.line</field>
+            <field name="src_model">riba.distinta.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
