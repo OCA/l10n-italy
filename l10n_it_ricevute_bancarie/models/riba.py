@@ -138,13 +138,14 @@ class RibaList(models.Model):
         for riba_list in self:
             # TODO remove ervery other move
             for line in riba_list.line_ids:
+                line.state = 'cancel'
                 if line.acceptance_move_id:
                     line.acceptance_move_id.unlink()
                 if line.unsolved_move_id:
                     line.unsolved_move_id.unlink()
             if riba_list.accreditation_move_id:
                 riba_list.accreditation_move_id.unlink()
-            line.state = 'cancel'
+            riba_list.state = 'cancel'
 
     @api.one
     def riba_accepted(self):
@@ -201,6 +202,7 @@ class RibaList(models.Model):
             workflow.trg_create(
                 self.env.user.id, 'riba.distinta', riba_list.id, self._cr)
             riba_list.state = 'draft'
+            riba_list.line_ids.state = 'draft'
 
 
 class RibaListLine(models.Model):
@@ -268,19 +270,24 @@ class RibaListLine(models.Model):
         query = "SELECT reconcile_id FROM account_move_line WHERE id IN %s"
         self._cr.execute(query, (tuple(line_ids),))
         reconcilied = all(row[0] for row in self._cr.fetchall())
-        if reconcilied:
-            for line in self:
-                if line.state != 'unsolved':
+        for line in self:
+            if reconcilied:
+                if line.state != 'unsolved' and line.state != 'paid':
                     # Unsolved state is directly set by unsolved wizard.
                     # In that case, line is reconcilied, but not 'paid'
                     self.write({'state': 'paid'})
+            else:
+                if line.state == 'paid':
+                    # if not reconciled and in state 'paid',
+                    # go back to accredited
+                    self.write({'state': 'accredited'})
         return reconcilied
 
     @api.one
     def _compute_lines(self):
         src = []
         lines = []
-        if self.acceptance_move_id:
+        if self.acceptance_move_id and not self.state == 'unsolved':
             for m in self.acceptance_move_id.line_id:
                 temp_lines = []
                 if m.reconcile_id and m.credit == 0.0:
@@ -320,6 +327,7 @@ class RibaListLine(models.Model):
         ('accredited', 'Accredited'),
         ('paid', 'Paid'),
         ('unsolved', 'Unsolved'),
+        ('cancel', 'Canceled'),
     ], 'State', select=True, readonly=True, track_visibility='onchange')
     reconciled = fields.Boolean(
         compute='_reconciled', string='Paid/Reconciled',
@@ -350,7 +358,10 @@ class RibaListLine(models.Model):
                 total_credit += riba_move_line.amount
                 move_line_id = move_line_pool.create(
                     self._cr, self.env.user.id, {
-                        'name': riba_move_line.move_line_id.invoice.number,
+                        'name': (
+                            riba_move_line.move_line_id.invoice and
+                            riba_move_line.move_line_id.invoice.number or
+                            riba_move_line.move_line_id.name),
                         'partner_id': line.partner_id.id,
                         'account_id': (
                             riba_move_line.move_line_id.account_id.id),
