@@ -72,8 +72,6 @@ class RibaIssue(models.TransientModel):
         grouped_lines = {}
         move_lines = move_line_obj.search(
             [('id', 'in', self._context['active_ids'])])
-        # move_lines = move_line_obj.browse(move_line_ids)
-        # import pdb; pdb.set_trace()
         for move_line in move_lines:
             if move_line.partner_id.group_riba:
                 if not grouped_lines.get((move_line.partner_id.id,
