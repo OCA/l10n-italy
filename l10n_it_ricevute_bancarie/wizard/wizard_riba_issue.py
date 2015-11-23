@@ -36,7 +36,7 @@ class RibaIssue(models.TransientModel):
     configuration_id = fields.Many2one(
         'riba.configuration', string='Configuration', required=True)
 
-    @api.one
+    @api.multi
     def create_list(self):
         def create_rdl(countme, bank_id, rd_id, date_maturity, partner_id,
                        acceptance_account_id):
@@ -51,6 +51,7 @@ class RibaIssue(models.TransientModel):
             }
             return riba_list_line.create(rdl)
 
+        self.ensure_one()
         # Qui creiamo la distinta
         # wizard_obj = self.browse(cr, uid, ids)[0]
         # active_ids = context and context.get('active_ids', [])
@@ -125,19 +126,14 @@ class RibaIssue(models.TransientModel):
 
         # ----- show list form
         mod_obj = self.env['ir.model.data']
-        res = mod_obj.get_object_reference(
+        act_obj = self.env['ir.actions.act_window']
+        action = mod_obj.get_object_reference(
+            'l10n_it_ricevute_bancarie', 'distinta_riba_action')
+        view = mod_obj.get_object_reference(
             'l10n_it_ricevute_bancarie', 'view_riba_distinta_form')
-        res_id = res and res[1] or False,
-        return {
-            'name': 'Distinta',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': res_id,
-            'res_model': 'riba.distinta',
-            'type': 'ir.actions.act_window',
-            # 'nodestroy': True,
-            'target': 'current',
-            'res_id': rd_id or False,
-        }
-
-RibaIssue()
+        action_id = action and action[1] or False
+        action = act_obj.browse(action_id)
+        action_vals = action.read()[0]
+        action_vals['views'] = [(view and view[1] or False, 'form')]
+        action_vals['res_id'] = rd_id
+        return action_vals

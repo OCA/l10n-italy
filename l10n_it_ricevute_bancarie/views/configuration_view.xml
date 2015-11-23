@@ -9,10 +9,12 @@
             <field name="model">riba.configuration</field>
             <field name="arch" type="xml">
                 <form string="Ri.Ba. - Configurazione">
-                    <field name="name" />
-                    <field name="type" />
-                    <field name="bank_id" />
-                    <field name="company_id"  widget="selection" groups="base.group_multi_company"/>
+                    <group>
+                        <field name="name" />
+                        <field name="type" />
+                        <field name="bank_id" />
+                        <field name="company_id"  widget="selection" groups="base.group_multi_company"/>
+                    </group>
                     <group string="Salvo buon fine" attrs="{'invisible': [('type','!=','sbf')]}" colspan="4" col="4">
                         <separator colspan="4" string="Acceptance"/>
                         <field name="acceptance_journal_id" attrs="{'required':[('type','=','sbf')]}"/>
