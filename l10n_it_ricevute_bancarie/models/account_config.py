@@ -33,7 +33,7 @@ class AccountConfigSettings(models.TransientModel):
 
     due_cost_service_id = fields.Many2one(
         related='company_id.due_cost_service_id',
-        help='Default Service for Due Cost on invoice',
+        help='Default Service for RiBa Due Cost (collection fees) on invoice',
         domain=[('type', '=', 'service')])
 
     def default_get(self, cr, uid, fields, context=None):

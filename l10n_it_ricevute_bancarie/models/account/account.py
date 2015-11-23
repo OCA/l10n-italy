@@ -4,7 +4,7 @@
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-2015 Agile Business Group <http://www.agilebg.com>
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
@@ -36,8 +36,11 @@ class AccountPaymentTerm(orm.Model):
 
     _columns = {
         'riba': fields.boolean('Riba'),
-        'payment_cost': fields.float(
-            'Payment Cost', digits_compute=dp.get_precision('Account'),),
+        'riba_payment_cost': fields.float(
+            'RiBa Payment Cost', digits_compute=dp.get_precision('Account'),
+            help="Collection fees amount. If different from 0, "
+                 "for each payment deadline an invoice line will be added "
+                 "to invoice, with this amount"),
     }
 
 
@@ -163,7 +166,7 @@ class AccountInvoice(orm.Model):
             # ---- of the month
             if invoice.type != 'out_invoice' or not invoice.payment_term \
                     or not invoice.payment_term.riba \
-                    or invoice.payment_term.payment_cost == 0.0:
+                    or invoice.payment_term.riba_payment_cost == 0.0:
                 continue
             if not invoice.company_id.due_cost_service_id:
                 raise UserError('Set a Service for Due Cost in Company Config')
@@ -197,7 +200,7 @@ class AccountInvoice(orm.Model):
                     line_vals['value'].update({
                         'product_id': service_prod.id,
                         'invoice_id': invoice.id,
-                        'price_unit': invoice.payment_term.payment_cost,
+                        'price_unit': invoice.payment_term.riba_payment_cost,
                         'due_cost_line': True,
                         'name': _('{line_name} for {month}-{year}').format(
                             line_name=line_vals['value']['name'],
@@ -212,7 +215,7 @@ class AccountInvoice(orm.Model):
                             'invoice_line_tax_id': [(4, tax.id)]
                         })
                     line_obj.create(line_vals['value'])
-                    # ---- recompute invocie taxes
+                    # ---- recompute invoice taxes
                     invoice.button_reset_taxes()
         super(AccountInvoice, self).action_move_create()
 
@@ -242,5 +245,5 @@ class AccountInvoiceLine(orm.Model):
     _inherit = 'account.invoice.line'
 
     _columns = {
-        'due_cost_line': fields.boolean('Due Cost Line'),
+        'due_cost_line': fields.boolean('RiBa Due Cost Line'),
     }

@@ -12,7 +12,7 @@
             <field name="arch" type="xml">
                 <field name="active" position="after">
                     <field name="riba"/>
-                    <field name="payment_cost"
+                    <field name="riba_payment_cost"
                            attrs="{'invisible': [('riba', '=', False)]}"/>
                 </field>
             </field>

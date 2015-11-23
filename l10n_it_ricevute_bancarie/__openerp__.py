@@ -26,7 +26,7 @@
 
 {
     "name": "Ricevute Bancarie",
-    "version": "1.3",
+    "version": "8.0.1.3.0",
     "author": "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "http://www.odoo-italia.org",
