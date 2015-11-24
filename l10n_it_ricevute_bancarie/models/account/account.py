@@ -4,7 +4,7 @@
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
-#    Copyright (C) 2012-2015 Agile Business Group <http://www.agilebg.com>
+#    Copyright (C) 2012-2015 Lorenzo Battistini - Agile Business Group
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
 #    (<http://www.odoo-italia.org>).
