@@ -12,7 +12,9 @@
             <field name="arch" type="xml">
                 <form string="Issue Ri.Ba.">
                     <separator string="This wizard generates the Ri.Ba. list, do you confirm?" colspan="4"/>
-                    <field name="configuration_id"/>
+                    <group>
+                        <field name="configuration_id"/>
+                    </group>
                     <group col="4" colspan="4">
                         <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
                         <button string="Create" name="create_list" type="object" icon="gtk-ok" colspan="2"/>

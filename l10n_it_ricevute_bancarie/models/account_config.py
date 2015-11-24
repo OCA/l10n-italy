@@ -7,7 +7,7 @@
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -33,7 +33,7 @@ class AccountConfigSettings(models.TransientModel):
 
     due_cost_service_id = fields.Many2one(
         related='company_id.due_cost_service_id',
-        help='Default Service for Due Cost on invoice',
+        help='Default Service for RiBa Due Cost (collection fees) on invoice',
         domain=[('type', '=', 'service')])
 
     def default_get(self, cr, uid, fields, context=None):

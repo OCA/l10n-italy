@@ -7,7 +7,7 @@
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -80,7 +80,7 @@ class RibaConfiguration(orm.Model):
             context = {}
         if not context.get('active_id', False):
             return False
-        ribalist_pool = self.pool['riba.list']
+        ribalist_pool = self.pool['riba.distinta']
         ribalist = ribalist_pool.browse(cr, uid, context['active_id'],
                                         context=context)
         return (ribalist.config_id[field_name] and
@@ -92,7 +92,7 @@ class RibaConfiguration(orm.Model):
             context = {}
         if not context.get('active_id', False):
             return False
-        ribalist_line = self.pool['riba.list.line'].browse(
+        ribalist_line = self.pool['riba.distinta.line'].browse(
             cr, uid, context['active_id'], context=context)
-        return (ribalist_line.list_id.config_id[field_name] and
-                ribalist_line.list_id.config_id[field_name].id or False)
+        return (ribalist_line.distinta_id.config_id[field_name] and
+                ribalist_line.distinta_id.config_id[field_name].id or False)

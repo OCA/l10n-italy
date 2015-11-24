@@ -4,7 +4,7 @@
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -57,7 +57,7 @@ class RibaAccreditation(orm.TransientModel):
             context = {}
         if not context.get('active_id', False):
             return False
-        distinta_pool = self.pool['riba.list']
+        distinta_pool = self.pool['riba.distinta']
         distinta = distinta_pool.browse(
             cr, uid, context['active_id'], context=context)
         amount = 0.0
@@ -99,7 +99,7 @@ class RibaAccreditation(orm.TransientModel):
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
         workflow.trg_validate(
-            uid, 'riba.list', active_id, 'accredited', cr)
+            uid, 'riba.distinta', active_id, 'accredited', cr)
         return {'type': 'ir.actions.act_window_close'}
 
     def create_move(self, cr, uid, ids, context=None):
@@ -111,7 +111,7 @@ class RibaAccreditation(orm.TransientModel):
             raise orm.except_orm(_('Error'), _('No active ID found'))
         move_pool = self.pool.get('account.move')
         # move_line_pool = self.pool.get('account.move.line')
-        distinta_pool = self.pool['riba.list']
+        distinta_pool = self.pool['riba.distinta']
         distinta = distinta_pool.browse(cr, uid, active_id, context=context)
         wizard = self.browse(cr, uid, ids)[0]
         if (not wizard.accreditation_journal_id or
@@ -146,7 +146,7 @@ class RibaAccreditation(orm.TransientModel):
         move_id = move_pool.create(cr, uid, move_vals, context=context)
         distinta.write({'accreditation_move_id': move_id})
         workflow.trg_validate(
-            uid, 'riba.list', active_id, 'accredited', cr)
+            uid, 'riba.distinta', active_id, 'accredited', cr)
         return {
             'name': _('Accreditation Entry'),
             'view_type': 'form',

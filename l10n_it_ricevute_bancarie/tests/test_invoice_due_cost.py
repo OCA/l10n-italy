@@ -14,7 +14,7 @@ class TestInvoiceDueCost(TransactionCase):
         return self.env['account.payment.term'].create({
             'name': 'Ri.Ba. 30/60',
             'riba': True,
-            'payment_cost': 5.00,
+            'riba_payment_cost': 5.00,
             'line_ids': [
                 (0, 0,
                  {'value': 'procent', 'days': 30,
@@ -29,7 +29,7 @@ class TestInvoiceDueCost(TransactionCase):
         return self.env['account.payment.term'].create({
             'name': 'Ri.Ba. 30',
             'riba': True,
-            'payment_cost': 5.00,
+            'riba_payment_cost': 5.00,
             'line_ids': [
                 (0, 0,
                  {'value': 'balance', 'days': 30,

@@ -8,8 +8,8 @@
         <!--                     DISTINTA RIBA - FILTRI                 -->
         <!-- ====================================================== -->
         <record id="view_distinta_riba_filtri" model="ir.ui.view">
-            <field name="name">riba.list.filtri</field>
-            <field name="model">riba.list</field>
+            <field name="name">riba.distinta.filtri</field>
+            <field name="model">riba.distinta</field>
             <field name="arch" type="xml">
                 <search string="Distinte Ri.Ba.">
                     <filter icon="terp-check" string="Draft" domain="[('state','=','draft')]" help="Draft"/>
@@ -28,8 +28,8 @@
         <!--                     DISTINTA RIBA TREE                     -->
         <!-- ====================================================== -->
         <record model="ir.ui.view" id="view_distinta_riba_tree">
-            <field name="name">riba.list.tree</field>
-            <field name="model">riba.list</field>
+            <field name="name">riba.distinta.tree</field>
+            <field name="model">riba.distinta</field>
             <field name="arch" type="xml">
                 <tree string="Distinte Ri.Ba.">
                     <field name="name" />
@@ -44,9 +44,9 @@
         <!-- ====================================================== -->
         <!--                     DISTINTA RIBA FORM                     -->
         <!-- ====================================================== -->
-        <record model="ir.ui.view" id="view_riba_list_form">
-            <field name="name">riba.list.form</field>
-            <field name="model">riba.list</field>
+        <record model="ir.ui.view" id="view_riba_distinta_form">
+            <field name="name">riba.distinta.form</field>
+            <field name="model">riba.distinta</field>
             <field name="arch" type="xml">
                 <form string="Ri.Ba. list" version="7.0">
                     <header>
@@ -90,7 +90,6 @@
                                                     <field name="amount" />
                                                     <field name="due_date"/>
                                                     <field name="state"/>
-                                                    <field name="reconciled" />
                                                 </group>
                                             </group>
                                         </page>
@@ -175,8 +174,8 @@
         <record id="distinta_riba_action" model="ir.actions.act_window">
             <field name="name">Distinta Ri.Ba.</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">riba.list</field>
-            <field name="src_model">riba.list</field>
+            <field name="res_model">riba.distinta</field>
+            <field name="src_model">riba.distinta</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_distinta_riba_filtri"/>

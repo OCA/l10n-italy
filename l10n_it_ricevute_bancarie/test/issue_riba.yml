@@ -16,18 +16,17 @@
     action = self.create_list(cr, uid, [ref("riba_emissione_1")], {"lang": 'en_US',
       "tz": False, "active_model": "account.move.line", "active_ids": [riba_move_line_id],
       "active_id": riba_move_line_id, })
-    riba_list_id = action and action[0]['res_id'] or False
-    list_pool = self.pool['riba.list']
+    riba_list_id = action and action['res_id'] or False
+    list_pool = self.pool['riba.distinta']
     list_pool.confirm(cr, uid, [riba_list_id], context=context)
-    list = list_pool.browse(cr, uid, riba_list_id)
-    assert (list.state == 'accepted'), ("RiBa list is not accepted, but %s" % list.state)
-    invoice.refresh()
+    riba_list = list_pool.browse(cr, uid, riba_list_id)
+    assert (riba_list.state == 'accepted'), ("RiBa list is not accepted, but %s" % riba_list.state)
     assert (invoice.state == 'paid'), ("Invoice state is not paid, but %s" % invoice.state)
     accreditation_pool = self.pool['riba.accreditation']
     accr_context = {
         "lang": 'en_US',
         "tz": False,
-        "active_model": "riba.list",
+        "active_model": "riba.distinta",
         "active_ids": [riba_list_id],
         "active_id": riba_list_id, 
         }
@@ -36,8 +35,7 @@
       'expense_amount': 5,
       }, context=accr_context)
     accreditation_pool.create_move(cr, uid, [accr_id], context=accr_context)
-    list.refresh()
-    assert (list.state == 'accredited'), ("RiBa list is not accredited, but %s" % list.state)
+    assert (riba_list.state == 'accredited'), ("RiBa list is not accredited, but %s" % riba_list.state)
     # voucher payment
     voucher_pool = self.pool['account.voucher']
     from openerp import workflow
@@ -66,5 +64,12 @@
     assert (voucher_id.writeoff_amount == 0.0), "Writeoff amount is not 0.0"
     assert (voucher_id.state=='draft'), "Voucher is not in draft state"
     workflow.trg_validate(uid, 'account.voucher', voucher_id.id, 'proforma_voucher', cr)
-    list.refresh()
-    assert (list.state == 'accredited'), ("RiBa list is not closed, but %s" % list.state)
+    assert (riba_list.state == 'paid'), ("RiBa list is not paid, but %s" % riba_list.state)
+    assert (len(riba_list.line_ids) == 1)
+    for riba_line in riba_list.line_ids:
+      assert(riba_line.state == 'paid'), ("RiBa line is not paid, but %s" % riba_line.state)
+    self.pool['account.journal'].write(cr, uid, [ref('account.bank_journal')], {'update_posted': True})
+    voucher_id.cancel_voucher()
+    assert (riba_list.state == 'accredited'), ("RiBa list is not accredited, but %s" % riba_list.state)
+    for riba_line in riba_list.line_ids:
+      assert(riba_line.state == 'accredited'), ("RiBa line is not accredited, but %s" % riba_line.state)

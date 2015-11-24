@@ -2,7 +2,7 @@
 #
 #
 #    Copyright (C) 2011-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Thanks to Antonio de Vincentiis http://www.devincentiis.it/ ,
@@ -201,7 +201,7 @@ class RibaFileExport(orm.TransientModel):
 
     def act_getfile(self, cr, uid, ids, context=None):
         active_ids = context and context.get('active_ids', [])
-        order_obj = self.pool['riba.list'].browse(
+        order_obj = self.pool['riba.distinta'].browse(
             cr, uid, active_ids, context=context)[0]
         credit_bank = order_obj.config.bank_id
         name_company = order_obj.config.company_id.partner_id.name

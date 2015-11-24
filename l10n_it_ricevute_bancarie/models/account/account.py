@@ -4,10 +4,10 @@
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-2015 Lorenzo Battistini - Agile Business Group
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -25,7 +25,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
-from openerp import api, _
+from openerp import api, _, models
 from openerp.exceptions import Warning as UserError
 import openerp.addons.decimal_precision as dp
 
@@ -36,8 +36,11 @@ class AccountPaymentTerm(orm.Model):
 
     _columns = {
         'riba': fields.boolean('Riba'),
-        'payment_cost': fields.float(
-            'Payment Cost', digits_compute=dp.get_precision('Account'),),
+        'riba_payment_cost': fields.float(
+            'RiBa Payment Cost', digits_compute=dp.get_precision('Account'),
+            help="Collection fees amount. If different from 0, "
+                 "for each payment deadline an invoice line will be added "
+                 "to invoice, with this amount"),
     }
 
 
@@ -63,7 +66,7 @@ class AccountMoveLine(orm.Model):
 
     _columns = {
         'distinta_line_ids': fields.one2many(
-            'riba.list.move.line', 'move_line_id', "Dettaglio riba"),
+            'riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
         'riba': fields.related(
             'invoice', 'payment_term', 'riba', type='boolean', string='RiBa',
             store=False),
@@ -163,7 +166,7 @@ class AccountInvoice(orm.Model):
             # ---- of the month
             if invoice.type != 'out_invoice' or not invoice.payment_term \
                     or not invoice.payment_term.riba \
-                    or invoice.payment_term.payment_cost == 0.0:
+                    or invoice.payment_term.riba_payment_cost == 0.0:
                 continue
             if not invoice.company_id.due_cost_service_id:
                 raise UserError('Set a Service for Due Cost in Company Config')
@@ -197,7 +200,7 @@ class AccountInvoice(orm.Model):
                     line_vals['value'].update({
                         'product_id': service_prod.id,
                         'invoice_id': invoice.id,
-                        'price_unit': invoice.payment_term.payment_cost,
+                        'price_unit': invoice.payment_term.riba_payment_cost,
                         'due_cost_line': True,
                         'name': _('{line_name} for {month}-{year}').format(
                             line_name=line_vals['value']['name'],
@@ -212,7 +215,7 @@ class AccountInvoice(orm.Model):
                             'invoice_line_tax_id': [(4, tax.id)]
                         })
                     line_obj.create(line_vals['value'])
-                    # ---- recompute invocie taxes
+                    # ---- recompute invoice taxes
                     invoice.button_reset_taxes()
         super(AccountInvoice, self).action_move_create()
 
@@ -242,5 +245,63 @@ class AccountInvoiceLine(orm.Model):
     _inherit = 'account.invoice.line'
 
     _columns = {
-        'due_cost_line': fields.boolean('Due Cost Line'),
+        'due_cost_line': fields.boolean('RiBa Due Cost Line'),
     }
+
+
+class AccountMoveReconcile(models.Model):
+    _inherit = 'account.move.reconcile'
+
+    def get_riba_lines(self):
+        riba_lines = self.env['riba.distinta.line']
+        for move_line in self.line_id:
+            riba_lines |= riba_lines.search([
+                ('acceptance_move_id', '=', move_line.move_id.id)
+                ])
+        return riba_lines
+
+    def update_paid_riba_lines(self):
+        # set paid only if not unsolved
+        if not self.env.context.get('unsolved_reconciliation'):
+            riba_lines = self.get_riba_lines()
+            for riba_line in riba_lines:
+                # allowed transitions:
+                # accredited_to_paid and accepted_to_paid. See workflow
+                if riba_line.state in ['confirmed', 'accredited']:
+                    if riba_line.test_reconcilied():
+                        riba_line.state = 'paid'
+                        riba_line.distinta_id.signal_workflow('paid')
+
+    def unreconcile_riba_lines(self, riba_lines):
+        for riba_line in riba_lines:
+            # allowed transitions:
+            # paid_to_cancel and unsolved_to_cancel. See workflow
+            if riba_line.state in ['paid', 'unsolved']:
+                if not riba_line.test_reconcilied():
+                    if riba_line.distinta_id.accreditation_move_id:
+                        riba_line.state = 'accredited'
+                        riba_line.distinta_id.signal_workflow('accredited')
+                    else:
+                        riba_line.state = 'confirmed'
+                        riba_line.distinta_id.signal_workflow('accepted')
+
+    @api.model
+    def create(self, vals):
+        rec = super(AccountMoveReconcile, self).create(vals)
+        rec.update_paid_riba_lines()
+        return rec
+
+    @api.multi
+    def write(self, vals):
+        res = super(AccountMoveReconcile, self).write(vals)
+        for rec in self:
+            rec.update_paid_riba_lines()
+        return res
+
+    @api.multi
+    def unlink(self):
+        for rec in self:
+            riba_lines = rec.get_riba_lines()
+        res = super(AccountMoveReconcile, self).unlink()
+        self.unreconcile_riba_lines(riba_lines)
+        return res

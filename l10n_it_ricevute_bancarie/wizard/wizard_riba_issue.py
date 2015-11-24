@@ -4,10 +4,10 @@
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-2015 Agile Business Group <http://www.agilebg.com>
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -36,14 +36,14 @@ class RibaIssue(models.TransientModel):
     configuration_id = fields.Many2one(
         'riba.configuration', string='Configuration', required=True)
 
-    @api.one
+    @api.multi
     def create_list(self):
         def create_rdl(countme, bank_id, rd_id, date_maturity, partner_id,
                        acceptance_account_id):
             rdl = {
                 'sequence': countme,
                 'bank_id': bank_id,
-                'list_id': rd_id,
+                'distinta_id': rd_id,
                 'due_date': date_maturity,
                 'partner_id': partner_id,
                 'state': 'draft',
@@ -51,17 +51,18 @@ class RibaIssue(models.TransientModel):
             }
             return riba_list_line.create(rdl)
 
+        self.ensure_one()
         # Qui creiamo la distinta
         # wizard_obj = self.browse(cr, uid, ids)[0]
         # active_ids = context and context.get('active_ids', [])
-        riba_list = self.env['riba.list']
-        riba_list_line = self.env['riba.list.line']
-        riba_list_move_line = self.env['riba.list.move.line']
+        riba_list = self.env['riba.distinta']
+        riba_list_line = self.env['riba.distinta.line']
+        riba_list_move_line = self.env['riba.distinta.move.line']
         move_line_obj = self.env['account.move.line']
 
         # create distinta
         rd = {
-            'name': self.env['ir.sequence'].get('seq.riba.list'),
+            'name': self.env['ir.sequence'].get('seq.riba.distinta'),
             'config_id': self.configuration_id.id,
             'user_id': self._uid,
             'date_created': fields.Date.context_today(self),
@@ -72,8 +73,6 @@ class RibaIssue(models.TransientModel):
         grouped_lines = {}
         move_lines = move_line_obj.search(
             [('id', 'in', self._context['active_ids'])])
-        # move_lines = move_line_obj.browse(move_line_ids)
-        # import pdb; pdb.set_trace()
         for move_line in move_lines:
             if move_line.partner_id.group_riba:
                 if not grouped_lines.get((move_line.partner_id.id,
@@ -127,19 +126,14 @@ class RibaIssue(models.TransientModel):
 
         # ----- show list form
         mod_obj = self.env['ir.model.data']
-        res = mod_obj.get_object_reference(
-            'l10n_it_ricevute_bancarie', 'view_riba_list_form')
-        res_id = res and res[1] or False,
-        return {
-            'name': 'Distinta',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': res_id,
-            'res_model': 'riba.list',
-            'type': 'ir.actions.act_window',
-            # 'nodestroy': True,
-            'target': 'current',
-            'res_id': rd_id or False,
-        }
-
-RibaIssue()
+        act_obj = self.env['ir.actions.act_window']
+        action = mod_obj.get_object_reference(
+            'l10n_it_ricevute_bancarie', 'distinta_riba_action')
+        view = mod_obj.get_object_reference(
+            'l10n_it_ricevute_bancarie', 'view_riba_distinta_form')
+        action_id = action and action[1] or False
+        action = act_obj.browse(action_id)
+        action_vals = action.read()[0]
+        action_vals['views'] = [(view and view[1] or False, 'form')]
+        action_vals['res_id'] = rd_id
+        return action_vals
