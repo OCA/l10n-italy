@@ -294,12 +294,14 @@ class AccountMoveReconcile(models.Model):
     @api.multi
     def write(self, vals):
         res = super(AccountMoveReconcile, self).write(vals)
-        self.update_paid_riba_lines()
+        for rec in self:
+            rec.update_paid_riba_lines()
         return res
 
     @api.multi
     def unlink(self):
-        riba_lines = self.get_riba_lines()
+        for rec in self:
+            riba_lines = rec.get_riba_lines()
         res = super(AccountMoveReconcile, self).unlink()
         self.unreconcile_riba_lines(riba_lines)
         return res
