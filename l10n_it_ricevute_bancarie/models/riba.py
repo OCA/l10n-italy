@@ -136,7 +136,6 @@ class RibaList(models.Model):
     @api.multi
     def riba_cancel(self):
         for riba_list in self:
-            # TODO remove ervery other move
             for line in riba_list.line_ids:
                 line.state = 'cancel'
                 if line.acceptance_move_id:
@@ -171,28 +170,24 @@ class RibaList(models.Model):
         self.date_unsolved = fields.Date.context_today(self)
 
     @api.multi
-    def test_accepted(self):
+    def test_state(self, state):
         for riba_list in self:
             for line in riba_list.line_ids:
-                if line.state != 'confirmed':
+                if line.state != state:
                     return False
         return True
+
+    @api.multi
+    def test_accepted(self):
+        return self.test_state('confirmed')
 
     @api.multi
     def test_unsolved(self):
-        for riba_list in self:
-            for line in riba_list.line_ids:
-                if line.state != 'unsolved':
-                    return False
-        return True
+        return self.test_state('unsolved')
 
     @api.multi
     def test_paid(self):
-        for riba_list in self:
-            for line in riba_list.line_ids:
-                if line.state != 'paid':
-                    return False
-        return True
+        return self.test_state('paid')
 
     @api.multi
     def action_cancel_draft(self):
@@ -239,15 +234,6 @@ class RibaListLine(models.Model):
     invoice_number = fields.Char(
         compute='_get_line_values', string="Invoice Number", size=256)
 
-    @api.one
-    @api.depends(
-        'acceptance_move_id.line_id.reconcile_id',
-        'acceptance_move_id.line_id.account_id')
-    def _reconciled(self):
-        self.reconciled = self.test_reconcilied()
-        if self.state == 'paid':
-            self.distinta_id.signal_workflow('paid')
-
     @api.multi
     def move_line_id_payment_get(self):
         # return the move line ids with the same account as the distinta line
@@ -270,17 +256,6 @@ class RibaListLine(models.Model):
         query = "SELECT reconcile_id FROM account_move_line WHERE id IN %s"
         self._cr.execute(query, (tuple(line_ids),))
         reconcilied = all(row[0] for row in self._cr.fetchall())
-        for line in self:
-            if reconcilied:
-                if line.state != 'unsolved' and line.state != 'paid':
-                    # Unsolved state is directly set by unsolved wizard.
-                    # In that case, line is reconcilied, but not 'paid'
-                    self.write({'state': 'paid'})
-            else:
-                if line.state == 'paid':
-                    # if not reconciled and in state 'paid',
-                    # go back to accredited
-                    self.write({'state': 'accredited'})
         return reconcilied
 
     @api.one
@@ -329,12 +304,6 @@ class RibaListLine(models.Model):
         ('unsolved', 'Unsolved'),
         ('cancel', 'Canceled'),
     ], 'State', select=True, readonly=True, track_visibility='onchange')
-    reconciled = fields.Boolean(
-        compute='_reconciled', string='Paid/Reconciled',
-        store=True,
-        help="It indicates that the journal entry "
-             "of the line has been reconciled with one or several journal "
-             "entries")
     payment_ids = fields.Many2many(
         'account.move.line', compute='_compute_lines', string='Payments')
     type = fields.Char(

@@ -96,6 +96,26 @@
             <field name="act_to" ref="act_cancel" />
             <field name="signal">cancel</field>
         </record>
+        <record model="workflow.transition" id="paid_to_accredited">
+            <field name="act_from" ref="act_paid" />
+            <field name="act_to" ref="act_accredited" />
+            <field name="signal">accredited</field>
+        </record>
+        <record model="workflow.transition" id="unsolved_to_accredited">
+            <field name="act_from" ref="act_unsolved" />
+            <field name="act_to" ref="act_accredited" />
+            <field name="signal">accredited</field>
+        </record>
+        <record model="workflow.transition" id="paid_to_accepted">
+            <field name="act_from" ref="act_paid" />
+            <field name="act_to" ref="act_accepted" />
+            <field name="signal">accepted</field>
+        </record>
+        <record model="workflow.transition" id="unsolved_to_accepted">
+            <field name="act_from" ref="act_unsolved" />
+            <field name="act_to" ref="act_accepted" />
+            <field name="signal">accepted</field>
+        </record>
         <record model="workflow.transition" id="accredited_to_unsolved">
             <field name="act_from" ref="act_accredited" />
             <field name="act_to" ref="act_unsolved" />

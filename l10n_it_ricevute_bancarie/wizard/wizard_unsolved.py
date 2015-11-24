@@ -215,6 +215,7 @@ class RibaUnsolved(orm.TransientModel):
             'unsolved_move_id': move_id,
             'state': 'unsolved',
         })
+        context['unsolved_reconciliation'] = True
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
         distinta_line.distinta_id.signal_workflow('unsolved')

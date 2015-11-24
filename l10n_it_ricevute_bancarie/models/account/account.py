@@ -25,7 +25,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
-from openerp import api, _
+from openerp import api, _, models
 from openerp.exceptions import Warning as UserError
 import openerp.addons.decimal_precision as dp
 
@@ -247,3 +247,59 @@ class AccountInvoiceLine(orm.Model):
     _columns = {
         'due_cost_line': fields.boolean('RiBa Due Cost Line'),
     }
+
+
+class AccountMoveReconcile(models.Model):
+    _inherit = 'account.move.reconcile'
+
+    def get_riba_lines(self):
+        riba_lines = self.env['riba.distinta.line']
+        for move_line in self.line_id:
+            riba_lines |= riba_lines.search([
+                ('acceptance_move_id', '=', move_line.move_id.id)
+                ])
+        return riba_lines
+
+    def update_paid_riba_lines(self):
+        # set paid only if not unsolved
+        if not self.env.context.get('unsolved_reconciliation'):
+            riba_lines = self.get_riba_lines()
+            for riba_line in riba_lines:
+                # allowed transitions:
+                # accredited_to_paid and accepted_to_paid. See workflow
+                if riba_line.state in ['confirmed', 'accredited']:
+                    if riba_line.test_reconcilied():
+                        riba_line.state = 'paid'
+                        riba_line.distinta_id.signal_workflow('paid')
+
+    def unreconcile_riba_lines(self, riba_lines):
+        for riba_line in riba_lines:
+            # allowed transitions:
+            # paid_to_cancel and unsolved_to_cancel. See workflow
+            if riba_line.state in ['paid', 'unsolved']:
+                if not riba_line.test_reconcilied():
+                    if riba_line.distinta_id.accreditation_move_id:
+                        riba_line.state = 'accredited'
+                        riba_line.distinta_id.signal_workflow('accredited')
+                    else:
+                        riba_line.state = 'confirmed'
+                        riba_line.distinta_id.signal_workflow('accepted')
+
+    @api.model
+    def create(self, vals):
+        rec = super(AccountMoveReconcile, self).create(vals)
+        rec.update_paid_riba_lines()
+        return rec
+
+    @api.multi
+    def write(self, vals):
+        res = super(AccountMoveReconcile, self).write(vals)
+        self.update_paid_riba_lines()
+        return res
+
+    @api.multi
+    def unlink(self):
+        riba_lines = self.get_riba_lines()
+        res = super(AccountMoveReconcile, self).unlink()
+        self.unreconcile_riba_lines(riba_lines)
+        return res
