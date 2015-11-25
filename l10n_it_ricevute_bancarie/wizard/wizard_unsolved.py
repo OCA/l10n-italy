@@ -23,7 +23,6 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-from openerp import workflow
 
 
 class RibaUnsolved(orm.TransientModel):
@@ -134,8 +133,8 @@ class RibaUnsolved(orm.TransientModel):
         move_pool = self.pool['account.move']
         invoice_pool = self.pool['account.invoice']
         move_line_pool = self.pool['account.move.line']
-        distinta_line = self.pool['riba.distinta.line'].browse(cr, uid, active_id,
-                                                           context=context)
+        distinta_line = self.pool['riba.distinta.line'].browse(
+            cr, uid, active_id, context=context)
         wizard = self.browse(cr, uid, ids)[0]
         if (not wizard.unsolved_journal_id or
                 not wizard.effects_account_id or
