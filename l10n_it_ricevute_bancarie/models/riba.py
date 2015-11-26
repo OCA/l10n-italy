@@ -24,7 +24,8 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api, _, exceptions, workflow
+from openerp import fields, models, api, _, workflow
+from openerp.exceptions import Warning as UserError
 import openerp.addons.decimal_precision as dp
 
 
@@ -55,7 +56,7 @@ class RibaList(models.Model):
     _description = 'Riba list'
 
     name = fields.Char(
-        'Reference', size=128, required=True, readonly=True,
+        'Reference', required=True, readonly=True,
         states={'draft': [('readonly', False)]},
         default=(lambda self: self.env['ir.sequence'].get('riba.distinta')))
     config_id = fields.Many2one(
@@ -116,10 +117,9 @@ class RibaList(models.Model):
     def unlink(self):
         for riba_list in self:
             if riba_list.state not in ('draft',  'cancel'):
-                raise exceptions.Warning(
-                    _('Error'),
-                    _('List %s is in state %s. You can only delete documents'
-                      ' in state draft or canceled')
+                raise UserError(
+                    'List %s is in state %s. You can only delete documents'
+                    ' in state draft or canceled'
                     % (riba_list.name, riba_list.state))
         super(RibaList, self).unlink()
 

@@ -32,7 +32,6 @@
     "website": "http://www.odoo-italia.org",
     "license": "AGPL-3",
     'depends': [
-        'account',
         'account_voucher',
         'l10n_it_fiscalcode',
         'account_due_list',
