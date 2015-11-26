@@ -24,7 +24,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api, _, workflow
+from openerp import fields, models, api, workflow
 from openerp.exceptions import Warning as UserError
 import openerp.addons.decimal_precision as dp
 

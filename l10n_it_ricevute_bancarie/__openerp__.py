@@ -25,12 +25,12 @@
 ##############################################################################
 
 {
-    "name": "Ricevute Bancarie",
-    "version": "8.0.1.3.0",
-    "author": "Odoo Community Association (OCA)",
-    "category": "Accounting & Finance",
-    "website": "http://www.odoo-italia.org",
-    "license": "AGPL-3",
+    'name': "Ricevute Bancarie",
+    'version': "8.0.1.3.0",
+    'author': "Odoo Community Association (OCA)",
+    'category': "Accounting & Finance",
+    'website': "http://www.odoo-italia.org",
+    'license': "AGPL-3",
     'depends': [
         'account_voucher',
         'l10n_it_fiscalcode',
@@ -50,6 +50,7 @@
         "riba_workflow.xml",
         "security/ir.model.access.csv",
     ],
+    'images': [],
     'demo': ["demo/riba_demo.xml"],
     'test': [
         'test/riba_invoice.yml',
