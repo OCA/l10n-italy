@@ -5,12 +5,30 @@
 
 
 <template id="report_giornale">
+    <xpath expr="." position="inside">
+        <link rel="stylesheet" href="/l10n_it_central_journal/static/src/css/l10n_it_central_journal.css"/>
+    </xpath>
     <t t-call="report.html_container">
         <t t-set="title" t-value="'Stampa libro giornale'"/>
         <t t-call="l10n_it_account.internal_layout">
+
             <div class="page">
                 <t t-set="print_details" t-value="1"/>
                 <table style="width:100%; font-size: small;" cellspacing="0">
+                        <style>
+                            table {border: 0px;}
+                            thead {background: #F5F5F5;}
+                            
+                            .left_without_line {
+                                text-align:left; vertical-align:text-top; padding:5px;
+                            }
+                            .right_without_line {
+                                text-align:right; vertical-align:text-top; padding:5px;
+                            }                           
+                            .new_move { 
+                                border-top: 1px dotted grey; 
+                            }
+                     </style>
                     <thead>
                         <tr style="page-break-inside: avoid">
                             <th class="left_without_line">Row</th>
@@ -39,7 +57,7 @@
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
-                            <td class="left_without_line">Saldo iniziale</td>
+                            <td class="left_without_line">Initial Balance</td>
                             <!-- Debit -->
                             <td class="right_without_line">
                                 <div style="page-break-inside: avoid" 
@@ -116,14 +134,15 @@
 
                             <t t-set="save_move_id" t-value="line.move_id.id"/>
                         </t>
-                        <tr style="page-break-inside: avoid;" >
+                        <t t-set="class_new_move" t-value="'new_move'"/>
+                        <tr style="page-break-inside: avoid;" t-att-class="class_new_move">
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
-                            <td class="left_without_line">Saldo finale</td>
+                            <td class="left_without_line">Final Balance</td>
                             <!-- Debit -->
                             <td class="right_without_line">
                                 <div style="page-break-inside: avoid" 
@@ -146,5 +165,10 @@
         </t>
     </t>
 </template>
+
+
+
+
+
 </data>
 </openerp>

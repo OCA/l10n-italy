@@ -7,20 +7,22 @@
             <field name="model">wizard.giornale</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Tax Journal" version="7.0">
+                <form string="Central Journal">
                     <group>
                         <separator string="Dates movements" colspan="4"/>
                         <field name="fiscalyear"/>
-                        <field name="date_move_line_from" readonly="1"/>
+                        <field name="last_def_date_print" readonly="1"/>
+                        <field name="date_move_line_from" invisible="1"/>
+                        <field name="date_move_line_from_view" readonly="1"/>
                         <field name="date_move_line_to"/>
                         <separator string="Journals" colspan="4"/>
                         <field name="journal_ids" colspan="4" nolabel="1" height="250" domain="[('central_journal_exclude', '=', False)]"/>
                         <separator string="Layout" colspan="4"/>
-                        <field name="date_move_line_from_view" readonly="1"/>
+                        
                         <field name="target_move"/>
                         <field name="fiscal_page_base"/>
                         <field name="start_row"/>
-                        <field name="print_state" />
+                        
                         <field name="progressive_credit" invisible="1"/>
                         <field name="progressive_debit2" invisible="1"/>
                         <newline/>
@@ -47,7 +49,7 @@
 
         <menuitem
             name="Central Journal"
-            parent="account.menu_finance_reporting"
+            parent="account.final_accounting_reports"
             action="action_giornale"
             id="menu_giornale"
             icon="STOCK_PRINT"/>

@@ -33,29 +33,32 @@ _logger = logging.getLogger(__name__)
 
 
 class Parser(report_sxw.rml_parse):
- 
+
     def _get_move(self, move_ids):
         move_list = self.pool.get(
             'account.move.line').browse(self.cr, self.uid, move_ids)
         return move_list
-    
-    def _save_print_info(self, fiscalyear_id, end_date_print, end_row, end_debit, end_credit):
-        
+
+    def _save_print_info(self, fiscalyear_id, end_date_print,
+                         end_row, end_debit, end_credit):
         res = False
         if self.localcontext.get('print_state') == 'def':
             fiscalyear_obj = self.pool.get('account.fiscalyear')
-            fiscalyear_ids=fiscalyear_obj.search(self.cr,self.uid,[('id','=',fiscalyear_id),])
-            fiscalyear_data=fiscalyear_obj.browse(self.cr,self.uid,fiscalyear_ids)[0]
+            fiscalyear_ids = fiscalyear_obj.search(
+                            self.cr, self.uid, [('id', '=', fiscalyear_id)])
+            fiscalyear_data = fiscalyear_obj.browse(
+                            self.cr, self.uid, fiscalyear_ids)[0]
             print_info = {
                 'date_last_print': end_date_print,
                 'progressive_line_number': end_row,
-                #'progressive_page_number': end_page,
+                # 'progressive_page_number': end_page,
                 'progressive_debit': end_debit,
                 'progressive_credit': end_credit,
             }
-            res = fiscalyear_obj.write(self.cr, self.uid, fiscalyear_ids, print_info)
+            res = fiscalyear_obj.write(
+                                self.cr, self.uid, fiscalyear_ids, print_info)
         return res
-    
+
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
@@ -64,7 +67,6 @@ class Parser(report_sxw.rml_parse):
         })
 
     def set_context(self, objects, data, ids, report_type=None):
-        #import pdb;pdb.set_trace()
         self.localcontext.update({
             'l10n_it_count_fiscal_page_base': data['form'].get(
                 'fiscal_page_base'),
@@ -73,13 +75,13 @@ class Parser(report_sxw.rml_parse):
             'date_move_line_to': data['form'].get(
                 'date_move_line_to'),
             'fiscalyear': data['form'].get(
-                'fiscalyear'),    
+                'fiscalyear'),
             'print_state': data['form'].get(
-                'print_state'),                            
+                'print_state'),
             'progressive_credit': data['form'].get(
                 'progressive_credit'),
             'progressive_debit': data['form'].get(
-                'progressive_debit'),                                                         
+                'progressive_debit'),
         })
         return super(Parser, self).set_context(
             objects, data, ids, report_type=report_type)

@@ -26,4 +26,3 @@
 from . import wizard
 from . import models
 from . import central_journal
-
