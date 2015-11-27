@@ -7,14 +7,18 @@
 # Namespace http://www.fatturapa.gov.it/sdi/fatturapa/v1.1
 
 from __future__ import unicode_literals
-import pyxb
-import pyxb.binding
-import pyxb.binding.saxer
-import io
-import pyxb.utils.utility
-import pyxb.utils.domutils
-# ~ import sys
-import pyxb.utils.six as _six
+try:
+    import io
+    import pyxb
+    import pyxb.binding
+    import pyxb.binding.saxer
+    import pyxb.utils.utility
+    import pyxb.utils.domutils
+    # ~ import sys
+    import pyxb.utils.six as _six
+except ImportError:
+    pass # This module is not installed, avoid init error!
+
 # Import bindings for namespaces imported into schema
 from . import _ds as _ImportedBinding__ds
 
