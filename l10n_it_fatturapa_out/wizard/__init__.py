@@ -18,4 +18,7 @@
 #
 ##############################################################################
 
-from . import wizard_export_fatturapa
+try:
+    from . import wizard_export_fatturapa
+except ImportError:
+    pass  # Module not installed, avoid init error!
