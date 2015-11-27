@@ -24,5 +24,8 @@
 #
 ##############################################################################
 
-from . import models
-from . import wizard
+from . import riba_config
+from . import partner
+from . import riba
+from . import account
+from . import account_config

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,15 +24,29 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 
-class res_partner(orm.Model):
 
-    _name = "res.partner"
-    _inherit = "res.partner"
+class AccountConfigSettings(models.TransientModel):
 
-    _columns = {
-        'group_riba' : fields.boolean("Group Ri.Ba.", 
-            help="Group Ri.Ba. by customer while issuing"),
-    }
+    _inherit = 'account.config.settings'
 
+    due_cost_service_id = fields.Many2one(
+        related='company_id.due_cost_service_id',
+        help='Default Service for RiBa Due Cost (collection fees) on invoice',
+        domain=[('type', '=', 'service')])
+
+    def default_get(self, cr, uid, fields, context=None):
+        res = super(AccountConfigSettings, self).default_get(
+            cr, uid, fields, context)
+        if res:
+            user = self.pool['res.users'].browse(cr, uid, uid, context)
+            res['due_cost_service_id'] = user.company_id.due_cost_service_id.id
+        return res
+
+
+class ResCompany(models.Model):
+
+    _inherit = 'res.company'
+
+    due_cost_service_id = fields.Many2one('product.product')

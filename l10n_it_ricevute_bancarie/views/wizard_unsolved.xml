@@ -9,18 +9,19 @@
             <field name="arch" type="xml">
                 <form string="Ri.Ba. Unsolved">
                     <separator string="This wizard generates the journal entry related to an unsolved payment" colspan="4"/>
-					<field name="unsolved_journal_id" />
-                    <newline/>
-					<field name="effects_account_id" />
-					<field name="effects_amount" />
-					<field name="riba_bank_account_id" />
-					<field name="riba_bank_amount" />
-					<field name="overdue_effects_account_id" />
-					<field name="overdue_effects_amount" />
-					<field name="bank_account_id" />
-					<field name="bank_amount" />
-					<field name="bank_expense_account_id" />
-					<field name="expense_amount" />
+                    <group>
+                        <field name="unsolved_journal_id" />
+                        <field name="effects_account_id" />
+                        <field name="effects_amount" />
+                        <field name="riba_bank_account_id" />
+                        <field name="riba_bank_amount" />
+                        <field name="overdue_effects_account_id" />
+                        <field name="overdue_effects_amount" />
+                        <field name="bank_account_id" />
+                        <field name="bank_amount" />
+                        <field name="bank_expense_account_id" />
+                        <field name="expense_amount" />
+                    </group>
                     <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
                     <button string="Create" name="create_move" type="object" icon="gtk-ok" colspan="2"/>
                     <separator string="You can also skip this step and set the line status to 'unsolved' anyway" colspan="4"/>
