@@ -7,16 +7,17 @@
 #  Namespace http://www.w3.org/2000/09/xmldsig#  [xmlns:ds]
 
 from __future__ import unicode_literals
+import io
+# import sys
+
 import pyxb
 import pyxb.binding
-import pyxb.binding.saxer
-import io
-import pyxb.utils.utility
-import pyxb.utils.domutils
-#  import sys
-import pyxb.utils.six as _six
 #  Import bindings for namespaces imported into schema
 import pyxb.binding.datatypes
+import pyxb.binding.saxer
+import pyxb.utils.domutils
+import pyxb.utils.six as _six
+import pyxb.utils.utility
 
 #  Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
