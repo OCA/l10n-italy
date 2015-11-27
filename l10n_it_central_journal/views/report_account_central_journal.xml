@@ -5,9 +5,6 @@
 
 
 <template id="report_giornale">
-    <xpath expr="." position="inside">
-        <link rel="stylesheet" href="/l10n_it_central_journal/static/src/css/l10n_it_central_journal.css"/>
-    </xpath>
     <t t-call="report.html_container">
         <t t-set="title" t-value="'Stampa libro giornale'"/>
         <t t-call="l10n_it_account.internal_layout">
@@ -18,15 +15,14 @@
                         <style>
                             table {border: 0px;}
                             thead {background: #F5F5F5;}
-                            
                             .left_without_line {
                                 text-align:left; vertical-align:text-top; padding:5px;
                             }
                             .right_without_line {
                                 text-align:right; vertical-align:text-top; padding:5px;
-                            }                           
-                            .new_move { 
-                                border-top: 1px dotted grey; 
+                            }
+                            .new_move {
+                                border-top: 1px dotted grey;
                             }
                      </style>
                     <thead>

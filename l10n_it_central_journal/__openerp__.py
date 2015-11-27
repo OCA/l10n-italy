@@ -36,7 +36,6 @@
         'wizard/print_giornale.xml',
         'views/report_account_central_journal.xml',
         'views/account_view.xml'
-        
     ],
     "installable": True,
 }
