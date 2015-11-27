@@ -7,18 +7,21 @@
 # Namespace http://www.fatturapa.gov.it/sdi/fatturapa/v1.1
 
 from __future__ import unicode_literals
+import io
+# ~ import sys
+
 import pyxb
 import pyxb.binding
+import pyxb.binding.datatypes
 import pyxb.binding.saxer
-import io
-import pyxb.utils.utility
 import pyxb.utils.domutils
-# ~ import sys
 import pyxb.utils.six as _six
+import pyxb.utils.utility
+
 # Import bindings for namespaces imported into schema
 from . import _ds as _ImportedBinding__ds
 
-import pyxb.binding.datatypes
+
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
     'urn:uuid:7a7eaf68-ca20-11e4-ba6a-08edb9323673')

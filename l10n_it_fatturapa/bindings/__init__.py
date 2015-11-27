@@ -17,5 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from . import fatturapa_v_1_1
+try:
+    from . import fatturapa_v_1_1
+except ImportError:
+    pass # Module is not installed, avoid init error
