@@ -24,7 +24,7 @@
 
 {
     'name': 'DDT',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
@@ -32,11 +32,8 @@
     'website': 'http://www.odoo-italia.org/',
     'license': 'AGPL-3',
     'depends': [
-        'sale',
         'sale_stock',
-        'stock',
         'stock_account',
-        'stock_picking_package_preparation',
         'stock_picking_package_preparation_line',
         ],
     'data': [
@@ -51,6 +48,5 @@
         'wizard/ddt_from_picking.xml',
         'views/report_ddt.xml',
         ],
-    'test': [],
     'installable': True,
 }
