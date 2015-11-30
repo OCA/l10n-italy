@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 12:43+0000\n"
-"PO-Revision-Date: 2015-10-15 06:50+0000\n"
+"POT-Creation-Date: 2015-11-28 01:38+0000\n"
+"PO-Revision-Date: 2015-11-27 11:29+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -163,7 +163,7 @@ msgstr "Contratto"
 #: field:welfare.fund.data.line,create_uid:0
 #: field:welfare.fund.type,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Created by"
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,create_date:0
@@ -182,7 +182,7 @@ msgstr ""
 #: field:welfare.fund.data.line,create_date:0
 #: field:welfare.fund.type,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Created on"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_ddt,date:0
@@ -405,7 +405,7 @@ msgstr "IBAN"
 #: field:faturapa.activity.progress,id:0 field:faturapa.summary.data,id:0
 #: field:welfare.fund.data.line,id:0 field:welfare.fund.type,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax.code,name:l10n_it_fatturapa.tax_base_code_purchase_0
@@ -488,7 +488,7 @@ msgstr "Righe Fattura"
 #: field:welfare.fund.data.line,write_uid:0
 #: field:welfare.fund.type,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,write_date:0
@@ -507,7 +507,7 @@ msgstr ""
 #: field:welfare.fund.data.line,write_date:0
 #: field:welfare.fund.type,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: l10n_it_fatturapa
 #: field:account.tax,law_reference:0
