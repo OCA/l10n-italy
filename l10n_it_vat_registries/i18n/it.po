@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 12:43+0000\n"
+"POT-Creation-Date: 2015-11-28 01:38+0000\n"
 "PO-Revision-Date: 2015-10-05 10:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
@@ -47,7 +47,7 @@ msgstr "Annulla"
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: l10n_it_vat_registries
 #: selection:account.tax.registry,type:0 selection:wizard.registro.iva,type:0
@@ -58,13 +58,13 @@ msgstr ""
 #: field:account.tax.registry,create_uid:0
 #: field:wizard.registro.iva,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Created by"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,create_date:0
 #: field:wizard.registro.iva,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Created on"
 
 #. module: l10n_it_vat_registries
 #: selection:account.tax.registry,type:0 selection:wizard.registro.iva,type:0
@@ -106,7 +106,7 @@ msgstr ""
 #: field:report.l10n_it_vat_registries.report_registro_iva,id:0
 #: field:wizard.registro.iva,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -145,13 +145,13 @@ msgstr ""
 #: field:account.tax.registry,write_uid:0
 #: field:wizard.registro.iva,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,write_date:0
 #: field:wizard.registro.iva,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,fiscal_page_base:0

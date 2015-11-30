@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-09 12:56+0000\n"
+"POT-Creation-Date: 2015-11-28 01:38+0000\n"
 "PO-Revision-Date: 2015-10-07 11:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
@@ -142,7 +142,7 @@ msgstr "Email address not set."
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:617
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:638
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:643
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:765
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:768
 #, python-format
 msgid "Error"
 msgstr "Error"
@@ -266,7 +266,7 @@ msgid "Invoice"
 msgstr "Invoice"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:766
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:769
 #, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
 msgstr "Invoice %s has FatturaPA Export File yet"
@@ -419,7 +419,7 @@ msgid "Unread Messages"
 msgstr "Unread Messages"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:777
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:780
 #, python-format
 msgid "XML SDI validation error"
 msgstr "XML SDI validation error"
