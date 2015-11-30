@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-24 23:40+0000\n"
-"PO-Revision-Date: 2015-05-27 19:59+0000\n"
+"POT-Creation-Date: 2015-11-25 16:46+0000\n"
+"PO-Revision-Date: 2015-11-25 16:47+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -581,7 +581,7 @@ msgstr "Credito"
 #. module: l10n_it_ricevute_bancarie
 #: field:account.move.line,iban:0 field:riba.distinta.line,iban:0
 msgid "IBAN"
-msgstr ""
+msgstr "IBAN"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/riba.py:145

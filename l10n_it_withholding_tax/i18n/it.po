@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-24 23:41+0000\n"
-"PO-Revision-Date: 2015-05-27 19:59+0000\n"
+"POT-Creation-Date: 2015-11-25 16:46+0000\n"
+"PO-Revision-Date: 2015-11-25 16:47+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "L'Azienda non ha associato nessun Termine di pagamento per le Ritenute"
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_config_settings
 msgid "account.config.settings"
-msgstr ""
+msgstr "account.config.settings"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/account.py:179
@@ -70,7 +70,7 @@ msgstr ""
 #. module: l10n_it_withholding_tax
 #: view:account.config.settings:0
 msgid "Configuration"
-msgstr ""
+msgstr "Configurazione"
 
 #. module: l10n_it_withholding_tax
 #: field:account.invoice,has_withholding:0
