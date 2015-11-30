@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 12:43+0000\n"
-"PO-Revision-Date: 2015-10-15 06:53+0000\n"
+"POT-Creation-Date: 2015-11-28 01:38+0000\n"
+"PO-Revision-Date: 2015-11-27 11:29+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -78,13 +78,13 @@ msgstr "Paese non impostato"
 #: field:fatturapa.attachment.out,create_uid:0
 #: field:wizard.export.fatturapa,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Created by"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,create_date:0
 #: field:wizard.export.fatturapa,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Created on"
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
@@ -143,10 +143,10 @@ msgstr "Indirizzo email non impostato"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:617
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:638
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:643
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:765
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:768
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Errore"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:76
@@ -178,7 +178,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: view:wizard.export.fatturapa:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export"
-msgstr ""
+msgstr "Export"
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
@@ -248,7 +248,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,id:0 field:wizard.export.fatturapa,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:144
@@ -264,10 +264,10 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:766
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:769
 #, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
 msgstr ""
@@ -309,13 +309,13 @@ msgstr ""
 #: field:fatturapa.attachment.out,write_uid:0
 #: field:wizard.export.fatturapa,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,write_date:0
 #: field:wizard.export.fatturapa,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_ids:0
@@ -420,7 +420,7 @@ msgid "Unread Messages"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:777
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:780
 #, python-format
 msgid "XML SDI validation error"
 msgstr ""
