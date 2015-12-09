@@ -1,4 +1,3 @@
 partner-contact
 account-payment
-account-invoice-reporting
 stock-logistics-workflow
