@@ -31,5 +31,13 @@
             <field name="target">new</field>
         </record>
 
+        <record model="ir.values" id="ddt_create_invoice_client_action">
+            <field name="name">Create Invoice</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_create_invoice'))" />
+            <field name="key">action</field>
+            <field name="model">stock.picking.package.preparation</field>
+        </record>
+
     </data>
 </openerp>

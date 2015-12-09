@@ -73,9 +73,9 @@ class TestDdt(TransactionCase):
             values.update({'picking_ids': [(6, 0, pickings.ids)], })
         return self.ddt_model.create(values)
 
-    def _create_invoice_wizard(self, picking_ids=None):
+    def _create_invoice_wizard(self, ddt_ids=None):
         return self.env['ddt.create.invoice'].with_context(
-            active_ids=picking_ids or []
+            active_ids=ddt_ids or []
             ).create({
                 'journal_id': self.env.ref('account.sales_journal').id,
             })
@@ -171,3 +171,35 @@ class TestDdt(TransactionCase):
         self.ddt.line_ids[0].name = 'Changed for test'
         self.ddt.action_put_in_pack()
         self.assertEqual(self.ddt.line_ids[0].name, 'Changed for test')
+
+    def test_invoice_multi_ddt(self):
+        picking1 = self._create_picking()
+        self._create_move(picking1, self.product1, quantity=2)
+        picking2 = self._create_picking()
+        self._create_move(picking2, self.product1, quantity=3)
+        picking1.action_confirm()
+        picking1.action_assign()
+        picking2.action_confirm()
+        picking2.action_assign()
+        wiz_model = self.env['ddt.from.pickings']
+        wizard = wiz_model.with_context({
+            'active_ids': [picking1.id]
+            }).create({})
+        res = wizard.create_ddt()
+        ddt1 = self.ddt_model.browse(res['res_id'])
+        wizard = wiz_model.with_context({
+            'active_ids': [picking2.id]
+            }).create({})
+        res = wizard.create_ddt()
+        ddt2 = self.ddt_model.browse(res['res_id'])
+        ddt1.action_put_in_pack()
+        ddt1.action_done()
+        ddt2.action_put_in_pack()
+        ddt2.action_done()
+        wizard = self._create_invoice_wizard([ddt1.id, ddt2.id])
+        invoice_result = wizard.create_invoice()
+        invoice = self.env['account.invoice'].browse(
+            invoice_result.get('res_id', False))
+        self.assertEqual(len(invoice.invoice_line), 2)
+        for line in invoice.invoice_line:
+            self.assertEqual(line.product_id.id, self.product1.id)
