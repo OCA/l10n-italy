@@ -13,7 +13,8 @@
                             <button icon="gtk-ok" name="act_getfile" string="Export" type="object"/>
                         </group>
                         <group colspan="4">
-                            <field name="riba_.txt" readonly="1"/>
+                            <field name="riba_txt" readonly="1" filename="file_name"/>
+                            <field name="file_name" invisible="1"></field>
                         </group>
                     </group>
                 </form>
