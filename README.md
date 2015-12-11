@@ -36,6 +36,7 @@ addon | version | summary
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
+[l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | Documento di Trasporto
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.0 | Electronic invoices emission
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.0 | Italian Localisation - Fiscal Code
