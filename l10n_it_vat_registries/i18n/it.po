@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 01:38+0000\n"
+"POT-Creation-Date: 2015-12-11 01:41+0000\n"
 "PO-Revision-Date: 2015-10-05 10:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
@@ -131,7 +131,7 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_journal
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_it_vat_registries
 #: view:account.tax.registry:l10n_it_vat_registries.view_account_tax_registry_form
@@ -189,7 +189,7 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,name:0
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #. module: l10n_it_vat_registries
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:93
@@ -318,4 +318,4 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 msgid "or"
-msgstr ""
+msgstr "or"
