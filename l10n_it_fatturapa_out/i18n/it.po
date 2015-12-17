@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-11 01:40+0000\n"
+"POT-Creation-Date: 2015-12-17 14:08+0000\n"
 "PO-Revision-Date: 2015-12-10 10:39+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
@@ -136,14 +136,14 @@ msgstr "Indirizzo email non impostato"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:118
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:398
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:436
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:554
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:558
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:574
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:612
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:617
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:638
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:643
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:768
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:555
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:559
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:575
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:613
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:618
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:639
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:644
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:769
 #, python-format
 msgid "Error"
 msgstr "Errore"
@@ -170,7 +170,7 @@ msgstr "Errore"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:373
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:376
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:460
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:738
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:739
 #, python-format
 msgid "Error!"
 msgstr ""
@@ -267,7 +267,7 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:769
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:770
 #, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
 msgstr ""
@@ -279,7 +279,7 @@ msgid "Invoice does not have a number."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:555
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:556
 #, python-format
 msgid "Invoice line %s does not have tax"
 msgstr ""
@@ -290,7 +290,7 @@ msgid "Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:739
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:740
 #, python-format
 msgid "Invoices must belong to the same partner"
 msgstr ""
@@ -328,14 +328,14 @@ msgid "Messages and communication history"
 msgstr "Messages and communication history"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:618
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:619
 #, python-format
 msgid "No 'law reference' field for tax %s"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:575
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:613
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:576
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:614
 #, python-format
 msgid "No 'nature' field for tax %s"
 msgstr ""
@@ -352,13 +352,13 @@ msgid "Partner VAT and Fiscalcode not set."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:644
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:645
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment method"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:639
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:640
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment term"
 msgstr ""
@@ -409,7 +409,7 @@ msgid "TerzoIntermediarioOSoggettoEmittente not handled"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:559
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:560
 #, python-format
 msgid "Too many taxes for invoice line %s"
 msgstr ""
@@ -420,7 +420,7 @@ msgid "Unread Messages"
 msgstr "Unread Messages"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:780
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:781
 #, python-format
 msgid "XML SDI validation error"
 msgstr ""
