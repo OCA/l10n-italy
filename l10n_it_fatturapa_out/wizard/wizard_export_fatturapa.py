@@ -470,10 +470,11 @@ class WizardExportFatturapa(orm.TransientModel):
             TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
-            Numero=invoice.number)
+            Numero=invoice.number,
+            ImportoTotaleDocumento='%.2f' % invoice.amount_total)
 
         # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
-        # ScontoMaggiorazione, ImportoTotaleDocumento, Arrotondamento,
+        # ScontoMaggiorazione, Arrotondamento,
 
         if invoice.comment:
             # max length of Causale is 200
