@@ -203,8 +203,8 @@ class RibaFileExport(orm.TransientModel):
         active_ids = context and context.get('active_ids', [])
         order_obj = self.pool['riba.distinta'].browse(
             cr, uid, active_ids, context=context)[0]
-        credit_bank = order_obj.config.bank_id
-        name_company = order_obj.config.company_id.partner_id.name
+        credit_bank = order_obj.config_id.bank_id
+        name_company = order_obj.config_id.company_id.partner_id.name
         if not credit_bank.iban:
             raise orm.except_orm('Error', _('No IBAN specified'))
         credit_abi = credit_bank.iban[5:10]
@@ -217,11 +217,11 @@ class RibaFileExport(orm.TransientModel):
         dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = datetime.datetime.now().strftime(
             "%d%m%y%H%M%S") + credit_sia
-        creditor_address = order_obj.config.company_id.partner_id
+        creditor_address = order_obj.config_id.company_id.partner_id
         creditor_city = creditor_address.city or ''
         if (
-            not order_obj.config.company_id.partner_id.vat
-            and not order_obj.config.company_id.partner_id.fiscalcode
+            not order_obj.config_id.company_id.partner_id.vat
+            and not order_obj.config_id.company_id.partner_id.fiscalcode
         ):
             raise orm.except_orm(
                 'Error',
@@ -237,11 +237,11 @@ class RibaFileExport(orm.TransientModel):
             name_company,
             creditor_address.street or '',
             creditor_address.zip or '' + ' ' + creditor_city,
-            order_obj.config.company_id.partner_id.ref or '',
+            order_obj.config_id.company_id.partner_id.ref or '',
             (
-                order_obj.config.company_id.partner_id.vat
-                and order_obj.config.company_id.partner_id.vat[2:]
-                or order_obj.config.company_id.partner_id.fiscalcode),
+                order_obj.config_id.company_id.partner_id.vat
+                and order_obj.config_id.company_id.partner_id.vat[2:]
+                or order_obj.config_id.company_id.partner_id.fiscalcode),
         ]
         arrayRiba = []
         for line in order_obj.line_ids:
@@ -257,7 +257,9 @@ class RibaFileExport(orm.TransientModel):
             debit_cab = debit_bank.iban[10:15]
             debitor_city = debitor_address.city and debitor_address.city.ljust(
                 23)[0:23] or ''
-            debitor_province = debitor_address.province.code or ''
+            debitor_province = (
+                debitor_address.state_id and debitor_address.state_id.code or
+                '')
             if not line.due_date:  # ??? VERIFICARE
                 due_date = '000000'
             else:
@@ -301,7 +303,11 @@ class RibaFileExport(orm.TransientModel):
         out = base64.encodestring(
             self._creaFile(array_testata, arrayRiba).encode("utf8"))
         self.write(
-            cr, uid, ids, {'state': 'get', 'riba_.txt': out}, context=context)
+            cr, uid, ids, {
+                'state': 'get',
+                'riba_txt': out,
+                'file_name': '%s.txt' % order_obj.name
+                }, context=context)
 
         model_data_obj = self.pool.get('ir.model.data')
         view_rec = model_data_obj.get_object_reference(
@@ -325,7 +331,8 @@ class RibaFileExport(orm.TransientModel):
         'state': fields.selection((('choose', 'choose'),   # choose accounts
                                    ('get', 'get'),         # get the file
                                    )),
-        'riba_.txt': fields.binary('File', readonly=True),
+        'riba_txt': fields.binary('File', readonly=True),
+        'file_name': fields.char('File name', readonly=True),
     }
     _defaults = {
         'state': lambda *a: 'choose',
