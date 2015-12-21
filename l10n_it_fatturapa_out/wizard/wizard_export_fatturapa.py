@@ -466,12 +466,15 @@ class WizardExportFatturapa(orm.TransientModel):
         TipoDocumento = 'TD01'
         if invoice.type == 'out_refund':
             TipoDocumento = 'TD04'
+        ImportoTotaleDocumento = invoice.amount_total
+        if invoice.split_payment:
+            ImportoTotaleDocumento += invoice.amount_sp
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
             TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
             Numero=invoice.number,
-            ImportoTotaleDocumento='%.2f' % invoice.amount_total)
+            ImportoTotaleDocumento='%.2f' % ImportoTotaleDocumento)
 
         # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
         # ScontoMaggiorazione, Arrotondamento,
