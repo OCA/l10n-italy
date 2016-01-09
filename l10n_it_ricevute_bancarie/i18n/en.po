@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 01:38+0000\n"
-"PO-Revision-Date: 2015-11-27 11:28+0000\n"
+"POT-Creation-Date: 2016-01-08 10:03+0000\n"
+"PO-Revision-Date: 2015-12-19 17:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -405,9 +405,14 @@ msgid "Export Ri.Ba. file"
 msgstr "Export Ri.Ba. file"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.file.export,riba_.txt:0
+#: field:riba.file.export,riba_txt:0
 msgid "File"
 msgstr "File"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.file.export,file_name:0
+msgid "File name"
+msgstr "File name"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -573,7 +578,7 @@ msgid "No SIA Code specified for: "
 msgstr "No SIA Code specified for: "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:270
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:272
 #, python-format
 msgid "No VAT or Fiscal code specified for "
 msgstr "No VAT or Fiscal code specified for "
@@ -594,7 +599,7 @@ msgid "No active ID found"
 msgstr "No active ID found"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:278
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:280
 #, python-format
 msgid "No debit_bank specified for "
 msgstr "No debit_bank specified for "
