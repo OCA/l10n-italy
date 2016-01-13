@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_ddt" inherit_id="l10n_it_ddt.report_ddt">
+            <xpath expr="//table[@class='table table-condensed']/thead/tr/th[1]" position="before">
+                <th>Customer Code</th>
+            </xpath>
+            <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[1]" position="before">
+                <td><span t-field="line.product_customer_code"></span></td>
+            </xpath>
+        </template>
+    </data>
+</openerp>
