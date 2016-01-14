@@ -300,8 +300,10 @@ class AccountMoveReconcile(models.Model):
 
     @api.multi
     def unlink(self):
+        riba_lines = False
         for rec in self:
             riba_lines = rec.get_riba_lines()
         res = super(AccountMoveReconcile, self).unlink()
-        self.unreconcile_riba_lines(riba_lines)
+        if riba_lines:
+            self.unreconcile_riba_lines(riba_lines)
         return res
