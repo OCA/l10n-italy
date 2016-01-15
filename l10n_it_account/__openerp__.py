@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Italian Localization - Account',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Hidden',
     'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
@@ -31,7 +31,7 @@
         'views/account_view.xml',
         'reports/account_reports_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     # this post_init script only works when you install account and
     # l10n_it_account in 2 different instants
     'post_init_hook': 'post_init_hook',

@@ -21,33 +21,28 @@
 #
 #
 
-from openerp.osv import orm
-from openerp import fields
-from openerp.tools.translate import _
+from openerp import models, fields, _
 from openerp.exceptions import except_orm
 
 
-class AccountTaxCode(orm.Model):
-    _inherit = 'account.tax.code'
-
-    vat_statement_type = fields.Selection(
-        (('credit', 'Credit'), ('debit', 'Debit')),
-        string='Type',
-        help="This establish whether amount will be loaded as debit or credit",
-        default='debit')
-    is_base = fields.Boolean(
-        string='Is base',
-        help="This tax code is used for base amounts \
-         (field used by VAT registries)")
-
-
-class AccountTax(orm.Model):
+class AccountTax(models.Model):
     _inherit = 'account.tax'
 
     nondeductible = fields.Boolean(
         string='Non-deductible',
         help="Partially or totally non-deductible.")
 
+    vat_statement_type = fields.Selection(
+        (('credit', 'Credit'), ('debit', 'Debit')),
+        string='Type',
+        help="This establish whether amount will be loaded as debit or credit",
+        default='debit')
+    
+    is_base = fields.Boolean(
+        string='Is base',
+        help="This tax code is used for base amounts \
+         (field used by VAT registries)")
+    
     def copy_data(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
