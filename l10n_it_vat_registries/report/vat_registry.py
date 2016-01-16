@@ -35,28 +35,24 @@ class Parser(report_sxw.rml_parse):
     def _tax_amounts_by_tax_id(self, move):
         res = {}
         tax_obj = self.pool.get('account.tax')
-        for move_line in move.line_id:
-            if (
-                move_line.tax_code_id and not
-                move_line.tax_code_id.exclude_from_registries and
-                move_line.tax_amount
-            ):
+        for move_line in move.line_ids:
+            if (move_line.tax_line_id and not
+                move_line.tax_line_id.exclude_from_registries and
+                (move_line.credit or move_line.debit)):
                 # eslcudo i conti imposta in base alla natura della
                 # stampa e al tipo conto imposta
-                if (
-                    (
+                if ((
                         self.localcontext['registry_type'] == 'supplier' and
-                        move_line.tax_code_id.vat_statement_type == 'credit'
-                    ) or
-                    ((
-                        self.localcontext['registry_type'] == 'customer' or
-                        self.localcontext['registry_type'] == 'corrispettivi'
-                    ) and
-                        move_line.tax_code_id.vat_statement_type == 'debit')
+                        move_line.tax_line_id.type_tax_use == 'purchase'
+                    ) or (
+                        (
+                         self.localcontext['registry_type'] == 'customer' or
+                         self.localcontext['registry_type'] == 'corrispettivi') and
+                          move_line.tax_line_id.type_tax_use == 'sale')
                 ):
                     tax = tax_obj.browse(
                         self.cr, self.uid, self.get_tax_by_tax_code(
-                            move_line.tax_code_id.id))
+                            move_line.tax_line_id.id))
                     if not res.get(tax.id):
                         res[tax.id] = {'name': tax.name,
                                        'base': 0,
@@ -88,12 +84,12 @@ class Parser(report_sxw.rml_parse):
         # sono più codici IVA
         index = 0
         invoice = False
-        for move_line in move.line_id:
-            if move_line.invoice:
-                if invoice and invoice.id != move_line.invoice.id:
+        for move_line in move.line_ids:
+            if move_line.invoice_id:
+                if invoice and invoice.id != move_line.invoice_id.id:
                     raise Exception(
                         _("Move %s contains different invoices") % move.name)
-                invoice = move_line.invoice
+                invoice = move_line.invoice_id
         amounts_by_tax_id = self._tax_amounts_by_tax_id(move)
         for tax_code_id in amounts_by_tax_id:
             tax_item = {
@@ -259,28 +255,10 @@ class Parser(report_sxw.rml_parse):
             self.localcontext['used_tax_codes'].keys())
 
     def _get_start_date(self):
-        period_obj = self.pool.get('account.period')
-        start_date = False
-        for period in period_obj.browse(
-            self.cr, self.uid,
-            self.localcontext['data']['form']['period_ids']
-        ):
-            period_start = datetime.strptime(period.date_start, '%Y-%m-%d')
-            if not start_date or start_date > period_start:
-                start_date = period_start
-        return start_date.strftime('%Y-%m-%d')
+        return self.localcontext['data']['form']['from_date']
 
     def _get_end_date(self):
-        period_obj = self.pool.get('account.period')
-        end_date = False
-        for period in period_obj.browse(
-            self.cr, self.uid,
-            self.localcontext['data']['form']['period_ids']
-        ):
-            period_end = datetime.strptime(period.date_stop, '%Y-%m-%d')
-            if not end_date or end_date < period_end:
-                end_date = period_end
-        return end_date.strftime('%Y-%m-%d')
+        return self.localcontext['data']['form']['to_date']
 
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context=context)

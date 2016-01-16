@@ -84,13 +84,15 @@ class WizardRegistroIva(models.TransientModel):
             ], order='date, name')
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
-        datas = {}
+        
         datas_form = {}
         #datas_form['period_ids'] = [p.id for p in wizard.period_ids]
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['tax_sign'] = wizard.tax_sign
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.type
+        datas_form['from_date'] = wizard.from_date
+        datas_form['to_date'] = wizard.to_date
         if wizard.tax_registry_id:
             datas_form['tax_registry_name'] = wizard.tax_registry_id.name
         else:
