@@ -25,16 +25,16 @@ from openerp import models, fields, api
 
 
 class AccountTaxCode(models.Model):
-    _inherit = "account.tax.code"
+    _inherit = "account.tax"
     exclude_from_registries = fields.Boolean(
         string='Exclude from VAT registries')
 
-    @api.one
-    def sum_by_period_and_journals(self, period_id, journal_ids):
-        # using self.id beacuse _sum returns
-        # {tax_code_id: sum, child_tax_code_id: sum2, ...}
-        return self._sum(
-            False, False,
-            where=" AND line.period_id=%s AND move.state='posted' "
-                  "AND move.journal_id IN %s",
-            where_params=(period_id, tuple(journal_ids)))[self.id]
+#     @api.one
+#     def sum_by_period_and_journals(self, period_id, journal_ids):
+#         # using self.id beacuse _sum returns
+#         # {tax_code_id: sum, child_tax_code_id: sum2, ...}
+#         return self._sum(
+#             False, False,
+#             where=" AND line.period_id=%s AND move.state='posted' "
+#                   "AND move.journal_id IN %s",
+#             where_params=(period_id, tuple(journal_ids)))[self.id]
