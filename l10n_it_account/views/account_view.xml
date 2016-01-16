@@ -8,13 +8,9 @@
           <field name="inherit_id" ref="account.view_tax_form"></field>
           <field name="type">form</field>
           <field name="arch" type="xml">
-          <xpath expr="//notebook/page/group/group[1]" position="inside">
+	         <xpath expr="//notebook/page/group/group[1]" position="inside">
           	  <field name="nondeductible"/>
-          
-          	  <separator string="VAT statement" colspan="2"/>
-              <field name="vat_statement_type"/>
-              <field name="is_base"/>
-          
+          	  <field name="is_base"/>
              </xpath>
           </field>
       </record>
