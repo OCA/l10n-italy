@@ -29,12 +29,43 @@ class AccountTaxCode(models.Model):
     exclude_from_registries = fields.Boolean(
         string='Exclude from VAT registries')
 
-#     @api.one
-#     def sum_by_period_and_journals(self, period_id, journal_ids):
-#         # using self.id beacuse _sum returns
-#         # {tax_code_id: sum, child_tax_code_id: sum2, ...}
-#         return self._sum(
-#             False, False,
-#             where=" AND line.period_id=%s AND move.state='posted' "
-#                   "AND move.journal_id IN %s",
-#             where_params=(period_id, tuple(journal_ids)))[self.id]
+    @api.multi
+    def _sum(self,  where ='', where_params=()):
+        if self.env.context.get('based_on', 'invoices') == 'payments':
+            self.env.cr.execute('SELECT line.tax_line_id, sum(line.debit - line.credit) \
+                    FROM account_move_line AS line, \
+                        account_move AS move \
+                        LEFT JOIN account_invoice invoice ON \
+                            (invoice.move_id = move.id) \
+                    WHERE line.tax_line_id IN (%s) '+where+' \
+                        AND move.id = line.move_id \
+                        AND ((invoice.state = \'paid\') \
+                            OR (invoice.id IS NULL)) \
+                            GROUP BY line.tax_line_id',
+                                (",".join([str(i.id) for i in self]),) + where_params)
+        else:
+            self.env.cr.execute('SELECT line.tax_line_id, sum(line.debit - line.credit) \
+                    FROM account_move_line AS line, \
+                    account_move AS move \
+                    WHERE line.tax_line_id IN (%s) '+where+' \
+                    AND move.id = line.move_id \
+                    GROUP BY line.tax_line_id',
+                       (",".join([str(i.id) for i in self]),) + where_params)
+        res=dict(self.env.cr.fetchall())
+        obj_precision = self.env['decimal.precision']
+        res2 = {}
+        for record in self:
+            def _rec_get(record):
+                amount = res.get(record.id) or 0.0
+                return amount
+            res2[record.id] = round(_rec_get(record), obj_precision.precision_get('Account'))
+        return res2
+    
+    @api.one
+    def sum_by_period_and_journals(self, from_date, to_date, journal_ids):
+        # using self.id beacuse _sum returns
+        # {tax_line_id: sum, child_tax_line_id: sum2, ...}
+        return self._sum(
+            where=" AND line.date>=%s AND line.date<=%s AND move.state='posted' "
+                  "AND move.journal_id IN %s",
+            where_params=(from_date, to_date, tuple(journal_ids)))[self.id]
