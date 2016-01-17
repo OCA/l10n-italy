@@ -166,7 +166,8 @@ class AccountVatPeriodEndStatement(models.Model):
     
     interest = fields.Boolean('Compute Interest', default='_get_default_interest')
     
-    interest_percent = fields.Float('Interest - Percent', default='_get_default_interest_percent')
+    interest_percent = fields.Float('Interest - Percent', 
+        )
     
     fiscal_page_base = fields.Integer('Last printed page', required=True, default=1)
 
@@ -343,9 +344,9 @@ class AccountVatPeriodEndStatement(models.Model):
                         result[statement.id] += m.amount_residual_currency
         return result
 
-    def _compute_lines(self, cr, uid, ids, name, args, context=None):
+    def _compute_lines(self, name, args):
         result = {}
-        for statement in self.browse(cr, uid, ids, context=context):
+        for statement in self:
             src = []
             lines = []
             if statement.move_id:
@@ -370,11 +371,11 @@ class AccountVatPeriodEndStatement(models.Model):
         company = user.company_id
         return company.of_account_end_vat_statement_interest
 
-    def _get_default_interest_percent(self, cr, uid, context=None):
-        user = self.pool.get('res.users').browse(cr, uid, uid, context)
-        company = user.company_id
+    def _get_default_interest_percent(self):
+        return 0
+        company = self.env.user.company_id
         if not company.of_account_end_vat_statement_interest:
-            return 0
+            return 0.0
         return company.of_account_end_vat_statement_interest_percent
 
 
