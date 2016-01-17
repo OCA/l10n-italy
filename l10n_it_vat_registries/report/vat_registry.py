@@ -25,7 +25,6 @@ from openerp.report import report_sxw
 from openerp.osv import osv
 from openerp import _
 import logging
-from datetime import datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -180,6 +179,7 @@ class Parser(report_sxw.rml_parse):
                 # recupero il valore dell'imponibile
                 total_base = self.compute_tax_code_total(tax)
                 # recupero il valore dell'imposta
+                total_tax = self.compute_tax_code_total(tax)
                 total_deduct = total_tax
             res.append((
                 tax.name, total_base, total_tax, total_deduct,
