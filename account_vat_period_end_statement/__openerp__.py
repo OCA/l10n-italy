@@ -31,8 +31,6 @@
     'license': 'AGPL-3',
     "depends": [
         "l10n_it_account",
-        "account_voucher",
-        "report",
         "l10n_it_fiscalcode",
         ],
     "author": "Agile Business Group, Odoo Community Association (OCA)"

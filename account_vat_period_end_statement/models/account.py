@@ -78,7 +78,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]
             },
-            digits_compute=get_precision('Account')),
+            digits_compute=get_precision('Account'))
 
     previous_debit_vat_account_id = fields.Many2one(
             'account.account', 'Previous Debits VAT',
@@ -96,7 +96,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]
             },
-            digits=get_precision("Account")),
+            digits=get_precision("Account"))
 
     generic_vat_account_line_ids = fields.One2many(
             'statement.generic.account.line', 'statement_id',
@@ -104,21 +104,21 @@ class AccountVatPeriodEndStatement(models.Model):
             states={
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
+                'draft': [('readonly', False)]})
 
     authority_partner_id = fields.Many2one(
             'res.partner', 'Tax Authority Partner',
             states={
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
+                'draft': [('readonly', False)]})
     
     authority_vat_account_id = fields.Many2one(
             'account.account', 'Tax Authority VAT Account', required=True,
             states={
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
+                'draft': [('readonly', False)]})
     
     authority_vat_amount = fields.Float(
             compute='_compute_authority_vat_amount',
@@ -158,7 +158,7 @@ class AccountVatPeriodEndStatement(models.Model):
     residual = fields.Float(
             compute='_amount_residual', digits=get_precision('Account'),
             string='Balance',
-            help="Remaining amount due."),
+            help="Remaining amount due.")
     
     payment_ids = fields.Many2many(
             compute="_compute_lines", relation='account.move.line',
@@ -775,5 +775,5 @@ class AccountTax(models.Model):
     
     vat_statement_sign = fields.Integer(
             'Sign used in statement', default = 1,
-            help="If tax code period sum is usually negative, set '-1' here"),
+            help="If tax code period sum is usually negative, set '-1' here")
     

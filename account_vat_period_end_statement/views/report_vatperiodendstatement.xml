@@ -5,7 +5,7 @@
 <!--
 Document 
  -->
-<template id="report_vatperiodendstatement_document">
+<template id="report_vatperiodendstmt_document">
         <t t-call="l10n_it_account.internal_layout">
 			<div class="page"> 
             	<!-- 
@@ -224,7 +224,7 @@ Tax Code
 <!--
 Main 
  -->
-<template id="report_vatperiodendstatement">
+<template id="report_vatperiodendstmt">
 	<t t-call="report.html_container">
 
         <t t-set="title" t-value="'Vat End Period Statement'"/>
