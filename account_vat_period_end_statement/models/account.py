@@ -21,13 +21,154 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
-from openerp import models, fields, api
-from openerp.tools.translate import _
 import math
+
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
+from openerp.addons.decimal_precision.decimal_precision import get_precision
 
 
 class AccountVatPeriodEndStatement(models.Model):
+    _name = "account.vat.period.end.statement"
+    
+    state = fields.Selection([
+                ('draft', 'Draft'),
+                ('confirmed', 'Confirmed'),
+                ('paid', 'Paid'),
+            ], 'State', readonly=True)
+
+    date = fields.Date(
+            'Date', required=True, default=fields.Date.today(),
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]})
+    
+    debit_vat_account_line_ids = fields.One2many(
+            'statement.debit.account.line', 'statement_id', 'Debit VAT',
+            help='The accounts containing the debit VAT amount to write-off',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            })
+
+    credit_vat_account_line_ids = fields.One2many(
+            'statement.credit.account.line', 'statement_id', 'Credit VAT',
+            help='The accounts containing the credit VAT amount to write-off',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            })
+
+    previous_credit_vat_account_id = fields.Many2one(
+            'account.account', 'Previous Credits VAT',
+            help='Credit VAT from previous periods',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            })
+    
+    previous_credit_vat_amount = fields.Float(
+            'Previous Credits VAT Amount',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            },
+            digits_compute=get_precision('Account')),
+
+    previous_debit_vat_account_id = fields.Many2one(
+            'account.account', 'Previous Debits VAT',
+            help='Debit VAT from previous periods',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            })
+    
+    previous_debit_vat_amount = fields.Float(
+            'Previous Debits VAT Amount',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            },
+            digits=get_precision("Account")),
+
+    generic_vat_account_line_ids = fields.One2many(
+            'statement.generic.account.line', 'statement_id',
+            'Other VAT Credits / Debits or Tax Compensations',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+
+    authority_partner_id = fields.Many2one(
+            'res.partner', 'Tax Authority Partner',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+    
+    authority_vat_account_id = fields.Many2one(
+            'account.account', 'Tax Authority VAT Account', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+    
+    authority_vat_amount = fields.Float(
+            compute='_compute_authority_vat_amount',
+            string='Authority VAT Amount')
+    
+    payable_vat_amount = fields.Float(
+            compute='_compute_payable_vat_amount',
+            string='Payable VAT Amount')
+    
+    deductible_vat_amount = fields.Float(
+            compute='_compute_deductible_vat_amount',
+            string='Deductible VAT Amount')
+
+    journal_id = fields.Many2one(
+            'account.journal', 'Journal', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]})
+    
+    move_id = fields.Many2one(
+            'account.move', 'VAT statement move', readonly=True)
+
+    payment_term_id = fields.Many2one(
+            'account.payment.term', 'Payment Term',
+            states={
+                'confirmed': [
+                    ('readonly', True)], 'paid': [('readonly', True)],
+                'draft': [('readonly', False)]})
+
+    reconciled = fields.Boolean(
+            compute='_reconciled', string='Paid/Reconciled',
+            help="It indicates that the statement has been paid and the "
+                    "journal entry of the statement has been reconciled with "
+                    "one or several journal entries of payment.")
+    
+    residual = fields.Float(
+            compute='_amount_residual', digits=get_precision('Account'),
+            string='Balance',
+            help="Remaining amount due."),
+    
+    payment_ids = fields.Many2many(
+            compute="_compute_lines", relation='account.move.line',
+            string='Payments')
+    
+    interest = fields.Boolean('Compute Interest', default='_get_default_interest')
+    
+    interest_percent = fields.Float('Interest - Percent', default='_get_default_interest_percent')
+    
+    fiscal_page_base = fields.Integer('Last printed page', required=True, default=1)
 
     @api.multi
     def _compute_authority_vat_amount(self, field_name, arg):
@@ -72,10 +213,11 @@ class AccountVatPeriodEndStatement(models.Model):
     # Workflow stuff
     #
 
-    def _reconciled(self, cr, uid, ids, name, args, context=None):
+    @api.multi
+    def _reconciled(self, name, args):
         res = {}
-        for rec_id in ids:
-            res[rec_id] = self.test_paid(cr, uid, [rec_id])
+        for rec_id in self:
+            res[rec_id] = self.test_paid([rec_id])
         return res
 
     def move_line_id_payment_gets(self, cr, uid, ids, *args):
@@ -235,170 +377,6 @@ class AccountVatPeriodEndStatement(models.Model):
             return 0
         return company.of_account_end_vat_statement_interest_percent
 
-    _name = "account.vat.period.end.statement"
-    _rec_name = 'date'
-    _columns = {
-        'debit_vat_account_line_ids': fields.One2many(
-            'statement.debit.account.line', 'statement_id', 'Debit VAT',
-            help='The accounts containing the debit VAT amount to write-off',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]
-            }),
-
-        'credit_vat_account_line_ids': fields.One2many(
-            'statement.credit.account.line', 'statement_id', 'Credit VAT',
-            help='The accounts containing the credit VAT amount to write-off',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]
-            }),
-
-        'previous_credit_vat_account_id': fields.Many2one(
-            'account.account', 'Previous Credits VAT',
-            help='Credit VAT from previous periods',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]
-            }),
-        'previous_credit_vat_amount': fields.Float(
-            'Previous Credits VAT Amount',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]
-            },
-            digits_compute=self.env['decimal.precision'].get('Account')),
-
-        'previous_debit_vat_account_id': fields.Many2one(
-            'account.account', 'Previous Debits VAT',
-            help='Debit VAT from previous periods',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]
-            }),
-        'previous_debit_vat_amount': fields.Float(
-            'Previous Debits VAT Amount',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]
-            },
-            digits_compute=dp.get_precision('Account')),
-
-        'generic_vat_account_line_ids': fields.One2many(
-            'statement.generic.account.line', 'statement_id',
-            'Other VAT Credits / Debits or Tax Compensations',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-
-        'authority_partner_id': fields.Many2one(
-            'res.partner', 'Tax Authority Partner',
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-        'authority_vat_account_id': fields.Many2one(
-            'account.account', 'Tax Authority VAT Account', required=True,
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-        'authority_vat_amount': fields.function(
-            _compute_authority_vat_amount, method=True,
-            string='Authority VAT Amount'),
-        'payable_vat_amount': fields.function(
-            _compute_payable_vat_amount, method=True,
-            string='Payable VAT Amount'),
-        'deductible_vat_amount': fields.function(
-            _compute_deductible_vat_amount, method=True,
-            string='Deductible VAT Amount'),
-
-        'journal_id': fields.Many2one(
-            'account.journal', 'Journal', required=True,
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-        'date': fields.date(
-            'Date', required=True,
-            states={
-                'confirmed': [('readonly', True)],
-                'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-        'move_id': fields.Many2one(
-            'account.move', 'VAT statement move', readonly=True),
-
-        'state': fields.selection([
-            ('draft', 'Draft'),
-            ('confirmed', 'Confirmed'),
-            ('paid', 'Paid'),
-        ], 'State', readonly=True),
-
-        'payment_term_id': fields.Many2one(
-            'account.payment.term', 'Payment Term',
-            states={
-                'confirmed': [
-                    ('readonly', True)], 'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-
-        'reconciled': fields.function(
-            _reconciled, string='Paid/Reconciled', type='boolean',
-            store={
-                'account.vat.period.end.statement': (
-                    lambda self, cr, uid, ids, c={}: ids, None, 50),
-                'account.move.line': (_get_statement_from_line, None, 50),
-                'account.move.reconcile': (
-                    _get_statement_from_reconcile, None, 50),
-            }, help="It indicates that the statement has been paid and the "
-                    "journal entry of the statement has been reconciled with "
-                    "one or several journal entries of payment."),
-        'residual': fields.function(
-            _amount_residual, digits_compute=self.env['decimal.precision'].get('Account'),
-            string='Balance',
-            store={
-                'account.vat.period.end.statement': (
-                    lambda self, cr, uid, ids, c={}: ids,
-                    [
-                        'debit_vat_account_line_ids',
-                        'credit_vat_account_line_ids',
-                        'generic_vat_account_line_ids', 'move_id', 'state'
-                    ], 50),
-                'statement.credit.account.line': (
-                    _get_credit_line, ['amount', 'statement_id'], 50),
-                'statement.debit.account.line': (
-                    _get_debit_line, ['amount', 'statement_id'], 50),
-                'statement.generic.account.line': (
-                    _get_generic_line, ['amount', 'statement_id'], 50),
-                'account.move': (_get_statement_from_move, None, 50),
-                'account.move.line': (_get_statement_from_line, None, 50),
-                'account.move.reconcile': (
-                    _get_statement_from_reconcile, None, 50),
-            },
-            help="Remaining amount due."),
-        'payment_ids': fields.function(
-            _compute_lines, relation='account.move.line', type="many2many",
-            string='Payments'),
-        'period_ids': fields.One2many(
-            'account.period', 'vat_statement_id', 'Periods'),
-        'interest': fields.Boolean('Compute Interest'),
-        'interest_percent': fields.Float('Interest - Percent'),
-        'fiscal_page_base': fields.Integer('Last printed page', required=True)
-
-    }
-
-    _defaults = {
-        'date': fields.date.context_today,
-        'interest': _get_default_interest,
-        'interest_percent': _get_default_interest_percent,
-        'fiscal_page_base': 1,
-    }
 
     def _get_tax_code_amount(self, cr, uid, tax_code_id, period_id, context):
         if not context:
@@ -409,11 +387,11 @@ class AccountVatPeriodEndStatement(models.Model):
             None, None, context)[tax_code_id]
 
     def unlink(self, cr, uid, ids, context=None):
-        if isinstance(ids, (long, int)):
+        if isinstance(ids, int):
             ids = [ids]
         for statement in self.browse(cr, uid, ids, context):
             if statement.state == 'confirmed' or statement.state == 'paid':
-                raise models.except_orm(
+                raise ValidationError(
                     _('Error!'),
                     _('You cannot delete a confirmed or paid statement'))
         res = super(AccountVatPeriodEndStatement, self).unlink(
@@ -438,7 +416,7 @@ class AccountVatPeriodEndStatement(models.Model):
             period_ids = period_obj.find(
                 cr, uid, dt=statement.date, context=context)
             if len(period_ids) != 1:
-                raise models.except_orm(_('Encoding error'), _(
+                raise ValidationError(_('Encoding error'), _(
                     "No period found or more than one period found for the "
                     "given date."))
             move_data = {
@@ -563,7 +541,7 @@ class AccountVatPeriodEndStatement(models.Model):
                             statement.authority_vat_amount),
                         date_ref=statement.date, context=context)
                     if len(due_list) == 0:
-                        raise models.except_orm(
+                        raise ValidationError(
                             _('Error'),
                             _('The payment term %s does not have due dates')
                             % statement.payment_term_id.name)
@@ -718,7 +696,7 @@ class AccountVatPeriodEndStatement(models.Model):
         company = user.company_id
         if company.of_account_end_vat_statement_interest:
             if not company.of_account_end_vat_statement_interest_account_id:
-                raise models.except_orm(
+                raise ValidationError(
                     _('Error VAT Configuration!'),
                     _("The account for vat interest must be configurated"))
 
@@ -727,46 +705,51 @@ class AccountVatPeriodEndStatement(models.Model):
 
 class StatementDebitAccountLine(models.Model):
     _name = 'statement.debit.account.line'
-    _columns = {
-        'account_id': fields.Many2one(
-            'account.account', 'Account', required=True),
-        'tax_code_id': fields.Many2one(
-            'account.tax.code', 'Tax Code', required=True),
-        'statement_id': fields.Many2one(
-            'account.vat.period.end.statement', 'VAT statement'),
-        'amount': fields.Float(
-            'Amount', digits_compute=dp.get_precision('Account'),
-            required=True),
-    }
-
+    
+    account_id = fields.Many2one(
+            'account.account', 'Account', required=True)
+    
+    tax_id = fields.Many2one(
+            'account.tax', 'Tax', required=True)
+    
+    statement_id = fields.Many2one(
+            'account.vat.period.end.statement', 'VAT statement')
+    
+    amount = fields.Float(
+            'Amount', digits=get_precision('Account'),
+            required=True)
+    
 
 class StatementCreditAccountLine(models.Model):
     _name = 'statement.credit.account.line'
-    _columns = {
-        'account_id': fields.Many2one(
-            'account.account', 'Account', required=True),
-        'tax_code_id': fields.Many2one(
-            'account.tax.code', 'Tax Code', required=True),
-        'statement_id': fields.Many2one(
-            'account.vat.period.end.statement', 'VAT statement'),
-        'amount': fields.Float(
-            'Amount', digits_compute=dp.get_precision('Account'),
-            required=True),
-    }
-
+    
+    account_id = fields.Many2one(
+            'account.account', 'Account', required=True)
+    
+    tax_id = fields.Many2one(
+            'account.tax', 'Tax', required=True)
+    
+    statement_id = fields.Many2one(
+            'account.vat.period.end.statement', 'VAT statement')
+    
+    amount = fields.Float(
+            'Amount', digits=get_precision('Account'),
+            required=True)
+    
 
 class StatementGenericAccountLine(models.Model):
     _name = 'statement.generic.account.line'
-    _columns = {
-        'account_id': fields.Many2one(
-            'account.account', 'Account', required=True),
-        'statement_id': fields.Many2one(
-            'account.vat.period.end.statement', 'VAT statement'),
-        'amount': fields.Float(
-            'Amount', digits_compute=dp.get_precision('Account'),
-            required=True),
-    }
-
+    
+    account_id = fields.Many2one(
+            'account.account', 'Account', required=True)
+    
+    statement_id = fields.Many2one(
+            'account.vat.period.end.statement', 'VAT statement')
+    
+    amount = fields.Float(
+            'Amount', digits=get_precision('Account'),
+            required=True)
+    
     def on_change_vat_account_id(
         self, cr, uid, ids, vat_account_id=False, context=None
     ):
@@ -780,27 +763,17 @@ class StatementGenericAccountLine(models.Model):
         return res
 
 
-class AccountTaxCode(models.Model):
-    _inherit = "account.tax.code"
-    _columns = {
-        'vat_statement_account_id': fields.Many2one(
+class AccountTax(models.Model):
+    _inherit = "account.tax"
+    
+    vat_statement_account_id = fields.Many2one(
             'account.account',
             "Account used for VAT statement",
             help="The tax code balance will be "
             "associated to this account after selecting the period in "
-            "VAT statement"),
-        'vat_statement_sign': fields.Integer(
-            'Sign used in statement',
+            "VAT statement")
+    
+    vat_statement_sign = fields.Integer(
+            'Sign used in statement', default = 1,
             help="If tax code period sum is usually negative, set '-1' here"),
-    }
-    _defaults = {
-        'vat_statement_sign': 1,
-    }
-
-
-class AccountPeriod(models.Model):
-    _inherit = "account.period"
-    _columns = {
-        'vat_statement_id': fields.Many2one(
-            'account.vat.period.end.statement', "VAT statement"),
-    }
+    
