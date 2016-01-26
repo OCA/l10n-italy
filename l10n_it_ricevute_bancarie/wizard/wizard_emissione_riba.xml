@@ -2,7 +2,7 @@
 
 <openerp>
     <data>
-        
+
         <!-- ====================================================== -->
         <!--                     WIZARD EMISSIONE RIBA                -->
         <!-- ====================================================== -->
@@ -20,7 +20,7 @@
                 </form>
             </field>
         </record>
-        
+
         <!-- ====================================================== -->
         <!--                     ACTION EMISSIONE RIBA                -->
         <!-- ====================================================== -->
@@ -35,7 +35,7 @@
             <field name="view_id" ref="emissione_riba_view"/>
 
         </record>
-        
+
         <record model="ir.values" id="emissione_riba_client_action">
             <!--field name="model_id" ref="sale.model_sale_order" /
             <field name="object" eval="1" /> -->
@@ -45,6 +45,6 @@
             <field name="key">action</field>
             <field name="model">account.move.line</field>
         </record>
-        
+
     </data>
 </openerp>

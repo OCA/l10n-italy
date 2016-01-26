@@ -112,8 +112,8 @@ class emissione_riba(orm.TransientModel):
             if move_line.partner_id.group_riba:
                 for key in grouped_lines:
                     if (
-                        key[0] == move_line.partner_id.id
-                        and key[1] == move_line.date_maturity
+                        key[0] == move_line.partner_id.id and
+                        key[1] == move_line.date_maturity
                     ):
                         rdl_id = create_rdl(
                             conta, bank_id.id, rd_id, move_line.date_maturity,

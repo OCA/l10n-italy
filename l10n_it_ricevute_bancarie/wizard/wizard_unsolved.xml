@@ -2,7 +2,7 @@
 
 <openerp>
     <data>
-        
+
         <record id="riba_unsolved" model="ir.ui.view">
             <field name="name">riba.unsolved.wizard</field>
             <field name="model">riba.unsolved</field>
@@ -28,7 +28,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="riba_unsolved_action" model="ir.actions.act_window">
             <field name="name">Ri.Ba. Unsolved</field>
             <field name="type">ir.actions.act_window</field>
@@ -40,6 +40,6 @@
             <field name="view_id" ref="riba_unsolved"/>
 
         </record>
-        
+
     </data>
 </openerp>

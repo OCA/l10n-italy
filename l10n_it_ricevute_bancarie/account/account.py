@@ -134,9 +134,9 @@ class account_invoice(orm.Model):
                 'account.invoice': (
                     lambda self, cr, uid, ids, c={}: ids, [
                         'unsolved_move_line_ids'], 10
-                    ),
+                ),
                 'account.move.line': (_get_invoice_by_move_line, [
                     'unsolved_invoice_ids', 'reconcile_id'], 10),
-                }
-            ),
-        }
+            }
+        ),
+    }
