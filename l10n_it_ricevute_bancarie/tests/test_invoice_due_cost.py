@@ -58,17 +58,14 @@ class TestInvoiceDueCost(TransactionCase):
             'journal_id': self.journalrec.id,
             'partner_id': self.partner.id,
             'payment_term': self.payment_term1.id,
-            'account_id': self.sale_account,
+            'account_id': self.credit_account.id,
             'invoice_line': [(
                 0, 0, {
                     'name': self.product1.partner_ref,
                     'product_id': self.product1.id,
                     'quantity': 1.0,
                     'price_unit': 100.00,
-                    'account_id': self.env['account.account'].search(
-                        [('user_type', '=', self.env.ref(
-                            'account.data_account_type_income').id)],
-                        limit=1).id
+                    'account_id': self.sale_account.id
                 }
             )]
         })
@@ -82,9 +79,8 @@ class TestInvoiceDueCost(TransactionCase):
         self.payment_term1 = self._create_pterm()
         self.payment_term2 = self._create_pterm2()
         self.service_due_cost = self._create_service_due_cost()
-        self.sale_account = self.env['account.account'].search(
-            [('user_type', '=', self.env.ref(
-                'account.data_account_type_receivable').id)], limit=1).id
+        self.credit_account = self.env.ref('account.a_recv')
+        self.sale_account = self.env.ref('account.a_sale')
         self.invoice = self._create_invoice()
         self.invoice2 = self._create_invoice()
 
