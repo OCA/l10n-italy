@@ -71,51 +71,48 @@
         </template>
 
         <template id="report_ddt">
-            <t t-call="report.html_container">
-                <t t-foreach="docs" t-as="o">
-                    <t t-call="report.external_layout">
-                        <div class="page">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <h2>Destinatario</h2>
-                                    <div t-field="o.partner_shipping_id"
-                                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
-                                    <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <h2>Cessionario</h2>
-                                    <div t-field="o.partner_invoice_id"
-                                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
-                                    <div t-if="o.partner_invoice_id">VAT number: <span t-field="o.partner_invoice_id.vat"/></div>
-                                </div>
-                            </div>
-                            <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th><strong>Description</strong></th>
-                                        <th class="text-right"><strong>Quantity</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr t-foreach="o.line_ids" t-as="line">
-                                        <td><span t-field="line.name"></span></td>
-                                        <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <t t-call="l10n_it_ddt.delivery_data">
-                                <t t-set="ddt" t-value="o"/>
-                            </t>
+            <t t-call="report.external_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2>Destinatario</h2>
+                            <div t-field="o.partner_shipping_id"
+                                t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                            <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div>
                         </div>
+                        <div class="col-xs-6">
+                            <h2>Cessionario</h2>
+                            <div t-field="o.partner_invoice_id"
+                                t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                            <div t-if="o.partner_invoice_id">VAT number: <span t-field="o.partner_invoice_id.vat"/></div>
+                        </div>
+                    </div>
+                    <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th><strong>Description</strong></th>
+                                <th class="text-right"><strong>Quantity</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.line_ids" t-as="line">
+                                <td><span t-field="line.name"></span></td>
+                                <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <t t-call="l10n_it_ddt.delivery_data">
+                        <t t-set="ddt" t-value="o"/>
                     </t>
-                </t>
+                </div>
             </t>
         </template>
 
         <template id="report_ddt_main">
             <t t-call="report.html_container">
-                <t t-foreach="doc_ids" t-as="o">
+                <t t-foreach="docs" t-as="o">
                     <t t-call="l10n_it_ddt.report_ddt" t-lang="o.partner_id.lang"/>
                 </t>
             </t>
