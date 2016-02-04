@@ -83,9 +83,9 @@
                         </div>
                         <div class="col-xs-6">
                             <h2>Cessionario</h2>
-                            <div t-field="o.partner_invoice_id"
+                            <div t-field="o.partner_id"
                                 t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
-                            <div t-if="o.partner_invoice_id">VAT number: <span t-field="o.partner_invoice_id.vat"/></div>
+                            <div t-if="o.partner_id">VAT number: <span t-field="o.partner_id.vat"/></div>
                         </div>
                     </div>
                     <h1>DDT number: <span t-field="o.ddt_number"></span></h1>

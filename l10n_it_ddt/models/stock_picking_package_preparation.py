@@ -70,7 +70,6 @@ class StockPickingPackagePreparation(models.Model):
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
     ddt_number = fields.Char(string='DdT Number')
-    partner_invoice_id = fields.Many2one('res.partner')
     partner_shipping_id = fields.Many2one('res.partner')
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', 'Carriage Condition')
@@ -87,14 +86,11 @@ class StockPickingPackagePreparation(models.Model):
     parcels = fields.Integer()
     display_name = fields.Char(string='Name', compute='_compute_display_name')
     volume = fields.Float('Volume')
-    invoice_id = fields.Many2one(
-        'account.invoice', string="Invoice", readonly=True)
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
         if self.ddt_type_id:
             addr = self.partner_id.address_get(['delivery', 'invoice'])
-            self.partner_invoice_id = addr['invoice']
             self.partner_shipping_id = addr['delivery']
             self.carriage_condition_id = \
                 self.partner_id.carriage_condition_id.id \

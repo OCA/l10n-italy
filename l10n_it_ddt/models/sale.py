@@ -73,7 +73,6 @@ class SaleOrder(models.Model):
         picking_ids = [p.id for p in self.picking_ids]
         return {
             'partner_id': self.partner_id.id,
-            'partner_invoice_id': self.partner_invoice_id.id,
             'partner_shipping_id': self.partner_shipping_id.id,
             'carriage_condition_id': self.carriage_condition_id.id,
             'goods_description_id': self.goods_description_id.id,
