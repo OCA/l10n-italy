@@ -57,7 +57,7 @@
                        domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
                        attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
             </field>
-            <page string="Operations" position="after">
+            <notebook position="inside">
                 <page string="Shipping Informations"
                       attrs="{'invisible':[('ddt_type_id', '=', False)]}">
                     <group>
@@ -74,11 +74,10 @@
                                attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
                         <field name="volume"/>
                         <field name="weight"/>
-                        <field name="net_weight"/>
                         <field name="invoice_id" />
                     </group>
                 </page>
-            </page>
+            </notebook>
             <field name="note" position="replace"></field>
             <notebook position="after">
                 <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
