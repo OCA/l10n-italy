@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_ddt_create_invoice" model="ir.ui.view">
+            <field name="name">Create Invoice</field>
+            <field name="model">ddt.create.invoice</field>
+            <field name="arch" type="xml">
+              <form string="DdT Create Invoice">
+                  <group>
+                    <field name="journal_id" domain="[('type', 'in', ['sale', 'sale_refund'])]"/>
+                    <field name="date"/>
+                  </group>
+                    <footer>
+                        <button name="create_invoice" string="Create" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_ddt_create_invoice" model="ir.actions.act_window">
+            <field name="name">Create Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ddt.create.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[('state','=',('done'))]</field>
+            <field name="view_id" ref="view_ddt_create_invoice"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="ddt_create_invoice_client_action">
+            <field name="name">Create Invoice</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_create_invoice'))" />
+            <field name="key">action</field>
+            <field name="model">stock.picking.package.preparation</field>
+        </record>
+
+    </data>
+</openerp>
