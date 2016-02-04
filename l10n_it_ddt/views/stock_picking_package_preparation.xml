@@ -100,7 +100,7 @@
     <!-- DdT Data -->
 
     <menuitem id="menu_stock_ddt_data" name="DdT Data"
-        parent="stock.menu_stock_configuration"/>
+        parent="stock.menu_stock_config_settings"/>
 
     <record id="view_ddt_type_tree" model="ir.ui.view">
         <field name="name">stock.ddt.type.tree</field>
