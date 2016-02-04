@@ -28,7 +28,6 @@
     'data': [
         'security/ir.model.access.csv',
         'data/ddt_data.xml',
-        'wizard/ddt_create_invoice.xml',
         'views/stock_picking_package_preparation.xml',
         'views/partner.xml',
         'views/account.xml',

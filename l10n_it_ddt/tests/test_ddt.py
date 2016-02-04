@@ -47,7 +47,6 @@ class TestDdt(TransactionCase):
     def _create_ddt(self, pickings=None):
         values = {
             'partner_id': self.partner.id,
-            'partner_invoice_id': self.partner.id,
             'partner_shipping_id': self.partner.id,
             'ddt_type_id': self.env.ref('l10n_it_ddt.ddt_type_ddt').id,
             'carriage_condition_id': self.env.ref(
