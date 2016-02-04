@@ -7,7 +7,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@string='Other Info']" position="after">
+                <notebook position="inside">
                     <page string="Shipping Informations">
                         <group string="Shipping Informations">
                             <field name="goods_description_id"
@@ -21,7 +21,7 @@
                             <field name="parcels" />
                         </group>
                     </page>
-                </xpath>
+                </notebook>
             </field>
         </record>
 

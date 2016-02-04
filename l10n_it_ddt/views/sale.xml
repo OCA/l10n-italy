@@ -7,7 +7,7 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@string='Other Information']" position="after">
+                <notebook position="inside">
                     <page string="Shipping Informations">
                         <group string="Shipping Informations">
                             <group>
@@ -29,7 +29,7 @@
                             <field name="ddt_ids" nolabel="1"/>
                         </group>
                     </page>
-                </xpath>
+                </notebook>
             </field>
         </record>
 
