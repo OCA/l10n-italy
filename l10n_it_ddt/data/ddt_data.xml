@@ -3,10 +3,6 @@
     <data noupdate="1">
 
         <!-- DdT Sequence -->
-        <record id="seq_type_ddt" model="ir.sequence.type">
-            <field name="name">DDT</field>
-            <field name="code">stock.ddt</field>
-        </record>
         <record id="seq_ddt" model="ir.sequence">
             <field name="name">DDT</field>
             <field name="code">stock.ddt</field>
