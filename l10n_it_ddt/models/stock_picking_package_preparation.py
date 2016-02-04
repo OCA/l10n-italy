@@ -146,22 +146,3 @@ class StockPickingPackagePreparation(models.Model):
             name = u'{partner} of {date}'.format(partner=self.partner_id.name,
                                                  date=self.date)
         self.display_name = name
-
-
-class StockPickingPackagePreparationLine(models.Model):
-
-    _inherit = 'stock.picking.package.preparation.line'
-
-    invoiceable = fields.Selection(
-        [('none', 'None'), ('invoiceable', 'Invoiceable')],
-        default='invoiceable')
-
-    @api.multi
-    def get_move_data(self):
-        move_data = super(StockPickingPackagePreparationLine,
-                          self).get_move_data()
-        if self.invoiceable == 'invoiceable':
-            move_data.update({
-                'invoice_state': '2binvoiced',
-                })
-        return move_data

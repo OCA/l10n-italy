@@ -25,17 +25,6 @@ class StockPicking(models.Model):
         string='DdT',
         copy=False, )
 
-    def _get_invoice_vals(self, cr, uid, key, inv_type, journal_id, move,
-                          context=None):
-        if not context:
-            context = {}
-        values = super(StockPicking, self)._get_invoice_vals(
-            cr, uid, key, inv_type, journal_id, move, context)
-        # ----- Force to use partner invoice from ddt as invoice partner
-        if context.get('ddt_partner_id', False):
-            values['partner_id'] = context['ddt_partner_id']
-        return values
-
     @api.multi
     def write(self, values):
         if 'move_lines' in values:
