@@ -30,25 +30,14 @@ class AccountInvoice(models.Model):
         'Method of Transportation')
     parcels = fields.Integer()
 
-    def onchange_partner_id(
-            self, cr, uid, ids, type, partner_id, date_invoice=False,
-            payment_term=False, partner_bank_id=False, company_id=False,
-            context=None):
-        if context is None:
-            context = {}
-        result = super(AccountInvoice, self).onchange_partner_id(
-            cr, uid, ids, type, partner_id, date_invoice, payment_term,
-            partner_bank_id, company_id, context)
-        if partner_id:
-            partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
-            result['value'][
-                'carriage_condition_id'] = partner.carriage_condition_id.id
-            result['value'][
-                'goods_description_id'] = partner.goods_description_id.id
-            result['value'][
-                'transportation_reason_id'
-                ] = partner.transportation_reason_id.id
-            result['value'][
-                'transportation_method_id'
-                ] = partner.transportation_method_id.id
-        return result
+    def _onchange_partner_id(self):
+        res = super(AccountInvoice, self)._onchange_partner_id()
+        if self.partner_id:
+            self.carriage_condition_id = (
+                self.partner_id.carriage_condition_id.id)
+            self.goods_description_id = self.partner_id.goods_description_id.id
+            self.transportation_reason_id = (
+                self.partner_id.transportation_reason_id.id)
+            self.transportation_method_id = (
+                self.partner_id.transportation_method_id.id)
+        return res

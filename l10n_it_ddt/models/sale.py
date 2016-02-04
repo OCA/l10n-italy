@@ -41,62 +41,57 @@ class SaleOrder(models.Model):
     ddt_ids = fields.Many2many(
         'stock.picking.package.preparation',
         string='Related DdTs',
-        compute='_get_ddt_ids', )
+        compute='_get_ddt_ids')
     create_ddt = fields.Boolean('Automatically create the DDT')
 
-    def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
-        if not context:
-            context = {}
-        result = super(SaleOrder, self).onchange_partner_id(
-            cr, uid, ids, partner_id, context=context)
-        if partner_id:
-            partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
-            result['value'][
-                'carriage_condition_id'] = partner.carriage_condition_id.id
-            result['value'][
-                'goods_description_id'] = partner.goods_description_id.id
-            result['value'][
-                'transportation_reason_id'
-                ] = partner.transportation_reason_id.id
-            result['value'][
-                'transportation_method_id'
-                ] = partner.transportation_method_id.id
+    @api.multi
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        result = super(SaleOrder, self).onchange_partner_id()
+        if self.partner_id:
+            self.carriage_condition_id = (
+                self.partner_id.carriage_condition_id.id)
+            self.goods_description_id = self.partner_id.goods_description_id.id
+            self.transportation_reason_id = (
+                self.partner_id.transportation_reason_id.id)
+            self.transportation_method_id = (
+                self.partner_id.transportation_method_id.id)
         return result
 
-    def _make_invoice(self, cr, uid, order, lines, context=None):
-        inv_id = super(SaleOrder, self)._make_invoice(
-            cr, uid, order, lines, context)
-        self.pool.get('account.invoice').write(cr, uid, [inv_id], {
-            'carriage_condition_id': order.carriage_condition_id.id,
-            'goods_description_id': order.goods_description_id.id,
-            'transportation_reason_id': order.transportation_reason_id.id,
-            'transportation_method_id': order.transportation_method_id.id,
+    @api.multi
+    def _prepare_invoice(self):
+        vals = super(SaleOrder, self)._prepare_invoice()
+        vals.update({
+            'carriage_condition_id': self.carriage_condition_id.id,
+            'goods_description_id': self.goods_description_id.id,
+            'transportation_reason_id': self.transportation_reason_id.id,
+            'transportation_method_id': self.transportation_method_id.id,
             })
-        return inv_id
+        return vals
 
-    def _preparare_ddt_data(self, cr, uid, order, context=None):
-        picking_ids = [p.id for p in order.picking_ids]
+    def _preparare_ddt_data(self):
+        picking_ids = [p.id for p in self.picking_ids]
         return {
-            'partner_id': order.partner_id.id,
-            'partner_invoice_id': order.partner_invoice_id.id,
-            'partner_shipping_id': order.partner_shipping_id.id,
-            'carriage_condition_id': order.carriage_condition_id.id,
-            'goods_description_id': order.goods_description_id.id,
+            'partner_id': self.partner_id.id,
+            'partner_invoice_id': self.partner_invoice_id.id,
+            'partner_shipping_id': self.partner_shipping_id.id,
+            'carriage_condition_id': self.carriage_condition_id.id,
+            'goods_description_id': self.goods_description_id.id,
             'transportation_reason_id':
-            order.transportation_reason_id.id,
+            self.transportation_reason_id.id,
             'transportation_method_id':
-            order.transportation_method_id.id,
+            self.transportation_method_id.id,
             'picking_ids': [(6, 0, picking_ids)],
             }
 
-    def action_ship_create(self, cr, uid, ids, context=None):
-        res = super(SaleOrder, self).action_ship_create(
-            cr, uid, ids, context=context)
-        ddt_pool = self.pool['stock.picking.package.preparation']
-        for order in self.browse(cr, uid, ids, context):
+    @api.multi
+    def action_confirm(self):
+        res = super(SaleOrder, self).action_confirm()
+        ddt_model = self.env['stock.picking.package.preparation']
+        for order in self:
             if order.create_ddt:
-                ddt_data = self._preparare_ddt_data(cr, uid, order, context)
-                ddt_pool.create(cr, uid, ddt_data, context)
+                ddt_data = order._preparare_ddt_data()
+                ddt_model.create(ddt_data)
         return res
 
     def action_view_ddt(self, cr, uid, ids, context=None):
