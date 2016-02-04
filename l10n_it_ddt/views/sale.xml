@@ -43,7 +43,7 @@
                        name="action_view_ddt"
                        class="oe_stat_button"
                        icon="fa-truck"
-                       attrs="{'invisible': ['|',('picking_ids','=',False),('picking_ids','=',[])]}" groups="base.group_user"
+                       attrs="{'invisible': ['|',('ddt_ids','=',False),('ddt_ids','=',[])]}" groups="base.group_user"
                        string="View DdT">
                    </button>
                 </xpath>
