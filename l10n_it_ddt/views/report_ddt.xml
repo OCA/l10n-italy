@@ -115,8 +115,8 @@
 
         <template id="report_ddt_main">
             <t t-call="report.html_container">
-                <t t-foreach="doc_ids" t-as="doc_id">
-                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'l10n_it_ddt.report_ddt')"/>
+                <t t-foreach="doc_ids" t-as="o">
+                    <t t-call="l10n_it_ddt.report_ddt" t-lang="o.partner_id.lang"/>
                 </t>
             </t>
         </template>
