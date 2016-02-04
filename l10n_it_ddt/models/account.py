@@ -11,7 +11,7 @@
 ##############################################################################
 
 
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class AccountInvoice(models.Model):
@@ -30,6 +30,7 @@ class AccountInvoice(models.Model):
         'Method of Transportation')
     parcels = fields.Integer()
 
+    @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
         res = super(AccountInvoice, self)._onchange_partner_id()
         if self.partner_id:
