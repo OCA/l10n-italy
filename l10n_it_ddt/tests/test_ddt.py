@@ -18,21 +18,20 @@ class TestDdt(TransactionCase):
         return self.env['stock.picking'].create({
             'partner_id': self.partner.id,
             'picking_type_id': self.env.ref('stock.picking_type_out').id,
+            'location_id': self.src_location.id,
+            'location_dest_id': self.dest_location.id,
             })
 
     def _create_move(self, picking, product, quantity=1.0):
-        src_location = self.env.ref('stock.stock_location_stock')
-        dest_location = self.env.ref('stock.stock_location_customers')
         return self.env['stock.move'].create({
             'name': '/',
             'picking_id': picking.id,
             'product_id': product.id,
             'product_uom_qty': quantity,
             'product_uom': product.uom_id.id,
-            'location_id': src_location.id,
-            'location_dest_id': dest_location.id,
+            'location_id': self.src_location.id,
+            'location_dest_id': self.dest_location.id,
             'partner_id': self.partner.id,
-            'invoice_state': '2binvoiced',
             })
 
     def _create_line(self, preparation, product=None, quantity=0):
@@ -62,15 +61,10 @@ class TestDdt(TransactionCase):
             values.update({'picking_ids': [(6, 0, pickings.ids)], })
         return self.ddt_model.create(values)
 
-    def _create_invoice_wizard(self, ddt_ids=None):
-        return self.env['ddt.create.invoice'].with_context(
-            active_ids=ddt_ids or []
-            ).create({
-                'journal_id': self.env.ref('account.sales_journal').id,
-            })
-
     def setUp(self):
         super(TestDdt, self).setUp()
+        self.src_location = self.env.ref('stock.stock_location_stock')
+        self.dest_location = self.env.ref('stock.stock_location_customers')
         self.partner = self.env.ref('base.res_partner_2')
         self.product1 = self.env.ref('product.product_product_25')
         self.product2 = self.env.ref('product.product_product_26')
@@ -78,42 +72,6 @@ class TestDdt(TransactionCase):
         self.picking = self._create_picking()
         self.move = self._create_move(self.picking, self.product1)
         self.ddt = self._create_ddt()
-
-    def test_invoice_from_ddt_created_by_picking(self):
-        # ----- Create a ddt from an existing picking, create invoice and test
-        #       it
-        self.picking.action_confirm()
-        self.picking.action_assign()
-        self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
-        self.ddt.action_put_in_pack()
-        self.ddt.action_done()
-        wizard = self._create_invoice_wizard([self.ddt.id, ])
-        invoice_result = wizard.create_invoice()
-        self.assertTrue(invoice_result.get('res_id', False))
-        invoice = self.env[
-            invoice_result.get('res_model', 'account.invoice')
-            ].browse(invoice_result.get('res_id', False))
-        self.assertEquals(invoice.invoice_line[0].product_id.id,
-                          self.ddt.line_ids[0].product_id.id)
-        self.assertEquals(invoice.invoice_line[0].quantity,
-                          self.ddt.line_ids[0].product_uom_qty)
-
-    def test_invoice_from_ddt_created_by_package_preparation_line(self):
-        # ----- Create a ddt with a line that create automatically picking,
-        #       create invoice and test it
-        self._create_line(self.ddt, self.product1, 2.0)
-        self.ddt.action_put_in_pack()
-        self.ddt.action_done()
-        wizard = self._create_invoice_wizard([self.ddt.id, ])
-        invoice_result = wizard.create_invoice()
-        self.assertTrue(invoice_result.get('res_id', False))
-        invoice = self.env[
-            invoice_result.get('res_model', 'account.invoice')
-            ].browse(invoice_result.get('res_id', False))
-        self.assertEquals(invoice.invoice_line[0].product_id.id,
-                          self.ddt.line_ids[0].product_id.id)
-        self.assertEquals(invoice.invoice_line[0].quantity,
-                          self.ddt.line_ids[0].product_uom_qty)
 
     def test_create_ddt_from_picking(self):
         self.picking1 = self._create_picking()
@@ -160,35 +118,3 @@ class TestDdt(TransactionCase):
         self.ddt.line_ids[0].name = 'Changed for test'
         self.ddt.action_put_in_pack()
         self.assertEqual(self.ddt.line_ids[0].name, 'Changed for test')
-
-    def test_invoice_multi_ddt(self):
-        picking1 = self._create_picking()
-        self._create_move(picking1, self.product1, quantity=2)
-        picking2 = self._create_picking()
-        self._create_move(picking2, self.product1, quantity=3)
-        picking1.action_confirm()
-        picking1.action_assign()
-        picking2.action_confirm()
-        picking2.action_assign()
-        wiz_model = self.env['ddt.from.pickings']
-        wizard = wiz_model.with_context({
-            'active_ids': [picking1.id]
-            }).create({})
-        res = wizard.create_ddt()
-        ddt1 = self.ddt_model.browse(res['res_id'])
-        wizard = wiz_model.with_context({
-            'active_ids': [picking2.id]
-            }).create({})
-        res = wizard.create_ddt()
-        ddt2 = self.ddt_model.browse(res['res_id'])
-        ddt1.action_put_in_pack()
-        ddt1.action_done()
-        ddt2.action_put_in_pack()
-        ddt2.action_done()
-        wizard = self._create_invoice_wizard([ddt1.id, ddt2.id])
-        invoice_result = wizard.create_invoice()
-        invoice = self.env['account.invoice'].browse(
-            invoice_result.get('res_id', False))
-        self.assertEqual(len(invoice.invoice_line), 2)
-        for line in invoice.invoice_line:
-            self.assertEqual(line.product_id.id, self.product1.id)
