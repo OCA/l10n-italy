@@ -98,8 +98,9 @@ class RibaFileExport(orm.TransientModel):
         self._valuta = codice_divisa[0:1]
         self._supporto = nome_supporto.ljust(20, ' ')
         return (
-            " IB" + self._sia + self._assuntrice + self._data + self._supporto
-            + " " * 74 + self._valuta + " " * 6 + "\r\n")
+            " IB" + self._sia + self._assuntrice + self._data +
+            self._supporto +
+            " " * 74 + self._valuta + " " * 6 + "\r\n")
 
     def _Record14(
         self, scadenza, importo, abi_assuntrice, cab_assuntrice, conto,
@@ -107,13 +108,14 @@ class RibaFileExport(orm.TransientModel):
     ):
         self._totale += importo
         return (
-            " 14" + str(self._progressivo).rjust(7, '0') + " " * 12 + scadenza
-            + "30000" + str(int(round(importo * 100))).rjust(13, '0') + "-"
-            + abi_assuntrice.rjust(5, '0') + cab_assuntrice.rjust(5, '0')
-            + conto.ljust(12, '0') + abi_domiciliataria.rjust(5, '0')
-            + cab_domiciliataria.rjust(5, '0') + " " * 12
-            + str(sia_credit).rjust(5, '0') + "4" + codice_cliente.ljust(16)
-            + " " * 6 + self._valuta + "\r\n")
+            " 14" + str(self._progressivo).rjust(7, '0') + " " * 12 +
+            scadenza +
+            "30000" + str(int(round(importo * 100))).rjust(13, '0') + "-" +
+            abi_assuntrice.rjust(5, '0') + cab_assuntrice.rjust(5, '0') +
+            conto.ljust(12, '0') + abi_domiciliataria.rjust(5, '0') +
+            cab_domiciliataria.rjust(5, '0') + " " * 12 +
+            str(sia_credit).rjust(5, '0') + "4" + codice_cliente.ljust(16) +
+            " " * 6 + self._valuta + "\r\n")
 
     def _Record20(
         self, ragione_soc1_creditore, indirizzo_creditore, cap_citta_creditore,
@@ -121,17 +123,17 @@ class RibaFileExport(orm.TransientModel):
     ):
         self._creditore = ragione_soc1_creditore.ljust(24)
         return (
-            " 20" + str(self._progressivo).rjust(7, '0')
-            + self._creditore[0:24] + indirizzo_creditore.ljust(24)[0:24]
-            + cap_citta_creditore.ljust(24)[0:24]
-            + ref_creditore.ljust(24)[0:24]
-            + " " * 14 + "\r\n")
+            " 20" + str(self._progressivo).rjust(7, '0') +
+            self._creditore[0:24] + indirizzo_creditore.ljust(24)[0:24] +
+            cap_citta_creditore.ljust(24)[0:24] +
+            ref_creditore.ljust(24)[0:24] +
+            " " * 14 + "\r\n")
 
     def _Record30(self, nome_debitore, codice_fiscale_debitore):
         return (
-            " 30" + str(self._progressivo).rjust(7, '0')
-            + nome_debitore.ljust(60)[0:60]
-            + codice_fiscale_debitore.ljust(16, ' ') + " " * 34 + "\r\n")
+            " 30" + str(self._progressivo).rjust(7, '0') +
+            nome_debitore.ljust(60)[0:60] +
+            codice_fiscale_debitore.ljust(16, ' ') + " " * 34 + "\r\n")
 
     def _Record40(
         self, indirizzo_debitore, cap_debitore, comune_debitore,
@@ -140,10 +142,10 @@ class RibaFileExport(orm.TransientModel):
         self._comune_provincia_debitor = comune_debitore + \
             provincia_debitore.rjust(25 - len(comune_debitore), ' ')
         return (
-            " 40" + str(self._progressivo).rjust(7, '0')
-            + indirizzo_debitore.ljust(30)[0:30]
-            + str(cap_debitore).rjust(5, '0') + self._comune_provincia_debitor
-            + descrizione_domiciliataria.ljust(50)[0:50] + "\r\n")
+            " 40" + str(self._progressivo).rjust(7, '0') +
+            indirizzo_debitore.ljust(30)[0:30] +
+            str(cap_debitore).rjust(5, '0') + self._comune_provincia_debitor +
+            descrizione_domiciliataria.ljust(50)[0:50] + "\r\n")
 
     def _Record50(
         self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore
@@ -151,9 +153,9 @@ class RibaFileExport(orm.TransientModel):
         self._descrizione = 'PER LA FATTURA N. ' + invoice_ref + \
             ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
         return (
-            " 50" + str(self._progressivo).rjust(7, '0')
-            + self._descrizione.ljust(80)[0:80] + " " * 10
-            + partita_iva_creditore.ljust(16, ' ') + " " * 4 + "\r\n")
+            " 50" + str(self._progressivo).rjust(7, '0') +
+            self._descrizione.ljust(80)[0:80] + " " * 10 +
+            partita_iva_creditore.ljust(16, ' ') + " " * 4 + "\r\n")
 
     def _Record51(self, numero_ricevuta_creditore):
         return " 51" + str(self._progressivo).rjust(7, '0') + str(
@@ -166,11 +168,12 @@ class RibaFileExport(orm.TransientModel):
 
     def _RecordEF(self):  # record di coda
         return (
-            " EF" + self._sia + self._assuntrice + self._data + self._supporto
-            + " " * 6 + str(self._progressivo).rjust(7, '0')
-            + str(int(round(self._totale * 100))).rjust(15, '0') + "0" * 15
-            + str(int(self._progressivo) * 7 + 2).rjust(7, '0') + " " * 24
-            + self._valuta + " " * 6 + "\r\n")
+            " EF" + self._sia + self._assuntrice + self._data +
+            self._supporto +
+            " " * 6 + str(self._progressivo).rjust(7, '0') +
+            str(int(round(self._totale * 100))).rjust(15, '0') + "0" * 15 +
+            str(int(self._progressivo) * 7 + 2).rjust(7, '0') + " " * 24 +
+            self._valuta + " " * 6 + "\r\n")
 
     def _creaFile(self, intestazione, ricevute_bancarie):
         accumulatore = self._RecordIB(
@@ -220,8 +223,8 @@ class RibaFileExport(orm.TransientModel):
         creditor_address = order_obj.config_id.company_id.partner_id
         creditor_city = creditor_address.city or ''
         if (
-            not order_obj.config_id.company_id.partner_id.vat
-            and not order_obj.config_id.company_id.partner_id.fiscalcode
+            not order_obj.config_id.company_id.partner_id.vat and not
+            order_obj.config_id.company_id.partner_id.fiscalcode
         ):
             raise orm.except_orm(
                 'Error',
@@ -239,9 +242,9 @@ class RibaFileExport(orm.TransientModel):
             creditor_address.zip or '' + ' ' + creditor_city,
             order_obj.config_id.company_id.partner_id.ref or '',
             (
-                order_obj.config_id.company_id.partner_id.vat
-                and order_obj.config_id.company_id.partner_id.vat[2:]
-                or order_obj.config_id.company_id.partner_id.fiscalcode),
+                order_obj.config_id.company_id.partner_id.vat and
+                order_obj.config_id.company_id.partner_id.vat[2:] or
+                order_obj.config_id.company_id.partner_id.fiscalcode),
         ]
         arrayRiba = []
         for line in order_obj.line_ids:
@@ -269,11 +272,11 @@ class RibaFileExport(orm.TransientModel):
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise orm.except_orm(
                     'Error',
-                    _('No VAT or Fiscal code specified for ')
-                    + line.partner_id.name)
+                    _('No VAT or Fiscal code specified for ') +
+                    line.partner_id.name)
             if not (
-                debit_bank.bank and debit_bank.bank.name
-                or debit_bank.bank_name
+                debit_bank.bank and debit_bank.bank.name or
+                debit_bank.bank_name
             ):
                 raise orm.except_orm(
                     'Error',
@@ -292,8 +295,8 @@ class RibaFileExport(orm.TransientModel):
                 debit_abi,
                 debit_cab,
                 (
-                    debit_bank.bank and debit_bank.bank.name
-                    or debit_bank.bank_name),
+                    debit_bank.bank and debit_bank.bank.name or
+                    debit_bank.bank_name),
                 line.partner_id.ref or '',
                 line.invoice_number,
                 line.invoice_date,

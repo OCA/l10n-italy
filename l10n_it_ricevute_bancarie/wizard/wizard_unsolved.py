@@ -205,8 +205,8 @@ class RibaUnsolved(orm.TransientModel):
                 to_be_reconciled.append(move_line.id)
         for acceptance_move_line in distinta_line.acceptance_move_id.line_id:
             if (
-                acceptance_move_line.account_id.id
-                == wizard.effects_account_id.id
+                acceptance_move_line.account_id.id ==
+                wizard.effects_account_id.id
             ):
                 to_be_reconciled.append(acceptance_move_line.id)
 
