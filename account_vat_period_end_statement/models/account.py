@@ -724,9 +724,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         user = self.pool.get('res.users').browse(cr, uid, uid, context)
         company = user.company_id
         if company.of_account_end_vat_statement_interest or \
-                context.get('active_id', False) and \
-                self.pool['account.vat.period.end.statement'].browse(
-                    cr, uid, context['active_id']).interest:
+                self.browse(cr, uid, ids[0], context).interest:
             if not company.of_account_end_vat_statement_interest_account_id:
                 raise orm.except_orm(
                     _('Error VAT Configuration!'),

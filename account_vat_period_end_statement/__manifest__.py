@@ -26,7 +26,7 @@
 
 {
     "name": "Period End VAT Statement",
-    "version": "8.0.3.0.0",
+    "version": "8.0.2.0.1",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": [
