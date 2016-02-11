@@ -74,7 +74,8 @@ class AccountInvoice(models.Model):
                     [
                         ('date_start', '<=', date_start),
                         ('date_stop', '>=', date_stop),
-                        ('company_id', '=', inv.company_id.id)
+                        ('company_id', '=', inv.company_id.id),
+                        ('special', '!=', True),
                         ])
                 if period_ids:
                     period_id = period_ids[0]
