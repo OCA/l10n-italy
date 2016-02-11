@@ -79,9 +79,6 @@
                     </group>
                 </page>
             </page>
-            <page string="Transfers" position="attributes">
-                <attribute name="invisible">context.get('invisible_pickings',False)</attribute>
-            </page>
             <field name="note" position="replace"></field>
             <notebook position="after">
                 <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
