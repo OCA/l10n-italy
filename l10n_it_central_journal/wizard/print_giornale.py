@@ -14,7 +14,7 @@
 
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 from datetime import datetime, timedelta
 import time
 
@@ -115,7 +115,7 @@ class wizard_giornale(models.TransientModel):
             ('move_id.state', 'in', target_type)
             ], order='date, move_id asc')
         if not move_line_ids:
-            raise Warning(_('No documents found in the current selection'))
+            raise UserError(_('No documents found in the current selection'))
         datas = {}
         datas_form = {}
         datas_form['date_move_line_from'] = wizard.date_move_line_from
@@ -139,8 +139,7 @@ class wizard_giornale(models.TransientModel):
     def print_giornale_final(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)
         if wizard.date_move_line_from <= wizard.last_def_date_print:
-            raise Warning(_('data già stampata'))
-            return False
+            raise UserError(_('Date already printed'))
         else:
             if wizard.target_move == 'all':
                 target_type = ['posted', 'draft']
@@ -154,7 +153,8 @@ class wizard_giornale(models.TransientModel):
                 ('move_id.state', 'in', target_type)
                 ], order='date, move_id asc')
             if not move_line_ids:
-                raise Warning(_('No documents found in the current selection'))
+                raise UserError(
+                    _('No documents found in the current selection'))
             datas = {}
             datas_form = {}
             datas_form['date_move_line_from'] = wizard.date_move_line_from
