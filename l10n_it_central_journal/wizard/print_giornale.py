@@ -26,8 +26,8 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
-from datetime import datetime, date, timedelta
-import openerp.addons.decimal_precision as dp
+from datetime import datetime, timedelta
+import time
 
 
 class wizard_giornale(models.TransientModel):
@@ -38,23 +38,23 @@ class wizard_giornale(models.TransientModel):
         ids = ctx.get('active_ids', [])
         if ids and context.get('active_model') == 'account.account':
             company_id = self.pool.get('account.account').browse(
-                                cr, uid, ids[0], context=context).company_id.id
+                cr, uid, ids[0], context=context).company_id.id
         else:
             company_id = self.pool.get('res.users').browse(
-                                    cr, uid, uid, context=ctx).company_id.id
+                cr, uid, uid, context=ctx).company_id.id
         domain = [('company_id', '=', company_id),
                   ('date_start', '<', now),
                   ('date_stop', '>', now)]
         fiscalyears = self.pool.get('account.fiscalyear').search(
-                                                            domain, limit=1)
+            domain, limit=1)
         return fiscalyears and fiscalyears[0] or False
 
     @api.model
     def _get_journal(self):
         journal_obj = self.env['account.journal']
         journal_ids = journal_obj.search([
-                        ('central_journal_exclude', '=', False)
-                        ])
+            ('central_journal_exclude', '=', False)
+            ])
         return journal_ids
 
     _name = "wizard.giornale"
@@ -69,19 +69,19 @@ class wizard_giornale(models.TransientModel):
     progressive_credit = fields.Float('Progressive Credit')
     progressive_debit2 = fields.Float('Progressive debit')
     print_state = fields.Selection(
-                                [('print', 'Ready for printing'),
-                                 ('printed', 'Printed')],
-                                'State',
-                                default='print',
-                                readonly=True)
+        [('print', 'Ready for printing'),
+         ('printed', 'Printed')],
+        'State',
+        default='print',
+        readonly=True)
     journal_ids = fields.Many2many(
-                                    'account.journal',
-                                    'giornale_journals_rel',
-                                    'journal_id',
-                                    'giornale_id',
-                                    default=_get_journal,
-                                    string='Journals',
-                                    required=True)
+        'account.journal',
+        'giornale_journals_rel',
+        'journal_id',
+        'giornale_id',
+        default=_get_journal,
+        string='Journals',
+        required=True)
     target_move = fields.Selection([('all', 'All'),
                                    ('posted', 'Posted'),
                                    ('draft', 'Draft')],
@@ -93,12 +93,12 @@ class wizard_giornale(models.TransientModel):
     def on_change_fiscalyear(self):
         if self.fiscalyear:
             date_start = datetime.strptime(
-                                self.fiscalyear.date_start, "%Y-%m-%d").date()
+                self.fiscalyear.date_start, "%Y-%m-%d").date()
             date_stop = datetime.strptime(
-                                self.fiscalyear.date_stop, "%Y-%m-%d").date()
+                self.fiscalyear.date_stop, "%Y-%m-%d").date()
             if self.fiscalyear.date_last_print:
                 date_last_print = datetime.strptime(
-                            self.fiscalyear.date_last_print, "%Y-%m-%d").date()
+                    self.fiscalyear.date_last_print, "%Y-%m-%d").date()
                 self.last_def_date_print = date_last_print
                 date_start = (date_last_print + timedelta(days=1)).__str__()
             else:

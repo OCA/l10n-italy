@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields
 import openerp.addons.decimal_precision as dp
 
 
@@ -40,10 +40,10 @@ class account_fiscalyear(models.Model):
                                              default=0)
     progressive_line_number = fields.Integer('Progressive line', default=0)
     progressive_credit = fields.Float(
-                                    'Progressive Credit',
-                                    digits_compute=dp.get_precision('Account'),
-                                    default=lambda *a: float())
+        'Progressive Credit',
+        digits_compute=dp.get_precision('Account'),
+        default=lambda *a: float())
     progressive_debit = fields.Float(
-                                'Progressive Debit',
-                                digits_compute=dp.get_precision('Account'),
-                                default=lambda *a: float())
+        'Progressive Debit',
+        digits_compute=dp.get_precision('Account'),
+        default=lambda *a: float())

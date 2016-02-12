@@ -25,9 +25,7 @@
 
 from openerp.report import report_sxw
 from openerp.osv import osv
-from openerp import _
 import logging
-from datetime import datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -45,9 +43,7 @@ class Parser(report_sxw.rml_parse):
         if self.localcontext.get('print_state') == 'def':
             fiscalyear_obj = self.pool.get('account.fiscalyear')
             fiscalyear_ids = fiscalyear_obj.search(
-                            self.cr, self.uid, [('id', '=', fiscalyear_id)])
-            fiscalyear_data = fiscalyear_obj.browse(
-                            self.cr, self.uid, fiscalyear_ids)[0]
+                self.cr, self.uid, [('id', '=', fiscalyear_id)])
             print_info = {
                 'date_last_print': end_date_print,
                 'progressive_line_number': end_row,
@@ -56,7 +52,7 @@ class Parser(report_sxw.rml_parse):
                 'progressive_credit': end_credit,
             }
             res = fiscalyear_obj.write(
-                                self.cr, self.uid, fiscalyear_ids, print_info)
+                self.cr, self.uid, fiscalyear_ids, print_info)
         return res
 
     def __init__(self, cr, uid, name, context):
