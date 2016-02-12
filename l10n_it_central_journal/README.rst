@@ -40,9 +40,9 @@ Images
 Contributors
 ------------
 
-* Diego Milani
-* Davide Corio
-* Lorenzo Battistini
+* Diego Milani <dmilani@linkgroup.it>
+* Davide Corio <davide.corio@abstract.it>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 Maintainer
 ----------
