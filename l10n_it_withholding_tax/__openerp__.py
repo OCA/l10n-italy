@@ -3,13 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Withholding tax',
-    'version': '0.2',
+    'name': 'Italian Withholding Tax',
+    'version': '8.0.2.0.0',
     'category': 'Account',
-    'description': """
-    Withholding tax
-
-""",
     'author': 'Openforce di Alessandro Camilli, '
               'Odoo Community Association (OCA)',
     'website': 'http://www.openforce.it',
@@ -26,4 +22,3 @@
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
