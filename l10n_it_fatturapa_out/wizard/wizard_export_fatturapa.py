@@ -22,7 +22,10 @@
 import base64
 from unidecode import unidecode
 from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
+
 from openerp.osv import orm
+from openerp.tools.translate import _
+
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
@@ -508,9 +511,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     documento.CodiceCUP = related_document.cup
                 if related_document.cig:
                     documento.CodiceCIG = related_document.cig
-                eval(
-                    "body.DatiGenerali." +
-                    doc_type + ".append(documento)")
+                getattr(body.DatiGenerali, doc_type).append(documento)
             linecount += 1
         for related_document in invoice.related_documents:
             doc_type = RELATED_DOCUMENT_TYPES[related_document.type]
@@ -527,9 +528,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 documento.CodiceCUP = related_document.cup
             if related_document.cig:
                 documento.CodiceCIG = related_document.cig
-            eval(
-                "body.DatiGenerali." +
-                doc_type + ".append(documento)")
+            getattr(body.DatiGenerali, doc_type).append(documento)
         return True
 
     def setDatiTrasporto(self, cr, uid, invoice, body, context=None):
