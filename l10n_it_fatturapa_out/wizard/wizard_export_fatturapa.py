@@ -515,9 +515,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     documento.CodiceCUP = related_document.cup
                 if related_document.cig:
                     documento.CodiceCIG = related_document.cig
-                eval(
-                    "body.DatiGenerali." +
-                    doc_type + ".append(documento)")
+                getattr(body.DatiGenerali, doc_type).append(documento)
             linecount += 1
         for related_document in invoice.related_documents:
             doc_type = RELATED_DOCUMENT_TYPES[related_document.type]
@@ -534,9 +532,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 documento.CodiceCUP = related_document.cup
             if related_document.cig:
                 documento.CodiceCIG = related_document.cig
-            eval(
-                "body.DatiGenerali." +
-                doc_type + ".append(documento)")
+            getattr(body.DatiGenerali, doc_type).append(documento)
         return True
 
     def setDatiTrasporto(self, cr, uid, invoice, body, context=None):
