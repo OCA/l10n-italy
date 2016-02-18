@@ -33,6 +33,13 @@ To use this module, you need to add the withholding tax to subjected invoice lin
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/122/8.0
 
+Known issues / Roadmap
+======================
+
+This module is incompatible with 'l10n_it_withholding_tax'.
+
+Please use this module only if 'l10n_it_withholding_tax' is excessive in your case.
+
 Bug Tracker
 ===========
 
