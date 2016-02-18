@@ -83,17 +83,17 @@ class AccountConfigSettings(orm.TransientModel):
                 cr, uid, company_id, context=context)
             res['value'].update({
                 'withholding_payment_term_id': (
-                    company.withholding_payment_term_id
-                    and company.withholding_payment_term_id.id or False),
+                    company.withholding_payment_term_id and
+                    company.withholding_payment_term_id.id or False),
                 'withholding_account_id': (
-                    company.withholding_account_id
-                    and company.withholding_account_id.id or False),
+                    company.withholding_account_id and
+                    company.withholding_account_id.id or False),
                 'withholding_journal_id': (
-                    company.withholding_journal_id
-                    and company.withholding_journal_id.id or False),
+                    company.withholding_journal_id and
+                    company.withholding_journal_id.id or False),
                 'authority_partner_id': (
-                    company.authority_partner_id
-                    and company.authority_partner_id.id or False),
+                    company.authority_partner_id and
+                    company.authority_partner_id.id or False),
             })
         else:
             res['value'].update({
