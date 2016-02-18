@@ -70,6 +70,11 @@ class WizardRegistroIva(models.TransientModel):
     only_totals = fields.Boolean(
         string='Prints only totals')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
+    order_by = fields.Selection([
+        ('date-number', 'Date - Number'),
+        ('journal-date-number', 'Journal - Date - Number'),
+        ], 'Order by', required=True,
+        default='date-number')
 
     @api.onchange('tax_registry_id')
     def on_change_vat_registry(self):
@@ -80,15 +85,22 @@ class WizardRegistroIva(models.TransientModel):
                 self.tax_sign = -1
             else:
                 self.tax_sign = 1
+        self.order_by = self.tax_registry_id.order_by
 
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)
         move_obj = self.pool['account.move']
+        if wizard.order_by == 'date-number':
+            order_by = 'date, name'
+        elif wizard.order_by == 'journal-date-number':
+            order_by = 'journal_id, date, name'
+        else:
+            order_by = 'date, name'
         move_ids = move_obj.search(cr, uid, [
             ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
             ('period_id', 'in', [p.id for p in wizard.period_ids]),
             ('state', '=', 'posted'),
-            ], order='date, name')
+            ], order=order_by)
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
         datas = {}
@@ -103,6 +115,7 @@ class WizardRegistroIva(models.TransientModel):
         else:
             datas_form['tax_registry_name'] = ''
         datas_form['only_totals'] = wizard.only_totals
+        datas_form['order_by'] = wizard.order_by
         report_name = 'l10n_it_vat_registries.report_registro_iva'
         datas = {
             'ids': move_ids,

@@ -35,3 +35,8 @@ class AccountTaxRegistry(models.Model):
         ('supplier', 'Supplier Invoices'),
         ('corrispettivi', 'Corrispettivi'),
         ], 'Layout', required=True)
+    order_by = fields.Selection([
+        ('date-number', 'Date - Number'),
+        ('journal-date-number', 'Journal - Date - Number'),
+        ], 'Order by', required=True,
+        default='date-number')
