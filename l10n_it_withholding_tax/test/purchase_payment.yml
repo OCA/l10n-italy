@@ -7,8 +7,6 @@
     withholding_journal_id: account.miscellaneous_journal
     authority_partner_id: tax_authority
 -
-  In order to test account invoice I create a new supplier invoice
--
   I create a Tax Codes
 -
   !record {model: account.tax.code, id: tax_case}:
@@ -16,16 +14,37 @@
     company_id: base.main_company
     sign: 1
 -
+  !record {model: account.tax.code, id: tax_case_wh}:
+    name: Tax_case withholding
+    company_id: base.main_company
+    sign: 1
+    withholding_tax: 1
+-
   I create a Tax
 -
   !record {model: account.tax, id: tax10}:
     name: Tax 10.0
-    amount: 10.0
-    type: fixed
+    amount: 0.1
+    type: percent
     sequence: 1
     company_id: base.main_company
     type_tax_use: all
     tax_code_id: tax_case
+    account_collected_id: account.ova
+    account_paid_id: account.ova
+-
+  I create withholding Tax
+-
+  !record {model: account.tax, id: whtax20}:
+    name: WH tax 20
+    amount: -0.2
+    type: percent
+    sequence: 1
+    company_id: base.main_company
+    type_tax_use: all
+    tax_code_id: tax_case_wh
+    account_collected_id: account.a_pay
+    account_paid_id: account.a_pay
 -
   I set the context
 -
@@ -34,7 +53,7 @@
 -
   I create a supplier invoice
 -
-  !record {model: account.invoice, id: account_invoice_supplier_0, view: invoice_supplier_form}:
+  !record {model: account.invoice, id: account_invoice_supplier_0, view: account.invoice_supplier_form}:
     account_id: account.a_pay
     company_id: base.main_company
     currency_id: base.EUR
@@ -45,10 +64,9 @@
         quantity: 1.0
         invoice_line_tax_id:
                   - tax10
+                  - whtax20
     journal_id: account.expenses_journal
     partner_id: base.res_partner_12
-    has_withholding: True
-    withholding_amount: 20.0
 -
   I check that Initially supplier invoice state is "Draft"
 -
@@ -63,7 +81,7 @@
 -
   !assert {model: account.invoice, id: account_invoice_supplier_0}:
     - state == 'open'
-    - net_pay == 90.0
+    - amount_total == 90.0
 -
   I create the voucher of payment with 90
 -
@@ -102,4 +120,100 @@
   Finally i will Confirm the state of the invoice is paid
 -
   !assert {model: account.invoice, id: account_invoice_supplier_0}:
+    - state == 'paid'
+-
+  I create a normal supplier invoice
+-
+  !record {model: account.invoice, id: account_invoice_supplier_1, view: account.invoice_supplier_form}:
+    account_id: account.a_pay
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_expense
+        name: 'Lawyer service'
+        price_unit: 100.0
+        quantity: 1.0
+        invoice_line_tax_id:
+                  - tax10
+    journal_id: account.expenses_journal
+    partner_id: base.res_partner_12
+-
+  I change the state of invoice to open by clicking Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_supplier_1}
+-
+  I check that the invoice state is now "Open" and 'Net Pay' is 110
+-
+  !assert {model: account.invoice, id: account_invoice_supplier_1}:
+    - state == 'open'
+    - amount_total == 110.0
+-
+  I create the voucher of payment with 110
+-
+  !record {model: account.voucher, id: account_voucher_1, view: account_voucher.view_vendor_payment_form}:
+    account_id: account.cash
+    amount: 110.0
+    company_id: base.main_company
+    journal_id: account.bank_journal
+    name: 'Payment: invoice 1'
+    partner_id: base.res_partner_12
+    period_id: account.period_3
+    date: !eval time.strftime("%Y-03-10")
+    type: 'payment'
+-
+  I confirm the voucher
+-
+  !workflow {model: account.voucher, action: proforma_voucher, ref: account_voucher_1}
+-
+  Finally i will Confirm the state of the invoice is paid
+-
+  !assert {model: account.invoice, id: account_invoice_supplier_1}:
+    - state == 'paid'
+-
+  I create a customer invoice
+-
+  !record {model: account.invoice, id: account_invoice_customer_0, view: account.invoice_form}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: 'service'
+        price_unit: 100.0
+        quantity: 1.0
+        invoice_line_tax_id:
+                  - tax10
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_12
+-
+  I change the state of invoice to open by clicking Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_customer_0}
+-
+  I check that the invoice state is now "Open" and 'Net Pay' is 110
+-
+  !assert {model: account.invoice, id: account_invoice_customer_0}:
+    - state == 'open'
+    - amount_total == 110.0
+-
+  I create the voucher of payment with 110
+-
+  !record {model: account.voucher, id: account_voucher_2, view: account_voucher.view_vendor_receipt_form}:
+    account_id: account.cash
+    amount: 110.0
+    company_id: base.main_company
+    journal_id: account.bank_journal
+    name: 'Payment: invoice'
+    partner_id: base.res_partner_12
+    period_id: account.period_3
+    date: !eval time.strftime("%Y-03-10")
+    type: 'receipt'
+-
+  I confirm the voucher
+-
+  !workflow {model: account.voucher, action: proforma_voucher, ref: account_voucher_2}
+-
+  Finally i will Confirm the state of the invoice is paid
+-
+  !assert {model: account.invoice, id: account_invoice_customer_0}:
     - state == 'paid'
