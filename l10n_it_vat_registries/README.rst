@@ -67,6 +67,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Sergio Corato <sergiocorato@gmail.com>
 * Elena Carlesso <ecarlesso@linkgroup.it>
+* Alessandro Camilli <alessandrocamilli@openforce.it>
 
 Maintainer
 ----------
