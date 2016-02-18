@@ -2,13 +2,15 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=======================
-Italian Withholding Tax
-=======================
+=================================
+Italian Withholding Tax - Payment
+=================================
 
-Module for Italian Withholding Tax: Ritenute d'acconto
-
-Gestisce le ritenute sulle fatture e sui pagamenti
+Questo modulo gestisce il versamento delle ritenute verso l'erario.
+Consente infatti di selezionare le voci di ritenuta (che vengono generate dai voucher), e creare un versamento.
+Per versamento si intende una distinta con l'elenco delle ritenute che periodicamente vengono versate all'erario.
+Questo versamento ha il suo workflow: con il pulsante "conferma" le voci passano nello stato di versate.
+Poi è anche possibile generare la registrazione di versamento erario a banca
 
 Usage
 =====
@@ -28,7 +30,7 @@ check there if your issue has already been reported. If you spotted it first,
 help us smashing it by providing a detailed and welcomed `feedback
 <https://github.com/OCA/
 l10n-italy/issues/new?body=module:%20
-l10n_it_withholding_tax%0Aversion:%20
+l10n_it_withholding_tax_payment%0Aversion:%20
 8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
