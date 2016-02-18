@@ -10,8 +10,8 @@
               'Odoo Community Association (OCA)',
     'website': 'http://www.openforce.it',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_withholding_tax'],
-    "data" : [
+    "depends": ['l10n_it_withholding_tax'],
+    "data": [
         'views/withholding_tax.xml',
         'workflow.xml',
         'security/ir.model.access.csv',
