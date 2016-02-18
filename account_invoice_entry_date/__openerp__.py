@@ -21,7 +21,7 @@
 
 {
     'name': 'Account Invoice entry Date',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.1.1',
     'category': 'Generic Modules/Accounting',
     'description': """This module allows to specify the date to be used by the
 move created while confirming (supplier) invoice""",
