@@ -43,7 +43,7 @@ addon | version | summary
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 (unported) | Italian Localisation - Corrispettivi
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 (unported) | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.0 (unported) | Electronic invoices emission
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 (unported) | Electronic invoices emission
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.0 (unported) | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 (unported) | IPA Code (IndicePA)
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
