@@ -128,9 +128,9 @@ class wizard_compute_fc(osv.osv_memory):
         form_obj = self.browse(cr, uid, ids, context)
         for wizard in form_obj:
             if (
-                not wizard.fiscalcode_surname
-                or not wizard.fiscalcode_firstname or not wizard.birth_date
-                or not wizard.birth_city or not wizard.sex
+                not wizard.fiscalcode_surname or
+                not wizard.fiscalcode_firstname or not wizard.birth_date or
+                not wizard.birth_city or not wizard.sex
             ):
                 raise osv.except_osv(
                     _('Error'), _('One or more fields are missing'))

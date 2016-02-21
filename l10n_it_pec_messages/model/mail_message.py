@@ -44,7 +44,7 @@ class MailMessage(orm.Model):
         'direction': fields.selection([
             ('in', 'in'),
             ('out', 'out'),
-            ], 'Mail direction'),
+        ], 'Mail direction'),
         'pec_type': fields.selection([
             ('posta-certificata', 'Pec Mail'),
             ('accettazione', 'Reception'),
@@ -54,7 +54,7 @@ class MailMessage(orm.Model):
             ('errore-consegna', 'Delivery Error'),
             ('preavviso-errore-consegna', 'Notice Delivery Error'),
             ('rilevazione-virus', 'Virus Detected'),
-            ], 'Pec Type', readonly=True),
+        ], 'Pec Type', readonly=True),
         'error': fields.boolean('Reception Delivery Error'),
         'err_type': fields.selection([
             ('nessuno', 'No Error'),
@@ -62,7 +62,7 @@ class MailMessage(orm.Model):
             ('no-dominio', 'Recipient domain Error'),
             ('virus', 'Virus Detected Error'),
             ('altro', 'Undefined Error'),
-            ], 'Pec Error Type', readonly=True),
+        ], 'Pec Error Type', readonly=True),
         'cert_datetime': fields.datetime(
             'Certified Date and Time ', readonly=True),
         'pec_msg_id': fields.char(
@@ -172,8 +172,8 @@ class MailMessage(orm.Model):
                     receipt_list = [r[1] for r
                                     in getaddresses(
                                         [sent_mail.email_to.lower()]
-                                        )
-                                    ]
+                    )
+                    ]
                     res = {receipt: False for receipt in receipt_list}
                     res['accettazione'] = False
                     for notification in message.pec_notifications_ids:

@@ -80,7 +80,7 @@ class MailThread(orm.Model):
         parser = email.Parser.HeaderParser()
         msg_val = email.message_from_string(
             parser.parsestr(msg.as_string()).get_payload()
-            )
+        )
         if 'To'in msg_val:
             to = msg_val['To']
         if 'X-Riferimento-Message-ID'in msg_val:
