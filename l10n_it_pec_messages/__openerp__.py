@@ -77,7 +77,7 @@ Contributors
     ],
     'demo': [
         'demo/pec_data.xml',
-    ],
+        ],
     'installable': True,
     'active': False,
 }

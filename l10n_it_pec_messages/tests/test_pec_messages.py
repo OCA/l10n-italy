@@ -38,7 +38,7 @@ class TestPecMessages(test_common.SingleTransactionCase):
             'fetchmail_cron_running': True,
             'server_type': u'imap',
             'fetchmail_server_id': 1,
-        }
+            }
         self.thread_model.message_process(
             cr, uid, None, msg, save_original=False, strip_attachments=False,
             context=context)
@@ -70,11 +70,11 @@ class TestPecMessages(test_common.SingleTransactionCase):
             'fetchmail_cron_running': True,
             'server_type': u'imap',
             'fetchmail_server_id': 1,
-        }
+            }
         imap_server_id = self.ref('l10n_it_pec_messages.imap_pec_server')
         self.fetchmail_model.write(cr, uid, [imap_server_id], {
             'force_create_partner_from_mail': True,
-        })
+            })
         self.thread_model.message_process(
             cr, uid, None, msg_file, save_original=False,
             strip_attachments=False, context=fetch_context)
@@ -100,7 +100,7 @@ class TestPecMessages(test_common.SingleTransactionCase):
             'default_partner_ids': [msg.author_id.id],
             'active_ids': msg_ids,
             'active_id': msg_ids[0],
-        }
+            }
         wizard_id = self.compose_msg_model.create(
             cr, uid, {'body': u'<p>replying to message2</p>'}, context=context)
         self.compose_msg_model.send_mail(cr, uid, [wizard_id], context=context)
@@ -114,7 +114,7 @@ class TestPecMessages(test_common.SingleTransactionCase):
         sent_msg.write({
             'message_id': "<1415985992.182905912399292.346704098667155-"
                           "openerp-private@elbati-Vostro-3550>"
-        })
+            })
 
         # accettazione
         self.thread_model.message_process(
