@@ -32,14 +32,14 @@ class MailMail(orm.Model):
         mail = self.browse(cr, uid, res, context=context)
         if (
             (
-                mail.parent_id and mail.parent_id.server_id
-                and mail.parent_id.server_id.pec)
-            or
+                mail.parent_id and mail.parent_id.server_id and
+                mail.parent_id.server_id.pec) or
+
             context.get('new_pec_server_id')
         ):
             in_server_id = context.get(
                 'new_pec_server_id'
-                ) or mail.parent_id.server_id.id
+            ) or mail.parent_id.server_id.id
             server_pool = self.pool['ir.mail_server']
             server_ids = server_pool.search(
                 cr, uid, [('in_server_id', '=', in_server_id)],
@@ -54,7 +54,7 @@ class MailMail(orm.Model):
                     'out_server_id': server.id,
                     'pec_type': 'posta-certificata',
                     'direction': 'out'
-                    }, context=context)
+                }, context=context)
                 mail_msg_pool.write(
                     cr, uid, mail.mail_message_id.id,
                     {'email_from': server.smtp_user})

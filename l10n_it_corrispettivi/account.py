@@ -52,13 +52,13 @@ class account_invoice(osv.osv):
         # Se la company ha almeno un sezionale corrispettivi ma l'invoice non è
         # un corrispettivo
         elif (
-            corr_journal_ids
-            and corr_journal_ids[0] in res['domain']['journal_id'][0][2]
+            corr_journal_ids and
+            corr_journal_ids[0] in res['domain']['journal_id'][0][2]
         ):
             # Se l'on_change di invoice ha impostato il journal corrispettivi
             if (
-                corr_journal_ids[0] == res['value']['journal_id']
-                and len(res['domain']['journal_id'][0][2]) > 1
+                corr_journal_ids[0] == res['value']['journal_id'] and
+                len(res['domain']['journal_id'][0][2]) > 1
             ):
                 for j_id in res['domain']['journal_id'][0][2]:
                     if corr_journal_ids[0] != j_id:

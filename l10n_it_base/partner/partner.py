@@ -91,8 +91,8 @@ class res_partner(osv.osv):
                     cr, uid, city_id[0])
                 res = {'value': {
                     'province': (
-                        city_obj.province_id and city_obj.province_id.id
-                        or False
+                        city_obj.province_id and city_obj.province_id.id or
+                        False
                     ),
                     'region': city_obj.region and city_obj.region.id or False,
                     'zip': city_obj.zip,

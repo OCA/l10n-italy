@@ -80,7 +80,7 @@ class MailThread(orm.Model):
         parser = email.Parser.HeaderParser()
         msg_val = email.message_from_string(
             parser.parsestr(msg.as_string()).get_payload()
-            )
+        )
         if 'To'in msg_val:
             to = msg_val['To']
         if 'X-Riferimento-Message-ID'in msg_val:
@@ -94,8 +94,8 @@ class MailThread(orm.Model):
 
     def _get_msg_payload(self, cr, uid, msg, parts=None, num=0):
         """
-        This method recursively checks the message structure
-            and saves the informations (bodies, attachments,
+        This method recursively checks the message structure and
+            saves the informations (bodies, attachments,
             pkcs7 signatures, etc.) in a dictionary.
 
         The method parameters are:
@@ -289,8 +289,8 @@ class MailThread(orm.Model):
         msg_dict.update(daticert_dict)
         msg_ids = []
         if (
-            daticert_dict.get('message_id')
-            and (
+            daticert_dict.get('message_id') and
+            (
                 daticert_dict.get('pec_type') != 'posta-certificata')
         ):
             msg_ids = message_pool.search(
@@ -333,8 +333,8 @@ class MailThread(orm.Model):
         # error, and after the server not save the original message
         # because is duplicate
         if (
-            daticert_dict.get('message_id')
-            and message['X-Trasporto'] == 'errore'
+            daticert_dict.get('message_id') and
+            message['X-Trasporto'] == 'errore'
         ):
             msg_ids = message_pool.search(
                 cr, uid, [('message_id', '=', daticert_dict['message_id'])],

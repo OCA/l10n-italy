@@ -46,9 +46,9 @@ class account_vat_period_end_statement(orm.Model):
             for generic_line in statement.generic_vat_account_line_ids:
                 generic_vat_amount += generic_line.amount
             authority_amount = (
-                debit_vat_amount - credit_vat_amount - generic_vat_amount
-                - statement.previous_credit_vat_amount
-                + statement.previous_debit_vat_amount)
+                debit_vat_amount - credit_vat_amount - generic_vat_amount -
+                statement.previous_credit_vat_amount +
+                statement.previous_debit_vat_amount)
             res[i] = authority_amount
         return res
 
@@ -579,15 +579,15 @@ class account_vat_period_end_statement(orm.Model):
                     cr, uid, prev_statement_ids[len(prev_statement_ids) - 1],
                     context)
                 if (
-                    prev_statement.residual > 0
-                    and prev_statement.authority_vat_amount > 0
+                    prev_statement.residual > 0 and
+                    prev_statement.authority_vat_amount > 0
                 ):
                     statement.write(
                         {'previous_debit_vat_amount': prev_statement.residual})
                 elif prev_statement.authority_vat_amount < 0:
                     statement.write(
-                        {'previous_credit_vat_amount':
-                            - prev_statement.authority_vat_amount})
+                        {'previous_credit_vat_amount': -
+                         prev_statement.authority_vat_amount})
 
             credit_line_ids = []
             debit_line_ids = []

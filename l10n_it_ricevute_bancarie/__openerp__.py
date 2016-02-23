@@ -30,6 +30,7 @@
     "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "http://www.openerp-italia.org",
+    "license": "AGPL-3",
     "description": """
 Gestione delle Ricevute Bancarie
 --------------------------------
@@ -64,7 +65,9 @@ contabili, le quali verranno riepilogate nel tab 'contabilità'.
 Questo tab è presente sia sulla distinta che sulle sue righe.
 
 Qui
-http://goo.gl/jpRhJp abbiamo un esempio delle tipiche registrazioni generate
+https://docs.google.com/document/d/\
+1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQkt4/edit
+abbiamo un esempio delle tipiche registrazioni generate
 da un flusso 'salvo buon fine'.
     """,
     'images': [],
@@ -91,12 +94,12 @@ da un flusso 'salvo buon fine'.
     ],
     'demo_xml': [
         'demo/riba_demo.xml',
-        ],
+    ],
     'test': [
         'test/riba_invoice.yml',
         'test/issue_riba.yml',
         'test/unsolved_riba.yml',
-        ],
+    ],
     'installable': True,
     'active': False,
 }

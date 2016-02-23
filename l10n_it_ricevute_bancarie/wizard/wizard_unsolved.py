@@ -139,12 +139,12 @@ class riba_unsolved(orm.TransientModel):
             cr, uid, active_id, context=context)
         wizard = self.browse(cr, uid, ids)[0]
         if (
-            not wizard.unsolved_journal_id
-            or not wizard.effects_account_id
-            or not wizard.riba_bank_account_id
-            or not wizard.overdue_effects_account_id
-            or not wizard.bank_account_id
-            or not wizard.bank_expense_account_id
+            not wizard.unsolved_journal_id or
+            not wizard.effects_account_id or
+            not wizard.riba_bank_account_id or
+            not wizard.overdue_effects_account_id or
+            not wizard.bank_account_id or
+            not wizard.bank_expense_account_id
         ):
             raise orm.except_orm(_('Error'), _('Every account is mandatory'))
         move_vals = {
@@ -202,23 +202,23 @@ class riba_unsolved(orm.TransientModel):
                         invoice_ids = [
                             i.id for i in
                             riba_move_line.move_line_id.unsolved_invoice_ids
-                            ]
+                        ]
                     invoice_pool.write(cr, uid, invoice_ids, {
                         'unsolved_move_line_ids': [(4, move_line.id)],
-                        }, context=context)
+                    }, context=context)
             if move_line.account_id.id == wizard.effects_account_id.id:
                 to_be_reconciled.append(move_line.id)
         for acceptance_move_line in distinta_line.acceptance_move_id.line_id:
             if (
-                acceptance_move_line.account_id.id
-                == wizard.effects_account_id.id
+                acceptance_move_line.account_id.id ==
+                wizard.effects_account_id.id
             ):
                 to_be_reconciled.append(acceptance_move_line.id)
 
         distinta_line.write({
             'unsolved_move_id': move_id,
             'state': 'unsolved',
-            })
+        })
         move_line_pool.reconcile_partial(
             cr, uid, to_be_reconciled, context=context)
         wf_service.trg_validate(

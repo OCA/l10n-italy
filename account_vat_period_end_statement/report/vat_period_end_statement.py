@@ -51,8 +51,8 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
                     self.cr, self.uid, tax_ids[0], context=context)
                 # search for the related base code
                 base_code = (
-                    tax.base_code_id or tax.parent_id
-                    and tax.parent_id.base_code_id or False)
+                    tax.base_code_id or tax.parent_id and
+                    tax.parent_id.base_code_id or False)
                 if not base_code:
                     raise orm.except_orm(
                         _('Error'),
@@ -64,8 +64,8 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
                     self.cr, self.uid, tax_ids, context=context
                 ):
                     test_base_code = (
-                        tax.base_code_id or tax.parent_id
-                        and tax.parent_id.base_code_id or False)
+                        tax.base_code_id or tax.parent_id and
+                        tax.parent_id.base_code_id or False)
                     if test_base_code.id != base_code.id:
                         raise orm.except_orm(
                             _('Error'),
@@ -125,6 +125,5 @@ report_sxw.report_sxw(
     'addons/account_vat_period_end_statement/report/'
     'vat_period_end_statement.mako',
     parser=print_vat_period_end_statement)
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -114,10 +114,10 @@ class riba_accreditation(orm.TransientModel):
         distinta = distinta_pool.browse(cr, uid, active_id, context=context)
         wizard = self.browse(cr, uid, ids)[0]
         if (
-            not wizard.accreditation_journal_id
-            or not wizard.accreditation_account_id
-            or not wizard.bank_account_id
-            or not wizard.bank_expense_account_id
+            not wizard.accreditation_journal_id or
+            not wizard.accreditation_account_id or
+            not wizard.bank_account_id or
+            not wizard.bank_expense_account_id
         ):
             raise orm.except_orm(_('Error'), _('Every account is mandatory'))
         move_vals = {

@@ -35,7 +35,7 @@
                 </field>
             </field>
         </record>
-        
+
     <!-- Riba da emettere Tree View -->
 
     <record model="ir.ui.view" id="view_riba_da_emettere_tree">
@@ -111,7 +111,7 @@
     </record>
 
 
-        <menuitem name="Issue Ri.Ba." parent="menu_riba" 
+        <menuitem name="Issue Ri.Ba." parent="menu_riba"
             id="menu_riba_da_emettere" action="action_riba_da_emettere" />
 
         <!-- Invoice -->
@@ -127,7 +127,7 @@
                 </field>
             </field>
         </record>
-        
+
         <record id="view_account_invoice_filter_unsolved" model="ir.ui.view">
             <field name="name">account.invoice.select.unsolved</field>
             <field name="model">account.invoice</field>
@@ -163,7 +163,7 @@
             <field name="view_id" ref="account.invoice_form"/>
             <field name="act_window_id" ref="action_invoice_tree1"/>
         </record>
-        <menuitem name="Unsolved Invoices" parent="menu_riba" 
+        <menuitem name="Unsolved Invoices" parent="menu_riba"
             id="menu_invoices" action="action_invoice_tree1" />
     </data>
 </openerp>

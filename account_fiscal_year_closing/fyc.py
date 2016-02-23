@@ -24,13 +24,13 @@
 """
 Fiscal Year Closing
 """
-__author__ = "Borja López Soilán (Pexego)"
-
 
 from osv import fields, osv
 from tools.translate import _
 from datetime import datetime
 import netsvc
+
+__author__ = "Borja López Soilán (Pexego)"
 
 # -----------------------------------------------------------------------------
 # Predeclaration of the FYC object

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        
+
         <menuitem name="Ri.Ba." parent="account.menu_finance" id="menu_riba" icon="STOCK_OPEN" />
 
         <!-- ====================================================== -->
@@ -157,7 +157,7 @@
                 </form>
             </field>
         </record>
-        
+
         <!-- ====================================================== -->
         <!--                     ACTION DISTINTA RIBA                -->
         <!-- ====================================================== -->
@@ -170,11 +170,11 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_distinta_riba_filtri"/>
         </record>
-        
+
         <!-- ====================================================== -->
         <!--                     DISTINTA RIBA - MENU                -->
         <!-- ====================================================== -->
-        <menuitem name="Distinte" parent="menu_riba" 
+        <menuitem name="Distinte" parent="menu_riba"
             id="menu_riba_distinte" action="distinta_riba_action" />
 
     </data>

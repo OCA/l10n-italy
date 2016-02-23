@@ -38,8 +38,8 @@ class riba_distinta(orm.Model):
             move_ids = []
             for line in distinta.line_ids:
                 if (
-                    line.acceptance_move_id
-                    and line.acceptance_move_id.id not in move_ids
+                    line.acceptance_move_id and
+                    line.acceptance_move_id.id not in move_ids
                 ):
                     move_ids.append(line.acceptance_move_id.id)
             res[distinta.id] = move_ids
@@ -51,8 +51,8 @@ class riba_distinta(orm.Model):
             move_ids = []
             for line in distinta.line_ids:
                 if (
-                    line.unsolved_move_id
-                    and line.unsolved_move_id.id not in move_ids
+                    line.unsolved_move_id and
+                    line.unsolved_move_id.id not in move_ids
                 ):
                     move_ids.append(line.unsolved_move_id.id)
             res[distinta.id] = move_ids
@@ -451,10 +451,10 @@ class riba_distinta_line(orm.Model):
                 total_credit += riba_move_line.amount
                 move_line_id = move_line_pool.create(cr, uid, {
                     'name': (
-                        riba_move_line.move_line_id.invoice
-                        and riba_move_line.move_line_id.invoice.number
-                        or riba_move_line.move_line_id.name
-                        ),
+                        riba_move_line.move_line_id.invoice and
+                        riba_move_line.move_line_id.invoice.number or
+                        riba_move_line.move_line_id.name
+                    ),
                     'partner_id': line.partner_id.id,
                     'account_id': riba_move_line.move_line_id.account_id.id,
                     'credit': riba_move_line.amount,

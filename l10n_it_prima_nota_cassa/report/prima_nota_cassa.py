@@ -108,7 +108,9 @@ class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
         cash_bank_journals = journal_obj.search(
             self.cr, self.uid, [('type', 'in', ('bank', 'cash'))])
 
-        cash_bank_accounts = [journal_obj.browse(self.cr, self.uid, j).default_credit_account_id.id for j in cash_bank_journals] + \
+        cash_bank_accounts = [journal_obj.browse(self.cr, self.uid, j).
+                              default_credit_account_id.
+                              id for j in cash_bank_journals] + \
             [journal_obj.browse(self.cr, self.uid, j)
              .default_debit_account_id.id for j in cash_bank_journals]
 

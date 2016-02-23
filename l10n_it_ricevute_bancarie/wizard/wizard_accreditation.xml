@@ -2,7 +2,7 @@
 
 <openerp>
     <data>
-        
+
         <record id="riba_accreditation" model="ir.ui.view">
             <field name="name">riba.accreditation.wizard</field>
             <field name="model">riba.accreditation</field>
@@ -24,7 +24,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="riba_accreditation_action" model="ir.actions.act_window">
             <field name="name">Ri.Ba. Accreditation</field>
             <field name="type">ir.actions.act_window</field>
@@ -36,6 +36,6 @@
             <field name="view_id" ref="riba_accreditation"/>
 
         </record>
-        
+
     </data>
 </openerp>
