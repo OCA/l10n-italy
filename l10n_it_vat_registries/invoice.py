@@ -33,17 +33,17 @@ class Parser(report_sxw.rml_parse):
         res = {}
         for move_line in move.line_id:
             if (
-                move_line.tax_code_id
-                and not move_line.tax_code_id.exclude_from_registries
-                and move_line.tax_amount
+                move_line.tax_code_id and
+                not move_line.tax_code_id.exclude_from_registries and
+                move_line.tax_amount
             ):
                 if not res.get(move_line.tax_code_id.id):
                     res[move_line.tax_code_id.id] = 0.0
                     self.localcontext['used_tax_codes'][
                         move_line.tax_code_id.id] = True
                 res[move_line.tax_code_id.id] += (
-                    move_line.tax_amount
-                    * self.localcontext['data']['tax_sign'])
+                    move_line.tax_amount *
+                    self.localcontext['data']['tax_sign'])
         return res
 
     def _get_tax_lines(self, move):
@@ -66,8 +66,8 @@ class Parser(report_sxw.rml_parse):
                 'tax_code_name': tax_code.name,
                 'amount': amounts_by_code[tax_code_id],
                 'index': index,
-                'invoice_date': (invoice and invoice.date_invoice
-                                 or move.date or ''),
+                'invoice_date': (invoice and invoice.date_invoice or
+                                 move.date or ''),
                 'supplier_invoice_number': (
                     invoice and invoice.supplier_invoice_number or '')
             }
@@ -111,8 +111,8 @@ class Parser(report_sxw.rml_parse):
                 if not res_dict.get(tax_code.id):
                     res_dict[tax_code.id] = 0.0
                 res_dict[tax_code.id] += (
-                    tax_code.sum_period
-                    * self.localcontext['data']['tax_sign'])
+                    tax_code.sum_period *
+                    self.localcontext['data']['tax_sign'])
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
