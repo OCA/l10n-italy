@@ -88,8 +88,8 @@ class wizard_run(osv.osv_memory):
         # Create the Net L&P move if needed
         #
         if (
-            fyc.create_net_loss_and_profit
-            and not fyc.net_loss_and_profit_move_id
+            fyc.create_net_loss_and_profit and
+            not fyc.net_loss_and_profit_move_id
         ):
             self.create_closing_move(
                 cr, uid, 'net_loss_and_profit', fyc, context)
@@ -135,9 +135,9 @@ class wizard_run(osv.osv_memory):
         # Set the fyc as done (if not in cancel_mode)
         #
         if (
-            not fyc.create_opening and not fyc.create_closing
-            and not not fyc.create_net_loss_and_profit
-            and not fyc.create_loss_and_profit
+            not fyc.create_opening and not fyc.create_closing and
+            not not fyc.create_net_loss_and_profit and
+            not fyc.create_loss_and_profit
         ):
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(
@@ -215,9 +215,9 @@ class wizard_run(osv.osv_memory):
         #
         period_ids = []
         for period in fyc.closing_fiscalyear_id.period_ids:
-            if period.id != fyc.lp_period_id.id \
-                    and period.id != fyc.nlp_period_id.id \
-                    and period.id != fyc.c_period_id.id:
+            if period.id != fyc.lp_period_id.id and \
+                    period.id != fyc.nlp_period_id.id and \
+                    period.id != fyc.c_period_id.id:
                 period_ids.append(period.id)
 
         # Find the moves on the given periods
@@ -254,9 +254,9 @@ class wizard_run(osv.osv_memory):
         #
         period_ids = []
         for period in fyc.closing_fiscalyear_id.period_ids:
-            if period.id != fyc.lp_period_id.id \
-                    and period.id != fyc.nlp_period_id.id \
-                    and period.id != fyc.c_period_id.id:
+            if period.id != fyc.lp_period_id.id and \
+                    period.id != fyc.nlp_period_id.id and \
+                    period.id != fyc.c_period_id.id:
                 period_ids.append(period.id)
 
         # Find the moves on the given periods
