@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_withholding_tax
+#	* l10n_it_withholding_tax_minimal
 #
 msgid ""
 msgstr ""
@@ -15,135 +15,135 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:90
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:90
 #, python-format
 msgid "The company does not have an associated Withholding Payment Term"
 msgstr "L'Azienda non ha associato nessun Termine di pagamento per le Ritenute"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: constraint:res.company:0
 msgid "Error! You can not create recursive companies."
 msgstr "Errore! Non è possibile creare aziende ricorsive."
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:106
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:106
 #, python-format
 msgid "The payment term %s does not have due dates"
 msgstr "The payment term %s does not have due dates"
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:102
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:102
 #, python-format
 msgid "The payment term %s has too many due dates"
 msgstr "The payment term %s has too many due dates"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: view:account.voucher:0
 msgid "Withholding tax entries"
 msgstr "Voci Tasse Ritenute"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: field:account.invoice,has_withholding:0
 msgid "With withholding tax"
 msgstr "Con tasse ritenute"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: field:res.company,withholding_payment_term_id:0
 msgid "Withholding tax Payment Term"
 msgstr "Termini Pagamento Ritenute"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: field:res.company,withholding_account_id:0
 msgid "Withholding account"
 msgstr "Conto Ritenute"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: sql_constraint:res.company:0
 msgid "The company name must be unique !"
 msgstr "Il nome azienda deve essere unico!"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: field:account.invoice,net_pay:0
 msgid "Net Pay"
 msgstr "Netto da Pagare"
 
-#. module: l10n_it_withholding_tax
-#: model:ir.model,name:l10n_it_withholding_tax.model_res_company
+#. module: l10n_it_withholding_tax_minimal
+#: model:ir.model,name:l10n_it_withholding_tax_minimal.model_res_company
 msgid "Companies"
 msgstr "Aziende"
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:92
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:92
 #, python-format
 msgid "The company does not have an associated Withholding journal"
 msgstr "L'Azienda non ha un Sezionale associato per le Ritenute"
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:86
-#: code:addons/l10n_it_withholding_tax/account.py:88
-#: code:addons/l10n_it_withholding_tax/account.py:90
-#: code:addons/l10n_it_withholding_tax/account.py:92
-#: code:addons/l10n_it_withholding_tax/account.py:101
-#: code:addons/l10n_it_withholding_tax/account.py:105
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:86
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:88
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:90
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:92
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:101
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:105
 #, python-format
 msgid "Error"
 msgstr "Errore"
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:86
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:86
 #, python-format
 msgid "Can't handle withholding tax with voucher of type other than payment"
 msgstr "Can't handle withholding tax with voucher of type other than payment"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: help:res.company,withholding_account_id:0
 msgid "Payable account used for amount due to tax authority"
 msgstr "Payable account used for amount due to tax authority"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: sql_constraint:account.invoice:0
 msgid "Invoice Number must be unique per Company!"
 msgstr "Nell'azienda il numero fattura dev'essere univoco!"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: help:res.company,withholding_journal_id:0
 msgid "Journal used for registration of witholding amounts to be paid"
 msgstr "Journal used for registration of witholding amounts to be paid"
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:119
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:119
 #, python-format
 msgid "Payable withholding - "
 msgstr "Ritenute Pagabili - "
 
-#. module: l10n_it_withholding_tax
-#: model:ir.model,name:l10n_it_withholding_tax.model_account_voucher
+#. module: l10n_it_withholding_tax_minimal
+#: model:ir.model,name:l10n_it_withholding_tax_minimal.model_account_voucher
 msgid "Accounting Voucher"
 msgstr "Voucher contabile"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: field:account.invoice,withholding_amount:0
 msgid "Withholding amount"
 msgstr "Totale Ritenute"
 
-#. module: l10n_it_withholding_tax
-#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice
+#. module: l10n_it_withholding_tax_minimal
+#: model:ir.model,name:l10n_it_withholding_tax_minimal.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: field:res.company,withholding_journal_id:0
 msgid "Withholding journal"
 msgstr "Sezionale Ritenute"
 
-#. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/account.py:88
+#. module: l10n_it_withholding_tax_minimal
+#: code:addons/l10n_it_withholding_tax_minimal/account.py:88
 #, python-format
 msgid "The company does not have an associated Withholding account"
 msgstr "L'Azienda non ha un conto associato per le Ritenute"
 
-#. module: l10n_it_withholding_tax
+#. module: l10n_it_withholding_tax_minimal
 #: field:account.voucher,withholding_move_ids:0
 msgid "Withholding Tax Entries"
 msgstr "Voci Tasse Ritenute"
