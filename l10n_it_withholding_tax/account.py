@@ -83,17 +83,17 @@ class account_config_settings(orm.TransientModel):
                 cr, uid, company_id, context=context)
             res['value'].update({
                 'withholding_payment_term_id': (
-                    company.withholding_payment_term_id
-                    and company.withholding_payment_term_id.id or False),
+                    company.withholding_payment_term_id and
+                    company.withholding_payment_term_id.id or False),
                 'withholding_account_id': (
-                    company.withholding_account_id
-                    and company.withholding_account_id.id or False),
+                    company.withholding_account_id and
+                    company.withholding_account_id.id or False),
                 'withholding_journal_id': (
-                    company.withholding_journal_id
-                    and company.withholding_journal_id.id or False),
+                    company.withholding_journal_id and
+                    company.withholding_journal_id.id or False),
                 'authority_partner_id': (
-                    company.authority_partner_id
-                    and company.authority_partner_id.id or False),
+                    company.authority_partner_id and
+                    company.authority_partner_id.id or False),
             })
         else:
             res['value'].update({
@@ -142,17 +142,17 @@ class account_voucher(orm.Model):
         rec_ids = []
         for inv_move_line in invoice.move_id.line_id:
             if (
-                inv_move_line.account_id.type == 'payable'
-                and not inv_move_line.reconcile_id
+                inv_move_line.account_id.type == 'payable' and
+                not inv_move_line.reconcile_id
             ):
                 rec_ids.append(inv_move_line.id)
         for wh_line in wh_move.line_id:
             if (
-                wh_line.account_id.type == 'payable'
-                and invoice.company_id.withholding_account_id
-                and invoice.company_id.withholding_account_id.id
-                != wh_line.account_id.id
-                and not wh_line.reconcile_id
+                wh_line.account_id.type == 'payable' and
+                invoice.company_id.withholding_account_id and
+                invoice.company_id.withholding_account_id.id !=
+                wh_line.account_id.id and
+                not wh_line.reconcile_id
             ):
                 rec_ids.append(wh_line.id)
         return line_pool.reconcile_partial(
@@ -203,8 +203,8 @@ class account_voucher(orm.Model):
                     new_line_amount = curr_pool.round(
                         cr, uid, voucher.company_id.currency_id,
                         ((
-                            amounts_by_invoice[invoice.id]['allocated']
-                            + amounts_by_invoice[invoice.id]['write-off']
+                            amounts_by_invoice[invoice.id]['allocated'] +
+                            amounts_by_invoice[invoice.id]['write-off']
                         ) / invoice.net_pay) * invoice.withholding_amount)
 
                     # compute the due date
