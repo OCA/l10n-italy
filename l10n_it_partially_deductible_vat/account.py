@@ -248,8 +248,8 @@ class account_invoice_tax(osv.osv):
                                     inv_tax['amount'] * main_tax['tax_sign'],
                                     context={
                                         'date': (
-                                            invoice.date_invoice
-                                            or time.strftime('%Y-%m-%d')
+                                            invoice.date_invoice or
+                                            time.strftime('%Y-%m-%d')
                                         )
                                     }, round=False)
                             else:
@@ -262,8 +262,8 @@ class account_invoice_tax(osv.osv):
                                         'ref_tax_sign'],
                                     context={
                                         'date': (
-                                            invoice.date_invoice
-                                            or time.strftime('%Y-%m-%d')
+                                            invoice.date_invoice or
+                                            time.strftime('%Y-%m-%d')
                                         )
                                     }, round=False)
 
