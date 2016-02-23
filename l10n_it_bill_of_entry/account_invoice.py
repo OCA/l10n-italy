@@ -114,8 +114,9 @@ class account_invoice(orm.Model):
                                     _("Can't handle more than 1 tax for line "
                                       "%s") % boe_line.name)
                             tax_code_id = (
-                                boe_line.invoice_line_tax_id[0].base_code_id
-                                and boe_line.invoice_line_tax_id[0].
+                                boe_line.invoice_line_tax_id[0].
+                                base_code_id and
+                                boe_line.invoice_line_tax_id[0].
                                 base_code_id.id or False)
                         line_vals = {
                             'name': _("Extra CEE expenses"),
@@ -138,14 +139,14 @@ class account_invoice(orm.Model):
                 ).line_id:
                     for bill_of_entry in invoice.forwarder_bill_of_entry_ids:
                         if (
-                            move_line.account_id.id
-                            == bill_of_entry.account_id.id
+                            move_line.account_id.id ==
+                            bill_of_entry.account_id.id
                         ):
                             reconcile_ids.append(move_line.id)
                             for boe_move_line in bill_of_entry.move_id.line_id:
                                 if (
-                                    boe_move_line.account_id.id
-                                    == bill_of_entry.account_id.id
+                                    boe_move_line.account_id.id ==
+                                    bill_of_entry.account_id.id
                                 ):
                                     reconcile_ids.append(boe_move_line.id)
                 move_line_obj.reconcile_partial(
