@@ -35,7 +35,8 @@
         'account_voucher',
         'l10n_it_fiscalcode',
         'account_due_list',
-        'base_iban'],
+        'base_iban',
+        'l10n_it_abicab'],
     'data': [
         "views/partner_view.xml",
         "views/configuration_view.xml",
