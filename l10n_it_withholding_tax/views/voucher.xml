@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
+		<!--
+        VOUCHER PAYMENT DIRECTLY FROM INVOICE
+        -->
+        <record model="ir.ui.view" id="view_withholding_voucher_payment_receipt_form">
+			<field name="name">view.withholding.voucher.payment.receipt.form</field>
+			<field name="model">account.voucher</field>
+			<field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
+			<field name="arch" type="xml">
+			    
+			    <!-- Credit -->
+				<xpath expr="//field[@name='line_cr_ids']//field[@name='amount_original']" position="after">
+				    <field name="amount_residual_withholding_tax" readonly="1" />
+				</xpath>
+				
+				<xpath expr="//field[@name='line_cr_ids']//field[@name='amount']" position="attributes">
+				    <attribute name="on_change">onchange_amount(amount, amount_unreconciled, amount_residual_withholding_tax, context)</attribute>
+				</xpath>
+				
+				<xpath expr="//field[@name='line_cr_ids']//field[@name='reconcile']" position="attributes">
+				    <attribute name="on_change">onchange_reconcile(reconcile, amount, amount_unreconciled, amount_residual_withholding_tax, context)</attribute>
+				</xpath>
+				
+				<xpath expr="//field[@name='line_cr_ids']//field[@name='amount']" position="after">
+				    <field name="amount_withholding_tax" attrs="{'invisible': [('amount_residual_withholding_tax', '=', 0)]}" sum="Total Amount"/>
+				</xpath>
+				<!-- Debit -->
+				<xpath expr="//field[@name='line_dr_ids']//field[@name='amount_original']" position="after">
+				    <field name="amount_residual_withholding_tax" readonly="1" />
+				</xpath>
+				
+				<xpath expr="//field[@name='line_dr_ids']//field[@name='amount']" position="attributes">
+				    <attribute name="on_change">onchange_amount(amount, amount_unreconciled, amount_residual_withholding_tax, context)</attribute>
+				</xpath>
+				
+				<xpath expr="//field[@name='line_dr_ids']//field[@name='reconcile']" position="attributes">
+				    <attribute name="on_change">onchange_reconcile(reconcile, amount, amount_unreconciled, amount_residual_withholding_tax, context)</attribute>
+				</xpath>
+				
+				<xpath expr="//field[@name='line_dr_ids']//field[@name='amount']" position="after">
+				    <field name="amount_withholding_tax" attrs="{'invisible': [('amount_residual_withholding_tax', '=', 0)]}" sum="Total Amount"/>
+				</xpath>
+				
+			</field>
+		</record>
 	
 		<!--
         VOUCHER PAYMENT CUSTOMER
