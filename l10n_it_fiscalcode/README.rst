@@ -1,17 +1,15 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-IPA Code (IndicePA)
-===================
+Fiscalcode
+==========
 
-This module adds fiscalcode field to partner and formal validate it whene save the partner.
-
-http://www.indicepa.gov.it/
+This module adds fiscalcode field to partner and formal validate it when save the partner.
 
 Installation
 ============
 
-This module depends on python package codicefiscale. Install it before this.
+This module depend on python package codicefiscale.
 
 Configuration
 =============
