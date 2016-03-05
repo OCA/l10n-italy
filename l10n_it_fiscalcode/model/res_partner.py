@@ -48,11 +48,13 @@ class res_partner(models.Model):
     def _check_fiscalcode(self):
 
         if self.fiscalcode:
-            if self.is_company and len(self.fiscalcode) != 11 and not self.individual and not self.fiscalcode.isdigit():
+            if self.is_company and len(self.fiscalcode) != 11 and \
+                    not self.individual and not self.fiscalcode.isdigit():
                 raise ValidationError(
                     _("Company fiscal code must be 11 digts lenght.")
                 )
-            elif len(self.fiscalcode) != 16 and not codicefiscale.isvalid(self.fiscalcode):
+            elif len(self.fiscalcode) != 16 and \
+                    not codicefiscale.isvalid(self.fiscalcode):
                 raise ValidationError(
                     _("The fiscal code doesn't seem to be correct.")
                 )
