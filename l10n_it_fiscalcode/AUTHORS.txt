@@ -8,3 +8,4 @@ Lorenzo Battistini <lorenzo.battistini@albatos.com>
 Roberto Onnis <onnis.roberto@gmail.com>
 Franco Tampieri <franco.tampieri@agilebg.com>
 Andrea Cometa <info@andreacometa.it>
+Luigi Di Naro <Luigi.DiNaro@ktec.it>
