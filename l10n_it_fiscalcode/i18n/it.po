@@ -38,13 +38,13 @@ msgid "Italian Fiscal Code"
 msgstr "Codice fiscale Italiano"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:53
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:54
 #, python-format
 msgid "Company fiscal code must be 11 digts lenght."
 msgstr "Il codice fiscale delle aziende deve essere un numero composto da 11 caratteri."
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:57
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:59
 #, python-format
 msgid "The fiscal code doesn't seem to be correct."
 msgstr "Il codice fiscale specificato non sembra essere corretto."
