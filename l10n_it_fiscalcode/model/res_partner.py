@@ -34,7 +34,7 @@ except ImportError:
         'from https://pypi.python.org/pypi/codicefiscale')
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     fiscalcode = fields.Char(
