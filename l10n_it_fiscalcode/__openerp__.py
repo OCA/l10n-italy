@@ -33,6 +33,7 @@
         'view/fiscalcode_view.xml'
         ],
     'qweb': [],
+    'images': [],
     'demo': [],
     'installable': True
 }

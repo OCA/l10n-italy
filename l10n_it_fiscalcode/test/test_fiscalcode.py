@@ -16,44 +16,44 @@ class TestFiscalcode(TransactionCase):
 
     def test_company_characterfc(self):
         self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company': True,
-                                                 'fiscalcode': '123abc'})
+                                        'is_company': True,
+                                        'fiscalcode': '123abc'})
         self.assertRaises(ValidationError)
 
     def test_company_fclenght(self):
         self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company': True,
-                                                 'fiscalcode': '123456789'})
+                                        'is_company': True,
+                                        'fiscalcode': '123456789'})
         self.assertRaises(ValidationError)
 
     def test_company_fcok(self):
-        record = self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company': True,
-                                                 'fiscalcode': '12345678901'})
-        self.assertEqual(record.fiscalcode, '12345678901')
+        p = self.env['res.partner'].create({'name': 'Test Partner',
+                                            'is_company': True,
+                                            'fiscalcode': '12345678901'})
+        self.assertEqual(p.fiscalcode, '12345678901')
 
     def test_company_individualfc_ok(self):
-        record = self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company': True,
-                                                 'individual': True,
-                                                 'fiscalcode': 'RSSMRA85T10A562S'})
-        self.assertEqual(record.fiscalcode,'RSSMRA85T10A562S')
+        p = self.env['res.partner'].create({'name': 'Test Partner',
+                                            'is_company': True,
+                                            'individual': True,
+                                            'fiscalcode': 'RSSMRA85T10A562S'})
+        self.assertEqual(p.fiscalcode, 'RSSMRA85T10A562S')
 
     def test_company_individualfc_ko(self):
         self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company': True,
-                                                 'individual': True,
-                                                 'fiscalcode': 'RSSMRA85T10A562X'})
+                                        'is_company': True,
+                                        'individual': True,
+                                        'fiscalcode': 'RSSMRA85T10A562X'})
         self.assertRaises(ValidationError)
 
     def test_individualfc_ok(self):
-        record = self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company': False,
-                                                 'fiscalcode': 'RSSMRA85T10A562S'})
-        self.assertEqual(record.fiscalcode, 'RSSMRA85T10A562S')
+        p = self.env['res.partner'].create({'name': 'Test Partner',
+                                            'is_company': False,
+                                            'fiscalcode': 'RSSMRA85T10A562S'})
+        self.assertEqual(p.fiscalcode, 'RSSMRA85T10A562S')
 
     def test_individualfc_ko(self):
-        record = self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company': False,
-                                                 'fiscalcode': 'RSSMRA85T10A562'})
+        self.env['res.partner'].create({'name': 'Test Partner',
+                                        'is_company': False,
+                                        'fiscalcode': 'RSSMRA85T10A562'})
         self.assertRaises(ValidationError)
