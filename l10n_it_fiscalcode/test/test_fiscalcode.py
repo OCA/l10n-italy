@@ -11,23 +11,24 @@
 from openerp.tests.common import TransactionCase
 from openerp.exceptions import ValidationError
 
+
 class TestFiscalcode(TransactionCase):
 
     def test_company_characterfc(self):
-        record = self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company' : True,
+        self.env['res.partner'].create({'name': 'Test Partner',
+                                                 'is_company': True,
                                                  'fiscalcode':'123abc'})
         self.assertRaises(ValidationError)
 
     def test_company_fclenght(self):
-        record = self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company' : True,
+        self.env['res.partner'].create({'name': 'Test Partner',
+                                                 'is_company': True,
                                                  'fiscalcode':'123456789'})
         self.assertRaises(ValidationError)
 
     def test_company_fcok(self):
         record = self.env['res.partner'].create({'name': 'Test Partner',
-                                                 'is_company' : True,
+                                                 'is_company': True,
                                                  'fiscalcode':'12345678901'})
         self.assertEqual(record.fiscalcode,'12345678901')
 
@@ -39,7 +40,7 @@ class TestFiscalcode(TransactionCase):
         self.assertEqual(record.fiscalcode,'RSSMRA85T10A562S')
 
     def test_company_individualfc_ko(self):
-        record = self.env['res.partner'].create({'name': 'Test Partner',
+        self.env['res.partner'].create({'name': 'Test Partner',
                                                  'is_company': True,
                                                  'individual': True,
                                                  'fiscalcode':'RSSMRA85T10A562X'})
