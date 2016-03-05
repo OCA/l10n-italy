@@ -1,5 +1,0 @@
--
-  I check the fiscal code
--
-  !assert {model: res.partner, id: base.res_partner_12}:
-    - fiscalcode == 'TMPFNC76L04E289A'
