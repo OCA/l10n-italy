@@ -726,7 +726,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         if (
             company.of_account_end_vat_statement_interest or
             any([s.interest for s in self.browse(cr, uid, ids, context)])
-        ):        
+        ):
             if not company.of_account_end_vat_statement_interest_account_id:
                 raise orm.except_orm(
                     _('Error VAT Configuration!'),
