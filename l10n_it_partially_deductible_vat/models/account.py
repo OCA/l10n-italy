@@ -32,11 +32,11 @@ class AccountTax(models.Model):
 
     def _have_same_rate(self, account_taxes):
         rate = None
-        for t_account_tax in account_taxes:
-            if t_account_tax.type != 'balance':
+        for acc_tax in account_taxes:
+            if acc_tax.type != 'balance':
                 if rate is None:
-                    rate = t_account_tax.amount
-                elif rate != t_account_tax.amount:
+                    rate = acc_tax.amount
+                elif rate != acc_tax.amount:
                     return False
         return True
 
@@ -215,8 +215,11 @@ class AccountInvoiceTax(models.Model):
                 tax = tax_obj.get_main_tax(ded_tax)
                 for inv_tax_2 in tax_grouped.values():
                     # parte indetraibile
-                    if inv_tax_2['base_code_id'] and \
-                            not inv_tax_2['tax_code_id']:
+                    if inv_tax_2[
+                        'base_code_id'
+                    ] and not inv_tax_2[
+                        'tax_code_id'
+                    ]:
                         main_tax = tax_obj.get_main_tax(
                             tax_obj.get_account_tax_by_base_code(
                                 tax_code_obj.browse(
@@ -230,17 +233,19 @@ class AccountInvoiceTax(models.Model):
                             # se risulta un'eccedenza, la tolgo dalla parte
                             # detraibile
                             if tax_difference < 0:
-                                inv_tax['amount'] = inv_tax['amount'] + \
-                                    tax_difference
+                                inv_tax['amount'] = inv_tax[
+                                    'amount'] + tax_difference
                             # se risulta una mancanza, la aggiungo alla parte
                             # indetraibile
                             elif tax_difference > 0:
-                                inv_tax_2['amount'] = inv_tax_2['amount'] + \
-                                    tax_difference
+                                inv_tax_2['amount'] = inv_tax_2[
+                                    'amount'] + tax_difference
                             # calcolo l'importo del tax.code relativo all'
                             # imposta (la parte indetraibile non lo muove)
                             if invoice.type in ('out_invoice', 'in_invoice'):
-                                inv_tax['tax_amount'] = cur.with_context(
+                                inv_tax[
+                                    'tax_amount'
+                                ] = cur.with_context(
                                     date=invoice.date_invoice or
                                     fields.Date.context_today(invoice)).\
                                     compute(
@@ -249,8 +254,8 @@ class AccountInvoiceTax(models.Model):
                                     round=False)
                             else:
                                 inv_tax['tax_amount'] = cur.with_context(
-                                    date=invoice.date_invoice
-                                    or fields.Date.context_today(invoice)).\
+                                    date=invoice.date_invoice or
+                                    fields.Date.context_today(invoice)).\
                                     compute(inv_tax['amount'] *
                                             main_tax['ref_tax_sign'],
                                             company_currency,
