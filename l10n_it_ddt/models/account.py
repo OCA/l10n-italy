@@ -19,15 +19,16 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition', 'Carriage Condition')
+        'stock.picking.carriage_condition', string='Carriage Condition')
     goods_description_id = fields.Many2one(
-        'stock.picking.goods_description', 'Description of Goods')
+        'stock.picking.goods_description',
+        string='Description of Goods')
     transportation_reason_id = fields.Many2one(
         'stock.picking.transportation_reason',
-        'Reason for Transportation')
+        string='Reason for Transportation')
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
-        'Method of Transportation')
+        string='Method of Transportation')
     parcels = fields.Integer()
 
     @api.onchange('partner_id', 'company_id')
