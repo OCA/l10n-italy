@@ -258,8 +258,9 @@ class RibaFileExport(orm.TransientModel):
                 debit_abi = debit_bank.bank_abi
                 debit_cab = debit_bank.bank_cab
             elif debit_bank.iban:
-                debit_abi = debit_bank.iban[5:10]
-                debit_cab = debit_bank.iban[10:15]
+                debit_iban = debit_bank.iban.replace(" ", "")
+                debit_abi = debit_iban[5:10]
+                debit_cab = debit_iban[10:15]
             else:
                 raise orm.except_orm(
                     _('Error'),
