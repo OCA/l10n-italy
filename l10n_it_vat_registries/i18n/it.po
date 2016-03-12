@@ -3,14 +3,16 @@
 # * l10n_it_vat_registries
 # 
 # Translators:
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 # Stefano <stefano.sforzi@agilebg.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 08:05+0000\n"
-"PO-Revision-Date: 2016-01-19 17:22+0000\n"
-"Last-Translator: Stefano <stefano.sforzi@agilebg.com>\n"
+"POT-Creation-Date: 2016-03-10 09:57+0000\n"
+"PO-Revision-Date: 2016-03-10 09:57+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +29,7 @@ msgid ""
 "                A VAT registry is used to group several journals in one registry.\n"
 "              </p>\n"
 "            "
-msgstr ""
+msgstr "<p class=\"oe_view_nocontent_create\">\nClicca per aggiungere un registro IVA.\n</p><p>\nIl registro IVA è utilizzato per raggruppare più sezionali in un solo registro.\n</p>"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -59,13 +61,13 @@ msgstr ""
 #: field:account.tax.registry,create_uid:0
 #: field:wizard.registro.iva,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,create_date:0
 #: field:wizard.registro.iva,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: l10n_it_vat_registries
 #: selection:account.tax.registry,type:0 selection:wizard.registro.iva,type:0
@@ -132,7 +134,7 @@ msgstr "Registro IVA"
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_journal
 msgid "Journal"
-msgstr "Journal"
+msgstr "Sezionale"
 
 #. module: l10n_it_vat_registries
 #: view:account.tax.registry:l10n_it_vat_registries.view_account_tax_registry_form
@@ -140,24 +142,24 @@ msgstr "Journal"
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 #: field:wizard.registro.iva,journal_ids:0
 msgid "Journals"
-msgstr ""
+msgstr "Sezionali"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,write_uid:0
 #: field:wizard.registro.iva,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultima Modifica da"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,write_date:0
 #: field:wizard.registro.iva,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Data ultimo aggiornamento"
 
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,fiscal_page_base:0
 msgid "Last printed page"
-msgstr ""
+msgstr "Ultima pagina stampata"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,type:0
@@ -169,13 +171,13 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,message:0
 msgid "Message"
-msgstr ""
+msgstr "Messaggio"
 
 #. module: l10n_it_vat_registries
 #: code:addons/l10n_it_vat_registries/vat_registry.py:95
 #, python-format
 msgid "Move %s contains different invoices"
-msgstr ""
+msgstr "Il movimento %s contiene diverse fatture"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -190,13 +192,13 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,name:0
 msgid "Name"
-msgstr "Name"
+msgstr "Nome"
 
 #. module: l10n_it_vat_registries
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:93
 #, python-format
 msgid "No documents found in the current selection"
-msgstr ""
+msgstr "Nessun documento trovato nella presente selezione"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -227,17 +229,17 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: help:wizard.registro.iva,journal_ids:0
 msgid "Select journals you want retrieve documents from"
-msgstr ""
+msgstr "Seleziona i sezionali da cui si vuole prelevare i documenti"
 
 #. module: l10n_it_vat_registries
 #: help:wizard.registro.iva,period_ids:0
 msgid "Select periods you want retrieve documents from"
-msgstr ""
+msgstr "Seleziona i periodi da cui si vuole prelevare i documenti"
 
 #. module: l10n_it_vat_registries
 #: selection:account.tax.registry,type:0 selection:wizard.registro.iva,type:0
 msgid "Supplier Invoices"
-msgstr ""
+msgstr "Fatture fornitore"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -247,12 +249,12 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax_code
 msgid "Tax Code"
-msgstr ""
+msgstr "Codice imposta"
 
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 msgid "Tax Journal"
-msgstr ""
+msgstr "Sezionale imposta"
 
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,tax_sign:0
@@ -263,12 +265,12 @@ msgstr ""
 #: code:addons/l10n_it_vat_registries/vat_registry.py:240
 #, python-format
 msgid "Tax code %s is not linked to 1 and only 1 tax"
-msgstr ""
+msgstr "Il codice imposta %s non è collegato a una e una sola imposta"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
 msgid "Taxes"
-msgstr ""
+msgstr "Imposte"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -290,24 +292,24 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_registro_iva
 msgid "VAT Registries"
-msgstr ""
+msgstr "Registri IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,name:l10n_it_vat_registries.action_registro_iva
 msgid "VAT Registry"
-msgstr ""
+msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,name:l10n_it_vat_registries.action_account_tax_registry_form
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_action_account_tax_registry_form
 msgid "VAT registries"
-msgstr ""
+msgstr "Registri IVA"
 
 #. module: l10n_it_vat_registries
 #: field:account.journal,tax_registry_id:0
 #: field:wizard.registro.iva,tax_registry_id:0
 msgid "VAT registry"
-msgstr ""
+msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: help:account.journal,tax_registry_id:0
@@ -319,4 +321,4 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 msgid "or"
-msgstr "or"
+msgstr "o"

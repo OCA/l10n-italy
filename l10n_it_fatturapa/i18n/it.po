@@ -3,14 +3,15 @@
 # * l10n_it_fatturapa
 # 
 # Translators:
+# Paolo Valier, 2016
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 01:38+0000\n"
-"PO-Revision-Date: 2015-11-27 11:29+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"POT-Creation-Date: 2016-03-10 09:57+0000\n"
+"PO-Revision-Date: 2016-03-10 09:58+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,7 +135,7 @@ msgstr "Azienda non in Liquidazione"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,compression:0
 msgid "Compression"
-msgstr "Compressioine"
+msgstr "Compressione"
 
 #. module: l10n_it_fatturapa
 #: view:account.config.settings:l10n_it_fatturapa.view_account_config_settings
@@ -163,7 +164,7 @@ msgstr "Contratto"
 #: field:welfare.fund.data.line,create_uid:0
 #: field:welfare.fund.type,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,create_date:0
@@ -182,7 +183,7 @@ msgstr "Created by"
 #: field:welfare.fund.data.line,create_date:0
 #: field:welfare.fund.type,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_ddt,date:0
@@ -194,7 +195,7 @@ msgstr "Data"
 #: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Deferred payability"
-msgstr "Esigibilita' Differita"
+msgstr "Esigibilità Differita"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,delivery_address:0
@@ -277,7 +278,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:account.invoice,activity_progress_ids:0
 msgid "Fase of Activity Progress"
-msgstr "Fase avanzamento attivita'"
+msgstr "Fase avanzamento attività"
 
 #. module: l10n_it_fatturapa
 #: view:account.config.settings:l10n_it_fatturapa.view_account_config_settings
@@ -440,7 +441,7 @@ msgstr ""
 #: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Immediate payability"
-msgstr "Esigibilita' Immediata"
+msgstr "Esigibilità Immediata"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_liquidation:0
@@ -488,7 +489,7 @@ msgstr "Righe Fattura"
 #: field:welfare.fund.data.line,write_uid:0
 #: field:welfare.fund.type,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultima Modifica da"
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,write_date:0
@@ -507,7 +508,7 @@ msgstr "Last Updated by"
 #: field:welfare.fund.data.line,write_date:0
 #: field:welfare.fund.type,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Data ultimo aggiornamento"
 
 #. module: l10n_it_fatturapa
 #: field:account.tax,law_reference:0
@@ -877,7 +878,7 @@ msgstr "Mittente"
 #: field:account.config.settings,fatturapa_sequence_id:0
 #: field:res.company,fatturapa_sequence_id:0
 msgid "Sequence"
-msgstr "Sequence"
+msgstr "Sequenza"
 
 #. module: l10n_it_fatturapa
 #: selection:account.config.settings,fatturapa_rea_partner:0
@@ -985,7 +986,7 @@ msgstr "Bollo Virtuale"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,unit_weight:0
 msgid "Weight unit"
-msgstr "unita' Peso"
+msgstr "Unità di Peso"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,welfare_Iva_tax:0
@@ -1084,7 +1085,7 @@ msgstr "inversione contabile (reverse charge)"
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.type,name:0
 msgid "name"
-msgstr "name"
+msgstr "nome"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,non_taxable_nature:0
