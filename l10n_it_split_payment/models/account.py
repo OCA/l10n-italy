@@ -33,6 +33,7 @@ class AccountInvoice(models.Model):
     def _compute_amount(self):
         for invoice in self:
             super(AccountInvoice, invoice)._compute_amount()
+            invoice.amount_sp = 0
             if invoice.fiscal_position_id.split_payment:
                 invoice.amount_sp = invoice.amount_tax
                 invoice.amount_tax = 0
