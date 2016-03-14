@@ -48,6 +48,7 @@ class AccountInvoice(models.Model):
     @api.depends('invoice_line.price_subtotal', 'tax_line.amount')
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
+        self.amount_sp = 0
         if self.fiscal_position.split_payment:
             self.amount_sp = self.amount_tax
             self.amount_tax = 0
