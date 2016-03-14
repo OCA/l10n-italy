@@ -61,6 +61,9 @@ class StockDdtType(models.Model):
     name = fields.Char(required=True)
     sequence_id = fields.Many2one('ir.sequence', required=True)
     note = fields.Text(string='Note')
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id.id, )
 
 
 class StockPickingPackagePreparation(models.Model):

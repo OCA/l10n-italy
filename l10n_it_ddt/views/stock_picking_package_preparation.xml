@@ -123,6 +123,7 @@
                 <group>
                     <field name="name"/>
                     <field name="sequence_id"/>
+                    <field name="company_id"/>
                     <field name="note"/>
                 </group>
             </form>
