@@ -11,6 +11,7 @@
             <field name="name">DDT</field>
             <field name="code">stock.ddt</field>
             <field name="prefix">DDT/</field>
+            <field name="implementation">no_gap</field>
         </record>
 
         <!-- DdT Type -->

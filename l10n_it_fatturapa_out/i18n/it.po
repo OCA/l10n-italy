@@ -3,14 +3,15 @@
 # * l10n_it_fatturapa_out
 # 
 # Translators:
+# Paolo Valier, 2016
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 08:05+0000\n"
-"PO-Revision-Date: 2015-12-10 10:39+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"POT-Creation-Date: 2016-03-10 09:57+0000\n"
+"PO-Revision-Date: 2016-03-10 09:57+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,18 +79,18 @@ msgstr "Paese non impostato"
 #: field:fatturapa.attachment.out,create_uid:0
 #: field:wizard.export.fatturapa,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,create_date:0
 #: field:wizard.export.fatturapa,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Creation"
-msgstr ""
+msgstr "Creazione"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:370
@@ -136,14 +137,14 @@ msgstr "Indirizzo email non impostato"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:121
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:401
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:439
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:557
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:561
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:565
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:581
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:619
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:624
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:645
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:650
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:775
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:577
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:615
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:620
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:641
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:646
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:771
 #, python-format
 msgid "Error"
 msgstr "Errore"
@@ -170,15 +171,15 @@ msgstr "Errore"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:376
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:379
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:463
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:745
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:741
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Errore!"
 
 #. module: l10n_it_fatturapa_out
 #: view:wizard.export.fatturapa:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export"
-msgstr "Export"
+msgstr "Esporta"
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
@@ -186,12 +187,12 @@ msgstr "Export"
 #: model:ir.model,name:l10n_it_fatturapa_out.model_wizard_export_fatturapa
 #: view:wizard.export.fatturapa:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export FatturaPA"
-msgstr ""
+msgstr "Esporta FatturaPA"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "FatturaPA"
-msgstr ""
+msgstr "FatturaPA"
 
 #. module: l10n_it_fatturapa_out
 #: field:account.invoice,fatturapa_attachment_out_id:0
@@ -236,7 +237,7 @@ msgstr "Followers"
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "History"
-msgstr ""
+msgstr "Storico"
 
 #. module: l10n_it_fatturapa_out
 #: help:fatturapa.attachment.out,message_summary:0
@@ -267,7 +268,7 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:776
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:772
 #, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
 msgstr ""
@@ -276,10 +277,10 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:464
 #, python-format
 msgid "Invoice does not have a number."
-msgstr ""
+msgstr "La fattura non ha numero."
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:562
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:558
 #, python-format
 msgid "Invoice line %s does not have tax"
 msgstr ""
@@ -287,13 +288,13 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Invoices"
-msgstr ""
+msgstr "Fatture"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:746
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:742
 #, python-format
 msgid "Invoices must belong to the same partner"
-msgstr ""
+msgstr "Le fatture devono appartenere allo stesso partner"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_is_follower:0
@@ -303,39 +304,39 @@ msgstr "Is a Follower"
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_last_post:0
 msgid "Last Message Date"
-msgstr "Last Message Date"
+msgstr "Data ultimo messaggio"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,write_uid:0
 #: field:wizard.export.fatturapa,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultima Modifica da"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,write_date:0
 #: field:wizard.export.fatturapa,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Data ultimo aggiornamento"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_ids:0
 msgid "Messages"
-msgstr "Messages"
+msgstr "Messaggi"
 
 #. module: l10n_it_fatturapa_out
 #: help:fatturapa.attachment.out,message_ids:0
 msgid "Messages and communication history"
-msgstr "Messages and communication history"
+msgstr "Storico messaggi e comunicazioni"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:625
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:621
 #, python-format
 msgid "No 'law reference' field for tax %s"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:582
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:620
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:578
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:616
 #, python-format
 msgid "No 'nature' field for tax %s"
 msgstr ""
@@ -352,13 +353,13 @@ msgid "Partner VAT and Fiscalcode not set."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:651
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:647
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment method"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:646
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:642
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment term"
 msgstr ""
@@ -367,7 +368,7 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:243
 #, python-format
 msgid "Province not set."
-msgstr ""
+msgstr "Provincia non selezionata"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:401
@@ -378,18 +379,18 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Related Documents"
-msgstr ""
+msgstr "Documenti correlati"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Results"
-msgstr ""
+msgstr "Risultati"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:234
 #, python-format
 msgid "Street not set."
-msgstr ""
+msgstr "Via non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_summary:0
@@ -409,7 +410,7 @@ msgid "TerzoIntermediarioOSoggettoEmittente not handled"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:566
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:562
 #, python-format
 msgid "Too many taxes for invoice line %s"
 msgstr ""
@@ -417,10 +418,10 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_unread:0
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Messaggi non letti"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:787
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:783
 #, python-format
 msgid "XML SDI validation error"
 msgstr ""
@@ -429,7 +430,7 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:237
 #, python-format
 msgid "ZIP not set."
-msgstr ""
+msgstr "Codice postale non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
