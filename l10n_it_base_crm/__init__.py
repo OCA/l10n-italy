@@ -3,7 +3,7 @@
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-#    Copyright (C) 2013 Associazione OpenERP Italia 
+#    Copyright (C) 2013 Associazione OpenERP Italia
 #                 (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
