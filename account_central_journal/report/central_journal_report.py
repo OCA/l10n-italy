@@ -21,8 +21,6 @@
 
 import time
 from report import report_sxw
-# from osv import osv
-# from tools.translate import _
 
 
 class central_journal_report(report_sxw.rml_parse):
