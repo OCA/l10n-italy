@@ -7,12 +7,14 @@
 # Alex Comba <alex.comba@agilebg.com>, 2015
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 # Massimiliano Casa <mcasa@cantiericasa.com>, 2015
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-10 09:57+0000\n"
-"PO-Revision-Date: 2016-03-10 09:57+0000\n"
+"POT-Creation-Date: 2016-03-12 17:00+0000\n"
+"PO-Revision-Date: 2016-03-19 10:56+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +84,7 @@ msgstr "Localizzazione Italiana"
 #. module: l10n_it_base
 #: field:l10n_it.config.settings,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima Modifica da"
+msgstr "Ultima Modifica di"
 
 #. module: l10n_it_base
 #: field:l10n_it.config.settings,write_date:0

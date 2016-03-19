@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 17:45+0000\n"
+"POT-Creation-Date: 2016-03-12 17:00+0000\n"
 "PO-Revision-Date: 2015-10-07 11:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -444,7 +444,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_liquidation:0
 msgid "In liquidation"
-msgstr ""
+msgstr "V likvidaciji"
 
 #. module: l10n_it_fatturapa
 #: fieldfaturapa.summary.data,incidental charges:0
@@ -539,7 +539,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:res.company,fatturapa_rea_liquidation:0
 msgid "Liquidation State"
-msgstr ""
+msgstr "Stanje likvidacije"
 
 #. module: l10n_it_fatturapa
 #: selection:account.config.settings,fatturapa_rea_partner:0
@@ -554,12 +554,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:res.company,fatturapa_rea_partner:0
 msgid "Member Type"
-msgstr ""
+msgstr "Tip člana"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_partner:0
 msgid "Multiple Members"
-msgstr ""
+msgstr "Več članov"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,ftpa_withholding_type:0
@@ -608,7 +608,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_liquidation:0
 msgid "Not in liquidation"
-msgstr ""
+msgstr "Ni v likvidaciji"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_document_type,numitem:0
@@ -945,7 +945,7 @@ msgstr "Tip"
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_partner:0
 msgid "Unique Member"
-msgstr ""
+msgstr "Unikatni član"
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_tax_representative:0

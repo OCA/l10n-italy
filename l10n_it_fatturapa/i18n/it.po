@@ -5,12 +5,14 @@
 # Translators:
 # Paolo Valier, 2016
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-10 09:57+0000\n"
-"PO-Revision-Date: 2016-03-10 09:58+0000\n"
+"POT-Creation-Date: 2016-03-12 17:00+0000\n"
+"PO-Revision-Date: 2016-03-19 10:56+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -489,7 +491,7 @@ msgstr "Righe Fattura"
 #: field:welfare.fund.data.line,write_uid:0
 #: field:welfare.fund.type,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima Modifica da"
+msgstr "Ultima Modifica di"
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,write_date:0
@@ -786,17 +788,17 @@ msgstr "Codice registro"
 #. module: l10n_it_fatturapa
 #: field:res.partner,register_fiscalpos:0
 msgid "Register Fiscal Position"
-msgstr ""
+msgstr "Registra la Posizione Fiscale"
 
 #. module: l10n_it_fatturapa
 #: field:res.partner,register_province:0
 msgid "Register Province"
-msgstr ""
+msgstr "Registra la Provincia"
 
 #. module: l10n_it_fatturapa
 #: field:res.partner,register_regdate:0
 msgid "Register Registration Date"
-msgstr ""
+msgstr "Registra la Data di Registrazione"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,ftpa_related_ddts:0
@@ -837,7 +839,7 @@ msgstr "Riga fattura correlata"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,related_invoice_code:0
 msgid "Related invoice code"
-msgstr ""
+msgstr "Codice della fattura collegata"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,related_invoice_date:0
@@ -852,7 +854,7 @@ msgstr "Dati pagamento"
 #. module: l10n_it_fatturapa
 #: model:account.tax.code,name:l10n_it_fatturapa.tax_code_purchase_0_rc
 msgid "Rev. Charge"
-msgstr ""
+msgstr "Inversione Contabile"
 
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
@@ -914,7 +916,7 @@ msgstr "Tax Rapresentative"
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,tax_rate:0
 msgid "Tax Rate"
-msgstr ""
+msgstr "Aliquota fiscale"
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_sender_partner:0

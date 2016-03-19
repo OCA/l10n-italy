@@ -4,12 +4,14 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-10 09:57+0000\n"
-"PO-Revision-Date: 2016-03-10 09:57+0000\n"
+"POT-Creation-Date: 2016-03-12 17:00+0000\n"
+"PO-Revision-Date: 2016-03-19 10:56+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -529,7 +531,7 @@ msgstr "Lasciare vuoto per utilizzare la data corrente"
 #: field:riba.file.export,write_uid:0 field:riba.issue,write_uid:0
 #: field:riba.unsolved,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima Modifica da"
+msgstr "Ultima Modifica di"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.accreditation,write_date:0 field:riba.configuration,write_date:0
