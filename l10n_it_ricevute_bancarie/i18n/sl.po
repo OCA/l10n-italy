@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 17:45+0000\n"
+"POT-Creation-Date: 2016-03-12 17:00+0000\n"
 "PO-Revision-Date: 2015-11-27 11:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -258,7 +258,7 @@ msgstr "Ustvarjeno"
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta,date_created:0
 msgid "Creation date"
-msgstr ""
+msgstr "Datum nastanka"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:127
@@ -566,25 +566,25 @@ msgid "No IBAN specified"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:258
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:260
 #, python-format
 msgid "No IBAN specified for "
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:218
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:220
 #, python-format
 msgid "No SIA Code specified for: "
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:275
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:279
 #, python-format
 msgid "No VAT or Fiscal code specified for "
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:231
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:233
 #, python-format
 msgid "No VAT or Fiscalcode specified for: "
 msgstr ""
@@ -599,7 +599,7 @@ msgid "No active ID found"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:283
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:287
 #, python-format
 msgid "No debit_bank specified for "
 msgstr ""

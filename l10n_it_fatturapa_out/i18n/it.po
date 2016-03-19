@@ -5,12 +5,14 @@
 # Translators:
 # Paolo Valier, 2016
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-10 09:57+0000\n"
-"PO-Revision-Date: 2016-03-10 09:57+0000\n"
+"POT-Creation-Date: 2016-03-12 17:00+0000\n"
+"PO-Revision-Date: 2016-03-19 10:56+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -198,13 +200,13 @@ msgstr "FatturaPA"
 #: field:account.invoice,fatturapa_attachment_out_id:0
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 msgid "FatturaPA Export File"
-msgstr ""
+msgstr "File Esportazione FatturaPA"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
 #: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
 msgid "FatturaPA Export Files"
-msgstr ""
+msgstr "File Esportazione FatturaPA"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
@@ -215,19 +217,19 @@ msgstr "Allegati fatturaPA"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:194
 #, python-format
 msgid "FatturaPA fiscal position not set."
-msgstr ""
+msgstr "Posizione fiscale FatturaPA non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:135
 #, python-format
 msgid "FatturaPA format not set."
-msgstr ""
+msgstr "Formato Fattura PA non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:100
 #, python-format
 msgid "FatturaPA sequence not configured."
-msgstr ""
+msgstr "Sequenza FatturaPA non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_follower_ids:0
@@ -283,7 +285,7 @@ msgstr "La fattura non ha numero."
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:558
 #, python-format
 msgid "Invoice line %s does not have tax"
-msgstr ""
+msgstr "La riga %s della fattura non ha imposta"
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
@@ -310,7 +312,7 @@ msgstr "Data ultimo messaggio"
 #: field:fatturapa.attachment.out,write_uid:0
 #: field:wizard.export.fatturapa,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima Modifica da"
+msgstr "Ultima Modifica di"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,write_date:0
@@ -344,25 +346,25 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,out_invoice_ids:0
 msgid "Out Invoices"
-msgstr ""
+msgstr "Fatture in uscita"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:333
 #, python-format
 msgid "Partner VAT and Fiscalcode not set."
-msgstr ""
+msgstr "IVA del Partner e Codice Fiscale non configurati."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:647
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment method"
-msgstr ""
+msgstr "Il Termine di pagamento %s non ha un metodo di pagamento fatturaPA collegato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:642
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment term"
-msgstr ""
+msgstr "Il Termine di pagamento %s non ha un termine di pagamento fatturaPA collegato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:243
@@ -374,7 +376,7 @@ msgstr "Provincia non selezionata"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:401
 #, python-format
 msgid "RappresentanteFiscale not handled"
-msgstr ""
+msgstr "RappresentanteFiscale non gestito."
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
@@ -407,13 +409,13 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:440
 #, python-format
 msgid "TerzoIntermediarioOSoggettoEmittente not handled"
-msgstr ""
+msgstr "TerzoIntermediarioOSoggettoEmittente non gestito"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:562
 #, python-format
 msgid "Too many taxes for invoice line %s"
-msgstr ""
+msgstr "Troppe imposte per la riga %s della fattura"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_unread:0
@@ -424,7 +426,7 @@ msgstr "Messaggi non letti"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:783
 #, python-format
 msgid "XML SDI validation error"
-msgstr ""
+msgstr "Errore di validazione XML SDI"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:237
