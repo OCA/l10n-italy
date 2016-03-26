@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 17:45+0000\n"
-"PO-Revision-Date: 2016-03-03 05:40+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"PO-Revision-Date: 2016-03-22 13:21+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,6 +110,11 @@ msgstr "Podpis prevoznika"
 #: view:website:l10n_it_ddt.report_ddt
 msgid "Cessionario"
 msgstr "Predal"
+
+#. module: l10n_it_ddt
+#: field:stock.ddt.type,company_id:0
+msgid "Company"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
@@ -385,7 +390,7 @@ msgid "None"
 msgstr "Nič"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:130
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:133
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Nekateri zbirniki nimajo statusa opravljeno"

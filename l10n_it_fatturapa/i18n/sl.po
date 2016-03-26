@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
 "PO-Revision-Date: 2015-10-07 11:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -76,7 +76,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,ir_attachment_id:0
 msgid "Attachment"
-msgstr ""
+msgstr "Priponka"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_bic:0

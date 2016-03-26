@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
-"PO-Revision-Date: 2016-03-19 10:56+0000\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"PO-Revision-Date: 2016-03-23 06:58+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -947,13 +947,13 @@ msgstr "Importo versato"
 msgid ""
 "You can also skip this step and set the distinta status to 'accredited' "
 "anyway"
-msgstr "E' anche possibile saltare questo passo e impostare comunque la distinta dello stato di 'accreditata'"
+msgstr "È anche possibile saltare questo passo e impostare comunque la distinta dello stato di 'accreditata'"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
 msgid ""
 "You can also skip this step and set the line status to 'unsolved' anyway"
-msgstr "E' anche possibile saltare questo passo e impostare comunque lo stato della riga a 'insoluta'"
+msgstr "È anche possibile saltare questo passo e impostare comunque lo stato della riga a 'insoluta'"
 
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.file.export,state:0

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
-"PO-Revision-Date: 2016-03-19 10:56+0000\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"PO-Revision-Date: 2016-03-23 06:56+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Contabilità"
 #. module: l10n_it_fatturapa
 #: field:faturapa.activity.progress,fatturapa_activity_progress:0
 msgid "Activity Progress"
-msgstr "Avanzamento Attivita'"
+msgstr "Avanzamento Attività"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice.line,admin_ref:0
@@ -59,7 +59,7 @@ msgstr "Importo"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,penalty_amount:0
 msgid "Amount of Penality"
-msgstr "Importo della penalita'"
+msgstr "Importo della Penalità"
 
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,amount_tax:0
@@ -558,7 +558,7 @@ msgstr "Data Scadenza Limite"
 #. module: l10n_it_fatturapa
 #: field:res.company,fatturapa_rea_partner:0
 msgid "Member Type"
-msgstr "Societa' tipo"
+msgstr "Tipo di Socio"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_partner:0
@@ -627,17 +627,17 @@ msgstr "Ordine"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_document_type,code:0
 msgid "Order Agreement Code"
-msgstr ""
+msgstr "Codice di Accordo dell'Ordine"
 
 #. module: l10n_it_fatturapa
 #: field:res.partner,pa_partner_code:0
 msgid "PA Code for partner"
-msgstr ""
+msgstr "Codice PA per partner"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,pa_line_code:0
 msgid "PA Code for this record"
-msgstr ""
+msgstr "Codice PA per questa registrazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_res_partner
@@ -891,7 +891,7 @@ msgstr "Socio unico"
 #: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
-msgstr "Split payment"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,stamp_amount:0
@@ -956,7 +956,7 @@ msgstr "Socio unico"
 msgid ""
 "Used when a foreign company needs to send invoices to anItalian PA and has a"
 " tax representative in Italy"
-msgstr "Usato quando una societa' estera necessita di inviare fatture ad un P.A. italiana per mezzo di un rappresentante fiscale"
+msgstr "Usato quando una società estera necessita di inviare fatture ad un P.A. italiana per mezzo di un rappresentante fiscale"
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_sender_partner:0
@@ -968,7 +968,7 @@ msgstr "Utilizzato quando la fattura viene inviata al SDI tramite un tezo interm
 #. module: l10n_it_fatturapa
 #: field:account.tax,payability:0 field:faturapa.summary.data,payability:0
 msgid "VAT payability"
-msgstr "Esigibilita' Iva"
+msgstr "Esigibilità Iva"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,transport_vaicle:0

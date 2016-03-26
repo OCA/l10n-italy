@@ -6,12 +6,13 @@
 # Paolo Valier, 2016
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 # Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
-"PO-Revision-Date: 2016-03-19 10:56+0000\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"PO-Revision-Date: 2016-03-23 06:54+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -433,7 +434,7 @@ msgstr "Opzioni di stampa"
 #. module: account_vat_period_end_statement
 #: model:ir.actions.report.xml,name:account_vat_period_end_statement.action_report_account_vat_period_end_statement
 msgid "Print Vat Period End Statement"
-msgstr "STAMPA LIQUIDAZIONE IVA"
+msgstr "Stampa Liquidazione IVA di Fine Periodo"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code

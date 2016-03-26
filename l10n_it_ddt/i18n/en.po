@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 17:45+0000\n"
-"PO-Revision-Date: 2016-03-02 17:46+0000\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"PO-Revision-Date: 2016-03-22 13:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -109,6 +109,11 @@ msgstr "Carrier's Signature"
 #: view:website:l10n_it_ddt.report_ddt
 msgid "Cessionario"
 msgstr "Cessionario"
+
+#. module: l10n_it_ddt
+#: field:stock.ddt.type,company_id:0
+msgid "Company"
+msgstr "Company"
 
 #. module: l10n_it_ddt
 #: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
@@ -384,7 +389,7 @@ msgid "None"
 msgstr "None"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:130
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:133
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Not every picking is in done status"
