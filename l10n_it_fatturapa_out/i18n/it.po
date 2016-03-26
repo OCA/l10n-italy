@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
-"PO-Revision-Date: 2016-03-19 10:56+0000\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"PO-Revision-Date: 2016-03-23 06:58+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgstr "ID"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:147
 #, python-format
 msgid "IPA Code not set on partner form."
-msgstr ""
+msgstr "Codice IPA non impostato nel form partner."
 
 #. module: l10n_it_fatturapa_out
 #: help:fatturapa.attachment.out,message_unread:0
@@ -273,7 +273,7 @@ msgstr "Fattura"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:772
 #, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
-msgstr ""
+msgstr "La Fattura %s ha già il File di Esportazione FatturaPA"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:464
@@ -403,7 +403,7 @@ msgstr "Summary"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:189
 #, python-format
 msgid "TIN not set."
-msgstr ""
+msgstr "TIN non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:440
