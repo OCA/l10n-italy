@@ -3,13 +3,14 @@
 # * l10n_it_split_payment
 # 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 01:38+0000\n"
-"PO-Revision-Date: 2015-11-27 11:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"PO-Revision-Date: 2016-03-23 06:52+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,18 +28,6 @@ msgstr "Account utilizzato per ammortizzare l'importo dell'IVA"
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
 msgstr "Non è possibile gestire le fatture dei fornitori con la scissione dei pagamenti"
-
-#. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:104
-#, python-format
-msgid "Can't handle supplier invoices with split payment"
-msgstr "Can't handle supplier invoices with split payment"
-
-#. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:104
-#, python-format
-msgid "Can't handle supplier invoices with split payment"
-msgstr ""
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company
