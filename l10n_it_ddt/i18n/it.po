@@ -22,7 +22,7 @@ msgstr ""
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
 msgid "Add Pickings to DDT"
-msgstr "Aggiungi Prelievi al DDT"
+msgstr "Aggiungi Ordini di Consegna al DDT"
 
 #. module: l10n_it_ddt
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_form
@@ -158,7 +158,7 @@ msgstr "DDT"
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_from_pickings
 msgid "DDT from Pickings"
-msgstr "DDT da Prelievo"
+msgstr "DDT da Ordine di Consegna"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
@@ -385,7 +385,7 @@ msgstr "Nessuno"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:133
 #, python-format
 msgid "Not every picking is in done status"
-msgstr "Non tutti i prelievi sono completati"
+msgstr "Non tutti gli Ordini di Consegna sono completati"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,note:0
@@ -437,12 +437,12 @@ msgstr "Partner"
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,partner_invoice_id:0
 msgid "Partner invoice id"
-msgstr "ID Partner della fattura"
+msgstr "Partner per la fatturazione"
 
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,partner_shipping_id:0
 msgid "Partner shipping id"
-msgstr "ID Partner della spedizione"
+msgstr "Partner per la spedizione"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -452,28 +452,28 @@ msgstr "Ora ritiro"
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "Picking"
-msgstr "Prelievo"
+msgstr "Ordine di Consegna"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:31
 #, python-format
 msgid "Picking %s already in ddt"
-msgstr "Prelievo %s già nel ddt"
+msgstr "Ordine di Consegna %s già nel ddt"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Picking List"
-msgstr "Lista Prelievi"
+msgstr "Lista Ordini di Consegna"
 
 #. module: l10n_it_ddt
 #: field:ddt.from.pickings,picking_ids:0
 msgid "Picking ids"
-msgstr "ID Prelievi"
+msgstr "ID Ordini di Consegna"
 
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "Pickings"
-msgstr "Prelievi"
+msgstr "Ordini di Consegna"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
@@ -578,57 +578,57 @@ msgstr "I Ddt Selezionati hanno colli differenti"
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:34
 #, python-format
 msgid "Selected Picking %s have different Partner"
-msgstr "I Prelievi selezionati %s hanno Partner differenti"
+msgstr "Gli Ordini di Consegna selezionati %s hanno Partner differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:40
 #, python-format
 msgid "Selected Picking %s have different carriage condition"
-msgstr "I Prelievi selezionati %s hanno condizioni di trasporto differenti"
+msgstr "Gli Ordini di Consegna selezionati %s hanno condizioni di trasporto differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:45
 #, python-format
 msgid "Selected Picking %s have different goods description"
-msgstr "I Prelievi selezionati %s hanno differenti Descrizioni dell'aspetto esteriore dei beni"
+msgstr "Gli Ordini di Consegna selezionati %s hanno differenti Descrizioni dell'aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:50
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:55
 #, python-format
 msgid "Selected Picking %s have different transportation reason"
-msgstr "I Prelievi selezionati %s hanno Causali di trasporto differenti"
+msgstr "Gli Ordini di Consegna selezionati %s hanno Causali di trasporto differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:40
 #, python-format
 msgid "Selected Pickings have different Partner"
-msgstr "I Prelievi selezionati hanno Partner differenti"
+msgstr "Gli Ordini di Consegna selezionati hanno Partner differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:60
 #, python-format
 msgid "Selected Pickings have different carriage condition"
-msgstr "I Prelievi selezionati hanno il Reso Merce differente"
+msgstr "Gli Ordini di Consegna selezionati hanno il Reso Merce differente"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:73
 #, python-format
 msgid "Selected Pickings have different goods description"
-msgstr "I Prelievi selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
+msgstr "Gli Ordini di Consegna selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:50
 #, python-format
 msgid "Selected Pickings have different parcels"
-msgstr "I Prelievi selezionati hanno colli differenti"
+msgstr "Gli Ordini di Consegna selezionati hanno colli differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:86
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:100
 #, python-format
 msgid "Selected Pickings have different transportation reason"
-msgstr "I Prelievi selezionati hanno una Causale di trasporto differente"
+msgstr "Gli Ordini di Consegna selezionati hanno una Causale di trasporto differente"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_MIT
