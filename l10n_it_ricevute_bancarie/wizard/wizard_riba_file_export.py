@@ -264,7 +264,8 @@ class RibaFileExport(orm.TransientModel):
             else:
                 raise orm.except_orm(
                     _('Error'),
-                    _('No IBAN or ABI/CAB specified for ') + line.partner_id.name)
+                    _('No IBAN or ABI/CAB specified for ') +
+                    line.partner_id.name)
             debitor_city = debitor_address.city and debitor_address.city.ljust(
                 23)[0:23] or ''
             debitor_province = (
