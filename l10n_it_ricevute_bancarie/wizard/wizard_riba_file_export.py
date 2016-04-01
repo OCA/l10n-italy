@@ -254,14 +254,18 @@ class RibaFileExport(orm.TransientModel):
             debitor_address = line.partner_id
             debitor_street = debitor_address.street or ''
             debitor_zip = debitor_address.zip or ''
-            if not debit_bank.iban:
+            if debit_bank.bank_abi and debit_bank.bank_cab:
+                debit_abi = debit_bank.bank_abi
+                debit_cab = debit_bank.bank_cab
+            elif debit_bank.iban:
+                debit_iban = debit_bank.iban.replace(" ", "")
+                debit_abi = debit_iban[5:10]
+                debit_cab = debit_iban[10:15]
+            else:
                 raise orm.except_orm(
-                    'Error',
-                    _('No IBAN specified for ') + line.partner_id.name)
-            # remove spaces automatically added by odoo
-            debit_iban = debit_bank.iban.replace(" ", "")
-            debit_abi = debit_iban[5:10]
-            debit_cab = debit_iban[10:15]
+                    _('Error'),
+                    _('No IBAN or ABI/CAB specified for ') +
+                    line.partner_id.name)
             debitor_city = debitor_address.city and debitor_address.city.ljust(
                 23)[0:23] or ''
             debitor_province = (
