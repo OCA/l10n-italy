@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 # Paolo Valier, 2016
 # Paolo Valier, 2016
 # Stefano <stefano.sforzi@agilebg.com>, 2016
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-22 13:21+0000\n"
-"PO-Revision-Date: 2016-03-23 06:48+0000\n"
+"POT-Creation-Date: 2016-04-01 07:40+0000\n"
+"PO-Revision-Date: 2016-03-31 19:46+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -260,7 +261,7 @@ msgstr "Sezionale imposta"
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,tax_sign:0
 msgid "Tax amount sign"
-msgstr ""
+msgstr "Segno importo fiscale"
 
 #. module: l10n_it_vat_registries
 #: code:addons/l10n_it_vat_registries/vat_registry.py:240
@@ -317,7 +318,7 @@ msgstr "Registro IVA"
 msgid ""
 "You can group several journals within 1 registry. In printing wizard, you "
 "will be able to select the registry in order to load that group of journals"
-msgstr ""
+msgstr "È possibile raggruppare più giornali in un unico registro. Nella procedura guidata di stampa è possibile selezionare un registro per caricare quel dato gruppo di giornali."
 
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
