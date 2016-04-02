@@ -3,11 +3,12 @@
 # * l10n_it_fatturapa
 # 
 # Translators:
+# Hotellook, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-22 13:21+0000\n"
+"POT-Creation-Date: 2016-04-01 07:40+0000\n"
 "PO-Revision-Date: 2015-10-07 11:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -806,7 +807,7 @@ msgstr ""
 #: field:account.invoice,related_documents:0
 #: view:account.invoice.line:l10n_it_fatturapa.view_invoice_line_form_fatturapa
 msgid "Related Documents"
-msgstr ""
+msgstr "Povezani dokumenti"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice.line,related_documents:0

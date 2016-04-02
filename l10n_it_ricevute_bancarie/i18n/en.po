@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-10 09:57+0000\n"
-"PO-Revision-Date: 2015-12-19 17:01+0000\n"
+"POT-Creation-Date: 2016-04-01 07:40+0000\n"
+"PO-Revision-Date: 2016-04-01 07:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -363,6 +363,7 @@ msgstr "Effects amount"
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:100
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:111
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:121
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:266
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:118
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:132
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:145
@@ -560,16 +561,16 @@ msgid "Move lines"
 msgstr "Move lines"
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:267
+#, python-format
+msgid "No IBAN or ABI/CAB specified for "
+msgstr "No IBAN or ABI/CAB specified for "
+
+#. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:212
 #, python-format
 msgid "No IBAN specified"
 msgstr "No IBAN specified"
-
-#. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:260
-#, python-format
-msgid "No IBAN specified for "
-msgstr "No IBAN specified for "
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:220
@@ -578,7 +579,7 @@ msgid "No SIA Code specified for: "
 msgstr "No SIA Code specified for: "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:279
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:283
 #, python-format
 msgid "No VAT or Fiscal code specified for "
 msgstr "No VAT or Fiscal code specified for "
@@ -599,7 +600,7 @@ msgid "No active ID found"
 msgstr "No active ID found"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:287
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:291
 #, python-format
 msgid "No debit_bank specified for "
 msgstr "No debit_bank specified for "

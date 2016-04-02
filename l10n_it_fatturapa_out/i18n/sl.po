@@ -3,13 +3,37 @@
 # * l10n_it_fatturapa_out
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Aeshna <synieoka@gmail.com>, 2014
+# Albert Cervera i Areny <albert@nan-tic.com>, 2009
+# Andrii Dvoiak <andrii@preply.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2015
+# Dmytro Voloshyn <dmytro@preply.com>, 2014-2016
+# Dorin Hongu <dhongu@gmail.com>, 2015
+# Hotellook, 2014
+# iNastya <nastya@preply.com>, 2015
+# inken <inken.bornholdt@techstars.com>, 2015
+# Julia Boyun <yuliaboyun@gmail.com>, 2015
+# Karolina Starzewska <kstarzewska@gmail.com>, 2015
+# Katharina Zajac <Kaaaasiaz@yahoo.de>, 2015
+# Kirill Bigai <kirill@preply.com>, 2013
+# Konrad Lubinski <konrad@preply.com>, 2015-2016
+# Lizaveta.Makratsova <lizaveta.makratsova@gmail.com>, 2014
+# Maria <maria@preply.com>, 2016
+# Massimiliano Casa <mcasa@cantiericasa.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
+# Oleksandra <inactive+Oleksandra@transifex.com>, 2014
+# Olga Podgayna <olga@preply.org>, 2015
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Serge <serge@preply.com>, 2013,2015
+# Александра Маломуж <omalomug@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-22 13:21+0000\n"
-"PO-Revision-Date: 2016-03-23 09:35+0000\n"
+"POT-Creation-Date: 2016-04-01 07:40+0000\n"
+"PO-Revision-Date: 2016-03-30 05:29+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -186,47 +210,47 @@ msgstr "Izvoz"
 #: model:ir.model,name:l10n_it_fatturapa_out.model_wizard_export_fatturapa
 #: view:wizard.export.fatturapa:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export FatturaPA"
-msgstr ""
+msgstr "Izvoz E-računa"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "FatturaPA"
-msgstr ""
+msgstr "E-račun"
 
 #. module: l10n_it_fatturapa_out
 #: field:account.invoice,fatturapa_attachment_out_id:0
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 msgid "FatturaPA Export File"
-msgstr ""
+msgstr "Izvozna datoteka E-računa"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
 #: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
 msgid "FatturaPA Export Files"
-msgstr ""
+msgstr "Izvozne datoteke E-računov"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "FatturaPA attachments"
-msgstr ""
+msgstr "Priponke E-računa"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:194
 #, python-format
 msgid "FatturaPA fiscal position not set."
-msgstr ""
+msgstr "Fiskalni položaj pri E-računu ni nastavljen."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:135
 #, python-format
 msgid "FatturaPA format not set."
-msgstr ""
+msgstr "Format E-računa ni nastavljen"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:100
 #, python-format
 msgid "FatturaPA sequence not configured."
-msgstr ""
+msgstr "Zaporedje E-računov ni nastavljeno."
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_follower_ids:0
@@ -254,7 +278,7 @@ msgstr "ID"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:147
 #, python-format
 msgid "IPA Code not set on partner form."
-msgstr ""
+msgstr "IPA koda na obrazcu partnerja ni nastavljena."
 
 #. module: l10n_it_fatturapa_out
 #: help:fatturapa.attachment.out,message_unread:0
@@ -270,7 +294,7 @@ msgstr "Račun"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:772
 #, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
-msgstr ""
+msgstr "Račun %s še nima izvozne datoteke za E-račun"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:464
@@ -282,18 +306,18 @@ msgstr "Račun je brez številke."
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:558
 #, python-format
 msgid "Invoice line %s does not have tax"
-msgstr ""
+msgstr "Postavka računa %s je brez davka"
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Invoices"
-msgstr ""
+msgstr "Računi"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:742
 #, python-format
 msgid "Invoices must belong to the same partner"
-msgstr ""
+msgstr "Računi morajo pripadati istemu partnerju"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_is_follower:0
@@ -331,65 +355,65 @@ msgstr "Sporočila in kronologija komunikacij"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:621
 #, python-format
 msgid "No 'law reference' field for tax %s"
-msgstr ""
+msgstr "Za davek %s ni polja za 'davčni sklic'"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:578
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:616
 #, python-format
 msgid "No 'nature' field for tax %s"
-msgstr ""
+msgstr "Za davek %s ni polja 'narava'"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,out_invoice_ids:0
 msgid "Out Invoices"
-msgstr ""
+msgstr "Izhodni računi"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:333
 #, python-format
 msgid "Partner VAT and Fiscalcode not set."
-msgstr ""
+msgstr "ID za DDV in fiskalna koda partnerja nista nastavljeni."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:647
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment method"
-msgstr ""
+msgstr "Plačilni pogoj %s ni povezan s plačilno metodo E-računa"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:642
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment term"
-msgstr ""
+msgstr "Plačilni pogoj %s ni povezan s plačilnim pogojem E-računa"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:243
 #, python-format
 msgid "Province not set."
-msgstr ""
+msgstr "Provinca ni nastavljena."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:401
 #, python-format
 msgid "RappresentanteFiscale not handled"
-msgstr ""
+msgstr "FiskalniZastopnik ni obravnavan"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Related Documents"
-msgstr ""
+msgstr "Povezani dokumenti"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Results"
-msgstr ""
+msgstr "Rezultati"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:234
 #, python-format
 msgid "Street not set."
-msgstr ""
+msgstr "Ulica ni nastavljena"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_summary:0
@@ -400,19 +424,19 @@ msgstr "Povzetek"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:189
 #, python-format
 msgid "TIN not set."
-msgstr ""
+msgstr "ID za DDV ni nastavljen."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:440
 #, python-format
 msgid "TerzoIntermediarioOSoggettoEmittente not handled"
-msgstr ""
+msgstr "TerzoIntermediarioOSoggettoEmittente ni obravnavan"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:562
 #, python-format
 msgid "Too many taxes for invoice line %s"
-msgstr ""
+msgstr "Preveč davkov pri postavki računa %s"
 
 #. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_unread:0
@@ -423,15 +447,15 @@ msgstr "Neprebrana sporočila"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:783
 #, python-format
 msgid "XML SDI validation error"
-msgstr ""
+msgstr "Napaka overjanja XML SDI"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:237
 #, python-format
 msgid "ZIP not set."
-msgstr ""
+msgstr "Poštna številka ni nastavljena."
 
 #. module: l10n_it_fatturapa_out
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "on"
-msgstr ""
+msgstr "na"
