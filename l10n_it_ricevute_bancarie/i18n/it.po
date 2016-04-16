@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-25 16:46+0000\n"
+"POT-Creation-Date: 2016-04-02 17:17+0000\n"
 "PO-Revision-Date: 2015-11-25 16:47+0000\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
@@ -24,7 +24,7 @@ msgid "Account used when Ri.Ba. is accepted by the bank"
 msgstr "Il conto utilizzato quando la Ri.Ba. viene accettata dalla banca"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:209
+#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:210
 #, python-format
 msgid "No IBAN specified"
 msgstr "Nessun IBAN specificato"
@@ -104,7 +104,7 @@ msgid "Move line"
 msgstr "Riga contabile"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:228
+#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:229
 #, python-format
 msgid "No VAT or Fiscalcode specified for: "
 msgstr "P IVA o codice fiscale non specificato per:"
@@ -127,7 +127,7 @@ msgid "Ri.Ba. Accreditation"
 msgstr "Accredito Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:255
+#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:256
 #, python-format
 msgid "No IBAN specified for "
 msgstr "Nessun IBAN specificato per"
@@ -138,7 +138,7 @@ msgid "Credit amount"
 msgstr "Importo credito"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:215
+#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:216
 #, python-format
 msgid "No SIA Code specified for: "
 msgstr "Nessun codice SIA specificato per:"
@@ -170,7 +170,7 @@ msgid "Codice SIA"
 msgstr "Codice SIA"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:270
+#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:271
 #, python-format
 msgid "No VAT or Fiscal code specified for "
 msgstr "P IVA o codice fiscale non specificato per"
@@ -210,7 +210,7 @@ msgid "Reference"
 msgstr "Riferimento"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:278
+#: code:addons/l10n_it_ricevute_bancarie/wizard/riba_file_export.py:279
 #, python-format
 msgid "No debit_bank specified for "
 msgstr ""
