@@ -4,14 +4,16 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Hotellook, 2014
+# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 # Paolo Valier, 2016
 # Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-22 13:21+0000\n"
-"PO-Revision-Date: 2016-03-26 08:53+0000\n"
+"POT-Creation-Date: 2016-04-16 19:42+0000\n"
+"PO-Revision-Date: 2016-04-21 07:11+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +26,7 @@ msgstr ""
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
 msgid "Add Pickings to DDT"
-msgstr "Aggiungi Prelievi al DDT"
+msgstr "Aggiungi Picking al DDT"
 
 #. module: l10n_it_ddt
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_form
@@ -162,7 +164,7 @@ msgstr "DDT"
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_from_pickings
 msgid "DDT from Pickings"
-msgstr "DDT da Prelievi"
+msgstr "DDT da Picking"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
@@ -267,7 +269,7 @@ msgstr "Peso Lordo"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Contiene il riepilogo Chatter (numero di messaggi, ...). Questa sintesi è direttamente in formato HTML, al fine di essere inserita nelle viste kanban."
 
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,id:0 field:ddt.create.invoice,id:0
@@ -395,7 +397,7 @@ msgstr "Nessuno"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:133
 #, python-format
 msgid "Not every picking is in done status"
-msgstr "Non tutti i prelievi sono completati"
+msgstr "Non tutti i picking sono completati"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,note:0 field:stock.picking.carriage_condition,note:0
@@ -465,28 +467,28 @@ msgstr "Ora ritiro"
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "Picking"
-msgstr "Prelievo"
+msgstr "Picking"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:31
 #, python-format
 msgid "Picking %s already in ddt"
-msgstr "Prelievo %s già nel ddt"
+msgstr "Picking %s già nel ddt"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Picking List"
-msgstr "Lista Prelievi"
+msgstr "Lista Picking"
 
 #. module: l10n_it_ddt
 #: field:ddt.from.pickings,picking_ids:0
 msgid "Picking ids"
-msgstr "ID Prelievo"
+msgstr "ID Picking"
 
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "Pickings"
-msgstr "Prelievi"
+msgstr "Picking"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
@@ -585,57 +587,57 @@ msgstr "I Ddt Selezionati hanno colli differenti"
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:34
 #, python-format
 msgid "Selected Picking %s have different Partner"
-msgstr "I Prelievi selezionati %s hanno Partner differenti"
+msgstr "I Picking selezionati %s hanno Partner differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:40
 #, python-format
 msgid "Selected Picking %s have different carriage condition"
-msgstr "I Prelievi selezionati %s hanno condizioni di trasporto differenti"
+msgstr "I Picking selezionati %s hanno condizioni di trasporto differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:45
 #, python-format
 msgid "Selected Picking %s have different goods description"
-msgstr "I Prelievi selezionati %s hanno differenti Descrizioni dell'aspetto esteriore dei beni"
+msgstr "I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:50
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:55
 #, python-format
 msgid "Selected Picking %s have different transportation reason"
-msgstr "I Prelievi selezionati %s hanno Causali di trasporto differenti"
+msgstr "I Picking selezionati %s hanno Causali di trasporto differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:40
 #, python-format
 msgid "Selected Pickings have different Partner"
-msgstr "I Prelievi selezionati hanno Partner differenti"
+msgstr "I Picking selezionati hanno Partner differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:60
 #, python-format
 msgid "Selected Pickings have different carriage condition"
-msgstr "I Prelievi selezionati hanno il Reso Merce differente"
+msgstr "I Picking selezionati hanno il Reso Merce differente"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:73
 #, python-format
 msgid "Selected Pickings have different goods description"
-msgstr "I Prelievi selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
+msgstr "I Picking selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:50
 #, python-format
 msgid "Selected Pickings have different parcels"
-msgstr "I Prelievi selezionati hanno colli differenti"
+msgstr "I Picking selezionati hanno colli differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:86
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:100
 #, python-format
 msgid "Selected Pickings have different transportation reason"
-msgstr "I Prelievi selezionati hanno una Causale di trasporto differente"
+msgstr "I Picking selezionati hanno una Causale di trasporto differente"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,sequence_id:0
@@ -668,7 +670,7 @@ msgstr "Tipo Stock DdT"
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_summary:0
 msgid "Summary"
-msgstr "Summary"
+msgstr "Riepilogo"
 
 #. module: l10n_it_ddt
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
