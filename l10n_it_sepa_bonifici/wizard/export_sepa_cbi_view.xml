@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="banking_export_sepa_cbi_wizard_view" model="ir.ui.view">
+    <field name="name">banking.export.sepa.cbi.wizard.view</field>
+    <field name="model">banking.export.sepa.cbi.wizard</field>
+    <field name="arch" type="xml">
+        <form string="SEPA File Generation" version="7.0">
+            <field name="state" invisible="True"/>
+            <group states="create">
+            </group>
+            <group states="finish">
+                <field name="total_amount" />
+                <field name="nb_transactions" />
+                <field name="file" filename="filename" />
+                <field name="filename" invisible="True"/>
+            </group>
+            <footer>
+                <button string="Generate" name="create_sepa" type="object" class="oe_highlight" states="create"/>
+                <button string="Cancel" special="cancel" class="oe_link" states="create"/>
+                <button string="Validate" name="save_sepa" type="object" class="oe_highlight" states="finish"/>
+                <button string="Cancel" name="cancel_sepa" type="object" class="oe_link" states="finish"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+</data>
+</openerp>

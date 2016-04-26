@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 (x64) (http://www.altova.com) by Ivana Gargiulo (CONSORZIO CUSTOMER TO BUSINESS INTERACTION - CBI) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:CBI:xsd:CBIPaymentRequest.00.04.00" targetNamespace="urn:CBI:xsd:CBIPaymentRequest.00.04.00" elementFormDefault="qualified">
+	<xs:element name="CBIPaymentRequest" type="CBIPaymentRequest.00.04.00"/>
+	<!-- CBI Logical Payment Request message structure definition -->
+	<xs:complexType name="CBIPaymentRequest.00.04.00">
+		<xs:sequence>
+			<xs:element name="GrpHdr" type="CBIGroupHeader"/>
+			<xs:element name="PmtInf" type="CBIPaymentInstructionInformation"/>
+			<!-- 1 -->
+			<!-- 2 -->
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIGroupHeader">
+		<xs:sequence>
+			<xs:element name="MsgId" type="Max35Text"/>
+			<xs:element name="CreDtTm" type="ISODateTime"/>
+			<xs:element name="NbOfTxs" type="Max15NumericText"/>
+			<xs:element name="CtrlSum" type="DecimalNumber"/>
+			<xs:element name="InitgPty" type="CBIPartyIdentification1"/>
+			<xs:element name="FwdgAgt" type="CBIBranchAndFinancialInstitutionIdentification1" minOccurs="0"/>
+			<!-- 1.1 -->
+			<!-- 1.2 -->
+			<!-- 1.3 -->
+			<!-- 1.4 -->
+			<!-- 1.5 -->
+			<!-- 1.6 -->
+		</xs:sequence>
+		<!-- 1 -->
+	</xs:complexType>
+	<xs:complexType name="CBIPaymentInstructionInformation">
+		<xs:sequence>
+			<xs:element name="PmtInfId" type="Max35Text"/>
+			<xs:element name="PmtMtd" type="PaymentMethod3Code"/>
+			<xs:element name="BtchBookg" type="BatchBookingIndicator" minOccurs="0"/>
+			<xs:element name="PmtTpInf" type="CBIPaymentTypeInformation1" minOccurs="0"/>
+			<xs:element name="ReqdExctnDt" type="ISODate"/>
+			<xs:element name="Dbtr" type="CBIPartyIdentification4"/>
+			<xs:element name="DbtrAcct" type="CBICashAccount1"/>
+			<xs:element name="DbtrAgt" type="CBIBranchAndFinancialInstitutionIdentification2"/>
+			<xs:element name="UltmtDbtr" type="CBIPartyIdentification2" minOccurs="0"/>
+			<xs:element name="ChrgBr" type="CBIChargeBearerTypeCode" minOccurs="0"/>
+			<xs:element name="ChrgsAcct" type="CBICashAccount1" minOccurs="0"/>
+			<xs:element name="CdtTrfTxInf" type="CBICreditTransferTransactionInformation" maxOccurs="unbounded"/>
+			<!-- 2.1 -->
+			<!-- 2.2 -->
+			<!-- 2.3 -->
+			<!-- 2.4 -->
+			<!-- 2.5 -->
+			<!-- 2.6 -->
+			<!-- 2.7 -->
+			<!-- 2.8 -->
+			<!-- 2.9 -->
+			<!-- 2.10 -->
+			<!-- 2.11 -->
+		</xs:sequence>
+		<!-- 2 -->
+	</xs:complexType>
+	<xs:complexType name="CBICreditTransferTransactionInformation">
+		<xs:sequence>
+			<xs:element name="PmtId" type="PaymentIdentification1"/>
+			<xs:element name="PmtTpInf" type="CBIPaymentTypeInformation2" minOccurs="0"/>
+			<xs:element name="Amt" type="CBIAmountType1"/>
+			<xs:element name="ChqInstr" type="CBICheque1" minOccurs="0"/>
+			<xs:element name="UltmtDbtr" type="CBIPartyIdentification2" minOccurs="0"/>
+			<xs:element name="SrvInf" type="CBISrvInf1" minOccurs="0"/>
+			<xs:element name="CdtrAgt" type="CBIBranchAndFinancialInstitutionIdentification3" minOccurs="0"/>
+			<xs:element name="Cdtr" type="CBIPartyIdentification3"/>
+			<xs:element name="CdtrAcct" type="CBICashAccount2" minOccurs="0"/>
+			<xs:element name="UltmtCdtr" type="CBIPartyIdentification3" minOccurs="0"/>
+			<xs:element name="DestCdtrRsp" type="CBIPartyIdentification5" minOccurs="0"/>
+			<xs:element name="Purp" type="Purpose1Choice" minOccurs="0"/>
+			<xs:element name="RgltryRptg" type="CBIRegulatoryReporting1" minOccurs="0" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Aggiunto blocco per ospitare le comunicazione valutarie sintetiche </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RltdRmtInf" type="CBIRemittanceLocation1" minOccurs="0" maxOccurs="10"/>
+			<xs:element name="RmtInf" type="RemittanceInformation5" minOccurs="0"/>
+			<!-- 2.10.1 -->
+			<!-- 2.10.2 -->
+			<!-- 2.10.3 -->
+			<!-- 2.10.4 -->
+			<!-- 2.10.5 -->
+			<!-- 2.10.6 -->
+			<!-- 2.10.7 -->
+			<!-- 2.10.8 -->
+			<!-- 2.10.9 -->
+			<!-- 2.10.10 -->
+			<!-- 2.10.11 -->
+			<!-- 2.10.12 -->
+			<!-- 2.10.13 -->
+			<!-- 2.10.14 -->
+			<!-- 2.10.15 -->
+		</xs:sequence>
+		<!-- 2.10 -->
+	</xs:complexType>
+	<!--*********************************
+    Complex common data types
+**********************************-->
+	<xs:complexType name="ActiveOrHistoricCurrencyAndAmount">
+		<xs:simpleContent>
+			<xs:extension base="ActiveOrHistoricCurrencyAndAmount_SimpleType">
+				<xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CategoryPurpose1Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Cd" type="ExternalCategoryPurpose1Code"/>
+				<xs:element name="Prtry" type="Max35Text"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIAccountIdentification1">
+		<xs:sequence>
+			<xs:element name="IBAN" type="IBAN2007Identifier"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIAmountType1">
+		<xs:sequence>
+			<xs:element name="InstdAmt" type="ActiveOrHistoricCurrencyAndAmount"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIBranchAndFinancialInstitutionIdentification1">
+		<xs:sequence>
+			<xs:element name="FinInstnId" type="CBIFinancialInstitutionIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIBranchAndFinancialInstitutionIdentification2">
+		<xs:sequence>
+			<xs:element name="FinInstnId" type="CBIFinancialInstitutionIdentification3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIBranchAndFinancialInstitutionIdentification3">
+		<xs:sequence>
+			<xs:element name="FinInstnId" type="CBIFinancialInstitutionIdentification2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBICashAccount1">
+		<xs:sequence>
+			<xs:element name="Id" type="CBIAccountIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBICashAccount2">
+		<xs:sequence>
+			<xs:element name="Id" type="CBIAccountIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBICheque1">
+		<xs:sequence>
+			<xs:element name="ChqTp" type="CBIChequeType1Code" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIClearingSystemMemberIdentification1">
+		<xs:sequence>
+			<xs:element name="MmbId" type="Max35Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIFinancialInstitutionIdentification1">
+		<xs:sequence>
+			<xs:element name="ClrSysMmbId" type="CBIClearingSystemMemberIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIFinancialInstitutionIdentification2">
+		<xs:sequence>
+			<xs:element name="BIC" type="BICIdentifier"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIFinancialInstitutionIdentification3">
+		<xs:sequence>
+			<xs:element name="BIC" type="BICIdentifier" minOccurs="0"/>
+			<xs:element name="ClrSysMmbId" type="CBIClearingSystemMemberIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIGenericIdentification1">
+		<xs:sequence>
+			<xs:element name="Id" type="Max35Text"/>
+			<xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIGenericIdentification2">
+		<xs:sequence>
+			<xs:element name="Id" type="Max35Text"/>
+			<xs:element name="Issr" type="Max35Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIIdType1">
+		<xs:sequence>
+			<xs:element name="OrgId" type="CBIOrganisationIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIIdType2">
+		<xs:sequence>
+			<xs:element name="OrgId" type="CBIOrganisationIdentification3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIIdType3">
+		<xs:sequence>
+			<xs:element name="OrgId" type="CBIOrganisationIdentification4"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBILocalInstrument1">
+		<xs:sequence>
+			<xs:element name="Prtry" type="Max35Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIOrganisationIdentification1">
+		<xs:sequence>
+			<xs:element name="Othr" type="CBIGenericIdentification1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIOrganisationIdentification2">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="BICOrBEI" type="AnyBICIdentifier"/>
+				<xs:element name="Othr" type="CBIGenericIdentification1"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIOrganisationIdentification3">
+		<xs:sequence>
+			<xs:element name="Othr" type="CBIGenericIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIOrganisationIdentification4">
+		<xs:sequence>
+			<xs:element name="Othr" type="CBIGenericIdentification2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIParty1Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="OrgId" type="CBIOrganisationIdentification2"/>
+				<xs:element name="PrvtId" type="CBIPersonIdentification1"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPartyIdentification1">
+		<xs:sequence>
+			<xs:element name="Nm" type="Max70Text" minOccurs="0"/>
+			<xs:element name="Id" type="CBIIdType1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPartyIdentification2">
+		<xs:sequence>
+			<xs:element name="Nm" type="Max70Text" minOccurs="0"/>
+			<xs:element name="PstlAdr" type="CBIPostalAddress6" minOccurs="0"/>
+			<xs:element name="Id" type="CBIIdType2" minOccurs="0"/>
+			<xs:element name="CtryOfRes" type="CountryCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPartyIdentification3">
+		<xs:sequence>
+			<xs:element name="Nm" type="Max70Text"/>
+			<xs:element name="PstlAdr" type="CBIPostalAddress6" minOccurs="0"/>
+			<xs:element name="Id" type="CBIParty1Choice" minOccurs="0"/>
+			<xs:element name="CtryOfRes" type="CountryCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPartyIdentification4">
+		<xs:sequence>
+			<xs:element name="Nm" type="Max70Text"/>
+			<xs:element name="PstlAdr" type="CBIPostalAddress6" minOccurs="0"/>
+			<xs:element name="Id" type="CBIIdType2" minOccurs="0"/>
+			<xs:element name="CtryOfRes" type="CountryCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPartyIdentification5">
+		<xs:sequence>
+			<xs:element name="Nm" type="Max70Text"/>
+			<xs:element name="Id" type="CBIIdType3" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPaymentTypeInformation1">
+		<xs:sequence>
+			<xs:element name="InstrPrty" type="Priority2Code" minOccurs="0"/>
+			<xs:element name="SvcLvl" type="CBIServiceLevel1" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPaymentTypeInformation2">
+		<xs:sequence>
+			<xs:element name="SvcLvl" type="CBIServiceLevel2" minOccurs="0"/>
+			<xs:element name="LclInstrm" type="CBILocalInstrument1" minOccurs="0"/>
+			<xs:element name="CtgyPurp" type="CategoryPurpose1Choice" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPersonIdentification1">
+		<xs:sequence>
+			<xs:element name="Othr" type="CBIGenericIdentification1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIPostalAddress6">
+		<xs:sequence>
+			<xs:element name="AdrTp" type="AddressType2Code" minOccurs="0"/>
+			<xs:element name="Dept" type="Max70Text" minOccurs="0"/>
+			<xs:element name="SubDept" type="Max70Text" minOccurs="0"/>
+			<xs:element name="StrtNm" type="Max70Text" minOccurs="0"/>
+			<xs:element name="BldgNb" type="Max16Text" minOccurs="0"/>
+			<xs:element name="PstCd" type="Max16Text" minOccurs="0"/>
+			<xs:element name="TwnNm" type="Max35Text" minOccurs="0"/>
+			<xs:element name="CtrySubDvsn" type="Max35Text" minOccurs="0"/>
+			<xs:element name="Ctry" type="CountryCode" minOccurs="0"/>
+			<xs:element name="AdrLine" type="Max70Text" minOccurs="0" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIRegulatoryReporting1">
+		<xs:sequence>
+			<xs:element name="DbtCdtRptgInd" type="CBIRegulatoryReportingType1Code"/>
+			<xs:element name="Dtls" type="CBIStructuredRegulatoryReporting1" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIRemittanceLocation1">
+		<xs:sequence>
+			<xs:element name="RmtId" type="Max35Text" minOccurs="0"/>
+			<xs:element name="RmtLctnMtd" type="CBIRemittanceLocationMethod1Code" minOccurs="0"/>
+			<xs:element name="RmtLctnElctrncAdr" type="Max2048Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIServiceLevel1">
+		<xs:sequence>
+			<xs:element name="Cd" type="CBIServiceLevel1Code"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIServiceLevel2">
+		<xs:sequence>
+			<xs:element name="Prtry" type="Max35Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CBIStructuredRegulatoryReporting1">
+		<xs:sequence>
+			<xs:element name="Cd">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="INF"/>
+						<xs:enumeration value="SNR"/>
+						<xs:enumeration value="CVA"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+			<xs:element name="Inf" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactDetails2">
+		<xs:sequence>
+			<xs:element name="NmPrfx" type="NamePrefix1Code" minOccurs="0"/>
+			<xs:element name="Nm" type="Max140Text" minOccurs="0"/>
+			<xs:element name="PhneNb" type="PhoneNumber" minOccurs="0"/>
+			<xs:element name="MobNb" type="PhoneNumber" minOccurs="0"/>
+			<xs:element name="FaxNb" type="PhoneNumber" minOccurs="0"/>
+			<xs:element name="EmailAdr" type="Max2048Text" minOccurs="0"/>
+			<xs:element name="Othr" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreditorReferenceInformation2">
+		<xs:sequence>
+			<xs:element name="Tp" type="CreditorReferenceType2" minOccurs="0"/>
+			<xs:element name="Ref" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreditorReferenceType1Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Cd" type="DocumentType3Code"/>
+				<xs:element name="Prtry" type="Max35Text"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreditorReferenceType2">
+		<xs:sequence>
+			<xs:element name="CdOrPrtry" type="CreditorReferenceType1Choice"/>
+			<xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateAndPlaceOfBirth">
+		<xs:sequence>
+			<xs:element name="BirthDt" type="ISODate"/>
+			<xs:element name="PrvcOfBirth" type="Max35Text" minOccurs="0"/>
+			<xs:element name="CityOfBirth" type="Max35Text"/>
+			<xs:element name="CtryOfBirth" type="CountryCode"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentAdjustment1">
+		<xs:sequence>
+			<xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount"/>
+			<xs:element name="CdtDbtInd" type="CreditDebitCode" minOccurs="0"/>
+			<xs:element name="Rsn" type="Max4Text" minOccurs="0"/>
+			<xs:element name="AddtlInf" type="Max140Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenericIdentification3">
+		<xs:sequence>
+			<xs:element name="Id" type="Max35Text"/>
+			<xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenericOrganisationIdentification1">
+		<xs:sequence>
+			<xs:element name="Id" type="Max35Text"/>
+			<xs:element name="SchmeNm" type="OrganisationIdentificationSchemeName1Choice" minOccurs="0"/>
+			<xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenericPersonIdentification1">
+		<xs:sequence>
+			<xs:element name="Id" type="Max35Text"/>
+			<xs:element name="SchmeNm" type="PersonIdentificationSchemeName1Choice" minOccurs="0"/>
+			<xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrganisationIdentification4">
+		<xs:sequence>
+			<xs:element name="BICOrBEI" type="AnyBICIdentifier" minOccurs="0"/>
+			<xs:element name="Othr" type="GenericOrganisationIdentification1" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrganisationIdentificationSchemeName1Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Cd" type="ExternalOrganisationIdentification1Code"/>
+				<xs:element name="Prtry" type="Max35Text"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartyIdentification32">
+		<xs:sequence>
+			<xs:element name="Nm" type="Max140Text" minOccurs="0"/>
+			<xs:element name="PstlAdr" type="CBIPostalAddress6" minOccurs="0"/>
+			<xs:element name="Id" type="Party6Choice" minOccurs="0"/>
+			<xs:element name="CtryOfRes" type="CountryCode" minOccurs="0"/>
+			<xs:element name="CtctDtls" type="ContactDetails2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Party6Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="OrgId" type="OrganisationIdentification4"/>
+				<xs:element name="PrvtId" type="PersonIdentification5"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentIdentification1">
+		<xs:sequence>
+			<xs:element name="InstrId" type="Max35Text"/>
+			<xs:element name="EndToEndId" type="Max35Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonIdentification5">
+		<xs:sequence>
+			<xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth" minOccurs="0"/>
+			<xs:element name="Othr" type="GenericPersonIdentification1" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonIdentificationSchemeName1Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Cd" type="ExternalPersonIdentification1Code"/>
+				<xs:element name="Prtry" type="Max35Text"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Purpose1Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Cd" type="ExternalPurpose1Code"/>
+				<xs:element name="Prtry" type="Max35Text"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RemittanceInformation5">
+		<xs:sequence>
+			<xs:element name="Ustrd" type="Max140Text" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Strd" type="StructuredRemittanceInformation7" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferredDocumentInformation3">
+		<xs:sequence>
+			<xs:element name="Tp" type="ReferredDocumentType2" minOccurs="0"/>
+			<xs:element name="Nb" type="Max35Text" minOccurs="0"/>
+			<xs:element name="RltdDt" type="ISODate" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferredDocumentType1Choice">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Cd" type="DocumentType5Code"/>
+				<xs:element name="Prtry" type="Max35Text"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferredDocumentType2">
+		<xs:sequence>
+			<xs:element name="CdOrPrtry" type="ReferredDocumentType1Choice"/>
+			<xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RemittanceAmount1">
+		<xs:sequence>
+			<xs:element name="DuePyblAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+			<xs:element name="DscntApldAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+			<xs:element name="CdtNoteAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+			<xs:element name="TaxAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+			<xs:element name="AdjstmntAmtAndRsn" type="DocumentAdjustment1" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RmtdAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StructuredRemittanceInformation7">
+		<xs:sequence>
+			<xs:element name="RfrdDocInf" type="ReferredDocumentInformation3" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RfrdDocAmt" type="RemittanceAmount1" minOccurs="0"/>
+			<xs:element name="CdtrRefInf" type="CreditorReferenceInformation2" minOccurs="0"/>
+			<xs:element name="Invcr" type="PartyIdentification32" minOccurs="0"/>
+			<xs:element name="Invcee" type="PartyIdentification32" minOccurs="0"/>
+			<xs:element name="AddtlRmtInf" type="Max140Text" minOccurs="0" maxOccurs="3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--*********************************
+    Simple common data types
+**********************************-->
+	<xs:simpleType name="ActiveOrHistoricCurrencyAndAmount_SimpleType">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="5"/>
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ActiveOrHistoricCurrencyCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{3,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AddressType2Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADDR"/>
+			<xs:enumeration value="PBOX"/>
+			<xs:enumeration value="HOME"/>
+			<xs:enumeration value="BIZZ"/>
+			<xs:enumeration value="MLTO"/>
+			<xs:enumeration value="DLVY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnyBICIdentifier">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BatchBookingIndicator">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="BICIdentifier">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBIChargeBearerTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SLEV"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBIChequeType1Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CCCH"/>
+			<xs:enumeration value="BCHQ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBIRegulatoryReportingType1Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DEBT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBIRemittanceLocationMethod1Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FAXI"/>
+			<xs:enumeration value="EMAL"/>
+			<xs:enumeration value="SMSM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBIServiceLevel1Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SEPA"/>
+			<xs:enumeration value="URGP"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CBISrvInf1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ESBEN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CountryCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CreditDebitCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CRDT"/>
+			<xs:enumeration value="DBIT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DecimalNumber">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="17"/>
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentType3Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RADM"/>
+			<xs:enumeration value="RPIN"/>
+			<xs:enumeration value="FXDR"/>
+			<xs:enumeration value="DISP"/>
+			<xs:enumeration value="PUOR"/>
+			<xs:enumeration value="SCOR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentType5Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MSIN"/>
+			<xs:enumeration value="CNFA"/>
+			<xs:enumeration value="DNFA"/>
+			<xs:enumeration value="CINV"/>
+			<xs:enumeration value="CREN"/>
+			<xs:enumeration value="DEBN"/>
+			<xs:enumeration value="HIRI"/>
+			<xs:enumeration value="SBIN"/>
+			<xs:enumeration value="CMCN"/>
+			<xs:enumeration value="SOAC"/>
+			<xs:enumeration value="DISP"/>
+			<xs:enumeration value="BOLD"/>
+			<xs:enumeration value="VCHR"/>
+			<xs:enumeration value="AROI"/>
+			<xs:enumeration value="TSUT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExternalCategoryPurpose1Code">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExternalOrganisationIdentification1Code">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExternalPersonIdentification1Code">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExternalPurpose1Code">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IBAN2007Identifier">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ISODate">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="ISODateTime">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="Max4Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max15NumericText">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max16Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max35Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="35"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max70Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max140Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="140"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max2048Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2048"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NamePrefix1Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DOCT"/>
+			<xs:enumeration value="MIST"/>
+			<xs:enumeration value="MISS"/>
+			<xs:enumeration value="MADM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PaymentMethod3Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CHK"/>
+			<xs:enumeration value="TRF"/>
+			<xs:enumeration value="TRA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Priority2Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="HIGH"/>
+			<xs:enumeration value="NORM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneNumber">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\+[0-9]{1,3}-[0-9()+\-]{1,30}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
