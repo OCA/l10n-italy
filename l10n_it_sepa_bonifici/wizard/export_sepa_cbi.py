@@ -1,32 +1,13 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    SEPA Direct Debit module for Odoo
-#    Copyright (C) 2013-2015 Akretion (http://www.akretion.com)
-#    @author: Alexis de Lattre <alexis.delattre@akretion.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# -*- coding: utf-8 -*-
+# © 2013-2015 Alexis de Lattre <alexis.delattre@akretion.com>
+# © 2016 Alessandro Camilli <alessandro.camilli@openforce.it>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 from openerp import workflow
 from lxml import etree
 import logging
-import base64
 
 logger = logging.getLogger(__name__)
 
@@ -78,9 +59,9 @@ class BankingExportSepaCbiWizard(models.TransientModel):
         return super(BankingExportSepaCbiWizard, self).create(vals)
 
     @api.model
-    def generate_party_agent(self, parent_node, party_type, party_type_label,
+    def generate_party_agent(
+            self, parent_node, party_type, party_type_label,
             order, party_name, iban, bic, eval_ctx, gen_args, context=None):
-        
         # CBI logic modified for add ABI of debitor
         # ABI code from IBAN
         if party_type == 'Dbtr':
@@ -91,7 +72,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 abi_code = company_bank.bank_abi
             # ... try from iban
             if not abi_code and company_bank.state == 'iban':
-                iban = company_bank.acc_number.replace(" ","")
+                iban = company_bank.acc_number.replace(" ", "")
                 abi_code = iban[5:10]
             if not abi_code:
                 raise Warning(
@@ -152,8 +133,8 @@ class BankingExportSepaCbiWizard(models.TransientModel):
             'payment_method': 'TRF',
             'file_prefix': 'sct_',
             'pain_flavor': pain_flavor,
-            'pain_xsd_file': 'l10n_it_sepa_bonifici/data/%s.xsd' \
-                % pain_flavor,
+            'pain_xsd_file': 'l10n_it_sepa_bonifici/data/%s.xsd'
+                             % pain_flavor,
             'sepa_export': sepa_export,
         }
         pain_ns = {
@@ -170,9 +151,9 @@ class BankingExportSepaCbiWizard(models.TransientModel):
         group_header_1_0, nb_of_transactions_1_6, control_sum_1_7 = \
             self.generate_group_header_block(pain_root, gen_args)
         # ... Add pain to group header tag (CBI required)
-        GrpHdr_node = xml_root.xpath('//GrpHdr')[0] #CBI required
+        GrpHdr_node = xml_root.xpath('//GrpHdr')[0]  # CBI required
         GrpHdr_node.attrib['xmlns'] = 'urn:CBI:xsd:%s' % (xsd_ref,)
-        
+
         transactions_count_1_6 = 0
         total_amount = 0.0
         amount_control_sum_1_7 = 0.0
@@ -209,12 +190,12 @@ class BankingExportSepaCbiWizard(models.TransientModel):
             # print(etree.tostring(xml_root, pretty_print=True))
             # >>>>>>>>>
             # ... for CBI structure
-            #     Add pain to payment info tag (CBI required) 
+            #     Add pain to payment info tag (CBI required)
             PmtInf_node = xml_root.xpath('//PmtInf')[0]
             PmtInf_node.attrib['xmlns'] = 'urn:CBI:xsd:%s' % (xsd_ref,)
             #     Remove the duplicate node  NbOfTxs in payment
-            NbOfTxs_node = xml_root.xpath('//PmtInf//NbOfTxs')[0] 
-            NbOfTxs_node.getparent().remove(NbOfTxs_node) 
+            NbOfTxs_node = xml_root.xpath('//PmtInf//NbOfTxs')[0]
+            NbOfTxs_node.getparent().remove(NbOfTxs_node)
             # Remove the duplicate node  CtrlSum in payment
             CtrlSum_node = xml_root.xpath('//PmtInf//CtrlSum')[0]
             CtrlSum_node.getparent().remove(CtrlSum_node)
@@ -245,7 +226,8 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                     payment_identification_2_28_PmtTpInf, 'CtgyPurp')
                 payment_identification_2_28_CtgyPurp_Cd = etree.SubElement(
                     payment_identification_2_28_CtgyPurp, 'Cd')
-                payment_identification_2_28_CtgyPurp_Cd.text = 'SUPP' # generico
+                # generico
+                payment_identification_2_28_CtgyPurp_Cd.text = 'SUPP'
 
                 # CBI tag InstrId
                 end2end_identification_2_30_InstrId = etree.SubElement(
@@ -271,8 +253,8 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 if not line.bank_id:
                     raise Warning(
                         _("Missing Bank Account on invoice '%s' (payment "
-                            "order line reference '%s')") % 
-                                  (line.ml_inv_ref.number, line.name))
+                          "order line reference '%s')")
+                        % (line.ml_inv_ref.number, line.name))
                 self.generate_party_block(
                     credit_transfer_transaction_info_2_27, 'Cdtr', 'C',
                     'line.partner_id.name', 'line.bank_id.acc_number',
@@ -295,18 +277,18 @@ class BankingExportSepaCbiWizard(models.TransientModel):
         # >> v8
         # Remove the duplicate node  LclInstrm in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//LclInstrm')[0] #CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node) # You can \
-        # remove node only from parent
+        # CtrlSum_node.getparent().remove(CtrlSum_node)
+        # You can remove node only from parent
         # Remove the duplicate node  CtrlSum in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//SeqTp')[0] #CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node) # You can remove 
-        # node only from parent
+        # CtrlSum_node.getparent().remove(CtrlSum_node)
+        # You can remove node only from parent
         # >>>>>>>>>
-        #print(etree.tostring(xml_root, pretty_print=True))
+        # print(etree.tostring(xml_root, pretty_print=True))
         # >>>>>>>>>
         return self.finalize_sepa_file_creation(
             xml_root, total_amount, transactions_count_1_6, gen_args)
-        
+
     @api.multi
     def save_sepa(self):
         """Save the SEPA file: send the done signal to all payment
