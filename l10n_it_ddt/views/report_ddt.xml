@@ -81,13 +81,13 @@
                         <div class="page">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <h2>Destinatario</h2>
+                                    <h2>Recipient</h2>
                                     <div t-field="o.partner_shipping_id"
                                         t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
                                     <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <h2>Cessionario</h2>
+                                    <h2>Transferee</h2>
                                     <div t-field="o.partner_invoice_id"
                                         t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
                                     <div t-if="o.partner_invoice_id">VAT number: <span t-field="o.partner_invoice_id.vat"/></div>
