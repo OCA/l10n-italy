@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. figure:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
 ====================================
@@ -28,19 +28,20 @@ Configuration
 
 Configure the CUC code and the Issuer code (must be "CBI").
 
-.. image:: /l10n_it_sepa_bonifici/static/company_setting.png
+.. figure:: /l10n_it_sepa_bonifici/static/company_setting.png
 
 -------------------------------------------------------------------------------
 
-You need to configure a new payment mode 
+You need to configure a new payment mode.
+Use one payment mode for SEPA and one for Cross Border Payment. 
 
-.. image:: /l10n_it_sepa_bonifici/static/payment_mode1.png
+.. figure:: /l10n_it_sepa_bonifici/static/payment_mode1.png
 
 -------------------------------------------------------------------------------
 
 In the new payment mode is important to set the Italian format SEPA CBI
 
-.. image:: /l10n_it_sepa_bonifici/static/payment_mode2.png
+.. figure:: /l10n_it_sepa_bonifici/static/payment_mode2.png
 
 
 
@@ -49,25 +50,25 @@ Usage
 
 When you create a new order payment, you must select the payment mode above
 
-.. image:: /l10n_it_sepa_bonifici/static/order_payment.png
+.. figure:: /l10n_it_sepa_bonifici/static/order_payment.png
 
 -------------------------------------------------------------------------------
 
 For get the xml file, first of all you must click on "make payments"
 
-.. image:: /l10n_it_sepa_bonifici/static/make_payment.png
+.. figure:: /l10n_it_sepa_bonifici/static/make_payment.png
 
 -------------------------------------------------------------------------------
 
 It will show a wizard. Click on "generate" to continue
 
-.. image:: /l10n_it_sepa_bonifici/static/make_payment_wizard.png
+.. figure:: /l10n_it_sepa_bonifici/static/make_payment_wizard.png
 
 -------------------------------------------------------------------------------
 
 The last step is to download the file from link
 
-.. image:: /l10n_it_sepa_bonifici/static/make_payment_download.png
+.. figure:: /l10n_it_sepa_bonifici/static/make_payment_download.png
 
 
 Bug Tracker
@@ -93,7 +94,7 @@ Contributors
 Maintainer
 ----------
 
-.. image:: https://odoo-community.org/logo.png
+.. figure:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
    :target: https://odoo-community.org
 

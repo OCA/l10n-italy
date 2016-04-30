@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Delle Noci (CONSORZIO CUSTOMER TO BUSINESS INTERACTION - CBI) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:BODY="urn:CBI:xsd:CBIBdyCrossBorderPaymentRequest.00.01.01" xmlns:HTRT="urn:CBI:xsd:CBIHdrTrt.001.07" xmlns:HE2E="urn:CBI:xsd:CBIHdrSrv.001.07" xmlns:SGNT="urn:CBI:xsd:CBISgnInf.001.04" xmlns="urn:CBI:xsd:CBICrossBorderPaymentRequest.00.01.01" xmlns:ns1="urn:CBI:xsd:CBIBdyCrossBorderPaymentRequest.00.01.01" targetNamespace="urn:CBI:xsd:CBICrossBorderPaymentRequest.00.01.01" elementFormDefault="qualified">
+	<xs:import namespace="urn:CBI:xsd:CBIHdrTrt.001.07" schemaLocation="CBIHdrTrt.001.07.xsd"/>
+	<xs:import namespace="urn:CBI:xsd:CBIHdrSrv.001.07" schemaLocation="CBIHdrSrv.001.07.xsd"/>
+	<xs:import namespace="urn:CBI:xsd:CBIBdyCrossBorderPaymentRequest.00.01.01" schemaLocation="CBIBdyCrossBorderPaymentRequest.00.01.01.xsd"/>
+	<xs:element name="CBICrossBorderPaymentRequestPhyMsg" type="CBICrossBorderPaymentRequestPhyMsg.00.01.01"/>
+	<xs:complexType name="CBICrossBorderPaymentRequestPhyMsg.00.01.01">
+		<xs:sequence>
+			<xs:element name="CBIHdrTrt" type="HTRT:CBIHdrTrt.001.07"/>
+			<xs:element name="CBIHdrSrv" type="HE2E:CBIHdrSrv.001.07"/>
+			<xs:element name="CBIBdyCrossBorderPaymentRequest" type="BODY:CBIBdyCrossBorderPaymentRequest.00.01.01"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
