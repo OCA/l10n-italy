@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-23 07:11+0000\n"
-"PO-Revision-Date: 2015-10-23 07:12+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 09:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_split_payment
+#: help:account.config.settings,sp_account_id:0
 #: help:res.company,sp_account_id:0
 msgid "Account used to write off the VAT amount"
 msgstr "Account used to write off the VAT amount"
@@ -59,7 +60,7 @@ msgstr "Please set 'Split Payment Write-off Account' field in accounting configu
 #. module: l10n_it_split_payment
 #: view:account.config.settings:l10n_it_split_payment.view_account_config_settings
 #: field:account.fiscal.position,split_payment:0
-#: field:account.invoice,amount_sp:0
+#: field:account.invoice,amount_sp:0 field:account.invoice,split_payment:0
 msgid "Split Payment"
 msgstr "Split Payment"
 
@@ -73,3 +74,8 @@ msgstr "Split Payment Write Off"
 #: field:res.company,sp_account_id:0
 msgid "Split Payment Write-off Account"
 msgstr "Split Payment Write-off Account"
+
+#. module: l10n_it_split_payment
+#: field:account.config.settings,sp_account_id:0
+msgid "Split Payment Write-off account"
+msgstr "Split Payment Write-off account"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 17:45+0000\n"
-"PO-Revision-Date: 2015-10-07 11:09+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 09:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -23,9 +23,19 @@ msgid "Attachment"
 msgstr "Attachment"
 
 #. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,name:0
+msgid "Attachment Name"
+msgstr "Attachment Name"
+
+#. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Attachments"
 msgstr "Attachments"
+
+#. module: l10n_it_fatturapa_out
+#: help:fatturapa.attachment.out,type:0
+msgid "Binary File or URL"
+msgstr "Binary File or URL"
 
 #. module: l10n_it_fatturapa_out
 #: view:wizard.export.fatturapa:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -37,6 +47,11 @@ msgstr "Cancel"
 #, python-format
 msgid "City not set."
 msgstr "City not set."
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,company_id:0
+msgid "Company"
+msgstr "Company"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:113
@@ -66,6 +81,11 @@ msgstr "Company does not have fiscal code or VAT"
 #: view:wizard.export.fatturapa:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Confirm?"
 msgstr "Confirm?"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,file_type:0
+msgid "Content Type"
+msgstr "Content Type"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:246
@@ -121,9 +141,30 @@ msgid "Customer street not set."
 msgstr "Customer street not set."
 
 #. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,db_datas:0
+msgid "Database Data"
+msgstr "Database Data"
+
+#. module: l10n_it_fatturapa_out
 #: help:fatturapa.attachment.out,message_last_post:0
 msgid "Date of the last message posted on the record."
 msgstr "Date of the last message posted on the record."
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,parent_id:0
+msgid "Directory"
+msgstr "Directory"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,display_name:0
+#: field:wizard.export.fatturapa,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:164
@@ -228,6 +269,26 @@ msgid "FatturaPA sequence not configured."
 msgstr "FatturaPA sequence not configured."
 
 #. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,datas:0
+msgid "File Content"
+msgstr "File Content"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,datas_fname:0
+msgid "File Name"
+msgstr "File Name"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,file_size:0
+msgid "File Size"
+msgstr "File Size"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,file_type_icon:0
+msgid "File Type Icon"
+msgstr "File Type Icon"
+
+#. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_follower_ids:0
 msgid "Followers"
 msgstr "Followers"
@@ -259,6 +320,11 @@ msgstr "IPA Code not set on partner form."
 #: help:fatturapa.attachment.out,message_unread:0
 msgid "If checked new messages require your attention."
 msgstr "If checked new messages require your attention."
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,index_content:0
+msgid "Indexed Content"
+msgstr "Indexed Content"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_account_invoice
@@ -305,6 +371,12 @@ msgid "Last Message Date"
 msgstr "Last Message Date"
 
 #. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,__last_update:0
+#: field:wizard.export.fatturapa,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,write_uid:0
 #: field:wizard.export.fatturapa,write_uid:0
 msgid "Last Updated by"
@@ -345,6 +417,16 @@ msgid "Out Invoices"
 msgstr "Out Invoices"
 
 #. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,user_id:0
+msgid "Owner"
+msgstr "Owner"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:333
 #, python-format
 msgid "Partner VAT and Fiscalcode not set."
@@ -380,9 +462,29 @@ msgid "Related Documents"
 msgstr "Related Documents"
 
 #. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,res_id:0
+msgid "Resource ID"
+msgstr "Resource ID"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,res_model:0
+msgid "Resource Model"
+msgstr "Resource Model"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,res_name:0
+msgid "Resource Name"
+msgstr "Resource Name"
+
+#. module: l10n_it_fatturapa_out
 #: view:account.invoice:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Results"
 msgstr "Results"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,store_fname:0
+msgid "Stored Filename"
+msgstr "Stored Filename"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:234
@@ -408,15 +510,35 @@ msgid "TerzoIntermediarioOSoggettoEmittente not handled"
 msgstr "TerzoIntermediarioOSoggettoEmittente not handled"
 
 #. module: l10n_it_fatturapa_out
+#: help:fatturapa.attachment.out,res_model:0
+msgid "The database object this attachment will be attached to"
+msgstr "The database object this attachment will be attached to"
+
+#. module: l10n_it_fatturapa_out
+#: help:fatturapa.attachment.out,res_id:0
+msgid "The record id this is attached to"
+msgstr "The record id this is attached to"
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:562
 #, python-format
 msgid "Too many taxes for invoice line %s"
 msgstr "Too many taxes for invoice line %s"
 
 #. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: l10n_it_fatturapa_out
 #: field:fatturapa.attachment.out,message_unread:0
 msgid "Unread Messages"
 msgstr "Unread Messages"
+
+#. module: l10n_it_fatturapa_out
+#: field:fatturapa.attachment.out,url:0
+msgid "Url"
+msgstr "Url"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:783

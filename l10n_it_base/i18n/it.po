@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
-"PO-Revision-Date: 2016-03-19 10:56+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 19:56+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -60,6 +60,11 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_base
+#: field:l10n_it.config.settings,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: l10n_it_base
 #: field:l10n_it.config.settings,id:0
 msgid "ID"
 msgstr "ID"
@@ -80,6 +85,11 @@ msgstr "Installa il modulo l10n_it_pec per la gestione della mail pec"
 #: model:ir.ui.menu,name:l10n_it_base.menu_account_config
 msgid "Italian Localization"
 msgstr "Localizzazione Italiana"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_base
 #: field:l10n_it.config.settings,write_uid:0

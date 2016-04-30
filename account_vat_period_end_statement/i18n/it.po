@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-16 19:41+0000\n"
-"PO-Revision-Date: 2016-04-20 19:54+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 19:57+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -197,6 +197,17 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,display_name:0
+#: field:add.period.to.vat.statement,display_name:0
+#: field:remove.period.from.vat.statement,display_name:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,display_name:0
+#: field:statement.credit.account.line,display_name:0
+#: field:statement.debit.account.line,display_name:0
+#: field:statement.generic.account.line,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
 msgid "Draft"
 msgstr "Bozza"
@@ -279,6 +290,17 @@ msgstr "It indicates that the statement has been paid and the journal entry of t
 #: field:account.vat.period.end.statement,journal_id:0
 msgid "Journal"
 msgstr "Sezionale"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,__last_update:0
+#: field:add.period.to.vat.statement,__last_update:0
+#: field:remove.period.from.vat.statement,__last_update:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,__last_update:0
+#: field:statement.credit.account.line,__last_update:0
+#: field:statement.debit.account.line,__last_update:0
+#: field:statement.generic.account.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,write_uid:0

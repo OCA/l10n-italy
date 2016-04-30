@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-22 13:21+0000\n"
-"PO-Revision-Date: 2016-03-22 13:21+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 09:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -39,34 +39,19 @@ msgid "Automatically create the DDT"
 msgstr "Automatically create the DDT"
 
 #. module: l10n_it_ddt
-#: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_BAN
-msgid "BANCALE"
-msgstr "BANCALE"
-
-#. module: l10n_it_ddt
 #: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_CAR
-msgid "CARTONE"
-msgstr "CARTONE"
+msgid "Box"
+msgstr "Box"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_CBA
-msgid "CARTONI-BANCALI"
-msgstr "CARTONI-BANCALI"
+msgid "Box-Pallet"
+msgstr "Box-Pallet"
 
 #. module: l10n_it_ddt
-#: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PAF
-msgid "CON ADDEBITO IN FATTURA"
-msgstr "CON ADDEBITO IN FATTURA"
-
-#. module: l10n_it_ddt
-#: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_VIS
-msgid "CONTO VISIONE"
-msgstr "CONTO VISIONE"
-
-#. module: l10n_it_ddt
-#: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_COR
-msgid "CORRIERE"
-msgstr "CORRIERE"
+#: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_SFU
+msgid "Bulk"
+msgstr "Bulk"
 
 #. module: l10n_it_ddt
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
@@ -95,7 +80,18 @@ msgid "Carriage Conditions"
 msgstr "Carriage Conditions"
 
 #. module: l10n_it_ddt
+#: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PA
+msgid "Carriage Forward"
+msgstr "Carriage Forward"
+
+#. module: l10n_it_ddt
+#: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PF
+msgid "Carriage Paid"
+msgstr "Carriage Paid"
+
+#. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,carrier_id:0
+#: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_COR
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Carrier"
 msgstr "Carrier"
@@ -106,9 +102,9 @@ msgid "Carrier's Signature"
 msgstr "Carrier's Signature"
 
 #. module: l10n_it_ddt
-#: view:website:l10n_it_ddt.report_ddt
-msgid "Cessionario"
-msgstr "Cessionario"
+#: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PAF
+msgid "Charged in Invoice"
+msgstr "Charged in Invoice"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,company_id:0
@@ -165,11 +161,6 @@ msgstr "DDT from Pickings"
 #: view:website:l10n_it_ddt.report_ddt
 msgid "DDT number:"
 msgstr "DDT number:"
-
-#. module: l10n_it_ddt
-#: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_DES
-msgid "DESTINATARIO"
-msgstr "DESTINATARIO"
 
 #. module: l10n_it_ddt
 #: field:ddt.create.invoice,date:0 view:website:l10n_it_ddt.delivery_data
@@ -235,9 +226,15 @@ msgid "Descriptions of Goods"
 msgstr "Descriptions of Goods"
 
 #. module: l10n_it_ddt
-#: view:website:l10n_it_ddt.report_ddt
-msgid "Destinatario"
-msgstr "Destinatario"
+#: field:add.pickings.to.ddt,display_name:0
+#: field:ddt.create.invoice,display_name:0
+#: field:ddt.from.pickings,display_name:0 field:stock.ddt.type,display_name:0
+#: field:stock.picking.carriage_condition,display_name:0
+#: field:stock.picking.goods_description,display_name:0
+#: field:stock.picking.transportation_method,display_name:0
+#: field:stock.picking.transportation_reason,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -253,6 +250,11 @@ msgstr "Followers"
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Goods Description"
 msgstr "Goods Description"
+
+#. module: l10n_it_ddt
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_VIS
+msgid "Goods on approval"
+msgstr "Goods on approval"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -314,6 +316,18 @@ msgid "Last Message Date"
 msgstr "Last Message Date"
 
 #. module: l10n_it_ddt
+#: field:add.pickings.to.ddt,__last_update:0
+#: field:ddt.create.invoice,__last_update:0
+#: field:ddt.from.pickings,__last_update:0
+#: field:stock.ddt.type,__last_update:0
+#: field:stock.picking.carriage_condition,__last_update:0
+#: field:stock.picking.goods_description,__last_update:0
+#: field:stock.picking.transportation_method,__last_update:0
+#: field:stock.picking.transportation_reason,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,write_uid:0 field:ddt.create.invoice,write_uid:0
 #: field:ddt.from.pickings,write_uid:0 field:stock.ddt.type,write_uid:0
 #: field:stock.picking.carriage_condition,write_uid:0
@@ -333,11 +347,6 @@ msgstr "Last Updated by"
 #: field:stock.picking.transportation_reason,write_date:0
 msgid "Last Updated on"
 msgstr "Last Updated on"
-
-#. module: l10n_it_ddt
-#: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_MIT
-msgid "MITTENTE"
-msgstr "MITTENTE"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_ids:0
@@ -413,16 +422,6 @@ msgid "Operations"
 msgstr "Operations"
 
 #. module: l10n_it_ddt
-#: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PA
-msgid "PORTO ASSEGNATO"
-msgstr "PORTO ASSEGNATO"
-
-#. module: l10n_it_ddt
-#: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PF
-msgid "PORTO FRANCO"
-msgstr "PORTO FRANCO"
-
-#. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
 msgid "Package Preparation"
 msgstr "Package Preparation"
@@ -431,6 +430,11 @@ msgstr "Package Preparation"
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation_line
 msgid "Package Preparation Line"
 msgstr "Package Preparation Line"
+
+#. module: l10n_it_ddt
+#: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_BAN
+msgid "Pallet"
+msgstr "Pallet"
 
 #. module: l10n_it_ddt
 #: field:account.invoice,parcels:0 field:sale.order,parcels:0
@@ -491,11 +495,6 @@ msgid "Quantity"
 msgstr "Quantity"
 
 #. module: l10n_it_ddt
-#: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_RES
-msgid "RESO"
-msgstr "RESO"
-
-#. module: l10n_it_ddt
 #: field:stock.picking.transportation_reason,name:0
 msgid "Reason For Transportation"
 msgstr "Reason For Transportation"
@@ -518,6 +517,12 @@ msgid "Reasons for Transportation"
 msgstr "Reasons for Transportation"
 
 #. module: l10n_it_ddt
+#: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_DES
+#: view:website:l10n_it_ddt.report_ddt
+msgid "Recipient"
+msgstr "Recipient"
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Recipient's Signature"
 msgstr "Recipient's Signature"
@@ -528,9 +533,19 @@ msgid "Related DDTs"
 msgstr "Related DDTs"
 
 #. module: l10n_it_ddt
-#: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_SFU
-msgid "SFUSI"
-msgstr "SFUSI"
+#: field:sale.order,ddt_ids:0
+msgid "Related DdTs"
+msgstr "Related DdTs"
+
+#. module: l10n_it_ddt
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_RES
+msgid "Returned"
+msgstr "Returned"
+
+#. module: l10n_it_ddt
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_VEN
+msgid "Sale"
+msgstr "Sale"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
@@ -635,6 +650,11 @@ msgid "Selected Pickings have different transportation reason"
 msgstr "Selected Pickings have different transportation reason"
 
 #. module: l10n_it_ddt
+#: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_MIT
+msgid "Sender"
+msgstr "Sender"
+
+#. module: l10n_it_ddt
 #: field:stock.ddt.type,sequence_id:0
 msgid "Sequence id"
 msgstr "Sequence id"
@@ -673,6 +693,11 @@ msgid "To be invoiced"
 msgstr "To be invoiced"
 
 #. module: l10n_it_ddt
+#: view:website:l10n_it_ddt.report_ddt
+msgid "Transferee"
+msgstr "Transferee"
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Transportation Reason"
 msgstr "Transportation Reason"
@@ -694,11 +719,6 @@ msgstr "Unread Messages"
 #: view:website:l10n_it_ddt.report_ddt
 msgid "VAT number:"
 msgstr "VAT number:"
-
-#. module: l10n_it_ddt
-#: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_VEN
-msgid "VENDITA"
-msgstr "VENDITA"
 
 #. module: l10n_it_ddt
 #: view:sale.order:l10n_it_ddt.view_order_form_view_ddt

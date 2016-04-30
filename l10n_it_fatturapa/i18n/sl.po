@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-16 19:42+0000\n"
-"PO-Revision-Date: 2016-04-23 06:12+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 09:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,6 +81,11 @@ msgid "Attachment"
 msgstr "Priponka"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,name:0
+msgid "Attachment Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_bic:0
 msgid "BIC"
 msgstr "BIC"
@@ -89,6 +94,11 @@ msgstr "BIC"
 #: field:fatturapa.payment.detail,payment_bank_name:0
 msgid "Bank name"
 msgstr "Naziv banke"
+
+#. module: l10n_it_fatturapa
+#: help:fatturapa.attachments,type:0
+msgid "Binary File or URL"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_cab:0
@@ -123,6 +133,11 @@ msgid "Companies"
 msgstr "Družbe"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: selection:account.config.settings,fatturapa_rea_liquidation:0
 msgid "Company In Liquidation"
 msgstr "Družba v likvidaciji"
@@ -141,6 +156,11 @@ msgstr "Kompresija"
 #: view:account.config.settings:l10n_it_fatturapa.view_account_config_settings
 msgid "Configuration"
 msgstr "Nastavitve"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,file_type:0
+msgid "Content Type"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
@@ -186,6 +206,11 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,db_datas:0
+msgid "Database Data"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:fatturapa.related_ddt,date:0
 #: field:fatturapa.related_document_type,date:0
 msgid "Date"
@@ -208,11 +233,18 @@ msgid "Delivery Date Time"
 msgstr "Datum in čas dostave"
 
 #. module: l10n_it_fatturapa
-#: field:account.invoice,description:0 field:fatturapa.document_type,name:0
-#: field:fatturapa.fiscal_position,name:0 field:fatturapa.format,name:0
-#: field:fatturapa.payment_method,name:0 field:fatturapa.payment_term,name:0
+#: field:account.invoice,description:0
+#: field:fatturapa.attachments,description:0
+#: field:fatturapa.document_type,name:0 field:fatturapa.fiscal_position,name:0
+#: field:fatturapa.format,name:0 field:fatturapa.payment_method,name:0
+#: field:fatturapa.payment_term,name:0
 msgid "Description"
 msgstr "Opis"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,parent_id:0
+msgid "Directory"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
@@ -223,6 +255,25 @@ msgstr "Popust"
 #: field:account.invoice,discount_rise_price_ids:0
 msgid "Discount and Rise Price Details"
 msgstr "Podrobnosti popusta in povišanja cene"
+
+#. module: l10n_it_fatturapa
+#: field:discount.rise.price,display_name:0
+#: field:fatturapa.attachments,display_name:0
+#: field:fatturapa.document_type,display_name:0
+#: field:fatturapa.fiscal_position,display_name:0
+#: field:fatturapa.format,display_name:0
+#: field:fatturapa.payment.data,display_name:0
+#: field:fatturapa.payment.detail,display_name:0
+#: field:fatturapa.payment_method,display_name:0
+#: field:fatturapa.payment_term,display_name:0
+#: field:fatturapa.related_ddt,display_name:0
+#: field:fatturapa.related_document_type,display_name:0
+#: field:faturapa.activity.progress,display_name:0
+#: field:faturapa.summary.data,display_name:0
+#: field:welfare.fund.data.line,display_name:0
+#: field:welfare.fund.type,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,doc_type:0
@@ -368,6 +419,26 @@ msgid "FatturaPA attachments"
 msgstr "E-račun priponke"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,datas:0
+msgid "File Content"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,datas_fname:0
+msgid "File Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,file_size:0
+msgid "File Size"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,file_type_icon:0
+msgid "File Type Icon"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_fiscal_position_id:0
 #: field:res.company,fatturapa_fiscal_position_id:0
 msgid "Fiscal Position"
@@ -454,6 +525,11 @@ msgid "Incidental Charges"
 msgstr "Postranski stroški"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,index_content:0
+msgid "Indexed Content"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:account.invoice,intermediary:0
 msgid "Intermediary"
 msgstr "Posredniški"
@@ -472,6 +548,25 @@ msgstr "Račun"
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Postavka računa"
+
+#. module: l10n_it_fatturapa
+#: field:discount.rise.price,__last_update:0
+#: field:fatturapa.attachments,__last_update:0
+#: field:fatturapa.document_type,__last_update:0
+#: field:fatturapa.fiscal_position,__last_update:0
+#: field:fatturapa.format,__last_update:0
+#: field:fatturapa.payment.data,__last_update:0
+#: field:fatturapa.payment.detail,__last_update:0
+#: field:fatturapa.payment_method,__last_update:0
+#: field:fatturapa.payment_term,__last_update:0
+#: field:fatturapa.related_ddt,__last_update:0
+#: field:fatturapa.related_document_type,__last_update:0
+#: field:faturapa.activity.progress,__last_update:0
+#: field:faturapa.summary.data,__last_update:0
+#: field:welfare.fund.data.line,__last_update:0
+#: field:welfare.fund.type,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,write_uid:0
@@ -628,6 +723,11 @@ msgid "Order Agreement Code"
 msgstr "Koda naloga oz. dogovora"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,user_id:0
+msgid "Owner"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:res.partner,pa_partner_code:0
 msgid "PA Code for partner"
 msgstr "Koda E-računa za partnerja"
@@ -638,6 +738,7 @@ msgid "PA Code for this record"
 msgstr "Koda E-računa za ta zapis"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,partner_id:0
 #: model:ir.model,name:l10n_it_fatturapa.model_res_partner
 msgid "Partner"
 msgstr "Partner"
@@ -832,74 +933,94 @@ msgstr "Povezani račun"
 #: field:fatturapa.related_ddt,invoice_line_id:0
 #: field:fatturapa.related_document_type,invoice_line_id:0
 msgid "Related Invoice Line"
-msgstr ""
+msgstr "Povezana postavka računa"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,related_invoice_code:0
 msgid "Related invoice code"
-msgstr ""
+msgstr "Povezana koda računa"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,related_invoice_date:0
 msgid "Related invoice date"
-msgstr ""
+msgstr "Povezani datum računa"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_data_id:0
 msgid "Related payments Data"
+msgstr "Povezani podatki o plačilu"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,res_id:0
+msgid "Resource ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,res_model:0
+msgid "Resource Model"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,res_name:0
+msgid "Resource Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:account.tax.code,name:l10n_it_fatturapa.tax_code_purchase_0_rc
 msgid "Rev. Charge"
-msgstr ""
+msgstr "Obrnjena obveznost"
 
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
 msgid "Rise Price"
-msgstr ""
+msgstr "Dvig cene"
 
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,rounding:0
 msgid "Rounding"
-msgstr ""
+msgstr "Zaokroževanje"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_22_SP
 msgid "SP22%"
-msgstr ""
+msgstr "SP22%"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,sender:0
 msgid "Sender"
-msgstr ""
+msgstr "Pošiljatelj"
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_sequence_id:0
 #: field:res.company,fatturapa_sequence_id:0
 msgid "Sequence"
-msgstr ""
+msgstr "Zaporedje"
 
 #. module: l10n_it_fatturapa
 #: selection:account.config.settings,fatturapa_rea_partner:0
 msgid "Single Partner"
-msgstr ""
+msgstr "Posamičen partner"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
-msgstr ""
+msgstr "Razdelitev plačila"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,stamp_amount:0
 msgid "Stamp Amount"
+msgstr "Znesek koleka"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,store_fname:0
+msgid "Stored Filename"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,subjected_withholding:0
 msgid "Subjected at Withholding"
-msgstr ""
+msgstr "Podvrženo odtegljaju"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_tax
@@ -909,38 +1030,48 @@ msgstr "Davek"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,tax_representative_id:0
 msgid "Tax Rapresentative"
-msgstr ""
+msgstr "Davčni predstavnik"
 
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,tax_rate:0
 msgid "Tax Rate"
+msgstr "Davčna stopnja"
+
+#. module: l10n_it_fatturapa
+#: help:fatturapa.attachments,res_model:0
+msgid "The database object this attachment will be attached to"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: help:fatturapa.attachments,res_id:0
+msgid "The record id this is attached to"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_sender_partner:0
 #: field:res.company,fatturapa_sender_partner:0
 msgid "Third Party/Sender"
-msgstr ""
+msgstr "Tretja stranka/pošiljatelj"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/account_tax.py:57
 #: code:addons/l10n_it_fatturapa/models/account_tax.py:70
 #, python-format
 msgid "Too many tax %s found"
-msgstr ""
+msgstr "Najdeno preveč davka %s"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,transport_date:0
 msgid "Transport Date"
-msgstr ""
+msgstr "Datum prevoza"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,total_travel:0
 msgid "Travel in hours or Km"
-msgstr ""
+msgstr "Potovanj v urah ali km"
 
 #. module: l10n_it_fatturapa
-#: field:discount.rise.price,name:0
+#: field:discount.rise.price,name:0 field:fatturapa.attachments,type:0
 msgid "Type"
 msgstr "Tip"
 
@@ -950,112 +1081,117 @@ msgid "Unique Member"
 msgstr "Unikatni član"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,url:0
+msgid "Url"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_tax_representative:0
 msgid ""
 "Used when a foreign company needs to send invoices to anItalian PA and has a"
 " tax representative in Italy"
-msgstr ""
+msgstr "Uporablja se, kadar tuja družba, ki ima davčnega zastopnika v Italiji, potrebuje izstavitev italijanskega e-računa."
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_sender_partner:0
 msgid ""
 "Used when company sends invoices to a third party and they send invoices to "
 "SDI"
-msgstr ""
+msgstr "Uporablja se, kadar družba izstavlja račune tretji stranki, ki izstavlja svoje račune SDI"
 
 #. module: l10n_it_fatturapa
 #: field:account.tax,payability:0 field:faturapa.summary.data,payability:0
 msgid "VAT payability"
-msgstr ""
+msgstr "Plačljivost DDV"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,transport_vaicle:0
 msgid "Veicle"
-msgstr ""
+msgstr "Vozilo"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,vaicle_registration:0
 msgid "Veicole Registration"
-msgstr ""
+msgstr "Registracija vozila"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,virtual_stamp:0
 msgid "Virtual Stamp"
-msgstr ""
+msgstr "Virtualni kolek"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,unit_weight:0
 msgid "Weight unit"
-msgstr ""
+msgstr "Enota mase"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,welfare_Iva_tax:0
 msgid "Welfare  tax"
-msgstr ""
+msgstr "Socialni davek"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,welfare_amount_tax:0
 msgid "Welfare Amount tax"
-msgstr ""
+msgstr "Znesek socialnega davka"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,welfare_fund_ids:0
 msgid "Welfare Fund"
-msgstr ""
+msgstr "Socialni sklad"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,name:0
 msgid "Welfare Fund Type"
-msgstr ""
+msgstr "Tip socialnega sklada"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,welfare_rate_tax:0
 msgid "Welfare Rate tax"
-msgstr ""
+msgstr "Stopnja socialnega davka"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,welfare_taxable:0
 msgid "Welfare Taxable"
-msgstr ""
+msgstr "Socialno obdavčljivo"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,ftpa_withholding_rate:0
 msgid "Withholding rate"
-msgstr ""
+msgstr "Stopnja odtegljaja"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,ftpa_withholding_payment_reason:0
 msgid "Withholding reason"
-msgstr ""
+msgstr "Razlog odtegljaja"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,ftpa_withholding_type:0
 msgid "Withholding type"
-msgstr ""
+msgstr "Tip odtegljaja"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,sender:0
 msgid "assignee / partner"
-msgstr ""
+msgstr "asignat / partner"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.type,description:0
 msgid "description"
-msgstr ""
+msgstr "opis"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,non_taxable_nature:0
 #: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "escluse ex art. 15"
-msgstr ""
+msgstr "izključeno 15. člen"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,non_taxable_nature:0
 #: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "esenti"
-msgstr ""
+msgstr "oproščeni"
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_sequence_id:0
@@ -1064,7 +1200,7 @@ msgid ""
 "il progressivo univoco del file è rappresentato da una stringa alfanumerica "
 "di lunghezza massima di 5 caratteri e con valori ammessi da “A” a “Z” e da "
 "“0” a “9”."
-msgstr ""
+msgstr "zaporedje datotek predstavlja alfanumeričen niz dolžine do 5 znakov z vrednostmi od \"A\" do \"Z\" in od \"0\" do \"9\"."
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_art73:0
@@ -1073,52 +1209,52 @@ msgid ""
 "and conditions established by ministerial decree in accordance with Article "
 "73 of Presidential Decree633/72 (this allows the company to issue the same "
 "year more documents with the same number)"
-msgstr ""
+msgstr "kaže, če je dokument bil izdan v skladu s pogoji vladne uredbe po 73. členu predsedniške odločbe 633/72 (ki omogoča družbi izdajo več dokumentov z isto številko v istem letu)"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,non_taxable_nature:0
 #: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "inversione contabile (reverse charge)"
-msgstr ""
+msgstr "knjigovodska inverzija (povratni obračun)"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.type,name:0
 msgid "name"
-msgstr ""
+msgstr "naziv"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,non_taxable_nature:0
 #: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "non imponibili"
-msgstr ""
+msgstr "ne obdavčljivi"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,non_taxable_nature:0
 #: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "non soggette"
-msgstr ""
+msgstr "ne zavezani"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,number_items:0
 msgid "number of items"
-msgstr ""
+msgstr "število postavk"
 
 #. module: l10n_it_fatturapa
 #: selection:account.tax,non_taxable_nature:0
 #: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "regime del margine"
-msgstr ""
+msgstr "pravila marže"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,sender:0
 msgid "third person"
-msgstr ""
+msgstr "tretja oseba"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
 msgid "welfare fund type"
-msgstr ""
+msgstr "tip socialnega sklada"

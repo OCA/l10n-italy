@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-16 19:42+0000\n"
-"PO-Revision-Date: 2016-04-20 19:49+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-30 19:13+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,11 @@ msgid "Attachment"
 msgstr "Allegato"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,name:0
+msgid "Attachment Name"
+msgstr "Nome Allegato"
+
+#. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_bic:0
 msgid "BIC"
 msgstr "BIC"
@@ -92,6 +97,11 @@ msgstr "BIC"
 #: field:fatturapa.payment.detail,payment_bank_name:0
 msgid "Bank name"
 msgstr "Nome Banca"
+
+#. module: l10n_it_fatturapa
+#: help:fatturapa.attachments,type:0
+msgid "Binary File or URL"
+msgstr "File Binario o URL"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_cab:0
@@ -126,6 +136,11 @@ msgid "Companies"
 msgstr "Aziende"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,company_id:0
+msgid "Company"
+msgstr "Azienda"
+
+#. module: l10n_it_fatturapa
 #: selection:account.config.settings,fatturapa_rea_liquidation:0
 msgid "Company In Liquidation"
 msgstr "Azienda in Liquidazione"
@@ -144,6 +159,11 @@ msgstr "Compressione"
 #: view:account.config.settings:l10n_it_fatturapa.view_account_config_settings
 msgid "Configuration"
 msgstr "Configurazione"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,file_type:0
+msgid "Content Type"
+msgstr "Tipo Contenuto"
 
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
@@ -189,6 +209,11 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,db_datas:0
+msgid "Database Data"
+msgstr "Data Database"
+
+#. module: l10n_it_fatturapa
 #: field:fatturapa.related_ddt,date:0
 #: field:fatturapa.related_document_type,date:0
 msgid "Date"
@@ -211,11 +236,18 @@ msgid "Delivery Date Time"
 msgstr "Data ora di consegna"
 
 #. module: l10n_it_fatturapa
-#: field:account.invoice,description:0 field:fatturapa.document_type,name:0
-#: field:fatturapa.fiscal_position,name:0 field:fatturapa.format,name:0
-#: field:fatturapa.payment_method,name:0 field:fatturapa.payment_term,name:0
+#: field:account.invoice,description:0
+#: field:fatturapa.attachments,description:0
+#: field:fatturapa.document_type,name:0 field:fatturapa.fiscal_position,name:0
+#: field:fatturapa.format,name:0 field:fatturapa.payment_method,name:0
+#: field:fatturapa.payment_term,name:0
 msgid "Description"
 msgstr "Descrizione"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,parent_id:0
+msgid "Directory"
+msgstr "Cartella"
 
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
@@ -226,6 +258,25 @@ msgstr "Sconto"
 #: field:account.invoice,discount_rise_price_ids:0
 msgid "Discount and Rise Price Details"
 msgstr "Dettagli Sconto/Maggiorazione"
+
+#. module: l10n_it_fatturapa
+#: field:discount.rise.price,display_name:0
+#: field:fatturapa.attachments,display_name:0
+#: field:fatturapa.document_type,display_name:0
+#: field:fatturapa.fiscal_position,display_name:0
+#: field:fatturapa.format,display_name:0
+#: field:fatturapa.payment.data,display_name:0
+#: field:fatturapa.payment.detail,display_name:0
+#: field:fatturapa.payment_method,display_name:0
+#: field:fatturapa.payment_term,display_name:0
+#: field:fatturapa.related_ddt,display_name:0
+#: field:fatturapa.related_document_type,display_name:0
+#: field:faturapa.activity.progress,display_name:0
+#: field:faturapa.summary.data,display_name:0
+#: field:welfare.fund.data.line,display_name:0
+#: field:welfare.fund.type,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,doc_type:0
@@ -371,6 +422,26 @@ msgid "FatturaPA attachments"
 msgstr "Allegati fatturaPA"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,datas:0
+msgid "File Content"
+msgstr "Contenuto File"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,datas_fname:0
+msgid "File Name"
+msgstr "Nome File"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,file_size:0
+msgid "File Size"
+msgstr "Dimensione File"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,file_type_icon:0
+msgid "File Type Icon"
+msgstr "Icona Tipo File"
+
+#. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_fiscal_position_id:0
 #: field:res.company,fatturapa_fiscal_position_id:0
 msgid "Fiscal Position"
@@ -457,6 +528,11 @@ msgid "Incidental Charges"
 msgstr "Addebiti accidentali"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,index_content:0
+msgid "Indexed Content"
+msgstr "Contenuto Indicizzato"
+
+#. module: l10n_it_fatturapa
 #: field:account.invoice,intermediary:0
 msgid "Intermediary"
 msgstr "Intermediario"
@@ -475,6 +551,25 @@ msgstr "Fattura"
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Righe Fattura"
+
+#. module: l10n_it_fatturapa
+#: field:discount.rise.price,__last_update:0
+#: field:fatturapa.attachments,__last_update:0
+#: field:fatturapa.document_type,__last_update:0
+#: field:fatturapa.fiscal_position,__last_update:0
+#: field:fatturapa.format,__last_update:0
+#: field:fatturapa.payment.data,__last_update:0
+#: field:fatturapa.payment.detail,__last_update:0
+#: field:fatturapa.payment_method,__last_update:0
+#: field:fatturapa.payment_term,__last_update:0
+#: field:fatturapa.related_ddt,__last_update:0
+#: field:fatturapa.related_document_type,__last_update:0
+#: field:faturapa.activity.progress,__last_update:0
+#: field:faturapa.summary.data,__last_update:0
+#: field:welfare.fund.data.line,__last_update:0
+#: field:welfare.fund.type,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,write_uid:0
@@ -631,6 +726,11 @@ msgid "Order Agreement Code"
 msgstr "Codice di Accordo dell'Ordine"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,user_id:0
+msgid "Owner"
+msgstr "Proprietario"
+
+#. module: l10n_it_fatturapa
 #: field:res.partner,pa_partner_code:0
 msgid "PA Code for partner"
 msgstr "Codice PA per partner"
@@ -641,6 +741,7 @@ msgid "PA Code for this record"
 msgstr "Codice PA per questa registrazione"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,partner_id:0
 #: model:ir.model,name:l10n_it_fatturapa.model_res_partner
 msgid "Partner"
 msgstr "Partner"
@@ -703,7 +804,7 @@ msgstr "Data Ora Ritiro"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,post_office_code:0
 msgid "Post Office Code"
-msgstr ""
+msgstr "Codice Ufficio Postale"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,prepayment_discount:0
@@ -853,6 +954,21 @@ msgid "Related payments Data"
 msgstr "Dati pagamento"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,res_id:0
+msgid "Resource ID"
+msgstr "ID Risorsa"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,res_model:0
+msgid "Resource Model"
+msgstr "Modello Risorsa"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,res_name:0
+msgid "Resource Name"
+msgstr "Nome Risorsa"
+
+#. module: l10n_it_fatturapa
 #: model:account.tax.code,name:l10n_it_fatturapa.tax_code_purchase_0_rc
 msgid "Rev. Charge"
 msgstr "Inversione Contabile"
@@ -900,6 +1016,11 @@ msgid "Stamp Amount"
 msgstr "Importo bollo"
 
 #. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,store_fname:0
+msgid "Stored Filename"
+msgstr "Nome memorizzato del File"
+
+#. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,subjected_withholding:0
 msgid "Subjected at Withholding"
 msgstr "Soggetto a ritenuta"
@@ -918,6 +1039,16 @@ msgstr "Tax Rapresentative"
 #: field:faturapa.summary.data,tax_rate:0
 msgid "Tax Rate"
 msgstr "Aliquota fiscale"
+
+#. module: l10n_it_fatturapa
+#: help:fatturapa.attachments,res_model:0
+msgid "The database object this attachment will be attached to"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: help:fatturapa.attachments,res_id:0
+msgid "The record id this is attached to"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:account.config.settings,fatturapa_sender_partner:0
@@ -943,7 +1074,7 @@ msgid "Travel in hours or Km"
 msgstr "Totale Percorso"
 
 #. module: l10n_it_fatturapa
-#: field:discount.rise.price,name:0
+#: field:discount.rise.price,name:0 field:fatturapa.attachments,type:0
 msgid "Type"
 msgstr "Tipo"
 
@@ -951,6 +1082,11 @@ msgstr "Tipo"
 #: selection:res.company,fatturapa_rea_partner:0
 msgid "Unique Member"
 msgstr "Socio unico"
+
+#. module: l10n_it_fatturapa
+#: field:fatturapa.attachments,url:0
+msgid "Url"
+msgstr "Url"
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_tax_representative:0

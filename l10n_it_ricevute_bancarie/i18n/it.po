@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-01 07:40+0000\n"
-"PO-Revision-Date: 2016-04-01 07:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-30 19:14+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,6 +33,7 @@ msgstr "Conto Accettazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: field:riba.distinta,acceptance_move_ids:0
 msgid "Acceptance Entries"
 msgstr "Registrazioni Accettazione"
 
@@ -122,7 +123,7 @@ msgstr "Al dopo incasso"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
-#: field:riba.distinta.move.line,amount:0
+#: field:riba.distinta.line,amount:0 field:riba.distinta.move.line,amount:0
 msgid "Amount"
 msgstr "Importo"
 
@@ -291,6 +292,11 @@ msgid "Debitor Bank"
 msgstr "Banca debitore"
 
 #. module: l10n_it_ricevute_bancarie
+#: help:account.config.settings,due_cost_service_id:0
+msgid "Default Service for RiBa Due Cost (collection fees) on invoice"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: field:riba.configuration,name:0
 msgid "Description"
 msgstr "Descrizione"
@@ -304,6 +310,16 @@ msgstr "Dettaglio"
 #: field:account.move.line,distinta_line_ids:0
 msgid "Dettaglio riba"
 msgstr "Dettaglio riba"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,display_name:0
+#: field:riba.configuration,display_name:0 field:riba.distinta,display_name:0
+#: field:riba.distinta.line,display_name:0
+#: field:riba.distinta.move.line,display_name:0
+#: field:riba.file.export,display_name:0 field:riba.issue,display_name:0
+#: field:riba.unsolved,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.distinta_riba_action
@@ -338,6 +354,7 @@ msgid "Due Cost Service"
 msgstr "Servizio spese d'incasso"
 
 #. module: l10n_it_ricevute_bancarie
+#: field:account.config.settings,due_cost_service_id:0
 #: field:res.company,due_cost_service_id:0
 msgid "Due cost service id"
 msgstr "ID servizio spese di incasso"
@@ -450,7 +467,7 @@ msgid "Group by..."
 msgstr "Raggruppa per..."
 
 #. module: l10n_it_ricevute_bancarie
-#: field:account.move.line,iban:0
+#: field:account.move.line,iban:0 field:riba.distinta.line,iban:0
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -468,14 +485,29 @@ msgid "Identification Code of the Company in the System Interbank"
 msgstr "Codice identificativo dell'azienda nel sistema interbancario"
 
 #. module: l10n_it_ricevute_bancarie
+#: help:riba.distinta.line,iban:0
+msgid "International Bank Account Number"
+msgstr "Numero di Conto Bancario Internazionale"
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,invoice_date:0
+msgid "Invoice Date"
+msgstr "Data Fattura"
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Righe Fattura"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,invoice_number:0
+msgid "Invoice Number"
+msgstr "Numero Fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -525,6 +557,17 @@ msgstr "Sezionale usato quando la RiBa è insoluta"
 #: help:riba.distinta,registration_date:0
 msgid "Keep empty to use the current date"
 msgstr "Lasciare vuoto per utilizzare la data corrente"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,__last_update:0
+#: field:riba.configuration,__last_update:0
+#: field:riba.distinta,__last_update:0
+#: field:riba.distinta.line,__last_update:0
+#: field:riba.distinta.move.line,__last_update:0
+#: field:riba.file.export,__last_update:0 field:riba.issue,__last_update:0
+#: field:riba.unsolved,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.accreditation,write_uid:0 field:riba.configuration,write_uid:0
@@ -665,6 +708,7 @@ msgstr "Termine di pagamento"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: field:riba.distinta,payment_ids:0 field:riba.distinta.line,payment_ids:0
 msgid "Payments"
 msgstr "Pagamenti"
 
@@ -879,7 +923,7 @@ msgid "Total Debit"
 msgstr "Debito totale"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta.line,type:0
+#: field:riba.distinta,type:0 field:riba.distinta.line,type:0
 msgid "Type"
 msgstr "Tipo"
 
@@ -891,6 +935,11 @@ msgstr "Tipo"
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Unsolved"
 msgstr "Insoluto"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,unsolved_move_ids:0
+msgid "Unsolved Entries"
+msgstr "Voci non risolte"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:222
