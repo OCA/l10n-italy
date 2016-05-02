@@ -43,6 +43,7 @@ nel tracciato ISO.
                  ],
     "data" : [
         'wizard/export_sepa_cbi_view.xml',
+        'wizard/export_sepa_cbi_estero_view.xml',
         'data/payment_type_sepa_cbi.xml',
         ],
     "demo" : [],

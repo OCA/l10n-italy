@@ -6,7 +6,9 @@ Italian Localization - SEPA Bonifici
 ====================================
 
 This module adds a new payment export types to use in the payment order.
-For italian credit transfer, the format code is CBIBdyPaymentRequest.00.04.00 
+For italian credit transfer, the format code is CBIBdyPaymentRequest.00.04.00
+For credit transfer versus other country no SEPA or in SEPA but with currency
+different to EURO, the format code is CBIBdyCrossBorderPaymentRequest.00.01.01
 
 Configuration
 =============
@@ -17,7 +19,8 @@ Configure the CUC code and the Issuer code (must be "CBI").
 
 -------------------------------------------------------------------------------
 
-You need to configure a new payment mode 
+You need to configure a new payment mode.
+Use one payment mode for SEPA and one for Cross Border Payment. 
 
 .. image:: /l10n_it_sepa_bonifici/static/payment_mode1.png
 
