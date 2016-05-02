@@ -28,20 +28,20 @@
     'category': 'Generic Modules/Accounting',
     'description': """
 Managing the printing of the "Central Journal" """,
-    'depends' : [
+    'depends': [
         'base',
         'account',
         'report_webkit',
-        ],
-    'init_xml' : [],
+    ],
+    'init_xml': [],
     'update_xml': [
         'report/webkit_model.xml',
         'report/report.xml',
         'wizard/central_journal_report.xml',
         'account_view.xml',
-        ],
+    ],
     'demo_xml': [],
-    'test':[],
+    'test': [],
     'installable': False,
     'active': False,
     'certificate': '',

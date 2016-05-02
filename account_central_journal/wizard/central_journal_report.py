@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-import time
 from datetime import datetime, date, timedelta
 from osv import osv, fields
 from tools.translate import _
 
+
 class central_journal_report(osv.osv_memory):
-    
+
     _name = 'wizard.central.journal.report'
     _description = 'Printing parameters of the Center Journal'
 
@@ -33,25 +33,30 @@ class central_journal_report(osv.osv_memory):
         fiscalyear_obj = self.pool.get('account.fiscalyear')
         fiscalyear_ids = fiscalyear_obj.search(cr, uid, [], order="id desc")
         fiscalyears = []
-        for account_fiscalyear in fiscalyear_obj.browse(cr,uid,fiscalyear_ids) :
-            fiscalyears.append((account_fiscalyear.id, account_fiscalyear.name))
+        for account_fiscalyear in fiscalyear_obj.browse(cr,
+                                                        uid, fiscalyear_ids):
+            fiscalyears.append(
+                (account_fiscalyear.id, account_fiscalyear.name))
         return fiscalyears
 
     def _get_account_fiscalyear_data(self, cr, uid, ids, fiscalyear_id):
         fiscalyear_obj = self.pool.get('account.fiscalyear')
-        fiscalyear_ids=fiscalyear_obj.search(cr,uid,[('id','=',fiscalyear_id),])
-        fiscalyear_data=fiscalyear_obj.browse(cr,uid,fiscalyear_ids)[0]
+        fiscalyear_ids = fiscalyear_obj.search(
+            cr, uid, [('id', '=', fiscalyear_id), ])
+        fiscalyear_data = fiscalyear_obj.browse(cr, uid, fiscalyear_ids)[0]
         return fiscalyear_data
 
     def _dates_control(self, str_date_start, str_date_end):
         today_date = date.today()
-        date_start = datetime.strptime(str_date_start,"%Y-%m-%d").date() 
-        date_stop = datetime.strptime(str_date_end,"%Y-%m-%d").date() 
+        date_start = datetime.strptime(str_date_start, "%Y-%m-%d").date()
+        date_stop = datetime.strptime(str_date_end, "%Y-%m-%d").date()
         if date_start > date_stop:
-            raise osv.except_osv(_('Wrong dates !'), _("The end date must be greater than the initial date."))
+            raise osv.except_osv(_('Wrong dates !'), _(
+                "The end date must be greater than the initial date."))
             return False
         if date_stop > today_date:
-            raise osv.except_osv(_('Wrong dates !'), _("The end date can not be greater than today's date."))
+            raise osv.except_osv(_('Wrong dates !'), _(
+                "The end date can not be greater than today's date."))
             return False
         return True
 
@@ -68,47 +73,62 @@ class central_journal_report(osv.osv_memory):
         'date_move_line_from': fields.date('From date', required=True,),
         'date_move_line_from_view': fields.date('From date'),
         'date_move_line_to': fields.date('to date', required=True),
-        'fiscalyear': fields.selection(_get_fiscal_years, 'Fiscal Year', required=True),
-        'print_state': fields.selection([('draft','Draft'),('print','Ready for printing'),('printed','Printed')],'State',readonly=True),
+        'fiscalyear': fields.selection(_get_fiscal_years,
+                                       'Fiscal Year',
+                                       required=True),
+        'print_state': fields.selection([('draft', 'Draft'),
+                                         ('print', 'Ready for printing'),
+                                         ('printed', 'Printed')],
+                                        'State',
+                                        readonly=True),
     }
-        
-    def onchange_fiscalyear(self, cr, uid, ids, fiscalyear_id=False, context=None):
+
+    def onchange_fiscalyear(self, cr, uid, ids,
+                            fiscalyear_id=False, context=None):
         print_state = 'draft'
         date_move_line_from = date_move_line_from_view = False
         date_move_line_to = False
         if fiscalyear_id:
             print_state = 'print'
-            fiscalyear_data = self._get_account_fiscalyear_data(cr, uid, ids, fiscalyear_id)
-            #set values
+            fiscalyear_data = self._get_account_fiscalyear_data(
+                cr, uid, ids, fiscalyear_id)
+            # set values
             today_date = date.today()
-            date_start = datetime.strptime(fiscalyear_data.date_start,"%Y-%m-%d").date() 
-            date_stop = datetime.strptime(fiscalyear_data.date_stop,"%Y-%m-%d").date() 
-            #set date_move_line_from
+            date_start = datetime.strptime(
+                fiscalyear_data.date_start, "%Y-%m-%d").date()
+            date_stop = datetime.strptime(
+                fiscalyear_data.date_stop, "%Y-%m-%d").date()
+            # set date_move_line_from
             if fiscalyear_data.date_last_print:
-                date_last_print = datetime.strptime(fiscalyear_data.date_last_print,"%Y-%m-%d").date()
-                date_move_line_from = date_move_line_from_view = (date_last_print+timedelta(days=1)).__str__()
+                date_last_print = datetime.strptime(
+                    fiscalyear_data.date_last_print, "%Y-%m-%d").date()
+                date_move_line_from = date_move_line_from_view = (
+                    date_last_print + timedelta(days=1)).__str__()
                 if date_last_print == date_stop:
-                    date_move_line_from = date_move_line_from_view = date_start.__str__()
+                    date_move_line_from = date_move_line_from_view = \
+                        date_start.__str__()
                     print_state = 'printed'
             else:
-                date_move_line_from = date_move_line_from_view = date_start.__str__()
-            #set date_move_line_to
+                date_move_line_from = date_move_line_from_view = \
+                    date_start.__str__()
+            # set date_move_line_to
             if today_date > date_stop:
                 date_move_line_to = date_stop.__str__()
             else:
-                date_move_line_to = (today_date-timedelta(days=1)).__str__()
+                date_move_line_to = (today_date - timedelta(days=1)).__str__()
 
         return {'value': {
-                    'date_move_line_from': date_move_line_from,
-                    'date_move_line_from_view': date_move_line_from_view,
-                    'date_move_line_to': date_move_line_to,
-                    'print_state': print_state,
-                    }
-                }
-        
+            'date_move_line_from': date_move_line_from,
+            'date_move_line_from_view': date_move_line_from_view,
+            'date_move_line_to': date_move_line_to,
+            'print_state': print_state,
+        }
+        }
+
     def print_report(self, cr, uid, ids, context={}):
         datas = self._get_report_datas(cr, uid, ids, context)
-        if self._dates_control(datas['form']['date_move_line_from'],datas['form']['date_move_line_to']) == False:
+        if self._dates_control(datas['form']['date_move_line_from'],
+                               datas['form']['date_move_line_to']) is False:
             return False
         datas['print_final'] = False
         return {
@@ -119,7 +139,8 @@ class central_journal_report(osv.osv_memory):
 
     def print_report_final(self, cr, uid, ids, context={}):
         datas = self._get_report_datas(cr, uid, ids, context)
-        if self._dates_control(datas['form']['date_move_line_from'],datas['form']['date_move_line_to']) == False:
+        if self._dates_control(datas['form']['date_move_line_from'],
+                               datas['form']['date_move_line_to']) is False:
             return False
         datas['print_final'] = True
         return {
@@ -127,7 +148,7 @@ class central_journal_report(osv.osv_memory):
             'report_name': 'central_journal_report',
             'datas': datas,
         }
-        
+
     _defaults = {
         'print_state': 'draft',
     }

@@ -22,13 +22,18 @@
 
 from openerp.osv import fields, orm
 
+
 class res_company(orm.Model):
     _inherit = 'res.company'
     _columns = {
-        'bill_of_entry_journal_id': fields.many2one('account.journal','Bill of entry Storno journal',
-            help="Journal used for reconciliation of customs supplier"),
-        }
-    
+        'bill_of_entry_journal_id':
+            fields.many2one('account.journal',
+                            'Bill of entry Storno journal',
+                            help="Journal used for reconciliation"
+                            " of customs supplier"),
+    }
+
+
 class account_config_settings(orm.TransientModel):
     _inherit = 'account.config.settings'
     _columns = {

@@ -20,20 +20,32 @@
 ##############################################################################
 
 from osv import fields, orm
-from tools.translate import _
+# from tools.translate import _
 import decimal_precision as dp
+
 
 class account_fiscalyear(orm.Model):
     _inherit = "account.fiscalyear"
     _description = "Fiscal Year"
     _columns = {
-        'date_last_print': fields.date('Last printed date', readonly=True),
-        'progressive_page_number': fields.integer('Progressive of the page', required=True, readonly=True),
-        'progressive_line_number': fields.integer('Progressive line', required=True, readonly=True),
-        'progressive_credit': fields.float('Progressive Credit', digits_compute=dp.get_precision('Account'), required=True, readonly=True),
-        'progressive_debit': fields.float('Progressive Debit', digits_compute=dp.get_precision('Account'), required=True, readonly=True),
+        'date_last_print': fields.date('Last printed date',
+                                       readonly=True),
+        'progressive_page_number': fields.integer('Progressive of the page',
+                                                  required=True,
+                                                  readonly=True),
+        'progressive_line_number': fields.integer('Progressive line',
+                                                  required=True,
+                                                  readonly=True),
+        'progressive_credit':
+            fields.float('Progressive Credit',
+                         digits_compute=dp.get_precision('Account'),
+                         required=True, readonly=True),
+        'progressive_debit':
+            fields.float('Progressive Debit',
+                         digits_compute=dp.get_precision('Account'),
+                         required=True, readonly=True),
     }
-    
+
     _defaults = {
         'progressive_page_number': 0,
         'progressive_line_number': 0,
