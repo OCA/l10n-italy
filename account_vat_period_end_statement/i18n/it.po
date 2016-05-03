@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2016-04-29 19:57+0000\n"
-"Last-Translator: Paolo Valier\n"
+"POT-Creation-Date: 2016-05-17 00:47+0000\n"
+"PO-Revision-Date: 2016-05-16 15:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,7 +231,7 @@ msgid "Error"
 msgstr "Errore"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:729
+#: code:addons/account_vat_period_end_statement/models/account.py:732
 #, python-format
 msgid "Error VAT Configuration!"
 msgstr "Errore configurazione IVA!"
@@ -551,7 +551,7 @@ msgid "Tax Code"
 msgstr "Codice imposta"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:730
+#: code:addons/account_vat_period_end_statement/models/account.py:733
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr "Il conto per gli interessi IVA deve essere configurato"

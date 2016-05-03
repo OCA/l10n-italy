@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 17:45+0000\n"
-"PO-Revision-Date: 2016-03-01 08:21+0000\n"
+"POT-Creation-Date: 2016-05-17 00:47+0000\n"
+"PO-Revision-Date: 2016-05-01 14:30+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -194,6 +194,17 @@ msgid "Description"
 msgstr "Opis"
 
 #. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,display_name:0
+#: field:add.period.to.vat.statement,display_name:0
+#: field:remove.period.from.vat.statement,display_name:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,display_name:0
+#: field:statement.credit.account.line,display_name:0
+#: field:statement.debit.account.line,display_name:0
+#: field:statement.generic.account.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
 msgid "Draft"
 msgstr "Osnutek"
@@ -217,7 +228,7 @@ msgid "Error"
 msgstr "Napaka"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:729
+#: code:addons/account_vat_period_end_statement/models/account.py:732
 #, python-format
 msgid "Error VAT Configuration!"
 msgstr "Napačne nastavitve DDV!"
@@ -276,6 +287,17 @@ msgstr "Kaže, da je izjava bila plačana, dnevniški vnos izjave pa usklajen z 
 #: field:account.vat.period.end.statement,journal_id:0
 msgid "Journal"
 msgstr "Dnevnik"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,__last_update:0
+#: field:add.period.to.vat.statement,__last_update:0
+#: field:remove.period.from.vat.statement,__last_update:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,__last_update:0
+#: field:statement.credit.account.line,__last_update:0
+#: field:statement.debit.account.line,__last_update:0
+#: field:statement.generic.account.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,write_uid:0
@@ -526,7 +548,7 @@ msgid "Tax Code"
 msgstr "Davčna koda"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:730
+#: code:addons/account_vat_period_end_statement/models/account.py:733
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr "Nastaviti morate konto za DDV obresti"

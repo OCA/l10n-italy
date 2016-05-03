@@ -23,6 +23,12 @@ class TestTax(TransactionCase):
         self.current_period = self.period_model.find()
         self.vat_statement_model = self.env['account.vat.period.end.statement']
 
+        # ----- Set invoice date to recent date in the system
+        # ----- This solves problems with account_invoice_sequential_dates
+        self.recent_date = self.invoice_model.search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
+
         self.account_tax_code_22 = self.tax_code_model.create({
             'name': '22%',
             'vat_statement_type': 'debit',
@@ -75,6 +81,7 @@ class TestTax(TransactionCase):
 
     def test_vat_statement(self):
         out_invoice = self.invoice_model.create({
+            'date_invoice': self.recent_date,
             'account_id': self.env.ref('account.a_recv').id,
             'journal_id': self.env.ref('account.sales_journal').id,
             'partner_id': self.env.ref('base.res_partner_3').id,
@@ -91,6 +98,7 @@ class TestTax(TransactionCase):
         out_invoice.signal_workflow('invoice_open')
 
         in_invoice = self.invoice_model.create({
+            'date_invoice': self.recent_date,
             'account_id': self.env.ref('account.a_pay').id,
             'journal_id': self.env.ref('account.expenses_journal').id,
             'partner_id': self.env.ref('base.res_partner_4').id,
