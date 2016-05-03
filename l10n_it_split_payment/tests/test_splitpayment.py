@@ -42,9 +42,15 @@ class TestSP(TransactionCase):
                     'value': 'balance',
                     'days': 30,
                 })]})
+        # ----- Set invoice date to recent date in the system
+        # ----- This solves problems with account_invoice_sequential_dates
+        self.recent_date = self.invoice_model.search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
 
     def test_invoice(self):
         invoice = self.invoice_model.create({
+            'date_invoice': self.recent_date,
             'partner_id': self.env.ref('base.res_partner_3').id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
@@ -79,6 +85,7 @@ class TestSP(TransactionCase):
 
         # invoice with payment term
         invoice2 = self.invoice_model.create({
+            'date_invoice': self.recent_date,
             'partner_id': self.env.ref('base.res_partner_3').id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
@@ -112,6 +119,7 @@ class TestSP(TransactionCase):
 
         # refund
         invoice3 = self.invoice_model.create({
+            'date_invoice': self.recent_date,
             'partner_id': self.env.ref('base.res_partner_3').id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
