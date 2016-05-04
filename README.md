@@ -25,6 +25,12 @@ Odoo Italia Association
 http://www.odoo-italia.org/
 
 [//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 9.0.0.1.0 | Import base_location entries (provinces) from Geonames
+
 Unported addons
 ---------------
 addon | version | summary
@@ -41,7 +47,6 @@ addon | version | summary
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 (unported) | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 (unported) | Italian Localisation - Base
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
-[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 (unported) | Import base_location entries (provinces) from Geonames
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 (unported) | Italian Localisation - Corrispettivi
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 (unported) | Electronic invoices
