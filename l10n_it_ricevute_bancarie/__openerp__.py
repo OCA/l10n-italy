@@ -49,6 +49,8 @@
         "views/wizard_riba_file_export.xml",
         "views/account_config_view.xml",
         "riba_workflow.xml",
+        "report.xml",
+        "views/distinta_report.xml",
         "security/ir.model.access.csv",
     ],
     'images': [],
