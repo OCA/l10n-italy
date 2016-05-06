@@ -97,10 +97,22 @@
                                         </td>
                                         <t t-set="tot_amount" t-value="tot_amount + line.amount" />
                                     </tr>
-                                    <p><span t-esc="tot_amount" /></p>
                                 </tbody>
                             </table>
                         </div> <!-- /row -->
+
+                        <div class="row">
+                            <div class="col-xs-4 pull-right">
+                                <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td><strong>Totale</strong></td>
+                                        <td class="text-right">
+                                            <span t-esc="tot_amount"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
 
                     </div>
                 </t>
