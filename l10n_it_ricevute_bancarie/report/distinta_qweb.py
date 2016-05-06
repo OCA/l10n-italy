@@ -23,11 +23,7 @@
 #
 ##############################################################################
 
-import time
-from openerp.report import report_sxw
-from openerp.tools.translate import _
 from openerp import api, models
-from openerp.osv import orm
 
 
 class DistintaReportQweb(models.AbstractModel):
