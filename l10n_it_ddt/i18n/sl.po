@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2016-04-29 09:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-04-30 20:28+0000\n"
+"PO-Revision-Date: 2016-05-01 14:35+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,17 +42,17 @@ msgstr "Samodejno ustvari prevozni dokument"
 #. module: l10n_it_ddt
 #: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_CAR
 msgid "Box"
-msgstr ""
+msgstr "Škatla"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_CBA
 msgid "Box-Pallet"
-msgstr ""
+msgstr "Škatla-paleta"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_SFU
 msgid "Bulk"
-msgstr ""
+msgstr "Razsuti"
 
 #. module: l10n_it_ddt
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
@@ -83,12 +83,12 @@ msgstr "Prevozni pogoji"
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PA
 msgid "Carriage Forward"
-msgstr ""
+msgstr "Prevoz odposlan"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PF
 msgid "Carriage Paid"
-msgstr ""
+msgstr "Prevoz plačan"
 
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,carrier_id:0
@@ -105,7 +105,7 @@ msgstr "Podpis prevoznika"
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PAF
 msgid "Charged in Invoice"
-msgstr ""
+msgstr "Obračunano v računu"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,company_id:0
@@ -235,7 +235,7 @@ msgstr "Opisi blaga"
 #: field:stock.picking.transportation_method,display_name:0
 #: field:stock.picking.transportation_reason,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazni naziv"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -255,7 +255,7 @@ msgstr "Opis blaga"
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_VIS
 msgid "Goods on approval"
-msgstr ""
+msgstr "Blago za odobritev"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -326,7 +326,7 @@ msgstr "Datum zadnjega sporočila"
 #: field:stock.picking.transportation_method,__last_update:0
 #: field:stock.picking.transportation_reason,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,write_uid:0 field:ddt.create.invoice,write_uid:0
@@ -435,7 +435,7 @@ msgstr "Postavka priprave pakiranja"
 #. module: l10n_it_ddt
 #: model:stock.picking.goods_description,name:l10n_it_ddt.goods_description_BAN
 msgid "Pallet"
-msgstr ""
+msgstr "Paleta"
 
 #. module: l10n_it_ddt
 #: field:account.invoice,parcels:0 field:sale.order,parcels:0
@@ -521,7 +521,7 @@ msgstr "Razlogi prevoza"
 #: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_DES
 #: view:website:l10n_it_ddt.report_ddt
 msgid "Recipient"
-msgstr ""
+msgstr "Prejemnik"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -536,17 +536,17 @@ msgstr "Povezani prevozni dokumenti"
 #. module: l10n_it_ddt
 #: field:sale.order,ddt_ids:0
 msgid "Related DdTs"
-msgstr ""
+msgstr "Povezani prevozni dokumenti"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_RES
 msgid "Returned"
-msgstr ""
+msgstr "Vrnjeno"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_VEN
 msgid "Sale"
-msgstr ""
+msgstr "Prodaja"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
@@ -653,7 +653,7 @@ msgstr "Izbrani zbirniki imajo različne razloge prevoza"
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_MIT
 msgid "Sender"
-msgstr ""
+msgstr "Pošiljatelj"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,sequence_id:0
@@ -696,7 +696,7 @@ msgstr "Za obračun"
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
 msgid "Transferee"
-msgstr ""
+msgstr "Pridobitelj"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
