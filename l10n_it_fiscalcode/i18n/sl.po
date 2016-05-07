@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
-"PO-Revision-Date: 2016-03-16 05:34+0000\n"
+"POT-Creation-Date: 2016-04-30 20:28+0000\n"
+"PO-Revision-Date: 2016-05-01 14:31+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,14 @@ msgid "Date of birth"
 msgstr "Rojstni datum"
 
 #. module: l10n_it_fiscalcode
+#: field:res.city.it.code,display_name:0
+#: field:res.city.it.code.distinct,display_name:0
+#: field:res.city.it.code.province,display_name:0
+#: field:wizard.compute.fc,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:159
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:163
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:168
@@ -123,6 +131,14 @@ msgstr "Podatki o posamezniku"
 #: help:res.partner,fiscalcode:0
 msgid "Italian Fiscal Code"
 msgstr "Italijanska fiskalna koda"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,__last_update:0
+#: field:res.city.it.code.distinct,__last_update:0
+#: field:res.city.it.code.province,__last_update:0
+#: field:wizard.compute.fc,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_fiscalcode
 #: field:res.city.it.code,write_uid:0 field:wizard.compute.fc,write_uid:0
