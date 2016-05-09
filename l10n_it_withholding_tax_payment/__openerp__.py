@@ -3,21 +3,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Italian Withholding Tax',
-    'version': '8.0.3.0.0',
+    'name': 'Italian Withholding Tax Payment',
+    'version': '8.0.2.0.0',
     'category': 'Account',
     'author': 'Openforce di Alessandro Camilli, '
               'Odoo Community Association (OCA)',
     'website': 'http://www.openforce.it',
     'license': 'AGPL-3',
-    "depends": ['account', 'account_voucher'],
+    "depends": ['l10n_it_withholding_tax'],
     "data": [
-        'views/account.xml',
-        'views/voucher.xml',
         'views/withholding_tax.xml',
-        'wizard/create_wt_statement_view.xml',
-        'security/ir.model.access.csv',
         'workflow.xml',
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'wizard/create_move_payment_view.xml',
         ],
     "active": False,
     "installable": True
