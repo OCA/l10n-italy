@@ -210,7 +210,7 @@ class account_voucher(orm.Model):
                                 voucher.partner_id.name or '/'),
                             'account_id': wt_account_id,
                             'move_id': move_id,
-                            'partner_id': False,
+                            'partner_id': voucher.partner_id.id,
                             'currency_id': (
                                 v_line.move_line_id.currency_id.id or
                                 False),
