@@ -46,6 +46,8 @@ addon | version | summary
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 8.0.1.3.0 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Italian Localization - VAT Registries
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 8.0.3.0.0 | Italian Withholding Tax
+[l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 8.0.2.0.0 | Italian Withholding Tax Payment
 
 Unported addons
 ---------------
@@ -62,7 +64,6 @@ addon | version | summary
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
 [l10n_it_sale](l10n_it_sale/) | 0.2 (unported) | Italian Localisation - Sale
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 (unported) | Italian Localisation - Withholding tax
 
 [//]: # (end addons)
 
