@@ -29,7 +29,7 @@ class AddPickingToDdt(models.TransientModel):
                     self.ddt_id.id in [d.id for d in picking.ddt_ids]:
                 raise UserError(
                     _("Picking %s already in ddt") % picking.name)
-            elif picking.partner_id != self.ddt_id.partner_id:
+            elif picking.partner_id != self.ddt_id.partner_shipping_id:
                 raise UserError(
                     _("Selected Picking %s have"
                       " different Partner") % picking.name)
