@@ -30,6 +30,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Account Invoice entry Date
+[account_invoice_sequential_dates](account_invoice_sequential_dates/) | 8.0.1.0.0 | Check invoice date consistency
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.2.0.0 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Italian Localization - Account
@@ -55,7 +56,6 @@ addon | version | summary
 --- | --- | ---
 [account_central_journal](account_central_journal/) | 3 (unported) | Account Central Journal
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 (unported) | Fiscal Year Closing
-[account_invoice_sequential_dates](account_invoice_sequential_dates/) | 0.1 (unported) | Check invoice date consistency
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 (unported) | DDT report using Webkit Library
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
