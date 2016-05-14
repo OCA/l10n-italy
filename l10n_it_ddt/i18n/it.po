@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"POT-Creation-Date: 2016-05-12 13:04+0000\n"
 "PO-Revision-Date: 2016-04-29 19:44+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
@@ -630,26 +630,26 @@ msgid "Selected Pickings have different Partner"
 msgstr "I Picking selezionati hanno Partner differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:60
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:62
 #, python-format
 msgid "Selected Pickings have different carriage condition"
 msgstr "I Picking selezionati hanno il Reso Merce differente"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:73
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:75
 #, python-format
 msgid "Selected Pickings have different goods description"
 msgstr "I Picking selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:50
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:52
 #, python-format
 msgid "Selected Pickings have different parcels"
 msgstr "I Picking selezionati hanno colli differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:86
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:100
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:88
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:102
 #, python-format
 msgid "Selected Pickings have different transportation reason"
 msgstr "I Picking selezionati hanno una Causale di trasporto differente"

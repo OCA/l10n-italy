@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 20:28+0000\n"
+"POT-Creation-Date: 2016-05-12 13:04+0000\n"
 "PO-Revision-Date: 2016-05-01 14:35+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -626,26 +626,26 @@ msgid "Selected Pickings have different Partner"
 msgstr "Izbrani zbirniki imajo različne partnerje"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:60
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:62
 #, python-format
 msgid "Selected Pickings have different carriage condition"
 msgstr "Izbrani zbirniki imajo različne prevozne pogoje"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:73
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:75
 #, python-format
 msgid "Selected Pickings have different goods description"
 msgstr "Izbrani zbirniki imajo različne opise blaga"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:50
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:52
 #, python-format
 msgid "Selected Pickings have different parcels"
 msgstr "Izbrani zbirniki imajo različne pošiljke"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:86
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:100
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:88
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:102
 #, python-format
 msgid "Selected Pickings have different transportation reason"
 msgstr "Izbrani zbirniki imajo različne razloge prevoza"
