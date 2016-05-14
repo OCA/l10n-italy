@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 20:28+0000\n"
+"POT-Creation-Date: 2016-05-12 13:04+0000\n"
 "PO-Revision-Date: 2016-05-01 14:32+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -26,7 +26,7 @@ msgid "Account used to write off the VAT amount"
 msgstr "Konto za odpis zneska DDV"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:104
+#: code:addons/l10n_it_split_payment/models/account.py:105
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
 msgstr "Prejetih računov se ne more obravnavati z deljenim plačilom"
@@ -52,7 +52,7 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:59
+#: code:addons/l10n_it_split_payment/models/account.py:60
 #, python-format
 msgid ""
 "Please set 'Split Payment Write-off Account' field in accounting "
@@ -67,7 +67,7 @@ msgid "Split Payment"
 msgstr "Deljeno plačilo"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:62
+#: code:addons/l10n_it_split_payment/models/account.py:63
 #, python-format
 msgid "Split Payment Write Off"
 msgstr "Odpis deljenega plačila"
