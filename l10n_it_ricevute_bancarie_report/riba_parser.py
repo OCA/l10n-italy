@@ -56,3 +56,9 @@ report_sxw.report_sxw(
     'l10n_it_ricevute_bancarie_report/template/\
 riba_maturities_summary.mako',
     parser=report_riba_webkit)
+
+report_sxw.report_sxw(
+    'report.riba.maturities_tot_summary', 'riba',
+    'l10n_it_ricevute_bancarie_report/template/\
+riba_maturities_tot_summary.mako',
+    parser=report_riba_webkit)

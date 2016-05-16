@@ -21,6 +21,11 @@ msgid "CUSTOMER"
 msgstr "CLIENTE"
 
 #. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_tot_summary.mako:9
+msgid "RIBA LIST MATURITIES TOTAL SUMMARY"
+msgstr "RIEPILOGO TOTALI SCADENZE RIBA"
+
+#. module: l10n_it_ricevute_bancarie_report
 #: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:19
 msgid "ROW nr"
 msgstr "nr RIGA"
@@ -64,6 +69,11 @@ msgstr "RIF"
 #: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:15
 msgid "Due date:"
 msgstr "Data scadenza:"
+
+#. module: l10n_it_ricevute_bancarie_report
+#: model:ir.actions.report.xml,name:l10n_it_ricevute_bancarie_report.riba_maturities_tot_summary
+msgid "Ri.Ba. Maturities Total Summary"
+msgstr "Riepilogo Totali Scadenze Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie_report
 #: model:ir.actions.report.xml,name:l10n_it_ricevute_bancarie_report.riba_maturities_summary

@@ -334,5 +334,15 @@
                 webkit_header="riba_portrait_header"
                 />
 
+        <report auto="False"
+                id="riba_maturities_tot_summary"
+                model="riba.distinta"
+                name="riba.maturities_tot_summary"
+                file="l10n_it_ricevute_bancarie_report/templates/riba_maturities_tot_summary.mako"
+                string="Ri.Ba. Maturities Total Summary"
+                report_type="webkit"
+                webkit_header="riba_portrait_header"
+                />
+
     </data>
 </openerp>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-22 09:57+0000\n"
-"PO-Revision-Date: 2014-05-22 09:57+0000\n"
+"POT-Creation-Date: 2014-07-30 09:02+0000\n"
+"PO-Revision-Date: 2014-07-30 09:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,18 @@ msgid "CUSTOMER"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie_report
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_tot_summary.mako:9
+msgid "RIBA LIST MATURITIES TOTAL SUMMARY"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie_report
 #: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:19
 msgid "ROW nr"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie_report
 #: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:40
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_tot_summary.mako:24
 msgid "DUE DATE TOTAL:"
 msgstr ""
 
@@ -37,6 +43,7 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie_report
 #: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:47
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_tot_summary.mako:31
 msgid "TOTAL:"
 msgstr ""
 
@@ -62,7 +69,13 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie_report
 #: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_summary.mako:15
+#: report:addons/l10n_it_ricevute_bancarie_report/templates/riba_maturities_tot_summary.mako:15
 msgid "Due date:"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie_report
+#: model:ir.actions.report.xml,name:l10n_it_ricevute_bancarie_report.riba_maturities_tot_summary
+msgid "Ri.Ba. Maturities Total Summary"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie_report
