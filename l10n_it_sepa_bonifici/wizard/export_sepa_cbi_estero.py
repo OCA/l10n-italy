@@ -329,7 +329,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                         partner_creditor.city or '',
                         partner_creditor.country_id and 
                         partner_creditor.country_id.name or '',)
-                creditor_address_line_node.text = address
+                creditor_address_line_node.text = address[:70]
 
                 self.generate_remittance_info_block(
                     credit_transfer_transaction_info_2_27, line, gen_args)

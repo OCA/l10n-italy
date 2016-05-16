@@ -277,6 +277,34 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                     credit_transfer_transaction_info_2_27, 'Cdtr', 'C',
                     'line.partner_id.name', 'line.bank_id.acc_number',
                     'line.bank_id.bank.bic', {'line': line}, gen_args)
+                # Add info for Cross Border payment
+                partner_creditor = line.partner_id
+                creditor_node = credit_transfer_transaction_info_2_27\
+                    .xpath('//Cdtr')[transactions_count_1_6-1]
+                creditor_address_node = etree.SubElement(creditor_node, 
+                                                         'PstlAdr')
+                creditor_address_country_node = etree.SubElement(
+                    creditor_address_node, 'Ctry')
+                iso_country = False
+                if line.bank_id.state == 'iban':
+                    iso_country = line.bank_id.iban[:2]
+                elif partner_creditor.country_id:
+                    iso_country = partner_creditor.country_id.code
+                if not iso_country:
+                    raise Warning(
+                        _("Missing Country for Partner '%s' (payment "
+                            "order line reference '%s')") % 
+                                  (line.partner_id.name, line.name))
+                creditor_address_country_node.text = iso_country
+                creditor_address_line_node = etree.SubElement(creditor_address_node, 
+                                                              'AdrLine')
+                if partner_creditor:
+                    address = '%s %s %s' % (
+                        partner_creditor.street or '',
+                        partner_creditor.city or '',
+                        partner_creditor.country_id and 
+                        partner_creditor.country_id.name or '',)
+                creditor_address_line_node.text = address[:70]
 
                 self.generate_remittance_info_block(
                     credit_transfer_transaction_info_2_27, line, gen_args)
