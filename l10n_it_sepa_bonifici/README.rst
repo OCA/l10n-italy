@@ -7,8 +7,20 @@ Italian Localization - SEPA Bonifici
 
 This module adds a new payment export types to use in the payment order.
 For italian credit transfer, the format code is CBIBdyPaymentRequest.00.04.00
-For credit transfer versus other country no SEPA or in SEPA but with currency
-different to EURO, the format code is CBIBdyCrossBorderPaymentRequest.00.01.01
+
+Note (ITA):
+
+le specifiche CBI del bonifico XML SEPA (versione 00.03.09) si basano
+sul messaggio ISO20022 pain.001.001.03 e sono compliant al Rulebook SEPA.
+Come su riportato, il messaggio pain.001.001.03 non è stato utilizzato
+integralmente, essendo  strutturato in maniera tale da poter essere applicabile
+ad una pletora molto estesa di casistiche e di soggetti.
+Ne consegue che, al fine di implementare le regole di comunità, il tracciato
+SEPA Credit Transfer CBI preso ad esempio è un sottoinsieme del succitato
+messaggio ISO e raccoglie i requisiti necessari alla corretta esecuzione di un
+bonifico in Italia, come ad esempio la presenza obbligatoria dell’ABI della
+banca di addebito contenuto nel campo “MmbId” che è invece facoltativo
+nel tracciato ISO. 
 
 Configuration
 =============
