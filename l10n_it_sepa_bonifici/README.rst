@@ -22,7 +22,6 @@ bonifico in Italia, come ad esempio la presenza obbligatoria dell’ABI della
 banca di addebito contenuto nel campo “MmbId” che è invece facoltativo
 nel tracciato ISO. 
 
-
 Configuration
 =============
 
@@ -32,7 +31,8 @@ Configure the CUC code and the Issuer code (must be "CBI").
 
 -------------------------------------------------------------------------------
 
-You need to configure a new payment mode 
+You need to configure a new payment mode.
+Use one payment mode for SEPA and one for Cross Border Payment. 
 
 .. image:: /l10n_it_sepa_bonifici/static/payment_mode1.png
 
