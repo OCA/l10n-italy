@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-09 12:56+0000\n"
-"PO-Revision-Date: 2015-10-05 10:07+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 09:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -193,6 +193,17 @@ msgid "Description"
 msgstr "Description"
 
 #. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,display_name:0
+#: field:add.period.to.vat.statement,display_name:0
+#: field:remove.period.from.vat.statement,display_name:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,display_name:0
+#: field:statement.credit.account.line,display_name:0
+#: field:statement.debit.account.line,display_name:0
+#: field:statement.generic.account.line,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
 msgid "Draft"
 msgstr "Draft"
@@ -275,6 +286,17 @@ msgstr "It indicates that the statement has been paid and the journal entry of t
 #: field:account.vat.period.end.statement,journal_id:0
 msgid "Journal"
 msgstr "Journal"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,__last_update:0
+#: field:add.period.to.vat.statement,__last_update:0
+#: field:remove.period.from.vat.statement,__last_update:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,__last_update:0
+#: field:statement.credit.account.line,__last_update:0
+#: field:statement.debit.account.line,__last_update:0
+#: field:statement.generic.account.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,write_uid:0

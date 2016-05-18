@@ -100,7 +100,7 @@ class RibaIssue(models.TransientModel):
                         rdl_id = create_rdl(
                             countme, bank_id.id, rd_id,
                             move_line.date_maturity, move_line.partner_id.id,
-                            self.configuration_id.acceptance_account_id.id)
+                            self.configuration_id.acceptance_account_id.id).id
                         # total = 0.0
                         # invoice_date_group = ''
                         for grouped_line in grouped_lines[key]:

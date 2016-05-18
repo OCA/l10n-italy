@@ -3,12 +3,15 @@
 # * l10n_it_split_payment
 # 
 # Translators:
+# Hotellook, 2014
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 01:38+0000\n"
-"PO-Revision-Date: 2015-11-27 11:29+0000\n"
+"POT-Creation-Date: 2016-05-12 13:04+0000\n"
+"PO-Revision-Date: 2016-04-29 09:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +21,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_split_payment
+#: help:account.config.settings,sp_account_id:0
 #: help:res.company,sp_account_id:0
 msgid "Account used to write off the VAT amount"
-msgstr ""
+msgstr "Account utilizzato per ammortizzare l'importo dell'IVA"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:104
+#: code:addons/l10n_it_split_payment/models/account.py:105
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
-msgstr ""
+msgstr "Non è possibile gestire le fatture dei fornitori con la scissione dei pagamenti"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company
@@ -49,27 +53,32 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:59
+#: code:addons/l10n_it_split_payment/models/account.py:60
 #, python-format
 msgid ""
 "Please set 'Split Payment Write-off Account' field in accounting "
 "configuration"
-msgstr ""
+msgstr "Impostare il campo 'Conto Storno Scissione Pagamenti' nella configurazione della contabilità"
 
 #. module: l10n_it_split_payment
 #: view:account.config.settings:l10n_it_split_payment.view_account_config_settings
 #: field:account.fiscal.position,split_payment:0
-#: field:account.invoice,amount_sp:0
+#: field:account.invoice,amount_sp:0 field:account.invoice,split_payment:0
 msgid "Split Payment"
-msgstr ""
+msgstr "Scissione Pagamenti"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:62
+#: code:addons/l10n_it_split_payment/models/account.py:63
 #, python-format
 msgid "Split Payment Write Off"
-msgstr ""
+msgstr "Storno Scissione Pagamenti"
 
 #. module: l10n_it_split_payment
 #: field:res.company,sp_account_id:0
 msgid "Split Payment Write-off Account"
+msgstr "Conto Storno Scissione Pagamenti"
+
+#. module: l10n_it_split_payment
+#: field:account.config.settings,sp_account_id:0
+msgid "Split Payment Write-off account"
 msgstr ""

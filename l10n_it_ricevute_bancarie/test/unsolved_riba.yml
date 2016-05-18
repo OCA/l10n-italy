@@ -16,6 +16,19 @@
     partner_id: base.res_partner_12
     payment_term: account_payment_term_riba
 -
+  Set invoice date to recent date in the system
+  This solves problems with account_invoice_sequential_dates
+-
+  !python {model: account.invoice}: |
+    invoice_ids = self.search(cr, uid, [('date_invoice', '!=', False)],
+                              order='date_invoice desc', limit=1,
+                              context=context)
+    if invoice_ids:
+      recent_invoice = self.browse(cr, uid, invoice_ids[0], context=context)
+      self.write(cr, uid, [ref('account_invoice_riba_2'), ],
+                 {'date_invoice': recent_invoice.date_invoice},
+                 context=context)
+-
   I call the "Confirm Draft Invoices" wizard
 -
   !record {model: account.invoice.confirm, id: account_invoice_confirm_0}:

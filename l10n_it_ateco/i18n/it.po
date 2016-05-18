@@ -3,14 +3,18 @@
 # * l10n_it_ateco
 # 
 # Translators:
+# Paolo Valier, 2016
+# Hotellook, 2014
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-08 12:53+0000\n"
-"PO-Revision-Date: 2015-09-02 08:19+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 19:56+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,19 +68,29 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_ateco
+#: field:ateco.category,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: l10n_it_ateco
 #: field:ateco.category,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ateco
+#: field:ateco.category,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_ateco
 #: field:ateco.category,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Ultima Modifica di"
 
 #. module: l10n_it_ateco
 #: field:ateco.category,write_date:0
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Data ultimo aggiornamento"
 
 #. module: l10n_it_ateco
 #: field:ateco.category,name:0

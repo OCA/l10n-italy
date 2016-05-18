@@ -210,9 +210,11 @@ class RibaFileExport(orm.TransientModel):
         name_company = order_obj.config_id.company_id.partner_id.name
         if not credit_bank.iban:
             raise orm.except_orm('Error', _('No IBAN specified'))
-        credit_abi = credit_bank.iban[5:10]
-        credit_cab = credit_bank.iban[10:15]
-        credit_conto = credit_bank.iban[-12:]
+        # remove spaces automatically added by odoo
+        credit_iban = credit_bank.iban.replace(" ", "")
+        credit_abi = credit_iban[5:10]
+        credit_cab = credit_iban[10:15]
+        credit_conto = credit_iban[-12:]
         if not credit_bank.codice_sia:
             raise orm.except_orm(
                 'Error', _('No SIA Code specified for: ') + name_company)
@@ -252,12 +254,18 @@ class RibaFileExport(orm.TransientModel):
             debitor_address = line.partner_id
             debitor_street = debitor_address.street or ''
             debitor_zip = debitor_address.zip or ''
-            if not debit_bank.iban:
+            if debit_bank.bank_abi and debit_bank.bank_cab:
+                debit_abi = debit_bank.bank_abi
+                debit_cab = debit_bank.bank_cab
+            elif debit_bank.iban:
+                debit_iban = debit_bank.iban.replace(" ", "")
+                debit_abi = debit_iban[5:10]
+                debit_cab = debit_iban[10:15]
+            else:
                 raise orm.except_orm(
-                    'Error',
-                    _('No IBAN specified for ') + line.partner_id.name)
-            debit_abi = debit_bank.iban[5:10]
-            debit_cab = debit_bank.iban[10:15]
+                    _('Error'),
+                    _('No IBAN or ABI/CAB specified for ') +
+                    line.partner_id.name)
             debitor_city = debitor_address.city and debitor_address.city.ljust(
                 23)[0:23] or ''
             debitor_province = (
