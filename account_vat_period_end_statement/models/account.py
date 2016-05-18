@@ -396,7 +396,10 @@ class AccountVatPeriodEndStatement(orm.Model):
             'account.period', 'vat_statement_id', 'Periods'),
         'interest': fields.boolean('Compute Interest'),
         'interest_percent': fields.float('Interest - Percent'),
-        'fiscal_page_base': fields.integer('Last printed page', required=True)
+        'fiscal_page_base': fields.integer('Last printed page', required=True),
+        'pro_rata': fields.boolean('Apply Pro-Rata'),
+        'pro_rata_percent': fields.float('Pro-Rata - Percent of deductibility', 
+            help="Specify the percent to refund credit VAT"),
 
     }
 
@@ -669,6 +672,44 @@ class AccountVatPeriodEndStatement(orm.Model):
             for credit_vals in credit_line_ids:
                 credit_vals.update({'statement_id': statement.id})
                 credit_line_pool.create(cr, uid, credit_vals, context=context)
+            
+            # Pro-Rata
+            # ...Remove existing pro-rata-lines
+            domain = [
+                ('pro_rata', '=', True),
+                ('statement_id', '=', statement.id),
+                ]
+            line_ids = statement_generic_account_line_obj.search(
+                cr, uid, domain)
+            if line_ids:
+                statement_generic_account_line_obj.unlink(cr, uid, line_ids)
+            # ...Compute grouping by account
+            if statement.pro_rata:
+                pr_lines = {}
+                for cr_line in statement.credit_vat_account_line_ids:
+                    if not cr_line.account_id.id in pr_lines:
+                        pr_lines[cr_line.account_id.id] = cr_line.amount
+                    else:
+                        pr_lines[cr_line.account_id.id] += cr_line.amount
+                # Create refund credit
+                for item in pr_lines.items():
+                    pr_account = item[0] 
+                    pr_amount = item[1]
+                    amount_deductible = round(
+                        pr_amount * (statement.pro_rata_percent / 100), 
+                        decimal_precision_obj.precision_get(cr, uid, 'Account'))
+                    amount_undeductible = round(
+                        pr_amount - amount_deductible,
+                        decimal_precision_obj.precision_get(cr, uid, 'Account'))
+                    val = {
+                        'statement_id': statement.id,
+                        'description': _("Pro-Rata Deductible {0}%".format(
+                            statement.pro_rata_percent)),
+                        'account_id': pr_account,
+                        'amount': (amount_undeductible * -1),
+                        'pro_rata': True,
+                    }
+                    statement_generic_account_line_obj.create(cr, uid, val)
 
             interest_amount = 0.0
             # if exits Delete line with interest
@@ -733,7 +774,7 @@ class AccountVatPeriodEndStatement(orm.Model):
                     _("The account for vat interest must be configurated"))
 
         return company.of_account_end_vat_statement_interest_account_id.id
-
+    
 
 class StatementDebitAccountLine(orm.Model):
     _name = 'statement.debit.account.line'
@@ -775,6 +816,8 @@ class StatementGenericAccountLine(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
+        'description': fields.char('Description'),
+        'pro_rata': fields.boolean('Pro-Rata line'),
     }
 
     def on_change_vat_account_id(
@@ -813,4 +856,13 @@ class AccountPeriod(orm.Model):
     _columns = {
         'vat_statement_id': fields.many2one(
             'account.vat.period.end.statement', "VAT statement"),
+    }
+    
+    
+class account_fiscalyear(orm.Model):
+    _inherit = 'account.fiscalyear'
+    _columns = {
+        'pro_rata': fields.boolean('Apply Pro-Rata'),
+        'pro_rata_percent': fields.float('Pro-Rata - Percent of deductibility', 
+            help="Specify the percent to refund credit VAT"),
     }
