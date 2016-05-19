@@ -70,7 +70,8 @@ class StockPickingPackagePreparation(models.Model):
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
     ddt_number = fields.Char(string='DdT Number')
-    partner_shipping_id = fields.Many2one('res.partner')
+    partner_shipping_id = fields.Many2one(
+        'res.partner', string="Shipping Address")
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', string='Carriage Condition')
     goods_description_id = fields.Many2one(
