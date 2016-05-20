@@ -38,6 +38,7 @@ class DdTFromPickings(models.TransientModel):
             if partner and partner != picking.partner_id:
                 raise UserError(
                     _("Selected Pickings have different Partner"))
+            partner = picking.partner_id
             values['partner_id'] = partner.commercial_partner_id.id
             values['partner_invoice_id'] = picking.with_context(
                 {'inv_type': 'out_invoice'}
