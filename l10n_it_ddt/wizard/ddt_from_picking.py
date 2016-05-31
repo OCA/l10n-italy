@@ -47,7 +47,7 @@ class DdTFromPickings(models.TransientModel):
             # ----- Get partners from order if it exists
             sale = picking.sale_id or False
             if sale:
-                values['partner_id'] = sale.partner.id
+                values['partner_id'] = sale.partner_id.id
                 values['partner_invoice_id'] = sale.partner_invoice_id.id
                 values['partner_shipping_id'] = sale.partner_shipping_id.id
         parcels = 0
