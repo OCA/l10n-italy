@@ -23,12 +23,12 @@ class CorrispettiviConfigData(osv.osv_memory):
 
     def execute(self, cr, uid, ids, context=None):
         for o in self.browse(cr, uid, ids, context=context):
-            seq_id = self.env['ir.sequence'].create(cr, uid, {
+            seq_id = self.pool['ir.sequence'].create(cr, uid, {
                 'name': 'Sezionale Corrispettivi',
                 'padding': 3,
                 'prefix': 'COJ/%(year)s/',
             })
-            journal_id = self.env['account.journal'].create(cr, uid, {
+            self.pool['account.journal'].create(cr, uid, {
                 'code': 'COJ',
                 'name': 'Sezionale Corrispettivi',
                 'type': 'sale',
@@ -37,7 +37,7 @@ class CorrispettiviConfigData(osv.osv_memory):
                 'default_credit_account_id': o.default_credit_account_id.id,
                 'default_debit_account_id': o.default_debit_account_id.id,
             })
-            partner_id = self.env['res.partner'].create(cr, uid, {
+            self.pool['res.partner'].create(cr, uid, {
                 'name': 'Corrispettivi',
                 'ref': 'COJ',
                 'customer': False,
