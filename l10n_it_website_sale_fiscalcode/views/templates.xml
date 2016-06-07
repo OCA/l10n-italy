@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Nicola Malcontenti - Agile Business Group
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<template id="l10n_it_website_sale_fiscalcode" inherit_id="website_sale_partner_type.website_sale_partner_type">
+  <xpath expr="//option[@value='company']" position="after">
+    <option value="association" t-att-selected="checkout.get('partner_type') == 'association'">Association</option>
+  </xpath>
+</template>
+<template id="l10n_it_website_sale_fiscalcode_inh" inherit_id="website_sale.checkout">
+  <xpath expr="//div[@class='row']/div[4]" position="replace">
+    <div t-if="has_check_vat" t-attf-class="form-group #{error.get('vat') and 'has-error' or ''} col-lg-6" id="vat_number">
+      <label class="control-label" for="vat" style="font-weight: normal">VAT Number</label>
+      <input type="text" name="vat" class="form-control" t-att-value="checkout.get('vat')"/>
+    </div>
+  </xpath>
+  <xpath expr="//div[@class='row']/div[6]" position="before">
+    <div t-attf-class="form-group #{error.get('fiscalcode') and 'has-error' or ''} col-lg-6" id="fiscalcode">
+      <label class="control-label" for="fiscalcode" style="font-weight: normal">Fiscal Code</label>
+      <input type="text" name="fiscalcode" class="form-control" t-att-value="checkout.get('fiscalcode')"/>
+    </div>
+  </xpath>
+</template>
+
+</data>
+</openerp>
