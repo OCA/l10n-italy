@@ -19,19 +19,19 @@
 ##############################################################################
 {
     'name': 'REA Register',
-    'version': '8.0.0.1.0',
+    'version': '9.0.0.1.0',
     'category': 'Localisation/Italy',
     'summary': 'Manage fields for  Economic Administrative catalogue',
     'author': 'Agile Business Group, Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'l10n_it_base', 'account'
+        'account'
     ],
     "data": [
         'partner_view.xml',
     ],
     "test": [],
     "demo": [],
-    'installable': False
+    'installable': True,
 }
