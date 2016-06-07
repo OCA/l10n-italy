@@ -22,9 +22,9 @@
 
 {
     'name': 'Base Bank ABI/CAB codes',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Localisation/Italy',
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
+    'author': "Odoo Italian Community, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'depends': ['account'],
     'test': [
@@ -32,5 +32,5 @@
     ],
     'website': 'http://www.odoo-italia.org/',
     'data': ['abicab_view.xml'],
-    'installable': False,
+    'installable': True,
 }
