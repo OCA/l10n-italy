@@ -38,15 +38,8 @@ class ResPartnerBank(models.Model):
     bank_abi = fields.Char(size=5, string='ABI')
     bank_cab = fields.Char(size=5, string='CAB')
 
-    @api.onchange('bank')
-    @api.cr_uid_ids_context
-    def onchange_bank_id(self, cr, uid, ids, bank_id, context=None):
-        result = super(
-            ResPartnerBank, self).onchange_bank_id(
-            cr, uid, ids, bank_id, context=context)
-        if bank_id:
-            bank = self.pool.get('res.bank').browse(
-                cr, uid, bank_id, context=context)
-            result['value']['bank_abi'] = bank.abi
-            result['value']['bank_cab'] = bank.cab
-        return result
+    @api.onchange('bank_id')
+    def onchange_bank_id(self):
+        if self.bank_id:
+            self.bank_abi = self.bank_id.abi
+            self.bank_cab = self.bank_id.cab
