@@ -35,24 +35,12 @@
             <field name="inherit_id" ref="base.view_partner_bank_form"/>
             <field name="arch" type="xml">
             
-                <field name="bank_bic" position="after">
+                <field name="bank_id" position="after">
+                    <newline></newline>
                     <field name="bank_abi"/>
                     <field name="bank_cab"/>
                 </field>
                 
-            </field>
-        </record>
-
-        <record id="view_partner_bank_form_abicab" model="ir.ui.view">
-            <field name="name">res.partner.bank.form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="account.view_partner_property_form"/>
-            <field name="arch" type="xml">
-                
-                <field name="bank_name" position="after">
-                    <field name="bank_abi"/>
-                    <field name="bank_cab"/>
-                </field>
             </field>
         </record>
 
