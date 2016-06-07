@@ -12,23 +12,13 @@
   !record {model: res.partner, id: partner_1}:
     name: Partner_1
 
-
--
-  I create a Partner Bank Type
--
-  !record {model: res.partner.bank.type, id: partner_bank_type_1}:
-    name: 1234
-    code: 5678
-
 -
   I create a Partner Bank
 -
   !record {model: res.partner.bank, id: partner_bank_1}:
-    name: Partner_Bank_1
     acc_number: 212
     partner_id: partner_1
-    bank: bank1
-    state: bank
+    bank_id: bank1
 
 -
   I check the field abi and cab
