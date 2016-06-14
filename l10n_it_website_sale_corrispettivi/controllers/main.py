@@ -24,18 +24,13 @@ class WebsiteSale(website_sale):
 
     def checkout_values(self, data=None):
         res = super(WebsiteSale, self).checkout_values(data=data)
-        if data and data.get('invoice_or_receipt'):
-            res['checkout']['invoice_or_receipt'] = data['invoice_or_receipt']
-        return res
-
-
-class WebsiteSaleFiscalCode(WebsiteSaleFiscalCode):
-
-    def checkout_form_validate(self, data):
-        res = super(WebsiteSaleFiscalCode, self).checkout_form_validate(
-            data=data)
-        if (request.params['invoice_or_receipt'] == 'receipt' and
-                request.params['partner_type'] == 'individual' and not (
-                request.params['fiscalcode'])):
-            res['fiscalcode'] = ''
+        cr, uid, context, registry = (
+            request.cr, request.uid, request.context, request.registry)
+        orm_user = registry.get('res.users')
+        partner = orm_user.browse(
+            cr, SUPERUSER_ID, uid, context).partner_id
+        if partner.is_company:
+            res['checkout']['invoice_or_receipt'] = "invoice"
+        else:
+            res['checkout']['invoice_or_receipt'] = "receipt"
         return res

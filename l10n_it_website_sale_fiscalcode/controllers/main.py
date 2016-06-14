@@ -24,6 +24,19 @@ class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
     def checkout_form_validate(self, data):
         res = super(WebsiteSaleFiscalCode, self).checkout_form_validate(
             data=data)
+        partner_id = request.website.sale_get_order(
+            context=request.context).partner_id
+        partner_dict = {'fiscalcode': request.params['fiscalcode']}
+        if request.params['partner_type'] == 'association':
+            partner_dict['association'] = True
+            partner_dict['is_company'] = True
+        elif request.params['partner_type'] == 'individual':
+            partner_dict['is_company'] = False
+            partner_dict['association'] = False
+        elif request.params['partner_type'] == 'company':
+            partner_dict['association'] = False 
+            partner_dict['is_company'] = True
+        partner_id.write(partner_dict)
         if (request.params['partner_type'] == 'association' and
             not (request.params['fiscalcode'] or
                  request.params['vat'])):
@@ -50,4 +63,6 @@ class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
             cr, SUPERUSER_ID, uid, context).partner_id
         if partner.association:
             res['checkout']['partner_type'] = "association"
+        if partner.fiscalcode:
+            res['checkout']['fiscalcode'] = partner.fiscalcode
         return res

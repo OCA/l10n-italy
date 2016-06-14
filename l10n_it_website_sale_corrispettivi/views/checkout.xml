@@ -5,12 +5,17 @@
         <xpath expr="//div[@class='col-md-8 oe_cart']/div/div[12]" position="after">
             <div class="col-lg-6 form-group">
                 <label class="control-label" for="country_id">Invoice or receipt</label>
-                <select name="invoice_or_receipt" class="form-control">
+                <select name="invoice_or_receipt" class="form-control" id="select_invoice_or_receipt">
                     <option value="invoice">Invoice</option>
                     <option value="receipt">Receipt</option>
                 </select>
             </div>
         </xpath>
+    </template>
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Sale Corrispettivi">
+      <xpath expr="." position="inside">
+          <script type="text/javascript" src="/l10n_it_website_sale_corrispettivi/static/src/js/l10n_it_website_sale_corrispettivi.js"></script>
+      </xpath>
     </template>
 </data>
 </openerp>
