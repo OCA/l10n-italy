@@ -14,6 +14,7 @@
     "installable": True,
     "depends": [
         "l10n_it_corrispettivi",
+        "l10n_it_website_sale_fiscalcode",
         "website_sale",
     ],
     "data": [
