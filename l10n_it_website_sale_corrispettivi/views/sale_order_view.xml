@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_form_corrispettivo" model="ir.ui.view">
+            <field name="name">view_order_form_corrispettivo</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"></field>
+            <field name="arch" type="xml">
+                <field name="currency_id" position="after">
+                    <field name="corrispettivo"></field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
