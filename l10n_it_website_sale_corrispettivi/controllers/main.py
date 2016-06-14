@@ -3,6 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.addons.website_sale.controllers.main import website_sale
+from openerp.addons.l10n_it_website_sale_fiscalcode.controllers.main \
+    import WebsiteSaleFiscalCode
+
 from openerp import SUPERUSER_ID
 from openerp.http import request
 
@@ -24,4 +27,16 @@ class WebsiteSale(website_sale):
         res = super(WebsiteSale, self).checkout_values(data=data)
         if data and data.get('invoice_or_receipt'):
             res['checkout']['invoice_or_receipt'] = data['invoice_or_receipt']
+        return res
+
+
+class WebsiteSaleFiscalCode(WebsiteSaleFiscalCode):
+
+    def checkout_form_validate(self, data):
+        res = super(WebsiteSaleFiscalCode, self).checkout_form_validate(
+            data=data)
+        if (request.params['invoice_or_receipt'] == 'receipt' and
+                request.params['partner_type'] == 'individual' and not (
+                request.params['fiscalcode'])):
+            res['fiscalcode'] = ''
         return res

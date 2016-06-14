@@ -7,9 +7,9 @@ Website Sale FiscalCode
 =======================
 
 This module adds: 
-* association as value on partner type, and as boolean partner form;
-* fiscalcode on checkout form
-* 
+* Association as value on partner type, and as boolean partner form;
+* Fiscalcode on checkout form
+* Required control on checkout form validation
 
 Usage
 =====
@@ -49,6 +49,7 @@ Contributors
 
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
+* Lorenzo Battistini <alessio.gerace@agilebg.com>
 
 Maintainer
 ----------

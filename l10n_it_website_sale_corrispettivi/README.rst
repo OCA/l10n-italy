@@ -36,6 +36,7 @@ Contributors
 ------------
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 
 Maintainer
 ----------

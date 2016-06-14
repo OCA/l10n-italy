@@ -3,18 +3,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import SUPERUSER_ID
-from openerp import http
 from openerp.http import request
-from openerp.addons.website_sale.controllers.main import website_sale
-from openerp.addons.website_sale_partner_type.controllers.main import WebsiteSalePartnerType
+from openerp.addons.website_sale_partner_type.controllers.main \
+    import WebsiteSalePartnerType
 
 
 class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
 
     def checkout_form_save(self, checkout):
-        cr, uid, context, registry = (
-            request.cr, request.uid, request.context, request.registry)
-        res = super(WebsiteSaleFiscalCode, self).checkout_form_save(
+        super(WebsiteSaleFiscalCode, self).checkout_form_save(
             checkout=checkout)
         partner_id = request.website.sale_get_order(
             context=request.context).partner_id
@@ -32,11 +29,11 @@ class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
                  request.params['vat'])):
             res['vat'] = 'error'
             res['fiscalcode'] = 'error'
-        if (
-                request.params['partner_type'] == 'company'
+        if (request.params['partner_type'] == 'company'
                 and not request.params['fiscalcode']
                 and not request.params['vat']):
             res['vat'] = 'error'
+            res['fiscalcode'] = 'error'
 
         if (request.params['partner_type'] == 'individual'
                 and not request.params['fiscalcode']):
@@ -46,10 +43,11 @@ class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
     def checkout_values(self, data=None):
         res = super(WebsiteSaleFiscalCode, self).checkout_values(
             data=data)
-        cr, uid, context, registry = request.cr, request.uid, request.context, request.registry
+        cr, uid, context, registry = (
+            request.cr, request.uid, request.context, request.registry)
         orm_user = registry.get('res.users')
         partner = orm_user.browse(
-            cr, SUPERUSER_ID, request.uid, context).partner_id
+            cr, SUPERUSER_ID, uid, context).partner_id
         if partner.association:
             res['checkout']['partner_type'] = "association"
         return res
