@@ -35,10 +35,11 @@ class DdTFromPickings(models.TransientModel):
             }
         partner = False
         for picking in self.picking_ids:
-            if partner and partner != picking.partner_id:
+            current_ddt_shipping_partner = picking.get_ddt_shipping_partner()
+            if partner and partner != current_ddt_shipping_partner:
                 raise UserError(
                     _("Selected Pickings have different Partner"))
-            partner = picking.partner_id
+            partner = current_ddt_shipping_partner
             sale_order = picking.sale_id
             if sale_order:
                 values['partner_id'] = sale_order.partner_id.id
