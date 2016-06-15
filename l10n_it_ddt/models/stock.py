@@ -53,3 +53,13 @@ class StockPicking(models.Model):
         if picking.ddt_ids:
             picking.ddt_ids._update_line_ids()
         return picking
+
+    def get_ddt_shipping_partner(self):
+        # this is mainly used in dropshipping configuration,
+        # where self.partner_id is your supplier, but 'move_lines.partner_id'
+        # is your customer
+        move_partners = self.mapped('move_lines.partner_id')
+        if len(move_partners) == 1:
+            return move_partners[0]
+        else:
+            return self.partner_id
