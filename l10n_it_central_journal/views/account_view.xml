@@ -3,6 +3,20 @@
     <data>
         
         <!--
+        JOURNAL
+         -->
+        <record id="view_central_journal_account_journal_form" model="ir.ui.view">
+            <field name="name">view.central.journal.account.journal.form</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='centralisation']" position="before">
+                    <field name="central_journal_exclude"/>
+           		</xpath>
+            </field>
+		</record>
+		
+		<!--
             Account Fiscal Year inheritancy
         -->
         
