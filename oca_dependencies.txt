@@ -1,3 +1,4 @@
 partner-contact
 account-payment
 stock-logistics-workflow
+e-commerce

@@ -5,10 +5,10 @@
 {
     'name': 'Sale Association',
     'category': 'Sale',
-    'author': "Agile Business Group,"
-              "Odoo Community Association (OCA)",
+    "author": 'Agile Business Group, '
+              'Odoo Community Association (OCA)',
+    "license": "AGPL-3",
     'version': '8.0.1.0.0',
-    'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'depends': [],
     'data': [

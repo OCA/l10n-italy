@@ -3,7 +3,7 @@
 <data>
     <template id="checkout_corrispettivi" inherit_id="website_sale.checkout">
         <xpath expr="//div[@class='col-md-8 oe_cart']/div/div[12]" position="after">
-            <div class="col-lg-6 form-group">
+            <div class="col-lg-6 form-group" id="container_corrispettivi">
                 <label class="control-label" for="country_id">Invoice or receipt</label>
                 <select name="invoice_or_receipt" class="form-control" id="select_invoice_or_receipt">
                     <option value="invoice">Invoice</option>

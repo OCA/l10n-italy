@@ -10,8 +10,9 @@ class ResPartner(models.Model):
     association = fields.Boolean(
         string='Is Association', default=False)
 
-    @api.one
+    @api.multi
     @api.onchange('association')
     def onchange_association(self):
-        if self.association:
-            self.is_company = True
+        for partner in self:
+            if partner.association:
+                partner.is_company = True

@@ -34,7 +34,7 @@ class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
             partner_dict['is_company'] = False
             partner_dict['association'] = False
         elif request.params['partner_type'] == 'company':
-            partner_dict['association'] = False 
+            partner_dict['association'] = False
             partner_dict['is_company'] = True
         partner_id.write(partner_dict)
         if (request.params['partner_type'] == 'association' and
@@ -42,14 +42,14 @@ class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
                  request.params['vat'])):
             res['vat'] = 'error'
             res['fiscalcode'] = 'error'
-        if (request.params['partner_type'] == 'company'
-                and not request.params['fiscalcode']
-                and not request.params['vat']):
+        if (request.params['partner_type'] == 'company' and
+                not request.params['fiscalcode'] and
+                not request.params['vat']):
             res['vat'] = 'error'
             res['fiscalcode'] = 'error'
 
-        if (request.params['partner_type'] == 'individual'
-                and not request.params['fiscalcode']):
+        if (request.params['partner_type'] == 'individual' and
+                not request.params['fiscalcode']):
             res['fiscalcode'] = 'error'
         return res
 
@@ -61,8 +61,17 @@ class WebsiteSaleFiscalCode(WebsiteSalePartnerType):
         orm_user = registry.get('res.users')
         partner = orm_user.browse(
             cr, SUPERUSER_ID, uid, context).partner_id
-        if partner.association:
-            res['checkout']['partner_type'] = "association"
-        if partner.fiscalcode:
-            res['checkout']['fiscalcode'] = partner.fiscalcode
+        if not data:
+            if partner.association:
+                res['checkout']['partner_type'] = "association"
+            if partner.fiscalcode:
+                res['checkout']['fiscalcode'] = partner.fiscalcode
+        else:
+            if uid == request.website.user_id.id:
+                res['checkout']['fiscalcode'] = ''
+            else:
+                if data['partner_type'] == "association":
+                    res['checkout']['partner_type'] = "association"
+                if data['fiscalcode']:
+                    res['checkout']['fiscalcode'] = partner.fiscalcode
         return res

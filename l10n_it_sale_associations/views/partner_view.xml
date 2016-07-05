@@ -4,18 +4,18 @@
 
 <openerp>
 <data>
-	    <record id="view_partner_form" model="ir.ui.view">
-            <field name="name">res.partner.form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-  				<xpath expr="//div[@class='oe_edit_only'][1]" position="after">
-  					<div class="oe_edit_only">
-                    	(<field name="association" class="oe_inline"/>
-                    	<label for="association" string="Is an Association?"/>)
-                	</div>
-                </xpath>
-            </field>
-        </record>
+  <record id="view_partner_form" model="ir.ui.view">
+    <field name="name">res.partner.form</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//div[@class='oe_edit_only'][1]" position="after">
+        <div class="oe_edit_only">
+          (<field name="association" class="oe_inline"/>
+           <label for="association" string="Is an Association?"/>)
+        </div>
+      </xpath>
+    </field>
+  </record>
 </data>
 </openerp>

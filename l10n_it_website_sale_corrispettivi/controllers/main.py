@@ -5,8 +5,6 @@
 from openerp.addons.website_sale.controllers.main import website_sale
 from openerp import SUPERUSER_ID
 from openerp.http import request
-from openerp.addons.l10n_it_website_sale_fiscalcode.controllers.main \
-    import WebsiteSaleFiscalCode
 
 
 class WebsiteSale(website_sale):
@@ -29,8 +27,14 @@ class WebsiteSale(website_sale):
         orm_user = registry.get('res.users')
         partner = orm_user.browse(
             cr, SUPERUSER_ID, uid, context).partner_id
-        if partner.is_company:
-            res['checkout']['invoice_or_receipt'] = "invoice"
+        if data:
+            if data['partner_type'] == 'individual':
+                res['checkout']['invoice_or_receipt'] = "receipt"
+            else:
+                res['checkout']['invoice_or_receipt'] = "invoice"
         else:
-            res['checkout']['invoice_or_receipt'] = "receipt"
+            if partner.is_company:
+                res['checkout']['invoice_or_receipt'] = "invoice"
+            else:
+                res['checkout']['invoice_or_receipt'] = "receipt"
         return res

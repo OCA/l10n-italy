@@ -14,13 +14,18 @@ class SaleOrder(models.Model):
     @api.model
     def _prepare_invoice(self, order, lines):
         res = super(SaleOrder, self)._prepare_invoice(order, lines)
+        domain = []
         if order.corrispettivo:
-            journals = self.env['account.journal'].search([
+            domain = [
                 ('type', '=', 'sale'),
-                ('corrispettivi', '=', True),
-            ])
-            if not journals:
-                raise UserError(_("Can't find a 'corrispettivi' journal"))
-            res['journal_id'] = journals[0].id
-            res['corrispettivo'] = True
+                ('corrispettivi', '=', True)]
+        else:
+            domain = [
+                ('type', '=', 'sale'),
+                ('corrispettivi', '=', False)]
+        journals = self.env['account.journal'].search(domain)
+        if not journals:
+            raise UserError(_("Can't find a correct journal"))
+        res['journal_id'] = journals[0].id
+        res['corrispettivo'] = True
         return res
