@@ -31,7 +31,5 @@
     "data": [
         'partner_view.xml',
     ],
-    "test": [],
-    "demo": [],
     'installable': True,
 }
