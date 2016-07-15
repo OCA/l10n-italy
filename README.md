@@ -29,6 +29,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[l10n_it_abicab](l10n_it_abicab/) | 9.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 9.0.0.1.0 | Import base_location entries (provinces) from Geonames
 
 Unported addons
@@ -42,7 +43,6 @@ addon | version | summary
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.2.0.0 (unported) | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 (unported) | DDT report using Webkit Library
-[l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 (unported) | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 (unported) | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 (unported) | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 (unported) | Italian Localisation - Base
