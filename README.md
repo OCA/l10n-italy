@@ -31,6 +31,7 @@ addon | version | summary
 --- | --- | ---
 [l10n_it_abicab](l10n_it_abicab/) | 9.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 9.0.0.1.0 | Import base_location entries (provinces) from Geonames
+[l10n_it_rea](l10n_it_rea/) | 9.0.0.1.0 | Manage fields for Economic Administrative catalogue
 
 Unported addons
 ---------------
@@ -56,7 +57,6 @@ addon | version | summary
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 (unported) | Pec Mail
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
-[l10n_it_rea](l10n_it_rea/) | 8.0.0.1.0 (unported) | Manage fields for Economic Administrative catalogue
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 (unported) | Ricevute Bancarie
 [l10n_it_sale](l10n_it_sale/) | 0.2 (unported) | Italian Localisation - Sale
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 (unported) | Split Payment
