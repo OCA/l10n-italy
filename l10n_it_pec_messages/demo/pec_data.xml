@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <!--record model="res.users" id="pec_user">
+            <field name="name">PEC user</field>
+            <field name="login">l.battistini</field>
+            <field name="notification_email_send">none</field>
+            <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+        </record-->
+        <record model="res.users" id="base.user_root">
+            <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+        </record>
+        <record model="fetchmail.server" id="imap_pec_server">
+            <field name="name">IMAP PEC server</field>
+            <field name="type">imap</field>
+            <field name="pec" eval="True"></field>
+            <field name="user_ids" eval="[(6, 0,[ref('base.user_root'),ref('pec_user')])]"></field>
+        </record>
+        <record model="ir.mail_server" id="smtp_pec_server">
+            <field name="name">SMTP PEC server</field>
+            <field name="smtp_host">pechost</field>
+            <field name="pec" eval="True"></field>
+            <field name="in_server_id" ref="imap_pec_server"></field>
+        </record>
+
+		<!-- This is required for version 8.0 -->
+        <record model="mail.alias" id="pec_user_alias">
+            <field name="alias_name">l.battistini</field>
+            <field name="alias_contact">partners</field>
+            <field name="alias_user_id" eval="int(1)"></field>
+            <field name="alias_force_thread_id" eval="int(1)"></field>
+            <field model="ir.model" name="alias_model_id" search="[('model','ilike','res.users')]"/>
+        </record>
+    </data>
+</openerp>

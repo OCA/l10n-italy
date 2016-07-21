@@ -44,6 +44,7 @@ addon | version | summary
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.0 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 | Pec Mail
+[l10n_it_pec_messages](l10n_it_pec_messages/) | 8.0.0.1.0 | Pec Mail Message
 [l10n_it_rea](l10n_it_rea/) | 8.0.0.1.0 | Manage fields for Economic Administrative catalogue
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 8.0.1.3.0 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
