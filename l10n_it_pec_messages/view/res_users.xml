@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_user_form_pec">
+        <field name="name">res.users.form.pec</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Fetchmail servers">
+                    <field name="allowed_server_ids"  />
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</data>
+</openerp>

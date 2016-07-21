@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_document_file_protocol_form_pec">
+        <field name="name">fetchmail.server.form.pec</field>
+        <field name="model">fetchmail.server</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after" >
+                <field name="pec" />
+                <field name="force_create_partner_from_mail" />
+            </field>
+            <field name="original" position="attributes">
+                <attribute name="attrs">{'invisible': [('pec','=',True)]}</attribute>
+            </field>
+            <notebook position="inside">
+                <page string="Configure allowed users">
+                     <field name="user_ids" />
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</data>
+</openerp>

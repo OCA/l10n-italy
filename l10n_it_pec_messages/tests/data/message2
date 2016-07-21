@@ -1,0 +1,184 @@
+Return-Path: <thinkstudio@pec.it>
+Delivered-To: l.battistini@pec.it
+Received: from smtpecn3.pec.ad.aruba.it (localhost [127.0.0.1])
+	by smtpecn3.pec.ad.aruba.it (lmtpd) with LMTP id 8145.002;
+	Thu, 27 Nov 2014 15:12:16 +0100 (CET)
+Received: from [127.0.1.1] (93-38-93-92.ip70.fastwebnet.it [93.38.93.92])
+ (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))	(No client
+ certificate requested)	by smtps.pec.aruba.it (Postfix) with ESMTPSA id
+ AB2EE80CFBC4	for <l.battistini@pec.it>; Thu, 27 Nov 2014 15:12:15 +0100
+ (CET)
+Subject: POSTA CERTIFICATA: Re: test
+X-Riferimento-Message-ID: <1417097534.920250892639160.712427135196036-openerp-private@master>
+Date: Thu, 27 Nov 2014 15:12:16 +0100
+Message-ID: <opec275.20141127151216.06559.08.1.17@pec.aruba.it>
+Reply-To: thinkstudio@pec.it
+X-Trasporto: posta-certificata
+To: Lorenzo Battistini <l.battistini@pec.it>
+From: "Per conto di: thinkstudio@pec.it" <posta-certificata@pec.aruba.it>
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg=sha1; boundary="----EE3B140F2C70607BC46FD6DD0EFE6A0D"
+
+This is an S/MIME signed message
+
+------EE3B140F2C70607BC46FD6DD0EFE6A0D
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----------=_1417097536-6559-27"
+
+This is a multi-part message in MIME format...
+
+------------=_1417097536-6559-27
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+--Questo =E8 un Messaggio di Posta Certificata--
+
+Il giorno 27/11/2014 alle ore 15:12:16 (+0100) il messaggio con Oggetto
+"Re: test" =E8 stato inviato dal mittente "thinkstudio@pec.it"
+e indirizzato a:
+l.battistini@pec.it
+Il messaggio originale =E8 incluso in allegato, per aprirlo cliccare sul fi=
+le "postacert.eml" (nella webmail o in alcuni client di posta l'allegato po=
+trebbe avere come nome l'oggetto del messaggio originale).
+L'allegato daticert.xml contiene informazioni di servizio sulla trasmissione
+L'identificativo univoco di questo messaggio =E8: opec275.20141127151216.06=
+559.08.1.17@pec.aruba.it
+
+------------=_1417097536-6559-27
+Content-Type: application/xml; name="daticert.xml"
+Content-Disposition: inline; filename="daticert.xml"
+Content-Transfer-Encoding: base64
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHBvc3Rh
+Y2VydCB0aXBvPSJwb3N0YS1jZXJ0aWZpY2F0YSIgZXJyb3JlPSJuZXNzdW5v
+Ij4KICAgIDxpbnRlc3RhemlvbmU+CiAgICAgICAgPG1pdHRlbnRlPnRoaW5r
+c3R1ZGlvQHBlYy5pdDwvbWl0dGVudGU+CiAgICAgICAgPGRlc3RpbmF0YXJp
+IHRpcG89ImNlcnRpZmljYXRvIj5sLmJhdHRpc3RpbmlAcGVjLml0PC9kZXN0
+aW5hdGFyaT4KICAgICAgICA8cmlzcG9zdGU+dGhpbmtzdHVkaW9AcGVjLml0
+PC9yaXNwb3N0ZT4KICAgICAgICA8b2dnZXR0bz5SZTogdGVzdDwvb2dnZXR0
+bz4KICAgIDwvaW50ZXN0YXppb25lPgogICAgPGRhdGk+CiAgICAgICAgPGdl
+c3RvcmUtZW1pdHRlbnRlPkFSVUJBIFBFQyBTLnAuQS48L2dlc3RvcmUtZW1p
+dHRlbnRlPgogICAgICAgIDxkYXRhIHpvbmE9IiswMTAwIj4KICAgICAgICAg
+ICAgPGdpb3Jubz4yNy8xMS8yMDE0PC9naW9ybm8+CiAgICAgICAgICAgIDxv
+cmE+MTU6MTI6MTY8L29yYT4KICAgICAgICA8L2RhdGE+CiAgICAgICAgPGlk
+ZW50aWZpY2F0aXZvPm9wZWMyNzUuMjAxNDExMjcxNTEyMTYuMDY1NTkuMDgu
+MS4xN0BwZWMuYXJ1YmEuaXQ8L2lkZW50aWZpY2F0aXZvPgogICAgICAgIDxt
+c2dpZD4mbHQ7MTQxNzA5NzUzNC45MjAyNTA4OTI2MzkxNjAuNzEyNDI3MTM1
+MTk2MDM2LW9wZW5lcnAtcHJpdmF0ZUBtYXN0ZXImZ3Q7PC9tc2dpZD4KICAg
+ICAgICA8cmljZXZ1dGEgdGlwbz0iY29tcGxldGEiIC8+CiAgICA8L2RhdGk+
+CjwvcG9zdGFjZXJ0Pgo=
+
+------------=_1417097536-6559-27
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+Content-Transfer-Encoding: 7bit
+
+Received: from [127.0.1.1] (93-38-93-92.ip70.fastwebnet.it [93.38.93.92])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtps.pec.aruba.it (Postfix) with ESMTPSA id AB2EE80CFBC4
+	for <l.battistini@pec.it>; Thu, 27 Nov 2014 15:12:15 +0100 (CET)
+Content-Type: multipart/mixed; boundary="===============1661855002407687635=="
+MIME-Version: 1.0
+references: <1417022280.627470016479492.800106944999785-openerp-private@elbati-Vostro-3550>
+Subject: Re: test
+From: Alessio <thinkstudio@pec.it>
+Reply-To: thinkstudio@pec.it
+To: Lorenzo Battistini <l.battistini@pec.it>
+Date: Thu, 27 Nov 2014 14:12:15 -0000
+Message-ID: <opec275.20141127151216.06559.08.1.17@pec.aruba.it>
+X-Riferimento-Message-ID: <1417097534.920250892639160.712427135196036-openerp-private@master>
+
+--===============1661855002407687635==
+Content-Type: multipart/alternative;
+ boundary="===============3792391723061390336=="
+MIME-Version: 1.0
+
+--===============3792391723061390336==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+dGVzdCByc3Bvc3RhIG9wZW5lcnAKLS0KQWRtaW5pc3RyYXRvcgoKQWNjZXNzIHlvdXIgbWVzc2Fn
+ZXMgYW5kIHBlcnNvbmFsIGRvY3VtZW50cyB0aHJvdWdoIG91ciBDdXN0b21lciBQb3J0YWwgWzFd
+CgoKWzFdIGh0dHA6Ly9sb2NhbGhvc3Q6ODA2OT9kYj1pbnJpbTdfdGVzdCNhY3Rpb249bG9naW4m
+dG9rZW49TTVTRmtQWkE3N0J5ckNBUDlDN0ImdHlwZT1zaWdudXAK
+
+--===============3792391723061390336==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+PHA+dGVzdCByc3Bvc3RhIG9wZW5lcnA8L3A+CjxkaXY+PHA+LS08YnIvPkFkbWluaXN0cmF0b3I8
+L3A+PC9kaXY+Cgo8ZGl2PjxwPjxwPkFjY2VzcyB5b3VyIG1lc3NhZ2VzIGFuZCBwZXJzb25hbCBk
+b2N1bWVudHMgdGhyb3VnaCA8YSBocmVmPSJodHRwOi8vbG9jYWxob3N0OjgwNjk/ZGI9aW5yaW03
+X3Rlc3QjYWN0aW9uPWxvZ2luJnRva2VuPU01U0ZrUFpBNzdCeXJDQVA5QzdCJnR5cGU9c2lnbnVw
+Ij5vdXIgQ3VzdG9tZXIgUG9ydGFsPC9hPjwvcD48L3A+PC9kaXY+Cg==
+
+--===============3792391723061390336==--
+
+--===============1661855002407687635==--
+
+------------=_1417097536-6559-27--
+
+------EE3B140F2C70607BC46FD6DD0EFE6A0D
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIJqwYJKoZIhvcNAQcCoIIJnDCCCZgCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3
+DQEHAaCCB9kwggOFMIICbaADAgECAgINETANBgkqhkiG9w0BAQUFADBoMQswCQYD
+VQQGEwJJVDEQMA4GA1UECgwHRGlnaXRQQTExMC8GA1UECwwoVWZmaWNpbyBpbnRl
+cm9wZXJhYmlsaXRhJyBlIGNvb3BlcmF6aW9uZTEUMBIGA1UEAwwLRGlnaXRQQSBD
+QTEwHhcNMTQwMjEwMTIzMjIxWhcNMTcwMjEwMTIzMjIxWjBOMSQwIgYDVQQDDBtQ
+b3N0YSBDZXJ0aWZpY2F0YSBBUlVCQSBQRUMxGTAXBgNVBAoMEEFSVUJBIFBFQyBT
+LnAuQS4xCzAJBgNVBAYTAklUMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQ
+rsnZEQpkz8I2NTmt2Jj9QJIvGpKG8r6hUX0YaYGSolucoBrbVTl7IZ+LYyo+cXXu
+e3QcHFAMeO3y0RMsCSDimjDOLDPyN4VXdntoqgwHfauZHgUbIwdOP/7pIXOQRdgb
+Zvm9wKUw8f3OIMNOYek87Bv6+STB9ufoNYCkX6DMhwIDAQABo4HWMIHTMAkGA1Ud
+EwQCMAAwTgYDVR0gBEcwRTBDBgYrTBADAQEwOTA3BggrBgEFBQcCARYraHR0cDov
+L3d3dy5kaWdpdHBhLmdvdi5pdC9tYW51YWxpLW9wZXJhdGl2aTApBgNVHREEIjAg
+gR5wb3N0YS1jZXJ0aWZpY2F0YUBwZWMuYXJ1YmEuaXQwCwYDVR0PBAQDAgeAMB8G
+A1UdIwQYMBaAFP4ityTjTyfZBeDMuL3e9I0j/S/ZMB0GA1UdDgQWBBRM+kCtNZga
+awBvvT5WmMwpANppHjANBgkqhkiG9w0BAQUFAAOCAQEARAIko1J7lpwlybgntB12
+HSIb4ojfs6GW23IxBqURpI1HMYejjeObEsObqd4/etCLoTb+i2n7JT7FOi60mXDT
+Lb/+8jzDBYjvMzqq4DAq7wiOhC5LqOPYX4Yk2N1MEBUXFBNhMo4Th3ACfbuSDPf9
+sQqHIljHYlMxX+CuHyJQbhDPJDjJtIFOACc6GmZXrPGfdrR2zDeOzONTHpdNOluW
+2SdfAbHG76+WKQTSLE6N8MrD6SXVrW+EFb3rE6gMiHorwlhJ7ab3oY8gUZHepoqn
+u9foEeNi1pSES53gFtRZ+VZhrCB2VgYF3+STt3gUIk6ljlud6jErVidFQP5q4M9K
+DzCCBEwwggM0oAMCAQICBAcnSKAwDQYJKoZIhvcNAQEFBQAwWjELMAkGA1UEBhMC
+SUUxEjAQBgNVBAoTCUJhbHRpbW9yZTETMBEGA1UECxMKQ3liZXJUcnVzdDEiMCAG
+A1UEAxMZQmFsdGltb3JlIEN5YmVyVHJ1c3QgUm9vdDAeFw0xMTAxMTQxNjI5NTZa
+Fw0xODAxMTQxNjI4NTBaMGgxCzAJBgNVBAYTAklUMRAwDgYDVQQKDAdEaWdpdFBB
+MTEwLwYDVQQLDChVZmZpY2lvIGludGVyb3BlcmFiaWxpdGEnIGUgY29vcGVyYXpp
+b25lMRQwEgYDVQQDDAtEaWdpdFBBIENBMTCCASIwDQYJKoZIhvcNAQEBBQADggEP
+ADCCAQoCggEBAJmfpChKI1RHcuB986uv558PijbQoLI1r36gz8r4WIFqXVAtbeXd
+HV3yo3ov4VdVkgcV99r6926cDm/ftDNTS360CLTD51WKwn2Wzzo62CJL0pnQmYte
+VItGTS0sP37mMo9HleJHiZdE3YVJvVmINvEN8YOny8bKe1HexMuSlfCTvQn8a6sC
+Gln6iSzbAO37vd1SCLlUlhYN6GD0Ges9wcSN4Ih0Qzjn34IH50l7frZU1iXkESXc
+LtcIB4ikjVxVHZK47rqitgdp3O7Rs51s3oAfEANoi4HTAdjWopREXisrvmfHRrwm
+3U5FDmwtVam+2PjsL7FLzpb9t1JWP08cFXcCAwEAAaOCAQowggEGMBIGA1UdEwEB
+/wQIMAYBAf8CAQAwXAYDVR0gBFUwUzBIBgkrBgEEAbE+AQAwOzA5BggrBgEFBQcC
+ARYtaHR0cDovL2N5YmVydHJ1c3Qub21uaXJvb3QuY29tL3JlcG9zaXRvcnkuY2Zt
+MAcGBStMEAMBMA4GA1UdDwEB/wQEAwIBBjAfBgNVHSMEGDAWgBTlnVkwgkdYzKz6
+CFQ2hns6tQRN8DBCBgNVHR8EOzA5MDegNaAzhjFodHRwOi8vY2RwMS5wdWJsaWMt
+dHJ1c3QuY29tL0NSTC9PbW5pcm9vdDIwMjUuY3JsMB0GA1UdDgQWBBT+Irck408n
+2QXgzLi93vSNI/0v2TANBgkqhkiG9w0BAQUFAAOCAQEAJm1E4NZN66e8hw1MTc8L
+efwQzCL8ywqpEmN/5VMO7NVmL4rCya8BaAU+9oMsD61XH8TPPpCzFCb0Paqh0mkO
+tFFtFYVM95GU7xIi2tzcaqTVYMbPn3UnLJF+iqfItcYvcH9k7lT5iMs9BpSOL5PF
+4HUgeAThqNDT/xMNXPvTVXlNH5OWXkqgcy+mngAdapannx1XJ3MFeOwyJjTi+Yoh
++E+ODbVI03aacRtwlKySdSd44FjN4oQjkA7eVzkbIcyPZIHyaid+b5dYQSUPLvTQ
+FbKAoeXS+iyZmN6yo9uVXwkXwJGGRIopRssJVMJujmwqkTheypl7rp4LotOYLoci
+yzGCAZowggGWAgEBMG4waDELMAkGA1UEBhMCSVQxEDAOBgNVBAoMB0RpZ2l0UEEx
+MTAvBgNVBAsMKFVmZmljaW8gaW50ZXJvcGVyYWJpbGl0YScgZSBjb29wZXJhemlv
+bmUxFDASBgNVBAMMC0RpZ2l0UEEgQ0ExAgINETAJBgUrDgMCGgUAoIGDMBgGCSqG
+SIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE0MTEyNzE0MTIx
+NlowIwYJKoZIhvcNAQkEMRYEFG6DE4n35RyUEAcOs8EqWXhHdQ2HMCQGCSqGSIb3
+DQEJDzEXMBUwCgYIKoZIhvcNAwcwBwYFKw4DAgcwDQYJKoZIhvcNAQEBBQAEgYA9
+8xveMrbC9bF6ReNbrKxc+Sk+Qil5BRO8e9Ivm5vh3znOxxfCM4q4Ixj5PaI9RPBH
+ypQe3Q0IP256EuMQu/iqmoGhgjv1XvvWkwP6kHiQhm9+Nm3GIXOcNrwd5bJnVSlN
+mn7Vk3QMoMlF82nbOuBrFUNSH+ajzzhsJDlvzeWETQ==
+
+------EE3B140F2C70607BC46FD6DD0EFE6A0D--
+

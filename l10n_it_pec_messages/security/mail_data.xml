@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+        <record id="base.group_pec" model="res.groups">
+            <field name="name">PEC reader</field>
+            <field name="comment">The user will have access to PEC mails</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+
+</openerp>
