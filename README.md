@@ -38,6 +38,7 @@ addon | version | summary
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_central_journal](l10n_it_central_journal/) | 8.0.2.0.0 | Italian Localization - Account central journal
+[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.0 | Italian Localization - Corrispettivi
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | Documento di Trasporto
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 | Electronic invoices emission
@@ -60,7 +61,6 @@ addon | version | summary
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 (unported) | DDT report using Webkit Library
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
-[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 (unported) | Italian Localisation - Corrispettivi
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
 [l10n_it_sale](l10n_it_sale/) | 0.2 (unported) | Italian Localisation - Sale
