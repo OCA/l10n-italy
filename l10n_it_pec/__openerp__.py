@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Pec Mail',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Localisation/Italy',
     'description': """Italian Localisation module - Pec Mail
 
@@ -40,5 +40,5 @@ Funcionalities:
     'demo': [],
     'test': [],
     'active': False,
-    'installable': True
+    'installable': False
 }

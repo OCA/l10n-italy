@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!--    Statement   -->
+
+        <record id="view_account_vat_period_end_statement" model="ir.ui.view">
+            <field name="name">account.vat.period.end.statement.form</field>
+            <field name="model">account.vat.period.end.statement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Vat statement">
+                    <group>
+                        <field name="journal_id"   widget="selection" select="1"/>
+                        <field name="date"  select="1" />
+                        <!-- TODO check if it's manageable
+                        <button name="open_chart_of_taxes" string="View chart of taxes for selected period" type="object"/>
+                        -->
+                        <field name="move_id"  select="1"/>
+                        <field name="payment_term_id"  select="1"/>
+                        <field name="interest" on_change="onchange_interest(interest)"/>
+                    <field name="interest_percent"
+                        attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Periods">
+                            <button type='action' name="%(action_add_period)d" string="Add period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))]}"></button>
+                            <button type='action' name="%(action_remove_period)d" string="Remove period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))]}"></button>
+                            <field name="period_ids" colspan="4" nolabel="1" readonly="1"/>
+                        </page>
+                        <page string="Accounts">
+                            <group colspan="4" col="3">
+                                <group col="2" colspan="3">
+                                    <field name="debit_vat_account_line_ids" nolabel="1"  >
+                                        <tree editable="bottom" string="Debit Account Lines">
+                                            <field name="tax_code_id" />
+                                            <field name="account_id" />
+                                            <field name="amount" />
+                                       </tree>
+                                        <form>
+                                            <field name="tax_code_id" />
+                                            <field name="account_id" />
+                                            <field name="amount" />
+                                       </form>
+                                    </field>
+                                    <field name="credit_vat_account_line_ids" nolabel="1">
+                                        <tree editable="bottom" string="Credit Account Lines">
+                                            <field name="tax_code_id" />
+                                            <field name="account_id" />
+                                            <field name="amount" />
+                                       </tree>
+                                        <form>
+                                            <field name="tax_code_id" />
+                                            <field name="account_id" />
+                                            <field name="amount" />
+                                       </form>
+                                    </field>
+                                </group>
+                                <separator colspan="3" string="Previous Credits VAT"/>
+                                <field name="previous_credit_vat_account_id" attrs="{'required':[('previous_credit_vat_amount','!=',0)]}"/>
+                                <field name="previous_credit_vat_amount" nolabel="1"/>
+                                <separator colspan="3" string="Previous Debits VAT"/>
+                                <field name="previous_debit_vat_account_id" attrs="{'required':[('previous_debit_vat_amount','!=',0)]}"/>
+                                <field name="previous_debit_vat_amount" nolabel="1"/>
+                                <separator colspan="3" string="Other VAT Credits / Debits or Tax Compensations (Positive amounts for credits, negative for debits)"/>
+                                <field name="generic_vat_account_line_ids" colspan="3" nolabel="1">
+                                    <tree editable="bottom" string="Account Lines">
+                                        <field name="account_id" on_change="on_change_vat_account_id(account_id)"/>
+                                        <field name="amount" />
+                                   </tree>
+                                    <form >
+                                        <field name="account_id" />
+                                        <field name="amount" />
+                                   </form>
+                                </field>
+                            </group>
+                            <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"></button>
+                        </page>
+                        <page string="Tax Authority">
+                            <group>
+                                <field name="authority_partner_id"  select="1" on_change="on_change_partner_id(authority_partner_id)"/>
+                                <field name="authority_vat_amount" />
+                                <field name="authority_vat_account_id"  select="1" />
+                                <field name="residual" />
+                                <separator string="Payments" colspan="4"/>
+                                <field name="payment_ids" nolabel="1" colspan="4"/>
+                            </group>
+                        </page>
+                        <page string="Print Options">
+                            <group colspan="4" string="Page Number">
+                                <field name="fiscal_page_base"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <field name="state"  select="1"/>
+                    <field name="reconciled"/>
+                    <button name="create_move" states="draft" string="Create Move" colspan="2"/>
+                    <button name="set_draft" states="confirmed,paid" string="Set to draft" colspan="2"/>
+               </form>
+            </field>
+        </record>
+        <record id="view_account_vat_period_end_statement_tree" model="ir.ui.view">
+            <field name="name">account.vat.period.end.statement.tree</field>
+            <field name="model">account.vat.period.end.statement</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Vat statement">
+                    <field name="date" />
+                    <field name="journal_id" />
+                    <field name="authority_vat_amount"   />
+                    <field name="state" />
+               </tree>
+            </field>
+        </record>
+
+        <record id="action_account_vat_period_end_statement" model="ir.actions.act_window">
+            <field name="name">Vat statement</field>
+            <field name="res_model">account.vat.period.end.statement</field>
+        </record>
+
+        <menuitem id="menu_account_vat_period_end_statement" action="action_account_vat_period_end_statement"
+            name="VAT statements" parent="account.menu_account_end_year_treatments"/>
+
+<!--    tax code   -->
+
+        <record id="view_tax_code_form" model="ir.ui.view">
+            <field name="name">account.tax.code.form</field>
+            <field name="model">account.tax.code</field>
+            <field name="inherit_id" ref="l10n_it_account.view_tax_code_form_vat"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="vat_statement_type" position="after">
+                    <field name="vat_statement_account_id"/>
+                    <field name="vat_statement_sign"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

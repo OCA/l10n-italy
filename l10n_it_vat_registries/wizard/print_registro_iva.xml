@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_registro_iva" model="ir.ui.view">
+            <field name="name">VAT Registry</field>
+            <field name="model">wizard.registro.iva</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tax Journal" version="7.0">
+                    <group>
+                        <separator string="Periods" colspan="4"/>
+                        <field name="period_ids" colspan="4" nolabel="1" height="250"/>
+                        <separator string="Journals" colspan="4"/>
+                        <field name="tax_registry_id"></field>
+                        <field name="journal_ids" colspan="4" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase','sale_refund','purchase_refund'))]"/>
+                        <separator string="Layout" colspan="4"/>
+                        <field name="type"/>
+                        <field name="tax_sign" />
+                        <field name="only_totals" />
+                        <field name="fiscal_page_base"/>
+                        <newline/>
+                        <field name="message" nolabel="1" colspan="4"/>
+                    </group>
+                    <footer>
+                        <button string="Print" name="print_registro" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_registro_iva" model="ir.actions.act_window">
+            <field name="name">VAT Registry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.registro.iva</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+          id="menu_finance_legal_statement_taxes"
+          name="Taxes"
+          parent="account.menu_finance_legal_statement"/>
+
+        <menuitem
+            name="VAT Registries"
+            parent="menu_finance_legal_statement_taxes"
+            action="action_registro_iva"
+            id="menu_registro_iva"
+            icon="STOCK_PRINT"/>
+
+    </data>
+</openerp>

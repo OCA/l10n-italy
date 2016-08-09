@@ -22,7 +22,7 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Base',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Localisation/Italy',
     'description': """Italian Localisation module - Base version
 
@@ -42,5 +42,5 @@ Funcionalities:
     "demo": [],
     "test": [],
     "active": False,
-    'installable': True
+    'installable': False
 }

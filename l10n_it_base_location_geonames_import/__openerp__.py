@@ -21,7 +21,7 @@
 
 {
     'name': 'Base Location Provinces Import',
-    'version': '0.1',
+    'version': '9.0.0.1.0',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'summary': 'Import base_location entries (provinces) from Geonames',

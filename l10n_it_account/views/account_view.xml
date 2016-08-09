@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="view_tax_code_form_vat" model="ir.ui.view">
+          <field name="name">account.tax.code.form.vat</field>
+          <field name="model">account.tax.code</field>
+          <field name="inherit_id" ref="account.view_tax_code_form"></field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <separator string="Description" position="before">
+                  <group colspan="2" col="2">
+                      <separator string="VAT statement" colspan="4"/>
+                      <field name="vat_statement_type"/>
+                      <field name="is_base"/>
+                  </group>
+              </separator>
+          </field>
+      </record>
+
+      <record id="view_tax_form_nondeductible" model="ir.ui.view">
+          <field name="name">account.tax.form.nondeductible</field>
+          <field name="model">account.tax</field>
+          <field name="inherit_id" ref="account.view_tax_form"></field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <field name="child_depend" position="after">
+                  <field name="nondeductible"/>
+              </field>
+          </field>
+      </record>
+
+      <record id="view_account_form_inverse" model="ir.ui.view">
+          <field name="name">account.form.inverse</field>
+          <field name="model">account.account</field>
+          <field name="inherit_id" ref="account.view_account_form"></field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <field name="user_type" position="after">
+                  <field name="inverse_user_type"/>
+                  <field name="inverse_parent_id"/>
+              </field>
+          </field>
+      </record>
+
+    </data>
+</openerp>

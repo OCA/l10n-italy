@@ -23,7 +23,7 @@
 ##############################################################################
 {
     "name": "IPA Code (IndicePA)",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "category": "Localisation/Italy",
     "author": "KTec S.r.l, Odoo Community Association (OCA)",
     "website": "http://www.ktec.it",
@@ -36,5 +36,5 @@
     "demo": [],
     "test": [],
     "active": False,
-    'installable': True
+    'installable': False
 }
