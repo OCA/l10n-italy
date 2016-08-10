@@ -24,10 +24,10 @@
 Fiscal Year Closing
 """
 
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
 from datetime import datetime
-import netsvc
+from openerp import netsvc
 
 __author__ = "Borja López Soilán (Pexego)"
 
@@ -654,7 +654,8 @@ class fiscal_year_closing(osv.osv):
 
         for fyc in self.browse(cr, uid, ids, context):
             #
-            # Require the L&P, closing, and opening moves to exist (NL&P is optional)
+            # Require the L&P, closing,
+            # and opening moves to exist (NL&P is optional)
             #
             if not fyc.loss_and_profit_move_id:
                 raise osv.except_osv(_("Not all the operations"
@@ -668,96 +669,6 @@ class fiscal_year_closing(osv.osv):
                 raise osv.except_osv(_("Not all the operations"
                                        " have been performed!"),
                                      _("The Opening move is required"))
-
-            ''' needed ?
-
-
-            #
-            # Calculate the moves to check
-            #
-            moves = []
-            moves.append(fyc.loss_and_profit_move_id)
-            if fyc.net_loss_and_profit_move_id:
-                moves.append(fyc.net_loss_and_profit_move_id)
-            moves.append(fyc.closing_move_id)
-            moves.append(fyc.opening_move_id)
-
-            #
-            # Check and reconcile each of the moves
-            #
-            for move in moves:
-                netsvc.Logger().notifyChannel('fyc',
-                    netsvc.LOG_DEBUG, "Checking %s" % move.ref)
-                #
-                # Check if it has been confirmed
-                #
-                if move.state == 'draft':
-                    raise osv.except_osv(_("Some moves are in draft state!"),
-                     _("You have to review and confirm"
-                       " each of the moves before continuing"))
-                #
-                # Check the balance
-                #
-                amount = 0
-                for line in move.line_id:
-                    amount += (line.debit - line.credit)
-                if abs(amount) > 0.5 * 10 ** -int(self.pool.get(
-                    'decimal.precision').precision_get(cr, uid, 'Account')):
-                    raise osv.except_osv(_("Some moves are unbalanced!"),
-                     _("All the moves should be balanced before continuing"))
-
-                #
-                # Reconcile the move
-                #
-                # Note: We will reconcile all the lines,
-                #       even the 'not reconcile' ones,
-                #       to prevent future problems (the user may change the
-                #       reconcile option of an account in the future)
-                #
-                netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG,
-                    "Reconcile %s" % move.ref)
-                tmp_context = context.copy()
-                tmp_context['fy_closing'] = True
-                 # Fiscal year closing = reconcile everything
-                line_ids = [line.id for line in move.line_id]
-                self.pool.get('account.move.line').reconcile(cr,
-                     uid, line_ids, context=tmp_context)
-
-            #
-            # Close the fiscal year and it's periods
-            #
-            # Note: We can not just do a write, cause it would raise a
-            #       "You can not modify/delete a journal"
-            #       " with entries for this period!"
-            #       so we have to do it on SQL level :(
-            #       This is based on the "account.fiscalyear.close.state"
-            #       wizard.
-            #
-            netsvc.Logger().notifyChannel('fyc',
-                    netsvc.LOG_DEBUG, "Closing fiscal year")
-            query = """
-                    UPDATE account_journal_period
-                    SET state = 'done'
-                    WHERE period_id IN
-                    (SELECT id FROM account_period WHERE fiscalyear_id = %d)
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-            query = """
-                    UPDATE account_period
-                    SET state = 'done'
-                    WHERE fiscalyear_id = %d
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-            query = """
-                    UPDATE account_fiscalyear
-                    SET state = 'done'
-                    WHERE id = %d
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-
-
-            '''
-
         # Done
         self.write(cr, uid, ids, {'state': 'done'})
         return True
@@ -786,42 +697,6 @@ class fiscal_year_closing(osv.osv):
             'check_draft_moves': False,
             'check_unbalanced_moves': False,
         }, context=context)
-
-        ''' needed?
-
-
-        #
-        # Open the fiscal year and it's periods
-        #
-        # Note: We can not just do a write, cause it would raise a
-        #       "You can not modify/delete a journal with entries for this period!"
-        #       so we have to do it on SQL level :(
-        #       This is based on the "account.fiscalyear.close.state" wizard.
-        #
-        # TODO check this for 6.1
-
-
-        for fyc in self.browse(cr, uid, ids, context):
-            query = """
-                    UPDATE account_journal_period
-                    SET state = 'draft'
-                    WHERE period_id IN (SELECT id FROM account_period WHERE fiscalyear_id = %d)
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-            query = """
-                    UPDATE account_period
-                    SET state = 'draft'
-                    WHERE fiscalyear_id = %d
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-            query = """
-                    UPDATE account_fiscalyear
-                    SET state = 'draft'
-                    WHERE id = %d
-                    """
-            cr.execute(query % fyc.closing_fiscalyear_id.id)
-
-        '''
 
         for fyc in self.browse(cr, uid, ids, context):
             if fyc.loss_and_profit_move_id:

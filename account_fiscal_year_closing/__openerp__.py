@@ -53,7 +53,6 @@ with a more advanced all-in-one wizard that will let the users:
 It is stateful, saving all the info about the fiscal year closing, so the
 user can cancel and undo the operations easily.
     """,
-    "license": "AGPL-3",
     "depends": [
         "base",
         "account",
@@ -67,5 +66,5 @@ user can cancel and undo the operations easily.
         "hide_account_wizards.xml",
     ],
     "active": False,
-    'installable': False
+    'installable': True
 }
