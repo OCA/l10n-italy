@@ -39,9 +39,17 @@ class DdTFromPickings(models.TransientModel):
                 raise UserError(
                     _("Selected Pickings have different Partner"))
             partner = picking.partner_id
-            values['partner_id'] = partner.id
-            values['partner_invoice_id'] = partner.id
+            values['partner_id'] = partner.commercial_partner_id.id
+            values['partner_invoice_id'] = picking.with_context(
+                {'inv_type': 'out_invoice'}
+                )._get_partner_to_invoice(picking)
             values['partner_shipping_id'] = partner.id
+            # ----- Get partners from order if it exists
+            sale = picking.sale_id or False
+            if sale:
+                values['partner_id'] = sale.partner_id.id
+                values['partner_invoice_id'] = sale.partner_invoice_id.id
+                values['partner_shipping_id'] = sale.partner_shipping_id.id
         parcels = 0
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.parcels:

@@ -1,0 +1,534 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_withholding_tax
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-12 13:04+0000\n"
+"PO-Revision-Date: 2016-05-14 05:28+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_move
+msgid "Account Entry"
+msgstr "Knjigovodski vnos"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,account_move_id:0
+#: field:withholding.tax.wizard.create.statement,move_id:0
+msgid "Account Move"
+msgstr "Knjigovodski premik"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,move_line_id:0
+#: field:withholding.tax.wizard.create.statement,wt_account_move_line_id:0
+msgid "Account Move line"
+msgstr "Postavka knjigovodskega premika"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,account_payable_id:0
+msgid "Account Payable"
+msgstr "Konto obveznosti"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,account_receivable_id:0
+msgid "Account Receivable"
+msgstr "Konto terjatev"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.voucher.line,voucher_line_id:0
+msgid "Account Voucher Line"
+msgstr "Postavka računovodskega vavčerja"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,move_id:0
+msgid "Account move"
+msgstr "Kontni premik"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_voucher
+msgid "Accounting Voucher"
+msgstr "Računovodski vavčer"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,active:0
+msgid "Active"
+msgstr "Aktivno"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,amount:0
+#: field:withholding.tax.voucher.line,amount:0
+msgid "Amount"
+msgstr "Znesek"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,base:0 field:withholding.tax,base:0
+#: field:withholding.tax.statement,base:0
+#: field:withholding.tax.wizard.create.statement,base:0
+msgid "Base"
+msgstr "Osnova"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.rate,base:0
+msgid "Base Coeff."
+msgstr "Koeficient osnove"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,certification:0
+msgid "Certification"
+msgstr "Certifikacija"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Create"
+msgstr "Ustvari"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.wt_wizard_create_statement_action
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Create Withholding Tax Statement"
+msgstr "Ustvari izpisek davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,create_uid:0
+#: field:withholding.tax,create_uid:0 field:withholding.tax.move,create_uid:0
+#: field:withholding.tax.rate,create_uid:0
+#: field:withholding.tax.statement,create_uid:0
+#: field:withholding.tax.voucher.line,create_uid:0
+#: field:withholding.tax.wizard.create.statement,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,create_date:0
+#: field:withholding.tax,create_date:0
+#: field:withholding.tax.move,create_date:0
+#: field:withholding.tax.rate,create_date:0
+#: field:withholding.tax.statement,create_date:0
+#: field:withholding.tax.voucher.line,create_date:0
+#: field:withholding.tax.wizard.create.statement,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+#: field:withholding.tax.statement,date:0
+#: field:withholding.tax.wizard.create.statement,date:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,date:0
+msgid "Date Competence"
+msgstr "Datum pristojnosti"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: field:withholding.tax.move,date_maturity:0
+msgid "Date Maturity"
+msgstr "Datum zrelosti"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.rate,date_start:0
+msgid "Date Start"
+msgstr "Datum začetka"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.rate,date_stop:0
+msgid "Date Stop"
+msgstr "Datum konca"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,display_name:0
+#: field:withholding.tax,display_name:0
+#: field:withholding.tax.move,display_name:0
+#: field:withholding.tax.rate,display_name:0
+#: field:withholding.tax.statement,display_name:0
+#: field:withholding.tax.voucher.line,display_name:0
+#: field:withholding.tax.wizard.create.statement,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Document"
+msgstr "Dokument"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: selection:withholding.tax.move,state:0
+msgid "Due"
+msgstr "Zapadlost"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:111
+#, python-format
+msgid ""
+"Error! You cannot have 2 pricelist versions that                     "
+"overlap!"
+msgstr "Napaka! Ne morete imeti 2 prekrivajočih se verzij cenika!"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Fiskalni položaj"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Group By..."
+msgstr "Združi po..."
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,id:0 field:withholding.tax,id:0
+#: field:withholding.tax.move,id:0 field:withholding.tax.rate,id:0
+#: field:withholding.tax.statement,id:0
+#: field:withholding.tax.voucher.line,id:0
+#: field:withholding.tax.wizard.create.statement,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,invoice_id:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice
+#: field:withholding.tax.statement,invoice_id:0
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_withholding_tax
+msgid "Invoice Withholding Tax Line"
+msgstr "Postavka računa za davčni odtegljaj"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_move_line
+msgid "Journal Items"
+msgstr "Dnevniške postavke"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,__last_update:0
+#: field:withholding.tax,__last_update:0
+#: field:withholding.tax.move,__last_update:0
+#: field:withholding.tax.rate,__last_update:0
+#: field:withholding.tax.statement,__last_update:0
+#: field:withholding.tax.voucher.line,__last_update:0
+#: field:withholding.tax.wizard.create.statement,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,write_uid:0
+#: field:withholding.tax,write_uid:0 field:withholding.tax.move,write_uid:0
+#: field:withholding.tax.rate,write_uid:0
+#: field:withholding.tax.statement,write_uid:0
+#: field:withholding.tax.voucher.line,write_uid:0
+#: field:withholding.tax.wizard.create.statement,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,write_date:0
+#: field:withholding.tax,write_date:0 field:withholding.tax.move,write_date:0
+#: field:withholding.tax.rate,write_date:0
+#: field:withholding.tax.statement,write_date:0
+#: field:withholding.tax.voucher.line,write_date:0
+#: field:withholding.tax.wizard.create.statement,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,move_ids:0
+msgid "Moves"
+msgstr "Premiki"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,name:0
+msgid "Name"
+msgstr "Naziv"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,amount_net_pay:0
+msgid "Net To Pay"
+msgstr "Neto za plačilo"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_form
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: selection:withholding.tax.move,state:0
+msgid "Paid"
+msgstr "Plačano"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,partner_id:0
+#: field:withholding.tax.statement,partner_id:0
+#: field:withholding.tax.wizard.create.statement,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Partners"
+msgstr "Partnerji"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,payment_term:0
+msgid "Payment Terms"
+msgstr "Plačilni pogoji"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_form
+#: field:withholding.tax,rate_ids:0
+msgid "Rates"
+msgstr "Stopnje"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_form
+msgid "Set to Draft"
+msgstr "Nastavi kot osnutek"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,statement_id:0
+msgid "Statement"
+msgstr "Izpisek"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,state:0
+msgid "Status"
+msgstr "Status"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,tax:0
+#: field:withholding.tax.statement,tax:0
+#: field:withholding.tax.wizard.create.statement,tax:0
+msgid "Tax"
+msgstr "Davek"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,tax:0 field:withholding.tax.rate,tax:0
+msgid "Tax %"
+msgstr "Davek %"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,comment:0 field:withholding.tax.rate,comment:0
+msgid "Text"
+msgstr "Besedilo"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:28
+#, python-format
+msgid "This Move is already present in the WT"
+msgstr "Ta premik je že prisoten med davčnimi odtegljaji"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_tree
+msgid "Tot"
+msgstr "Skupaj"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Amount"
+msgstr "Skupni znesek"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Amount Paid"
+msgstr "Skupni znesek plačila"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Base"
+msgstr "Skupaj osnova"
+
+#. module: l10n_it_withholding_tax
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_receipt_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_supplier_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_vendor_receipt_form
+msgid "Total Amount"
+msgstr "Skupni znesek"
+
+#. module: l10n_it_withholding_tax
+#: help:withholding.tax.move,move_line_id:0
+msgid "Used from trace WT from other parts(BS)"
+msgstr "Uporabljeno za sledenje davčnih odtegljajev iz drugih delov(BS)"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_voucher_line
+msgid "Voucher Lines"
+msgstr "Postavke vavčerja"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,wt_voucher_line_id:0
+msgid "WT Account Voucher Line"
+msgstr "Postavka vavčerja konta davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax_move
+msgid "WT Moves"
+msgstr "Premiki davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax_statement
+msgid "WT Statements"
+msgstr "Izpiski davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,amount:0
+#: field:withholding.tax.wizard.create.statement,amount:0
+msgid "WT amount"
+msgstr "Znesek davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,amount_paid:0
+msgid "WT amount paid"
+msgstr "Znesek plačila davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:21
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:27
+#, python-format
+msgid "Warning!"
+msgstr "Opozorilo!"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:232
+#, python-format
+msgid ""
+"Warning! You cannot delet move linked to voucher.You                     "
+"must before delete the voucher."
+msgstr "Opozorilo! Postavk povezanih z vavčerjem ne morete brisati. Najprej je potrebno izbrisati vavčer."
+
+#. module: l10n_it_withholding_tax
+#: view:account.fiscal.position:l10n_it_withholding_tax.view_withholding_tax_fiscal_position_form
+#: field:account.fiscal.position,withholding_tax_ids:0
+#: field:account.invoice,withholding_tax:0
+#: field:account.invoice,withholding_tax_line:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax
+#: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_form
+#: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_tree
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: field:withholding.tax.move,withholding_tax_id:0
+#: field:withholding.tax.rate,withholding_tax_id:0
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+#: field:withholding.tax.statement,withholding_tax_id:0
+#: field:withholding.tax.voucher.line,withholding_tax_id:0
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+#: field:withholding.tax.wizard.create.statement,withholding_tax_id:0
+msgid "Withholding Tax"
+msgstr "Davčni odtegljaj"
+
+#. module: l10n_it_withholding_tax
+#: field:account.move.line,withholding_tax_amount:0
+#: field:account.voucher.line,amount_withholding_tax:0
+msgid "Withholding Tax Amount"
+msgstr "Znesek davčnega odtegljaja"
+
+#. module: l10n_it_withholding_tax
+#: field:account.voucher.line,amount_residual_withholding_tax:0
+msgid "Withholding Tax Amount Residual"
+msgstr "Preostali znesek davčnega odtegljaja"
+
+#. module: l10n_it_withholding_tax
+#: field:account.voucher.line,withholding_tax_line_ids:0
+msgid "Withholding Tax Lines"
+msgstr "Postavke davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_move
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_form
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_tree
+msgid "Withholding Tax Move"
+msgstr "Premiki davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: field:account.voucher.line,amount_original_withholding_tax:0
+msgid "Withholding Tax Original"
+msgstr "Izvorni davčni odtegljaj"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_rate
+msgid "Withholding Tax Rates"
+msgstr "Stopnje davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:83
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_statement
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+#, python-format
+msgid "Withholding Tax Statement"
+msgstr "Izpisek davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_voucher_line
+msgid "Withholding Tax Voucher Line"
+msgstr "Postavka vavčerja davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_form
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Withholding Tax statement"
+msgstr "Izpisek davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,withholding_tax_amount:0
+#: field:account.invoice.withholding.tax,withholding_tax_id:0
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.of_wt_main
+msgid "Withholding tax"
+msgstr "Davčni odtegljaj"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax
+msgid "Withhoulding Tax"
+msgstr "Davčni odtegljaj"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_move
+msgid "Withhoulding Tax Move"
+msgstr "Premiki davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_statement
+msgid "Withhoulding Tax Statement"
+msgstr "Izpisek davčnih odtegljajev"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:22
+#, python-format
+msgid "You can choose Only ONE move."
+msgstr "Izberete lahko le en premik."
+
+#. module: l10n_it_withholding_tax
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_receipt_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_supplier_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_vendor_receipt_form
+msgid ""
+"onchange_amount(amount, amount_unreconciled, "
+"amount_residual_withholding_tax, context)"
+msgstr "onchange_amount(amount, amount_unreconciled, amount_residual_withholding_tax, context)"
+
+#. module: l10n_it_withholding_tax
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_receipt_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_supplier_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_vendor_receipt_form
+msgid ""
+"onchange_reconcile(reconcile, amount, amount_unreconciled, "
+"amount_residual_withholding_tax, context)"
+msgstr "onchange_reconcile(reconcile, amount, amount_unreconciled, amount_residual_withholding_tax, context)"

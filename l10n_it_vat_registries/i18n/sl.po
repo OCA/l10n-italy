@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 17:00+0000\n"
-"PO-Revision-Date: 2016-03-14 05:56+0000\n"
+"POT-Creation-Date: 2016-04-30 20:28+0000\n"
+"PO-Revision-Date: 2016-05-01 14:32+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -98,6 +98,13 @@ msgid "Detraibile"
 msgstr "Odbitni"
 
 #. module: l10n_it_vat_registries
+#: field:account.tax.registry,display_name:0
+#: field:report.l10n_it_vat_registries.report_registro_iva,display_name:0
+#: field:wizard.registro.iva,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_it_vat_registries
 #: field:account.tax.code,exclude_from_registries:0
 msgid "Exclude from VAT registries"
 msgstr "Izključi iz DDV registrov"
@@ -141,6 +148,13 @@ msgstr "Dnevnik"
 #: field:wizard.registro.iva,journal_ids:0
 msgid "Journals"
 msgstr "Dnevniki"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,__last_update:0
+#: field:report.l10n_it_vat_registries.report_registro_iva,__last_update:0
+#: field:wizard.registro.iva,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,write_uid:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-09 12:56+0000\n"
-"PO-Revision-Date: 2015-10-05 10:07+0000\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 09:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,13 @@ msgid "Detraibile"
 msgstr "Detraibile"
 
 #. module: l10n_it_vat_registries
+#: field:account.tax.registry,display_name:0
+#: field:report.l10n_it_vat_registries.report_registro_iva,display_name:0
+#: field:wizard.registro.iva,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_it_vat_registries
 #: field:account.tax.code,exclude_from_registries:0
 msgid "Exclude from VAT registries"
 msgstr "Exclude from VAT registries"
@@ -140,6 +147,13 @@ msgstr "Journal"
 #: field:wizard.registro.iva,journal_ids:0
 msgid "Journals"
 msgstr "Journals"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,__last_update:0
+#: field:report.l10n_it_vat_registries.report_registro_iva,__last_update:0
+#: field:wizard.registro.iva,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,write_uid:0

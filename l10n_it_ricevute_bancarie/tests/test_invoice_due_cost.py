@@ -53,7 +53,13 @@ class TestInvoiceDueCost(TransactionCase):
         })
 
     def _create_invoice(self):
+        # ----- Set invoice date to recent date in the system
+        # ----- This solves problems with account_invoice_sequential_dates
+        recent_date = self.env['account.invoice'].search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
         return self.env['account.invoice'].create({
+            'date_invoice': recent_date,
             'type': 'out_invoice',
             'journal_id': self.journalrec.id,
             'partner_id': self.partner.id,
