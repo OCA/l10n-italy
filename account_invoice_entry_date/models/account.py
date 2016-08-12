@@ -79,6 +79,11 @@ class AccountInvoice(models.Model):
                         ])
                 if period_ids:
                     period_id = period_ids[0]
+                else:
+                    raise Warning(
+                        _("Can't find a non special period for %s - %s (%s)")
+                        % (date_start, date_stop, inv.company_id.name)
+                    )
 
                 self.write(
                     cr, uid, [inv.id], {
