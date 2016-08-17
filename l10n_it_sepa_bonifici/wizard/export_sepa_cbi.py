@@ -91,21 +91,6 @@ class BankingExportSepaCbiWizard(models.TransientModel):
     def generate_creditor_scheme_identification(
             self, parent_node, identification, identification_label,
             eval_ctx, scheme_name_proprietary, gen_args):
-        #
-        # CBI logic modified for not try to add other info
-        #
-        '''
-        csi_id = etree.SubElement(parent_node, 'Id')
-        csi_privateid = etree.SubElement(csi_id, 'PrvtId')
-        csi_other = etree.SubElement(csi_privateid, 'Othr')
-        csi_other_id = etree.SubElement(csi_other, 'Id')
-        csi_other_id.text = self._prepare_field(
-            identification_label, identification, eval_ctx, gen_args=gen_args)
-        csi_scheme_name = etree.SubElement(csi_other, 'SchmeNm')
-        csi_scheme_name_proprietary = etree.SubElement(
-            csi_scheme_name, 'Prtry')
-        csi_scheme_name_proprietary.text = scheme_name_proprietary
-        '''
         return True
 
     @api.multi
@@ -186,9 +171,6 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                         'priority': priority,
                         'requested_date': requested_date,
                     }, gen_args)
-            # >>>>>>>>>
-            # print(etree.tostring(xml_root, pretty_print=True))
-            # >>>>>>>>>
             # ... for CBI structure
             #     Add pain to payment info tag (CBI required)
             PmtInf_node = xml_root.xpath('//PmtInf')[0]
@@ -301,19 +283,6 @@ class BankingExportSepaCbiWizard(models.TransientModel):
             nb_of_transactions_1_6.text = str(transactions_count_1_6)
             control_sum_1_7.text = '%.2f' % amount_control_sum_1_7
 
-        # CBI required
-        # >> v8
-        # Remove the duplicate node  LclInstrm in payment
-        # CtrlSum_node = xml_root.xpath('//PmtInf//LclInstrm')[0] #CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node)
-        # You can remove node only from parent
-        # Remove the duplicate node  CtrlSum in payment
-        # CtrlSum_node = xml_root.xpath('//PmtInf//SeqTp')[0] #CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node)
-        # You can remove node only from parent
-        # >>>>>>>>>
-        # print(etree.tostring(xml_root, pretty_print=True))
-        # >>>>>>>>>
         return self.finalize_sepa_file_creation(
             xml_root, total_amount, transactions_count_1_6, gen_args)
 
