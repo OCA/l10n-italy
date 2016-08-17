@@ -96,6 +96,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
     @api.multi
     def create_sepa(self):
         """Creates the SEPA Credit Transfer file. That's the important code!"""
+        self.ensure_one()
         sepa_export = self[0]
         pain_flavor = self.payment_order_ids[0].mode.type.code
         convert_to_ascii = \
