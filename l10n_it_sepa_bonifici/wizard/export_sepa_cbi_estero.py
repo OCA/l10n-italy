@@ -26,7 +26,7 @@ from openerp.exceptions import Warning
 from openerp import workflow
 from lxml import etree
 import logging
-import base64
+
 
 logger = logging.getLogger(__name__)
 
@@ -78,33 +78,34 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
 
     @api.model
     def generate_party_agent(self, parent_node, party_type, party_type_label,
-            order, party_name, iban, bic, eval_ctx, gen_args, context=None):
+                             order, party_name, iban, bic, eval_ctx, gen_args,
+                             context=None):
         
         # CBI logic modified for add ABI of debitor
         # ABI and BIC code
         if party_type == 'Dbtr':
-            company_bank = gen_args['sepa_export'].payment_order_ids[0].mode.\
-                                                                    bank_id
-            partner_debitor = gen_args['sepa_export'].payment_order_ids[0]\
-                .mode.bank_id.partner_id
+            company_bank =\
+                gen_args['sepa_export'].payment_order_ids[0].mode.bank_id
+            partner_debitor =\
+                gen_args['sepa_export'].payment_order_ids[0].mode.bank_id.partner_id
             abi_code = False
             if 'bank_abi' in company_bank:
                 abi_code = company_bank.bank_abi
             # ... try from iban
             if not abi_code and company_bank.state == 'iban':
-                iban = company_bank.acc_number.replace(" ","")
+                iban = company_bank.acc_number.replace(" ", "")
                 abi_code = iban[5:10]
             if not abi_code:
                 raise Warning(_("Error Bank Code ABI"))
             bic_code = False
             if company_bank.bank_bic:
-                bic_code = company_bank.bank_bic 
+                bic_code = company_bank.bank_bic
             if not bic_code:
                 raise Warning(_("Error Bank Code BIC"))
             party_agent = etree.SubElement(parent_node, '%sAgt' % party_type)
             party_agent_institution = etree.SubElement(
                 party_agent, 'FinInstnId')
-            # BIC 
+            # BIC
             party_agent_institution_BIC = etree.SubElement(
                 party_agent_institution, 'BIC')
             party_agent_institution_BIC.text = bic_code
@@ -112,24 +113,24 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
             party_agent_institution_sys = etree.SubElement(
                 party_agent_institution, 'ClrSysMmbId')
             party_agent_institution_sys_abi = etree.SubElement(
-                    party_agent_institution_sys, 'MmbId')
+                party_agent_institution_sys, 'MmbId')
             party_agent_institution_sys_abi.text = abi_code
             # Complete Debitor data
             debitor_node = parent_node.xpath('//Dbtr')[0]
             debitor_address_node = etree.SubElement(debitor_node, 'PstlAdr')
-            debitor_country_node = etree.SubElement(debitor_address_node, 
+            debitor_country_node = etree.SubElement(debitor_address_node,
                                                     'Ctry')
             debitor_country_node.text = iban[:2]
-            debitor_address_line_node = etree.SubElement(debitor_address_node, 
+            debitor_address_line_node = etree.SubElement(debitor_address_node,
                                                          'AdrLine')
             if partner_debitor:
                 address = '%s %s %s' % (
                     partner_debitor.street or '',
                     partner_debitor.city or '',
-                    partner_debitor.country_id and 
+                    partner_debitor.country_id and
                     partner_debitor.country_id.name or '',)
             debitor_address_line_node.text = address
-       
+
         return True
 
     @api.model
@@ -178,27 +179,28 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
             'payment_method': 'TRF',
             'file_prefix': 'sct_estero_',
             'pain_flavor': pain_flavor,
-            'pain_xsd_file': 'l10n_it_sepa_bonifici/data/%s.xsd' \
-                % pain_flavor,
+            'pain_xsd_file': 'l10n_it_sepa_bonifici/data/%s.xsd' % pain_flavor,
             'sepa_export': sepa_export,
         }
         pain_ns = {
             'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
             None: 'urn:CBI:xsd:%s' % pain_flavor,
         }
-        xml_root = etree.Element('CBIBdyCrossBorderPaymentRequest', nsmap=pain_ns)
+        xml_root = etree.Element('CBIBdyCrossBorderPaymentRequest',
+                                 nsmap=pain_ns)
         pain_root = etree.SubElement(xml_root, root_xml_tag)
         # Add tag x cbi
-        pain_root = etree.SubElement(pain_root, 'CBICrossBorderPaymentRequestLogMsg')
+        pain_root = etree.SubElement(pain_root,
+                                     'CBICrossBorderPaymentRequestLogMsg')
         pain_03_to_05 = \
             ['CBIBdyCrossBorderPaymentRequest.00.01.01']
         # A. Group header
         group_header_1_0, nb_of_transactions_1_6, control_sum_1_7 = \
             self.generate_group_header_block(pain_root, gen_args)
         # ... Add pain to group header tag (CBI required)
-        GrpHdr_node = xml_root.xpath('//GrpHdr')[0] #CBI required
+        GrpHdr_node = xml_root.xpath('//GrpHdr')[0]  # CBI required
         GrpHdr_node.attrib['xmlns'] = 'urn:CBI:xsd:%s' % (xsd_ref,)
-        
+
         transactions_count_1_6 = 0
         total_amount = 0.0
         amount_control_sum_1_7 = 0.0
@@ -233,14 +235,14 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                     }, gen_args)
             # ... for CBI structure
             #     Remove priority
-            InstrPrty_node = xml_root.xpath('//PmtInf//InstrPrty')[0] 
+            InstrPrty_node = xml_root.xpath('//PmtInf//InstrPrty')[0]
             InstrPrty_node.getparent().remove(InstrPrty_node)
-            #     Add pain to payment info tag (CBI required) 
+            #     Add pain to payment info tag (CBI required)
             PmtInf_node = xml_root.xpath('//PmtInf')[0]
             PmtInf_node.attrib['xmlns'] = 'urn:CBI:xsd:%s' % (xsd_ref,)
             #     Remove the duplicate node  NbOfTxs in payment
             NbOfTxs_node = xml_root.xpath('//PmtInf//NbOfTxs')[0] 
-            NbOfTxs_node.getparent().remove(NbOfTxs_node) 
+            NbOfTxs_node.getparent().remove(NbOfTxs_node)
             # Remove the duplicate node  CtrlSum in payment
             CtrlSum_node = xml_root.xpath('//PmtInf//CtrlSum')[0]
             CtrlSum_node.getparent().remove(CtrlSum_node)
@@ -271,7 +273,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                     payment_identification_2_28_PmtTpInf, 'CtgyPurp')
                 payment_identification_2_28_CtgyPurp_Cd = etree.SubElement(
                     payment_identification_2_28_CtgyPurp, 'Cd')
-                payment_identification_2_28_CtgyPurp_Cd.text = 'SUPP' # generico
+                payment_identification_2_28_CtgyPurp_Cd.text = 'SUPP'  # gen.
 
                 # CBI tag InstrId
                 end2end_identification_2_30_InstrId = etree.SubElement(
@@ -296,7 +298,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                 if not line.bank_id:
                     raise Warning(
                         _("Missing Bank Account on invoice '%s' (payment "
-                            "order line reference '%s')") % 
+                            "order line reference '%s')") %
                                   (line.ml_inv_ref.number, line.name))
                 self.generate_party_block(
                     credit_transfer_transaction_info_2_27, 'Cdtr', 'C',
@@ -306,7 +308,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                 partner_creditor = line.partner_id
                 creditor_node = credit_transfer_transaction_info_2_27\
                     .xpath('//Cdtr')[transactions_count_1_6-1]
-                creditor_address_node = etree.SubElement(creditor_node, 
+                creditor_address_node = etree.SubElement(creditor_node,
                                                          'PstlAdr')
                 creditor_address_country_node = etree.SubElement(
                     creditor_address_node, 'Ctry')
@@ -318,16 +320,16 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                 if not iso_country:
                     raise Warning(
                         _("Missing Country for Partner '%s' (payment "
-                            "order line reference '%s')") % 
+                            "order line reference '%s')") %
                                   (line.partner_id.name, line.name))
                 creditor_address_country_node.text = iso_country
-                creditor_address_line_node = etree.SubElement(creditor_address_node, 
-                                                              'AdrLine')
+                creditor_address_line_node = etree.SubElement(
+                    creditor_address_node, 'AdrLine')
                 if partner_creditor:
                     address = '%s %s %s' % (
                         partner_creditor.street or '',
                         partner_creditor.city or '',
-                        partner_creditor.country_id and 
+                        partner_creditor.country_id and
                         partner_creditor.country_id.name or '',)
                 creditor_address_line_node.text = address[:70]
 
@@ -351,15 +353,15 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
         # CtrlSum_node.getparent().remove(CtrlSum_node) # You can \
         # remove node only from parent
         # Remove the duplicate node  CtrlSum in payment
-        # CtrlSum_node = xml_root.xpath('//PmtInf//SeqTp')[0] #CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node) # You can remove 
+        # CtrlSum_node = xml_root.xpath('//PmtInf//SeqTp')[0] >> CBI required
+        # CtrlSum_node.getparent().remove(CtrlSum_node) >> You can remove 
         # node only from parent
         # >>>>>>>>>
         print(etree.tostring(xml_root, pretty_print=True))
         # >>>>>>>>>
         return self.finalize_sepa_file_creation(
             xml_root, total_amount, transactions_count_1_6, gen_args)
-        
+
     @api.multi
     def save_sepa(self):
         """Save the SEPA file: send the done signal to all payment

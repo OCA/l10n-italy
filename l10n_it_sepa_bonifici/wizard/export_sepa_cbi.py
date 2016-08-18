@@ -65,8 +65,8 @@ class BankingExportSepaCbiWizard(models.TransientModel):
         # CBI logic modified for add ABI of debitor
         # ABI code from IBAN
         if party_type == 'Dbtr':
-            company_bank = gen_args['sepa_export'].payment_order_ids[0].mode.\
-                                                                    bank_id
+            company_bank =\
+                gen_args['sepa_export'].payment_order_ids[0].mode.bank_id
             abi_code = False
             if 'bank_abi' in company_bank:
                 abi_code = company_bank.bank_abi
@@ -246,7 +246,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 partner_creditor = line.partner_id
                 creditor_node = credit_transfer_transaction_info_2_27\
                     .xpath('//Cdtr')[transactions_count_1_6-1]
-                creditor_address_node = etree.SubElement(creditor_node, 
+                creditor_address_node = etree.SubElement(creditor_node,
                                                          'PstlAdr')
                 creditor_address_country_node = etree.SubElement(
                     creditor_address_node, 'Ctry')
@@ -258,16 +258,16 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 if not iso_country:
                     raise Warning(
                         _("Missing Country for Partner '%s' (payment "
-                            "order line reference '%s')") % 
+                            "order line reference '%s')") %
                                   (line.partner_id.name, line.name))
                 creditor_address_country_node.text = iso_country
-                creditor_address_line_node = etree.SubElement(creditor_address_node, 
-                                                              'AdrLine')
+                creditor_address_line_node = etree.SubElement(
+                    creditor_address_node, 'AdrLine')
                 if partner_creditor:
                     address = '%s %s %s' % (
                         partner_creditor.street or '',
                         partner_creditor.city or '',
-                        partner_creditor.country_id and 
+                        partner_creditor.country_id and
                         partner_creditor.country_id.name or '',)
                 creditor_address_line_node.text = address[:70]
 
