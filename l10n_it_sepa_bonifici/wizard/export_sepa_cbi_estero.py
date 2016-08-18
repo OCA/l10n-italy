@@ -352,7 +352,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
         # Remove the duplicate node  LclInstrm in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//LclInstrm')[0] >CBI required
         # CtrlSum_node.getparent().remove(CtrlSum_node) You can
-        # remove node only from parent
+        # remove node only from parent
         # Remove the duplicate node  CtrlSum in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//SeqTp')[0] >> CBI required
         # CtrlSum_node.getparent().remove(CtrlSum_node) >> You can remove
