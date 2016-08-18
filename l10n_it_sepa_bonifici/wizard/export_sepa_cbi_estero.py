@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    SEPA Direct Debit module for Odoo
@@ -22,7 +22,7 @@
 
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 from openerp import workflow
 from lxml import etree
 import logging
@@ -97,12 +97,12 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                 iban = company_bank.acc_number.replace(" ", "")
                 abi_code = iban[5:10]
             if not abi_code:
-                raise Warning(_("Error Bank Code ABI"))
+                raise UserError(_("Error Bank Code ABI"))
             bic_code = False
             if company_bank.bank_bic:
                 bic_code = company_bank.bank_bic
             if not bic_code:
-                raise Warning(_("Error Bank Code BIC"))
+                raise UserError(_("Error Bank Code BIC"))
             party_agent = etree.SubElement(parent_node, '%sAgt' % party_type)
             party_agent_institution = etree.SubElement(
                 party_agent, 'FinInstnId')
@@ -168,7 +168,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
             root_xml_tag = 'CBIEnvelCBICrossBorderPaymentRequest'
             xsd_ref = 'CBICrossBorderPaymentRequestLogMsg.00.01.01'
         else:
-            raise Warning(
+            raise UserError(
                 _("Payment Type Code '%s' is not supported. The only "
                   "Payment Type Code supported for SEPA Credit Transfers "
                   "'CBIBdyCrossBorderPaymentRequest.00.01.01'. "
@@ -297,7 +297,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                 amount_control_sum_1_7 += line.amount_currency
                 amount_control_sum_2_5 += line.amount_currency
                 if not line.bank_id:
-                    raise Warning(
+                    raise UserError(
                         _("Missing Bank Account on invoice '%s' (payment "
                             "order line reference '%s')") %
                         (line.ml_inv_ref.number, line.name))
@@ -319,7 +319,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                 elif partner_creditor.country_id:
                     iso_country = partner_creditor.country_id.code
                 if not iso_country:
-                    raise Warning(
+                    raise UserError(
                         _("Missing Country for Partner '%s' (payment "
                             "order line reference '%s')") %
                         (line.partner_id.name, line.name))

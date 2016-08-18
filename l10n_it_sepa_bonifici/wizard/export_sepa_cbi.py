@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 from openerp import workflow
 from lxml import etree
 import logging
@@ -75,7 +75,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 iban = company_bank.acc_number.replace(" ", "")
                 abi_code = iban[5:10]
             if not abi_code:
-                raise Warning(
+                raise UserError(
                     _("Error Bank Code ABI"))
             party_agent = etree.SubElement(parent_node, '%sAgt' % party_type)
             party_agent_institution = etree.SubElement(
@@ -107,7 +107,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
             root_xml_tag = 'CBIEnvelPaymentRequest'
             xsd_ref = 'CBIPaymentRequest.00.04.00'
         else:
-            raise Warning(
+            raise UserError(
                 _("Payment Type Code '%s' is not supported. The only "
                   "Payment Type Code supported for SEPA Credit Transfers "
                   "'CBIBdyPaymentRequest.00.04.00'. "
@@ -234,7 +234,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 amount_control_sum_2_5 += line.amount_currency
 
                 if not line.bank_id:
-                    raise Warning(
+                    raise UserError(
                         _("Missing Bank Account on invoice '%s' (payment "
                           "order line reference '%s')")
                         % (line.ml_inv_ref.number, line.name))
@@ -256,7 +256,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 elif partner_creditor.country_id:
                     iso_country = partner_creditor.country_id.code
                 if not iso_country:
-                    raise Warning(
+                    raise UserError(
                         _("Missing Country for Partner '%s' (payment "
                             "order line reference '%s')") %
                         (line.partner_id.name, line.name))

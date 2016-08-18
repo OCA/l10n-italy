@@ -9,7 +9,7 @@
         <form string="SEPA File Generation" version="7.0">
             <field name="state" invisible="True"/>
             <group states="create">
-            	<field name="charge_bearer" />
+                <field name="charge_bearer" />
             </group>
             <group states="finish">
                 <field name="total_amount" />
