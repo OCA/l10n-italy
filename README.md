@@ -43,7 +43,6 @@ addon | version | summary
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 0.1 (unported) | Check invoice date consistency
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.2.0.0 (unported) | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
-[l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 (unported) | DDT report using Webkit Library
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 (unported) | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 (unported) | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 (unported) | Italian Localisation - Base
@@ -58,7 +57,6 @@ addon | version | summary
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 (unported) | Pec Mail
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 (unported) | Ricevute Bancarie
-[l10n_it_sale](l10n_it_sale/) | 0.2 (unported) | Italian Localisation - Sale
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 (unported) | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 (unported) | Italian Localization - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 (unported) | Italian Localisation - Withholding tax
