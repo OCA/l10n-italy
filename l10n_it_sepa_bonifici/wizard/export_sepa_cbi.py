@@ -259,7 +259,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                     raise Warning(
                         _("Missing Country for Partner '%s' (payment "
                             "order line reference '%s')") %
-                            (line.partner_id.name, line.name))
+                        (line.partner_id.name, line.name))
                 creditor_address_country_node.text = iso_country
                 creditor_address_line_node = etree.SubElement(
                     creditor_address_node, 'AdrLine')

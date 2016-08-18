@@ -300,7 +300,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                     raise Warning(
                         _("Missing Bank Account on invoice '%s' (payment "
                             "order line reference '%s')") %
-                            (line.ml_inv_ref.number, line.name))
+                        (line.ml_inv_ref.number, line.name))
                 self.generate_party_block(
                     credit_transfer_transaction_info_2_27, 'Cdtr', 'C',
                     'line.partner_id.name', 'line.bank_id.acc_number',
@@ -322,7 +322,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                     raise Warning(
                         _("Missing Country for Partner '%s' (payment "
                             "order line reference '%s')") %
-                            (line.partner_id.name, line.name))
+                        (line.partner_id.name, line.name))
                 creditor_address_country_node.text = iso_country
                 creditor_address_line_node = etree.SubElement(
                     creditor_address_node, 'AdrLine')
@@ -351,14 +351,14 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
         # >> v8
         # Remove the duplicate node  LclInstrm in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//LclInstrm')[0] #CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node) # You can 
+        # CtrlSum_node.getparent().remove(CtrlSum_node) You can
         # remove node only from parent
         # Remove the duplicate node  CtrlSum in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//SeqTp')[0] >> CBI required
         # CtrlSum_node.getparent().remove(CtrlSum_node) >> You can remove
         # node only from parent
         # >>>>>>>>>
-        print(etree.tostring(xml_root, pretty_print=True))
+        # print(etree.tostring(xml_root, pretty_print=True))
         # >>>>>>>>>
         return self.finalize_sepa_file_creation(
             xml_root, total_amount, transactions_count_1_6, gen_args)
