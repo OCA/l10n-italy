@@ -83,7 +83,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
             party_agent_institution_sys = etree.SubElement(
                 party_agent_institution, 'ClrSysMmbId')
             party_agent_institution_sys_abi = etree.SubElement(
-                    party_agent_institution_sys, 'MmbId')
+                party_agent_institution_sys, 'MmbId')
             party_agent_institution_sys_abi.text = abi_code
         return True
 
@@ -259,7 +259,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                     raise Warning(
                         _("Missing Country for Partner '%s' (payment "
                             "order line reference '%s')") %
-                                  (line.partner_id.name, line.name))
+                            (line.partner_id.name, line.name))
                 creditor_address_country_node.text = iso_country
                 creditor_address_line_node = etree.SubElement(
                     creditor_address_node, 'AdrLine')

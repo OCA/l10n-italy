@@ -80,14 +80,15 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
     def generate_party_agent(self, parent_node, party_type, party_type_label,
                              order, party_name, iban, bic, eval_ctx, gen_args,
                              context=None):
-        
+
         # CBI logic modified for add ABI of debitor
         # ABI and BIC code
         if party_type == 'Dbtr':
             company_bank =\
                 gen_args['sepa_export'].payment_order_ids[0].mode.bank_id
             partner_debitor =\
-                gen_args['sepa_export'].payment_order_ids[0].mode.bank_id.partner_id
+                gen_args['sepa_export'].payment_order_ids[0].mode.bank_id.\
+                partner_id
             abi_code = False
             if 'bank_abi' in company_bank:
                 abi_code = company_bank.bank_abi
@@ -241,7 +242,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
             PmtInf_node = xml_root.xpath('//PmtInf')[0]
             PmtInf_node.attrib['xmlns'] = 'urn:CBI:xsd:%s' % (xsd_ref,)
             #     Remove the duplicate node  NbOfTxs in payment
-            NbOfTxs_node = xml_root.xpath('//PmtInf//NbOfTxs')[0] 
+            NbOfTxs_node = xml_root.xpath('//PmtInf//NbOfTxs')[0]
             NbOfTxs_node.getparent().remove(NbOfTxs_node)
             # Remove the duplicate node  CtrlSum in payment
             CtrlSum_node = xml_root.xpath('//PmtInf//CtrlSum')[0]
@@ -299,7 +300,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                     raise Warning(
                         _("Missing Bank Account on invoice '%s' (payment "
                             "order line reference '%s')") %
-                                  (line.ml_inv_ref.number, line.name))
+                            (line.ml_inv_ref.number, line.name))
                 self.generate_party_block(
                     credit_transfer_transaction_info_2_27, 'Cdtr', 'C',
                     'line.partner_id.name', 'line.bank_id.acc_number',
@@ -321,7 +322,7 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
                     raise Warning(
                         _("Missing Country for Partner '%s' (payment "
                             "order line reference '%s')") %
-                                  (line.partner_id.name, line.name))
+                            (line.partner_id.name, line.name))
                 creditor_address_country_node.text = iso_country
                 creditor_address_line_node = etree.SubElement(
                     creditor_address_node, 'AdrLine')
@@ -350,11 +351,11 @@ class BankingExportSepaCbiEsteroWizard(models.TransientModel):
         # >> v8
         # Remove the duplicate node  LclInstrm in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//LclInstrm')[0] #CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node) # You can \
+        # CtrlSum_node.getparent().remove(CtrlSum_node) # You can 
         # remove node only from parent
         # Remove the duplicate node  CtrlSum in payment
         # CtrlSum_node = xml_root.xpath('//PmtInf//SeqTp')[0] >> CBI required
-        # CtrlSum_node.getparent().remove(CtrlSum_node) >> You can remove 
+        # CtrlSum_node.getparent().remove(CtrlSum_node) >> You can remove
         # node only from parent
         # >>>>>>>>>
         print(etree.tostring(xml_root, pretty_print=True))
