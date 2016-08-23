@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
+            <field name="name">fatturapa.attachment.out.form</field>
+            <field name="model">fatturapa.attachment.out</field>
+            <field name="arch" type="xml">
+                <form string="Export FatturaPA" version="7.0">
+                    <div>
+                        <field name="datas" filename="datas_fname" />
+                        <field name="datas_fname"/>
+                        <field name="name"/>
+                        <separator string="Invoices"></separator>
+                        <field name="out_invoice_ids"></field>
+                        <group groups="base.group_no_one" string="History">
+                            <label for="create_uid" string="Creation"/>
+                            <div name="creation_div">
+                                <field name="create_uid" readonly="1" class="oe_inline"/> on
+                                <field name="create_date" readonly="1" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </div>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_fatturapa_attachment" model="ir.actions.act_window">
+            <field name="name">FatturaPA Export Files</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fatturapa.attachment.out</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="base.view_attachment_tree"/>
+        </record>
+
+        <menuitem action="action_fatturapa_attachment"
+            parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
+            name="FatturaPA Export Files"
+            id="fatturapa_attachment_menu"/>
+
+    </data>
+</openerp>

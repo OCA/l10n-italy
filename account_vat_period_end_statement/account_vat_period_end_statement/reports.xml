@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+		<report
+            id="action_report_account_vat_period_end_statement"
+            model="account.vat.period.end.statement"
+            string="Print Vat Period End Statement"
+            report_type="qweb-pdf"
+            name="account_vat_period_end_statement.report_vatperiodendstatement"
+            file="account_vat_period_end_statement.report_vatperiodendstatement"
+            menu="True"
+            auto="False"
+        />
+        <record id="account_vat_period_end_statement.action_report_account_vat_period_end_statement" model="ir.actions.report.xml">
+            <field name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_portrait"/>
+       </record>
+    </data>
+</openerp>
+

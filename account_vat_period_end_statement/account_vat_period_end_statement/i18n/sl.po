@@ -1,0 +1,666 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_vat_period_end_statement
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-17 00:47+0000\n"
+"PO-Revision-Date: 2016-05-01 14:30+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: account_vat_period_end_statement
+#: field:statement.credit.account.line,account_id:0
+#: field:statement.debit.account.line,account_id:0
+#: field:statement.generic.account.line,account_id:0
+msgid "Account"
+msgstr "Konto"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Account Lines"
+msgstr "Kontne postavke"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_account_period
+msgid "Account period"
+msgstr "Kontno obdobje"
+
+#. module: account_vat_period_end_statement
+#: field:account.tax.code,vat_statement_account_id:0
+msgid "Account used for VAT statement"
+msgstr "Konto za DDV izjavo"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Accounts"
+msgstr "Konti"
+
+#. module: account_vat_period_end_statement
+#: view:add.period.to.vat.statement:account_vat_period_end_statement.add_period
+msgid "Add"
+msgstr "Dodaj"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: view:add.period.to.vat.statement:account_vat_period_end_statement.add_period
+#: model:ir.actions.act_window,name:account_vat_period_end_statement.action_add_period
+msgid "Add period"
+msgstr "Dodaj obdobje"
+
+#. module: account_vat_period_end_statement
+#: field:statement.credit.account.line,amount:0
+#: field:statement.debit.account.line,amount:0
+#: field:statement.generic.account.line,amount:0
+msgid "Amount"
+msgstr "Znesek"
+
+#. module: account_vat_period_end_statement
+#: help:res.company,of_account_end_vat_statement_interest:0
+#: help:res.company,of_account_end_vat_statement_interest_account_id:0
+#: help:res.company,of_account_end_vat_statement_interest_percent:0
+msgid "Apply interest on end vat statement"
+msgstr "Uveljavi obresti na koncu DDV izjave"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,authority_vat_amount:0
+msgid "Authority VAT Amount"
+msgstr "Znesek DDV davčnega organa"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,residual:0
+msgid "Balance"
+msgstr "Stanje"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Base"
+msgstr "Osnova"
+
+#. module: account_vat_period_end_statement
+#: view:add.period.to.vat.statement:account_vat_period_end_statement.add_period
+#: view:remove.period.from.vat.statement:account_vat_period_end_statement.remove_period
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_res_company
+msgid "Companies"
+msgstr "Družbe"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,interest:0
+msgid "Compute Interest"
+msgstr "Izračun obresti"
+
+#. module: account_vat_period_end_statement
+#: selection:account.vat.period.end.statement,state:0
+msgid "Confirmed"
+msgstr "Potrjeno"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Create Move"
+msgstr "Ustvari premik"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,create_uid:0
+#: field:add.period.to.vat.statement,create_uid:0
+#: field:remove.period.from.vat.statement,create_uid:0
+#: field:statement.credit.account.line,create_uid:0
+#: field:statement.debit.account.line,create_uid:0
+#: field:statement.generic.account.line,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,create_date:0
+#: field:add.period.to.vat.statement,create_date:0
+#: field:remove.period.from.vat.statement,create_date:0
+#: field:statement.credit.account.line,create_date:0
+#: field:statement.debit.account.line,create_date:0
+#: field:statement.generic.account.line,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Credit Account Lines"
+msgstr "Postavke konta terjatev"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,credit_vat_account_line_ids:0
+#: code:addons/account_vat_period_end_statement/models/account.py:482
+#, python-format
+msgid "Credit VAT"
+msgstr "DDV v dobro"
+
+#. module: account_vat_period_end_statement
+#: help:account.vat.period.end.statement,previous_credit_vat_account_id:0
+msgid "Credit VAT from previous periods"
+msgstr "DDV v dobro iz prejšnjih obdobij"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
+#: code:addons/account_vat_period_end_statement/wizard/remove_period.py:50
+#, python-format
+msgid "Current statement not found"
+msgstr "Tekoča izjava ni najdena"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,date:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Debit Account Lines"
+msgstr "Postavke konta obveznosti"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,debit_vat_account_line_ids:0
+#: code:addons/account_vat_period_end_statement/models/account.py:463
+#, python-format
+msgid "Debit VAT"
+msgstr "DDV v breme"
+
+#. module: account_vat_period_end_statement
+#: help:account.vat.period.end.statement,previous_debit_vat_account_id:0
+msgid "Debit VAT from previous periods"
+msgstr "DDV v breme iz prejšnjih obdobij"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Deductible"
+msgstr "Odbitni"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,deductible_vat_amount:0
+msgid "Deductible VAT Amount"
+msgstr "Znesek odbitnega DDV"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Description"
+msgstr "Opis"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,display_name:0
+#: field:add.period.to.vat.statement,display_name:0
+#: field:remove.period.from.vat.statement,display_name:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,display_name:0
+#: field:statement.credit.account.line,display_name:0
+#: field:statement.debit.account.line,display_name:0
+#: field:statement.generic.account.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: account_vat_period_end_statement
+#: selection:account.vat.period.end.statement,state:0
+msgid "Draft"
+msgstr "Osnutek"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:448
+#, python-format
+msgid "Encoding error"
+msgstr "Napaka vnosa"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:574
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:137
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:148
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:187
+#: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
+#: code:addons/account_vat_period_end_statement/wizard/add_period.py:45
+#: code:addons/account_vat_period_end_statement/wizard/remove_period.py:50
+#, python-format
+msgid "Error"
+msgstr "Napaka"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:732
+#, python-format
+msgid "Error VAT Configuration!"
+msgstr "Napačne nastavitve DDV!"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:424
+#, python-format
+msgid "Error!"
+msgstr "Napaka!"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,id:0
+#: field:add.period.to.vat.statement,id:0
+#: field:remove.period.from.vat.statement,id:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,id:0
+#: field:statement.credit.account.line,id:0
+#: field:statement.debit.account.line,id:0
+#: field:statement.generic.account.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: account_vat_period_end_statement
+#: help:account.tax.code,vat_statement_sign:0
+msgid "If tax code period sum is usually negative, set '-1' here"
+msgstr "Če je vsota davčne kode obdobja običajno negativna, tukaj nastavite '-1'"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,interest_percent:0
+msgid "Interest - Percent"
+msgstr "Obresti - odstotek"
+
+#. module: account_vat_period_end_statement
+#: field:res.company,of_account_end_vat_statement_interest:0
+msgid "Interest on End Vat Statement"
+msgstr "Obresti ob koncu DDV izjave"
+
+#. module: account_vat_period_end_statement
+#: field:res.company,of_account_end_vat_statement_interest_percent:0
+msgid "Interest on End Vat Statement - %"
+msgstr "Uveljavi obresti na koncu DDV izjave -%"
+
+#. module: account_vat_period_end_statement
+#: field:res.company,of_account_end_vat_statement_interest_account_id:0
+msgid "Interest on End Vat Statement - Account"
+msgstr "Obresti ob koncu DDV izjave - konto"
+
+#. module: account_vat_period_end_statement
+#: help:account.vat.period.end.statement,reconciled:0
+msgid ""
+"It indicates that the statement has been paid and the journal entry of the "
+"statement has been reconciled with one or several journal entries of "
+"payment."
+msgstr "Kaže, da je izjava bila plačana, dnevniški vnos izjave pa usklajen z enim ali več dnevniškimi vnosi plačil."
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,journal_id:0
+msgid "Journal"
+msgstr "Dnevnik"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,__last_update:0
+#: field:add.period.to.vat.statement,__last_update:0
+#: field:remove.period.from.vat.statement,__last_update:0
+#: field:report.account_vat_period_end_statement.report_vatperiodendstatement,__last_update:0
+#: field:statement.credit.account.line,__last_update:0
+#: field:statement.debit.account.line,__last_update:0
+#: field:statement.generic.account.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,write_uid:0
+#: field:add.period.to.vat.statement,write_uid:0
+#: field:remove.period.from.vat.statement,write_uid:0
+#: field:statement.credit.account.line,write_uid:0
+#: field:statement.debit.account.line,write_uid:0
+#: field:statement.generic.account.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,write_date:0
+#: field:add.period.to.vat.statement,write_date:0
+#: field:remove.period.from.vat.statement,write_date:0
+#: field:statement.credit.account.line,write_date:0
+#: field:statement.debit.account.line,write_date:0
+#: field:statement.generic.account.line,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,fiscal_page_base:0
+msgid "Last printed page"
+msgstr "Zadnja natisnjena stran"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:138
+#, python-format
+msgid "No base code found for tax code %s"
+msgstr "Za davčno kodo %s ni najdena kode osnove"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:448
+#, python-format
+msgid "No period found or more than one period found for the given date."
+msgstr "Ni najdeno nobeno obdobje ali pa je najdeno več kot eno obdobje za dani datum."
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:149
+#, python-format
+msgid "Not every tax linked to tax code %s is linked to the same base code"
+msgstr "Vsak davek v povezavi z davčno kodo %s ni povezan z isto kodo osnove"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:539
+#, python-format
+msgid "Other VAT Credits / Debits"
+msgstr "Druge DDV terjatve / obveznosti"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,generic_vat_account_line_ids:0
+msgid "Other VAT Credits / Debits or Tax Compensations"
+msgstr "Druge DDV terjatve / obveznosti ali davčne kompenzacije"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid ""
+"Other VAT Credits / Debits or Tax Compensations (Positive amounts for "
+"credits, negative for debits)"
+msgstr "Druge DDV terjatve / obveznosti ali davčne kompenzacije (pozitivni zneski za terjatve, negativni za obveznosti)"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Page Number"
+msgstr "Številka strani"
+
+#. module: account_vat_period_end_statement
+#: selection:account.vat.period.end.statement,state:0
+msgid "Paid"
+msgstr "Plačano"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,reconciled:0
+msgid "Paid/Reconciled"
+msgstr "Plačano/usklajeno"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,payable_vat_amount:0
+msgid "Payable VAT Amount"
+msgstr "Znesek DDV za plačilo"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,payment_term_id:0
+msgid "Payment Term"
+msgstr "Plačilni pogoj"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: field:account.vat.period.end.statement,payment_ids:0
+msgid "Payments"
+msgstr "Plačila"
+
+#. module: account_vat_period_end_statement
+#: field:add.period.to.vat.statement,period_id:0
+#: field:remove.period.from.vat.statement,period_id:0
+msgid "Period"
+msgstr "Obdobje"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/wizard/add_period.py:45
+#, python-format
+msgid "Period %s is associated to statement %s yet"
+msgstr "Obdobje %s še ni povezano z izjavo %s"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: field:account.vat.period.end.statement,period_ids:0
+msgid "Periods"
+msgstr "Obdobja"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: field:account.vat.period.end.statement,previous_credit_vat_account_id:0
+#: code:addons/account_vat_period_end_statement/models/account.py:501
+#, python-format
+msgid "Previous Credits VAT"
+msgstr "Prejšnji DDV v dobro"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,previous_credit_vat_amount:0
+msgid "Previous Credits VAT Amount"
+msgstr "Znesek prejšnjih DDV v dobro"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: field:account.vat.period.end.statement,previous_debit_vat_account_id:0
+#: code:addons/account_vat_period_end_statement/models/account.py:520
+#, python-format
+msgid "Previous Debits VAT"
+msgstr "Prejšnji DDV v breme"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,previous_debit_vat_amount:0
+msgid "Previous Debits VAT Amount"
+msgstr "Znesek prejšnjih DDV v breme"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Previous credit vat"
+msgstr "Prejšnji DDV v dobro"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Previous debit vat"
+msgstr "Prejšnji DDV v breme"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Print Options"
+msgstr "Opcije tiskanja"
+
+#. module: account_vat_period_end_statement
+#: model:ir.actions.report.xml,name:account_vat_period_end_statement.action_report_account_vat_period_end_statement
+msgid "Print Vat Period End Statement"
+msgstr "Natisni zaključno izjavo ob koncu DDV obdobja"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Purchase"
+msgstr "Nabava"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Recompute amounts"
+msgstr "Preračunaj zneske"
+
+#. module: account_vat_period_end_statement
+#: help:account.vat.period.end.statement,residual:0
+msgid "Remaining amount due."
+msgstr "Preostali dolgovani znesek."
+
+#. module: account_vat_period_end_statement
+#: view:remove.period.from.vat.statement:account_vat_period_end_statement.remove_period
+msgid "Remove"
+msgstr "Odstrani"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: model:ir.actions.act_window,name:account_vat_period_end_statement.action_remove_period
+#: view:remove.period.from.vat.statement:account_vat_period_end_statement.remove_period
+msgid "Remove period"
+msgstr "Odstrani obdobje"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_report
+msgid "Report"
+msgstr "Poročilo"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid ""
+"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.\n"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE"
+msgstr "Obrnjena davčna obveznost: vsebuje RevCharge, Op.SM, Op.Vat., Op.FUE, dobrine EU v Italiiji, Dobrine izven EU v Italiiji, Mobilniki, Mikroprocesorji.\nOperacije EU: Storitve za Intra, Storitve brez Intra, Dobrine EU, Rev.Charge EU, mobilniki EU, Mikroprocesorji EU"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Sale"
+msgstr "Prodaja"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Set to draft"
+msgstr "Nastavi kot osnutek"
+
+#. module: account_vat_period_end_statement
+#: field:account.tax.code,vat_statement_sign:0
+msgid "Sign used in statement"
+msgstr "Podpis uporabljen v izjavi"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,state:0
+msgid "State"
+msgstr "Stanje"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Summary"
+msgstr "Povzetek"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Tax Authority"
+msgstr "Davčni organ"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,authority_partner_id:0
+msgid "Tax Authority Partner"
+msgstr "Partner davčni organ"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:555
+#, python-format
+msgid "Tax Authority VAT"
+msgstr "DDV davčnega organa"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,authority_vat_account_id:0
+msgid "Tax Authority VAT Account"
+msgstr "Konto DDV davčnega organa"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_account_tax_code
+#: field:statement.credit.account.line,tax_code_id:0
+#: field:statement.debit.account.line,tax_code_id:0
+msgid "Tax Code"
+msgstr "Davčna koda"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:733
+#, python-format
+msgid "The account for vat interest must be configurated"
+msgstr "Nastaviti morate konto za DDV obresti"
+
+#. module: account_vat_period_end_statement
+#: help:account.vat.period.end.statement,credit_vat_account_line_ids:0
+msgid "The accounts containing the credit VAT amount to write-off"
+msgstr "Konti, ki vsebujejo DDV v dobro za odpis"
+
+#. module: account_vat_period_end_statement
+#: help:account.vat.period.end.statement,debit_vat_account_line_ids:0
+msgid "The accounts containing the debit VAT amount to write-off"
+msgstr "Konti, ki vsebujejo DDV v breme za odpis"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:575
+#, python-format
+msgid "The payment term %s does not have due dates"
+msgstr "Plačilni pogoj %s nima datumov veljavnosti"
+
+#. module: account_vat_period_end_statement
+#: help:account.tax.code,vat_statement_account_id:0
+msgid ""
+"The tax code balance will be associated to this account after selecting the "
+"period in VAT statement"
+msgstr "Bilanca davčne kode bo po izbiri obdobja v DDV izjavi povezana s tem kontom"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Total"
+msgstr "Skupaj"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Total Credit"
+msgstr "Skupaj v dobro"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Total Statement"
+msgstr "Skupaj izjava"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Total To Pay"
+msgstr "Skupaj za plačilo"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Total credit vat"
+msgstr "Skupaj DDV v dobro"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "Total debit vat"
+msgstr "Skupaj DDV v breme"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:187
+#, python-format
+msgid "Type account neither credit and debit !"
+msgstr "Tip konta ni ne terjatev ne obveznost!"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Undeductible"
+msgstr "Neodbitni"
+
+#. module: account_vat_period_end_statement
+#: field:account.period,vat_statement_id:0
+#: code:addons/account_vat_period_end_statement/models/account.py:452
+#: field:statement.credit.account.line,statement_id:0
+#: field:statement.debit.account.line,statement_id:0
+#: field:statement.generic.account.line,statement_id:0
+#, python-format
+msgid "VAT statement"
+msgstr "DDV izjava"
+
+#. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,move_id:0
+msgid "VAT statement move"
+msgstr "Premik DDV izjave"
+
+#. module: account_vat_period_end_statement
+#: model:ir.ui.menu,name:account_vat_period_end_statement.menu_account_vat_period_end_statement
+msgid "VAT statements"
+msgstr "DDV izjave"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Vat"
+msgstr "DDV"
+
+#. module: account_vat_period_end_statement
+#: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
+msgid "Vat code"
+msgstr "DDV koda"
+
+#. module: account_vat_period_end_statement
+#: view:res.company:account_vat_period_end_statement.view_vat_period_end_statement_company_form
+msgid "Vat period end statement"
+msgstr "Izjava ob koncu DDV obdobja"
+
+#. module: account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement_tree
+#: model:ir.actions.act_window,name:account_vat_period_end_statement.action_account_vat_period_end_statement
+msgid "Vat statement"
+msgstr "DDV izjava"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:425
+#, python-format
+msgid "You cannot delete a confirmed or paid statement"
+msgstr "Potrjenih ali plačanih izjav ne morete brisati"

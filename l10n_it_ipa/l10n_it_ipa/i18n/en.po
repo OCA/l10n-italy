@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_ipa
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-01 13:08+0000\n"
+"PO-Revision-Date: 2015-05-27 19:59+0000\n"
+"Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_ipa
+#: field:res.partner,ipa_code:0
+msgid "IPA Code"
+msgstr "IPA Code"
+
+#. module: l10n_it_ipa
+#: view:res.partner:l10n_it_ipa.view_partner_ipa_form
+msgid "IPA123"
+msgstr "IPA123"
+
+#. module: l10n_it_ipa
+#: model:ir.model,name:l10n_it_ipa.model_res_partner
+msgid "Partner"
+msgstr "Partner"

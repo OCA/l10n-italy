@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_rea
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 08:05+0000\n"
+"PO-Revision-Date: 2016-01-14 07:30+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_rea
+#: field:res.partner,rea_capital:0
+msgid "Capital"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_liquidation_state:0
+msgid "In liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: field:res.partner,rea_liquidation_state:0
+msgid "Liquidation State"
+msgstr ""
+
+#. module: l10n_it_rea
+#: field:res.partner,rea_member_type:0
+msgid "Member Type"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_member_type:0
+msgid "Multiple Members"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_liquidation_state:0
+msgid "Not in liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: field:res.partner,rea_office:0
+msgid "Office Province"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model,name:l10n_it_rea.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_rea
+#: field:res.partner,rea_code:0
+msgid "REA Code"
+msgstr ""
+
+#. module: l10n_it_rea
+#: view:res.partner:l10n_it_rea.view_rea_partner_form
+msgid "REA Registration"
+msgstr ""
+
+#. module: l10n_it_rea
+#: sql_constraint:res.partner:0
+msgid "The rea code code must be unique per company !"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_member_type:0
+msgid "Unique Member"
+msgstr ""

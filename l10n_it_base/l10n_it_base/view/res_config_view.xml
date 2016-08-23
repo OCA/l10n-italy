@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_l10n_it_config_settings" model="ir.ui.view">
+            <field name="name">l10n_it settings</field>
+            <field name="model">l10n_it.config.settings</field>
+            <field name="arch" type="xml">
+                <form string="Configure Italian Localization" class="oe_form_configuration">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+
+                    <separator string="Partner Profile"/>
+                    <group>
+                        <label for="id" string="Communication"/>
+                        <div>
+                            <div>
+                                <label for="module_l10n_it_pec"/>
+                                <field name="module_l10n_it_pec"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </group>
+                    <group>
+                        <label for="id" string="Accounting"/>
+                        <div>
+                            <div>
+                                <label for="module_l10n_it_fiscalcode"/>
+                                <field name="module_l10n_it_fiscalcode"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_l10n_it_config" model="ir.actions.act_window">
+            <field name="name">Configure Italian Localization</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n_it.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="menu_account_config" name="Italian Localization" parent="base.menu_config"
+            sequence="100" action="action_l10n_it_config"/>
+
+    </data>
+</openerp>

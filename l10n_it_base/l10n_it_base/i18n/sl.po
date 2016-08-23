@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_base
+# 
+# Translators:
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-30 20:28+0000\n"
+"PO-Revision-Date: 2016-05-01 14:30+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Accounting"
+msgstr "Knjigovodstvo"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Apply"
+msgstr "Uveljavi"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Communication"
+msgstr "Komunikacija"
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_l10n_it_config
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Configure Italian Localization"
+msgstr "Nastavi italijansko lokalizacijo"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_fiscalcode:0
+msgid ""
+"Install l10n_it_fiscalcode module for fiscal\n"
+"code management"
+msgstr "Namesti modul l10n_it_fiscalcode za upravljanje\ndavčnih številk"
+
+#. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_pec:0
+msgid "Install l10n_it_pec module for pec mail management"
+msgstr "Namesti modul l10n_it_pec za upravljanje pec e-pošte"
+
+#. module: l10n_it_base
+#: model:ir.ui.menu,name:l10n_it_base.menu_account_config
+msgid "Italian Localization"
+msgstr "Italijanska lokalizacija"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Partner Profile"
+msgstr "Partnerjev profil"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_pec:0
+msgid "Use Pec Mail in Partner Profile"
+msgstr "Uporabi PEC pošto v partnerjevem profilu"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_fiscalcode:0
+msgid "Use fiscal code in Partner Profile"
+msgstr "Uporabi fiskalno kodo v partnerjevem profilu"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "or"
+msgstr "ali"

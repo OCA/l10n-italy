@@ -1,0 +1,534 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_withholding_tax
+# 
+# Translators:
+# Paolo Valier, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-28 21:23+0000\n"
+"PO-Revision-Date: 2016-06-05 07:07+0000\n"
+"Last-Translator: Paolo Valier\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_move
+msgid "Account Entry"
+msgstr "Registrazione Contabile"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,account_move_id:0
+#: field:withholding.tax.wizard.create.statement,move_id:0
+msgid "Account Move"
+msgstr "Registrazione"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,move_line_id:0
+#: field:withholding.tax.wizard.create.statement,wt_account_move_line_id:0
+msgid "Account Move line"
+msgstr "Linee Registrazione"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,account_payable_id:0
+msgid "Account Payable"
+msgstr "Conto di Debito"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,account_receivable_id:0
+msgid "Account Receivable"
+msgstr "Conto di Credito"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.voucher.line,voucher_line_id:0
+msgid "Account Voucher Line"
+msgstr "Account Voucher Line"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,move_id:0
+msgid "Account move"
+msgstr "Registrazione Contabile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_voucher
+msgid "Accounting Voucher"
+msgstr "Voucher contabile"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,active:0
+msgid "Active"
+msgstr "Attivo"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,amount:0
+#: field:withholding.tax.voucher.line,amount:0
+msgid "Amount"
+msgstr "Importo"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,base:0 field:withholding.tax,base:0
+#: field:withholding.tax.statement,base:0
+#: field:withholding.tax.wizard.create.statement,base:0
+msgid "Base"
+msgstr "Imponibile"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.rate,base:0
+msgid "Base Coeff."
+msgstr "Coeff. Imponibile"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,certification:0
+msgid "Certification"
+msgstr "Da Certificare"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Create"
+msgstr "Crea"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.wt_wizard_create_statement_action
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Create Withholding Tax Statement"
+msgstr "Crea Movimento di Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,create_uid:0
+#: field:withholding.tax,create_uid:0 field:withholding.tax.move,create_uid:0
+#: field:withholding.tax.rate,create_uid:0
+#: field:withholding.tax.statement,create_uid:0
+#: field:withholding.tax.voucher.line,create_uid:0
+#: field:withholding.tax.wizard.create.statement,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,create_date:0
+#: field:withholding.tax,create_date:0
+#: field:withholding.tax.move,create_date:0
+#: field:withholding.tax.rate,create_date:0
+#: field:withholding.tax.statement,create_date:0
+#: field:withholding.tax.voucher.line,create_date:0
+#: field:withholding.tax.wizard.create.statement,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+#: field:withholding.tax.statement,date:0
+#: field:withholding.tax.wizard.create.statement,date:0
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,date:0
+msgid "Date Competence"
+msgstr "Data Competenza"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: field:withholding.tax.move,date_maturity:0
+msgid "Date Maturity"
+msgstr "Data Scadenza"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.rate,date_start:0
+msgid "Date Start"
+msgstr "Data inizio"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.rate,date_stop:0
+msgid "Date Stop"
+msgstr "Data fine"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,display_name:0
+#: field:withholding.tax,display_name:0
+#: field:withholding.tax.move,display_name:0
+#: field:withholding.tax.rate,display_name:0
+#: field:withholding.tax.statement,display_name:0
+#: field:withholding.tax.voucher.line,display_name:0
+#: field:withholding.tax.wizard.create.statement,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+msgid "Document"
+msgstr "Documento"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: selection:withholding.tax.move,state:0
+msgid "Due"
+msgstr "Da pagare"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:111
+#, python-format
+msgid ""
+"Error! You cannot have 2 pricelist versions that                     "
+"overlap!"
+msgstr "Errore! I periodi si sovrappongono"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posizione fiscale"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Group By..."
+msgstr "Group By..."
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,id:0 field:withholding.tax,id:0
+#: field:withholding.tax.move,id:0 field:withholding.tax.rate,id:0
+#: field:withholding.tax.statement,id:0
+#: field:withholding.tax.voucher.line,id:0
+#: field:withholding.tax.wizard.create.statement,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,invoice_id:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice
+#: field:withholding.tax.statement,invoice_id:0
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_withholding_tax
+msgid "Invoice Withholding Tax Line"
+msgstr "Invoice Withholding Tax Line"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_move_line
+msgid "Journal Items"
+msgstr "Voci sezionale"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,__last_update:0
+#: field:withholding.tax,__last_update:0
+#: field:withholding.tax.move,__last_update:0
+#: field:withholding.tax.rate,__last_update:0
+#: field:withholding.tax.statement,__last_update:0
+#: field:withholding.tax.voucher.line,__last_update:0
+#: field:withholding.tax.wizard.create.statement,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,write_uid:0
+#: field:withholding.tax,write_uid:0 field:withholding.tax.move,write_uid:0
+#: field:withholding.tax.rate,write_uid:0
+#: field:withholding.tax.statement,write_uid:0
+#: field:withholding.tax.voucher.line,write_uid:0
+#: field:withholding.tax.wizard.create.statement,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,write_date:0
+#: field:withholding.tax,write_date:0 field:withholding.tax.move,write_date:0
+#: field:withholding.tax.rate,write_date:0
+#: field:withholding.tax.statement,write_date:0
+#: field:withholding.tax.voucher.line,write_date:0
+#: field:withholding.tax.wizard.create.statement,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,move_ids:0
+msgid "Moves"
+msgstr "Movimenti"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,amount_net_pay:0
+msgid "Net To Pay"
+msgstr "Netto a Pagare"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_form
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: selection:withholding.tax.move,state:0
+msgid "Paid"
+msgstr "Pagata"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,partner_id:0
+#: field:withholding.tax.statement,partner_id:0
+#: field:withholding.tax.wizard.create.statement,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Partners"
+msgstr "Partners"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,payment_term:0
+msgid "Payment Terms"
+msgstr "Termini di pagamento"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_form
+#: field:withholding.tax,rate_ids:0
+msgid "Rates"
+msgstr "Validità aliquote"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_form
+msgid "Set to Draft"
+msgstr "Imposta a Bozza"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,statement_id:0
+msgid "Statement"
+msgstr "Statement"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,state:0
+msgid "Status"
+msgstr "Stato"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.withholding.tax,tax:0
+#: field:withholding.tax.statement,tax:0
+#: field:withholding.tax.wizard.create.statement,tax:0
+msgid "Tax"
+msgstr "Importo"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,tax:0 field:withholding.tax.rate,tax:0
+msgid "Tax %"
+msgstr "Tax %"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax,comment:0 field:withholding.tax.rate,comment:0
+msgid "Text"
+msgstr "Text"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:28
+#, python-format
+msgid "This Move is already present in the WT"
+msgstr "Questa registrazione è già presente tra i movimenti di ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_tree
+msgid "Tot"
+msgstr "Tot"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Amount"
+msgstr "Importo totale"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Amount Paid"
+msgstr "Tot Importo Pagato"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Base"
+msgstr "Tot Imponibile"
+
+#. module: l10n_it_withholding_tax
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_receipt_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_supplier_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_vendor_receipt_form
+msgid "Total Amount"
+msgstr "Importo totale"
+
+#. module: l10n_it_withholding_tax
+#: help:withholding.tax.move,move_line_id:0
+msgid "Used from trace WT from other parts(BS)"
+msgstr "Used from trace WT from other parts(BS)"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_voucher_line
+msgid "Voucher Lines"
+msgstr "Righe voucher"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.move,wt_voucher_line_id:0
+msgid "WT Account Voucher Line"
+msgstr "WT Account Voucher Line"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax_move
+msgid "WT Moves"
+msgstr "Voci ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax_statement
+msgid "WT Statements"
+msgstr "Situazione Ritenute"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,amount:0
+#: field:withholding.tax.wizard.create.statement,amount:0
+msgid "WT amount"
+msgstr "Importo Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: field:withholding.tax.statement,amount_paid:0
+msgid "WT amount paid"
+msgstr "Ritenuta Versata"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:21
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:27
+#, python-format
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:232
+#, python-format
+msgid ""
+"Warning! You cannot delet move linked to voucher.You                     "
+"must before delete the voucher."
+msgstr "Warning! You cannot delet move linked to voucher.You                     must before delete the voucher."
+
+#. module: l10n_it_withholding_tax
+#: view:account.fiscal.position:l10n_it_withholding_tax.view_withholding_tax_fiscal_position_form
+#: field:account.fiscal.position,withholding_tax_ids:0
+#: field:account.invoice,withholding_tax:0
+#: field:account.invoice,withholding_tax_line:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax
+#: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_form
+#: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_tree
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: field:withholding.tax.move,withholding_tax_id:0
+#: field:withholding.tax.rate,withholding_tax_id:0
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+#: field:withholding.tax.statement,withholding_tax_id:0
+#: field:withholding.tax.voucher.line,withholding_tax_id:0
+#: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
+#: field:withholding.tax.wizard.create.statement,withholding_tax_id:0
+msgid "Withholding Tax"
+msgstr "Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: field:account.move.line,withholding_tax_amount:0
+#: field:account.voucher.line,amount_withholding_tax:0
+msgid "Withholding Tax Amount"
+msgstr "Ritenuta D'Acconto Allocazione"
+
+#. module: l10n_it_withholding_tax
+#: field:account.voucher.line,amount_residual_withholding_tax:0
+msgid "Withholding Tax Amount Residual"
+msgstr "Ritenuta Residuo"
+
+#. module: l10n_it_withholding_tax
+#: field:account.voucher.line,withholding_tax_line_ids:0
+msgid "Withholding Tax Lines"
+msgstr "Ritenuta D'acconto linee"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_move
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_form
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
+#: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_tree
+msgid "Withholding Tax Move"
+msgstr "Voci ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: field:account.voucher.line,amount_original_withholding_tax:0
+msgid "Withholding Tax Original"
+msgstr "Ritenuta Importo originario"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_rate
+msgid "Withholding Tax Rates"
+msgstr "Ritenuta D'Acconto Validita"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:83
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_statement
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
+#, python-format
+msgid "Withholding Tax Statement"
+msgstr "Movimento Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_voucher_line
+msgid "Withholding Tax Voucher Line"
+msgstr "Ritenuta D'Acconto Linee voucher"
+
+#. module: l10n_it_withholding_tax
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_form
+#: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Withholding Tax statement"
+msgstr "Situazione Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,withholding_tax_amount:0
+#: field:account.invoice.withholding.tax,withholding_tax_id:0
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.of_wt_main
+msgid "Withholding tax"
+msgstr "Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax
+msgid "Withhoulding Tax"
+msgstr "Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_move
+msgid "Withhoulding Tax Move"
+msgstr "Voce Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_statement
+msgid "Withhoulding Tax Statement"
+msgstr "Situazione Ritenuta"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:22
+#, python-format
+msgid "You can choose Only ONE move."
+msgstr "You can choose Only ONE move."
+
+#. module: l10n_it_withholding_tax
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_receipt_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_supplier_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_vendor_receipt_form
+msgid ""
+"onchange_amount(amount, amount_unreconciled, "
+"amount_residual_withholding_tax, context)"
+msgstr "onchange_amount(amount, amount_unreconciled, amount_residual_withholding_tax, context)"
+
+#. module: l10n_it_withholding_tax
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_receipt_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_payment_supplier_form
+#: view:account.voucher:l10n_it_withholding_tax.view_withholding_voucher_vendor_receipt_form
+msgid ""
+"onchange_reconcile(reconcile, amount, amount_unreconciled, "
+"amount_residual_withholding_tax, context)"
+msgstr "onchange_reconcile(reconcile, amount, amount_unreconciled, amount_residual_withholding_tax, context)"

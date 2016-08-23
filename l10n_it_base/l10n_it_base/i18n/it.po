@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_base
+# 
+# Translators:
+# Paolo Valier, 2016
+# Alex Comba <alex.comba@agilebg.com>, 2015
+# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
+# Massimiliano Casa <mcasa@cantiericasa.com>, 2015
+# Paolo Valier, 2016
+# Paolo Valier, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 19:56+0000\n"
+"Last-Translator: Paolo Valier\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Accounting"
+msgstr "Contabilità"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Apply"
+msgstr "Applica"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Communication"
+msgstr "Comunicazione"
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_l10n_it_config
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Configure Italian Localization"
+msgstr "Configura Localizzazione Italiana"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_fiscalcode:0
+msgid ""
+"Install l10n_it_fiscalcode module for fiscal\n"
+"code management"
+msgstr "Installa modulo l10n_it_fiscalcode per la\ngestione del codice fiscale"
+
+#. module: l10n_it_base
+#: help:l10n_it.config.settings,module_l10n_it_pec:0
+msgid "Install l10n_it_pec module for pec mail management"
+msgstr "Installa il modulo l10n_it_pec per la gestione della mail pec"
+
+#. module: l10n_it_base
+#: model:ir.ui.menu,name:l10n_it_base.menu_account_config
+msgid "Italian Localization"
+msgstr "Localizzazione Italiana"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima Modifica di"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,write_date:0
+msgid "Last Updated on"
+msgstr "Data ultimo aggiornamento"
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "Partner Profile"
+msgstr "Profilo Partner"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_pec:0
+msgid "Use Pec Mail in Partner Profile"
+msgstr "Usa Mail Pec nel Profilo Partner"
+
+#. module: l10n_it_base
+#: field:l10n_it.config.settings,module_l10n_it_fiscalcode:0
+msgid "Use fiscal code in Partner Profile"
+msgstr "Usa il codice fiscale nel profilo del partner "
+
+#. module: l10n_it_base
+#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
+msgid "or"
+msgstr "o"

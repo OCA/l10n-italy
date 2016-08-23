@@ -8,7 +8,7 @@ Odoo Italia Modules
 
 Italian modules for odoo (formerly OpenERP)
 
-**9.0** https://github.com/OCA/l10n-italy/tree/9.0
+**8.0** https://github.com/OCA/l10n-italy/tree/8.0
 
 **7.0** https://github.com/OCA/l10n-italy/tree/7.0
 
@@ -59,14 +59,12 @@ addon | version | summary
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 (unported) | Fiscal Year Closing
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
-[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 (unported) | Import base_location entries (provinces) from Geonames
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
-[l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 (unported) | Pec Mail
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
 
 [//]: # (end addons)
 
 Translation Status
 ------------------
-[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-9-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-9-0)
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0)
