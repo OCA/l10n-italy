@@ -43,5 +43,5 @@
         "data/ateco_data.xml"
     ],
     "active": False,
-    'installable': False
+    "installable": True
 }

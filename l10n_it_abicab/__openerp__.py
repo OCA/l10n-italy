@@ -32,5 +32,5 @@
     ],
     'website': 'http://www.odoo-italia.org/',
     'data': ['abicab_view.xml'],
-    'installable': False,
+    'installable': True,
 }

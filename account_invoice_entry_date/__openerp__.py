@@ -31,5 +31,5 @@ move created while confirming (supplier) invoice""",
     'depends': ['account'],
     'data': ['views/account_view.xml'],
     'active': False,
-    'installable': False
+    'installable': True
 }

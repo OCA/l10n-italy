@@ -44,5 +44,5 @@
         'account_journal_view.xml',
         'account_tax_registry_view.xml',
     ],
-    'installable': False,
+    "installable": True,
 }

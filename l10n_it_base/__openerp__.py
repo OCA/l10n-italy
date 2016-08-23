@@ -42,5 +42,5 @@ Funcionalities:
     "demo": [],
     "test": [],
     "active": False,
-    'installable': False
+    'installable': True
 }

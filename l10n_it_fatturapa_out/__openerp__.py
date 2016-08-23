@@ -37,7 +37,7 @@
         'security/ir.model.access.csv',
     ],
     "test": [],
-    'installable': False,
+    "installable": True,
     'external_dependencies': {
         'python': ['unidecode'],
     }
