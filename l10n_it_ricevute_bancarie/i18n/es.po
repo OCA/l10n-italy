@@ -1,0 +1,976 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_ricevute_bancarie
+# 
+# Translators:
+# Hotellook, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-01 07:40+0000\n"
+"PO-Revision-Date: 2016-04-01 07:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
+msgid "Acceptance"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,acceptance_account_id:0
+msgid "Acceptance Account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Acceptance Entries"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,acceptance_move_id:0
+msgid "Acceptance Entry"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,acceptance_account_id:0
+msgid "Acceptance account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,date_accepted:0
+msgid "Acceptance date"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,acceptance_journal_id:0
+msgid "Acceptance journal"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: selection:riba.distinta,state:0
+msgid "Accepted"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move_reconcile
+msgid "Account Reconciliation"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:riba.configuration,acceptance_account_id:0
+#: help:riba.configuration,accreditation_account_id:0
+msgid "Account used when Ri.Ba. is accepted by the bank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Accounting"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
+msgid "Accreditation"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:151
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: field:riba.distinta,accreditation_move_id:0
+#, python-format
+msgid "Accreditation Entry"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:123
+#, python-format
+msgid "Accreditation Ri.Ba. %s"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,date_accreditation:0
+msgid "Accreditation date"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,accreditation_journal_id:0
+#: field:riba.configuration,accreditation_journal_id:0
+msgid "Accreditation journal"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+msgid "Accredited"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: selection:riba.configuration,type:0
+msgid "Al dopo incasso"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: field:riba.distinta.move.line,amount:0
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:93
+#, python-format
+msgid "Attention!"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:res.bank,banca_estera:0
+msgid "Banca Estera"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:133
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:139
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:173
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_bank
+#: field:riba.configuration,bank_id:0
+#, python-format
+msgid "Bank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,bank_expense_account_id:0
+#: field:riba.configuration,bank_expense_account_id:0
+#: field:riba.unsolved,bank_expense_account_id:0
+msgid "Bank Expenses account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,bank_account_id:0
+#: field:riba.configuration,bank_account_id:0
+#: field:riba.unsolved,bank_account_id:0
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:riba.configuration,bank_id:0
+msgid "Bank account used for Ri.Ba. issuing"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_accreditation
+msgid "Bank accreditation"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: view:riba.file.export:l10n_it_ricevute_bancarie.wizard_riba_file_export
+#: view:riba.issue:l10n_it_ricevute_bancarie.riba_issue_view
+#: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_it_ricevute_bancarie
+#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+msgid "Canceled"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,partner_id:0
+msgid "Cliente"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:res.partner.bank,codice_sia:0
+msgid "Codice SIA"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:account.payment.term,riba_payment_cost:0
+msgid ""
+"Collection fees amount. If different from 0, for each payment deadline an "
+"invoice line will be added to invoice, with this amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,company_id:0 field:riba.distinta,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,config_id:0 field:riba.issue,configuration_id:0
+msgid "Configuration"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_configuration
+msgid "Configuration parameters for Ricevute Bancarie"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
+#: selection:riba.distinta.line,state:0
+msgid "Confirmed"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
+#: view:riba.issue:l10n_it_ricevute_bancarie.riba_issue_view
+#: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
+msgid "Create"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,create_uid:0 field:riba.configuration,create_uid:0
+#: field:riba.distinta,create_uid:0 field:riba.distinta.line,create_uid:0
+#: field:riba.distinta.move.line,create_uid:0
+#: field:riba.file.export,create_uid:0 field:riba.issue,create_uid:0
+#: field:riba.unsolved,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,create_date:0
+#: field:riba.configuration,create_date:0 field:riba.distinta,create_date:0
+#: field:riba.distinta.line,create_date:0
+#: field:riba.distinta.move.line,create_date:0
+#: field:riba.file.export,create_date:0 field:riba.issue,create_date:0
+#: field:riba.unsolved,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,date_created:0
+msgid "Creation date"
+msgstr "Fecha de creación"
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:127
+#, python-format
+msgid "Credit"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,accreditation_amount:0
+msgid "Credit amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.move.line,move_line_id:0
+msgid "Credit move line"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,move_line_ids:0
+msgid "Credit move lines"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,bank_id:0
+msgid "Debitor Bank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,name:0
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Detail"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.move.line,distinta_line_ids:0
+msgid "Dettaglio riba"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.distinta_riba_action
+msgid "Distinta Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_distinte
+msgid "Distinte"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_tree
+msgid "Distinte Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
+#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.config.settings:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
+msgid "Due Cost Config"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.config.settings:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
+msgid "Due Cost Service"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:res.company,due_cost_service_id:0
+msgid "Due cost service id"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,due_date:0
+msgid "Due date"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:152
+#, python-format
+msgid "Effects"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.unsolved,effects_account_id:0
+msgid "Effects account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.unsolved,effects_amount:0
+msgid "Effects amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:100
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:111
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:121
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:266
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:118
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:132
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:145
+#, python-format
+msgid "Error"
+msgstr "Error"
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:121
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:145
+#, python-format
+msgid "Every account is mandatory"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:179
+#, python-format
+msgid "Expenses"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,expense_amount:0
+#: field:riba.unsolved,expense_amount:0
+msgid "Expenses amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.file.export:l10n_it_ricevute_bancarie.wizard_riba_file_export
+msgid "Export"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_wizard_riba_file_export
+msgid "Export Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.file.export:l10n_it_ricevute_bancarie.wizard_riba_file_export
+msgid "Export Ri.Ba. file"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.file.export,riba_txt:0
+msgid "File"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.file.export,file_name:0
+msgid "File name"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "General"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:res.partner,group_riba:0
+msgid "Group Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:res.partner,group_riba:0
+msgid "Group Ri.Ba. by customer while issuing"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "Group by customer"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "Group by invoice"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "Group by..."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.move.line,iban:0
+msgid "IBAN"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,id:0 field:riba.configuration,id:0
+#: field:riba.distinta,id:0 field:riba.distinta.line,id:0
+#: field:riba.distinta.move.line,id:0 field:riba.file.export,id:0
+#: field:riba.issue,id:0 field:riba.unsolved,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_ricevute_bancarie
+#: help:res.partner.bank,codice_sia:0
+msgid "Identification Code of the Company in the System Interbank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_invoice_line
+msgid "Invoice Line"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Invoice entries"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_da_emettere
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_issue_action
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_da_emettere
+#: view:riba.issue:l10n_it_ricevute_bancarie.riba_issue_view
+msgid "Issue Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "Issued"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,type:0
+msgid "Issuing mode"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move_line
+msgid "Journal Items"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:riba.configuration,accreditation_journal_id:0
+msgid "Journal used when Ri.Ba. amount is accredited by the bank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:riba.configuration,acceptance_journal_id:0
+msgid "Journal used when Ri.Ba. is accepted by the bank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:riba.configuration,unsolved_journal_id:0
+msgid "Journal used when Ri.Ba. is unsolved"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:riba.distinta,registration_date:0
+msgid "Keep empty to use the current date"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,write_uid:0 field:riba.configuration,write_uid:0
+#: field:riba.distinta,write_uid:0 field:riba.distinta.line,write_uid:0
+#: field:riba.distinta.move.line,write_uid:0
+#: field:riba.file.export,write_uid:0 field:riba.issue,write_uid:0
+#: field:riba.unsolved,write_uid:0
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,write_date:0 field:riba.configuration,write_date:0
+#: field:riba.distinta,write_date:0 field:riba.distinta.line,write_date:0
+#: field:riba.distinta.move.line,write_date:0
+#: field:riba.file.export,write_date:0 field:riba.issue,write_date:0
+#: field:riba.unsolved,write_date:0
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,distinta_id:0
+msgid "List"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.move.line,riba_line_id:0
+msgid "List line"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Move line"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Move lines"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:267
+#, python-format
+msgid "No IBAN or ABI/CAB specified for "
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:212
+#, python-format
+msgid "No IBAN specified"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:220
+#, python-format
+msgid "No SIA Code specified for: "
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:283
+#, python-format
+msgid "No VAT or Fiscal code specified for "
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:233
+#, python-format
+msgid "No VAT or Fiscalcode specified for: "
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:100
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:111
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:118
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:132
+#, python-format
+msgid "No active ID found"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:291
+#, python-format
+msgid "No debit_bank specified for "
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,sequence:0
+msgid "Number"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Other Info"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:165
+#, python-format
+msgid "Overdue Effects"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,overdue_effects_account_id:0
+#: field:riba.unsolved,overdue_effects_account_id:0
+msgid "Overdue Effects account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.unsolved,overdue_effects_amount:0
+msgid "Overdue Effects amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
+#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+msgid "Paid"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,date_paid:0
+msgid "Paid date"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:94
+#, python-format
+msgid "Partner %s has not bank!!!"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_payment_term
+msgid "Payment Term"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Payments"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,protest_charge_account_id:0
+msgid "Protest charge account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "Reconciled"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,name:0
+msgid "Reference"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,registration_date:0
+msgid "Registration Date"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba
+msgid "Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_configuration
+msgid "Ri.Ba. - Configuration"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
+msgid "Ri.Ba. - Configurazione"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_accreditation_action
+#: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
+msgid "Ri.Ba. Accreditation"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:159
+#, python-format
+msgid "Ri.Ba. Bank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_configuration
+msgid "Ri.Ba. Configuration"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_unsolved_action
+#: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
+msgid "Ri.Ba. Unsolved"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,accreditation_account_id:0
+#: field:riba.configuration,accreditation_account_id:0
+#: field:riba.unsolved,riba_bank_account_id:0
+msgid "Ri.Ba. bank account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.unsolved,riba_bank_amount:0
+msgid "Ri.Ba. bank amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Ri.Ba. list"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:res.partner:l10n_it_ricevute_bancarie.view_partner_form_riba
+msgid "Ri.Ba. properties"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:account.payment.term,name:l10n_it_ricevute_bancarie.account_payment_term_riba
+#: model:account.payment.term,note:l10n_it_ricevute_bancarie.account_payment_term_riba
+msgid "RiBA 30 Days End of Month"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.move.line,riba:0
+msgid "RiBa"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.invoice.line,due_cost_line:0
+msgid "RiBa Due Cost Line"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.payment.term,riba_payment_cost:0
+msgid "RiBa Payment Cost"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.payment.term,riba:0
+msgid "Riba"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: help:riba.distinta,config_id:0
+msgid "Riba configuration to be used"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,line_ids:0
+msgid "Riba deadlines"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta_line
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta_move_line
+msgid "Riba details"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta
+msgid "Riba list"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_issue
+msgid "Ricevute bancarie issue"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
+#: selection:riba.configuration,type:0
+msgid "Salvo buon fine"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "Search Journal Items"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
+msgid "Skip and confirm accreditation"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
+msgid "Skip and confirm the unsolved state"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,state:0 field:riba.distinta.line,state:0
+msgid "State"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.unsolved,bank_amount:0
+msgid "Taken amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.invoice,is_unsolved:0
+msgid "The unsolved is open"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.issue:l10n_it_ricevute_bancarie.riba_issue_view
+msgid "This wizard generates the Ri.Ba. list, do you confirm?"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
+msgid ""
+"This wizard generates the journal entry related to accreditation received "
+"from the bank"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
+msgid "This wizard generates the journal entry related to an unsolved payment"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "To Issue"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "To Reconcile"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
+msgid "Total Amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
+msgid "Total Debit"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta.line,type:0
+msgid "Type"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.invoice:l10n_it_ricevute_bancarie.view_account_invoice_filter_unsolved
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+#: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
+#: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+msgid "Unsolved"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:222
+#: field:riba.distinta.line,unsolved_move_id:0
+#, python-format
+msgid "Unsolved Entry"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.invoice:l10n_it_ricevute_bancarie.view_account_invoice_filter_unsolved
+#: field:account.move.line,unsolved_invoice_ids:0
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_invoice_tree1
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_invoices
+msgid "Unsolved Invoices"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.invoice:l10n_it_ricevute_bancarie.invoice_form
+msgid "Unsolved Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:147
+#, python-format
+msgid "Unsolved Ri.Ba. %s - line %s"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,date_unsolved:0
+msgid "Unsolved date"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.configuration,unsolved_journal_id:0
+#: field:riba.unsolved,unsolved_journal_id:0
+msgid "Unsolved journal"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:account.invoice,unsolved_move_line_ids:0
+msgid "Unsolved journal items"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.distinta,user_id:0
+msgid "User"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.accreditation,bank_amount:0
+msgid "Versed amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
+msgid ""
+"You can also skip this step and set the distinta status to 'accredited' "
+"anyway"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
+msgid ""
+"You can also skip this step and set the line status to 'unsolved' anyway"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: selection:riba.file.export,state:0
+msgid "choose"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: selection:riba.file.export,state:0
+msgid "get"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: field:riba.file.export,state:0
+msgid "unknown"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:205
+#, python-format
+msgid "{line_name} for {month}-{year}"
+msgstr ""

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012 Andrea Cometa.
 #    Email: info@andreacometa.it
 #    Web site: http://www.andreacometa.it
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,7 +24,7 @@
 #
 ##############################################################################
 
-import wizard_emissione_riba
-import riba_file_export
-import wizard_accreditation
-import wizard_unsolved
+from . import wizard_riba_issue
+from . import wizard_riba_file_export
+from . import wizard_accreditation
+from . import wizard_unsolved

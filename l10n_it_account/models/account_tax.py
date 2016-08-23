@@ -21,13 +21,12 @@
 #
 #
 
-from openerp.osv import orm
-from openerp import fields
+from openerp import fields, models
 from openerp.tools.translate import _
 from openerp.exceptions import except_orm
 
 
-class AccountTaxCode(orm.Model):
+class AccountTaxCode(models.Model):
     _inherit = 'account.tax.code'
 
     vat_statement_type = fields.Selection(
@@ -41,7 +40,7 @@ class AccountTaxCode(orm.Model):
          (field used by VAT registries)")
 
 
-class AccountTax(orm.Model):
+class AccountTax(models.Model):
     _inherit = 'account.tax'
 
     nondeductible = fields.Boolean(
@@ -77,6 +76,8 @@ class AccountTax(orm.Model):
         tax amount, base amount, deductible amount and non deductible amount
         are all printed on the same line
         """
+        if tax.company_id.skip_it_account_check:
+            return
         if tax.type_tax_use == 'purchase' and not tax.parent_id:
             if tax.base_code_id:
                 if self.exist(

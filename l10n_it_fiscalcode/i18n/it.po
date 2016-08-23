@@ -3,13 +3,17 @@
 # * l10n_it_fiscalcode
 # 
 # Translators:
+# Paolo Valier, 2016
+# Hotellook, 2014
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-08 12:53+0000\n"
-"PO-Revision-Date: 2015-05-27 19:59+0000\n"
-"Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
+"POT-Creation-Date: 2016-04-29 09:52+0000\n"
+"PO-Revision-Date: 2016-04-29 19:56+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,6 +78,14 @@ msgid "Date of birth"
 msgstr "Data di nascita"
 
 #. module: l10n_it_fiscalcode
+#: field:res.city.it.code,display_name:0
+#: field:res.city.it.code.distinct,display_name:0
+#: field:res.city.it.code.province,display_name:0
+#: field:wizard.compute.fc,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:159
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:163
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:168
@@ -124,14 +136,22 @@ msgid "Italian Fiscal Code"
 msgstr "Codice fiscale Italiano"
 
 #. module: l10n_it_fiscalcode
+#: field:res.city.it.code,__last_update:0
+#: field:res.city.it.code.distinct,__last_update:0
+#: field:res.city.it.code.province,__last_update:0
+#: field:wizard.compute.fc,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fiscalcode
 #: field:res.city.it.code,write_uid:0 field:wizard.compute.fc,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultima Modifica di"
 
 #. module: l10n_it_fiscalcode
 #: field:res.city.it.code,write_date:0 field:wizard.compute.fc,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Data ultimo aggiornamento"
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0

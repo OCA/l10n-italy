@@ -21,6 +21,7 @@
 
 import base64
 from unidecode import unidecode
+
 from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 
 from openerp.osv import orm
@@ -53,7 +54,6 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
 )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
-from openerp.tools.translate import _
 
 
 class WizardExportFatturapa(orm.TransientModel):
@@ -466,14 +466,18 @@ class WizardExportFatturapa(orm.TransientModel):
         TipoDocumento = 'TD01'
         if invoice.type == 'out_refund':
             TipoDocumento = 'TD04'
+        ImportoTotaleDocumento = invoice.amount_total
+        if invoice.split_payment:
+            ImportoTotaleDocumento += invoice.amount_sp
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
             TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
-            Numero=invoice.number)
+            Numero=invoice.number,
+            ImportoTotaleDocumento='%.2f' % ImportoTotaleDocumento)
 
         # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
-        # ScontoMaggiorazione, ImportoTotaleDocumento, Arrotondamento,
+        # ScontoMaggiorazione, Arrotondamento,
 
         if invoice.comment:
             # max length of Causale is 200
@@ -754,11 +758,14 @@ class WizardExportFatturapa(orm.TransientModel):
 
         user_obj = self.pool['res.users']
         company = user_obj.browse(cr, uid, uid).company_id
+        context_partner = context.copy()
+        context_partner.update({'lang': partner.lang})
         try:
             self.setFatturaElettronicaHeader(cr, uid, company,
-                                             partner, context=context)
+                                             partner, context=context_partner)
             for invoice_id in invoice_ids:
-                inv = invoice_obj.browse(cr, uid, invoice_id, context=context)
+                inv = invoice_obj.browse(
+                    cr, uid, invoice_id, context=context_partner)
                 if inv.fatturapa_attachment_out_id:
                     raise orm.except_orm(
                         _("Error"),
@@ -766,7 +773,7 @@ class WizardExportFatturapa(orm.TransientModel):
                             inv.number))
                 invoice_body = FatturaElettronicaBodyType()
                 self.setFatturaElettronicaBody(
-                    cr, uid, inv, invoice_body, context=context)
+                    cr, uid, inv, invoice_body, context=context_partner)
                 self.fatturapa.FatturaElettronicaBody.append(invoice_body)
                 # TODO DatiVeicoli
 

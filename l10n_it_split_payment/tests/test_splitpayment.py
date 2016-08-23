@@ -42,9 +42,15 @@ class TestSP(TransactionCase):
                     'value': 'balance',
                     'days': 30,
                 })]})
+        # ----- Set invoice date to recent date in the system
+        # ----- This solves problems with account_invoice_sequential_dates
+        self.recent_date = self.invoice_model.search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
 
     def test_invoice(self):
         invoice = self.invoice_model.create({
+            'date_invoice': self.recent_date,
             'partner_id': self.env.ref('base.res_partner_3').id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
@@ -77,7 +83,9 @@ class TestSP(TransactionCase):
         self.assertTrue(credit_line)
         invoice.action_cancel()
 
+        # invoice with payment term
         invoice2 = self.invoice_model.create({
+            'date_invoice': self.recent_date,
             'partner_id': self.env.ref('base.res_partner_3').id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
@@ -108,3 +116,38 @@ class TestSP(TransactionCase):
                 self.assertEqual(line.debit, 50)
         self.assertTrue(vat_line)
         self.assertEqual(credit_line_count, 2)
+
+        # refund
+        invoice3 = self.invoice_model.create({
+            'date_invoice': self.recent_date,
+            'partner_id': self.env.ref('base.res_partner_3').id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'fiscal_position': self.sp_fp.id,
+            'type': 'out_refund',
+            })
+        inv_line3 = self.inv_line_model.create({
+            'invoice_id': invoice3.id,
+            'name': 'service',
+            'account_id': self.env.ref('account.o_income').id,
+            'quantity': 1,
+            'price_unit': 100,
+            })
+        inv_line3.invoice_line_tax_id = self.tax22
+        self.assertTrue(invoice3.split_payment)
+        invoice3.signal_workflow('invoice_open')
+        self.assertEqual(invoice3.amount_sp, 22)
+        self.assertEqual(invoice3.amount_total, 100)
+        self.assertEqual(invoice3.residual, 100)
+        self.assertEqual(invoice3.amount_tax, 0)
+        vat_line = False
+        credit_line = False
+        for line in invoice3.move_id.line_id:
+            if line.account_id.id == self.company.sp_account_id.id:
+                vat_line = True
+                self.assertEqual(line.credit, 22)
+            if line.account_id.id == self.a_recv.id:
+                credit_line = True
+                self.assertEqual(line.credit, 100)
+        self.assertTrue(vat_line)
+        self.assertTrue(credit_line)

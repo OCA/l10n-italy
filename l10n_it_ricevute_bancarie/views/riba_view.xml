@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <menuitem name="Ri.Ba." parent="account.menu_finance" id="menu_riba" icon="STOCK_OPEN" />
+
+        <!-- ====================================================== -->
+        <!--                     DISTINTA RIBA - FILTRI                 -->
+        <!-- ====================================================== -->
+        <record id="view_distinta_riba_filtri" model="ir.ui.view">
+            <field name="name">riba.distinta.filtri</field>
+            <field name="model">riba.distinta</field>
+            <field name="arch" type="xml">
+                <search string="Distinte Ri.Ba.">
+                    <filter icon="terp-check" string="Draft" domain="[('state','=','draft')]" help="Draft"/>
+                    <filter icon="terp-dolar" string="Confirmed" domain="[('state','=','accepted')]" help="Accepted"/>
+                    <filter icon="terp-dolar_ok!" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
+                    <separator orientation="vertical"/>
+                    <field name="name" />
+                    <field name="config_id" />
+                    <field name="date_accepted" />
+                    <field name="date_paid" />
+               </search>
+            </field>
+        </record>
+
+        <!-- ====================================================== -->
+        <!--                     DISTINTA RIBA TREE                     -->
+        <!-- ====================================================== -->
+        <record model="ir.ui.view" id="view_distinta_riba_tree">
+            <field name="name">riba.distinta.tree</field>
+            <field name="model">riba.distinta</field>
+            <field name="arch" type="xml">
+                <tree string="Distinte Ri.Ba.">
+                    <field name="name" />
+                    <field name="config_id" />
+                    <field name="date_accepted" />
+                    <field name="date_paid" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- ====================================================== -->
+        <!--                     DISTINTA RIBA FORM                     -->
+        <!-- ====================================================== -->
+        <record model="ir.ui.view" id="view_riba_distinta_form">
+            <field name="name">riba.distinta.form</field>
+            <field name="model">riba.distinta</field>
+            <field name="arch" type="xml">
+                <form string="Ri.Ba. list" version="7.0">
+                    <header>
+                        <button name="confirm" type='object' string="Accepted" icon="gtk-apply" attrs="{'invisible':['|',('state','!=','draft'),('type','=','incasso')]}"/>
+                        <button name="%(riba_accreditation_action)d" type='action' attrs="{'invisible':['|',('state','!=','accepted'),('type','=','incasso')]}" string="Accredited" icon="gtk-apply"/>
+                        <button name="cancel" attrs="{'invisible':[('state','=','cancel')]}" string="Cancel" icon="gtk-cancel"/>
+                        <button name="action_cancel_draft" attrs="{'invisible':['|',('state','!=','cancel'),('type','=','incasso')]}"  string="Reset to Draft" type="object" icon="terp-stock_effects-object-colorize"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <group>
+                        <field name="name" />
+                        <field name="config_id" widget="selection"/>
+                        <field name="registration_date" />
+                    </group>
+                    <notebook colspan="4">
+                        <page string="General">
+                            <field name="line_ids" nolabel="1" colspan="4">
+                                <tree string="Detail">
+                                    <field name="sequence"/>
+                                    <field name="invoice_number"/>
+                                    <field name="invoice_date"/>
+                                    <field name="partner_id"/>
+                                    <field name="iban"/>
+                                    <field name="amount" sum="Amount"/>
+                                    <field name="due_date"/>
+                                    <field name="state"/>
+                                    <button name="%(riba_unsolved_action)d" type='action' attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}" string="Unsolved" icon="terp-dolar_ok!"/>
+                                    <field name="type" invisible="1" />
+                                </tree>
+                                <form string="Detail">
+                                    <notebook colspan="4">
+                                        <page string="General">
+                                            <group>
+                                                <group>
+                                                    <field name="sequence"/>
+                                                    <field name="invoice_number"/>
+                                                    <field name="invoice_date"/>
+                                                    <field name="partner_id"/>
+                                                </group>
+                                                <group>
+                                                    <field name="amount" />
+                                                    <field name="due_date"/>
+                                                    <field name="state"/>
+                                                </group>
+                                            </group>
+                                        </page>
+                                        <page string="Accounting">
+                                            <separator string="Invoice entries" colspan="4"/>
+                                            <field name="move_line_ids" nolabel="1" colspan="4">
+                                                <tree string="Move lines">
+                                                    <field name="amount" />
+                                                    <field name="move_line_id"/>
+                                                </tree>
+                                                <form string="Move line">
+                                                    <group>
+                                                        <field name="amount" />
+                                                        <field name="move_line_id"/>
+                                                    </group>
+                                                </form>
+                                            </field>
+                                            <group>
+                                                <field name="acceptance_account_id"/>
+                                                <field name="acceptance_move_id"/>
+                                            </group>
+                                            <separator string="Payments" colspan="4"/>
+                                            <field name="payment_ids" nolabel="1" colspan="4">
+                                                <tree string="Payments">
+                                                    <field name="date"/>
+                                                    <field name="move_id"/>
+                                                    <field name="ref"/>
+                                                    <field name="name"/>
+                                                    <field name="journal_id" groups="base.group_user"/>
+                                                    <field name="debit"/>
+                                                    <field name="credit"/>
+                                                    <field name="amount_currency"/>
+                                                    <field name="currency_id"/>
+                                                </tree>
+                                            </field>
+                                            <field name="unsolved_move_id"/>
+                                        </page>
+                                    </notebook>
+                                </form>
+                            </field>
+                            <field name="type" invisible="1" />
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="user_id" />
+                                <field name="date_created" />
+                                <field name="date_accepted" />
+                                <field name="date_accreditation" />
+                                <field name="date_paid" />
+                            </group>
+                        </page>
+                        <page string="Accounting">
+                            <separator colspan="4" string="Acceptance Entries"/>
+                            <field name='acceptance_move_ids' colspan="4" nolabel="1"/>
+                            <separator colspan="4" string="Accreditation Entry"/>
+                            <field name='accreditation_move_id' colspan="4" nolabel="1"/>
+                            <separator colspan="4" string="Payments"/>
+                            <field name='payment_ids' colspan="4" nolabel="1">
+                                <tree string="Payments">
+                                    <field name="date"/>
+                                    <field name="move_id"/>
+                                    <field name="ref"/>
+                                    <field name="name"/>
+                                    <field name="journal_id" groups="base.group_user"/>
+                                    <field name="debit"/>
+                                    <field name="credit"/>
+                                    <field name="amount_currency"/>
+                                    <field name="currency_id"/>
+                                </tree>
+                            </field>
+                            <separator colspan="4" string="Unsolved"/>
+                            <field name='unsolved_move_ids' colspan="4" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        
+        <!-- ====================================================== -->
+        <!--                     ACTION DISTINTA RIBA                -->
+        <!-- ====================================================== -->
+        <record id="distinta_riba_action" model="ir.actions.act_window">
+            <field name="name">Distinta Ri.Ba.</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">riba.distinta</field>
+            <field name="src_model">riba.distinta</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_distinta_riba_filtri"/>
+        </record>
+        
+        <!-- ====================================================== -->
+        <!--                     DISTINTA RIBA - MENU                -->
+        <!-- ====================================================== -->
+        <menuitem name="Distinte" parent="menu_riba" 
+            id="menu_riba_distinte" action="distinta_riba_action" />
+
+    </data>
+</openerp>
