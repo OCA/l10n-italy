@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 # Paolo Valier, 2016
 # Paolo Valier, 2016
@@ -12,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2016-04-29 19:56+0000\n"
-"Last-Translator: Paolo Valier\n"
+"POT-Creation-Date: 2016-07-30 23:13+0000\n"
+"PO-Revision-Date: 2016-08-09 10:49+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,6 +326,11 @@ msgid "Totali"
 msgstr "Totali"
 
 #: help:wizard.registro.iva,tax_sign:0
+msgid ""
+"Use -1 you have negative tax         amounts and you want to print them "
+"prositive"
+msgstr "Utilizzare -1 se si hanno importi negativi e li si vuole stampare positivi"
+
 #. module: l10n_it_vat_registries
 msgid "Use -1 you have negative tax         amounts and you want to print them prositive"
 msgstr "Use -1 you have negative tax         amounts and you want to print them prositive"

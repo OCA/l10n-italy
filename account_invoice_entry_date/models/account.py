@@ -50,56 +50,64 @@ class AccountInvoice(models.Model):
             cr, uid, ids, context=context)
 
         for inv in self.browse(cr, uid, ids):
-            date_invoice = inv.date_invoice
-            reg_date = inv.registration_date
-            if not inv.registration_date:
-                if not inv.date_invoice:
-                    reg_date = time.strftime('%Y-%m-%d')
+            if inv.type in ['in_invoice', 'in_refund']:
+                date_invoice = inv.date_invoice
+                reg_date = inv.registration_date
+                if not inv.registration_date:
+                    if not inv.date_invoice:
+                        reg_date = time.strftime('%Y-%m-%d')
+                    else:
+                        reg_date = inv.date_invoice
+
+                if date_invoice and reg_date:
+                    if (date_invoice > reg_date):
+                        raise Warning(_("The invoice date cannot be later than"
+                                        " the date of registration!"))
+
+                date_start = inv.registration_date or inv.date_invoice \
+                    or time.strftime('%Y-%m-%d')
+                date_stop = inv.registration_date or inv.date_invoice \
+                    or time.strftime('%Y-%m-%d')
+
+                period_ids = self.pool.get('account.period').search(
+                    cr, uid,
+                    [
+                        ('date_start', '<=', date_start),
+                        ('date_stop', '>=', date_stop),
+                        ('company_id', '=', inv.company_id.id),
+                        ('special', '!=', True),
+                        ])
+                if period_ids:
+                    period_id = period_ids[0]
                 else:
-                    reg_date = inv.date_invoice
+                    raise Warning(
+                        _("Can't find a non special period for %s - %s (%s)")
+                        % (date_start, date_stop, inv.company_id.name)
+                    )
 
-            if date_invoice and reg_date:
-                if (date_invoice > reg_date):
-                    raise Warning(_("The invoice date cannot be later than the"
-                                    " date of registration!"))
+                self.write(
+                    cr, uid, [inv.id], {
+                        'registration_date': reg_date, 'period_id': period_id})
 
-            date_start = inv.registration_date or inv.date_invoice \
-                or time.strftime('%Y-%m-%d')
-            date_stop = inv.registration_date or inv.date_invoice \
-                or time.strftime('%Y-%m-%d')
+                mov_date = reg_date or inv.date_invoice or time.strftime(
+                    '%Y-%m-%d')
 
-            period_ids = self.pool.get('account.period').search(
-                cr, uid,
-                [
-                    ('date_start', '<=', date_start),
-                    ('date_stop', '>=', date_stop),
-                    ('company_id', '=', inv.company_id.id)
-                    ])
-            if period_ids:
-                period_id = period_ids[0]
+                self.pool.get('account.move').write(
+                    cr, uid, [inv.move_id.id], {'state': 'draft'})
 
-            self.write(
-                cr, uid, [inv.id], {
-                    'registration_date': reg_date, 'period_id': period_id})
+                sql = "update account_move_line set period_id="+str(
+                    period_id
+                    ) + ",date='" + mov_date + "' where move_id = " + str(
+                    inv.move_id.id)
 
-            mov_date = reg_date or inv.date_invoice or time.strftime(
-                '%Y-%m-%d')
+                cr.execute(sql)
 
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id], {'state': 'draft'})
+                self.pool.get('account.move').write(
+                    cr, uid, [inv.move_id.id],
+                    {'period_id': period_id, 'date': mov_date})
 
-            sql = "update account_move_line set period_id="+str(
-                period_id) + ",date='" + mov_date + "' where move_id = " + str(
-                inv.move_id.id)
-
-            cr.execute(sql)
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id],
-                {'period_id': period_id, 'date': mov_date})
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id], {'state': 'posted'})
+                self.pool.get('account.move').write(
+                    cr, uid, [inv.move_id.id], {'state': 'posted'})
 
         self._log_event(cr, uid, ids)
         return True

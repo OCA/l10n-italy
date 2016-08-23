@@ -3,13 +3,14 @@
 # * account_invoice_entry_date
 # 
 # Translators:
+# Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 17:45+0000\n"
-"PO-Revision-Date: 2016-03-01 08:00+0000\n"
+"POT-Creation-Date: 2016-08-17 00:47+0000\n"
+"PO-Revision-Date: 2016-08-17 13:14+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/models/account.py:84
+#, python-format
+msgid "Can't find a non special period for %s - %s (%s)"
+msgstr "Ne posebnega obdobja za %s - %s (%s) ne najdem."
 
 #. module: account_invoice_entry_date
 #: model:ir.model,name:account_invoice_entry_date.model_account_invoice
@@ -34,7 +41,7 @@ msgid "Registration Date"
 msgstr "Datum registracije"
 
 #. module: account_invoice_entry_date
-#: code:addons/account_invoice_entry_date/models/account.py:63
+#: code:addons/account_invoice_entry_date/models/account.py:64
 #, python-format
 msgid "The invoice date cannot be later than the date of registration!"
 msgstr "Datum računa ne more biti kasnejši od datuma registracije!"

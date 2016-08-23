@@ -37,6 +37,8 @@ addon | version | summary
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
+[l10n_it_central_journal](l10n_it_central_journal/) | 8.0.2.0.0 | Italian Localization - Account central journal
+[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.0 | Italian Localization - Corrispettivi
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | Documento di Trasporto
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 | Electronic invoices emission
@@ -54,26 +56,14 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[account_central_journal](account_central_journal/) | 3 (unported) | Account Central Journal
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 (unported) | Fiscal Year Closing
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
-[l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 (unported) | DDT report using Webkit Library
-[l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 (unported) | Base Bank ABI/CAB codes
-[l10n_it_account](l10n_it_account/) | 8.0.1.0.0 (unported) | Italian Localization - Account
-[l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 (unported) | Ateco codes
-[l10n_it_base](l10n_it_base/) | 8.0.0.1.0 (unported) | Italian Localisation - Base
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 (unported) | Import base_location entries (provinces) from Geonames
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
-[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 (unported) | Italian Localisation - Corrispettivi
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 (unported) | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.0 (unported) | Electronic invoices emission
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.0 (unported) | Italian Localisation - Fiscal Code
-[l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 (unported) | IPA Code (IndicePA)
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 (unported) | Pec Mail
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
-[l10n_it_sale](l10n_it_sale/) | 0.2 (unported) | Italian Localisation - Sale
 
 [//]: # (end addons)
 

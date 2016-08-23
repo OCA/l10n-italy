@@ -37,7 +37,7 @@
         <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
         <field name="arch" type="xml">
             <button name="action_draft" position="after">
-                <button name="%(action_ddt_create_invoice)d" type="action" string="Create Invoice"
+                <button name="create_invoice" type="object" string="Create Invoice"
                         attrs="{'invisible':['|', ('state', '!=', 'done'), ('ddt_type_id', '=', False)]}"/>
                 <button name="set_done" type="object" string="Set done"
                         attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
