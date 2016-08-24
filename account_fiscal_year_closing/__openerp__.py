@@ -64,6 +64,6 @@ user can cancel and undo the operations easily.
                     "hide_account_wizards.xml",
                     ],
     "active": False,
-    'installable': False
+    'installable': True
 }
 

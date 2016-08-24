@@ -25,10 +25,10 @@
 Create FYC entries wizards
 """
 
-from tools.translate import _
-import netsvc
-import decimal_precision as dp
-from osv import fields, osv
+from openerp.tools.translate import _
+from openerp import netsvc
+import openerp.addons.decimal_precision as dp
+from openerp.osv import fields, osv
 
 class wizard_run(osv.osv_memory):
     """

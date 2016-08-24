@@ -27,10 +27,10 @@ Fiscal Year Closing
 __author__ = "Borja López Soilán (Pexego)"
 
 
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
 from datetime import datetime
-import netsvc
+from openerp import netsvc
 
 #-------------------------------------------------------------------------------
 # Predeclaration of the FYC object
@@ -413,11 +413,13 @@ class fiscal_year_closing(osv.osv):
         """
         if context is None:
             context = {}
+        ctx = context.copy()
         #
         # Make sure the lang is defined on the context
         #
-        user = self.pool.get('res.users').browse(cr, uid, uid, context)
-        context['lang'] = context.get('lang') or user.lang
+        user = self.pool['res.users'].browse(cr, uid, uid, ctx)
+        ctx['lang'] = context.get('lang') or user.lang
+        context = ctx
 
         for fyc in self.browse(cr, uid, ids, context):
             #
@@ -699,12 +701,3 @@ class fiscal_year_closing(osv.osv):
         for item_id in ids:
             wf_service.trg_create(uid, 'account_fiscal_year_closing.fyc', item_id, cr)
         return True
-
-
-fiscal_year_closing()
-
-
-
-
-
-
