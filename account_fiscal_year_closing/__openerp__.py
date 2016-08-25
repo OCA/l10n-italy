@@ -36,11 +36,11 @@
     "license": "AGPL-3",
     "category": "Generic Modules/Accounting",
     "description": """
-Generalization of l10n_es_fiscal_year_closing 
+Generalization of l10n_es_fiscal_year_closing
 ( http://apps.openerp.com/addon/4506 )
 
 Fiscal Year Closing Wizard
-    
+
 Replaces the default OpenERP end of year wizards (from account module)
 with a more advanced all-in-one wizard that will let the users:
   - Check for unbalanced moves, moves with invalid dates
@@ -55,17 +55,17 @@ user can cancel and undo the operations easily.
     """,
     "license": "AGPL-3",
     "depends": [
-                    "base",
-                    "account",
-                ],
+                "base",
+                "account",
+    ],
     "init_xml": [],
     "data": [
-              "security/ir.model.access.csv",
-              "fyc_workflow.xml",
-              "wizard/wizard_run.xml",
-              "fyc_view.xml",
-              "hide_account_wizards.xml",
-              ],
+        "security/ir.model.access.csv",
+        "fyc_workflow.xml",
+        "wizard/wizard_run.xml",
+        "fyc_view.xml",
+        "hide_account_wizards.xml",
+    ],
     "active": False,
     'installable': True
 }
