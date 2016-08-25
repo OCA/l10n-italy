@@ -737,7 +737,7 @@ class fiscal_year_closing(osv.osv):
         # Open the fiscal year and it's periods
         #
         # Note: We can not just do a write, cause it would raise a
-        #       "You can not modify/delete a journal with entries for this 
+        #       "You can not modify/delete a journal with entries for this
         #        period!"
         #       so we have to do it on SQL level :(
         #       This is based on the "account.fiscalyear.close.state" wizard
