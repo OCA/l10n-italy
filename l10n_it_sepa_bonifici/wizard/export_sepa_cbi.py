@@ -20,7 +20,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
     state = fields.Selection([
         ('create', 'Create'),
         ('finish', 'Finish'),
-        ], string='State', readonly=True, default='create')
+    ], string='State', readonly=True, default='create')
     batch_booking = fields.Boolean(
         string='Batch Booking',
         help="If true, the bank statement will display only one credit "
@@ -32,7 +32,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
         ('SHAR', 'Shared'),
         ('CRED', 'Borne by Creditor'),
         ('DEBT', 'Borne by Debtor'),
-        ], string='Charge Bearer', required=True, default='SLEV',
+    ], string='Charge Bearer', required=True, default='SLEV',
         help="Following service level : transaction charges are to be "
         "applied following the rules agreed in the service level "
         "and/or scheme (SEPA Core messages must use this). Shared : "
@@ -245,7 +245,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 # Add info for Cross Border payment
                 partner_creditor = line.partner_id
                 creditor_node = credit_transfer_transaction_info_2_27\
-                    .xpath('//Cdtr')[transactions_count_1_6-1]
+                    .xpath('//Cdtr')[transactions_count_1_6 - 1]
                 creditor_address_node = etree.SubElement(creditor_node,
                                                          'PstlAdr')
                 creditor_address_country_node = etree.SubElement(
@@ -303,5 +303,5 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                 'res_id': order.id,
                 'name': self.filename,
                 'datas': self.file,
-                })
+            })
         return True
