@@ -614,7 +614,6 @@ class fiscal_year_closing(osv.osv):
                     _("The Opening move is required"))
 
             ''' needed ?
-            
             #
             # Calculate the moves to check
             #
@@ -658,7 +657,7 @@ class fiscal_year_closing(osv.osv):
                 #
                 # Note: We will reconcile all the lines, even the
                 #       'not reconcile' ones, to prevent future problems
-                #       (the user may change the reconcile option of an 
+                #       (the user may change the reconcile option of an
                 #       account in the future)
                 #
                 netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG,
@@ -702,7 +701,6 @@ class fiscal_year_closing(osv.osv):
                     WHERE id = %d
                     """
             cr.execute(query % fyc.closing_fiscalyear_id.id)
-            
             '''
 
         # Done
@@ -734,8 +732,7 @@ class fiscal_year_closing(osv.osv):
             'check_unbalanced_moves': False,
         }, context=context)
 
-        ''' needed? 
-
+        ''' needed?
         #
         # Open the fiscal year and it's periods
         #
@@ -743,10 +740,9 @@ class fiscal_year_closing(osv.osv):
         #       "You can not modify/delete a journal with entries for this 
         #        period!"
         #       so we have to do it on SQL level :(
-        #       This is based on the "account.fiscalyear.close.state" wizard.
+        #       This is based on the "account.fiscalyear.close.state" wizard
         #
         # TODO check this for 6.1
-        
         for fyc in self.browse(cr, uid, ids, context):
             query = """
                     UPDATE account_journal_period

@@ -255,7 +255,6 @@ class wizard_run(osv.osv_memory):
         # For each found move, check it
         #
         unbalanced_moves = []
-        total_accounts = len(account_move_ids)
         for move in pool.get('account.move').browse(cr, uid, account_move_ids,
                                                     context):
             amount = 0
@@ -298,7 +297,6 @@ class wizard_run(osv.osv_memory):
         date = None
         period_id = None
         journal_id = None
-        fiscalyear_id = fyc.closing_fiscalyear_id.id
 
         #
         # Depending on the operation we will use different data
@@ -347,7 +345,7 @@ class wizard_run(osv.osv_memory):
         elif operation == 'net_loss_and_profit':
             '''
             #
-            # Consider all the periods of the fiscal year *BUT* the 
+            # Consider all the periods of the fiscal year *BUT* the
             # Net L&P and the Closing one.
             #
             for period in fyc.closing_fiscalyear_id.period_ids:
@@ -389,15 +387,16 @@ class wizard_run(osv.osv_memory):
             journal_id = fyc.nlp_journal_id.id
         elif operation == 'close':
             # Require the user to have performed the L&P operation
-            if not (fyc.loss_and_profit_move_id
-                    and fyc.loss_and_profit_move_id.id):
+            if not (fyc.loss_and_profit_move_id and
+                    fyc.loss_and_profit_move_id.id):
                 raise osv.except_osv(
                     _('UserError'),
                     _("The L&P move must exist before creating the closing\
                      one"))
             '''
             #
-            # Consider all the periods of the fiscal year *BUT* the Closing one.
+            # Consider all the periods of the fiscal year *BUT* the Closing
+            # one.
             #
             for period in fyc.closing_fiscalyear_id.period_ids:
                 if period.id != fyc.c_period_id.id:
@@ -433,7 +432,6 @@ class wizard_run(osv.osv_memory):
         #
         # For each (parent) account in the mapping list
         #
-        total_accounts = len(account_mapping_ids)
         accounts_done = 0
         for account_map in account_mapping_ids:
             # Init (if needed) the dictionary that will store the totals for
@@ -592,7 +590,6 @@ class wizard_run(osv.osv_memory):
         # Read the lines from the closing move, and append the inverse lines
         # to the opening move lines.
         #
-        total_accounts = len(closing_move.line_id)
         accounts_done = 0
         for line in closing_move.line_id:
             move_lines.append({
