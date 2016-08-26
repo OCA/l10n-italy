@@ -28,7 +28,7 @@
 
 {
     "name": "Fiscal Year Closing",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "Odoo Italian Community, Pexego,"
             "Odoo Community Association (OCA)",
     "website": "http://www.openerp-italia.org",
@@ -58,13 +58,13 @@ user can cancel and undo the operations easily.
         "account",
     ],
     "init_xml": [],
-    "update_xml": [
+    "data": [
         "security/ir.model.access.csv",
         "fyc_workflow.xml",
         "wizard/wizard_run.xml",
         "fyc_view.xml",
         "hide_account_wizards.xml",
     ],
-    "active": False,
+    "active": True,
     'installable': True
 }
