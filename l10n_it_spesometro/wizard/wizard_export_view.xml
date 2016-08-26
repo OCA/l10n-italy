@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- 
+		Form           
+		-->
+        <record id="wizard_spesometro_export_view" model="ir.ui.view">
+	        <field name="name">wizard.spesometro.export.view</field>
+	        <field name="model">wizard.spesometro.export</field>
+	        <field name="arch" type="xml">
+		        <form string="Params">
+		        	<group>
+			        	<field name="file_spesometro" readonly="1"/>
+			        	<separator colspan="4" />
+			            <button name="execute_export" string="Export" type="object" icon="gtk-execute" />
+		            </group>
+		      	</form>
+	        </field>
+    	</record>
+
+        <!-- ACTION -->
+        <record id="wizard_spesometro_export_action" model="ir.actions.act_window">
+			<field name="name">Export spesometro</field>
+	        <field name="res_model">wizard.spesometro.export</field>
+	        <field name="src_model">spesometro.comunicazione</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="wizard_spesometro_export_view"/>
+	        <field name="help">Crea file spesometro - Comunicazione art.21 </field>
+	        <field name="target">new</field>
+    	</record>
+    	
+        <act_window name="Export spesometro"   
+            res_model="wizard.spesometro.export"
+            src_model="spesometro.comunicazione"
+            view_mode="form"
+            target="new"
+            context="{'search_default_in_location':1}" 
+            key2="client_action_multi"    
+            view_id="wizard_spesometro_export_view"    
+            id="wizard_spesometro_export_action2"/>   
+    	
+    </data>
+</openerp>

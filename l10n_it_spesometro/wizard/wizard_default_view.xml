@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_spesometro_default_view" model="ir.ui.view">
+            <field name="name">Spesometro default</field>
+            <field name="model">wizard.spesometro.default</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dati comunicazione">
+                    <group string="Partner">
+                    <field name="partner_spesometro_escludi"/>
+                    <field name="partner_spesometro_operazione"/>
+                    </group>
+                    
+                    <newline/>
+                    <group colspan="4">
+                        <separator colspan="4"/>
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="setting_default" string="Imposta default" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+      	<record id="wizard_spesometro_default_action" model="ir.actions.act_window">
+            <field name="name">Spesometro default</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.spesometro.default</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_spesometro_default_view"/>
+        </record>
+         
+        <menuitem id="menu_spesometro_default" action="wizard_spesometro_default_action"
+            name="Impostazione Default" parent="menu_spesometro_main"/>
+    </data>
+</openerp>
