@@ -119,6 +119,10 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def action_put_in_pack(self):
         for package in self:
+            # ----- Check if package has details
+            if not package.line_ids:
+                raise exceptions.Warning(
+                    _("Impossible to put in pack a package without details"))
             # ----- Assign ddt number if ddt type is set
             if package.ddt_type_id and not package.ddt_number:
                 package.ddt_number = package.ddt_type_id.sequence_id.get(
