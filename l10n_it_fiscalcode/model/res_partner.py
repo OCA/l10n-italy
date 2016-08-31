@@ -43,18 +43,19 @@ class ResPartner(models.Model):
         string='Individual', default=False,
         help="If checked the C.F. is referred to a Individual Person")
 
-    @api.one
+    @api.multi
     @api.constrains('fiscalcode')
     def _check_fiscalcode(self):
 
-        if self.fiscalcode:
-            if self.is_company and len(self.fiscalcode) != 11 and \
-                    not self.individual and not self.fiscalcode.isdigit():
-                raise ValidationError(
-                    _("Company fiscal code must be 11 digts lenght.")
-                )
-            elif len(self.fiscalcode) != 16 and \
-                    not codicefiscale.isvalid(self.fiscalcode):
-                raise ValidationError(
-                    _("The fiscal code doesn't seem to be correct.")
-                )
+        for partner in self:
+            if partner.fiscalcode:
+                if partner.is_company and len(partner.fiscalcode) != 11 and \
+                        not partner.individual and not partner.fiscalcode.isdigit():
+                    raise ValidationError(
+                        _("Company fiscal code must be 11 digts lenght.")
+                    )
+                elif len(partner.fiscalcode) != 16 and \
+                        not codicefiscale.isvalid(partner.fiscalcode):
+                    raise ValidationError(
+                        _("The fiscal code doesn't seem to be correct.")
+                    )
