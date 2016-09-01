@@ -148,3 +148,24 @@ class StockPickingPackagePreparation(models.Model):
             name = u'{partner} of {date}'.format(partner=self.partner_id.name,
                                                  date=self.date)
         self.display_name = name
+
+    @api.one
+    @api.depends('package_id',
+                 'package_id.children_ids',
+                 'package_id.ul_id',
+                 'package_id.quant_ids',
+                 'picking_ids',
+                 'picking_ids.move_lines',
+                 'picking_ids.move_lines.quant_ids')
+    def _compute_weight(self):
+        res = super(StockPickingPackagePreparation, self)._compute_weight()
+        if not self.package_id:
+            quants = self.env['stock.quant']
+            for picking in self.picking_ids:
+                for line in picking.move_lines:
+                    for quant in line.quant_ids:
+                        if quant.qty >= 0:
+                            quants |= quant
+            weight = sum(l.product_id.weight * l.qty for l in quants)
+            self.net_weight = weight
+            self.weight = weight
