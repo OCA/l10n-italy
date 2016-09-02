@@ -21,7 +21,7 @@ msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.actions.report.xml,name:l10n_it_central_journal.action_report_giornale
-msgid "Accont central journal"
+msgid "Account central journal"
 msgstr ""
 
 #. module: l10n_it_central_journal
