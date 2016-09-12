@@ -33,11 +33,13 @@ class AccountInvoice(models.Model):
             if not partner_ids:
                 raise UserError(
                     _('No partner "corrispettivi" found'))
-            res = partner_ids[0]
+            res = partner_ids[0].id
         return res
 
     # set default option on inherited field
-    corrispettivo = fields.Boolean(string='Corrispettivo')
+    corrispettivo = fields.Boolean(
+        string='Corrispettivo', related="journal_id.corrispettivi",
+        readonly=True, store=True)
     account_id = fields.Many2one(default=_get_account)
     partner_id = fields.Many2one(default=_get_partner_id)
 
@@ -67,16 +69,6 @@ class AccountInvoice(models.Model):
                     if corr_journal_ids[0] != j_id:
                         res['value']['journal_id'] = j_id
                         break
-        return res
-
-    @api.multi
-    def onchange_corrispettivo(self, corrispettivo=False):
-        res = {}
-        company_id = self.env['res.users'].browse(self._uid).company_id.id
-        corr_journal_ids = self.env['account.journal'].search(
-            [('corrispettivi', '=', True), ('company_id', '=', company_id)])
-        if corr_journal_ids and corrispettivo:
-            res = {'value': {'journal_id': corr_journal_ids[0]}}
         return res
 
 
