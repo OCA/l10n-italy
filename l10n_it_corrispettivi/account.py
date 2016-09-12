@@ -12,7 +12,7 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     def _get_account(self):
-        is_corrispettivo = self._context.get('corrispettivo', False)
+        is_corrispettivo = self._context.get('default_corrispettivo', False)
         res = False
         if is_corrispettivo:
             partner_ids = self.env['res.partner'].search(
@@ -20,13 +20,12 @@ class AccountInvoice(models.Model):
             if not partner_ids:
                 raise UserError(
                     _('No partner "corrispettivi" found'))
-            partner = self.env['res.partner'].browse(
-                self._cr, self._uid, partner_ids[0])
+            partner = partner_ids[0]
             res = partner.property_account_receivable.id
         return res
 
     def _get_partner_id(self):
-        is_corrispettivo = self._context.get('corrispettivo', False)
+        is_corrispettivo = self._context.get('default_corrispettivo', False)
         res = False
         if is_corrispettivo:
             partner_ids = self.env['res.partner'].search(
@@ -48,7 +47,7 @@ class AccountInvoice(models.Model):
     ):
         res = super(AccountInvoice, self).onchange_company_id(
             company_id, part_id, type, invoice_line, currency_id)
-        is_corrispettivo = self._context.get('corrispettivo', False)
+        is_corrispettivo = self._context.get('default_corrispettivo', False)
         corr_journal_ids = self.env['account.journal'].search(
             [('corrispettivi', '=', True), ('company_id', '=', company_id)])
 
