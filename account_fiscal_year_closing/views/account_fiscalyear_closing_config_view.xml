@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="view_account_fiscalyear_closing_config_tree" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing.config</field>
+        <field name="arch" type="xml">
+            <tree string="Fiscal year closing move configurations">
+                <field name="sequence" widget="handle" />
+                <field name="enable"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="inverse"/>
+                <field name="reconcile"/>
+                <field name="move_type"/>
+                <field name="date"/>
+                <field name="journal_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_account_fiscalyear_closing_config_form" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing.config</field>
+        <field name="arch" type="xml">
+            <form string="Fiscal year closing move configuration">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="enable"/>
+                            <field name="journal_id"/>
+                            <field name="sequence"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="inverse"/>
+                            <field name="reconcile"/>
+                            <field name="move_type"/>
+                        </group>
+                    </group>
+                    <group string="Accounts mapping">
+                        <field name="mapping_ids" nolabel="1"/>
+                    </group>
+                    <group string="Accounts closing types">
+                        <group>
+                            <field name="closing_type_default"/>
+                        </group>
+                        <group/>
+                    </group>
+                    <group>
+                        <field name="closing_type_ids" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

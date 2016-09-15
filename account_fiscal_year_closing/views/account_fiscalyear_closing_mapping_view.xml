@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="view_account_fiscalyear_closing_mapping_tree" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing.mapping</field>
+        <field name="arch" type="xml">
+            <tree string="Fiscal year closing move account mappings">
+                <field name="name"/>
+                <field name="dst_account_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_account_fiscalyear_closing_mapping_form" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing.mapping</field>
+        <field name="arch" type="xml">
+            <form string="Fiscal year closing move account mapping">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="dst_account_id"/>
+                        </group>
+                    </group>
+                    <group string="Source accounts">
+                        <field name="src_account_ids" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
