@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
+# Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+# @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2016 Lorenzo Battistini - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from openerp import models, fields, api, exceptions, _
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning as UserError
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -112,60 +109,63 @@ class StockPickingPackagePreparation(models.Model):
         for package in self:
             # ----- Check if package has details
             if not package.line_ids:
-                raise exceptions.Warning(
+                raise UserError(
                     _("Impossible to put in pack a package without details"))
             # ----- Assign ddt number if ddt type is set
             if package.ddt_type_id and not package.ddt_number:
-                package.ddt_number = package.ddt_type_id.sequence_id.get(
-                    package.ddt_type_id.sequence_id.code)
+                package.ddt_number = (
+                    package.ddt_type_id.sequence_id.next_by_code(
+                        package.ddt_type_id.sequence_id.code))
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.multi
     def set_done(self):
         for picking in self.picking_ids:
             if picking.state != 'done':
-                raise exceptions.Warning(
+                raise UserError(
                     _("Not every picking is in done status"))
         for package in self:
             if not package.ddt_number:
-                package.ddt_number = package.ddt_type_id.sequence_id.get(
-                    package.ddt_type_id.sequence_id.code)
+                package.ddt_number = (
+                    package.ddt_type_id.sequence_id.next_by_code(
+                        package.ddt_type_id.sequence_id.code))
         self.write({'state': 'done', 'date_done': fields.Datetime.now()})
         return True
 
-    @api.one
+    @api.multi
     @api.depends('name', 'ddt_number', 'partner_id', 'date')
     def _compute_display_name(self):
-        name = u''
-        if self.name:
-            name = self.name
-        if self.ddt_number and self.name:
-            name = u'[{package}] {ddt}'.format(package=self.name,
-                                               ddt=self.ddt_number)
-        if self.ddt_number and not self.name:
-            name = self.ddt_number
-        if not name:
-            name = u'{partner} of {date}'.format(partner=self.partner_id.name,
-                                                 date=self.date)
-        self.display_name = name
+        for prep in self:
+            name = u''
+            if prep.name:
+                name = prep.name
+            if prep.ddt_number and prep.name:
+                name = u'[{package}] {ddt}'.format(
+                    package=prep.name, ddt=prep.ddt_number)
+            if prep.ddt_number and not prep.name:
+                name = prep.ddt_number
+            if not name:
+                name = u'{partner} of {date}'.format(
+                    partner=prep.partner_id.name, date=prep.date)
+            prep.display_name = name
 
-    @api.one
+    @api.multi
     @api.depends('package_id',
                  'package_id.children_ids',
-                 'package_id.ul_id',
                  'package_id.quant_ids',
                  'picking_ids',
                  'picking_ids.move_lines',
                  'picking_ids.move_lines.quant_ids')
     def _compute_weight(self):
-        res = super(StockPickingPackagePreparation, self)._compute_weight()
-        if not self.package_id:
-            quants = self.env['stock.quant']
-            for picking in self.picking_ids:
-                for line in picking.move_lines:
-                    for quant in line.quant_ids:
-                        if quant.qty >= 0:
-                            quants |= quant
-            weight = sum(l.product_id.weight * l.qty for l in quants)
-            self.net_weight = weight
-            self.weight = weight
+        super(StockPickingPackagePreparation, self)._compute_weight()
+        for prep in self:
+            if not prep.package_id:
+                quants = self.env['stock.quant']
+                for picking in prep.picking_ids:
+                    for line in picking.move_lines:
+                        for quant in line.quant_ids:
+                            if quant.qty >= 0:
+                                quants |= quant
+                weight = sum(l.product_id.weight * l.qty for l in quants)
+                prep.net_weight = weight
+                prep.weight = weight

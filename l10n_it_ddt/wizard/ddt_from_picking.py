@@ -102,7 +102,7 @@ class DdTFromPickings(models.TransientModel):
                         picking.sale_id.transportation_method_id)):
                     raise UserError(
                         _("Selected Pickings have"
-                          " different transportation reason"))
+                          " different transportation method"))
                 transportation_method_id = (
                     picking.sale_id.transportation_method_id)
                 values['transportation_method_id'] = (
