@@ -152,7 +152,6 @@ class StockPickingPackagePreparation(models.Model):
     @api.one
     @api.depends('package_id',
                  'package_id.children_ids',
-                 'package_id.ul_id',
                  'package_id.quant_ids',
                  'picking_ids',
                  'picking_ids.move_lines',
