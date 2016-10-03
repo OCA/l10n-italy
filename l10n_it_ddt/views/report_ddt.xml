@@ -6,7 +6,7 @@
 
             <style type="text/css">
                 table.delivery_data td h6 { margin: 0; }
-                .signature { min-height: 4em; }
+                .signature { min-height: 2em; }
             </style>
 
             <table class="table table-condensed table-bordered delivery_data">
