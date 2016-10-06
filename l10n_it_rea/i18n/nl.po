@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_rea
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-17 17:30+0000\n"
+"PO-Revision-Date: 2016-09-17 17:30+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
+msgid "Capital"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_liquidation_state:0
+msgid "In liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_liquidation_state
+msgid "Liquidation State"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_member_type
+msgid "Member Type"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_member_type:0
+msgid "Multiple Members"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_liquidation_state:0
+msgid "Not in liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_office
+msgid "Office Province"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model,name:l10n_it_rea.model_res_partner
+msgid "Partner"
+msgstr "Relatie"
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_code
+msgid "REA Code"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.ui.view,arch_db:l10n_it_rea.view_rea_partner_form
+msgid "REA Registration"
+msgstr ""
+
+#. module: l10n_it_rea
+#: sql_constraint:res.partner:0
+msgid "The rea code code must be unique per company !"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_member_type:0
+msgid "Unique Member"
+msgstr ""
