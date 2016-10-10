@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-17 00:47+0000\n"
-"PO-Revision-Date: 2016-05-01 14:30+0000\n"
+"POT-Creation-Date: 2016-10-25 00:48+0000\n"
+"PO-Revision-Date: 2016-10-27 06:01+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -98,6 +98,11 @@ msgid "Companies"
 msgstr "Družbe"
 
 #. module: account_vat_period_end_statement
+#: field:account.vat.period.end.statement,company_id:0
+msgid "Company"
+msgstr "Družba"
+
+#. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,interest:0
 msgid "Compute Interest"
 msgstr "Izračun obresti"
@@ -139,7 +144,7 @@ msgstr "Postavke konta terjatev"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,credit_vat_account_line_ids:0
-#: code:addons/account_vat_period_end_statement/models/account.py:482
+#: code:addons/account_vat_period_end_statement/models/account.py:485
 #, python-format
 msgid "Credit VAT"
 msgstr "DDV v dobro"
@@ -168,7 +173,7 @@ msgstr "Postavke konta obveznosti"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,debit_vat_account_line_ids:0
-#: code:addons/account_vat_period_end_statement/models/account.py:463
+#: code:addons/account_vat_period_end_statement/models/account.py:466
 #, python-format
 msgid "Debit VAT"
 msgstr "DDV v breme"
@@ -210,13 +215,13 @@ msgid "Draft"
 msgstr "Osnutek"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:448
+#: code:addons/account_vat_period_end_statement/models/account.py:451
 #, python-format
 msgid "Encoding error"
 msgstr "Napaka vnosa"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:574
+#: code:addons/account_vat_period_end_statement/models/account.py:577
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:137
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:148
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:187
@@ -228,13 +233,13 @@ msgid "Error"
 msgstr "Napaka"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:732
+#: code:addons/account_vat_period_end_statement/models/account.py:735
 #, python-format
 msgid "Error VAT Configuration!"
 msgstr "Napačne nastavitve DDV!"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:424
+#: code:addons/account_vat_period_end_statement/models/account.py:427
 #, python-format
 msgid "Error!"
 msgstr "Napaka!"
@@ -331,7 +336,7 @@ msgid "No base code found for tax code %s"
 msgstr "Za davčno kodo %s ni najdena kode osnove"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:448
+#: code:addons/account_vat_period_end_statement/models/account.py:451
 #, python-format
 msgid "No period found or more than one period found for the given date."
 msgstr "Ni najdeno nobeno obdobje ali pa je najdeno več kot eno obdobje za dani datum."
@@ -343,7 +348,7 @@ msgid "Not every tax linked to tax code %s is linked to the same base code"
 msgstr "Vsak davek v povezavi z davčno kodo %s ni povezan z isto kodo osnove"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:539
+#: code:addons/account_vat_period_end_statement/models/account.py:542
 #, python-format
 msgid "Other VAT Credits / Debits"
 msgstr "Druge DDV terjatve / obveznosti"
@@ -412,7 +417,7 @@ msgstr "Obdobja"
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 #: field:account.vat.period.end.statement,previous_credit_vat_account_id:0
-#: code:addons/account_vat_period_end_statement/models/account.py:501
+#: code:addons/account_vat_period_end_statement/models/account.py:504
 #, python-format
 msgid "Previous Credits VAT"
 msgstr "Prejšnji DDV v dobro"
@@ -425,7 +430,7 @@ msgstr "Znesek prejšnjih DDV v dobro"
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 #: field:account.vat.period.end.statement,previous_debit_vat_account_id:0
-#: code:addons/account_vat_period_end_statement/models/account.py:520
+#: code:addons/account_vat_period_end_statement/models/account.py:523
 #, python-format
 msgid "Previous Debits VAT"
 msgstr "Prejšnji DDV v breme"
@@ -530,7 +535,7 @@ msgid "Tax Authority Partner"
 msgstr "Partner davčni organ"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:555
+#: code:addons/account_vat_period_end_statement/models/account.py:558
 #, python-format
 msgid "Tax Authority VAT"
 msgstr "DDV davčnega organa"
@@ -548,7 +553,7 @@ msgid "Tax Code"
 msgstr "Davčna koda"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:733
+#: code:addons/account_vat_period_end_statement/models/account.py:736
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr "Nastaviti morate konto za DDV obresti"
@@ -564,7 +569,7 @@ msgid "The accounts containing the debit VAT amount to write-off"
 msgstr "Konti, ki vsebujejo DDV v breme za odpis"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:575
+#: code:addons/account_vat_period_end_statement/models/account.py:578
 #, python-format
 msgid "The payment term %s does not have due dates"
 msgstr "Plačilni pogoj %s nima datumov veljavnosti"
@@ -619,7 +624,7 @@ msgstr "Neodbitni"
 
 #. module: account_vat_period_end_statement
 #: field:account.period,vat_statement_id:0
-#: code:addons/account_vat_period_end_statement/models/account.py:452
+#: code:addons/account_vat_period_end_statement/models/account.py:455
 #: field:statement.credit.account.line,statement_id:0
 #: field:statement.debit.account.line,statement_id:0
 #: field:statement.generic.account.line,statement_id:0
@@ -660,7 +665,7 @@ msgid "Vat statement"
 msgstr "DDV izjava"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:425
+#: code:addons/account_vat_period_end_statement/models/account.py:428
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
 msgstr "Potrjenih ali plačanih izjav ne morete brisati"
