@@ -396,8 +396,8 @@ class AccountVatPeriodEndStatement(orm.Model):
             'account.period', 'vat_statement_id', 'Periods'),
         'interest': fields.boolean('Compute Interest'),
         'interest_percent': fields.float('Interest - Percent'),
-        'fiscal_page_base': fields.integer('Last printed page', required=True)
-
+        'fiscal_page_base': fields.integer('Last printed page', required=True),
+        'company_id': fields.many2one('res.company', 'Company'),
     }
 
     _defaults = {
@@ -405,6 +405,9 @@ class AccountVatPeriodEndStatement(orm.Model):
         'interest': _get_default_interest,
         'interest_percent': _get_default_interest_percent,
         'fiscal_page_base': 1,
+        'company_id': lambda self, cr, uid, c:
+            self.pool.get('res.company')._company_default_get(
+                cr, uid, 'account.vat.period.end.statement', context=c),
     }
 
     def _get_tax_code_amount(self, cr, uid, tax_code_id, period_id, context):
