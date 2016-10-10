@@ -57,20 +57,10 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
         })
         self.context = context
 
-    def _get_statement(self, statement_id):
-        statement_obj = self.pool['account.vat.period.end.statement']
-        statement = False
-        if statement_id:
-            statement = statement_obj.browse(
-                self.cr, self.uid, statement_id, self.context)
+    def _get_statement(self, statement):
         return statement
 
-    def _get_fiscal_page_base(self, statement_id):
-        statement_obj = self.pool['account.vat.period.end.statement']
-        statement = False
-        if statement_id:
-            statement = statement_obj.browse(
-                self.cr, self.uid, statement_id, self.context)
+    def _get_fiscal_page_base(self, statement):
         return statement.fiscal_page_base
 
     def _compute_tax_amount(self, tax, tax_code, base_code, context=None):
@@ -98,8 +88,8 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
                 else:
                     vat_undeductible = child.tax_code_id.sum_period
         else:
-            vat_code = tax_code.code
-            vat_name = tax_code.name
+            vat_code = tax.description
+            vat_name = tax.name
             vat_deductible = tax_code.sum_period
 
         res[vat_name] = {

@@ -94,6 +94,7 @@
                     </notebook>
                     <field name="state"  select="1"/>
                     <field name="reconciled"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <button name="create_move" states="draft" string="Create Move" colspan="2"/>
                     <button name="set_draft" states="confirmed,paid" string="Set to draft" colspan="2"/>
                </form>
