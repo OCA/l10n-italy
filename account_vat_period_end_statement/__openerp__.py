@@ -43,6 +43,7 @@
         'wizard/remove_period.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
+        'security/security.xml',
         'reports.xml',
         'views/report_vatperiodendstatement.xml',
         'views/config.xml',
