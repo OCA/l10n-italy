@@ -157,7 +157,7 @@ class StockPickingPackagePreparation(models.Model):
                  'picking_ids.move_lines',
                  'picking_ids.move_lines.quant_ids')
     def _compute_weight(self):
-        res = super(StockPickingPackagePreparation, self)._compute_weight()
+        super(StockPickingPackagePreparation, self)._compute_weight()
         if not self.package_id:
             quants = self.env['stock.quant']
             for picking in self.picking_ids:
