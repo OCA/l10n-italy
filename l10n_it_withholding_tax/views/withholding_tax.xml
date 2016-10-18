@@ -192,6 +192,7 @@
 			            	<group>
 			            		<field name="partner_id"/>
 			            		<field name="date"/>
+			            		<field name="date_maturity"/>
 			            	</group>
 		            	</group>
 		            	<newline/>
