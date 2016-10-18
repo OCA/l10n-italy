@@ -22,7 +22,7 @@
 from odoo import models, fields, tools, api
 
 
-class res_city_it_code(models.Model):
+class ResCityItCode(models.Model):
     """
     To create res.city.it.code.csv:
     http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/
@@ -56,7 +56,7 @@ cadastre_code_var,province_var,name_var,creation_date,var_date
     var_date = fields.Date('Variation date')
 
 
-class res_city_it_code_distinct(models.Model):
+class ResCityItCodeDistinct(models.Model):
     _name = 'res.city.it.code.distinct'
     _auto = False
 
@@ -73,7 +73,7 @@ class res_city_it_code_distinct(models.Model):
             """)
 
 
-class res_city_it_code_province(models.Model):
+class ResCityItCodeProvince(models.Model):
     _name = 'res.city.it.code.province'
     _auto = False
 

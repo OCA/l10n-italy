@@ -20,7 +20,7 @@
 ##############################################################################
 
 from odoo import models, fields, api, _
-from odoo.exceptions import except_orm
+from odoo.exceptions import UserError
 import logging
 import datetime
 
@@ -35,7 +35,7 @@ except ImportError:
         'from https://pypi.python.org/pypi/codicefiscale')
 
 
-class wizard_compute_fc(models.TransientModel):
+class WizardComputeFc(models.TransientModel):
 
     _name = "wizard.compute.fc"
     _description = "Compute Fiscal Code"
@@ -56,7 +56,7 @@ class wizard_compute_fc(models.TransientModel):
     @api.multi
     def onchange_birth_city(self, birth_city):
         res = {}
-        if (birth_city):
+        if birth_city:
             ct = self.env['res.city.it.code'].browse(birth_city)
             res['domain'] = {
                 'birth_province': [('town_name', '=', ct.name)]
@@ -155,20 +155,20 @@ class wizard_compute_fc(models.TransientModel):
         for f in self:
             if (not f.fiscalcode_surname or not f.fiscalcode_firstname or
                     not f.birth_date or not f.birth_city or not f.sex):
-                raise except_orm(
-                    _('Error'), ('One or more fields are missing'))
+                raise UserError('One or more fields are missing')
             nat_code = self._get_national_code(
                 f.birth_city.name, f.birth_province.name, f.birth_date)
             if not nat_code:
-                raise except_orm(_('Error'), _('National code is missing'))
+                raise UserError(_('National code is missing'))
             birth_date = datetime.datetime.strptime(f.birth_date, "%Y-%m-%d")
-            CF = build(f.fiscalcode_surname, f.fiscalcode_firstname,
-                       birth_date, f.sex, nat_code)
-            if partner.fiscalcode and partner.fiscalcode != CF:
-                raise except_orm(_('Error'), (
-                    'Existing fiscal code %s is different from the computed'
-                    ' one (%s). If you want to use the computed one, remove'
-                    ' the existing one') % (partner.fiscalcode, CF))
-            partner.fiscalcode = CF
+            c_f = build(f.fiscalcode_surname, f.fiscalcode_firstname,
+                        birth_date, f.sex, nat_code)
+            if partner.fiscalcode and partner.fiscalcode != c_f:
+                raise UserError(_(
+                    'Existing fiscal code {partner_fiscalcode} is different '
+                    'from the computed one ({compute}). If you want to use'
+                    ' the computed one, remove the existing one').format(
+                    partner_fiscalcode=partner.fiscalcode, compute=c_f))
+            partner.fiscalcode = c_f
             partner.individual = True
         return {'type': 'ir.actions.act_window_close'}
