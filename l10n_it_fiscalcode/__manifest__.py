@@ -47,9 +47,6 @@ External depends:
         'data/res.city.it.code.csv',
         "security/ir.model.access.csv"
         ],
-    'test': [
-        'test/fiscalcode.yml',
-        ],
     'active': True,
     'installable': True
 }
