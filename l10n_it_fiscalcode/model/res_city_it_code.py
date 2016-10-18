@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, tools
+from odoo import models, fields, tools, api
 
 
 class res_city_it_code(models.Model):
@@ -62,9 +62,10 @@ class res_city_it_code_distinct(models.Model):
 
     name = fields.Char('Name', size=100)
 
-    def init(self, cr):
-        tools.drop_view_if_exists(cr, 'res_city_it_code_distinct')
-        cr.execute(
+    @api.model_cr
+    def init(self):
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute(
             """
             CREATE OR REPLACE VIEW res_city_it_code_distinct AS (
             SELECT name, MAX(id) AS id FROM res_city_it_code
@@ -79,9 +80,10 @@ class res_city_it_code_province(models.Model):
     name = fields.Char('Name', size=100)
     town_name = fields.Char('Name', size=100)
 
-    def init(self, cr):
-        tools.drop_view_if_exists(cr, 'res_city_it_code_province')
-        cr.execute(
+    @api.model_cr
+    def init(self):
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute(
             """
             CREATE OR REPLACE VIEW res_city_it_code_province AS (
             SELECT province AS name, name as town_name, MAX(id) AS id

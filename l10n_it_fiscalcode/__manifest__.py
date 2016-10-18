@@ -47,11 +47,9 @@ External depends:
         'data/res.city.it.code.csv',
         "security/ir.model.access.csv"
         ],
-    'qweb': [],
-    'demo': [],
     'test': [
         'test/fiscalcode.yml',
         ],
-    'active': False,
-    'installable': False
+    'active': True,
+    'installable': True
 }
