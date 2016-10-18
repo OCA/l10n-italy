@@ -54,10 +54,12 @@ class WizardComputeFc(models.TransientModel):
         ], "Sex")
 
     @api.multi
-    def onchange_birth_city(self, birth_city):
+    @api.onchange('birth_city')
+    def onchange_birth_city(self):
+        self.ensure_one()
         res = {}
-        if birth_city:
-            ct = self.env['res.city.it.code'].browse(birth_city)
+        if self.birth_city:
+            ct = self.birth_city
             res['domain'] = {
                 'birth_province': [('town_name', '=', ct.name)]
             }
