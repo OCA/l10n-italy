@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <openerp>
-	<data>
+    <data>
 
         <record id="view_partner_form_fiscalcode_data" model="ir.ui.view">
             <field name="name">res.partner.fiscalcode.data</field>

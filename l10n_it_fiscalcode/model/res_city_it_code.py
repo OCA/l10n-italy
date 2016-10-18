@@ -1,28 +1,12 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+# Copyright 2016 Andrea Gallina (Apulia Software)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, tools
+from odoo import models, fields, tools
 
 
-class res_city_it_code(models.Model):
+class ResCityItCode(models.Model):
     """
     To create res.city.it.code.csv:
     http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/
@@ -56,15 +40,15 @@ cadastre_code_var,province_var,name_var,creation_date,var_date
     var_date = fields.Date('Variation date')
 
 
-class res_city_it_code_distinct(models.Model):
+class ResCityItCodeDistinct(models.Model):
     _name = 'res.city.it.code.distinct'
     _auto = False
 
     name = fields.Char('Name', size=100)
 
-    def init(self, cr):
-        tools.drop_view_if_exists(cr, 'res_city_it_code_distinct')
-        cr.execute(
+    def init(self):
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute(
             """
             CREATE OR REPLACE VIEW res_city_it_code_distinct AS (
             SELECT name, MAX(id) AS id FROM res_city_it_code
@@ -72,16 +56,16 @@ class res_city_it_code_distinct(models.Model):
             """)
 
 
-class res_city_it_code_province(models.Model):
+class ResCityItCodeProvince(models.Model):
     _name = 'res.city.it.code.province'
     _auto = False
 
     name = fields.Char('Name', size=100)
     town_name = fields.Char('Name', size=100)
 
-    def init(self, cr):
-        tools.drop_view_if_exists(cr, 'res_city_it_code_province')
-        cr.execute(
+    def init(self):
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute(
             """
             CREATE OR REPLACE VIEW res_city_it_code_province AS (
             SELECT province AS name, name as town_name, MAX(id) AS id
