@@ -7,9 +7,8 @@
     'name': 'Italian Localisation - Fiscal Code',
     'version': '10.0.1.0.0',
     'category': 'Localisation/Italy',
-    'description': """ Fiscal code computation for partner """,
-    'author': "Odoo Italian Community, Odoo Community Association (OCA)",
-    'website': 'http://www.odoo-italia.org',
+    'author': "Odoo Italia Network, Odoo Community Association (OCA)",
+    'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
     'external_dependencies': {
@@ -21,6 +20,5 @@
         'data/res.city.it.code.csv',
         "security/ir.model.access.csv"
         ],
-    'active': True,
     'installable': True
 }
