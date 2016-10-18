@@ -189,6 +189,16 @@ class withholding_tax_move(models.Model):
     date_maturity = fields.Date('Date Maturity')
     account_move_id = fields.Many2one('account.move', 'Account Move',
                                       ondelete='cascade')
+    display_name = fields.Char(
+        string='Name', compute='_compute_display_name',
+    )
+
+    @api.one
+    def _compute_display_name(self):
+        name = '%s - %s' % (self.partner_id.name,
+                            self.withholding_tax_id and
+                            self.withholding_tax_id.name or '')
+        self.display_name = name
 
     @api.multi
     def action_paid(self):
