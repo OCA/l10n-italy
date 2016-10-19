@@ -15,7 +15,7 @@
 
 from openerp.osv import fields, orm
 
-class riba_configurazione(orm.Model):
+class riba_configurazione(models.Model):
 
     _name = "riba.configurazione"
     _description = "Parametri di configurazione per le Ricevute Bancarie"
