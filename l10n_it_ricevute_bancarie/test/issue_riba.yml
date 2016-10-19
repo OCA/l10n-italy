@@ -73,3 +73,13 @@
     assert (riba_list.state == 'accredited'), ("RiBa list is not accredited, but %s" % riba_list.state)
     for riba_line in riba_list.line_ids:
       assert(riba_line.state == 'accredited'), ("RiBa line is not accredited, but %s" % riba_line.state)
+-
+  I test the report
+-
+ !python {model: riba.issue, id: False }: |
+    import os
+    import openerp.report
+    from openerp import tools
+    data, format = openerp.report.render_report(self.env.cr, self.env.uid, [ref('riba_emissione_1')], 'l10n_it_ricevute_bancarie.distinta_qweb', {}, {})
+    if tools.config['test_report_directory']:
+        file(os.path.join(tools.config['test_report_directory'], 'riba-list.'+format), 'wb+').write(data)
