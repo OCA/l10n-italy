@@ -49,13 +49,12 @@ $ricevute_bancarie = array bidimensionale con i seguenti index:
 
 '''
 
-import tools
 import base64
-from odoo.osv import fields,orm
-from tools.translate import _
+from odoo import fields, models, _
 import datetime
 
-class riba_file_export(orm.TransientModel):
+
+class riba_file_export(models.TransientModel):
 
     _progressivo = 0
     _assuntrice = 0
@@ -220,14 +219,10 @@ class riba_file_export(orm.TransientModel):
 
     _name = "riba.file.export"
 
-    _columns = {
-        'state': fields.selection( ( ('choose','choose'),   # choose accounts
-                                     ('get','get'),         # get the file
-                                   ) ),
-        'riba_.txt': fields.binary('File', readonly=True),
-    }
-    _defaults = { 
-        'state': lambda *a: 'choose',
-        }
+    state = fields.Selection(
+            (('choose', 'choose'),   # choose accounts
+             ('get', 'get'),         # get the file
+            ), default='choose')
+    riba_.txt = fields.Binary('File', readonly=True),
 
 

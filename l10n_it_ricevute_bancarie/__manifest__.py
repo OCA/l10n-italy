@@ -39,20 +39,22 @@ Ad ogni passaggio di stato sarà possibile generare le relative registrazioni co
 Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQkt4/edit# abbiamo un esempio delle tipiche registrazioni generate da un flusso 'salvo buon fine'.
     """,
     'images': [],
-    'depends': ['account', 'l10n_it_fiscalcode', 'account_due_list'],
+    'depends': [
+        'account', #'l10n_it_fiscalcode', 'account_due_list'
+    ],
     'init_xml': [],
     'data': [
-        "partner/partner_view.xml",
         "configurazione_view.xml",
-        "riba_sequence.xml",
-        "wizard/wizard_accreditation.xml",
-        "wizard/wizard_unsolved.xml",
-        "riba_view.xml",
-        "account/account_view.xml",
-        "wizard/wizard_emissione_riba.xml",
-        "wizard/riba_file_export.xml",
-        "riba_workflow.xml",
-        "security/ir.model.access.csv",
+        #"partner/partner_view.xml",
+        #"riba_sequence.xml",
+        #"wizard/wizard_accreditation.xml",
+        #"wizard/wizard_unsolved.xml",
+        #"riba_view.xml",
+        #"account/account_view.xml",
+        #"wizard/wizard_emissione_riba.xml",
+        #"wizard/riba_file_export.xml",
+        #"riba_workflow.xml",
+        #"security/ir.model.access.csv",
     ],
     'installable': True,
 }

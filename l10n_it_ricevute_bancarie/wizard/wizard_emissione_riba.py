@@ -13,19 +13,19 @@
 #
 ##############################################################################
 
-from odoo.osv import fields,orm
+from odoo import fields, models
+
 
 # -------------------------------------------------------
 #        EMISSIONE RIBA
 # -------------------------------------------------------
-class emissione_riba(orm.TransientModel):
+class EmissioneRiba(models.TransientModel):
     _name = "riba.emissione"
     _description = "Emissione Ricevute Bancarie"
-    _columns = {
 
-        'configurazione' : fields.many2one('riba.configurazione', 'Configurazione', required=True),
-        }
-    
+    configurazione = fields.Many2one(
+        'riba.configurazione', 'Configurazione', required=True)
+
     def crea_distinta(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -118,5 +118,3 @@ class emissione_riba(orm.TransientModel):
             'target': 'current',
             'res_id': rd_id or False,
         }
-
-emissione_riba()

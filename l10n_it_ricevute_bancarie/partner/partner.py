@@ -13,15 +13,14 @@
 #
 ##############################################################################
 
-from odoo.osv import fields, orm
+from odoo import fields, models
 
-class res_partner(orm.Model):
+class res_partner(models.Model):
 
     _name = "res.partner"
     _inherit = "res.partner"
 
-    _columns = {
-        'group_riba' : fields.boolean("Group Ri.Ba.", 
-            help="Group Ri.Ba. by customer while issuing"),
-    }
+    group_riba = fields.Boolean(
+        "Group Ri.Ba.",
+        help="Group Ri.Ba. by customer while issuing")
 

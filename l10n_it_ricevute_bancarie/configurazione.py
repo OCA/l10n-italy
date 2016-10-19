@@ -37,7 +37,8 @@ class RibaConfiguration(models.Model):
         help="Account used when Ri.Ba. is accepted by the bank")
     company_id = fields.Many2one(
         'res.company', "Company", required=True,
-        default=self.env.company_id.id)
+        default=lambda self: self.env['res.company']._company_default_get(
+            'account.invoice'))
     accreditation_journal_id = fields.Many2one(
         'account.journal', "Accreditation journal",
         domain=[('type', '=', 'bank')],
@@ -60,21 +61,26 @@ class RibaConfiguration(models.Model):
     protest_charge_account_id = fields.Many2one(
         'account.account', "Protest charge account")
 
-    def get_default_value_by_distinta(self, cr, uid, field_name, context=None):
-        if context is None:
-            context = {}
-        if not context.get('active_id', False):
+    def get_default_value_by_distinta(self):
+        if self._context is None:
+            self._context = {}
+        if not self._context.get('active_id', False):
             return False
-        distinta_pool = self.pool.get('riba.distinta')
-        distinta = distinta_pool.browse(cr, uid, context['active_id'], context=context)
-        return distinta.config[field_name] and distinta.config[field_name].id or False
+        distinta_pool = self.env['riba.distinta']
+        distinta = distinta_pool.browse(
+            self._cr, self._uid, self._context['active_id'],
+            context=self._context)
+        return distinta.config[field_name] and\
+               distinta.config[field_name].id or False
     
-    def get_default_value_by_distinta_line(self, cr, uid, field_name, context=None):
-        if context is None:
-            context = {}
-        if not context.get('active_id', False):
+    def get_default_value_by_distinta_line(self):
+        if self._context is None:
+            self._context = {}
+        if not self._context.get('active_id', False):
             return False
-        distinta_line = self.pool.get('riba.distinta.line').browse(cr, uid, context['active_id'], context=context)
-        return distinta_line.distinta_id.config[field_name] and distinta_line.distinta_id.config[field_name].id or False
-
+        distinta_line = self.env['riba.distinta.line'].browse(
+            self._cr, self._uid, self._context['active_id'],
+            context=self._context)
+        return distinta_line.distinta_id.config[field_name] and\
+               distinta_line.distinta_id.config[field_name].id or False
 
