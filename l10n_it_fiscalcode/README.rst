@@ -14,7 +14,7 @@ Installation
 
 To install this module, you need to:
 
-#. Install Python Depends codicefiscale https://pypi.python.org/pypi/codicefiscale
+Install Python Depends `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`_.
 
 Usage
 =====

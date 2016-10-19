@@ -46,7 +46,6 @@ class ResCityItCodeDistinct(models.Model):
 
     name = fields.Char('Name', size=100)
 
-    @api.model_cr
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute(
@@ -64,7 +63,6 @@ class ResCityItCodeProvince(models.Model):
     name = fields.Char('Name', size=100)
     town_name = fields.Char('Name', size=100)
 
-    @api.model_cr
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute(
