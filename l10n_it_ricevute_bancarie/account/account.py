@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (C) 2016 Odoo Italia Network (http://www.odoo-italia.net)
 # Copyright (C) 2016 Andrea Cometa (Apulia Software)
 # Email: a.cometa@apuliasoftware.it
 # Web site: http://www.apuliasoftware.it
