@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -141,7 +141,7 @@ class WizardComputeFc(models.TransientModel):
         for f in self:
             if (not f.fiscalcode_surname or not f.fiscalcode_firstname or
                     not f.birth_date or not f.birth_city or not f.sex):
-                raise UserError('One or more fields are missing')
+                raise UserError(_('One or more fields are missing'))
             nat_code = self._get_national_code(
                 f.birth_city.name, f.birth_province.name, f.birth_date)
             if not nat_code:
