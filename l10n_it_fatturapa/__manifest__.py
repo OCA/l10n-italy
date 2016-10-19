@@ -20,11 +20,12 @@
 ##############################################################################
 {
     'name': 'Italian Localization - FatturaPA',
-    'version': '8.0.0.1.0',
+    'version': '10.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
-    'author': 'Davide Corio, Agile Business Group, Innoviu',
-    'website': 'http://www.odoo-italia.org',
+    'author': 'Davide Corio,Agile Business Group,Innoviu,'
+              'Odoo Italia Network,Odoo Community Association (OCA)',
+    'website': 'https://odoo-community.org',
     'license': 'AGPL-3',
     "depends": [
         'account',
