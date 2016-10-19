@@ -22,7 +22,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"></field>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                <xpath expr="//field[@name='invoice_line_ids']/tree" position="attributes">
                     <attribute eval="False" name="editable"></attribute>
                 </xpath>
             </field>
@@ -32,7 +32,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"></field>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                <xpath expr="//field[@name='invoice_line_ids']/tree" position="attributes">
                     <attribute eval="False" name="editable"></attribute>
                 </xpath>
             </field>
@@ -50,21 +50,19 @@
                             <field name="admin_ref"/>
                         </group>
                    </div>
-                    <group>
-                        <group string="Related Documents">
-                            <field name="related_documents" nolabel="1">
-                                <tree editable="bottom" string="Related Documents">
-                                    <field name="type"></field>
-                                    <field name="name"></field>
-                                    <field name="lineRef" readonly="1"></field>
-                                    <field name="date"></field>
-                                    <field name="numitem"></field>
-                                    <field name="code"></field>
-                                    <field name="cig"></field>
-                                    <field name="cup"></field>
-                                </tree>
-                            </field>
-                        </group>
+                    <group string="Related Documents">
+                        <field name="related_documents" nolabel="1">
+                            <tree editable="bottom" string="Related Documents">
+                                <field name="type"></field>
+                                <field name="name"></field>
+                                <field name="lineRef" readonly="1"></field>
+                                <field name="date"></field>
+                                <field name="numitem"></field>
+                                <field name="code"></field>
+                                <field name="cig"></field>
+                                <field name="cup"></field>
+                            </tree>
+                        </field>
                     </group>
                 </field>
             </field>
