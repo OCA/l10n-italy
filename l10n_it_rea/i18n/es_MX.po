@@ -3,19 +3,16 @@
 # * l10n_it_rea
 #
 # Translators:
-# Niki Waibel, 2016
-# Niki Waibel, 2016
-# Philipp Hug <philipp@hug.cx>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2016-10-20 23:38+0000\n"
-"Last-Translator: Niki Waibel\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
-"language/de/)\n"
-"Language: de\n"
+"PO-Revision-Date: 2016-10-19 16:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-l10n-"
+"italy-10-0/language/es_MX/)\n"
+"Language: es_MX\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -25,34 +22,34 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_capital
 msgid "Capital"
-msgstr "Vermögen"
+msgstr ""
 
 #. module: l10n_it_rea
 #: selection:res.partner,rea_liquidation_state:0
 msgid "In liquidation"
-msgstr "In Liquidation"
+msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_liquidation_state
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_liquidation_state
 msgid "Liquidation State"
-msgstr "Liquidationsstatus"
+msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_member_type
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_member_type
 msgid "Member Type"
-msgstr "Mitgliedstyp"
+msgstr ""
 
 #. module: l10n_it_rea
 #: selection:res.partner,rea_member_type:0
 msgid "Multiple Members"
-msgstr "Mehrere Mitglieder"
+msgstr ""
 
 #. module: l10n_it_rea
 #: selection:res.partner,rea_liquidation_state:0
 msgid "Not in liquidation"
-msgstr "Nicht in Liquidation"
+msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_office
@@ -63,7 +60,7 @@ msgstr ""
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr "Empresa"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_code
@@ -84,4 +81,4 @@ msgstr ""
 #. module: l10n_it_rea
 #: selection:res.partner,rea_member_type:0
 msgid "Unique Member"
-msgstr "Eindeutiges Mitglied"
+msgstr ""
