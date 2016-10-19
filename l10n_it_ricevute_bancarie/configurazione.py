@@ -13,48 +13,53 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from odoo import models, fields, tools, api, _
 
-class riba_configurazione(models.Model):
+class RibaConfiguration(models.Model):
 
     _name = "riba.configurazione"
     _description = "Parametri di configurazione per le Ricevute Bancarie"
 
-    _columns = {
-        'name' : fields.char("Descrizione", size=64, required=True),
-        'tipo' : fields.selection((('sbf', 'Salvo buon fine'),('incasso', 'Al dopo incasso')), 
-            "Modalità Emissione", required=True),
-        'bank_id' : fields.many2one('res.partner.bank', "Banca",
-            required=True, help="Bank account used for Ri.Ba. issuing"),
-            
-        'acceptance_journal_id' : fields.many2one('account.journal', "Acceptance journal", 
-            domain=[('type', '=', 'bank')],
-            help="Journal used when Ri.Ba. is accepted by the bank"),
-        'acceptance_account_id' : fields.many2one('account.account', "Acceptance account", 
-            domain=[('type', '=', 'receivable')], help='Account used when Ri.Ba. is accepted by the bank'),
-            
-        'company_id': fields.many2one('res.company', 'Company',required=True),
-        
-        'accreditation_journal_id' : fields.many2one('account.journal', "Accreditation journal", 
-            domain=[('type', '=', 'bank')],
-            help="Journal used when Ri.Ba. amount is accredited by the bank"),
-        'accreditation_account_id' : fields.many2one('account.account', "Ri.Ba. bank account", help='Account used when Ri.Ba. is accepted by the bank'),
-        'bank_account_id' : fields.many2one('account.account', "Bank account", 
-            domain=[('type', '=', 'liquidity')]),
-        'bank_expense_account_id' : fields.many2one('account.account', "Bank Expenses account"),
-        
-        'unsolved_journal_id' : fields.many2one('account.journal', "Unsolved journal", 
-            domain=[('type', '=', 'bank')],
-            help="Journal used when Ri.Ba. is unsolved"),
-        'overdue_effects_account_id' : fields.many2one('account.account', "Overdue Effects account", 
-            domain=[('type', '=', 'receivable')]),
-        'protest_charge_account_id' : fields.many2one('account.account', "Protest charge account"),
-    }
+    name = fields.Char("Description", size=64, required=True)
+    tipo = fields.Selection(
+        (('sbf', 'Salvo buon fine'), ('incasso', 'Al dopo incasso')),
+        "Modalità Emissione", required=True)
+    bank_id = fields.Many2one(
+        'res.partner.bank', "Banca", required=True,
+        help="Bank account used for Ri.Ba. issuing")
+    acceptance_journal_id = fields.Many2one(
+        'account.journal', "Acceptance journal",
+        domain=[('type', '=', 'bank')],
+        help="Journal used when Ri.Ba. is accepted by the bank")
+    acceptance_account_id = fields.Many2one(
+        'account.account', "Acceptance account",
+        domain=[('type', '=', 'receivable')],
+        help="Account used when Ri.Ba. is accepted by the bank")
+    company_id = fields.Many2one(
+        'res.company', "Company", required=True,
+        default=self.env.company_id.id)
+    accreditation_journal_id = fields.Many2one(
+        'account.journal', "Accreditation journal",
+        domain=[('type', '=', 'bank')],
+        help="Journal used when Ri.Ba. amount is accredited by the bank")
+    accreditation_account_id = fields.Many2one(
+        'account.account', "Ri.Ba. bank account",
+        help='Account used when Ri.Ba. is accepted by the bank')
+    bank_account_id = fields.Many2one(
+        'account.account', "Bank account",
+        domain=[('type', '=', 'liquidity')])
+    bank_expense_account_id = fields.Many2one(
+        'account.account', "Bank Expenses account")
+    unsolved_journal_id = fields.Many2one(
+        'account.journal', "Unsolved journal",
+        domain=[('type', '=', 'bank')],
+        help="Journal used when Ri.Ba. is unsolved")
+    overdue_effects_account_id = fields.Many2one(
+        'account.account', "Overdue Effects account",
+        domain=[('type', '=', 'receivable')])
+    protest_charge_account_id = fields.Many2one(
+        'account.account', "Protest charge account")
 
-    _defaults = {
-        'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'riba.configurazione', context=c),
-    }
-    
     def get_default_value_by_distinta(self, cr, uid, field_name, context=None):
         if context is None:
             context = {}
