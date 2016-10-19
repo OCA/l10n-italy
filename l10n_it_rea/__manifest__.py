@@ -8,7 +8,8 @@
     'version': '10.0.1.0.0',
     'category': 'Localisation/Italy',
     'summary': 'Manage fields for  Economic Administrative catalogue',
-    'author': 'Agile Business Group, Odoo Community Association (OCA)',
+    'author': 'Agile Business Group, Odoo Italia Network,'
+              'Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
