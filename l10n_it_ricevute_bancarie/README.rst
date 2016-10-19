@@ -48,11 +48,10 @@ help us smashing it by providing a detailed and welcomed feedback.
 Credits
 =======
 
-Odoo Italia Network <http://www.odoo-italia.net/>
-
 Contributors
 ------------
 
+* Odoo Italia Network <http://www.odoo-italia.net/>
 * Andrea Cometa <a.cometa@apuliasoftware.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Davide Corio <info@davidecorio.com>
