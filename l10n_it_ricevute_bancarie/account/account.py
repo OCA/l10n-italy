@@ -13,7 +13,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from odoo import fields, models
 
 class account_payment_term(orm.Model):
     # flag riba utile a distinguere la modalità di pagamento

@@ -60,7 +60,7 @@ class RibaDistinta(models.Model):
         default=self.env['ir.sequence'].get('riba.distinta')
     )
     config = fields.Many2one(
-        'riba.configurazione', 'Configuration', select=True, required=True,
+        'riba.configurazione', 'Configuration', index=True, required=True,
         readonly=True, states={'draft': [('readonly', False)]}, 
         help="Riba configuration to be used")
     state = fields.Selection([
@@ -69,7 +69,7 @@ class RibaDistinta(models.Model):
             ('accredited', 'Accredited'),
             ('paid', 'Paid'),
             ('unsolved', 'Unsolved'),
-            ('cancel', 'Canceled')], "State", select=True, readonly=True)
+            ('cancel', 'Canceled')], "State", index=True, readonly=True)
     line_ids = fields.One2many(
         'riba.distinta.line', 'distinta_id', "Riba deadlines", readonly=True,
         states={'draft': [('readonly', False)]}),
@@ -99,7 +99,7 @@ class RibaDistinta(models.Model):
         "Registration Date",
         states={'draft': [('readonly', False)],
                 'cancel': [('readonly', False)], },
-        select=True, readonly=True, required=True,
+        index=True, readonly=True, required=True,
         default=fields.Date.context_today,
         help="Keep empty to use the current date"),
 
@@ -344,7 +344,7 @@ class RibaDistintaLine(models.Model):
         ('accredited', 'Accredited'),
         ('paid', 'Paid'),
         ('unsolved', 'Unsolved'),
-        ], "State", select=True, readonly=True)
+        ], "State", index=True, readonly=True)
     reconciled = fields.Compute(_reconciled, string='Paid/Reconciled', type='boolean',
         store={
             'riba.distinta.line': (lambda self, cr, uid, ids, c={}: ids, ['acceptance_move_id'], 50),

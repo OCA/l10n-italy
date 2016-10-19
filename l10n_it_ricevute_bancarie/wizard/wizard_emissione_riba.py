@@ -13,7 +13,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields,orm
+from odoo.osv import fields,orm
 
 # -------------------------------------------------------
 #        EMISSIONE RIBA
