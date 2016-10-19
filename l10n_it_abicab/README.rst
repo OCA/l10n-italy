@@ -2,15 +2,19 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
+=======================
 Base Bank ABI/CAB codes
 =======================
 
 This module add to res.bank the ABI/CAB data (bank identification numbers).
 
+Credits
+=======
 
 Contributors
 ------------
 
+* `Odoo Italia Network <http://www.odoo-italia.net/>`_
 * Franco Tampieri <franco@tampieri.info>
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
