@@ -7,8 +7,8 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="account.view_partner_property_form"/>
             <field name="arch" type="xml">
-                <page string="Accounting" position="inside">
-                    <group colspan="2" col="2" groups="account.group_account_invoice">
+                <page name="accounting" position="inside">
+                    <group colspan="2" col="2" groups="account.group_account_invoice" name="fatturapa">
                         <separator string="FatturaPA" colspan="2"/>
                         <field name="eori_code"/>
                         <field name="license_number"/>
