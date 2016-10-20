@@ -1,26 +1,10 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+# Copyright 2016 Andrea Gallina (Apulia Software)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api, _
-from openerp.exceptions import except_orm
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 import logging
 import datetime
 
@@ -35,7 +19,7 @@ except ImportError:
         'from https://pypi.python.org/pypi/codicefiscale')
 
 
-class wizard_compute_fc(models.TransientModel):
+class WizardComputeFc(models.TransientModel):
 
     _name = "wizard.compute.fc"
     _description = "Compute Fiscal Code"
@@ -54,10 +38,12 @@ class wizard_compute_fc(models.TransientModel):
         ], "Sex")
 
     @api.multi
-    def onchange_birth_city(self, birth_city):
+    @api.onchange('birth_city')
+    def onchange_birth_city(self):
+        self.ensure_one()
         res = {}
-        if (birth_city):
-            ct = self.env['res.city.it.code'].browse(birth_city)
+        if self.birth_city:
+            ct = self.birth_city
             res['domain'] = {
                 'birth_province': [('town_name', '=', ct.name)]
             }
@@ -155,20 +141,21 @@ class wizard_compute_fc(models.TransientModel):
         for f in self:
             if (not f.fiscalcode_surname or not f.fiscalcode_firstname or
                     not f.birth_date or not f.birth_city or not f.sex):
-                raise except_orm(
-                    _('Error'), ('One or more fields are missing'))
+                raise UserError(_('One or more fields are missing'))
             nat_code = self._get_national_code(
                 f.birth_city.name, f.birth_province.name, f.birth_date)
             if not nat_code:
-                raise except_orm(_('Error'), _('National code is missing'))
+                raise UserError(_('National code is missing'))
             birth_date = datetime.datetime.strptime(f.birth_date, "%Y-%m-%d")
-            CF = build(f.fiscalcode_surname, f.fiscalcode_firstname,
-                       birth_date, f.sex, nat_code)
-            if partner.fiscalcode and partner.fiscalcode != CF:
-                raise except_orm(_('Error'), (
-                    'Existing fiscal code %s is different from the computed'
-                    ' one (%s). If you want to use the computed one, remove'
-                    ' the existing one') % (partner.fiscalcode, CF))
-            partner.fiscalcode = CF
+            c_f = build(f.fiscalcode_surname, f.fiscalcode_firstname,
+                        birth_date, f.sex, nat_code)
+            if partner.fiscalcode and partner.fiscalcode != c_f:
+                raise UserError(_(
+                    'Existing fiscal code %(partner_fiscalcode)s is different '
+                    'from the computed one (%(compute)s). If you want to use'
+                    ' the computed one, remove the existing one' % {
+                        'partner_fiscalcode': partner.fiscalcode,
+                        'compute': c_f}))
+            partner.fiscalcode = c_f
             partner.individual = True
         return {'type': 'ir.actions.act_window_close'}
