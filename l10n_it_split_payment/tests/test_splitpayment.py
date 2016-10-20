@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    About license, see __openerp__.py
-#
-##############################################################################
+# Copyright 2015  Davide Corio <davide.corio@abstract.it>
+# Copyright 2015  Lorenzo Battistini - Agile Business Group
+# Copyright 2016  Alessio Gerace - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestSP(TransactionCase):
@@ -42,8 +41,8 @@ class TestSP(TransactionCase):
                     'value': 'balance',
                     'days': 30,
                 })]})
-        # ----- Set invoice date to recent date in the system
-        # ----- This solves problems with account_invoice_sequential_dates
+        # Set invoice date to recent date in the system
+        # This solves problems with account_invoice_sequential_dates
         self.recent_date = self.invoice_model.search(
             [('date_invoice', '!=', False)], order='date_invoice desc',
             limit=1).date_invoice
@@ -54,7 +53,7 @@ class TestSP(TransactionCase):
             'partner_id': self.env.ref('base.res_partner_3').id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
-            'fiscal_position': self.sp_fp.id,
+            'fiscal_position_id': self.sp_fp.id,
             })
         inv_line = self.inv_line_model.create({
             'invoice_id': invoice.id,
@@ -63,7 +62,7 @@ class TestSP(TransactionCase):
             'quantity': 1,
             'price_unit': 100,
             })
-        inv_line.invoice_line_tax_id = self.tax22
+        inv_line.invoice_line_tax_ids = self.tax22
         self.assertTrue(invoice.split_payment)
         invoice.signal_workflow('invoice_open')
         self.assertEqual(invoice.amount_sp, 22)
@@ -83,13 +82,11 @@ class TestSP(TransactionCase):
         self.assertTrue(credit_line)
         invoice.action_cancel()
 
-        # invoice with payment term
         invoice2 = self.invoice_model.create({
-            'date_invoice': self.recent_date,
             'partner_id': self.env.ref('base.res_partner_3').id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
-            'fiscal_position': self.sp_fp.id,
+            'fiscal_position_id': self.sp_fp.id,
             'payment_term': self.term_15_30.id,
             })
         inv_line2 = self.inv_line_model.create({
@@ -99,7 +96,7 @@ class TestSP(TransactionCase):
             'quantity': 1,
             'price_unit': 100,
             })
-        inv_line2.invoice_line_tax_id = self.tax22
+        inv_line2.invoice_line_tax_ids = [(4, 0, self.tax22.id)]
         invoice2.signal_workflow('invoice_open')
         self.assertEqual(invoice2.amount_sp, 22)
         self.assertEqual(invoice2.amount_total, 100)
@@ -125,14 +122,14 @@ class TestSP(TransactionCase):
             'account_id': self.a_recv.id,
             'fiscal_position': self.sp_fp.id,
             'type': 'out_refund',
-            })
+        })
         inv_line3 = self.inv_line_model.create({
             'invoice_id': invoice3.id,
             'name': 'service',
             'account_id': self.env.ref('account.o_income').id,
             'quantity': 1,
             'price_unit': 100,
-            })
+        })
         inv_line3.invoice_line_tax_id = self.tax22
         self.assertTrue(invoice3.split_payment)
         invoice3.signal_workflow('invoice_open')
