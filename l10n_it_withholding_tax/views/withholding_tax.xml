@@ -109,9 +109,12 @@
 	            	<group>
 	            		<group>
 	            			<field name="partner_id"/>
-	            			<field name="date"/>
+	            			<field name="withholding_tax_id"/>
+	            			<field name="base"/>
+	            			<field name="tax"/>
 	            		</group>
 	            		<group>
+	            			<field name="date"/>
 	            			<field name="move_id"/>
 	            			<field name="invoice_id"/>
 	            		</group>
