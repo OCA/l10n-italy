@@ -20,8 +20,8 @@
 ##############################################################################
 {
     'name': 'Pec Mail',
-    'version': '8.0.0.1.0',
-    'category': 'Localisation/Italy',
+    'version': '10.0.1.0.0',
+    'category': 'Localization/Italy',
     'description': """Italian Localisation module - Pec Mail
 
 Funcionalities:
@@ -36,9 +36,5 @@ Funcionalities:
     'data': [
         'view/partner_view.xml',
     ],
-    'qweb': [],
-    'demo': [],
-    'test': [],
-    'active': False,
-    'installable': False
+    'installable': True,
 }
