@@ -159,6 +159,17 @@ class withholding_tax_statement(models.Model):
                                readonly=True, compute='_compute_total')
     move_ids = fields.One2many('withholding.tax.move',
                                'statement_id', 'Moves')
+    display_name = fields.Char(
+        string='Name', compute='_compute_display_name',
+    )
+
+    @api.multi
+    def _compute_display_name(self):
+        for st in self:
+            name = '%s - %s' % (st.partner_id.name,
+                                st.withholding_tax_id and
+                                st.withholding_tax_id.name or '')
+            st.display_name = name
 
 
 class withholding_tax_move(models.Model):
