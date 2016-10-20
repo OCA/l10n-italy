@@ -193,12 +193,13 @@ class withholding_tax_move(models.Model):
         string='Name', compute='_compute_display_name',
     )
 
-    @api.one
+    @api.multi
     def _compute_display_name(self):
-        name = '%s - %s' % (self.partner_id.name,
-                            self.withholding_tax_id and
-                            self.withholding_tax_id.name or '')
-        self.display_name = name
+        for move in self:
+            name = '%s - %s' % (move.partner_id.name,
+                                move.withholding_tax_id and
+                                move.withholding_tax_id.name or '')
+            move.display_name = name
 
     @api.multi
     def action_paid(self):
