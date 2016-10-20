@@ -1622,12 +1622,6 @@
       <field name="description">Fabbricazione di prodotti cartotecnici scolastici e commerciali quando l'attività di stampa non è la principale caratteristica</field>
       <field ref="C17230" name="parent_id"/>
     </record>
-    <record model="ateco.category" id="C172301">
-      <field name="code">C17.23.01</field>
-      <field name="name">Fabbricazione di prodotti cartotecnici scolastici e commerciali quando l'attività di stampa non è la principale caratteristica</field>
-      <field name="description">Fabbricazione di prodotti cartotecnici scolastici e commerciali quando l'attività di stampa non è la principale caratteristica</field>
-      <field ref="C17230" name="parent_id"/>
-    </record>
     <record model="ateco.category" id="C172309">
       <field name="code">C17.23.09</field>
       <field name="name">Fabbricazione di altri prodotti cartotecnici</field>
@@ -5511,12 +5505,6 @@
       <field name="name">Commercio al dettaglio di parti e accessori di autoveicoli</field>
       <field name="description">Commercio al dettaglio di parti e accessori di autoveicoli</field>
       <field ref="G453" name="parent_id"/>
-    </record>
-    <record model="ateco.category" id="G454">
-      <field name="code">G45.4</field>
-      <field name="name">Commercio, manutenzione e riparazione di motocicli e relative parti ed accessori</field>
-      <field name="description">Commercio, manutenzione e riparazione di motocicli e relative parti ed accessori</field>
-      <field ref="G45" name="parent_id"/>
     </record>
     <record model="ateco.category" id="G454">
       <field name="code">G45.4</field>
