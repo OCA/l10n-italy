@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #
 #    Copyright (C) 2014 Abstract (<http://abstract.it>).
 #    Copyright (C) 2016 Ciro Urselli (<http://www.apuliasoftware.it>).
@@ -21,5 +21,5 @@
         "view/partner_view.xml",
         "data/ateco_data.xml"
     ],
-    'installable': True
+    "installable": True
 }
