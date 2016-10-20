@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #
 #    Copyright (C) 2014 Abstract (<http://abstract.it>).
 #    Copyright (C) 2016 Ciro Urselli (<http://www.apuliasoftware.it>).
@@ -21,6 +21,6 @@ class AtecoCategory(models.Model):
     child_ids = fields.One2many(
         'ateco.category', 'parent_id', 'Child Categories')
     partner_ids = fields.Many2many(
-        'res.partner','ateco_category_partner_rel',
+        'res.partner', 'ateco_category_partner_rel',
         'ateco_id', 'partner_id', 'Partners'
     )
