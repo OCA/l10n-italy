@@ -6,8 +6,8 @@
     'name': 'Pec Mail',
     'version': '10.0.1.0.0',
     'category': 'Localization/Italy',
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
-    'website': 'https://www.odoo-italia.org/',
+    'author': "Odoo Italia Network,Odoo Community Association (OCA)",
+    'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': ['base'],
     'data': [
