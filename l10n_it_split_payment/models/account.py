@@ -1,28 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Abstract (http://www.abstract.it)
-#    Author: Davide Corio <davide.corio@abstract.it>
-#    Copyright 2015 Lorenzo Battistini - Agile Business Group
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2015  Davide Corio <davide.corio@abstract.it>
+# Copyright 2015  Lorenzo Battistini - Agile Business Group
+# Copyright 2016  Alessio Gerace - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import openerp.addons.decimal_precision as dp
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning as UserError
+import odoo.addons.decimal_precision as dp
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class AccountFiscalPosition(models.Model):
@@ -42,17 +26,18 @@ class AccountInvoice(models.Model):
         compute='_compute_amount')
     split_payment = fields.Boolean(
         'Split Payment',
-        related='fiscal_position.split_payment')
+        related='fiscal_position_id.split_payment')
 
-    @api.one
-    @api.depends('invoice_line.price_subtotal', 'tax_line.amount')
+
+    @api.depends('invoice_line_ids.price_subtotal', 'tax_line_ids.amount')
     def _compute_amount(self):
-        super(AccountInvoice, self)._compute_amount()
-        self.amount_sp = 0
-        if self.fiscal_position.split_payment:
-            self.amount_sp = self.amount_tax
-            self.amount_tax = 0
-        self.amount_total = self.amount_untaxed + self.amount_tax
+        for invoice in self:
+            super(AccountInvoice, invoice)._compute_amount()
+            invoice.amount_sp = 0
+            if invoice.fiscal_position_id.split_payment:
+                invoice.amount_sp = invoice.amount_tax
+                invoice.amount_tax = 0
+            invoice.amount_total = invoice.amount_untaxed + invoice.amount_tax
 
     def _build_debit_line(self):
         if not self.company_id.sp_account_id:
@@ -92,13 +77,14 @@ class AccountInvoice(models.Model):
                     payment_line.write(
                         {'credit': payment_line_amount}, update_check=False)
 
+
     @api.multi
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()
         for invoice in self:
             if (
-                invoice.fiscal_position and
-                invoice.fiscal_position.split_payment
+                invoice.fiscal_position_id and
+                invoice.fiscal_position_id.split_payment
             ):
                 if invoice.type in ['in_invoice', 'in_refund']:
                     raise UserError(
