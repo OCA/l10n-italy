@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -11,7 +11,7 @@
     'license': 'AGPL-3',
     'depends': ['base'],
     'data': [
-        'view/partner_view.xml',
+        'views/partner_view.xml',
     ],
     'installable': True,
 }
