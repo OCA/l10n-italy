@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<openerp>
+<odoo>
 
-        <record model="ir.ui.view" id="view_partner_form_inherit_ateco">
+        <record id="view_partner_form_inherit_ateco" model="ir.ui.view" >
             <field name="name">partner.form.ateco</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
@@ -17,4 +17,4 @@
             </field>
         </record>
 
-</openerp>
+</odoo>
