@@ -102,7 +102,7 @@ class RibaDistinta(models.Model):
     unsolved_move_ids = fields.Many2many(
         compute='_get_unsolved_move_ids', relation='account.move',
         method=True, string="Unsolved Entries")
-    type = fields.Char(
+    type = fields.Selection(
         related='config.tipo', size=32, string='Type', readonly=True)
     registration_date = fields.Date(
         "Registration Date",
@@ -338,8 +338,8 @@ class RibaDistintaLine(models.Model):
     amount = fields.Float(
         compute='_get_line_values', method=True, string="Amount", multi="line")
     bank_id = fields.Many2one('res.partner.bank', "Debitor Bank")
-    iban = fields.Char(
-        related='bank_id.iban', string='IBAN', store=False, readonly=True)
+    iban = fields.Char(  # FIX ?
+        related='bank_id.acc_number', string='IBAN', store=False, readonly=True)
     distinta_id = fields.Many2one(
         'riba.distinta', "Distinta", required=True, ondelete='cascade')
     partner_id = fields.Many2one(
@@ -368,7 +368,7 @@ class RibaDistintaLine(models.Model):
     payment_ids = fields.Many2many(
         compute='_compute_lines', relation='account.move.line',
         string='Payments')
-    type = fields.Char(
+    type = fields.Selection(
         related='distinta_id.type', size=32, string='Type', readonly=True)
 
     def confirm(self, cr, uid, ids, context=None):

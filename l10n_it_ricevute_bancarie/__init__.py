@@ -14,8 +14,8 @@
 ##############################################################################
 
 from . import configurazione
-from . import partner
+#from . import partner
 from . import riba
-from . import account
-from . import wizard
+#from . import account
+#from . import wizard
 

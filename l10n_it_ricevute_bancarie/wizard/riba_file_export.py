@@ -223,6 +223,6 @@ class riba_file_export(models.TransientModel):
             (('choose', 'choose'),   # choose accounts
              ('get', 'get'),         # get the file
             ), default='choose')
-    riba_.txt = fields.Binary('File', readonly=True),
+    riba_txt = fields.Binary('File', readonly=True),
 
 

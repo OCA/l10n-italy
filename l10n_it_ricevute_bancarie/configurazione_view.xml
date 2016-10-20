@@ -47,5 +47,5 @@
 			action="action_riba_configurazione"
 			id="menu_riba_configurazione"
 			name="Ri.Ba. Configuration"
-			parent="account.menu_configuration_misc"/>
+			parent="account.account_account_menu"/>
 </openerp>
