@@ -21,5 +21,5 @@
         "view/partner_view.xml",
         "data/ateco_data.xml"
     ],
-    'installable': True
+    "installable": True
 }
