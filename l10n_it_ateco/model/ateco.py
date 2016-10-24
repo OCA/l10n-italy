@@ -13,9 +13,9 @@ class AtecoCategory(models.Model):
     _name = 'ateco.category'
     _description = 'ATECO Code'
 
-    name = fields.Char('Name', required=True)
+    name = fields.Char(required=True)
     code = fields.Char('ATECO Code', size=9, required=False)
-    description = fields.Text('Description')
+    description = fields.Text()
     parent_id = fields.Many2one(
         'ateco.category', 'Parent Category', select=True)
     child_ids = fields.One2many(
