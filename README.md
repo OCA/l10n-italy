@@ -31,7 +31,7 @@ addon | version | summary
 --- | --- | ---
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 8.0.1.0.0 | Check invoice date consistency
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.2.0.1 | Period End VAT Statement
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Ateco codes
