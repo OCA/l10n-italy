@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+fleet_fringe_benefit_version_user,fleet.fringe.benefit.version,model_fleet_fringe_benefit_version,base.group_user,1,1,1,1
+fleet_fringe_benefit_user,fleet.fringe.benefit,model_fleet_fringe_benefit,base.group_user,1,1,1,1
+fleet_vehicle_model_user,fleet.vehicle.model,fleet.model_fleet_vehicle_model,base.group_user,1,1,1,0
