@@ -260,24 +260,24 @@ class RibaListLine(models.Model):
 
     @api.multi
     def _compute_lines(self):
-        self.ensure_one()
-        src = []
-        lines = []
-        if self.acceptance_move_id and not self.state == 'unsolved':
-            for m in self.acceptance_move_id.line_id:
-                temp_lines = []
-                if m.reconcile_id and m.credit == 0.0:
-                    temp_lines = map(
-                        lambda x: x.id, m.reconcile_id.line_id)
-                elif m.reconcile_partial_id and m.credit == 0.0:
-                    temp_lines = map(
-                        lambda x: x.id,
-                        m.reconcile_partial_id.line_partial_ids)
-                lines += [x for x in temp_lines if x not in lines]
-                src.append(m.id)
+        for line in self:
+            src = []
+            lines = []
+            if line.acceptance_move_id and not line.state == 'unsolved':
+                for m in line.acceptance_move_id.line_id:
+                    temp_lines = []
+                    if m.reconcile_id and m.credit == 0.0:
+                        temp_lines = map(
+                            lambda x: x.id, m.reconcile_id.line_id)
+                    elif m.reconcile_partial_id and m.credit == 0.0:
+                        temp_lines = map(
+                            lambda x: x.id,
+                            m.reconcile_partial_id.line_partial_ids)
+                    lines += [x for x in temp_lines if x not in lines]
+                    src.append(m.id)
 
-        lines = filter(lambda x: x not in src, lines)
-        self.payment_ids = self.env['account.move.line'].browse(lines)
+            lines = filter(lambda x: x not in src, lines)
+            line.payment_ids = self.env['account.move.line'].browse(lines)
 
     sequence = fields.Integer('Number')
     move_line_ids = fields.One2many(
