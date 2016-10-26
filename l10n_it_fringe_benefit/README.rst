@@ -16,12 +16,12 @@ Nothing special is needed to install this module.
 Configuration
 =============
 
-The values of Fringe Benefit Table can be imported from ufficial ACI website.
-After the registration, you can download the update from:
+The values of Fringe Benefit Table can be imported from official ACI website.
+After the registration, you can download the updates from:
 
 `ACI Fringe Benefit <http://www.aci.it/area-riservata/fringe-benefit.html>`_
 
-The files are in xlsx format. You must convert it to csv format
+The files are in xlsx format. You must convert them to csv format.
 The import will create new vehicles model in the fleet archives.
 
 
