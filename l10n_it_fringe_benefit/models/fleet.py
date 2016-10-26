@@ -24,7 +24,7 @@
 ##############################################################################
 
 
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 import base64
 import csv
@@ -60,7 +60,7 @@ class fleet_fringe_benefit_version(models.Model):
 
     def _import_prepare_row(self, data):
         '''
-        To extend for redifine row values 
+        To extend for redifine row values
         '''
         return data
 
@@ -115,7 +115,7 @@ class fleet_fringe_benefit_version(models.Model):
 
         for row in lines:
             # Avoid subhead
-            if not 'MODELLO' in row or not row['MODELLO']:
+            if 'MODELLO' not in row or not row['MODELLO']:
                 continue
             # Brand
             brand_obj = self.env['fleet.vehicle.model.brand']

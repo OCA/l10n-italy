@@ -19,7 +19,7 @@
 ##############################################################################
 
 
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 
 
 class wizard_of_import_lead(models.TransientModel):
