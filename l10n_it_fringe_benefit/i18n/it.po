@@ -1,0 +1,152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fringe_benefit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-22 08:33+0000\n"
+"PO-Revision-Date: 2016-10-22 08:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: model:ir.actions.act_window,name:l10n_it_fringe_benefit.action_wizard_import_aci_table
+#: model:ir.ui.menu,name:l10n_it_fringe_benefit.menu_wizard_import_aci_table
+#. module: l10n_it_fringe_benefit
+msgid "ACI Tables Import"
+msgstr "Importa Tabella ACI"
+
+#: view:wizard.import.aci.table:l10n_it_fringe_benefit.wizard_import_aci_table
+#. module: l10n_it_fringe_benefit
+msgid "Assign"
+msgstr "Assegna"
+
+#: field:fleet.fringe.benefit,brand_id:0
+#. module: l10n_it_fringe_benefit
+msgid "Brand"
+msgstr "Marchio"
+
+#: field:fleet.fringe.benefit,cost_km:0
+#. module: l10n_it_fringe_benefit
+msgid "Cost Km"
+msgstr "Costo Km"
+
+#: field:fleet.fringe.benefit,create_uid:0
+#: field:fleet.fringe.benefit.version,create_uid:0
+#. module: l10n_it_fringe_benefit
+msgid "Created by"
+msgstr "Created by"
+
+#: field:fleet.fringe.benefit,create_date:0
+#: field:fleet.fringe.benefit.version,create_date:0
+#. module: l10n_it_fringe_benefit
+msgid "Created on"
+msgstr "Created on"
+
+#: field:fleet.fringe.benefit.version,date:0
+#. module: l10n_it_fringe_benefit
+msgid "Date"
+msgstr "Data"
+
+#: field:fleet.fringe.benefit,display_name:0
+#: field:fleet.fringe.benefit.version,display_name:0
+#. module: l10n_it_fringe_benefit
+msgid "Display Name"
+msgstr "Display Name"
+
+#: field:fleet.fringe.benefit,fringe_benefits_year:0
+#. module: l10n_it_fringe_benefit
+msgid "Firnge benefit year"
+msgstr "Fringe benefit Annuo"
+
+#: field:fleet.fringe.benefit.version,line_ids:0
+#. module: l10n_it_fringe_benefit
+msgid "Fleet Forecasts"
+msgstr "Veicoli Previsioni "
+
+#: view:fleet.fringe.benefit:l10n_it_fringe_benefit.view_fleet_fringe_benefit_form
+#: view:fleet.fringe.benefit:l10n_it_fringe_benefit.view_fleet_fringe_benefit_tree
+#: view:fleet.fringe.benefit.version:l10n_it_fringe_benefit.view_fleet_fringe_benefit_version_form
+#: model:ir.actions.act_window,name:l10n_it_fringe_benefit.actuon_fleet_fringe_benefit
+#: model:ir.ui.menu,name:l10n_it_fringe_benefit.menu_fleet_fringe_benefit
+#: model:ir.ui.menu,name:l10n_it_fringe_benefit.menu_fleet_fringe_benefit_configuration
+#. module: l10n_it_fringe_benefit
+msgid "Fringe Benefit"
+msgstr "Fringe Benefit"
+
+#: view:fleet.fringe.benefit.version:l10n_it_fringe_benefit.view_fleet_fringe_benefit_version_tree
+#: model:ir.actions.act_window,name:l10n_it_fringe_benefit.action_fleet_fringe_benefit_version
+#: model:ir.ui.menu,name:l10n_it_fringe_benefit.menu_fleet_fringe_benefit_version
+#. module: l10n_it_fringe_benefit
+msgid "Fringe Benefit Version"
+msgstr "Fringe Benefit Versioni"
+
+#: field:fleet.fringe.benefit,id:0
+#: field:fleet.fringe.benefit.version,id:0
+#. module: l10n_it_fringe_benefit
+msgid "ID"
+msgstr "ID"
+
+#: view:wizard.import.aci.table:l10n_it_fringe_benefit.wizard_import_aci_table
+#. module: l10n_it_fringe_benefit
+msgid "Import"
+msgstr "Importa"
+
+#: model:ir.actions.act_window,help:l10n_it_fringe_benefit.action_wizard_import_aci_table
+#. module: l10n_it_fringe_benefit
+msgid "Import ACI tables from CSV"
+msgstr "Importa Tabella ACI da file CSV"
+
+#: field:fleet.fringe.benefit,__last_update:0
+#: field:fleet.fringe.benefit.version,__last_update:0
+#. module: l10n_it_fringe_benefit
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#: field:fleet.fringe.benefit,write_uid:0
+#: field:fleet.fringe.benefit.version,write_uid:0
+#. module: l10n_it_fringe_benefit
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#: field:fleet.fringe.benefit,write_date:0
+#: field:fleet.fringe.benefit.version,write_date:0
+#. module: l10n_it_fringe_benefit
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#: field:fleet.fringe.benefit,model_id:0
+#. module: l10n_it_fringe_benefit
+msgid "Model"
+msgstr "Modello"
+
+#: field:fleet.fringe.benefit.version,name:0
+#. module: l10n_it_fringe_benefit
+msgid "Name"
+msgstr "Nome"
+
+#: view:wizard.import.aci.table:l10n_it_fringe_benefit.wizard_import_aci_table
+#. module: l10n_it_fringe_benefit
+msgid "Params"
+msgstr "Params"
+
+#: field:fleet.fringe.benefit,series:0
+#. module: l10n_it_fringe_benefit
+msgid "Series"
+msgstr "Serie"
+
+#: field:fleet.fringe.benefit,version_id:0
+#. module: l10n_it_fringe_benefit
+msgid "Version"
+msgstr "Versione"
+
+#: model:ir.model,name:l10n_it_fringe_benefit.model_wizard_import_aci_table
+#. module: l10n_it_fringe_benefit
+msgid "Wizard to import ACI table"
+msgstr "Wizard import tabella ACI"
+
