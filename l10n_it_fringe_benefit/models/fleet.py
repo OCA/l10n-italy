@@ -40,7 +40,7 @@ class fleet_vehicle_model(models.Model):
             domain = [('model_id', '=', vm.id)]
             fb = self.env['fleet.fringe.benefit'].search(
                 domain, order='date desc', limit=1)
-            vm.fringe_benefit_cost_km = fb.cost_km or False
+            vm.fringe_benefit_cost_km = fb.cost_km or 0.0
 
     fringe_benefit_ids = fields.One2many('fleet.fringe.benefit',
                                          'model_id',
@@ -53,8 +53,8 @@ class fleet_vehicle_model(models.Model):
 class fleet_fringe_benefit_version(models.Model):
     _name = 'fleet.fringe.benefit.version'
 
-    date = fields.Date(string='Date', required=True)
-    name = fields.Char(string='Name', required=True)
+    date = fields.Date('Date', required=True)
+    name = fields.Char('Name', required=True)
     line_ids = fields.One2many(
         'fleet.fringe.benefit', 'version_id', string='Fleet Forecasts')
 

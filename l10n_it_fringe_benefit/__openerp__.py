@@ -41,7 +41,6 @@
         'security/ir.model.access.csv',
         'data/precision.xml',
     ],
-    "demo": [],
     "active": False,
     "installable": True
 }

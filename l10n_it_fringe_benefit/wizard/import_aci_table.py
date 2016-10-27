@@ -35,8 +35,8 @@ class wizard_of_import_lead(models.TransientModel):
     file_to_import = fields.Binary(string='File CSV to import',  required=True)
     field_separator_csv = fields.Char(string='Field separator for csv',
                                       required=True, default=",")
-    name = fields.Char(string='Name')
-    date = fields.Date(string='Date')
+    name = fields.Char('Name')
+    date = fields.Date('Date')
 
     @api.multi
     def execute_import(self):
