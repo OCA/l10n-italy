@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2015 Nicola Malcontenti - Agile Business Group
+     © 2016 Andrea Cometa - Apulia Software
+     License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+ -->
+<openerp>
+    <data>
+    	<template id="report_invoice_ddt" inherit_id="account_invoice_report_origin_group.report_invoice_origin_group" >
+    		<xpath expr="//td[@colspan='6']" position="replace">
+    		<td colspan="6">
+                <strong><span t-esc="(l.origin or '')"/></strong>
+            </td>
+            </xpath>
+        </template>
+    </data>
+</openerp>
