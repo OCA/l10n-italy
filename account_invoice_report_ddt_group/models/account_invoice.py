@@ -30,8 +30,8 @@ class AccountInvoice(models.Model):
                 ddt_lines_dict.append({'ddt': '', 'line': line})
 
         lines = sorted(ddt_lines_dict, key=lambda x: x['ddt'])
+        group = {}
         for key, valuesiter in groupby(lines, key=lambda x: x['ddt']):
-            group = {}
             group[key] = list(v['line'] for v in valuesiter)
 
         return group
