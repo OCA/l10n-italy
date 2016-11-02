@@ -7,28 +7,28 @@
             <field name="model">withholding.tax.wizard.create.statement</field>
             <field name="arch" type="xml">
                 <form string="Create Withholding Tax Statement">
-                	<group>
-	                	<group>
-	                		<field name="partner_id"/>
-	                		<field name="date"/>
-	                	</group>
-	                	<group>
-	                		<field name="move_id"/>
-	                	</group>
-                	</group>
-                	<newline/>
-                	<group>
-	                	<group string="Document">
-	                		<field name="base"/>
-	                		<field name="tax"/>
-	                	</group>
-	                	<group string="Withholding Tax">
-	                		<field name="wt_account_move_line_id"/>
-	                		<field name="withholding_tax_id"/>
-	                		<field name="amount"/>
-	                	</group>
-                	</group>
-                	<newline/>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="move_id"/>
+                        </group>
+                    </group>
+                    <newline/>
+                    <group>
+                        <group string="Document">
+                            <field name="base"/>
+                            <field name="tax"/>
+                        </group>
+                        <group string="Withholding Tax">
+                            <field name="wt_account_move_line_id"/>
+                            <field name="withholding_tax_id"/>
+                            <field name="amount"/>
+                        </group>
+                    </group>
+                    <newline/>
                     <group colspan="4">
                         <separator colspan="4"/>
                         <button icon="gtk-cancel" special="cancel" string="Cancel"/>
@@ -37,7 +37,7 @@
                 </form>
             </field>
         </record>
-        
+
         <act_window name="Create Withholding Tax Statement"
             res_model="withholding.tax.wizard.create.statement"
             src_model="account.move"
@@ -46,8 +46,8 @@
             key2="client_action_multi"
             id="wt_wizard_create_statement_action"
             view_id="wt_wizard_create_statement"/>
-        
-      	<record id="wt_wizard_create_statement_action" model="ir.actions.act_window">
+
+        <record id="wt_wizard_create_statement_action" model="ir.actions.act_window">
             <field name="name">Create Withholding Tax Statement</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">withholding.tax.wizard.create.statement</field>
@@ -56,6 +56,6 @@
             <field name="target">new</field>
             <field name="view_id" ref="wt_wizard_create_statement"/>
         </record>
-        
+
     </data>
 </openerp>

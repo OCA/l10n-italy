@@ -9,11 +9,11 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                
+
                 <xpath expr="//field[@name='journal_id']" position="after">
                     <field name="withholding_tax" />
                 </xpath>
-                
+
                 <xpath expr="//page[@string='Invoice Lines']/group[@class='oe_subtotal_footer oe_right']" position="after">
                     <div style="width: 50%%">
                         <field name="withholding_tax_line" attrs="{'invisible': [('withholding_tax', '=', False)]}">
@@ -32,7 +32,7 @@
                         </field>
                     </div>
                 </xpath>
-                
+
                 <xpath expr="//field[@name='amount_total']" position="after">
                     <field name="withholding_tax_amount" widget="monetary" options="{'currency_field': 'currency_id'}" 
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
@@ -42,7 +42,7 @@
                 
             </field>
         </record>
-        
+
         <!--
         INVOICE SUPPLIER
         -->
@@ -51,11 +51,11 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-            
+
                 <xpath expr="//field[@name='journal_id']" position="after">
                     <field name="withholding_tax" />
                 </xpath>
-                 
+
                 <xpath expr="//field[@name='tax_line']" position="after">
                     <field name="withholding_tax_line" attrs="{'invisible': [('withholding_tax', '=', False)]}">
                         <tree>
@@ -70,16 +70,9 @@
                                 <field name="tax"/>
                             </group>
                         </form>
-                        <!-- 
-                        <tree  editable="bottom" string="Withholding Taxes">
-                            <field name="withholding_tax_id" on_change="onchange_withholding_tax_id(withholding_tax_id, parent.withholding_tax_line, parent.invoice_line)"/>
-                            <field name="base"/>
-                            <field name="tax"/>
-                        </tree>
-                         -->
                     </field>
                 </xpath>
-                 
+
                 <xpath expr="//field[@name='amount_total']" position="after">
                     <field name="withholding_tax_amount" widget="monetary" options="{'currency_field': 'currency_id'}" 
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
@@ -98,7 +91,7 @@
             <field name="model">account.fiscal.position</field>
             <field name="inherit_id" ref="account.view_account_position_form"/>
             <field name="arch" type="xml">
-                
+
                 <xpath expr="//separator[@string='Taxes Mapping']" position="before">
                     <separator string="Withholding Tax"/>
                         <field name="withholding_tax_ids" nolabel="1">
@@ -109,7 +102,7 @@
                             </tree>
                         </field>
                 </xpath>
-                
+
             </field>
         </record>
 
