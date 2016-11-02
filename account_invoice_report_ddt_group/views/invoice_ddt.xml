@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- © 2015 Nicola Malcontenti - Agile Business Group
+<!-- © 2015 Alex Comba - Agile Business Group
      © 2016 Andrea Cometa - Apulia Software
      License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
  -->
+
 <openerp>
     <data>
-    	<template id="report_invoice_ddt" inherit_id="account_invoice_report_origin_group.report_invoice_origin_group" >
-    		<xpath expr="//td[@colspan='6']" position="replace">
-    		<td colspan="6">
-                <strong><span t-esc="(l.origin or '')"/></strong>
-            </td>
+        <template id="report_invoice_ddt_group"
+                  inherit_id="sale_layout.report_invoice_layouted" >
+            <xpath expr="//t[@t-as='l']" position="replace">
+                <t t-set="dict_ddt_lines"
+                   t-value="o.grouped_lines_by_ddt(invoice_id=o.id)"/>
+                <t t-foreach="dict_ddt_lines.keys()" t-as="ddt">
+                    <tr>
+                        <td colspan="6">
+                            <strong><span t-esc="ddt"/></strong>
+                        </td>
+                    </tr>
+                    <t t-foreach="dict_ddt_lines[ddt]" t-as="lines">
+                        <t t-foreach="lines" t-as="l">
+                            <tr>
+                                <td><span t-field="l.name"/></td>
+                                <td><span t-field="l.quantity"/>
+                                    <span t-field="l.uom_id" groups="product.group_uom"/></td>
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+                                <td class="text-right">
+                                    <span t-esc="', '.join(map(lambda x: x.name, l.invoice_line_tax_ids))"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.price_subtotal"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </t>
             </xpath>
         </template>
     </data>
