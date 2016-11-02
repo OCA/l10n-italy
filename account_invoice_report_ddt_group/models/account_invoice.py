@@ -11,14 +11,14 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     @api.multi
-    def grouped_lines_by_ddt(self, invoice_id):
+    def grouped_lines_by_ddt(self):
         """
         Returns invoice lines from a specified invoice grouped by ddt
 
         :Parameters:
             -'invoice_id' (int): specify the concerned invoice.
         """
-        all_lines = self.browse(invoice_id).invoice_line_ids
+        all_lines = self.invoice_line_ids
         ddt_lines_dict = []
         for line in all_lines:
             ddt_lines = line.get_ddt_lines()

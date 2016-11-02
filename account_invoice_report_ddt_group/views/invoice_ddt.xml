@@ -10,7 +10,7 @@
                   inherit_id="sale_layout.report_invoice_layouted" >
             <xpath expr="//t[@t-as='l']" position="replace">
                 <t t-set="dict_ddt_lines"
-                   t-value="o.grouped_lines_by_ddt(invoice_id=o.id)"/>
+                   t-value="o.grouped_lines_by_ddt()"/>
                 <t t-foreach="dict_ddt_lines.keys()" t-as="ddt">
                     <tr>
                         <td colspan="6">
