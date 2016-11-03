@@ -43,7 +43,9 @@
         <field name="arch" type="xml">
             <field name="fiscalcode" position="after">
                 <button name="%(l10n_it_fiscalcode.action_compute_fc)d"
-                    string="Compute F.C." type="action" icon="fa-gear" colspan="2"/>
+                    string="Compute F.C." type="action" icon="fa-gear" colspan="2"
+                    attrs="{'invisible':[('is_company','=', True)] }"
+                    />
             </field>
         </field>
     </record>
