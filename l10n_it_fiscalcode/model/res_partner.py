@@ -51,7 +51,7 @@ class ResPartner(models.Model):
                     return False   
   
     _constraints = [
-        (check_fiscalcode,"The fiscal code doesn't seem to be correct.", ["fiscalcode"])
+        (_check_fiscalcode,"The fiscal code doesn't seem to be correct.", ["fiscalcode"])
 
 
     ]
