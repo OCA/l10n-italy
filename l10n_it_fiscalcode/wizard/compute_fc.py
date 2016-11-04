@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Giuliano Lotta
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
+# v 0.1 - removed is_individual field
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
@@ -157,5 +159,4 @@ class WizardComputeFc(models.TransientModel):
                         'partner_fiscalcode': partner.fiscalcode,
                         'compute': c_f}))
             partner.fiscalcode = c_f
-            partner.individual = True
         return {'type': 'ir.actions.act_window_close'}
