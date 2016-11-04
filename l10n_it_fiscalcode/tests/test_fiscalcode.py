@@ -2,7 +2,6 @@
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
 # Copyright 2016 Giuliano Lotta
-# ver 0.1 - create a temporary partner to compute and test fiscal code
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
@@ -17,7 +16,7 @@ class TestFiscalCode(TransactionCase):
         self.partner = partner_model.create(
             {'name': 'Test partner',
              'is_company': 'False',
-             'email': "foo@gmail.com",
+             'email'g: "foo@gmail.com",
              })
 
     def test_fiscalcode_compute(self):

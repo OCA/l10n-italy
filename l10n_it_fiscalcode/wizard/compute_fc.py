@@ -3,7 +3,6 @@
 # Copyright 2016 Andrea Gallina (Apulia Software)
 # Copyright 2016 Giuliano Lotta
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
-# v 0.1 - removed is_individual field
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
