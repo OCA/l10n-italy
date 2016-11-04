@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
+# Copyright 2016 Giuliano Lotta
+# ver 0.1 - create a temporary partner to compute and test fiscal code
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
 
 
 class TestFiscalCode(TransactionCase):
+    # Each test method is run independently and the database transaction is rolled back after each.
 
     def setUp(self):
         super(TestFiscalCode, self).setUp()
-        self.partner = self.env.ref('base.res_partner_2')
+        partner_model = self.env['res.partner'].sudo(self.ref('base.default_user') )
+        self.partner = partner_model.create(
+            {'name': 'Test partner',
+             'is_company': 'False',
+             })
 
     def test_fiscalcode_compute(self):
         wizard = self.env['wizard.compute.fc'].with_context(
