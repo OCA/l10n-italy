@@ -133,7 +133,6 @@ class WizardComputeFc(models.TransientModel):
                     (not dtcostvar or not ct.var_date or
                         dtcostvar < ct.var_date)):
                 nc = ct.national_code
-
         return nc
 
     @api.multi

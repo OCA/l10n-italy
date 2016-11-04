@@ -17,6 +17,7 @@ class TestFiscalCode(TransactionCase):
         self.partner = partner_model.create(
             {'name': 'Test partner',
              'is_company': 'False',
+             'email': "foo@gmail.com",
              })
 
     def test_fiscalcode_compute(self):
