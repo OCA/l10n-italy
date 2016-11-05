@@ -31,7 +31,8 @@
                    The Tables can be dowloaded previous registration from:
                    http://www.aci.it/area-riservata/fringe-benefit.html
                    """,
-    'author': 'Openforce di Alessandro Camilli',
+    'author': "Openforce di Alessandro Camilli,"
+            " Odoo Community Association (OCA)",
     'website': 'http://www.openforce.it',
     'license': 'AGPL-3',
     "depends": ['fleet'],
@@ -41,6 +42,5 @@
         'security/ir.model.access.csv',
         'data/precision.xml',
     ],
-    "active": False,
     "installable": True
 }

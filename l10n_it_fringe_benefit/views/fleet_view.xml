@@ -1,136 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-    
-    	<!-- 
+
+        <!-- 
         Fleet
          -->
         <record id="fleet.fleet_vehicle_fb_model_form" model="ir.ui.view">
-			<field name="name">sale.brand.product.tmpl.form.view</field>
-			<field name="model">fleet.vehicle.model</field>
-			<field name="inherit_id" ref="fleet.fleet_vehicle_model_form"/>
-			<field name="arch" type="xml">
-				
-				<xpath expr="//field[@name='vendors']/.." position="after">
-					<page name="fringe_benefit" string="Fringe Benefit">
-						<field name="fringe_benefit_ids">
-							<tree>
-								<field name="version_id"/>
-			                    <field name="cost_km"/>
-				                <field name="fringe_benefits_year"/>
-							</tree>
-						</field>
-					</page>
-				</xpath>
-				
-			</field>
-		</record>  
-    
-    	
-    	
-		<!-- 
-        Fringe Benefit Version
-         -->
-        <menuitem id="menu_fleet_fringe_benefit_configuration" parent="fleet.fleet_configuration" sequence="40"
-    	name="Fringe Benefit"/>
-         
-		<record id="view_fleet_fringe_benefit_version_tree" model="ir.ui.view">
-            <field name="name">fleet.fringe.benefit.version.tree</field>
-            <field name="model">fleet.fringe.benefit.version</field>
+            <field name="name">sale.brand.product.tmpl.form.view</field>
+            <field name="model">fleet.vehicle.model</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_model_form"/>
             <field name="arch" type="xml">
-            	
-                <tree string="Fringe Benefit Version" version="7.0">
-                	<field name="date"/>
-                    <field name="name"/>
-                </tree>
+                
+                <xpath expr="//field[@name='vendors']/.." position="after">
+                    <page name="fringe_benefit" string="Fringe Benefit">
+                        <field name="fringe_benefit_ids">
+                            <tree>
+                                <field name="version_id"/>
+                                <field name="cost_km"/>
+                                <field name="fringe_benefits_year"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
                 
             </field>
         </record>
-        
+
+        <!-- 
+        Fringe Benefit Version
+         -->
+        <menuitem id="menu_fleet_fringe_benefit_configuration" parent="fleet.fleet_configuration" sequence="40"
+        name="Fringe Benefit"/>
+
+        <record id="view_fleet_fringe_benefit_version_tree" model="ir.ui.view">
+            <field name="name">fleet.fringe.benefit.version.tree</field>
+            <field name="model">fleet.fringe.benefit.version</field>
+            <field name="arch" type="xml">
+
+                <tree string="Fringe Benefit Version" version="7.0">
+                    <field name="date"/>
+                    <field name="name"/>
+                </tree>
+
+            </field>
+        </record>
+
         <record id="view_fleet_fringe_benefit_version_form" model="ir.ui.view">
             <field name="name">fleet.fringe.benefit.version.form</field>
             <field name="model">fleet.fringe.benefit.version</field>
             <field name="arch" type="xml">
-            	
+                
                 <form string="Fringe Benefit" version="7.0">
-                	<group>
-                		<field name="date"/>
-                    	<field name="name"/>
-                	</group>
-                	<newline/>
-                	<group>
-                		<field name="line_ids"/>
-                	</group>
+                    <group>
+                        <field name="date"/>
+                        <field name="name"/>
+                    </group>
+                    <newline/>
+                    <group>
+                        <field name="line_ids"/>
+                    </group>
                 </form>
                 
             </field>
         </record>
-        
+
         <record id="action_fleet_fringe_benefit_version" model="ir.actions.act_window">
-			<field name="name">Fringe Benefit Version</field>
-			<field name="type">ir.actions.act_window</field>
-	        <field name="res_model">fleet.fringe.benefit.version</field>
-	        <field name="view_mode">tree,form</field>
-	        <field name="view_id" ref="view_fleet_fringe_benefit_version_tree"/>
-	        <field name="help"></field>
-    	</record>
-    	    	
-    	<menuitem action="action_fleet_fringe_benefit_version" id="menu_fleet_fringe_benefit_version" parent="menu_fleet_fringe_benefit_configuration" sequence="5"/>
-        
-		
-    	<!-- 
+            <field name="name">Fringe Benefit Version</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fleet.fringe.benefit.version</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_fleet_fringe_benefit_version_tree"/>
+            <field name="help"></field>
+        </record>
+
+        <menuitem action="action_fleet_fringe_benefit_version" id="menu_fleet_fringe_benefit_version" parent="menu_fleet_fringe_benefit_configuration" sequence="5"/>
+
+        <!-- 
         Fringe Benefit
          -->
         <record id="view_fleet_fringe_benefit_tree" model="ir.ui.view">
             <field name="name">fleet.fringe.benefit.tree</field>
             <field name="model">fleet.fringe.benefit</field>
             <field name="arch" type="xml">
-            	
+                
                 <tree string="Fringe Benefit" version="7.0">
-                	<field name="brand_id"/>
+                    <field name="brand_id"/>
                     <field name="model_id"/>
                     <field name="series"/>
                     <field name="version_id"/>
                     <field name="cost_km"/>
-	                <field name="fringe_benefits_year"/>
+                    <field name="fringe_benefits_year"/>
                 </tree>
             </field>
         </record>
-        
+
         <record id="view_fleet_fringe_benefit_form" model="ir.ui.view">
             <field name="name">fleet.fringe.benefit.form</field>
             <field name="model">fleet.fringe.benefit</field>
             <field name="arch" type="xml">
-            	<form string="Fringe Benefit">
-	            	<sheet>
-	                    <group>
-	                    	<field name="brand_id"/>
-	                    	<field name="model_id"/>
-	                    	<field name="series"/>
-	                    </group>
-	                    <group>
-	                    	<field name="version_id"/>
-	                    </group>
-	                    <newline/>
-	                    <group>
-	                    	<field name="cost_km"/>
-	                    	<field name="fringe_benefits_year"/>
-	                    </group>
-	            	</sheet>
+                <form string="Fringe Benefit">
+                    <sheet>
+                        <group>
+                            <field name="brand_id"/>
+                            <field name="model_id"/>
+                            <field name="series"/>
+                        </group>
+                        <group>
+                            <field name="version_id"/>
+                        </group>
+                        <newline/>
+                        <group>
+                            <field name="cost_km"/>
+                            <field name="fringe_benefits_year"/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
-        
+
         <record id="actuon_fleet_fringe_benefit" model="ir.actions.act_window">
-			<field name="name">Fringe Benefit</field>
-			<field name="type">ir.actions.act_window</field>
-	        <field name="res_model">fleet.fringe.benefit</field>
-	        <field name="view_mode">tree,form</field>
-	        <field name="view_id" ref="view_fleet_fringe_benefit_tree"/>
-	        <field name="help"></field>
-    	</record>
-    	    	
-    	<menuitem action="actuon_fleet_fringe_benefit" id="menu_fleet_fringe_benefit" parent="menu_fleet_fringe_benefit_configuration" sequence="10"/>
-    	
+            <field name="name">Fringe Benefit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fleet.fringe.benefit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_fleet_fringe_benefit_tree"/>
+            <field name="help"></field>
+        </record>
+
+        <menuitem action="actuon_fleet_fringe_benefit" id="menu_fleet_fringe_benefit" parent="menu_fleet_fringe_benefit_configuration" sequence="10"/>
+
     </data>
 </openerp>
