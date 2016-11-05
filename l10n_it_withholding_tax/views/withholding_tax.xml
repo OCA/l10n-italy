@@ -2,7 +2,7 @@
 <openerp>
 
     <data>
-    
+
         <menuitem id="of_wt_main" name="Withholding tax" parent="account.menu_finance" sequence="5" />
         <!--
         WITHHOLDING TAX
@@ -21,7 +21,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <record id="view_withholding_tax_form" model="ir.ui.view">
             <field name="name">view.withholding.tax.form</field>
             <field name="model">withholding.tax</field>
@@ -69,17 +69,17 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="action_withholding_tax" model="ir.actions.act_window">
             <field name="name">Withhoulding Tax</field>
             <field name="res_model">withholding.tax</field>
             <field name="view_id" ref="view_withholding_tax_tree"/>
         </record>
-        
+
         <menuitem id="menu_withholding_tax" name="Withholding Tax" 
             action="action_withholding_tax" parent="account.menu_finance_configuration" sequence="45"/>
-            
-            
+
+
         <!--
         WITHHOLDING TAX STATEMENT
          -->
@@ -100,7 +100,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <record id="view_withholding_statement_form" model="ir.ui.view">
             <field name="name">view.withholding.tax.statement.form</field>
             <field name="model">withholding.tax.statement</field>
@@ -119,7 +119,7 @@
                             <field name="invoice_id"/>
                         </group>
                     </group>
-                    <newline/>                  
+                    <newline/>
                     <group>
                         <field name="move_ids" nolabel="1">
                             <tree>
@@ -134,7 +134,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="view_withholding_tax_statement_search" model="ir.ui.view">
             <field name="name">view.withholding.tax.statement.search</field>
             <field name="model">withholding.tax.statement</field>
@@ -150,17 +150,17 @@
                 </search>
             </field>
         </record>
-        
+
         <record id="action_withholding_tax_statement" model="ir.actions.act_window">
             <field name="name">Withhoulding Tax Statement</field>
             <field name="res_model">withholding.tax.statement</field>
             <field name="view_id" ref="view_withholding_statement_tree"/>
             <field name="search_view_id" ref="view_withholding_tax_statement_search" />
         </record>
-        
+
         <menuitem id="menu_withholding_tax_statement" name="WT Statements" 
             action="action_withholding_tax_statement" parent="of_wt_main" sequence="5"/>
-            
+
         <!--
         WITHHOLDING TAX MOVE
          -->
@@ -179,7 +179,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <record id="view_withholding_move_form" model="ir.ui.view">
             <field name="name">view.withholding.tax.move.form</field>
             <field name="model">withholding.tax.move</field>
@@ -212,14 +212,14 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="view_withholding_move_search" model="ir.ui.view">
             <field name="name">view.withholding.tax.move.search</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
                 <search string="Withholding Tax Move">
-                	<filter name="due" string="Due" domain="[('state','=','due')]" help="Due"/>
-                	<filter name="paid" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
+                    <filter name="due" string="Due" domain="[('state','=','due')]" help="Due"/>
+                    <filter name="paid" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
                     <field name="partner_id" filter_domain="[('partner_id','ilike',self)]"/>
                     <field name="withholding_tax_id" filter_domain="[('withholding_tax_id','ilike',self)]"/>
                     <group expand="0" string="Group By...">
@@ -231,14 +231,14 @@
                 </search>
             </field>
         </record>
-        
+
         <record id="action_withholding_tax_move" model="ir.actions.act_window">
             <field name="name">Withhoulding Tax Move</field>
             <field name="res_model">withholding.tax.move</field>
             <field name="view_id" ref="view_withholding_move_tree"/>
             <field name="search_view_id" ref="view_withholding_move_search" />
         </record>
-        
+
         <menuitem id="menu_withholding_tax_move" name="WT Moves" 
             action="action_withholding_tax_move" parent="of_wt_main" sequence="10"/>
     </data>
