@@ -20,20 +20,8 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '8.0.0.1.0',
     'category': 'Localisation/Italy',
-    'description': """
-This module customizes Odoo in order to fit italian laws and mores
-
-Functionalities:
-
-- Fiscal code computation for partner
-
-External depends:
-
-    * Python codicefiscale https://pypi.python.org/pypi/codicefiscale
-
-""",
+    'version': '9.0.1.0.0',
     'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
@@ -46,12 +34,10 @@ External depends:
         'wizard/compute_fc_view.xml',
         'data/res.city.it.code.csv',
         "security/ir.model.access.csv"
-        ],
-    'qweb': [],
-    'demo': [],
+    ],
     'test': [
         'test/fiscalcode.yml',
-        ],
+    ],
     'active': False,
-    'installable': False
+    'installable': True
 }
