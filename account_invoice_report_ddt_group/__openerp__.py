@@ -7,9 +7,6 @@
 {
     'name': "Account invoice report grouped by DDT",
     'version': '9.0.1.0.0',
-    'description': """
-This module sets invoice line origin as ddt name.
-""",
     'author': 'Agile Business Group, Apulia Software',
     'website': 'http://www.agilebg.com',
     'license': 'GPL-3',
