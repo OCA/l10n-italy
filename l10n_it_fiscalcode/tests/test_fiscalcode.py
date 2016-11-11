@@ -18,7 +18,7 @@ class TestFiscalCode(TransactionCase):
             {'name': 'FiscalCode Test partner',
              'is_company': 'False',
              'email': "foo@gmail.com",
-            })
+             })
 
     def test_fiscalcode_compute(self):
         wizard = self.env['wizard.compute.fc'].with_context(
