@@ -35,7 +35,7 @@ install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install stdnum
+  - pip install python-stdnum
   - pip install unicodecsv
   - pip install codicefiscale
   - pip install unidecode==0.04.17
