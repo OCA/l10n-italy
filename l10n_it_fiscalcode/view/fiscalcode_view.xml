@@ -10,6 +10,13 @@
                     <div name="fiscalcode_info">
                         <field name="fiscalcode" class="oe_inline" />
                     </div>
+                    <label for="is_soletrader" 
+                    attrs="{'invisible':[('is_company','=', False)] }"/>
+                    <div name="is_soletrader_info">
+                        <field name="is_soletrader" class="oe_inline" 
+                        attrs="{'invisible':[('is_company','=', False)] }"
+                        />
+                    </div>
                 </xpath>
                 
             </field>

@@ -41,10 +41,10 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="l10n_it_fiscalcode.view_partner_form_fiscalcode_data"/>
         <field name="arch" type="xml">
-            <field name="fiscalcode" position="after">
+            <field name="is_soletrader" position="after">
                 <button name="%(l10n_it_fiscalcode.action_compute_fc)d"
                     string="Compute F.C." type="action" icon="fa-gear" colspan="2"
-                    attrs="{'invisible':[('is_company','=', True)] }"
+                    attrs="{'invisible':[('is_company','=', True),('is_soletrader','=',False)] }"
                     />
             </field>
         </field>

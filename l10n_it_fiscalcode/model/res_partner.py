@@ -4,47 +4,73 @@
 # Copyright 2016 Giuliano Lotta
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
+
 class ResPartner(models.Model):
+    """ Extends res.partner to add Italian Fiscal Code
+    """
     # Private attributes
     _inherit = 'res.partner'
 
     # Fields declaration
     fiscalcode = fields.Char(
         'Fiscal Code', size=16, help="Italian Fiscal Code")
+    is_soletrader = fields.Boolean(
+        string='Sole Trader',
+        default=False,
+        readonly=False,
+        help="Checked if company is a sole trader")
+
+    @api.multi
+    @api.onchange('is_company')
+    def _unset_soletrader(self):
+        """ if switched from company to person, is_soletrader is set to False
+        a simple private citizen may not be a sole trader
+        """
+        for partner in self:
+            if partner.is_company is False:
+                partner.is_soletrader = False
 
     # Constraints and onchanges
     @api.multi
     @api.constrains('fiscalcode')
     def _check_fiscalcode_constraint(self):
-        is_fc_ok=True
-        msg=""
+        """ verify fiscalcode content, lenght and isnumeric/isalphanum
+        depending if partner is private citizen,
+        business company or sole trader
+        """
         for partner in self:
-            if not partner.fiscalcode: is_fc_ok = True
-                # fiscalcode empty. Nothing  o check..
-            elif partner.is_company:
-                # fiscalcode not empty and partner is a company
-                if partner.country_id.name == u"Italia":
-                    if len(partner.fiscalcode) == 13:
-                        is_fc_ok = True 
-                    else:
-                         is_fc_ok = False
-                         msg =u"For Italian companies and organizations the ficalcode must be the same of the VAT code"
-                else:
-                    # not Italian company with Italian fiscal code ???
-                    is_fc_ok = False
-                    msg =u"A Company outside Italy cannot have a fiscalcode"
-            else:
-                # fiscalcode not empty and partner is a person 
-                if len(partner.fiscalcode) == 16 and partner.country_id.name == u"Italia":
+            if not partner.fiscalcode:
+                # fiscalcode empty. Nothing to check..
+                is_fc_ok = True
+            elif partner.country_id.code != "IT":
+                # partners outside Italy cannot have an Italian fiscalcode
+                is_fc_ok = False
+                msg = _("The Fiscal Code can only belong to "
+                        "Italian citizens/companies")
+            elif (not partner.is_company or
+                  partner.is_company and partner.is_soletrader):
+                # partner is a private citizen resident in Italy
+                # or a sole trader resident in Italy
+                # should have an Italian standard fiscalcode
+                if (partner.fiscalcode.isalnum() and
+                        len(partner.fiscalcode) == 16):
                     is_fc_ok = True
                 else:
                     is_fc_ok = False
-                    msg=u"Wrong fiscalcode length or not Italian address"
-                    # we test only length and not also CRC, because of possible code collision (omocodia)
-                    # false if italian person with fiscal code of wrong length or a non Italian address
-
+                    msg = _("The Fiscal Code must be alphanumeric and "
+                            "of length 16 chars")
+            elif (partner.is_company and not partner.is_soletrader):
+                # partner is an Italian business company
+                # should have the fiscal code of the same kind of VAT code
+                if (partner.fiscalcode.isnumeric() and
+                        len(partner.fiscalcode) == 11):
+                    is_fc_ok = True
+                else:
+                    is_fc_ok = False
+                    msg = _("The Fiscal Code must be numeric and"
+                            " of length 11")
         if not is_fc_ok:
                 raise ValidationError(msg)

@@ -8,15 +8,16 @@ from odoo.tests.common import TransactionCase
 
 
 class TestFiscalCode(TransactionCase):
-    # Each test method is run independently and the database transaction is rolled back after each.
-
+    # Each test method is run independently and the database transaction
+    # is rolled back after each.
     def setUp(self):
         super(TestFiscalCode, self).setUp()
-        partner_model = self.env['res.partner'].sudo(self.ref('base.default_user') )
+        partner_model = self.env['res.partner'].sudo(
+            self.ref('base.default_user'))
         self.partner = partner_model.create(
             {'name': 'Test partner',
              'is_company': 'False',
-             'email'g: "foo@gmail.com",
+             'email': "foo@gmail.com",
              })
 
     def test_fiscalcode_compute(self):
