@@ -10,17 +10,6 @@ from openerp.tests.common import TransactionCase
 
 class TestDdt(TransactionCase):
 
-    def _get_picking_vals(self):
-        return {
-            'partner_id': self.partner.id,
-            'picking_type_id': self.env.ref('stock.picking_type_out').id,
-            'location_id': self.src_location.id,
-            'location_dest_id': self.dest_location.id,
-            }
-
-    def _create_picking(self):
-        return self.env['stock.picking'].create(self._get_picking_vals())
-
     def _create_move(self, picking, product, quantity=1.0):
         return self.env['stock.move'].create({
             'name': '/',
@@ -31,15 +20,6 @@ class TestDdt(TransactionCase):
             'location_id': self.src_location.id,
             'location_dest_id': self.dest_location.id,
             'partner_id': self.partner.id,
-            })
-
-    def _create_line(self, preparation, product=None, quantity=0):
-        return self.env['stock.picking.package.preparation.line'].create({
-            'name': 'test',
-            'product_id': product and product.id or False,
-            'product_uom_qty': quantity,
-            'product_uom': product and product.uom_id.id or False,
-            'package_preparation_id': preparation.id,
             })
 
     def _create_ddt(self, pickings=None):

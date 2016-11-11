@@ -1,12 +1,12 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
+   :alt: License: GPL
 
 ================================
 Account Invoice Report DDT Group
 ================================
 
-This module extends the functionality of account.invoice to group invoice line by ddt.
+This modules modifies the invoice report, so that the invoice lines are grouped by the DDT that generated them
 
 Usage
 =====
