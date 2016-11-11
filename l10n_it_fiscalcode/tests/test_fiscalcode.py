@@ -13,12 +13,12 @@ class TestFiscalCode(TransactionCase):
     def setUp(self):
         super(TestFiscalCode, self).setUp()
         partner_model = self.env['res.partner'].sudo(
-            self.ref('base.default_user'))
+            self.ref('base.partner_root'))
         self.partner = partner_model.create(
-            {'name': 'Test partner',
+            {'name': 'FiscalCode Test partner',
              'is_company': 'False',
              'email': "foo@gmail.com",
-             })
+            })
 
     def test_fiscalcode_compute(self):
         wizard = self.env['wizard.compute.fc'].with_context(

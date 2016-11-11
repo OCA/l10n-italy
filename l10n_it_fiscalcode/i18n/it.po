@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 00:43+0100\n"
-"PO-Revision-Date: 2016-11-11 00:47+0100\n"
+"POT-Creation-Date: 2016-11-12 00:08+0100\n"
+"PO-Revision-Date: 2016-11-12 00:09+0100\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -235,7 +235,7 @@ msgid "Surname"
 msgstr "Cognome"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:51
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:63
 #, python-format
 msgid "The Fiscal Code can only belong to Italian citizens/companies"
 msgstr ""
@@ -243,14 +243,13 @@ msgstr ""
 "italiane."
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:63
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:74
 #, python-format
-msgid "The Fiscal Code must be alphanumeric and of length 16 chars"
-msgstr ""
-"Il Codice Fiscale deve essere alfanumerico e di lunghezza 16 caratteri."
+msgid "The Fiscal Code is not correct"
+msgstr "Il codice Fiscale non è corretto"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:73
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:83
 #, python-format
 msgid "The Fiscal Code must be numeric and of length 11"
 msgstr "Il codice fiscale deve essere numerico e di lunghezza 11 caratteri"
@@ -263,17 +262,21 @@ msgstr "Data variazione"
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code
 msgid "res.city.it.code"
-msgstr ""
+msgstr "res.city.it.code"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_distinct
 msgid "res.city.it.code.distinct"
-msgstr ""
+msgstr "res.city.it.code.distinct"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_province
 msgid "res.city.it.code.province"
-msgstr ""
+msgstr "res.city.it.code.province"
+
+#~ msgid "The Fiscal Code must be alphanumeric and of length 16 chars"
+#~ msgstr ""
+#~ "Il Codice Fiscale deve essere alfanumerico e di lunghezza 16 caratteri."
 
 #~ msgid "Error"
 #~ msgstr "Errore"

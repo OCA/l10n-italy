@@ -7,6 +7,18 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
+import logging
+_logger = logging.getLogger(__name__)
+
+try:
+    from stdnum.it.codicefiscale import is_valid
+except ImportError:
+    _logger.warning(
+        'stdnum library not found. '
+        'If you plan to use it, please install the python-stdnum library '
+        'for Fiscal Code validation '
+        'from https://pypi.python.org/pypi/python-stdnum/')
+
 
 class ResPartner(models.Model):
     """ Extends res.partner to add Italian Fiscal Code
@@ -55,14 +67,12 @@ class ResPartner(models.Model):
                 # partner is a private citizen resident in Italy
                 # or a sole trader resident in Italy
                 # should have an Italian standard fiscalcode
-                if (partner.fiscalcode.isalnum() and
-                        len(partner.fiscalcode) == 16):
+                if is_valid(partner.fiscalcode):
                     is_fc_ok = True
                 else:
                     is_fc_ok = False
-                    msg = _("The Fiscal Code must be alphanumeric and "
-                            "of length 16 chars")
-            elif (partner.is_company and not partner.is_soletrader):
+                    msg = _("The Fiscal Code is not correct")
+            elif partner.is_company and not partner.is_soletrader:
                 # partner is an Italian business company
                 # should have the fiscal code of the same kind of VAT code
                 if (partner.fiscalcode.isnumeric() and
@@ -73,4 +83,4 @@ class ResPartner(models.Model):
                     msg = _("The Fiscal Code must be numeric and"
                             " of length 11")
         if not is_fc_ok:
-                raise ValidationError(msg)
+            raise ValidationError(msg)
