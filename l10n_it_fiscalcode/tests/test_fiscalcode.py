@@ -12,13 +12,9 @@ class TestFiscalCode(TransactionCase):
     # is rolled back after each.
     def setUp(self):
         super(TestFiscalCode, self).setUp()
-        partner_model = self.env['res.partner'].sudo(
-            self.ref('base.partner_root'))
-        self.partner = partner_model.create(
-            {'name': 'FiscalCode Test partner',
-             'is_company': 'False',
-             'email': "foo@gmail.com",
-             })
+        self.partner = self.env.ref('base.partner_root')
+        self.partner.email = "foo@gmail.com"
+
 
     def test_fiscalcode_compute(self):
         wizard = self.env['wizard.compute.fc'].with_context(
