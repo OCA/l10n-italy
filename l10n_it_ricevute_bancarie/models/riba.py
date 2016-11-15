@@ -24,7 +24,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api, workflow
+from openerp import fields, models, api, workflow, _
 from openerp.exceptions import Warning as UserError
 import openerp.addons.decimal_precision as dp
 
@@ -81,8 +81,8 @@ class RibaList(models.Model):
     date_created = fields.Date(
         'Creation date', readonly=True,
         default=lambda self: fields.Date.context_today(self))
-    date_accepted = fields.Date('Acceptance date', readonly=True)
-    date_accreditation = fields.Date('Accreditation date', readonly=True)
+    date_accepted = fields.Date('Acceptance date')
+    date_accreditation = fields.Date('Accreditation date')
     date_paid = fields.Date('Paid date', readonly=True)
     date_unsolved = fields.Date('Unsolved date', readonly=True)
     company_id = fields.Many2one(
@@ -146,15 +146,25 @@ class RibaList(models.Model):
                 riba_list.accreditation_move_id.unlink()
             riba_list.state = 'cancel'
 
+    @api.onchange('date_accepted', 'date_accreditation')
+    def _onchange_date(self):
+        if self.date_accepted and self.date_accreditation:
+            if self.date_accepted > self.date_accreditation:
+                raise UserError(_(
+                    "Date accreditation must be greater or equal to"
+                    " date acceptance"))
+
     @api.multi
     def riba_accepted(self):
         self.state = 'accepted'
-        self.date_accepted = fields.Date.context_today(self)
+        if not self.date_accepted:
+            self.date_accepted = fields.Date.context_today(self)
 
     @api.multi
     def riba_accredited(self):
         self.state = 'accredited'
-        self.date_accreditation = fields.Date.context_today(self)
+        if not self.date_accreditation:
+            self.date_accreditation = fields.Date.context_today(self)
         for riba_list in self:
             for line in riba_list.line_ids:
                 line.state = 'accredited'
