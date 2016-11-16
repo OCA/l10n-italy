@@ -18,13 +18,7 @@ class TestFiscalCode(TransactionCase):
         omocodia fiscalcode, and VAT fiscalcode (compamy)
         constrain method will check it and grant right to be saved
         """
-        # fix test error because no email found during partner creation test
-        # modification rolled back after TransactionCase end
-        partner_root = self.env.ref('base.partner_root')
-        partner_root.email = u"foo@gmail.com"
-
-        partner_model = self.env['res.partner'].sudo(
-            self.ref('base.partner_root'))
+        partner_model = self.env['res.partner']
 
         # get Italian country_id for Italian citizen/companies creation
         italy_id = self.env['res.country'].search([('code', '=', 'IT')])[0].id
