@@ -27,7 +27,7 @@ class TestFiscalCode(TransactionCase):
             self.ref('base.partner_root'))
 
         # get Italian country_id for Italian citizen/companies creation
-        italy_id = self.env['res.country'].search([('code', '=', 'IT')])
+        italy_id = self.env['res.country'].search([('code', '=', 'IT')])[0].id
 
         # normal fiscalcode for private citizen
         self.partner = partner_model.create(
@@ -35,18 +35,18 @@ class TestFiscalCode(TransactionCase):
              'email': u"foo@gmail.com",
              'is_company': 'False',
              'country_id': italy_id,
-             'fiscalcode': 'BNZVCN32S10E573Z',
+             'fiscalcode': u'BNZVCN32S10E573Z',
              })
 
         # special fiscalcode with omocodia for private citizen
-        # last "3" character, become a "P" because of omocodia
+        # last "3" character, become a "P" char because of omocodia
         # CRC code changes accordingly
         self.partner = partner_model.create(
-            {'name': u'Test2 Private Italian Citizen',
+            {'name': u'Test2 Private Italian Citizen Omocod.',
              'email': u"foo@gmail.com",
              'is_company': 'False',
              'country_id': italy_id,
-             'fiscalcode': 'BNZVCN32S10E57PV',
+             'fiscalcode': u'BNZVCN32S10E57PV',
              })
 
         # Italian company has the fiscalcode like a VAT number
@@ -55,7 +55,7 @@ class TestFiscalCode(TransactionCase):
              'email': u"foo@gmail.com",
              'is_company': 'True',
              'country_id': italy_id,
-             'fiscalcode': '08106710158',
+             'fiscalcode': u'08106710158',
              })
 
         # No FiscalCode
