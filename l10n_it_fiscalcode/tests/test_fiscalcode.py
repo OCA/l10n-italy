@@ -33,7 +33,7 @@ class TestFiscalCode(TransactionCase):
         self.partner = partner_model.create(
             {'name': u'Test1 Private Italian Citizen',
              'email': u"foo@gmail.com",
-             'is_company': 'False',
+             'is_company': False,
              'country_id': italy_id,
              'fiscalcode': u'BNZVCN32S10E573Z',
              })
@@ -44,7 +44,7 @@ class TestFiscalCode(TransactionCase):
         self.partner = partner_model.create(
             {'name': u'Test2 Private Italian Citizen Omocod.',
              'email': u"foo@gmail.com",
-             'is_company': 'False',
+             'is_company': False,
              'country_id': italy_id,
              'fiscalcode': u'BNZVCN32S10E57PV',
              })
@@ -53,7 +53,7 @@ class TestFiscalCode(TransactionCase):
         self.partner = partner_model.create(
             {'name': u'Test3 Italian Company',
              'email': u"foo@gmail.com",
-             'is_company': 'True',
+             'is_company': True,
              'country_id': italy_id,
              'fiscalcode': u'08106710158',
              })
@@ -62,7 +62,7 @@ class TestFiscalCode(TransactionCase):
         self.partner = partner_model.create(
             {'name': u'Test4 No FiscalCode',
              'email': u"foo@gmail.com",
-             'is_company': 'True',
+             'is_company': True,
              'country_id': italy_id,
              'fiscalcode': None,
              })
