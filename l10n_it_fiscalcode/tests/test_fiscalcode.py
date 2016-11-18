@@ -216,7 +216,6 @@ class TestFiscalCode(TransactionCase):
     def test_onchange_iscompany(self):
         """ Test that when is_com0pany is switched from True to False
          is_soletrader is also set to False
-
         """
         # Get an empty recordset
         partner = self.env['res.partner']
@@ -232,67 +231,9 @@ class TestFiscalCode(TransactionCase):
         specs = partner._onchange_spec()
         # Get the result of the onchange method for is_company field:
         updates = partner.onchange(values, ['is_company'], specs)
-        """ value  is a dictionary of newly computed field values.
-        This dictionary only features keys that are in the values parameter
-        passed to onchange()."""
+        # value  is a dictionary of newly computed field values.
+        # This dictionary only features keys that are in the values parameter
+        # passed to onchange().
         new_values = updates.get('value', {})
         # check values computed by the onchange.
         self.assertEqual(new_values['is_soletrader'], False)
-
-# -------------------------------------------------------------------
-
-    def test_newpartner_fiscalcode(self):
-        """ save a new partner with a standard fiscalcode,
-        omocodia fiscalcode, and VAT fiscalcode (compamy)
-        constrain method will check it and grant right to be saved
-        """
-        partner_model = self.env['res.partner']
-
-        # get Italian country_id for Italian citizen/companies creation
-        italy_id = self.env['res.country'].search([('code', '=', 'IT')])[0].id
-        # normal fiscalcode for private citizen
-        self.partner = partner_model.create(
-            {'name': u'Test1 Private Italian Citizen',
-             'email': u"foo@gmail.com",
-             'is_company': False,
-             'country_id': italy_id,
-             'fiscalcode': u'BNZVCN32S10E573Z',
-             })
-
-        # special fiscalcode with omocodia for private citizen
-        # last "3" character, become a "P" char because of omocodia
-        # CRC code changes accordingly
-        self.partner = partner_model.create(
-            {'name': u'Test2 Private Italian Citizen Omocod.',
-             'email': u"foo@gmail.com",
-             'is_company': False,
-             'country_id': italy_id,
-             'fiscalcode': u'BNZVCN32S10E57PV',
-             })
-        # Italian company has the fiscalcode like a VAT number
-        self.partner = partner_model.create(
-            {'name': u'Test3 Italian Company',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'country_id': italy_id,
-             'fiscalcode': u'08106710158',
-             })
-
-        # No FiscalCode
-        self.partner = partner_model.create(
-            {'name': u'Test4 No FiscalCode',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'country_id': italy_id,
-             'fiscalcode': None,
-             })
-
-        # Wrong FiscalCode
-        self.partner = partner_model.create(
-            {'name': u'Test4 No FiscalCode',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'country_id': italy_id,
-             'fiscalcode': u"DEADBEEF",
-             })
-        self.assertRaises(ValidationError)
