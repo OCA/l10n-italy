@@ -53,37 +53,40 @@ class TestFiscalCode(TransactionCase):
         self.assertEqual(record.fiscalcode, '12345678901')
 
         # WRONG length FiscalCode for a company
-        record = self.env['res.partner'].create(
-            {'name': u'Test2 Italian Company',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'is_soletrader': False,
-             'country_id': self.italy_id,
-             'fiscalcode': u"1234567890123456",
-             })
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test2 Italian Company',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': False,
+                 'country_id': self.italy_id,
+                 'fiscalcode': u"1234567890123456",
+                 })
+
 
         # Wrong Chars FiscalCode (alphabetic)
-        record = self.env['res.partner'].create(
-            {'name': u'Test3 Italian Company',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'is_soletrader': False,
-             'country_id': self.italy_id,
-             'fiscalcode': u"1234567890A",
-             })
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test3 Italian Company',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': False,
+                 'country_id': self.italy_id,
+                 'fiscalcode': u"1234567890A",
+                 })
+
 
         # Wrong country for Italian FiscalCode
-        record = self.env['res.partner'].create(
-            {'name': u'Test4 Italian Company',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'is_soletrader': False,
-             'country_id': self.france_id,
-             'fiscalcode': u"12345678901",
-             })
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test4 Italian Company',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': False,
+                 'country_id': self.france_id,
+                 'fiscalcode': u"12345678901",
+                 })
+
 
 # -------------------------------------------------------------------
 
@@ -127,32 +130,34 @@ class TestFiscalCode(TransactionCase):
         self.assertEqual(record.fiscalcode, "")
 
         # WRONG Private Citizen FiscalCode
-        record = self.env['res.partner'].create(
-            {'name': u'Test4 No FiscalCode',
-             'email': u"foo@gmail.com",
-             'is_company': False,
-             'is_soletrader': False,
-             'country_id': self.italy_id,
-             'fiscalcode': u"1234567890123456",
-             })
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test4 No FiscalCode',
+                 'email': u"foo@gmail.com",
+                 'is_company': False,
+                 'is_soletrader': False,
+                 'country_id': self.italy_id,
+                 'fiscalcode': u"1234567890123456",
+                 })
+
 
         # WRONG Private Citizen country
-        record = self.env['res.partner'].create(
-            {'name': u'Test4 No FiscalCode',
-             'email': u"foo@gmail.com",
-             'is_company': False,
-             'is_soletrader': False,
-             'country_id': self.france_id,
-             'fiscalcode': u"BNZVCN32S10E573Z",
-             })
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test4 No FiscalCode',
+                 'email': u"foo@gmail.com",
+                 'is_company': False,
+                 'is_soletrader': False,
+                 'country_id': self.france_id,
+                 'fiscalcode': u"BNZVCN32S10E573Z",
+                 })
+
 
 # -------------------------------------------------------------------
 
     def test_soletrader(self):
         """ Test sole trader partner
-        with Empty, correct and wrong fiscalcode
+        with Empty    , correct and wrong fiscalcode
         """
         # normal fiscalcode for private citizen
         record = self.env['res.partner'].create(
@@ -190,26 +195,26 @@ class TestFiscalCode(TransactionCase):
         self.assertEqual(record.fiscalcode, "")
 
         # WRONG Private Citizen FiscalCode
-        record = self.env['res.partner'].create(
-            {'name': u'Test4 No FiscalCode',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'is_soletrader': True,
-             'country_id': self.italy_id,
-             'fiscalcode': u"1234567890123456",
-             })
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test4 No FiscalCode',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': True,
+                 'country_id': self.italy_id,
+                 'fiscalcode': u"1234567890123456",
+                 })
 
         # WRONG Private Citizen country
-        record = self.env['res.partner'].create(
-            {'name': u'Test4 No FiscalCode',
-             'email': u"foo@gmail.com",
-             'is_company': True,
-             'is_soletrader': True,
-             'country_id': self.france_id,
-             'fiscalcode': u"BNZVCN32S10E573Z",
-             })
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test4 No FiscalCode',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': True,
+                 'country_id': self.france_id,
+                 'fiscalcode': u"BNZVCN32S10E573Z",
+                 })
 
 # -------------------------------------------------------------------
 
