@@ -37,13 +37,22 @@ class ResPartner(models.Model):
 
     @api.multi
     @api.onchange('is_company')
-    def _unset_soletrader(self):
-        """ if switched from company to person, is_soletrader is set to False
-        a simple private citizen may not be a sole trader
+    def onchange_iscompany(self):
+        """ if partner is switched from company to person, 
+        is_soletrader is set to False because a simple private citizen
+        may not be a sole trader
         """
         for partner in self:
             if partner.is_company is False:
                 partner.is_soletrader = False
+        return {
+            'warning': {
+                'title': _('Partner type changed'),
+                'message': _('Warning: the partner has been changed'
+                    ' from company to private citizen.\n'
+                    'Sole trader selection remove. Please verify fiscal code'),
+                },
+                }
 
     # Constraints and onchanges
     @api.multi
@@ -54,7 +63,7 @@ class ResPartner(models.Model):
         business company or sole trader
         """
         for partner in self:
-            if not partner.fiscalcode:
+            if partner.fiscalcode is None:
                 # fiscalcode empty. Nothing to check..
                 is_fc_ok = True
             elif partner.country_id.code != "IT":
