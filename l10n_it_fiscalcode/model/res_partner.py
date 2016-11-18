@@ -52,7 +52,7 @@ class ResPartner(models.Model):
                              ' from company to private citizen.\n'
                              'Sole trader selection remove.'
                              ' Please verify fiscal code'),
-                },
+                        },
                 }
 
     # Constraints and onchanges
