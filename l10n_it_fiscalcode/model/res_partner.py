@@ -38,7 +38,7 @@ class ResPartner(models.Model):
     @api.multi
     @api.onchange('is_company')
     def onchange_iscompany(self):
-        """ if partner is switched from company to person, 
+        """ if partner is switched from company to person,
         is_soletrader is set to False because a simple private citizen
         may not be a sole trader
         """
@@ -49,8 +49,9 @@ class ResPartner(models.Model):
             'warning': {
                 'title': _('Partner type changed'),
                 'message': _('Warning: the partner has been changed'
-                    ' from company to private citizen.\n'
-                    'Sole trader selection remove. Please verify fiscal code'),
+                             ' from company to private citizen.\n'
+                             'Sole trader selection remove.'
+                             ' Please verify fiscal code'),
                 },
                 }
 
