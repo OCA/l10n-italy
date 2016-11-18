@@ -64,7 +64,7 @@ class ResPartner(models.Model):
         business company or sole trader
         """
         for partner in self:
-            if partner.fiscalcode is None:
+            if not partner.fiscalcode:
                 # fiscalcode empty. Nothing to check..
                 is_fc_ok = True
             elif partner.country_id.code != "IT":

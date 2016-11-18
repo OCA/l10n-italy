@@ -28,7 +28,7 @@ class TestFiscalCode(TransactionCase):
 
     def test_company(self):
         """ Test a company partner
-        with None, correct and wrong fiscalcode
+        with Empty, correct and wrong fiscalcode
         """
         # No FiscalCode
         record = self.env['res.partner'].create(
@@ -37,9 +37,9 @@ class TestFiscalCode(TransactionCase):
              'is_company': True,
              'is_soletrader': False,
              'country_id': self.italy_id,
-             'fiscalcode': None,
+             'fiscalcode': "",
              })
-        self.assertEqual(record.fiscalcode, None)
+        self.assertEqual(record.fiscalcode, "")
 
         # Italian company has the fiscalcode like a VAT number
         record = self.env['res.partner'].create(
@@ -89,7 +89,7 @@ class TestFiscalCode(TransactionCase):
 
     def test_private_citizen(self):
         """ Test private citizen partner
-        with None, correct and wrong fiscalcode
+        with Empty, correct and wrong fiscalcode
         """
         # normal fiscalcode for private citizen
         record = self.env['res.partner'].create(
@@ -122,9 +122,9 @@ class TestFiscalCode(TransactionCase):
              'is_company': False,
              'is_soletrader': False,
              'country_id': self.italy_id,
-             'fiscalcode': None,
+             'fiscalcode': "",
              })
-        self.assertEqual(record.fiscalcode, None)
+        self.assertEqual(record.fiscalcode, "")
 
         # WRONG Private Citizen FiscalCode
         record = self.env['res.partner'].create(
@@ -152,7 +152,7 @@ class TestFiscalCode(TransactionCase):
 
     def test_soletrader(self):
         """ Test sole trader partner
-        with None, correct and wrong fiscalcode
+        with Empty, correct and wrong fiscalcode
         """
         # normal fiscalcode for private citizen
         record = self.env['res.partner'].create(
@@ -185,9 +185,9 @@ class TestFiscalCode(TransactionCase):
              'is_company': True,
              'is_soletrader': True,
              'country_id': self.italy_id,
-             'fiscalcode': None,
+             'fiscalcode': "",
              })
-        self.assertEqual(record.fiscalcode, None)
+        self.assertEqual(record.fiscalcode, "")
 
         # WRONG Private Citizen FiscalCode
         record = self.env['res.partner'].create(
