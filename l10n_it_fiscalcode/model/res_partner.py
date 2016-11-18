@@ -45,15 +45,18 @@ class ResPartner(models.Model):
         for partner in self:
             if partner.is_company is False:
                 partner.is_soletrader = False
-        return {
-            'warning': {
-                'title': _('Partner type changed'),
-                'message': _('Warning: the partner has been changed'
-                             ' from company to private citizen.\n'
-                             'Sole trader selection remove.'
-                             ' Please verify fiscal code'),
-                        },
-                }
+        title = _('Partner type changed')
+        message = _('Warning: the partner has been changed'
+                    ' from company to private citizen.\n'
+                    'Sole trader selection remove.'
+                    ' Please verify fiscal code')
+        result = {
+            'warning':  {
+                'title': title,
+                'message': message,
+            },
+        }
+        return result
 
     # Constraints and onchanges
     @api.multi
