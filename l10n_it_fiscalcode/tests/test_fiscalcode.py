@@ -63,7 +63,6 @@ class TestFiscalCode(TransactionCase):
                  'fiscalcode': u"1234567890123456",
                  })
 
-
         # Wrong Chars FiscalCode (alphabetic)
         with self.assertRaises(ValidationError):
             record = self.env['res.partner'].create(
@@ -75,7 +74,6 @@ class TestFiscalCode(TransactionCase):
                  'fiscalcode': u"1234567890A",
                  })
 
-
         # Wrong country for Italian FiscalCode
         with self.assertRaises(ValidationError):
             record = self.env['res.partner'].create(
@@ -86,7 +84,6 @@ class TestFiscalCode(TransactionCase):
                  'country_id': self.france_id,
                  'fiscalcode': u"12345678901",
                  })
-
 
 # -------------------------------------------------------------------
 
@@ -140,7 +137,6 @@ class TestFiscalCode(TransactionCase):
                  'fiscalcode': u"1234567890123456",
                  })
 
-
         # WRONG Private Citizen country
         with self.assertRaises(ValidationError):
             record = self.env['res.partner'].create(
@@ -151,7 +147,6 @@ class TestFiscalCode(TransactionCase):
                  'country_id': self.france_id,
                  'fiscalcode': u"BNZVCN32S10E573Z",
                  })
-
 
 # -------------------------------------------------------------------
 
