@@ -40,23 +40,22 @@ class ResPartner(models.Model):
     def onchange_iscompany(self):
         """ if partner is switched from company to person,
         is_soletrader is set to False because a simple private citizen
-        may not be a sole trader
+        may not be a sole trader.
+        A proper warning is displayed.
         """
         for partner in self:
             if partner.is_company is False:
                 partner.is_soletrader = False
-        title = _('Partner type changed')
-        message = _('Warning: the partner has been changed'
-                    ' from company to private citizen.\n'
-                    'Sole trader selection remove.'
-                    ' Please verify fiscal code')
-        result = {
-            'warning':  {
-                'title': title,
-                'message': message,
-            },
-        }
-        return result
+                title = _('Partner type changed')
+                message = _('WARNING:\n'
+                            'Changing partner type from company to '
+                            'person will remove the "Sole Trader" selection '
+                            'in the Accounting tab.\nFiscal code may need '
+                            'to be changed accordingly.')
+                result = {
+                    'warning': {'title': title,
+                                'message': message, }, }
+                return result
 
     # Constraints and onchanges
     @api.multi
@@ -70,16 +69,11 @@ class ResPartner(models.Model):
             if not partner.fiscalcode:
                 # fiscalcode empty. Nothing to check..
                 is_fc_ok = True
-            elif partner.country_id.code != "IT":
-                # partners outside Italy cannot have an Italian fiscalcode
-                is_fc_ok = False
-                msg = _("The Fiscal Code can only belong to "
-                        "Italian citizens/companies")
             elif (not partner.is_company or
                   partner.is_company and partner.is_soletrader):
-                # partner is a private citizen resident in Italy
-                # or a sole trader resident in Italy
-                # should have an Italian standard fiscalcode
+                # partner is a private citizen
+                # or a sole trader operating in Italy
+                # should have an Italian valid fiscalcode
                 if is_valid(partner.fiscalcode):
                     is_fc_ok = True
                 else:

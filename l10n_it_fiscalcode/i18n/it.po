@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 00:08+0100\n"
-"PO-Revision-Date: 2016-11-12 00:09+0100\n"
+"POT-Creation-Date: 2016-11-20 10:15+0100\n"
+"PO-Revision-Date: 2016-11-20 12:06+0100\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -95,16 +95,6 @@ msgid "Display Name"
 msgstr "Nome da visualizzare"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:153
-#, python-format
-msgid ""
-"Existing fiscal code %s is different from the computed one (%s). If you want "
-"to use the computed one, remove the existing one"
-msgstr ""
-"Il codice fiscale esistente %s è differente da quello calcolato (%s). Se "
-"volete usare il codice calcolato, rimuovete quello esistente."
-
-#. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
 msgid "Female"
 msgstr "Femmina"
@@ -132,6 +122,17 @@ msgstr "ID"
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Individual Data"
 msgstr "Dati Persona Fisica"
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:154
+#, python-format
+msgid ""
+"Insert fiscal code %s is different from the computed one ( %s ).\n"
+"If you want to use the computed one, please remove first the insert code"
+msgstr ""
+"Il codice sicale inserito %s è differente da quello calcolato (%s).\n"
+"Se volete utilizzare il codice calcolato, siete pregati di rimuovere prima "
+"il codice inserito."
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_fiscalcode
@@ -182,12 +183,6 @@ msgid "National code"
 msgstr "Codice nazionale"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:148
-#, python-format
-msgid "National code is missing"
-msgstr "Codice nazionale mancante"
-
-#. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_national_code_var
 msgid "National code variation"
 msgstr "Variazione codice nazionale"
@@ -198,7 +193,7 @@ msgid "Notes"
 msgstr "Note"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:144
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:145
 #, python-format
 msgid "One or more fields are missing"
 msgstr "Uno o più campi sono vuoti."
@@ -209,10 +204,22 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:49
+#, python-format
+msgid "Partner type changed"
+msgstr "Il tipo di partner è stato cambiato"
+
+#. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_province
 msgid "Province"
 msgstr "Provincia"
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:149
+#, python-format
+msgid "Province code is missing"
+msgstr "La sigla di provincia è mancante."
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_var
@@ -235,21 +242,13 @@ msgid "Surname"
 msgstr "Cognome"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:63
-#, python-format
-msgid "The Fiscal Code can only belong to Italian citizens/companies"
-msgstr ""
-"Il Codice Fiscale può appartenere solamente a cittadini italiani o imprese "
-"italiane."
-
-#. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:74
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:81
 #, python-format
 msgid "The Fiscal Code is not correct"
 msgstr "Il codice Fiscale non è corretto"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:83
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:90
 #, python-format
 msgid "The Fiscal Code must be numeric and of length 11"
 msgstr "Il codice fiscale deve essere numerico e di lunghezza 11 caratteri"
@@ -258,6 +257,20 @@ msgstr "Il codice fiscale deve essere numerico e di lunghezza 11 caratteri"
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_var_date
 msgid "Variation date"
 msgstr "Data variazione"
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:50
+#, python-format
+msgid ""
+"WARNING:\n"
+"Changing partner type from company to person will remove the \"Sole Trader\" "
+"selection in the Accounting tab.\n"
+"Fiscal code may need to be changed accordingly."
+msgstr ""
+"ATTENZIONE:\n"
+"Cambiare la tipologia di partnere da azienda a persona, rimuove la selezione "
+"\"Impresa Individuale\" dalla scheda \"Contabilità\".\n"
+"Potrebbe essere necessario cambiare Il codice fiscale conformemente."
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code
@@ -273,6 +286,40 @@ msgstr "res.city.it.code.distinct"
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_province
 msgid "res.city.it.code.province"
 msgstr "res.city.it.code.province"
+
+#~ msgid ""
+#~ "Inserted fiscal code %s is different from the computed one ( %s ). If you "
+#~ "want to use the computed one, please remove first the inserted code"
+#~ msgstr ""
+#~ "Il codice fiscale inserito %s è differente da quello calcolato ( %s). Se "
+#~ "desiderate utilizzare quello calcolato, rimuovete prima il codice "
+#~ "inserito."
+
+#~ msgid "National code is missing"
+#~ msgstr "Codice nazionale mancante"
+
+#~ msgid ""
+#~ "WARNING:\n"
+#~ "Changing your partner type from company to person will remove the sole "
+#~ "trader selection in the Accounting tab.\n"
+#~ "Fiscal code may need to be changed accordingly."
+#~ msgstr ""
+#~ "ATTENZIONE:\n"
+#~ "Cambiare il  tipo di partner da azienda a persona, rimuoverà la selezione "
+#~ "\"Impresa individuale\" nella scheda Contabilità.\n"
+#~ "Potrebbe essere necessario cambiare il codice fiscale conformemente."
+
+#~ msgid ""
+#~ "Existing fiscal code %s is different from the computed one (%s). If you "
+#~ "want to use the computed one, remove the existing one"
+#~ msgstr ""
+#~ "Il codice fiscale esistente %s è differente da quello calcolato (%s). Se "
+#~ "volete usare il codice calcolato, rimuovete quello esistente."
+
+#~ msgid "The Fiscal Code can only belong to Italian citizens/companies"
+#~ msgstr ""
+#~ "Il Codice Fiscale può appartenere solamente a cittadini italiani o "
+#~ "imprese italiane."
 
 #~ msgid "The Fiscal Code must be alphanumeric and of length 16 chars"
 #~ msgstr ""
