@@ -59,7 +59,7 @@ class ResPartner(models.Model):
 
     # Constraints and onchanges
     @api.multi
-    @api.constrains('fiscalcode','is_soletrader')
+    @api.constrains('fiscalcode', 'is_soletrader')
     def _check_fiscalcode_constraint(self):
         """ verify fiscalcode content, lenght and isnumeric/isalphanum
         depending if partner is private citizen,
@@ -80,7 +80,7 @@ class ResPartner(models.Model):
                     is_fc_ok = False
                     msg = _("The Fiscal Code is invalid")
             elif partner.is_company and not partner.is_soletrader:
-                # partner is a business company    
+                # partner is a business company
                 # should have the fiscal code of the same kind of VAT code
                 if (partner.fiscalcode.isnumeric() and
                         len(partner.fiscalcode) == 11):
