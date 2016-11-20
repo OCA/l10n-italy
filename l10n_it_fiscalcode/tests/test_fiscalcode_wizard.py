@@ -44,10 +44,9 @@ class TestFiscalCodeWizard(TransactionCase):
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04H501X')
 
-    def test_fiscalcode_ora(self):
-        """ test for a  fiscal code when city is categorized ad ORA
-        e.g. AbanoBagni (PD) - Notes = ORA
-        """
+        # test for a  fiscal code when city is categorized ad ORA
+        # e.g. AbanoBagni (PD) - Notes = ORA
+        self.partner.fiscalcode = None
         wizard = self.env['wizard.compute.fc'].with_context(
             active_id=self.partner.id).create({
                 'fiscalcode_surname': 'ROSSI',
@@ -61,10 +60,9 @@ class TestFiscalCodeWizard(TransactionCase):
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A001E')
 
-    def test_fiscalcode_ved(self):
-        """ test for a  fiscal code when city is categorized ad VED
-        e.g. Abbadia (CO) - Notes = VED
-        """
+        # test for a  fiscal code when city is categorized ad VED
+        # e.g. Abbadia (CO) - Notes = VED
+        self.partner.fiscalcode = None
         wizard = self.env['wizard.compute.fc'].with_context(
             active_id=self.partner.id).create({
                 'fiscalcode_surname': 'ROSSI',
@@ -78,10 +76,9 @@ class TestFiscalCodeWizard(TransactionCase):
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
 
-    def test_fiscalcode_agg(self):
-        """ test for a  fiscal code when city is categorized ad AGG
-        e.g. AbbadiaSopraAdda (CO) - Notes = AGG
-        """
+        # test for a  fiscal code when city is categorized ad AGG
+        #  e.g. AbbadiaSopraAdda (CO) - Notes = AGG
+        self.partner.fiscalcode = None
         wizard = self.env['wizard.compute.fc'].with_context(
             active_id=self.partner.id).create({
                 'fiscalcode_surname': 'ROSSI',
@@ -95,10 +92,9 @@ class TestFiscalCodeWizard(TransactionCase):
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
 
-    def test_fiscalcode_agp(self):
-        """ test for a  fiscal code when city is categorized ad AGP
-        e.g. Bressana (PV) - Notes = AGP
-        """
+        # test for a  fiscal code when city is categorized ad AGP
+        # e.g. Bressana (PV) - Notes = AGP
+        self.partner.fiscalcode = None
         wizard = self.env['wizard.compute.fc'].with_context(
             active_id=self.partner.id).create({
                 'fiscalcode_surname': 'ROSSI',
