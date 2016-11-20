@@ -13,8 +13,7 @@
     'license': 'AGPL-3',
     'depends': ['base_vat'],
     'external_dependencies': {
-        'python': [ 'codicefiscale', 'stdnum' ],
-         },
+        'python': ['codicefiscale', 'stdnum'], },
     'data': [
         'view/fiscalcode_view.xml',
         'view/res_company_view.xml',
