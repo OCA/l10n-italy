@@ -59,7 +59,7 @@ class TestFiscalCodeWizard(TransactionCase):
             })
         # ---- Compute FiscalCode
         wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'MRARSS84H04A001E')
+        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A001E')
 
     def test_fiscalcode_ved(self):
         """ test for a  fiscal code when city is categorized ad VED
