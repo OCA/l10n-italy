@@ -30,6 +30,7 @@ class TestFiscalCodeWizard(TransactionCase):
         """ test that for a private citizen the fiscal code is
         computed correctly
         """
+        # ROMA (RM)
         wizard = self.env['wizard.compute.fc'].with_context(
             active_id=self.partner.id).create({
                 'fiscalcode_surname': 'ROSSI',
@@ -42,3 +43,59 @@ class TestFiscalCodeWizard(TransactionCase):
         # ---- Compute FiscalCode
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04H501X')
+
+        # AbanoBagni (PD) - Notes = ORA
+        wizard = self.env['wizard.compute.fc'].with_context(
+            active_id=self.partner.id).create({
+                'fiscalcode_surname': 'ROSSI',
+                'fiscalcode_firstname': 'MARIO',
+                'birth_date': '1984-06-04',
+                'sex': 'M',
+                'birth_city': 1,
+                'birth_province': 8379,
+            })
+        # ---- Compute FiscalCode
+        wizard.compute_fc()
+        self.assertEqual(self.partner.fiscalcode, 'MRARSS84H04A001E')
+
+        # Abbadia (CO) - Notes = VED
+        wizard = self.env['wizard.compute.fc'].with_context(
+            active_id=self.partner.id).create({
+                'fiscalcode_surname': 'ROSSI',
+                'fiscalcode_firstname': 'MARIO',
+                'birth_date': '1984-06-04',
+                'sex': 'M',
+                'birth_city': 3,
+                'birth_province': 3975,
+            })
+        # ---- Compute FiscalCode
+        wizard.compute_fc()
+        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
+
+        # AbbadiaSopraAdda (CO) - Notes = AGG
+        wizard = self.env['wizard.compute.fc'].with_context(
+            active_id=self.partner.id).create({
+                'fiscalcode_surname': 'ROSSI',
+                'fiscalcode_firstname': 'MARIO',
+                'birth_date': '1984-06-04',
+                'sex': 'M',
+                'birth_city': 4,
+                'birth_province': 3975,
+            })
+        # ---- Compute FiscalCode
+        wizard.compute_fc()
+        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
+
+        # Bressana (PV) - Notes = AGP
+        wizard = self.env['wizard.compute.fc'].with_context(
+            active_id=self.partner.id).create({
+                'fiscalcode_surname': 'ROSSI',
+                'fiscalcode_firstname': 'MARIO',
+                'birth_date': '1984-06-04',
+                'sex': 'M',
+                'birth_city': 531,
+                'birth_province': 8593,
+            })
+        # ---- Compute FiscalCode
+        wizard.compute_fc()
+        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04B159E')
