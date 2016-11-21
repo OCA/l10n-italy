@@ -44,7 +44,7 @@ class ResPartner(models.Model):
         A proper warning is displayed.
         """
         for partner in self:
-            if partner.is_company is False:
+            if not partner.is_company:
                 partner.is_soletrader = False
                 title = _('Partner type changed')
                 message = _('WARNING:\n'

@@ -4,121 +4,171 @@
 # Copyright 2016 Giuliano Lotta
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import SingleTransactionCase
+from odoo.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
 
 
-class TestFiscalCodeWizard(SingleTransactionCase):
-    """ TestCase in which all test methods are run in the same transaction,
-    the transaction is started with the first test method and
-    rolled back at the end of the last.
+class TestPartner(TransactionCase):
+    """ Each test method is run independently and the database transaction
+    is rolled back after each.
     """
-
     def setUp(self):
         """initializes the self.env attribute The test runner will
-        run then the tests one after the other with a call to setUp()
-        before each test method and a call to tearDown() after each
-        To test the fiscal code for a private citizen, se need to create
-        a transient partner with is_company = False
+        run then one after the other with a call to setUp() before
+        each test method and a call to tearDown() after each
         """
-        super(TestFiscalCodeWizard, self).setUp()
-        self.partner_model = self.env['res.partner']
-        self.partner = self.partner_model.create(
-            {'name': u'Rossi Mario',
-             'email': u"mario.rossi@gmail.com",
-             'fiscalcode': None,
-             'is_company': False, })
-# -----------------------------------------------------------------------
+        super(TestPartner, self).setUp()
+# -------------------------------------------------------------------
 
-    def test_fiscalcode_normal(self):
-        """ test that for a private citizen the fiscal code is
-        computed correctly
+    def test_partner_company(self):
+        """ Test a company partner
+        with Empty, correct and wrong fiscalcode
         """
-        # ROMA (RM)
-        wizard = self.env['wizard.compute.fc'].with_context(
-            active_id=self.partner.id).create({
-                'fiscalcode_surname': 'ROSSI',
-                'fiscalcode_firstname': 'MARIO',
-                'birth_date': '1984-06-04',
-                'sex': 'M',
-                'birth_city': 10048,
-                'birth_province': 10048,
-            })
-        # ---- Compute FiscalCode & Test it
-        wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04H501X')
-# -----------------------------------------------------------------------
+        # No FiscalCode
+        record = self.env['res.partner'].create(
+            {'name': u'Test0 Italian Company',
+             'email': u"foo@gmail.com",
+             'is_company': True,
+             'is_soletrader': False,
+             'fiscalcode': "", })
+        self.assertEqual(record.fiscalcode, "")
 
-    def test_fiscalcode_ora(self):
-        """ test for a  fiscal code when city is categorized as ORA
-         e.g. AbanoBagni (PD) - Notes = ORA
-        """
-        wizard = self.env['wizard.compute.fc'].with_context(
-            active_id=self.partner.id).create({
-                'fiscalcode_surname': 'ROSSI',
-                'fiscalcode_firstname': 'MARIO',
-                'birth_date': '1984-06-04',
-                'sex': 'M',
-                'birth_city': 1,
-                'birth_province': 8379,
-            })
-        # ---- Compute FiscalCode & Test it
-        self.partner.fiscalcode = None
-        wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A001E')
-# -----------------------------------------------------------------------
+        # Italian company has the fiscalcode like a VAT number
+        record = self.env['res.partner'].create(
+            {'name': u'Test1 Italian Company',
+             'email': u"foo@gmail.com",
+             'is_company': True,
+             'is_soletrader': False,
+             'fiscalcode': u'12345678901', })
+        self.assertEqual(record.fiscalcode, '12345678901')
 
-    def test_fiscalcode_agg(self):
-        """ test for a  fiscal code when city is categorized as AGG
-        e.g. AbbadiaSopraAdda (CO) - Notes = AGG
-        """
-        wizard = self.env['wizard.compute.fc'].with_context(
-            active_id=self.partner.id).create({
-                'fiscalcode_surname': 'ROSSI',
-                'fiscalcode_firstname': 'MARIO',
-                'birth_date': '1984-06-04',
-                'sex': 'M',
-                'birth_city': 4,
-                'birth_province': 3975,
-            })
-        # ---- Compute FiscalCode & Test it
-        self.partner.fiscalcode = None
-        wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
-# -----------------------------------------------------------------------
+        # WRONG length FiscalCode for a company
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test2 Italian Company',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': False,
+                 'fiscalcode': u"1234567890123456", })
 
-    def test_fiscalcode_agp(self):
-        """ test for a  fiscal code when city is categorized as AGP
-        e.g. Bressana (PV) - Notes = AGP
-        """
-        wizard = self.env['wizard.compute.fc'].with_context(
-            active_id=self.partner.id).create({
-                'fiscalcode_surname': 'ROSSI',
-                'fiscalcode_firstname': 'MARIO',
-                'birth_date': '1984-06-04',
-                'sex': 'M',
-                'birth_city': 531,
-                'birth_province': 8593,
-            })
-        # ---- Compute FiscalCode & Test it
-        self.partner.fiscalcode = None
-        wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04B159E')
-# -----------------------------------------------------------------------
+        # Wrong Chars FiscalCode (alphabetic)
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test3 Italian Company',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': False,
+                 'fiscalcode': u"1234567890A", })
 
-    def test_fiscalcode_ved(self):
-        """ test for a  fiscal code when city is categorized as VED
-        e.g. Abbadia (CO) - Notes = VED
+# -------------------------------------------------------------------
+
+    def test_partner_private_citizen(self):
+        """ Test private citizen partner
+        with Empty, correct and wrong fiscalcode
         """
-        wizard = self.env['wizard.compute.fc'].with_context(
-            active_id=self.partner.id).create({
-                'fiscalcode_surname': 'ROSSI',
-                'fiscalcode_firstname': 'MARIO',
-                'birth_date': '1984-06-04',
-                'sex': 'M',
-                'birth_city': 3,
-                'birth_province': 3975,
-            })
-        # ---- Compute FiscalCode & Test it
-        self.partner.fiscalcode = None
-        wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04B159E')
+        # normal fiscalcode for private citizen
+        record = self.env['res.partner'].create(
+            {'name': u'Test1 Private Italian Citizen',
+             'email': u"foo@gmail.com",
+             'is_company': False,
+             'is_soletrader': False,
+             'fiscalcode': u'BNZVCN32S10E573Z', })
+        self.assertEqual(record.fiscalcode, 'BNZVCN32S10E573Z')
+
+        # special fiscalcode with omocodia for private citizen
+        # last "3" character, become a "P" char because of omocodia
+        # CRC code changes accordingly
+        record = self.env['res.partner'].create(
+            {'name': u'Test2 Private Italian Citizen Omocod.',
+             'email': u"foo@gmail.com",
+             'is_company': False,
+             'is_soletrader': False,
+             'fiscalcode': u'BNZVCN32S10E57PV', })
+        self.assertEqual(record.fiscalcode, 'BNZVCN32S10E57PV')
+
+        # Private citizen No FiscalCode
+        record = self.env['res.partner'].create(
+            {'name': u'Test4 No FiscalCode',
+             'email': u"foo@gmail.com",
+             'is_company': False,
+             'is_soletrader': False,
+             'fiscalcode': "", })
+        self.assertEqual(record.fiscalcode, "")
+
+        # WRONG Private Citizen FiscalCode
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test4 No FiscalCode',
+                 'email': u"foo@gmail.com",
+                 'is_company': False,
+                 'is_soletrader': False,
+                 'fiscalcode': u"1234567890123456", })
+
+# -------------------------------------------------------------------
+
+    def test_partner_soletrader(self):
+        """ Test sole trader partner
+        with Empty    , correct and wrong fiscalcode
+        """
+        # normal fiscalcode for private citizen
+        record = self.env['res.partner'].create(
+            {'name': u'Test1 Private Italian Citizen',
+             'email': u"foo@gmail.com",
+             'is_company': True,
+             'is_soletrader': True,
+             'fiscalcode': u'BNZVCN32S10E573Z', })
+        self.assertEqual(record.fiscalcode, 'BNZVCN32S10E573Z')
+
+        # special fiscalcode with omocodia for private citizen
+        # last "3" character, become a "P" char because of omocodia
+        # CRC code changes accordingly
+        record = self.env['res.partner'].create(
+            {'name': u'Test2 Private Italian Citizen Omocod.',
+             'email': u"foo@gmail.com",
+             'is_company': True,
+             'is_soletrader': True,
+             'fiscalcode': u'BNZVCN32S10E57PV', })
+        self.assertEqual(record.fiscalcode, 'BNZVCN32S10E57PV')
+
+        # Private citizen No FiscalCode
+        record = self.env['res.partner'].create(
+            {'name': u'Test4 No FiscalCode',
+             'email': u"foo@gmail.com",
+             'is_company': True,
+             'is_soletrader': True,
+             'fiscalcode': "", })
+        self.assertEqual(record.fiscalcode, "")
+
+        # WRONG Private Citizen FiscalCode
+        with self.assertRaises(ValidationError):
+            record = self.env['res.partner'].create(
+                {'name': u'Test4 No FiscalCode',
+                 'email': u"foo@gmail.com",
+                 'is_company': True,
+                 'is_soletrader': True,
+                 'fiscalcode': u"1234567890123456", })
+
+# -------------------------------------------------------------------
+
+    def test_partner_onchange_iscompany(self):
+        """ Test that when is_company is switched from True to False
+         is_soletrader is also set to False
+        """
+        # Get an empty recordset
+        partner = self.env['res.partner']
+        # Prepare the values to create a new  record
+        values = {'name': u'OnChange Test',
+                  'email': u"foo@gmail.com",
+                  'is_company': False,
+                  'is_soletrader': True,
+                  'fiscalcode': u'BNZVCN32S10E573Z', }
+        # Retrieve the onchange specifications
+        specs = partner._onchange_spec()
+        # Get the result of the onchange method for is_company field:
+        updates = partner.onchange(values, ['is_company'], specs)
+        # value  is a dictionary of newly computed field values.
+        # This dictionary only features keys that are in the values parameter
+        # passed to onchange().
+        new_values = updates.get('value', {})
+        # check values computed by the onchange.
+        self.assertEqual(new_values['is_soletrader'], False)
