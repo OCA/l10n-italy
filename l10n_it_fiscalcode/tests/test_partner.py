@@ -121,4 +121,4 @@ class TestFiscalCodeWizard(SingleTransactionCase):
         # ---- Compute FiscalCode & Test it
         self.partner.fiscalcode = None
         wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
+        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04B159E')
