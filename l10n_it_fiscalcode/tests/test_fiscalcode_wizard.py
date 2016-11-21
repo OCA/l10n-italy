@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import SingleTransactionCase
+from odoo.exceptions import UserError
 
 
 class TestFiscalCodeWizard(SingleTransactionCase):
@@ -103,4 +104,61 @@ class TestFiscalCodeWizard(SingleTransactionCase):
         self.partner.fiscalcode = None
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04B159E')
+# -----------------------------------------------------------------------
+
+    def test_fiscalcode_error_nomatch(self):
+        """ Fiscal code inserted in form doesn't match the computed one
+        """
+        with self.assertRaises(UserError):
+            # ROMA (RM)
+            wizard = self.env['wizard.compute.fc'].with_context(
+                active_id=self.partner.id).create({
+                    'fiscalcode_surname': 'ROSSI',
+                    'fiscalcode_firstname': 'MARIO',
+                    'birth_date': '1984-06-04',
+                    'sex': 'M',
+                    'birth_city': 10048,
+                    'birth_province': 10048,
+                })
+            # ---- Compute FiscalCode & Test it
+            self.partner.fiscalcode = u'RSSMRA84H04B159E'
+            wizard.compute_fc()
+
+# -----------------------------------------------------------------------
+    def test_fiscalcode_error_nodata(self):
+        """ Main Data missing for fiscalcode computation
+        """
+        with self.assertRaises(UserError):
+            # ROMA (RM)
+            wizard = self.env['wizard.compute.fc'].with_context(
+                active_id=self.partner.id).create({
+                    'fiscalcode_surname': None,
+                    'fiscalcode_firstname': None,
+                    'birth_date': None,
+                    'sex': 'M',
+                    'birth_city': 10048,
+                    'birth_province': 10048,
+                })
+            # ---- Compute FiscalCode & Test it
+            self.partner.fiscalcode = None
+            wizard.compute_fc()
+# -----------------------------------------------------------------------
+
+    def test_fiscalcode_error_noprovince(self):
+        """ Province missing for ficalcode computation
+        """
+        with self.assertRaises(UserError):
+            # ROMA (RM)
+            wizard = self.env['wizard.compute.fc'].with_context(
+                active_id=self.partner.id).create({
+                    'fiscalcode_surname': 'ROSSI',
+                    'fiscalcode_firstname': 'MARIO',
+                    'birth_date': '1984-06-04',
+                    'sex': 'M',
+                    'birth_city': 10048,
+                    'birth_province': None,
+                })
+            # ---- Compute FiscalCode & Test it
+            self.partner.fiscalcode = None
+            wizard.compute_fc()
 # -----------------------------------------------------------------------
