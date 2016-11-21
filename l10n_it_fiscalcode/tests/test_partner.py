@@ -4,11 +4,11 @@
 # Copyright 2016 Giuliano Lotta
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SingleTransactionCase
 
 
 class TestFiscalCodeWizard(SingleTransactionCase):
-    """ TestCase in which all test methods are run in the same transaction, 
+    """ TestCase in which all test methods are run in the same transaction,
     the transaction is started with the first test method and
     rolled back at the end of the last.
     """
@@ -22,11 +22,11 @@ class TestFiscalCodeWizard(SingleTransactionCase):
         """
         super(TestFiscalCodeWizard, self).setUp()
         self.partner_model = self.env['res.partner']
-        self.partner = partner_model.create(
+        self.partner = self.partner_model.create(
             {'name': u'Rossi Mario',
              'email': u"mario.rossi@gmail.com",
              'fiscalcode': None,
-             'is_company': False, })             
+             'is_company': False, })
 # -----------------------------------------------------------------------
 
     def test_fiscalcode_normal(self):
