@@ -44,7 +44,7 @@ class ResPartner(models.Model):
         A proper warning is displayed.
         """
         for partner in self:
-            if partner.is_company is False:
+            if not partner.is_company:
                 partner.is_soletrader = False
                 title = _('Partner type changed')
                 message = _('WARNING:\n'
@@ -82,7 +82,7 @@ class ResPartner(models.Model):
             elif partner.is_company and not partner.is_soletrader:
                 # partner is a business company
                 # should have the fiscal code of the same kind of VAT code
-                if (partner.fiscalcode.isnumeric() and
+                if (partner.fiscalcode.isdigit() and
                         len(partner.fiscalcode) == 11):
                     is_fc_ok = True
                 else:
