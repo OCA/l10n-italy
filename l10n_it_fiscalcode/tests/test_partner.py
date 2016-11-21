@@ -67,25 +67,6 @@ class TestFiscalCodeWizard(SingleTransactionCase):
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A001E')
 # -----------------------------------------------------------------------
 
-    def test_fiscalcode_ved(self):
-        """ test for a  fiscal code when city is categorized as VED
-        e.g. Abbadia (CO) - Notes = VED
-        """
-        wizard = self.env['wizard.compute.fc'].with_context(
-            active_id=self.partner.id).create({
-                'fiscalcode_surname': 'ROSSI',
-                'fiscalcode_firstname': 'MARIO',
-                'birth_date': '1984-06-04',
-                'sex': 'M',
-                'birth_city': 3,
-                'birth_province': 3975,
-            })
-        # ---- Compute FiscalCode & Test it
-        self.partner.fiscalcode = None
-        wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
-
-# -----------------------------------------------------------------------
     def test_fiscalcode_agg(self):
         """ test for a  fiscal code when city is categorized as AGG
         e.g. AbbadiaSopraAdda (CO) - Notes = AGG
@@ -122,3 +103,22 @@ class TestFiscalCodeWizard(SingleTransactionCase):
         self.partner.fiscalcode = None
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04B159E')
+# -----------------------------------------------------------------------
+
+    def test_fiscalcode_ved(self):
+        """ test for a  fiscal code when city is categorized as VED
+        e.g. Abbadia (CO) - Notes = VED
+        """
+        wizard = self.env['wizard.compute.fc'].with_context(
+            active_id=self.partner.id).create({
+                'fiscalcode_surname': 'ROSSI',
+                'fiscalcode_firstname': 'MARIO',
+                'birth_date': '1984-06-04',
+                'sex': 'M',
+                'birth_city': 3,
+                'birth_province': 3975,
+            })
+        # ---- Compute FiscalCode & Test it
+        self.partner.fiscalcode = None
+        wizard.compute_fc()
+        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04A005R')
