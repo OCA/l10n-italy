@@ -82,7 +82,7 @@ class ResPartner(models.Model):
             elif partner.is_company and not partner.is_soletrader:
                 # partner is a business company
                 # should have the fiscal code of the same kind of VAT code
-                if (partner.fiscalcode.isnumeric() and
+                if (partner.fiscalcode.isdigit() and
                         len(partner.fiscalcode) == 11):
                     is_fc_ok = True
                 else:
