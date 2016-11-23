@@ -83,12 +83,15 @@ class DdTCreateInvoice(models.TransientModel):
                         raise UserError(
                             _("Move %s is not invoiceable") % move.name)
         # ----- Force to use partner invoice from ddt as invoice partner
+        ctx = self.env.context.copy()
+        ctx['ddt_partner_id'] = ddts[0].partner_invoice_id.id
+        ctx['inv_type'] = 'out_invoice'
         invoices = picking_pool.action_invoice_create(
             self.env.cr,
             self.env.uid,
             pickings,
             self.journal_id.id, group=True,
-            context={'ddt_partner_id': ddts[0].partner_invoice_id.id})
+            context=ctx)
         invoice_obj = self.env['account.invoice'].browse(invoices)
         invoice_obj.write({
             'carriage_condition_id': ddts[0].carriage_condition_id.id,
@@ -96,7 +99,7 @@ class DdTCreateInvoice(models.TransientModel):
             'transportation_reason_id': ddts[0].transportation_reason_id.id,
             'transportation_method_id': ddts[0].transportation_method_id.id,
             'parcels': ddts[0].parcels,
-            })
+        })
         for ddt in ddts:
             ddt.invoice_id = invoices[0]
         # ----- Show invoice
