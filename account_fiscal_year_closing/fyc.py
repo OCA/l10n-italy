@@ -27,6 +27,7 @@ __author__ = "Borja López Soilán (Pexego)"
 
 
 class fiscal_year_closing_init(osv.osv):
+
     """
     Fiscal Year Closing Wizard
     """
@@ -37,6 +38,7 @@ class fiscal_year_closing_init(osv.osv):
     _columns = {
         'name': fields.char('Description', size=60, required=True),
     }
+
 
 fiscal_year_closing_init()
 
@@ -72,6 +74,8 @@ class fiscal_year_closing_lp_account_mapping(osv.osv):
                                            required=False,
                                            ondelete='cascade'),
     }
+
+
 fiscal_year_closing_lp_account_mapping()
 
 
@@ -102,6 +106,8 @@ class fiscal_year_closing_nlp_account_mapping(osv.osv):
                                            required=False,
                                            ondelete='cascade'),
     }
+
+
 fiscal_year_closing_nlp_account_mapping()
 
 
@@ -131,6 +137,8 @@ class fiscal_year_closing_c_account_mapping(osv.osv):
                                            'Dest account',
                                            ondelete='cascade'),
     }
+
+
 fiscal_year_closing_c_account_mapping()
 
 # -------------------------------------------------------------------------
