@@ -6,8 +6,7 @@
 Account Fiscal Year Closing - Chiusura e riapertura fiscale
 ===========================================================
 
-english
--------
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Generalization of l10n_es_fiscal_year_closing.
 
@@ -28,14 +27,13 @@ To use this module, you need to:
 
 #. Create new journal entries
 #. Create specific accounts in chart of account
-#. Execute: accounting -> Periodic processing -> Endo of period -> Chiudi anno fiscale
+#. Execute: accounting -> Periodic processing -> End of period -> Chiudi anno fiscale
 #. Check for all values in form
 #. Confirm all account operations
 
 
 
-italiano
---------
+[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Variante del modulo l10n_es_fiscal_year_closing
 
@@ -74,7 +72,7 @@ Credits
 Contributors
 ------------
 
-* Borja López Soilán - <borja@kami.es>
+* Borja López Soilán <borja@kami.es>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 

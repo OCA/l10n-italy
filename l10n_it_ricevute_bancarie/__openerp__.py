@@ -49,9 +49,10 @@
         "views/wizard_riba_file_export.xml",
         "views/account_config_view.xml",
         "riba_workflow.xml",
+        "views/distinta_report.xml",
+        "report.xml",
         "security/ir.model.access.csv",
     ],
-    'images': [],
     'demo': ["demo/riba_demo.xml"],
     'test': [
         'test/riba_invoice.yml',

@@ -6,7 +6,7 @@
 
             <style type="text/css">
                 table.delivery_data td h6 { margin: 0; }
-                .signature { min-height: 4em; }
+                .signature { min-height: 2em; }
             </style>
 
             <table class="table table-condensed table-bordered delivery_data">
@@ -33,17 +33,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <h6>Carrier</h6>
-                        <div class="signature" t-field="ddt.carrier_id.name"></div>
+                    <td colspan="2">
+                        <h6>Method of Transportation / Carrier</h6>
+                        <div class="signature">
+                            <span t-field="ddt.transportation_method_id" />
+                            <span t-field="ddt.carrier_id.name"/>
+                      </div>
                     </td>
-                    <td>
-                        <h6>Date</h6>
-                        <div class="signature" t-field="ddt.date"></div>
-                    </td>
-                    <td>
-                        <h6>Pick up time</h6>
-                        <div class="signature"></div>
+                    <td >
+                        <h6>Withdrawal Date and time</h6>
+                        <div class="signature"> <span t-field="ddt.date_done" /></div>
                     </td>
                     <td>
                         <h6>Parcels</h6>
@@ -55,20 +54,24 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <h6>Carrier's Signature</h6>
-                        <div class="signature"></div>
+                        <div class="signature"/>
                     </td>
-                    <td>
+                    <td colspan="3" rowspan="3"><h6>Notes</h6>
+                        <div class="signature" t-field="ddt.note"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
                         <h6>Driver's Signature</h6>
-                        <div class="signature"></div>
+                        <div class="signature"/>
                     </td>
-                    <td>
+                </tr>
+                <tr>
+                    <td colspan="2">
                         <h6>Recipient's Signature</h6>
-                        <div class="signature"></div>
-                    </td>
-                    <td colspan="2"><h6>Notes</h6>
-                        <div class="signature" t-field="ddt.note"></div>
+                        <div class="signature"/>
                     </td>
                 </tr>
             </table>

@@ -1,39 +1,16 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com)
-#                       Pedro Tarrafeta <pedro@acysos.com>
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2016 Odoo Italian Community
+#                Odoo Community Association (OCA)
+# Copyright 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+# Copyright 2012 Domsense srl (<http://www.domsense.com>)
+# Copyright 2011 Associazione OpenERP Italia
+# Copyright 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
+#                Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2008 ACYSOS S.L. (http://acysos.com)
+#                Pedro Tarrafeta <pedro@acysos.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Fiscal Year Closing",
-    "version": "8.0.1.0.0",
-    "author": "Odoo Italian Community, Pexego,"
-            "Odoo Community Association (OCA)",
-    "website": "http://www.openerp-italia.org",
-    "license": "AGPL-3",
-    "category": "Generic Modules/Accounting",
     "description": """
 Generalization of l10n_es_fiscal_year_closing
 See http://apps.openerp.com/addon/4506
@@ -53,18 +30,27 @@ with a more advanced all-in-one wizard that will let the users:
 It is stateful, saving all the info about the fiscal year closing, so the
 user can cancel and undo the operations easily.
     """,
+    "version": "8.0.1.0.0",
+    "category": "Generic Modules/Accounting",
+    "website": "https://odoo-italia.org/",
+    "author": "Odoo Italian Community,"
+              "Pexego,"
+              "Odoo Community Association (OCA)",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
+    "external_dependencies": {
+        "python": [],
+    },
     "depends": [
         "base",
         "account",
     ],
-    "init_xml": [],
     "data": [
         "security/ir.model.access.csv",
-        "fyc_workflow.xml",
+        "data/fyc_workflow.xml",
         "wizard/wizard_run.xml",
-        "fyc_view.xml",
-        "hide_account_wizards.xml",
+        "view/fyc_view.xml",
+        "view/hide_account_wizards.xml",
     ],
-    "active": True,
-    'installable': True
 }
