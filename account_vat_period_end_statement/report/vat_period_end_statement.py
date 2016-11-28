@@ -153,7 +153,7 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
                 tax_vals = self._compute_tax_amount(
                     tax, tax_code, base_code, context)
                 res.update(tax_vals)
-
+        
         for child_code in tax_code.child_ids:
             res = self._build_codes_dict(
                 child_code, res=res, context=context)

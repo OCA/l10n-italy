@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-17 00:47+0000\n"
+"POT-Creation-Date: 2016-04-30 20:28+0000\n"
 "PO-Revision-Date: 2016-05-01 14:30+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -228,7 +228,7 @@ msgid "Error"
 msgstr "Napaka"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:732
+#: code:addons/account_vat_period_end_statement/models/account.py:729
 #, python-format
 msgid "Error VAT Configuration!"
 msgstr "Napačne nastavitve DDV!"
@@ -548,7 +548,7 @@ msgid "Tax Code"
 msgstr "Davčna koda"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:733
+#: code:addons/account_vat_period_end_statement/models/account.py:730
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr "Nastaviti morate konto za DDV obresti"

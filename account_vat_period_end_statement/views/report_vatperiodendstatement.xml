@@ -87,7 +87,7 @@ Document
            			<!-- ...Other tot debit/credit -->
            			<t t-foreach="statement.generic_vat_account_line_ids" t-as="generic_vat">
            			<tr>
-           				<td class="text-right"><span t-esc="generic_vat.account_id.name"/></td>
+           				<td class="text-right"><span t-esc="generic_vat.description"/> <span t-esc="generic_vat.account_id.name"/></td>
            				<td class="text-right"><span t-esc="formatLang(generic_vat.amount*-1)"/></td>
            				<!-- sum -->
                			<t t-set="total_to_pay" t-value="(total_to_pay + (generic_vat.amount*-1))"/>
@@ -152,8 +152,8 @@ Tax Code
 	<table class="table table-condensed">
 		<thead>
            	<tr class="text-center">
-               	<th style="width:10%;">Vat code</th>
-               	<th style="width:30%;">Description</th>
+               	<th style="width:15%;">Vat code</th>
+               	<th style="width:25%;">Description</th>
                	<th style="width:15%;" class="text-right">Base</th>
                	<th style="width:15%;" class="text-right">Vat</th>
                	<span t-if="(tax_code_type == 'credit')">

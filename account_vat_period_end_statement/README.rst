@@ -27,6 +27,9 @@ reconciliation.
 If you need to calculate interest, you can add default information in your
 company data (percentage and account).
 
+If you need to calculate pro-rata, you can add default information in fiscal
+year.
+
 Specification:
 http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
 
@@ -42,7 +45,7 @@ Contributors
 * Sergio Corato <sergiocorato@gmail.com>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
-* Alessandro Camilli <camillialex@gmail.com>
+* Alessandro Camilli <alessandrocamilli@openforce.it>
 
 Maintainer
 ----------

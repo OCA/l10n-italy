@@ -21,6 +21,8 @@
                         <field name="interest" on_change="onchange_interest(interest)"/>
                     <field name="interest_percent"
                         attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
+                        <field name="pro_rata" />
+                		<field name="pro_rata_percent" attrs="{'invisible':[('pro_rata', '=', False)]}"/>
                     </group>
                     <notebook colspan="4">
                         <page string="Periods">
@@ -65,10 +67,12 @@
                                 <separator colspan="3" string="Other VAT Credits / Debits or Tax Compensations (Positive amounts for credits, negative for debits)"/>
                                 <field name="generic_vat_account_line_ids" colspan="3" nolabel="1">
                                     <tree editable="bottom" string="Account Lines">
+                                    	<field name="description" />
                                         <field name="account_id" on_change="on_change_vat_account_id(account_id)"/>
                                         <field name="amount" />
                                    </tree>
                                     <form >
+                                    	<field name="description" />
                                         <field name="account_id" />
                                         <field name="amount" />
                                    </form>
@@ -135,6 +139,22 @@
                 </field>
             </field>
         </record>
+        
+<!-- Fiscal year -->
+
+    <record id="view_pro_rata_fiscalyear_form" model="ir.ui.view">
+        <field name="name">pro.rata.fiscalyear.form</field>
+        <field name="model">account.fiscalyear</field>
+        <field name="inherit_id" ref="account.view_account_fiscalyear_form"/>
+        <field name="arch" type="xml">
+        
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="pro_rata" />
+                <field name="pro_rata_percent" attrs="{'invisible':[('pro_rata', '=', False)]}"/>
+            </xpath>
+            
+        </field>
+    </record>
 
     </data>
 </openerp>
