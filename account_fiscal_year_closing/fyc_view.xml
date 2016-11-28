@@ -65,21 +65,21 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
                     <group attrs="{'invisible':[('state','=','new')]}" colspan="4">
                         <notebook colspan="4">
                             <page string="General">
-                                <group string="Operations" colspan="4">
-                                    <group colspan="4">
-                                        <separator string="Operation to perform" colspan="2"/>
-                                        <separator string="Move created by the operation" colspan="2"/>
-                                        <field name="create_loss_and_profit" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="loss_and_profit_move_id"/>
-                                        <field name="create_net_loss_and_profit" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="net_loss_and_profit_move_id"/>
-                                        <field name="create_closing" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="closing_move_id"/>
-                                        <field name="create_opening" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="opening_move_id"/>
+                                <group string="Operations">
+                                    <group string="Operation to perform">
+                                        <group string="Move created by the operation">
+	                                        <field name="create_loss_and_profit" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="loss_and_profit_move_id"/>
+	                                        <field name="create_net_loss_and_profit" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="net_loss_and_profit_move_id"/>
+	                                        <field name="create_closing" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="closing_move_id"/>
+	                                        <field name="create_opening" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="opening_move_id"/>
+                                        </group>
                                     </group>
-                                    <separator string="Checks"/>
-                                    <group colspan="4">
+                                    <newline/>
+                                    <group string="Checks">
                                         <field name="check_invalid_period_moves" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
                                         <field name="check_draft_moves" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
                                         <field name="check_unbalanced_moves" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
@@ -103,59 +103,74 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
                             <page string="Configuration" attrs="{'invisible':[('state','=','new')]}">
                                 <notebook colspan="4">
                                     <page string="Loss and Profit">
-                                        <field name="lp_description" colspan="4" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="lp_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="lp_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="lp_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="lp_account_mapping_ids" colspan="4" nolabel="1" attrs="{'readonly':[('state','in',('done','cancel'))]}">
-                                            <tree string="Account mappings" editable="top">
-                                                <field name="source_account_id"/>
-                                                <field name="dest_account_id" required="1"/>
-                                            </tree>
-                                            <form string="Account mapping">
-                                                <field name="source_account_id"/>
-                                                <field name="dest_account_id" required="1"/>
-                                                <field name="name"/>
-                                            </form>
-                                        </field>
+                                    	<group>
+	                                        <field name="lp_description" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="lp_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="lp_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="lp_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                    </group>
+	                                    <newline/>
+	                                    <group>
+	                                        <field name="lp_account_mapping_ids" nolabel="1" attrs="{'readonly':[('state','in',('done','cancel'))]}">
+	                                            <tree string="Account mappings" editable="top">
+	                                                <field name="source_account_id"/>
+	                                                <field name="dest_account_id" required="1"/>
+	                                            </tree>
+	                                            <form string="Account mapping">
+	                                                <field name="source_account_id"/>
+	                                                <field name="dest_account_id" required="1"/>
+	                                                <field name="name"/>
+	                                            </form>
+	                                        </field>
+                                        </group>
                                     </page>
                                     <page string="Net Loss and Profit">
-                                        <field name="nlp_description" colspan="4" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="nlp_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="nlp_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="nlp_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="nlp_account_mapping_ids" colspan="4" nolabel="1" attrs="{'readonly':[('state','in',('done','cancel'))]}">
-                                            <tree string="Account mappings" editable="top">
-                                                <field name="source_account_id"/>
-                                                <field name="dest_account_id"/>
-                                            </tree>
-                                            <form string="Account mapping">
-                                                <field name="source_account_id"/>
-                                                <field name="dest_account_id"/>
-                                                <field name="name"/>
-                                            </form>
-                                        </field>
+                                    	<group>
+	                                        <field name="nlp_description" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="nlp_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="nlp_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="nlp_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                    </group>
+	                                    <group>
+	                                        <field name="nlp_account_mapping_ids" nolabel="1" attrs="{'readonly':[('state','in',('done','cancel'))]}">
+	                                            <tree string="Account mappings" editable="top">
+	                                                <field name="source_account_id"/>
+	                                                <field name="dest_account_id"/>
+	                                            </tree>
+	                                            <form string="Account mapping">
+	                                                <field name="source_account_id"/>
+	                                                <field name="dest_account_id"/>
+	                                                <field name="name"/>
+	                                            </form>
+	                                        </field>
+                                        </group>
                                     </page>
                                     <page string="Closing">
-                                        <field name="c_description" colspan="4" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="c_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="c_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="c_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="c_account_mapping_ids" colspan="4" nolabel="1" attrs="{'readonly':[('state','in',('done','cancel'))]}">
-                                            <tree string="Accounts to close" editable="top">
-                                                <field name="source_account_id"/>
-                                            </tree>
-                                            <form string="Account to close">
-                                                <field name="source_account_id"/>
-                                                <field name="name"/>
-                                            </form>
-                                        </field>
+                                    	<group>
+	                                        <field name="c_description" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="c_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="c_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="c_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+                                        </group>
+                                        <group>
+	                                        <field name="c_account_mapping_ids" nolabel="1" attrs="{'readonly':[('state','in',('done','cancel'))]}">
+	                                            <tree string="Accounts to close" editable="top">
+	                                                <field name="source_account_id"/>
+	                                            </tree>
+	                                            <form string="Account to close">
+	                                                <field name="source_account_id"/>
+	                                                <field name="name"/>
+	                                            </form>
+	                                        </field>
+                                        </group>
                                     </page>
                                     <page string="Opening">
-                                        <field name="o_description" colspan="4" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="o_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="o_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
-                                        <field name="o_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+                                    	<group>
+	                                        <field name="o_description" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="o_journal_id" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="o_period_id" domain="[('special','=',True)]" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+	                                        <field name="o_date" attrs="{'readonly':[('state','in',('done','cancel'))]}"/>
+                                        </group>
                                     </page>
                                 </notebook>
                             </page>

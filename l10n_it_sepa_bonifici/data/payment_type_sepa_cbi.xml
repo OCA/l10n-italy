@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+<record id="export_sepa_cbi_00_04_00" model="payment.mode.type">
+    <field name="name">SEPA SCT Payment Request CBI 00.04.00</field>
+    <field name="code">CBIBdyPaymentRequest.00.04.00</field>
+    <field name="suitable_bank_types"
+       eval="[(6,0,[ref('base_iban.bank_iban')])]" />
+    <field name="ir_model_id" ref="model_banking_export_sepa_cbi_wizard"/>
+</record>
+<record id="export_sepa_cbi_estero_00_01_01" model="payment.mode.type">
+    <field name="name">SEPA SCT Cross Border Payment Request CBI 00.01.01</field>
+    <field name="code">CBIBdyCrossBorderPaymentRequest.00.01.01</field>
+    <field name="suitable_bank_types"
+       eval="[(6,0,[ref('base_iban.bank_iban')])]" />
+    <field name="ir_model_id" ref="model_banking_export_sepa_cbi_estero_wizard"/>
+</record>
+
+</data>
+</openerp>

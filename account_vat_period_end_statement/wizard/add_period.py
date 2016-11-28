@@ -46,6 +46,14 @@ class AddPeriod(orm.TransientModel):
                 (wizard.period_id.name, wizard.period_id.vat_statement_id.date)
             )
         wizard.period_id.write({'vat_statement_id': context['active_id']})
+        # Default pro-rata from fiscalyear
+        val = {
+            'pro_rata' : wizard.period_id.fiscalyear_id.pro_rata,
+            'pro_rata_percent' : \
+                wizard.period_id.fiscalyear_id.pro_rata_percent,
+        }
+        statement_pool.write(cr, uid, [context['active_id']], val)
+        
         statement_pool.compute_amounts(
             cr, uid, [context['active_id']], context=context)
         return {
