@@ -15,10 +15,11 @@
         'views/account.xml',
         'views/voucher.xml',
         'views/withholding_tax.xml',
+        'views/report_invoice.xml',
         'wizard/create_wt_statement_view.xml',
         'security/ir.model.access.csv',
         'workflow.xml',
-        ],
+    ],
     "active": False,
     "installable": True
 }
