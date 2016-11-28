@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 09:00+0000\n"
-"PO-Revision-Date: 2016-05-01 14:35+0000\n"
+"POT-Creation-Date: 2016-08-31 16:15+0000\n"
+"PO-Revision-Date: 2016-09-02 08:49+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -285,6 +285,12 @@ msgid "If checked new messages require your attention."
 msgstr "Ko je označeno, nova sporočila zahtevajo pozornost."
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:125
+#, python-format
+msgid "Impossible to put in pack a package without details"
+msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
+
+#. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice
 #: field:stock.picking.package.preparation,invoice_id:0
 msgid "Invoice"
@@ -399,7 +405,7 @@ msgid "None"
 msgstr "Nič"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:133
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:137
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Nekateri zbirniki nimajo statusa opravljeno"
