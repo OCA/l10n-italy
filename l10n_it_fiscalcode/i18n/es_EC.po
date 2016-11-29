@@ -3,78 +3,77 @@
 # * l10n_it_fiscalcode
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2016-10-20 12:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/sl/)\n"
+"PO-Revision-Date: 2016-10-20 12:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Ecuador) (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/es_EC/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: es_EC\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_cadastre_code
 msgid "Belfiore cadastre code (not used anymore)"
-msgstr "Katastrska koda Belfiore (ni več v uporabi)"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_cadastre_code_var
 msgid "Cadastre code variation"
-msgstr "Variacija katastrske kode"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Cancel"
-msgstr "Preklic"
+msgstr "Cancelar"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_city
 msgid "City of birth"
-msgstr "Rojstni kraj"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Compute"
-msgstr "Obdelaj"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.view_partner_form_fiscalcode_button
 msgid "Compute F.C."
-msgstr "Obdelaj f. k."
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.actions.act_window,name:l10n_it_fiscalcode.action_compute_fc
 #: model:ir.model,name:l10n_it_fiscalcode.model_wizard_compute_fc
 msgid "Compute Fiscal Code"
-msgstr "Obdelaj fiskalno kodo"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_create_uid
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_create_uid
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr "Creado por"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_create_date
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_create_date
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr "Creado en"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_creation_date
 msgid "Creation date"
-msgstr "Datum nastanka"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_date
 msgid "Date of birth"
-msgstr "Rojstni datum"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_display_name
@@ -82,7 +81,7 @@ msgstr "Rojstni datum"
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr "Nombre mostrado"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:153
@@ -96,19 +95,19 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
 msgid "Female"
-msgstr "Ženski"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_fiscalcode_firstname
 msgid "First name"
-msgstr "Ime"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_fiscalcode
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Fiscal Code"
-msgstr "Fiskalna koda"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_id
@@ -116,30 +115,30 @@ msgstr "Fiskalna koda"
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_id
 msgid "ID"
-msgstr "ID"
+msgstr "ID (identificación)"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_individual
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_individual
 msgid "If checked the C.F. is referred to a Individual Person"
-msgstr "Če je označeno, se fiskalna koda nanaša na fizično osebo"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_individual
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_individual
 msgid "Individual"
-msgstr "Posameznik"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Individual Data"
-msgstr "Podatki o posamezniku"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_fiscalcode
 msgid "Italian Fiscal Code"
-msgstr "Italijanska fiskalna koda"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code___last_update
@@ -147,24 +146,24 @@ msgstr "Italijanska fiskalna koda"
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province___last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc___last_update
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr "Última modificación en"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_write_uid
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_write_uid
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr "Última actualización de"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_write_date
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_write_date
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Última actualización en"
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
 msgid "Male"
-msgstr "Moški"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_name
@@ -172,33 +171,33 @@ msgstr "Moški"
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_town_name
 msgid "Name"
-msgstr "Naziv"
+msgstr "Nombre"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_name_var
 msgid "Name variation"
-msgstr "Naziv variacije"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_national_code
 msgid "National code"
-msgstr "Koda narodnosti"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:148
 #, python-format
 msgid "National code is missing"
-msgstr "Koda narodnosti manjka"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_national_code_var
 msgid "National code variation"
-msgstr "Variacija kode narodnosti"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_notes
 msgid "Notes"
-msgstr "Opombe"
+msgstr "Notas"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:144
@@ -209,38 +208,38 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr "Empresa"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_province
 msgid "Province"
-msgstr "Provinca"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_var
 msgid "Province variation"
-msgstr "Variacija province"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_sex
 msgid "Sex"
-msgstr "Spol"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_fiscalcode_surname
 msgid "Surname"
-msgstr "Priimek"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: constraint:res.partner:0
 msgid "The fiscal code doesn't seem to be correct."
-msgstr "Kaže, da je fiskalna koda nepravilna."
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_var_date
 msgid "Variation date"
-msgstr "Variacija datuma"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code
