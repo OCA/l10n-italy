@@ -3,36 +3,35 @@
 # * l10n_it_ateco
 # 
 # Translators:
-# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-01 19:47+0000\n"
 "PO-Revision-Date: 2016-10-24 13:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/it/)\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_ateco_category
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_code
 msgid "ATECO Code"
-msgstr "Codice Ateco"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.ui.view,arch_db:l10n_it_ateco.view_partner_form_inherit_ateco
 msgid "Ateco"
-msgstr "Ateco"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_form
 msgid "Ateco Category"
-msgstr "Categoria Ateco"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.actions.act_window,name:l10n_it_ateco.action_ateco_category_search
@@ -40,32 +39,32 @@ msgstr "Categoria Ateco"
 #: model:ir.ui.menu,name:l10n_it_ateco.menu_ateco_category_form
 #: model:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_tree
 msgid "Ateco categories"
-msgstr "Categorie Ateco"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_child_ids
 msgid "Child Categories"
-msgstr "Categorie figlie"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_create_uid
 msgid "Created by"
-msgstr "Creato da"
+msgstr "Creado por"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Creado el"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_description
 msgid "Description"
-msgstr "Descrizione"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Display Name"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_id
@@ -75,27 +74,27 @@ msgstr "ID"
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Last Modified on"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Última Actualización por"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Última Actualización el"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_name
 msgid "Name"
-msgstr "Nome"
+msgstr "Nombre"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_parent_id
 msgid "Parent Category"
-msgstr "Categoria genitore"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_res_partner
@@ -105,9 +104,9 @@ msgstr "Partner"
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_partner_ids
 msgid "Partners"
-msgstr "Partner"
+msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.ui.view,arch_db:l10n_it_ateco.ateco_category_search
 msgid "Search Ateco categories"
-msgstr "Ricerca categorie Ateco"
+msgstr ""
