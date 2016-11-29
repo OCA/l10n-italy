@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-31 16:15+0000\n"
-"PO-Revision-Date: 2016-10-03 10:15+0000\n"
+"POT-Creation-Date: 2016-10-25 00:48+0000\n"
+"PO-Revision-Date: 2016-10-24 11:06+0000\n"
 "Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -125,6 +125,7 @@ msgstr "Al dopo incasso"
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
 #: field:riba.distinta.line,amount:0 field:riba.distinta.move.line,amount:0
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Amount"
 msgstr "Importo"
 
@@ -288,6 +289,11 @@ msgid "Credit move lines"
 msgstr "Righe movimenti di credito"
 
 #. module: l10n_it_ricevute_bancarie
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta.line,bank_id:0
 msgid "Debitor Bank"
 msgstr "Banca debitore"
@@ -313,6 +319,7 @@ msgid "Dettaglio riba"
 msgstr "Dettaglio riba"
 
 #. module: l10n_it_ricevute_bancarie
+#: field:report.l10n_it_ricevute_bancarie.distinta_qweb,display_name:0
 #: field:riba.accreditation,display_name:0
 #: field:riba.configuration,display_name:0 field:riba.distinta,display_name:0
 #: field:riba.distinta.line,display_name:0
@@ -353,6 +360,11 @@ msgstr "Configurazione spese d'incasso"
 #: view:account.config.settings:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
 msgid "Due Cost Service"
 msgstr "Servizio spese d'incasso"
+
+#. module: l10n_it_ricevute_bancarie
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
+msgid "Due Date"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: field:account.config.settings,due_cost_service_id:0
@@ -469,10 +481,12 @@ msgstr "Raggruppa per..."
 
 #. module: l10n_it_ricevute_bancarie
 #: field:account.move.line,iban:0 field:riba.distinta.line,iban:0
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "IBAN"
 msgstr "IBAN"
 
 #. module: l10n_it_ricevute_bancarie
+#: field:report.l10n_it_ricevute_bancarie.distinta_qweb,id:0
 #: field:riba.accreditation,id:0 field:riba.configuration,id:0
 #: field:riba.distinta,id:0 field:riba.distinta.line,id:0
 #: field:riba.distinta.move.line,id:0 field:riba.file.export,id:0
@@ -497,6 +511,7 @@ msgstr "Fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta.line,invoice_date:0
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Invoice Date"
 msgstr "Data Fattura"
 
@@ -507,6 +522,7 @@ msgstr "Righe Fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta.line,invoice_number:0
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Invoice Number"
 msgstr "Numero Fattura"
 
@@ -560,6 +576,7 @@ msgid "Keep empty to use the current date"
 msgstr "Lasciare vuoto per utilizzare la data corrente"
 
 #. module: l10n_it_ricevute_bancarie
+#: field:report.l10n_it_ricevute_bancarie.distinta_qweb,__last_update:0
 #: field:riba.accreditation,__last_update:0
 #: field:riba.configuration,__last_update:0
 #: field:riba.distinta,__last_update:0
@@ -655,6 +672,7 @@ msgstr "No debit_bank specified for "
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta.line,sequence:0
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Number"
 msgstr "Numero"
 
@@ -846,6 +864,11 @@ msgid "Riba list"
 msgstr "Distinta RiBa"
 
 #. module: l10n_it_ricevute_bancarie
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
+msgid "Ricevute Bancarie list nr"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_issue
 msgid "Ricevute bancarie issue"
 msgstr "Ricevute bancarie issue"
@@ -870,6 +893,11 @@ msgstr "Salta e conferma accredito"
 #: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
 msgid "Skip and confirm the unsolved state"
 msgstr "Salta e conferma lo stato di insoluto"
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.report.xml,name:l10n_it_ricevute_bancarie.print_distinta_qweb
+msgid "Stampa distinta"
+msgstr "Stampa distinta"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta,state:0 field:riba.distinta.line,state:0
@@ -912,6 +940,11 @@ msgstr "Da emettere"
 #: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
 msgid "To Reconcile"
 msgstr "Da rinconciliare"
+
+#. module: l10n_it_ricevute_bancarie
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
+msgid "Total"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
@@ -1011,6 +1044,11 @@ msgstr "È anche possibile saltare questo passo e impostare comunque lo stato de
 #: selection:riba.file.export,state:0
 msgid "choose"
 msgstr "Scegli"
+
+#. module: l10n_it_ricevute_bancarie
+#: view:website:l10n_it_ricevute_bancarie.distinta_qweb
+msgid "del"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.file.export,state:0

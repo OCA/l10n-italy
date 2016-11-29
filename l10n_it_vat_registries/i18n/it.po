@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Andrea Cometa <a.cometa@apuliasoftware.it>, 2016
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 # Paolo Valier, 2016
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-30 23:13+0000\n"
-"PO-Revision-Date: 2016-08-09 10:49+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"POT-Creation-Date: 2016-10-25 00:48+0000\n"
+"PO-Revision-Date: 2016-10-24 11:05+0000\n"
+"Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +96,7 @@ msgstr "Descrizione"
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Descrizione Imposta"
-msgstr ""
+msgstr "Descrizione Imposta"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -124,7 +125,7 @@ msgstr "ID"
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Imponibile"
-msgstr ""
+msgstr "Imponibile"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
@@ -199,12 +200,12 @@ msgstr "Il movimento %s contiene diverse fatture"
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "NUM FATT."
-msgstr ""
+msgstr "NUM FATT."
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "NUM. REG."
-msgstr ""
+msgstr "NUM. REG."
 
 #. module: l10n_it_vat_registries
 #: field:account.tax.registry,name:0
@@ -220,7 +221,7 @@ msgstr "Nessun documento trovato nella presente selezione"
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "P.IVA"
-msgstr ""
+msgstr "P.IVA"
 
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
@@ -241,7 +242,7 @@ msgstr "Stampa solo totali"
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "RAGIONE SOCIALE"
-msgstr ""
+msgstr "RAGIONE SOCIALE"
 
 #. module: l10n_it_vat_registries
 #: help:wizard.registro.iva,journal_ids:0
@@ -261,7 +262,7 @@ msgstr "Fatture fornitore"
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "TOTALE"
-msgstr ""
+msgstr "TOTALE"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax_code
@@ -292,12 +293,12 @@ msgstr "Imposte"
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Totale generale euro"
-msgstr ""
+msgstr "Totale generale euro"
 
 #. module: l10n_it_vat_registries
 #: view:website:l10n_it_vat_registries.report_registro_iva
 msgid "Totali"
-msgstr ""
+msgstr "Totali"
 
 #. module: l10n_it_vat_registries
 #: help:wizard.registro.iva,tax_sign:0
