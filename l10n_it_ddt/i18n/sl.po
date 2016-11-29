@@ -4,65 +4,62 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Iván Todorovich <ivan.todorovich@gmail.com>, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
-# Antonio Trueba <atgayol@gmail.com>, 2016
-# oihane <oihanecruce@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-11 03:39+0000\n"
 "PO-Revision-Date: 2016-11-11 03:39+0000\n"
-"Last-Translator: oihane <oihanecruce@gmail.com>, 2016\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Description</strong>"
-msgstr "<strong>Descripción</strong>"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Quantity</strong>"
-msgstr "<strong>Cantidad</strong>"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction
 msgid "Action Needed"
-msgstr "Acción requerida"
+msgstr "Potreben ukrep"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 msgid "Add Pickings to DDT"
-msgstr ""
+msgstr "Dodaj zbirnike v prevozni dokument"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Add an internal note..."
-msgstr "Añadir nota interna..."
+msgstr "Dodaj interno opombo..."
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 msgid "Add to DDT"
-msgstr ""
+msgstr "Dodaj v prevozni dokument"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_create_ddt
 msgid "Automatically create the DDT"
-msgstr ""
+msgstr "Samodejno ustvari prevozni dokument"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Preklic"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_carriage_condition
@@ -74,35 +71,35 @@ msgstr "Cancelar"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_carriage_condition_form
 msgid "Carriage Condition"
-msgstr ""
+msgstr "Prevozni pogoj"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_carriage_condition_tree
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_action_carriage_condition_tree
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_carriage_condition_tree
 msgid "Carriage Conditions"
-msgstr ""
+msgstr "Prevozni pogoji"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_carrier_id
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Carrier"
-msgstr "Transportista"
+msgstr "Prevoznik"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Carrier's Signature"
-msgstr ""
+msgstr "Podpis prevoznika"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "Cessionario"
-msgstr ""
+msgstr "Predal"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Create"
-msgstr "Crear"
+msgstr "Ustvari"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_create_uid
@@ -113,7 +110,7 @@ msgstr "Crear"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Ustvaril"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_create_date
@@ -124,59 +121,59 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Ustvarjeno"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.report.xml,name:l10n_it_ddt.action_report_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 msgid "DDT"
-msgstr ""
+msgstr "Prevozni dokument"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_from_pickings
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "DDT from Pickings"
-msgstr ""
+msgstr "Prevozni dokumenti iz zbirnikov"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "DDT number:"
-msgstr ""
+msgstr "Št. prevoznega dokumenta:"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Date"
-msgstr "Fecha"
+msgstr "Datum"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_last_post
 msgid "Date of the last message posted on the record."
-msgstr "Fecha del último mensaje publicado en el registro."
+msgstr "Datum zadnjega objavljenega sporočila na zapisu."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_ddt_ids
 msgid "DdT"
-msgstr ""
+msgstr "Prevozni dokument"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_stock_ddt_data
 msgid "DdT Data"
-msgstr ""
+msgstr "Prevozni dokument - podatki"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_ddt_number
 msgid "DdT Number"
-msgstr ""
+msgstr "Prevozni dokument - številka"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_ddt_type_id
 msgid "DdT Type"
-msgstr ""
+msgstr "Prevozni dokument - tip"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_ddt_id
 msgid "Ddt id"
-msgstr ""
+msgstr "Prevozni dokument - ID"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_goods_description
@@ -187,19 +184,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_goods_description_id
 #: model:ir.ui.view,arch_db:l10n_it_ddt.stock_goods_description_form
 msgid "Description of Goods"
-msgstr ""
+msgstr "Opis blaga"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_goods_description_tree
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_action_good_description_tree
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_goods_description_tree
 msgid "Descriptions of Goods"
-msgstr ""
+msgstr "Opisi blaga"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "Destinatario"
-msgstr ""
+msgstr "Prejemnik"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_display_name
@@ -210,37 +207,37 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Prikazni naziv"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Driver's Signature"
-msgstr ""
+msgstr "Podpis voznika"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_follower_ids
 msgid "Followers"
-msgstr "Seguidores"
+msgstr "Sledilci"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Seguidores (canales)"
+msgstr "Sledilci (kanali)"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (empresas)"
+msgstr "Sledilci (partnerji)"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Goods Description"
-msgstr ""
+msgstr "Opis blaga"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Gross Weight"
-msgstr "Peso bruto"
+msgstr "Bruto masa"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_id
@@ -256,33 +253,33 @@ msgstr "ID"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread
 msgid "If checked new messages require your attention."
-msgstr "Si está selecionado nuevos mensajes requieren su atención."
+msgstr "Če je označeno, zahtevajo nova sporočila vašo pozornost."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+msgstr "Če označeno, zahtevajo nova sporočila vašo pozornost."
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:113
 #, python-format
 msgid "Impossible to put in pack a package without details"
-msgstr ""
+msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr "Račun"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_is_follower
 msgid "Is Follower"
-msgstr "Es seguidor"
+msgstr "Je sledilec"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_last_post
 msgid "Last Message Date"
-msgstr "Fecha del último mensaje"
+msgstr "Datum zadnjega sporočila"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
@@ -293,7 +290,7 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason___last_update
 msgid "Last Modified on"
-msgstr "Última modificación el"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_uid
@@ -304,7 +301,7 @@ msgstr "Última modificación el"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_uid
 msgid "Last Updated by"
-msgstr "Última Actualización por"
+msgstr "Zadnji posodobil"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_date
@@ -315,12 +312,12 @@ msgstr "Última Actualización por"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_date
 msgid "Last Updated on"
-msgstr "Última Actualización el"
+msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_ids
 msgid "Messages"
-msgstr "Mensajes"
+msgstr "Sporočila"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_transportation_method
@@ -331,25 +328,25 @@ msgstr "Mensajes"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_name
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_method_form
 msgid "Method of Transportation"
-msgstr ""
+msgstr "Metoda prevoza"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_transportation_method_tree
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_action_transportation_method_tree
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_method_tree
 msgid "Methods of Transportation"
-msgstr ""
+msgstr "Metode prevoza"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_name
 msgid "Name"
-msgstr "Nombre"
+msgstr "Naziv"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
 #, python-format
 msgid "Not every picking is in done status"
-msgstr ""
+msgstr "Nekateri zbirniki nimajo statusa opravljeno"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_note
@@ -358,32 +355,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_note
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_note
 msgid "Note"
-msgstr "Nota"
+msgstr "Opomba"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Notes"
-msgstr "Notas"
+msgstr "Opombe"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
 msgid "Number of Actions"
-msgstr "Número de acciones"
+msgstr "Število ukrepov"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción"
+msgstr "Število sporočil, ki zahtevajo ukrep"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
 msgid "Number of unread messages"
-msgstr "Número de mensajes sin leer"
+msgstr "Število neprebranih sporočil"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
 msgid "Package Preparation"
-msgstr ""
+msgstr "Priprava pakiranja"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_parcels
@@ -391,7 +388,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_parcels
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Parcels"
-msgstr ""
+msgstr "Pošiljke"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
@@ -401,33 +398,33 @@ msgstr "Partner"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Pick up time"
-msgstr ""
+msgstr "Čas prevzema"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Picking"
-msgstr "Albarán"
+msgstr "Zbirnik"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:32
 #, python-format
 msgid "Picking %s already in ddt"
-msgstr ""
+msgstr "Zbirnik %s je že v prevoznem dokumentu"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_picking_ids
 msgid "Picking ids"
-msgstr ""
+msgstr "ID-ji zbirnikov"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Pickings"
-msgstr "Albaranes"
+msgstr "Zbirniki"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_name
 msgid "Reason For Transportation"
-msgstr ""
+msgstr "Razlog prevoza"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_transportation_reason
@@ -437,88 +434,88 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_transportation_reason_id
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_reason_form
 msgid "Reason for Transportation"
-msgstr ""
+msgstr "Razlog prevoza"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_transportation_reason_tree
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_action_transportation_reason_tree
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_reason_tree
 msgid "Reasons for Transportation"
-msgstr ""
+msgstr "Razlogi prevoza"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Recipient's Signature"
-msgstr ""
+msgstr "Podpis prejemnika"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.sale_order_form_view_ddt
 msgid "Related DDTs"
-msgstr ""
+msgstr "Povezani prevozni dokumenti"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_ddt_ids
 msgid "Related DdTs"
-msgstr ""
+msgstr "Povezani prevozni dokumenti"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Prodajni nalog"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Search DDT"
-msgstr ""
+msgstr "Iskanje prevoznega dokumenta"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:37
 #, python-format
 msgid "Selected Picking %s have different Partner"
-msgstr ""
+msgstr "Izbrani zbirnik %s ima drugega partnerja"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:43
 #, python-format
 msgid "Selected Picking %s have different carriage condition"
-msgstr ""
+msgstr "Izbrani zbirnik %s ima drugačen prevozni pogoj"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:48
 #, python-format
 msgid "Selected Picking %s have different goods description"
-msgstr ""
+msgstr "Izbrani zbirnik %s ima drugačen opis blaga"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:53
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:58
 #, python-format
 msgid "Selected Picking %s have different transportation reason"
-msgstr ""
+msgstr "Izbrani zbirnik %s ima drugačen razlog prevoza"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
 #, python-format
 msgid "Selected Pickings have different Partner"
-msgstr ""
+msgstr "Izbrani zbirniki imajo različne partnerje"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:64
 #, python-format
 msgid "Selected Pickings have different carriage condition"
-msgstr ""
+msgstr "Izbrani zbirniki imajo različne prevozne pogoje"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:77
 #, python-format
 msgid "Selected Pickings have different goods description"
-msgstr ""
+msgstr "Izbrani zbirniki imajo različne opise blaga"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:54
 #, python-format
 msgid "Selected Pickings have different parcels"
-msgstr ""
+msgstr "Izbrani zbirniki imajo različne pošiljke"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
@@ -530,22 +527,22 @@ msgstr ""
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:90
 #, python-format
 msgid "Selected Pickings have different transportation reason"
-msgstr ""
+msgstr "Izbrani zbirniki imajo različne razloge prevoza"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_sequence_id
 msgid "Sequence id"
-msgstr ""
+msgstr "ID zaporedja"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Set done"
-msgstr ""
+msgstr "Nastavi kot opravljeno"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_partner_shipping_id
 msgid "Shipping Address"
-msgstr "Dirección de envío:"
+msgstr "Naslov za odpremo"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
@@ -553,27 +550,27 @@ msgstr "Dirección de envío:"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.sale_order_form_view_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_partner_form_ddt
 msgid "Shipping Informations"
-msgstr ""
+msgstr "Podatki o odpremi"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Size"
-msgstr "Tamaño"
+msgstr "Velikost"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
 msgid "Stock DdT Type"
-msgstr ""
+msgstr "Zaloga - tip prevoznega dokumenta"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Transfer"
-msgstr "Transferir"
+msgstr "Premestitev"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Transportation Reason"
-msgstr ""
+msgstr "Razlog prevoza"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_type_tree
@@ -581,32 +578,32 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_type_form
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_type_tree
 msgid "Type"
-msgstr "Tipo"
+msgstr "Tip"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_unread
 msgid "Unread Messages"
-msgstr "Mensajes no leídos"
+msgstr "Neprebrana sporočila"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
 msgid "Unread Messages Counter"
-msgstr "Contador de mensajes no leídos"
+msgstr "Števec neprebranih sporočil"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "VAT number:"
-msgstr ""
+msgstr "ID za DDV:"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_order_form_view_ddt
 msgid "View DdT"
-msgstr ""
+msgstr "Prikaz prevoznega dokumenta"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_volume
 msgid "Volume"
-msgstr "Volumen"
+msgstr "Prostornina"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_add_pickings_to_ddt
@@ -622,4 +619,4 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "or"
-msgstr "o"
+msgstr "ali"

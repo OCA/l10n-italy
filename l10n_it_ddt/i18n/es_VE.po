@@ -4,38 +4,34 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Iván Todorovich <ivan.todorovich@gmail.com>, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
-# Antonio Trueba <atgayol@gmail.com>, 2016
-# oihane <oihanecruce@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-11 03:39+0000\n"
 "PO-Revision-Date: 2016-11-11 03:39+0000\n"
-"Last-Translator: oihane <oihanecruce@gmail.com>, 2016\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Spanish (Venezuela) (https://www.transifex.com/oca/teams/23907/es_VE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: es_VE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Description</strong>"
-msgstr "<strong>Descripción</strong>"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Quantity</strong>"
-msgstr "<strong>Cantidad</strong>"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction
 msgid "Action Needed"
-msgstr "Acción requerida"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
@@ -46,7 +42,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Add an internal note..."
-msgstr "Añadir nota interna..."
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
@@ -87,7 +83,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_carrier_id
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Carrier"
-msgstr "Transportista"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -102,7 +98,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Create"
-msgstr "Crear"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_create_uid
@@ -124,7 +120,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Creado en"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.report.xml,name:l10n_it_ddt.action_report_ddt
@@ -210,7 +206,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Mostrar nombre"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -225,12 +221,12 @@ msgstr "Seguidores"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Seguidores (canales)"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (empresas)"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -240,7 +236,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Gross Weight"
-msgstr "Peso bruto"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_id
@@ -256,12 +252,12 @@ msgstr "ID"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread
 msgid "If checked new messages require your attention."
-msgstr "Si está selecionado nuevos mensajes requieren su atención."
+msgstr "Si está marcado nuevos mensajes requieren su atención."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+msgstr ""
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:113
@@ -272,17 +268,17 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_is_follower
 msgid "Is Follower"
-msgstr "Es seguidor"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_last_post
 msgid "Last Message Date"
-msgstr "Fecha del último mensaje"
+msgstr "Fecha del ultimo mensaje"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
@@ -293,7 +289,7 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason___last_update
 msgid "Last Modified on"
-msgstr "Última modificación el"
+msgstr "Modificada por última vez"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_uid
@@ -304,7 +300,7 @@ msgstr "Última modificación el"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_uid
 msgid "Last Updated by"
-msgstr "Última Actualización por"
+msgstr "Última actualización realizada por"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_date
@@ -315,7 +311,7 @@ msgstr "Última Actualización por"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_date
 msgid "Last Updated on"
-msgstr "Última Actualización el"
+msgstr "Ultima actualizacion en"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_ids
@@ -368,17 +364,17 @@ msgstr "Notas"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
 msgid "Number of Actions"
-msgstr "Número de acciones"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
 msgid "Number of unread messages"
-msgstr "Número de mensajes sin leer"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
@@ -396,7 +392,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr "Empresa"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -406,7 +402,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Picking"
-msgstr "Albarán"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:32
@@ -422,7 +418,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Pickings"
-msgstr "Albaranes"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_name
@@ -464,7 +460,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Pedidos de venta"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
@@ -545,7 +541,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_partner_shipping_id
 msgid "Shipping Address"
-msgstr "Dirección de envío:"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
@@ -558,7 +554,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Size"
-msgstr "Tamaño"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
@@ -568,7 +564,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Transfer"
-msgstr "Transferir"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -591,7 +587,7 @@ msgstr "Mensajes no leídos"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
 msgid "Unread Messages Counter"
-msgstr "Contador de mensajes no leídos"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -606,7 +602,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_volume
 msgid "Volume"
-msgstr "Volumen"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_add_pickings_to_ddt
@@ -622,4 +618,4 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "or"
-msgstr "o"
+msgstr ""
