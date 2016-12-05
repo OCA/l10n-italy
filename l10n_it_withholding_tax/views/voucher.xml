@@ -88,6 +88,11 @@
 				    <field name="amount_withholding_tax" attrs="{'invisible': [('amount_residual_withholding_tax', '=', 0)]}" sum="Total Amount"/>
 				</xpath>
 				
+				<!-- Write-off -->
+                <xpath expr="//field[@name='writeoff_acc_id']" position="attributes">
+                    <attribute name="domain"></attribute>
+                </xpath>
+				
 			</field>
 		</record>
 	    
@@ -130,6 +135,11 @@
 				<xpath expr="//field[@name='line_cr_ids']//field[@name='amount']" position="after">
 				    <field name="amount_withholding_tax" attrs="{'invisible': [('amount_residual_withholding_tax', '=', 0)]}" sum="Total Amount"/>
 				</xpath>
+				
+				<!-- Write-off -->
+				<xpath expr="//field[@name='writeoff_acc_id']" position="attributes">
+                    <attribute name="domain"></attribute>
+                </xpath>
 				
 			</field>
 		</record>
