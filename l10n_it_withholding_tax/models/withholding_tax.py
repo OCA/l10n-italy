@@ -36,11 +36,10 @@ class withholding_tax(models.Model):
     comment = fields.Text('Text')
     account_receivable_id = fields.Many2one(
         'account.account',
-        'Account Receivable', required=True,
-        domain=[('type', '=', 'receivable')])
+        'Account Receivable', required=True)
     account_payable_id = fields.Many2one(
         'account.account',
-        'Account Payable', required=True, domain=[('type', '=', 'payable')])
+        'Account Payable', required=True)
     payment_term = fields.Many2one('account.payment.term', 'Payment Terms',
                                    required=True)
     tax = fields.Float(string='Tax %', compute='_get_rate')
