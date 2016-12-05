@@ -267,15 +267,16 @@ class account_voucher(orm.Model):
         move_line = super(account_voucher, self).writeoff_move_line_get(
             cr, uid, voucher_id, line_total, move_id, name, company_currency,
             current_currency, context)
-        account_id = move_line['account_id']
-        account = self.pool['account.account'].browse(cr, uid, account_id)
-        if account.type in ('payable', 'receivable'):
-            partner_id = move_line['partner_id']
-            partner = self.pool['res.partner'].browse(cr, uid, partner_id)
-            if move_line['account_id'] not in (
-                    partner.property_account_receivable.id,
-                    partner.property_account_payable.id):
-                move_line['partner_id'] = False
+        if 'account_id' in move_line:
+            account_id = move_line['account_id']
+            account = self.pool['account.account'].browse(cr, uid, account_id)
+            if account.type in ('payable', 'receivable'):
+                partner_id = move_line['partner_id']
+                partner = self.pool['res.partner'].browse(cr, uid, partner_id)
+                if move_line['account_id'] not in (
+                        partner.property_account_receivable.id,
+                        partner.property_account_payable.id):
+                    move_line['partner_id'] = False
         return move_line
 
 
