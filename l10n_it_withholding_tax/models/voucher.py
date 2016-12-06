@@ -261,8 +261,8 @@ class account_voucher(orm.Model):
                                name, company_currency, current_currency,
                                context=None):
         """
-        Remove partner from account payable or receivable if not equal to 
-        standard partner account. To avoid wrong partner balance 
+        Remove partner from account payable or receivable if equal to 
+        account used for withholding tax. 
         """
         move_line = super(account_voucher, self).writeoff_move_line_get(
             cr, uid, voucher_id, line_total, move_id, name, company_currency,
@@ -271,11 +271,12 @@ class account_voucher(orm.Model):
             account_id = move_line['account_id']
             account = self.pool['account.account'].browse(cr, uid, account_id)
             if account.type in ('payable', 'receivable'):
-                partner_id = move_line['partner_id']
-                partner = self.pool['res.partner'].browse(cr, uid, partner_id)
-                if move_line['account_id'] not in (
-                        partner.property_account_receivable.id,
-                        partner.property_account_payable.id):
+                wt_obj = self.pool['withholding.tax']
+                domain = [('account_receivable_id', '=', account_id)]
+                wt_reicevable_ids = wt_obj.search(cr, uid, domain)
+                domain = [('account_payable_id', '=', account_id)]
+                wt_payable_ids = wt_obj.search(cr, uid, domain)
+                if wt_reicevable_ids or wt_payable_ids:
                     move_line['partner_id'] = False
         return move_line
 
