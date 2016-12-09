@@ -23,6 +23,8 @@ class DdTCreateInvoice(models.TransientModel):
 
     journal_id = fields.Many2one('account.journal', 'Journal', required=True)
     date = fields.Date('Date')
+    company_id = fields.Many2one('res.company', string='Company',
+        default=lambda self: self.env.user.company_id, )
 
     def check_ddt_data(self, ddts):
         carriage_condition_id = False
