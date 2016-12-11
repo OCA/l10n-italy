@@ -4,3 +4,4 @@
 
 
 from . import create_wt_statement
+from . import create_wt_document

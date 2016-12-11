@@ -42,12 +42,12 @@ class account_move(models.Model):
             if line.credit:
                 domain.append(
                     ('account_payable_id', '=', line.account_id.id)
-                    )
+                )
                 amount = line.credit
             else:
                 domain.append(
                     ('account_receivable_id', '=', line.account_id.id)
-                    )
+                )
                 amount = line.debit
             wt_ids = self.pool['withholding.tax'].search(self.env.cr,
                                                          self.env.uid,
@@ -92,6 +92,9 @@ class account_move_line(models.Model):
     _inherit = "account.move.line"
 
     withholding_tax_amount = fields.Float(string='Withholding Tax Amount')
+    withholding_tax_id = fields.Many2one('withholding.tax',
+                                         string="WT type")
+    withholding_tax_base = fields.Float(string="WT base")
 
 
 class account_fiscal_position(models.Model):
@@ -194,7 +197,7 @@ class account_invoice(models.Model):
                         'withholding_tax_id': tax.id,
                         'base': withholding_tax['base'],
                         'tax': withholding_tax['tax']
-                        }
+                    }
                     self.env['account.invoice.withholding.tax'].create(val)
 
     @api.one
@@ -246,7 +249,7 @@ class account_invoice_withholding_tax(models.Model):
             domain = [
                 ('move_id', '=', wt_inv_line.invoice_id.move_id.id),
                 ('withholding_tax_id', '=', wt_inv_line.withholding_tax_id.id),
-                ]
+            ]
             wt_st_ids = self.env['withholding.tax.statement'].search(domain)
             # Create statemnt if doesn't exist
             if not wt_st_ids:

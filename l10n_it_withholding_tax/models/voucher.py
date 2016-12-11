@@ -443,6 +443,7 @@ class account_voucher_line(orm.Model):
         '''
         res = []
         invoice_obj = self.pool['account.invoice']
+        acc_move_line_obj = self.pool['account.move.line']
         wt_voucher_line_obj = self.pool['withholding.tax.voucher.line']
         dp_obj = self.pool['decimal.precision']
 
@@ -480,6 +481,19 @@ class account_voucher_line(orm.Model):
                             'amount': wt_amount
                         }
                         wt_voucher_line_obj.create(cr, uid, val)
+            # Wt from account move directly
+            if not inv_ids:
+                domain = [('move_id', '=',
+                           voucher_line.move_line_id.move_id.id),
+                          ('withholding_tax_id', '!=', False), ]
+                m_lines = acc_move_line_obj.search(cr, uid, domain)
+                for ml in acc_move_line_obj.browse(cr, uid, m_lines):
+                    val = {
+                        'voucher_line_id': voucher_line_id,
+                        'withholding_tax_id': ml.withholding_tax_id.id,
+                        'amount': voucher_line.amount_withholding_tax
+                    }
+                    wt_voucher_line_obj.create(cr, uid, val)
 
         return res
 

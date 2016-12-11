@@ -159,6 +159,23 @@ class withholding_tax_statement(models.Model):
     move_ids = fields.One2many('withholding.tax.move',
                                'statement_id', 'Moves')
 
+    @api.multi
+    def unlink(self):
+        """
+        Clear wt values in the account move lines
+        """
+        move_line_obj = self.env['account.move.line']
+        val = {
+            'withholding_tax_amount': 0,
+            'withholding_tax_id': False,
+            'withholding_tax_base': 0
+        }
+        for statement in self:
+            domain = [('move_id', '=', statement.move_id.id)]
+            move_line_obj.search(domain).write(val)
+
+        return super(withholding_tax_statement, self).unlink()
+
 
 class withholding_tax_move(models.Model):
 
