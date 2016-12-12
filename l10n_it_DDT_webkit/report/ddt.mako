@@ -115,7 +115,7 @@
                 <td><br /><br /></td>
             </tr>
         </table>
-         <p style="page-break-after: always"/>
+         <p style="page-break-after: never"/>
     %endfor
 </body>
 </html>
