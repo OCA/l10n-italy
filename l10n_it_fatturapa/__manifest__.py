@@ -33,6 +33,8 @@
     "demo": ['demo/account_invoice_fatturapa.xml'],
     'installable': True,
     'external_dependencies': {
-        'python': ['pyxb'],
+        'python': [
+            'pyxb', # pyxb 1.2.5
+        ],
     }
 }

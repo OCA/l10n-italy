@@ -12,10 +12,6 @@ class ResCompany(models.Model):
         'fatturapa.fiscal_position', 'Fiscal Position',
         help="Fiscal position used by FatturaPA",
         )
-    fatturapa_format_id = fields.Many2one(
-        'fatturapa.format', 'Format',
-        help="FatturaPA Format",
-        )
     fatturapa_sequence_id = fields.Many2one(
         'ir.sequence', 'Sequence',
         help="il progressivo univoco del file è rappresentato da una "
@@ -53,11 +49,6 @@ class AccountConfigSettings(models.TransientModel):
         related='company_id.fatturapa_fiscal_position_id',
         string="Fiscal Position",
         help='Fiscal position used by FatturaPA'
-        )
-    fatturapa_format_id = fields.Many2one(
-        related='company_id.fatturapa_format_id',
-        string="Format",
-        help='FatturaPA Format'
         )
     fatturapa_sequence_id = fields.Many2one(
         related='company_id.fatturapa_sequence_id',
@@ -122,10 +113,6 @@ class AccountConfigSettings(models.TransientModel):
                 company.fatturapa_fiscal_position_id and
                 company.fatturapa_fiscal_position_id.id or False
                 )
-            self.fatturapa_format_id = (
-                company.fatturapa_format_id and
-                company.fatturapa_format_id.id or False
-                )
             self.fatturapa_sequence_id = (
                 company.fatturapa_sequence_id and
                 company.fatturapa_sequence_id.id or False
@@ -162,7 +149,6 @@ class AccountConfigSettings(models.TransientModel):
                 )
         else:
             self.fatturapa_fiscal_position_id = False
-            self.fatturapa_format_id = False
             self.fatturapa_sequence_id = False
             self.fatturapa_art73 = False
             self.fatturapa_pub_administration_ref = False
