@@ -25,10 +25,14 @@ To configure this module, you need to:
 
 -------------------------------------------------------------------------------
 
-22SPL is configured like the following:
+IVA al 22% SPL is configured like the following:
 
 
 .. figure:: static/SP.png
+   :alt: 22SPL
+   :width: 600 px
+
+.. figure:: static/SP2.png
    :alt: 22SPL
    :width: 600 px
 
