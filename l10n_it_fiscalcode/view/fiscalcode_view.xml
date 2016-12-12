@@ -21,4 +21,15 @@
                 
             </field>
         </record>
+
+	<record id="view_filter_fiscalcode_inherited" model="ir.ui.view">
+		<field name="name">Fiscal Code Search Extension</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_res_partner_filter"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='parent_id']" position="after">
+                   <field name="fiscalcode" string="Fiscal Code"/>
+            </xpath>
+		</field>
+</record>
 </openerp>

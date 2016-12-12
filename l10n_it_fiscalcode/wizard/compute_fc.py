@@ -152,10 +152,10 @@ class WizardComputeFc(models.TransientModel):
                         birth_date, wiz.sex, nat_code)
             if partner.fiscalcode and partner.fiscalcode != c_f:
                 msg = _(
-                    'Insert fiscal code %s is different'
+                    'The provided fiscal code %s is different'
                     ' from the computed one ( %s ).\nIf you want to use'
-                    ' the computed one, please remove first the insert'
-                    ' code') % (partner.fiscalcode, c_f)
+                    ' the computed one, please remove first the provided'
+                    ' fiscal code') % (partner.fiscalcode, c_f)
                 raise UserError(msg)
             partner.fiscalcode = c_f
         return {'type': 'ir.actions.act_window_close'}

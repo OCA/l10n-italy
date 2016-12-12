@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-20 20:27+0100\n"
-"PO-Revision-Date: 2016-11-20 20:28+0100\n"
+"POT-Creation-Date: 2016-12-12 14:46+0100\n"
+"PO-Revision-Date: 2016-12-12 14:54+0100\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -113,6 +113,7 @@ msgstr "Nome"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_fiscalcode
+#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.view_filter_fiscalcode_inherited
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Fiscal Code"
 msgstr "Codice Fiscale"
@@ -129,17 +130,6 @@ msgstr "ID"
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Individual Data"
 msgstr "Dati Persona Fisica"
-
-#. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:154
-#, python-format
-msgid ""
-"Insert fiscal code %s is different from the computed one ( %s ).\n"
-"If you want to use the computed one, please remove first the insert code"
-msgstr ""
-"Il codice sicale inserito %s è differente da quello calcolato (%s).\n"
-"Se volete utilizzare il codice calcolato, siete pregati di rimuovere prima "
-"il codice inserito."
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_company_fiscalcode
@@ -212,7 +202,13 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:49
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:113
+#, python-format
+msgid "Partner fiscal code is not unique"
+msgstr "Il Codice Fiscale  del partner non è unico"
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:51
 #, python-format
 msgid "Partner type changed"
 msgstr "Il tipo di partner è stato cambiato"
@@ -251,16 +247,28 @@ msgid "Surname"
 msgstr "Cognome"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:81
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:149
 #, python-format
 msgid "The Fiscal Code is invalid"
 msgstr "Il Codice Ficsale non è valido"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:90
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:158
 #, python-format
 msgid "The Fiscal Code must be a numeric code  of length 11"
 msgstr "Il Codice Fiscale deve essere un codice numerico di lunghezza 11"
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:154
+#, python-format
+msgid ""
+"The provided fiscal code %s is different from the computed one ( %s ).\n"
+"If you want to use the computed one, please remove first the provided fiscal "
+"code"
+msgstr ""
+"Il Codice Fiscale inserito %s è differente da quello calcolato ( %s ).\n"
+"Se volete usare il codice calcolato, siete pregati di rimuovere prima quello "
+"inserito"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_var_date
@@ -268,7 +276,7 @@ msgid "Variation date"
 msgstr "Data variazione"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/model/res_partner.py:50
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:52
 #, python-format
 msgid ""
 "WARNING:\n"
@@ -280,6 +288,22 @@ msgstr ""
 "Cambiare la tipologia di partnere da azienda a persona, rimuove la selezione "
 "\"Impresa Individuale\" dalla scheda \"Contabilità\".\n"
 "Potrebbe essere necessario cambiare Il codice fiscale conformemente."
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:114
+#, python-format
+msgid ""
+"WARNING:\n"
+"Partner fiscal code must be unique per company except for partner with "
+"parent/child relationship. Partners with same fiscal code and not related, "
+"are:\n"
+" %s!"
+msgstr ""
+"ATTENZIONE:\n"
+"Il codice fiscale di un partner deve essere unico in ogni azienda, eccetto "
+"per partner collegati da relazioni di appartenenza. I partner con lo stesso "
+"codice fiscale e non collegati sono:\n"
+" %s!"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code
@@ -295,6 +319,14 @@ msgstr "res.city.it.code.distinct"
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_province
 msgid "res.city.it.code.province"
 msgstr "res.city.it.code.province"
+
+#~ msgid ""
+#~ "Insert fiscal code %s is different from the computed one ( %s ).\n"
+#~ "If you want to use the computed one, please remove first the insert code"
+#~ msgstr ""
+#~ "Il codice sicale inserito %s è differente da quello calcolato (%s).\n"
+#~ "Se volete utilizzare il codice calcolato, siete pregati di rimuovere "
+#~ "prima il codice inserito."
 
 #~ msgid "The Fiscal Code is not correct"
 #~ msgstr "Il codice Fiscale non è corretto"

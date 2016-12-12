@@ -35,6 +35,7 @@ class ResPartner(models.Model):
         readonly=False,
         help="Checked if company is a sole trader")
 
+    # Constraints and onchanges
     @api.multi
     @api.onchange('is_company')
     def onchange_iscompany(self):
@@ -44,7 +45,8 @@ class ResPartner(models.Model):
         A proper warning is displayed.
         """
         for partner in self:
-            if not partner.is_company:
+            if not partner.is_company and partner.is_soletrader:
+                # prevoius soletrader partner changed to person partner
                 partner.is_soletrader = False
                 title = _('Partner type changed')
                 message = _('WARNING:\n'
@@ -57,33 +59,99 @@ class ResPartner(models.Model):
                                 'message': message, }, }
                 return result
 
-    # Constraints and onchanges
+    @api.multi
+    @api.onchange('fiscalcode', 'parent_id')
+    def onchange_fiscalcode(self):
+        """ Partners not in same parent/child relationship should
+        have different fiscal code.
+        A proper warning is displayed.
+        """
+        self.ensure_one()
+        if not self.fiscalcode:
+            # fiscalcode empty
+            return {}
+        # search any partner with same fiscal code in this compamy
+        same_fiscalcode_partners = self.search([
+            ('fiscalcode', '=', self.fiscalcode),
+            ('fiscalcode', '!=', False),
+            ('company_id', '=', self.company_id.id),
+            ])
+        if not same_fiscalcode_partners:
+            # there is no partner with same fiscalcode.
+            # Safe condition. return
+            return {}
+
+        if isinstance(self.id, models.NewId) and not self.parent_id:
+            # new record with no parent BUT there are other partners
+            # with same fiscal code
+            is_fc_present = True
+        else:
+            # new or old record with parent
+            # get first parent to start searching
+            parent = self
+            while parent.parent_id:
+                parent = parent.parent_id
+
+            # all partners in our family tree
+            related_partners = self.search([
+                ('id', 'child_of', parent.id),
+                ('company_id', '=', self.company_id.id),
+                ])
+            # any partner with same fiscal code OUT of our family tree ?
+            same_fiscalcode_partners = self.search([
+                ('id', 'in', same_fiscalcode_partners.ids),
+                ('id', 'not in', related_partners.ids),
+                ('company_id', '=', self.company_id.id),
+                ])
+            # anyone ?
+            if same_fiscalcode_partners:
+                is_fc_present = True
+            else:
+                is_fc_present = False
+
+        if is_fc_present:
+            title = _('Partner fiscal code is not unique')
+            message = _('WARNING:\n'
+                        'Partner fiscal code must be unique per'
+                        ' company except for partner with'
+                        ' parent/child relationship.'
+                        ' Partners with same fiscal code'
+                        ' and not related, are:\n %s!') % (
+                            ', '.join(x.name for x in
+                                      same_fiscalcode_partners))
+            result = {
+                'warning': {'title': title,
+                            'message': message, }, }
+        else:
+            result = {}
+        return result
+
     @api.multi
     @api.constrains('fiscalcode', 'is_soletrader')
     def _check_fiscalcode_constraint(self):
         """ verify fiscalcode content, lenght and isnumeric/isalphanum
-        depending if partner is private citizen,
+        depending if self is private citizen,
         business company or sole trader
         """
-        for partner in self:
-            if not partner.fiscalcode:
+        for self in self:
+            if not self.fiscalcode:
                 # fiscalcode empty. Nothing to check..
                 is_fc_ok = True
-            elif (not partner.is_company or
-                  partner.is_company and partner.is_soletrader):
-                # partner is a private citizen
+            elif (not self.is_company or
+                  self.is_company and self.is_soletrader):
+                # self is a private citizen
                 # or a sole trader operating in Italy
                 # should have an Italian valid fiscalcode
-                if is_valid(partner.fiscalcode):
+                if is_valid(self.fiscalcode):
                     is_fc_ok = True
                 else:
                     is_fc_ok = False
                     msg = _("The Fiscal Code is invalid")
-            elif partner.is_company and not partner.is_soletrader:
-                # partner is a business company
+            elif self.is_company and not self.is_soletrader:
+                # self is a business company
                 # should have the fiscal code of the same kind of VAT code
-                if (partner.fiscalcode.isdigit() and
-                        len(partner.fiscalcode) == 11):
+                if (self.fiscalcode.isdigit() and
+                        len(self.fiscalcode) == 11):
                     is_fc_ok = True
                 else:
                     is_fc_ok = False
