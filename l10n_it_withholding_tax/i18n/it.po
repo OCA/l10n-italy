@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 14:46+0000\n"
-"PO-Revision-Date: 2016-11-28 14:46+0000\n"
+"POT-Creation-Date: 2016-12-12 08:28+0000\n"
+"PO-Revision-Date: 2016-12-12 08:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -86,6 +86,7 @@ msgstr "Imponibile"
 msgid "Base Coeff."
 msgstr "Coeff. Imponibile"
 
+#: view:withholding.tax.wizard.create.document:l10n_it_withholding_tax.wt_wizard_create_document
 #: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
 #. module: l10n_it_withholding_tax
 msgid "Cancel"
@@ -96,10 +97,17 @@ msgstr "Annulla"
 msgid "Certification"
 msgstr "Da Certificare"
 
+#: view:withholding.tax.wizard.create.document:l10n_it_withholding_tax.wt_wizard_create_document
 #: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
 #. module: l10n_it_withholding_tax
 msgid "Create"
 msgstr "Crea"
+
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.wt_wizard_create_document_action
+#: view:withholding.tax.wizard.create.document:l10n_it_withholding_tax.wt_wizard_create_document
+#. module: l10n_it_withholding_tax
+msgid "Create Withholding Tax Document"
+msgstr "Crea Documento di Ritenuta"
 
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax.wt_wizard_create_statement_action
 #: view:withholding.tax.wizard.create.statement:l10n_it_withholding_tax.wt_wizard_create_statement
@@ -113,6 +121,8 @@ msgstr "Crea Movimento di Ritenuta"
 #: field:withholding.tax.rate,create_uid:0
 #: field:withholding.tax.statement,create_uid:0
 #: field:withholding.tax.voucher.line,create_uid:0
+#: field:withholding.tax.wizard.create.document,create_uid:0
+#: field:withholding.tax.wizard.create.document.line,create_uid:0
 #: field:withholding.tax.wizard.create.statement,create_uid:0
 #. module: l10n_it_withholding_tax
 msgid "Created by"
@@ -124,14 +134,22 @@ msgstr "Created by"
 #: field:withholding.tax.rate,create_date:0
 #: field:withholding.tax.statement,create_date:0
 #: field:withholding.tax.voucher.line,create_date:0
+#: field:withholding.tax.wizard.create.document,create_date:0
+#: field:withholding.tax.wizard.create.document.line,create_date:0
 #: field:withholding.tax.wizard.create.statement,create_date:0
 #. module: l10n_it_withholding_tax
 msgid "Created on"
 msgstr "Created on"
 
+#: field:withholding.tax.wizard.create.document.line,account_line_credit:0
+#. module: l10n_it_withholding_tax
+msgid "Credit"
+msgstr "Credit"
+
 #: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
 #: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
 #: field:withholding.tax.statement,date:0
+#: field:withholding.tax.wizard.create.document,date:0
 #: field:withholding.tax.wizard.create.statement,date:0
 #. module: l10n_it_withholding_tax
 msgid "Date"
@@ -158,12 +176,19 @@ msgstr "Data inizio"
 msgid "Date Stop"
 msgstr "Data fine"
 
+#: field:withholding.tax.wizard.create.document.line,account_line_debit:0
+#. module: l10n_it_withholding_tax
+msgid "Debit"
+msgstr "Debit"
+
 #: field:account.invoice.withholding.tax,display_name:0
 #: field:withholding.tax,display_name:0
 #: field:withholding.tax.move,display_name:0
 #: field:withholding.tax.rate,display_name:0
 #: field:withholding.tax.statement,display_name:0
 #: field:withholding.tax.voucher.line,display_name:0
+#: field:withholding.tax.wizard.create.document,display_name:0
+#: field:withholding.tax.wizard.create.document.line,display_name:0
 #: field:withholding.tax.wizard.create.statement,display_name:0
 #. module: l10n_it_withholding_tax
 msgid "Display Name"
@@ -180,7 +205,13 @@ msgstr "Documento"
 msgid "Due"
 msgstr "Da pagare"
 
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:111
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_document.py:20
+#. module: l10n_it_withholding_tax
+#, python-format
+msgid "Error! Wt statement already exists for this move"
+msgstr "Errore! Movimento di ritenuta già esistente per questa registrazione"
+
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:110
 #. module: l10n_it_withholding_tax
 #, python-format
 msgid "Error! You cannot have 2 pricelist versions that                     overlap!"
@@ -203,6 +234,8 @@ msgstr "Group By..."
 #: field:withholding.tax.rate,id:0
 #: field:withholding.tax.statement,id:0
 #: field:withholding.tax.voucher.line,id:0
+#: field:withholding.tax.wizard.create.document,id:0
+#: field:withholding.tax.wizard.create.document.line,id:0
 #: field:withholding.tax.wizard.create.statement,id:0
 #. module: l10n_it_withholding_tax
 msgid "ID"
@@ -231,6 +264,8 @@ msgstr "Voci sezionale"
 #: field:withholding.tax.rate,__last_update:0
 #: field:withholding.tax.statement,__last_update:0
 #: field:withholding.tax.voucher.line,__last_update:0
+#: field:withholding.tax.wizard.create.document,__last_update:0
+#: field:withholding.tax.wizard.create.document.line,__last_update:0
 #: field:withholding.tax.wizard.create.statement,__last_update:0
 #. module: l10n_it_withholding_tax
 msgid "Last Modified on"
@@ -242,6 +277,8 @@ msgstr "Ultima modifica il"
 #: field:withholding.tax.rate,write_uid:0
 #: field:withholding.tax.statement,write_uid:0
 #: field:withholding.tax.voucher.line,write_uid:0
+#: field:withholding.tax.wizard.create.document,write_uid:0
+#: field:withholding.tax.wizard.create.document.line,write_uid:0
 #: field:withholding.tax.wizard.create.statement,write_uid:0
 #. module: l10n_it_withholding_tax
 msgid "Last Updated by"
@@ -253,10 +290,17 @@ msgstr "Last Updated by"
 #: field:withholding.tax.rate,write_date:0
 #: field:withholding.tax.statement,write_date:0
 #: field:withholding.tax.voucher.line,write_date:0
+#: field:withholding.tax.wizard.create.document,write_date:0
+#: field:withholding.tax.wizard.create.document.line,write_date:0
 #: field:withholding.tax.wizard.create.statement,write_date:0
 #. module: l10n_it_withholding_tax
 msgid "Last Updated on"
 msgstr "Last Updated on"
+
+#: field:withholding.tax.wizard.create.document.line,account_line_id:0
+#. module: l10n_it_withholding_tax
+msgid "Move Line"
+msgstr "Move Line"
 
 #: field:withholding.tax.statement,move_ids:0
 #. module: l10n_it_withholding_tax
@@ -282,6 +326,8 @@ msgstr "Pagata"
 
 #: field:withholding.tax.move,partner_id:0
 #: field:withholding.tax.statement,partner_id:0
+#: field:withholding.tax.wizard.create.document,line_ids:0
+#: field:withholding.tax.wizard.create.document,partner_id:0
 #: field:withholding.tax.wizard.create.statement,partner_id:0
 #. module: l10n_it_withholding_tax
 msgid "Partner"
@@ -397,6 +443,7 @@ msgid "WT Statements"
 msgstr "Situazione Ritenute"
 
 #: field:withholding.tax.statement,amount:0
+#: field:withholding.tax.wizard.create.document.line,wt_amount:0
 #: field:withholding.tax.wizard.create.statement,amount:0
 #. module: l10n_it_withholding_tax
 msgid "WT amount"
@@ -407,6 +454,18 @@ msgstr "Importo Ritenuta"
 msgid "WT amount paid"
 msgstr "Ritenuta Versata"
 
+#: field:account.move.line,withholding_tax_base:0
+#: field:withholding.tax.wizard.create.document.line,wt_base:0
+#. module: l10n_it_withholding_tax
+msgid "WT base"
+msgstr "Imponibile"
+
+#: field:account.move.line,withholding_tax_id:0
+#: field:withholding.tax.wizard.create.document.line,wt_type:0
+#. module: l10n_it_withholding_tax
+msgid "WT type"
+msgstr "Ritenuta"
+
 #: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:21
 #: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:27
 #. module: l10n_it_withholding_tax
@@ -414,7 +473,7 @@ msgstr "Ritenuta Versata"
 msgid "Warning!"
 msgstr "Warning!"
 
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:232
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:248
 #. module: l10n_it_withholding_tax
 #, python-format
 msgid "Warning! You cannot delet move linked to voucher.You                     must before delete the voucher."
@@ -475,6 +534,7 @@ msgstr "Ritenuta Importo originario"
 msgid "Withholding Tax Rates"
 msgstr "Ritenuta D'Acconto Validita"
 
+#: code:addons/l10n_it_withholding_tax/wizard/create_wt_document.py:97
 #: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:83
 #: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_statement
 #: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
@@ -515,6 +575,11 @@ msgstr "Voce Ritenuta"
 #. module: l10n_it_withholding_tax
 msgid "Withhoulding Tax Statement"
 msgstr "Situazione Ritenuta"
+
+#: field:withholding.tax.wizard.create.document.line,wiz_id:0
+#. module: l10n_it_withholding_tax
+msgid "Wizard Document"
+msgstr "Wizard Document"
 
 #: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:22
 #. module: l10n_it_withholding_tax
