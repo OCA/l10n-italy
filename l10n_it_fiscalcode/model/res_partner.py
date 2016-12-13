@@ -91,23 +91,17 @@ class ResPartner(models.Model):
             parent = self
             while parent.parent_id:
                 parent = parent.parent_id
-
             # all partners in our family tree
             related_partners = self.search([
                 ('id', 'child_of', parent.id),
                 ('company_id', '=', self.company_id.id),
                 ])
             # any partner with same fiscal code OUT of our family tree ?
-            same_fiscalcode_partners = self.search([
+            is_fc_present = self.search([
                 ('id', 'in', same_fiscalcode_partners.ids),
                 ('id', 'not in', related_partners.ids),
                 ('company_id', '=', self.company_id.id),
                 ])
-            # anyone ?
-            if same_fiscalcode_partners:
-                is_fc_present = True
-            else:
-                is_fc_present = False
 
         if is_fc_present:
             title = _('Partner fiscal code is not unique')
