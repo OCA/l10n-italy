@@ -15,8 +15,8 @@ Configuration
 
 To configure this module, you need to:
 
-* go to Settings, Configuration, Accounting and configure 'Split Payment Write-off account' (like 'IVA n/debito sospesa SP'). Write-off account should be different from standard debit VAT, in order to separately add it in VAT statement.
-* configure the fiscal position used for split payment, setting 'Split Payment' flag. In fiscal position, map standard VAT with SP VAT, like the following:
+* go to Accounting, Configuration, Settings and configure 'Split Payment Write-off account' (like 'IVA n/debito sospesa SP'). Write-off account should be different from standard debit VAT, in order to separately add it in VAT statement.
+* configure the fiscal position (Accounting, Configuration, Accounting, Fiscal Positions) used for split payment, setting 'Split Payment' flag. In fiscal position, map standard VAT with SP VAT, like the following:
 
 .. figure:: static/fiscal_position.png
    :alt: Fiscal position
