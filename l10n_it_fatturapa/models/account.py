@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
 
@@ -137,14 +137,7 @@ class WelfareFundDataLine(models.Model):
 
     name = fields.Many2one(
         'welfare.fund.type', string="Welfare Fund Type")
-    fund_nature = fields.Selection([
-        ('N1', 'escluse ex art. 15'),
-        ('N2', 'non soggette'),
-        ('N3', 'non imponibili'),
-        ('N4', 'esenti'),
-        ('N5', 'regime del margine'),
-        ('N6', 'inversione contabile (reverse charge)'),
-    ], string="Non taxable nature")
+    kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
     welfare_rate_tax = fields.Float('Welfare Rate tax')
     welfare_amount_tax = fields.Float('Welfare Amount tax')
     welfare_taxable = fields.Float('Welfare Taxable')
@@ -334,7 +327,7 @@ class AccountInvoice(models.Model):
     ftpa_withholding_payment_reason = fields.Char(
         'Withholding reason', size=2)
     #  2.1.1.6
-    virtual_stamp = fields.Boolean('Virtual Stamp')
+    virtual_stamp = fields.Boolean('Virtual Stamp', default=False)
     stamp_amount = fields.Float('Stamp Amount')
     #  2.1.1.7
     welfare_fund_ids = fields.One2many(
@@ -397,6 +390,3 @@ class AccountInvoice(models.Model):
         'fatturapa.attachments', 'invoice_id',
         'FatturaPA attachments'
     )
-    _defaults = {
-        'virtual_stamp': False,
-    }
