@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
 <data noupdate="0">
 
     <!-- DdT Views -->
@@ -256,4 +256,4 @@
         id="menu_action_transportation_method_tree" parent="menu_stock_ddt_data"/>
 
 </data>
-</openerp>
+</odoo>

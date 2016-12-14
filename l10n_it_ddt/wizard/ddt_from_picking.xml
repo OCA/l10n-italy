@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="view_ddt_from_pickings" model="ir.ui.view">
             <field name="name">DdT from Pickings</field>
@@ -37,5 +36,4 @@
             <field name="model">stock.picking</field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
