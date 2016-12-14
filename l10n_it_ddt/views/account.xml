@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="invoice_form_view_ddt" model="ir.ui.view">
             <field name="name">account.invoice.form.ddt</field>
@@ -25,5 +24,4 @@
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
