@@ -65,32 +65,12 @@ class WithholdingTax(models.Model):
         return res
 
     def get_grouping_key(self, invoice_tax_val):
-        """ 
+        """
         Returns a string that will be used to group
         account.invoice.withholding.tax sharing the same properties
         """
         self.ensure_one()
         return str(invoice_tax_val['withholding_tax_id'])
-
-    """
-    def compute_amount(self, amount_invoice, invoice_id=None):
-        invoice_obj = self.env['account.invoice']
-        res = {
-            'base': 0,
-            'tax': 0
-        }
-        if not amount_invoice and invoice_id:
-            invoice = invoice_obj.browse(invoice_id)
-            amount_invoice = invoice.amount_untaxed
-        # v7->v8 removed tax = self.browse(cr, uid, withholding_tax_id)
-        base = amount_invoice * self.base
-        tax = base * ((self.tax or 0.0) / 100.0)
-
-        res['base'] = base
-        res['tax'] = tax
-
-        return res
-        """
 
     @api.one
     def get_base_from_tax(self, wt_amount):
@@ -180,8 +160,9 @@ class WithholdingTaxStatement(models.Model):
                                          string='Withholding Tax')
     base = fields.Float('Base')
     tax = fields.Float('Tax')
-    amount = fields.Float(string='WT amount applied', store=True, readonly=True,
-                          compute='_compute_total')
+    amount = fields.Float(
+        string='WT amount applied', store=True, readonly=True,
+        compute='_compute_total')
     amount_paid = fields.Float(string='WT amount paid', store=True,
                                readonly=True, compute='_compute_total')
     move_ids = fields.One2many('withholding.tax.move',
@@ -192,15 +173,16 @@ class WithholdingTaxStatement(models.Model):
         amount_wt = 0
         for st in self:
             if st.invoice_id:
-                domain = [('invoice_id', '=', st.invoice_id.id),
-                          ('withholding_tax_id', '=', st.withholding_tax_id.id)]
+                domain = [
+                    ('invoice_id', '=', st.invoice_id.id),
+                    ('withholding_tax_id', '=', st.withholding_tax_id.id)]
                 wt_inv = self.env['account.invoice.withholding.tax'].search(
                     domain, limit=1)
                 if wt_inv:
-                    amount_untaxed = amount_reconcile * \
-                        (st.invoice_id.amount_untaxed /
-                         st.invoice_id.amount_total)
-                    base = round(amount_untaxed * wt_inv.base_coeff, 5)
+                    amount_base = st.invoice_id.amount_untaxed * \
+                        (amount_reconcile /
+                         st.invoice_id.amount_net_pay)
+                    base = round(amount_base * wt_inv.base_coeff, 5)
                     amount_wt = round(base * wt_inv.tax_coeff,
                                       dp_obj.precision_get('Account'))
             elif st.move_id:
@@ -229,6 +211,8 @@ class WithholdingTaxMove(models.Model):
         'account.partial.reconcile', 'Reconcile Partial', ondelete='cascade')
     payment_line_id = fields.Many2one(
         'account.move.line', 'Payment Line', ondelete='cascade')
+    credit_debit_line_id = fields.Many2one(
+        'account.move.line', 'Credit/Debit Line', ondelete='cascade')
     move_line_id = fields.Many2one(
         'account.move.line', 'Account Move line',
         ondelete='cascade', help="Used from trace WT from other parts")
@@ -238,6 +222,79 @@ class WithholdingTaxMove(models.Model):
     date_maturity = fields.Date('Date Maturity')
     account_move_id = fields.Many2one('account.move', 'Payment Move',
                                       ondelete='cascade')
+    wt_account_move_id = fields.Many2one(
+        'account.move', 'WT Move', ondelete='cascade')
+
+    def generate_account_move(self):
+        """
+        Creation of account move to increase credit/debit vs tax authority
+        """
+        if self.wt_account_move_id:
+            raise ValidationError(
+                _('Warning! Wt account move already exists: %s') % (
+                    self.wt_account_move_id.name))
+        # Move - head
+        move_vals = {
+            'ref': _('WT %s - %s') % (
+                self.withholding_tax_id.code,
+                self.credit_debit_line_id.move_id.name),
+            'journal_id': self.payment_line_id.journal_id.id,
+            'date': self.payment_line_id.move_id.date,
+        }
+        # Move - lines
+        move_lines = []
+        for type in ('partner', 'tax'):
+            ml_vals = {
+                'ref': _('WT %s - %s - %s') % (
+                    self.withholding_tax_id.code, self.partner_id.name,
+                    self.credit_debit_line_id.move_id.name),
+                'name': '%s' % (self.credit_debit_line_id.move_id.name),
+                'date': move_vals['date']
+            }
+            # Credit/Debit line
+            if type == 'partner':
+                ml_vals['partner_id'] = self.payment_line_id.partner_id.id
+                ml_vals['account_id'] = \
+                    self.credit_debit_line_id.account_id.id
+                if self.payment_line_id.credit:
+                    ml_vals['credit'] = self.amount
+                else:
+                    ml_vals['debit'] = self.amount
+            # Authority tax line
+            elif type == 'tax':
+                ml_vals['name'] = '%s - %s' % (
+                    self.withholding_tax_id.code,
+                    self.credit_debit_line_id.move_id.name),
+                if self.payment_line_id.credit:
+                    ml_vals['debit'] = self.amount
+                    ml_vals['account_id'] = \
+                        self.withholding_tax_id.account_payable_id.id
+                else:
+                    ml_vals['credit'] = self.amount
+                    ml_vals['account_id'] = \
+                        self.withholding_tax_id.account_receivable_id.id
+            # self.env['account.move.line'].create(move_vals)
+            move_lines.append((0, 0, ml_vals))
+
+        move_vals['line_ids'] = move_lines
+        move = self.env['account.move'].create(move_vals)
+        move.post()
+        # Save move in the wt move
+        self.wt_account_move_id = move.id
+
+        # Find lines for reconcile
+        line_to_reconcile = False
+        for line in move.line_ids:
+            if line.account_id.user_type_id.type in ['payable', 'receivable']:
+                line_to_reconcile = line
+                break
+        if line_to_reconcile:
+            self.env['account.partial.reconcile'].\
+                with_context(no_generate_wt_move=True).create({
+                    'debit_move_id': line_to_reconcile.id,
+                    'credit_move_id': self.credit_debit_line_id.id,
+                    'amount': self.amount,
+                })
 
     @api.multi
     def action_paid(self):
@@ -245,7 +302,6 @@ class WithholdingTaxMove(models.Model):
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(self.env.uid, self._name, pt.id, 'paid',
                                     self.env.cr)
-        return True
 
     @api.multi
     def action_set_to_draft(self):
@@ -253,32 +309,15 @@ class WithholdingTaxMove(models.Model):
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(self.env.uid, self._name, pt.id, 'cancel',
                                     self.env.cr)
-        return True
 
     @api.multi
     def move_paid(self):
         for move in self:
             if move.state in ['due']:
                 move.write({'state': 'paid'})
-        return True
 
     @api.multi
     def move_set_due(self):
         for move in self:
             if move.state in ['paid']:
                 move.write({'state': 'due'})
-        return True
-
-    @api.multi
-    def unlink(self):
-
-        for move in self:
-            if move.statement_id not in statements:
-                statements.append(move.statement_id)
-            # To avoid delete if the wt move are paid
-            if move.state not in ['draft']:
-                raise ValidationError(
-                    _('Warning! Only Withholding Tax moves in Due status \
-                    can be deleted'))
-
-        return super(WithholdingTaxMove, self).unlink()
