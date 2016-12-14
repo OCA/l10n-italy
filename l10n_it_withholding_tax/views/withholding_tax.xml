@@ -216,6 +216,7 @@
                                 <field name="account_move_id"/>
                                 <field name="reconcile_partial_id"/>
                                 <field name="date_maturity"/>
+                                <field name="wt_account_move_id"/>
                             </group>
                         </group>
                     </sheet>
