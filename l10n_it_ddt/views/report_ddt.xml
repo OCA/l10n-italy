@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <template id="delivery_data">
 
@@ -126,5 +125,4 @@
             name="l10n_it_ddt.report_ddt_main"
             file="l10n_it_ddt.report_ddt_main"/>
 
-    </data>
-</openerp>
+</odoo>
