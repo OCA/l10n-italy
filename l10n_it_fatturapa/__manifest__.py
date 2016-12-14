@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2014 Davide Corio <davide.corio@abstract.it>
+# Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Italian Localization - FatturaPA',
@@ -11,7 +11,7 @@
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Italia Network, Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     "depends": [
         'account',
         'l10n_it_fiscalcode',
@@ -29,12 +29,11 @@
         'views/account_tax_view.xml',
         'security/ir.model.access.csv',
     ],
-    "test": [],
     "demo": ['demo/account_invoice_fatturapa.xml'],
     'installable': True,
     'external_dependencies': {
         'python': [
-            'pyxb', # pyxb 1.2.5
+            'pyxb',  # pyxb 1.2.5
         ],
     }
 }

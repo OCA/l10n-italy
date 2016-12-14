@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2014 Davide Corio
+# Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import base64
 import tempfile
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 from odoo.modules.module import get_module_resource
-from datetime import datetime
 from lxml import etree
 import shutil
 import os

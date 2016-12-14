@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import fields, models, api
-from odoo.tools.translate import _
-from odoo.exceptions import UserError
+from odoo import fields, models
 
 
 class AccountTax(models.Model):

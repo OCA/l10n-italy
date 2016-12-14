@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2014 Davide Corio
+# Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import base64
-from unidecode import unidecode
-
-from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
+import logging
 
 from odoo import models
 from odoo.tools.translate import _
@@ -41,6 +39,14 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
 
+_logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+    from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
+except ImportError as err:
+    _logger.debug(err)
+
 
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
@@ -64,7 +70,6 @@ class WizardExportFatturapa(models.TransientModel):
     def setProgressivoInvio(self, fatturapa):
 
         company = self.env.user.company_id
-        sequence_obj = self.pool['ir.sequence']
         fatturapa_sequence = company.fatturapa_sequence_id
         if not fatturapa_sequence:
             raise UserError(
@@ -519,7 +524,6 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def setDatiRiepilogo(self, invoice, body):
-        tax_pool = self.pool['account.tax']
         for tax_line in invoice.tax_line_ids:
             tax = tax_line.tax_id
             riepilogo = DatiRiepilogoType(

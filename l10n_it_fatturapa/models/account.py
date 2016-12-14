@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
 
@@ -334,7 +334,7 @@ class AccountInvoice(models.Model):
     ftpa_withholding_payment_reason = fields.Char(
         'Withholding reason', size=2)
     #  2.1.1.6
-    virtual_stamp = fields.Boolean('Virtual Stamp')
+    virtual_stamp = fields.Boolean('Virtual Stamp', default=False)
     stamp_amount = fields.Float('Stamp Amount')
     #  2.1.1.7
     welfare_fund_ids = fields.One2many(
@@ -397,6 +397,3 @@ class AccountInvoice(models.Model):
         'fatturapa.attachments', 'invoice_id',
         'FatturaPA attachments'
     )
-    _defaults = {
-        'virtual_stamp': False,
-    }
