@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
 
