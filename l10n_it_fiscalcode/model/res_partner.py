@@ -7,6 +7,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
+from pudb import set_trace
+
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -66,12 +68,14 @@ class ResPartner(models.Model):
         have different fiscal code.
         A proper warning is displayed.
         """
+        set_trace()
         self.ensure_one()
+
         if not self.fiscalcode:
             # fiscalcode empty
             return {}
         # search any partner with same fiscal code in this compamy
-        same_fiscalcode_partners = self.search([
+        same_fiscalcode_partners = self.env['res.partner'].search([
             ('fiscalcode', '=', self.fiscalcode),
             ('fiscalcode', '!=', False),
             ('company_id', '=', self.company_id.id),
@@ -92,12 +96,12 @@ class ResPartner(models.Model):
             while parent.parent_id:
                 parent = parent.parent_id
             # all partners in our family tree
-            related_partners = self.search([
+            related_partners = self.env['res.partner'].search([
                 ('id', 'child_of', parent.id),
                 ('company_id', '=', self.company_id.id),
                 ])
             # any partner with same fiscal code OUT of our family tree ?
-            is_fc_present = self.search([
+            is_fc_present = self.env['res.partner'].search([
                 ('id', 'in', same_fiscalcode_partners.ids),
                 ('id', 'not in', related_partners.ids),
                 ('company_id', '=', self.company_id.id),
