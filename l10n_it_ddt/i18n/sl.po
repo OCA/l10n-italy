@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-31 16:15+0000\n"
-"PO-Revision-Date: 2016-09-02 08:49+0000\n"
+"POT-Creation-Date: 2016-10-25 00:48+0000\n"
+"PO-Revision-Date: 2016-10-21 06:29+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,6 @@ msgstr "Prevoz plačan"
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,carrier_id:0
 #: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_COR
-#: view:website:l10n_it_ddt.delivery_data
 msgid "Carrier"
 msgstr "Prevoznik"
 
@@ -164,7 +163,7 @@ msgid "DDT number:"
 msgstr "Št. prevoznega dokumenta:"
 
 #. module: l10n_it_ddt
-#: field:ddt.create.invoice,date:0 view:website:l10n_it_ddt.delivery_data
+#: field:ddt.create.invoice,date:0
 msgid "Date"
 msgstr "Datum"
 
@@ -377,6 +376,11 @@ msgid "Method of Transportation"
 msgstr "Metoda prevoza"
 
 #. module: l10n_it_ddt
+#: view:website:l10n_it_ddt.delivery_data
+msgid "Method of Transportation / Carrier"
+msgstr "Metoda prevoza / prevoznik"
+
+#. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_transportation_method_tree
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_action_transportation_method_tree
 #: view:stock.picking.transportation_method:l10n_it_ddt.view_transportation_method_tree
@@ -464,11 +468,6 @@ msgstr "Partnerjev ID računa"
 #: field:stock.picking.package.preparation,partner_shipping_id:0
 msgid "Partner shipping id"
 msgstr "Partnerjev ID odpreme"
-
-#. module: l10n_it_ddt
-#: view:website:l10n_it_ddt.delivery_data
-msgid "Pick up time"
-msgstr "Čas prevzema"
 
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
@@ -736,6 +735,11 @@ msgstr "Prikaz prevoznega dokumenta"
 #: field:stock.picking.package.preparation,volume:0
 msgid "Volume"
 msgstr "Prostornina"
+
+#. module: l10n_it_ddt
+#: view:website:l10n_it_ddt.delivery_data
+msgid "Withdrawal Date and time"
+msgstr "Datum in čas umika"
 
 #. module: l10n_it_ddt
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
