@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
+#    
 # Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 # Copyright (C) 2012 Associazione Odoo Italia
@@ -14,7 +14,14 @@
 #
 ##############################################################################
 
+from odoo import fields, models
 
-from . import models
-from . import wizard
+class res_partner(models.Model):
+
+    _name = "res.partner"
+    _inherit = "res.partner"
+
+    group_riba = fields.Boolean(
+        "Group Ri.Ba.",
+        help="Group Ri.Ba. by customer while issuing")
 

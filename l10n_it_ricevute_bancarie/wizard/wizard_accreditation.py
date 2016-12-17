@@ -1,31 +1,23 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#  
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# Copyright (C) 2016 Andrea Cometa (Apulia Software)
+# Email: a.cometa@apuliasoftware.it
+# Web site: http://www.apuliasoftware.it
+# Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+# Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+# Copyright (C) 2012 Associazione Odoo Italia
+# (<http://www.odoo-italia.org>).
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #
 ##############################################################################
 
-from openerp.osv import fields,orm
+from odoo import fields, models
 from tools.translate import _
 import netsvc
 
-class riba_accreditation(orm.TransientModel):
+class riba_accreditation(models.TransientModel):
     
     def _get_accreditation_journal_id(self, cr, uid, context=None):
         return self.pool.get('riba.configurazione').get_default_value_by_distinta( cr, uid, 'accreditation_journal_id', context=context)
