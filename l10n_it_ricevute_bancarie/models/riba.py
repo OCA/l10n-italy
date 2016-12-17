@@ -17,6 +17,7 @@
 
 from odoo import models, fields, tools, api, _
 from odoo.addons import decimal_precision as dp
+from odoo.exceptions import ValidationError
 
 
 class RibaDistinta(models.Model):
@@ -53,6 +54,7 @@ class RibaDistinta(models.Model):
     date_accreditation = fields.Date("Accreditation date", readonly=True)
     date_paid = fields.Date("Paid date", readonly=True)
     date_unsolved = fields.Date("Unsolved date", readonly=True)
+    #ToDO: da verificare cosa succede in caso di multicompany
     company_id = fields.Many2one(
         'res.company', "Company", required=True, readonly=True,
         states={'draft': [('readonly', False)]},
@@ -115,14 +117,13 @@ class RibaDistinta(models.Model):
     def unlink(self):
         for distinta in self:
             if distinta.state not in ('draft',  'cancel'):
-                raise orm.except_orm(_('Error'),
-                                     _('Distinta %s is in state %s. '
-                                       'You can only delete documents '
-                                       'in state draft or canceled')
-                                     % (distinta.name, distinta.state))
-        super(RibaDistinta,self).unlink()
-        return True
+                raise ValidationError(_('Distinta %s is in state %s. '
+                                        'You can only delete documents '
+                                        'in state draft or canceled')
+                                      % (distinta.name, distinta.state))
+        return super(RibaDistinta,self).unlink()
 
+    #ToDO: controllare perchè forse ho fatto un casino
     def confirm(self):
         for distinta in self:
             distinta.line_ids.confirm()
