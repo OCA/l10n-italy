@@ -60,7 +60,7 @@ class RibaDistinta(models.Model):
     )
     acceptance_move_ids = fields.Many2many(
         compute='_get_acceptance_move_ids', relation='account.move',
-        method=True, string="Acceptance Entries")
+        string="Acceptance Entries")
     accreditation_move_id = fields.Many2one(
         'account.move', "Accreditation Entry", readonly=True)
     payment_ids = fields.Many2many(
@@ -78,37 +78,34 @@ class RibaDistinta(models.Model):
         index=True, readonly=True, required=True,
         default=fields.Date.context_today,
         help="Keep empty to use the current date")
-    
+
+    @api.depends('line_ids')
     def _get_acceptance_move_ids(self):
-        res = {}
         for distinta in self:
             move_ids = []
             for line in distinta.line_ids:
                 if line.acceptance_move_id and line.acceptance_move_id.id not in move_ids:
                     move_ids.append(line.acceptance_move_id.id)
-            res[distinta.id] = move_ids
-        return res
-    
+            distinta.acceptance_move_ids = move_ids
+
+    @api.depends('line_ids')
     def _get_unsolved_move_ids(self):
-        res = {}
         for distinta in self:
             move_ids = []
             for line in distinta.line_ids:
                 if line.unsolved_move_id and line.unsolved_move_id.id not in move_ids:
                     move_ids.append(line.unsolved_move_id.id)
-            res[distinta.id] = move_ids
-        return res
-    
+            distinta.unsolved_move_ids = move_ids
+
+    @api.depends('line_ids')
     def _get_payment_ids(self):
-        res = {}
         for distinta in self:
             move_line_ids = []
             for line in distinta.line_ids:
                 for payment in line.payment_ids:
                     if payment.id not in move_line_ids:
                         move_line_ids.append(payment.id)
-            res[distinta.id] = move_line_ids
-        return res
+            distinta.payment_ids = move_line_ids
 
     def _get_sequence(self):
         return self.env['ir.sequence'].get('riba.distinta')
@@ -118,24 +115,27 @@ class RibaDistinta(models.Model):
     def unlink(self):
         for distinta in self:
             if distinta.state not in ('draft',  'cancel'):
-                raise orm.except_orm(_('Error'),_('Distinta %s is in state %s. You can only delete documents in state draft or canceled') % (distinta.name, distinta.state))
+                raise orm.except_orm(_('Error'),
+                                     _('Distinta %s is in state %s. '
+                                       'You can only delete documents '
+                                       'in state draft or canceled')
+                                     % (distinta.name, distinta.state))
         super(RibaDistinta,self).unlink()
         return True
 
-    def confirm(self, cr, uid, ids, context=None):
-        line_pool = self.pool.get('riba.distinta.line')
-        for distinta in self.browse(cr, uid, ids, context=context):
-            line_pool.confirm(cr, uid, [line.id for line in distinta.line_ids], context=context)
-        return True
-    
-    def riba_new(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'draft',
-            }, context=context)
-        return True
-    
-    def riba_cancel(self, cr, uid, ids, context=None):
-        for distinta in self.browse(cr, uid, ids, context=context):
+    def confirm(self):
+        for distinta in self:
+            distinta.line_ids.confirm()
+
+    #ToDO: rivedere, forse è il caso di usare default
+    @api.multi
+    def riba_new(self):
+        for distinta in self:
+            distinta.state = 'draft'
+
+    @api.multi
+    def riba_cancel(self):
+        for distinta in self:
             # TODO remove ervery other move
             for line in distinta.line_ids:
                 if line.acceptance_move_id:
@@ -144,67 +144,59 @@ class RibaDistinta(models.Model):
                     line.unsolved_move_id.unlink()
             if distinta.accreditation_move_id:
                 distinta.accreditation_move_id.unlink()
-        self.write(cr, uid, ids, {
-            'state': 'cancel',
-            }, context=context)
-        return True
-    
-    def riba_accepted(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'accepted',
-            'date_accepted': fields.Date.context_today(
-                self, cr, uid, context),
-            }, context=context)
-        return True
-    
-    def riba_accredited(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'accredited',
-            'date_accreditation': fields.Date.context_today(
-                self, cr, uid, context),
-            }, context=context)
-        for distinta in self.browse(cr, uid, ids, context=context):
-            for line in distinta.line_ids:
-                line.write({'state': 'accredited'})
-        return True
-    
-    def riba_paid(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'paid',
-            'date_paid': fields.Date.context_today(
-                self, cr, uid, context),
-            }, context=context)
-        return True
-    
+            distinta.state = 'cancel'
+
+    @api.multi
+    def riba_accepted(self):
+        for distinta in self:
+            distinta.state = 'acccepted'
+            distinta.date_accepted = fields.Date.context_today()
+
+    @api.multi
+    def riba_accredited(self):
+        for distinta in self:
+            for line in distinta
+                line.state = 'accredited'
+            distinta.state = 'accredited'
+            distinta.date_accreditation = fields.Date.context_today()
+
+    @api.multi
+    def riba_paid(self):
+        for distinta in self:
+            distinta.state = 'paid'
+            distinta.date_paid = fields.Date.context_today()
+
+    @api.multi
     def riba_unsolved(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {
-            'state': 'unsolved',
-            'date_unsolved': fields.Date.context_today(
-                self, cr, uid, context),
-            }, context=context)
-        return True
-        
-    def test_accepted(self, cr, uid, ids, *args):
-        for distinta in self.browse(cr, uid, ids):
+        for distinta in self:
+            distinta.state = 'state'
+            distinta.date_unsolved = fields.Date.context_today()
+
+    @api.multi
+    def test_accepted(self):
+        for distinta in self:
             for line in distinta.line_ids:
                 if line.state != 'confirmed':
                     return False
         return True
-        
-    def test_unsolved(self, cr, uid, ids, *args):
-        for distinta in self.browse(cr, uid, ids):
+
+    @api.multi
+    def test_unsolved(self):
+        for distinta in self:
             for line in distinta.line_ids:
                 if line.state != 'unsolved':
                     return False
         return True
-        
-    def test_paid(self, cr, uid, ids, *args):
-        for distinta in self.browse(cr, uid, ids):
+
+    @api.multi
+    def test_paid(self):
+        for distinta in self:
             for line in distinta.line_ids:
                 if line.state != 'paid':
                     return False
         return True
-        
+
+    #ToDO: da migrare ... che fa il metodo trg_delete????
     def action_cancel_draft(self, cr, uid, ids, *args):
         self.write(cr, uid, ids, {'state': 'draft'})
         for distinta_id in ids:
@@ -372,10 +364,11 @@ class RibaDistintaLine(models.Model):
             result[riba_line.id] = lines
         return result
 
-
-    def confirm(self, cr, uid, ids, context=None):
-        move_pool = self.pool.get('account.move')
-        move_line_pool = self.pool.get('account.move.line')
+    #ToDO: da verificare
+    @api.multi
+    def confirm(self):
+        move_pool = self.env['account.move']
+        move_line_pool = self.env['account.move.line']
         for line in self.browse(cr, uid, ids, context=context):
             journal = line.distinta_id.config.acceptance_journal_id
             total_credit = 0.0
