@@ -580,7 +580,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 sconto = ScontoMaggiorazioneType(
                     Tipo=tipo_sconto_maggiorazione,
                     Percentuale='%.2f' % line.discount,
-                    Importp='$.2f' % line.price_unit,
+                    Importo='%.2f' % line.price_unit,
                 )
                 DettaglioLinea.ScontoMaggiorazione.append(sconto)
             if aliquota == 0.0:
