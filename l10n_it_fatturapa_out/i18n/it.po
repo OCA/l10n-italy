@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2016-04-30 09:57+0000\n"
+"POT-Creation-Date: 2016-11-29 12:51+0000\n"
+"PO-Revision-Date: 2016-12-17 15:19+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -518,12 +518,12 @@ msgstr "TerzoIntermediarioOSoggettoEmittente non gestito"
 #. module: l10n_it_fatturapa_out
 #: help:fatturapa.attachment.out,res_model:0
 msgid "The database object this attachment will be attached to"
-msgstr ""
+msgstr "L'oggetto del database a cui l'allegato verrà collegato"
 
 #. module: l10n_it_fatturapa_out
 #: help:fatturapa.attachment.out,res_id:0
 msgid "The record id this is attached to"
-msgstr ""
+msgstr "L'id del record a cui è collegato"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:562

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Paolo Valier <paolo.valier@hotmail.it>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-25 00:48+0000\n"
-"PO-Revision-Date: 2016-10-25 00:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-11-29 12:51+0000\n"
+"PO-Revision-Date: 2016-11-29 12:51+0000\n"
+"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2016\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,6 +295,13 @@ msgid ""
 "You should press this button to re-open it and let it continue its normal "
 "process after having resolved the eventual exceptions it may have created."
 msgstr ""
+"Questo pulsante compare solo quando lo stato della fattura è 'pagato' "
+"(mostrando che è stata conciliata completamente) e il campo auto-calcolato "
+"'riconciliato' è impostato su Falso (descrivendo che non è più il caso). In "
+"altre parole, la fattura è stata de-riconciliata e non si adatta più allo "
+"stato 'pagato'. Premere questo pulsante per riaprirla e permetterle di "
+"continuare il suo normale processo dopo aver risolto eventuali eccezioni "
+"eventualmente create."
 
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:l10n_it_corrispettivi.corrispettivi_tree
