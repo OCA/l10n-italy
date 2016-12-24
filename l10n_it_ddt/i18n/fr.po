@@ -4,18 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
-# François Kortleven <frkor@smile.fr>, 2016
-# Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016
-# Isabelle RICHARD <isabellerichard89@gmail.com>, 2016
-# dglucose <eric.lemesre@gmail.com>, 2016
+# leemannd <denis.leemann@camptocamp.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 03:39+0000\n"
-"PO-Revision-Date: 2016-11-11 03:39+0000\n"
-"Last-Translator: dglucose <eric.lemesre@gmail.com>, 2016\n"
+"POT-Creation-Date: 2016-11-29 12:52+0000\n"
+"PO-Revision-Date: 2016-11-29 12:52+0000\n"
+"Last-Translator: leemannd <denis.leemann@camptocamp.com>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +27,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Quantity</strong>"
-msgstr ""
+msgstr "<strong>Quantité</strong>"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction
