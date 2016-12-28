@@ -7,7 +7,8 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
 
-#from pudb import set_trace; set_trace()
+# from pudb import set_trace; set_trace()
+
 
 class TestPartner(TransactionCase):
     """ Each test method is run independently and the database transaction
@@ -183,7 +184,7 @@ class TestPartner(TransactionCase):
         partner = self.env['res.partner']
         # Retrieve the onchange specifications
         specs = partner._onchange_spec()
-        
+
         # create first partner with normal fiscalcode for private citizen
         parent = self.env['res.partner'].create(
             {'name': u'Test-e1 Private Italian Citizen',
@@ -191,7 +192,8 @@ class TestPartner(TransactionCase):
              'is_company': True,
              'is_soletrader': True,
              'fiscalcode': u'BNZVCN32S10E573Z', })
-        test1=self.env['res.partner'].search([('fiscalcode','=','BNZVCN32S10E573Z')])
+#        test1=self.env['res.partner'].search([('fiscalcode','=','BNZVCN32S10E573Z')])
+
         # Prepare the values to create a child record with same fiscalcode
         values = {'name': u'OnChange Test-e2',
                   'email': u"foo@gmail.com",
@@ -203,9 +205,8 @@ class TestPartner(TransactionCase):
         # Get the result of the onchange method for fiscalcode field:
         self.env.invalidate_all()
         result = partner.onchange(values, ['fiscalcode'], specs)
-        # warning: This is a dictionary containing a warning message 
+        # warning: This is a dictionary containing a warning message
         # that the web client will display to the user
         warning = result.get('warning', {})
         # check onchange method produced NO warning
         self.assertTrue(warning)
-
