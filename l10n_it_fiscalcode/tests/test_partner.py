@@ -177,8 +177,8 @@ class TestPartner(TransactionCase):
 
     def test_partner_onchange_fiscalcode(self):
         """ Test onchange method when an existing ficsalcode
-        is provided to a new partner. 
-        Needed to cover >77% for codecov...  :-( 
+        is provided to a new partner.
+        Needed to cover >77% for codecov...  :-(
         """
         # Get an empty recordset
         partner = self.env['res.partner']
