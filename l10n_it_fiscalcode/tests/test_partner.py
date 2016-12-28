@@ -7,7 +7,7 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
 
-from pudb import set_trace; set_trace()
+#from pudb import set_trace; set_trace()
 
 class TestPartner(TransactionCase):
     """ Each test method is run independently and the database transaction
@@ -27,7 +27,7 @@ class TestPartner(TransactionCase):
         """
         # No FiscalCode
         record = self.env['res.partner'].create(
-            {'name': u'Test0 Italian Company',
+            {'name': u'Test-a0 Italian Company',
              'email': u"foo@gmail.com",
              'is_company': True,
              'is_soletrader': False,
@@ -36,7 +36,7 @@ class TestPartner(TransactionCase):
 
         # Italian company has the fiscalcode like a VAT number
         record = self.env['res.partner'].create(
-            {'name': u'Test1 Italian Company',
+            {'name': u'Test-a1 Italian Company',
              'email': u"foo@gmail.com",
              'is_company': True,
              'is_soletrader': False,
@@ -46,7 +46,7 @@ class TestPartner(TransactionCase):
         # WRONG length FiscalCode for a company
         with self.assertRaises(ValidationError):
             record = self.env['res.partner'].create(
-                {'name': u'Test2 Italian Company',
+                {'name': u'Test-a2 Italian Company',
                  'email': u"foo@gmail.com",
                  'is_company': True,
                  'is_soletrader': False,
@@ -55,7 +55,7 @@ class TestPartner(TransactionCase):
         # Wrong Chars FiscalCode (alphabetic)
         with self.assertRaises(ValidationError):
             record = self.env['res.partner'].create(
-                {'name': u'Test3 Italian Company',
+                {'name': u'Test-a33 Italian Company',
                  'email': u"foo@gmail.com",
                  'is_company': True,
                  'is_soletrader': False,
@@ -69,7 +69,7 @@ class TestPartner(TransactionCase):
         """
         # normal fiscalcode for private citizen
         record = self.env['res.partner'].create(
-            {'name': u'Test1 Private Italian Citizen',
+            {'name': u'Test-b1 Private Italian Citizen',
              'email': u"foo@gmail.com",
              'is_company': False,
              'is_soletrader': False,
@@ -80,7 +80,7 @@ class TestPartner(TransactionCase):
         # last "3" character, become a "P" char because of omocodia
         # CRC code changes accordingly
         record = self.env['res.partner'].create(
-            {'name': u'Test2 Private Italian Citizen Omocod.',
+            {'name': u'Test-b2 Private Italian Citizen Omocod.',
              'email': u"foo@gmail.com",
              'is_company': False,
              'is_soletrader': False,
@@ -89,7 +89,7 @@ class TestPartner(TransactionCase):
 
         # Private citizen No FiscalCode
         record = self.env['res.partner'].create(
-            {'name': u'Test4 No FiscalCode',
+            {'name': u'Test-b3 No FiscalCode',
              'email': u"foo@gmail.com",
              'is_company': False,
              'is_soletrader': False,
@@ -99,7 +99,7 @@ class TestPartner(TransactionCase):
         # WRONG Private Citizen FiscalCode
         with self.assertRaises(ValidationError):
             record = self.env['res.partner'].create(
-                {'name': u'Test4 No FiscalCode',
+                {'name': u'Test-b4 No FiscalCode',
                  'email': u"foo@gmail.com",
                  'is_company': False,
                  'is_soletrader': False,
@@ -113,7 +113,7 @@ class TestPartner(TransactionCase):
         """
         # normal fiscalcode for private citizen
         record = self.env['res.partner'].create(
-            {'name': u'Test1 Private Italian Citizen',
+            {'name': u'Test-c1 Private Italian Citizen',
              'email': u"foo@gmail.com",
              'is_company': True,
              'is_soletrader': True,
@@ -124,7 +124,7 @@ class TestPartner(TransactionCase):
         # last "3" character, become a "P" char because of omocodia
         # CRC code changes accordingly
         record = self.env['res.partner'].create(
-            {'name': u'Test2 Private Italian Citizen Omocod.',
+            {'name': u'Test-c2 Private Italian Citizen Omocod.',
              'email': u"foo@gmail.com",
              'is_company': True,
              'is_soletrader': True,
@@ -133,7 +133,7 @@ class TestPartner(TransactionCase):
 
         # Private citizen No FiscalCode
         record = self.env['res.partner'].create(
-            {'name': u'Test4 No FiscalCode',
+            {'name': u'Test-c3 No FiscalCode',
              'email': u"foo@gmail.com",
              'is_company': True,
              'is_soletrader': True,
@@ -143,7 +143,7 @@ class TestPartner(TransactionCase):
         # WRONG Private Citizen FiscalCode
         with self.assertRaises(ValidationError):
             record = self.env['res.partner'].create(
-                {'name': u'Test4 No FiscalCode',
+                {'name': u'Test-c4 No FiscalCode',
                  'email': u"foo@gmail.com",
                  'is_company': True,
                  'is_soletrader': True,
@@ -158,7 +158,7 @@ class TestPartner(TransactionCase):
         # Get an empty recordset
         partner = self.env['res.partner']
         # Prepare the values to create a new  record
-        values = {'name': u'OnChange Test',
+        values = {'name': u'OnChange Test-d1',
                   'email': u"foo@gmail.com",
                   'is_company': False,
                   'is_soletrader': True,
@@ -186,14 +186,14 @@ class TestPartner(TransactionCase):
         
         # create first partner with normal fiscalcode for private citizen
         parent = self.env['res.partner'].create(
-            {'name': u'Test1 Private Italian Citizen',
+            {'name': u'Test-e1 Private Italian Citizen',
              'email': u"foo@gmail.com",
              'is_company': True,
              'is_soletrader': True,
              'fiscalcode': u'BNZVCN32S10E573Z', })
         test1=self.env['res.partner'].search([('fiscalcode','=','BNZVCN32S10E573Z')])
         # Prepare the values to create a child record with same fiscalcode
-        values = {'name': u'OnChange Test2',
+        values = {'name': u'OnChange Test-e2',
                   'email': u"foo@gmail.com",
                   'is_company': False,
                   'is_soletrader': False,

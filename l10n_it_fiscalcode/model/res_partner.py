@@ -7,7 +7,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-from pudb import set_trace
+# from pudb import set_trace
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class ResPartner(models.Model):
         have different fiscal code.
         A proper warning is displayed.
         """
-        set_trace()
+#        set_trace()
         self.ensure_one()
 
         if not self.fiscalcode:
