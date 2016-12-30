@@ -14,13 +14,13 @@ class AtecoCategory(models.Model):
     _description = 'ATECO Code'
 
     name = fields.Char(required=True)
-    code = fields.Char('ATECO Code', size=9, required=False)
+    code = fields.Char(string='ATECO Code', size=9, required=False)
     description = fields.Text()
     parent_id = fields.Many2one(
-        'ateco.category', 'Parent Category', select=True)
+        'ateco.category', string='Parent Category', index=True)
     child_ids = fields.One2many(
-        'ateco.category', 'parent_id', 'Child Categories')
+        'ateco.category', 'parent_id', string='Child Categories')
     partner_ids = fields.Many2many(
         'res.partner', 'ateco_category_partner_rel',
-        'ateco_id', 'partner_id', 'Partners'
+        'ateco_id', 'partner_id', string='Partners'
     )
