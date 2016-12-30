@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_ateco
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (10.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-12 02:39+0000\n"
+"PO-Revision-Date: 2016-10-24 13:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/zh_TW/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: l10n_it_ateco
+#: model:ir.model,name:l10n_it_ateco.model_ateco_category
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_code
+msgid "ATECO Code"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.ui.view,arch_db:l10n_it_ateco.view_partner_form_inherit_ateco
+msgid "Ateco"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_form
+msgid "Ateco Category"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.actions.act_window,name:l10n_it_ateco.action_ateco_category_search
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner_ateco_category_ids
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_users_ateco_category_ids
+#: model:ir.ui.menu,name:l10n_it_ateco.menu_ateco_category_form
+#: model:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_tree
+msgid "Ateco categories"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_child_ids
+msgid "Child Categories"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_create_uid
+msgid "Created by"
+msgstr "建立者"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_create_date
+msgid "Created on"
+msgstr "建立於"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_description
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_id
+msgid "ID"
+msgstr "編號"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category___last_update
+msgid "Last Modified on"
+msgstr "最後修改:"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_write_uid
+msgid "Last Updated by"
+msgstr "最後更新："
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_write_date
+msgid "Last Updated on"
+msgstr "最後更新於"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_name
+msgid "Name"
+msgstr "名稱"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_parent_id
+msgid "Parent Category"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model,name:l10n_it_ateco.model_res_partner
+msgid "Partner"
+msgstr "夥伴"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_partner_ids
+msgid "Partners"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.ui.view,arch_db:l10n_it_ateco.ateco_category_search
+msgid "Search Ateco categories"
+msgstr ""

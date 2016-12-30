@@ -13,9 +13,9 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     ateco_category_ids = fields.Many2many(
-        'ateco.category',
-        'ateco_category_partner_rel',
-        'partner_id',
-        'ateco_id',
-        'Ateco categories'
+        comodel_name='ateco.category',
+        relation='ateco_category_partner_rel',
+        column1='partner_id',
+        column2='ateco_id',
+        string='Ateco categories'
     )
