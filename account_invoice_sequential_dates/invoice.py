@@ -22,7 +22,7 @@
 import netsvc
 import pooler, tools
 
-from openerp.osv import fields, orm
+from odoo.osv import fields, orm
 from tools.translate import _
 
 class account_invoice(orm.Model):

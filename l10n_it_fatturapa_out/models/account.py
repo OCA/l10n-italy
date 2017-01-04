@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from odoo.osv import fields, orm
 
 
 class account_invoice(orm.Model):

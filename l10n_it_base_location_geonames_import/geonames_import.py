@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, api
+from odoo import models, api
 
 
 class better_zip_geonames_import(models.TransientModel):

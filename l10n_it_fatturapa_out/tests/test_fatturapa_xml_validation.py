@@ -21,9 +21,9 @@
 
 import base64
 import tempfile
-from openerp import workflow
+from odoo import workflow
 import openerp.tests.common as test_common
-from openerp.modules.module import get_module_resource
+from odoo.modules.module import get_module_resource
 from datetime import datetime
 from lxml import etree
 import shutil

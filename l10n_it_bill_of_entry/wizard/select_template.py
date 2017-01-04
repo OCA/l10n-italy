@@ -20,8 +20,8 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
+from odoo.osv import fields, osv, orm
+from odoo.tools.translate import _
 
 
 class wizard_select_invoice_template(orm.TransientModel):

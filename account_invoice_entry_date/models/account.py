@@ -21,9 +21,9 @@
 ##############################################################################
 
 import time
-from openerp import fields, models
-from openerp.tools.translate import _
-from openerp.exceptions import Warning
+from odoo import fields, models
+from odoo.tools.translate import _
+from odoo.exceptions import Warning
 
 
 class AccountInvoice(models.Model):
@@ -37,7 +37,7 @@ class AccountInvoice(models.Model):
             'open': [('readonly', True)],
             'close': [('readonly', True)]
             },
-        select=True,
+        index=True,
         help="Keep empty to use the current date")
 
     def action_move_create(self, cr, uid, ids, context=None):

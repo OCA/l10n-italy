@@ -21,15 +21,15 @@
 
 {
     'name': 'Account Invoice entry Date',
-    'version': '8.0.0.1.0',
-    'category': 'Generic Modules/Accounting',
-    'description': """This module allows to specify the date to be used by the
+    'summary': """Specify the date to be used by the
 move created while confirming (supplier) invoice""",
-    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
+    'version': '10.0.0.1.0',
+    'category': 'Generic Modules/Accounting',
+    'author': "Odoo Italian Community,"
+              "Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['account'],
     'data': ['views/account_view.xml'],
-    'active': False,
-    'installable': False
+    'installable': True
 }
