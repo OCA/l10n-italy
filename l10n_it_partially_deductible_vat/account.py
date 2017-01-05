@@ -26,7 +26,7 @@ from osv import fields, osv
 import decimal_precision as dp
 from decimal import *
 import time
-from openerp.tools.translate import _
+from odoo.tools.translate import _
 
 class account_tax(osv.osv):
 

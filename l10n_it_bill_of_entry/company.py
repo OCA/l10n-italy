@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from odoo.osv import fields, orm
 
 class res_company(orm.Model):
     _inherit = 'res.company'

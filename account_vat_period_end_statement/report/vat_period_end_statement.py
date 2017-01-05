@@ -26,9 +26,9 @@
 #
 
 import time
-from openerp.osv import orm
-from openerp.report import report_sxw
-from openerp.tools.translate import _
+from odoo.osv import orm
+from odoo.report import report_sxw
+from odoo.tools.translate import _
 
 
 class Report(orm.Model):

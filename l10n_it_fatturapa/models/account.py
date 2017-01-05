@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from odoo.osv import fields, orm
 
 RELATED_DOCUMENT_TYPES = {
     'order': 'DatiOrdineAcquisto',

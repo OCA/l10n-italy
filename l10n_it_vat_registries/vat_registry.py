@@ -21,9 +21,9 @@
 #
 #
 
-from openerp.report import report_sxw
-from openerp.osv import osv
-from openerp import _
+from odoo.report import report_sxw
+from odoo.osv import osv
+from odoo import _
 import logging
 from datetime import datetime
 

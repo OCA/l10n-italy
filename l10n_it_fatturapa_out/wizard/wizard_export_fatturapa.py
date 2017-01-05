@@ -23,10 +23,10 @@ import base64
 from unidecode import unidecode
 from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 
-from openerp.osv import orm
-from openerp.tools.translate import _
+from odoo.osv import orm
+from odoo.tools.translate import _
 
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
+from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType,
@@ -51,9 +51,9 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DettaglioPagamentoType,
     AllegatiType
 )
-from openerp.addons.l10n_it_fatturapa.models.account import (
+from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
-from openerp.tools.translate import _
+from odoo.tools.translate import _
 
 
 class WizardExportFatturapa(orm.TransientModel):

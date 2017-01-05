@@ -21,9 +21,9 @@
 ##############################################################################
 
 import time
-from openerp import fields, models
-from openerp.tools.translate import _
-from openerp.exceptions import Warning
+from odoo import fields, models, api
+from odoo.tools.translate import _
+from odoo.exceptions import Warning
 
 
 class AccountInvoice(models.Model):
@@ -37,18 +37,13 @@ class AccountInvoice(models.Model):
             'open': [('readonly', True)],
             'close': [('readonly', True)]
             },
-        select=True,
+        index=True,
         help="Keep empty to use the current date")
 
-    def action_move_create(self, cr, uid, ids, context=None):
-
-        if not context:
-            context = {}
-
-        super(AccountInvoice, self).action_move_create(
-            cr, uid, ids, context=context)
-
-        for inv in self.browse(cr, uid, ids):
+    @api.multi
+    def action_move_create(self):
+        super(AccountInvoice, self).action_move_create()
+        for inv in self:
             date_invoice = inv.date_invoice
             reg_date = inv.registration_date
             if not inv.registration_date:
@@ -56,49 +51,16 @@ class AccountInvoice(models.Model):
                     reg_date = time.strftime('%Y-%m-%d')
                 else:
                     reg_date = inv.date_invoice
-
             if date_invoice and reg_date:
                 if (date_invoice > reg_date):
                     raise Warning(_("The invoice date cannot be later than the"
                                     " date of registration!"))
-
             date_start = inv.registration_date or inv.date_invoice \
                 or time.strftime('%Y-%m-%d')
             date_stop = inv.registration_date or inv.date_invoice \
                 or time.strftime('%Y-%m-%d')
-
-            period_ids = self.pool.get('account.period').search(
-                cr, uid,
-                [
-                    ('date_start', '<=', date_start),
-                    ('date_stop', '>=', date_stop),
-                    ('company_id', '=', inv.company_id.id)
-                    ])
-            if period_ids:
-                period_id = period_ids[0]
-
-            self.write(
-                cr, uid, [inv.id], {
-                    'registration_date': reg_date, 'period_id': period_id})
-
+            inv.write({'registration_date': reg_date})
             mov_date = reg_date or inv.date_invoice or time.strftime(
                 '%Y-%m-%d')
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id], {'state': 'draft'})
-
-            sql = "update account_move_line set period_id="+str(
-                period_id) + ",date='" + mov_date + "' where move_id = " + str(
-                inv.move_id.id)
-
-            cr.execute(sql)
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id],
-                {'period_id': period_id, 'date': mov_date})
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id], {'state': 'posted'})
-
-        self._log_event(cr, uid, ids)
+            inv.move_id.write({'date': mov_date, 'state': 'posted'})
         return True

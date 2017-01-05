@@ -21,8 +21,8 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
-from openerp.tools.translate import _
+from odoo.osv import fields, orm
+from odoo.tools.translate import _
 import decimal_precision as dp
 
 class res_company(orm.Model):

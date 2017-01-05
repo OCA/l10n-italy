@@ -22,10 +22,10 @@
 #
 #
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from odoo.osv import orm, fields
+from odoo.tools.translate import _
 import math
-from openerp.addons.decimal_precision import decimal_precision as dp
+from odoo.addons.decimal_precision import decimal_precision as dp
 
 
 class AccountVatPeriodEndStatement(orm.Model):

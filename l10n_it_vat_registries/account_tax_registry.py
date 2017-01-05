@@ -18,7 +18,7 @@
 #
 #
 
-from openerp import models, fields
+from odoo import models, fields
 
 
 class AccountTaxRegistry(models.Model):

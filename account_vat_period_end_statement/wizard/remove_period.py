@@ -22,8 +22,8 @@
 #
 #
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from odoo.osv import orm, fields
+from odoo.tools.translate import _
 
 
 class RemovePeriod(orm.TransientModel):

@@ -21,8 +21,8 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
-from openerp.osv import fields
+from odoo.osv import orm
+from odoo.osv import fields
 
 
 class crm_lead(orm.Model):

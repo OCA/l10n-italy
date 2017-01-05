@@ -62,7 +62,7 @@ $ricevute_bancarie = array bidimensionale con i seguenti index:
 
 import tools
 import base64
-from openerp.osv import fields,orm
+from odoo.osv import fields,orm
 from tools.translate import _
 import datetime
 

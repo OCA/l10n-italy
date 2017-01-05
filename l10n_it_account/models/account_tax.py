@@ -21,10 +21,10 @@
 #
 #
 
-from openerp.osv import orm
-from openerp import fields
-from openerp.tools.translate import _
-from openerp.exceptions import except_orm
+from odoo.osv import orm
+from odoo import fields
+from odoo.tools.translate import _
+from odoo.exceptions import except_orm
 
 
 class AccountTaxCode(orm.Model):

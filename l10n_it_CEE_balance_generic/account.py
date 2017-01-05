@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from odoo.osv import orm, fields
 
 class account_account(orm.Model):
     _inherit = "account.account"

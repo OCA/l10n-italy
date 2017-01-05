@@ -21,8 +21,8 @@
 ##############################################################################
 
 import openerp.addons.decimal_precision as dp
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning as UserError
+from odoo import models, fields, api, _
+from odoo.exceptions import Warning as UserError
 
 
 class AccountFiscalPosition(models.Model):
