@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-02 08:41+0000\n"
-"PO-Revision-Date: 2014-12-02 08:41+0000\n"
+"POT-Creation-Date: 2017-01-05 13:49+0000\n"
+"PO-Revision-Date: 2017-01-05 13:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,17 +21,17 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: account_invoice_entry_date
-#: help:account.invoice,registration_date:0
+#: model:ir.model.fields,help:account_invoice_entry_date.field_account_invoice_registration_date
 msgid "Keep empty to use the current date"
 msgstr "Lasciare vuoto per utilizzare la data corrente"
 
 #. module: account_invoice_entry_date
-#: field:account.invoice,registration_date:0
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_account_invoice_registration_date
 msgid "Registration Date"
-msgstr "Data registrazione"
+msgstr "Data Registrazione"
 
 #. module: account_invoice_entry_date
-#: code:addons/account_invoice_entry_date/models/account.py:62
+#: code:addons/account_invoice_entry_date/models/account.py:56
 #, python-format
 msgid "The invoice date cannot be later than the date of registration!"
 msgstr "La data della fattura non può essere successiva alla data della registrazione!"
