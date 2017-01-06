@@ -11,7 +11,7 @@
     'author': "Odoo Italia Network, Odoo Community Association (OCA)",
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
-    'depends': ['base_vat','account'],
+    'depends': ['base_vat', 'account'],
     'external_dependencies': {
         'python': ['codicefiscale', 'stdnum'], },
     'data': [
