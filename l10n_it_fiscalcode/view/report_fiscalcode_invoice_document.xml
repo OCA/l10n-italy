@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Inherit invoice document report (from module sale) -->
+		<template id="report_fiscalcode_invoice_document" inherit_id="account.report_invoice_document">
+			<!-- Finds the first TIN number -->
+			<xpath expr="//span[@t-if='o.partner_id.vat']" position="replace">
+				<!-- add the fiscalcode field -->
+				<div t-if="o.partner_id.vat">
+					TIN:
+					<span t-field="o.partner_id.vat" />
+				</div>
+				<div t-if="o.partner_id.fiscalcode">
+					Fiscal Code:
+					<span t-field="o.partner_id.fiscalcode" />
+				</div>
+			</xpath>
+		</template>
+	</data>
+</openerp>
