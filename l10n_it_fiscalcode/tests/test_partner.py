@@ -7,8 +7,6 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
 
-# from pudb import set_trace; set_trace()
-
 
 class TestPartner(TransactionCase):
     """ Each test method is run independently and the database transaction

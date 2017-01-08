@@ -7,8 +7,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-# from pudb import set_trace
-
 import logging
 _logger = logging.getLogger(__name__)
 
