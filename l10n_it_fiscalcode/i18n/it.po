@@ -8,6 +8,8 @@
 #
 # Translators:
 # Paolo Valier, 2016
+# Andrea Gallina <4everamd@gmail.com>, 2016
+# Andrea Gallina <4everamd@gmail.com>, 2016
 # Hotellook, 2014
 # Paolo Valier, 2016
 # Paolo Valier, 2016
@@ -16,6 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
+
 "POT-Creation-Date: 2017-01-08 23:46+0000\n"
 "PO-Revision-Date: 2017-01-08 23:46+0000\n"
 "Last-Translator: <>\n"
@@ -201,6 +204,7 @@ msgstr "Note"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:145
 #, python-format
 msgid "One or more fields are missing"
+
 msgstr "Uno o più campi sono vuoti."
 
 #. module: l10n_it_fiscalcode
