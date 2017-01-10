@@ -7,7 +7,8 @@
     'version': '8.0.2.0.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices emission',
-    'author': 'Davide Corio, Agile Business Group, Innoviu',
+    'author': 'Davide Corio, Agile Business Group, Innoviu, '
+              'Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [

@@ -1,4 +1,4 @@
-# ./fatturapa_v_1_2.py
+# flake8: noqa
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
 # Generated 2017-01-10 12:31:27.348967 by PyXB version 1.2.4 using Python 2.7.12.final.0
