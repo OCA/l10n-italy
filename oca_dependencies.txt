@@ -1,1 +1,2 @@
 partner-contact
+stock-logistics-workflow
