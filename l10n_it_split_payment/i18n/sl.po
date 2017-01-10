@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_split_payment
+# 
+# Translators:
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-12 13:04+0000\n"
+"PO-Revision-Date: 2016-05-01 14:32+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_split_payment
+#: help:account.config.settings,sp_account_id:0
+#: help:res.company,sp_account_id:0
+msgid "Account used to write off the VAT amount"
+msgstr "Konto za odpis zneska DDV"
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:105
+#, python-format
+msgid "Can't handle supplier invoices with split payment"
+msgstr "Prejetih računov se ne more obravnavati z deljenim plačilom"
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_res_company
+msgid "Companies"
+msgstr "Družbe"
+
+#. module: l10n_it_split_payment
+#: view:account.config.settings:l10n_it_split_payment.view_account_config_settings
+msgid "Configuration"
+msgstr "Nastavitve"
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Fiskalni položaj"
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_account_invoice
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:60
+#, python-format
+msgid ""
+"Please set 'Split Payment Write-off Account' field in accounting "
+"configuration"
+msgstr "Nastavite polje 'Konto odpisov deljenih plačil' v knjigovodskih nastavitvah."
+
+#. module: l10n_it_split_payment
+#: view:account.config.settings:l10n_it_split_payment.view_account_config_settings
+#: field:account.fiscal.position,split_payment:0
+#: field:account.invoice,amount_sp:0 field:account.invoice,split_payment:0
+msgid "Split Payment"
+msgstr "Deljeno plačilo"
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:63
+#, python-format
+msgid "Split Payment Write Off"
+msgstr "Odpis deljenega plačila"
+
+#. module: l10n_it_split_payment
+#: field:res.company,sp_account_id:0
+msgid "Split Payment Write-off Account"
+msgstr "Konto odpisov deljenih plačil"
+
+#. module: l10n_it_split_payment
+#: field:account.config.settings,sp_account_id:0
+msgid "Split Payment Write-off account"
+msgstr "Konto odpisov deljenih plačil"

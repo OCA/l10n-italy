@@ -1,28 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Abstract (http://www.abstract.it)
-#    Author: Davide Corio <davide.corio@abstract.it>
-#    Copyright 2015 Lorenzo Battistini - Agile Business Group
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2015  Davide Corio <davide.corio@abstract.it>
+# Copyright 2015-2016  Lorenzo Battistini - Agile Business Group
+# Copyright 2016  Alessio Gerace - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import openerp.addons.decimal_precision as dp
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning as UserError
+import odoo.addons.decimal_precision as dp
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class AccountFiscalPosition(models.Model):
@@ -42,13 +26,17 @@ class AccountInvoice(models.Model):
         compute='_compute_amount')
     split_payment = fields.Boolean(
         'Split Payment',
-        related='fiscal_position.split_payment')
+        related='fiscal_position_id.split_payment')
 
     @api.one
-    @api.depends('invoice_line.price_subtotal', 'tax_line.amount')
+    @api.depends(
+        'invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
+        'currency_id', 'company_id', 'date_invoice'
+    )
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
-        if self.fiscal_position.split_payment:
+        self.amount_sp = 0
+        if self.fiscal_position_id.split_payment:
             self.amount_sp = self.amount_tax
             self.amount_tax = 0
         self.amount_total = self.amount_untaxed + self.amount_tax
@@ -58,40 +46,79 @@ class AccountInvoice(models.Model):
             raise UserError(
                 _("Please set 'Split Payment Write-off Account' field in"
                   " accounting configuration"))
-        return {
+        vals = {
             'name': _('Split Payment Write Off'),
             'partner_id': self.partner_id.id,
             'account_id': self.company_id.sp_account_id.id,
             'journal_id': self.journal_id.id,
-            'period_id': self.period_id.id,
             'date': self.date_invoice,
             'debit': self.amount_sp,
             'credit': 0,
             }
+        if self.type == 'out_refund':
+            vals['debit'] = 0
+            vals['credit'] = self.amount_sp
+        return vals
+
+    @api.multi
+    def get_receivable_line_ids(self):
+        # return the move line ids with the same account as the invoice self
+        if not self.id:
+            return []
+        query = (
+            "SELECT l.id "
+            "FROM account_move_line l, account_invoice i "
+            "WHERE i.id = %s AND l.move_id = i.move_id "
+            "AND l.account_id = i.account_id"
+        )
+        self._cr.execute(query, (self.id,))
+        return [row[0] for row in self._cr.fetchall()]
 
     @api.multi
     def _compute_split_payments(self):
         for invoice in self:
-            payment_line_ids = invoice.move_line_id_payment_get()
+            receivable_line_ids = invoice.get_receivable_line_ids()
             move_line_pool = self.env['account.move.line']
-            for payment_line in move_line_pool.browse(payment_line_ids):
+            for receivable_line in move_line_pool.browse(receivable_line_ids):
                 inv_total = invoice.amount_sp + invoice.amount_total
-                payment_line_debit = (
-                    invoice.amount_total * payment_line.debit) / inv_total
-                payment_line.write(
-                    {'debit': payment_line_debit}, update_check=False)
+                if invoice.type == 'out_invoice':
+                    receivable_line_amount = (
+                        invoice.amount_total * receivable_line.debit
+                        ) / inv_total
+                    receivable_line.with_context(
+                        check_move_validity=False
+                    ).write(
+                        {'debit': receivable_line_amount})
+                elif invoice.type == 'out_refund':
+                    receivable_line_amount = (
+                        invoice.amount_total * receivable_line.credit
+                        ) / inv_total
+                    receivable_line.with_context(
+                        check_move_validity=False
+                    ).write(
+                        {'credit': receivable_line_amount})
 
     @api.multi
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()
         for invoice in self:
             if (
-                invoice.fiscal_position and
-                invoice.fiscal_position.split_payment
+                invoice.fiscal_position_id and
+                invoice.fiscal_position_id.split_payment
             ):
+                if invoice.type in ['in_invoice', 'in_refund']:
+                    raise UserError(
+                        _("Can't handle supplier invoices with split payment"))
+                if invoice.move_id.state == 'posted':
+                    posted = True
+                    invoice.move_id.state = 'draft'
                 self._compute_split_payments()
                 line_model = self.env['account.move.line']
                 write_off_line_vals = invoice._build_debit_line()
                 write_off_line_vals['move_id'] = invoice.move_id.id
-                line_model.create(write_off_line_vals)
+                line_model.with_context(
+                    check_move_validity=False
+                ).create(write_off_line_vals)
+                if posted:
+                    invoice.move_id.state = 'posted'
         return res
