@@ -35,7 +35,8 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     ContattiType,
     DatiPagamentoType,
     DettaglioPagamentoType,
-    AllegatiType
+    AllegatiType,
+    ScontoMaggiorazioneType
 )
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -488,6 +489,12 @@ class WizardExportFatturapa(models.TransientModel):
                     unidecode(line.uom_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA=AliquotaIVA)
+            if line.discount:
+                ScontoMaggiorazione = ScontoMaggiorazioneType(
+                    Tipo='SC',
+                    Percentuale='%.2f' % line.discount
+                )
+                DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
             if aliquota == 0.0:
                 if not line.invoice_line_tax_ids[0].non_taxable_nature:
                     raise UserError(
@@ -504,7 +511,6 @@ class WizardExportFatturapa(models.TransientModel):
 
             # el.remove(el.find('DataInizioPeriodo'))
             # el.remove(el.find('DataFinePeriodo'))
-            # el.remove(el.find('ScontoMaggiorazione'))
             # el.remove(el.find('Ritenuta'))
             # el.remove(el.find('AltriDatiGestionali'))
 
