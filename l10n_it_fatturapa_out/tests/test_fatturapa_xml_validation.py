@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2014 Davide Corio
+# Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import base64
 import tempfile
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 from odoo.modules.module import get_module_resource
-from datetime import datetime
 from lxml import etree
 import shutil
 import os
@@ -315,3 +314,35 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         attachment = self.attach_model.browse(res['res_id'])
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00004.xml')
+
+    def test_4_xml_export(self):
+        self.set_sequences(5, 17, '2016-06-15')
+        invoice = self.invoice_model.create({
+            'date_invoice': '2016-06-15',
+            'partner_id': self.res_partner_fatturapa_0.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'payment_term_id': self.account_payment_term.id,
+            'user_id': self.user_demo.id,
+            'type': 'out_invoice',
+            'currency_id': self.EUR.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_product_10.id,
+                    'name': 'Mouse, Optical',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 10,
+                    'discount': 10,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id
+                        })]
+                }),
+            ],
+        })
+        invoice.action_invoice_open()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        xml_content = attachment.datas.decode('base64')
+        self.check_content(xml_content, 'IT06363391001_00005.xml')
