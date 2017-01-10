@@ -209,7 +209,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_1_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2015-06-15')
+        self.checkCreateFiscalYear('2014-06-15')
         self.set_sequences(2, 14)
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
@@ -220,7 +220,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_2_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2015-06-15')
+        self.checkCreateFiscalYear('2014-06-15')
         self.set_sequences(3, 15)
         invoice_id = self.confirm_invoice('fatturapa_invoice_2', attach=True)
         res = self.run_wizard(invoice_id)
@@ -231,10 +231,20 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_3_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2015-06-15')
+        self.checkCreateFiscalYear('2014-06-15')
         self.set_sequences(4, 16)
         invoice_id = self.confirm_invoice('fatturapa_invoice_3')
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00004.xml')
+
+    def test_4_xml_export(self):
+        cr, uid = self.cr, self.uid
+        self.checkCreateFiscalYear('2014-06-15')
+        self.set_sequences(5, 17)
+        invoice_id = self.confirm_invoice('fatturapa_invoice_4')
+        res = self.run_wizard(invoice_id)
+        attachment = self.attach_model.browse(cr, uid, res['res_id'])
+        xml_content = attachment.datas.decode('base64')
+        self.check_content(xml_content, 'IT06363391001_00005.xml')
