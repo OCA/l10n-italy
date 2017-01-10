@@ -27,7 +27,7 @@ from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 from openerp.osv import orm
 from openerp.tools.translate import _
 
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType,
@@ -752,7 +752,7 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
 
-        self.fatturapa = FatturaElettronica(versione='1.1')
+        self.fatturapa = FatturaElettronica(versione='FPA12')
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
 

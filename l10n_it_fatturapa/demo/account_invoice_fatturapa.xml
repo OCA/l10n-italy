@@ -135,7 +135,7 @@
             <field name="state_id" ref="base.state_us_2"/>
             <field name="phone">06543534343</field>
             <field name="fatturapa_fiscal_position_id" ref="fatturapa_RF01"/>
-            <field name="fatturapa_format_id" ref="fatturapa_format_1_1"/>
+            <field name="fatturapa_format_id" ref="fatturapa_format_1_2"/>
             <field name="fatturapa_sequence_id" ref="seq_fatturapa"/>
             <field name="fatturapa_art73">True</field>
             <field name="vat">IT06363391001</field>
