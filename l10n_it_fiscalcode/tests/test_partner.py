@@ -162,16 +162,9 @@ class TestPartner(TransactionCase):
                   'is_company': False,
                   'is_soletrader': True,
                   'fiscalcode': u'BNZVCN32S10E573Z', }
-        # Retrieve the onchange specifications
-        specs = partner._onchange_spec()
-        # Get the result of the onchange method for is_company field:
-        updates = partner.onchange(values, ['is_company'], specs)
-        # value  is a dictionary of newly computed field values.
-        # This dictionary only features keys that are in the values parameter
-        # passed to onchange().
-        new_values = updates.get('value', {})
-        # check values computed by the onchange.
-        self.assertEqual(new_values['is_soletrader'], False)
+        partner = partner.create(values)
+        partner.onchange_iscompany()
+        self.assertEqual(partner.is_soletrader, False)
 
     def test_partner_onchange_fiscalcode(self):
         """ Test onchange method when an existing ficsalcode
@@ -180,17 +173,14 @@ class TestPartner(TransactionCase):
         """
         # Get an empty recordset
         partner = self.env['res.partner']
-        # Retrieve the onchange specifications
-        specs = partner._onchange_spec()
 
         # create first partner with normal fiscalcode for private citizen
-        parent = self.env['res.partner'].create(
+        parent = partner.create(
             {'name': u'Test-e1 Private Italian Citizen',
              'email': u"foo@gmail.com",
              'is_company': True,
              'is_soletrader': True,
              'fiscalcode': u'BNZVCN32S10E573Z', })
-#        test1=self.env['res.partner'].search([('fiscalcode','=','BNZVCN32S10E573Z')])
 
         # Prepare the values to create a child record with same fiscalcode
         values = {'name': u'OnChange Test-e2',
@@ -200,14 +190,11 @@ class TestPartner(TransactionCase):
                   'parent_id': parent.id,
                   'fiscalcode': u'BNZVCN32S10E573Z', }
 
-        # Get the result of the onchange method for fiscalcode field:
-        self.env.invalidate_all()
-        result = partner.onchange(values, ['fiscalcode'], specs)
+        partner = partner.new(values)
+        result = partner.onchange_fiscalcode()
         # warning: This is a dictionary containing a warning message
         # that the web client will display to the user
         warning = result.get('warning', {})
+        self.assertEqual(
+            result['warning']['title'], u'Partner fiscal code is not unique')
         # check onchange method produced NO warning
-
-        # final assert test removed beacause of ORM bug of test module
-        # self.assertTrue(warning)
-        self.assertTrue(warning == warning)

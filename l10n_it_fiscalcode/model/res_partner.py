@@ -66,7 +66,6 @@ class ResPartner(models.Model):
         have different fiscal code.
         A proper warning is displayed.
         """
-#        set_trace()
         self.ensure_one()
 
         if not self.fiscalcode:
@@ -76,50 +75,22 @@ class ResPartner(models.Model):
         same_fiscalcode_partners = self.env['res.partner'].search([
             ('fiscalcode', '=', self.fiscalcode),
             ('fiscalcode', '!=', False),
-            ('company_id', '=', self.company_id.id),
             ])
         if not same_fiscalcode_partners:
             # there is no partner with same fiscalcode.
             # Safe condition. return
-            return {}
-
-        if isinstance(self.id, models.NewId) and not self.parent_id:
-            # new record with no parent BUT there are other partners
-            # with same fiscal code
-            is_fc_present = True
+            result = {}
         else:
-            # new or old record with parent
-            # get first parent to start searching
-            parent = self
-            while parent.parent_id:
-                parent = parent.parent_id
-            # all partners in our family tree
-            related_partners = self.env['res.partner'].search([
-                ('id', 'child_of', parent.id),
-                ('company_id', '=', self.company_id.id),
-                ])
-            # any partner with same fiscal code OUT of our family tree ?
-            is_fc_present = self.env['res.partner'].search([
-                ('id', 'in', same_fiscalcode_partners.ids),
-                ('id', 'not in', related_partners.ids),
-                ('company_id', '=', self.company_id.id),
-                ])
-
-        if is_fc_present:
             title = _('Partner fiscal code is not unique')
             message = _('WARNING:\n'
-                        'Partner fiscal code must be unique per'
-                        ' company except for partner with'
-                        ' parent/child relationship.'
+                        'Partner fiscal code should be unique.'
                         ' Partners with same fiscal code'
-                        ' and not related, are:\n %s!') % (
+                        ' are:\n %s!') % (
                             ', '.join(x.name for x in
                                       same_fiscalcode_partners))
             result = {
                 'warning': {'title': title,
                             'message': message, }, }
-        else:
-            result = {}
         return result
 
     @api.multi
