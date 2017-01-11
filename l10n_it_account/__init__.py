@@ -22,39 +22,4 @@
 #
 ##############################################################################
 
-from . import models
 
-import logging
-from openerp import SUPERUSER_ID
-
-
-def post_init_hook(cr, registry):
-    tax_code_model = registry['account.tax.code']
-    tax_model = registry['account.tax']
-    logging.getLogger('openerp.addons.l10n_it_account').info(
-        'Setting values for account.tax.code new field: VAT statement type')
-    # only setting credit tax codes because default value is 'debit'
-    credit_tax_code_ids = tax_code_model.search(cr, SUPERUSER_ID, [
-        ('name', '=ilike', '%credit%'),
-        ])
-    tax_code_model.write(cr, SUPERUSER_ID, credit_tax_code_ids, {
-        'vat_statement_type': 'credit',
-        })
-
-    logging.getLogger('openerp.addons.l10n_it_account').info(
-        'Setting values for account.tax new field: Non-deductible')
-    unded_tax_ids = tax_model.search(cr, SUPERUSER_ID, [
-        ('name', '=ilike', '%detraibile%'),
-        ])
-    tax_model.write(cr, SUPERUSER_ID, unded_tax_ids, {
-        'nondeductible': True,
-        })
-
-    logging.getLogger('openerp.addons.l10n_it_account').info(
-        'Setting values for account.tax.code new field: Is base')
-    base_tax_code_ids = tax_code_model.search(cr, SUPERUSER_ID, [
-        ('name', '=ilike', '%imponibile%'),
-        ])
-    tax_code_model.write(cr, SUPERUSER_ID, base_tax_code_ids, {
-        'is_base': True,
-        })
