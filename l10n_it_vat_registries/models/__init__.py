@@ -21,9 +21,11 @@
 #
 #
 
-import models
-import wizard
+import account_journal
+import account_tax_registry
+import account
+import vat_registry
 #from . import vat_registry
-#from . import account
-#from . import account_tax_registry
-#from . import account_journal
+#from . 
+
+#from . 

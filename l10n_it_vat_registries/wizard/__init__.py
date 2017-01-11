@@ -21,4 +21,4 @@
 #
 #
 
-from . import print_registro_iva
+import print_registro_iva
