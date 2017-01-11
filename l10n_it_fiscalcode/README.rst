@@ -12,14 +12,40 @@ and to allow you to computation Fiscal code computation for partner
 Installation
 ============
 
-To install this module, you need to:
+To install this module, you need the following external Python Packages:
 
-Install Python Depends `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`_.
+* Python module to handle/check standardized numbers and codes  `python-stdnum`_.
+* Python library for Italian fiscal code creation - `codicefiscale`_.
+
+.. _python-stdnum: https://pypi.python.org/pypi/python-stdnum/
+.. _codicefiscale: https://pypi.python.org/pypi/codicefiscale
+
 
 Usage
 =====
 
-To use this module, you need to:
+Il modulo: 
+
+* verifica l'esattezza del codice fiscale (anche con possibili omocodie),in fase di inserimento 
+* permette la ricerca del partner con il numero di codice fiscale, dalla barra di ricerca della scheda partner
+* avvisa se eventualmente il codice fiscale è già presente nel sistema durante l'inserimento o modifica
+* aggiunge il campo "impresa individuale" per le pesone fisiche, nella maschera del partner
+* stampa il codice fiscale (se presente) nella fattura.
+
+L'inserimento del CF, nonchè la sua uguaglianza o meno tra CF e partita IVA è considerata corretta nei casi sotto indicati:
+
+* Persona:
+
+a) Sotto-caso privato cittadino (solo CF),
+b) Sotto-caso libero professionista (CF + PIVA, diversi)
+
+* Azienda:
+
+c) Sotto-caso impresa individuale (CF + PIVA, diversi)
+d) Sotto-caso impresa societaria/associazioni (CF + PIVA, uguali)
+
+Il modulo può generare anche un nuovo codice fiscale, richiedendo i dati
+anagrafici della persona a cui riferisce:
 
 #. Go to Partner and Run Wizard "Compute F.C."
 
@@ -54,6 +80,7 @@ Contributors
 * Franco Tampieri <franco.tampieri@agilebg.com>
 * Andrea Cometa <info@andreacometa.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
+* Giuliano Lotta <giuliano.lotta@gmail.com>
 
 
 Maintainer

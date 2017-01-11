@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_fiscalcode
+# 	* l10n_it_fiscalcode
 #
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
@@ -18,15 +18,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-
 "POT-Creation-Date: 2017-01-08 23:46+0000\n"
-"PO-Revision-Date: 2017-01-08 23:46+0000\n"
+"PO-Revision-Date: 2017-01-11 17:10+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_cadastre_code
@@ -126,7 +127,7 @@ msgstr "Codice Fiscale"
 #. module: l10n_it_fiscalcode
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.report_fiscalcode_invoice_document
 msgid "Fiscal Code:"
-msgstr "Fiscal Code:"
+msgstr "Codice Fiscale:"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_id
@@ -204,7 +205,6 @@ msgstr "Note"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:145
 #, python-format
 msgid "One or more fields are missing"
-
 msgstr "Uno o più campi sono vuoti."
 
 #. module: l10n_it_fiscalcode
@@ -277,9 +277,11 @@ msgstr "Il Codice Fiscale deve essere un codice numerico di lunghezza 11"
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:154
 #, python-format
-msgid "The provided fiscal code %s is different from the computed one ( %s ).\n"
+msgid ""
+"The provided fiscal code %s is different from the computed one ( %s ).\n"
 "If you want to use the computed one, please remove first the provided fiscal code"
-msgstr "Il Codice Fiscale inserito %s è differente da quello calcolato ( %s ).\n"
+msgstr ""
+"Il Codice Fiscale inserito %s è differente da quello calcolato ( %s ).\n"
 "Se volete usare il codice calcolato, siete pregati di rimuovere prima quello inserito"
 
 #. module: l10n_it_fiscalcode
@@ -290,20 +292,24 @@ msgstr "Data variazione"
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/model/res_partner.py:52
 #, python-format
-msgid "WARNING:\n"
+msgid ""
+"WARNING:\n"
 "Changing partner type from company to person will remove the \"Sole Trader\" selection in the Accounting tab.\n"
 "Fiscal code may need to be changed accordingly."
-msgstr "ATTENZIONE:\n"
+msgstr ""
+"ATTENZIONE:\n"
 "Cambiare la tipologia di partnere da azienda a persona, rimuove la selezione \"Impresa Individuale\" dalla scheda \"Contabilità\".\n"
 "Potrebbe essere necessario cambiare Il codice fiscale conformemente."
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/model/res_partner.py:110
 #, python-format
-msgid "WARNING:\n"
+msgid ""
+"WARNING:\n"
 "Partner fiscal code must be unique per company except for partner with parent/child relationship. Partners with same fiscal code and not related, are:\n"
 " %s!"
-msgstr "ATTENZIONE:\n"
+msgstr ""
+"ATTENZIONE:\n"
 "Il codice fiscale di un partner deve essere unico in ogni azienda, eccetto per partner collegati da relazioni di appartenenza. I partner con lo stesso codice fiscale e non collegati sono:\n"
 " %s!"
 
@@ -321,4 +327,3 @@ msgstr "res.city.it.code.distinct"
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_province
 msgid "res.city.it.code.province"
 msgstr "res.city.it.code.province"
-

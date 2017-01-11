@@ -2,6 +2,7 @@
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
 # Copyright 2016 Giuliano Lotta
+# Copyright 2016 Lorenzo Battistini
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
@@ -169,7 +170,6 @@ class TestPartner(TransactionCase):
     def test_partner_onchange_fiscalcode(self):
         """ Test onchange method when an existing ficsalcode
         is provided to a new partner.
-        Needed to cover >77% for codecov...  :-(
         """
         # Get an empty recordset
         partner = self.env['res.partner']
@@ -182,7 +182,7 @@ class TestPartner(TransactionCase):
              'is_soletrader': True,
              'fiscalcode': u'BNZVCN32S10E573Z', })
 
-        # Prepare the values to create a child record with same fiscalcode
+        # Prepare the values to create a partner record with same fiscalcode
         values = {'name': u'OnChange Test-e2',
                   'email': u"foo@gmail.com",
                   'is_company': False,
@@ -195,6 +195,5 @@ class TestPartner(TransactionCase):
         # warning: This is a dictionary containing a warning message
         # that the web client will display to the user
         warning = result.get('warning', {})
-        self.assertEqual(
-            result['warning']['title'], u'Partner fiscal code is not unique')
+        self.assertTrue(result['warning']['title'])
         # check onchange method produced NO warning
