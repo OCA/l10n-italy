@@ -1,34 +1,36 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright 2011-2013 Associazione OpenERP Italia
+# (<http://www.openerp-italia.org>).
+# Copyright 2014-2017 Lorenzo Battistini - Agile Business Group
+# (<http://www.agilebg.com>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields
 
 
 class AccountTax(models.Model):
     _inherit = "account.tax"
-    
+
     exclude_from_registries = fields.Boolean(
         string='Exclude from VAT registries')
-    nondeductible = fields.Boolean(
-        string='Non-deductible',
-        help="Partially or totally non-deductible.")
+    parent_tax_ids = fields.Many2many(
+        'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
+        string='Parent Taxes')
+
+    def get_balance_domain(self, state_list, type_list):
+        domain = super(AccountTax, self).get_balance_domain(
+            state_list, type_list)
+        if self.env.context.get('vat_registry_journal_ids'):
+            domain.append((
+                'move_id.journal_id', 'in',
+                self.env.context['vat_registry_journal_ids']))
+        return domain
+
+    def get_base_balance_domain(self, state_list, type_list):
+        domain = super(AccountTax, self).get_base_balance_domain(
+            state_list, type_list)
+        if self.env.context.get('vat_registry_journal_ids'):
+            domain.append((
+                'move_id.journal_id', 'in',
+                self.env.context['vat_registry_journal_ids']))
+        return domain

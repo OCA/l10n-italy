@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <form string="Tax Journal">
                     <group>
+                        <field name="date_range_id"/>
                         <group>
                             <field name="from_date"/>
                         </group>
@@ -17,7 +18,7 @@
                         </group>
                         <separator string="Journals" colspan="2"/>
                         <field name="tax_registry_id"></field>
-                        <field name="journal_ids" colspan="2" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase','sale_refund','purchase_refund'))]"/>
+                        <field name="journal_ids" colspan="2" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase'))]"/>
                         <separator string="Layout" colspan="2"/>
                         <field name="type"/>
                         <field name="only_totals" />

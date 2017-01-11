@@ -1,25 +1,9 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014-2015 Agile Business Group
-#    (<http://www.agilebg.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright 2011 Associazione OpenERP Italia
+# (<http://www.openerp-italia.org>).
+# Copyright 2014-2017 Lorenzo Battistini - Agile Business Group
+# (<http://www.agilebg.com>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
@@ -28,6 +12,8 @@ from odoo.exceptions import Warning as UserError
 class WizardRegistroIva(models.TransientModel):
     _name = "wizard.registro.iva"
 
+    # TODO date_range
+    date_range_id = fields.Many2one('date.range', string="Date range")
     from_date = fields.Date('From date', required=True)
     to_date = fields.Date('To date', required=True)
     type = fields.Selection([
@@ -53,29 +39,23 @@ class WizardRegistroIva(models.TransientModel):
     @api.onchange('tax_registry_id')
     def on_change_vat_registry(self):
         self.journal_ids = self.tax_registry_id.journal_ids
-    
-    def _build_contexts(self, data):
-        result = {}
-        result['journal_ids'] = 'journal_ids' in data['form'] and data['form']['journal_ids'] or False
-        result['state'] = 'target_move' in data['form'] and data['form']['target_move'] or ''
-        result['from_date'] = data['form']['from_date'] or False
-        result['to_date'] = data['form']['to_date'] or False
-        result['registry_type'] = data['form']['type'] or False
-        result['fiscal_page_base'] = data['form']['fiscal_page_base'] or False
-        #result['only_totals'] = data['only_totals'] or False
-        return result
-    
-    def print_registro(self, data):
+
+    @api.onchange('date_range_id')
+    def on_change_date_range_id(self):
+        if self.date_range_id:
+            self.from_date = self.date_range_id.date_start
+            self.to_date = self.date_range_id.date_end
+
+    def print_registro(self):
         wizard = self
         move_ids = self.env['account.move'].search([
             ('date', '>=', self.from_date),
-            ('date', '<=', self.to_date),                               
+            ('date', '<=', self.to_date),
             ('journal_id', 'in', [j.id for j in self.journal_ids]),
             ('state', '=', 'posted'),
             ], order='date, name')
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
-        datas = {}
         datas_form = {}
         datas_form['from_date'] = wizard.from_date
         datas_form['to_date'] = wizard.to_date
@@ -96,11 +76,4 @@ class WizardRegistroIva(models.TransientModel):
             'model': 'account.move',
             'form': datas_form
         }
-        print datas
         return self.env['report'].get_action([], report_name, data=datas)
-    
-
-        
-
-
- 
