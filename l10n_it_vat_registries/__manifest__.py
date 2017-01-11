@@ -22,6 +22,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
+
 {
     'name': 'Italian Localization - VAT Registries',
     'version': '8.0.2.0.0',
@@ -31,18 +32,20 @@
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
+        'base_setup',
         'account',
-        'l10n_it_account'
+        'l10n_it_account',
+        'report'
         ],
     "data": [
-        'reports.xml',
-        'wizard/print_registro_iva.xml',
-        'account_view.xml',
-        'views/report_registro_iva.xml',
         'security/ir.model.access.csv',
         'security/vat_registry_security.xml',
-        'account_journal_view.xml',
-        'account_tax_registry_view.xml',
+        'views/account_journal_view.xml',
+        'views/account_tax_registry_view.xml',
+        'views/account_view.xml',
+        'wizard/print_registro_iva.xml',
+        'report/reports.xml',
+        'report/report_registro_iva.xml'
     ],
-    'installable': False,
+    'installable': True,
 }

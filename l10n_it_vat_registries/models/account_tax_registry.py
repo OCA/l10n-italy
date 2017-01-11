@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014-2015 Agile Business Group
+#    Copyright (C) 2015 Agile Business Group
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,9 +18,20 @@
 #
 #
 
-import models
-import wizard
-#from . import vat_registry
-#from . import account
-#from . import account_tax_registry
-#from . import account_journal
+from odoo import fields, models
+
+
+class AccountTaxRegistry(models.Model):
+    _name = 'account.tax.registry'
+    name = fields.Char('Name', required=True)
+    company_id = fields.Many2one(
+        'res.company', 'Company', required=True,
+        default=lambda self: self.env['res.company']._company_default_get(
+            'account.tax.registry'))
+    journal_ids = fields.One2many(
+        'account.journal', 'tax_registry_id', 'Journals', readonly=True)
+    type = fields.Selection([
+        ('customer', 'Customer Invoices'),
+        ('supplier', 'Supplier Invoices'),
+        ('corrispettivi', 'Corrispettivi'),
+        ], 'Layout', required=True)
