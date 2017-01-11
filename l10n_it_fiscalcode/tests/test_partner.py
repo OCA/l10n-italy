@@ -194,6 +194,5 @@ class TestPartner(TransactionCase):
         result = partner.onchange_fiscalcode()
         # warning: This is a dictionary containing a warning message
         # that the web client will display to the user
-        warning = result.get('warning', {})
         self.assertTrue(result['warning']['title'])
         # check onchange method produced NO warning
