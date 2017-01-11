@@ -45,23 +45,15 @@
 
           <div class="header">
               <div class="row">
-                  <div class="col-xs-4 company-info">
-                      <h3 class="name"><span t-esc="company.name" /></h3>
-                      <span class="address">
-                        <span class="street" t-esc="company.street" /><br/>
-                        <span class="zip" t-esc="company.zip" /> -
-                        <span class="city" t-esc="company.city" /> -
-                        <span class="state" t-esc="company.state_id.code" /><br/>
-                      </span>
-                      <span class="vat text-right" t-if="company.partner_id.vat">
-                        <span>Vat:</span> <span t-esc="company.partner_id.vat" />
-                      </span><br/>
-                      <span class="fiscalcode text-right" t-if="company.partner_id.fiscalcode">
-                        <span>Fiscalcode:</span> <span t-esc="company.partner_id.fiscalcode" />
-                      </span>
+                  <div class="col-xs-4  ">
+                      <h3><span t-esc="company.name"/></h3>
+                      <span t-esc="company.street" class=""/><br/>
+                      <span t-esc="company.zip" class=""/> - <span t-esc="company.city" class=""/> - <span t-esc="company.state_id.code" class=""/><br/>
+                      <span class="text-right">Vat:</span><span t-esc="company.partner_id.vat" class=""/><br/>
+                      <!-- span class="text-right">Fiscalcode:</span><span t-esc="company.partner_id.fiscalcode" class=""/ -->
                   </div>
-                  <div class="col-xs-4 col-xs-offset-4 text-right doc-info">
-                      <h3 class="doc-title" t-esc="title"/>
+                  <div class="col-xs-4 col-xs-offset-4 text-right">
+                      <h3 t-esc="title"/>
                   </div>
               </div>
           </div>
