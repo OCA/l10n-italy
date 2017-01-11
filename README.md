@@ -35,6 +35,7 @@ addon | version | summary
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
+[l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 
 Unported addons
 ---------------
@@ -56,7 +57,6 @@ addon | version | summary
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 (unported) | Ricevute Bancarie
-[l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 (unported) | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 (unported) | Italian Localization - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 (unported) | Italian Localisation - Withholding tax
 
