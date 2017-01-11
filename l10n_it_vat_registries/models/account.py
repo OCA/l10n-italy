@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
+#    Copyright (C) 2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014-2015 Agile Business Group
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2014 Agile Business Group sagl
+#    (<http://www.agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,9 +21,14 @@
 #
 #
 
-import models
-import wizard
-#from . import vat_registry
-#from . import account
-#from . import account_tax_registry
-#from . import account_journal
+from odoo import models, fields
+
+
+class AccountTax(models.Model):
+    _inherit = "account.tax"
+    
+    exclude_from_registries = fields.Boolean(
+        string='Exclude from VAT registries')
+    nondeductible = fields.Boolean(
+        string='Non-deductible',
+        help="Partially or totally non-deductible.")
