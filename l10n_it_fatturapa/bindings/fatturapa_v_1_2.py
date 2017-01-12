@@ -6,17 +6,22 @@
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 
 from __future__ import unicode_literals
-import pyxb
-import pyxb.binding
-import pyxb.binding.saxer
 import io
-import pyxb.utils.utility
-import pyxb.utils.domutils
 import sys
-import pyxb.utils.six as _six
-# Import bindings for namespaces imported into schema
-import _ds as _ImportedBinding__ds
-import pyxb.binding.datatypes
+from . import _ds as _ImportedBinding__ds
+import logging
+_logger = logging.getLogger(__name__)
+try:
+    import pyxb
+    import pyxb.binding
+    import pyxb.binding.saxer
+    import pyxb.utils.utility
+    import pyxb.utils.domutils
+    import pyxb.utils.six as _six
+    # Import bindings for namespaces imported into schema
+    import pyxb.binding.datatypes
+except ImportError as err:
+    _logger.debug(err)
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(

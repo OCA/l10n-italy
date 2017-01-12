@@ -20,13 +20,8 @@
 ##############################################################################
 
 import base64
-from unidecode import unidecode
-
-from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
-
 from openerp.osv import orm
 from openerp.tools.translate import _
-
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
@@ -55,6 +50,14 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
 )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
+import logging
+_logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+    from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
+except ImportError as err:
+    _logger.debug(err)
 
 
 class WizardExportFatturapa(orm.TransientModel):
