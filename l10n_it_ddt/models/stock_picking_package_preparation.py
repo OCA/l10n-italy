@@ -104,6 +104,15 @@ class StockPickingPackagePreparation(models.Model):
                 self.partner_id.transportation_method_id.id \
                 if self.partner_id.transportation_method_id else False
 
+    @api.model
+    def check_linked_picking(self, picking):
+        ddt = self.search([('picking_ids', '=', picking.id)])
+        if ddt:
+            raise UserError(
+                _("Selected Picking is already linked to DDT: %s")
+                % ddt.display_name
+            )
+
     @api.multi
     def action_put_in_pack(self):
         for package in self:
@@ -140,13 +149,11 @@ class StockPickingPackagePreparation(models.Model):
             if prep.name:
                 name = prep.name
             if prep.ddt_number and prep.name:
-                name = u'[{package}] {ddt}'.format(
-                    package=prep.name, ddt=prep.ddt_number)
+                name = u'[%s] %s' % (prep.name, prep.ddt_number)
             if prep.ddt_number and not prep.name:
                 name = prep.ddt_number
             if not name:
-                name = u'{partner} of {date}'.format(
-                    partner=prep.partner_id.name, date=prep.date)
+                name = u'%s - %s' % (prep.partner_id.name, prep.date)
             prep.display_name = name
 
     @api.multi
