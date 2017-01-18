@@ -75,6 +75,10 @@
             <notebook position="after">
                 <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
             </notebook>
+            <!--Hide Operations page-->
+            <xpath expr="//notebook/page[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 
