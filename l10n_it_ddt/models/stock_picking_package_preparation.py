@@ -145,8 +145,7 @@ class StockPickingPackagePreparation(models.Model):
             if prep.ddt_number and not prep.name:
                 name = prep.ddt_number
             if not name:
-                name = u'{partner} of {date}'.format(
-                    partner=prep.partner_id.name, date=prep.date)
+                name = u'%s of %s' % (prep.partner_id.name, prep.date)
             prep.display_name = name
 
     @api.multi
