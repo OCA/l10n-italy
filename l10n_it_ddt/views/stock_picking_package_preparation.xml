@@ -75,12 +75,25 @@
             <notebook position="after">
                 <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
             </notebook>
-            <!--Hide Operations page-->
+            <!-- Hide Operations page -->
             <xpath expr="//notebook/page[2]" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
         </field>
     </record>
+
+    <!-- Only show original menuitem to admin user as a work around to fix translation issue -->
+    <menuitem
+        id="stock_picking_package_preparation.menu_stock_picking_package_preparation"
+        parent="stock.menu_stock_warehouse_mgmt"
+        groups="base.group_erp_manager"/>
+    <!-- Create a new menuitem DDT calling the same action of the original menuitem -->
+    <menuitem
+      action="stock_picking_package_preparation.action_stock_picking_package_preparation"
+      id="menu_ddt_preparation"
+      parent="stock.menu_stock_warehouse_mgmt"
+      name="DDT"
+      sequence="3"/>
 
     <!-- DdT Data -->
 
