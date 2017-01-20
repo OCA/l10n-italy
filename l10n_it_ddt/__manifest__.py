@@ -29,6 +29,7 @@
         'security/ir.model.access.csv',
         'data/ddt_data.xml',
         'views/stock_picking_package_preparation.xml',
+        'views/stock_picking.xml',
         'views/partner.xml',
         'views/account.xml',
         'views/sale.xml',
