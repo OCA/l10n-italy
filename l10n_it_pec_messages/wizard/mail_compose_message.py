@@ -15,7 +15,7 @@ from openerp.osv import osv, fields
 from openerp.tools.translate import _
 
 
-class mail_compose_message(osv.TransientModel):
+class MailComposeMessage(osv.TransientModel):
     _inherit = 'mail.compose.message'
 
     def _get_def_server(self, cr, uid, context=None):
@@ -47,7 +47,7 @@ class mail_compose_message(osv.TransientModel):
                         raise osv.except_osv(
                             _('Error'),
                             _('No PEC mail for partner %s') % partner.name)
-        return super(mail_compose_message, self).send_mail(
+        return super(MailComposeMessage, self).send_mail(
             cr, uid, ids, context=context)
 
     def get_message_data(self, cr, uid, message_id, context=None):
@@ -56,7 +56,7 @@ class mail_compose_message(osv.TransientModel):
         if context is None:
             context = {}
         if context.get('reply_pec'):
-            result = super(mail_compose_message, self).get_message_data(
+            result = super(MailComposeMessage, self).get_message_data(
                 cr, uid, message_id, context=context)
             # get partner_ids from action context
             partner_ids = context.get('default_partner_ids', [])
@@ -66,17 +66,17 @@ class mail_compose_message(osv.TransientModel):
             })
             return result
         else:
-            return super(mail_compose_message, self).get_message_data(
+            return super(MailComposeMessage, self).get_message_data(
                 cr, uid, message_id, context=context)
 
     def get_record_data(self, cr, uid, values, context=None):
-        """ Returns a defaults-like dict with initial values for the composition
-        wizard when sending an email related a previous email (parent_id) or
-        a document (model, res_id). This is based on previously computed default
-        values. """
+        """ Returns a defaults-like dict with initial values for the
+        composition wizard when sending an email related a previous email
+        (parent_id) or a document (model, res_id).
+        This is based on previously computed default values. """
         if context is None:
             context = {}
-        result = super(mail_compose_message, self).get_record_data(
+        result = super(MailComposeMessage, self).get_record_data(
             cr, uid, values, context=context)
         if 'reply_pec' in context and context['reply_pec']:
             if 'parent_id' in values:

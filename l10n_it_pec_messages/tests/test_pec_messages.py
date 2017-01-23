@@ -104,7 +104,12 @@ class TestPecMessages(test_common.SingleTransactionCase):
             'message_id': msg_ids[0],
             }
         wizard_id = self.compose_msg_model.create(
-            cr, uid, {'body': u'<p>replying to message2</p>', 'server_id': imap_server_id}, context=context)
+            cr, uid,
+            {
+                'body': u'<p>replying to message2</p>',
+                'server_id': imap_server_id
+            },
+            context=context)
         self.compose_msg_model.send_mail(cr, uid, [wizard_id], context=context)
         sent_msg_ids = self.message_model.search(
             cr, uid, [('parent_id', '=', msg_ids[0])])

@@ -96,9 +96,11 @@ class MailMail(orm.Model):
                             (partner.name, partner.pec_mail))
                     self.write(
                         cr, uid, mail.id,
-                        {'email_to': address_lst,
-                         'recipient_ids': [
-                            (3, pid) for pid in recipient_ids]
+                        {
+                            'email_to': address_lst,
+                            'recipient_ids': [
+                                (3, pid) for pid in recipient_ids
+                            ]
                          },
                         context=context
                     )

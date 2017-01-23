@@ -24,24 +24,11 @@
 
 {
     "name": "Pec Messages",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "category": "Certified Mailing",
     "website": "http://www.agilebg.com",
     "license": "AGPL-3",
-    "description": """
-Pec Messages Management
------------------------
-
-Read README.rst file for more details
-
-Contributors
-------------
-
- - Alessio Gerace <alessio.gerace@gmail.com>
- - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
- - Roberto Onnis <roberto.onnis@innoviu.com>
-""",
     'depends': [
         'fetchmail', 'mail', 'l10n_it_pec',
     ],
@@ -57,6 +44,5 @@ Contributors
     'demo': [
         'demo/pec_data.xml',
         ],
-    'installable': True,
-    'active': False,
+    'installable': True
 }

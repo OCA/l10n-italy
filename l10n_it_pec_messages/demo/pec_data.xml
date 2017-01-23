@@ -17,7 +17,6 @@
             <field name="in_server_id" ref="imap_pec_server"></field>
         </record>
 
-		<!-- This is required for version 8.0 -->
         <record model="mail.alias" id="pec_user_alias">
             <field name="alias_name">l.battistini</field>
             <field name="alias_contact">partners</field>

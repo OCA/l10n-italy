@@ -26,9 +26,11 @@ Configuration
 =============
 
 Create a New Alias from Settings/Technical/Email/Aliases menu
+
 * Name of the alias = The username of the PEC mail,
 * Alias Contact Security = Authenticated Partners,
 * Aliased Model =	Users
+
 Set 'Never' for 'Receive Messages by Email'.
 Configure the fetchmail server (incoming mail server, IMAP or POP)
 used to fetch PEC messages and set it as 'PEC'.

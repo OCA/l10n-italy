@@ -11,10 +11,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields
 
 
-class ir_mail_server(models.Model):
+class IrMailServer(models.Model):
 
     _inherit = "ir.mail_server"
 
