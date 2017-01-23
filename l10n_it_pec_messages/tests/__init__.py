@@ -8,5 +8,3 @@
 ##############################################################################
 
 from . import test_pec_messages
-
-#checks = [test_pec_messages]
