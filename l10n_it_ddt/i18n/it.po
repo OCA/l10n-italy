@@ -1,23 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_ddt
-# 
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# Paolo Valier <paolo.valier@hotmail.it>, 2016
+# 	* l10n_it_ddt
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 03:39+0000\n"
-"PO-Revision-Date: 2016-11-11 03:39+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2016\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"POT-Creation-Date: 2017-01-23 09:31+0000\n"
+"PO-Revision-Date: 2017-01-23 10:33+0100\n"
+"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -28,11 +26,6 @@ msgstr "<strong>Descrizione</strong>"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Quantity</strong>"
 msgstr "<strong>Quantità</strong>"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction
-msgid "Action Needed"
-msgstr "Azione Necessaria"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
@@ -125,6 +118,8 @@ msgstr "Creato il"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.report.xml,name:l10n_it_ddt.action_report_ddt
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_preparation
+#: model:ir.ui.view,arch_db:l10n_it_ddt.stock_picking_tree_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 msgid "DDT"
 msgstr "DDT"
@@ -144,11 +139,6 @@ msgstr "Numero DDT:"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Date"
 msgstr "Data"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_last_post
-msgid "Date of the last message posted on the record."
-msgstr "Date of the last message posted on the record."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_ddt_ids
@@ -207,27 +197,12 @@ msgstr "Destinatario"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome Visualizzato"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Driver's Signature"
 msgstr "Firma Conducente"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_follower_ids
-msgid "Followers"
-msgstr "Followers"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Followers (Canali)"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_partner_ids
-msgid "Followers (Partners)"
-msgstr "Followers (Partners)"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -251,16 +226,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread
-msgid "If checked new messages require your attention."
-msgstr "If checked new messages require your attention."
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction
-msgid "If checked, new messages require your attention."
-msgstr "Se selezionato, i nuovi messaggi richiedono la tua attenzione."
-
-#. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:113
 #, python-format
 msgid "Impossible to put in pack a package without details"
@@ -270,16 +235,6 @@ msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_is_follower
-msgid "Is Follower"
-msgstr "È un follower"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_last_post
-msgid "Last Message Date"
-msgstr "Last Message Date"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
@@ -301,7 +256,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_uid
 msgid "Last Updated by"
-msgstr "Autore ultimo aggiornamento"
+msgstr "Ultima modifica di"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_date
@@ -312,12 +267,7 @@ msgstr "Autore ultimo aggiornamento"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_date
 msgid "Last Updated on"
-msgstr "Data ultimo aggiornamento"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_ids
-msgid "Messages"
-msgstr "Messages"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_transportation_method
@@ -340,7 +290,7 @@ msgstr "Trasporto a mezzo"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_name
 msgid "Name"
-msgstr "Name"
+msgstr "Nome"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
@@ -361,21 +311,6 @@ msgstr "Nota"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Notes"
 msgstr "Note"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
-msgid "Number of Actions"
-msgstr "Numero di Azioni"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Numero di messaggi che richiedono un'azione"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
-msgid "Number of unread messages"
-msgstr "Numero di messaggi non letti"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
@@ -403,10 +338,10 @@ msgstr "Ora ritiro"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Picking"
-msgstr "Ordine di consegna"
+msgstr "Picking"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:32
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:40
 #, python-format
 msgid "Picking %s already in ddt"
 msgstr "Ordine di consegna %s già nel ddt"
@@ -419,7 +354,7 @@ msgstr "ID Picking"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "Pickings"
-msgstr "Ordini di consegna"
+msgstr "Picking"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_name
@@ -469,31 +404,35 @@ msgid "Search DDT"
 msgstr "Cerca DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:37
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:45
 #, python-format
 msgid "Selected Picking %s have different Partner"
 msgstr "I Picking selezionati %s hanno un Partner differente"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:43
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:51
 #, python-format
 msgid "Selected Picking %s have different carriage condition"
 msgstr "I Picking selezionati %s hanno condizioni di trasporto differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:48
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
 #, python-format
 msgid "Selected Picking %s have different goods description"
-msgstr ""
-"I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore"
-" dei beni"
+msgstr "I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:53
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:58
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:61
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:66
 #, python-format
 msgid "Selected Picking %s have different transportation reason"
 msgstr "I Picking selezionati %s hanno Causali di trasporto differenti"
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:33
+#, python-format
+msgid "Selected Picking is already linked to DDT: %s"
+msgstr "Il Picking selezionato è già collegato al DDT: %s"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
@@ -511,9 +450,7 @@ msgstr "I Picking selezionati hanno il Reso Merce differente"
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:77
 #, python-format
 msgid "Selected Pickings have different goods description"
-msgstr ""
-"I Picking selezionati hanno una differente Descrizione dell'aspetto "
-"esteriore dei beni"
+msgstr "I Picking selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:54
@@ -569,7 +506,7 @@ msgstr "Stock DdT Type"
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Transfer"
-msgstr "Trasferisci"
+msgstr "Trasferimento"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -582,17 +519,7 @@ msgstr "Causale del trasporto"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_type_form
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_type_tree
 msgid "Type"
-msgstr "Type"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_unread
-msgid "Unread Messages"
-msgstr "Unread Messages"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contatore Messaggi non letti"
+msgstr "Tipo"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -623,4 +550,4 @@ msgstr "ddt.from.pickings"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 msgid "or"
-msgstr "or"
+msgstr "o"
