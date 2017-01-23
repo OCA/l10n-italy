@@ -33,28 +33,7 @@
 Pec Messages Management
 -----------------------
 
-This module allows to correctly parse PEC messages.
-According to 'daticert.xml' file, it identifies the message type and other
-message data.
-'consegna', 'accettazione' and the other notification messages are linked to
-the original message that originated them.
-It also correctly parses the mail attachments and attaches the original 'eml'
-PEC message.
-The module adds a 'PEC' menu where to handle PEC messages.
-
-
-Configuration
--------------
-
-Create a new user associated to the PEC mailbox.
-Set 'Never' for 'Receive Messages by Email'.
-Configure the fetchmail server (incoming mail server, IMAP or POP)
-used to fetch PEC messages and set it as 'PEC'.
-Set the users allowed to use that server.
-Configure the 'outgoing mail server' (SMTP) used for PEC and set it as 'PEC'.
-Link the outgoing mail server to the 'incoming PEC server'.
-Add your user to 'PEC reader' group.
-
+Read README.rst file for more details
 
 Contributors
 ------------
