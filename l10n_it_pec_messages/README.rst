@@ -25,8 +25,12 @@ Nothing special is needed to install this module.
 Configuration
 =============
 
-Create a New Aliases from Settings/Technical/Email/Aliases menu
-(the name of the alias has to be the username of the PEC mail)
+Create a New Alias from Settings/Technical/Email/Aliases menu
+(
+    Name of the alias = The username of the PEC mail,
+    Alias Contact Security = Authenticated Partners,
+    Aliased Model =	Users
+)
 Set 'Never' for 'Receive Messages by Email'.
 Configure the fetchmail server (incoming mail server, IMAP or POP)
 used to fetch PEC messages and set it as 'PEC'.
