@@ -99,9 +99,8 @@ class MailMail(orm.Model):
                         {
                             'email_to': address_lst,
                             'recipient_ids': [
-                                (3, pid) for pid in recipient_ids
-                            ]
-                         },
+                                (3, pid) for pid in recipient_ids]
+                        },
                         context=context
                     )
         return super(MailMail, self).send(
