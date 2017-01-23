@@ -7,7 +7,7 @@ from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
 
 
-class ReportRegistroIvaVendite(models.AbstractModel):
+class ReportRegistroIva(models.AbstractModel):
     _name = 'report.l10n_it_vat_registries.report_registro_iva'
 
     @api.model

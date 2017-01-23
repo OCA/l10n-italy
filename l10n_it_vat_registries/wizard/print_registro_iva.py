@@ -12,7 +12,6 @@ from odoo.exceptions import Warning as UserError
 class WizardRegistroIva(models.TransientModel):
     _name = "wizard.registro.iva"
 
-    # TODO date_range
     date_range_id = fields.Many2one('date.range', string="Date range")
     from_date = fields.Date('From date', required=True)
     to_date = fields.Date('To date', required=True)
