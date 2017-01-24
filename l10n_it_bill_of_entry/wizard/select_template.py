@@ -20,18 +20,21 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
+from openerp.osv import orm
 
 
 class wizard_select_invoice_template(orm.TransientModel):
     _inherit = "wizard.select.invoice.template"
 
     def load_template(self, cr, uid, ids, context=None):
-        res = super(wizard_select_invoice_template, self).load_template(cr, uid, ids, context=context)
+        res = super(wizard_select_invoice_template,
+                    self).load_template(cr, uid, ids, context=context)
         if context.get('active_model') == 'account.invoice':
-            invoice = self.pool.get('account.invoice').browse(cr, uid,
-                context.get('active_id'), context=context)
+            invoice = self.pool.get(
+                'account.invoice').browse(cr,
+                                          uid,
+                                          context.get('active_id'),
+                                          context=context)
             if invoice and invoice.customs_doc_type == 'forwarder_invoice':
                 invoice_id = res['res_id']
                 invoice_obj = self.pool.get('account.invoice')

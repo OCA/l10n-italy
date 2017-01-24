@@ -23,7 +23,8 @@
     'version': '8.0.0.1.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
-    'author': 'Davide Corio, Agile Business Group, Innoviu',
+    'author': 'Davide Corio, Agile Business Group, Innoviu, '
+              'Odoo Community Association (OCA)',
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": [
@@ -46,7 +47,7 @@
     ],
     "test": [],
     "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": True,
+    "installable": False,
     'external_dependencies': {
         'python': ['pyxb'],
     }
