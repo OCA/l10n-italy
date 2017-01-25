@@ -12,6 +12,9 @@
                 <field name="ddt_number"/>
                 <field name="partner_id"/>
                 <field name="partner_shipping_id"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_partner" string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
+                </group>
             </search>
         </field>
     </record>
