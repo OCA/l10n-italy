@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-25 00:48+0000\n"
-"PO-Revision-Date: 2016-10-23 15:52+0000\n"
-"Last-Translator: Paolo Valier\n"
+"POT-Creation-Date: 2017-01-24 15:14+0000\n"
+"PO-Revision-Date: 2017-01-24 15:15+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -267,6 +267,11 @@ msgid "Gross Weight"
 msgstr "Peso Lordo"
 
 #. module: l10n_it_ddt
+#: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "Group By"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: help:stock.ddt.type,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
@@ -461,6 +466,7 @@ msgstr "Colli"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
+#: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Partner"
 msgstr "Partner"
 

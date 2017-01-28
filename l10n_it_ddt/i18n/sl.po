@@ -3,13 +3,13 @@
 # * l10n_it_ddt
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-25 00:48+0000\n"
-"PO-Revision-Date: 2016-10-21 06:29+0000\n"
+"POT-Creation-Date: 2017-01-24 15:14+0000\n"
+"PO-Revision-Date: 2017-01-25 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -262,6 +262,11 @@ msgid "Gross Weight"
 msgstr "Bruto masa"
 
 #. module: l10n_it_ddt
+#: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "Group By"
+msgstr "Združi po"
+
+#. module: l10n_it_ddt
 #: help:stock.ddt.type,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
@@ -456,6 +461,7 @@ msgstr "Pošiljke"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
+#: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Partner"
 msgstr "Partner"
 
