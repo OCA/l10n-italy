@@ -41,7 +41,7 @@
         <field name="arch" type="xml">
             <button name="action_draft" position="after">
                 <button name="create_invoice" type="object" string="Create Invoice"
-                        attrs="{'invisible':['|', ('state', '!=', 'done'), ('ddt_type_id', '=', False)]}"/>
+                        attrs="{'invisible':['|', '|', ('state', '!=', 'done'), ('ddt_type_id', '=', False), ('invoice_id', '!=', False)]}"/>
                 <button name="set_done" type="object" string="Set done"
                         attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
             </button>
