@@ -94,6 +94,7 @@ Contributors
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
+* Andrea Cometa <a.cometa@apuliasoftware.it>
 
 Maintainer
 ----------

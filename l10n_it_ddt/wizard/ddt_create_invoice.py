@@ -69,39 +69,55 @@ class DdTCreateInvoice(models.TransientModel):
         ddt_model = self.env['stock.picking.package.preparation']
         picking_pool = self.pool['stock.picking']
 
-        ddts = ddt_model.browse(self.env.context['active_ids'])
-        partners = set([ddt.partner_invoice_id for ddt in ddts])
-        if len(partners) > 1:
-            raise UserError(_("Selected DDTs belong to different partners"))
-        pickings = []
+        ddt_ids = ddt_model.search(
+            [('id', 'in', self.env.context['active_ids'])],
+            order='partner_invoice_id')
+        ddts = ddt_model.browse([ddt.id for ddt in ddt_ids])
+        #partners = set([ddt.partner_invoice_id for ddt in ddts])
+        #print partners
+        #import pdb;pdb.set_trace()
+        #if len(partners) > 1:
+        #    raise UserError(_("Selected DDTs belong to different partners"))
+        ddt_partner = {}  # {partner: [{ddt: pickings}]}
+        #pickings = []
         self.check_ddt_data(ddts)
         for ddt in ddts:
             for picking in ddt.picking_ids:
-                pickings.append(picking.id)
+                if ddt.partner_invoice_id.id in ddt_partner:
+                    if ddt in ddt_partner[ddt.partner_invoice_id.id]:
+                        ddt_partner[ddt.partner_invoice_id.id][ddt].append(
+                            picking.id)
+                    else:
+                        ddt_partner[ddt.partner_invoice_id.id] = {
+                            ddt: [picking.id]}
+                else:
+                    ddt_partner[ddt.partner_invoice_id.id] = {ddt: [picking.id]}
                 for move in picking.move_lines:
                     if move.invoice_state != "2binvoiced":
                         raise UserError(
-                            _("Move %s is not invoiceable") % move.name)
-        # ----- Force to use partner invoice from ddt as invoice partner
-        ctx = self.env.context.copy()
-        ctx['ddt_partner_id'] = ddts[0].partner_invoice_id.id
-        ctx['inv_type'] = 'out_invoice'
-        invoices = picking_pool.action_invoice_create(
-            self.env.cr,
-            self.env.uid,
-            pickings,
-            self.journal_id.id, group=True,
-            context=ctx)
-        invoice_obj = self.env['account.invoice'].browse(invoices)
-        invoice_obj.write({
-            'carriage_condition_id': ddts[0].carriage_condition_id.id,
-            'goods_description_id': ddts[0].goods_description_id.id,
-            'transportation_reason_id': ddts[0].transportation_reason_id.id,
-            'transportation_method_id': ddts[0].transportation_method_id.id,
-            'parcels': ddts[0].parcels,
-        })
-        for ddt in ddts:
-            ddt.invoice_id = invoices[0]
+                            _("Move {move} is not invoiceable ({ddt})".format(
+                                move=move.name, ddt=ddt.ddt_number)))
+        for ddt_key in ddt_partner.keys():
+            # ----- Force to use partner invoice from ddt as invoice partner
+            ctx = self.env.context.copy()
+            ctx['ddt_partner_id'] = ddt_key  # ddts[0].partner_invoice_id.id
+            ctx['inv_type'] = 'out_invoice'
+            invoices = picking_pool.action_invoice_create(
+                self.env.cr,
+                self.env.uid,
+                [p for p in ddt_partner[ddt_key].values()][0],  # pickings,
+                self.journal_id.id, group=True,
+                context=ctx)
+            invoice_obj = self.env['account.invoice'].browse(invoices)
+            invoice_obj.write({
+                'carriage_condition_id': ddt_partner[ddt_key].keys()[0].carriage_condition_id.id,
+                'goods_description_id': ddt_partner[ddt_key].keys()[0].goods_description_id.id,
+                'transportation_reason_id': ddt_partner[ddt_key].keys()[0].transportation_reason_id.id,
+                'transportation_method_id': ddt_partner[ddt_key].keys()[0].transportation_method_id.id,
+                'parcels': ddt_partner[ddt_key].keys()[0].parcels,
+            })
+            for ddt in ddt_partner[ddt_key].keys():
+                ddt.invoice_id = invoices[0]
         # ----- Show invoice
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference('account',
