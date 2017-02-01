@@ -367,7 +367,7 @@ msgstr "Metodo di trasporto"
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Method of Transportation / Carrier"
-msgstr "Metodo di trasporto / Corriere"
+msgstr "Metodo di Trasporto / Vettore"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_transportation_method_tree
