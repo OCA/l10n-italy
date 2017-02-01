@@ -304,6 +304,12 @@ msgid "Default Service for RiBa Due Cost (collection fees) on invoice"
 msgstr "Servizio di default per costi RiBa (spese di incasso) su fattura"
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:153
+#, python-format
+msgid "Date accreditation must be greater or equal to date acceptance"
+msgstr "La data di accredito deve essere maggiore o uguale alla data di accettazione"
+
+#. module: l10n_it_ricevute_bancarie
 #: field:riba.configuration,name:0
 msgid "Description"
 msgstr "Descrizione"

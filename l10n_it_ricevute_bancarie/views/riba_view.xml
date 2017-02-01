@@ -136,8 +136,8 @@
                             <group>
                                 <field name="user_id" />
                                 <field name="date_created" />
-                                <field name="date_accepted" />
-                                <field name="date_accreditation" />
+                                <field name="date_accepted" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="date_accreditation" attrs="{'readonly':[('state','!=','draft'), ('state','!=','accepted')]}"/>
                                 <field name="date_paid" />
                             </group>
                         </page>
