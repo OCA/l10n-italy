@@ -69,10 +69,9 @@ class DdTCreateInvoice(models.TransientModel):
         ddt_model = self.env['stock.picking.package.preparation']
         picking_pool = self.pool['stock.picking']
 
-        ddt_ids = ddt_model.search(
+        ddts = ddt_model.search(
             [('id', 'in', self.env.context['active_ids'])],
             order='partner_invoice_id')
-        ddts = ddt_model.browse([ddt.id for ddt in ddt_ids])
         ddt_partner = {}
         self.check_ddt_data(ddts)
         for ddt in ddts:
@@ -81,17 +80,6 @@ class DdTCreateInvoice(models.TransientModel):
             else:
                 ddt_partner[ddt.partner_invoice_id.id] = [ddt]
             for picking in ddt.picking_ids:
-                """
-                if ddt.partner_invoice_id.id in ddt_partner:
-                    if ddt in ddt_partner[ddt.partner_invoice_id.id]:
-                        ddt_partner[ddt.partner_invoice_id.id][ddt].append(
-                            picking.id)
-                    else:
-                        ddt_partner[ddt.partner_invoice_id.id] = {
-                            ddt: [picking.id]}
-                else:
-                    ddt_partner[ddt.partner_invoice_id.id] = {ddt: [picking.id]}
-                """
                 for move in picking.move_lines:
                     if move.invoice_state != "2binvoiced":
                         raise UserError(
@@ -116,10 +104,14 @@ class DdTCreateInvoice(models.TransientModel):
                 context=ctx)
             invoice_obj = self.env['account.invoice'].browse(invoices)
             invoice_obj.write({
-                'carriage_condition_id': ddt_partner[partner_id][0].carriage_condition_id.id,
-                'goods_description_id': ddt_partner[partner_id][0].goods_description_id.id,
-                'transportation_reason_id': ddt_partner[partner_id][0].transportation_reason_id.id,
-                'transportation_method_id': ddt_partner[partner_id][0].transportation_method_id.id,
+                'carriage_condition_id': ddt_partner[
+                    partner_id][0].carriage_condition_id.id,
+                'goods_description_id': ddt_partner[
+                    partner_id][0].goods_description_id.id,
+                'transportation_reason_id': ddt_partner[
+                    partner_id][0].transportation_reason_id.id,
+                'transportation_method_id': ddt_partner[
+                    partner_id][0].transportation_method_id.id,
                 'parcels': ddt_partner[partner_id][0].parcels,
             })
             for ddt in ddt_partner[partner_id]:
@@ -143,6 +135,7 @@ class DdTCreateInvoice(models.TransientModel):
             'view_id': False,
             'views': [(tree_id, 'tree'), (form_id, 'form')],
             'type': 'ir.actions.act_window',
-            'domain': "[('type', '=', 'out_invoice'), ('id','in', [" + ','.join(
-                map(str, invoice_list)) + "])]",
+            'domain': "[('type', '=', 'out_invoice'),"
+                      " ('id','in', [" + ','.join(map(str, invoice_list)) +
+                      "])]",
         }
