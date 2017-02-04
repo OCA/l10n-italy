@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 02:42+0000\n"
+"POT-Creation-Date: 2017-01-31 15:00+0000\n"
 "PO-Revision-Date: 2017-01-14 17:37+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
@@ -302,12 +302,6 @@ msgstr "Banca debitore"
 #: help:account.config.settings,due_cost_service_id:0
 msgid "Default Service for RiBa Due Cost (collection fees) on invoice"
 msgstr "Servizio di default per costi RiBa (spese di incasso) su fattura"
-
-#. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:153
-#, python-format
-msgid "Date accreditation must be greater or equal to date acceptance"
-msgstr "La data di accredito deve essere maggiore o uguale alla data di accettazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.configuration,name:0

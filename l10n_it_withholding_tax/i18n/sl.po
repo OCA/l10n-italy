@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 13:04+0000\n"
+"POT-Creation-Date: 2017-01-31 15:00+0000\n"
 "PO-Revision-Date: 2016-05-14 05:28+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
@@ -157,9 +157,7 @@ msgstr "Datum konca"
 #. module: l10n_it_withholding_tax
 #: field:account.invoice.withholding.tax,display_name:0
 #: field:withholding.tax,display_name:0
-#: field:withholding.tax.move,display_name:0
 #: field:withholding.tax.rate,display_name:0
-#: field:withholding.tax.statement,display_name:0
 #: field:withholding.tax.voucher.line,display_name:0
 #: field:withholding.tax.wizard.create.statement,display_name:0
 msgid "Display Name"
@@ -258,7 +256,8 @@ msgid "Moves"
 msgstr "Premiki"
 
 #. module: l10n_it_withholding_tax
-#: field:withholding.tax,name:0
+#: field:withholding.tax,name:0 field:withholding.tax.move,display_name:0
+#: field:withholding.tax.statement,display_name:0
 msgid "Name"
 msgstr "Naziv"
 
@@ -407,7 +406,7 @@ msgid "Warning!"
 msgstr "Opozorilo!"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:232
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:254
 #, python-format
 msgid ""
 "Warning! You cannot delet move linked to voucher.You                     "
