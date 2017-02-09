@@ -90,10 +90,10 @@ class TestDdt(TransactionCase):
         self.ddt.action_done()
         wizard = self._create_invoice_wizard([self.ddt.id, ])
         invoice_result = wizard.create_invoice()
-        self.assertTrue(invoice_result.get('res_id', False))
+        self.assertTrue(invoice_result.get('res_ids', False))
         invoice = self.env[
             invoice_result.get('res_model', 'account.invoice')
-            ].browse(invoice_result.get('res_id', False))
+            ].browse(invoice_result.get('res_ids', False))
         self.assertEquals(invoice.invoice_line[0].product_id.id,
                           self.ddt.line_ids[0].product_id.id)
         self.assertEquals(invoice.invoice_line[0].quantity,
@@ -107,10 +107,10 @@ class TestDdt(TransactionCase):
         self.ddt.action_done()
         wizard = self._create_invoice_wizard([self.ddt.id, ])
         invoice_result = wizard.create_invoice()
-        self.assertTrue(invoice_result.get('res_id', False))
+        self.assertTrue(invoice_result.get('res_ids', False))
         invoice = self.env[
             invoice_result.get('res_model', 'account.invoice')
-            ].browse(invoice_result.get('res_id', False))
+            ].browse(invoice_result.get('res_ids', False))
         self.assertEquals(invoice.invoice_line[0].product_id.id,
                           self.ddt.line_ids[0].product_id.id)
         self.assertEquals(invoice.invoice_line[0].quantity,
@@ -189,7 +189,7 @@ class TestDdt(TransactionCase):
         wizard = self._create_invoice_wizard([ddt1.id, ddt2.id])
         invoice_result = wizard.create_invoice()
         invoice = self.env['account.invoice'].browse(
-            invoice_result.get('res_id', False))
+            invoice_result.get('res_ids', False))
         self.assertEqual(len(invoice.invoice_line), 2)
         for line in invoice.invoice_line:
             self.assertEqual(line.product_id.id, self.product1.id)

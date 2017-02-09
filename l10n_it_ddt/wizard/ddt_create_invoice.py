@@ -69,41 +69,57 @@ class DdTCreateInvoice(models.TransientModel):
         ddt_model = self.env['stock.picking.package.preparation']
         picking_pool = self.pool['stock.picking']
 
-        ddts = ddt_model.browse(self.env.context['active_ids'])
-        partners = set([ddt.partner_invoice_id for ddt in ddts])
-        if len(partners) > 1:
-            raise UserError(_("Selected DDTs belong to different partners"))
-        pickings = []
+        ddts = ddt_model.search(
+            [('id', 'in', self.env.context['active_ids'])],
+            order='partner_invoice_id')
+        ddt_partner = {}
         self.check_ddt_data(ddts)
         for ddt in ddts:
+            if ddt.partner_invoice_id.id in ddt_partner:
+                ddt_partner[ddt.partner_invoice_id.id].append(ddt)
+            else:
+                ddt_partner[ddt.partner_invoice_id.id] = [ddt]
             for picking in ddt.picking_ids:
-                pickings.append(picking.id)
                 for move in picking.move_lines:
                     if move.invoice_state != "2binvoiced":
                         raise UserError(
-                            _("Move %s is not invoiceable") % move.name)
-        # ----- Force to use partner invoice from ddt as invoice partner
-        ctx = self.env.context.copy()
-        ctx['ddt_partner_id'] = ddts[0].partner_invoice_id.id
-        ctx['inv_type'] = 'out_invoice'
-        invoices = picking_pool.action_invoice_create(
-            self.env.cr,
-            self.env.uid,
-            pickings,
-            self.journal_id.id, group=True,
-            context=ctx)
-        invoice_obj = self.env['account.invoice'].browse(invoices)
-        invoice_obj.write({
-            'carriage_condition_id': ddts[0].carriage_condition_id.id,
-            'goods_description_id': ddts[0].goods_description_id.id,
-            'transportation_reason_id': ddts[0].transportation_reason_id.id,
-            'transportation_method_id': ddts[0].transportation_method_id.id,
-            'parcels': ddts[0].parcels,
-        })
-        for ddt in ddts:
-            ddt.invoice_id = invoices[0]
+                            _("Move {move} is not invoiceable ({ddt})".format(
+                                move=move.name, ddt=ddt.ddt_number)))
+        invoice_list = []
+        for partner_id in ddt_partner.keys():
+            p_list = []
+            # ----- Force to use partner invoice from ddt as invoice partner
+            ctx = self.env.context.copy()
+            ctx['ddt_partner_id'] = partner_id  # ddts[0].partner_invoice_id.id
+            ctx['inv_type'] = 'out_invoice'
+            picking_list = [p.picking_ids for p in ddt_partner[partner_id]]
+            for pll in picking_list:
+                for p in pll:
+                    p_list.append(p.id)
+            invoices = picking_pool.action_invoice_create(
+                self.env.cr,
+                self.env.uid,
+                p_list,  # pickings,
+                self.journal_id.id, group=True,
+                context=ctx)
+            invoice_obj = self.env['account.invoice'].browse(invoices)
+            invoice_obj.write({
+                'carriage_condition_id': ddt_partner[
+                    partner_id][0].carriage_condition_id.id,
+                'goods_description_id': ddt_partner[
+                    partner_id][0].goods_description_id.id,
+                'transportation_reason_id': ddt_partner[
+                    partner_id][0].transportation_reason_id.id,
+                'transportation_method_id': ddt_partner[
+                    partner_id][0].transportation_method_id.id,
+                'parcels': ddt_partner[partner_id][0].parcels,
+            })
+            for ddt in ddt_partner[partner_id]:
+                ddt.invoice_id = invoices[0]
+            invoice_list.append(invoices[0])
         # ----- Show invoice
         ir_model_data = self.env['ir.model.data']
+
         form_res = ir_model_data.get_object_reference('account',
                                                       'invoice_form')
         form_id = form_res and form_res[1] or False
@@ -115,8 +131,11 @@ class DdTCreateInvoice(models.TransientModel):
             'view_type': 'form',
             'view_mode': 'form,tree',
             'res_model': 'account.invoice',
-            'res_id': invoices[0],
+            'res_ids': invoice_list,
             'view_id': False,
-            'views': [(form_id, 'form'), (tree_id, 'tree')],
+            'views': [(tree_id, 'tree'), (form_id, 'form')],
             'type': 'ir.actions.act_window',
+            'domain': "[('type', '=', 'out_invoice'),"
+                      " ('id','in', [" + ','.join(map(str, invoice_list)) +
+                      "])]",
         }
