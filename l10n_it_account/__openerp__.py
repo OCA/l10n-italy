@@ -26,7 +26,7 @@
     'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends": ['account', 'l10n_it_fiscalcode', 'l10n_it_base'],
+    "depends": ['account', 'l10n_it_fiscalcode', 'l10n_it_bbone'],
     "data": [
         'views/account_view.xml',
         'reports/account_reports_view.xml',
