@@ -50,7 +50,10 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     ContattiType,
     DatiPagamentoType,
     DettaglioPagamentoType,
-    AllegatiType
+    AllegatiType,
+    ScontoMaggiorazioneType,
+    TipoScontoMaggiorazioneType,
+
 )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -571,6 +574,15 @@ class WizardExportFatturapa(orm.TransientModel):
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA=AliquotaIVA)
+            if line.discount != 0.0:
+                tipo_sconto_maggiorazione = TipoScontoMaggiorazioneType(
+                    line.discount > 0 and 'SC' or 'MG')
+                sconto = ScontoMaggiorazioneType(
+                    Tipo=tipo_sconto_maggiorazione,
+                    Percentuale='%.2f' % line.discount,
+                    Importo='%.2f' % line.price_unit,
+                )
+                DettaglioLinea.ScontoMaggiorazione.append(sconto)
             if aliquota == 0.0:
                 if not line.invoice_line_tax_id[0].non_taxable_nature:
                     raise orm.except_orm(
