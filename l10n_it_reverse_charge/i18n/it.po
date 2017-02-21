@@ -1,29 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_reverse_charge
+# 	* l10n_it_reverse_charge
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-31 16:33+0000\n"
-"PO-Revision-Date: 2015-03-31 16:33+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-02-24 10:43+0000\n"
+"PO-Revision-Date: 2017-02-24 11:44+0100\n"
+"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,create_uid:0
-#: field:account.rc.type.tax,create_uid:0
+#: field:account.rc.type,create_uid:0 field:account.rc.type.tax,create_uid:0
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,create_date:0
-#: field:account.rc.type.tax,create_date:0
+#: field:account.rc.type,create_date:0 field:account.rc.type.tax,create_date:0
 msgid "Created on"
 msgstr "Creato il"
 
@@ -33,13 +33,23 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_reverse_charge
+#: field:account.rc.type,display_name:0
+#: field:account.rc.type.tax,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_it_reverse_charge
+#: help:account.rc.type,tax_ids:0
+msgid "Example: 22_A_I_UE, 22_V_I_UE"
+msgstr "Esempio: 22_A_I_UE, 22_V_I_UE"
+
+#. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Posizione fiscale"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,id:0
-#: field:account.rc.type.tax,id:0
+#: field:account.rc.type,id:0 field:account.rc.type.tax,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -64,14 +74,18 @@ msgid "Journal used to pay RC self invoices."
 msgstr "Sezionale usato per i pagamenti delle autofatture."
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,write_uid:0
-#: field:account.rc.type.tax,write_uid:0
+#: field:account.rc.type,__last_update:0
+#: field:account.rc.type.tax,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_it_reverse_charge
+#: field:account.rc.type,write_uid:0 field:account.rc.type.tax,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento da"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,write_date:0
-#: field:account.rc.type.tax,write_date:0
+#: field:account.rc.type,write_date:0 field:account.rc.type.tax,write_date:0
 msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
@@ -96,10 +110,14 @@ msgid "Other"
 msgstr "Altro"
 
 #. module: l10n_it_reverse_charge
-#: help:account.rc.type,partner_id:0
-#: help:account.rc.type,payment_partner_id:0
+#: help:account.rc.type,partner_id:0 help:account.rc.type,payment_partner_id:0
 msgid "Partner used on RC self invoices."
 msgstr "Partner usato sulle autofatture."
+
+#. module: l10n_it_reverse_charge
+#: field:account.rc.type.tax,purchase_tax_id:0
+msgid "Purchase Tax"
+msgstr "Imposta Acquisti"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice.line,rc:0
@@ -127,11 +145,6 @@ msgid "RC type"
 msgstr "RC type"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type.tax,tax_dest_id:0
-msgid "Replacement Tax"
-msgstr "Imposta sostitutiva"
-
-#. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type
 msgid "Reverse Charge Type"
@@ -143,6 +156,11 @@ msgstr "Tipo reverse charge"
 #: model:ir.ui.menu,name:l10n_it_reverse_charge.menu_action_rc_type
 msgid "Reverse Charge Types"
 msgstr "Tipi reverse charge"
+
+#. module: l10n_it_reverse_charge
+#: field:account.rc.type.tax,sale_tax_id:0
+msgid "Sale Tax"
+msgstr "Imposta Vendite"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,method:0
@@ -202,15 +220,9 @@ msgid "Tax Mapping"
 msgstr "Mappatura imposte"
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model,name:l10n_it_reverse_charge.model_account_fiscal_position_rc_tax
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type_tax
 msgid "Tax Mapping for self invoices"
 msgstr "Mappatura imposte per autofatturazione"
-
-#. module: l10n_it_reverse_charge
-#: field:account.rc.type.tax,tax_src_id:0
-msgid "Tax Source"
-msgstr "Imposta sorgente"
 
 #. module: l10n_it_reverse_charge
 #: sql_constraint:account.rc.type.tax:0
@@ -234,6 +246,26 @@ msgid "Text on Self Invoice"
 msgstr "Testo su autofattura"
 
 #. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:212
+#, python-format
+msgid ""
+"There are more than one payment line.\n"
+"In that case account entries cannot be canceledautomatically. Please proceed manually"
+msgstr ""
+"There are more than one payment line.\n"
+"In that case account entries cannot be canceledautomatically. Please proceed manually"
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:130
+#, python-format
+msgid ""
+"There is no default credit account defined \n"
+"on journal \"%s\"."
+msgstr ""
+"There is no default credit account defined \n"
+"on journal \"%s\"."
+
+#. module: l10n_it_reverse_charge
 #: help:account.rc.type,transitory_account_id:0
 msgid "Transitory account used on self invoices."
 msgstr "Conto transitorio usato sulle autofatture."
@@ -242,9 +274,3 @@ msgstr "Conto transitorio usato sulle autofatture."
 #: selection:account.rc.type,method:0
 msgid "VAT Integration"
 msgstr "Integrazione IVA"
-
-#. module: l10n_it_reverse_charge
-#: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
-msgid "attrs=\"{'readonly': [('method', '!=', 'selfinvoice')]}\"/>"
-msgstr "attrs=\"{'readonly': [('method', '!=', 'selfinvoice')]}\"/>"
-
