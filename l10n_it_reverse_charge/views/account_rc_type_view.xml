@@ -1,4 +1,8 @@
 <?xml version="1.0" ?>
+<!-- Copyright 2017 Davide Corio
+     Copyright 2017 Alex Comba - Agile Business Grou
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
 <openerp>
 	<data>
 
@@ -40,8 +44,8 @@
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}">
                                 <tree string="Tax Mapping" editable="bottom">
-                                    <field name="tax_src_id" domain="[('parent_id','=',False)]"/>
-                                    <field name="tax_dest_id" domain="[('parent_id','=',False)]"/>
+                                    <field name="purchase_tax_id" domain="[('parent_id','=',False)]"/>
+                                    <field name="sale_tax_id" domain="[('parent_id','=',False)]"/>
                                 </tree>
                             </field>
                         </group>
@@ -82,50 +86,6 @@
         <menuitem
             action="action_rc_type" id="menu_action_rc_type" sequence="20"
             parent="account.next_id_27" groups="account.group_account_manager"/>
-
-        <record id="view_fiscal_position_form_rc" model="ir.ui.view">
-            <field name="name">account.fiscal.position.form.rc</field>
-            <field name="model">account.fiscal.position</field>
-            <field name="inherit_id" ref="account.view_account_position_form"/>
-            <field name="arch" type="xml">
-                <field name="country_group_id" position="after">
-                    <field name="rc_type_id" widget="selection"/>
-                </field>
-            </field>
-        </record>
-
-        <record id="view_invoice_supplier_form_rc" model="ir.ui.view">
-            <field name="name">account.invoice.supplier.form.rc</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_supplier_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//page[@string='Other Info']" position="inside">
-                    <group string="Self Invoicing">
-                        <field name="rc_self_invoice_id" readonly="True"
-                        domain="[('type', '=', 'out_invoice')]"
-                        context="{'form_view_ref': 'account.invoice_form'}"/>
-                    </group>
-                </xpath>
-                <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="after">
-                    <field name="rc"/>
-                </xpath>
-            </field>
-        </record>
-
-        <record id="view_invoice_form_rc" model="ir.ui.view">
-             <field name="name">account.invoice.form.rc</field>
-             <field name="model">account.invoice</field>
-             <field name="inherit_id" ref="account.invoice_form"/>
-             <field name="arch" type="xml">
-                <xpath expr="//page[@string='Other Info']" position="inside">
-                    <group string="Self Invoicing">
-                        <field name="rc_purchase_invoice_id" readonly="True"
-                            domain="[('type', '=', 'in_invoice')]"
-                            context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
-                    </group>
-                </xpath>
-             </field>
-        </record>
 
     </data>
 </openerp>
