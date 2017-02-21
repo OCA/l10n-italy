@@ -1,39 +1,28 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Abstract (http://www.abstract.it)
-#    Author: Davide Corio <davide.corio@abstract.it>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2017 Davide Corio
+# Copyright 2017 Alex Comba - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Reverse Charge',
-    'version': '1.0',
+    'name': 'Reverse Charge IVA',
+    'version': '8.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Reverse Charge for Italy',
-    'description': """
-    """,
-    'author': 'Abstract',
+    'author': 'Abstract, Agile Business Group,'
+              'Odoo Community Association (OCA)',
+    'license': 'AGPL-3',
     'website': 'http://www.abstract.it',
     'depends': [
-        'account', 'base', 'account_invoice_entry_date'],
+        'account',
+        'account_invoice_entry_date',
+        'account_cancel',
+    ],
     'data': [
         'security/ir.model.access.csv',
-        'views/account_view.xml',
+        'views/account_invoice_view.xml',
+        'views/account_fiscal_position_view.xml',
+        'views/account_rc_type_view.xml',
+
     ],
     'installable': True,
-    'active': False,
 }
