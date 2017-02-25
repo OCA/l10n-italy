@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 03:39+0000\n"
-"PO-Revision-Date: 2016-11-11 03:39+0000\n"
+"POT-Creation-Date: 2017-02-18 03:26+0000\n"
+"PO-Revision-Date: 2017-02-18 03:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Peru) (https://www.transifex.com/oca/teams/23907/es_PE/)\n"
 "MIME-Version: 1.0\n"
@@ -239,6 +239,11 @@ msgid "Gross Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "Group By"
+msgstr "Agrupado por"
+
+#. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_id
@@ -391,6 +396,7 @@ msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Partner"
 msgstr ""
 
