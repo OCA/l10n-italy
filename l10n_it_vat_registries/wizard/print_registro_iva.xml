@@ -20,7 +20,7 @@
                         <field name="tax_registry_id"></field>
                         <field name="journal_ids" colspan="2" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase'))]"/>
                         <separator string="Layout" colspan="2"/>
-                        <field name="type"/>
+                        <field name="layout_type"/>
                         <field name="only_totals" />
                         <field name="fiscal_page_base"/>
                         <newline/>

@@ -15,7 +15,7 @@ class AccountTaxRegistry(models.Model):
             'account.tax.registry'))
     journal_ids = fields.One2many(
         'account.journal', 'tax_registry_id', 'Journals', readonly=True)
-    type = fields.Selection([
+    layout_type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
         ('corrispettivi', 'Corrispettivi'),
