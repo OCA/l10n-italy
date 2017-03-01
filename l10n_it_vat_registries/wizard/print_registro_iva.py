@@ -15,7 +15,7 @@ class WizardRegistroIva(models.TransientModel):
     date_range_id = fields.Many2one('date.range', string="Date range")
     from_date = fields.Date('From date', required=True)
     to_date = fields.Date('To date', required=True)
-    type = fields.Selection([
+    layout_type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
         ('corrispettivi', 'Corrispettivi'),
@@ -38,6 +38,7 @@ class WizardRegistroIva(models.TransientModel):
     @api.onchange('tax_registry_id')
     def on_change_vat_registry(self):
         self.journal_ids = self.tax_registry_id.journal_ids
+        self.layout_type = self.tax_registry_id.layout_type
 
     @api.onchange('date_range_id')
     def on_change_date_range_id(self):
@@ -60,7 +61,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form['to_date'] = wizard.to_date
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
-        datas_form['registry_type'] = wizard.type
+        datas_form['registry_type'] = wizard.layout_type
         list_id = []
         for move in move_ids:
             list_id.append(move.id)
