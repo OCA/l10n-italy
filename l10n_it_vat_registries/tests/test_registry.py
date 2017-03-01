@@ -56,7 +56,7 @@ class TestRegistry(AccountingTestCase):
         wizard = self.env['wizard.registro.iva'].create({
             'from_date': fields.Date.today(),
             'to_date': fields.Date.today(),
-            'type': 'supplier',
+            'layout_type': 'supplier',
             'journal_ids': [(6, 0, [self.journal.id])],
             'fiscal_page_base': 0,
         })
