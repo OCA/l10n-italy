@@ -135,7 +135,7 @@
             <field name="state_id" ref="base.state_us_2"/>
             <field name="phone">06543534343</field>
             <field name="fatturapa_fiscal_position_id" ref="fatturapa_RF01"/>
-            <field name="fatturapa_format_id" ref="fatturapa_format_1_1"/>
+            <field name="fatturapa_format_id" ref="fatturapa_format_1_2"/>
             <field name="fatturapa_sequence_id" ref="seq_fatturapa"/>
             <field name="fatturapa_art73">True</field>
             <field name="vat">IT06363391001</field>
@@ -346,5 +346,31 @@ seconda riga</field>
             <field name="name">Zed+ Antivirus</field>
         </record>
 
+<!-- invoice 4 -->
+
+        <record id="fatturapa_invoice_4" model="account.invoice">
+            <field name="payment_term" ref="account.account_payment_term"/>
+            <field name="journal_id" ref="account.sales_journal"/>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="type">out_invoice</field>
+            <field name="account_id" ref="account.a_pay"/>
+            <field name="date_invoice" eval="'2014-06-15'"/>
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+        </record>
+
+        <record id="fatturapa_invoice_4_line_0" model="account.invoice.line">
+            <field name="invoice_id" ref="fatturapa_invoice_4"/>
+            <field name="account_id" ref="account.a_sale"/>
+            <field name="uos_id" ref="product.product_uom_unit"/>
+            <field name="price_unit" eval="10.0" />
+            <field name="discount" eval="10.0" />
+            <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+            <field name="product_id" ref="product.product_product_39"/>
+            <field name="quantity" eval="1.0" />
+            <field name="partner_id" ref="res_partner_fatturapa_0"/>
+            <field name="name">Toner Cartridge</field>
+        </record>
     </data>
 </openerp>

@@ -6,7 +6,7 @@
                 <IdPaese>IT</IdPaese>
                 <IdCodice>06363391001</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>00002</ProgressivoInvio>
+            <ProgressivoInvio>00005</ProgressivoInvio>
             <FormatoTrasmissione>FPA12</FormatoTrasmissione>
             <CodiceDestinatario>79SRAK</CodiceDestinatario>
             <ContattiTrasmittente>
@@ -63,17 +63,10 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2014-06-15</Data>
-                <Numero>SAJ/2014/014</Numero>
-                <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
-                <Causale>prima riga</Causale>
-                <Causale>seconda riga</Causale>
+                <Numero>SAJ/2014/017</Numero>
+                <ImportoTotaleDocumento>10.98</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
-            <DatiOrdineAcquisto>
-                <IdDocumento>PO123</IdDocumento>
-                <CodiceCUP>456</CodiceCUP>
-                <CodiceCIG>123</CodiceCIG>
-            </DatiOrdineAcquisto>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>
@@ -82,22 +75,17 @@
                 <Quantita>1.00</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>10.00</PrezzoUnitario>
-                <PrezzoTotale>10.00</PrezzoTotale>
-                <AliquotaIVA>22.00</AliquotaIVA>
-            </DettaglioLinee>
-            <DettaglioLinee>
-                <NumeroLinea>2</NumeroLinea>
-                <Descrizione>Zed+ Antivirus</Descrizione>
-                <Quantita>1.00</Quantita>
-                <UnitaMisura>Unit(s)</UnitaMisura>
-                <PrezzoUnitario>4.00</PrezzoUnitario>
-                <PrezzoTotale>4.00</PrezzoTotale>
+                <ScontoMaggiorazione>
+                    <Tipo>SC</Tipo>
+                    <Percentuale>10.00</Percentuale>
+                </ScontoMaggiorazione>
+                <PrezzoTotale>9.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>22.00</AliquotaIVA>
-                <ImponibileImporto>14.00</ImponibileImporto>
-                <Imposta>3.08</Imposta>
+                <ImponibileImporto>9.00</ImponibileImporto>
+                <Imposta>1.98</Imposta>
             </DatiRiepilogo>
         </DatiBeniServizi>
         <DatiPagamento>
@@ -105,7 +93,7 @@
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2014-07-31</DataScadenzaPagamento>
-                <ImportoPagamento>17.08</ImportoPagamento>
+                <ImportoPagamento>10.98</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>
