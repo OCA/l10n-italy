@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="account_config_view_service_due_cost">
+        <field name="name">res.company.view.shipment.cost</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Shipment Costs" position="inside">
+                    <separator string="Shipment Costs" colspan="4"/>
+                    <field name="shipment_cost_ids" nolabel="1" colspan="4">
+                        <tree editable="bottom">
+                            <field name="lower_limit" />
+                            <field name="upper_limit" />
+                            <field name="shipment_cost_product_id" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</data>
+</openerp>

@@ -2,12 +2,13 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==================
-DDT Shipment Costs
-==================
+============
+DDT Delivery
+============
 
-This modules extends the functionality of l10n_it_ddt to allow you to add
-shipment costs to each ddt when generating invoice.
+This modules extends the functionality of l10n_it_ddt to allow you to
+copy the carrier from picking and from sale order when DDT is respectively
+created starting from a picking and from a sale order.
 
 Usage
 =====
@@ -36,7 +37,7 @@ Images
 Contributors
 ------------
 
-* Andrea Cometa <a.cometa@apuliasoftware.it>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------
