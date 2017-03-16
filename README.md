@@ -41,8 +41,8 @@ addon | version | summary
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.0 | Italian Localization - Corrispettivi
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | Documento di Trasporto
 [l10n_it_ddt_delivery](l10n_it_ddt_delivery/) | 8.0.1.0.0 | Copy carrier from picking and from sale order
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 | Electronic invoices emission
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.0.0 | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.2.0.0 | Electronic invoices emission
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.0 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 | Pec Mail

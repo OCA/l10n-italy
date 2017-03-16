@@ -33,10 +33,10 @@ Credits
 Contributors
 ------------
 
-* Davide Corio <davide.corio@abstract.it>
+* Davide Corio
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
-* Alessio Gerace <alessio.gerace@agilebg.com>
+* Alessio Gerace
 
 Maintainer
 ----------
