@@ -13,6 +13,7 @@
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_ddt',
+        'stock_picking_package_preparation_value',
         ],
     'data': [
         #'security/ir.model.access.csv',
