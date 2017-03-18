@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'DDT Shipment Costs',
+    'name': 'DDT Shipping Costs',
     'version': '8.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'DDT Spese di trasporto',

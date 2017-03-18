@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_ddt_shipping_costs
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-18 07:30+0000\n"
+"PO-Revision-Date: 2017-03-18 07:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_ddt_shipping_costs
+#: model:ir.model,name:l10n_it_ddt_shipping_costs.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,company_id:0
+msgid "Company id"
+msgstr "Company id"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento da"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,lower_limit:0
+msgid "Lower limit"
+msgstr "Da"
+
+#. module: l10n_it_ddt_shipping_costs
+#: model:ir.model,name:l10n_it_ddt_shipping_costs.model_stock_picking_package_preparation
+msgid "Package Preparation"
+msgstr "Preparazione pacco"
+
+#. module: l10n_it_ddt_shipping_costs
+#: help:ddt.shipment.cost,shipment_cost_product_id:0
+#: help:res.company,shipment_cost_ids:0
+msgid "Product used to manage shipment costs when invoicing a ddt"
+msgstr "Prodotto utilizzato per gestire le spese di spedizione, per ddt"
+
+#. module: l10n_it_ddt_shipping_costs
+#: view:res.company:l10n_it_ddt_shipping_costs.account_config_view_service_due_cost
+msgid "Shipment Costs"
+msgstr "Spese di spedizione"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,shipment_cost_product_id:0
+#: field:res.company,shipment_cost_ids:0
+msgid "Shipment cost product"
+msgstr "Prodotto spesa"
+
+#. module: l10n_it_ddt_shipping_costs
+#: field:ddt.shipment.cost,upper_limit:0
+msgid "Upper limit"
+msgstr "Fino a"
+
