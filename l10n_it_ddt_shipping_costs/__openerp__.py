@@ -16,7 +16,7 @@
         'stock_picking_package_preparation_value',
         ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/company_view.xml',
         ],
     'installable': True,

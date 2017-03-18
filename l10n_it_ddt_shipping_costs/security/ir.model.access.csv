@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shipment_costs_manager,ddt.shipment.cost manager,model_ddt_shipment_cost,stock.group_stock_manager,1,1,1,1
+access_shipment_costs_user,ddt.shipment.cost user,model_ddt_shipment_cost,base.group_user,1,0,0,0
