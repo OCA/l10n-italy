@@ -344,3 +344,22 @@ msgstr "report.l10n_it_vat_registries.report_registro_iva"
 msgid "wizard.registro.iva"
 msgstr "wizard.registro.iva"
 
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_tax_cee_type
+msgid "Use in the case of tax on 'VAT integration'. specifies the VAT register (sales / purchases) it has to be computed the tax."
+msgstr "Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_cee_type
+msgid "Include in VAT registries"
+msgstr "Includi nel registo IVA"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax,cee_type:0
+msgid "Sale"
+msgstr "Vendite"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax,cee_type:0
+msgid "Purchase"
+msgstr "Acquisti"
