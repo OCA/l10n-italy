@@ -50,43 +50,67 @@ class ReportRegistroIva(models.AbstractModel):
         return self.env['account.invoice'].search([
             ('move_id', '=', move.id)])
 
-    def _tax_amounts_by_tax_id(self, move):
+    def _tax_amounts_by_tax_id(self, move, registry_type):
         res = {}
+        
         for move_line in move.line_ids:
-            if move_line.tax_line_id or move_line.tax_ids:
-                if move_line.tax_ids and len(move_line.tax_ids) != 1:
+            set_cee_absolute_value = False
+
+            if not(move_line.tax_line_id or move_line.tax_ids):
+                continue
+
+            if move_line.tax_ids and len(move_line.tax_ids) != 1:
                     raise Exception(
                         _("Move line %s has too many base taxes")
                         % move_line.name)
-                if move_line.tax_ids:
-                    tax = move_line.tax_ids[0]
-                    is_base = True
-                else:
-                    tax = move_line.tax_line_id
-                    is_base = False
-                if tax.parent_tax_ids and len(tax.parent_tax_ids) == 1:
-                    # we group by main tax
-                    tax = tax.parent_tax_ids[0]
-                if not tax.exclude_from_registries:
-                    if not res.get(tax.id):
-                        res[tax.id] = {'name': tax.name,
-                                       'base': 0,
-                                       'tax': 0,
-                                       }
-                    tax_amount = move_line.debit - move_line.credit
-                    if 'receivable' in move.move_type:
-                        # otherwise refund would be positive and invoices
-                        # negative
-                        tax_amount = -tax_amount
-                    if is_base:
-                        # recupero il valore dell'imponibile
-                        res[tax.id]['base'] += tax_amount
-                    else:
-                        # recupero il valore dell'imposta
-                        res[tax.id]['tax'] += tax_amount
+
+            if move_line.tax_ids:
+                tax = move_line.tax_ids[0]
+                is_base = True
+            else:
+                tax = move_line.tax_line_id
+                is_base = False
+
+            if (registry_type == 'customer' and tax.cee_type == 'sale') or \
+                    (registry_type == 'supplier' and tax.cee_type == 'purchase'):
+                # Prendo la parte di competenza di ogni registro e lo sommo sempre
+                set_cee_absolute_value = True
+
+            elif tax.cee_type:
+                continue
+
+            if tax.parent_tax_ids and len(tax.parent_tax_ids) == 1:
+                # we group by main tax
+                tax = tax.parent_tax_ids[0]
+
+            if tax.exclude_from_registries:
+                continue
+
+            if not res.get(tax.id):
+                res[tax.id] = {'name': tax.name,
+                                'base': 0,
+                                'tax': 0,
+                                }
+            tax_amount = move_line.debit - move_line.credit
+            
+            if set_cee_absolute_value:
+                tax_amount = abs(tax_amount)
+
+            if 'receivable' in move.move_type or ('payable_refund' == move.move_type and tax_amount > 0):
+                # otherwise refund would be positive and invoices
+                # negative
+                tax_amount = -tax_amount
+
+            if is_base:
+                # recupero il valore dell'imponibile
+                res[tax.id]['base'] += tax_amount
+            else:
+                # recupero il valore dell'imposta
+                res[tax.id]['tax'] += tax_amount
+
         return res
 
-    def _get_tax_lines(self, move):
+    def _get_tax_lines(self, move, data):
         """
 
         Args:
@@ -109,8 +133,8 @@ class ReportRegistroIva(models.AbstractModel):
             invoice_type = "NC"
         else:
             invoice_type = "FA"
-
-        amounts_by_tax_id = self._tax_amounts_by_tax_id(move)
+        
+        amounts_by_tax_id = self._tax_amounts_by_tax_id(move, data['registry_type'])
         for tax_id in amounts_by_tax_id:
             tax = self.env['account.tax'].browse(tax_id)
             tax_item = {
@@ -172,15 +196,18 @@ class ReportRegistroIva(models.AbstractModel):
             )
         else:
             base_balance = tax.base_balance
+
             tax_balance = 0
             deductible = 0
             undeductible = 0
             for child in tax.children_tax_ids:
-                tax_balance += child.balance
+                child_balance = child.balance
+                
+                tax_balance += child_balance
                 if child.account_id:
-                    deductible += child.balance
+                    deductible += child_balance
                 else:
-                    undeductible += child.balance
+                    undeductible += child_balance
             return (
                 tax_name, abs(base_balance), abs(tax_balance), abs(deductible),
                 abs(undeductible)

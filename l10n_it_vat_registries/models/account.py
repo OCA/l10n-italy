@@ -16,6 +16,11 @@ class AccountTax(models.Model):
     parent_tax_ids = fields.Many2many(
         'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
         string='Parent Taxes')
+    
+    cee_type = fields.Selection([
+            ('sale', 'Sale'),
+            ('purchase', 'Purchase')
+            ], 'Cee Type')
 
     def get_balance_domain(self, state_list, type_list):
         domain = super(AccountTax, self).get_balance_domain(
