@@ -60,6 +60,7 @@ class StockPickingPackagePreparation(models.Model):
 
     _inherit = 'stock.picking.package.preparation'
     _rec_name = 'display_name'
+    _order = 'date desc'
 
     def _default_ddt_type(self):
         return self.env['stock.ddt.type'].search([], limit=1)
@@ -142,7 +143,6 @@ class StockPickingPackagePreparation(models.Model):
         return True
 
     @api.multi
-    @api.depends('name', 'ddt_number', 'partner_id', 'date')
     def _compute_display_name(self):
         for prep in self:
             name = u''
