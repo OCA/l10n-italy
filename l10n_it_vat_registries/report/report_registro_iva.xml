@@ -65,7 +65,7 @@
                     <tbody>
                         <t t-set="total_used_taxes" t-value="env['account.tax']"></t>
                         <t t-foreach="get_move(doc_ids)" t-as="move">
-                            <t t-set="taxes_tuple" t-value="tax_lines(move)"/>
+                            <t t-set="taxes_tuple" t-value="tax_lines(move, data)"/>
                             <t t-set="inv_taxes" t-value="taxes_tuple[0]"/>
                             <t t-set="used_taxes" t-value="taxes_tuple[1]"/>
                             <t t-set="total_used_taxes" t-value="total_used_taxes | used_taxes"></t>
