@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="partner_shipping_costs_view">
+        <field name="name">res.partner.shipping.costs</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="transportation_method_id" position="after">
+                <field name="no_shipping_costs" />
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>

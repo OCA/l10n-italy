@@ -18,6 +18,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/company_view.xml',
+        'views/partner_view.xml',
         ],
     'installable': True,
 }
