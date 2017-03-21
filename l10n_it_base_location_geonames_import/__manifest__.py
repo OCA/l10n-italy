@@ -21,7 +21,7 @@
 
 {
     'name': 'Base Location Provinces Import',
-    'version': '9.0.0.1.0',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'summary': 'Import base_location entries (provinces) from Geonames',
@@ -32,11 +32,8 @@ Italian provinces
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'depends': ['base_location_geonames_import'],
-    'data': [
-        ],
     'test': [
         'test/import.yml',
         ],
-    'installable': False,
-    'active': False,
+    'installable': True,
 }

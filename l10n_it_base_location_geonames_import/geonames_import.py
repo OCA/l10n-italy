@@ -19,15 +19,15 @@
 #
 ##############################################################################
 
-from openerp import models, api
+from odoo import models, api
 
 
-class better_zip_geonames_import(models.TransientModel):
+class BetterZipGeonamesImport(models.TransientModel):
     _inherit = 'better.zip.geonames.import'
 
     @api.model
     def select_or_create_state(
         self, row, country_id, code_row_index=4, name_row_index=3
     ):
-        return super(better_zip_geonames_import, self).select_or_create_state(
+        return super(BetterZipGeonamesImport, self).select_or_create_state(
             row, country_id, code_row_index=6, name_row_index=5)
