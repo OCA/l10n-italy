@@ -7,21 +7,22 @@
   I run the import
 -
   !python {model: better.zip.geonames.import}: |
-    self.run_import(cr, uid, [ref('import_wizard_1')], context=context)
+    wzd = self.browse(ref('import_wizard_1'))
+    wzd.run_import()
 -
   I check the data
 -
   !python {model: res.better.zip}: |
-    state_obj = self.pool['res.country.state']
-    state_ids = state_obj.search(cr, uid, [
+    state_model = self.env['res.country.state']
+    state_ids = state_model.search([
         ('code', '=', 'GE'),
         ('country_id', '=', ref('base.it')),
-        ], context=context)
+        ])
     assert len(state_ids) == 1, "There must be 1 GE"
-    zip_ids = self.search(cr, uid, [
+    zip_ids = self.search([
         ('name', '=', '16017'),
         ('city', '=', 'Isola Del Cantone'),
-        ('state_id', '=', state_ids[0]),
+        ('state_id', '=', state_ids[0].id),
         ('country_id', '=', ref('base.it'))
-        ], context=context)
+        ])
     assert len(zip_ids) == 1, "There must be 1 'Isola Del Cantone'"
