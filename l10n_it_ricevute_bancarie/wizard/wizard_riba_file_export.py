@@ -294,6 +294,8 @@ class RibaFileExport(orm.TransientModel):
                 line.sequence,
                 due_date,
                 line.amount,
+                # using regex we remove chars outside letters, numbers, space,
+                # dot and comma because, special chars cause errors.
                 re.sub(r'[^\w\s,.]+', '', line.partner_id.name)[:60],
                 line.partner_id.vat and line.partner_id.vat[
                     2:] or line.partner_id.fiscalcode,
