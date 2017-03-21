@@ -60,6 +60,7 @@ class StockPickingPackagePreparation(models.Model):
 
     _inherit = 'stock.picking.package.preparation'
     _rec_name = 'display_name'
+    _order = 'ddt_number desc'
 
     def _default_ddt_type(self):
         return self.env['stock.ddt.type'].search([], limit=1)
