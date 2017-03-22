@@ -31,6 +31,7 @@ addon | version | summary
 --- | --- | ---
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
+[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.0 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
@@ -49,7 +50,6 @@ addon | version | summary
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 (unported) | Italian Localization - Account
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
-[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 9.0.0.1.0 (unported) | Import base_location entries (provinces) from Geonames
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 (unported) | Italian Localisation - Corrispettivi
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 (unported) | Electronic invoices
