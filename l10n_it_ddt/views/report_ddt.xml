@@ -89,15 +89,25 @@
                     </div>
                     <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
                     <table class="table table-condensed">
+                        <t t-set="has_serial_number" t-value="o.line_ids.filtered('move_id.lot_ids')" groups="stock.group_production_lot"/>
                         <thead>
                             <tr>
                                 <th><strong>Description</strong></th>
+                                <th name="lot_serial" t-if="has_serial_number">
+                                    <strong>Lots/Serial Numbers</strong>
+                                </th>
                                 <th class="text-right"><strong>Quantity</strong></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr t-foreach="o.line_ids" t-as="line">
                                 <td><span t-field="line.name"></span></td>
+                                <t t-if="has_serial_number">
+                                    <td t-if="line.move_id.lot_ids">
+                                        <span><t t-esc="', '.join([lot.name for lot in line.move_id.lot_ids])"/></span>
+                                    </td>
+                                    <td t-if="not line.move_id.lot_ids"/>
+                                </t>
                                 <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
                             </tr>
                         </tbody>
