@@ -53,8 +53,11 @@ class StockPicking(models.Model):
         # this is mainly used in dropshipping configuration,
         # where self.partner_id is your supplier, but 'move_lines.partner_id'
         # is your customer
-        move_partners = self.mapped('move_lines.partner_id')
-        if len(move_partners) == 1:
-            return move_partners[0]
+        if not self.picking_type_code == 'internal':
+            move_partners = self.mapped('move_lines.partner_id')
+            if len(move_partners) == 1:
+                return move_partners[0]
+            else:
+                return self.partner_id
         else:
-            return self.partner_id
+            return self.location_dest_id.partner_id
