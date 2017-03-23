@@ -48,7 +48,10 @@ class DdTFromPickings(models.TransientModel):
                 values['partner_id'] = sale_order.partner_id.id
             else:
                 values['partner_id'] = partner.commercial_partner_id.id
-            values['partner_shipping_id'] = partner.id
+            if not picking.picking_type_code == 'internal':
+                values['partner_shipping_id'] = partner.id
+            else:
+                values['partner_shipping_id'] = picking.location_dest_id.partner_id.id
         parcels = 0
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.parcels:
