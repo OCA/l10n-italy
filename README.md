@@ -25,6 +25,7 @@ Odoo Italia Association
 http://www.odoo-italia.org/
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
