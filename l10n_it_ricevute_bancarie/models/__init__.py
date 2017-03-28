@@ -7,7 +7,7 @@
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.odoo-italia.org>).
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,7 +24,8 @@
 #
 ##############################################################################
 
-from . import wizard_riba_issue
-from . import wizard_riba_file_export
-from . import wizard_accreditation
-from . import wizard_unsolved
+from . import riba_config
+from . import partner
+from . import riba
+from . import account
+from . import account_config
