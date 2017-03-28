@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_ddt_from_pickings" model="ir.ui.view">
+            <field name="name">DdT from Pickings</field>
+            <field name="model">ddt.from.pickings</field>
+            <field name="arch" type="xml">
+              <form string="DDT from Pickings">
+                <separator string="Picking" />
+                    <field string="Pickings" name="picking_ids" readonly="1"/>
+                    <footer>
+                        <button name="create_ddt" string="Create" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_ddt_from_pickings" model="ir.actions.act_window">
+            <field name="name">DDT from Pickings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ddt.from.pickings</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_ddt_from_pickings"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="ddt_from_pickings">
+            <field name="model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation" />
+            <field name="name">Create DDT</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_from_pickings'))" />
+            <field name="key">action</field>
+            <field name="model">stock.picking</field>
+        </record>
+
+</odoo>
