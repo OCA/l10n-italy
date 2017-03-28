@@ -1,56 +1,42 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2012 Andrea Cometa.
-#    Email: info@andreacometa.it
-#    Web site: http://www.andreacometa.it
-#    Copyright (C) 2012-2015 Lorenzo Battistini - Agile Business Group
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright (C) 2012 Andrea Cometa.
+# Email: info@andreacometa.it
+# Web site: http://www.andreacometa.it
+# Copyright (C) 2012 Associazione OpenERP Italia
+# (<http://www.odoo-italia.org>).
+# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models, api, workflow, _
-from openerp.exceptions import Warning as UserError
-import openerp.addons.decimal_precision as dp
+from odoo import fields, models, api, workflow, _
+from odoo.exceptions import Warning as UserError
+import odoo.addons.decimal_precision as dp
 
 
 class RibaList(models.Model):
 
-    @api.one
-    def _get_acceptance_move_ids(self):
-        move_ids = self.env['account.move']
-        for line in self.line_ids:
-            move_ids |= line.acceptance_move_id
-        self.acceptance_move_ids = move_ids
+    @api.multi
+    def _compute_acceptance_move_ids(self):
+        for riba in self:
+            move_ids = self.env['account.move']
+            for line in riba.line_ids:
+                move_ids |= line.acceptance_move_id
+            riba.acceptance_move_ids = move_ids
 
-    @api.one
-    def _get_unsolved_move_ids(self):
-        move_ids = self.env['account.move']
-        for line in self.line_ids:
-            move_ids |= line.unsolved_move_id
-        self.unsolved_move_ids = move_ids
+    @api.multi
+    def _compute_unsolved_move_ids(self):
+        for riba in self:
+            move_ids = self.env['account.move']
+            for line in riba.line_ids:
+                move_ids |= line.unsolved_move_id
+            riba.unsolved_move_ids = move_ids
 
-    @api.one
-    def _get_payment_ids(self):
-        move_lines = self.env['account.move.line']
-        for line in self.line_ids:
-            move_lines |= line.payment_ids
-        self.payment_ids = move_lines
+    @api.multi
+    def _compute_payment_ids(self):
+        for riba in self:
+            move_lines = self.env['account.move.line']
+            for line in riba.line_ids:
+                move_lines |= line.payment_ids
+            riba.payment_ids = move_lines
 
     _name = 'riba.distinta'
     _description = 'Riba list'
@@ -58,9 +44,11 @@ class RibaList(models.Model):
     name = fields.Char(
         'Reference', required=True, readonly=True,
         states={'draft': [('readonly', False)]},
-        default=(lambda self: self.env['ir.sequence'].get('riba.distinta')))
+        default=(lambda self: self.env['ir.sequence'].next_by_code(
+            'riba.distinta'))
+    )
     config_id = fields.Many2one(
-        'riba.configuration', string='Configuration', select=True,
+        'riba.configuration', string='Configuration', index=True,
         required=True, readonly=True, states={'draft': [('readonly', False)]},
         help='Riba configuration to be used')
     state = fields.Selection([
@@ -69,7 +57,7 @@ class RibaList(models.Model):
         ('accredited', 'Accredited'),
         ('paid', 'Paid'),
         ('unsolved', 'Unsolved'),
-        ('cancel', 'Canceled')], 'State', select=True, readonly=True,
+        ('cancel', 'Canceled')], 'State', readonly=True,
         default='draft')
     line_ids = fields.One2many(
         'riba.distinta.line', 'distinta_id', 'Riba deadlines', readonly=True,
@@ -92,15 +80,15 @@ class RibaList(models.Model):
             'riba.distinta'))
     acceptance_move_ids = fields.Many2many(
         'account.move',
-        compute='_get_acceptance_move_ids',
+        compute='_compute_acceptance_move_ids',
         string="Acceptance Entries")
     accreditation_move_id = fields.Many2one(
         'account.move', 'Accreditation Entry', readonly=True)
     payment_ids = fields.Many2many(
-        'account.move.line', compute='_get_payment_ids', string='Payments')
+        'account.move.line', compute='_compute_payment_ids', string='Payments')
     unsolved_move_ids = fields.Many2many(
         'account.move',
-        compute='_get_unsolved_move_ids',
+        compute='_compute_unsolved_move_ids',
         string="Unsolved Entries")
     type = fields.Selection(
         string="Type", related='config_id.type', readonly=True)
@@ -108,7 +96,7 @@ class RibaList(models.Model):
         'Registration Date',
         states={'draft': [('readonly', False)],
                 'cancel': [('readonly', False)], },
-        select=True, readonly=True,
+        readonly=True,
         required=True,
         default=lambda self: fields.Date.context_today(self),
         help="Keep empty to use the current date")
@@ -117,9 +105,9 @@ class RibaList(models.Model):
     def unlink(self):
         for riba_list in self:
             if riba_list.state not in ('draft',  'cancel'):
-                raise UserError(
+                raise UserError(_(
                     'List %s is in state %s. You can only delete documents'
-                    ' in state draft or canceled'
+                    ' in state draft or canceled')
                     % (riba_list.name, riba_list.state))
         super(RibaList, self).unlink()
 
@@ -211,38 +199,37 @@ class RibaList(models.Model):
 
 
 class RibaListLine(models.Model):
-    # TODO estendere la account_due_list per visualizzare e filtrare
-    # in base alle riba ?
     _name = 'riba.distinta.line'
     _description = 'Riba details'
     _rec_name = 'sequence'
 
-    @api.one
-    def _get_line_values(self):
-        self.amount = 0.0
-        self.invoice_date = ""
-        self.invoice_number = ""
-        for move_line in self.move_line_ids:
-            self.amount += move_line.amount
-            if not self.invoice_date:
-                self.invoice_date = str(
-                    move_line.move_line_id.invoice.date_invoice)
-            else:
-                self.invoice_date = "%s, %s" % (self.invoice_date, str(
-                    move_line.move_line_id.invoice.date_invoice))
-            if not self.invoice_number:
-                self.invoice_number = str(
-                    move_line.move_line_id.invoice.internal_number)
-            else:
-                self.invoice_number = "%s, %s" % (self.invoice_number, str(
-                    move_line.move_line_id.invoice.internal_number))
+    @api.multi
+    def _compute_line_values(self):
+        for line in self:
+            line.amount = 0.0
+            line.invoice_date = ""
+            line.invoice_number = ""
+            for move_line in line.move_line_ids:
+                line.amount += move_line.amount
+                if not line.invoice_date:
+                    line.invoice_date = str(
+                        move_line.move_line_id.invoice_id.date_invoice)
+                else:
+                    line.invoice_date = "%s, %s" % (line.invoice_date, str(
+                        move_line.move_line_id.invoice_id.date_invoice))
+                if not line.invoice_number:
+                    line.invoice_number = str(
+                        move_line.move_line_id.invoice_id.move_name)
+                else:
+                    line.invoice_number = "%s, %s" % (line.invoice_number, str(
+                        move_line.move_line_id.invoice_id.move_name))
 
     amount = fields.Float(
-        compute='_get_line_values', string="Amount")
+        compute='_compute_line_values', string="Amount")
     invoice_date = fields.Char(
-        compute='_get_line_values', string="Invoice Date", size=256)
+        compute='_compute_line_values', string="Invoice Date", size=256)
     invoice_number = fields.Char(
-        compute='_get_line_values', string="Invoice Number", size=256)
+        compute='_compute_line_values', string="Invoice Number", size=256)
 
     @api.multi
     def move_line_id_payment_get(self):
@@ -258,36 +245,29 @@ class RibaListLine(models.Model):
         return [row[0] for row in self._cr.fetchall()]
 
     @api.multi
-    def test_reconcilied(self):
+    def test_reconciled(self):
         # check whether all corresponding account move lines are reconciled
         line_ids = self.move_line_id_payment_get()
         if not line_ids:
             return False
-        query = "SELECT reconcile_id FROM account_move_line WHERE id IN %s"
-        self._cr.execute(query, (tuple(line_ids),))
-        reconcilied = all(row[0] for row in self._cr.fetchall())
+        move_lines = self.env['account.move.line'].browse(line_ids)
+        reconcilied = all(line.reconciled for line in move_lines)
         return reconcilied
 
     @api.multi
     def _compute_lines(self):
-        for line in self:
-            src = []
-            lines = []
-            if line.acceptance_move_id and not line.state == 'unsolved':
-                for m in line.acceptance_move_id.line_id:
-                    temp_lines = []
-                    if m.reconcile_id and m.credit == 0.0:
-                        temp_lines = map(
-                            lambda x: x.id, m.reconcile_id.line_id)
-                    elif m.reconcile_partial_id and m.credit == 0.0:
-                        temp_lines = map(
-                            lambda x: x.id,
-                            m.reconcile_partial_id.line_partial_ids)
-                    lines += [x for x in temp_lines if x not in lines]
-                    src.append(m.id)
-
-            lines = filter(lambda x: x not in src, lines)
-            line.payment_ids = self.env['account.move.line'].browse(lines)
+        for riba_line in self:
+            payment_lines = []
+            if (
+                riba_line.acceptance_move_id and not
+                riba_line.state == 'unsolved'
+            ):
+                for line in riba_line.acceptance_move_id.line_ids:
+                    payment_lines.extend(filter(None, [
+                        rp.credit_move_id.id for rp in line.matched_credit_ids
+                    ]))
+            riba_line.payment_ids = self.env['account.move.line'].browse(
+                list(set(payment_lines)))
 
     sequence = fields.Integer('Number')
     move_line_ids = fields.One2many(
@@ -300,7 +280,7 @@ class RibaListLine(models.Model):
         'account.account', string='Acceptance Account')
     bank_id = fields.Many2one('res.partner.bank', string='Debitor Bank')
     iban = fields.Char(
-        related='bank_id.iban', string='IBAN', store=False,
+        related='bank_id.acc_number', string='IBAN', store=False,
         readonly=True)
     distinta_id = fields.Many2one(
         'riba.distinta', string='List', required=True, ondelete='cascade')
@@ -314,7 +294,7 @@ class RibaListLine(models.Model):
         ('paid', 'Paid'),
         ('unsolved', 'Unsolved'),
         ('cancel', 'Canceled'),
-    ], 'State', select=True, readonly=True, track_visibility='onchange')
+    ], 'State', readonly=True, track_visibility='onchange')
     payment_ids = fields.Many2many(
         'account.move.line', compute='_compute_lines', string='Payments')
     type = fields.Char(
@@ -322,36 +302,41 @@ class RibaListLine(models.Model):
 
     @api.multi
     def confirm(self):
-        move_pool = self.pool['account.move']
-        move_line_pool = self.pool['account.move.line']
+        move_model = self.env['account.move']
+        move_line_model = self.env['account.move.line']
         for line in self:
             journal = line.distinta_id.config_id.acceptance_journal_id
             total_credit = 0.0
-            move_id = move_pool.create(self._cr, self.env.user.id, {
+            move = move_model.create({
                 'ref': 'Ri.Ba. %s - line %s' % (line.distinta_id.name,
                                                 line.sequence),
                 'journal_id': journal.id,
                 'date': line.distinta_id.registration_date,
-            }, self._context)
-            to_be_reconciled = []
+            })
+            to_be_reconciled = self.env['account.move.line']
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
-                move_line_id = move_line_pool.create(
-                    self._cr, self.env.user.id, {
+                move_line = move_line_model.with_context({
+                    'check_move_validity': False
+                }).create(
+                    {
                         'name': (
-                            riba_move_line.move_line_id.invoice and
-                            riba_move_line.move_line_id.invoice.number or
+                            riba_move_line.move_line_id.invoice_id and
+                            riba_move_line.move_line_id.invoice_id.number or
                             riba_move_line.move_line_id.name),
                         'partner_id': line.partner_id.id,
                         'account_id': (
                             riba_move_line.move_line_id.account_id.id),
                         'credit': riba_move_line.amount,
                         'debit': 0.0,
-                        'move_id': move_id,
-                    }, self._context)
-                to_be_reconciled.append([move_line_id,
-                                         riba_move_line.move_line_id.id])
-            move_line_pool.create(self._cr, self.env.user.id, {
+                        'move_id': move.id,
+                    }
+                )
+                to_be_reconciled |= move_line
+                to_be_reconciled |= riba_move_line.move_line_id
+            move_line_model.with_context({
+                'check_move_validity': False
+            }).create({
                 'name': 'Ri.Ba. %s - line %s' % (line.distinta_id.name,
                                                  line.sequence),
                 'account_id': (
@@ -364,16 +349,12 @@ class RibaListLine(models.Model):
                 'date_maturity': line.due_date,
                 'credit': 0.0,
                 'debit': total_credit,
-                'move_id': move_id,
-            }, self._context)
-            move_pool.post(
-                self._cr, self.env.user.id, [move_id], self._context)
-            for reconcile_ids in to_be_reconciled:
-                move_line_pool.reconcile_partial(self._cr, self.env.user.id,
-                                                 reconcile_ids,
-                                                 self._context)
+                'move_id': move.id,
+            })
+            move.post()
+            to_be_reconciled.reconcile()
             line.write({
-                'acceptance_move_id': move_id,
+                'acceptance_move_id': move.id,
                 'state': 'confirmed',
             })
             line.distinta_id.signal_workflow('accepted')
@@ -386,7 +367,7 @@ class RibaListMoveLine(models.Model):
     _rec_name = 'amount'
 
     amount = fields.Float(
-        'Amount', digits_compute=dp.get_precision('Account'))
+        'Amount', digits=dp.get_precision('Account'))
     move_line_id = fields.Many2one(
         'account.move.line', string='Credit move line')
     riba_line_id = fields.Many2one(
