@@ -39,6 +39,7 @@ addon | version | summary
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 
+
 Unported addons
 ---------------
 addon | version | summary
