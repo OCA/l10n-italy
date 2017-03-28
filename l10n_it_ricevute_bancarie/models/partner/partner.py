@@ -24,7 +24,16 @@
 #
 ##############################################################################
 
-from . import wizard_riba_issue
-from . import wizard_riba_file_export
-from . import wizard_accreditation
-from . import wizard_unsolved
+from openerp.osv import fields, orm
+
+
+class ResPartner(orm.Model):
+
+    _name = "res.partner"
+    _inherit = "res.partner"
+
+    _columns = {
+        'group_riba': fields.boolean(
+            "Group Ri.Ba.",
+            help="Group Ri.Ba. by customer while issuing"),
+    }
