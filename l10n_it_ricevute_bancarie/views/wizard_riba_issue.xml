@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        
+        <!-- ====================================================== -->
+        <!--                     WIZARD EMISSIONE RIBA                -->
+        <!-- ====================================================== -->
+        <record id="riba_issue_view" model="ir.ui.view">
+            <field name="name">riba.issue.wizard</field>
+            <field name="model">riba.issue</field>
+            <field name="arch" type="xml">
+                <form string="Issue Ri.Ba.">
+                    <separator string="This wizard generates the Ri.Ba. list, do you confirm?" colspan="4"/>
+                    <group>
+                        <field name="configuration_id"/>
+                    </group>
+                    <group col="4" colspan="4">
+                        <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
+                        <button string="Create" name="create_list" type="object" icon="gtk-ok" colspan="2"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <!-- ====================================================== -->
+        <!--                     ACTION EMISSIONE RIBA                -->
+        <!-- ====================================================== -->
+        <record id="riba_issue_action" model="ir.actions.act_window">
+            <field name="name">Issue Ri.Ba.</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">riba.issue</field>
+            <field name="src_model">account.move.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="riba_issue_view"/>
+
+        </record>
+        
+        <record model="ir.values" id="riba_issue_client_action">
+            <!--field name="model_id" ref="sale.model_sale_order" /
+            <field name="object" eval="1" /> -->
+            <field name="name">Issue Ri.Ba.</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('riba_issue_action'))" />
+            <field name="key">action</field>
+            <field name="model">account.move.line</field>
+        </record>
+        
+    </data>
+</openerp>
