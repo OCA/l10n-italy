@@ -24,7 +24,29 @@
 #
 ##############################################################################
 
-from . import wizard_riba_issue
-from . import wizard_riba_file_export
-from . import wizard_accreditation
-from . import wizard_unsolved
+from openerp import models, fields
+
+
+class AccountConfigSettings(models.TransientModel):
+
+    _inherit = 'account.config.settings'
+
+    due_cost_service_id = fields.Many2one(
+        related='company_id.due_cost_service_id',
+        help='Default Service for RiBa Due Cost (collection fees) on invoice',
+        domain=[('type', '=', 'service')])
+
+    def default_get(self, cr, uid, fields, context=None):
+        res = super(AccountConfigSettings, self).default_get(
+            cr, uid, fields, context)
+        if res:
+            user = self.pool['res.users'].browse(cr, uid, uid, context)
+            res['due_cost_service_id'] = user.company_id.due_cost_service_id.id
+        return res
+
+
+class ResCompany(models.Model):
+
+    _inherit = 'res.company'
+
+    due_cost_service_id = fields.Many2one('product.product')
