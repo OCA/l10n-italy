@@ -1,82 +1,63 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2011-2012 Associazione OpenERP Italia
-#    (<http://www.odoo-italia.org>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-#    Thanks to Antonio de Vincentiis http://www.devincentiis.it/ ,
-#    GAzie http://gazie.sourceforge.net/
-#    and Cecchi s.r.l http://www.cecchi.com/
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright (C) 2011-2012 Associazione OpenERP Italia
+# (<http://www.odoo-italia.org>).
+# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
+# Thanks to Antonio de Vincentiis http://www.devincentiis.it/ ,
+# GAzie http://gazie.sourceforge.net/
+# and Cecchi s.r.l http://www.cecchi.com/
 
-'''
-*****************************************************************************************
- Questa classe genera il file RiBa standard ABI-CBI passando alla funzione
- "creaFile" i due array di seguito specificati:
-$intestazione = array monodimensionale con i seguenti index:
-              [0] = credit_sia variabile lunghezza 5 alfanumerico
-              [1] = credit_abi assuntrice variabile lunghezza 5 numerico
-              [2] = credit_cab assuntrice variabile lunghezza 5 numerico
-              [3] = credit_conto conto variabile lunghezza 10 alfanumerico
-              [4] = data_creazione variabile lunghezza 6 numerico formato
-                GGMMAA
-              [5] = nome_supporto variabile lunghezza 20 alfanumerico
-              [6] = codice_divisa variabile lunghezza 1 alfanumerico opzionale
-                default "E"
-              [7] = name_company nome ragione sociale creditore variabile
-                lunghezza 24 alfanumerico
-              [8] = indirizzo_creditore variabile lunghezza 24 alfanumerico
-              [9] = cap_citta_creditore variabile lunghezza 24 alfanumerico
-              [10] = ref (definizione attivita) creditore
-              [11] = codice fiscale/partita iva creditore alfanumerico
-                opzionale
-
-$ricevute_bancarie = array bidimensionale con i seguenti index:
-                   [0] = numero ricevuta lunghezza 10 numerico
-                   [1] = data scadenza lunghezza 6 numerico
-                   [2] = importo in centesimi di euro
-                   [3] = nome debitore lunghezza 60 alfanumerico
-                   [4] = codice fiscale/partita iva debitore lunghezza 16
-                    alfanumerico
-                   [5] = indirizzo debitore lunghezza 30 alfanumerico
-                   [6] = cap debitore lunghezza 5 numerico
-                   [7] = citta debitore alfanumerico
-                   [8] = debitor_province debitore alfanumerico
-                   [9] = abi banca domiciliataria lunghezza 5 numerico
-                   [10] = cab banca domiciliataria lunghezza 5 numerico
-                   [11] = descrizione banca domiciliataria lunghezza 50
-                    alfanumerico
-                   [12] = codice cliente attribuito dal creditore lunghezza 16
-                    numerico
-                   [13] = numero fattura lunghezza 40 alfanumerico
-                   [14] = data effettiva della fattura
-
-'''
 
 import base64
-from openerp.osv import fields, orm
-from openerp.tools.translate import _
+from odoo import fields, models, _
+from odoo.exceptions import UserError
 import datetime
 import re
 
 
-class RibaFileExport(orm.TransientModel):
+class RibaFileExport(models.TransientModel):
+    """
+    ***************************************************************************
+     Questa classe genera il file RiBa standard ABI-CBI passando alla funzione
+     "creaFile" i due array di seguito specificati:
+    $intestazione = array monodimensionale con i seguenti index:
+                  [0] = credit_sia variabile lunghezza 5 alfanumerico
+                  [1] = credit_abi assuntrice variabile lunghezza 5 numerico
+                  [2] = credit_cab assuntrice variabile lunghezza 5 numerico
+                  [3] = credit_conto conto variabile lunghezza 10 alfanumerico
+                  [4] = data_creazione variabile lunghezza 6 numerico formato
+                    GGMMAA
+                  [5] = nome_supporto variabile lunghezza 20 alfanumerico
+                  [6] = codice_divisa variabile lunghezza 1 alfanumerico
+                    opzionale default "E"
+                  [7] = name_company nome ragione sociale creditore variabile
+                    lunghezza 24 alfanumerico
+                  [8] = indirizzo_creditore variabile lunghezza 24 alfanumerico
+                  [9] = cap_citta_creditore variabile lunghezza 24 alfanumerico
+                  [10] = ref (definizione attivita) creditore
+                  [11] = codice fiscale/partita iva creditore alfanumerico
+                    opzionale
 
+    $ricevute_bancarie = array bidimensionale con i seguenti index:
+                       [0] = numero ricevuta lunghezza 10 numerico
+                       [1] = data scadenza lunghezza 6 numerico
+                       [2] = importo in centesimi di euro
+                       [3] = nome debitore lunghezza 60 alfanumerico
+                       [4] = codice fiscale/partita iva debitore lunghezza 16
+                        alfanumerico
+                       [5] = indirizzo debitore lunghezza 30 alfanumerico
+                       [6] = cap debitore lunghezza 5 numerico
+                       [7] = citta debitore alfanumerico
+                       [8] = debitor_province debitore alfanumerico
+                       [9] = abi banca domiciliataria lunghezza 5 numerico
+                       [10] = cab banca domiciliataria lunghezza 5 numerico
+                       [11] = descrizione banca domiciliataria lunghezza 50
+                        alfanumerico
+                       [12] = codice cliente attribuito dal creditore lunghezza
+                        16 numerico
+                       [13] = numero fattura lunghezza 40 alfanumerico
+                       [14] = data effettiva della fattura
+
+    """
     _progressivo = 0
     _assuntrice = 0
     _sia = 0
@@ -203,22 +184,21 @@ class RibaFileExport(orm.TransientModel):
         self._totale = 0
         return accumulatore
 
-    def act_getfile(self, cr, uid, ids, context=None):
-        active_ids = context and context.get('active_ids', [])
-        order_obj = self.pool['riba.distinta'].browse(
-            cr, uid, active_ids, context=context)[0]
+    def act_getfile(self):
+        active_ids = self.env.context.get('active_ids', [])
+        order_obj = self.env['riba.distinta'].browse(active_ids)[0]
         credit_bank = order_obj.config_id.bank_id
         name_company = order_obj.config_id.company_id.partner_id.name
-        if not credit_bank.iban:
-            raise orm.except_orm('Error', _('No IBAN specified'))
+        if not credit_bank.acc_number:
+            raise UserError(_('No IBAN specified'))
         # remove spaces automatically added by odoo
-        credit_iban = credit_bank.iban.replace(" ", "")
+        credit_iban = credit_bank.acc_number.replace(" ", "")
         credit_abi = credit_iban[5:10]
         credit_cab = credit_iban[10:15]
         credit_conto = credit_iban[-12:]
         if not credit_bank.codice_sia:
-            raise orm.except_orm(
-                'Error', _('No SIA Code specified for: ') + name_company)
+            raise UserError(
+                _('No SIA Code specified for: ') + name_company)
         credit_sia = credit_bank.codice_sia
         dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = datetime.datetime.now().strftime(
@@ -229,8 +209,7 @@ class RibaFileExport(orm.TransientModel):
             not order_obj.config_id.company_id.partner_id.vat and not
             order_obj.config_id.company_id.partner_id.fiscalcode
         ):
-            raise orm.except_orm(
-                'Error',
+            raise UserError(
                 _('No VAT or Fiscalcode specified for: ') + name_company)
         array_testata = [
             credit_sia,
@@ -258,13 +237,12 @@ class RibaFileExport(orm.TransientModel):
             if debit_bank.bank_abi and debit_bank.bank_cab:
                 debit_abi = debit_bank.bank_abi
                 debit_cab = debit_bank.bank_cab
-            elif debit_bank.iban:
-                debit_iban = debit_bank.iban.replace(" ", "")
+            elif debit_bank.acc_number:
+                debit_iban = debit_bank.acc_number.replace(" ", "")
                 debit_abi = debit_iban[5:10]
                 debit_cab = debit_iban[10:15]
             else:
-                raise orm.except_orm(
-                    _('Error'),
+                raise UserError(
                     _('No IBAN or ABI/CAB specified for ') +
                     line.partner_id.name)
             debitor_city = debitor_address.city and debitor_address.city.ljust(
@@ -279,16 +257,14 @@ class RibaFileExport(orm.TransientModel):
                     line.due_date[:10], '%Y-%m-%d').strftime("%d%m%y")
 
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
-                raise orm.except_orm(
-                    'Error',
+                raise UserError(
                     _('No VAT or Fiscal code specified for ') +
                     line.partner_id.name)
             if not (
-                debit_bank.bank and debit_bank.bank.name or
+                debit_bank.bank_id and debit_bank.bank_id.name or
                 debit_bank.bank_name
             ):
-                raise orm.except_orm(
-                    'Error',
+                raise UserError(
                     _('No debit_bank specified for ') + line.partner_id.name)
             Riba = [
                 line.sequence,
@@ -306,7 +282,7 @@ class RibaFileExport(orm.TransientModel):
                 debit_abi,
                 debit_cab,
                 (
-                    debit_bank.bank and debit_bank.bank.name[:50] or
+                    debit_bank.bank_id and debit_bank.bank_id.name[:50] or
                     debit_bank.bank_name[:50]),
                 line.partner_id.ref and line.partner_id.ref[:16] or '',
                 line.invoice_number[:40],
@@ -316,16 +292,15 @@ class RibaFileExport(orm.TransientModel):
 
         out = base64.encodestring(
             self._creaFile(array_testata, arrayRiba).encode("utf8"))
-        self.write(
-            cr, uid, ids, {
-                'state': 'get',
-                'riba_txt': out,
-                'file_name': '%s.txt' % order_obj.name
-                }, context=context)
+        self.write({
+            'state': 'get',
+            'riba_txt': out,
+            'file_name': '%s.txt' % order_obj.name
+        })
 
-        model_data_obj = self.pool.get('ir.model.data')
+        model_data_obj = self.env['ir.model.data']
         view_rec = model_data_obj.get_object_reference(
-            cr, uid, 'l10n_it_ricevute_bancarie', 'wizard_riba_file_export')
+            'l10n_it_ricevute_bancarie', 'wizard_riba_file_export')
         view_id = view_rec and view_rec[1] or False
 
         return {
@@ -333,21 +308,18 @@ class RibaFileExport(orm.TransientModel):
             'view_id': [view_id],
             'view_mode': 'form',
             'res_model': 'riba.file.export',
-            'res_id': ids[0],
+            'res_id': self.id,
             'type': 'ir.actions.act_window',
             'target': 'new',
-            'context': context,
         }
 
     _name = "riba.file.export"
 
-    _columns = {
-        'state': fields.selection((('choose', 'choose'),   # choose accounts
-                                   ('get', 'get'),         # get the file
-                                   )),
-        'riba_txt': fields.binary('File', readonly=True),
-        'file_name': fields.char('File name', readonly=True),
-    }
-    _defaults = {
-        'state': lambda *a: 'choose',
-    }
+    state = fields.Selection(
+        (
+            ('choose', 'choose'),   # choose accounts
+            ('get', 'get'),         # get the file
+        ),
+        default='choose')
+    riba_txt = fields.Binary('File', readonly=True)
+    file_name = fields.Char('File name', readonly=True)
