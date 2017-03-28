@@ -1,0 +1,336 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_vat_registries
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-30 20:28+0000\n"
+"PO-Revision-Date: 2016-05-01 14:32+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a VAT registry.\n"
+"              </p><p>\n"
+"                A VAT registry is used to group several journals in one registry.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n                Dodaj DDV register.\n              </p><p>\n                DDV register služi zbiranju več dnevnikov v en register.\n              </p>\n            "
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "CAUS."
+msgstr "RAZLOG"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/vat_registry.py:183
+#, python-format
+msgid "Can't compute base amount for tax %s"
+msgstr "Za davek %s ne morem izračunati osnove"
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,company_id:0
+msgid "Company"
+msgstr "Družba"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax.registry,type:0 selection:wizard.registro.iva,type:0
+msgid "Corrispettivi"
+msgstr "Kompenzacije"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,create_uid:0
+#: field:wizard.registro.iva,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,create_date:0
+#: field:wizard.registro.iva,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax.registry,type:0 selection:wizard.registro.iva,type:0
+msgid "Customer Invoices"
+msgstr "Izdani računi"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "DATA REG."
+msgstr "DATUM KNJ."
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "DT FATT."
+msgstr "DATUM RAČ."
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Descrizione"
+msgstr "Opis"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Descrizione Imposta"
+msgstr "Opis davka"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Detraibile"
+msgstr "Odbitni"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,display_name:0
+#: field:report.l10n_it_vat_registries.report_registro_iva,display_name:0
+#: field:wizard.registro.iva,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.code,exclude_from_registries:0
+msgid "Exclude from VAT registries"
+msgstr "Izključi iz DDV registrov"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,id:0
+#: field:report.l10n_it_vat_registries.report_registro_iva,id:0
+#: field:wizard.registro.iva,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Imponibile"
+msgstr "Obdavčljivo"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Imposta"
+msgstr "Davek"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Indetraibile"
+msgstr "Neodbitni"
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.report.xml,name:l10n_it_vat_registries.action_report_registro_iva
+msgid "Invoices VAT Registry"
+msgstr "Register DDV računov"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_journal
+msgid "Journal"
+msgstr "Dnevnik"
+
+#. module: l10n_it_vat_registries
+#: view:account.tax.registry:l10n_it_vat_registries.view_account_tax_registry_form
+#: field:account.tax.registry,journal_ids:0
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+#: field:wizard.registro.iva,journal_ids:0
+msgid "Journals"
+msgstr "Dnevniki"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,__last_update:0
+#: field:report.l10n_it_vat_registries.report_registro_iva,__last_update:0
+#: field:wizard.registro.iva,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,write_uid:0
+#: field:wizard.registro.iva,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,write_date:0
+#: field:wizard.registro.iva,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,fiscal_page_base:0
+msgid "Last printed page"
+msgstr "Zadnja natisnjena stran"
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,type:0
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+#: field:wizard.registro.iva,type:0
+msgid "Layout"
+msgstr "Postavitev"
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,message:0
+msgid "Message"
+msgstr "Sporočilo"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/vat_registry.py:95
+#, python-format
+msgid "Move %s contains different invoices"
+msgstr "Premik %s vsebuje različne račune"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "NUM FATT."
+msgstr "ŠT. RAČ."
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "NUM. REG."
+msgstr "ŠT. VKNJ."
+
+#. module: l10n_it_vat_registries
+#: field:account.tax.registry,name:0
+msgid "Name"
+msgstr "Naziv"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:93
+#, python-format
+msgid "No documents found in the current selection"
+msgstr "V trenutnem izboru ni najdenih dokumentov"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "P.IVA"
+msgstr "ID za DDV"
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+#: field:wizard.registro.iva,period_ids:0
+msgid "Periods"
+msgstr "Obdobja"
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+msgid "Print"
+msgstr "Natisni"
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,only_totals:0
+msgid "Prints only totals"
+msgstr "Natisni le skupne zneske"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "RAGIONE SOCIALE"
+msgstr "NAZIV DRUŽBE"
+
+#. module: l10n_it_vat_registries
+#: help:wizard.registro.iva,journal_ids:0
+msgid "Select journals you want retrieve documents from"
+msgstr "Izberi dnevnike iz katerih želite pridobiti dokumente"
+
+#. module: l10n_it_vat_registries
+#: help:wizard.registro.iva,period_ids:0
+msgid "Select periods you want retrieve documents from"
+msgstr "Izberite obdobja iz katerih želite pridobiti dokumente"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax.registry,type:0 selection:wizard.registro.iva,type:0
+msgid "Supplier Invoices"
+msgstr "Prejeti računi"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "TOTALE"
+msgstr "SKUPAJ"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_tax_code
+msgid "Tax Code"
+msgstr "Davčna koda"
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+msgid "Tax Journal"
+msgstr "Davčni dnevnik"
+
+#. module: l10n_it_vat_registries
+#: field:wizard.registro.iva,tax_sign:0
+msgid "Tax amount sign"
+msgstr "Podpis davčnega zneska"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/vat_registry.py:240
+#, python-format
+msgid "Tax code %s is not linked to 1 and only 1 tax"
+msgstr "Davčna koda %s ni povezana z 1 in le 1 davkom"
+
+#. module: l10n_it_vat_registries
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
+msgid "Taxes"
+msgstr "Davki"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Totale generale euro"
+msgstr "Splošni skupni znesek EUR"
+
+#. module: l10n_it_vat_registries
+#: view:website:l10n_it_vat_registries.report_registro_iva
+msgid "Totali"
+msgstr "Skupni zneski"
+
+#. module: l10n_it_vat_registries
+#: help:wizard.registro.iva,tax_sign:0
+msgid ""
+"Use -1 you have negative tax         amounts and you want to print them "
+"prositive"
+msgstr "Uporabite -1, če imate negativne davčne zneske, ki jih želite natisniti kot pozitivne"
+
+#. module: l10n_it_vat_registries
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_registro_iva
+msgid "VAT Registries"
+msgstr "DDV registri"
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.act_window,name:l10n_it_vat_registries.action_registro_iva
+msgid "VAT Registry"
+msgstr "DDV register"
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.act_window,name:l10n_it_vat_registries.action_account_tax_registry_form
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_action_account_tax_registry_form
+msgid "VAT registries"
+msgstr "DDV registri"
+
+#. module: l10n_it_vat_registries
+#: field:account.journal,tax_registry_id:0
+#: field:wizard.registro.iva,tax_registry_id:0
+msgid "VAT registry"
+msgstr "DDV register"
+
+#. module: l10n_it_vat_registries
+#: help:account.journal,tax_registry_id:0
+msgid ""
+"You can group several journals within 1 registry. In printing wizard, you "
+"will be able to select the registry in order to load that group of journals"
+msgstr "V sklopu 1 registra lahko združite več dnevnikov. Čarovnik za tiskanje omogoča izbiro registra za nalaganje ustrezne skupine dnevnikov."
+
+#. module: l10n_it_vat_registries
+#: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
+msgid "or"
+msgstr "ali"
