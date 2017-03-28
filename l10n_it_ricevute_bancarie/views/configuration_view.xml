@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
         <!-- ====================================================== -->
         <!-- 				CONFIGURAZIONE RIBA FORM 				-->
@@ -46,7 +46,6 @@
         <!-- ====================================================== -->
         <!-- 				CONFIGURAZIONE RIBA MENU 				-->
         <!-- ====================================================== -->
-        <menuitem action="action_riba_configuration" id="menu_riba_configuration" name="Ri.Ba. Configuration" parent="account.menu_configuration_misc"/>
-
+        <menuitem action="action_riba_configuration" id="menu_riba_configuration" name="Ri.Ba. Configuration" parent="payment.root_payment_menu"/>
     </data>
-</openerp>
+</odoo>
