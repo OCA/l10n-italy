@@ -54,6 +54,7 @@ addon | version | summary
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 8.0.3.0.0 | Italian Withholding Tax
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 8.0.2.0.0 | Italian Withholding Tax Payment
 
+
 Unported addons
 ---------------
 addon | version | summary
