@@ -1,28 +1,22 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#    
-# Copyright (C) 2016 Andrea Cometa (Apulia Software)
-# Email: a.cometa@apuliasoftware.it
-# Web site: http://www.apuliasoftware.it
-# Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-# Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-# Copyright (C) 2012 Associazione Odoo Italia
-# (<http://www.odoo-italia.org>).
-#
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
-{
-    "name": "Ricevute Bancarie",
-    "version": "10.0.1.0.0",
-    "author": "Odoo Italia Network, Odoo Community Association (OCA)",
-    "category": "Accounting & Finance",
-    "website": "http://www.odoo-community.org",
-    "license": "AGPL-3",
-    "description": """
+====================
+IT Ricevute Bancarie
+====================
+
+Questo modulo serve a gestire il flusso delle ricevute bancarie
+
+Installation
+============
+
+Usage
+=====
+
 Gestione delle Ricevute Bancarie
 --------------------------------
+
 Nella configurazione delle Ri.Ba. è possibile specificare se si tratti di 'salvo buon fine' o 'al dopo incasso'. I due tipi di Ri.Ba. hanno un flusso completamente diverso. In caso di 'al dopo incasso', nessuna registrazione verrà effettuata automaticamente e le fatture risulteranno pagate solo al momento dell'effettivo incasso.
 
 E' possibile specificare diverse configurazioni (dal menù configurazioni -> varie -> Ri.Ba.). Per ognuna, in caso di 'salvo buon fine', è necessario specificare almeno il sezionale ed il conto da utilizzare al momento dell'accettazione della distinta da parte della banca.
@@ -37,24 +31,43 @@ I possibili stati della distinta sono: bozza, accettata, accreditata, pagata, in
 Ad ogni passaggio di stato sarà possibile generare le relative registrazioni contabili, le quali verranno riepilogate nel tab 'contabilità'. Questo tab è presente sia sulla distinta che sulle sue righe.
 
 Qui https://docs.google.com/document/d/1xCqeTcY6CF-Dgk_Avthhy7iwg_aG86WzNv3E_HHQkt4/edit# abbiamo un esempio delle tipiche registrazioni generate da un flusso 'salvo buon fine'.
-    """,
-    'images': [],
-    'depends': [
-        'account', #'l10n_it_fiscalcode', 'account_due_list'
-    ],
-    'init_xml': [],
-    'data': [
-        "configurazione_view.xml",
-        #"partner/partner_view.xml",
-        #"riba_sequence.xml",
-        #"wizard/wizard_accreditation.xml",
-        #"wizard/wizard_unsolved.xml",
-        #"riba_view.xml",
-        #"account/account_view.xml",
-        #"wizard/wizard_emissione_riba.xml",
-        #"wizard/riba_file_export.xml",
-        #"riba_workflow.xml",
-        #"security/ir.model.access.csv",
-    ],
-    'installable': True,
-}
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: #
+
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/l10n-italy/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
+
+Credits
+=======
+
+Contributors
+------------
+
+* Odoo Italia Network <http://www.odoo-italia.net/>
+* Andrea Cometa <a.cometa@apuliasoftware.it>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Davide Corio <info@davidecorio.com>
+
+
+Maintainer
+----------
+
+.. image:: https://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+To contribute to this module, please visit https://odoo-community.org.
