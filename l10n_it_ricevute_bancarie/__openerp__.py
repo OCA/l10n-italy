@@ -7,7 +7,7 @@
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.odoo-italia.org>).
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,7 +24,40 @@
 #
 ##############################################################################
 
-from . import wizard_riba_issue
-from . import wizard_riba_file_export
-from . import wizard_accreditation
-from . import wizard_unsolved
+{
+    'name': "Ricevute Bancarie",
+    'version': "8.0.1.3.0",
+    'author': "Odoo Community Association (OCA)",
+    'category': "Accounting & Finance",
+    'website': "http://www.odoo-italia.org",
+    'license': "AGPL-3",
+    'depends': [
+        'account_voucher',
+        'l10n_it_fiscalcode',
+        'account_due_list',
+        'base_iban',
+        'l10n_it_abicab'],
+    'data': [
+        "views/partner_view.xml",
+        "views/configuration_view.xml",
+        "riba_sequence.xml",
+        "views/wizard_accreditation.xml",
+        "views/wizard_unsolved.xml",
+        "views/riba_view.xml",
+        "views/account_view.xml",
+        "views/wizard_riba_issue.xml",
+        "views/wizard_riba_file_export.xml",
+        "views/account_config_view.xml",
+        "riba_workflow.xml",
+        "views/distinta_report.xml",
+        "report.xml",
+        "security/ir.model.access.csv",
+    ],
+    'demo': ["demo/riba_demo.xml"],
+    'test': [
+        'test/riba_invoice.yml',
+        'test/issue_riba.yml',
+        'test/unsolved_riba.yml',
+    ],
+    'installable': True,
+}
