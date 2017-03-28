@@ -35,6 +35,7 @@ addon | version | summary
 [l10n_it_ddt](l10n_it_ddt/) | 9.0.1.0.0 | Documento di Trasporto
 [l10n_it_rea](l10n_it_rea/) | 9.0.0.1.0 | Manage fields for Economic Administrative catalogue
 
+
 Unported addons
 ---------------
 addon | version | summary
