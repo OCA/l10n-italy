@@ -52,7 +52,7 @@ class ReportRegistroIva(models.AbstractModel):
 
     def _tax_amounts_by_tax_id(self, move, registry_type):
         res = {}
-        
+
         for move_line in move.line_ids:
             set_cee_absolute_value = False
             if not(move_line.tax_line_id or move_line.tax_ids):
@@ -70,8 +70,10 @@ class ReportRegistroIva(models.AbstractModel):
                 tax = move_line.tax_line_id
                 is_base = False
 
-            if (registry_type == 'customer' and tax.cee_type == 'sale') or \
-                    (registry_type == 'supplier' and tax.cee_type == 'purchase'):
+            if (
+                (registry_type == 'customer' and tax.cee_type == 'sale') or
+                (registry_type == 'supplier' and tax.cee_type == 'purchase')
+            ):
                 set_cee_absolute_value = True
 
             elif tax.cee_type:
@@ -85,19 +87,24 @@ class ReportRegistroIva(models.AbstractModel):
                 continue
 
             if not res.get(tax.id):
-                res[tax.id] = {'name': tax.name,
-                                'base': 0,
-                                'tax': 0,
-                                }
+                res[tax.id] = {
+                    'name': tax.name,
+                    'base': 0,
+                    'tax': 0,
+                }
             tax_amount = move_line.debit - move_line.credit
-            
+
             if set_cee_absolute_value:
                 tax_amount = abs(tax_amount)
 
-            if 'receivable' in move.move_type or \
-            ('payable_refund' == move.move_type and tax_amount > 0):
+            if (
+                'receivable' in move.move_type or
+                ('payable_refund' == move.move_type and tax_amount > 0)
+            ):
                 # otherwise refund would be positive and invoices
-                # negative
+                # negative.
+                # We also check payable_refund as it normaly is < 0, but
+                # it can be > 0 in case of reverse charge with VAT integration
                 tax_amount = -tax_amount
 
             if is_base:
@@ -132,8 +139,9 @@ class ReportRegistroIva(models.AbstractModel):
             invoice_type = "NC"
         else:
             invoice_type = "FA"
-        
-        amounts_by_tax_id = self._tax_amounts_by_tax_id(move, data['registry_type'])
+
+        amounts_by_tax_id = self._tax_amounts_by_tax_id(
+            move, data['registry_type'])
         for tax_id in amounts_by_tax_id:
             tax = self.env['account.tax'].browse(tax_id)
             tax_item = {
@@ -186,7 +194,7 @@ class ReportRegistroIva(models.AbstractModel):
             'to_date': data['to_date'],
             'vat_registry_journal_ids': data['journal_ids'],
         }
-        
+
         tax = self.env['account.tax'].with_context(context).browse(tax.id)
         tax_name = self._get_tax_name(tax)
         if not tax.children_tax_ids:
@@ -196,15 +204,24 @@ class ReportRegistroIva(models.AbstractModel):
             )
         else:
             base_balance = tax.base_balance
-            
+
             tax_balance = 0
             deductible = 0
             undeductible = 0
             for child in tax.children_tax_ids:
                 child_balance = child.balance
-                if (data['registry_type'] == 'customer' and child.cee_type == 'sale') or \
-                    (data['registry_type'] == 'supplier' and child.cee_type == 'purchase'):
-                    # Prendo la parte di competenza di ogni registro e lo sommo sempre
+                if (
+                    (
+                        data['registry_type'] == 'customer' and
+                        child.cee_type == 'sale'
+                    ) or
+                    (
+                        data['registry_type'] == 'supplier' and
+                        child.cee_type == 'purchase'
+                    )
+                ):
+                    # Prendo la parte di competenza di ogni registro e lo
+                    # sommo sempre
                     child_balance = abs(child_balance)
 
                 elif child.cee_type:
