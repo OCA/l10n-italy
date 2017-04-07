@@ -83,6 +83,8 @@
                 <separator></separator>
                 <filter string="Unsolved"
                     domain="[('unsolved_invoice_ids', '!=', False)]" name="unsolved"/>
+                <filter string="Sale Journals"
+                    domain="[('journal_id.type', '=', 'sale')]" name="sale_journal"/>
                 <field name="account_id"/>
                 <field name="partner_id"/>
                 <field name="invoice"/>
@@ -107,7 +109,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_riba_da_emettere_tree" />
-        <field name="context">{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
+        <field name="context">{'search_default_da_emettere':1, 'search_default_to_reconcile':1, 'search_default_sale_journal':1}</field>
         <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable')]</field>
         <field name="search_view_id" ref="riba_filter"/>
     </record>
