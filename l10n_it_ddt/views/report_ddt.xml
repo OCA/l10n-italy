@@ -97,6 +97,10 @@
                                     <strong>Lots/Serial Numbers</strong>
                                 </th>
                                 <th class="text-right"><strong>Quantity</strong></th>
+                                <t t-if="o.show_price">
+                                    <th class="text-right"><strong>Price</strong></th>
+                                    <th class="text-right"><strong>Discount</strong></th>
+                                </t>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,6 +113,10 @@
                                     <td t-if="not line.move_id.lot_ids"/>
                                 </t>
                                 <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
+                                <t t-if="o.show_price">
+                                    <td class="text-right" id="line_price_unit"><span t-field="line.price_unit"></span></td>
+                                    <td class="text-right" id="line_discount"><span t-field="line.discount"></span></td>
+                                </t>
                             </tr>
                         </tbody>
                     </table>

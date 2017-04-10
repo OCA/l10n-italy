@@ -19,6 +19,10 @@
                                 widget="selection"/>
                             <field name="parcels" />
                         </group>
+                        <newline/>
+                        <group string="DDT" name="ddt">
+                            <field name="ddt_ids" nolabel="1"/>
+                        </group>
                     </page>
                 </notebook>
             </field>
