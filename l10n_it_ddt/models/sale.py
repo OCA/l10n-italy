@@ -45,6 +45,12 @@ class SaleOrder(models.Model):
         string='Related DdTs',
         compute='_compute_ddt_ids')
     create_ddt = fields.Boolean('Automatically create the DDT')
+    ddt_invoicing_group = fields.Selection(
+        [('nothing', 'One DDT - One Invoice'),
+         ('billing_partner', 'Billing Partner'),
+         ('shipping_partner', 'Shipping Partners'),
+         ('code_group', 'Code group')], 'DDT invoicing group',
+        default='billing_partner')
 
     @api.multi
     @api.onchange('partner_id')
@@ -58,6 +64,8 @@ class SaleOrder(models.Model):
                 self.partner_id.transportation_reason_id.id)
             self.transportation_method_id = (
                 self.partner_id.transportation_method_id.id)
+            self.ddt_invoicing_group = (
+                self.partner_id.ddt_invoicing_group)
         return result
 
     @api.multi
@@ -68,7 +76,7 @@ class SaleOrder(models.Model):
             'goods_description_id': self.goods_description_id.id,
             'transportation_reason_id': self.transportation_reason_id.id,
             'transportation_method_id': self.transportation_method_id.id,
-            })
+        })
         return vals
 
     def _preparare_ddt_data(self):
@@ -83,7 +91,7 @@ class SaleOrder(models.Model):
             'transportation_method_id':
             self.transportation_method_id.id,
             'picking_ids': [(6, 0, picking_ids)],
-            }
+        }
 
     @api.multi
     def action_confirm(self):
