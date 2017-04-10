@@ -27,3 +27,13 @@ class ResPartner(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         string='Method of Transportation')
+    ddt_invoicing_group = fields.Selection(
+        [('nothing', 'One DDT - One Invoice'),
+         ('billing_partner', 'Billing Partner'),
+         ('shipping_partner', 'Shipping Partner'),
+         ('code_group', 'Code group')], 'DDT invoicing group',
+        default='billing_partner')
+    ddt_code_group = fields.Char(string='Code group')
+    ddt_show_price = fields.Boolean(
+        string='DDT show prices', default=False, help="Show prices and \
+        discounts in ddt report")

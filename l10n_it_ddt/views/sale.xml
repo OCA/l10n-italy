@@ -22,6 +22,7 @@
                             </group>
                             <group>
                                 <field name="create_ddt"/>
+                                <field name="ddt_invoicing_group"/>
                             </group>
                         </group>
                         <group string="Related DDTs">

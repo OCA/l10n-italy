@@ -4,6 +4,27 @@
 
     <!-- DdT Views -->
 
+    <record id="sppp_line_stock_picking_package_preparation_form_ddt" model="ir.ui.view">
+            <field name="name">sppp.line.stock.picking.package.preparation.form.ddt</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']" position="after">
+                   <field name="price_unit"/>
+                   <field name="discount"/>
+                   <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='line_ids']/form//field[@name='product_uom_id']" position="after">
+                   <field name="price_unit"/>
+                   <field name="discount"/>
+                   <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                </xpath>
+                
+            </field>
+        </record>
+
     <record id="ddt_stock_picking_package_preparation_search" model="ir.ui.view">
         <field name="name">ddt.stock.picking.package.preparation.search</field>
         <field name="model">stock.picking.package.preparation</field>
@@ -71,6 +92,7 @@
                                attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
                         <field name="volume"/>
                         <field name="weight"/>
+                        <field name="show_price"/>
                     </group>
                 </page>
             </notebook>
@@ -97,6 +119,33 @@
       parent="stock.menu_stock_warehouse_mgmt"
       name="DDT"
       sequence="3"/>
+      
+
+    <!-- Invoicing data -->
+
+    <record id="stock_picking_package_preparation_invoicing_form" model="ir.ui.view">
+            <field name="name">stock.picking.package.preparation.invoicing.form</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                   <field name="to_be_invoiced"/>
+                   <field name="invoice_id"/>
+                </xpath>
+            </field>
+     </record>
+     
+     <record id="stock_picking_package_preparation_invoicing_tree" model="ir.ui.view">
+            <field name="name">stock.picking.package.preparation.invoicing.tree</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                   <field name="to_be_invoiced"/>
+                   <field name="invoice_id"/>
+                </xpath>
+            </field>
+     </record>
 
     <!-- DdT Data -->
 
@@ -215,6 +264,7 @@
         <field name="arch" type="xml">
             <tree string="Reasons for Transportation">
                 <field name="name"/>
+                <field name="to_be_invoiced"/>
             </tree>
         </field>
     </record>
@@ -226,6 +276,7 @@
             <form string="Reason for Transportation">
                 <group>
                     <field name="name"/>
+                    <field name="to_be_invoiced"/>
                     <field name="note"/>
                 </group>
             </form>
