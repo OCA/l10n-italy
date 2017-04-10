@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_ddt_type_form_picking_type" model="ir.ui.view">
+            <field name="name">stock.ddt.type.form.picking.type</field>
+            <field name="model">stock.ddt.type</field>
+            <field name="inherit_id" ref="l10n_it_ddt.view_ddt_type_form"/>
+            <field name="arch" type="xml">
+                <field name="note" position="after">
+                    <field name="picking_type_id"/>
+                    <field name="invoiceable"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="stock_picking_package_preparation_reopen_form_picking_type" model="ir.ui.view">
+          <field name="name">stock.picking.package.preparation.reopen.form.picking.type</field>
+          <field name="model">stock.picking.package.preparation</field>
+          <field name="inherit_id"
+                 ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+          <field name="arch" type="xml">
+              <field name="company_id" position="after">
+                  <field name="picking_type_id" readonly="1"/>
+                  <field name="invoiceable" readonly="1"/>
+              </field>
+          </field>
+        </record>
+
+    </data>
+</openerp>

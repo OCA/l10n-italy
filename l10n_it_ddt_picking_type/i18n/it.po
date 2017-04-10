@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_ddt_picking_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-07 11:59+0000\n"
+"PO-Revision-Date: 2017-04-07 11:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_ddt_picking_type
+#: code:addons/l10n_it_ddt_picking_type/models/stock_picking_package_preparation.py:94
+#: code:addons/l10n_it_ddt_picking_type/models/stock_picking_package_preparation.py:103
+#, python-format
+msgid "Impossible to create confirmed picking. Please Check products availability!"
+msgstr "Impossibile creare ordini di consegna. Controllare la disponibilità dei prodotti!"
+
+#. module: l10n_it_ddt_picking_type
+#: field:stock.ddt.type,invoiceable:0
+#: selection:stock.ddt.type,invoiceable:0
+msgid "Invoiceable"
+msgstr "Fatturabile"
+
+#. module: l10n_it_ddt_picking_type
+#: selection:stock.ddt.type,invoiceable:0
+msgid "None"
+msgstr "Non Fatturabile"
+
+#. module: l10n_it_ddt_picking_type
+#: model:ir.model,name:l10n_it_ddt_picking_type.model_stock_picking_package_preparation
+msgid "Package Preparation"
+msgstr "DDT"
+
+#. module: l10n_it_ddt_picking_type
+#: model:ir.model,name:l10n_it_ddt_picking_type.model_stock_ddt_type
+msgid "Stock DdT Type"
+msgstr "Tipo DdT"
+
+#. module: l10n_it_ddt_picking_type
+#: help:stock.ddt.type,picking_type_id:0
+msgid "This is the picking type associated with the different pickings"
+msgstr "Tipo di consegna associata agli ordini di consegna"
+
+#. module: l10n_it_ddt_picking_type
+#: field:stock.ddt.type,picking_type_id:0
+msgid "Type of the new Operation"
+msgstr "Tipo dell'Operazione"
+
