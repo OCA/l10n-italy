@@ -17,14 +17,15 @@
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
-              'Agile Business Group, Francesco Apruzzese, Apulia Software',
+              'Agile Business Group, Francesco Apruzzese, Apulia Software, '
+              'Openforce di Camilli Alessandro',
     'website': 'http://www.odoo-italia.org/',
     'license': 'AGPL-3',
     'depends': [
         'sale_stock',
         'stock_account',
         'stock_picking_package_preparation_line',
-        ],
+    ],
     'data': [
         'security/ir.model.access.csv',
         'data/ddt_data.xml',
@@ -35,7 +36,9 @@
         'views/sale.xml',
         'wizard/add_picking_to_ddt.xml',
         'wizard/ddt_from_picking.xml',
+        'wizard/ddt_create_invoice.xml',
+        'wizard/ddt_invoicing.xml',
         'views/report_ddt.xml',
-        ],
+    ],
     'installable': True,
 }

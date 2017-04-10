@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_ddt_create_invoice" model="ir.ui.view">
+            <field name="name">DdT Create Invoice</field>
+            <field name="model">ddt.create.invoice</field>
+            <field name="arch" type="xml">
+              <form string="DDT Create Invoice">
+                <separator string="DDT" />
+                    <field string="DDT" name="ddt_ids" readonly="1"/>
+                    <footer>
+                        <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_ddt_create_invoice" model="ir.actions.act_window">
+            <field name="name">DDT Create Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ddt.create.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_ddt_create_invoice"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="ddt_create_invoice">
+            <field name="model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation" />
+            <field name="name">Create Invoice</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_create_invoice'))" />
+            <field name="key">action</field>
+            <field name="model">stock.picking.package.preparation</field>
+        </record>
+
+</odoo>
