@@ -91,6 +91,9 @@ class DdTCreateInvoice(models.TransientModel):
                                     move=move.name, ddt=ddt.ddt_number)))
             invoice_list = []
             for partner_id in ddt_partner.keys():
+                if len(ddt_partner[partner_id]) == 1:
+                    if ddt_partner[partner_id][0].invoice_id:
+                        continue
                 p_list = []
                 # ----- Force to use partner invoice from ddt as invoice partner
                 ctx = self.env.context.copy()
