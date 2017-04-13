@@ -12,7 +12,6 @@
                         <field name="date"/>
                         <field name="group" />
                     </group>
-                    <strong>Invoices created will group DDT by partner</strong>
                     <footer>
                         <button name="create_invoice" string="Create" type="object" class="oe_highlight"/>
                         or

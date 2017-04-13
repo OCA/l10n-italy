@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-01 15:31+0000\n"
-"PO-Revision-Date: 2017-02-01 15:31+0000\n"
+"POT-Creation-Date: 2017-04-13 14:16+0000\n"
+"PO-Revision-Date: 2017-04-13 14:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -255,6 +255,11 @@ msgid "Group By"
 msgstr "Raggruppa per"
 
 #. module: l10n_it_ddt
+#: field:ddt.create.invoice,group:0
+msgid "Group DDT by partner"
+msgstr "Raggruppa i DDT per partner"
+
+#. module: l10n_it_ddt
 #: help:stock.ddt.type,message_summary:0
 msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
 msgstr "Contiene il riepilogo Chatter (numero di messaggi, ...). Questa sintesi è direttamente in formato HTML, al fine di essere inserita nelle viste kanban."
@@ -298,11 +303,6 @@ msgstr "Fatturabile"
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Invoiced"
 msgstr "Fatturato"
-
-#. module: l10n_it_ddt
-#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
-msgid "Invoices created will group DDT by partner"
-msgstr "Le fatture create raggrupperanno i DDT per partner"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_is_follower:0
@@ -367,7 +367,7 @@ msgstr "Metodo di trasporto"
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Method of Transportation / Carrier"
-msgstr "Metodo di Trasporto / Vettore"
+msgstr "Metodo di trasporto / Corriere"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_transportation_method_tree
@@ -377,7 +377,7 @@ msgid "Methods of Transportation"
 msgstr "Metodi di trasporto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:98
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:90
 #, python-format
 msgid "Move {move} is not invoiceable ({ddt})"
 msgstr "Il movimento {move} non è fatturabile ({ddt})"
@@ -425,7 +425,7 @@ msgstr "Operazioni"
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
 msgid "Package Preparation"
-msgstr "Preparazione Pacco"
+msgstr "Preparazione pacco"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation_line
@@ -551,31 +551,31 @@ msgid "Search DDT"
 msgstr "Cerca DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:39
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:40
 #, python-format
 msgid "Selected DDTs have different Carriage Conditions"
 msgstr "I DDT selezionati hanno i Resi Merce differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:45
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:46
 #, python-format
 msgid "Selected DDTs have different Descriptions of Goods"
 msgstr "I DDT selezionati hanno differenti Descrizioni dell'aspetto esteriori dei beni"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:58
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:59
 #, python-format
 msgid "Selected DDTs have different Methods of Transportation"
 msgstr "I DDT selezionati hanno Metodi di Trasporto differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:51
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:52
 #, python-format
 msgid "Selected DDTs have different Reasons for Transportation"
 msgstr "I DDT selezionati hanno Casuali di Trasporto differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:65
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:66
 #, python-format
 msgid "Selected DDTs have different parcels"
 msgstr "I DDT Selezionati hanno colli differenti"
@@ -720,7 +720,7 @@ msgstr "Volume"
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Withdrawal Date and time"
-msgstr "Data e ora ritiro"
+msgstr "Data e ora trasporto"
 
 #. module: l10n_it_ddt
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt

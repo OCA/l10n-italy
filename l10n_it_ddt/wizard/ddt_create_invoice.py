@@ -73,15 +73,16 @@ class DdTCreateInvoice(models.TransientModel):
         ddts = ddt_model.search(
             [('id', 'in', self.env.context['active_ids'])],
             order='partner_invoice_id')
-        ddt_partner = {}
         self.check_ddt_data(ddts)
 
         def _create_invoices(ddts):
+            ddt_partner = {}
             for ddt in ddts:
                 if ddt.partner_invoice_id.id in ddt_partner:
                     ddt_partner[ddt.partner_invoice_id.id].append(ddt)
                 else:
                     ddt_partner[ddt.partner_invoice_id.id] = [ddt]
+
                 for picking in ddt.picking_ids:
                     for move in picking.move_lines:
                         if move.invoice_state != "2binvoiced":
