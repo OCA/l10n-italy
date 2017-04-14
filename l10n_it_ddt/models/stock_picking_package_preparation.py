@@ -184,6 +184,15 @@ class StockPickingPackagePreparation(models.Model):
             'target': 'new',
             }
 
+    @api.multi
+    def unlink(self):
+        for ddt in self:
+            if ddt.invoice_id:
+                raise exceptions.Warning(
+                    _("Document {d} has invoice linked".format(
+                        d=ddt.ddt_number)))
+        return super(StockPickingPackagePreparation, self).unlink()
+
 
 class StockPickingPackagePreparationLine(models.Model):
 
