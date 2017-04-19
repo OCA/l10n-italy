@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <template id="checkout_corrispettivi" inherit_id="website_sale.checkout">
+        <xpath expr="//div[@class='col-md-8 oe_cart']/div/div[12]" position="after">
+            <div class="col-lg-6 form-group">
+                <label class="control-label" for="country_id">Invoice or receipt</label>
+                <select name="invoice_or_receipt" class="form-control">
+                    <option value="invoice">Invoice</option>
+                    <option value="receipt">Receipt</option>
+                </select>
+            </div>
+        </xpath>
+    </template>
+</data>
+</openerp>
