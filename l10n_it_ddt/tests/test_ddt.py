@@ -93,6 +93,7 @@ class TestDdt(TransactionCase):
             'l10n_it_ddt.goods_description_BAN')
         self.transportation_reason_VEN = self.env.ref(
             'l10n_it_ddt.transportation_reason_VEN')
+        self.transportation_reason_VEN.to_be_invoiced = True
         self.transportation_reason_VIS = self.env.ref(
             'l10n_it_ddt.transportation_reason_VIS')
         self.transportation_method_DES = self.env.ref(
@@ -104,7 +105,7 @@ class TestDdt(TransactionCase):
         self.partner = self.env.ref('base.res_partner_2')
         self.partner2 = self.env.ref('base.res_partner_3')
         self.product1 = self.env.ref('product.product_product_25')
-        self.product2 = self.env.ref('product.product_product_26')
+        self.product2 = self.env.ref('product.product_product_27')
         self.ddt_model = self.env['stock.picking.package.preparation']
         self.picking = self._create_picking()
         self.move = self._create_move(self.picking, self.product1)
@@ -173,6 +174,23 @@ class TestDdt(TransactionCase):
         self.assertFalse(ddt.carriage_condition_id)
         self.picking3.unlink()
         self.assertEqual(len(ddt.line_ids), 2)
+        invoice_wizard = self.env['ddt.create.invoice'].with_context(
+            {'active_ids': [ddt.id]}).create({})
+        self.assertFalse(ddt.to_be_invoiced)
+        with self.assertRaises(UserError):
+            invoice_wizard.create_invoice()
+        ddt.transportation_reason_id = self.transportation_reason_VEN.id
+        self.assertTrue(ddt.to_be_invoiced)
+        action = invoice_wizard.create_invoice()
+        invoice_ids = action['domain'][0][2]
+        self.assertEqual(len(invoice_ids), 1)
+        invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(invoice.partner_id.id, self.partner.id)
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
+        self.assertTrue(
+            self.product1.id in
+            [p.id for p in invoice.invoice_line_ids.mapped('product_id')]
+        )
 
     def test_action_put_in_pack(self):
         self.picking.action_confirm()
@@ -181,13 +199,13 @@ class TestDdt(TransactionCase):
         self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
         self.ddt.line_ids[0].name = 'Changed for test'
         self.ddt.action_put_in_pack()
-        self.assertTrue('DDT' in self.ddt.display_name)
         self.assertEqual(self.ddt.line_ids[0].name, 'Changed for test')
         with self.assertRaises(UserError):
             self.ddt.set_done()
         for picking in self.ddt.picking_ids:
             picking.do_transfer()
         self.ddt.set_done()
+        self.assertTrue('DDT' in self.ddt.display_name)
 
     def test_action_put_in_pack_error(self):
         self.picking.action_confirm()
@@ -317,6 +335,35 @@ class TestDdt(TransactionCase):
         })]
         self.env['stock.picking'].create(vals)
         self.assertEqual(len(order1.ddt_ids.line_ids), 3)
+
+        # another order and another DDT to invoice
+        order5 = self._create_sale_order()
+        self._create_sale_order_line(order5, self.product1)
+        order5.create_ddt = True
+        order5.action_confirm()
+        ddt4 = order4.ddt_ids[0]
+        ddt5 = order5.ddt_ids[0]
+        ddt4.transportation_reason_id = (
+            self.transportation_reason_VEN.id)
+        ddt5.transportation_reason_id = (
+            self.transportation_reason_VEN.id)
+        self.assertTrue(ddt4.to_be_invoiced)
+        self.assertTrue(ddt5.to_be_invoiced)
+        invoice_wizard = self.env['ddt.create.invoice'].with_context(
+            {'active_ids': [ddt4.id, ddt5.id]}).create({})
+        action = invoice_wizard.create_invoice()
+        invoice_ids = action['domain'][0][2]
+        invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(len(order4.order_line.invoice_lines), 1)
+        self.assertEqual(len(order5.order_line.invoice_lines), 1)
+        self.assertEqual(order4.order_line.qty_invoiced, 1.0)
+        self.assertEqual(order5.order_line.qty_invoiced, 1.0)
+        # I manually added a line to picking of order4
+        self.assertEqual(len(invoice.invoice_line_ids), 3)
+        with self.assertRaises(UserError):
+            # already invoiced
+            invoice_wizard.create_invoice()
+
 
     def test_set_done(self):
         picking1 = self._create_picking()
