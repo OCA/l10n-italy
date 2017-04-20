@@ -260,12 +260,6 @@ class RibaFileExport(models.TransientModel):
                 raise UserError(
                     _('No VAT or Fiscal code specified for ') +
                     line.partner_id.name)
-            if not (
-                debit_bank.bank_id and debit_bank.bank_id.name or
-                debit_bank.bank_name
-            ):
-                raise UserError(
-                    _('No debit_bank specified for ') + line.partner_id.name)
             Riba = [
                 line.sequence,
                 due_date,
@@ -281,9 +275,7 @@ class RibaFileExport(models.TransientModel):
                 debitor_province,
                 debit_abi,
                 debit_cab,
-                (
-                    debit_bank.bank_id and debit_bank.bank_id.name[:50] or
-                    debit_bank.bank_name[:50]),
+                debit_bank.bank_name and debit_bank.bank_name[:50] or '',
                 line.partner_id.ref and line.partner_id.ref[:16] or '',
                 line.invoice_number[:40],
                 line.invoice_date,
