@@ -51,7 +51,9 @@ class AccountInvoiceLine(models.Model):
 
     _inherit = 'account.invoice.line'
 
-    ddt_id = fields.Many2one('stock.picking.package.preparation', string='Ddt')
+    ddt_id = fields.Many2one(
+        'stock.picking.package.preparation', string='Ddt',
+        related='ddt_line_id.package_preparation_id', store=True)
     ddt_line_id = fields.Many2one(
         'stock.picking.package.preparation.line', string='Ddt line')
     ddt_sequence = fields.Integer(
