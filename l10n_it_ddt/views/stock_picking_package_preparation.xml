@@ -13,13 +13,13 @@
                 <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']" position="after">
                    <field name="price_unit"/>
                    <field name="discount"/>
-                   <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                   <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
                 </xpath>
                 
                 <xpath expr="//field[@name='line_ids']/form//field[@name='product_uom_id']" position="after">
                    <field name="price_unit"/>
                    <field name="discount"/>
-                   <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                   <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
                 </xpath>
                 
             </field>

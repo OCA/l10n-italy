@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 # @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-# Copyright 2016 Lorenzo Battistini - Agile Business Group
+# Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
 
-from odoo.tools import float_is_zero, float_compare, DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import float_is_zero, float_compare
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 import odoo.addons.decimal_precision as dp
 
@@ -101,7 +102,9 @@ class StockPickingPackagePreparation(models.Model):
     invoice_id = fields.Many2one(
         'account.invoice', string='Invoice', readonly=True)
     to_be_invoiced = fields.Boolean(
-        string='To be Invoiced', store=True, compute="_compute_to_be_invoiced")
+        string='To be Invoiced', store=True, compute="_compute_to_be_invoiced",
+        help="This depends on 'To be Invoiced' field of the Reason for "
+             "Transportation of this DDT")
     show_price = fields.Boolean(string='Show prices on report')
 
     @api.onchange('partner_id', 'ddt_type_id')
@@ -210,8 +213,10 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def _prepare_invoice(self):
         """
-        Prepare the dict of values to create the new invoice for a sales order. This method may be
-        overridden to implement custom invoice generation (making sure to call super() to establish
+        Prepare the dict of values to create the new invoice for a sales order.
+        This method may be
+        overridden to implement custom invoice generation (making sure to call
+        super() to establish
         a clean extension chain).
         """
         self.ensure_one()
@@ -220,24 +225,34 @@ class StockPickingPackagePreparation(models.Model):
             ['journal_id'])['journal_id']
         if not journal_id:
             raise UserError(
-                _('Please define an accounting sale journal for this company.'))
+                _('Please define an accounting sale journal for this company.')
+            )
+        journal = self.env['account.journal'].browse(journal_id)
+        invoice_partner_id = (
+            order and order.partner_invoice_id.id or
+            self.partner_id.address_get(['invoice'])['invoice'])
+        invoice_partner = self.env['res.partner'].browse(invoice_partner_id)
+        currency_id = (
+            order and order.pricelist_id.currency_id.id or
+            journal.currency_id.id or journal.company_id.currency_id.id)
+        payment_term_id = (
+            order and order.payment_term_id.id or
+            self.partner_id.property_payment_term_id.id)
         invoice_vals = {
-            # 'name': self.client_order_ref or '',
-            # 'origin': self.name,
             'name': self.ddt_number or '',
             'origin': self.ddt_number,
             'type': 'out_invoice',
-            'account_id': order.partner_invoice_id.property_account_receivable_id.id,
-            'partner_id': order.partner_invoice_id.id,
+            'account_id': (
+                invoice_partner.property_account_receivable_id.id),
+            'partner_id': invoice_partner_id,
             'partner_shipping_id': self.partner_id.id,
             'journal_id': journal_id,
-            'currency_id': order.pricelist_id.currency_id.id,
+            'currency_id': currency_id,
             # TO DO 'comment': self.note,
-            'payment_term_id': order.payment_term_id.id,
-            'fiscal_position_id': order.fiscal_position_id.id or self.partner_invoice_id.property_account_position_id.id,
-            'company_id': self.company_id.id,
-            'user_id': order.user_id and self.user_id.id,
-            'team_id': order.team_id.id
+            'payment_term_id': payment_term_id,
+            'fiscal_position_id': (
+                order and order.fiscal_position_id.id or
+                invoice_partner.property_account_position_id.id),
         }
         return invoice_vals
 
@@ -245,7 +260,8 @@ class StockPickingPackagePreparation(models.Model):
     def action_invoice_create(self, grouped=False, final=False):
         """
         Create the invoice associated to the SO.
-        :param grouped: if True, invoices are grouped by SO id. If False, invoices are grouped by
+        :param grouped: if True, invoices are grouped by SO id.
+                        If False, invoices are grouped by
                         (partner_invoice_id, currency)
         :param final: if True, refunds will be generated if necessary
         :returns: list of created invoices
@@ -260,7 +276,8 @@ class StockPickingPackagePreparation(models.Model):
                 continue
             order = ddt._get_sale_order_ref()
 
-            group_method = order.ddt_invoicing_group or 'shipping_partner'
+            group_method = (
+                order and order.ddt_invoicing_group or 'shipping_partner')
 
             if group_method == 'billing_partner':
                 group_key = (order.partner_invoice_id.id, order.currency_id.id)
@@ -273,7 +290,7 @@ class StockPickingPackagePreparation(models.Model):
 
             for line in ddt.line_ids:
                 if group_key not in invoices:
-                    inv_data = order._prepare_invoice()
+                    inv_data = ddt._prepare_invoice()
                     invoice = inv_obj.create(inv_data)
                     references[invoice] = ddt
                     invoices[group_key] = invoice
@@ -281,13 +298,10 @@ class StockPickingPackagePreparation(models.Model):
                 elif group_key in invoices:
                     vals = {}
 
-                    if ddt.ddt_number not in invoices[group_key].origin.split(', '):
+                    origin = invoices[group_key].origin
+                    if origin and ddt.ddt_number not in origin.split(', '):
                         vals['origin'] = invoices[
                             group_key].origin + ', ' + ddt.ddt_number
-                    """
-                    if order.client_order_ref and order.client_order_ref not in invoices[group_key].name.split(', '):
-                        vals['name'] = invoices[group_key].name + \
-                            ', ' + order.client_order_ref"""
                     invoices[group_key].write(vals)
                     ddt.invoice_id = invoices[group_key].id
 
@@ -312,13 +326,15 @@ class StockPickingPackagePreparation(models.Model):
             # Use additional field helper function (for account extensions)
             for line in invoice.invoice_line_ids:
                 line._set_additional_fields(invoice)
-            # Necessary to force computation of taxes. In account_invoice, they are triggered
+            # Necessary to force computation of taxes. In account_invoice,
+            # they are triggered
             # by onchanges, which are not triggered when doing a create.
             invoice.compute_taxes()
-            invoice.message_post_with_view('mail.message_origin_link',
-                                           values={
-                                               'self': invoice, 'origin': references[invoice]},
-                                           subtype_id=self.env.ref('mail.mt_note').id)
+            invoice.message_post_with_view(
+                'mail.message_origin_link',
+                values={
+                    'self': invoice, 'origin': references[invoice]},
+                subtype_id=self.env.ref('mail.mt_note').id)
         return [inv.id for inv in invoices.values()]
 
     @api.multi
@@ -336,13 +352,12 @@ class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
 
     sale_line_id = fields.Many2one(
-        related='move_id.procurement_id.sale_line_id', string='Company',
+        related='move_id.procurement_id.sale_line_id',
+        string='Sale order line',
         store=True, readonly=True)
     price_unit = fields.Float('Unit Price', digits=dp.get_precision(
         'Product Price'), default=0.0)
-    tax_id = fields.Many2many('account.tax', string='Taxes', domain=[
-                              '|', ('active', '=', False),
-                              ('active', '=', True)])
+    tax_ids = fields.Many2many('account.tax', string='Taxes')
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),
         default=0.0)
@@ -362,45 +377,65 @@ class StockPickingPackagePreparationLine(models.Model):
             if sale_line:
                 line['price_unit'] = sale_line.price_unit or 0
                 line['discount'] = sale_line.discount or 0
-                line['tax_id'] = [(6, 0, [x.id]) for x in sale_line.tax_id]
+                line['tax_ids'] = [(6, 0, [x.id]) for x in sale_line.tax_id]
         return lines
 
     @api.multi
-    def _prepare_invoice_line(self, qty):
+    def _prepare_invoice_line(self, qty, invoice_id=None):
         """
-        Prepare the dict of values to create the new invoice line for a ddt line.
+        Prepare the dict of values to create the new invoice line for a
+        ddt line.
 
         :param qty: float quantity to invoice
         """
         self.ensure_one()
-        res = {}
-        account = self.product_id.property_account_income_id or self.product_id.categ_id.property_account_income_categ_id
+        account = (
+            self.product_id.property_account_income_id or
+            self.product_id.categ_id.property_account_income_categ_id)
         if not account:
-            raise UserError(_('Please define income account for this product: "%s" (id:%d) - or for its category: "%s".') %
-                            (self.product_id.name, self.product_id.id, self.product_id.categ_id.name))
+            if invoice_id:
+                invoice = self.env['account.invoice'].browse(invoice_id)
+                account = invoice.journal_id.default_credit_account_id
+        if not account:
+            raise UserError(
+                _(
+                    'Please define income account for this product: "%s" '
+                    '(id:%d) - or for its category: "%s".'
+                ) % (
+                    self.product_id.name, self.product_id.id,
+                    self.product_id.categ_id.name
+                )
+            )
 
-        fpos = self.sale_line_id.order_id.fiscal_position_id or\
-            self.sale_line_id.order_id.partner_id.property_account_position_id
+        fpos = None
+        if self.sale_line_id:
+            fpos = (
+                self.sale_line_id.order_id.fiscal_position_id or
+                self.sale_line_id.order_id.partner_id.
+                property_account_position_id
+            )
         if fpos:
             account = fpos.map_account(account)
 
         res = {
-            'ddt_id': self.package_preparation_id.id,
             'ddt_line_id': self.id,
             'name': self.name,
             'sequence': self.sequence,
-            'origin': self.sale_line_id.order_id.name or '',
+            'origin': self.package_preparation_id.name or '',
             'account_id': account.id,
             'price_unit': self.price_unit,
             'quantity': qty,
             'discount': self.discount,
             'uom_id': self.product_uom_id.id,
             'product_id': self.product_id.id or False,
-            # 'layout_category_id': self.layout_category_id and self.layout_category_id.id or False,
-            'product_id': self.product_id.id or False,
-            'invoice_line_tax_ids': [(6, 0, self.tax_id.ids)],
-            'account_analytic_id': self.sale_line_id.order_id.project_id.id or False,
-            'analytic_tag_ids': [(6, 0, self.sale_line_id.analytic_tag_ids.ids)],
+            'invoice_line_tax_ids': [(6, 0, self.tax_ids.ids)],
+            'account_analytic_id': (
+                self.sale_line_id and self.sale_line_id.order_id.project_id.id
+                or False),
+            'analytic_tag_ids': [(
+                6, 0, self.sale_line_id and
+                self.sale_line_id.analytic_tag_ids.ids or []
+            )],
         }
         return res
 
@@ -414,8 +449,12 @@ class StockPickingPackagePreparationLine(models.Model):
             'Product Unit of Measure')
         for line in self:
             if not float_is_zero(qty, precision_digits=precision):
-                vals = line._prepare_invoice_line(qty=qty)
+                vals = line._prepare_invoice_line(
+                    qty=qty, invoice_id=invoice_id)
+                vals.update({'invoice_id': invoice_id})
                 if line.sale_line_id:
                     vals.update(
-                        {'invoice_id': invoice_id, 'sale_line_ids': [(6, 0, [line.sale_line_id.id])]})
+                        {'sale_line_ids': [
+                            (6, 0, [line.sale_line_id.id])
+                        ]})
                 self.env['account.invoice.line'].create(vals)
