@@ -3,7 +3,7 @@
 # Copyright 2015 Apulia Software srl
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 # © 2016 Andrea Cometa - Apulia Software
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from openerp.tests.common import TransactionCase
 
@@ -73,6 +73,7 @@ class TestDdt(TransactionCase):
             'l10n_it_ddt.goods_description_BAN')
         self.transportation_reason_VEN = self.env.ref(
             'l10n_it_ddt.transportation_reason_VEN')
+        self.transportation_reason_VEN.to_be_invoiced = True
         self.transportation_reason_VIS = self.env.ref(
             'l10n_it_ddt.transportation_reason_VIS')
         self.transportation_method_DES = self.env.ref(
@@ -118,14 +119,23 @@ class TestDdt(TransactionCase):
         ddt2.set_done()
 
         # test invoice
-        wizard = self.env['sale.advance.payment.inv'].with_context({
-            'active_ids': [order2.id, order1.id]
-            }).create({})
-        wizard.create_invoices()
-        invoice = order2.invoice_ids[0]
+        ddt1.transportation_reason_id = (
+            self.transportation_reason_VEN.id)
+        ddt2.transportation_reason_id = (
+            self.transportation_reason_VEN.id)
+        invoice_wizard = self.env['ddt.create.invoice'].with_context(
+            {'active_ids': [ddt1.id, ddt2.id]}).create({})
+        action = invoice_wizard.create_invoice()
+        invoice_ids = action['domain'][0][2]
+        invoice = self.env['account.invoice'].browse(invoice_ids[0])
 
+        inv_dict = invoice.grouped_lines_by_ddt()
+        # dict like
+        # {
+        #   u'DDT/1': [account.invoice.line(1,)],
+        #   u'DDT/2': [account.invoice.line(2,)]
+        # }
         self.assertEqual(
-            invoice.grouped_lines_by_ddt(),
-            {ddt1.ddt_number: [invoice.invoice_line_ids[1]],
-             ddt2.ddt_number: [invoice.invoice_line_ids[0]]}
-        )
+            inv_dict[ddt1.ddt_number][0].product_id.id, self.product1.id)
+        self.assertEqual(
+            inv_dict[ddt2.ddt_number][0].product_id.id, self.product2.id)

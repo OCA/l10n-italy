@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2015 Alex Comba - Agile Business Group
 # © 2016 Andrea Cometa - Apulia Software
-# © 2016 Lorenzo Battistini - Agile Business Group
-# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+# © 2016-2017 Lorenzo Battistini - Agile Business Group
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from openerp import models, api
 
@@ -54,6 +54,4 @@ class AccountInvoiceLine(models.Model):
     @api.multi
     def get_ddt_lines(self):
         self.ensure_one()
-        ddt_lines = self.env['stock.picking.package.preparation.line'].search(
-            [('move_id', 'in', [i.id for i in self.move_line_ids])])
-        return ddt_lines
+        return self.ddt_line_id
