@@ -6,7 +6,7 @@
 
 {
     'name': "Account invoice report grouped by DDT",
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.2.0',
     'author': 'Agile Business Group, Apulia Software',
     'website': 'http://www.agilebg.com',
     'license': 'LGPL-3',
