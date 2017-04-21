@@ -4,7 +4,7 @@
 # © 2016-2017 Lorenzo Battistini - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import models, api
+from openerp import models, api, fields
 
 
 class AccountInvoice(models.Model):
@@ -34,11 +34,16 @@ class AccountInvoice(models.Model):
             else:
                 string_key = ''
                 for ddt in key:
-                    if ddt.ddt_number:
+                    if ddt.ddt_number and ddt.date:
+                        ddt_date = fields.Date.from_string(ddt.date)
+                        ddt_key = '%s - %s' % (
+                            ddt.ddt_number, '%s/%s/%s' % (
+                                ddt_date.day, ddt_date.month, ddt_date.year)
+                        )
                         if string_key:
-                            string_key += ', %s' % ddt.ddt_number
+                            string_key += ', %s' % ddt_key
                         else:
-                            string_key = ddt.ddt_number
+                            string_key = ddt_key
             # group dict can be different from ddt_dict,
             # e.g. when DDT does not have a number yet
             if string_key not in group:
@@ -46,6 +51,14 @@ class AccountInvoice(models.Model):
             else:
                 group[string_key].append(ddt_dict[key])
         return group
+
+    @api.multi
+    def has_serial_number(self):
+        self.ensure_one()
+        for line in self.invoice_line_ids:
+            if line.get_ddt_lines().lot_ids:
+                return True
+        return False
 
 
 class AccountInvoiceLine(models.Model):
