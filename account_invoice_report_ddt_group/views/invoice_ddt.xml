@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- © 2015 Alex Comba - Agile Business Group
      © 2016 Andrea Cometa - Apulia Software
-     License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
  -->
 
 <openerp>
     <data>
         <template id="report_invoice_ddt_group"
-                  inherit_id="sale_layout.report_invoice_layouted" >
-            <xpath expr="//t[@t-as='l']" position="replace">
+                  inherit_id="account.report_invoice_document" >
+            <xpath expr="//tr[@t-as='l']" position="replace">
                 <t t-set="dict_ddt_lines"
                    t-value="o.grouped_lines_by_ddt()"/>
                 <t t-foreach="dict_ddt_lines.keys()" t-as="ddt">
