@@ -92,6 +92,7 @@
                                attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
                         <field name="volume"/>
                         <field name="weight"/>
+                        <field name="weight_manual"/>
                         <field name="show_price"/>
                     </group>
                 </page>

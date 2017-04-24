@@ -39,7 +39,11 @@ class SaleOrder(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         string='Method of Transportation')
-    parcels = fields.Integer()
+    ddt_carrier_id = fields.Many2one(
+        'res.partner', string='Carrier')
+    parcels = fields.Integer('Parcels')
+    weight = fields.Float(string="Weight")
+    volume = fields.Float('Volume')
     ddt_ids = fields.Many2many(
         'stock.picking.package.preparation',
         string='Related DdTs',
@@ -76,6 +80,10 @@ class SaleOrder(models.Model):
             'goods_description_id': self.goods_description_id.id,
             'transportation_reason_id': self.transportation_reason_id.id,
             'transportation_method_id': self.transportation_method_id.id,
+            'carrier_id': self.ddt_carrier_id.id,
+            'parcels': self.parcels,
+            'weight': self.weight,
+            'volume': self.volume,
         })
         return vals
 
@@ -90,6 +98,10 @@ class SaleOrder(models.Model):
             self.transportation_reason_id.id,
             'transportation_method_id':
             self.transportation_method_id.id,
+            'carrier_id': self.ddt_carrier_id.id,
+            'parcels': self.parcels,
+            'weight': self.weight,
+            'volume': self.volume,
             'picking_ids': [(6, 0, picking_ids)],
         }
 

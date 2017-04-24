@@ -29,7 +29,11 @@ class AccountInvoice(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         string='Method of Transportation')
-    parcels = fields.Integer()
+    carrier_id = fields.Many2one(
+        'res.partner', string='Carrier')
+    parcels = fields.Integer('Parcels')
+    weight = fields.Float(string="Weight")
+    volume = fields.Float('Volume')
     ddt_ids = fields.One2many(
         'stock.picking.package.preparation', 'invoice_id', string='DDT')
 
