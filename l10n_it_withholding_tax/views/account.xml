@@ -106,5 +106,26 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_withholding_tax_exclude_tree">
+            <field name="name">view.withholding.tax.exclude.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='discount']" position="after">
+                    <field name="withholding_tax_exclude"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_withholding_tax_exclude_supplier_tree">
+            <field name="name">view.withholding.tax.exclude.supplier.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='discount']" position="after">
+                    <field name="withholding_tax_exclude"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </openerp>
