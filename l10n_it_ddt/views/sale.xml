@@ -18,7 +18,10 @@
                                     widget="selection"/>
                                 <field name="transportation_method_id"
                                     widget="selection"/>
+                                <field name="ddt_carrier_id" />
                                 <field name="parcels" />
+                                <field name="weight" />
+                                <field name="volume" />
                             </group>
                             <group>
                                 <field name="create_ddt"/>

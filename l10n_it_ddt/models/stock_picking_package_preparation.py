@@ -96,7 +96,7 @@ class StockPickingPackagePreparation(models.Model):
         string='Method of Transportation')
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
-    parcels = fields.Integer()
+    parcels = fields.Integer('Parcels')
     display_name = fields.Char(string='Name', compute='_compute_display_name')
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
@@ -106,6 +106,10 @@ class StockPickingPackagePreparation(models.Model):
         help="This depends on 'To be Invoiced' field of the Reason for "
              "Transportation of this DDT")
     show_price = fields.Boolean(string='Show prices on report')
+    weight_manual = fields.Float(
+        string="Force Weight",
+        help="Fill this field with the value you want to be used as weight. "
+             "Leave empty to let the system to compute it")
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
@@ -183,11 +187,14 @@ class StockPickingPackagePreparation(models.Model):
                  'package_id.quant_ids',
                  'picking_ids',
                  'picking_ids.move_lines',
-                 'picking_ids.move_lines.quant_ids')
+                 'picking_ids.move_lines.quant_ids',
+                 'weight_manual')
     def _compute_weight(self):
         super(StockPickingPackagePreparation, self)._compute_weight()
         for prep in self:
-            if not prep.package_id:
+            if prep.weight_manual:
+                prep.weight = prep.weight_manual
+            elif not prep.package_id:
                 quants = self.env['stock.quant']
                 for picking in prep.picking_ids:
                     for line in picking.move_lines:
@@ -253,6 +260,14 @@ class StockPickingPackagePreparation(models.Model):
             'fiscal_position_id': (
                 order and order.fiscal_position_id.id or
                 invoice_partner.property_account_position_id.id),
+            'carriage_condition_id': self.carriage_condition_id.id,
+            'goods_description_id': self.goods_description_id.id,
+            'transportation_reason_id': self.transportation_reason_id.id,
+            'transportation_method_id': self.transportation_method_id.id,
+            'carrier_id': self.carrier_id.id,
+            'parcels': self.parcels,
+            'weight': self.weight,
+            'volume': self.volume,
         }
         return invoice_vals
 
