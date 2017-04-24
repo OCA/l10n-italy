@@ -373,6 +373,8 @@ class TestDdt(TransactionCase):
         ddt.set_done()
         self.assertTrue('DDT' in ddt.display_name)
         self.assertEqual(ddt.weight, 0)
+        ddt.weight_manual = 10
+        self.assertEqual(ddt.weight, 10)
 
     def test_partial_pick(self):
         order1 = self._create_sale_order()
