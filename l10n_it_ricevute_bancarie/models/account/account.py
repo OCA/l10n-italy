@@ -260,6 +260,29 @@ class AccountInvoice(orm.Model):
                     line.unlink()
         super(AccountInvoice, self).action_cancel_draft()
 
+    @api.multi
+    def action_cancel(self):
+        for invoice in self:
+            # we get move_lines with date_maturity and check if they are
+            # present in some riba_distinta_line
+            move_line_model = self.env['account.move.line']
+            rdml_model = self.env['riba.distinta.move.line']
+            move_line_ids = move_line_model.search([
+                ('move_id', '=', invoice.move_id.id),
+                ('date_maturity', '!=', False)])
+            if move_line_ids:
+                riba_line_ids = rdml_model.search(
+                    [('move_line_id', 'in', [m.id for m in move_line_ids])])
+                if riba_line_ids:
+                    if len(riba_line_ids) > 1:
+                        riba_line_ids = riba_line_ids[0]
+                    raise UserError(
+                        _('Attention!'),
+                        _('Invoice is linked to RI.BA. list nr {riba}').format(
+                            riba=riba_line_ids.riba_line_id.distinta_id.name
+                        ))
+        super(AccountInvoice, self).action_cancel()
+
     @api.v7
     @api.one
     def copy(self, default=None):
