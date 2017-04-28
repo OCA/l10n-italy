@@ -87,14 +87,14 @@ class DdTCreateInvoice(models.TransientModel):
                     for move in picking.move_lines:
                         if move.invoice_state != "2binvoiced":
                             raise UserError(
-                                _("Move {move} is not invoiceable ({ddt})".format(
-                                    move=move.name, ddt=ddt.ddt_number)))
+                                _("Move {mv} is not invoiceable ({ddt})".format(
+                                    mv=move.name, ddt=ddt.ddt_number)))
             invoice_list = []
             for partner_id in ddt_partner.keys():
                 p_list = []
-                # ----- Force to use partner invoice from ddt as invoice partner
+                # ---- Force to use partner invoice from ddt as invoice partner
                 ctx = self.env.context.copy()
-                ctx['ddt_partner_id'] = partner_id  # ddts[0].partner_invoice_id.id
+                ctx['ddt_partner_id'] = partner_id
                 ctx['inv_type'] = 'out_invoice'
                 picking_list = [p.picking_ids for p in ddt_partner[partner_id]]
                 for pll in picking_list:
