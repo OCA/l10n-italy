@@ -10,8 +10,10 @@ from odoo.exceptions import Warning as UserError
 
 from odoo.tools import float_is_zero, float_compare
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 import odoo.addons.decimal_precision as dp
+from datetime import datetime
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -216,6 +218,25 @@ class StockPickingPackagePreparation(models.Model):
                     sale_order = sm.procurement_id.sale_line_id.order_id
                     return sale_order
         return sale_order
+    
+    @api.multi
+    def _prepare_invoice_description(self):
+        invoice_description = ''
+        lang = self.env['res.lang']._lang_get(self.env.lang)
+        date_format = lang.date_format
+        ddt_date_from = self._context.get('ddt_date_from', False)
+        ddt_date_to = self._context.get('ddt_date_to', False)
+        if ddt_date_from and ddt_date_to:
+            invoice_description = '{} {} - {}'.format(
+                _('Competenza:'),
+                datetime.strptime(ddt_date_from,DEFAULT_SERVER_DATE_FORMAT)\
+                    .strftime(date_format),
+                datetime.strptime(ddt_date_to,DEFAULT_SERVER_DATE_FORMAT)\
+                    .strftime(date_format)
+                )
+        if not invoice_description:
+            invoice_description = self.ddt_number or ''
+        return invoice_description
 
     @api.multi
     def _prepare_invoice(self):
@@ -245,8 +266,9 @@ class StockPickingPackagePreparation(models.Model):
         payment_term_id = (
             order and order.payment_term_id.id or
             self.partner_id.property_payment_term_id.id)
+        invoice_description = self._prepare_invoice_description()
         invoice_vals = {
-            'name': self.ddt_number or '',
+            'name': invoice_description or '',
             'origin': self.ddt_number,
             'type': 'out_invoice',
             'account_id': (
@@ -299,7 +321,8 @@ class StockPickingPackagePreparation(models.Model):
             elif group_method == 'shipping_partner':
                 group_key = (ddt.partner_id.id, ddt.company_id.currency_id.id)
             elif group_method == 'code_group':
-                group_key = (ddt.partner_id.ddt_code_group)
+                group_key = (ddt.partner_id.ddt_code_group,
+                             order.partner_invoice_id.id)
             else:
                 group_key = ddt.id
 
@@ -376,6 +399,64 @@ class StockPickingPackagePreparationLine(models.Model):
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),
         default=0.0)
+
+    @api.onchange('product_id')
+    def _onchange_product_id(self):
+        super(StockPickingPackagePreparationLine, self)._onchange_product_id()
+        if self.product_id:
+            order = self.package_preparation_id._get_sale_order_ref()
+            partner = order and order.partner_id \
+                or self.package_preparation_id.partner_id
+            product = self.product_id.with_context(
+                lang=self.package_preparation_id.partner_id.lang,
+                partner=partner.id,
+                quantity=self.product_uom_qty,
+                date=self.package_preparation_id.date,
+                pricelist=order and order.pricelist_id.id or False,
+                uom=self.product_uom_id.id
+            )
+            # Tax
+            taxes = product.taxes_id
+            fpos = order and order.fiscal_position_id or \
+                self.package_preparation_id.partner_id.\
+                property_account_position_id
+            self.tax_ids = fpos.map_tax(
+                taxes, product, partner) if fpos else taxes
+            # Price and discount
+            self.price_unit = product.price
+            if order:
+                context_partner = dict(
+                    self.env.context, partner_id=partner.id)
+                pricelist_context = dict(
+                    context_partner, uom=self.product_uom_id.id,
+                    date=order.date_order)
+                price, rule_id = order.pricelist_id.with_context(
+                    pricelist_context).get_product_price_rule(
+                    product, self.product_uom_qty or 1.0, partner)
+                new_list_price, currency_id = self.env['sale.order.line']\
+                    .with_context(context_partner)._get_real_price_currency(
+                    self.product_id, rule_id, self.product_uom_qty,
+                    self.product_uom_id, order.pricelist_id.id)
+                datas = self._prepare_price_discount(new_list_price, rule_id)
+                for key in datas.keys():
+                    setattr(self, key, datas[key])
+
+    @api.model
+    def _prepare_price_discount(self, price, rule_id):
+        """
+        Use this method for other fields added in the line.
+        Use key of dict to specify the field that will be updated
+        """
+        res = {
+            'price_unit': price
+        }
+        # Discount
+        if rule_id:
+            rule = self.env['product.pricelist.item'].browse(rule_id)
+            if rule.pricelist_id.discount_policy == \
+                    'without_discount':
+                res['discount'] = rule.price_discount
+        return res
 
     @api.model
     def _prepare_lines_from_pickings(self, picking_ids):
