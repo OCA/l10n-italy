@@ -35,7 +35,9 @@ class DdtInvoicing(models.TransientModel):
             view = self.env['ir.model.data'].get_object_reference(
                 'l10n_it_ddt', 'view_ddt_create_invoice')
 
-            self = self.with_context(active_ids=ddts.ids)
+            self = self.with_context(active_ids=ddts.ids,
+                                     ddt_date_from=wizard.date_from,
+                                     ddt_date_to=wizard.date_to)
             return {
                     'name': _('DDT Invoicing'),
                     'context': self._context,
