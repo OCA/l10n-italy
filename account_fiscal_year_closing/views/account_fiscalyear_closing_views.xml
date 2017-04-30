@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="view_account_fiscalyear_closing_tree" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing</field>
+        <field name="arch" type="xml">
+            <tree string="Fiscal year closing">
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="date_opening"/>
+                <field name="state"/>
+                <field name="calculation_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_account_fiscalyear_closing_form" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing</field>
+        <field name="arch" type="xml">
+            <form string="Fiscal year closing">
+                <header>
+                    <button name="button_calculate"
+                            type="object"
+                            string="Calculate"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('stored_template_id', '=', False), ('state', 'not in', ['draft'])]}"
+                    />
+                    <button name="button_recalculate"
+                            states="calculated"
+                            type="object"
+                            string="Recalculate"
+                    />
+                    <button name="button_post"
+                            type="object"
+                            string="Confirm and post moves"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('move_config_ids', '=', []), ('state', 'not in', ['calculated'])]}"
+                    />
+                    <button name="button_recover"
+                            states="cancelled"
+                            type="object"
+                            string="Draft"
+                    />
+                    <button name="button_cancel"
+                            states="calculated,posted"
+                            type="object"
+                            string="Cancel"
+                            confirm="This will remove all the closing moves. Are you sure you want to continue?"
+                    />
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,calculated,posted,cancelled"
+                           statusbar_colors="{'cancelled': 'red', 'posted': 'blue'}"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                name="button_open_moves"
+                                states="calculated,posted"
+                                type="object"
+                                string="Show moves"
+                                icon="fa-list"
+                        />
+                        <button class="oe_stat_button"
+                                name="button_open_move_lines"
+                                states="calculated,posted"
+                                type="object"
+                                string="Show move lines"
+                                icon="fa-list"
+                        />
+                    </div>
+                    <h1>
+                        <label string="Fiscal closing"/>
+                        <field name="name" class="oe_inline"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="chart_template_id" invisible="1"/>
+                            <field name="stored_template_id" invisible="1"/>
+                            <field name="is_new_template" invisible="1"/>
+                            <label for="closing_template_id"/>
+                            <div>
+                                <field name="closing_template_id" class="oe_inline"/>
+                                <button name="action_load_template"
+                                        type="object"
+                                        attrs="{'invisible': [('is_new_template', '=', False)]}"
+                                        string="Load template"
+                                />
+                            </div>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="year"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_opening"/>
+                            <field name="check_draft_moves"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('calculation_date', '=', False)]}">
+                        <group>
+                            <field name="calculation_date"/>
+                        </group>
+                    </group>
+                    <group string="Moves configuration">
+                        <field name="move_config_ids" nolabel="1">
+                            <tree>
+                                <field name="sequence" widget="handle" />
+                                <field name="enabled"/>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="inverse"/>
+                                <field name="reconcile"/>
+                                <field name="move_type"/>
+                                <field name="date"/>
+                                <field name="journal_id"/>
+                            </tree>
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="enabled"/>
+                                            <field name="date"/>
+                                            <field name="journal_id"/>
+                                            <field name="sequence"/>
+                                        </group>
+                                        <group>
+                                            <field name="code"/>
+                                            <field name="inverse"/>
+                                            <field name="reconcile"/>
+                                            <field name="move_type"/>
+                                        </group>
+                                    </group>
+                                    <group string="Accounts mapping">
+                                        <field name="mapping_ids" nolabel="1">
+                                            <tree editable="bottom">
+                                                <field name="name"/>
+                                                <field name="src_accounts"/>
+                                                <field name="dest_account_id"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group string="Accounts closing types">
+                                        <field name="closing_type_default"/>
+                                    </group>
+                                    <group>
+                                        <field name="closing_type_ids" nolabel="1">
+                                            <tree editable="bottom">
+                                                <field name="account_type_id"/>
+                                                <field name="closing_type"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_account_fiscalyear_closing_search" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing</field>
+        <field name="arch" type="xml">
+            <search string="Fiscal year closing">
+                <filter string="Draft" domain="[('state','=','draft')]"/>
+                <filter string="In process" domain="[('state', '=', 'calculated')]"/>
+                <filter string="Posted" domain="[('state', '=', 'posted')]"/>
+                <filter string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <filter string="Company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_account_fiscalyear_closing" model="ir.actions.act_window">
+        <field name="name">Fiscal year closings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.fiscalyear.closing</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_account_fiscalyear_closing_tree" />
+    </record>
+
+    <menuitem id="menu_account_fiscalyear_closing"
+              parent="account.menu_finance_entries" sequence="90"
+              name="Fiscal year closings" action="action_account_fiscalyear_closing"/>
+
+</odoo>

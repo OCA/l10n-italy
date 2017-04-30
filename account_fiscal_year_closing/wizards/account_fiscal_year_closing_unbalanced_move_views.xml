@@ -1,0 +1,43 @@
+<odoo>
+
+    <record id="view_account_fiscalyear_closing_unbalanced_move_form" model="ir.ui.view">
+        <field name="model">account.fiscalyear.closing.unbalanced.move</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="bg-danger">
+                    <p>
+                        Generating the closing moves, an unbalanced move has been detected.
+                        You need to check the closing configuration or your journal entries
+                        to find the problem, fix it and then press again on "Calculate".
+                    </p>
+                    <p>
+                        This screen will help you to identify the problem, showing you
+                        the unbalanced journal entry:
+                    </p>
+                </div>
+                <group>
+                    <group>
+                        <field name="journal_id"/>
+                    </group>
+                    <group>
+                        <field name="date"/>
+                        <field name="ref"/>
+                    </group>
+                </group>
+                <field name="line_ids">
+                    <tree>
+                        <field name="name"/>
+                        <field name="account_id"/>
+                        <field name="partner_id"/>
+                        <field name="debit"/>
+                        <field name="credit"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button special="cancel" string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
