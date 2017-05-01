@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 03:26+0000\n"
-"PO-Revision-Date: 2017-02-18 03:26+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-03-28 04:13+0000\n"
+"PO-Revision-Date: 2017-03-28 04:13+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -265,7 +266,7 @@ msgid "If checked, new messages require your attention."
 msgstr "Wenn angewählt, erfordern neue Meldungen Ihre Aufmerksamkeit"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:113
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:114
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
@@ -347,7 +348,7 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:127
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -608,7 +609,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_volume
 msgid "Volume"
-msgstr ""
+msgstr "Volumen"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_add_pickings_to_ddt
