@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-25 00:48+0000\n"
-"PO-Revision-Date: 2016-10-24 10:52+0000\n"
+"POT-Creation-Date: 2017-04-27 13:18+0000\n"
+"PO-Revision-Date: 2017-04-27 13:19+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -126,6 +126,7 @@ msgid "Amount"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:280
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:93
 #, python-format
 msgid "Attention!"
@@ -290,6 +291,12 @@ msgid "Customer"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:153
+#, python-format
+msgid "Date accreditation must be greater or equal to date acceptance"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta.line,bank_id:0
 msgid "Debitor Bank"
 msgstr ""
@@ -393,7 +400,7 @@ msgstr ""
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:100
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:111
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:121
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:266
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:267
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:118
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:132
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:145
@@ -528,6 +535,12 @@ msgid "Invoice entries"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:281
+#, python-format
+msgid "Invoice is linked to RI.BA. list nr {riba}"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_da_emettere
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_issue_action
@@ -622,31 +635,31 @@ msgid "Move lines"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:267
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:268
 #, python-format
 msgid "No IBAN or ABI/CAB specified for "
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:212
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:213
 #, python-format
 msgid "No IBAN specified"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:220
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:221
 #, python-format
 msgid "No SIA Code specified for: "
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:283
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:284
 #, python-format
 msgid "No VAT or Fiscal code specified for "
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:233
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:234
 #, python-format
 msgid "No VAT or Fiscalcode specified for: "
 msgstr ""
@@ -661,7 +674,7 @@ msgid "No active ID found"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:291
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:292
 #, python-format
 msgid "No debit_bank specified for "
 msgstr ""
@@ -867,6 +880,11 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_issue
 msgid "Ricevute bancarie issue"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
+msgid "Sale Journals"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie

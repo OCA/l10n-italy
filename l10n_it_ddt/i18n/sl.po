@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 15:14+0000\n"
-"PO-Revision-Date: 2017-01-25 05:57+0000\n"
+"POT-Creation-Date: 2017-04-27 13:17+0000\n"
+"PO-Revision-Date: 2017-04-24 09:22+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -237,6 +237,12 @@ msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:192
+#, python-format
+msgid "Document {d} has invoice linked"
+msgstr "Dokument {d} je povezan z računom"
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Driver's Signature"
 msgstr "Podpis voznika"
@@ -289,7 +295,7 @@ msgid "If checked new messages require your attention."
 msgstr "Ko je označeno, nova sporočila zahtevajo pozornost."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:125
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
@@ -310,6 +316,11 @@ msgstr "Zaračunljivo"
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Invoiced"
 msgstr "Zaračunano"
+
+#. module: l10n_it_ddt
+#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
+msgid "Invoices created will group DDT by partner"
+msgstr "Ustvarjeni računi bodo združevali prevozni dokument po partnerju"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_is_follower:0
@@ -393,10 +404,10 @@ msgid "Methods of Transportation"
 msgstr "Metode prevoza"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:84
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:86
 #, python-format
-msgid "Move %s is not invoiceable"
-msgstr "Premik %s ni zaračunljiv"
+msgid "Move {move} is not invoiceable ({ddt})"
+msgstr "Premik {move} ni zaračunljiv ({ddt})"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,name:0
@@ -414,7 +425,7 @@ msgid "None"
 msgstr "Nič"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:137
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:138
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Nekateri zbirniki nimajo statusa opravljeno"
@@ -568,12 +579,6 @@ msgstr "Prodajni nalog"
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Search DDT"
 msgstr "Iskanje prevoznega dokumenta"
-
-#. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:75
-#, python-format
-msgid "Selected DDTs belong to different partners"
-msgstr "Izbrani prevozni dokumenti pripadajo različnim partnerjem"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:39

@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-31 15:00+0000\n"
-"PO-Revision-Date: 2017-02-04 20:06+0000\n"
-"Last-Translator: Paolo Valier\n"
+"POT-Creation-Date: 2017-04-27 13:17+0000\n"
+"PO-Revision-Date: 2017-04-19 14:31+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -242,6 +242,12 @@ msgid "Display Name"
 msgstr "Nome da visualizzare"
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:192
+#, python-format
+msgid "Document {d} has invoice linked"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Driver's Signature"
 msgstr "Firma del Conducente"
@@ -294,7 +300,7 @@ msgid "If checked new messages require your attention."
 msgstr "Se selezionato i nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:125
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
@@ -315,6 +321,11 @@ msgstr "Fatturabile"
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Invoiced"
 msgstr "Fatturato"
+
+#. module: l10n_it_ddt
+#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
+msgid "Invoices created will group DDT by partner"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_is_follower:0
@@ -398,10 +409,10 @@ msgid "Methods of Transportation"
 msgstr "Metodi di trasporto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:84
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:86
 #, python-format
-msgid "Move %s is not invoiceable"
-msgstr "Movimento %s non fatturabile"
+msgid "Move {move} is not invoiceable ({ddt})"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,name:0
@@ -419,7 +430,7 @@ msgid "None"
 msgstr "Nessuno"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:137
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:138
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
@@ -573,12 +584,6 @@ msgstr "Ordine di vendita"
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Search DDT"
 msgstr "Cerca DDT"
-
-#. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:75
-#, python-format
-msgid "Selected DDTs belong to different partners"
-msgstr "I DDT Selezionati hanno partner diversi"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:39
