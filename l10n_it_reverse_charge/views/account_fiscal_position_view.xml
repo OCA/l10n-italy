@@ -4,7 +4,7 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <openerp>
-	<data>
+    <data>
 
         <record id="view_fiscal_position_form_rc" model="ir.ui.view">
             <field name="name">account.fiscal.position.form.rc</field>
