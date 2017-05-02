@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
+# Copyright 2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
+from openerp import fields, models, _, api
+from openerp.exceptions import ValidationError
 
 
 class AccountRCTypeTax(models.Model):
@@ -43,6 +45,13 @@ class AccountRCType(models.Model):
     partner_type = fields.Selection(
         (('supplier', 'Supplier'), ('other', 'Other')),
         string='Self Invoice Partner Type')
+    with_supplier_self_invoice = fields.Boolean(
+        "With additional supplier self invoice",
+        help="Flag this to enable the creation of an additional supplier self"
+             " invoice. This is tipically used for extraUE suppliers, "
+             "in order to show, in supplier register, an invoice to the "
+             "specified partner (tipically, my company), instead of the "
+             "extraUE partner")
     partner_id = fields.Many2one(
         'res.partner',
         string='Self Invoice Partner',
@@ -51,14 +60,14 @@ class AccountRCType(models.Model):
         'account.journal',
         string='Self Invoice Journal',
         help="Journal used on RC self invoices.")
+    supplier_journal_id = fields.Many2one(
+        'account.journal',
+        string='Supplier Self Invoice Journal',
+        help="Journal used on RC supplier self invoices.")
     payment_journal_id = fields.Many2one(
         'account.journal',
         string='Self Invoice Payment Journal',
         help="Journal used to pay RC self invoices.")
-    payment_partner_id = fields.Many2one(
-        'res.partner',
-        string='Self Invoice Payment Partner',
-        help="Partner used on RC self invoices.")
     transitory_account_id = fields.Many2one(
         'account.account',
         string='Self Invoice Transitory Account',
@@ -67,7 +76,18 @@ class AccountRCType(models.Model):
         'account.rc.type.tax',
         'rc_type_id',
         help="Example: 22_A_I_UE, 22_V_I_UE",
-        string='Self Invoice Tax Mapping')
+        string='Self Invoice Tax Mapping',
+        copy=False)
     description = fields.Text('Description')
-    invoice_text = fields.Text('Text on Invoice')
     self_invoice_text = fields.Text('Text in Self Invoice')
+
+    @api.multi
+    @api.constrains('with_supplier_self_invoice', 'tax_ids')
+    def _check_tax_ids(self):
+        for rctype in self:
+            if rctype.with_supplier_self_invoice and len(rctype.tax_ids) > 1:
+                raise ValidationError(_(
+                    'When "With additional supplier self invoice" you must set'
+                    ' only one tax mapping line: only 1 tax per invoice is '
+                    'supported'
+                ))
