@@ -4,9 +4,9 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <openerp>
-	<data>
+    <data>
 
-	    <record id="view_rc_type_form" model="ir.ui.view">
+        <record id="view_rc_type_form" model="ir.ui.view">
             <field name="name">account.rc.type.form</field>
             <field name="model">account.rc.type</field>
             <field name="type">form</field>
