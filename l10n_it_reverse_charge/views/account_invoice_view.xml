@@ -4,7 +4,7 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <openerp>
-	<data>
+    <data>
 
         <record id="view_invoice_supplier_form_rc" model="ir.ui.view">
             <field name="name">account.invoice.supplier.form.rc</field>
@@ -19,6 +19,17 @@
                     </group>
                 </xpath>
                 <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="rc"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_line_form_rc" model="ir.ui.view">
+            <field name="name">view_invoice_line_form_rc</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_tax_id']" position="after">
                     <field name="rc"/>
                 </xpath>
             </field>
