@@ -24,25 +24,25 @@ To configure this module, you need to:
 
 create tax **22% intra UE** Vendita:
 
-.. figure:: static/src/img/tax_22_v_i_ue.png
+.. figure:: /l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
    :alt: 22% intra UE Vendita
    :width: 600 px
 
 create tax **22% intra UE** Acquisti:
 
-.. figure:: static/src/img/tax_22_a_i_ue.png
+.. figure:: /l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
   :alt: 22% intra UE Acqisti
   :width: 600 px
 
 create reverse charge **Autofattura**:
 
-.. figure:: static/src/img/rc_selfinvoice.png
+.. figure:: /l10n_it_reverse_charge/static/description/rc_selfinvoice.png
   :alt: reverse charge con Autofattura
   :width: 600 px
 
 with transitory account created as follows:
 
-.. figure:: static/src/img/temp_account_auto_inv.png
+.. figure:: /l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
   :alt: conto transitorio Autofattura
   :width: 600 px
 
