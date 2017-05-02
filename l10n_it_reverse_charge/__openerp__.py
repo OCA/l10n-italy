@@ -5,7 +5,7 @@
 
 {
     'name': 'Reverse Charge IVA',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Localization/Italy',
     'summary': 'Reverse Charge for Italy',
     'author': 'Abstract, Agile Business Group,'
