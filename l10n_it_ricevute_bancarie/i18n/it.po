@@ -1,21 +1,26 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_it_ricevute_bancarie
-#
+# * l10n_it_ricevute_bancarie
+# 
+# Translators:
+# Paolo Valier, 2016
+# Andrea Cometa <a.cometa@apuliasoftware.it>, 2016
+# Hotellook, 2014
+# Paolo Valier, 2016
+# Paolo Valier, 2016-2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-07 14:56+0000\n"
-"PO-Revision-Date: 2017-02-07 15:58+0100\n"
-"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-04-27 13:18+0000\n"
+"PO-Revision-Date: 2017-04-27 13:19+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
 "Language: it\n"
-"X-Generator: Poedit 1.8.9\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
@@ -125,6 +130,7 @@ msgid "Amount"
 msgstr "Importo"
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:280
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:93
 #, python-format
 msgid "Attention!"
@@ -200,7 +206,9 @@ msgstr "Codice SIA"
 
 #. module: l10n_it_ricevute_bancarie
 #: help:account.payment.term,riba_payment_cost:0
-msgid "Collection fees amount. If different from 0, for each payment deadline an invoice line will be added to invoice, with this amount"
+msgid ""
+"Collection fees amount. If different from 0, for each payment deadline an "
+"invoice line will be added to invoice, with this amount"
 msgstr "Imposto spese d'incasso. Se diverso da 0, per ogni scadenza del pagamento verrà aggiunta una riga alla fattura, con questo importo"
 
 #. module: l10n_it_ricevute_bancarie
@@ -396,7 +404,7 @@ msgstr "Importo effetti"
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:100
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:111
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:121
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:266
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:267
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:118
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:132
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:145
@@ -531,6 +539,12 @@ msgid "Invoice entries"
 msgstr "Registrazioni fattura"
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:281
+#, python-format
+msgid "Invoice is linked to RI.BA. list nr {riba}"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_da_emettere
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_issue_action
@@ -577,7 +591,8 @@ msgstr "Lasciare vuoto per utilizzare la data corrente"
 #. module: l10n_it_ricevute_bancarie
 #: field:report.l10n_it_ricevute_bancarie.distinta_qweb,__last_update:0
 #: field:riba.accreditation,__last_update:0
-#: field:riba.configuration,__last_update:0 field:riba.distinta,__last_update:0
+#: field:riba.configuration,__last_update:0
+#: field:riba.distinta,__last_update:0
 #: field:riba.distinta.line,__last_update:0
 #: field:riba.distinta.move.line,__last_update:0
 #: field:riba.file.export,__last_update:0 field:riba.issue,__last_update:0
@@ -588,8 +603,9 @@ msgstr "Ultima modifica il"
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.accreditation,write_uid:0 field:riba.configuration,write_uid:0
 #: field:riba.distinta,write_uid:0 field:riba.distinta.line,write_uid:0
-#: field:riba.distinta.move.line,write_uid:0 field:riba.file.export,write_uid:0
-#: field:riba.issue,write_uid:0 field:riba.unsolved,write_uid:0
+#: field:riba.distinta.move.line,write_uid:0
+#: field:riba.file.export,write_uid:0 field:riba.issue,write_uid:0
+#: field:riba.unsolved,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultima Modifica di"
 
@@ -623,31 +639,31 @@ msgid "Move lines"
 msgstr "Move lines"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:267
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:268
 #, python-format
 msgid "No IBAN or ABI/CAB specified for "
 msgstr "Nessun IBAN o ABI/CAB specificato per"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:212
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:213
 #, python-format
 msgid "No IBAN specified"
 msgstr "Nessun IBAN specificato"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:220
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:221
 #, python-format
 msgid "No SIA Code specified for: "
 msgstr "Nessun codice SIA specificato per: "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:283
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:284
 #, python-format
 msgid "No VAT or Fiscal code specified for "
 msgstr "Nessuna P.IVA o codice fiscale specificato per "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:233
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:234
 #, python-format
 msgid "No VAT or Fiscalcode specified for: "
 msgstr "Nessuna P.IVA o codice fiscale specificato per: "
@@ -662,7 +678,7 @@ msgid "No active ID found"
 msgstr "Nessun ID trovato"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:291
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:292
 #, python-format
 msgid "No debit_bank specified for "
 msgstr "No debit_bank specified for "
@@ -814,6 +830,12 @@ msgid "Ri.Ba. properties"
 msgstr "Proprietà Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
+#: model:account.payment.term,name:l10n_it_ricevute_bancarie.account_payment_term_riba
+#: model:account.payment.term,note:l10n_it_ricevute_bancarie.account_payment_term_riba
+msgid "RiBA 30 Days End of Month"
+msgstr "Ri.Ba. 30 Giorni fine Mese"
+
+#. module: l10n_it_ricevute_bancarie
 #: field:account.move.line,riba:0
 msgid "RiBa"
 msgstr "Ri.Ba."
@@ -917,7 +939,9 @@ msgstr "Questo wizard genererà la distinta Ri.Ba., confermi?"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
-msgid "This wizard generates the journal entry related to accreditation received from the bank"
+msgid ""
+"This wizard generates the journal entry related to accreditation received "
+"from the bank"
 msgstr "Questo wizard genererà la registrazione relativa all'accredito ricevuto dalla banca"
 
 #. module: l10n_it_ricevute_bancarie
@@ -1023,12 +1047,15 @@ msgstr "Importo versato"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.accreditation:l10n_it_ricevute_bancarie.riba_accreditation
-msgid "You can also skip this step and set the distinta status to 'accredited' anyway"
+msgid ""
+"You can also skip this step and set the distinta status to 'accredited' "
+"anyway"
 msgstr "È anche possibile saltare questo passo e impostare comunque la distinta dello stato di 'accreditata'"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
-msgid "You can also skip this step and set the line status to 'unsolved' anyway"
+msgid ""
+"You can also skip this step and set the line status to 'unsolved' anyway"
 msgstr "È anche possibile saltare questo passo e impostare comunque lo stato della riga a 'insoluta'"
 
 #. module: l10n_it_ricevute_bancarie

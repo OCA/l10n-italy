@@ -283,7 +283,6 @@ class AccountInvoice(orm.Model):
                         ))
         super(AccountInvoice, self).action_cancel()
 
-
     @api.v7
     @api.one
     def copy(self, default=None):
