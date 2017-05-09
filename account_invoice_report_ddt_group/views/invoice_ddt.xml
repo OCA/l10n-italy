@@ -36,10 +36,10 @@
                             <tr>
                                 <td><span t-field="l.name"/></td>
                                 <t t-if="has_serial_number">
-                                    <td t-if="l.get_ddt_lines().lot_ids">
-                                        <span><t t-esc="', '.join([lot.name for lot in l.get_ddt_lines().lot_ids])"/></span>
+                                    <td t-if="l.ddt_line_id.lot_ids">
+                                        <span><t t-esc="', '.join([lot.name for lot in l.ddt_line_id.lot_ids])"/></span>
                                     </td>
-                                    <td t-if="not l.get_ddt_lines().lot_ids"/>
+                                    <td t-if="not l.ddt_line_id.lot_ids"/>
                                 </t>
                                 <td><span t-field="l.quantity"/>
                                     <span t-field="l.uom_id" groups="product.group_uom"/></td>
