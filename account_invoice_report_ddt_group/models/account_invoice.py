@@ -19,8 +19,7 @@ class AccountInvoice(models.Model):
         ddt_dict = {}
         for line in all_lines:
             # group by recordset (that can be empty or bigger then 1)
-            ddt_lines = line.get_ddt_lines()
-            ddts = ddt_lines.mapped('package_preparation_id')
+            ddts = line.mapped('ddt_line_id.package_preparation_id')
             if ddts not in ddt_dict:
                 ddt_dict[ddts] = [line]
             else:
@@ -56,15 +55,6 @@ class AccountInvoice(models.Model):
     def has_serial_number(self):
         self.ensure_one()
         for line in self.invoice_line_ids:
-            if line.get_ddt_lines().lot_ids:
+            if line.ddt_line_id.lot_ids:
                 return True
         return False
-
-
-class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
-
-    @api.multi
-    def get_ddt_lines(self):
-        self.ensure_one()
-        return self.ddt_line_id
