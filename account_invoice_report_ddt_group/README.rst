@@ -6,7 +6,7 @@
 Account Invoice Report DDT Group
 ================================
 
-This modules modifies the invoice report, so that the invoice lines are grouped by the DDT that generated them
+This module modifies the invoice report, so that the invoice lines are grouped by the DDT that generated them
 
 Usage
 =====
