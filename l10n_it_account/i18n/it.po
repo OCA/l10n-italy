@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Paolo Valier <paolo.valier@hotmail.it>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-13 03:19+0000\n"
-"PO-Revision-Date: 2017-05-13 03:19+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
+"POT-Creation-Date: 2017-07-26 14:46+0000\n"
+"PO-Revision-Date: 2017-07-26 14:46+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,6 +28,40 @@ msgstr ""
 "<span class=\"text-right\">IVA:</span>"
 
 #. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_cee_type
+msgid "Include in VAT register"
+msgstr "Includi nel registo IVA"
+
+#. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid "Pag:"
 msgstr "Pag:"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_parent_tax_ids
+msgid "Parent Taxes"
+msgstr "Imposte genitori"
+
+#. module: l10n_it_account
+#: selection:account.tax,cee_type:0
+msgid "Purchase"
+msgstr "Acquisto"
+
+#. module: l10n_it_account
+#: selection:account.tax,cee_type:0
+msgid "Sale"
+msgstr "Vendita"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,help:l10n_it_account.field_account_tax_cee_type
+msgid ""
+"Use in the case of tax with 'VAT integration'. This specifies the VAT "
+"register (sales / purchases) where the tax must be computed."
+msgstr ""
+"Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro"
+" IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
