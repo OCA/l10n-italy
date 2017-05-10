@@ -76,7 +76,7 @@
                                     <t t-if="line['index'] == 0">
                                         <tr style="page-break-inside: avoid; border:1px solid #fff;" >
                                             <!-- Data registrazione -->
-                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.date"/></td>
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(move.date,date_format)"/></td>
                                             <!-- Numero registrazione -->
                                             <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
                                             <t t-if="registry_type != 'corrispettivi'">
@@ -85,7 +85,7 @@
                                                     <div style="page-break-inside: avoid" t-esc="line['invoice_type']"/>
                                                 </td>
                                                 <!-- Data fattura -->
-                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['invoice_date']"/></td>
+                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/></td>
                                                 <t t-if="move.journal_id.type == 'purchase'">
                                                     <!-- Numero fattura (fornitore)-->
                                                     <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['reference']"/></td>
