@@ -30,7 +30,7 @@ class WithholdingTaxMovePayment(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
-    ], 'Status', readonly=True, copy=False, select=True, default='draft')
+    ], 'Status', readonly=True, copy=False, default='draft')
     name = fields.Char('Name')
     date = fields.Char('Date')
     date_payment = fields.Date('Date Payment')
