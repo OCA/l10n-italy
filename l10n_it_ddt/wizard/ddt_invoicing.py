@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Alessandro Camilli <alessandrocamilli@openforce.it>
-#    Copyright (C) 2017 Openforce di Camilli Alessandro (http://www.openforce.it)
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
+# Copyright 2017 Alessandro Camilli - Openforce
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 from odoo import fields, models, api, _
@@ -39,11 +33,10 @@ class DdtInvoicing(models.TransientModel):
                                      ddt_date_from=wizard.date_from,
                                      ddt_date_to=wizard.date_to)
             return {
-                    'name': _('DDT Invoicing'),
-                    'context': self._context,
-                    'type': 'ir.actions.act_window',
-                    'view_mode': 'form',
-                    'view_id': view[1],
-                    'res_model': 'ddt.create.invoice',
-                    'target': 'new',
-                }
+                'name': _('DDT Invoicing'),
+                'context': self._context,
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'view_id': view[1],
+                'res_model': 'ddt.create.invoice',
+                'target': 'new'}

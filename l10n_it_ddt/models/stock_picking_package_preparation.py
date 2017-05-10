@@ -4,16 +4,12 @@
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
+from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
-
-from odoo.tools import float_is_zero, float_compare
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
-
 import odoo.addons.decimal_precision as dp
-from datetime import datetime
+from odoo.tools import float_is_zero
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -218,7 +214,7 @@ class StockPickingPackagePreparation(models.Model):
                     sale_order = sm.procurement_id.sale_line_id.order_id
                     return sale_order
         return sale_order
-    
+
     @api.multi
     def _prepare_invoice_description(self):
         invoice_description = ''
@@ -229,10 +225,12 @@ class StockPickingPackagePreparation(models.Model):
         if ddt_date_from and ddt_date_to:
             invoice_description = '{} {} - {}'.format(
                 _('Competenza:'),
-                datetime.strptime(ddt_date_from,DEFAULT_SERVER_DATE_FORMAT)\
-                    .strftime(date_format),
-                datetime.strptime(ddt_date_to,DEFAULT_SERVER_DATE_FORMAT)\
-                    .strftime(date_format)
+                datetime.strptime(
+                    ddt_date_from,
+                    DEFAULT_SERVER_DATE_FORMAT).strftime(date_format),
+                datetime.strptime(
+                    ddt_date_to,
+                    DEFAULT_SERVER_DATE_FORMAT).strftime(date_format)
                 )
         if not invoice_description:
             invoice_description = self.ddt_number or ''
@@ -304,8 +302,6 @@ class StockPickingPackagePreparation(models.Model):
         :returns: list of created invoices
         """
         inv_obj = self.env['account.invoice']
-        precision = self.env['decimal.precision'].precision_get(
-            'Product Unit of Measure')
         invoices = {}
         references = {}
         for ddt in self:
@@ -526,8 +522,9 @@ class StockPickingPackagePreparationLine(models.Model):
             'product_id': self.product_id.id or False,
             'invoice_line_tax_ids': [(6, 0, self.tax_ids.ids)],
             'account_analytic_id': (
-                self.sale_line_id and self.sale_line_id.order_id.project_id.id
-                or False),
+                self.sale_line_id and
+                self.sale_line_id.order_id.project_id.id or False
+            ),
             'analytic_tag_ids': [(
                 6, 0, self.sale_line_id and
                 self.sale_line_id.analytic_tag_ids.ids or []
