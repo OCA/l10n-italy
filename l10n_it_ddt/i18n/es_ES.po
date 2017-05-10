@@ -1,0 +1,622 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_ddt
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Javi Melendez <javimelex@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-11 03:39+0000\n"
+"PO-Revision-Date: 2016-11-11 03:39+0000\n"
+"Last-Translator: Javi Melendez <javimelex@gmail.com>, 2016\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "<strong>Description</strong>"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "<strong>Quantity</strong>"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
+msgid "Add Pickings to DDT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
+msgid "Add an internal note..."
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
+msgid "Add to DDT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_create_ddt
+msgid "Automatically create the DDT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_stock_picking_carriage_condition
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_carriage_condition_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_carriage_condition_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_carriage_condition_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_carriage_condition_id
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_carriage_condition_form
+msgid "Carriage Condition"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_carriage_condition_tree
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_action_carriage_condition_tree
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_carriage_condition_tree
+msgid "Carriage Conditions"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_carrier_id
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Carrier"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Carrier's Signature"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "Cessionario"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+msgid "Create"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_create_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_create_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_create_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_create_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_create_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_create_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_it_ddt
+#: model:ir.actions.report.xml,name:l10n_it_ddt.action_report_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
+msgid "DDT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_from_pickings
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+msgid "DDT from Pickings"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "DDT number:"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Date"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_last_post
+msgid "Date of the last message posted on the record."
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_ddt_ids
+msgid "DdT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_stock_ddt_data
+msgid "DdT Data"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_ddt_number
+msgid "DdT Number"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_ddt_type_id
+msgid "DdT Type"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_ddt_id
+msgid "Ddt id"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_stock_picking_goods_description
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_goods_description_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_goods_description_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_goods_description_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_goods_description_id
+#: model:ir.ui.view,arch_db:l10n_it_ddt.stock_goods_description_form
+msgid "Description of Goods"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_goods_description_tree
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_action_good_description_tree
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_goods_description_tree
+msgid "Descriptions of Goods"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "Destinatario"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_display_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_display_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_display_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_display_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_display_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_display_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Driver's Signature"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Goods Description"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Gross Weight"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:113
+#, python-format
+msgid "Impossible to put in pack a package without details"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_last_post
+msgid "Last Message Date"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings___last_update
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type___last_update
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition___last_update
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description___last_update
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method___last_update
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_write_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_write_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_write_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_write_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_stock_picking_transportation_method
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_transportation_method_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_transportation_method_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_transportation_method_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_transportation_method_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_name
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_method_form
+msgid "Method of Transportation"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_transportation_method_tree
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_action_transportation_method_tree
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_method_tree
+msgid "Methods of Transportation"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
+#, python-format
+msgid "Not every picking is in done status"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_note
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_note
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_note
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_note
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_note
+msgid "Note"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Notes"
+msgstr "Notas"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,help:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
+msgid "Package Preparation"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_parcels
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_parcels
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_parcels
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Parcels"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Pick up time"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+msgid "Picking"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:32
+#, python-format
+msgid "Picking %s already in ddt"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_picking_ids
+msgid "Picking ids"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+msgid "Pickings"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_name
+msgid "Reason For Transportation"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_stock_picking_transportation_reason
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_transportation_reason_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_transportation_reason_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_transportation_reason_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_transportation_reason_id
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_reason_form
+msgid "Reason for Transportation"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_transportation_reason_tree
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_action_transportation_reason_tree
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_transportation_reason_tree
+msgid "Reasons for Transportation"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Recipient's Signature"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.sale_order_form_view_ddt
+msgid "Related DDTs"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_ddt_ids
+msgid "Related DdTs"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "Search DDT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:37
+#, python-format
+msgid "Selected Picking %s have different Partner"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:43
+#, python-format
+msgid "Selected Picking %s have different carriage condition"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:48
+#, python-format
+msgid "Selected Picking %s have different goods description"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:53
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:58
+#, python-format
+msgid "Selected Picking %s have different transportation reason"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
+#, python-format
+msgid "Selected Pickings have different Partner"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:64
+#, python-format
+msgid "Selected Pickings have different carriage condition"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:77
+#, python-format
+msgid "Selected Pickings have different goods description"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:54
+#, python-format
+msgid "Selected Pickings have different parcels"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
+#, python-format
+msgid "Selected Pickings have different transportation method"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:90
+#, python-format
+msgid "Selected Pickings have different transportation reason"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_sequence_id
+msgid "Sequence id"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
+msgid "Set done"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_partner_shipping_id
+msgid "Shipping Address"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
+#: model:ir.ui.view,arch_db:l10n_it_ddt.invoice_form_view_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.sale_order_form_view_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_partner_form_ddt
+msgid "Shipping Informations"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Size"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
+msgid "Stock DdT Type"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Transportation Reason"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_type_tree
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_action_ddt_type_tree
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_type_form
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_type_tree
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "VAT number:"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_order_form_view_ddt
+msgid "View DdT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_volume
+msgid "Volume"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_add_pickings_to_ddt
+msgid "add.pickings.to.ddt"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model,name:l10n_it_ddt.model_ddt_from_pickings
+msgid "ddt.from.pickings"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+msgid "or"
+msgstr "o"

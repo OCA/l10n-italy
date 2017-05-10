@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+    <!-- DdT Views -->
+
+    <record id="sppp_line_stock_picking_package_preparation_form_ddt" model="ir.ui.view">
+            <field name="name">sppp.line.stock.picking.package.preparation.form.ddt</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']" position="after">
+                   <field name="price_unit"/>
+                   <field name="discount"/>
+                   <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='line_ids']/form//field[@name='product_uom_id']" position="after">
+                   <field name="price_unit"/>
+                   <field name="discount"/>
+                   <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+    <record id="ddt_stock_picking_package_preparation_search" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.search</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="arch" type="xml">
+            <search string="Search DDT">
+                <field name="ddt_number"/>
+                <field name="partner_id"/>
+                <field name="partner_shipping_id"/>
+                <field name="ddt_type_id" />
+                <group expand="0" string="Group By">
+                    <filter name="group_by_partner" string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ddt_stock_picking_package_preparation_tree" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.tree</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="ddt_number" />
+            </field>
+        </field>
+    </record>
+
+    <record id="ddt_stock_picking_package_preparation_form" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.form</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <button name="set_done" type="object" string="Set done"
+                        attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
+            </button>
+            <field name="name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="name" position="after">
+                <field name="ddt_number" readonly="1"
+                       attrs="{'invisible':[('ddt_number', '=', ''), ('ddt_type_id', '=', False)]}"/>
+            </field>
+            <field name="partner_id" position="before">
+                <field name="ddt_type_id" widget="selection"/>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="partner_shipping_id"
+                       domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
+                       attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
+            </field>
+            <notebook position="inside">
+                <page string="Shipping Informations"
+                      attrs="{'invisible':[('ddt_type_id', '=', False)]}">
+                    <group>
+                        <field name="carriage_condition_id"
+                               attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                        <field name="goods_description_id"
+                               attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                        <field name="transportation_reason_id"
+                               attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                        <field name="transportation_method_id"
+                               attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                        <field name="carrier_id"/>
+                        <field name="parcels"
+                               attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                        <field name="volume"/>
+                        <field name="weight"/>
+                        <field name="weight_manual"/>
+                        <field name="show_price"/>
+                    </group>
+                </page>
+            </notebook>
+            <field name="note" position="replace"></field>
+            <notebook position="after">
+                <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
+            </notebook>
+            <!-- Hide Operations page -->
+            <xpath expr="//notebook/page[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Only show original menuitem to admin user as a work around to fix translation issue -->
+    <menuitem
+        id="stock_picking_package_preparation.menu_stock_picking_package_preparation"
+        parent="stock.menu_stock_warehouse_mgmt"
+        groups="base.group_erp_manager"/>
+    <!-- Create a new menuitem DDT calling the same action of the original menuitem -->
+    <menuitem
+      action="stock_picking_package_preparation.action_stock_picking_package_preparation"
+      id="menu_ddt_preparation"
+      parent="stock.menu_stock_warehouse_mgmt"
+      name="DDT"
+      sequence="3"/>
+      
+
+    <!-- Invoicing data -->
+
+    <record id="stock_picking_package_preparation_invoicing_form" model="ir.ui.view">
+            <field name="name">stock.picking.package.preparation.invoicing.form</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                   <field name="to_be_invoiced"/>
+                   <field name="invoice_id"/>
+                </xpath>
+            </field>
+     </record>
+     
+     <record id="stock_picking_package_preparation_invoicing_tree" model="ir.ui.view">
+            <field name="name">stock.picking.package.preparation.invoicing.tree</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                   <field name="to_be_invoiced"/>
+                   <field name="invoice_id"/>
+                </xpath>
+            </field>
+     </record>
+
+    <!-- DdT Data -->
+
+    <menuitem id="menu_stock_ddt_data" name="DdT Data"
+        parent="stock.menu_stock_config_settings"/>
+
+    <record id="view_ddt_type_tree" model="ir.ui.view">
+        <field name="name">stock.ddt.type.tree</field>
+        <field name="model">stock.ddt.type</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Type">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ddt_type_form" model="ir.ui.view">
+        <field name="name">stock.ddt.type.form</field>
+        <field name="model">stock.ddt.type</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Type">
+                <group>
+                    <field name="name"/>
+                    <field name="sequence_id"/>
+                    <field name="note"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ddt_type_tree" model="ir.actions.act_window">
+        <field name="name">Type</field>
+        <field name="res_model">stock.ddt.type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_ddt_type_tree" id="menu_action_ddt_type_tree" parent="menu_stock_ddt_data"/>
+
+    <record id="view_carriage_condition_tree" model="ir.ui.view">
+        <field name="name">stock.picking.carriage_condition.tree</field>
+        <field name="model">stock.picking.carriage_condition</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carriage Conditions">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_carriage_condition_form" model="ir.ui.view">
+        <field name="name">stock.picking.carriage_condition.form</field>
+        <field name="model">stock.picking.carriage_condition</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Carriage Condition">
+                <group>
+                    <field name="name"/>
+                    <field name="note"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_carriage_condition_tree" model="ir.actions.act_window">
+        <field name="name">Carriage Conditions</field>
+        <field name="res_model">stock.picking.carriage_condition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_carriage_condition_tree" id="menu_action_carriage_condition_tree" parent="menu_stock_ddt_data"/>
+
+    <record id="view_goods_description_tree" model="ir.ui.view">
+        <field name="name">stock.picking.goods_description.tree</field>
+        <field name="model">stock.picking.goods_description</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Descriptions of Goods">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="stock_goods_description_form" model="ir.ui.view">
+        <field name="name">stock.picking.goods_description.form</field>
+        <field name="model">stock.picking.goods_description</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Description of Goods">
+                <group>
+                    <field name="name"/>
+                    <field name="note"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_goods_description_tree" model="ir.actions.act_window">
+        <field name="name">Descriptions of Goods</field>
+        <field name="res_model">stock.picking.goods_description</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_goods_description_tree" id="menu_action_good_description_tree" parent="menu_stock_ddt_data"/>
+
+    <record id="view_transportation_reason_tree" model="ir.ui.view">
+        <field name="name">stock.picking.transportation_reason.tree</field>
+        <field name="model">stock.picking.transportation_reason</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Reasons for Transportation">
+                <field name="name"/>
+                <field name="to_be_invoiced"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_transportation_reason_form" model="ir.ui.view">
+        <field name="name">stock.picking.transportation_reason.form</field>
+        <field name="model">stock.picking.transportation_reason</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Reason for Transportation">
+                <group>
+                    <field name="name"/>
+                    <field name="to_be_invoiced"/>
+                    <field name="note"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_transportation_reason_tree" model="ir.actions.act_window">
+        <field name="name">Reasons for Transportation</field>
+        <field name="res_model">stock.picking.transportation_reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_transportation_reason_tree"
+        id="menu_action_transportation_reason_tree" parent="menu_stock_ddt_data"/>
+
+    <record id="view_transportation_method_tree" model="ir.ui.view">
+        <field name="name">stock.picking.transportation_method.tree</field>
+        <field name="model">stock.picking.transportation_method</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Methods of Transportation">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_transportation_method_form" model="ir.ui.view">
+        <field name="name">stock.picking.transportation_method.form</field>
+        <field name="model">stock.picking.transportation_method</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Method of Transportation">
+                <group>
+                    <field name="name"/>
+                    <field name="note"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_transportation_method_tree" model="ir.actions.act_window">
+        <field name="name">Methods of Transportation</field>
+        <field name="res_model">stock.picking.transportation_method</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_transportation_method_tree"
+        id="menu_action_transportation_method_tree" parent="menu_stock_ddt_data"/>
+
+</data>
+</odoo>

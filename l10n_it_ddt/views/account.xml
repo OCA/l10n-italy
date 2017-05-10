@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="invoice_form_view_ddt" model="ir.ui.view">
+            <field name="name">account.invoice.form.ddt</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Shipping Informations">
+                        <group string="Shipping Informations">
+                            <field name="goods_description_id"
+                                widget="selection"/>
+                            <field name="carriage_condition_id"
+                                widget="selection"/>
+                            <field name="transportation_reason_id"
+                                widget="selection"/>
+                            <field name="transportation_method_id"
+                                widget="selection"/>
+                            <field name="carrier_id" />
+                            <field name="parcels" />
+                            <field name="weight" />
+                            <field name="volume" />
+                        </group>
+                        <newline/>
+                        <group string="DDT" name="ddt">
+                            <field name="ddt_ids" nolabel="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+</odoo>
