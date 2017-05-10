@@ -364,7 +364,6 @@ class TestDdt(TransactionCase):
             # already invoiced
             invoice_wizard.create_invoice()
 
-
     def test_set_done(self):
         picking1 = self._create_picking()
         self._create_move(picking1, self.product1, quantity=2)
