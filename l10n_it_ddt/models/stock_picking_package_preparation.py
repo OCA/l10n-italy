@@ -54,11 +54,22 @@ class StockDdtType(models.Model):
 
     _name = 'stock.ddt.type'
     _description = 'Stock DdT Type'
-    _inherit = ['mail.thread']
 
     name = fields.Char(required=True)
     sequence_id = fields.Many2one('ir.sequence', required=True)
     note = fields.Text(string='Note')
+    default_carriage_condition_id = fields.Many2one(
+        'stock.picking.carriage_condition',
+        string='Default Carriage Condition')
+    default_goods_description_id = fields.Many2one(
+        'stock.picking.goods_description',
+        string='Default Description of Goods')
+    default_transportation_reason_id = fields.Many2one(
+        'stock.picking.transportation_reason',
+        string='Default Reason for Transportation')
+    default_transportation_method_id = fields.Many2one(
+        'stock.picking.transportation_method',
+        string='Default Method of Transportation')
 
 
 class StockPickingPackagePreparation(models.Model):
@@ -129,18 +140,22 @@ class StockPickingPackagePreparation(models.Model):
         if self.ddt_type_id:
             addr = self.partner_id.address_get(['delivery', 'invoice'])
             self.partner_shipping_id = addr['delivery']
-            self.carriage_condition_id = \
-                self.partner_id.carriage_condition_id.id \
-                if self.partner_id.carriage_condition_id else False
-            self.goods_description_id = \
-                self.partner_id.goods_description_id.id \
-                if self.partner_id.goods_description_id else False
-            self.transportation_reason_id = \
-                self.partner_id.transportation_reason_id.id \
-                if self.partner_id.transportation_reason_id else False
-            self.transportation_method_id = \
-                self.partner_id.transportation_method_id.id \
-                if self.partner_id.transportation_method_id else False
+            self.carriage_condition_id = (
+                self.partner_id.carriage_condition_id.id
+                if self.partner_id.carriage_condition_id
+                else self.ddt_type_id.default_carriage_condition_id)
+            self.goods_description_id = (
+                self.partner_id.goods_description_id.id
+                if self.partner_id.goods_description_id
+                else self.ddt_type_id.default_goods_description_id)
+            self.transportation_reason_id = (
+                self.partner_id.transportation_reason_id.id
+                if self.partner_id.transportation_reason_id
+                else self.ddt_type_id.default_transportation_reason_id)
+            self.transportation_method_id = (
+                self.partner_id.transportation_method_id.id
+                if self.partner_id.transportation_method_id
+                else self.ddt_type_id.default_transportation_method_id)
             self.show_price = self.partner_id.ddt_show_price
 
     @api.model
