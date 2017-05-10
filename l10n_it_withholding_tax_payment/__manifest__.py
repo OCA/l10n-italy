@@ -10,7 +10,8 @@
               'Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
-    "depends": ['account'],
+    "depends": ['account',
+                'l10n_it_withholding_tax'],
     "data": [
         'views/withholding_tax.xml',
         'workflow.xml',
