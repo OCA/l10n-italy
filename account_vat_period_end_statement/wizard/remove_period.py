@@ -22,37 +22,35 @@
 #
 #
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from odoo import models, fields, api
+from odoo.tools.translate import _
+from odoo.exceptions import UserError
 
 
-class RemovePeriod(orm.TransientModel):
+class RemovePeriod(models.TransientModel):
 
-    def _get_period_ids(self, cr, uid, context=None):
-        statement_obj = self.pool.get('account.vat.period.end.statement')
+    def _get_period_ids(self):
+        statement_model = self.env['account.vat.period.end.statement']
         res = []
-        if 'active_id' in context:
-            statement = statement_obj.browse(
-                cr, uid, context['active_id'], context)
-            for period in statement.period_ids:
+        if 'active_id' in self.env.context:
+            statement = statement_model.browse(self.env.context['active_id'])
+            for period in statement.date_range_ids:
                 res.append((period.id, period.name))
         return res
 
     _name = 'remove.period.from.vat.statement'
+    period_id = fields.Selection(_get_period_ids, 'Period', required=True)
 
-    _columns = {
-        'period_id': fields.selection(
-            _get_period_ids, 'Period', required=True),
-    }
-
-    def remove_period(self, cr, uid, ids, context=None):
-        if 'active_id' not in context:
-            raise orm.except_orm(_('Error'), _('Current statement not found'))
-        self.pool.get('account.period').write(
-            cr, uid, [int(self.browse(cr, uid, ids, context)[0].period_id)],
-            {'vat_statement_id': False}, context=context)
-        self.pool.get('account.vat.period.end.statement').compute_amounts(
-            cr, uid, [context['active_id']], context=context)
+    @api.multi
+    def remove_period(self):
+        self.ensure_one()
+        if 'active_id' not in self.env.context:
+            raise UserError(_('Current statement not found'))
+        period = self.env['date.range'].browse(int(self.period_id))
+        period.vat_statement_id = False
+        statement = self.env['account.vat.period.end.statement'].browse(
+            self.env.context['active_id'])
+        statement.compute_amounts()
         return {
             'type': 'ir.actions.act_window_close',
         }
