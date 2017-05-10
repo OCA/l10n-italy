@@ -14,8 +14,8 @@
                         </div>
                     </group>
                     <footer>
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" name="add_period" string="Add" type="object"/>
+                        <button special="cancel" string="Cancel"/>
+                        <button name="add_period" string="Add" type="object"/>
                     </footer>
                 </form>
             </field>
