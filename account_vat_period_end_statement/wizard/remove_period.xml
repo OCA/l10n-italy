@@ -9,8 +9,8 @@
                 <form string="Remove period">
                     <field name="period_id"></field>
                     <group col="2" colspan="4">
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" name="remove_period" string="Remove" type="object"/>
+                        <button special="cancel" string="Cancel"/>
+                        <button name="remove_period" string="Remove" type="object"/>
                     </group>
                 </form>
             </field>
