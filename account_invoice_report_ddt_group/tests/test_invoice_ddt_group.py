@@ -6,6 +6,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from openerp.tests.common import TransactionCase
+from odoo import fields
 
 
 class TestDdt(TransactionCase):
@@ -132,10 +133,20 @@ class TestDdt(TransactionCase):
         inv_dict = invoice.grouped_lines_by_ddt()
         # dict like
         # {
-        #   u'DDT/1': [account.invoice.line(1,)],
-        #   u'DDT/2': [account.invoice.line(2,)]
+        #   u'DDT/1 - 13/04/2017': [account.invoice.line(1,)],
+        #   u'DDT/2 - 14/04/2017': [account.invoice.line(2,)]
         # }
+        ddt1_date = fields.Date.from_string(ddt1.date)
+        ddt1_key = '%s - %s' % (
+            ddt1.ddt_number, '%s/%s/%s' % (
+                ddt1_date.day, ddt1_date.month, ddt1_date.year)
+        )
+        ddt2_date = fields.Date.from_string(ddt2.date)
+        ddt2_key = '%s - %s' % (
+            ddt2.ddt_number, '%s/%s/%s' % (
+                ddt2_date.day, ddt2_date.month, ddt2_date.year)
+        )
         self.assertEqual(
-            inv_dict[ddt1.ddt_number][0].product_id.id, self.product1.id)
+            inv_dict[ddt1_key][0].product_id.id, self.product1.id)
         self.assertEqual(
-            inv_dict[ddt2.ddt_number][0].product_id.id, self.product2.id)
+            inv_dict[ddt2_key][0].product_id.id, self.product2.id)
