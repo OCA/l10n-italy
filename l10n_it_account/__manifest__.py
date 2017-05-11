@@ -9,7 +9,7 @@
     'version': '10.0.1.0.0',
     'category': 'Hidden',
     'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
-    'website': 'https://odoo-community.org/',
+    'website': 'http://www.odoo-italia.net',
     'license': 'AGPL-3',
     "depends": ['account'],
     "data": [
