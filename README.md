@@ -33,6 +33,7 @@ addon | version | summary
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
+[l10n_it_ddt](l10n_it_ddt/) | 10.0.1.2.3 | Documento di Trasporto
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.0 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
