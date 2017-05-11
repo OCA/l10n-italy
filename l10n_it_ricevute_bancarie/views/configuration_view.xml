@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- ====================================================== -->
+        <!-- 				CONFIGURAZIONE RIBA FORM 				-->
+        <!-- ====================================================== -->
+        <record model="ir.ui.view" id="view_riba_configuration_form">
+            <field name="name">riba.configuration.form</field>
+            <field name="model">riba.configuration</field>
+            <field name="arch" type="xml">
+                <form string="Ri.Ba. - Configurazione">
+                    <group>
+                        <field name="name" />
+                        <field name="type" />
+                        <field name="bank_id" />
+                        <field name="company_id"  widget="selection" groups="base.group_multi_company"/>
+                    </group>
+                    <group string="Salvo buon fine" attrs="{'invisible': [('type','!=','sbf')]}" colspan="4" col="4">
+                        <separator colspan="4" string="Acceptance"/>
+                        <field name="acceptance_journal_id" attrs="{'required':[('type','=','sbf')]}"/>
+                        <field name="acceptance_account_id" attrs="{'required':[('type','=','sbf')]}"/>
+                        <separator colspan="4" string="Accreditation"/>
+                        <field name="accreditation_journal_id" />
+                        <field name="accreditation_account_id"/>
+                        <field name="bank_account_id" />
+                        <field name="bank_expense_account_id" />
+                        <separator colspan="4" string="Unsolved"/>
+                        <field name="unsolved_journal_id" />
+                        <field name="overdue_effects_account_id" />
+                        <field name="protest_charge_account_id" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ====================================================== -->
+        <!-- 				CONFIGURAZIONE RIBA ACTION				-->
+        <!-- ====================================================== -->
+        <record model="ir.actions.act_window" id="action_riba_configuration">
+                <field name="name">Ri.Ba. - Configuration</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">riba.configuration</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <!--field name="view_id" ref="view_riba_configuration_form"/-->
+        </record>
+        <!-- ====================================================== -->
+        <!-- 				CONFIGURAZIONE RIBA MENU 				-->
+        <!-- ====================================================== -->
+        <menuitem action="action_riba_configuration" id="menu_riba_configuration" name="Ri.Ba. Configuration" parent="payment.root_payment_menu"/>
+    </data>
+</odoo>

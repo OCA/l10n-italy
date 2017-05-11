@@ -1,2 +1,3 @@
 partner-contact
 stock-logistics-workflow
+account-payment

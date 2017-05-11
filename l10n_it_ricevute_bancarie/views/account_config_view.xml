@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record model="ir.ui.view" id="account_config_view_service_due_cost">
+        <field name="name">account.config.view.service.due.cost</field>
+        <field name="model">account.config.settings</field>
+        <field name="inherit_id" ref="account.view_account_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='bank_cash']" position="after">
+                <separator string="Ri.Ba. Due Cost Config"/>
+                <group name="riba_config">
+                    <label for="id" string="Due Cost Service"/>
+                        <div>
+                            <div>
+                                <field name="due_cost_service_id"
+                                       class="oe_inline"/>
+                            </div>
+                        </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+
+</data>
+</odoo>

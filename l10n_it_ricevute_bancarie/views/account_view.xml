@@ -12,6 +12,8 @@
             <field name="arch" type="xml">
                 <field name="active" position="after">
                     <field name="riba"/>
+                    <field name="riba_payment_cost"
+                           attrs="{'invisible': [('riba', '=', False)]}"/>
                 </field>
             </field>
         </record>
@@ -42,7 +44,7 @@
         <field name="name">Issue Ri.Ba.</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
-            <tree string="Issue Ri.Ba." colors="red:date_maturity&lt;current_date">
+            <tree string="Issue Ri.Ba." colors="grey:reconciled!=False;red:date_maturity&lt;current_date">
                 <field name="stored_invoice_id" readonly="1"/>
                 <field name="invoice_date" readonly="1"/>
                 <field name="invoice_origin" readonly="1"/>
@@ -56,7 +58,8 @@
                 <field name="date_maturity"/>
                 <field name="riba" />
                 <field name="distinta_line_ids" invisible="1" />
-                <field name="reconcile_id" invisible="1" />
+                <field name="reconciled" invisible="1" />
+                <field name="unsolved_invoice_ids" />
             </tree>
         </field>
     </record>
@@ -68,19 +71,29 @@
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
             <search string="Search Journal Items">
-                <filter icon="terp-go-today" string="To Issue" 
+                <filter string="To Issue"
                     domain="[('distinta_line_ids', '=', False)]" name="da_emettere"/>
-                <filter icon="terp-go-today" string="Issued" 
+                <filter string="Issued"
                     domain="[('distinta_line_ids', '!=', False)]" name="emesse"/>
+                <separator></separator>
+                <filter string="Reconciled"
+                    domain="[('reconciled', '!=', False)]" name="reconciled"/>
+                <filter string="To Reconcile"
+                    domain="[('reconciled', '=', False)]" name="to_reconcile"/>
+                <separator></separator>
+                <filter string="Unsolved"
+                    domain="[('unsolved_invoice_ids', '!=', False)]" name="unsolved"/>
+                <filter string="Sale Journals"
+                    domain="[('journal_id.type', '=', 'sale')]" name="sale_journal"/>
                 <field name="account_id"/>
                 <field name="partner_id"/>
-                <field name="invoice"/>
+                <field name="invoice_id"/>
                 <field name="invoice_origin"/>
                 <field name="date_maturity"/>
                 <newline/>
                 <group expand="0" string="Group by..." colspan="11">
-                    <filter string="Group by customer" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
-                    <filter string="Group by invoice" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'stored_invoice_id'}"/>
+                    <filter string="Group by customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Group by invoice" domain="[]" context="{'group_by':'stored_invoice_id'}"/>
                 </group>
             </search>
         </field>
@@ -96,8 +109,8 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_riba_da_emettere_tree" />
-        <field name="context">{'search_default_da_emettere':1}</field>
-        <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.type','=','receivable'), ('reconcile_id', '=', False)]</field>
+        <field name="domain">['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.internal_type','=','receivable')]</field>
+        <field name="context">{'search_default_da_emettere':1, 'search_default_to_reconcile':1, 'search_default_sale_journal':1}</field>
         <field name="search_view_id" ref="riba_filter"/>
     </record>
 
@@ -112,10 +125,22 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"></field>
             <field name="arch" type="xml">
-                <field name="payment_ids" position="after">
+                <field name="tax_line_ids" position="after">
                     <separator string="Unsolved Ri.Ba." colspan="4"/>
                     <field name="unsolved_move_line_ids" colspan="4" nolabel="1"/>
                 </field>
+            </field>
+        </record>
+
+
+        <record id="view_account_invoice_filter_unsolved" model="ir.ui.view">
+            <field name="name">account.invoice.select.unsolved</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"></field>
+            <field name="arch" type="xml">
+                <filter name="unpaid" position="after">
+                   <filter name="unsolved" string="Unsolved" domain="[('is_unsolved','=',True)]" help="Unsolved Invoices"/>
+                </filter>
             </field>
         </record>
 
@@ -126,7 +151,7 @@
             <field name="view_mode">tree,form,calendar,graph</field>
             <field eval="False" name="view_id"/>
             <field name="domain">[('type','=','out_invoice'), ('unsolved_move_line_ids', '!=', False)]</field>
-            <field name="context">{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale'}</field>
+            <field name="context">{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale', 'search_default_unsolved': True}</field>
             <field name="search_view_id" ref="account.view_account_invoice_filter"/>
         </record>
 

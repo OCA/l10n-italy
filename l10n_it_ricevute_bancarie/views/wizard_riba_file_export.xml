@@ -8,13 +8,14 @@
             <field name="arch" type="xml">
                 <form string="Export Ri.Ba. file">
                     <group col="4">
-                        <group colspan="4" >
-                            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                            <button icon="gtk-ok" name="act_getfile" string="Export" type="object"/>
-                        </group>
                         <group colspan="4">
-                            <field name="riba_.txt" readonly="1"/>
+                            <field name="riba_txt" readonly="1" filename="file_name"/>
+                            <field name="file_name" invisible="1"></field>
                         </group>
+                        <footer colspan="4" >
+                            <button name="act_getfile" string="Export" type="object"/>
+                            <button special="cancel" string="Close"/>
+                        </footer>
                     </group>
                 </form>
             </field>
