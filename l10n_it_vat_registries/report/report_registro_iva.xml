@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
-
+<odoo>
 
 
 <template id="report_registro_iva">
@@ -19,19 +17,19 @@
             <div class="page">
                 <t t-set="print_details" t-value="1"/>
                 <t t-if="only_totals == True">
-                    <t t-set="print_details" t-value="0"/>               
+                    <t t-set="print_details" t-value="0"/>
                 </t>
                 <table style="width:100%; font-size: small;" cellspacing="0">
                     <thead>
                         <tr class="first_th_row">
                             <t t-if="registry_type == 'corrispettivi'">
-                                <td colspan="4" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
+                                <td colspan="4" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"/>
                             </t>
                             <t t-if="registry_type != 'corrispettivi'">
-                                <td colspan="9" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
-                            </t>    
+                                <td colspan="9" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"/>
+                            </t>
                         </tr>
-                       
+
                         <t t-if="print_details > 0 ">
                             <tr style="page-break-inside: avoid">
                                 <th class="left_without_line">DATA REG.</th>
@@ -59,40 +57,38 @@
                                 <th class="right_with_line_bottom">Imposta</th>
                                 <th class="right_with_line_bottom"></th>
                             </tr>
-                        </t>    
+                        </t>
                     </thead>
-                    
-                    <t t-set="counter" t-value="0"/>
+
                     <tbody>
-                        <t t-foreach="get_move(data['ids'])" t-as="move">
-                            <t t-set="counter" t-value="counter + 1"/>
-                            <t t-foreach="tax_lines(move)" t-as="line">
+                        <t t-set="total_used_taxes" t-value="env['account.tax']"></t>
+                        <t t-foreach="get_move(doc_ids)" t-as="move">
+                            <t t-set="taxes_tuple" t-value="tax_lines(move, data)"/>
+                            <t t-set="inv_taxes" t-value="taxes_tuple[0]"/>
+                            <t t-set="used_taxes" t-value="taxes_tuple[1]"/>
+                            <t t-set="total_used_taxes" t-value="total_used_taxes | used_taxes"></t>
+                            <t t-foreach="inv_taxes" t-as="line">
                                 <t t-if="print_details > 0 ">
                                     <t t-set="line_class_left" t-value="left_without_line"/>
                                     <t t-set="line_class_right" t-value="right_without_line"/>
                                     <t t-if="line['index'] == 0">
                                         <tr style="page-break-inside: avoid; border:1px solid #fff;" >
                                             <!-- Data registrazione -->
-                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></td>
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(move.date,date_format)"/></td>
                                             <!-- Numero registrazione -->
                                             <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
                                             <t t-if="registry_type != 'corrispettivi'">
                                                 <!-- Causale -->
                                                 <td class="left_without_line_bold">
-                                                    <t t-if="move.journal_id.type == 'sale' or move.journal_id.type == 'purchase'">
-                                                        FA
-                                                    </t>
-                                                    <t t-if="move.journal_id.type == 'sale_refund' or move.journal_id.type == 'purchase_refund'">
-                                                        NC
-                                                    </t>
+                                                    <div style="page-break-inside: avoid" t-esc="line['invoice_type']"/>
                                                 </td>
                                                 <!-- Data fattura -->
-                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(line['invoice_date'], date=True)"/></td>
-                                                <t t-if="move.journal_id.type == 'purchase' or move.journal_id.type == 'purchase_refund'">
+                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/></td>
+                                                <t t-if="move.journal_id.type == 'purchase'">
                                                     <!-- Numero fattura (fornitore)-->
-                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['supplier_invoice_number']"/></td>
+                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['reference']"/></td>
                                                 </t>
-                                                <t t-if="move.journal_id.type == 'sale'  or move.journal_id.type == 'sale_refund'">
+                                                <t t-if="move.journal_id.type == 'sale'">
                                                     <!-- Numero fattura -->
                                                     <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
                                                 </t>
@@ -103,7 +99,7 @@
                                             </t>
                                             <td class="left_without_line"></td>
                                             <!-- totale -->
-                                            <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(invoice_total(move))"/></td>
+                                            <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(env, invoice_total(move))"/></td>
                                         </tr>
                                     </t>
                                     <tr style="page-break-inside: avoid; ">
@@ -117,9 +113,9 @@
                                         <!--  imposta -->
                                         <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></td>
                                         <!-- base -->
-                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['base'])"/></td>
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(env, line['base'])"/></td>
                                         <!-- tax -->
-                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(line['tax'])"/></td>
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(env, line['tax'])"/></td>
                                         <td class="left_without_line"></td>
                                     </tr>
                                 </t>
@@ -128,7 +124,7 @@
                     </tbody>
                 </table>
                 <br/>
-            
+
                 <t t-set="tot_base" t-value="0"/>
                 <t t-set="tot_tax" t-value="0"/>
                 <t t-set="tot_ded" t-value="0"/>
@@ -147,26 +143,27 @@
                                             <th class="right_without_line_bold">Detraibile</th>
                                             <th class="right_without_line_bold">Indetraibile</th>
                                         </tr>
-                                    </thead>    
-                                    <t t-foreach="tax_codes()" t-as="tax_code_tuple">
+                                    </thead>
+                                    <t t-foreach="total_used_taxes" t-as="total_used_tax">
+                                        <t t-set="tax_code_tuple" t-value="compute_totals_tax(total_used_tax, data)"/>
                                         <t t-set="tot_base" t-value="tot_base + tax_code_tuple[1]"/>
                                         <t t-set="tot_tax" t-value="tot_tax + tax_code_tuple[2]"/>
                                         <t t-set="tot_ded" t-value="tot_ded + tax_code_tuple[3]"/>
                                         <t t-set="tot_unded" t-value="tot_unded + tax_code_tuple[4]"/>
                                         <tr>
                                             <td class="left_without_line" t-esc="tax_code_tuple[0]"/>
-                                            <td class="right_without_line" t-esc="formatLang(tax_code_tuple[1])"/>
-                                            <td class="right_without_line" t-esc="formatLang(tax_code_tuple[2])"/>
-                                            <td class="right_without_line" t-esc="formatLang(tax_code_tuple[3])"/>
-                                            <td class="right_without_line" t-esc="formatLang(tax_code_tuple[4])"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[1])"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[2])"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[3])"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[4])"/>
                                         </tr>
                                     </t>
                                     <tr>
                                         <td class="left_without_line_bold">Totale generale euro</td>
-                                        <td class="right_without_line_bold" t-esc="formatLang(tot_base)"/>
-                                        <td class="right_without_line_bold" t-esc="formatLang(tot_tax)"/>
-                                        <td class="right_without_line_bold" t-esc="formatLang(tot_ded)"/>
-                                        <td class="right_without_line_bold" t-esc="formatLang(tot_unded)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_base)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_tax)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_ded)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_unded)"/>
                                     </tr>
                                 </table>
                             </td>
@@ -177,5 +174,4 @@
         </t>
     </t>
 </template>
-</data>
-</openerp>
+</odoo>

@@ -50,7 +50,6 @@
                       <span t-esc="company.street" class=""/><br/>
                       <span t-esc="company.zip" class=""/> - <span t-esc="company.city" class=""/> - <span t-esc="company.state_id.code" class=""/><br/>
                       <span class="text-right">Vat:</span><span t-esc="company.partner_id.vat" class=""/><br/>
-                      <span class="text-right">Fiscalcode:</span><span t-esc="company.partner_id.fiscalcode" class=""/>
                   </div>
                   <div class="col-xs-4 col-xs-offset-4 text-right">
                       <h3 t-esc="title"/>
