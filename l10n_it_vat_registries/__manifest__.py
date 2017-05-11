@@ -8,7 +8,7 @@
 
 {
     'name': 'Italian Localization - VAT Registries',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Localization/Italy',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Spa",
@@ -21,6 +21,7 @@
         'report',
         'account_tax_balance',
         'account_accountant',
+        'date_range',
         ],
     "data": [
         'security/ir.model.access.csv',
