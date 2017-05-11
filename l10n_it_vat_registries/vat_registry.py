@@ -24,6 +24,8 @@
 from openerp.report import report_sxw
 from openerp.osv import osv
 from openerp import _
+from openerp.exceptions import Warning as UserError
+
 import logging
 from datetime import datetime
 
@@ -65,16 +67,19 @@ class Parser(report_sxw.rml_parse):
                         self.localcontext['used_tax_codes'][
                             move_line.tax_code_id.id] = True
 
+                    val = (
+                        move_line.tax_amount *
+                        self.localcontext['data']['form']['tax_sign'])
+
+                    if any([t.cee_type for t in tax.child_ids]):
+                        val = abs(val)
+
                     if move_line.tax_code_id.is_base:
                         # recupero il valore dell'imponibile
-                        res[tax.id]['base'] += (
-                            move_line.tax_amount *
-                            self.localcontext['data']['form']['tax_sign'])
+                        res[tax.id]['base'] += val
                     else:
                         # recupero il valore dell'imposta
-                        res[tax.id]['tax'] += (
-                            move_line.tax_amount *
-                            self.localcontext['data']['form']['tax_sign'])
+                        res[tax.id]['tax'] += val
         return res
 
     def _get_move(self, move_ids):
@@ -91,7 +96,7 @@ class Parser(report_sxw.rml_parse):
         for move_line in move.line_id:
             if move_line.invoice:
                 if invoice and invoice.id != move_line.invoice.id:
-                    raise Exception(
+                    raise UserError(
                         _("Move %s contains different invoices") % move.name)
                 invoice = move_line.invoice
         amounts_by_tax_id = self._tax_amounts_by_tax_id(move)
@@ -179,7 +184,7 @@ class Parser(report_sxw.rml_parse):
                 if tax.base_code_id:
                     total_base = self.compute_tax_code_total(tax.base_code_id)
                 else:
-                    raise Exception(
+                    raise UserError(
                         _("Can't compute base amount for tax %s")
                         % tax.name)
                 total_undeduct, total_deduct = self.get_undeductible_balances(
@@ -189,14 +194,45 @@ class Parser(report_sxw.rml_parse):
                 # recupero il valore dell'imponibile
                 if tax.base_code_id:
                     total_base = self.compute_tax_code_total(tax.base_code_id)
+                elif tax.child_ids:
+                    total_base = self._get_cee_tax(tax.child_ids, is_base=True)
+
                 # recupero il valore dell'imposta
                 if tax.tax_code_id:
                     total_tax = self.compute_tax_code_total(tax.tax_code_id)
+                elif tax.child_ids:
+                    total_tax = self._get_cee_tax(tax.child_ids, is_base=False)
+
                 total_deduct = total_tax
             res.append((
                 tax.name, total_base, total_tax, total_deduct,
                 total_undeduct))
         return res
+
+    def _get_cee_tax(self, tax_child_ids, is_base):
+        """Possono esistere solo due codici figli,
+        uno per le vendite e l'altro per acquisti"""
+        if not tax_child_ids:
+            return 0
+
+        for child_tax in tax_child_ids:
+            if (
+                (self.localcontext['registry_type'] == 'customer' and
+                 child_tax.cee_type == 'sale') or
+                (self.localcontext['registry_type'] == 'supplier' and
+                 child_tax.cee_type == 'purchase')
+            ):
+                if is_base:
+                    # calcolo il valore dell'imponibile per il figlio
+                    tax = child_tax.base_code_id
+                    return abs(self.compute_tax_code_total(tax))
+
+                if not is_base:
+                    # calcolo il valore dell'imposta per il figlio
+                    tax = child_tax.tax_code_id
+                    return abs(self.compute_tax_code_total(tax))
+
+        return 0
 
     def get_tax_by_tax_code(self, tax_code_id):
         # assumendo l'univocità fra tax code e tax senza genitore, risale
@@ -236,7 +272,7 @@ class Parser(report_sxw.rml_parse):
                     if tax.id not in tax_ids:
                         tax_ids.append(tax.id)
         if len(tax_ids) != 1:
-            raise Exception(
+            raise UserError(
                 _("Tax code %s is not linked to 1 and only 1 tax")
                 % tax_code_id)
         return tax_ids[0]

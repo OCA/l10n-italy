@@ -38,3 +38,15 @@ class AccountTaxCode(models.Model):
             where=" AND line.period_id=%s AND move.state='posted' "
                   "AND move.journal_id IN %s",
             where_params=(period_id, tuple(journal_ids)))[self.id]
+
+
+class AccountTax(models.Model):
+    _inherit = "account.tax"
+
+    cee_type = fields.Selection([
+        ('sale', 'Sale'),
+        ('purchase', 'Purchase')
+    ], string='Include in VAT register',
+        help="Use in the case of tax with 'VAT integration'. This "
+             "specifies the VAT register (sales / purchases) where the "
+             "tax must be computed.")
