@@ -108,6 +108,19 @@ class StockPickingPackagePreparation(models.Model):
         string="Force Weight",
         help="Fill this field with the value you want to be used as weight. "
              "Leave empty to let the system to compute it")
+    check_if_picking_done = fields.Boolean(
+        compute='_compute_check_if_picking_done',
+        )
+
+    @api.multi
+    @api.depends('picking_ids',
+                 'picking_ids.state')
+    def _compute_check_if_picking_done(self):
+        for record in self:
+            record.check_if_picking_done = False
+            for package in record.picking_ids:
+                if package.state == 'done':
+                    record.check_if_picking_done = True
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
@@ -139,6 +152,12 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     def action_put_in_pack(self):
+        # ----- Check if exist a stock picking whose state is 'done'
+        for record_picking in self.picking_ids:
+            if record_picking.state == 'done':
+                raise UserError((
+                    "Impossible to put in pack a picking whose state "
+                    "is 'done'"))
         for package in self:
             # ----- Check if package has details
             if not package.line_ids:
