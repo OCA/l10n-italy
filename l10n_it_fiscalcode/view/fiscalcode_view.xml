@@ -1,21 +1,35 @@
 <?xml version="1.0" ?>
 <openerp>
-    <data>
-
         <record id="view_partner_form_fiscalcode_data" model="ir.ui.view">
             <field name="name">res.partner.fiscalcode.data</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
-            <field name="arch" type="xml">
+            <field name="arch" type="xml">         	
                 <xpath expr="//div[@name='vat_info']" position="after">
                     <label for="fiscalcode" />
                     <div name="fiscalcode_info">
                         <field name="fiscalcode" class="oe_inline" />
-                        <field name="individual" colspan="1" groups="base.group_extended" />
+                    </div>
+                    <label for="is_soletrader" 
+                    attrs="{'invisible':[('is_company','=', False)] }"/>
+                    <div name="is_soletrader_info">
+                        <field name="is_soletrader" class="oe_inline" 
+                        attrs="{'invisible':[('is_company','=', False)] }"
+                        />
                     </div>
                 </xpath>
+                
             </field>
         </record>
 
-	</data>
+	<record id="view_filter_fiscalcode_inherited" model="ir.ui.view">
+		<field name="name">Fiscal Code Search Extension</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_res_partner_filter"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='parent_id']" position="after">
+                   <field name="fiscalcode" string="Fiscal Code"/>
+            </xpath>
+		</field>
+</record>
 </openerp>

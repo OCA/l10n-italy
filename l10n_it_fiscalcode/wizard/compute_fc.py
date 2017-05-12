@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Giuliano Lotta
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
@@ -43,9 +44,9 @@ class WizardComputeFc(models.TransientModel):
         self.ensure_one()
         res = {}
         if self.birth_city:
-            ct = self.birth_city
+            cty = self.birth_city
             res['domain'] = {
-                'birth_province': [('town_name', '=', ct.name)]
+                'birth_province': [('town_name', '=', cty.name)]
             }
         else:
             res['domain'] = {'birth_province': []}
@@ -76,16 +77,17 @@ class WizardComputeFc(models.TransientModel):
                changed name and were then subject to other changes.
         """
         cities = self.env['res.city.it.code'].search([
-            ('name', '=', birth_city), ('province', '=', birth_prov)],
-            order='creation_date ASC, var_date ASC, notes ASC')
+            ('name', '=', birth_city),
+            ('province', '=', birth_prov)
+            ], order='creation_date ASC, var_date ASC, notes ASC')
         if not cities or len(cities) == 0:
             return ''
         # Checks for any VED element
         newcts = None
-        for ct in cities:
-            if ct.notes == 'VED':
+        for cty in cities:
+            if cty.notes == 'VED':
                 newcts = self.env['res.city.it.code'].search([
-                    ('name', '=', ct.name_var)])
+                    ('name', '=', cty.name_var)])
                 break
         if newcts:
             cities = newcts
@@ -94,68 +96,66 @@ class WizardComputeFc(models.TransientModel):
 
     def _check_national_codes(
             self, birth_city, birth_prov, birth_date, cities):
-        nc = ''
+        nat_code = ''
         dtcostvar = None
-        for ct in cities:
-            if (ct.creation_date and
-                    (not dtcostvar or not ct.creation_date or
-                        dtcostvar < ct.creation_date)):
-                dtcostvar = ct.creation_date
-            if not ct.notes:
-                nc = ct.national_code
-            elif (ct.notes == 'ORA' and
-                    (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
-                if (not ct.var_date or ct.var_date <= birth_date):
-                    nc = ct.national_code_var
-                elif not nc:
-                    nc = ct.national_code
-                if (ct.var_date):
-                    dtcostvar = ct.var_date
-            elif (ct.notes == 'AGG' and
-                    (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
-                if (not ct.var_date or ct.var_date <= birth_date):
-                    nc = ct.national_code_var
-                elif not nc:
-                    nc = ct.national_code
-                if (ct.var_date):
-                    dtcostvar = ct.var_date
-            elif (ct.notes == 'AGP' and
-                    (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
-                nc = ct.national_code
-                if (ct.var_date):
-                    dtcostvar = ct.var_date
-            elif (ct.notes == 'AGP' and
-                    (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
-                nc = ct.national_code
-
-        return nc
+        for cty in cities:
+            if (cty.creation_date and
+                    (not dtcostvar or not cty.creation_date or
+                     dtcostvar < cty.creation_date)):
+                dtcostvar = cty.creation_date
+            if not cty.notes:
+                nat_code = cty.national_code
+            elif (cty.notes == 'ORA' and
+                  (not dtcostvar or not cty.var_date or
+                   dtcostvar < cty.var_date)):
+                if (not cty.var_date or cty.var_date <= birth_date):
+                    nat_code = cty.national_code_var
+                elif not nat_code:
+                    nat_code = cty.national_code
+                if (cty.var_date):
+                    dtcostvar = cty.var_date
+            elif (cty.notes == 'AGG' and
+                  (not dtcostvar or not cty.var_date or
+                   dtcostvar < cty.var_date)):
+                if (not cty.var_date or cty.var_date <= birth_date):
+                    nat_code = cty.national_code_var
+                elif not nat_code:
+                    nat_code = cty.national_code
+                if (cty.var_date):
+                    dtcostvar = cty.var_date
+            elif (cty.notes == 'AGP' and
+                  (not dtcostvar or not cty.var_date or
+                   dtcostvar < cty.var_date)):
+                nat_code = cty.national_code
+                if (cty.var_date):
+                    dtcostvar = cty.var_date
+            elif (cty.notes == 'AGP' and
+                  (not dtcostvar or not cty.var_date or
+                   dtcostvar < cty.var_date)):
+                nat_code = cty.national_code
+        return nat_code
 
     @api.multi
     def compute_fc(self):
         active_id = self._context.get('active_id')
         partner = self.env['res.partner'].browse(active_id)
-        for f in self:
-            if (not f.fiscalcode_surname or not f.fiscalcode_firstname or
-                    not f.birth_date or not f.birth_city or not f.sex):
+        for wiz in self:
+            if (not wiz.fiscalcode_surname or not wiz.fiscalcode_firstname or
+                    not wiz.birth_date or not wiz.birth_city or not wiz.sex):
                 raise UserError(_('One or more fields are missing'))
             nat_code = self._get_national_code(
-                f.birth_city.name, f.birth_province.name, f.birth_date)
+                wiz.birth_city.name, wiz.birth_province.name, wiz.birth_date)
             if not nat_code:
-                raise UserError(_('National code is missing'))
-            birth_date = datetime.datetime.strptime(f.birth_date, "%Y-%m-%d")
-            c_f = build(f.fiscalcode_surname, f.fiscalcode_firstname,
-                        birth_date, f.sex, nat_code)
+                raise UserError(_('Province code is missing'))
+            birth_date = datetime.datetime.strptime(wiz.birth_date, "%Y-%m-%d")
+            c_f = build(wiz.fiscalcode_surname, wiz.fiscalcode_firstname,
+                        birth_date, wiz.sex, nat_code)
             if partner.fiscalcode and partner.fiscalcode != c_f:
-                raise UserError(_(
-                    'Existing fiscal code %(partner_fiscalcode)s is different '
-                    'from the computed one (%(compute)s). If you want to use'
-                    ' the computed one, remove the existing one' % {
-                        'partner_fiscalcode': partner.fiscalcode,
-                        'compute': c_f}))
+                msg = _(
+                    'The provided fiscal code %s is different'
+                    ' from the computed one ( %s ).\nIf you want to use'
+                    ' the computed one, please remove first the provided'
+                    ' fiscal code') % (partner.fiscalcode, c_f)
+                raise UserError(msg)
             partner.fiscalcode = c_f
-            partner.individual = True
         return {'type': 'ir.actions.act_window_close'}
