@@ -12,7 +12,11 @@ Configuration
 =============
 
 La tabella viene aggiunta nell'area contabilità, ed è raggiungibile nella 
+<<<<<<< HEAD
 sezione configurazione. Occorre avere i privilegi di account manager.
+=======
+sezione configurazione ad chi ha i privilegi di account manager
+>>>>>>> 0590845b855585f5431727c60908bce98ac81350
 
 Usage
 =====
@@ -40,6 +44,7 @@ Contributors
 
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 
+<<<<<<< HEAD
 Funders
 -------
 
@@ -48,6 +53,8 @@ The development of this module has been financially supported by:
 * Openforce http://openforce.it
 * Odoo Italia Network http://odoo-italia.net
 
+=======
+>>>>>>> 0590845b855585f5431727c60908bce98ac81350
 Maintainer
 ----------
 
