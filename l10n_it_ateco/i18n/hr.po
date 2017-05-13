@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 19:47+0000\n"
+"POT-Creation-Date: 2017-05-12 02:39+0000\n"
 "PO-Revision-Date: 2016-10-24 13:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/hr/)\n"
@@ -36,6 +36,7 @@ msgstr ""
 #. module: l10n_it_ateco
 #: model:ir.actions.act_window,name:l10n_it_ateco.action_ateco_category_search
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner_ateco_category_ids
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_users_ateco_category_ids
 #: model:ir.ui.menu,name:l10n_it_ateco.menu_ateco_category_form
 #: model:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_tree
 msgid "Ateco categories"
@@ -49,12 +50,12 @@ msgstr ""
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Datum kreiranja"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_description
@@ -64,32 +65,32 @@ msgstr ""
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Naziv za prikaz"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnja promjena"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Promijenio"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Vrijeme promjene"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_name
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_parent_id
