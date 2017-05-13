@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Niki Waibel, 2016
+# Niki Waibel, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 19:47+0000\n"
+"POT-Creation-Date: 2017-05-12 02:39+0000\n"
 "PO-Revision-Date: 2016-10-20 23:33+0000\n"
 "Last-Translator: Niki Waibel\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/de/)\n"
@@ -105,6 +106,7 @@ msgstr "Vorname"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_fiscalcode
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Fiscal Code"
 msgstr "Steuernummer"
@@ -119,11 +121,13 @@ msgstr "ID"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_individual
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_individual
 msgid "If checked the C.F. is referred to a Individual Person"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_individual
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_individual
 msgid "Individual"
 msgstr "Person"
 
@@ -134,6 +138,7 @@ msgstr "Personendaten"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_fiscalcode
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_fiscalcode
 msgid "Italian Fiscal Code"
 msgstr "Italienische Steuernummer"
 

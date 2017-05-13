@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_rea
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (10.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-12 02:39+0000\n"
+"PO-Revision-Date: 2016-10-19 16:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_capital
+msgid "Capital"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_liquidation_state:0
+msgid "In liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_liquidation_state
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_liquidation_state
+msgid "Liquidation State"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_member_type
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_member_type
+msgid "Member Type"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_member_type:0
+msgid "Multiple Members"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_liquidation_state:0
+msgid "Not in liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_office
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_office
+msgid "Office Province"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model,name:l10n_it_rea.model_res_partner
+msgid "Partner"
+msgstr "İş Ortağı"
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_code
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_code
+msgid "REA Code"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.ui.view,arch_db:l10n_it_rea.view_rea_partner_form
+msgid "REA Registration"
+msgstr ""
+
+#. module: l10n_it_rea
+#: sql_constraint:res.partner:0
+msgid "The rea code code must be unique per company !"
+msgstr ""
+
+#. module: l10n_it_rea
+#: selection:res.partner,rea_member_type:0
+msgid "Unique Member"
+msgstr ""

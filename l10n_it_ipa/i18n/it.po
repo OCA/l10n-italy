@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 19:47+0000\n"
-"PO-Revision-Date: 2016-10-19 16:26+0000\n"
+"POT-Creation-Date: 2017-05-12 02:39+0000\n"
+"PO-Revision-Date: 2017-05-11 12:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,7 @@ msgstr ""
 
 #. module: l10n_it_ipa
 #: model:ir.model.fields,field_description:l10n_it_ipa.field_res_partner_ipa_code
+#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_users_ipa_code
 msgid "IPA Code"
 msgstr "Codice IPA"
 

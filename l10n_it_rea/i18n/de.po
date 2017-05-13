@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Niki Waibel, 2016
+# Niki Waibel, 2016
 # Philipp Hug <philipp@hug.cx>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 19:47+0000\n"
+"POT-Creation-Date: 2017-05-12 02:39+0000\n"
 "PO-Revision-Date: 2016-10-20 23:38+0000\n"
 "Last-Translator: Niki Waibel\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/de/)\n"
@@ -21,6 +22,7 @@ msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_capital
 msgid "Capital"
 msgstr "Vermögen"
 
@@ -31,11 +33,13 @@ msgstr "In Liquidation"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_liquidation_state
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_liquidation_state
 msgid "Liquidation State"
 msgstr "Liquidationsstatus"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_member_type
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_member_type
 msgid "Member Type"
 msgstr "Mitgliedstyp"
 
@@ -51,6 +55,7 @@ msgstr "Nicht in Liquidation"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_office
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_office
 msgid "Office Province"
 msgstr ""
 
@@ -61,6 +66,7 @@ msgstr "Partner"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_code
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_code
 msgid "REA Code"
 msgstr ""
 
