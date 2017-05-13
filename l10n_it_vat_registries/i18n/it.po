@@ -1,41 +1,33 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_vat_registries
-#
+# * l10n_it_vat_registries
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-30 09:19+0000\n"
-"PO-Revision-Date: 2017-01-30 09:19+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-05-12 02:40+0000\n"
+"PO-Revision-Date: 2017-05-12 02:40+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
 msgid "A VAT registry is used to group several journals in one registry."
-msgstr "Un registro è usato per raggruppare diversi sezionali in un unico registro."
+msgstr ""
+"Un registro è usato per raggruppare diversi sezionali in un unico registro."
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "CAUS."
 msgstr "CAUS."
-
-#. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:53
-#, python-format
-msgid "Can't find invoice for move %s"
-msgstr "Impossibile trovare la fattura per la registrazione %s"
-
-#. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:138
-#, python-format
-msgid "Can't handle tax %s with more than 1 parent"
-msgstr "Impossibile gestire l'imposta %s con più di un genitore"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
@@ -53,8 +45,8 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax.registry,type:0
-#: selection:wizard.registro.iva,type:0
+#: selection:account.tax.registry,layout_type:0
+#: selection:wizard.registro.iva,layout_type:0
 msgid "Corrispettivi"
 msgstr "Corrispettivi"
 
@@ -71,8 +63,8 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax.registry,type:0
-#: selection:wizard.registro.iva,type:0
+#: selection:account.tax.registry,layout_type:0
+#: selection:wizard.registro.iva,layout_type:0
 msgid "Customer Invoices"
 msgstr "Fattura Clienti"
 
@@ -141,6 +133,11 @@ msgid "Imposta"
 msgstr "Imposta"
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_cee_type
+msgid "Include in VAT register"
+msgstr "Includi nel registo IVA"
+
+#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Indetraibile"
 msgstr "Indetraibile"
@@ -188,8 +185,8 @@ msgid "Last printed page"
 msgstr "Ultima pagina stampata"
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_type
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_type
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_layout_type
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_layout_type
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Layout"
 msgstr "Layout"
@@ -198,6 +195,12 @@ msgstr "Layout"
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_message
 msgid "Message"
 msgstr "Messaggio"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:80
+#, python-format
+msgid "Move line %s has too many base taxes"
+msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -215,7 +218,7 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:57
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:58
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato nella presente selezione"
@@ -241,9 +244,19 @@ msgid "Prints only totals"
 msgstr "Stampa solo i totali"
 
 #. module: l10n_it_vat_registries
+#: selection:account.tax,cee_type:0
+msgid "Purchase"
+msgstr "Acquisti"
+
+#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "RAGIONE SOCIALE"
 msgstr "RAGIONE SOCIALE"
+
+#. module: l10n_it_vat_registries
+#: selection:account.tax,cee_type:0
+msgid "Sale"
+msgstr "Vendite"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_journal_ids
@@ -251,8 +264,8 @@ msgid "Select journals you want retrieve documents from"
 msgstr "Seleziona i sezionali da cui si vuole prelevare i documenti"
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax.registry,type:0
-#: selection:wizard.registro.iva,type:0
+#: selection:account.tax.registry,layout_type:0
+#: selection:wizard.registro.iva,layout_type:0
 msgid "Supplier Invoices"
 msgstr "Fatture fornitore"
 
@@ -282,12 +295,6 @@ msgid "To date"
 msgstr "Alla data"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:56
-#, python-format
-msgid "Too many invoices found for move %s"
-msgstr "Torppe fatture trovate per la registrazione %s"
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Totale generale euro"
 msgstr "Totale generale euro"
@@ -296,6 +303,15 @@ msgstr "Totale generale euro"
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Totali"
 msgstr "Totali"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_tax_cee_type
+msgid ""
+"Use in the case of tax with 'VAT integration'. This specifies the VAT "
+"register (sales / purchases) where the tax must be computed."
+msgstr ""
+"Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro"
+" IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_registro_iva
@@ -321,8 +337,13 @@ msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal_tax_registry_id
-msgid "You can group several journals within 1 registry. In printing wizard, you will be able to select the registry in order to load that group of journals"
-msgstr "È possibile raggruppare più giornali in un unico registro. Nella procedura guidata di stampa è possibile selezionare un registro per caricare quel dato gruppo di giornali."
+msgid ""
+"You can group several journals within 1 registry. In printing wizard, you "
+"will be able to select the registry in order to load that group of journals"
+msgstr ""
+"È possibile raggruppare più giornali in un unico registro. Nella procedura "
+"guidata di stampa è possibile selezionare un registro per caricare quel dato"
+" gruppo di giornali."
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax_registry
@@ -343,23 +364,3 @@ msgstr "report.l10n_it_vat_registries.report_registro_iva"
 #: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
 msgid "wizard.registro.iva"
 msgstr "wizard.registro.iva"
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_tax_cee_type
-msgid "Use in the case of tax with 'VAT integration'. This specifies the VAT register (sales / purchases) where the tax must be computed."
-msgstr "Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_cee_type
-msgid "Include in VAT register"
-msgstr "Includi nel registo IVA"
-
-#. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Sale"
-msgstr "Vendite"
-
-#. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Purchase"
-msgstr "Acquisti"
