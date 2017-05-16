@@ -5,6 +5,9 @@
 from odoo import api, models
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
+from odoo.exceptions import Warning as UserError
+
+from datetime import datetime
 import time
 
 
@@ -15,12 +18,7 @@ class ReportRegistroIva(models.AbstractModel):
     def render_html(self, docids, data=None):
         # docids required by caller but not used
         # see addons/account/report/account_balance.py
-
-        lang_code = self._context.get('company_id',
-                                      self.env.user.company_id.partner_id.lang)
-        lang = self.env['res.lang']
-        lang_id = lang._lang_get(lang_code)
-        date_format = lang_id.date_format
+        date_format = data['form']['date_format']
 
         docargs = {
             'doc_ids': data['ids'],
@@ -30,10 +28,10 @@ class ReportRegistroIva(models.AbstractModel):
             'get_move': self._get_move,
             'tax_lines': self._get_tax_lines,
             'format_date': self._format_date,
-            'from_date': self._format_date(
-                data['form']['from_date'], date_format),
-            'to_date': self._format_date(
-                data['form']['to_date'], date_format),
+            'from_date': self._format_date(data['form']['from_date'],
+                                           date_format),
+            'to_date': self._format_date(data['form']['to_date'],
+                                         date_format),
             'registry_type': data['form']['registry_type'],
             'invoice_total': self._get_move_total,
             'tax_registry_name': data['form']['tax_registry_name'],
@@ -67,16 +65,26 @@ class ReportRegistroIva(models.AbstractModel):
         return self.env['account.invoice'].search([
             ('move_id', '=', move.id)])
 
-    def _tax_amounts_by_tax_id(self, move, registry_type):
+    def _tax_amounts_by_tax_id(self, move, registry_type, cash_move_ids):
         res = {}
+        move_lines = []
 
-        for move_line in move.line_ids:
+        if cash_move_ids:
+            # movimenti di cassa
+            for movec in self._get_move(cash_move_ids):
+                move_lines.extend([move_line for move_line in movec.line_ids])
+
+        else:
+            move_lines.extend([move_line for move_line in move.line_ids])
+
+        for move_line in move_lines:
             set_cee_absolute_value = False
+
             if not(move_line.tax_line_id or move_line.tax_ids):
                 continue
 
             if move_line.tax_ids and len(move_line.tax_ids) != 1:
-                    raise Exception(
+                    raise UserError(
                         _("Move line %s has too many base taxes")
                         % move_line.name)
 
@@ -158,7 +166,10 @@ class ReportRegistroIva(models.AbstractModel):
             invoice_type = "FA"
 
         amounts_by_tax_id = self._tax_amounts_by_tax_id(
-            move, data['registry_type'])
+            move,
+            data['registry_type'],
+            data['cash_move_ids'].get(str(move.id)))
+
         for tax_id in amounts_by_tax_id:
             tax = self.env['account.tax'].browse(tax_id)
             tax_item = {
