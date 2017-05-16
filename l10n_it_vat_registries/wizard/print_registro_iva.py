@@ -92,8 +92,7 @@ class WizardRegistroIva(models.TransientModel):
         AND ml.date >= %(from_date)s
         AND ml.date <= %(to_date)s
         AND ml2.journal_id in %(journals)s
-        GROUP BY i.date, protocollo, ml2.move_id
-        ORDER BY i.date, i.number
+        GROUP BY 1, 2, 3
         ),
         moves as (
         -- query che identifica solo i movimenti delle fatture, escludendo
@@ -110,12 +109,18 @@ class WizardRegistroIva(models.TransientModel):
         AND ml.date >= %(from_date)s
         AND ml.date <= %(to_date)s
         AND ml.journal_id in %(journals)s
-        ORDER BY 1, 2, 3
         )
-
-        SELECT * FROM moves_cash_moves
-        UNION
-        SELECT * FROM moves
+        -- Unisco tutti i movimenti delle fatture NON per cassa, con
+        -- quelle che ho trovato partendo dai giroconti e ordino
+        -- per data, protocollo
+        SELECT *
+        FROM
+         (
+          SELECT * FROM moves_cash_moves
+            UNION
+          SELECT * FROM moves
+          ) as moves
+        ORDER BY date, protocollo
         """
         params = {'from_date': wizard.from_date,
                   'to_date': wizard.to_date,
