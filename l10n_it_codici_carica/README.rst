@@ -14,6 +14,7 @@ Configuration
 La tabella viene aggiunta nell'area contabilità, ed è raggiungibile nella 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 sezione configurazione. Occorre avere i privilegi di account manager.
 =======
 sezione configurazione ad chi ha i privilegi di account manager
@@ -21,6 +22,9 @@ sezione configurazione ad chi ha i privilegi di account manager
 =======
 sezione configurazione ad chi ha i privilegi di account manager
 >>>>>>> 0590845... Tabelle dei codici carica da usale nelle dichiarazioni fiscali
+=======
+sezione configurazione. Occorre avere i privilegi di account manager.
+>>>>>>> 8c63b3189e4a62762a6e72087b2dcfc60e1b2df1
 
 Usage
 =====
@@ -50,6 +54,9 @@ Contributors
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8c63b3189e4a62762a6e72087b2dcfc60e1b2df1
 Funders
 -------
 
@@ -58,10 +65,13 @@ The development of this module has been financially supported by:
 * Openforce http://openforce.it
 * Odoo Italia Network http://odoo-italia.net
 
+<<<<<<< HEAD
 =======
 >>>>>>> 0590845b855585f5431727c60908bce98ac81350
 =======
 >>>>>>> 0590845... Tabelle dei codici carica da usale nelle dichiarazioni fiscali
+=======
+>>>>>>> 8c63b3189e4a62762a6e72087b2dcfc60e1b2df1
 Maintainer
 ----------
 
