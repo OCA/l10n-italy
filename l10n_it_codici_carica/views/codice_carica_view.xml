@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_codice_carica_tree" model="ir.ui.view">
+        <field name="name">view.codice.carica.tree</field>
+        <field name="model">codice.carica</field>
+        <field name="arch" type="xml">
+            <tree string="Codice carica">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_codice_carica_form" model="ir.ui.view">
+        <field name="name">view.codice.carica.form</field>
+        <field name="model">codice.carica</field>
+        <field name="arch" type="xml">
+            <form string="Codice carica">
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_codice_carica" model="ir.actions.act_window">
+        <field name="name">Codici carica</field>
+        <field name="res_model">codice.carica</field>
+        <field name="view_id" ref="view_codice_carica_tree"/>
+    </record>
+
+    <menuitem id="menu_codice_carica" name="Codici Carica"
+        action="action_codice_carica" parent="account.account_account_menu"
+        groups="account.group_account_manager" sequence="45"/>
+
+</odoo>
