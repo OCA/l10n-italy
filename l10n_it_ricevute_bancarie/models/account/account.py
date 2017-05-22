@@ -207,11 +207,12 @@ class AccountInvoice(models.Model):
     def action_invoice_draft(self):
         # ---- Delete Due Cost Line of invoice when set Back to Draft
         # ---- line was added on new validate
+        super(AccountInvoice, self).action_invoice_draft()
         for invoice in self:
+            invoice.refresh()
             for line in invoice.invoice_line_ids:
                 if line.due_cost_line:
                     line.unlink()
-        super(AccountInvoice, self).action_invoice_draft()
 
     @api.multi
     def action_cancel(self):
