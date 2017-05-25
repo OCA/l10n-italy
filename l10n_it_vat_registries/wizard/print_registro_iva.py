@@ -54,8 +54,8 @@ class WizardRegistroIva(models.TransientModel):
             ('state', '=', 'posted'),
             ], order='date, name')
 
-        #if not move_ids:
-        #    raise UserError(_('No documents found in the current selection'))
+        if not move_ids:
+            raise UserError(_('No documents found in the current selection'))
 
         return [move.id for move in move_ids]
 

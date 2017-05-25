@@ -27,7 +27,6 @@ class AccountTax(models.Model):
 
         return new_domain
 
-
     def get_balance_domain(self, state_list, type_list):
         domain = super(AccountTax, self).get_balance_domain(
             state_list, type_list)
@@ -37,7 +36,6 @@ class AccountTax(models.Model):
 
         return self._set_journal_domain(domain)
 
-
     def get_base_balance_domain(self, state_list, type_list):
         domain = super(AccountTax, self).get_base_balance_domain(
             state_list, type_list)
@@ -46,7 +44,6 @@ class AccountTax(models.Model):
             return domain
 
         return self._set_journal_domain(domain)
-
 
     def _get_move_invoice_from_reconcilie(self, move_id):
         move_line_id = move_id.tax_cash_basis_rec_id.credit_move_id
@@ -82,6 +79,5 @@ class AccountTax(models.Model):
             return balance
         else:
             balance = self.env['account.move.line'].\
-            read_group(domain, ['balance'], [])[0]['balance']
+                read_group(domain, ['balance'], [])[0]['balance']
             return balance and -balance or 0
-

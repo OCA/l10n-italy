@@ -29,4 +29,3 @@ class ReportRegistroIva(models.AbstractModel):
             move_lines.extend([move_line for move_line in move.line_ids])
 
         return move_lines
-

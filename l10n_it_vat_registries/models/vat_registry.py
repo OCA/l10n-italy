@@ -66,7 +66,7 @@ class ReportRegistroIva(models.AbstractModel):
             ('move_id', '=', move.id)])
 
     def _get_move_line(self, move, data):
-        return  [move_line for move_line in move.line_ids]
+        return [move_line for move_line in move.line_ids]
 
     def _tax_amounts_by_tax_id(self, move, move_lines, registry_type):
         res = {}
