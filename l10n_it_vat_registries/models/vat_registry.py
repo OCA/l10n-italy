@@ -65,17 +65,11 @@ class ReportRegistroIva(models.AbstractModel):
         return self.env['account.invoice'].search([
             ('move_id', '=', move.id)])
 
-    def _tax_amounts_by_tax_id(self, move, registry_type, cash_move_ids):
+    def _get_move_line(self, move, data):
+        return  [move_line for move_line in move.line_ids]
+
+    def _tax_amounts_by_tax_id(self, move, move_lines, registry_type):
         res = {}
-        move_lines = []
-
-        if cash_move_ids:
-            # movimenti di cassa
-            for movec in self._get_move(cash_move_ids):
-                move_lines.extend([move_line for move_line in movec.line_ids])
-
-        else:
-            move_lines.extend([move_line for move_line in move.line_ids])
 
         for move_line in move_lines:
             set_cee_absolute_value = False
@@ -165,10 +159,12 @@ class ReportRegistroIva(models.AbstractModel):
         else:
             invoice_type = "FA"
 
+        move_lines = self._get_move_line(move, data)
+
         amounts_by_tax_id = self._tax_amounts_by_tax_id(
             move,
-            data['registry_type'],
-            data['cash_move_ids'].get(str(move.id)))
+            move_lines,
+            data['registry_type'])
 
         for tax_id in amounts_by_tax_id:
             tax = self.env['account.tax'].browse(tax_id)
