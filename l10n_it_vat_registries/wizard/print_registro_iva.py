@@ -61,7 +61,6 @@ class WizardRegistroIva(models.TransientModel):
 
     def print_registro(self):
         wizard = self
-        cash_move_ids = {}
         move_ids = []
 
         move_ids = self._get_move_ids(wizard)

@@ -7,7 +7,6 @@ from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
 from odoo.exceptions import Warning as UserError
 
-from datetime import datetime
 import time
 
 
