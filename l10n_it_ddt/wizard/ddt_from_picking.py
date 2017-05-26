@@ -10,8 +10,7 @@
 ##############################################################################
 
 
-from odoo import fields, models, api, _
-from odoo.exceptions import Warning as UserError
+from odoo import fields, models, api
 
 
 class DdTFromPickings(models.TransientModel):
@@ -25,24 +24,13 @@ class DdTFromPickings(models.TransientModel):
 
     @api.multi
     def create_ddt(self):
-        values = {
-            'partner_id': False,
-            'parcels': 0,
-            'carriage_condition_id': False,
-            'goods_description_id': False,
-            'transportation_reason_id': False,
-            'transportation_method_id': False
-            }
-        partner = False
+        ddt_ids = []
         for picking in self.picking_ids:
+            values = {}
             # check if picking is already linked to a DDT
             self.env['stock.picking.package.preparation'].check_linked_picking(
                 picking)
-            current_ddt_shipping_partner = picking.get_ddt_shipping_partner()
-            if partner and partner != current_ddt_shipping_partner:
-                raise UserError(
-                    _("Selected Pickings have different Partner"))
-            partner = current_ddt_shipping_partner
+            partner = picking.get_ddt_shipping_partner()
             sale_order = picking.sale_id
             if sale_order:
                 values['partner_id'] = sale_order.partner_id.id
@@ -53,89 +41,42 @@ class DdTFromPickings(models.TransientModel):
             else:
                 values['partner_shipping_id'] = (
                     picking.location_dest_id.partner_id.id)
-        parcels = 0
-        for picking in self.picking_ids:
-            if picking.sale_id and picking.sale_id.parcels:
-                if parcels and parcels != picking.sale_id.parcels:
-                    raise UserError(
-                        _("Selected Pickings have different parcels"))
-                parcels = picking.sale_id.parcels
-                values['parcels'] = parcels
-        carriage_condition_id = False
-        for picking in self.picking_ids:
-            if picking.sale_id and picking.sale_id.carriage_condition_id:
-                if carriage_condition_id and (
-                        carriage_condition_id != (
-                            picking.sale_id.carriage_condition_id)):
-                    raise UserError(
-                        _("Selected Pickings have"
-                          " different carriage condition"))
-                carriage_condition_id = (
-                    picking.sale_id.carriage_condition_id)
-                values['carriage_condition_id'] = (
-                    carriage_condition_id.id)
-        goods_description_id = False
-        for picking in self.picking_ids:
-            if picking.sale_id and picking.sale_id.goods_description_id:
-                if goods_description_id and (
-                    goods_description_id != (
-                        picking.sale_id.goods_description_id)):
-                    raise UserError(
-                        _("Selected Pickings have "
-                          "different goods description"))
-                goods_description_id = picking.sale_id.goods_description_id
-                values['goods_description_id'] = (
-                    goods_description_id.id)
-        transportation_reason_id = False
-        for picking in self.picking_ids:
-            if picking.sale_id and (
-                    picking.sale_id.transportation_reason_id):
-                if transportation_reason_id and (
-                        transportation_reason_id != (
-                            picking.sale_id.transportation_reason_id)):
-                    raise UserError(
-                        _("Selected Pickings have"
-                            " different transportation reason"))
-                transportation_reason_id = (
-                    picking.sale_id.transportation_reason_id)
-                values['transportation_reason_id'] = (
-                    transportation_reason_id.id)
-        transportation_method_id = False
-        for picking in self.picking_ids:
-            if picking.sale_id and (
-                    picking.sale_id.transportation_method_id):
-                if transportation_method_id and (
-                    transportation_method_id != (
-                        picking.sale_id.transportation_method_id)):
-                    raise UserError(
-                        _("Selected Pickings have"
-                          " different transportation method"))
-                transportation_method_id = (
-                    picking.sale_id.transportation_method_id)
-                values['transportation_method_id'] = (
-                    transportation_method_id.id)
-        picking_ids = [p.id for p in self.picking_ids]
-        values.update({
-            'picking_ids': [(6, 0, picking_ids)]
-            })
-        ddt = self.env['stock.picking.package.preparation'].create(values)
-        # ----- Show new ddt
+            values['parcels'] = (
+                picking.sale_id and picking.sale_id.parcels or 0)
+            values['carriage_condition_id'] = (
+                picking.sale_id and
+                picking.sale_id.carriage_condition_id and
+                picking.sale_id.carriage_condition_id.id)
+            values['goods_description_id'] = (
+                picking.sale_id and
+                picking.sale_id.goods_description_id and
+                picking.sale_id.goods_description_id.id)
+            values['transportation_reason_id'] = (
+                picking.sale_id and
+                picking.sale_id.transportation_reason_id and
+                picking.sale_id.transportation_reason_id.id)
+            values['transportation_method_id'] = (
+                picking.sale_id and
+                picking.sale_id.transportation_method_id and
+                picking.sale_id.transportation_method_id.id)
+            values.update({
+                'picking_ids': [(6, 0, self.picking_ids.ids)]})
+            ddt = self.env['stock.picking.package.preparation'].create(values)
+            ddt_ids.append(ddt.id)
+        # ----- Show new ddts
         ir_model_data = self.env['ir.model.data']
-        form_res = ir_model_data.get_object_reference(
+        result = ir_model_data.get_object_reference(
             'stock_picking_package_preparation',
-            'stock_picking_package_preparation_form')
-        form_id = form_res and form_res[1] or False
-        tree_res = ir_model_data.get_object_reference(
-            'stock_picking_package_preparation',
-            'stock_picking_package_preparation_tree')
-        tree_id = tree_res and tree_res[1] or False
-        return {
-            'name': 'DdT',
-            'view_type': 'form',
-            'view_mode': 'form,tree',
-            'res_model': 'stock.picking.package.preparation',
-            'res_id': ddt.id,
-            'view_id': False,
-            'views': [(form_id, 'form'), (tree_id, 'tree')],
-            'type': 'ir.actions.act_window',
-        }
+            'action_stock_picking_package_preparation')
+        id = result and result[1] or False
+        result = self.env['ir.actions.act_window'].browse(id).read()[0]
+        if len(ddt_ids) > 1:
+            result['domain'] = "[('id','in',[" + ','.join(
+                map(str, ddt_ids)) + "])]"
+        else:
+            res = ir_model_data.get_object_reference(
+                'stock_picking_package_preparation',
+                'stock_picking_package_preparation_form')
+            result['views'] = [(res and res[1] or False, 'form')]
+            result['res_id'] = ddt_ids and ddt_ids[0] or False
+        return result
