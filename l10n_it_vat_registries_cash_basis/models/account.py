@@ -40,7 +40,7 @@ class AccountTax(models.Model):
         domain = super(AccountTax, self).get_base_balance_domain(
             state_list, type_list)
 
-        if not self.env.context['vat_registry_journal_ids']:
+        if not self.env.context.get('vat_registry_journal_ids'):
             return domain
 
         return self._set_journal_domain(domain)
