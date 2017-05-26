@@ -5,7 +5,7 @@
 # (<http://www.agilebg.com>)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models, fields
+from odoo import models
 
 
 class AccountTax(models.Model):
@@ -71,8 +71,7 @@ class AccountTax(models.Model):
             for move_line in self.env['account.move.line'].search(domain):
                 if move_line.move_id.tax_cash_basis_rec_id:
                     move_id = self._get_move_invoice_from_reconcilie(
-                                                move_line.move_id
-                                                )
+                        move_line.move_id)
                     if move_id.journal_id.id not in vat_reg_journal:
                         continue
                 balance += (move_line.balance and -move_line.balance or 0)

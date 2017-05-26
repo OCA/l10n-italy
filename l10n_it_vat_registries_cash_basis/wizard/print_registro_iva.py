@@ -5,7 +5,7 @@
 # (<http://www.agilebg.com>)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models, fields, api, _
+from odoo import models, _
 from odoo.exceptions import Warning as UserError
 
 

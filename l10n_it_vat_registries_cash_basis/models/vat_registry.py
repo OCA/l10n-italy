@@ -5,13 +5,7 @@
 # (<http://www.agilebg.com>)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import api, models
-from odoo.tools.misc import formatLang
-from odoo.tools.translate import _
-from odoo.exceptions import Warning as UserError
-
-from datetime import datetime
-import time
+from odoo import models
 
 
 class ReportRegistroIva(models.AbstractModel):
