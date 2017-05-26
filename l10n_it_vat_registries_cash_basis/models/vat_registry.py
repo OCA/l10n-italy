@@ -19,7 +19,7 @@ class ReportRegistroIva(models.AbstractModel):
             # movimenti di cassa
             for movec in self._get_move(cash_move_ids):
                 move_lines.extend([move_line for move_line in movec.line_ids])
-        else:
-            move_lines.extend([move_line for move_line in move.line_ids])
 
-        return move_lines
+            return move_lines
+
+        return super(ReportRegistroIva, self)._get_move_line(move, data)

@@ -93,6 +93,11 @@ class WizardRegistroIva(models.TransientModel):
         return move_ids, move_cash_move_ids
 
     def print_registro(self):
+        """
+        Non verrà chiamato il super poiché la query che torna i movimenti, si
+        preoccupa di tornare oltre agli id dei movimenti anche gli id dei
+        movimenti di cassa associati.
+        """
         wizard = self
         cash_move_ids = {}
         move_ids = []

@@ -77,6 +77,5 @@ class AccountTax(models.Model):
                 balance += (move_line.balance and -move_line.balance or 0)
             return balance
         else:
-            balance = self.env['account.move.line'].\
-                read_group(domain, ['balance'], [])[0]['balance']
-            return balance and -balance or 0
+            return super(AccountTax, self).compute_balance(tax_or_base,
+                                                           move_type)
