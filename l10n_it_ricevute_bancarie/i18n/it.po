@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Stefano <stefano.sforzi@agilebg.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-12 02:40+0000\n"
-"PO-Revision-Date: 2017-05-12 02:40+0000\n"
-"Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
+"POT-Creation-Date: 2017-05-22 16:47+0000\n"
+"PO-Revision-Date: 2017-05-22 16:47+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -534,7 +533,7 @@ msgid "Invoice entries"
 msgstr "Registrazioni fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:233
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:234
 #, python-format
 msgid "Invoice is linked to RI.BA. list nr {riba}"
 msgstr "La fattura è inserita nella distinta RI.BA. n. {riba}"
