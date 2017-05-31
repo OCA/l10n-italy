@@ -97,6 +97,22 @@ class StockPickingPackagePreparation(models.Model):
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
         'account.invoice', string="Invoice", readonly=True)
+    weight_manual = fields.Float(
+        string="Force Weight",
+        help="Fill this field with the value you want to be used as weight. "
+             "Leave empty to let the system to compute it")
+
+    @api.multi
+    @api.depends('package_id',
+                 'package_id.children_ids',
+                 'package_id.ul_id',
+                 'package_id.quant_ids',
+                 'weight_manual')
+    def _compute_weight(self):
+        super(StockPickingPackagePreparation, self)._compute_weight()
+        for prep in self:
+            if prep.weight_manual:
+                prep.weight = prep.weight_manual
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
