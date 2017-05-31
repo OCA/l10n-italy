@@ -182,8 +182,12 @@ class TestDdt(TransactionCase):
             }).create({})
         res = wizard.create_ddt()
         ddt2 = self.ddt_model.browse(res['res_id'])
+        self.assertEqual(ddt1.weight, 0)
         ddt1.action_put_in_pack()
         ddt1.action_done()
+        self.assertEqual(ddt1.weight, 0)
+        ddt1.weight_manual = 10
+        self.assertEqual(ddt1.weight, 10)
         ddt2.action_put_in_pack()
         ddt2.action_done()
         wizard = self._create_invoice_wizard([ddt1.id, ddt2.id])
