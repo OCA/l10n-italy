@@ -97,6 +97,10 @@ class StockPickingPackagePreparation(models.Model):
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
         'account.invoice', string="Invoice", readonly=True)
+    weight_manual = fields.Float(
+        string="Force Weight",
+        help="Fill this field with the value you want to be used as weight. "
+             "Leave empty to let the system to compute it")
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
@@ -159,6 +163,31 @@ class StockPickingPackagePreparation(models.Model):
                                                  date=self.date)
         self.display_name = name
 
+    @api.one
+    @api.depends('package_id',
+                 'package_id.children_ids',
+                 'package_id.ul_id',
+                 'package_id.quant_ids',
+                 'picking_ids',
+                 'picking_ids.move_lines',
+                 'picking_ids.move_lines.quant_ids',
+                 'weight_manual')
+    def _compute_weight(self):
+        res = super(StockPickingPackagePreparation, self)._compute_weight()
+        if not self.package_id:
+            quants = self.env['stock.quant']
+            for picking in self.picking_ids:
+                for line in picking.move_lines:
+                    for quant in line.quant_ids:
+                        if quant.qty >= 0:
+                            quants |= quant
+            weight = sum(l.product_id.weight * l.qty for l in quants)
+            self.net_weight = weight
+            self.weight = weight
+        if self.weight_manual:
+            self.weight = self.weight_manual
+        return res
+
     @api.multi
     def create_invoice(self):
         # ----- Check if sale order related to ddt are invoiced. Show them.
@@ -174,7 +203,7 @@ class StockPickingPackagePreparation(models.Model):
                 'res_model': 'sale.order',
                 'target': 'current',
                 'domain': '[("id", "in", {ids})]'.format(ids=invoiced_sale),
-                }
+            }
         # ----- Open wizard to create invoices
         return {
             'type': 'ir.actions.act_window',
@@ -182,7 +211,7 @@ class StockPickingPackagePreparation(models.Model):
             'view_mode': 'form',
             'res_model': 'ddt.create.invoice',
             'target': 'new',
-            }
+        }
 
     @api.multi
     def unlink(self):
@@ -209,5 +238,5 @@ class StockPickingPackagePreparationLine(models.Model):
         if self.invoiceable == 'invoiceable':
             move_data.update({
                 'invoice_state': '2binvoiced',
-                })
+            })
         return move_data
