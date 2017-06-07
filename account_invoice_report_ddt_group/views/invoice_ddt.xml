@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2015 Alex Comba - Agile Business Group
+     Copyright 2016 Andrea Cometa - Apulia Software
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+ -->
+
+<openerp>
+    <data>
+        <template id="report_invoice_ddt_group"
+                  inherit_id="account.report_invoice_document" >
+            <xpath expr="//div[@class='page']/table[1]/thead/tr/th[1]" position="after">
+                <t t-set="has_serial_number" t-value="o.has_serial_number()" groups="stock.group_production_lot"/>
+                <th name="lot_serial" t-if="has_serial_number">
+                    <strong>Lots/Serial Numbers</strong>
+                </th>
+            </xpath>
+            <xpath expr="//tr[@t-as='l']" position="replace">
+                <t t-set="has_serial_number" t-value="o.has_serial_number()" groups="stock.group_production_lot"/>
+                <t t-set="dict_ddt_lines"
+                   t-value="o.grouped_lines_by_ddt()"/>
+                <t t-foreach="dict_ddt_lines.keys()" t-as="ddt">
+                    <tr>
+                        <t t-if="has_serial_number">
+                            <td colspan="7">
+                                <strong><span t-esc="ddt"/></strong>
+                            </td>
+                        </t>
+                        <t t-if="not has_serial_number">
+                            <td colspan="6">
+                                <strong><span t-esc="ddt"/></strong>
+                            </td>
+                        </t>
+                    </tr>
+                    <t t-foreach="dict_ddt_lines[ddt]" t-as="lines">
+                        <t t-foreach="lines" t-as="l">
+                            <tr>
+                                <td><span t-field="l.name"/></td>
+                                <t t-if="has_serial_number">
+                                    <td t-if="l.ddt_line_id.lot_ids">
+                                        <span><t t-esc="', '.join([lot.name for lot in l.ddt_line_id.lot_ids])"/></span>
+                                    </td>
+                                    <td t-if="not l.ddt_line_id.lot_ids"/>
+                                </t>
+                                <td><span t-field="l.quantity"/>
+                                    <span t-field="l.uom_id" groups="product.group_uom"/></td>
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+                                <td class="text-right">
+                                    <span t-esc="', '.join(map(lambda x: x.name, l.invoice_line_tax_ids))"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.price_subtotal"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</openerp>
