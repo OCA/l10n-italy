@@ -8,8 +8,9 @@
             <field name="arch" type="xml">
               <form string="DdT Create Invoice">
                   <group>
-                    <field name="journal_id" domain="[('type', 'in', ['sale', 'sale_refund'])]"/>
+                    <field name="journal_id" domain="[('type', 'in', ['sale', 'sale_refund']),('company_id','=',company_id)]"/>
                     <field name="date"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                   </group>
                     <strong>Invoices created will group DDT by partner</strong>
                     <footer>
