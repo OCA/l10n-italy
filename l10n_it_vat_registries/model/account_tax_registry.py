@@ -23,6 +23,7 @@ from openerp import models, fields
 
 class AccountTaxRegistry(models.Model):
     _name = 'account.tax.registry'
+    
     name = fields.Char('Name', required=True)
     company_id = fields.Many2one(
         'res.company', 'Company', required=True,

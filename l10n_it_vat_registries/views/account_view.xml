@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_tax_vat_registry_form" model="ir.ui.view">
+            <field name="name">account.tax.vat_registry</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"></field>
+            <field name="arch" type="xml">
+                <field name="refund_account_id" position="after">
+                    <field name="exclude_from_registries"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
+

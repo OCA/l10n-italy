@@ -36,7 +36,7 @@ class Report(orm.Model):
 
 
 class VatPeriodEndStatementReport(report_sxw.rml_parse):
-    _name = 'report.vat.period.end.statement'
+    _name = 'report.vat.period.end.stmt'
 
     def __init__(self, cr, uid, name, context=None):
         if context is None:
@@ -202,7 +202,7 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
 
 class ReportVatPeriodEndStatement(orm.AbstractModel):
     _name = ('report.account_vat_period_end_statement.'
-             'report_vatperiodendstatement')
+             'report_vatperendstmt')
     _inherit = 'report.abstract_report'
     _template = 'account_vat_period_end_statement.report_vatperiodendstatement'
     _wrapped_report_class = VatPeriodEndStatementReport

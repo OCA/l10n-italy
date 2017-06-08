@@ -30,22 +30,15 @@ class WizardRegistroIva(models.TransientModel):
     @api.model
     def _get_period(self):
         ctx = dict(self._context or {}, account_period_prefer_normal=True)
-        period_ids = self.env[
-            'account.period'].with_context(context=ctx).find()
+        period_ids = None 
+        #self.env['account.period'].with_context(context=ctx).find()
         return period_ids
 
     _name = "wizard.registro.iva"
     _rec_name = "type"
 
-    period_ids = fields.Many2many(
-        'account.period',
-        'registro_iva_periods_rel',
-        'period_id',
-        'registro_id',
-        string='Periods',
-        default=_get_period,
-        help='Select periods you want retrieve documents from',
-        required=True)
+    from_date = fields.Date(string="From Date")
+    to_date = fields.Date(string="To Date")
     type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
@@ -86,18 +79,20 @@ class WizardRegistroIva(models.TransientModel):
         move_obj = self.pool['account.move']
         move_ids = move_obj.search(cr, uid, [
             ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
-            ('period_id', 'in', [p.id for p in wizard.period_ids]),
+            ('date', '>=', wizard.from_date), ('date', '<=', wizard.to_date),
             ('state', '=', 'posted'),
             ], order='date, name')
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
-        datas = {}
+        
         datas_form = {}
-        datas_form['period_ids'] = [p.id for p in wizard.period_ids]
+        #datas_form['period_ids'] = [p.id for p in wizard.period_ids]
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['tax_sign'] = wizard.tax_sign
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.type
+        datas_form['from_date'] = wizard.from_date
+        datas_form['to_date'] = wizard.to_date
         if wizard.tax_registry_id:
             datas_form['tax_registry_name'] = wizard.tax_registry_id.name
         else:

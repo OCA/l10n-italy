@@ -8,9 +8,10 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Tax Journal" version="7.0">
-                    <group>
+                    <group col="4">
                         <separator string="Periods" colspan="4"/>
-                        <field name="period_ids" colspan="4" nolabel="1" height="250"/>
+                        <field name="from_date" colspan="2"/>
+                        <field name="to_date" colspan="2"/>
                         <separator string="Journals" colspan="4"/>
                         <field name="tax_registry_id"></field>
                         <field name="journal_ids" colspan="4" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase','sale_refund','purchase_refund'))]"/>
@@ -41,13 +42,8 @@
         </record>
 
         <menuitem
-          id="menu_finance_legal_statement_taxes"
-          name="Taxes"
-          parent="account.menu_finance_legal_statement"/>
-
-        <menuitem
             name="VAT Registries"
-            parent="menu_finance_legal_statement_taxes"
+            parent="account.menu_finance_legal_statement"
             action="action_registro_iva"
             id="menu_registro_iva"
             icon="STOCK_PRINT"/>

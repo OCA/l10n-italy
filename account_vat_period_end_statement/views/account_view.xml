@@ -23,34 +23,29 @@
                         attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
                     </group>
                     <notebook colspan="4">
-                        <page string="Periods">
-                            <button type='action' name="%(action_add_period)d" string="Add period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))]}"></button>
-                            <button type='action' name="%(action_remove_period)d" string="Remove period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))]}"></button>
-                            <field name="period_ids" colspan="4" nolabel="1" readonly="1"/>
-                        </page>
                         <page string="Accounts">
                             <group colspan="4" col="3">
                                 <group col="2" colspan="3">
                                     <field name="debit_vat_account_line_ids" nolabel="1"  >
                                         <tree editable="bottom" string="Debit Account Lines">
-                                            <field name="tax_code_id" />
+                                            <field name="tax_id" />
                                             <field name="account_id" />
                                             <field name="amount" />
                                        </tree>
                                         <form>
-                                            <field name="tax_code_id" />
+                                            <field name="tax_id" />
                                             <field name="account_id" />
                                             <field name="amount" />
                                        </form>
                                     </field>
                                     <field name="credit_vat_account_line_ids" nolabel="1">
                                         <tree editable="bottom" string="Credit Account Lines">
-                                            <field name="tax_code_id" />
+                                            <field name="tax_id" />
                                             <field name="account_id" />
                                             <field name="amount" />
                                        </tree>
                                         <form>
-                                            <field name="tax_code_id" />
+                                            <field name="tax_id" />
                                             <field name="account_id" />
                                             <field name="amount" />
                                        </form>
@@ -119,17 +114,17 @@
         </record>
 
         <menuitem id="menu_account_vat_period_end_statement" action="action_account_vat_period_end_statement"
-            name="VAT statements" parent="account.menu_account_end_year_treatments"/>
+            name="VAT statements" parent="account.menu_finance_entries"/>
 
 <!--    tax code   -->
 
         <record id="view_tax_code_form" model="ir.ui.view">
-            <field name="name">account.tax.code.form</field>
-            <field name="model">account.tax.code</field>
-            <field name="inherit_id" ref="l10n_it_account.view_tax_code_form_vat"/>
+            <field name="name">account.tax.form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="l10n_it_account.view_tax_form_nondeductible"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <field name="vat_statement_type" position="after">
+                <field name="is_base" position="after">
                     <field name="vat_statement_account_id"/>
                     <field name="vat_statement_sign"/>
                 </field>

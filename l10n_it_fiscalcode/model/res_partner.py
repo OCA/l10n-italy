@@ -19,29 +19,21 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class res_partner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
+    @api.one
+    @api.constrains("fiscalcode")
     def check_fiscalcode(self):
-        for partner in self:
-            if not partner.fiscalcode:
-                return True
-            elif len(partner.fiscalcode) != 16 and partner.individual:
-                return False
-            else:
-                return True
+        if self.fiscalcode and len(self.fiscalcode) != 16 and self.individual:
+            raise ValidationError(_("The fiscal code doesn't seem to be correct."))
 
     fiscalcode = fields.Char(
         'Fiscal Code', size=16, help="Italian Fiscal Code")
     individual = fields.Boolean(
         'Individual', default=False,
         help="If checked the C.F. is referred to a Individual Person")
-
-    _constraints = [
-        (check_fiscalcode,
-         "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
-    ]

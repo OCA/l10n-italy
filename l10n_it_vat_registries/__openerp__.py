@@ -24,7 +24,7 @@
 #
 {
     'name': 'Italian Localization - VAT Registries',
-    'version': '8.0.2.0.0',
+    'version': '9.0.2.0.0',
     'category': 'Localization/Italy',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Spa",
@@ -35,14 +35,14 @@
         'l10n_it_account'
         ],
     "data": [
-        'reports.xml',
+        'report/reports.xml',
         'wizard/print_registro_iva.xml',
-        'account_view.xml',
+        'views/account_view.xml',
         'views/report_registro_iva.xml',
+        'views/account_journal_view.xml',
+        'views/account_tax_registry_view.xml',
         'security/ir.model.access.csv',
         'security/vat_registry_security.xml',
-        'account_journal_view.xml',
-        'account_tax_registry_view.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

@@ -7,15 +7,13 @@
         <field name="model">res.company</field>
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
-        
-            <xpath expr="//page[@string='Configuration']/group" position="after">
+            <field name="vat_check_vies" position="after">
 					<group string="Vat period end statement">
 						<field name="of_account_end_vat_statement_interest"/>
 						<field name="of_account_end_vat_statement_interest_percent"/>
 						<field name="of_account_end_vat_statement_interest_account_id"/>
 					</group>
-           	</xpath>
-           	
+           	</field>
         </field>
     </record>
 	

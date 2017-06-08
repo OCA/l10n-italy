@@ -25,7 +25,6 @@ from openerp.report import report_sxw
 from openerp.osv import osv
 from openerp import _
 import logging
-from datetime import datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -35,45 +34,42 @@ class Parser(report_sxw.rml_parse):
     def _tax_amounts_by_tax_id(self, move):
         res = {}
         tax_obj = self.pool.get('account.tax')
-        for move_line in move.line_id:
-            if (
-                move_line.tax_code_id and not
-                move_line.tax_code_id.exclude_from_registries and
-                move_line.tax_amount
-            ):
+        for move_line in move.line_ids:
+            if (move_line.tax_line_id and not
+                move_line.tax_line_id.exclude_from_registries and
+                (move_line.credit or move_line.debit)):
                 # eslcudo i conti imposta in base alla natura della
                 # stampa e al tipo conto imposta
-                if (
-                    (
+                if ((
                         self.localcontext['registry_type'] == 'supplier' and
-                        move_line.tax_code_id.vat_statement_type == 'credit'
-                    ) or
-                    ((
-                        self.localcontext['registry_type'] == 'customer' or
-                        self.localcontext['registry_type'] == 'corrispettivi'
-                    ) and
-                        move_line.tax_code_id.vat_statement_type == 'debit')
+                        move_line.tax_line_id.type_tax_use == 'purchase'
+                    ) or (
+                        (
+                         self.localcontext['registry_type'] == 'customer' or
+                         self.localcontext['registry_type'] == 'corrispettivi') and
+                          move_line.tax_line_id.type_tax_use == 'sale')
                 ):
                     tax = tax_obj.browse(
                         self.cr, self.uid, self.get_tax_by_tax_code(
-                            move_line.tax_code_id.id))
+                            move_line.tax_line_id.id))
                     if not res.get(tax.id):
                         res[tax.id] = {'name': tax.name,
                                        'base': 0,
                                        'tax': 0,
                                        }
                         self.localcontext['used_tax_codes'][
-                            move_line.tax_code_id.id] = True
+                            move_line.tax_line_id.id] = True
 
-                    if move_line.tax_code_id.is_base:
+                    tax_amount = move_line.debit - move_line.credit
+                    if move_line.tax_line_id.is_base:
                         # recupero il valore dell'imponibile
                         res[tax.id]['base'] += (
-                            move_line.tax_amount *
+                            tax_amount *
                             self.localcontext['data']['form']['tax_sign'])
                     else:
                         # recupero il valore dell'imposta
                         res[tax.id]['tax'] += (
-                            move_line.tax_amount *
+                            tax_amount *
                             self.localcontext['data']['form']['tax_sign'])
         return res
 
@@ -88,23 +84,23 @@ class Parser(report_sxw.rml_parse):
         # sono più codici IVA
         index = 0
         invoice = False
-        for move_line in move.line_id:
-            if move_line.invoice:
-                if invoice and invoice.id != move_line.invoice.id:
+        for move_line in move.line_ids:
+            if move_line.invoice_id:
+                if invoice and invoice.id != move_line.invoice_id.id:
                     raise Exception(
                         _("Move %s contains different invoices") % move.name)
-                invoice = move_line.invoice
+                invoice = move_line.invoice_id
         amounts_by_tax_id = self._tax_amounts_by_tax_id(move)
-        for tax_code_id in amounts_by_tax_id:
+        for tax_line_id in amounts_by_tax_id:
             tax_item = {
-                'tax_code_name': amounts_by_tax_id[tax_code_id]['name'],
-                'base': amounts_by_tax_id[tax_code_id]['base'],
-                'tax': amounts_by_tax_id[tax_code_id]['tax'],
+                'tax_code_name': amounts_by_tax_id[tax_line_id]['name'],
+                'base': amounts_by_tax_id[tax_line_id]['base'],
+                'tax': amounts_by_tax_id[tax_line_id]['tax'],
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice or
                                  move.date or ''),
-                'supplier_invoice_number': (
-                    invoice and invoice.supplier_invoice_number or '')
+#                'supplier_invoice_number': (
+#                    invoice and invoice.supplier_invoice_number or '')
             }
             res.append(tax_item)
             index += 1
@@ -113,11 +109,11 @@ class Parser(report_sxw.rml_parse):
     def _get_invoice_total(self, move):
         total = 0.0
         receivable_payable_found = False
-        for move_line in move.line_id:
-            if move_line.account_id.type == 'receivable':
+        for move_line in move.line_ids:
+            if move_line.account_id.user_type_id.type == 'receivable':
                 total += move_line.debit or (- move_line.credit)
                 receivable_payable_found = True
-            elif move_line.account_id.type == 'payable':
+            elif move_line.account_id.user_type_id.type == 'payable':
                 total += (- move_line.debit) or move_line.credit
                 receivable_payable_found = True
         if receivable_payable_found:
@@ -135,7 +131,7 @@ class Parser(report_sxw.rml_parse):
     def is_totally_undeductable(self, tax):
         children_tax_codes = []
         for tax in tax.child_ids:
-            children_tax_codes.append(tax.tax_code_id.id)
+            children_tax_codes.append(tax.tax_line_id.id)
         if len(set(children_tax_codes)) == 1:
             return True
         else:
@@ -146,25 +142,25 @@ class Parser(report_sxw.rml_parse):
         total_deduct = 0
         if self.is_totally_undeductable(tax):
             total_undeduct = self.compute_tax_code_total(
-                tax.child_ids[0].tax_code_id)
+                tax.child_ids[0].tax_line_id)
         else:
             for child in tax.child_ids:
                 # deductibile
-                if child.tax_code_id and child.account_collected_id:
+                if child.tax_line_id and child.account_collected_id:
                     total_deduct = self.compute_tax_code_total(
-                        child.tax_code_id)
+                        child.tax_line_id)
                 # undeductibile
-                elif child.tax_code_id:
+                elif child.tax_line_id:
                     total_undeduct = self.compute_tax_code_total(
-                        child.tax_code_id)
+                        child.tax_line_id)
         return (total_undeduct, total_deduct)
 
-    def _compute_totals_tax(self, tax_code_ids):
+    def _compute_totals_tax(self, tax_line_ids):
         res = []
         tax_obj = self.pool.get('account.tax')
         tax_list = []
-        for tax_code_id in tax_code_ids:
-            tax_id = self.get_tax_by_tax_code(tax_code_id)
+        for tax_line_id in tax_line_ids:
+            tax_id = self.get_tax_by_tax_code(tax_line_id)
             if tax_id not in tax_list:
                 tax_list.append(tax_id)
         tax_list_obj = tax_obj.browse(self.cr, self.uid, tax_list)
@@ -176,56 +172,34 @@ class Parser(report_sxw.rml_parse):
             if tax.nondeductible:
                 # detraibile / indetraibile
                 # recupero il valore dell'imponibile
-                if tax.base_code_id:
-                    total_base = self.compute_tax_code_total(tax.base_code_id)
-                else:
-                    raise Exception(
-                        _("Can't compute base amount for tax %s")
-                        % tax.name)
-                total_undeduct, total_deduct = self.get_undeductible_balances(
-                    tax)
+                total_base = self.compute_tax_code_total(tax)
+                total_undeduct, total_deduct = self.get_undeductible_balances(tax)
                 total_tax = total_deduct + total_undeduct
             else:
                 # recupero il valore dell'imponibile
-                if tax.base_code_id:
-                    total_base = self.compute_tax_code_total(tax.base_code_id)
+                total_base = self.compute_tax_code_total(tax)
                 # recupero il valore dell'imposta
-                if tax.tax_code_id:
-                    total_tax = self.compute_tax_code_total(tax.tax_code_id)
+                total_tax = self.compute_tax_code_total(tax)
                 total_deduct = total_tax
             res.append((
                 tax.name, total_base, total_tax, total_deduct,
                 total_undeduct))
         return res
 
-    def get_tax_by_tax_code(self, tax_code_id):
+    def get_tax_by_tax_code(self, tax_line_id):
         # assumendo l'univocità fra tax code e tax senza genitore, risale
         # all account.tax collegato al tax code passato al metodo
         obj_tax = self.pool.get('account.tax')
         tax_ids = obj_tax.search(self.cr, self.uid, [
             '&',
-            '&',
-            '|',
-            ('base_code_id', '=', tax_code_id),
-            '|',
-            ('tax_code_id', '=', tax_code_id),
-            '|',
-            ('ref_base_code_id', '=', tax_code_id),
-            ('ref_tax_code_id', '=', tax_code_id),
-            ('parent_id', '=', False),
+            ('id', '=', tax_line_id),
             ('price_include', '=', False),
         ])
         if not tax_ids:
             # I'm in the case of partially deductible VAT
             child_tax_ids = obj_tax.search(self.cr, self.uid, [
                 '&',
-                '|',
-                ('base_code_id', '=', tax_code_id),
-                '|',
-                ('tax_code_id', '=', tax_code_id),
-                '|',
-                ('ref_base_code_id', '=', tax_code_id),
-                ('ref_tax_code_id', '=', tax_code_id),
+                ('tax_line_id', '=', tax_line_id),
                 ('price_include', '=', False),
             ])
             for tax in obj_tax.browse(self.cr, self.uid, child_tax_ids):
@@ -238,20 +212,19 @@ class Parser(report_sxw.rml_parse):
         if len(tax_ids) != 1:
             raise Exception(
                 _("Tax code %s is not linked to 1 and only 1 tax")
-                % tax_code_id)
+                % tax_line_id)
         return tax_ids[0]
 
     def compute_tax_code_total(self, tax_code):
         journal_ids = self.localcontext['data']['form']['journal_ids']
         res_dict = {}
-        for period_id in self.localcontext['data']['form']['period_ids']:
-            # taking the first and only, as tax_code is 1 record
-            tax_sum = tax_code.sum_by_period_and_journals(
-                period_id, journal_ids)[0]
-            if not res_dict.get(tax_code.id):
-                res_dict[tax_code.id] = 0.0
-            res_dict[tax_code.id] += (
-                tax_sum * self.localcontext['data']['form']['tax_sign'])
+        # taking the first and only, as tax_code is 1 record
+        tax_sum = tax_code.sum_by_period_and_journals(
+            self.localcontext['data']['form']['from_date'], self.localcontext['data']['form']['to_date'], journal_ids)[0]
+        if not res_dict.get(tax_code.id):
+            res_dict[tax_code.id] = 0.0
+        res_dict[tax_code.id] += (
+            tax_sum * self.localcontext['data']['form']['tax_sign'])
         return res_dict[tax_code.id]
 
     def _get_tax_codes(self):
@@ -259,28 +232,10 @@ class Parser(report_sxw.rml_parse):
             self.localcontext['used_tax_codes'].keys())
 
     def _get_start_date(self):
-        period_obj = self.pool.get('account.period')
-        start_date = False
-        for period in period_obj.browse(
-            self.cr, self.uid,
-            self.localcontext['data']['form']['period_ids']
-        ):
-            period_start = datetime.strptime(period.date_start, '%Y-%m-%d')
-            if not start_date or start_date > period_start:
-                start_date = period_start
-        return start_date.strftime('%Y-%m-%d')
+        return self.localcontext['data']['form']['from_date']
 
     def _get_end_date(self):
-        period_obj = self.pool.get('account.period')
-        end_date = False
-        for period in period_obj.browse(
-            self.cr, self.uid,
-            self.localcontext['data']['form']['period_ids']
-        ):
-            period_end = datetime.strptime(period.date_stop, '%Y-%m-%d')
-            if not end_date or end_date < period_end:
-                end_date = period_end
-        return end_date.strftime('%Y-%m-%d')
+        return self.localcontext['data']['form']['to_date']
 
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context=context)
