@@ -37,8 +37,19 @@
           <field name="type">form</field>
           <field name="arch" type="xml">
               <field name="user_type" position="after">
-                  <field name="inverse_user_type"/>
-                  <field name="inverse_parent_id"/>
+                  <field name="change_bspl_side"/>
+                  <field name="default_user_type"
+                    attrs="{'invisible': [('change_bspl_side', '=', False)],
+                      'required': [('change_bspl_side', '=', True)]}"/>
+                  <field name="default_parent_id"
+                    attrs="{'invisible': [('change_bspl_side', '=', False)],
+                      'required': [('change_bspl_side', '=', True)]}"/>
+                  <field name="inverse_user_type"
+                    attrs="{'invisible': [('change_bspl_side', '=', False)],
+                      'required': [('change_bspl_side', '=', True)]}"/>
+                  <field name="inverse_parent_id"
+                    attrs="{'invisible': [('change_bspl_side', '=', False)],
+                      'required': [('change_bspl_side', '=', True)]}"/>
               </field>
           </field>
       </record>
