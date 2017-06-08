@@ -28,8 +28,9 @@ class AccountTaxRegistry(models.Model):
         'res.company', 'Company', required=True,
         default=lambda self: self.env['res.company']._company_default_get(
             'account.tax.registry'))
-    journal_ids = fields.One2many(
-        'account.journal', 'tax_registry_id', 'Journals', readonly=True)
+    journal_ids = fields.Many2many(
+        'account.journal', 'vat_registry_journals_rel', 'tax_registry_id',
+        'journal_id', string='Journals')
     type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
