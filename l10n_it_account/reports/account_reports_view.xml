@@ -83,42 +83,38 @@
           </div>
       </template>
 
+      <template id="minimal_layout" inherit_id="report.minimal_layout">
+        <xpath expr="//head/t/script" position="replace">
+        <script>
+            function subst() {
+                var vars = {};
+                var x = document.location.search.substring(1).split('&amp;');
+                for (var i in x) {
+                    var z = x[i].split('=', 2);
+                    vars[z[0]] = unescape(z[1]);
+                }
+                var x=['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+                for (var i in x) {
+                    var y = document.getElementsByClassName(x[i]);
 
-        <template id="minimal_layout" inherit_id="report.minimal_layout">
-            <xpath expr="//head" position="inside">
-                <link rel="stylesheet" href="/l10n_it_vat_registries/static/src/css/l10n_it_vat_registries.css"/>
-            </xpath>
-            <xpath expr="//head/t/script" position="replace">
-                <script>
-                function subst() {
-                    var vars = {};
-                    var x = document.location.search.substring(1).split('&amp;');
-                    for (var i in x) {
-                        var z = x[i].split('=', 2);
-                        vars[z[0]] = unescape(z[1]);
-                    }
-                    var x=['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
-                    for (var i in x) {
-                        var y = document.getElementsByClassName(x[i]);
-
-                        fiscal_page_base = 0
-                        if (document.getElementById('l10n_it_count_fiscal_page_base')!=null){
-                            if (document.getElementById('l10n_it_count_fiscal_page_base').innerHTML){
-                                fiscal_page_base = parseInt(document.getElementById('l10n_it_count_fiscal_page_base').innerHTML);
-                            }
-                        }
-
-                        for (var j=0; j&lt;y.length; ++j)
-                            if (x[i] == 'page') {
-                                y[j].textContent = parseInt(eval(vars[x[i]]) + fiscal_page_base);
-                            }
-                            else {
-                                y[j].textContent = vars[x[i]];
-                            }
+                    fiscal_page_base = 0
+                    if (document.getElementById('l10n_it_count_fiscal_page_base')!=null){
+                        if (document.getElementById('l10n_it_count_fiscal_page_base').innerHTML){
+                            fiscal_page_base = parseInt(document.getElementById('l10n_it_count_fiscal_page_base').innerHTML);
                         }
                     }
-            </script>
-            </xpath>
-        </template>
+
+                    for (var j=0; j&lt;y.length; ++j)
+                        if (x[i] == 'page') {
+                            y[j].textContent = parseInt(eval(vars[x[i]]) + fiscal_page_base);
+                        }
+                        else {
+                            y[j].textContent = vars[x[i]];
+                        }
+                    }
+                }
+          </script>
+        </xpath>
+      </template>
     </data>
 </openerp>
