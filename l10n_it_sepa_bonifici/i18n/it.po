@@ -1,0 +1,165 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_sepa_bonifici
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-28 14:46+0000\n"
+"PO-Revision-Date: 2016-04-28 14:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: field:banking.export.sepa.cbi.wizard,batch_booking:0
+#. module: l10n_it_sepa_bonifici
+msgid "Batch Booking"
+msgstr "Batch Booking"
+
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+#. module: l10n_it_sepa_bonifici
+msgid "Borne by Creditor"
+msgstr "Borne by Creditor"
+
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+#. module: l10n_it_sepa_bonifici
+msgid "Borne by Debtor"
+msgstr "Borne by Debtor"
+
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+#. module: l10n_it_sepa_bonifici
+msgid "Cancel"
+msgstr "Cancel"
+
+#: field:banking.export.sepa.cbi.wizard,charge_bearer:0
+#. module: l10n_it_sepa_bonifici
+msgid "Charge Bearer"
+msgstr "Charge Bearer"
+
+#: selection:banking.export.sepa.cbi.wizard,state:0
+#. module: l10n_it_sepa_bonifici
+msgid "Create"
+msgstr "Create"
+
+#: field:banking.export.sepa.cbi.wizard,create_uid:0
+#. module: l10n_it_sepa_bonifici
+msgid "Created by"
+msgstr "Created by"
+
+#: field:banking.export.sepa.cbi.wizard,create_date:0
+#. module: l10n_it_sepa_bonifici
+msgid "Created on"
+msgstr "Created on"
+
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:98
+#. module: l10n_it_sepa_bonifici
+#, python-format
+msgid "Error Bank Code ABI"
+msgstr "Errore Codice ABI"
+
+#: model:ir.model,name:l10n_it_sepa_bonifici.model_banking_export_sepa_cbi_wizard
+#. module: l10n_it_sepa_bonifici
+msgid "Export SEPA CBI File"
+msgstr "Export SEPA CBI File"
+
+#: field:banking.export.sepa.cbi.wizard,file:0
+#. module: l10n_it_sepa_bonifici
+msgid "File"
+msgstr "File"
+
+#: field:banking.export.sepa.cbi.wizard,filename:0
+#. module: l10n_it_sepa_bonifici
+msgid "Filename"
+msgstr "Nome file"
+
+#: selection:banking.export.sepa.cbi.wizard,state:0
+#. module: l10n_it_sepa_bonifici
+msgid "Finish"
+msgstr "Finish"
+
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+#. module: l10n_it_sepa_bonifici
+msgid "Following Service Level"
+msgstr "Following Service Level"
+
+#: help:banking.export.sepa.cbi.wizard,charge_bearer:0
+#. module: l10n_it_sepa_bonifici
+msgid "Following service level : transaction charges are to be applied following the rules agreed in the service level and/or scheme (SEPA Core messages must use this). Shared : transaction charges on the creditor side are to be borne by the creditor, transaction charges on the debtor side are to be borne by the debtor. Borne by creditor : all transaction charges are to be borne by the creditor. Borne by debtor : all transaction charges are to be borne by the debtor."
+msgstr "Following service level : transaction charges are to be applied following the rules agreed in the service level and/or scheme (SEPA Core messages must use this). Shared : transaction charges on the creditor side are to be borne by the creditor, transaction charges on the debtor side are to be borne by the debtor. Borne by creditor : all transaction charges are to be borne by the creditor. Borne by debtor : all transaction charges are to be borne by the debtor."
+
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+#. module: l10n_it_sepa_bonifici
+msgid "Generate"
+msgstr "Genera"
+
+#: field:banking.export.sepa.cbi.wizard,id:0
+#. module: l10n_it_sepa_bonifici
+msgid "ID"
+msgstr "ID"
+
+#: help:banking.export.sepa.cbi.wizard,batch_booking:0
+#. module: l10n_it_sepa_bonifici
+msgid "If true, the bank statement will display only one credit line for all the direct debits of the SEPA file ; if false, the bank statement will display one credit line per direct debit of the SEPA file."
+msgstr "If true, the bank statement will display only one credit line for all the direct debits of the SEPA file ; if false, the bank statement will display one credit line per direct debit of the SEPA file."
+
+#: field:banking.export.sepa.cbi.wizard,write_uid:0
+#. module: l10n_it_sepa_bonifici
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#: field:banking.export.sepa.cbi.wizard,write_date:0
+#. module: l10n_it_sepa_bonifici
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:273
+#. module: l10n_it_sepa_bonifici
+#, python-format
+msgid "Missing Bank Account on invoice '%s' (payment order line reference '%s')"
+msgstr "Missing Bank Account on invoice '%s' (payment order line reference '%s')"
+
+#: field:banking.export.sepa.cbi.wizard,nb_transactions:0
+#. module: l10n_it_sepa_bonifici
+msgid "Number of Transactions"
+msgstr "Numero di transazioni"
+
+#: field:banking.export.sepa.cbi.wizard,payment_order_ids:0
+#. module: l10n_it_sepa_bonifici
+msgid "Payment Orders"
+msgstr "Ordini di pagamento"
+
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:144
+#. module: l10n_it_sepa_bonifici
+#, python-format
+msgid "Payment Type Code '%s' is not supported. The only Payment Type Code supported for SEPA Credit Transfers 'CBIBdyPaymentRequest.00.04.00'. "
+msgstr "Il codice del tipo pagamento '%s' non è supportato. Il solo formato supportato per bonifici SEPA è 'CBIBdyPaymentRequest.00.04.00'. "
+
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+#. module: l10n_it_sepa_bonifici
+msgid "SEPA File Generation"
+msgstr "Generazione file SEPA "
+
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+#. module: l10n_it_sepa_bonifici
+msgid "Shared"
+msgstr "Shared"
+
+#: field:banking.export.sepa.cbi.wizard,state:0
+#. module: l10n_it_sepa_bonifici
+msgid "State"
+msgstr "State"
+
+#: field:banking.export.sepa.cbi.wizard,total_amount:0
+#. module: l10n_it_sepa_bonifici
+msgid "Total Amount"
+msgstr "Importo Totale"
+
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+#. module: l10n_it_sepa_bonifici
+msgid "Validate"
+msgstr "Conferma"
+

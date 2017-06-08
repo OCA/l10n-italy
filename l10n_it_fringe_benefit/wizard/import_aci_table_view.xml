@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- 
+		Form           
+		-->
+        <record id="wizard_import_aci_table" model="ir.ui.view">
+	        <field eval="1" name="priority"/>
+	        <field name="name">wizard.import.aci.table</field>
+	        <field name="model">wizard.import.aci.table</field>
+	        <field name="type">form</field>
+	        <field name="arch" type="xml">
+		        <form string="Params" version="7.0">
+		        	<group>
+		        		<field name="operation"/>
+		        		<field name="table_to_update_id" 
+		        			attrs="{'invisible': [('operation', '=', 'new')],
+		        			'required': [('operation', '=', 'update')]}"/>
+		        	</group>
+		        	<group  col="4">
+			        	<field name="file_to_import" />
+		            </group>
+		            <group>
+		                <field name="field_separator_csv" />
+		            </group>
+		            <group string="Assign">
+		                <field name="name" attrs="{'invisible': [('operation', '=', 'update')],
+		        			'required': [('operation', '=', 'new')]}"/>
+		                <field name="date" attrs="{'invisible': [('operation', '=', 'update')],
+		        			'required': [('operation', '=', 'new')]}"/>
+		            </group>
+		            <button name="execute_import" string="Import" type="object" icon="gtk-execute" />
+		      	</form>
+	        </field>
+    	</record>
+
+        <!-- ACTION -->
+        
+        <record id="action_wizard_import_aci_table" model="ir.actions.act_window">
+			<field name="name">ACI Tables Import</field>
+	        <field name="res_model">wizard.import.aci.table</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="wizard_import_aci_table"/>
+	        <field name="help">Import ACI tables from CSV</field>
+	        <field name="target">new</field>
+    	</record>
+    	
+    <menuitem action="action_wizard_import_aci_table" id="menu_wizard_import_aci_table" 
+    	parent="menu_fleet_fringe_benefit_configuration" sequence="41"/>
+    	
+    	
+    
+    </data>
+</openerp>
