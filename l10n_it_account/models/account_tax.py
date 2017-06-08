@@ -78,6 +78,8 @@ class AccountTax(models.Model):
         """
         if tax.company_id.skip_it_account_check:
             return
+        if tax.company_id.check_purchase_tax_multicompany:
+            return
         if tax.type_tax_use == 'purchase' and not tax.parent_id:
             if tax.base_code_id:
                 if self.exist(

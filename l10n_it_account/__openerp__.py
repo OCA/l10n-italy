@@ -31,6 +31,7 @@
         'views/account_view.xml',
         'reports/account_reports_view.xml',
         'views/config_view.xml',
+        'views/company_view.xml',
     ],
     'installable': True,
     # this post_init script only works when you install account and
