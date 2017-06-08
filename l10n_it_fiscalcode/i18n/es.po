@@ -1,0 +1,223 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_fiscalcode
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 08:05+0000\n"
+"PO-Revision-Date: 2016-01-14 07:30+0000\n"
+"Last-Translator: rubencr7 <rubencr7@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,cadastre_code:0
+msgid "Belfiore cadastre code (not used anymore)"
+msgstr "Código catastral Belfiore (no en uso)"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,cadastre_code_var:0
+msgid "Cadastre code variation"
+msgstr "Variación código catastro"
+
+#. module: l10n_it_fiscalcode
+#: view:wizard.compute.fc:l10n_it_fiscalcode.wizard_compute_fc_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_it_fiscalcode
+#: field:wizard.compute.fc,birth_city:0
+msgid "City of birth"
+msgstr "Ciudad de nacimiento"
+
+#. module: l10n_it_fiscalcode
+#: view:wizard.compute.fc:l10n_it_fiscalcode.wizard_compute_fc_form
+msgid "Compute"
+msgstr "Calcular"
+
+#. module: l10n_it_fiscalcode
+#: view:res.partner:l10n_it_fiscalcode.view_partner_form_fiscalcode_button
+msgid "Compute F.C."
+msgstr "Calcula C.F."
+
+#. module: l10n_it_fiscalcode
+#: model:ir.actions.act_window,name:l10n_it_fiscalcode.action_compute_fc
+#: model:ir.model,name:l10n_it_fiscalcode.model_wizard_compute_fc
+msgid "Compute Fiscal Code"
+msgstr "Calcular Código Fiscal"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,create_uid:0 field:wizard.compute.fc,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,create_date:0 field:wizard.compute.fc,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,creation_date:0
+msgid "Creation date"
+msgstr "Fecha de creación"
+
+#. module: l10n_it_fiscalcode
+#: field:wizard.compute.fc,birth_date:0
+msgid "Date of birth"
+msgstr "Fecha de nacimiento"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,display_name:0
+#: field:res.city.it.code.distinct,display_name:0
+#: field:res.city.it.code.province,display_name:0
+#: field:wizard.compute.fc,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:159
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:163
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:168
+#, python-format
+msgid "Error"
+msgstr "Error"
+
+#. module: l10n_it_fiscalcode
+#: selection:wizard.compute.fc,sex:0
+msgid "Female"
+msgstr "Mujer"
+
+#. module: l10n_it_fiscalcode
+#: field:wizard.compute.fc,fiscalcode_firstname:0
+msgid "First name"
+msgstr "Nombre"
+
+#. module: l10n_it_fiscalcode
+#: field:res.partner,fiscalcode:0
+#: view:wizard.compute.fc:l10n_it_fiscalcode.wizard_compute_fc_form
+msgid "Fiscal Code"
+msgstr "Código Fiscal"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,id:0 field:res.city.it.code.distinct,id:0
+#: field:res.city.it.code.province,id:0 field:wizard.compute.fc,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fiscalcode
+#: help:res.partner,individual:0
+msgid "If checked the C.F. is referred to a Individual Person"
+msgstr "Si el C.F es seleccionado se hace referencia a una Persona Física"
+
+#. module: l10n_it_fiscalcode
+#: field:res.partner,individual:0
+msgid "Individual"
+msgstr "Persona Física"
+
+#. module: l10n_it_fiscalcode
+#: view:wizard.compute.fc:l10n_it_fiscalcode.wizard_compute_fc_form
+msgid "Individual Data"
+msgstr "Datos de persona física"
+
+#. module: l10n_it_fiscalcode
+#: help:res.partner,fiscalcode:0
+msgid "Italian Fiscal Code"
+msgstr "Código Fiscal Italiano"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,__last_update:0
+#: field:res.city.it.code.distinct,__last_update:0
+#: field:res.city.it.code.province,__last_update:0
+#: field:wizard.compute.fc,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,write_uid:0 field:wizard.compute.fc,write_uid:0
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,write_date:0 field:wizard.compute.fc,write_date:0
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: l10n_it_fiscalcode
+#: selection:wizard.compute.fc,sex:0
+msgid "Male"
+msgstr "Hombre"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,name:0 field:res.city.it.code.distinct,name:0
+#: field:res.city.it.code.province,name:0
+#: field:res.city.it.code.province,town_name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,name_var:0
+msgid "Name variation"
+msgstr "Variación de nombre"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,national_code:0
+msgid "National code"
+msgstr "Código nacional"
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:163
+#, python-format
+msgid "National code is missing"
+msgstr "Falta el código nacional"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,national_code_var:0
+msgid "National code variation"
+msgstr "Variación código nacional"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,notes:0
+msgid "Notes"
+msgstr "Notas"
+
+#. module: l10n_it_fiscalcode
+#: model:ir.model,name:l10n_it_fiscalcode.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,province:0 field:wizard.compute.fc,birth_province:0
+msgid "Province"
+msgstr "Província"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,province_var:0
+msgid "Province variation"
+msgstr "Variación província"
+
+#. module: l10n_it_fiscalcode
+#: field:wizard.compute.fc,sex:0
+msgid "Sex"
+msgstr "Sexo"
+
+#. module: l10n_it_fiscalcode
+#: field:wizard.compute.fc,fiscalcode_surname:0
+msgid "Surname"
+msgstr "Apellido"
+
+#. module: l10n_it_fiscalcode
+#: constraint:res.partner:0
+msgid "The fiscal code doesn't seem to be correct."
+msgstr "El código fiscal parece incorrecto para una persona física."
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,var_date:0
+msgid "Variation date"
+msgstr "Fecha de variación"
