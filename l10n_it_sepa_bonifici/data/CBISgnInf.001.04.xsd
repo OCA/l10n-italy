@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Giacomo Paci (CONSORZIO CUSTOMER TO BUSINESS INTERACTION - CBI) -->
+<!-- Definizione del blocco di informazioni per la gestione della firma digitale incluso nella release 6.11 della documentazione Parte Generale -->
+<xs:schema xmlns="urn:CBI:xsd:CBISgnInf.001.04" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:CBI:xsd:CBISgnInf.001.04" elementFormDefault="qualified">
+	<xs:element name="CBISgnInf" type="CBISgnInf.001.04">
+		<xs:annotation>
+			<xs:documentation> Definizione del blocco di informazioni per la gestione della firma digitale incluso nella release 6.12 della documentazione Parte Generale.
+Presenta variazioni in seguito alla deliberazione CNIPA/DigitPA n.45 del 21 maggio 2009</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="CBISgnInf.001.04">
+		<xs:sequence>
+			<xs:element name="SgnTyp" type="SignatureType">
+				<xs:annotation>
+					<xs:documentation>Tipologia di firma digitale utilizzata.
+Può assumere i seguenti valori:
+1 = PKCS#7 detached
+2 = PKCS#7 attached
+3 = CAdES-BES detached
+4 = CAdES-BES attached</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RefPlt" type="RecerencePlatform">
+				<xs:annotation>
+					<xs:documentation>Codifica di riferimento:
+ A = UTF-8</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DtRef" type="ISODateTime">
+				<xs:annotation>
+					<xs:documentation>Data e ora di apposizione della firma</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Sgnt" type="P7M">
+				<xs:annotation>
+					<xs:documentation>Busta di firma codificata in base64
+Il formato della busta deve essere coerente con la tipologia di firma indicata nel tag SgnTyp </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SignatureType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RecerencePlatform">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ISODateTime">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="P7M">
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+</xs:schema>
