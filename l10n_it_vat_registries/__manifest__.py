@@ -11,7 +11,7 @@
     'version': '10.0.1.0.1',
     'category': 'Localization/Italy',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
-              ", LinkIt Spa",
+              ", LinkIt Srl",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
