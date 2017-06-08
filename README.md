@@ -30,6 +30,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.0 | Account invoice report grouped by DDT
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 10.0.1.0.0 | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
