@@ -397,6 +397,11 @@ msgid "Invoices from DDT"
 msgstr "Fatture da DDT"
 
 #. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "To be invoiced"
+msgstr "Da fatturare"
+
+#. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings___last_update
