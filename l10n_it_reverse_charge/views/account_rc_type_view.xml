@@ -23,6 +23,10 @@
                                 attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}"/>
+                            <field name="with_supplier_self_invoice"
+                                attrs="{'invisible': [
+                                '|',('partner_type', '!=', 'other'),
+                                ('method', '!=', 'selfinvoice')]}"/>
                             <field name="partner_id"
                                 attrs="{'readonly': [('method', '!=', 'selfinvoice')],
                                     'invisible': [('partner_type', '!=', 'other')],
@@ -31,6 +35,17 @@
                                 attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}"/>
+                            <field name="supplier_journal_id"
+                                attrs="{
+                                    'invisible': [
+                                    '|',('method', '!=', 'selfinvoice'),
+                                    '|',('partner_type', '!=', 'other'),
+                                        ('with_supplier_self_invoice', '!=', True)
+                                    ],
+                                    'required': [
+                                    ('method', '=', 'selfinvoice'),
+                                    ('partner_type', '=', 'other'),
+                                    ('with_supplier_self_invoice', '=', True)]}"/>
                             <field name="payment_journal_id"
                                 attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
@@ -48,9 +63,6 @@
                                     <field name="sale_tax_id" domain="[('parent_id','=',False)]"/>
                                 </tree>
                             </field>
-                        </group>
-                        <group string="Text on Invoice">
-                            <field name="invoice_text"/>
                         </group>
                         <group string="Text on Self Invoice">
                             <field name="self_invoice_text"
