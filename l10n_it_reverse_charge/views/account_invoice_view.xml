@@ -14,8 +14,9 @@
                 <xpath expr="//page[@string='Other Info']" position="inside">
                     <group string="Self Invoicing">
                         <field name="rc_self_invoice_id" readonly="True"
-                        domain="[('type', '=', 'out_invoice')]"
                         context="{'form_view_ref': 'account.invoice_form'}"/>
+                        <field name="rc_self_purchase_invoice_id" readonly="True"
+                        context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
                     </group>
                 </xpath>
                 <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="after">
@@ -43,7 +44,6 @@
                 <xpath expr="//page[@string='Other Info']" position="inside">
                     <group string="Self Invoicing">
                         <field name="rc_purchase_invoice_id" readonly="True"
-                            domain="[('type', '=', 'in_invoice')]"
                             context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
                     </group>
                 </xpath>
