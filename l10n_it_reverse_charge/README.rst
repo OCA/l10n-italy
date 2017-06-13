@@ -14,6 +14,12 @@ dalle fatture fornitori intra UE ed extra UE mediante il reverse charge IVA.
 Inoltre è automatizzata la procedura di annullamento e riapertura della fattura
 fornitore.
 
+E' anche possibile utilizzare la modalità "con autofattura fornitore aggiuntiva".
+Questo tipicamente è usato per i fornitori extra UE, con lo scopo di mostrare,
+nel registro IVA acquisti, una fattura intestata alla propria azienda,
+che verrà poi totalmente riconciliata con l'autofattura attiva, sempre intestata alla
+propria azienda
+
 **NOTA**: al momento è gestito solo il metodo **Autofattura** e non quello
 **Integrazione IVA**.
 
@@ -45,6 +51,10 @@ with transitory account created as follows:
 .. figure:: /l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
   :alt: conto transitorio Autofattura
   :width: 600 px
+
+Self Invoice Payment Journal, in Default Debit Account and Default Credit Account must have the Self Invoice Transitory Account.
+
+Then, in fiscal position, set the 'RC Type'
 
 Usage
 =====
