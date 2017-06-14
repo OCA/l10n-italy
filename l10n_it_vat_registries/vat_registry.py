@@ -204,7 +204,6 @@ class Parser(report_sxw.rml_parse):
         obj_tax = self.pool.get('account.tax')
         tax_ids = obj_tax.search(self.cr, self.uid, [
             '&',
-            '&',
             '|',
             ('base_code_id', '=', tax_code_id),
             '|',
@@ -213,12 +212,10 @@ class Parser(report_sxw.rml_parse):
             ('ref_base_code_id', '=', tax_code_id),
             ('ref_tax_code_id', '=', tax_code_id),
             ('parent_id', '=', False),
-            ('price_include', '=', False),
         ])
         if not tax_ids:
             # I'm in the case of partially deductible VAT
             child_tax_ids = obj_tax.search(self.cr, self.uid, [
-                '&',
                 '|',
                 ('base_code_id', '=', tax_code_id),
                 '|',
@@ -226,7 +223,6 @@ class Parser(report_sxw.rml_parse):
                 '|',
                 ('ref_base_code_id', '=', tax_code_id),
                 ('ref_tax_code_id', '=', tax_code_id),
-                ('price_include', '=', False),
             ])
             for tax in obj_tax.browse(self.cr, self.uid, child_tax_ids):
                 if tax.parent_id:
