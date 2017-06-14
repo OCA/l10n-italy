@@ -50,7 +50,7 @@ class WizardRegistroIva(models.TransientModel):
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
         ('corrispettivi', 'Corrispettivi'),
-        ], 'Layout', required=True,
+    ], 'Layout', required=True,
         default='customer')
     tax_registry_id = fields.Many2one('account.tax.registry', 'VAT registry')
     journal_ids = fields.Many2many(
@@ -88,7 +88,7 @@ class WizardRegistroIva(models.TransientModel):
             ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
             ('period_id', 'in', [p.id for p in wizard.period_ids]),
             ('state', '=', 'posted'),
-            ], order='date, name')
+        ], order='date, name')
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
         datas = {}
