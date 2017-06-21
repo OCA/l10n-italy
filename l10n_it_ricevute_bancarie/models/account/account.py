@@ -244,6 +244,7 @@ class AccountInvoice(models.Model):
             for line in invoice.invoice_line_ids:
                 if line.due_cost_line:
                     line.unlink()
+        return invoice
 
 
 class AccountInvoiceLine(models.Model):
