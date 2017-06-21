@@ -18,6 +18,7 @@ class DdtInvoicing(models.TransientModel):
         for wizard in self:
             domain = [('to_be_invoiced', '=', True),
                       ('invoice_id', '=', False),
+                      ('state', '=', 'done'),
                       ('date', '>=', wizard.date_from),
                       ('date', '<=', wizard.date_to)]
             ddts = self.env['stock.picking.package.preparation'].search(domain)
