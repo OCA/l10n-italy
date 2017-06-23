@@ -8,7 +8,7 @@
     'name': "Account invoice report grouped by DDT",
     'version': '10.0.0.3.0',
     'category': 'Localization/Italy',
-    'author': 'Agile Business Group, Apulia Software, '
+    'author': 'Agile Business Group, Apulia Software, Openforce,'
               'Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'LGPL-3',
@@ -17,6 +17,7 @@
     ],
     "data": [
         'views/invoice_ddt.xml',
+        'views/partner.xml',
     ],
     "installable": True
 }
