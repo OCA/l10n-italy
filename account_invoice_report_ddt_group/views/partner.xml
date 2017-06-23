@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_partner_form_ddt_shipping" model="ir.ui.view">
+            <field name="name">res.partner.form.ddt.shipping</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_it_ddt.view_partner_form_ddt"/>
+            <field name="arch" type="xml">
+
+                <!-- Add option in the shipping info -->
+                <xpath expr="//field[@name='transportation_method_id']" position="after">
+                    <field name="ddt_invoice_print_shipping_address"/>
+                </xpath>
+
+            </field>
+        </record>
+
+</odoo>

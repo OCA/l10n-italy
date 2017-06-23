@@ -23,15 +23,23 @@
                         <t t-if="has_serial_number">
                             <td colspan="7">
                                 <strong><span t-esc="ddt"/></strong>
+                                <t t-if="dict_ddt_lines[ddt]['shipping_address']">
+                                    <br/>
+                                    <strong><span t-esc="dict_ddt_lines[ddt]['shipping_address']"/></strong>
+                                </t>
                             </td>
                         </t>
                         <t t-if="not has_serial_number">
                             <td colspan="6">
                                 <strong><span t-esc="ddt"/></strong>
+                                <t t-if="dict_ddt_lines[ddt]['shipping_address']">
+                                    <br/>
+                                    <strong><span t-esc="dict_ddt_lines[ddt]['shipping_address']"/></strong>
+                                </t>
                             </td>
                         </t>
                     </tr>
-                    <t t-foreach="dict_ddt_lines[ddt]" t-as="lines">
+                    <t t-foreach="dict_ddt_lines[ddt]['lines']" t-as="lines">
                         <t t-foreach="lines" t-as="l">
                             <tr>
                                 <td><span t-field="l.name"/></td>
