@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2017-05-12 02:39+0000\n"
+"POT-Creation-Date: 2017-06-23 10:38+0000\n"
+"PO-Revision-Date: 2017-06-23 10:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -186,12 +186,22 @@ msgid "DDT Create Invoice"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:36
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "DDT Date"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:37
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_invoicing
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_invoicing
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 #, python-format
 msgid "DDT Invoicing"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "DDT Type"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -322,6 +332,11 @@ msgid "Document {d} has invoice linked"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "Draft"
+msgstr "Osnutek"
+
+#. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Driver's Signature"
 msgstr "Podpis voznika"
@@ -387,6 +402,11 @@ msgstr "Račun"
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Postavka računa"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "Invoiced"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:33
@@ -478,7 +498,7 @@ msgid "Notes"
 msgstr "Opombe"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:27
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:28
 #, python-format
 msgid "Nothing to invoice"
 msgstr ""
@@ -728,6 +748,11 @@ msgid "Start Date"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "State"
+msgstr "Stanje"
+
+#. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
 msgid "Stock DdT Type"
 msgstr "Zaloga - tip prevoznega dokumenta"
@@ -749,6 +774,11 @@ msgstr ""
 msgid ""
 "This depends on 'To be Invoiced' field of the Reason for Transportation of "
 "this DDT"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "To Be Invoiced"
 msgstr ""
 
 #. module: l10n_it_ddt
