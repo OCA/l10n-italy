@@ -15,6 +15,7 @@
                 <field name="partner_id"/>
                 <field name="partner_invoice_id"/>
                 <field name="partner_shipping_id"/>
+                <field name="ddt_type_id" />
                 <group expand="0" string="Group By">
                     <filter name="group_by_partner" string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
                 </group>
@@ -78,6 +79,7 @@
                         <field name="volume"/>
                         <field name="weight"/>
                         <field name="net_weight"/>
+                        <field name="weight_manual"/>
                         <field name="invoice_id" />
                     </group>
                 </page>

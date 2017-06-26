@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-27 13:17+0000\n"
-"PO-Revision-Date: 2017-04-19 14:31+0000\n"
+"POT-Creation-Date: 2017-06-23 09:27+0000\n"
+"PO-Revision-Date: 2017-06-23 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -242,7 +242,7 @@ msgid "Display Name"
 msgstr "Nome da visualizzare"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:192
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:221
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -253,9 +253,21 @@ msgid "Driver's Signature"
 msgstr "Firma del Conducente"
 
 #. module: l10n_it_ddt
+#: help:stock.picking.package.preparation,weight_manual:0
+msgid ""
+"Fill this field with the value you want to be used as weight. Leave empty to"
+" let the system to compute it"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: field:stock.ddt.type,message_follower_ids:0
 msgid "Followers"
 msgstr "Followers"
+
+#. module: l10n_it_ddt
+#: field:stock.picking.package.preparation,weight_manual:0
+msgid "Force Weight"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -300,7 +312,7 @@ msgid "If checked new messages require your attention."
 msgstr "Se selezionato i nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:130
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
@@ -430,7 +442,7 @@ msgid "None"
 msgstr "Nessuno"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:138
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:142
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
