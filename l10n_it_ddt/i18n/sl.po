@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-23 09:27+0000\n"
-"PO-Revision-Date: 2017-06-23 09:28+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-06-24 03:33+0000\n"
+"PO-Revision-Date: 2017-06-26 07:24+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,7 +252,7 @@ msgstr "Podpis voznika"
 msgid ""
 "Fill this field with the value you want to be used as weight. Leave empty to"
 " let the system to compute it"
-msgstr ""
+msgstr "Izpolnite z vrednostjo, ki jo želite uporabljati za maso. Pustite prazno, da izpolnitev polja prepustite sistemu"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_follower_ids:0
@@ -262,7 +262,7 @@ msgstr "Sledilci"
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,weight_manual:0
 msgid "Force Weight"
-msgstr ""
+msgstr "Vsili maso"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data

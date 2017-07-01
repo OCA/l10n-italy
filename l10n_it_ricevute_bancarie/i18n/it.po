@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-27 13:18+0000\n"
-"PO-Revision-Date: 2017-04-27 13:19+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-06-24 03:34+0000\n"
+"PO-Revision-Date: 2017-06-25 05:32+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -542,7 +542,7 @@ msgstr "Registrazioni fattura"
 #: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:281
 #, python-format
 msgid "Invoice is linked to RI.BA. list nr {riba}"
-msgstr ""
+msgstr "La fattura è collegata alla lista RI.BA. nr {riba}"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
