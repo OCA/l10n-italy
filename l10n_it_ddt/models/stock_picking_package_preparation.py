@@ -336,16 +336,22 @@ class StockPickingPackagePreparation(models.Model):
                 continue
             order = ddt._get_sale_order_ref()
 
-            group_method = (
-                order and order.ddt_invoicing_group or 'shipping_partner')
+            if order:
+                group_method = (
+                    order and order.ddt_invoicing_group or 'shipping_partner')
+                group_partner_invoice_id = order.partner_invoice_id.id
+            else:
+                group_method = (
+                    ddt.partner_shipping_id.ddt_invoicing_group)
+                group_partner_invoice_id = ddt.partner_id.id
 
             if group_method == 'billing_partner':
-                group_key = (order.partner_invoice_id.id, order.currency_id.id)
+                group_key = (group_partner_invoice_id, order.currency_id.id)
             elif group_method == 'shipping_partner':
-                group_key = (ddt.partner_id.id, ddt.company_id.currency_id.id)
+                group_key = (ddt.partner_shipping_id.id, ddt.company_id.currency_id.id)
             elif group_method == 'code_group':
-                group_key = (ddt.partner_id.ddt_code_group,
-                             order.partner_invoice_id.id)
+                group_key = (ddt.partner_shipping_id.ddt_code_group,
+                             group_partner_invoice_id)
             else:
                 group_key = ddt.id
 
