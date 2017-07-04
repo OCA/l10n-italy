@@ -255,7 +255,7 @@ class StockPickingPackagePreparation(models.Model):
                 datetime.strptime(
                     ddt_date_to,
                     DEFAULT_SERVER_DATE_FORMAT).strftime(date_format)
-                )
+            )
         if not invoice_description:
             invoice_description = self.ddt_number or ''
         return invoice_description
@@ -348,7 +348,8 @@ class StockPickingPackagePreparation(models.Model):
             if group_method == 'billing_partner':
                 group_key = (group_partner_invoice_id, order.currency_id.id)
             elif group_method == 'shipping_partner':
-                group_key = (ddt.partner_shipping_id.id, ddt.company_id.currency_id.id)
+                group_key = (ddt.partner_shipping_id.id,
+                             ddt.company_id.currency_id.id)
             elif group_method == 'code_group':
                 group_key = (ddt.partner_shipping_id.ddt_code_group,
                              group_partner_invoice_id)
