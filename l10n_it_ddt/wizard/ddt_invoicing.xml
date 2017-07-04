@@ -8,8 +8,8 @@
               <form string="DDT Invoicing">
                 <separator string="DDT" />
                     <group>
-	                    <field name="date_from" />
-	                    <field name="date_to" />
+                        <field name="date_from" />
+                        <field name="date_to" />
                     </group>
                 <separator string="Setting" />
                     <group>
