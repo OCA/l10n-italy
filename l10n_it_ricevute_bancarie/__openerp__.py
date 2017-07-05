@@ -50,6 +50,7 @@
         "views/account_config_view.xml",
         "riba_workflow.xml",
         "views/distinta_report.xml",
+        "views/riba_detail_view.xml",
         "report.xml",
         "security/ir.model.access.csv",
     ],

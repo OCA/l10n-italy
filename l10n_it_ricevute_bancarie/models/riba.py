@@ -317,8 +317,8 @@ class RibaListLine(models.Model):
     ], 'State', select=True, readonly=True, track_visibility='onchange')
     payment_ids = fields.Many2many(
         'account.move.line', compute='_compute_lines', string='Payments')
-    type = fields.Char(
-        relation='distinta_id.type', size=32, string='Type', readonly=True)
+    type = fields.Selection(
+        string="Type", related='distinta_id.config_id.type', readonly=True)
 
     @api.multi
     def confirm(self):
