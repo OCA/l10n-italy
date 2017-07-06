@@ -37,6 +37,7 @@
         "views/wizard_riba_file_export.xml",
         "views/account_config_view.xml",
         "views/distinta_report.xml",
+        "views/riba_detail_view.xml",
     ],
     'demo': ["demo/riba_demo.xml"],
     'installable': True,
