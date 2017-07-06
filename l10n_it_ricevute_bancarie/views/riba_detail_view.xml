@@ -6,7 +6,7 @@
         <!--                 DETTAGLI RIBA - FILTRI                 -->
         <!-- ====================================================== -->
         <record id="view_detail_riba_filter" model="ir.ui.view">
-            <field name="name">riba.distinta.filtri</field>
+            <field name="name">riba.distinta.line.filtri</field>
             <field name="model">riba.distinta.line</field>
             <field name="arch" type="xml">
                 <search string="Distinte Ri.Ba.">
@@ -30,7 +30,7 @@
         <!-- ====================================================== -->
         <!--                 DETTAGLI RIBA TREE                     -->
         <!-- ====================================================== -->
-        <record model="ir.ui.view" id="view_distinta_riba_tree">
+        <record model="ir.ui.view" id="view_detail_riba_tree">
             <field name="name">riba.distinta.line.tree</field>
             <field name="model">riba.distinta.line</field>
             <field name="arch" type="xml">
