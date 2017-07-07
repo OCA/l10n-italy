@@ -37,6 +37,7 @@
                 <filter string="To Be Invoiced" domain="[('to_be_invoiced','=', True), ('invoice_id','=', False)]"/>
                 <filter string="Invoiced" domain="[('invoice_id','!=', False)]"/>
                 <filter string="Draft" domain="[('state','=', 'draft')]"/>
+                <field name="picking_ids"></field>
                 <group expand="0" string="Group By">
                     <filter name="group_by_partner" string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
                     <filter string="DDT Date" context="{'group_by': 'date'}"/>
