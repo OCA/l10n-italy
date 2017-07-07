@@ -98,8 +98,8 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
                 else:
                     vat_undeductible = child.tax_code_id.sum_period
         else:
-            vat_code = tax_code.code
-            vat_name = tax_code.name
+            vat_code = tax.description
+            vat_name = tax.name
             vat_deductible = tax_code.sum_period
 
         res[vat_name] = {
