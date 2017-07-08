@@ -35,6 +35,7 @@ addon | version | summary
 [l10n_it_account](l10n_it_account/) | 10.0.1.0.0 | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
+[l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.2.3 | Documento di Trasporto
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.0 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
