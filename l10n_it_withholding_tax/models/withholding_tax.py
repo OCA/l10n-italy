@@ -56,7 +56,10 @@ class withholding_tax(models.Model):
         }
         if not amount_invoice and invoice_id:
             invoice = invoice_obj.browse(invoice_id)
-            amount_invoice = invoice.amount_untaxed
+            total_withholding_tax_excluded = \
+                invoice.compute_amount_withholding_excluded()
+            amount_invoice = (
+                invoice.amount_untaxed - total_withholding_tax_excluded)
         # v7->v8 removed tax = self.browse(cr, uid, withholding_tax_id)
         base = amount_invoice * self.base
         tax = base * ((self.tax or 0.0) / 100.0)

@@ -220,6 +220,15 @@ class account_invoice(models.Model):
             res['context'].update({'default_amount': inv.amount_net_pay})
         return res
 
+    @api.multi
+    def compute_amount_withholding_excluded(self):
+        total_withholding_tax_excluded = 0.0
+        for invoice in self:
+            for line in invoice.invoice_line:
+                if line.withholding_tax_exclude:
+                    total_withholding_tax_excluded += line.price_subtotal
+            return total_withholding_tax_excluded
+
 
 class account_invoice_withholding_tax(models.Model):
     '''
@@ -279,10 +288,32 @@ class account_invoice_withholding_tax(models.Model):
     @api.onchange('withholding_tax_id')
     def onchange_withholding_tax_id(self):
         if self.withholding_tax_id:
-            tot_invoice = 0
+            tot_invoice = 0.0
             for inv_line in self.invoice_id.invoice_line:
                 tot_invoice += inv_line.price_subtotal
             tax = self.withholding_tax_id.compute_amount(
-                tot_invoice, invoice_id=None)
+                (tot_invoice), invoice_id=None)
             self.base = tax['base']
             self.tax = tax['tax']
+
+
+class AccountInvoiceLine(models.Model):
+
+    _inherit = 'account.invoice.line'
+
+    withholding_tax_exclude = fields.Boolean()
+
+    @api.multi
+    def product_id_change(self, product, uom_id, qty=0, name='',
+                          type='out_invoice',
+                          partner_id=False, fposition_id=False,
+                          price_unit=False, currency_id=False,
+                          company_id=None):
+        res = super(AccountInvoiceLine, self).product_id_change(
+            product, uom_id, qty, name, type,
+            partner_id, fposition_id, price_unit, currency_id,
+            company_id)
+        product_obj = self.env['product.product'].browse(product)
+        res['value'].update({
+            'withholding_tax_exclude': product_obj.withholding_tax_exclude})
+        return res
