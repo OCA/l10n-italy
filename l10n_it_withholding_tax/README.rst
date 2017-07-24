@@ -6,14 +6,49 @@
 Italian Withholding Tax
 =======================
 
-Module for Italian Withholding Tax: Ritenute d'acconto
+La ritenuta d’acconto odoo provvede a calcolare automaticamente i valori delle diverse tipologie di ritenuta presenti nella contaiblità italiana.
 
-Gestisce le ritenute sulle fatture e sui pagamenti
+In odoo ritenuta d’acconto è possibile, tramite apposito workflow, gestire i diversi passaggi di stato delle ritenute rilevate: dovuta, applicata, versata
 
 Usage
 =====
 
-* Go to ...
+Per prima cosa dovremo creare una ritenuta d’acconto odoo dove inserire tutti i campi necessari per un corretto calcolo.
+
+Visto che le aliquote possono variare nel corso del tempo, nella codifica sono previsti scaglioni temporali di competenza.
+
+E’ necessario anche inserire i conti contabili che verranno utilizzati quando il modulo si occuperà di generare registrazioni contabili per la rilevazione della ritenuta.
+
+.. figure:: static/img/ritenuta-acconto-odoo-codifica-768x457.png
+   :alt: alternative description
+   :width: 600 px
+
+Una volta aggiunta, nella tabella ritenute, potrà essere utilizzata all’interno della fattura, in corrispondenza delle righe soggette a ritenute.
+
+Per ogni riga è possibile utilizzare più di una ritenuta. Per alcune casistiche il moduo ritenute viene usato anche per rilevare le trattenute INPS.
+
+Il modulo ritenute per Odoo calcolerà i valori corrispondenti e ne mostrerà il dettaglio nell’apposita area ritenute, dove è possibile verificare per ogni codice ritenuta usato, l’imponibile e l’importo ritenuta applicato.
+
+In calce ai totali, verrà totalizzato l’ammontare della ritenuta e il netto a pagare. Questa sezione sarà visibile solamente in presenza di almeno una ritenuta
+
+.. figure:: static/img/fattura-fornitore-768x517.png
+   :alt: alternative description
+   :width: 600 px
+
+Successivamente andando nella sezione situazione ritenute d’acconto odoo vi mostrerà una situazione riepilogativa delle varie ritenute divisa per documento di origine.
+
+I campi principalmente da tenere in considerazione in questa tabella sono: ritenuta dovuta, ritenuta applicata e ritenuta versata.
+
+*Ritenuta dovuta* contiene il valore della ritenuta contenuta nella fattura.
+
+*Ritenuta applicata* mostra il valore della ritenuta rilevata al momento del pagamento della fattura.
+
+*Ritenuta versata* contiene l’importo di ritenuta, già applicata, che è stata versata all’erario
+
+.. figure:: static/img/foto-3-1-1024x505.png
+   :alt: alternative description
+   :width: 600 px
+
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -25,11 +60,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/l10n-italy/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
-<https://github.com/OCA/
-l10n-italy/issues/new?body=module:%20
-l10n_it_withholding_tax%0Aversion:%20
-8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+help us smash it by providing detailed and welcomed feedback
 
 Credits
 =======
