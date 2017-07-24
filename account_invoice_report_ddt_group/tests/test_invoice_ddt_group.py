@@ -147,6 +147,6 @@ class TestDdt(TransactionCase):
                 ddt2_date.day, ddt2_date.month, ddt2_date.year)
         )
         self.assertEqual(
-            inv_dict[ddt1_key][0].product_id.id, self.product1.id)
+            inv_dict[ddt1_key].values()[0][0].product_id.id, self.product1.id)
         self.assertEqual(
-            inv_dict[ddt2_key][0].product_id.id, self.product2.id)
+            inv_dict[ddt2_key].values()[0][0].product_id.id, self.product2.id)
