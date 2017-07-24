@@ -3,9 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
-from openerp import netsvc
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+from odoo import netsvc
 
 
 class WithholdingTax(models.Model):
@@ -46,6 +46,13 @@ class WithholdingTax(models.Model):
     base = fields.Float(string='Base', compute='_get_rate')
     rate_ids = fields.One2many('withholding.tax.rate', 'withholding_tax_id',
                                'Rates', required=True)
+
+    @api.one
+    @api.constrains('rate_ids')
+    def _check_rate_ids(self):
+        if not self.rate_ids:
+            raise ValidationError(
+                _('Error! Rates are required'))
 
     def compute_tax(self, amount):
         res = {
