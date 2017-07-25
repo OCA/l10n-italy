@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2017 Davide Corio
+     Copyright 2017 Alex Comba - Agile Business Grou
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data>
+
+        <record id="view_invoice_supplier_form_rc" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.rc</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Other Info']" position="inside">
+                    <group string="Self Invoicing">
+                        <field name="rc_self_invoice_id" readonly="True"
+                        context="{'form_view_ref': 'account.invoice_form'}"/>
+                        <field name="rc_self_purchase_invoice_id" readonly="True"
+                        context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="rc"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_line_form_rc" model="ir.ui.view">
+            <field name="name">view_invoice_line_form_rc</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_tax_id']" position="after">
+                    <field name="rc"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_form_rc" model="ir.ui.view">
+             <field name="name">account.invoice.form.rc</field>
+             <field name="model">account.invoice</field>
+             <field name="inherit_id" ref="account.invoice_form"/>
+             <field name="arch" type="xml">
+                <xpath expr="//page[@string='Other Info']" position="inside">
+                    <group string="Self Invoicing">
+                        <field name="rc_purchase_invoice_id" readonly="True"
+                            context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
+                    </group>
+                </xpath>
+             </field>
+        </record>
+
+    </data>
+</openerp>
