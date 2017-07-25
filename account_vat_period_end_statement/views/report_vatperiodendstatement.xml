@@ -85,6 +85,22 @@ Document
                            <!-- sum -->
                            <t t-set="total_to_pay" t-value="(total_to_pay + statement.previous_debit_vat_amount)"/>
                        </tr>
+                       <!-- Due interests -->
+                       <tr>
+                           <td></td>
+                           <td class="text-right">Due interests</td>
+                           <td class="text-right"><span t-esc="formatLang(env, statement.interests_debit_vat_amount)"/></td>
+                           <!-- sum -->
+                           <t t-set="total_to_pay" t-value="(total_to_pay + statement.interests_debit_vat_amount)"/>
+                       </tr>
+                       <!-- tax credit -->
+                       <tr>
+                           <td></td>
+                           <td class="text-right">Tax credits</td>
+                           <td class="text-right">-<span t-esc="formatLang(env, statement.tax_credit_amount)"/></td>
+                           <!-- sum -->
+                           <t t-set="total_to_pay" t-value="(total_to_pay - statement.tax_credit_amount)"/>
+                       </tr>
                        
                        <!-- ...Other tot debit/credit -->
                        <t t-foreach="statement.generic_vat_account_line_ids" t-as="generic_vat">
