@@ -75,10 +75,12 @@
                                 <field name="generic_vat_account_line_ids" colspan="3" nolabel="1">
                                     <tree editable="bottom" string="Account Lines">
                                         <field name="account_id"/>
+                                        <field name="name" />
                                         <field name="amount" />
                                    </tree>
                                     <form >
                                         <field name="account_id" />
+                                        <field name="name" />
                                         <field name="amount" />
                                    </form>
                                 </field>
