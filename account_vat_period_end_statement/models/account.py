@@ -587,6 +587,7 @@ class StatementGenericAccountLine(models.Model):
     amount = fields.Float(
         'Amount', required=True, digits=dp.get_precision('Account')
     )
+    name = fields.Char('Description')
 
 
 class AccountTax(models.Model):
