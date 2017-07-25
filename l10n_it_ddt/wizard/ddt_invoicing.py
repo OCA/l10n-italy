@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Alessandro Camilli - Openforce
+# Copyright 2017 Gianmarco Conte - Dinamiche Aziendali
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
@@ -10,8 +11,16 @@ from odoo.exceptions import Warning as UserError
 class DdtInvoicing(models.TransientModel):
     _name = "ddt.invoicing"
 
+    @api.model
+    def _default_journal(self):
+        return self.env['account.journal'].search([('type', '=', 'sale')],
+                                                  order='id', limit=1)
     date_from = fields.Date(string='Start Date', required=True)
     date_to = fields.Date(string='End Date', required=True)
+    journal_id = fields.Many2one('account.journal', string='Journal',
+                                 default=_default_journal,
+                                 domain=[('type', '=', 'sale')])
+    date_invoice = fields.Date(string='Invoice Date')
 
     @api.multi
     def create_invoices(self):
@@ -32,7 +41,10 @@ class DdtInvoicing(models.TransientModel):
 
             self = self.with_context(active_ids=ddts.ids,
                                      ddt_date_from=wizard.date_from,
-                                     ddt_date_to=wizard.date_to)
+                                     ddt_date_to=wizard.date_to,
+                                     invoice_date=wizard.date_invoice,
+                                     invoice_journal_id=wizard.journal_id.id,
+                                     )
             return {
                 'name': _('DDT Invoicing'),
                 'context': self._context,
