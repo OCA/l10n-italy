@@ -10,7 +10,7 @@ class TestRegistry(AccountingTestCase):
 
     def test_invoice_and_report(self):
         self.journal = self.env['account.journal'].search(
-            [('type', '=', 'purchase')])[0]
+            [('type', '=', 'sale')])[0]
         self.ova = self.env['account.account'].search([
             (
                 'user_type_id', '=',
