@@ -39,6 +39,7 @@ addon | version | summary
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_central_journal](l10n_it_central_journal/) | 8.0.2.0.0 | Italian Localization - Account central journal
+[l10n_it_codici_carica](l10n_it_codici_carica/) | 8.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.0 | Italian Localization - Corrispettivi
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | Documento di Trasporto
 [l10n_it_ddt_delivery](l10n_it_ddt_delivery/) | 8.0.1.0.0 | Copy carrier from picking and from sale order
@@ -48,6 +49,7 @@ addon | version | summary
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 8.0.0.1.0 | Manage fields for Economic Administrative catalogue
+[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 8.0.2.0.0 | Reverse Charge for Italy
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 8.0.1.3.0 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Italian Localization - VAT Registries
