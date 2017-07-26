@@ -8,17 +8,22 @@
                 <form string="Export FatturaPA">
                     <group col="2" height="500" width="600">
                         <group>
-                            <label string="Confirm?"></label>
+                            <label string="Confirm?"/>
                         </group>
-                        <newline></newline>
+                        <newline/>
                         <group col="3">
-                            <button colspan="1" icon="gtk-cancel" special="cancel" string="Cancel"></button>
-                            <button colspan="1" icon="gtk-ok" name="exportFatturaPA" string="Export" type="object"></button>
+                            <button colspan="1" special="cancel" string="Cancel"/>
+                            <button colspan="1" name="exportFatturaPA" string="Export" type="object" class="oe_highlight"/>
                         </group>
                     </group>
+                    <footer>
+                        <div></div>
+                    </footer>
                 </form>
             </field>
         </record>
+
         <act_window id="action_wizard_export_fatturapa" key2="client_action_multi" name="Export FatturaPA" res_model="wizard.export.fatturapa" src_model="account.invoice" target="new" view_id="wizard_export_fatturapa_form_view" view_mode="form"></act_window>
+
     </data>
 </openerp>
