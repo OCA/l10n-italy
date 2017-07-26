@@ -207,6 +207,15 @@ class TestDdt(TransactionCase):
         self.ddt.set_done()
         self.assertTrue('DDT' in self.ddt.display_name)
 
+    def test_action_put_in_pack_done_pickings_error(self):
+        self.picking.action_confirm()
+        self.picking.action_assign()
+        self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
+        self.picking.action_done()
+        self.assertTrue(self.ddt.check_if_picking_done)
+        with self.assertRaises(UserError):
+            self.ddt.action_put_in_pack()
+
     def test_action_put_in_pack_error(self):
         self.picking.action_confirm()
         self.picking.action_assign()
