@@ -140,6 +140,10 @@
                 <xpath expr="//field[@name='company_id']" position="after">
                    <field name="to_be_invoiced"/>
                    <field name="invoice_id"/>
+                   <field name="check_if_picking_done" invisible="True"></field>
+                </xpath>
+                <xpath expr="//form/header/button[@name='action_put_in_pack']" position="attributes">
+                    <attribute name="attrs">{'invisible' : ['|',('check_if_picking_done','=',True)]}</attribute>
                 </xpath>
             </field>
      </record>
