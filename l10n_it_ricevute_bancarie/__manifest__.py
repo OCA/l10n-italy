@@ -9,7 +9,7 @@
 
 {
     'name': "Ricevute Bancarie",
-    'version': "10.0.0.1.4",
+    'version': "10.0.0.1.3",
     'author': "Odoo Community Association (OCA)",
     'category': "Accounting & Finance",
     'website': "https://odoo-community.org/",
@@ -27,6 +27,7 @@
         "views/wizard_accreditation.xml",
         "views/wizard_unsolved.xml",
         "views/riba_view.xml",
+        "views/distinta_detail_view.xml",
         "views/account_view.xml",
         "views/wizard_riba_issue.xml",
         "views/wizard_riba_file_export.xml",
