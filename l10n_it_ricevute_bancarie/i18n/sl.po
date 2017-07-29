@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-27 13:18+0000\n"
-"PO-Revision-Date: 2017-05-04 04:46+0000\n"
+"POT-Creation-Date: 2017-07-26 02:58+0000\n"
+"PO-Revision-Date: 2017-07-28 05:30+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -58,6 +58,7 @@ msgstr "Dnevnik odobritve"
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
 #: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
 msgid "Accepted"
 msgstr "Odobreno"
 
@@ -109,7 +110,9 @@ msgstr "Dnevnik akreditacije"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: selection:riba.distinta.line,state:0
 msgid "Accredited"
 msgstr "Akreditirano"
 
@@ -120,6 +123,7 @@ msgstr "Po prejemu plačila"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_tree
 #: field:riba.distinta.line,amount:0 field:riba.distinta.move.line,amount:0
 #: view:website:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Amount"
@@ -229,6 +233,7 @@ msgstr "Nastavitveni parametri za bančna potrdila (Ri.Ba)"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: selection:riba.distinta.line,state:0
 msgid "Confirmed"
 msgstr "Potrjeno"
@@ -317,6 +322,21 @@ msgid "Detail"
 msgstr "Podrobnosti"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.detail_riba_action
+msgid "Dettaglio distinta Ri.Ba."
+msgstr "Podrobnosti popisa Ri.Ba."
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_detail
+msgid "Dettaglio distinte"
+msgstr "Podrobnosti popisov"
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_tree
+msgid "Dettaglio distinte Ri.Ba."
+msgstr "Podrobnosti popisov Ri.Ba."
+
+#. module: l10n_it_ricevute_bancarie
 #: field:account.move.line,distinta_line_ids:0
 msgid "Dettaglio riba"
 msgstr "Podrobnosti Ri.Ba."
@@ -345,12 +365,15 @@ msgstr "Popisi"
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_tree
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
 msgid "Distinte Ri.Ba."
 msgstr "Popisi Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: selection:riba.distinta.line,state:0
 msgid "Draft"
 msgstr "Osnutek"
 
@@ -709,7 +732,9 @@ msgstr "Znesek zapadlih učinkov"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: selection:riba.distinta.line,state:0
 msgid "Paid"
 msgstr "Plačano"
 
@@ -980,7 +1005,10 @@ msgstr "Tip"
 #: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
 #: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_tree
+#: selection:riba.distinta.line,state:0
 msgid "Unsolved"
 msgstr "Nerešeno"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-25 00:48+0000\n"
-"PO-Revision-Date: 2016-10-24 07:16+0000\n"
+"POT-Creation-Date: 2017-07-26 02:58+0000\n"
+"PO-Revision-Date: 2017-07-24 14:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -221,9 +221,7 @@ msgstr ""
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:577
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:137
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:148
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:187
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:91
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:45
 #: code:addons/account_vat_period_end_statement/wizard/remove_period.py:50
@@ -329,21 +327,9 @@ msgid "Last printed page"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:138
-#, python-format
-msgid "No base code found for tax code %s"
-msgstr ""
-
-#. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:451
 #, python-format
 msgid "No period found or more than one period found for the given date."
-msgstr ""
-
-#. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:149
-#, python-format
-msgid "Not every tax linked to tax code %s is linked to the same base code"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -611,7 +597,7 @@ msgid "Total debit vat"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:187
+#: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:91
 #, python-format
 msgid "Type account neither credit and debit !"
 msgstr ""
