@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-12 02:40+0000\n"
-"PO-Revision-Date: 2017-05-12 02:40+0000\n"
+"POT-Creation-Date: 2017-07-26 14:47+0000\n"
+"PO-Revision-Date: 2017-07-26 14:47+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -133,11 +133,6 @@ msgid "Imposta"
 msgstr "Imposta"
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_cee_type
-msgid "Include in VAT register"
-msgstr "Includi nel registo IVA"
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Indetraibile"
 msgstr "Indetraibile"
@@ -197,7 +192,7 @@ msgid "Message"
 msgstr "Messaggio"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:80
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:74
 #, python-format
 msgid "Move line %s has too many base taxes"
 msgstr ""
@@ -229,11 +224,6 @@ msgid "P.IVA"
 msgstr "P.IVA"
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_parent_tax_ids
-msgid "Parent Taxes"
-msgstr "Imposte genitori"
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Print"
 msgstr "Stampa"
@@ -244,19 +234,9 @@ msgid "Prints only totals"
 msgstr "Stampa solo i totali"
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Purchase"
-msgstr "Acquisti"
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "RAGIONE SOCIALE"
 msgstr "RAGIONE SOCIALE"
-
-#. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Sale"
-msgstr "Vendite"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_journal_ids
@@ -303,15 +283,6 @@ msgstr "Totale generale euro"
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Totali"
 msgstr "Totali"
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_tax_cee_type
-msgid ""
-"Use in the case of tax with 'VAT integration'. This specifies the VAT "
-"register (sales / purchases) where the tax must be computed."
-msgstr ""
-"Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro"
-" IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_registro_iva
