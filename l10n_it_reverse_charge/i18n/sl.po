@@ -3,63 +3,63 @@
 # * l10n_it_reverse_charge
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-26 02:58+0000\n"
 "PO-Revision-Date: 2017-07-26 02:58+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:254
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
-msgstr "Impossibile trovare 1 mappatura di imposte per %s"
+msgstr "Ne najdem 1 davčnega mapiranja za %s"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:220
 #, python-format
 msgid "Can't find tax mapping"
-msgstr "Impossibile trovare mappatura d'imposte"
+msgstr "Ne najdem davčnega mapiranja"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,create_uid:0 field:account.rc.type.tax,create_uid:0
 msgid "Created by"
-msgstr "Creato da"
+msgstr "Ustvaril"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,create_date:0 field:account.rc.type.tax,create_date:0
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Ustvarjeno"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,description:0
 msgid "Description"
-msgstr "Descrizione"
+msgstr "Opis"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,display_name:0
 #: field:account.rc.type.tax,display_name:0
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,tax_ids:0
 msgid "Example: 22_A_I_UE, 22_V_I_UE"
-msgstr "Esempio: 22_A_I_UE, 22_V_I_UE"
+msgstr "Primer: 22_A_I_UE, 22_V_I_UE"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr "Posizione fiscale"
+msgstr "Fiskalni položaj"
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,with_supplier_self_invoice:0
@@ -69,10 +69,10 @@ msgid ""
 "register, an invoice to the specified partner (tipically, my company), "
 "instead of the extraUE partner"
 msgstr ""
-"Selezionare questo per abilitare la creazione di un'addizionale autofattura "
-"passiva. Questo è usato tipicamente per i fornitori extra UE, per mostrare, "
-"nel registro IVA acquisti, una fattura per il partner specificato "
-"(tipicamente, la propria azienda), invece del fornitore extra UE"
+"Označite, da bi omogočili nastanek dodatnega prejetega računa za samo-"
+"obdavčitev. Običajno se uporablja za dobavitelje izven EU, da bi v registru "
+"dobaviteljev prikazali račun določenega partnerja (običajno moje podjetje), "
+"namesto partnerja izven EU."
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,id:0 field:account.rc.type.tax,id:0
@@ -82,12 +82,12 @@ msgstr "ID"
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice
 msgid "Invoice"
-msgstr "Fattura"
+msgstr "Račun"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Righe Fattura"
+msgstr "Postavka računa"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:213
@@ -97,195 +97,198 @@ msgid ""
 "%s\n"
 "is RC but has not tax"
 msgstr ""
-"La riga fattura\n"
+"Postavka računa\n"
 "%s\n"
-"è RC ma non non ha imposte"
+"je obrnjena davčna obveznost, a nima davka"
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,journal_id:0
 msgid "Journal used on RC self invoices."
-msgstr "Sezionale usato per le autofatture."
+msgstr "Dnevnik za obrnjene davčne obveznosti pri samo-obdavčitvi."
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,supplier_journal_id:0
 msgid "Journal used on RC supplier self invoices."
-msgstr "Sezionale usato nelle autofatture passive."
+msgstr ""
+"Dnevnik za obrnjene davčne obveznosti pri samo-obdavčitvi prejetih računov."
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,payment_journal_id:0
 msgid "Journal used to pay RC self invoices."
-msgstr "Sezionale usato per i pagamenti delle autofatture."
+msgstr "Dnevnik za plačila obrnjenih davčnih obveznosti pri samo-obdavčitvi."
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,__last_update:0
 #: field:account.rc.type.tax,__last_update:0
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,write_uid:0 field:account.rc.type.tax,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Zadnji posodobil"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,write_date:0 field:account.rc.type.tax,write_date:0
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Main Informations"
-msgstr "Informazioni principali"
+msgstr "Glavne informacije"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,method:0
 msgid "Method"
-msgstr "Metodo"
+msgstr "Metoda"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,name:0
 msgid "Name"
-msgstr "Nome"
+msgstr "Naziv"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,partner_type:0
 msgid "Other"
-msgstr "Altro"
+msgstr "Drugo"
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,partner_id:0
 msgid "Partner used on RC self invoices."
-msgstr "Partner usato sulle autofatture."
+msgstr ""
+"Partner, ki se uporablja pri samo-obdavčitvi obrnjenih davčnih obveznosti"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type.tax,purchase_tax_id:0
 msgid "Purchase Tax"
-msgstr "Imposta Acquisti"
+msgstr "Nabavni davek"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice.line,rc:0
 msgid "RC"
-msgstr "RC"
+msgstr "Obrnjena davčna obveznost"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice,rc_purchase_invoice_id:0
 msgid "RC Purchase Invoice"
-msgstr "Fattura di acquisto in RC"
+msgstr "Nabavni račun z obrnjeno davčno obveznostjo"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice,rc_self_invoice_id:0
 msgid "RC Self Invoice"
-msgstr "Autofattura"
+msgstr "Račun za samo-obdavčitev obrnjene davčne obveznosti"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice,rc_self_purchase_invoice_id:0
 msgid "RC Self Purchase Invoice"
-msgstr "Autofattura passiva"
+msgstr "Nabavni račun z obrnjeno davčno obveznostjo za samo obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: field:account.fiscal.position,rc_type_id:0
 msgid "RC Type"
-msgstr "Tipo RC"
+msgstr "Tip obrnjene davčne obveznosti"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type.tax,rc_type_id:0
 msgid "RC type"
-msgstr "Tipo RC"
+msgstr "Tip obrnjene davčne obveznosti"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type
 msgid "Reverse Charge Type"
-msgstr "Tipo reverse charge"
+msgstr "Tip obrnjene davčne obveznosti"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_tree
 #: model:ir.actions.act_window,name:l10n_it_reverse_charge.action_rc_type
 #: model:ir.ui.menu,name:l10n_it_reverse_charge.menu_action_rc_type
 msgid "Reverse Charge Types"
-msgstr "Tipi reverse charge"
+msgstr "Tipi obrnjenih davčnih obveznosti"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type.tax,sale_tax_id:0
 msgid "Sale Tax"
-msgstr "Imposta Vendite"
+msgstr "Prodajni davek"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,method:0
 msgid "Self Invoice"
-msgstr "Autofattura"
+msgstr "Račun za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,journal_id:0
 msgid "Self Invoice Journal"
-msgstr "Sezionale autofattura"
+msgstr "Dnevnik samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,partner_id:0
 msgid "Self Invoice Partner"
-msgstr "Partner autofattura"
+msgstr "Partnerji samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,partner_type:0
 msgid "Self Invoice Partner Type"
-msgstr "Tipo partner autofattura"
+msgstr "Tip partnerja samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,payment_journal_id:0
 msgid "Self Invoice Payment Journal"
-msgstr "Sezionale pagamento autofattura"
+msgstr "Dnevnik plačil samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,tax_ids:0
 msgid "Self Invoice Tax Mapping"
-msgstr "Mappature tasse autofattura"
+msgstr "Mapiranje davkov samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,transitory_account_id:0
 msgid "Self Invoice Transitory Account"
-msgstr "Conto transitorio autofattura"
+msgstr "Prehodni konto samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: view:account.invoice:l10n_it_reverse_charge.view_invoice_form_rc
 #: view:account.invoice:l10n_it_reverse_charge.view_invoice_supplier_form_rc
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Self Invoicing"
-msgstr "Autofatturazione"
+msgstr "Samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,partner_type:0
 msgid "Supplier"
-msgstr "Fornitore"
+msgstr "Dobavitelj"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,supplier_journal_id:0
 msgid "Supplier Self Invoice Journal"
-msgstr "Sezionale autofattura passiva"
+msgstr "Dnevnik samo-obdavčitev prejetih računov"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Tax Mapping"
-msgstr "Mappatura imposte"
+msgstr "Mapiranje davkov"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type_tax
 msgid "Tax Mapping for self invoices"
-msgstr "Mappatura imposte per autofatturazione"
+msgstr "Mapiranje davkov za samo-obdavčitve"
 
 #. module: l10n_it_reverse_charge
 #: sql_constraint:account.rc.type.tax:0
 msgid "Tax mappings can be defined only once per rc type."
-msgstr "Una mappatura può essere definita solo una volta per ogni tipo rc."
+msgstr ""
+"Mapiranje davkov se lahko določi le enkrat za vsak tip samo-obdavčitve"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,self_invoice_text:0
 msgid "Text in Self Invoice"
-msgstr "Testo su autofattura"
+msgstr "Besedilo v računu za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Text on Self Invoice"
-msgstr "Testo su autofattura"
+msgstr "Besedilo v računu za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:303
@@ -294,8 +297,8 @@ msgid ""
 "There are more than one payment line.\n"
 "In that case account entries cannot be canceledautomatically. Please proceed manually"
 msgstr ""
-"C'è più di una riga di pagamento.\n"
-"In tal caso le registrazioni non possono essere annullate automaticamente. Procedere manualmente"
+"Obstaja več postavk plačil.\n"
+"V takem primeru kontni vnosi ne morejo biti samodejno preklicani. Nadaljujte ročno"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:199
@@ -304,18 +307,18 @@ msgid ""
 "There is no default credit account defined \n"
 "on journal \"%s\"."
 msgstr ""
-"Non c'è un conto di credito di default \n"
-"sul sezionale \"%s\"."
+"Privzeti konto terjatev ni določen za \n"
+"dnevnik \"%s\"."
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,transitory_account_id:0
 msgid "Transitory account used on self invoices."
-msgstr "Conto transitorio usato sulle autofatture."
+msgstr "Prehodni konto za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,method:0
 msgid "VAT Integration"
-msgstr "Integrazione IVA"
+msgstr "Integracija DDV"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:89
@@ -324,10 +327,10 @@ msgid ""
 "When \"With additional supplier self invoice\" you must set only one tax "
 "mapping line: only 1 tax per invoice is supported"
 msgstr ""
-"Quando \"Con autofattura passiva aggiuntiva\" bisogna impostare una sola "
-"riga di mappatura imposte: solo un'imposta per fattura è supportata"
+"V primerih, ko je \"Z dodatnim prejetim računom za samo-obdavčitev\", morate"
+" določiti le eno postavko davčnega mapiranja : podprt je le 1 davek na račun"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,with_supplier_self_invoice:0
 msgid "With additional supplier self invoice"
-msgstr "Con autofattura passiva aggiuntiva"
+msgstr "Z dodatnim prejetim računom za samo-obdavčitev"
