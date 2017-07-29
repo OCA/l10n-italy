@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-23 10:38+0000\n"
-"PO-Revision-Date: 2017-06-23 10:38+0000\n"
+"POT-Creation-Date: 2017-07-26 14:46+0000\n"
+"PO-Revision-Date: 2017-07-26 14:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -117,6 +117,11 @@ msgid "Cessionario"
 msgstr "Cessionario"
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_check_if_picking_done
+msgid "Check if picking done"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_code_group
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users_ddt_code_group
 #: selection:res.partner,ddt_invoicing_group:0
@@ -125,7 +130,7 @@ msgid "Code group"
 msgstr "Codice Raggruppamento"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:227
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:246
 #, python-format
 msgid "Competenza:"
 msgstr "Competenza:"
@@ -326,7 +331,7 @@ msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:379
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:398
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -389,7 +394,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:146
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:165
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
@@ -480,7 +485,7 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:159
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:178
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
@@ -562,13 +567,13 @@ msgid "Pickings"
 msgstr "Picking"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:254
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:273
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definisci un sezionale di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:493
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:512
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -658,7 +663,7 @@ msgid "Selected Picking %s have different transportation reason"
 msgstr "I Picking selezionati %s hanno Causali di trasporto differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:136
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:149
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
 msgstr "Gli ordini di consegna selezionati sono già collegati al DDT: %s"
@@ -771,8 +776,8 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:350
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:354
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:369
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:373
 #, python-format
 msgid "There is no invoicable line."
 msgstr "Non ci sono righe fatturabili"
