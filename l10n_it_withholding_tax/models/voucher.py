@@ -232,7 +232,8 @@ class account_voucher(orm.Model):
                         'credit': line_payment.credit + debit,
                         'debit': line_payment.debit + credit
                     }
-                    move_line_obj.write(cr, uid, [line_payment.id], val)
+                    move_line_obj.write(cr, uid, [line_payment.id], val,
+                        update_check=False)
 
         # Merge with existing lines to reconcile
         if rec_list_new_moves:
