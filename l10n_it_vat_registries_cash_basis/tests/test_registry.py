@@ -99,6 +99,23 @@ class TestRegistry(AccountingTestCase):
 
         journal = self.env['account.journal'].search(
             [('type', '=', 'purchase')])[0]
+
+        journal_cash = self.env['account.journal'].search(
+            [('type', '=', 'general')])[0]
+
+        settings = self.env['account.config.settings'].search([
+            ('company_id', '=', 1)
+            ])
+
+        settings.write({
+            'module_account_tax_cash_basis': True,
+            'tax_cash_basis_journal_id': journal_cash.id})
+
+        company = self.env['res.company'].search([('id', '=', 1)])
+
+        company.write({
+            'tax_cash_basis_journal_id': journal_cash.id})
+
         ovas = self.env['account.account'].search([
             (
                 'user_type_id', '=',
