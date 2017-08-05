@@ -28,6 +28,8 @@
                         <field name="unsolved_journal_id" />
                         <field name="overdue_effects_account_id" />
                         <field name="protest_charge_account_id" />
+                        <separator colspan="4" string="Settlement"/>
+                        <field name="settlement_journal_id" />
                     </group>
                 </form>
             </field>
