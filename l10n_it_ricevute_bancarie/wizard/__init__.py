@@ -11,3 +11,4 @@ from . import wizard_riba_issue
 from . import wizard_riba_file_export
 from . import wizard_accreditation
 from . import wizard_unsolved
+from . import wizard_riba_esito_effetto
