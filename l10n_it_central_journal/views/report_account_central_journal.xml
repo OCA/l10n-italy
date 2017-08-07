@@ -7,7 +7,7 @@
 <template id="report_giornale">
     <t t-call="report.html_container">
         <t t-set="title" t-value="'Stampa libro giornale'"/>
-        <t t-call="l10n_it_account.internal_layout">
+        <t t-call="l10n_it_central_journal.central_journal_internal_layout">
 
             <div class="page">
                 <t t-set="print_details" t-value="1"/>
@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     
-                    <t t-set="counter" t-value="start_row"/>
+                    <t t-set="counter" t-value="start_row - 1"/>
                     <t t-set="save_move_id" t-value="0"/>
                     <t t-set="tot_credit" t-value="progressive_credit"/>
                     <t t-set="tot_debit" t-value="progressive_debit"/>

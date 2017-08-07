@@ -31,8 +31,6 @@ class Parser(report_sxw.rml_parse):
         res = False
         if self.localcontext.get('print_state') == 'def':
             fiscalyear_obj = self.pool.get('account.fiscalyear')
-            fiscalyear_ids = fiscalyear_obj.search(
-                self.cr, self.uid, [('id', '=', fiscalyear_id)])
             print_info = {
                 'date_last_print': end_date_print,
                 'progressive_line_number': end_row,
@@ -41,7 +39,7 @@ class Parser(report_sxw.rml_parse):
                 'progressive_credit': end_credit,
             }
             res = fiscalyear_obj.write(
-                self.cr, self.uid, fiscalyear_ids, print_info)
+                self.cr, self.uid, [fiscalyear.id], print_info)
         return res
 
     def __init__(self, cr, uid, name, context):
@@ -59,8 +57,8 @@ class Parser(report_sxw.rml_parse):
                 'start_row'),
             'date_move_line_to': data['form'].get(
                 'date_move_line_to'),
-            'fiscalyear': data['form'].get(
-                'fiscalyear'),
+            'fiscalyear': self.pool['account.fiscalyear'].browse(
+                self.cr, self.uid, data['form'].get('fiscalyear')),
             'print_state': data['form'].get(
                 'print_state'),
             'progressive_credit': data['form'].get(

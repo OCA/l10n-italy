@@ -16,5 +16,57 @@
             ref="l10n_it_account.l10n_it_account_a4_portrait"/>
        </record>
     </data>
+    
+    <data>
+        <template id="l10n_it_central_journal.central_journal_internal_layout">
+          <!-- Multicompany -->
+          <t t-if="o and 'company_id' in o">
+              <t t-set="company" t-value="o.company_id"></t>
+          </t>
+          <t t-if="not o or not 'company_id' in o">
+              <t t-set="company" t-value="res_company"></t>
+          </t>
+
+          <div class="header">
+              <div class="row">
+                  <div class="col-xs-4 company-info">
+                      <h3 class="name"><span t-esc="company.name" /></h3>
+                      <span class="address">
+                        <span class="street" t-esc="company.street" /><br/>
+                        <span class="zip" t-esc="company.zip" /> -
+                        <span class="city" t-esc="company.city" /> -
+                        <span class="state" t-esc="company.state_id.code" /><br/>
+                      </span>
+                      <span class="vat text-right" t-if="company.partner_id.vat">
+                        <span>Vat:</span> <span t-esc="company.partner_id.vat" />
+                      </span><br/>
+                      <span class="fiscalcode text-right" t-if="company.partner_id.fiscalcode">
+                        <span>Fiscalcode:</span> <span t-esc="company.partner_id.fiscalcode" />
+                      </span>
+                  </div>
+                  <div class="col-xs-4 col-xs-offset-4 text-right doc-info">
+                      <h3 class="doc-title" t-esc="title"/>
+                  </div>
+              </div>
+          </div>
+          <t t-raw="0" />
+          <div class="footer">
+              <div class="row">
+                  <div class="col-xs-4">
+
+                  </div>
+                  <div class="col-xs-4 col-xs-offset-4 text-right">
+                    <span style="display: none;" id="l10n_it_count_fiscal_page_base" t-esc="l10n_it_count_fiscal_page_base" />
+                    <ul class="list-inline">Pag:
+                        <li><span t-esc="fiscalyear.code"/></li>
+                        <li>/</li>
+                        <li><span class="page"/></li>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+      </template>
+
+    </data>
 </openerp>
 
