@@ -92,6 +92,7 @@ class DdTCreateInvoice(models.TransientModel):
             ctx = self.env.context.copy()
             ctx['ddt_partner_id'] = partner_id  # ddts[0].partner_invoice_id.id
             ctx['inv_type'] = 'out_invoice'
+            ctx['date_inv'] = self.date
             picking_list = [p.picking_ids for p in ddt_partner[partner_id]]
             for pll in picking_list:
                 for p in pll:
