@@ -11,6 +11,11 @@
 	                    <field name="date_from" />
 	                    <field name="date_to" />
                     </group>
+                <separator string="Setting" />
+                    <group>
+                      <field name="journal_id" widget="selection"/>
+                      <field name="date_invoice"/>
+                    </group>
                     <footer>
                         <button name="create_invoices" string="Create" type="object" class="oe_highlight"/>
                         or

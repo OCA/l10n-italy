@@ -9,15 +9,13 @@
                 <separator string="DDT" />
                     <field string="DDT" name="ddt_ids" readonly="0">
                         <tree create="false">
-                            <field name="name"/>
                             <field name="ddt_number"/>
                             <field name="partner_id"/>
+                            <field name="partner_shipping_id"/>
                             <field name="date"/>
                             <field name="date_done"/>
                             <field name="package_id"/>
                             <field name="state"/>
-                            <field name="to_be_invoiced"/>
-                            <field name="invoice_id"/>
                         </tree>
                     </field>
                     <footer>
