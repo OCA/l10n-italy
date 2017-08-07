@@ -2,6 +2,7 @@
 # Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 # @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2017 Gianmarco Conte - Dinamiche Aziendali
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
@@ -78,7 +79,7 @@ class StockPickingPackagePreparation(models.Model):
 
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
-    ddt_number = fields.Char(string='DdT Number')
+    ddt_number = fields.Char(string='DdT Number', copy=False)
     partner_shipping_id = fields.Many2one(
         'res.partner', string="Shipping Address")
     carriage_condition_id = fields.Many2one(
@@ -98,7 +99,7 @@ class StockPickingPackagePreparation(models.Model):
     display_name = fields.Char(string='Name', compute='_compute_display_name')
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
-        'account.invoice', string='Invoice', readonly=True)
+        'account.invoice', string='Invoice', readonly=True, copy=False)
     to_be_invoiced = fields.Boolean(
         string='To be Invoiced', store=True, compute="_compute_to_be_invoiced",
         help="This depends on 'To be Invoiced' field of the Reason for "
@@ -266,8 +267,10 @@ class StockPickingPackagePreparation(models.Model):
         """
         self.ensure_one()
         order = self._get_sale_order_ref()
-        journal_id = self.env['account.invoice'].default_get(
-            ['journal_id'])['journal_id']
+        journal_id = self._context.get('invoice_journal_id', False)
+        if not journal_id:
+            journal_id = self.env['account.invoice'].default_get(
+                ['journal_id'])['journal_id']
         if not journal_id:
             raise UserError(
                 _('Please define an accounting sale journal for this company.')
@@ -286,6 +289,7 @@ class StockPickingPackagePreparation(models.Model):
         invoice_description = self._prepare_invoice_description()
         invoice_vals = {
             'name': invoice_description or '',
+            'date_invoice': self._context.get('invoice_date', False),
             'origin': self.ddt_number,
             'type': 'out_invoice',
             'account_id': (

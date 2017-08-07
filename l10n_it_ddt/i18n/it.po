@@ -875,3 +875,18 @@ msgstr "ddt.invoicing"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 msgid "or"
 msgstr "o"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
+msgid "Setting"
+msgstr "Impostazioni"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_journal_id
+msgid "Journal"
+msgstr "Sezionale"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_date_invoice
+msgid "Invoice Date"
+msgstr "Data Fattura"
