@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <!--===================================================-->
+    <!--               WIZARD ESITO EFFETTI                -->
+    <!--===================================================-->
+        
+    <record model="ir.ui.view" id="wizard_distinta_line_effect_result">
+        <field name="name">wizard.distinta.line.effect.result</field>
+        <field name="model">riba.effect.result</field>
+        <field name="arch" type="xml">
+            <form name="esito_effetto" string="Effect Result">
+                <field name="state" invisible="1"></field>
+                
+		    <!--===================================================-->
+		    <!--               WIZARD DRAFT                        -->
+		    <!--===================================================-->
+		    	
+	            <group name="riba_lines_linked" string="Riba Lines Details" states='draft'>
+	                <field name="riba_distinta_line_ids" nolabel="1" widget="one2many">
+	                    <tree>
+	                        <field name="partner_id"></field>
+	                        <field name="invoice_number"></field>
+	                        <field name="invoice_date"></field>
+	                        <field name="bank_id"></field>
+	                        <field name="state"></field>
+	                    </tree>
+	                </field>
+	            </group>
+	            <group name="button_stock" states='draft'>
+	                <h2>Choose the result of the effect selected</h2>
+	                <newline></newline>
+	                <button name="action_payment_executed" type="object" string="Payment Executed" class="oe_highlight" context = "{'riba_distinta_line_ids' : riba_distinta_line_ids}"></button>
+                    <button name="action_unsolved_payment" type="object" string="Unsolved Payment" class="oe_highlight" context = "{'riba_distinta_line_ids' : riba_distinta_line_ids}"></button>
+	            </group>
+                
+           	<!--===================================================-->
+		    <!--           WIZARD UNSOLVED and PAID                -->
+		    <!--===================================================-->
+		    	<group name="wizard_in_unsolved_or_in_paid" states='paid,unsolved'>
+		    		<separator string="Unsolved Journal"></separator>
+		    		<field name="unsolved_journal_id" nolabel="1"></field>
+		    		<newline></newline>
+		    		<group name="resume_partner_table" string="Summary data table" colspan="2">
+			    		<field name="accout_move_detail_table" nolabel="1" readonly="1">
+			    			<tree>
+			    				<field name="partner_id"></field>
+			    				<field name="account_id"></field>
+			    				<field name="debit"></field>
+			    				<field name="credit"></field>
+			    			</tree>
+			    		</field>
+			    	</group> 
+			    	<newline></newline>
+			    	<group name="account_and_amount" colspan="2">
+				    	<group name="effects" string="Effects account and amount">
+				    		<field name="effects_account_id" nolabel="1"></field>
+				    		<separator orientation="vertical"></separator>
+				    		<field name="effects_amount" nolabel="1"></field>
+				    	</group>
+				    	<group name="riba_bank" string="RiBa Bank account and amount">
+				    		<field name="riba_bank_account_id" nolabel="1"></field>
+				    		<separator orientation="vertical"></separator>
+				    		<field name="riba_bank_amount" nolabel="1"></field>
+				    	</group>
+				    	<group name="overdue_effects" string="Overdue Effects account and amount"
+				    			attrs="{'invisible' : [('state','not in','unsolved')]}">
+				    		<field name="overdue_effects_account_id" nolabel="1"></field>
+				    		<separator orientation="vertical"></separator>
+				    		<field name="overdue_effects_amount" nolabel="1"></field>
+				    	</group>
+				    	<group name="general_bank" string="Bank account and amount"
+				    			attrs="{'invisible' : [('state','not in','unsolved')]}">
+				    		<field name="bank_account_id" nolabel="1" on_change="_onchange_account_id_bank(bank_account_id)" ></field>
+				    		<separator orientation="vertical"></separator>
+				    		<field name="bank_amount" nolabel="1"></field>
+				    	</group>
+				    	<group name="expense" string="Expense account and amount"
+				    			attrs="{'invisible' : [('state','not in','unsolved')]}">
+				    		<field name="bank_expense_account_id" nolabel="1" 
+				    		on_change="_onchange_account_id_expense_amount(bank_expense_account_id,expense_amount)"></field>
+				    		<separator orientation="vertical"></separator>
+				    		<field name="expense_amount" nolabel="1" 
+				    		on_change="_onchange_account_id_expense_amount(bank_expense_account_id,expense_amount)"></field>
+				    	</group>
+				    </group>
+		    	</group>
+                
+                <footer>
+                	<button name="create_new_movement" string="Execute operation" class="oe_highlight" type="object"
+                			attrs="{'invisible' : [('state','not in','paid')]}" context="{'keyword' : 'paid'}"></button>
+                	<button name="create_new_movement" string="Execute operation" class="oe_highlight" type="object"
+                	 		attrs="{'invisible' : [('state','not in','unsolved')]}" context="{'keyword' : 'unsolved'}"></button>
+                    <button string="Cancel" special="cancel" class="oe_link"></button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--===================================================-->
+    <!--      ACTION OPEN     WIZARD ESITO EFFETTI         -->
+    <!--===================================================-->
+
+    <act_window name="Esito Effetto"
+        res_model="riba.effect.result"
+        src_model="riba.distinta.line"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
+        id="action_wizard_riba_esito_effetto"
+        view_id="wizard_distinta_line_effect_result"></act_window>
+
+    </data>
+</openerp>

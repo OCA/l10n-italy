@@ -27,6 +27,7 @@
         "views/wizard_accreditation.xml",
         "views/wizard_unsolved.xml",
         "views/riba_view.xml",
+        "views/wizard_riba_esito_effetto.xml",
         "views/distinta_detail_view.xml",
         "views/account_view.xml",
         "views/wizard_riba_issue.xml",
