@@ -6,4 +6,4 @@
 from . import account
 from . import voucher
 from . import withholding_tax
-from . import product
+from . import partner

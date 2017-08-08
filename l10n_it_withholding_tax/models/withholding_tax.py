@@ -36,11 +36,10 @@ class withholding_tax(models.Model):
     comment = fields.Text('Text')
     account_receivable_id = fields.Many2one(
         'account.account',
-        'Account Receivable', required=True,
-        domain=[('type', '=', 'receivable')])
+        'Account Receivable', required=True)
     account_payable_id = fields.Many2one(
         'account.account',
-        'Account Payable', required=True, domain=[('type', '=', 'payable')])
+        'Account Payable', required=True)
     payment_term = fields.Many2one('account.payment.term', 'Payment Terms',
                                    required=True)
     tax = fields.Float(string='Tax %', compute='_get_rate')
@@ -56,10 +55,7 @@ class withholding_tax(models.Model):
         }
         if not amount_invoice and invoice_id:
             invoice = invoice_obj.browse(invoice_id)
-            total_withholding_tax_excluded = \
-                invoice.compute_amount_withholding_excluded()
-            amount_invoice = (
-                invoice.amount_untaxed - total_withholding_tax_excluded)
+            amount_invoice = invoice.amount_untaxed
         # v7->v8 removed tax = self.browse(cr, uid, withholding_tax_id)
         base = amount_invoice * self.base
         tax = base * ((self.tax or 0.0) / 100.0)
@@ -162,17 +158,23 @@ class withholding_tax_statement(models.Model):
                                readonly=True, compute='_compute_total')
     move_ids = fields.One2many('withholding.tax.move',
                                'statement_id', 'Moves')
-    display_name = fields.Char(
-        string='Name', compute='_compute_display_name',
-    )
 
     @api.multi
-    def _compute_display_name(self):
-        for st in self:
-            name = '%s - %s' % (st.partner_id.name,
-                                st.withholding_tax_id and
-                                st.withholding_tax_id.name or '')
-            st.display_name = name
+    def unlink(self):
+        """
+        Clear wt values in the account move lines
+        """
+        move_line_obj = self.env['account.move.line']
+        val = {
+            'withholding_tax_amount': 0,
+            'withholding_tax_id': False,
+            'withholding_tax_base': 0
+        }
+        for statement in self:
+            domain = [('move_id', '=', statement.move_id.id)]
+            move_line_obj.search(domain).write(val)
+
+        return super(withholding_tax_statement, self).unlink()
 
 
 class withholding_tax_move(models.Model):
@@ -198,22 +200,59 @@ class withholding_tax_move(models.Model):
         'account.move.line', 'Account Move line',
         ondelete='cascade', help="Used from trace WT from other parts(BS)")
     withholding_tax_id = fields.Many2one('withholding.tax', 'Withholding Tax')
+    income_type_id = fields.Many2one(
+        'withholding.tax.income.type', 'Income Type')
+    income_type_code = fields.Char('Income Type Code',
+                                   compute="_compute_income_type", store=True)
     amount = fields.Float('Amount')
+    base = fields.Float('Base', compute="_compute_base", store=True)
     partner_id = fields.Many2one('res.partner', 'Partner')
     date_maturity = fields.Date('Date Maturity')
     account_move_id = fields.Many2one('account.move', 'Account Move',
                                       ondelete='cascade')
-    display_name = fields.Char(
-        string='Name', compute='_compute_display_name',
-    )
+    partner_vat = fields.Char('Vat', compute="_partner_data", store=True)
+    partner_address = fields.Char('Address', compute="_partner_address",
+                                  store=True)
 
     @api.multi
-    def _compute_display_name(self):
-        for move in self:
-            name = '%s - %s' % (move.partner_id.name,
-                                move.withholding_tax_id and
-                                move.withholding_tax_id.name or '')
-            move.display_name = name
+    @api.depends('income_type_id')
+    def _compute_income_type(self):
+        for wt in self:
+            if wt.income_type_id:
+                wt.income_type_code =\
+                    wt.income_type_id.code
+            else:
+                wt.income_type_code = False
+
+    @api.multi
+    @api.depends('amount', 'withholding_tax_id')
+    def _compute_base(self):
+        dp_obj = self.env['decimal.precision']
+        for wt in self:
+            if wt.statement_id:
+                if wt.statement_id.amount:
+                    coeff = round(wt.amount / wt.statement_id.amount, 5)
+                    wt.base = round(wt.statement_id.base * coeff,
+                                    dp_obj.precision_get('Account'))
+
+    @api.multi
+    @api.depends('partner_id.vat')
+    def _partner_data(self):
+        for wt in self:
+            wt.partner_vat = wt.partner_id.vat
+
+    @api.multi
+    @api.depends('partner_id.street', 'partner_id.street2', 'partner_id.zip',
+                 'partner_id.city', 'partner_id.state_id.code',
+                 'partner_id.country_id.name')
+    def _partner_address(self):
+        for wt in self:
+            address = '{} {} - {} {} {} {}'.format(
+                wt.partner_id.street, wt.partner_id.street2 or '',
+                wt.partner_id.zip or '', wt.partner_id.city or '',
+                wt.partner_id.state_id.code or '',
+                wt.partner_id.country_id.name or '')
+            wt.partner_address = address
 
     @api.multi
     def action_paid(self):
@@ -257,3 +296,11 @@ class withholding_tax_move(models.Model):
                     _('Warning! You cannot delet move linked to voucher.You \
                     must before delete the voucher.'))
         return super(withholding_tax_move, self).unlink()
+
+
+class WithholdingTaxIncomeType(models.Model):
+    _name = 'withholding.tax.income.type'
+    _description = 'Withholding Tax Income Type'
+
+    code = fields.Char('Code')
+    name = fields.Char('Name')

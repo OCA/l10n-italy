@@ -10,6 +10,12 @@ Module for Italian Withholding Tax: Ritenute d'acconto
 
 Gestisce le ritenute sulle fatture e sui pagamenti
 
+Quando viene validata una fattura, per ogni ritenuta presente, vengono aperte delle situazioni da gestire.
+In ogni sistuazione, è possibile vedere la ritenuta soggetta, quella applicata e quella versare.
+Al momento del pagamento della fattura, verrà generata una voce di ritenuta proporzionalmente all'importo pagato.
+Insieme alla voce di ritenuta verrà generato un movimento contabile per alimentare il conto di debito/credito verso
+l'Erario e chiudere la posizione di debito/credito del partner.
+
 Usage
 =====
 

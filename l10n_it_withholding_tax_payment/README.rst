@@ -7,10 +7,11 @@ Italian Withholding Tax - Payment
 =================================
 
 Questo modulo gestisce il versamento delle ritenute verso l'erario.
-Consente infatti di selezionare le voci di ritenuta (che vengono generate dai voucher), e creare un versamento.
+Consente infatti di selezionare le voci di ritenuta (che vengono generate quando viene pagata una fattura), e creare un versamento.
 Per versamento si intende una distinta con l'elenco delle ritenute che periodicamente vengono versate all'erario.
 Questo versamento ha il suo workflow: con il pulsante "conferma" le voci passano nello stato di versate.
-Poi è anche possibile generare la registrazione di versamento erario a banca
+Poi è anche possibile generare la registrazione di versamento erario a banca.
+E' possibile anche associare il versamento ad una registrazione già esistente (Registrazione dell'F24)
 
 Usage
 =====

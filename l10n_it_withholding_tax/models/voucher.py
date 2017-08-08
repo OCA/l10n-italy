@@ -116,9 +116,9 @@ class account_voucher(orm.Model):
             for l in line_cr_ids_ctrl:
                 if isinstance(l, dict):
                     line_cr_ids.append(l)
-
-            _compute_wt_values(line_dr_ids)
-            _compute_wt_values(line_cr_ids)
+            if not context.get('no_compute_wt'):
+                _compute_wt_values(line_dr_ids)
+                _compute_wt_values(line_cr_ids)
 
         return res
 
@@ -256,6 +256,29 @@ class account_voucher(orm.Model):
                     self.pool['withholding.tax.voucher.line']._align_wt_move(
                         cr, uid, [wt_v_line.id])
         return res
+
+    def writeoff_move_line_get(self, cr, uid, voucher_id, line_total, move_id,
+                               name, company_currency, current_currency,
+                               context=None):
+        """
+        Remove partner from account payable or receivable if equal to 
+        account used for withholding tax. 
+        """
+        move_line = super(account_voucher, self).writeoff_move_line_get(
+            cr, uid, voucher_id, line_total, move_id, name, company_currency,
+            current_currency, context)
+        if 'account_id' in move_line:
+            account_id = move_line['account_id']
+            account = self.pool['account.account'].browse(cr, uid, account_id)
+            if account.type in ('payable', 'receivable'):
+                wt_obj = self.pool['withholding.tax']
+                domain = [('account_receivable_id', '=', account_id)]
+                wt_reicevable_ids = wt_obj.search(cr, uid, domain)
+                domain = [('account_payable_id', '=', account_id)]
+                wt_payable_ids = wt_obj.search(cr, uid, domain)
+                if wt_reicevable_ids or wt_payable_ids:
+                    move_line['partner_id'] = False
+        return move_line
 
 
 class account_voucher_line(orm.Model):
@@ -420,6 +443,7 @@ class account_voucher_line(orm.Model):
         '''
         res = []
         invoice_obj = self.pool['account.invoice']
+        acc_move_line_obj = self.pool['account.move.line']
         wt_voucher_line_obj = self.pool['withholding.tax.voucher.line']
         dp_obj = self.pool['decimal.precision']
 
@@ -457,6 +481,19 @@ class account_voucher_line(orm.Model):
                             'amount': wt_amount
                         }
                         wt_voucher_line_obj.create(cr, uid, val)
+            # Wt from account move directly
+            if not inv_ids:
+                domain = [('move_id', '=',
+                           voucher_line.move_line_id.move_id.id),
+                          ('withholding_tax_id', '!=', False), ]
+                m_lines = acc_move_line_obj.search(cr, uid, domain)
+                for ml in acc_move_line_obj.browse(cr, uid, m_lines):
+                    val = {
+                        'voucher_line_id': voucher_line_id,
+                        'withholding_tax_id': ml.withholding_tax_id.id,
+                        'amount': voucher_line.amount_withholding_tax
+                    }
+                    wt_voucher_line_obj.create(cr, uid, val)
 
         return res
 
@@ -525,6 +562,11 @@ class withholding_tax_voucher_line(orm.Model):
                 'date': wt_v_line.voucher_line_id.voucher_id.date,
                 'partner_id':
                     wt_v_line.voucher_line_id.voucher_id.partner_id.id,
+                'income_type_id':
+                    wt_v_line.voucher_line_id.voucher_id.partner_id.income_type_id
+                    and
+                    wt_v_line.voucher_line_id.voucher_id.partner_id.income_type_id.id
+                    or False,
                 'wt_voucher_line_id': wt_v_line.id,
                 'withholding_tax_id': wt_v_line.withholding_tax_id.id,
                 'account_move_id':
