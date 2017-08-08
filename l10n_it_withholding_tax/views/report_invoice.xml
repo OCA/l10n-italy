@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="withholding_tax_report_invoice_document"
+                    inherit_id="account.report_invoice_document">
+            <xpath expr="//span[@t-field='o.amount_total']/.." position="after">
+                <tr t-if="o.withholding_tax_line">
+                   <td>Withholding Tax</td>
+                   <td class="text-right">
+                       <span t-field="o.withholding_tax_amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                   </td>
+                </tr>
+                <tr class="border-black" t-if="o.withholding_tax_line">
+                   <td><strong>Amount Net Pay</strong></td>
+                   <td class="text-right">
+                        <span t-field="o.amount_net_pay" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                   </td>
+                </tr>
+            </xpath>
+            
+        </template>
+
+    </data>
+</openerp>
