@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Paolo Valier <paolo.valier@hotmail.it>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 14:46+0000\n"
-"PO-Revision-Date: 2017-07-26 14:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-08-07 15:11+0000\n"
+"PO-Revision-Date: 2017-08-07 15:11+0000\n"
+"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +120,7 @@ msgstr "Cessionario"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_check_if_picking_done
 msgid "Check if picking done"
-msgstr ""
+msgstr "Controlla se il picking è completato"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_code_group
@@ -130,7 +131,7 @@ msgid "Code group"
 msgstr "Codice Raggruppamento"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:246
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:247
 #, python-format
 msgid "Competenza:"
 msgstr "Competenza:"
@@ -196,7 +197,7 @@ msgid "DDT Date"
 msgstr "Data DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:37
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:49
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_invoicing
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_invoicing
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
@@ -331,7 +332,7 @@ msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:398
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:402
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -394,7 +395,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:165
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:166
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
@@ -404,6 +405,11 @@ msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_invoice_id
 msgid "Invoice"
 msgstr "Fattura"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_date_invoice
+msgid "Invoice Date"
+msgstr "Data Fattura"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice_line
@@ -420,6 +426,11 @@ msgstr "Fatturato"
 #, python-format
 msgid "Invoices from DDT"
 msgstr "Fatture da DDT"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_journal_id
+msgid "Journal"
+msgstr "Sezionale"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
@@ -485,7 +496,7 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:178
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:179
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
@@ -505,7 +516,7 @@ msgid "Notes"
 msgstr "Note"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:28
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:37
 #, python-format
 msgid "Nothing to invoice"
 msgstr "Non ci sono DDT da fatturare"
@@ -567,13 +578,13 @@ msgid "Pickings"
 msgstr "Picking"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:273
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:276
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definisci un sezionale di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:512
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:516
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -663,10 +674,10 @@ msgid "Selected Picking %s have different transportation reason"
 msgstr "I Picking selezionati %s hanno Causali di trasporto differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:149
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:150
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
-msgstr "Gli ordini di consegna selezionati sono già collegati al DDT: %s"
+msgstr "I Picking selezionati sono già collegati al DDT: %s"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:44
@@ -715,6 +726,11 @@ msgstr "Sequence id"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Set done"
 msgstr "Completato"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
+msgid "Setting"
+msgstr "Impostazioni"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_partner_shipping_id
@@ -776,8 +792,8 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:369
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:373
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:377
 #, python-format
 msgid "There is no invoicable line."
 msgstr "Non ci sono righe fatturabili"
@@ -875,18 +891,3 @@ msgstr "ddt.invoicing"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 msgid "or"
 msgstr "o"
-
-#. module: l10n_it_ddt
-#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
-msgid "Setting"
-msgstr "Impostazioni"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_journal_id
-msgid "Journal"
-msgstr "Sezionale"
-
-#. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_date_invoice
-msgid "Invoice Date"
-msgstr "Data Fattura"
