@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 14:46+0000\n"
-"PO-Revision-Date: 2017-07-26 14:46+0000\n"
+"POT-Creation-Date: 2017-08-07 15:11+0000\n"
+"PO-Revision-Date: 2017-08-07 15:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgid "Code group"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:246
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:247
 #, python-format
 msgid "Competenza:"
 msgstr ""
@@ -196,7 +196,7 @@ msgid "DDT Date"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:37
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:49
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_invoicing
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_invoicing
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
@@ -331,7 +331,7 @@ msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:398
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:402
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -392,7 +392,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:165
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:166
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
@@ -402,6 +402,11 @@ msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_invoice_id
 msgid "Invoice"
 msgstr "Račun"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_date_invoice
+msgid "Invoice Date"
+msgstr "Datum računa"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice_line
@@ -418,6 +423,11 @@ msgstr ""
 #, python-format
 msgid "Invoices from DDT"
 msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_journal_id
+msgid "Journal"
+msgstr "Dnevnik"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
@@ -483,7 +493,7 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:178
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:179
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Nekateri zbirniki nimajo statusa opravljeno"
@@ -503,7 +513,7 @@ msgid "Notes"
 msgstr "Opombe"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:28
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:37
 #, python-format
 msgid "Nothing to invoice"
 msgstr ""
@@ -565,13 +575,13 @@ msgid "Pickings"
 msgstr "Zbirniki"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:273
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:276
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:512
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:516
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -657,7 +667,7 @@ msgid "Selected Picking %s have different transportation reason"
 msgstr "Izbrani zbirnik %s ima drugačen razlog prevoza"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:149
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:150
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
 msgstr ""
@@ -707,6 +717,11 @@ msgstr "ID zaporedja"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Set done"
 msgstr "Nastavi kot opravljeno"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
+msgid "Setting"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_partner_shipping_id
@@ -768,8 +783,8 @@ msgid "Taxes"
 msgstr "Davki"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:369
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:373
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:377
 #, python-format
 msgid "There is no invoicable line."
 msgstr ""
