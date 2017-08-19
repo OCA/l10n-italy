@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Paolo Valier, 2016
-# Paolo Valier, 2016
+# Paolo Valier, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 02:58+0000\n"
-"PO-Revision-Date: 2017-07-24 15:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-07-29 03:35+0000\n"
+"PO-Revision-Date: 2017-08-11 19:01+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,7 +213,7 @@ msgstr "Fattura"
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Riga Fattura"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_withholding_tax
@@ -300,7 +300,7 @@ msgstr "Termini di pagamento"
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Template Prodotto"
 
 #. module: l10n_it_withholding_tax
 #: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_form
