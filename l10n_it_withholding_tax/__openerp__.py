@@ -10,11 +10,12 @@
               'Odoo Community Association (OCA)',
     'website': 'http://www.openforce.it',
     'license': 'AGPL-3',
-    "depends": ['account', 'account_voucher'],
+    "depends": ['account', 'account_voucher', 'product'],
     "data": [
         'views/account.xml',
         'views/voucher.xml',
         'views/withholding_tax.xml',
+        'views/product.xml',
         'wizard/create_wt_statement_view.xml',
         'security/ir.model.access.csv',
         'workflow.xml',

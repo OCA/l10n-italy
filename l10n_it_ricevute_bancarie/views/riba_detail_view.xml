@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!-- ====================================================== -->
+        <!--                 DETTAGLI RIBA - FILTRI                 -->
+        <!-- ====================================================== -->
+        <record id="view_detail_riba_filter" model="ir.ui.view">
+            <field name="name">riba.distinta.line.filtri</field>
+            <field name="model">riba.distinta.line</field>
+            <field name="arch" type="xml">
+                <search string="Distinte Ri.Ba.">
+                    <filter string="Draft" help="Draft"
+                            domain="[('state','=','draft')]"/>
+                    <filter string="Confirmed" help="Accepted"
+                            domain="[('state','=','accepted')]"/>
+                    <filter string="Paid" help="Paid"
+                            domain="[('state','=','paid')]"/>
+                    <filter string="Accredited" help="Accredited"
+                            domain="[('state','=','accredited')]"/>
+                    <filter string="Unsolved" help="Unsolved"
+                            domain="[('state','=','unsolved')]"/>
+                    <separator orientation="vertical"/>
+                    <field name="partner_id" />
+                    <field name="due_date" />
+               </search>
+            </field>
+        </record>
+
+        <!-- ====================================================== -->
+        <!--                 DETTAGLI RIBA TREE                     -->
+        <!-- ====================================================== -->
+        <record model="ir.ui.view" id="view_detail_riba_tree">
+            <field name="name">riba.distinta.line.tree</field>
+            <field name="model">riba.distinta.line</field>
+            <field name="arch" type="xml">
+                <tree string="Dettaglio distinte Ri.Ba.">
+                    <field name="sequence"/>
+                    <field name="invoice_number"/>
+                    <field name="invoice_date"/>
+                    <field name="partner_id"/>
+                    <field name="iban"/>
+                    <field name="amount" sum="Amount"/>
+                    <field name="due_date"/>
+                    <field name="state"/>
+                    <button name="%(riba_unsolved_action)d" type='action'
+                            attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}"
+                            string="Unsolved" icon="terp-dolar_ok!"/>
+                    <field name="type" invisible="1" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- ====================================================== -->
+        <!--                    ACTION DETTAGLI RIBA                -->
+        <!-- ====================================================== -->
+        <record id="detail_riba_action" model="ir.actions.act_window">
+            <field name="name">Dettaglio distinta Ri.Ba.</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">riba.distinta.line</field>
+            <field name="src_model">riba.distinta.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_detail_riba_filter"/>
+        </record>
+        
+        <!-- ====================================================== -->
+        <!--                    DETTAGLI RIBA - MENU                -->
+        <!-- ====================================================== -->
+        <menuitem name="Dettaglio distinte" parent="menu_riba"
+            id="menu_riba_detail" action="detail_riba_action" />
+
+    </data>
+</openerp>

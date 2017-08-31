@@ -3,13 +3,13 @@
 # * l10n_it_withholding_tax
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-31 15:00+0000\n"
-"PO-Revision-Date: 2016-05-14 05:28+0000\n"
+"POT-Creation-Date: 2017-07-26 02:58+0000\n"
+"PO-Revision-Date: 2017-07-28 05:31+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -175,7 +175,7 @@ msgid "Due"
 msgstr "Zapadlost"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:111
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:114
 #, python-format
 msgid ""
 "Error! You cannot have 2 pricelist versions that                     "
@@ -208,6 +208,11 @@ msgstr "ID"
 #: field:withholding.tax.statement,invoice_id:0
 msgid "Invoice"
 msgstr "Račun"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Postavka računa"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_withholding_tax
@@ -290,6 +295,11 @@ msgstr "Partnerji"
 #: field:withholding.tax,payment_term:0
 msgid "Payment Terms"
 msgstr "Plačilni pogoji"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_product_template
+msgid "Product Template"
+msgstr "Predloga proizvoda"
 
 #. module: l10n_it_withholding_tax
 #: view:withholding.tax:l10n_it_withholding_tax.view_withholding_tax_form
@@ -406,7 +416,7 @@ msgid "Warning!"
 msgstr "Opozorilo!"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:254
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:257
 #, python-format
 msgid ""
 "Warning! You cannot delet move linked to voucher.You                     "
@@ -492,6 +502,12 @@ msgstr "Izpisek davčnih odtegljajev"
 #: model:ir.ui.menu,name:l10n_it_withholding_tax.of_wt_main
 msgid "Withholding tax"
 msgstr "Davčni odtegljaj"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice.line,withholding_tax_exclude:0
+#: field:product.template,withholding_tax_exclude:0
+msgid "Withholding tax exclude"
+msgstr "Brez davčnega odtegljaja"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax

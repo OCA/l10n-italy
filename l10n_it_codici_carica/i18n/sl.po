@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_codici_carica
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-26 02:58+0000\n"
+"PO-Revision-Date: 2017-07-26 02:58+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,code:0
+msgid "Code"
+msgstr "Koda"
+
+#. module: l10n_it_codici_carica
+#: model:ir.model,name:l10n_it_codici_carica.model_codice_carica
+msgid "Codice Carica"
+msgstr "Koda nalaganja"
+
+#. module: l10n_it_codici_carica
+#: view:codice.carica:l10n_it_codici_carica.view_codice_carica_form
+#: view:codice.carica:l10n_it_codici_carica.view_codice_carica_tree
+msgid "Codice carica"
+msgstr "Koda nalaganja"
+
+#. module: l10n_it_codici_carica
+#: model:ir.ui.menu,name:l10n_it_codici_carica.menu_codice_carica
+msgid "Codici Carica"
+msgstr "Kode nalaganja"
+
+#. module: l10n_it_codici_carica
+#: model:ir.actions.act_window,name:l10n_it_codici_carica.action_codice_carica
+msgid "Codici carica"
+msgstr "Kode nalaganja"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: l10n_it_codici_carica
+#: field:codice.carica,name:0
+msgid "Name"
+msgstr "Naziv"
+
+#. module: l10n_it_codici_carica
+#: code:addons/l10n_it_codici_carica/models/codice_carica.py:19
+#, python-format
+msgid "The element with this code already exists"
+msgstr "Element s to kodo že obstaja"
