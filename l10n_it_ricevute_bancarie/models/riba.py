@@ -319,6 +319,9 @@ class RibaListLine(models.Model):
         'account.move.line', compute='_compute_lines', string='Payments')
     type = fields.Selection(
         string="Type", related='distinta_id.config_id.type', readonly=True)
+    config = fields.Char(
+        string="Configuration", related='distinta_id.config_id.name',
+        size=64, readonly=True, store=True)
 
     @api.multi
     def confirm(self):
