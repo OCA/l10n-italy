@@ -23,6 +23,7 @@
                     <separator orientation="vertical"/>
                     <field name="partner_id" />
                     <field name="due_date" />
+                    <field name="config_id" />
                </search>
             </field>
         </record>
@@ -35,6 +36,7 @@
             <field name="model">riba.distinta.line</field>
             <field name="arch" type="xml">
                 <tree string="Dettaglio distinte Ri.Ba.">
+                    <field name="config_id" />
                     <field name="sequence"/>
                     <field name="invoice_number"/>
                     <field name="invoice_date"/>
