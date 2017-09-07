@@ -36,11 +36,7 @@
             <field name="model">riba.distinta.line</field>
             <field name="arch" type="xml">
                 <tree string="Dettaglio distinte Ri.Ba.">
-<<<<<<< HEAD
                     <field name="config_id" />
-=======
-                    <field name="config" />
->>>>>>> 6785725853d7cd591833446c9c708483c2c56b3a
                     <field name="sequence"/>
                     <field name="invoice_number"/>
                     <field name="invoice_date"/>
