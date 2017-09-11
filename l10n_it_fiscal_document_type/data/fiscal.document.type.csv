@@ -1,0 +1,8 @@
+id,code,name,type,journal_id
+1,TD01,fattura,out_invoice,
+2,TD04,nota di credito,out_refund,
+3,TD05,nota di debito,in_refund,
+4,TD07,fattura semplificata,out_invoice,
+5,TD08,nota di credito semplificata,out_refund,
+6,TD10, fattura di acquisto intracomunitario beni,in_invoice,
+7,TD11, fattura di acquisto intracomunitario servizi,in_invoice,
