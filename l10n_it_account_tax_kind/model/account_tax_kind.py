@@ -17,6 +17,7 @@ class AccountTaxKind(models.Model):
     name = fields.Char(string='Name', required=True)
     display_name = fields.Char(string='Name', compute='_compute_display_name')
 
+    @api.depends('code', 'name')
     @api.multi
     def _compute_display_name(self):
         for record in self:
