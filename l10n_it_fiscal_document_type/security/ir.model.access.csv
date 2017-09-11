@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_fiscal_document_type_group_all","fiscal_document_type group_user_all","model_fiscal_document_type",,1,0,0,0
+"access_fiscal_document_type_group_user","fiscal_document_type group_user","model_fiscal_document_type","base.group_partner_manager",1,1,1,1
