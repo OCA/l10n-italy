@@ -9,8 +9,8 @@
     'name': 'Italian Localisation - Natura delle aliquote IVA',
     'version': '10.0.1.0.0',
     'category': 'Localisation/Italy',
-    'author': "Apulia Software s.r.l",
-    'website': 'http://www.apuliasoftware.it',
+    'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
+    'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': [
         'account',
