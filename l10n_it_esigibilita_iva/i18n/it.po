@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_esigibilita_iva
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-17 14:07+0000\n"
+"PO-Revision-Date: 2017-09-17 14:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: selection:account.tax,payability:0
+#. module: l10n_it_esigibilita_iva
+msgid "Deferred payability"
+msgstr "Differita"
+
+#: selection:account.tax,payability:0
+#. module: l10n_it_esigibilita_iva
+msgid "Immediate payability"
+msgstr "Immediata"
+
+#: selection:account.tax,payability:0
+#. module: l10n_it_esigibilita_iva
+msgid "Split payment"
+msgstr "Scissione dei pagamenti"
+
+#: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax
+#. module: l10n_it_esigibilita_iva
+msgid "Tax"
+msgstr "Imposta"
+
+#: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax_code
+#. module: l10n_it_esigibilita_iva
+msgid "Tax Code"
+msgstr "Conto imposta"
+
+#: field:account.tax,payability:0
+#. module: l10n_it_esigibilita_iva
+msgid "VAT payability"
+msgstr "Esigibilità IVA"
+
