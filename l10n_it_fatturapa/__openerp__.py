@@ -18,6 +18,7 @@
         'l10n_it_ipa',
         'l10n_it_rea',
         'base_iban',
+        'l10n_it_esigibilita_iva',
         ],
     "data": [
         'data/fatturapa_data.xml',
