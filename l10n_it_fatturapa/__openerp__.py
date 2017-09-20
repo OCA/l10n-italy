@@ -19,6 +19,7 @@
         'l10n_it_rea',
         'l10n_it_account_tax_kind',
         'base_iban',
+        'l10n_it_esigibilita_iva',
         ],
     "data": [
         'data/fatturapa_data.xml',
@@ -26,7 +27,6 @@
         'views/account_view.xml',
         'views/company_view.xml',
         'views/partner_view.xml',
-        'views/account_tax_view.xml',
         'security/ir.model.access.csv',
     ],
     "test": [],

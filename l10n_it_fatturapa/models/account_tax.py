@@ -24,13 +24,6 @@ from openerp.tools.translate import _
 
 class AccountTax(orm.Model):
     _inherit = 'account.tax'
-    _columns = {
-        'payability': fields.selection([
-            ('I', 'Immediate payability'),
-            ('D', 'Deferred payability'),
-            ('S', 'Split payment'),
-            ], string="VAT payability"),
-    }
 
     def get_tax_by_invoice_tax(self, cr, uid, invoice_tax, context=None):
         if ' - ' in invoice_tax:
