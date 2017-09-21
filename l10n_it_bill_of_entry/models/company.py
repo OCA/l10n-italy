@@ -12,5 +12,23 @@
 #
 ##############################################################################
 
-from . import models
-from . import tests
+from odoo import fields, models
+
+
+class Company(models.Model):
+    _inherit = 'res.company'
+
+    bill_of_entry_journal_id = fields.Many2one(
+        'account.journal', 'Bill of entry Storno journal',
+        help="Journal used for reconciliation of customs supplier",
+    )
+
+
+class AccountConfigSettings(models.TransientModel):
+    _inherit = 'account.config.settings'
+
+    bill_of_entry_journal_id = fields.Many2one(
+        'account.journal', related='company_id.bill_of_entry_journal_id',
+        string="Bill of entry Storno journal",
+        help="Journal used for reconciliation of customs supplier",
+    )

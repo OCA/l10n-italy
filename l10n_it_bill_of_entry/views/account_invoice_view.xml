@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="invoice_supplier_boe_form">
+        <field name="name">invoice.supplier.boe.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_name']" position="after">
+                <field name="customs_doc_type"
+                    attrs="{'readonly': ['|',('state', '!=', 'draft'), ('forwarder_bill_of_entry_ids', '!=', [])]}"/>
+            </xpath>
+            <xpath expr="//notebook/page[2]" position="after">
+                <page string="Customs" name="customs" attrs="{'invisible': [('customs_doc_type','=', False)]}">
+                    <separator string="Bill of entries" name="boe_no_supplier" colspan="4"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"/>
+                    <field name="supplier_bill_of_entry_ids"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'supplier_invoice')]}"/>
+                    <separator string="Supplier invoices" name="supplier_invoices" colspan="4"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
+                    <field name="supplier_invoice_ids"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"
+                        domain="[('customs_doc_type', '=', 'supplier_invoice')]"
+                        context="{'default_customs_doc_type': 'supplier_invoice'}"/>
+                    <group name="forwarder_invoice">
+                        <field name="forwarder_invoice_id"
+                            attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"
+                            domain="[('customs_doc_type','=', 'forwarder_invoice')]"
+                            context="{'default_customs_doc_type': 'forwarder_invoice'}"/>
+                    </group>
+                    <separator string="Bill of entries" name="boe_no_forwarder" colspan="4"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+                    <field name="forwarder_bill_of_entry_ids"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+                    <group name="storno">
+                        <field name="bill_of_entry_storno_id"
+                            attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="after">
+                <!--It seems attrs doesn't work -->
+                <field name="advance_customs_vat"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="invoice_line_boe_form">
+        <field name="name">invoice.line.boe.form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <group name="advance_customs_vat">
+                    <field name="advance_customs_vat"/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+</odoo>
