@@ -1,37 +1,18 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    @api.multi
-    def onchange_partner_id(self, type, partner_id, date_invoice=False,
-                            payment_term=False, partner_bank_id=False,
-                            company_id=False):
-        res = super(AccountInvoice, self).onchange_partner_id(
-            type, partner_id, date_invoice, payment_term, partner_bank_id,
-            company_id)
-        if partner_id:
-            partner = self.env['res.partner'].browse(partner_id)
-            fiscal_position = partner.property_account_position
-            res['value']['fiscal_document_type_id'] = \
-                self._get_document_fiscal_type(
-                    type=type, partner=partner,
-                    fiscal_position=fiscal_position)[0] or False
-        return res
-
-    @api.multi
-    def onchange_journal_id(self, journal_id=False):
-        res = super(AccountInvoice, self).onchange_journal_id(
-            journal_id=journal_id)
-        if journal_id:
-            journal = self.env['account.journal'].browse(journal_id)
-            res['value']['fiscal_document_type_id'] = (
-                self._get_document_fiscal_type(
-                    journal=journal)[0] or False)
-        return res
+    @api.onchange('partner_id', 'journal_id', 'type', 'fiscal_position_id')
+    def _set_document_fiscal_type(self):
+        dt = self._get_document_fiscal_type(
+            self.type, self.partner_id, self.fiscal_position_id,
+            self.journal_id)
+        if len(dt) == 1:
+            self.fiscal_document_type_id = dt[0]
 
     def _get_document_fiscal_type(self, type=None, partner=None,
                                   fiscal_position=None, journal=None):
