@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, fields, tools
+from openerp import models, fields
 
 
 class FiscalDocumentType(models.Model):
