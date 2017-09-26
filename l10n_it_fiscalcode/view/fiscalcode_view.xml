@@ -11,7 +11,7 @@
                     <label for="fiscalcode" />
                     <div name="fiscalcode_info">
                         <field name="fiscalcode" class="oe_inline" />
-                        <field name="individual" colspan="1" groups="base.group_extended" />
+                        <field name="individual" colspan="1" />
                     </div>
                 </xpath>
             </field>
