@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-17 14:07+0000\n"
-"PO-Revision-Date: 2017-09-17 14:07+0000\n"
+"POT-Creation-Date: 2017-09-26 14:58+0000\n"
+"PO-Revision-Date: 2017-09-26 14:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,33 +15,28 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: selection:account.tax,payability:0
 #. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
 msgid "Deferred payability"
 msgstr "Differita"
 
-#: selection:account.tax,payability:0
 #. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
 msgid "Immediate payability"
 msgstr "Immediata"
 
-#: selection:account.tax,payability:0
 #. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
 msgid "Split payment"
 msgstr "Scissione dei pagamenti"
 
-#: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax
 #. module: l10n_it_esigibilita_iva
+#: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax
 msgid "Tax"
 msgstr "Imposta"
 
-#: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax_code
 #. module: l10n_it_esigibilita_iva
-msgid "Tax Code"
-msgstr "Conto imposta"
-
-#: field:account.tax,payability:0
-#. module: l10n_it_esigibilita_iva
+#: model:ir.model.fields,field_description:l10n_it_esigibilita_iva.field_account_tax_payability
 msgid "VAT payability"
 msgstr "Esigibilità IVA"
 
