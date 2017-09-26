@@ -335,14 +335,8 @@ class faturapa_summary_data(orm.Model):
     _name = "faturapa.summary.data"
     _columns = {
         'tax_rate': fields.float('Tax Rate'),
-        'non_taxable_nature': fields.selection([
-            ('N1', 'escluse ex art. 15'),
-            ('N2', 'non soggette'),
-            ('N3', 'non imponibili'),
-            ('N4', 'esenti'),
-            ('N5', 'regime del margine'),
-            ('N6', 'inversione contabile (reverse charge)'),
-        ], string="Non taxable nature"),
+        'kind_id': fields.many2one(
+            'account.tax.kind', string="Non taxable nature"),
         'incidental charges': fields.float('Incidental Charges'),
         'rounding': fields.float('Rounding'),
         'amount_untaxed': fields.float('Amount untaxed'),

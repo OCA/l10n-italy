@@ -582,14 +582,14 @@ class WizardExportFatturapa(orm.TransientModel):
                 )
                 DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
             if aliquota == 0.0:
-                if not line.invoice_line_tax_id[0].non_taxable_nature:
+                if not line.invoice_line_tax_id[0].kind_id.code:
                     raise orm.except_orm(
                         _('Error'),
                         _("No 'nature' field for tax %s") %
                         line.invoice_line_tax_id[0].name)
                 DettaglioLinea.Natura = line.invoice_line_tax_id[
                     0
-                ].non_taxable_nature
+                ].kind_id.code
             if line.admin_ref:
                 DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
             line_no += 1
@@ -619,11 +619,11 @@ class WizardExportFatturapa(orm.TransientModel):
                 Imposta='%.2f' % tax_line.amount
                 )
             if tax.amount == 0.0:
-                if not tax.non_taxable_nature:
+                if not tax.kind_id:
                     raise orm.except_orm(
                         _('Error'),
                         _("No 'nature' field for tax %s") % tax.name)
-                riepilogo.Natura = tax.non_taxable_nature
+                riepilogo.Natura = tax.kind_id.code
                 if not tax.law_reference:
                     raise orm.except_orm(
                         _('Error'),

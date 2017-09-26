@@ -10,7 +10,7 @@
     'version': '8.0.1.0.0',
     'category': 'Localisation/Italy',
     'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
-    'website': 'https://odoo-community.org/',
+    'website': 'https://www.odoo-italia.net/',
     'license': 'AGPL-3',
     'depends': [
         'account',

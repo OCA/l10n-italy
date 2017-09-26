@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='sequence']" position="after">
                     <field name="kind_id" />
+                    <field name="law_reference" attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('kind_id', '=', False),('type_tax_use', '=', 'purchase')]}"></field>
                 </xpath>
             </field>
         </record>
