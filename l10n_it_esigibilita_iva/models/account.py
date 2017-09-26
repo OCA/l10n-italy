@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Alessandro Camilli - Openforce
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from openerp import models, fields
 
 
 class AccountTax(models.Model):
