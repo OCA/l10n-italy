@@ -39,13 +39,11 @@ class AccountInvoice(models.Model):
         if not doc_id and fiscal_position:
             doc_id = fiscal_position.fiscal_document_type_id.id or False
         # Journal
-        if not doc_id and journal:
-            dt = self.env['fiscal.document.type'].search(
-                [('type', '=', type),
-                 ('journal_ids', 'in', [journal.id])], ).ids
         if not doc_id:
-            dt = self.env['fiscal.document.type'].search(
-                [('type', '=', type), ],).ids
+            dt = self.env['fiscal.document.type'].search([(self.type,'=',True),
+                                     ('journal_id', '=', self.journal_id.id)]).ids
+        if not doc_id:
+            dt = self.env['fiscal.document.type'].search([(self.type,'=',True)]).ids
         if doc_id:
             dt.append(doc_id)
         return dt
