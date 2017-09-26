@@ -208,6 +208,10 @@ class RibaEffectResult(models.TransientModel):
 
     @api.multi
     def action_payment_executed(self):
+        '''
+            @note: This function allow to change the 
+            state of the class in paid
+        '''
         self.write({'state' : 'paid'})
         partner_INFO = self.get_detail_riba_partner_INFO()
         totale_importo = self.create_link_to_Linked_Wiz_RiBa(partner_INFO,'paid')
