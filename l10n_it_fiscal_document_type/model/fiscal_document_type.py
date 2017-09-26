@@ -16,7 +16,6 @@ class FiscalDocumentType(models.Model):
     in_refund = fields.Boolean(string='Nota di debito')
     priority = fields.Integer(string='Priority', default='3')
 
-
     journal_ids = fields.Many2many(
         'account.journal',
         'account_journal_fiscal_doc_type_rel',
