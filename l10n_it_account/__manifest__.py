@@ -13,6 +13,7 @@
     'license': 'AGPL-3',
     "depends": ['account'],
     "data": [
+        'views/account_setting.xml',
         'reports/account_reports_view.xml',
     ],
     'installable': True,
