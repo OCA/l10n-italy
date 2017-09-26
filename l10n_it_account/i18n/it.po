@@ -65,3 +65,8 @@ msgid ""
 msgstr ""
 "Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro"
 " IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
+
+#. module: l10n_it_account
+#: model:ir.ui.menu,name:l10n_it_account.account_italian_localization
+msgid "Italian Localization"
+msgstr "Fiscalità Italiana"
