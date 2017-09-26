@@ -53,23 +53,8 @@
 			    		</field>
 			    	</group> 
 			    	<newline></newline>
+
 			    	<group name="account_and_amount" colspan="2">
-				    	<group name="effects" string="Effects account and amount">
-				    		<field name="effects_account_id" nolabel="1"></field>
-				    		<separator orientation="vertical"></separator>
-				    		<field name="effects_amount" nolabel="1"></field>
-				    	</group>
-				    	<group name="riba_bank" string="RiBa Bank account and amount">
-				    		<field name="riba_bank_account_id" nolabel="1"></field>
-				    		<separator orientation="vertical"></separator>
-				    		<field name="riba_bank_amount" nolabel="1"></field>
-				    	</group>
-				    	<group name="overdue_effects" string="Overdue Effects account and amount"
-				    			attrs="{'invisible' : [('state','not in','unsolved')]}">
-				    		<field name="overdue_effects_account_id" nolabel="1"></field>
-				    		<separator orientation="vertical"></separator>
-				    		<field name="overdue_effects_amount" nolabel="1"></field>
-				    	</group>
 				    	<group name="general_bank" string="Bank account and amount"
 				    			attrs="{'invisible' : [('state','not in','unsolved')]}">
 				    		<field name="bank_account_id" nolabel="1" on_change="_onchange_account_id_bank(bank_account_id)" ></field>
@@ -88,8 +73,7 @@
 		    	</group>
                 
                 <footer>
-                	<button name="create_new_movement" string="Execute operation" class="oe_highlight" type="object"
-                			attrs="{'invisible' : [('state','not in','paid')]}" context="{'keyword' : 'paid'}"></button>
+                    <button name="skip" string="Skip and confirm the unsolved state" type="object" class="oe_inline"></button>
                 	<button name="create_new_movement" string="Execute operation" class="oe_highlight" type="object"
                 	 		attrs="{'invisible' : [('state','not in','unsolved')]}" context="{'keyword' : 'unsolved'}"></button>
                     <button string="Cancel" special="cancel" class="oe_link"></button>
