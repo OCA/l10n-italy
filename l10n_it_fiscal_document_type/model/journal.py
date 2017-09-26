@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, api
-from openerp.exceptions import Warning as UserError
-from openerp.tools.translate import _
+from odoo import models, api
+from odoo.exceptions import Warning as UserError
+from odoo.tools.translate import _
 
 
 class AccountJournal(models.Model):
