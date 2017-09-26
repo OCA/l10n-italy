@@ -8,7 +8,11 @@
                 <tree string="Tipi di documento fiscale">
                     <field name="code"/>
                     <field name="name"/>
-                    <field name="type"/>
+                    <field name="out_invoice"/>
+                    <field name="in_invoice"/>
+                    <field name="out_refund"/>
+                    <field name="in_refund"/>
+
                 </tree>
             </field>
         </record>
@@ -21,7 +25,11 @@
                     <group>
                         <field name="code"/>
                         <field name="name"/>
-                        <field name="type"/>
+                        <field name="out_invoice"/>
+                        <field name="in_invoice"/>
+                        <field name="out_refund"/>
+                        <field name="in_refund"/>
+
                         <field name="journal_ids" widget="many2many_tags"/>
                     </group>
                 </form>
