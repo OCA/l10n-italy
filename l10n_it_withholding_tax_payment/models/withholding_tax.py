@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright © 2015 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
@@ -157,3 +157,10 @@ class WithholdingTaxMovePayment(models.Model):
                 # Wt move set to due
                 for wt_move in move.line_ids:
                     wt_move.action_paid()
+
+    @api.multi
+    def unlink(self):
+        for payment in self:
+            if payment.state != 'draft':
+                raise ValidationError(_("You can only delete draft payments"))
+        return super(WithholdingTaxMovePayment, self).unlink()
