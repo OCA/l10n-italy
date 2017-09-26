@@ -75,7 +75,7 @@
                         <newline/>
                         <group>
                             <field name="line_ids" nolabel="1">
-                                <tree>
+                                <tree delete="false">
                                     <field name="date"/>
                                     <field name="partner_id"/>
                                     <field name="withholding_tax_id"/>
