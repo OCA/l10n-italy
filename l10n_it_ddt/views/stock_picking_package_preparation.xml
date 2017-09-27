@@ -75,7 +75,7 @@
                 <field name="ddt_number" readonly="1"
                        attrs="{'invisible':[('ddt_number', '=', ''), ('ddt_type_id', '=', False)]}"/>
             </field>
-            <field name="partner_id" position="before">
+            <field name="partner_id" position="after">
                 <field name="ddt_type_id" widget="selection"/>
             </field>
             <field name="partner_id" position="after">
