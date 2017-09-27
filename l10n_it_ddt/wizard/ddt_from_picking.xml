@@ -7,7 +7,19 @@
             <field name="arch" type="xml">
               <form string="DDT from Pickings">
                 <separator string="Picking" />
-                    <field string="Pickings" name="picking_ids" readonly="1"/>
+                    <field string="Pickings" name="picking_ids">
+                    <tree edit="false" delete="true" create="false">
+                        <field name="name"/>
+                        <field name="ddt_ids"/>
+                        <field name="ddt_type"/>
+                        <field name="location_dest_id"/>
+                        <field name="partner_id"/>
+                        <field name="min_date"/>
+                        <field name="origin"/>
+                        <field name="backorder_id"/>
+                        <field name="state"/>
+                    </tree>
+                    </field>
                     <footer>
                         <button name="create_ddt" string="Create" type="object" class="oe_highlight"/>
                         or
