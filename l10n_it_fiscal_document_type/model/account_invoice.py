@@ -22,6 +22,17 @@ class AccountInvoice(models.Model):
                     fiscal_position=fiscal_position)[0] or False
         return res
 
+    @api.multi
+    def onchange_journal_id(self, journal_id=False):
+        res = super(AccountInvoice, self).onchange_journal_id(
+            journal_id=journal_id)
+        if journal_id:
+            journal = self.env['account.journal'].browse(journal_id)
+            res['value']['fiscal_document_type_id'] = (
+                self._get_document_fiscal_type(
+                    journal=journal)[0] or False)
+        return res
+
     def _get_document_fiscal_type(self, type=None, partner=None,
                                   fiscal_position=None, journal=None):
         dt = []
@@ -39,37 +50,15 @@ class AccountInvoice(models.Model):
         if not doc_id and fiscal_position:
             doc_id = fiscal_position.fiscal_document_type_id.id or False
         # Journal
-        if not doc_id:
+        if not doc_id and journal:
             dt = self.env['fiscal.document.type'].search([
-                (type, '=', True),
-                ('journal_ids', 'in', [self.journal_id.id])]).ids
+                ('journal_ids', 'in', [journal.id])]).ids
         if not doc_id and not dt:
             dt = self.env['fiscal.document.type'].search([
                 (type, '=', True)]).ids
         if doc_id:
             dt.append(doc_id)
         return dt
-
-    @api.onchange('partner_id', 'journal_id', 'type')
-    def _set_document_fiscal_type(
-            self, type=None, partner=None, fiscal_position=None, journal=None):
-        """
-        - In base alla tipologia del documento vedere se nel partner è
-            impostato il tipo documento nella sezione acquisti o vendite
-        - Se non trovo il tipo di documento, navigare la posizione fiscale del
-            partner per trovare il tipo di documento fiscale
-        - Se non c'è nulla nel partner, vedere se nella tabella esiste un
-            elemento che risponda alla selezione x tipo documento e sezionale
-        - Se non c'è nessuna relazione tipo documento-sezionale, cercare solo
-            x tipo documento.
-        - Se non c'è nulla --> raise
-        """
-        for invoice in self:
-            dt = invoice._get_document_fiscal_type(
-                invoice.type, invoice.partner_id, invoice.fiscal_position,
-                invoice.journal_id
-            )
-        return {'domain': {'fiscal_document_type_id': [('id', 'in', dt)]}}
 
     fiscal_document_type_id = fields.Many2one(
         'fiscal.document.type',
