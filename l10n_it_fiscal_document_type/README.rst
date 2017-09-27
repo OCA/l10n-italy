@@ -13,6 +13,8 @@ Configuration
 
 Contabilità --> Configurazione --> Varie
 
+Nei vari tipi di documento fiscale, inserire i sezionali relativi
+
 Usage
 =====
 
@@ -35,6 +37,7 @@ Contributors
 ------------
 
 * Alessandro Camilli <alessandrocamilli@openforce.it>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 Do not contact contributors directly about support or help with technical issues.
 
