@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl
-   :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/lgpl
+   :alt: License: LGPL-3
 
 ================
 Account Tax Kind
@@ -32,7 +32,7 @@ open the tax to modify and set a Kind value
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/122/8.0
+   :target: https://runbot.odoo-community.org/runbot/122/10.0
 
 Bug Tracker
 ===========
@@ -54,6 +54,7 @@ Contributors
 ------------
 
 * Apruzzese Francesco <f.apruzzese@apuliasoftware.it>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 Do not contact contributors directly about support or help with technical issues.
 
