@@ -17,3 +17,4 @@ from . import partner
 from . import account
 from . import stock
 from . import sale
+from . import stock_location
