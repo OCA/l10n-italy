@@ -201,9 +201,9 @@ class Parser(report_sxw.rml_parse):
     def get_tax_by_tax_code(self, tax_code_id):
         # assumendo l'univocità fra tax code e tax senza genitore, risale
         # all account.tax collegato al tax code passato al metodo
+
         obj_tax = self.pool.get('account.tax')
         tax_ids = obj_tax.search(self.cr, self.uid, [
-            '&',
             '&',
             '|',
             ('base_code_id', '=', tax_code_id),
@@ -212,21 +212,18 @@ class Parser(report_sxw.rml_parse):
             '|',
             ('ref_base_code_id', '=', tax_code_id),
             ('ref_tax_code_id', '=', tax_code_id),
-            ('parent_id', '=', False),
-            ('price_include', '=', False),
+            ('parent_id', '=', False)
         ])
         if not tax_ids:
             # I'm in the case of partially deductible VAT
             child_tax_ids = obj_tax.search(self.cr, self.uid, [
-                '&',
                 '|',
                 ('base_code_id', '=', tax_code_id),
                 '|',
                 ('tax_code_id', '=', tax_code_id),
                 '|',
                 ('ref_base_code_id', '=', tax_code_id),
-                ('ref_tax_code_id', '=', tax_code_id),
-                ('price_include', '=', False),
+                ('ref_tax_code_id', '=', tax_code_id)
             ])
             for tax in obj_tax.browse(self.cr, self.uid, child_tax_ids):
                 if tax.parent_id:
@@ -235,6 +232,17 @@ class Parser(report_sxw.rml_parse):
                 else:
                     if tax.id not in tax_ids:
                         tax_ids.append(tax.id)
+        # Nel caso in cui due imposte (una con iva inclusa nel prezzo e
+        # una con iva esclusa dal prezzo), utilizzino lo stesso account
+        # tax code o lo stesso account base code, verrà utilizzata solo
+        # quella con iva esclusa dal prezzo.
+        if len(tax_ids) > 1:
+            tax_ids_temp = []
+            for tax in obj_tax.browse(self.cr, self.uid, tax_ids):
+                if not tax.price_include:
+                    tax_ids_temp.append(tax.id)
+            tax_ids = tax_ids_temp
+
         if len(tax_ids) != 1:
             raise Exception(
                 _("Tax code %s is not linked to 1 and only 1 tax")
