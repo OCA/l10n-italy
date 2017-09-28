@@ -221,12 +221,6 @@ msgid "Date"
 msgstr "Data"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
-#: selection:faturapa.summary.data,payability:0
-msgid "Deferred payability"
-msgstr "Esigibilità Differita"
-
-#. module: l10n_it_fatturapa
 #: field:account.invoice,delivery_address:0
 msgid "Delivery Address"
 msgstr "Indirizzo consegna"
@@ -513,12 +507,6 @@ msgid "IVA a credito 22% (imponibile)"
 msgstr "IVA a credito 22% (imponibile)"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
-#: selection:faturapa.summary.data,payability:0
-msgid "Immediate payability"
-msgstr "Esigibilità Immediata"
-
-#. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_liquidation:0
 msgid "In liquidation"
 msgstr "In liquidazione"
@@ -610,12 +598,6 @@ msgid "Last Updated on"
 msgstr "Data ultimo aggiornamento"
 
 #. module: l10n_it_fatturapa
-#: field:account.tax,law_reference:0
-#: field:faturapa.summary.data,law_reference:0
-msgid "Law reference"
-msgstr "Rif. Normativo"
-
-#. module: l10n_it_fatturapa
 #: selection:account.invoice,ftpa_withholding_type:0
 msgid "Legal Person"
 msgstr "Persona giuridica"
@@ -698,13 +680,6 @@ msgstr "Non Imponibile"
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_ns
 msgid "Non soggetto Iva"
 msgstr "Non soggetto Iva"
-
-#. module: l10n_it_fatturapa
-#: field:account.tax,non_taxable_nature:0
-#: field:faturapa.summary.data,non_taxable_nature:0
-#: field:welfare.fund.data.line,fund_nature:0
-msgid "Non taxable nature"
-msgstr "Natura"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_liquidation:0
@@ -1006,12 +981,6 @@ msgid "Single Partner"
 msgstr "Partner singolo"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
-#: selection:faturapa.summary.data,payability:0
-msgid "Split payment"
-msgstr "Scissione pagamenti"
-
-#. module: l10n_it_fatturapa
 #: field:account.invoice,stamp_amount:0
 msgid "Stamp Amount"
 msgstr "Importo bollo"
@@ -1102,11 +1071,6 @@ msgid ""
 "Used when company sends invoices to a third party and they send invoices to "
 "SDI"
 msgstr "Utilizzato quando la fattura viene inviata al SDI tramite un tezo intermediario del soggetto cedente prestatore"
-
-#. module: l10n_it_fatturapa
-#: field:account.tax,payability:0 field:faturapa.summary.data,payability:0
-msgid "VAT payability"
-msgstr "Esigibilità Iva"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,transport_vaicle:0
