@@ -46,25 +46,41 @@ class WizardRegistroIva(models.TransientModel):
             self.from_date = self.date_range_id.date_start
             self.to_date = self.date_range_id.date_end
 
-    def print_registro(self):
-        wizard = self
+    def _get_move_ids(self, wizard):
         move_ids = self.env['account.move'].search([
             ('date', '>=', self.from_date),
             ('date', '<=', self.to_date),
             ('journal_id', 'in', [j.id for j in self.journal_ids]),
             ('state', '=', 'posted'),
             ], order='date, name')
+
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
+
+        return [move.id for move in move_ids]
+
+    def print_registro(self):
+        wizard = self
+        move_ids = []
+
+        move_ids = self._get_move_ids(wizard)
+
+        if not move_ids:
+            raise UserError(_('No documents found in the current selection'))
+
         datas_form = {}
         datas_form['from_date'] = wizard.from_date
         datas_form['to_date'] = wizard.to_date
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.layout_type
-        list_id = []
-        for move in move_ids:
-            list_id.append(move.id)
+
+        lang_code = self.env.user.company_id.partner_id.lang
+        lang = self.env['res.lang']
+        lang_id = lang._lang_get(lang_code)
+        date_format = lang_id.date_format
+        datas_form['date_format'] = date_format
+
         if wizard.tax_registry_id:
             datas_form['tax_registry_name'] = wizard.tax_registry_id.name
         else:
@@ -72,7 +88,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form['only_totals'] = wizard.only_totals
         report_name = 'l10n_it_vat_registries.report_registro_iva'
         datas = {
-            'ids': list_id,
+            'ids': move_ids,
             'model': 'account.move',
             'form': datas_form
         }
