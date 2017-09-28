@@ -137,14 +137,7 @@ class WelfareFundDataLine(models.Model):
 
     name = fields.Many2one(
         'welfare.fund.type', string="Welfare Fund Type")
-    fund_nature = fields.Selection([
-        ('N1', 'escluse ex art. 15'),
-        ('N2', 'non soggette'),
-        ('N3', 'non imponibili'),
-        ('N4', 'esenti'),
-        ('N5', 'regime del margine'),
-        ('N6', 'inversione contabile (reverse charge)'),
-    ], string="Non taxable nature")
+    kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
     welfare_rate_tax = fields.Float('Welfare Rate tax')
     welfare_amount_tax = fields.Float('Welfare Amount tax')
     welfare_taxable = fields.Float('Welfare Taxable')
