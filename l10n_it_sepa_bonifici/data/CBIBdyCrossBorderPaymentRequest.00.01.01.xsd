@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Dario Delle Noci (CONSORZIO CUSTOMER TO BUSINESS INTERACTION - CBI) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:PMRQ="urn:CBI:xsd:CBICrossBorderPaymentRequestLogMsg.00.01.01" xmlns:SGNT="urn:CBI:xsd:CBISgnInf.001.04" xmlns="urn:CBI:xsd:CBIBdyCrossBorderPaymentRequest.00.01.01" targetNamespace="urn:CBI:xsd:CBIBdyCrossBorderPaymentRequest.00.01.01" elementFormDefault="qualified">
+	<!-- Namespace import -->
+	<xs:import namespace="urn:CBI:xsd:CBICrossBorderPaymentRequestLogMsg.00.01.01" schemaLocation="CBICrossBorderPaymentRequestLogMsg.00.01.01.xsd"/>
+	<xs:import namespace="urn:CBI:xsd:CBISgnInf.001.04" schemaLocation="CBISgnInf.001.04.xsd"/>
+	<xs:element name="CBIBdyCrossBorderPaymentRequest" type="CBIBdyCrossBorderPaymentRequest.00.01.01"/>
+	<!-- Message Body structure definition -->
+	<xs:complexType name="CBIBdyCrossBorderPaymentRequest.00.01.01">
+		<xs:sequence>
+			<xs:element name="CBIEnvelCBICrossBorderPaymentRequest" type="CBIEnvelCBICrossBorderPaymentRequest.00.01.01" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Envel Payment Status Report structure definition -->
+	<xs:complexType name="CBIEnvelCBICrossBorderPaymentRequest.00.01.01">
+		<xs:choice>
+			<xs:element name="CBICrossBorderPaymentRequestLogMsg" type="PMRQ:CBICrossBorderPaymentRequestLogMsg.00.01.01"/>
+			<xs:element name="CBISgnInf" type="SGNT:CBISgnInf.001.04"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
