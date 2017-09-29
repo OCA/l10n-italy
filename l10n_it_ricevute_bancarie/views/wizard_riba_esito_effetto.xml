@@ -75,7 +75,7 @@
                 <footer>
                     <button name="skip" string="Skip and confirm the unsolved state" type="object" class="oe_inline"></button>
                 	<button name="create_new_movement" string="Execute operation" class="oe_highlight" type="object"
-                	 		attrs="{'invisible' : [('state','not in','unsolved')]}" context="{'keyword' : 'unsolved'}"></button>
+                	 		attrs="{'invisible' : [('state','not in','unsolved')]}"></button>
                     <button string="Cancel" special="cancel" class="oe_link"></button>
                 </footer>
             </form>
