@@ -6,12 +6,12 @@
             <field name="name">Create Invoice</field>
             <field name="model">ddt.create.invoice</field>
             <field name="arch" type="xml">
-              <form string="DdT Create Invoice">
-                  <group>
-                    <field name="journal_id" domain="[('type', 'in', ['sale', 'sale_refund'])]"/>
-                    <field name="date"/>
-                  </group>
-                    <strong>Invoices created will group DDT by partner</strong>
+                <form string="DdT Create Invoice">
+                    <group>
+                        <field name="journal_id" domain="[('type', 'in', ['sale', 'sale_refund'])]"/>
+                        <field name="date"/>
+                        <field name="group" />
+                    </group>
                     <footer>
                         <button name="create_invoice" string="Create" type="object" class="oe_highlight"/>
                         or
