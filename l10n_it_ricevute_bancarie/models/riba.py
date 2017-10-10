@@ -207,7 +207,8 @@ class RibaList(models.Model):
             workflow.trg_create(
                 self.env.user.id, 'riba.distinta', riba_list.id, self._cr)
             riba_list.state = 'draft'
-            riba_list.line_ids.state = 'draft'
+            for line in riba_list.line_ids:
+                line.state = 'draft'
 
 
 class RibaListLine(models.Model):
