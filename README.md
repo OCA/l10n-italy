@@ -6,17 +6,9 @@
 Odoo Italia Modules
 ===================
 
-Italian modules for odoo (formerly OpenERP)
+Italian OCA mailing list: italy@odoo-community.org
 
-**8.0** https://github.com/OCA/l10n-italy/tree/8.0
-
-**7.0** https://github.com/OCA/l10n-italy/tree/7.0
-
-**6.1** https://github.com/OCA/l10n-italy/tree/6.1
-
-**6.0** https://github.com/OCA/l10n-italy/tree/6.0
-
-**5.0** https://github.com/OCA/l10n-italy/tree/5.0
+To join, go to [OCA mailing lists](https://odoo-community.org/groups), search for "Italy" and Subscribe
 
 
 Odoo Italia Association
