@@ -2,28 +2,31 @@
 # Copyright 2017 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Reverse Charge IVA',
-    'version': '8.0.2.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Reverse Charge for Italy',
-    'author': 'Abstract, Agile Business Group,'
-              'Odoo Community Association (OCA)',
-    'license': 'AGPL-3',
+    'author': 'Odoo Italia Network,Odoo Community Association (OCA)',
+    'license': 'LGPL-3',
     'website': 'https://www.odoo-italia.net',
     'depends': [
         'account_accountant',
-        'account_invoice_entry_date',
+        #'account_invoice_entry_date',
         'account_cancel',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'data/rc_type.xml',
         'security/ir.model.access.csv',
         'views/account_invoice_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_rc_type_view.xml',
 
     ],
+    'demo': ['demo/reverse_charge_demo.yml'],
     'installable': True,
 }
