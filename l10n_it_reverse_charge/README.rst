@@ -28,135 +28,75 @@ Configuration
 
 To configure this module, you need to:
 
-create tax **22% intra UE** Vendita:
+Creare l'imposta **22% intra UE** Vendita:
 
 .. figure:: /l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
    :alt: 22% intra UE Vendita
    :width: 600 px
 
-create tax **22% intra UE** Acquisti:
+Creare l'imposta **22% intra UE** Acquisti:
 
 .. figure:: /l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
   :alt: 22% intra UE Acqisti
   :width: 600 px
 
-create reverse charge **Autofattura**:
+Creare l'imposta **22% extra UE** Vendita:
+
+.. figure:: /l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
+   :alt: 22% extra UE Vendita
+   :width: 600 px
+
+Creare l'imposta **22% extra UE** Acquisti:
+
+.. figure:: /l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
+  :alt: 22% extra UE Acqisti
+  :width: 600 px
+
+Creare il tipo reverse charge **Intra UE (autofattura)**:
 
 .. figure:: /l10n_it_reverse_charge/static/description/rc_selfinvoice.png
   :alt: reverse charge con Autofattura
   :width: 600 px
 
-create reverse charge **Autofattura ExtraCee** :
+Il sezionale autofattura deve essere di tipo 'vendita'
+
+Creare il tipo reverse charge **Extra-EU (autofattura)** :
 
 .. figure:: /l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
   :alt: reverse charge con Autofattura
   :width: 600 px
 
-with transitory account created as follows:
+Il 'Sezionale autofattura passiva' deve essere di tipo 'acquisto'
+
+Il 'Conto transitorio autofattura' va configurato come segue:
 
 .. figure:: /l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
   :alt: conto transitorio Autofattura
   :width: 600 px
 
-Self Invoice Payment Journal, in Default Debit Account and Default Credit Account must have the Self Invoice Transitory Account.
+Il 'Sezionale pagamento autofattura' deve essere configurato con il 'Conto transitorio autofattura':
 
-Then, in fiscal position, set the 'RC Type'
+.. figure:: /l10n_it_reverse_charge/static/description/sezionale_riconciliazione.png
+  :alt: Sezionale pagamento autofattura
+  :width: 600 px
+
+Nella posizione fiscale, impostare il tipo reverse charge
 
 .. figure:: /l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
   :alt: Impostazione posizioni fiscali Intra CEE
   :width: 600 px
 
-Example :
-**1)** Intra CEE Autofattura e stampa sui registri con Ragione sociale del
-    fornitore. Es. imponibile 100 iva 22 .
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple1_0.png
-  :alt: Esempio 1
+.. figure:: /l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+  :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
-scritture generate
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple1_1.png
-  :alt: Esempio 1
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple1_2.png
-  :alt: Esempio 1
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple1_3.png
-  :alt: Esempio 1
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple1_4.png
-  :alt: Esempio 1
-  :width: 600 px
-
-**2)** Extra CEE Autofattura e stampa sui registri con Ragione sociale
-del'azienda. Es. imponibile 200 iva 44 .
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple2_0.png
-  :alt: Esempio 2
-  :width: 600 px
-
-scritture generate
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple2_1.png
-  :alt: Esempio 2
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple2_2.png
-  :alt: Esempio 2
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple2_3.png
-  :alt: Esempio 2
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple2_4.png
-  :alt: Esempio 2
-  :width: 600 px
-
-**3)** Extra CEE Autofattura e stampa sui registri con Ragione sociale
-del'azienda senza che il fornitore venga riportato sui registri. La prima
-scritture generata è senza iva. Es. imponibile 50 iva 11 .
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple3_0.png
-  :alt: Esempio 3
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple3_6.png
-  :alt: Esempio 3
-  :width: 600 px
-
-scritture generate
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple3_1.png
-  :alt: Esempio 3
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple3_2.png
-  :alt: Esempio 3
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple3_3.png
-  :alt: Esempio 3
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple3_4.png
-  :alt: Esempio 3
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/exemple3_5.png
-  :alt: Esempio 3
-  :width: 600 px
 
 Usage
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/122/8.0
+   :target: https://runbot.odoo-community.org/runbot/122/10.0
 
 Bug Tracker
 ===========
@@ -177,7 +117,7 @@ Images
 Contributors
 ------------
 
-* Davide Corio <davide.corio@abstract.it>
+* Davide Corio
 * Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com
 
