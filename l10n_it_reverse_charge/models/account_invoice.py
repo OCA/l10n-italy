@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Davide Corio
+# Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import api, fields, models
-from openerp.exceptions import Warning as UserError
-from openerp.tools.translate import _
+#### questo è in working process
+#### tutti gli altri models sono ok compresi gli xml
+
+from odoo import api, fields, models
+from odoo.exceptions import Warning as UserError
+from odoo.tools.translate import _
 
 
 class AccountInvoiceLine(models.Model):
@@ -13,7 +18,7 @@ class AccountInvoiceLine(models.Model):
 
     @api.onchange('invoice_line_tax_id')
     def onchange_invoice_line_tax_id(self):
-        fposition = self.invoice_id.fiscal_position
+        fposition = self.invoice_id.fiscal_position_id
         self.rc = True if fposition.rc_type_id else False
 
     rc = fields.Boolean("RC")
@@ -33,10 +38,11 @@ class AccountInvoice(models.Model):
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
 
-    def rc_inv_line_vals(self, line):
+    def rc_inv_line_vals(self, line): ## ok verificata
         return {
+            'product_id': line.product_id.id,
             'name': line.name,
-            'uos_id': line.uos_id.id,
+            'uom_id': line.product_id.uom_id.id,
             'price_unit': line.price_unit,
             'quantity': line.quantity,
             }
@@ -47,22 +53,22 @@ class AccountInvoice(models.Model):
             'type': 'out_invoice',
             'account_id': account.id,
             'journal_id': rc_type.journal_id.id,
-            'invoice_line': lines,
-            'date_invoice': self.registration_date,
-            'registration_date': self.registration_date,
+            'invoice_line_ids': lines,
+            'date_invoice': self.date,
+            'date': self.date,
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
             }
 
     def get_inv_line_to_reconcile(self):
-        for inv_line in self.move_id.line_id:
+        for inv_line in self.move_id.line_ids:
             if inv_line.credit:
                 return inv_line
         return False
 
     def get_rc_inv_line_to_reconcile(self, invoice):
-        for inv_line in invoice.move_id.line_id:
+        for inv_line in invoice.move_id.line_ids:
             if inv_line.debit:
                 return inv_line
         return False
@@ -70,8 +76,8 @@ class AccountInvoice(models.Model):
     def rc_payment_vals(self, rc_type):
         return {
             'journal_id': rc_type.payment_journal_id.id,
-            'period_id': self.period_id.id,
-            'date': self.registration_date,
+            # 'period_id': self.period_id.id,
+            'date': self.date,
             }
 
     def rc_credit_line_vals(self, journal, move):
@@ -100,8 +106,8 @@ class AccountInvoice(models.Model):
     def rc_invoice_payment_vals(self, rc_type):
         return {
             'journal_id': rc_type.payment_journal_id.id,
-            'period_id': self.period_id.id,
-            'date': self.registration_date,
+            # 'period_id': self.period_id.id,
+            'date': self.date,
             }
 
     def rc_payment_credit_line_vals(self, invoice, move):
@@ -125,9 +131,11 @@ class AccountInvoice(models.Model):
             }
 
     def reconcile_supplier_invoice(self):
-        rc_type = self.fiscal_position.rc_type_id
+        rc_type = self.fiscal_position_id.rc_type_id
+
         move_model = self.env['account.move']
         move_line_model = self.env['account.move.line']
+
         rc_payment_data = self.rc_payment_vals(rc_type)
         rc_payment = move_model.create(rc_payment_data)
         rc_invoice = self.rc_self_invoice_id
@@ -153,7 +161,7 @@ class AccountInvoice(models.Model):
         rc_lines_to_rec.reconcile_partial()
 
     def partially_reconcile_supplier_invoice(self):
-        rc_type = self.fiscal_position.rc_type_id
+        rc_type = self.fiscal_position_id.rc_type_id
         move_model = self.env['account.move']
         move_line_model = self.env['account.move.line']
         rc_payment_data = self.rc_payment_vals(rc_type)
@@ -173,7 +181,7 @@ class AccountInvoice(models.Model):
         return rc_payment
 
     def reconcile_rc_invoice(self, rc_payment):
-        rc_type = self.fiscal_position.rc_type_id
+        rc_type = self.fiscal_position_id.rc_type_id
         move_line_model = self.env['account.move.line']
         rc_invoice = self.rc_self_invoice_id
         rc_payment_credit_line_data = self.rc_payment_credit_line_vals(
@@ -192,8 +200,9 @@ class AccountInvoice(models.Model):
                 rc_payment_line_to_reconcile.id])
         rc_lines_to_rec.reconcile_partial()
 
-    def generate_self_invoice(self):
-        rc_type = self.fiscal_position.rc_type_id
+    def generate_self_invoice(self): ###
+
+        rc_type = self.fiscal_position_id.rc_type_id
         if not rc_type.payment_journal_id.default_credit_account_id:
             raise UserError(
                 _('There is no default credit account defined \n'
@@ -202,29 +211,31 @@ class AccountInvoice(models.Model):
             rc_partner = rc_type.partner_id
         else:
             rc_partner = self.partner_id
-        rc_account = rc_partner.property_account_receivable
+        rc_account = rc_partner.property_account_receivable_id
 
         rc_invoice_lines = []
-        for line in self.invoice_line:
+        for line in self.invoice_line_ids:
             if line.rc:
                 rc_invoice_line = self.rc_inv_line_vals(line)
-                line_tax = line.invoice_line_tax_id
+                line_tax = line.invoice_line_tax_ids
                 if not line_tax:
                     raise UserError(_(
                         "Invoice line\n%s\nis RC but has not tax") % line.name)
                 tax_code_id = None
                 for tax_mapping in rc_type.tax_ids:
+                    ### arriva qua ma non trova corrispondenza
+                    ### quando la dovrebbe trovare
                     if tax_mapping.purchase_tax_id == line_tax[0]:
                         tax_code_id = tax_mapping.sale_tax_id.id
                 if not tax_code_id:
-                    raise UserError(_("Can't find tax mapping"))
+                    raise UserError(_("Tax code used is not a RC tax.\nCan't "
+                                      "find tax mapping"))
                 if line_tax:
-                    rc_invoice_line['invoice_line_tax_id'] = [
+                    rc_invoice_line['invoice_line_tax_ids'] = [
                         (6, False, [tax_code_id])]
                 rc_invoice_line[
                     'account_id'] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
-
         if rc_invoice_lines:
             inv_vals = self.rc_inv_vals(
                 rc_partner, rc_account, rc_type, rc_invoice_lines)
@@ -242,14 +253,62 @@ class AccountInvoice(models.Model):
                 rc_invoice = self.create(inv_vals)
                 self.rc_self_invoice_id = rc_invoice.id
             rc_invoice.signal_workflow('invoice_open')
+
             if rc_type.with_supplier_self_invoice:
                 self.reconcile_supplier_invoice()
             else:
                 rc_payment = self.partially_reconcile_supplier_invoice()
                 self.reconcile_rc_invoice(rc_payment)
+        # if rc_invoice_lines:
+        #     invoice_data = self.rc_inv_vals(
+        #         rc_partner, rc_account, rc_type, rc_invoice_lines)
+        #     rc_invoice = invoice_model.create(invoice_data)
+        #     self.rc_self_invoice_id = rc_invoice.id
+        #     rc_invoice.action_invoice_open()
+        #
+        #     ## partially reconcile purchase invoice
+        #     rc_payment_data = self.rc_payment_vals(rc_type)
+        #     rc_payment = move_model.create(rc_payment_data)
+        #
+        #     payment_credit_line_data = self.rc_credit_line_vals(
+        #         rc_type.payment_journal_id, rc_payment)
+        #     move_line_model.with_context(
+        #         check_move_validity=False).create(payment_credit_line_data)
+        #
+        #     payment_debit_line_data = self.rc_debit_line_vals(
+        #         rc_type.payment_journal_id, rc_payment, rc_type)
+        #     payment_debit_line = move_line_model.with_context(
+        #         check_move_validity=False).create(
+        #         payment_debit_line_data)
+        #
+        #     inv_lines_to_rec = move_line_model.browse(
+        #         [self.get_inv_line_to_reconcile().id,
+        #          payment_debit_line.id])
+        #     inv_lines_to_rec.reconcile()
+        #
+        #     ## reconcile rc invoice
+        #     rc_payment_credit_line_data = self.rc_payment_credit_line_vals(
+        #         rc_invoice, rc_payment)
+        #
+        #     rc_payment_line_to_reconcile = move_line_model.with_context(
+        #         check_move_validity=False).create(
+        #         rc_payment_credit_line_data)
+        #
+        #     rc_payment_debit_line_data = self.rc_payment_debit_line_vals(
+        #         rc_invoice, rc_type.payment_journal_id, rc_payment)
+        #     move_line_model.with_context(
+        #         check_move_validity=False).create(
+        #         rc_payment_debit_line_data)
+        #
+        #     rc_lines_to_rec = move_line_model.browse(
+        #         [self.get_rc_inv_line_to_reconcile(rc_invoice).id,
+        #          rc_payment_line_to_reconcile.id])
+        #     rc_lines_to_rec.reconcile()
+        #
+        # return res
 
     def generate_supplier_self_invoice(self):
-        rc_type = self.fiscal_position.rc_type_id
+        rc_type = self.fiscal_position_id.rc_type_id
         if not len(rc_type.tax_ids) == 1:
             raise UserError(_(
                 "Can't find 1 tax mapping for %s" % rc_type.name))
@@ -262,9 +321,9 @@ class AccountInvoice(models.Model):
             supplier_invoice.write(supplier_invoice_vals[0])
 
         # because this field has copy=False
-        supplier_invoice.registration_date = self.registration_date
-        supplier_invoice.date_invoice = self.registration_date
-        supplier_invoice.date_due = self.registration_date
+        supplier_invoice.date = self.date
+        supplier_invoice.date_invoice = self.date
+        supplier_invoice.date_due = self.date
         supplier_invoice.partner_id = rc_type.partner_id.id
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
         for inv_line in supplier_invoice.invoice_line:
@@ -274,17 +333,17 @@ class AccountInvoice(models.Model):
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
         # temporary disabling self invoice automations
-        supplier_invoice.fiscal_position = None
+        supplier_invoice.fiscal_position_id = None
         supplier_invoice.button_reset_taxes()
         supplier_invoice.check_total = supplier_invoice.amount_total
         supplier_invoice.signal_workflow('invoice_open')
-        supplier_invoice.fiscal_position = self.fiscal_position.id
+        supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
     @api.multi
     def invoice_validate(self):
         self.ensure_one()
         res = super(AccountInvoice, self).invoice_validate()
-        fp = self.fiscal_position
+        fp = self.fiscal_position_id
         rc_type = fp and fp.rc_type_id
         if rc_type and rc_type.method == 'selfinvoice':
             if not rc_type.with_supplier_self_invoice:
@@ -334,7 +393,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_cancel(self):
         for inv in self:
-            rc_type = inv.fiscal_position.rc_type_id
+            rc_type = inv.fiscal_position_id.rc_type_id
             if (
                 rc_type and
                 rc_type.method == 'selfinvoice' and
