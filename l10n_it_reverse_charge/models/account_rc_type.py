@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Davide Corio
+# Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import fields, models, _, api
-from openerp.exceptions import ValidationError
+from odoo import fields, models, _, api
+from odoo.exceptions import ValidationError
 
 
 class AccountRCTypeTax(models.Model):
