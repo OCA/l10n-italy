@@ -14,21 +14,19 @@ With this module is possibile to set a kind of tax for every account tax you nee
 Configuration
 =============
 
-To configure this module, you need to go to
+To configure this module, you need to:
 
-Invoicing -> Configuration -> Taxes -> Account Tax Kind
-
-and create a new kind of tax or modify existing one
-
+#. be a member of group "Accounting & Finance / Adviser"
+#. go to Invoicing -> Configuration -> Taxes -> Italian Localization -> Account Tax Kind
+#. create a new kind of tax or modify existing one
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to Invoicing -> Configuration -> Taxes -> Taxes
-
-open the tax to modify and set a Kind value
+#. go to Invoicing -> Configuration -> Accounting -> Taxes
+#. open the tax to modify, go to "Advanced Options" tab and set a Kind value
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -55,6 +53,7 @@ Contributors
 
 * Apruzzese Francesco <f.apruzzese@apuliasoftware.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Do not contact contributors directly about support or help with technical issues.
 
