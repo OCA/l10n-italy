@@ -15,7 +15,6 @@
     'website': 'https://www.odoo-italia.net',
     'depends': [
         'account_accountant',
-        #'account_invoice_entry_date',
         'account_cancel',
     ],
     'data': [
