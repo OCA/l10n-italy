@@ -16,7 +16,7 @@ from odoo.tools.translate import _
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
-    @api.onchange('invoice_line_tax_id')
+    @api.onchange('invoice_line_tax_ids')
     def onchange_invoice_line_tax_id(self):
         fposition = self.invoice_id.fiscal_position_id
         self.rc = True if fposition.rc_type_id else False
@@ -80,16 +80,16 @@ class AccountInvoice(models.Model):
             'date': self.date,
             }
 
-    def rc_credit_line_vals(self, journal, move):
+    def rc_credit_line_vals(self, journal):
         return {
             'name': self.number,
             'credit': self.amount_tax,
             'debit': 0.0,
             'account_id': journal.default_credit_account_id.id,
-            'move_id': move.id,
+            'company_id': self.company_id.id,
             }
 
-    def rc_debit_line_vals(self, move, amount=None):
+    def rc_debit_line_vals(self, amount=None):
         if amount:
             debit = amount
         else:
@@ -99,8 +99,8 @@ class AccountInvoice(models.Model):
             'debit': debit,
             'credit': 0.0,
             'account_id': self.get_inv_line_to_reconcile().account_id.id,
-            'move_id': move.id,
             'partner_id': self.partner_id.id,
+            'company_id': self.company_id.id
             }
 
     def rc_invoice_payment_vals(self, rc_type):
@@ -110,24 +110,24 @@ class AccountInvoice(models.Model):
             'date': self.date,
             }
 
-    def rc_payment_credit_line_vals(self, invoice, move):
+    def rc_payment_credit_line_vals(self, invoice):
         return {
             'name': invoice.number,
             'credit': self.get_rc_inv_line_to_reconcile(invoice).debit,
             'debit': 0.0,
             'account_id': self.get_rc_inv_line_to_reconcile(
                 invoice).account_id.id,
-            'move_id': move.id,
             'partner_id': invoice.partner_id.id,
+            'company_id': self.company_id.id
             }
 
-    def rc_payment_debit_line_vals(self, invoice, journal, move):
+    def rc_payment_debit_line_vals(self, invoice, journal):
         return {
             'name': invoice.number,
             'debit': self.get_rc_inv_line_to_reconcile(invoice).debit,
             'credit': 0.0,
             'account_id': journal.default_credit_account_id.id,
-            'move_id': move.id,
+            'company_id': self.company_id.id
             }
 
     def reconcile_supplier_invoice(self):
@@ -141,64 +141,80 @@ class AccountInvoice(models.Model):
         rc_invoice = self.rc_self_invoice_id
 
         payment_credit_line_data = self.rc_payment_credit_line_vals(
-            rc_invoice, rc_payment)
-        payment_credit_line = move_line_model.create(payment_credit_line_data)
+            rc_invoice)
         payment_debit_line_data = self.rc_debit_line_vals(
-            rc_payment, self.amount_total)
-        payment_debit_line = move_line_model.create(
-            payment_debit_line_data)
+            self.amount_total)
+        rc_payment.line_ids = [
+            (0, 0, payment_debit_line_data),
+            (0, 0, payment_credit_line_data),
+        ]
+        for move_line in rc_payment.line_ids:
+            if move_line.debit:
+                payment_debit_line = move_line
+            elif move_line.credit:
+                payment_credit_line = move_line
 
         lines_to_rec = move_line_model.browse([
             self.get_inv_line_to_reconcile().id,
             payment_debit_line.id
         ])
-        lines_to_rec.reconcile_partial()
+        lines_to_rec.reconcile()
 
         rc_lines_to_rec = move_line_model.browse([
             self.get_rc_inv_line_to_reconcile(rc_invoice).id,
             payment_credit_line.id
         ])
-        rc_lines_to_rec.reconcile_partial()
+        rc_lines_to_rec.reconcile()
 
-    def partially_reconcile_supplier_invoice(self):
+    def prepare_reconcile_supplier_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
         move_model = self.env['account.move']
-        move_line_model = self.env['account.move.line']
         rc_payment_data = self.rc_payment_vals(rc_type)
         rc_payment = move_model.create(rc_payment_data)
 
         payment_credit_line_data = self.rc_credit_line_vals(
-            rc_type.payment_journal_id, rc_payment)
-        move_line_model.create(payment_credit_line_data)
+            rc_type.payment_journal_id)
 
-        payment_debit_line_data = self.rc_debit_line_vals(rc_payment)
-        payment_debit_line = move_line_model.create(
-            payment_debit_line_data)
+        payment_debit_line_data = self.rc_debit_line_vals()
+        rc_payment.line_ids = [
+            (0, 0, payment_debit_line_data),
+            (0, 0, payment_credit_line_data),
+        ]
+        return rc_payment
+
+    def partially_reconcile_supplier_invoice(self, rc_payment):
+        move_line_model = self.env['account.move.line']
+        for move_line in rc_payment.line_ids:
+            if move_line.debit:
+                payment_debit_line = move_line
         inv_lines_to_rec = move_line_model.browse(
             [self.get_inv_line_to_reconcile().id,
                 payment_debit_line.id])
-        inv_lines_to_rec.reconcile_partial()
-        return rc_payment
+        inv_lines_to_rec.reconcile()
 
     def reconcile_rc_invoice(self, rc_payment):
         rc_type = self.fiscal_position_id.rc_type_id
         move_line_model = self.env['account.move.line']
         rc_invoice = self.rc_self_invoice_id
         rc_payment_credit_line_data = self.rc_payment_credit_line_vals(
-            rc_invoice, rc_payment)
-
-        rc_payment_line_to_reconcile = move_line_model.create(
-            rc_payment_credit_line_data)
+            rc_invoice)
 
         rc_payment_debit_line_data = self.rc_payment_debit_line_vals(
-            rc_invoice, rc_type.payment_journal_id, rc_payment)
-        move_line_model.create(
-            rc_payment_debit_line_data)
+            rc_invoice, rc_type.payment_journal_id)
+
+        rc_payment.line_ids = [
+            (0, 0, rc_payment_debit_line_data),
+            (0, 0, rc_payment_credit_line_data),
+        ]
+        inv_line_to_reconcile = self.get_rc_inv_line_to_reconcile(rc_invoice)
+        for move_line in rc_payment.line_ids:
+            if move_line.account_id.id == inv_line_to_reconcile.account_id.id:
+                rc_payment_line_to_reconcile = move_line
 
         rc_lines_to_rec = move_line_model.browse(
-            [self.get_rc_inv_line_to_reconcile(rc_invoice).id,
+            [inv_line_to_reconcile.id,
                 rc_payment_line_to_reconcile.id])
-        rc_lines_to_rec.reconcile_partial()
+        rc_lines_to_rec.reconcile()
 
     def generate_self_invoice(self): ###
 
@@ -221,18 +237,16 @@ class AccountInvoice(models.Model):
                 if not line_tax:
                     raise UserError(_(
                         "Invoice line\n%s\nis RC but has not tax") % line.name)
-                tax_code_id = None
+                tax_id = None
                 for tax_mapping in rc_type.tax_ids:
-                    ### arriva qua ma non trova corrispondenza
-                    ### quando la dovrebbe trovare
                     if tax_mapping.purchase_tax_id == line_tax[0]:
-                        tax_code_id = tax_mapping.sale_tax_id.id
-                if not tax_code_id:
+                        tax_id = tax_mapping.sale_tax_id.id
+                if not tax_id:
                     raise UserError(_("Tax code used is not a RC tax.\nCan't "
                                       "find tax mapping"))
                 if line_tax:
                     rc_invoice_line['invoice_line_tax_ids'] = [
-                        (6, False, [tax_code_id])]
+                        (6, False, [tax_id])]
                 rc_invoice_line[
                     'account_id'] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
@@ -245,67 +259,21 @@ class AccountInvoice(models.Model):
                 # this is needed when user takes back to draft supplier
                 # invoice, edit and validate again
                 rc_invoice = self.rc_self_invoice_id
-                rc_invoice.invoice_line.unlink()
+                rc_invoice.invoice_line_ids.unlink()
                 rc_invoice.period_id = False
                 rc_invoice.write(inv_vals)
-                rc_invoice.button_reset_taxes()
+                rc_invoice.compute_taxes()
             else:
                 rc_invoice = self.create(inv_vals)
                 self.rc_self_invoice_id = rc_invoice.id
-            rc_invoice.signal_workflow('invoice_open')
+            rc_invoice.action_invoice_open()
 
             if rc_type.with_supplier_self_invoice:
                 self.reconcile_supplier_invoice()
             else:
-                rc_payment = self.partially_reconcile_supplier_invoice()
+                rc_payment = self.prepare_reconcile_supplier_invoice()
                 self.reconcile_rc_invoice(rc_payment)
-        # if rc_invoice_lines:
-        #     invoice_data = self.rc_inv_vals(
-        #         rc_partner, rc_account, rc_type, rc_invoice_lines)
-        #     rc_invoice = invoice_model.create(invoice_data)
-        #     self.rc_self_invoice_id = rc_invoice.id
-        #     rc_invoice.action_invoice_open()
-        #
-        #     ## partially reconcile purchase invoice
-        #     rc_payment_data = self.rc_payment_vals(rc_type)
-        #     rc_payment = move_model.create(rc_payment_data)
-        #
-        #     payment_credit_line_data = self.rc_credit_line_vals(
-        #         rc_type.payment_journal_id, rc_payment)
-        #     move_line_model.with_context(
-        #         check_move_validity=False).create(payment_credit_line_data)
-        #
-        #     payment_debit_line_data = self.rc_debit_line_vals(
-        #         rc_type.payment_journal_id, rc_payment, rc_type)
-        #     payment_debit_line = move_line_model.with_context(
-        #         check_move_validity=False).create(
-        #         payment_debit_line_data)
-        #
-        #     inv_lines_to_rec = move_line_model.browse(
-        #         [self.get_inv_line_to_reconcile().id,
-        #          payment_debit_line.id])
-        #     inv_lines_to_rec.reconcile()
-        #
-        #     ## reconcile rc invoice
-        #     rc_payment_credit_line_data = self.rc_payment_credit_line_vals(
-        #         rc_invoice, rc_payment)
-        #
-        #     rc_payment_line_to_reconcile = move_line_model.with_context(
-        #         check_move_validity=False).create(
-        #         rc_payment_credit_line_data)
-        #
-        #     rc_payment_debit_line_data = self.rc_payment_debit_line_vals(
-        #         rc_invoice, rc_type.payment_journal_id, rc_payment)
-        #     move_line_model.with_context(
-        #         check_move_validity=False).create(
-        #         rc_payment_debit_line_data)
-        #
-        #     rc_lines_to_rec = move_line_model.browse(
-        #         [self.get_rc_inv_line_to_reconcile(rc_invoice).id,
-        #          rc_payment_line_to_reconcile.id])
-        #     rc_lines_to_rec.reconcile()
-        #
-        # return res
+                self.partially_reconcile_supplier_invoice(rc_payment)
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
@@ -317,7 +285,7 @@ class AccountInvoice(models.Model):
         else:
             supplier_invoice_vals = self.copy_data()
             supplier_invoice = self.rc_self_purchase_invoice_id
-            supplier_invoice.invoice_line.unlink()
+            supplier_invoice.invoice_line_ids.unlink()
             supplier_invoice.write(supplier_invoice_vals[0])
 
         # because this field has copy=False
@@ -326,17 +294,17 @@ class AccountInvoice(models.Model):
         supplier_invoice.date_due = self.date
         supplier_invoice.partner_id = rc_type.partner_id.id
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
-        for inv_line in supplier_invoice.invoice_line:
-            inv_line.invoice_line_tax_id = [
+        for inv_line in supplier_invoice.invoice_line_ids:
+            inv_line.invoice_line_tax_ids = [
                 (6, 0, [rc_type.tax_ids[0].purchase_tax_id.id])]
             inv_line.account_id = rc_type.transitory_account_id.id
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
         # temporary disabling self invoice automations
         supplier_invoice.fiscal_position_id = None
-        supplier_invoice.button_reset_taxes()
+        supplier_invoice.compute_taxes()
         supplier_invoice.check_total = supplier_invoice.amount_total
-        supplier_invoice.signal_workflow('invoice_open')
+        supplier_invoice.action_invoice_open()
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
     @api.multi
@@ -356,35 +324,39 @@ class AccountInvoice(models.Model):
 
     def remove_rc_payment(self):
         inv = self
-        if inv.payment_ids:
-            if len(inv.payment_ids) > 1:
+        if inv.payment_move_line_ids:
+            if len(inv.payment_move_line_ids) > 1:
                 raise UserError(
                     _('There are more than one payment line.\n'
                       'In that case account entries cannot be canceled'
                       'automatically. Please proceed manually'))
-            payment_move = inv.payment_ids[0].move_id
+            payment_move = inv.payment_move_line_ids[0].move_id
+
             # remove move reconcile related to the supplier invoice
             move = inv.move_id
-            rec_partial_lines = move.mapped('line_id').filtered(
-                'reconcile_partial_id').mapped(
-                'reconcile_partial_id.line_partial_ids')
-            self.env['account.move.line']._remove_move_reconcile(
-                rec_partial_lines.ids)
+            rec_partial = move.mapped('line_ids').filtered(
+                'matched_debit_ids').mapped('matched_debit_ids')
+            rec_partial_lines = (
+                rec_partial.mapped('credit_move_id') |
+                rec_partial.mapped('debit_move_id')
+            )
+            rec_partial_lines.remove_move_reconcile()
+
             # also remove full reconcile, in case of with_supplier_self_invoice
-            rec_partial_lines = move.mapped('line_id').filtered(
-                'reconcile_id').mapped('reconcile_id.line_id')
-            self.env['account.move.line']._remove_move_reconcile(
-                rec_partial_lines.ids)
+            rec_partial_lines = move.mapped('line_ids').filtered(
+                'full_reconcile_id'
+            ).mapped('full_reconcile_id.reconciled_line_ids')
+            rec_partial_lines.remove_move_reconcile()
             # remove move reconcile related to the self invoice
             move = inv.rc_self_invoice_id.move_id
-            rec_lines = move.mapped('line_id').filtered(
-                'reconcile_id').mapped('reconcile_id.line_id')
-            self.env['account.move.line']._remove_move_reconcile(
-                rec_lines.ids)
+            rec_lines = move.mapped('line_ids').filtered(
+                'full_reconcile_id'
+            ).mapped('full_reconcile_id.reconciled_line_ids')
+            rec_lines.remove_move_reconcile()
             # cancel self invoice
             self_invoice = self.browse(
                 inv.rc_self_invoice_id.id)
-            self_invoice.signal_workflow('invoice_cancel')
+            self_invoice.action_invoice_cancel()
             # invalidate and delete the payment move generated
             # by the self invoice creation
             payment_move.button_cancel()
@@ -406,8 +378,7 @@ class AccountInvoice(models.Model):
                 inv.rc_self_purchase_invoice_id
             ):
                 inv.rc_self_purchase_invoice_id.remove_rc_payment()
-                inv.rc_self_purchase_invoice_id.signal_workflow(
-                    'invoice_cancel')
+                inv.rc_self_purchase_invoice_id.action_invoice_cancel()
         return super(AccountInvoice, self).action_cancel()
 
     @api.multi
