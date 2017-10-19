@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ns1:FatturaElettronica xmlns:ns1="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1" versione="1.1">
+<ns1:FatturaElettronica xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" versione="FPA12">
     <FatturaElettronicaHeader>
         <DatiTrasmissione>
             <IdTrasmittente>
@@ -7,7 +7,7 @@
                 <IdCodice>06363391001</IdCodice>
             </IdTrasmittente>
             <ProgressivoInvio>00001</ProgressivoInvio>
-            <FormatoTrasmissione>SDI11</FormatoTrasmissione>
+            <FormatoTrasmissione>FPA12</FormatoTrasmissione>
             <CodiceDestinatario>79SRAK</CodiceDestinatario>
             <ContattiTrasmittente>
                 <Telefono>06543534343</Telefono>
@@ -62,15 +62,16 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2014-01-07</Data>
-                <Numero>SAJ/2014/013</Numero>
+                <Data>2016-01-07</Data>
+                <Numero>INV/2016/0013</Numero>
+                <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
-                <Descrizione>Toner Cartridge</Descrizione>
+                <Descrizione>Mouse, Optical</Descrizione>
                 <Quantita>1.00</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>10.00</PrezzoUnitario>
@@ -96,7 +97,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2014-02-28</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2016-02-29</DataScadenzaPagamento>
                 <ImportoPagamento>17.08</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>
