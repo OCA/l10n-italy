@@ -5,9 +5,6 @@
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-#### questo è in working process
-#### tutti gli altri models sono ok compresi gli xml
-
 from odoo import api, fields, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
@@ -38,7 +35,7 @@ class AccountInvoice(models.Model):
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
 
-    def rc_inv_line_vals(self, line): ## ok verificata
+    def rc_inv_line_vals(self, line):
         return {
             'product_id': line.product_id.id,
             'name': line.name,
@@ -59,6 +56,7 @@ class AccountInvoice(models.Model):
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
+            'fiscal_position_id': None
             }
 
     def get_inv_line_to_reconcile(self):
@@ -216,7 +214,7 @@ class AccountInvoice(models.Model):
                 rc_payment_line_to_reconcile.id])
         rc_lines_to_rec.reconcile()
 
-    def generate_self_invoice(self): ###
+    def generate_self_invoice(self):
 
         rc_type = self.fiscal_position_id.rc_type_id
         if not rc_type.payment_journal_id.default_credit_account_id:
@@ -313,7 +311,8 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).invoice_validate()
         fp = self.fiscal_position_id
         rc_type = fp and fp.rc_type_id
-        if rc_type and rc_type.method == 'selfinvoice':
+        if rc_type and rc_type.method == 'selfinvoice'\
+                and self.amount_total:
             if not rc_type.with_supplier_self_invoice:
                 self.generate_self_invoice()
             else:
