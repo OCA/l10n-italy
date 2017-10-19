@@ -24,8 +24,6 @@
         'views/account_invoice_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_rc_type_view.xml',
-
     ],
-    'demo': ['demo/reverse_charge_demo.yml'],
     'installable': True,
 }
