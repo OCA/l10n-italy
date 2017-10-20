@@ -20,11 +20,14 @@ addon | version | summary
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.0.1.2 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 10.0.1.0.1 | Italian Localization - Account
+[l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.2.3 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.1.0.0 | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.0.0 | Electronic invoices emission
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.0 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
@@ -48,8 +51,6 @@ addon | version | summary
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Italian Localisation - CRM
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 (unported) | Italian Localisation - Corrispettivi
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 (unported) | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 (unported) | Electronic invoices emission
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
 
