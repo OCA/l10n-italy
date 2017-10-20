@@ -19,6 +19,7 @@
                 <field name="picking_ids"></field>
                 <group expand="0" string="Group By">
                     <filter name="group_by_partner" string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_by_type" string="DDT type" domain="[]" context="{'group_by': 'ddt_type_id'}"/>
                 </group>
             </search>
         </field>
@@ -30,6 +31,7 @@
         <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
+                <field name="ddt_type_id" />
                 <field name="ddt_number" />
                 <field name="invoice_id" />
             </field>
