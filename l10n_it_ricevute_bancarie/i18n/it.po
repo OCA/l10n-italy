@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 02:58+0000\n"
-"PO-Revision-Date: 2017-07-24 14:02+0000\n"
+"POT-Creation-Date: 2017-10-20 06:12+0000\n"
+"PO-Revision-Date: 2017-09-22 17:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -226,7 +226,8 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,config_id:0 field:riba.issue,configuration_id:0
+#: field:riba.distinta,config_id:0 field:riba.distinta.line,config_id:0
+#: field:riba.issue,configuration_id:0
 msgid "Configuration"
 msgstr "Configurazione"
 
@@ -881,7 +882,7 @@ msgid "Riba"
 msgstr "Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: help:riba.distinta,config_id:0
+#: help:riba.distinta,config_id:0 help:riba.distinta.line,config_id:0
 msgid "Riba configuration to be used"
 msgstr "Riba configuration to be used"
 

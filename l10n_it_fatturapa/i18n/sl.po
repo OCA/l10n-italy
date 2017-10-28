@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 20:28+0000\n"
-"PO-Revision-Date: 2016-05-01 14:37+0000\n"
+"POT-Creation-Date: 2017-10-20 06:12+0000\n"
+"PO-Revision-Date: 2017-09-23 22:17+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,6 @@ msgid "Date"
 msgstr "Datum"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Deferred payability"
 msgstr "Odloženo plačilo"
@@ -298,10 +297,10 @@ msgid "Effective date of Penality"
 msgstr "Dejanski datum kazni"
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:36
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:40
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:49
 #: code:addons/l10n_it_fatturapa/models/account_tax.py:53
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:57
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:66
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:70
 #, python-format
 msgid "Error"
 msgstr "Napaka"
@@ -341,7 +340,6 @@ msgstr "E-račun"
 #. module: l10n_it_fatturapa
 #: view:account.invoice.line:l10n_it_fatturapa.view_invoice_line_form_fatturapa
 #: view:account.payment.term:l10n_it_fatturapa.view_payment_term_form_fatturapa
-#: view:account.tax:l10n_it_fatturapa.view_tax_form
 #: view:res.partner:l10n_it_fatturapa.view_partner_form_fatturapa
 msgid "FatturaPA"
 msgstr "E-račun"
@@ -509,7 +507,6 @@ msgid "IVA a credito 22% (imponibile)"
 msgstr "DDV v dobro 22% (obdavčljivo)"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Immediate payability"
 msgstr "Takojšnje plačilo"
@@ -606,7 +603,6 @@ msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_it_fatturapa
-#: field:account.tax,law_reference:0
 #: field:faturapa.summary.data,law_reference:0
 msgid "Law reference"
 msgstr "Sklic na zakon"
@@ -679,8 +675,8 @@ msgid "No Sog."
 msgstr "Ni pravna oseba"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:53
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:66
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:36
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:49
 #, python-format
 msgid "No tax %s found"
 msgstr "Noben davek %s ni najden"
@@ -696,8 +692,7 @@ msgid "Non soggetto Iva"
 msgstr "Ni davčni zavezanec"
 
 #. module: l10n_it_fatturapa
-#: field:account.tax,non_taxable_nature:0
-#: field:faturapa.summary.data,non_taxable_nature:0
+#: field:faturapa.summary.data,kind_id:0
 #: field:welfare.fund.data.line,fund_nature:0
 msgid "Non taxable nature"
 msgstr "Neobdavčljive narave"
@@ -1002,7 +997,6 @@ msgid "Single Partner"
 msgstr "Posamičen partner"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Razdelitev plačila"
@@ -1054,8 +1048,8 @@ msgid "Third Party/Sender"
 msgstr "Tretja stranka/pošiljatelj"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:57
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:70
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:40
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:53
 #, python-format
 msgid "Too many tax %s found"
 msgstr "Najdeno preveč davka %s"
@@ -1100,7 +1094,7 @@ msgid ""
 msgstr "Uporablja se, kadar družba izstavlja račune tretji stranki, ki izstavlja svoje račune SDI"
 
 #. module: l10n_it_fatturapa
-#: field:account.tax,payability:0 field:faturapa.summary.data,payability:0
+#: field:faturapa.summary.data,payability:0
 msgid "VAT payability"
 msgstr "Plačljivost DDV"
 
@@ -1180,15 +1174,11 @@ msgid "description"
 msgstr "opis"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "escluse ex art. 15"
 msgstr "izključeno 15. člen"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "esenti"
 msgstr "oproščeni"
@@ -1212,8 +1202,6 @@ msgid ""
 msgstr "kaže, če je dokument bil izdan v skladu s pogoji vladne uredbe po 73. členu predsedniške odločbe 633/72 (ki omogoča družbi izdajo več dokumentov z isto številko v istem letu)"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "inversione contabile (reverse charge)"
 msgstr "knjigovodska inverzija (povratni obračun)"
@@ -1224,15 +1212,11 @@ msgid "name"
 msgstr "naziv"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "non imponibili"
 msgstr "ne obdavčljivi"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "non soggette"
 msgstr "ne zavezani"
@@ -1243,8 +1227,6 @@ msgid "number of items"
 msgstr "število postavk"
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "regime del margine"
 msgstr "pravila marže"

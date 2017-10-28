@@ -3,20 +3,20 @@
 # * l10n_it_account_tax_kind
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-20 06:12+0000\n"
 "PO-Revision-Date: 2017-10-20 06:12+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_account_tax_kind
 #: view:account.tax.kind:l10n_it_account_tax_kind.view_account_tax_kind_form
@@ -24,22 +24,22 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_account_tax_kind.view_account_tax_kind_action
 #: model:ir.ui.menu,name:l10n_it_account_tax_kind.account_tax_kind_menu
 msgid "Account Tax Kind"
-msgstr "Natura Tasse"
+msgstr "Vrsta konta davkov"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,code:0
 msgid "Code"
-msgstr "Codice"
+msgstr "Koda"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,create_uid:0
 msgid "Created by"
-msgstr "Creato da"
+msgstr "Ustvaril"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,create_date:0
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Ustvarjeno"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,id:0
@@ -49,34 +49,34 @@ msgstr "ID"
 #. module: l10n_it_account_tax_kind
 #: field:account.tax,kind_id:0
 msgid "Kind"
-msgstr "Natura"
+msgstr "Vrsta"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,__last_update:0
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Zadnji posodobil"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,write_date:0
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax,law_reference:0
 msgid "Law reference"
-msgstr "Rif. Normativo"
+msgstr "Sklic na zakon"
 
 #. module: l10n_it_account_tax_kind
 #: field:account.tax.kind,display_name:0 field:account.tax.kind,name:0
 msgid "Name"
-msgstr "Nome"
+msgstr "Naziv"
 
 #. module: l10n_it_account_tax_kind
 #: model:ir.model,name:l10n_it_account_tax_kind.model_account_tax
 msgid "Tax"
-msgstr "Imposta"
+msgstr "Davek"

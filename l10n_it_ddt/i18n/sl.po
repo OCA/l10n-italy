@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 03:33+0000\n"
-"PO-Revision-Date: 2017-06-26 07:24+0000\n"
+"POT-Creation-Date: 2017-10-20 06:12+0000\n"
+"PO-Revision-Date: 2017-10-23 10:41+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -161,6 +161,11 @@ msgstr "Prevozni dokumenti iz zbirnikov"
 #: view:website:l10n_it_ddt.report_ddt
 msgid "DDT number:"
 msgstr "Št. prevoznega dokumenta:"
+
+#. module: l10n_it_ddt
+#: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "DDT type"
+msgstr "Tip DDT"
 
 #. module: l10n_it_ddt
 #: field:ddt.create.invoice,date:0

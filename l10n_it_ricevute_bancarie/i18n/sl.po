@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 02:58+0000\n"
-"PO-Revision-Date: 2017-07-28 05:30+0000\n"
+"POT-Creation-Date: 2017-10-20 06:12+0000\n"
+"PO-Revision-Date: 2017-09-23 22:17+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -222,7 +222,8 @@ msgid "Company"
 msgstr "Družba"
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,config_id:0 field:riba.issue,configuration_id:0
+#: field:riba.distinta,config_id:0 field:riba.distinta.line,config_id:0
+#: field:riba.issue,configuration_id:0
 msgid "Configuration"
 msgstr "Nastavitve"
 
@@ -877,7 +878,7 @@ msgid "Riba"
 msgstr "Riba"
 
 #. module: l10n_it_ricevute_bancarie
-#: help:riba.distinta,config_id:0
+#: help:riba.distinta,config_id:0 help:riba.distinta.line,config_id:0
 msgid "Riba configuration to be used"
 msgstr "Riba nastavitve za uporabo"
 

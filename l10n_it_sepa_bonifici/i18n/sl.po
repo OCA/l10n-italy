@@ -1,0 +1,260 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_sepa_bonifici
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-20 06:13+0000\n"
+"PO-Revision-Date: 2017-10-20 06:13+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,batch_booking:0
+#: field:banking.export.sepa.cbi.wizard,batch_booking:0
+msgid "Batch Booking"
+msgstr "Skupinska rezervacija"
+
+#. module: l10n_it_sepa_bonifici
+#: selection:banking.export.sepa.cbi.estero.wizard,charge_bearer:0
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+msgid "Borne by Creditor"
+msgstr "Nosi upnik"
+
+#. module: l10n_it_sepa_bonifici
+#: selection:banking.export.sepa.cbi.estero.wizard,charge_bearer:0
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+msgid "Borne by Debtor"
+msgstr "Nosi dolžnik"
+
+#. module: l10n_it_sepa_bonifici
+#: view:banking.export.sepa.cbi.estero.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_estero_wizard_view
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,charge_bearer:0
+#: field:banking.export.sepa.cbi.wizard,charge_bearer:0
+msgid "Charge Bearer"
+msgstr "Nosilec stroškov"
+
+#. module: l10n_it_sepa_bonifici
+#: selection:banking.export.sepa.cbi.estero.wizard,state:0
+#: selection:banking.export.sepa.cbi.wizard,state:0
+msgid "Create"
+msgstr "Ustvari"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,create_uid:0
+#: field:banking.export.sepa.cbi.wizard,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,create_date:0
+#: field:banking.export.sepa.cbi.wizard,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,display_name:0
+#: field:banking.export.sepa.cbi.wizard,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_it_sepa_bonifici
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:79
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:100
+#, python-format
+msgid "Error Bank Code ABI"
+msgstr "Napačna bančna koda ABI"
+
+#. module: l10n_it_sepa_bonifici
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:105
+#, python-format
+msgid "Error Bank Code BIC"
+msgstr "Napačna bančna koda BIC"
+
+#. module: l10n_it_sepa_bonifici
+#: model:ir.model,name:l10n_it_sepa_bonifici.model_banking_export_sepa_cbi_estero_wizard
+msgid "Export SEPA CBI Estero File"
+msgstr "Izvoz SEPA CPI datoteke za tujino"
+
+#. module: l10n_it_sepa_bonifici
+#: model:ir.model,name:l10n_it_sepa_bonifici.model_banking_export_sepa_cbi_wizard
+msgid "Export SEPA CBI File"
+msgstr "Izvoz SEPA CBI datoteke"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,file:0
+#: field:banking.export.sepa.cbi.wizard,file:0
+msgid "File"
+msgstr "Datoteka"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,filename:0
+#: field:banking.export.sepa.cbi.wizard,filename:0
+msgid "Filename"
+msgstr "Naziv datoteke"
+
+#. module: l10n_it_sepa_bonifici
+#: selection:banking.export.sepa.cbi.estero.wizard,state:0
+#: selection:banking.export.sepa.cbi.wizard,state:0
+msgid "Finish"
+msgstr "Dokončaj"
+
+#. module: l10n_it_sepa_bonifici
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+msgid "Following Service Level"
+msgstr "Raven storitev"
+
+#. module: l10n_it_sepa_bonifici
+#: help:banking.export.sepa.cbi.estero.wizard,charge_bearer:0
+#: help:banking.export.sepa.cbi.wizard,charge_bearer:0
+msgid ""
+"Following service level : transaction charges are to be applied following "
+"the rules agreed in the service level and/or scheme (SEPA Core messages must"
+" use this). Shared : transaction charges on the creditor side are to be "
+"borne by the creditor, transaction charges on the debtor side are to be "
+"borne by the debtor. Borne by creditor : all transaction charges are to be "
+"borne by the creditor. Borne by debtor : all transaction charges are to be "
+"borne by the debtor."
+msgstr ""
+"Nivo sledenja: stroške transakcije se dodeli glede na naslednja pravila v "
+"sporazumu o ravni storitev in/ali shemi (SEPA temeljna sporočila morajo to "
+"uporabljati). Deljeno: stroške transakcije na strani upnika nosi upnik sam, "
+"stroške na strani dolžnika pa dolžnik. Nosi upnik: vse stroške transakcije "
+"nosi upnik. Nosi dolžnik: vse stroške transakcije nosi dolžnik."
+
+#. module: l10n_it_sepa_bonifici
+#: view:banking.export.sepa.cbi.estero.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_estero_wizard_view
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+msgid "Generate"
+msgstr "Ustvari"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,id:0
+#: field:banking.export.sepa.cbi.wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_sepa_bonifici
+#: help:banking.export.sepa.cbi.estero.wizard,batch_booking:0
+#: help:banking.export.sepa.cbi.wizard,batch_booking:0
+msgid ""
+"If true, the bank statement will display only one credit line for all the "
+"direct debits of the SEPA file ; if false, the bank statement will display "
+"one credit line per direct debit of the SEPA file."
+msgstr ""
+"Če pravilno, bančni izpisek prikaže le eno postavko v dobro za vse direktne "
+"obremenitve v SEPA XML datoteki ; če napačno, bančni izpisek prikaže le eno "
+"postavko v dobro za vsako direktno obremenitev v SEPA datoteki."
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,__last_update:0
+#: field:banking.export.sepa.cbi.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,write_uid:0
+#: field:banking.export.sepa.cbi.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,write_date:0
+#: field:banking.export.sepa.cbi.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: l10n_it_sepa_bonifici
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:238
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:301
+#, python-format
+msgid ""
+"Missing Bank Account on invoice '%s' (payment order line reference '%s')"
+msgstr ""
+"Manjkajoča številka bančnega računa pri računu '%s' (sklic na postavko "
+"plačilnega naloga '%s')"
+
+#. module: l10n_it_sepa_bonifici
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:260
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:323
+#, python-format
+msgid "Missing Country for Partner '%s' (payment order line reference '%s')"
+msgstr ""
+"Manjkajoča država pri partnerju '%s' (sklic postavke plačilnega naloga '%s')"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,nb_transactions:0
+#: field:banking.export.sepa.cbi.wizard,nb_transactions:0
+msgid "Number of Transactions"
+msgstr "Število transakcij"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,payment_order_ids:0
+#: field:banking.export.sepa.cbi.wizard,payment_order_ids:0
+msgid "Payment Orders"
+msgstr "Plačilni nalogi"
+
+#. module: l10n_it_sepa_bonifici
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:172
+#, python-format
+msgid ""
+"Payment Type Code '%s' is not supported. The only Payment Type Code "
+"supported for SEPA Credit Transfers "
+"'CBIBdyCrossBorderPaymentRequest.00.01.01'. "
+msgstr ""
+"Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta za"
+" SEPA bremenilne transakcije, je 'CBIBdyCrossBorderPaymentRequest.00.01.01'."
+
+#. module: l10n_it_sepa_bonifici
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:111
+#, python-format
+msgid ""
+"Payment Type Code '%s' is not supported. The only Payment Type Code "
+"supported for SEPA Credit Transfers 'CBIBdyPaymentRequest.00.04.00'. "
+msgstr ""
+"Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta za"
+" SEPA bremenilne transakcije, je 'CBIBdyPaymentRequest.00.04.00'."
+
+#. module: l10n_it_sepa_bonifici
+#: view:banking.export.sepa.cbi.estero.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_estero_wizard_view
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+msgid "SEPA File Generation"
+msgstr "Generiranje SEPA datoteke"
+
+#. module: l10n_it_sepa_bonifici
+#: selection:banking.export.sepa.cbi.estero.wizard,charge_bearer:0
+#: selection:banking.export.sepa.cbi.wizard,charge_bearer:0
+msgid "Shared"
+msgstr "V souporabi"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,state:0
+#: field:banking.export.sepa.cbi.wizard,state:0
+msgid "State"
+msgstr "Stanje"
+
+#. module: l10n_it_sepa_bonifici
+#: field:banking.export.sepa.cbi.estero.wizard,total_amount:0
+#: field:banking.export.sepa.cbi.wizard,total_amount:0
+msgid "Total Amount"
+msgstr "Skupni znesek"
+
+#. module: l10n_it_sepa_bonifici
+#: view:banking.export.sepa.cbi.estero.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_estero_wizard_view
+#: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
+msgid "Validate"
+msgstr "Overi"

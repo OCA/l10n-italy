@@ -18,10 +18,10 @@
 # Kirill Bigai <kirill@preply.com>, 2013
 # Konrad Lubinski <konrad@preply.com>, 2015-2016
 # Lizaveta.Makratsova <lizaveta.makratsova@gmail.com>, 2014
-# Maria <maria@preply.com>, 2016
+# Maria Kuliy <maria@preply.com>, 2016
 # Massimiliano Casa <mcasa@cantiericasa.com>, 2015
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
-# Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
+# oihane <oihanecruce@gmail.com>, 2015
 # Oleksandra <inactive+Oleksandra@transifex.com>, 2014
 # Olga Podgayna <olga@preply.org>, 2015
 # Paolo Valier, 2016
@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2016-04-29 09:53+0000\n"
+"POT-Creation-Date: 2017-10-20 06:12+0000\n"
+"PO-Revision-Date: 2017-09-22 19:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -240,7 +240,6 @@ msgid "Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Deferred payability"
 msgstr ""
@@ -321,10 +320,10 @@ msgid "Effective date of Penality"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:36
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:40
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:49
 #: code:addons/l10n_it_fatturapa/models/account_tax.py:53
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:57
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:66
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:70
 #, python-format
 msgid "Error"
 msgstr "Error"
@@ -364,7 +363,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: view:account.invoice.line:l10n_it_fatturapa.view_invoice_line_form_fatturapa
 #: view:account.payment.term:l10n_it_fatturapa.view_payment_term_form_fatturapa
-#: view:account.tax:l10n_it_fatturapa.view_tax_form
 #: view:res.partner:l10n_it_fatturapa.view_partner_form_fatturapa
 msgid "FatturaPA"
 msgstr ""
@@ -532,7 +530,6 @@ msgid "IVA a credito 22% (imponibile)"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Immediate payability"
 msgstr ""
@@ -629,7 +626,6 @@ msgid "Last Updated on"
 msgstr "Última Actualización el"
 
 #. module: l10n_it_fatturapa
-#: field:account.tax,law_reference:0
 #: field:faturapa.summary.data,law_reference:0
 msgid "Law reference"
 msgstr ""
@@ -702,8 +698,8 @@ msgid "No Sog."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:53
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:66
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:36
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:49
 #, python-format
 msgid "No tax %s found"
 msgstr ""
@@ -719,8 +715,7 @@ msgid "Non soggetto Iva"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: field:account.tax,non_taxable_nature:0
-#: field:faturapa.summary.data,non_taxable_nature:0
+#: field:faturapa.summary.data,kind_id:0
 #: field:welfare.fund.data.line,fund_nature:0
 msgid "Non taxable nature"
 msgstr ""
@@ -1025,7 +1020,6 @@ msgid "Single Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,payability:0
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr ""
@@ -1077,8 +1071,8 @@ msgid "Third Party/Sender"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:57
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:70
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:40
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:53
 #, python-format
 msgid "Too many tax %s found"
 msgstr ""
@@ -1123,7 +1117,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: field:account.tax,payability:0 field:faturapa.summary.data,payability:0
+#: field:faturapa.summary.data,payability:0
 msgid "VAT payability"
 msgstr ""
 
@@ -1203,15 +1197,11 @@ msgid "description"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "escluse ex art. 15"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "esenti"
 msgstr ""
@@ -1235,8 +1225,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "inversione contabile (reverse charge)"
 msgstr ""
@@ -1247,15 +1235,11 @@ msgid "name"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "non imponibili"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "non soggette"
 msgstr ""
@@ -1266,8 +1250,6 @@ msgid "number of items"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: selection:account.tax,non_taxable_nature:0
-#: selection:faturapa.summary.data,non_taxable_nature:0
 #: selection:welfare.fund.data.line,fund_nature:0
 msgid "regime del margine"
 msgstr ""
