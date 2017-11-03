@@ -6,7 +6,7 @@
 {
     "name": "Fiscal year closing",
     "summary": "Generic fiscal year closing wizard",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://www.tecnativa.org/",
     "author": "Tecnativa, "
