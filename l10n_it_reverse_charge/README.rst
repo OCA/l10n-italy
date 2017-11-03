@@ -7,7 +7,7 @@ Reverse Charge IVA
 ==================
 
 
-Module to handle reverse charge IVA on supplier invoices.
+Module to handle reverse charge IVA on supplier invoices...
 
 Il modulo permette di automatizzare le registrazioni contabili derivate
 dalle fatture fornitori intra UE ed extra UE mediante il reverse charge IVA.
