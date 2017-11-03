@@ -45,9 +45,14 @@ class AccountInvoice(models.Model):
             }
 
     def rc_inv_vals(self, partner, account, rc_type, lines):
+        if self.type == 'in_invoice':
+            type = 'out_invoice'
+        else:
+            type = 'out_refund'
+
         return {
             'partner_id': partner.id,
-            'type': 'out_invoice',
+            'type': type,
             'account_id': account.id,
             'journal_id': rc_type.journal_id.id,
             'invoice_line_ids': lines,
@@ -61,13 +66,17 @@ class AccountInvoice(models.Model):
 
     def get_inv_line_to_reconcile(self):
         for inv_line in self.move_id.line_ids:
-            if inv_line.credit:
+            if (self.type == 'in_invoice') and inv_line.credit:
+                return inv_line
+            elif (self.type == 'in_refund') and inv_line.debit:
                 return inv_line
         return False
 
     def get_rc_inv_line_to_reconcile(self, invoice):
         for inv_line in invoice.move_id.line_ids:
-            if inv_line.debit:
+            if (invoice.type == 'out_invoice') and inv_line.debit:
+                return inv_line
+            elif (invoice.type == 'out_refund') and inv_line.credit:
                 return inv_line
         return False
 
@@ -79,23 +88,36 @@ class AccountInvoice(models.Model):
             }
 
     def rc_credit_line_vals(self, journal):
+        credit = debit = 0.0
+        if self.type == 'in_invoice':
+            credit = self.amount_tax
+        else:
+            debit = self.amount_tax
+
         return {
             'name': self.number,
-            'credit': self.amount_tax,
-            'debit': 0.0,
+            'credit': credit,
+            'debit': debit,
             'account_id': journal.default_credit_account_id.id,
             'company_id': self.company_id.id,
             }
 
     def rc_debit_line_vals(self, amount=None):
-        if amount:
-            debit = amount
+        credit = debit = 0.0
+        if self.type == 'in_invoice':
+            if amount:
+                debit = amount
+            else:
+                debit = self.amount_tax
         else:
-            debit = self.amount_tax
+            if amount:
+                credit = amount
+            else:
+                credit = self.amount_tax
         return {
             'name': self.number,
             'debit': debit,
-            'credit': 0.0,
+            'credit': credit,
             'account_id': self.get_inv_line_to_reconcile().account_id.id,
             'partner_id': self.partner_id.id,
             'company_id': self.company_id.id
@@ -109,10 +131,15 @@ class AccountInvoice(models.Model):
             }
 
     def rc_payment_credit_line_vals(self, invoice):
+        credit = debit = 0.0
+        if invoice.type == 'out_invoice':
+            credit = self.get_rc_inv_line_to_reconcile(invoice).debit
+        else:
+            debit = self.get_rc_inv_line_to_reconcile(invoice).credit
         return {
             'name': invoice.number,
-            'credit': self.get_rc_inv_line_to_reconcile(invoice).debit,
-            'debit': 0.0,
+            'credit': credit,
+            'debit': debit,
             'account_id': self.get_rc_inv_line_to_reconcile(
                 invoice).account_id.id,
             'partner_id': invoice.partner_id.id,
@@ -120,10 +147,15 @@ class AccountInvoice(models.Model):
             }
 
     def rc_payment_debit_line_vals(self, invoice, journal):
+        credit = debit = 0.0
+        if invoice.type == 'out_invoice':
+            debit = self.get_rc_inv_line_to_reconcile(invoice).debit
+        else:
+            credit = self.get_rc_inv_line_to_reconcile(invoice).credit
         return {
             'name': invoice.number,
-            'debit': self.get_rc_inv_line_to_reconcile(invoice).debit,
-            'credit': 0.0,
+            'debit': debit,
+            'credit': credit,
             'account_id': journal.default_credit_account_id.id,
             'company_id': self.company_id.id
             }
@@ -183,7 +215,10 @@ class AccountInvoice(models.Model):
     def partially_reconcile_supplier_invoice(self, rc_payment):
         move_line_model = self.env['account.move.line']
         for move_line in rc_payment.line_ids:
-            if move_line.debit:
+            # testa se nota credito o debito
+            if (self.type == 'in_invoice') and move_line.debit:
+                payment_debit_line = move_line
+            elif (self.type == 'in_refund') and move_line.credit:
                 payment_debit_line = move_line
         inv_lines_to_rec = move_line_model.browse(
             [self.get_inv_line_to_reconcile().id,
@@ -215,7 +250,6 @@ class AccountInvoice(models.Model):
         rc_lines_to_rec.reconcile()
 
     def generate_self_invoice(self):
-
         rc_type = self.fiscal_position_id.rc_type_id
         if not rc_type.payment_journal_id.default_credit_account_id:
             raise UserError(
