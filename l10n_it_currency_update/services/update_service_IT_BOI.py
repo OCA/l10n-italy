@@ -89,4 +89,4 @@ class IT_BOIGetter(CurrencyGetterInterface):
                         if curr in currency_array:
                             self.updated_currency[curr] = value
 
-                return self.updated_currency, self.log_info
+                return self.updated_currency, self.log_info, ref_date
