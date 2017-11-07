@@ -95,7 +95,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 payment_lines.extend(filter(None, [
                     rp.debit_move_id.id for rp in line.matched_debit_ids
                 ]))
-            self.payment_ids = self.env['account.move.line'].browse(
+            statement.payment_ids = self.env['account.move.line'].browse(
                 list(set(payment_lines)))
 
     @api.model
