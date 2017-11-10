@@ -17,7 +17,12 @@
                             <field name="to_date"/>
                         </group>
                         <separator string="Journals" colspan="2"/>
-                        <field name="tax_registry_id"></field>
+                        <group>
+                            <field name="tax_registry_id"></field>
+                        </group>
+                        <group>
+                            <button name="load_journal_ids" type="object" string="Load Journals" icon="fa-upload"/>
+                        </group>
                         <field name="journal_ids" colspan="2" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase'))]"/>
                         <separator string="Layout" colspan="2"/>
                         <field name="layout_type"/>
