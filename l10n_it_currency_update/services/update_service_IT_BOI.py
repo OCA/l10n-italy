@@ -6,8 +6,8 @@ from odoo.addons.currency_rate_update import CurrencyGetterInterface
 
 import csv
 from StringIO import StringIO
-from datetime import datetime, timedelta
 import urllib2
+
 from odoo import _
 from odoo.exceptions import except_orm
 
@@ -47,46 +47,42 @@ class IT_BOIGetter(CurrencyGetterInterface):
         "ZMK", "ZWD", "ZWN", ]
 
     def get_updated_currency(self, currency_array, main_currency,
-                             max_delta_days):
+                             max_delta_days, ref_date):
         """
         Implementation of abstract method of Curreny_getter_interface.
         For technical details refer to the documentation at this url:
         http://www.bancaditalia.it/compiti/operazioni-cambi/cambi-automatici.pdf
-
-        Rate -> 0 = daily
-                1 = monthly, if selected remove initDay from url
-                2 = yearly, if selected remove initDay & initMonth from url
         """
+        # Emptying the dictionary of currencies to update
+        self.updated_currency = {}
         # We do not want to update the main currency
         if main_currency in currency_array:
             currency_array.remove(main_currency)
 
-        for day in range(30):
-            ref_date = datetime.today() - timedelta(days=day)
-            url = (
-                "http://cambi.bancaditalia.it/cambi/QueryOneDateAllCur?"
-                "lang={lang}&rate={rate}&initDay={day}&initMonth={month}"
-                "&initYear={year}&refCur={ref_cur}&R1=csv".format(
-                    lang='ita',
-                    rate='0',
-                    day=ref_date.day,
-                    month=ref_date.month,
-                    year=ref_date.year,
-                    ref_cur='euro',
-                    ))
-            response = urllib2.urlopen(url).read()
-            filename = StringIO(response)
+        url = (
+            "http://cambi.bancaditalia.it/cambi/QueryOneDateAllCur?"
+            "lang={lang}&rate={rate}&initDay={day}&initMonth={month}"
+            "&initYear={year}&refCur={ref_cur}&R1=csv".format(
+                lang='ita',
+                rate='0',
+                day=ref_date.day,
+                month=ref_date.month,
+                year=ref_date.year,
+                ref_cur='euro',
+                ))
+        response = urllib2.urlopen(url).read()
+        filename = StringIO(response)
+        output_csv = csv.reader(filename, delimiter=',')
+        # check that the file has no error, i.e. more than 1 line
+        row_count = sum(1 for line in output_csv)
+        if row_count > 1:
+            filename.seek(0)
             output_csv = csv.reader(filename, delimiter=',')
-            # check that the file has no error, i.e. more than 1 line
-            row_count = sum(1 for line in output_csv)
-            if row_count > 1:
-                filename.seek(0)
-                output_csv = csv.reader(filename, delimiter=',')
-                for row in output_csv:
-                    if len(row) > 2:
-                        curr = row[2]
-                        value = row[4]
-                        if curr in currency_array:
-                            self.updated_currency[curr] = value
+            for row in output_csv:
+                if len(row) > 2:
+                    curr = row[2]
+                    value = row[4]
+                    if curr in currency_array:
+                        self.updated_currency[curr] = value
 
-                return self.updated_currency, self.log_info, ref_date
+        return self.updated_currency, self.log_info, ref_date
