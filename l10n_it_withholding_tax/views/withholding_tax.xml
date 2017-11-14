@@ -78,7 +78,7 @@
         </record>
 
         <menuitem id="menu_withholding_tax" name="Withholding Tax" 
-            action="action_withholding_tax" parent="account.menu_action_tax_form" sequence="45"/>
+            action="action_withholding_tax" parent="account.account_account_menu" sequence="45"/>
 
 
         <!--
