@@ -47,7 +47,10 @@ class AccountVatPeriodEndStatement(models.Model):
             authority_amount = (
                 debit_vat_amount - credit_vat_amount - generic_vat_amount -
                 statement.previous_credit_vat_amount +
-                statement.previous_debit_vat_amount)
+                statement.previous_debit_vat_amount -
+                statement.tax_credit_amount +
+                statement.interests_debit_vat_amount
+            )
             statement.authority_vat_amount = authority_amount
 
     @api.multi
@@ -92,7 +95,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 payment_lines.extend(filter(None, [
                     rp.debit_move_id.id for rp in line.matched_debit_ids
                 ]))
-            self.payment_ids = self.env['account.move.line'].browse(
+            statement.payment_ids = self.env['account.move.line'].browse(
                 list(set(payment_lines)))
 
     @api.model
@@ -151,6 +154,35 @@ class AccountVatPeriodEndStatement(models.Model):
         })
     previous_debit_vat_amount = fields.Float(
         'Previous Debits VAT Amount',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        }, digits=dp.get_precision('Account'))
+    interests_debit_vat_account_id = fields.Many2one(
+        'account.account', 'Due interests',
+        help='Due interests for three-monthly statments',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        })
+    interests_debit_vat_amount = fields.Float(
+        'Due interests Amount',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        }, digits=dp.get_precision('Account'))
+    tax_credit_account_id = fields.Many2one(
+        'account.account', 'Tax credits',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        })
+    tax_credit_amount = fields.Float(
+        'Tax credits Amount',
         states={
             'confirmed': [('readonly', True)],
             'paid': [('readonly', True)],
@@ -348,6 +380,25 @@ class AccountVatPeriodEndStatement(models.Model):
                         statement.previous_credit_vat_amount)
                 lines_to_create.append((0, 0, previous_credit_vat_data))
 
+            if statement.tax_credit_amount:
+                tax_credit_vat_data = {
+                    'name': _('Tax Credits'),
+                    'account_id': statement.tax_credit_account_id.id,
+                    'move_id': move_id,
+                    'journal_id': statement.journal_id.id,
+                    'debit': 0.0,
+                    'credit': 0.0,
+                    'date': statement.date,
+                    'company_id': statement.company_id.id,
+                }
+                if statement.tax_credit_amount < 0:
+                    tax_credit_vat_data['debit'] = math.fabs(
+                        statement.tax_credit_amount)
+                else:
+                    tax_credit_vat_data['credit'] = math.fabs(
+                        statement.tax_credit_amount)
+                lines_to_create.append((0, 0, tax_credit_vat_data))
+
             if statement.previous_debit_vat_amount:
                 previous_debit_vat_data = {
                     'name': _('Previous Debits VAT'),
@@ -366,6 +417,25 @@ class AccountVatPeriodEndStatement(models.Model):
                     previous_debit_vat_data['credit'] = math.fabs(
                         statement.previous_debit_vat_amount)
                 lines_to_create.append((0, 0, previous_debit_vat_data))
+
+            if statement.interests_debit_vat_amount:
+                interests_data = {
+                    'name': _('Due interests'),
+                    'account_id': statement.interests_debit_vat_account_id.id,
+                    'move_id': move_id,
+                    'journal_id': statement.journal_id.id,
+                    'debit': 0.0,
+                    'credit': 0.0,
+                    'date': statement.date,
+                    'company_id': statement.company_id.id,
+                }
+                if statement.interests_debit_vat_amount > 0:
+                    interests_data['debit'] = math.fabs(
+                        statement.interests_debit_vat_amount)
+                else:
+                    interests_data['credit'] = math.fabs(
+                        statement.interests_debit_vat_amount)
+                lines_to_create.append((0, 0, interests_data))
 
             for generic_line in statement.generic_vat_account_line_ids:
                 generic_vat_data = {
@@ -420,8 +490,6 @@ class AccountVatPeriodEndStatement(models.Model):
 
     @api.multi
     def compute_amounts(self):
-        statement_generic_account_line_model = self.env[
-            'statement.generic.account.line']
         decimal_precision_obj = self.env['decimal.precision']
         debit_line_model = self.env['statement.debit.account.line']
         credit_line_model = self.env['statement.credit.account.line']
@@ -495,28 +563,19 @@ class AccountVatPeriodEndStatement(models.Model):
             interest_amount = 0.0
             # if exits Delete line with interest
             acc_id = self.get_account_interest().id
-            domain = [
-                ('account_id', '=', acc_id),
-                ('statement_id', '=', statement.id),
-                ]
-            lines = statement_generic_account_line_model.search(domain)
-            if lines:
-                lines.unlink()
+            statement.interests_debit_vat_account_id = None
+            statement.interests_debit_vat_amount = interest_amount
 
             # Compute interest
             if statement.interest and statement.authority_vat_amount > 0:
-                interest_amount = (-1 * round(
+                interest_amount = round(
                     statement.authority_vat_amount *
                     (float(statement.interest_percent) / 100),
-                    decimal_precision_obj.precision_get('Account')))
+                    decimal_precision_obj.precision_get('Account'))
             # Add line with interest
             if interest_amount:
-                val = {
-                    'statement_id': statement.id,
-                    'account_id': acc_id,
-                    'amount': interest_amount,
-                    }
-                statement_generic_account_line_model.create(val)
+                statement.interests_debit_vat_account_id = acc_id
+                statement.interests_debit_vat_amount = interest_amount
         return True
 
     @api.onchange('authority_partner_id')
