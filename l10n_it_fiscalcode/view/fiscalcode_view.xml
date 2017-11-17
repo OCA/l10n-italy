@@ -9,8 +9,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='vat_info']" position="after">
                     <label for="fiscalcode" />
-                    <div name="fiscalcode_info">
-                        <field name="fiscalcode" class="oe_inline" />
+                    <div name="fiscalcode_info" class="o_row">
+                        <field name="fiscalcode"/>
                         <field name="individual" colspan="1" groups="base.group_extended" />
                     </div>
                 </xpath>
