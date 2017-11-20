@@ -63,18 +63,36 @@ class VatPeriodEndStatementReport(models.AbstractModel):
         res = {}
         date_range = self.env['date.range'].browse(period_id)
         tax_model = self.env['account.tax']
+
         for tax_id in tax_ids:
             tax = tax_model.browse(tax_id)
-            tax_name, base, tax, deductible, undeductible = (
+            tax_name, base, tax_val, deductible, undeductible = (
                 tax._compute_totals_tax({
                     'from_date': date_range.date_start,
                     'to_date': date_range.date_end,
                     'registry_type': registry_type,
                 })
             )
+
+            if (
+                tax.cee_type and tax.parent_tax_ids and
+                len(tax.parent_tax_ids) == 1
+            ):
+                # In caso di integrazione iva l'imponibile è solo sulla
+                # padre
+                parent = tax.parent_tax_ids[0]
+
+                tax_data = parent._compute_totals_tax({
+                    'from_date': date_range.date_start,
+                    'to_date': date_range.date_end,
+                    'registry_type': registry_type,
+                    })
+                # return tax_name, base, tax_val, deductible, undeductible
+                base = tax_data[1]
+
             res[tax_name] = {
                 'code': tax_name,
-                'vat': tax,
+                'vat': tax_val,
                 'vat_deductible': deductible,
                 'vat_undeductible': undeductible,
                 'base': base
