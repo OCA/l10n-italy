@@ -10,6 +10,7 @@
 from odoo import fields, models, api, workflow, _
 from odoo.exceptions import Warning as UserError
 import odoo.addons.decimal_precision as dp
+from datetime import date
 
 
 class RibaList(models.Model):
@@ -133,6 +134,13 @@ class RibaList(models.Model):
             if riba_list.accreditation_move_id:
                 riba_list.accreditation_move_id.unlink()
             riba_list.state = 'cancel'
+
+    @api.multi
+    def settle_all_line(self):
+        for riba_list in self:
+            for line in riba_list.line_ids:
+                if line.state == 'accredited':
+                    line.riba_line_settlement()
 
     @api.onchange('date_accepted', 'date_accreditation')
     def _onchange_date(self):
@@ -358,6 +366,65 @@ class RibaListLine(models.Model):
                 'state': 'confirmed',
             })
             line.distinta_id.signal_workflow('accepted')
+
+    @api.multi
+    def riba_line_settlement(self):
+        for riba_line in self:
+            if not riba_line.distinta_id.config_id.settlement_journal_id:
+                raise UserError(_('Please define a Settlement journal'))
+
+            # trovare le move line delle scritture da chiudere
+            move_model = self.env['account.move']
+            move_line_model = self.env['account.move.line']
+
+            settlement_move_line = move_line_model.search([
+                ('account_id', '=', riba_line.acceptance_account_id.id),
+                ('move_id', '=', riba_line.acceptance_move_id.id),
+                ])
+
+            settlement_move_amount = settlement_move_line.debit
+
+            move_ref = "Settlement RIBA {} - {}".format(
+                riba_line.distinta_id.name,
+                riba_line.partner_id.name,
+                )
+            settlement_move = move_model.create({
+                'journal_id':
+                    riba_line.distinta_id.config_id.settlement_journal_id.id,
+                'date': date.today().strftime('%Y-%m-%d'),
+                'ref': move_ref,
+                })
+
+            move_line_credit = move_line_model.with_context({
+                'check_move_validity': False}).create(
+                {
+                    'name': move_ref,
+                    'partner_id': riba_line.partner_id.id,
+                    'account_id':
+                        riba_line.acceptance_account_id.id,
+                    'credit': settlement_move_amount,
+                    'debit': 0.0,
+                    'move_id': settlement_move.id,
+                }
+            )
+
+            accr_acc = riba_line.distinta_id.config_id.accreditation_account_id
+            move_line_model.with_context({
+                'check_move_validity': False}).create(
+                {
+                    'name': move_ref,
+                    'account_id': accr_acc.id,
+                    'credit': 0.0,
+                    'debit': settlement_move_amount,
+                    'move_id': settlement_move.id,
+                }
+            )
+
+            to_be_settled = self.env['account.move.line']
+            to_be_settled |= move_line_credit
+            to_be_settled |= settlement_move_line
+
+            to_be_settled.reconcile()
 
 
 class RibaListMoveLine(models.Model):
