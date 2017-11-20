@@ -79,6 +79,8 @@ Contributors
 * Andrea Cometa <a.cometa@apuliasoftware.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Davide Corio <info@davidecorio.com>
+* Giacomo Grasso <giacomo.grasso@agilebg.com>
+* Gabriele Baldessari <gabriele.baldessari@gmail.com>
 
 Maintainer
 ----------
