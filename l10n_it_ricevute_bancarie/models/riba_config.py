@@ -55,6 +55,9 @@ class RibaConfiguration(models.Model):
         domain=[('internal_type', '=', 'receivable')])
     protest_charge_account_id = fields.Many2one(
         'account.account', "Protest charge account")
+    settlement_journal_id = fields.Many2one(
+        'account.journal', "Settlement Journal",
+        help="Journal used when the clients finally pays the invoice to bank")
 
     def get_default_value_by_list(self, field_name):
         if not self.env.context.get('active_id', False):
