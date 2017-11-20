@@ -510,44 +510,8 @@ class AccountVatPeriodEndStatement(models.Model):
                         {'previous_credit_vat_amount': (
                             - prev_statement.authority_vat_amount)})
 
-            credit_line_ids = []
-            debit_line_ids = []
-            tax_model = self.env['account.tax']
-            debit_taxes = tax_model.search([
-                ('vat_statement_account_id', '!=', False),
-                ('type_tax_use', '=', 'sale'),
-            ])
-            for debit_tax in debit_taxes:
-                total = 0.0
-                for period in statement.date_range_ids:
-                    total += debit_tax._compute_totals_tax({
-                        'from_date': period.date_start,
-                        'to_date': period.date_end,
-                        'registry_type': 'customer',
-                    })[3]  # position 3 is deductible part
-                debit_line_ids.append({
-                    'account_id': debit_tax.vat_statement_account_id.id,
-                    'tax_id': debit_tax.id,
-                    'amount': total,
-                })
-
-            credit_taxes = tax_model.search([
-                ('vat_statement_account_id', '!=', False),
-                ('type_tax_use', '=', 'purchase'),
-            ])
-            for credit_tax in credit_taxes:
-                total = 0.0
-                for period in statement.date_range_ids:
-                    total += credit_tax._compute_totals_tax({
-                        'from_date': period.date_start,
-                        'to_date': period.date_end,
-                        'registry_type': 'supplier',
-                    })[3]  # position 3 is deductible part
-                credit_line_ids.append({
-                    'account_id': credit_tax.vat_statement_account_id.id,
-                    'tax_id': credit_tax.id,
-                    'amount': total,
-                })
+            credit_line_ids, debit_line_ids = self._get_credit_debit_lines(
+                statement)
 
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
@@ -577,6 +541,64 @@ class AccountVatPeriodEndStatement(models.Model):
                 statement.interests_debit_vat_account_id = acc_id
                 statement.interests_debit_vat_amount = interest_amount
         return True
+
+    def _set_debit_lines(self, debit_tax, debit_line_ids, statement):
+        total = 0.0
+        for period in statement.date_range_ids:
+            total += debit_tax._compute_totals_tax({
+                'from_date': period.date_start,
+                'to_date': period.date_end,
+                'registry_type': 'customer',
+            })[3]  # position 3 is deductible part
+        debit_line_ids.append({
+            'account_id': debit_tax.vat_statement_account_id.id,
+            'tax_id': debit_tax.id,
+            'amount': total,
+        })
+
+    def _set_credit_lines(self, credit_tax, credit_line_ids, statement):
+        total = 0.0
+        for period in statement.date_range_ids:
+            total += credit_tax._compute_totals_tax({
+                'from_date': period.date_start,
+                'to_date': period.date_end,
+                'registry_type': 'supplier',
+            })[3]  # position 3 is deductible part
+        credit_line_ids.append({
+            'account_id': credit_tax.vat_statement_account_id.id,
+            'tax_id': credit_tax.id,
+            'amount': total,
+        })
+
+    def _get_credit_debit_lines(self, statement):
+        credit_line_ids = []
+        debit_line_ids = []
+        tax_model = self.env['account.tax']
+        taxes = tax_model.search([
+            ('vat_statement_account_id', '!=', False),
+            ('type_tax_use', 'in', ['sale', 'purchase']),
+        ])
+        for tax in taxes:
+            # se ho una tassa padre con figli cee_type, condidero le figlie
+            if any(tax_ch for tax_ch in tax.children_tax_ids
+                   if tax_ch.cee_type in ('sale', 'purchase')):
+
+                for tax_ch in tax.children_tax_ids:
+                    if tax_ch.cee_type == 'sale':
+                        self._set_debit_lines(tax_ch,
+                                              debit_line_ids,
+                                              statement)
+                    elif tax_ch.cee_type == 'purchase':
+                        self._set_credit_lines(tax_ch,
+                                               credit_line_ids,
+                                               statement)
+
+            elif tax.type_tax_use == 'sale':
+                self._set_debit_lines(tax, debit_line_ids, statement)
+            elif tax.type_tax_use == 'purchase':
+                self._set_credit_lines(tax, credit_line_ids, statement)
+
+        return credit_line_ids, debit_line_ids
 
     @api.onchange('authority_partner_id')
     def on_change_partner_id(self):
