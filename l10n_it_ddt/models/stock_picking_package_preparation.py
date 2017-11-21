@@ -96,7 +96,8 @@ class StockPickingPackagePreparation(models.Model):
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
     parcels = fields.Integer('Parcels')
-    display_name = fields.Char(string='Name', compute='_compute_clean_display_name')
+    display_name = fields.Char(
+        string='Name', compute='_compute_clean_display_name')
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
         'account.invoice', string='Invoice', readonly=True, copy=False)
