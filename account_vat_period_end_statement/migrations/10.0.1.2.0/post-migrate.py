@@ -13,11 +13,17 @@ def migrate(cr, version):
         return
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        date_range_model = env['date.range']
-        date_range_type = env['date.range.type']
+        # check if account_period table exists
+        env.cr.execute(
+            """SELECT relname FROM pg_class
+            WHERE relname= 'account_period'""")
+        if not cr.fetchone():
+            return
         env.cr.execute(
             """SELECT vat_statement_id, company_id, name, date_start, date_stop
             from account_period """)
+        date_range_model = env['date.range']
+        date_range_type = env['date.range.type']
         periods = env.cr.fetchall()
         for period in periods:
             # if period has vat statement
