@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-28 05:16+0000\n"
-"PO-Revision-Date: 2017-10-28 05:16+0000\n"
+"POT-Creation-Date: 2017-11-11 04:27+0000\n"
+"PO-Revision-Date: 2017-11-11 04:27+0000\n"
 "Last-Translator: Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2017\n"
 "Language-Team: Indonesian (https://www.transifex.com/oca/teams/23907/id/)\n"
 "MIME-Version: 1.0\n"
@@ -399,7 +399,7 @@ msgstr ""
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Partner"
-msgstr ""
+msgstr "Mitra"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
