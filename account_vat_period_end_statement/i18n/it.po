@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_vat_period_end_statement
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -212,12 +212,12 @@ msgstr "IVA a debito da periodi precedenti"
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Deductible"
-msgstr "Deducibile"
+msgstr "Detraibile"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_deductible_vat_amount
 msgid "Deductible VAT Amount"
-msgstr "Importo IVA Deducibile"
+msgstr "Importo IVA Detraibile"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_name
@@ -450,7 +450,7 @@ msgstr "Opzioni di stampa"
 #. module: account_vat_period_end_statement
 #: model:ir.actions.report.xml,name:account_vat_period_end_statement.report_vat_statement
 msgid "Print Vat Period End Statement"
-msgstr "Print Vat Period End Statement"
+msgstr "Stampa Liquidazione IVA"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
@@ -592,7 +592,7 @@ msgstr "Totale iva a debito"
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Undeductible"
-msgstr "Non deducibile"
+msgstr "Non detraibile"
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:316
@@ -625,6 +625,11 @@ msgstr "Imposta"
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement_tree
 msgid "Vat statement"
+msgstr "Liquidazione IVA"
+
+#. module: account_vat_period_end_statement
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.vat_statement
+msgid "Vat End Period Statement"
 msgstr "Liquidazione IVA"
 
 #. module: account_vat_period_end_statement
