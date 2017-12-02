@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
+
     <record id="view_partner_form_fiscalcode_data" model="ir.ui.view">
         <field name="name">res.partner.fiscalcode.data</field>
         <field name="model">res.partner</field>
@@ -14,4 +15,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>
