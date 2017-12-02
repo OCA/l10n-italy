@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 03:33+0000\n"
-"PO-Revision-Date: 2017-06-25 05:31+0000\n"
+"POT-Creation-Date: 2017-10-28 05:14+0000\n"
+"PO-Revision-Date: 2017-12-01 20:36+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,11 @@ msgid "DDT number:"
 msgstr "Numero DDT:"
 
 #. module: l10n_it_ddt
+#: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "DDT type"
+msgstr "Tipo DDT"
+
+#. module: l10n_it_ddt
 #: field:ddt.create.invoice,date:0
 msgid "Date"
 msgstr "Data"
@@ -257,7 +262,7 @@ msgstr "Firma del Conducente"
 msgid ""
 "Fill this field with the value you want to be used as weight. Leave empty to"
 " let the system to compute it"
-msgstr ""
+msgstr "Compilare questo campo con il peso che si intende impostare. Lasciare vuoto per permettere al sistema di calcolarlo automaticamente"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_follower_ids:0
