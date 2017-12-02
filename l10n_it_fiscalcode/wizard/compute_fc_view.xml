@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
+
     <record id="wizard_compute_fc_form" model="ir.ui.view">
         <field name="name">wizard.compute.fc.form</field>
         <field name="model">wizard.compute.fc</field>
@@ -49,4 +50,5 @@
             </field>
         </field>
     </record>
+
 </odoo>
