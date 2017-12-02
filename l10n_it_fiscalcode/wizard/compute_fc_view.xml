@@ -43,9 +43,9 @@
         <field name="arch" type="xml">
             <field name="fiscalcode" position="after">
                 <button name="%(l10n_it_fiscalcode.action_compute_fc)d"
-                    string="Compute F.C." type="action" icon="fa-gear" colspan="2" style="margin-left: 10px"/>
+                        string="Compute F.C." type="action" icon="fa-gear" 
+                        colspan="2" style="margin-left: 10px"/>
             </field>
         </field>
     </record>
-
 </odoo>
