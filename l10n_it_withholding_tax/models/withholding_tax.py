@@ -31,6 +31,10 @@ class WithholdingTax(models.Model):
             self.base = 1
 
     active = fields.Boolean('Active', default=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',required=True,
+        default=lambda self: \
+        self.env['res.company']._company_default_get('account.account'))
     name = fields.Char('Name', size=256, required=True)
     code = fields.Char('Code', size=256, required=True)
     certification = fields.Boolean('Certification')
@@ -165,6 +169,9 @@ class WithholdingTaxStatement(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner')
     withholding_tax_id = fields.Many2one('withholding.tax',
                                          string='Withholding Tax')
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        related='withholding_tax_id.company_id')
     base = fields.Float('Base')
     tax = fields.Float('Tax')
     amount = fields.Float(
@@ -228,6 +235,9 @@ class WithholdingTaxMove(models.Model):
         'account.move.line', 'Account Move line',
         ondelete='cascade', help="Used from trace WT from other parts")
     withholding_tax_id = fields.Many2one('withholding.tax', 'Withholding Tax')
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        related='withholding_tax_id.company_id')
     amount = fields.Float('Amount')
     partner_id = fields.Many2one('res.partner', 'Partner')
     date_maturity = fields.Date('Date Maturity')

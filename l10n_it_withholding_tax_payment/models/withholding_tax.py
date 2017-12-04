@@ -31,6 +31,10 @@ class WithholdingTaxMovePayment(models.Model):
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
     ], 'Status', readonly=True, copy=False, default='draft')
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True,
+        default=lambda self: \
+        self.env['res.company']._company_default_get('account.account'))
     name = fields.Char('Name')
     date = fields.Char('Date')
     date_payment = fields.Date('Date Payment')
@@ -100,6 +104,10 @@ class WithholdingTaxMovePayment(models.Model):
             mp.move_id = move.id
 
     def generate_from_moves(self, wt_moves):
+        # Moves must have the same company
+        if len(wt_moves.mapped('company_id')) > 1:
+            raise ValidationError(
+                    _("The selected moves must have the same company!"))
         sequence_obj = self.env['ir.sequence']
         for wt_move in wt_moves:
             if wt_move.state == 'paid':
