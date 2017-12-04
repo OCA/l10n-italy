@@ -18,6 +18,7 @@
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'wizard/create_move_payment_view.xml',
+        'security/security.xml',
     ],
     "active": False,
     "installable": True
