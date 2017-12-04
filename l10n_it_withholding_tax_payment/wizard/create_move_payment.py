@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class WizardWtMovePaymentCreate(models.TransientModel):
@@ -25,6 +25,17 @@ class WizardWtMovePaymentCreate(models.TransientModel):
 
     def generate(self):
         wt_move_payment_obj = self.env['withholding.tax.move.payment']
-        wt_move_payment_obj.generate_from_moves(self.wt_move_ids)
-
-        return {'type': 'ir.actions.act_window_close'}
+        wt_payment = wt_move_payment_obj.generate_from_moves(self.wt_move_ids)
+        view = self.env['ir.model.data'].get_object_reference(
+            'l10n_it_withholding_tax_payment',
+            'view_withholding_move_payment_form')
+        view_id = view[1] or False
+        return {
+            'name': _('Withholding Tax Payment'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'withholding.tax.move.payment',
+            'res_id': wt_payment.id,
+            'type': 'ir.actions.act_window',
+            'view_id': [view_id],
+        }
