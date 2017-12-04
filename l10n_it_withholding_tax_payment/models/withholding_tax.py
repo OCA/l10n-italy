@@ -14,6 +14,28 @@ class WithholdingTaxMove(models.Model):
     wt_move_payment_id = fields.Many2one(
         'withholding.tax.move.payment', 'Move Payment', readonly=True)
 
+    def unlink(self):
+        for rec in self:
+            if rec.wt_move_payment_id:
+                raise ValidationError(
+                    _(('Warning! Withholding tax move in payment {}: \
+                    you can not delete it').format(
+                        rec.wt_move_payment_id.name)))
+        return super(WithholdingTaxMove, self).unlink()
+
+    @api.multi
+    def check_unlink(self):
+        wt_moves_not_eresable = []
+        for move in self:
+            if move.wt_move_payment_id:
+                wt_moves_not_eresable.append(move)
+        if wt_moves_not_eresable:
+            raise ValidationError(
+                _('Warning! Withholding Tax moves in a payment: {}'
+                  .format(
+                      wt_moves_not_eresable[0].sudo().wt_move_payment_id.name)))
+        super(WithholdingTaxMove, self).check_unlink()
+
 
 class WithholdingTaxMovePayment(models.Model):
     _name = 'withholding.tax.move.payment'
@@ -31,6 +53,10 @@ class WithholdingTaxMovePayment(models.Model):
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
     ], 'Status', readonly=True, copy=False, default='draft')
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True,
+        default=lambda self:
+        self.env['res.company']._company_default_get('account.account'))
     name = fields.Char('Name')
     date = fields.Char('Date')
     date_payment = fields.Date('Date Payment')
@@ -100,6 +126,10 @@ class WithholdingTaxMovePayment(models.Model):
             mp.move_id = move.id
 
     def generate_from_moves(self, wt_moves):
+        # Moves must have the same company
+        if wt_moves and len(wt_moves.mapped('company_id')) > 1:
+            raise ValidationError(
+                _("The selected moves must have the same company!"))
         sequence_obj = self.env['ir.sequence']
         for wt_move in wt_moves:
             if wt_move.state == 'paid':
