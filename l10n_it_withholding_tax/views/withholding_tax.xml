@@ -18,6 +18,7 @@
                     <field name="certification"/>
                     <field name="active"/>
                     <field name="comment"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
@@ -38,6 +39,7 @@
                         </group>
                         <group>
                             <field name="active"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <field name="comment"/>
@@ -94,6 +96,7 @@
                     <field name="move_id"/>
                     <field name="invoice_id"/>
                     <field name="withholding_tax_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="base" sum="Tot Base"/>
                     <field name="tax"/>
                     <field name="amount" sum="Tot Amount"/>
@@ -120,6 +123,7 @@
                                 <field name="date"/>
                                 <field name="move_id"/>
                                 <field name="invoice_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                         </group>
                         <newline/>
@@ -180,6 +184,7 @@
                     <field name="partner_id"/>
                     <field name="date"/>
                     <field name="withholding_tax_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="date_maturity"/>
                     <field name="amount" sum="Tot"/>
                     <field name="account_move_id"/>
@@ -216,6 +221,7 @@
                                 <field name="reconcile_partial_id"/>
                                 <field name="date_maturity"/>
                                 <field name="wt_account_move_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                         </group>
                     </sheet>
@@ -232,11 +238,13 @@
                     <filter name="paid" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
                     <field name="partner_id" filter_domain="[('partner_id','ilike',self)]"/>
                     <field name="withholding_tax_id" filter_domain="[('withholding_tax_id','ilike',self)]"/>
+                    <field name="company_id" filter_domain="[('company_id','ilike',self)]" groups="base.group_multi_company"/>
                     <group expand="0" string="Group By...">
                         <filter string="Partners" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
                         <filter string="Withholding Tax" icon="terp-personal" domain="[]" context="{'group_by':'withholding_tax_id'}"/>
                         <filter string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
                         <filter string="Date Maturity" icon="terp-go-month" domain="[]" context="{'group_by':'date_maturity'}"/>
+                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
                     </group>
                 </search>
             </field>
