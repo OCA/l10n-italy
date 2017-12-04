@@ -31,6 +31,9 @@ class WithholdingTax(models.Model):
             self.base = 1
 
     active = fields.Boolean('Active', default=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True, default=lambda self:
+        self.env['res.company']._company_default_get('account.account'))
     name = fields.Char('Name', size=256, required=True)
     code = fields.Char('Code', size=256, required=True)
     certification = fields.Boolean('Certification')
@@ -165,6 +168,9 @@ class WithholdingTaxStatement(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner')
     withholding_tax_id = fields.Many2one('withholding.tax',
                                          string='Withholding Tax')
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        related='withholding_tax_id.company_id')
     base = fields.Float('Base')
     tax = fields.Float('Tax')
     amount = fields.Float(
@@ -228,6 +234,9 @@ class WithholdingTaxMove(models.Model):
         'account.move.line', 'Account Move line',
         ondelete='cascade', help="Used from trace WT from other parts")
     withholding_tax_id = fields.Many2one('withholding.tax', 'Withholding Tax')
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        related='withholding_tax_id.company_id')
     amount = fields.Float('Amount')
     partner_id = fields.Many2one('res.partner', 'Partner')
     date_maturity = fields.Date('Date Maturity')
@@ -236,6 +245,14 @@ class WithholdingTaxMove(models.Model):
     wt_account_move_id = fields.Many2one(
         'account.move', 'WT Move', ondelete='cascade')
     display_name = fields.Char(compute='_compute_display_name')
+
+    def unlink(self):
+        for rec in self:
+            if rec.state not in ['due']:
+                raise ValidationError(
+                    _(('Warning! You can not delete withholding tax move in\
+                     state: {}').format(rec.state)))
+        return super(WithholdingTaxMove, self).unlink()
 
     def generate_account_move(self):
         """
@@ -268,6 +285,8 @@ class WithholdingTaxMove(models.Model):
                 ml_vals['partner_id'] = self.payment_line_id.partner_id.id
                 ml_vals['account_id'] = \
                     self.credit_debit_line_id.account_id.id
+                ml_vals['withholding_tax_generated_by_move_id'] = \
+                    self.payment_line_id.move_id.id
                 if self.payment_line_id.credit:
                     ml_vals['credit'] = self.amount
                 else:
@@ -276,7 +295,7 @@ class WithholdingTaxMove(models.Model):
             elif type == 'tax':
                 ml_vals['name'] = '%s - %s' % (
                     self.withholding_tax_id.code,
-                    self.credit_debit_line_id.move_id.name),
+                    self.credit_debit_line_id.move_id.name)
                 if self.payment_line_id.credit:
                     ml_vals['debit'] = self.amount
                     ml_vals['account_id'] = \
@@ -337,3 +356,14 @@ class WithholdingTaxMove(models.Model):
         for move in self:
             if move.state in ['paid']:
                 move.write({'state': 'due'})
+
+    @api.multi
+    def check_unlink(self):
+        wt_moves_not_eresable = []
+        for move in self:
+            if move.state not in ['due']:
+                wt_moves_not_eresable.append(move)
+        if wt_moves_not_eresable:
+            raise ValidationError(
+                _('Warning! Only Withholding Tax moves in Due status \
+                    can be deleted'))
