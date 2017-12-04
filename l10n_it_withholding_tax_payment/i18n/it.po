@@ -17,258 +17,260 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_account_id
+#. module: l10n_it_withholding_tax_payment
 msgid "Account"
 msgstr "Conto"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
-msgid "Account Setting"
-msgstr ""
-
 #. module: l10n_it_withholding_tax_payment
+msgid "Account Setting"
+msgstr "Impostazioni Contabili"
+
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_move_id
+#. module: l10n_it_withholding_tax_payment
 msgid "Account move"
 msgstr "Registrazione Contabile"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
+#. module: l10n_it_withholding_tax_payment
 msgid "Cancel"
 msgstr "Annulla"
 
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_company_id
 #. module: l10n_it_withholding_tax_payment
+msgid "Company"
+msgstr "Azienda"
+
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
+#. module: l10n_it_withholding_tax_payment
 msgid "Confirm"
 msgstr "Conferma"
 
-#. module: l10n_it_withholding_tax_payment
 #: selection:withholding.tax.move.payment,state:0
+#. module: l10n_it_withholding_tax_payment
 msgid "Confirmed"
-msgstr "Confermato"
+msgstr "Confermata"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
-msgid "Create Account Move"
-msgstr ""
-
 #. module: l10n_it_withholding_tax_payment
+msgid "Create Account Move"
+msgstr "Crea Registrazione"
+
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_action
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
-msgid "Create Move Payment"
-msgstr "Crea versamento"
-
 #. module: l10n_it_withholding_tax_payment
+msgid "Create Move Payment"
+msgstr "Crea Versamento"
+
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_create_uid
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_create_uid
+#. module: l10n_it_withholding_tax_payment
 msgid "Created by"
 msgstr "Creato da"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_create_date
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_create_date
+#. module: l10n_it_withholding_tax_payment
 msgid "Created on"
 msgstr "Creato il"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_date
+#. module: l10n_it_withholding_tax_payment
 msgid "Date"
 msgstr "Data"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_date_payment
-msgid "Date Payment"
-msgstr "Data versamento"
-
 #. module: l10n_it_withholding_tax_payment
+msgid "Date Payment"
+msgstr "Data Versamento"
+
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_date_start
+#. module: l10n_it_withholding_tax_payment
 msgid "Date Start"
 msgstr "Data Inizio"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_date_stop
+#. module: l10n_it_withholding_tax_payment
 msgid "Date Stop"
 msgstr "Data Fine"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_display_name
+#. module: l10n_it_withholding_tax_payment
 msgid "Display Name"
 msgstr "Nome Visualizzato"
 
-#. module: l10n_it_withholding_tax_payment
 #: selection:withholding.tax.move.payment,state:0
+#. module: l10n_it_withholding_tax_payment
 msgid "Draft"
 msgstr "Bozza"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
-msgid "Generate"
-msgstr ""
-
 #. module: l10n_it_withholding_tax_payment
+msgid "Generate"
+msgstr "Genera"
+
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_id
+#. module: l10n_it_withholding_tax_payment
 msgid "ID"
 msgstr "ID"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_journal_id
+#. module: l10n_it_withholding_tax_payment
 msgid "Journal"
 msgstr "Sezionale"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment___last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create___last_update
+#. module: l10n_it_withholding_tax_payment
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_write_uid
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_write_uid
+#. module: l10n_it_withholding_tax_payment
 msgid "Last Updated by"
 msgstr "Ultima modifica di"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_write_date
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_write_date
+#. module: l10n_it_withholding_tax_payment
 msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_line_ids
+#. module: l10n_it_withholding_tax_payment
 msgid "Lines"
 msgstr "Righe"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_wt_move_payment_id
-msgid "Move Payment"
-msgstr "Versamento"
-
 #. module: l10n_it_withholding_tax_payment
+msgid "Move Payment"
+msgstr "Versamento Ritenuta"
+
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_name
+#. module: l10n_it_withholding_tax_payment
 msgid "Name"
 msgstr "Nome"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
+#. module: l10n_it_withholding_tax_payment
 msgid "Period"
 msgstr "Periodo"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
+#. module: l10n_it_withholding_tax_payment
 msgid "Set to Draft"
 msgstr "Imposta a Bozza"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_state
+#. module: l10n_it_withholding_tax_payment
 msgid "Status"
 msgstr "Stato"
 
-#. module: l10n_it_withholding_tax_payment
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:132
+#. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "The selected moves must have the same company!"
-msgstr "Le voci selezionate devono appartenere alla stessa azienda"
+msgstr "Le voci scelte devono appartenere alla stessa azienda!"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
+#. module: l10n_it_withholding_tax_payment
 msgid "Tot"
 msgstr "Tot"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.menu,name:l10n_it_withholding_tax_payment.menu_withholding_tax_move_payment
+#. module: l10n_it_withholding_tax_payment
 msgid "WT Move Payments"
-msgstr "Versamenti ritenute"
+msgstr "Versamenti Ritenuta"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
+#. module: l10n_it_withholding_tax_payment
 msgid "WT Moves"
-msgstr "Voci ritenuta"
+msgstr "Voci Ritenuta"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_amount
+#. module: l10n_it_withholding_tax_payment
 msgid "WT amount"
-msgstr "Importo"
+msgstr "Importo Ritenuta"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model,name:l10n_it_withholding_tax_payment.model_wizard_wt_move_payment_create
+#. module: l10n_it_withholding_tax_payment
 msgid "WT wizard create move payment"
-msgstr ""
+msgstr "Wizard creazione versamento ritenuta"
 
-#. module: l10n_it_withholding_tax_payment
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:79
-#, python-format
-msgid ""
-"Warning! Datas required for account move creation:                         "
-"Date payment, journal, account"
-msgstr ""
-
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:35
+#, python-format
+msgid "Warning! Datas required for account move creation:                         Date payment, journal, account"
+msgstr "Attenzione! Per la creazione della registrazione sono richiesti:Data pagamento, sezionale, conto"
+
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:36
+#. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Warning! Withholding Tax moves in a payment: {}"
-msgstr ""
+msgstr "Attenzione! Si sta cancellando una voce di ritenuta contenuta in un versamento: {}"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_tree
+#. module: l10n_it_withholding_tax_payment
 msgid "Withholding Move Payment"
-msgstr "Versamento ritenute"
+msgstr "Versamento Ritenuta"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model,name:l10n_it_withholding_tax_payment.model_withholding_tax_move
-msgid "Withholding Tax Move"
-msgstr ""
-
 #. module: l10n_it_withholding_tax_payment
+msgid "Withholding Tax Move"
+msgstr "Voci ritenuta"
+
 #: model:ir.model,name:l10n_it_withholding_tax_payment.model_withholding_tax_move_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
-msgid "Withholding Tax Move Payment"
-msgstr ""
-
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:85
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:93
+msgid "Withholding Tax Move Payment"
+msgstr "Versamenti Ritenuta"
+
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:111
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:119
+#: code:addons/l10n_it_withholding_tax_payment/wizard/create_move_payment.py:34
+#. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Withholding Tax Payment"
-msgstr ""
+msgstr "Versamenti Ritenuta"
 
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:92
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:66
 #, python-format
 msgid "Withholding Tax Payment %s"
-msgstr ""
+msgstr "Versamento Ritenuta %s"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax_payment.action_withholding_tax_move_payment
+#. module: l10n_it_withholding_tax_payment
 msgid "Withhoulding Tax Move Payment"
-msgstr ""
+msgstr "Versamento di ritenuta"
 
-#. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_wt_move_ids
+#. module: l10n_it_withholding_tax_payment
 msgid "Wt Moves"
-msgstr ""
+msgstr "Voci Ritenuta"
 
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:143
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:113
 #, python-format
-msgid ""
-"Wt move already in a move payment!                         Move paym. %s "
-"-Ref WT: %s - %s - %s"
-msgstr ""
+msgid "Wt move already in a move payment!                         Move paym. %s -Ref WT: %s - %s - %s"
+msgstr "Voce ritenuta già presente in un versamento!                         Versamento %s -Ref Rit: %s - %s - %s"
 
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:137
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:107
 #, python-format
 msgid "Wt move already paid! - %s - %s - %s"
-msgstr ""
+msgstr "Voce ritenuta già versata! - %s - %s - %s"
 
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:195
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:165
 #, python-format
 msgid "You can only delete draft payments"
-msgstr ""
+msgstr "E' possibile cancellare solo versamenti in bozza"
+
