@@ -38,6 +38,7 @@
                     <field name="date_stop"/>
                     <field name="amount"/>
                     <field name="state"/>
+                    <field name="company_id"/>
                 </tree>
             </field>
         </record>
@@ -58,6 +59,7 @@
                         <group>
                             <field name="name"/>
                             <field name="date"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                         </group>
                         <newline/>
                         <group>
