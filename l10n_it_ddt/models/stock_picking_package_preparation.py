@@ -187,10 +187,9 @@ class StockPickingPackagePreparation(models.Model):
         return True
 
     @api.multi
-    @api.depends('name',
-                'ddt_number',
-                'partner_id.name',
-                'date')
+    @api.depends(
+        'name', 'ddt_number', 'partner_id.name', 'date'
+    )
     def _compute_clean_display_name(self):
         for prep in self:
             name = u''
