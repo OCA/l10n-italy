@@ -28,6 +28,7 @@ addon | version | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.1.0.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.0.0 | Electronic invoices emission
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.0.1.0 | Italian Localization - Tipi di documento fiscali per dichiarativi
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.0 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
@@ -35,6 +36,7 @@ addon | version | summary
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.0.1.4 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.1.0 | Italian Localization - VAT Registries
+[l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.0.1 | Italian Withholding Tax
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.1.0.0 | Italian Withholding Tax Payment
 
