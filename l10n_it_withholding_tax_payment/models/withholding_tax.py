@@ -157,3 +157,10 @@ class WithholdingTaxMovePayment(models.Model):
                 # Wt move set to due
                 for wt_move in move.line_ids:
                     wt_move.action_paid()
+
+    @api.multi
+    def unlink(self):
+        for payment in self:
+            if payment.state != 'draft':
+                raise ValidationError(_("You can only delete draft payments"))
+        return super(WithholdingTaxMovePayment, self).unlink()
