@@ -271,8 +271,6 @@ class StockPickingPackagePreparation(models.Model):
                     ddt_date_to,
                     DEFAULT_SERVER_DATE_FORMAT).strftime(date_format)
             )
-        if not invoice_description:
-            invoice_description = self.ddt_number or ''
         return invoice_description
 
     @api.multi
@@ -401,6 +399,10 @@ class StockPickingPackagePreparation(models.Model):
             raise UserError(_('There is no invoicable line.'))
 
         for invoice in invoices.values():
+            if not invoice.name:
+                invoice.write({
+                    'name': invoice.origin
+                })
             if not invoice.invoice_line_ids:
                 raise UserError(_('There is no invoicable line.'))
             # If invoice is negative, do a refund invoice instead
