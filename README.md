@@ -33,6 +33,7 @@ addon | version | summary
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
+[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.0.0 | Reverse Charge for Italy
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.0.1.4 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.1.0 | Italian Localization - VAT Registries
