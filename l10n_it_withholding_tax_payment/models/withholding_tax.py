@@ -14,6 +14,28 @@ class WithholdingTaxMove(models.Model):
     wt_move_payment_id = fields.Many2one(
         'withholding.tax.move.payment', 'Move Payment', readonly=True)
 
+    def unlink(self):
+        for rec in self:
+            if rec.wt_move_payment_id:
+                raise ValidationError(
+                    _(('Warning! Withholding tax move in payment {}: \
+                    you can not delete it').format(
+                        rec.wt_move_payment_id.name)))
+        return super(WithholdingTaxMove, self).unlink()
+
+    @api.multi
+    def check_unlink(self):
+        wt_moves_not_eresable = []
+        for move in self:
+            if move.wt_move_payment_id:
+                wt_moves_not_eresable.append(move)
+        if wt_moves_not_eresable:
+            raise ValidationError(
+                _('Warning! Withholding Tax moves in a payment: {}'
+                  .format(
+                      wt_moves_not_eresable[0].sudo().wt_move_payment_id.name)))
+        super(WithholdingTaxMove, self).check_unlink()
+
 
 class WithholdingTaxMovePayment(models.Model):
     _name = 'withholding.tax.move.payment'
