@@ -10,7 +10,8 @@
                 <form string="Central Journal">
                     <separator string="Dates movements"/>
                     <group>
-                        <field name="fiscalyear"/>
+                        <field name="daterange"/>
+                        <field name="company_id"/>
                         <field name="last_def_date_print" readonly="1"/>
                         <field name="date_move_line_from" invisible="1"/>
                         <field name="date_move_line_from_view" readonly="1"/>
@@ -28,7 +29,6 @@
                     <field name="start_row"/>
                     <field name="progressive_credit" invisible="1"/>
                     <field name="progressive_debit2" invisible="1"/>
-                    <!--<newline/>-->
                 </group>
                 <footer>
                     <button name="print_giornale" string="Print" type="object" class="oe_highlight"/>

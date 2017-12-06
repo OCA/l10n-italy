@@ -11,7 +11,7 @@
             menu="False"
             auto="False"
         />
-        <record id="l10n_it_central_journal.action_report_giornale" model="ir.actions.report.xml">
+        <record id="action_report_giornale" model="ir.actions.report.xml">
             <field name="paperformat_id"
             ref="l10n_it_account.l10n_it_account_a4_portrait"/>
        </record>

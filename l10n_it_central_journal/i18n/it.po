@@ -57,11 +57,6 @@ msgid "Central Journal"
 msgstr "Giornale Centralizzato"
 
 #. module: l10n_it_central_journal
-#: view:account.fiscalyear:l10n_it_central_journal.account_central_journal_form_view
-msgid "Central journal info"
-msgstr "Informazione del Giornale Centralizzato"
-
-#. module: l10n_it_central_journal
 #: field:wizard.giornale,create_uid:0
 msgid "Created by"
 msgstr "Creato da"
@@ -124,12 +119,6 @@ msgid "Final print"
 msgstr "Stampa definitiva"
 
 #. module: l10n_it_central_journal
-#: model:ir.model,name:l10n_it_central_journal.model_account_fiscalyear
-#: field:wizard.giornale,fiscalyear:0
-msgid "Fiscal Year"
-msgstr "Anno fiscale"
-
-#. module: l10n_it_central_journal
 #: field:wizard.giornale,date_move_line_from:0
 #: field:wizard.giornale,date_move_line_from_view:0
 msgid "From date"
@@ -179,11 +168,6 @@ msgid "Last definitive date print"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: field:account.fiscalyear,date_last_print:0
-msgid "Last printed date"
-msgstr "Ultima data stampata"
-
-#. module: l10n_it_central_journal
 #: field:wizard.giornale,fiscal_page_base:0
 msgid "Last printed page"
 msgstr "Ultima pagina stampata"
@@ -221,30 +205,9 @@ msgid "Printed"
 msgstr "Stampato"
 
 #. module: l10n_it_central_journal
-#: field:account.fiscalyear,progressive_credit:0
-#: field:wizard.giornale,progressive_credit:0
-msgid "Progressive Credit"
-msgstr "Progressivo Avere"
-
-#. module: l10n_it_central_journal
-#: field:account.fiscalyear,progressive_debit:0
-msgid "Progressive Debit"
-msgstr "Progressivo Dare"
-
-#. module: l10n_it_central_journal
 #: field:wizard.giornale,progressive_debit2:0
 msgid "Progressive debit"
 msgstr "Progressivo dare"
-
-#. module: l10n_it_central_journal
-#: field:account.fiscalyear,progressive_line_number:0
-msgid "Progressive line"
-msgstr "Progressivo della riga"
-
-#. module: l10n_it_central_journal
-#: field:account.fiscalyear,progressive_page_number:0
-msgid "Progressive of the page"
-msgstr "Progressivo della pagina"
 
 #. module: l10n_it_central_journal
 #: selection:wizard.giornale,print_state:0

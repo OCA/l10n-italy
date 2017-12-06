@@ -2,45 +2,25 @@
 <odoo>
     <data>
 
+        <record id="view_central_journal_account_journal_form"
+                model="ir.ui.view">
+            <field name="name">view.central.journal.account.journal.form</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='group_invoice_lines']" position="before">
+                    <field name="central_journal_exclude"/>
+                </xpath>
+            </field>
+        </record>
 
-
-        <!--
-        JOURNAL
-         -->
-        <!--esiste il campo central_journal_exclude ma non sulla form su v10-->
-        <!--<record id="view_central_journal_account_journal_form" model="ir.ui.view">-->
-            <!--<field name="name">view.central.journal.account.journal.form</field>-->
-            <!--<field name="model">account.journal</field>-->
-            <!--<field name="inherit_id" ref="account.view_account_journal_form"/>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<xpath expr="//field[@name='centralisation']" position="before">-->
-                    <!--<field name="central_journal_exclude"/>-->
-           		<!--</xpath>-->
-            <!--</field>-->
-		<!--</record>-->
-
-
-        <record id="date_range.view_date_range_form_view" model="ir.ui.view">
-        <!--<record id="date_range_form_view" model="ir.ui.view">-->
+        <record id="view_date_range_form_inherit_view" model="ir.ui.view">
             <field name="name">date.range.form</field>
             <field name="model">date.range</field>
+            <field name="inherit_id"
+                   ref="date_range.view_date_range_form_view"/>
             <field name="arch" type="xml">
-                <form>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="type_id"/>
-                            <field name="company_id"
-                                   groups="base.group_multi_company"
-                                   options="{'no_create': True}"/>
-                        </group>
-                        <group>
-                            <field name="date_start"/>
-                            <field name="date_end"/>
-
-                            <field name="active"/>
-                        </group>
-                    </group>
+                <xpath expr="/form/group" position="after">
                     <separator string="Central journal info"/>
                     <group>
                         <field name="date_last_print"/>
@@ -49,35 +29,19 @@
                         <field name="progressive_credit"/>
                         <field name="progressive_debit"/>
                     </group>
-                </form>
+                </xpath>
             </field>
         </record>
 
-        <record id="date_range.view_date_range_tree" model="ir.ui.view">
-        <field name="name">date.range.tree</field>
-        <field name="model">date.range</field>
-        <field name="arch" type="xml">
-            <tree string="Date range">
-                <field name="name"/>
-                <field name="type_id"/>
-                <field name="date_start"/>
-                <field name="date_end"/>
-                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                <field name="active"/>
-            </tree>
-        </field>
-    </record>
-
-
-        <record id="date_range.date_range_action" model="ir.actions.act_window">
-            <field name="name">Date Ranges</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">date.range</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="date_range.view_date_range_tree"/>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+        <record id="view_date_range_inherit_tree" model="ir.ui.view">
+            <field name="name">date.range.tree.inherit</field>
+            <field name="model">date.range</field>
+            <field name="inherit_id" ref="date_range.view_date_range_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="editable"/>
+                </xpath>
+            </field>
         </record>
 
     </data>

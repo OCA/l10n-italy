@@ -1,27 +1,22 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2017 Dinamiche Aziendali srl
-#                       (<http://www.dinamicheaziendali.it.it>).
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
+# Author: Gianmarco Conte - Dinamiche Aziendali Srl
+# Copyright 2017
+# Dinamiche Aziendali Srl <www.dinamicheaziendali.it>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import models, fields
 import odoo.addons.decimal_precision as dp
 
 
-class account_journal(models.Model):
+class AccountJournalInherit(models.Model):
     _inherit = "account.journal"
 
     central_journal_exclude = fields.Boolean('Exclude from Central \
             Journal')
 
 
-class account_fiscalyear(models.Model):
+class DateRangeInherit(models.Model):
     _inherit = "date.range"
-    # _inherit = "account.fiscalyear"
 
     date_last_print = fields.Date('Last printed date')
     progressive_page_number = fields.Integer('Progressive of the page',

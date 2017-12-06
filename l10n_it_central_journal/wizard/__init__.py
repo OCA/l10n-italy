@@ -1,15 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
-#    Copyright (C) 2015 Link It Spa
-#    (<http://www.linkgroup.it/>)
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-#
+# Author: Gianmarco Conte - Dinamiche Aziendali Srl
+# Copyright 2017
+# Dinamiche Aziendali Srl <www.dinamicheaziendali.it>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import print_giornale
+from . import print_giornale
