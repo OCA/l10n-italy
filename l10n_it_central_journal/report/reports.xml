@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <report
+            id="action_report_giornale"
+            model="account.move"
+            string="Account central journal"
+            report_type="qweb-pdf"
+            name="l10n_it_central_journal.report_giornale"
+            file="l10n_it_central_journal.report_giornale"
+            menu="False"
+            auto="False"
+        />
+        <record id="action_report_giornale" model="ir.actions.report.xml">
+            <field name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_portrait"/>
+       </record>
+    </data>
+</openerp>
+
