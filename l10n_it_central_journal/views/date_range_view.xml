@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_central_journal_account_journal_form"
+                model="ir.ui.view">
+            <field name="name">view.central.journal.account.journal.form</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='group_invoice_lines']" position="before">
+                    <field name="central_journal_exclude"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_date_range_form_inherit_view" model="ir.ui.view">
+            <field name="name">date.range.form</field>
+            <field name="model">date.range</field>
+            <field name="inherit_id"
+                   ref="date_range.view_date_range_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group" position="after">
+                    <separator string="Central journal info"/>
+                    <group>
+                        <field name="date_last_print"/>
+                        <field name="progressive_page_number"/>
+                        <field name="progressive_line_number"/>
+                        <field name="progressive_credit"/>
+                        <field name="progressive_debit"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_date_range_inherit_tree" model="ir.ui.view">
+            <field name="name">date.range.tree.inherit</field>
+            <field name="model">date.range</field>
+            <field name="inherit_id" ref="date_range.view_date_range_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="editable"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
