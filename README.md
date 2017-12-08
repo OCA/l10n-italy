@@ -23,6 +23,7 @@ addon | version | summary
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
+[l10n_it_central_journal](l10n_it_central_journal/) | 10.0.0.0.1 | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.2.3 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
