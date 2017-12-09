@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-12 02:39+0000\n"
+"POT-Creation-Date: 2017-12-08 03:45+0000\n"
 "PO-Revision-Date: 2016-10-20 12:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/es_AR/)\n"
@@ -208,7 +208,7 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Compañero"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province

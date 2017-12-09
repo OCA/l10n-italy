@@ -32,6 +32,7 @@
         'views/partner.xml',
         'views/account.xml',
         'views/sale.xml',
+        'views/stock_location.xml',
         'wizard/add_picking_to_ddt.xml',
         'wizard/ddt_from_picking.xml',
         'wizard/ddt_create_invoice.xml',
