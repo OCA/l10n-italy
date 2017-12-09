@@ -1,0 +1,143 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_fiscal_document_type
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-08 03:45+0000\n"
+"PO-Revision-Date: 2017-12-08 03:45+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Bulgarian (https://www.transifex.com/oca/teams/23907/bg/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_code
+msgid "Codice"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_create_uid
+msgid "Created by"
+msgstr "Създадено от"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_create_date
+msgid "Created on"
+msgstr "Създадено на"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_display_name
+msgid "Display Name"
+msgstr "Име за показване"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_invoice
+msgid "Fattura acquisto"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_invoice
+msgid "Fattura vendita"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_invoice
+msgid "Invoice"
+msgstr "Фактура"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: code:addons/l10n_it_fiscal_document_type/models/journal.py:19
+#, python-format
+msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type___last_update
+msgid "Last Modified on"
+msgstr "Последно променено на"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_write_uid
+msgid "Last Updated by"
+msgstr "Последно обновено от"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_write_date
+msgid "Last Updated on"
+msgstr "Последно обновено на"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_name
+msgid "Nome"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_refund
+msgid "Nota di credito"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_refund
+msgid "Nota di debito"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_res_partner
+msgid "Partner"
+msgstr "Партньор"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_priority
+msgid "Priority"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_journal_ids
+msgid "Sezionali"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
+#: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
+#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
+#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
+msgid "Tipi di documento fiscale"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position_fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_invoice_fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_out_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_out_fiscal_document_type
+msgid "Tipo documento fiscale"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_fiscal_document_type
+msgid "fiscal.document.type"
+msgstr ""
