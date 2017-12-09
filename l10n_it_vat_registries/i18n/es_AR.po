@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Anael M <anaelwendel@live.com.ar>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-12 02:40+0000\n"
-"PO-Revision-Date: 2017-05-12 02:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-08 03:46+0000\n"
+"PO-Revision-Date: 2017-12-08 03:46+0000\n"
+"Last-Translator: Anael M <anaelwendel@live.com.ar>, 2017\n"
 "Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/23907/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,11 +133,6 @@ msgid "Imposta"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_cee_type
-msgid "Include in VAT register"
-msgstr ""
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Indetraibile"
 msgstr ""
@@ -196,7 +192,7 @@ msgid "Message"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:80
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:75
 #, python-format
 msgid "Move line %s has too many base taxes"
 msgstr ""
@@ -218,18 +214,14 @@ msgstr "Nombre"
 
 #. module: l10n_it_vat_registries
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:58
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:67
 #, python-format
 msgid "No documents found in the current selection"
-msgstr ""
+msgstr "No se han encontrado documentos en la selección actual"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "P.IVA"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_parent_tax_ids
-msgid "Parent Taxes"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -243,18 +235,8 @@ msgid "Prints only totals"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Purchase"
-msgstr ""
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "RAGIONE SOCIALE"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Sale"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -276,7 +258,7 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax
 msgid "Tax"
-msgstr ""
+msgstr "Impuesto"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
@@ -301,13 +283,6 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Totali"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_tax_cee_type
-msgid ""
-"Use in the case of tax with 'VAT integration'. This specifies the VAT "
-"register (sales / purchases) where the tax must be computed."
 msgstr ""
 
 #. module: l10n_it_vat_registries
