@@ -1,15 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_vat_period_end_statement
-#
+# 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 14:46+0000\n"
-"PO-Revision-Date: 2017-07-26 14:46+0000\n"
+"POT-Creation-Date: 2017-12-08 03:45+0000\n"
+"PO-Revision-Date: 2017-12-08 03:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Account Lines"
 msgstr "Righe conti"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/report/vat_statement.py:90
+#: code:addons/account_vat_period_end_statement/report/vat_statement.py:108
 #, python-format
 msgid "Account type neither credit and debit !"
 msgstr "Tipo di conto nè di debito nè di credito !"
@@ -550,7 +550,7 @@ msgid "Tax credits Amount"
 msgstr "Importo crediti d'imposta"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:603
+#: code:addons/account_vat_period_end_statement/models/account.py:623
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr "Il conto per gli interessi IVA deve essere configurato"
@@ -625,11 +625,6 @@ msgstr "Imposta"
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement_tree
 msgid "Vat statement"
-msgstr "Liquidazione IVA"
-
-#. module: account_vat_period_end_statement
-#: model:ir.ui.view,arch_db:account_vat_period_end_statement.vat_statement
-msgid "Vat End Period Statement"
 msgstr "Liquidazione IVA"
 
 #. module: account_vat_period_end_statement
