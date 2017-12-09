@@ -33,7 +33,7 @@ class WithholdingTaxMove(models.Model):
             raise ValidationError(
                 _('Warning! Withholding Tax moves in a payment: {}'
                   .format(
-                      wt_moves_not_eresable[0].sudo().wt_move_payment_id.name)))
+                    wt_moves_not_eresable[0].sudo().wt_move_payment_id.name)))
         super(WithholdingTaxMove, self).check_unlink()
 
 
