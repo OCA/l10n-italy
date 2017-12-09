@@ -123,7 +123,7 @@
                                 <field name="date"/>
                                 <field name="move_id"/>
                                 <field name="invoice_id"/>
-                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                             </group>
                         </group>
                         <newline/>
@@ -221,7 +221,7 @@
                                 <field name="reconcile_partial_id"/>
                                 <field name="date_maturity"/>
                                 <field name="wt_account_move_id"/>
-                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                             </group>
                         </group>
                     </sheet>
