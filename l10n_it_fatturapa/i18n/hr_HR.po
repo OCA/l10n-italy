@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-12-08 03:45+0000\n"
 "PO-Revision-Date: 2017-12-08 03:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/hr_HR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: hr_HR\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_e15
@@ -131,7 +131,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_carrier_id
 msgid "Carrier"
-msgstr "Transportista"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_checksum
@@ -189,7 +189,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_create_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Kreirao"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_create_date
@@ -208,7 +208,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_create_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Kreirano"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_db_datas
@@ -219,7 +219,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_date
 msgid "Date"
-msgstr "Fecha"
+msgstr "Datum"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
@@ -274,7 +274,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Naziv"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_doc_type
@@ -433,7 +433,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_gross_weight
 msgid "Gross Weight"
-msgstr "Peso bruto"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_iban
@@ -487,7 +487,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr "Račun"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice_line
@@ -516,7 +516,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line___last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Zadnje modificirano"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_write_uid
@@ -535,7 +535,7 @@ msgstr "Last Modified on"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_write_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_write_uid
 msgid "Last Updated by"
-msgstr "Última Actualización por"
+msgstr "Zadnji ažurirao"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_write_date
@@ -554,7 +554,7 @@ msgstr "Última Actualización por"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_write_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_write_date
 msgid "Last Updated on"
-msgstr "Última Actualización el"
+msgstr "Zadnje ažurirano"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_law_reference
@@ -979,7 +979,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_type
 msgid "Type"
-msgstr "Tipo"
+msgstr "Tip"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_url
