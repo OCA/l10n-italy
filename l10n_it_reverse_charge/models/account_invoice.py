@@ -35,6 +35,20 @@ class AccountInvoice(models.Model):
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
 
+    rc_partner_supplier_id = fields.Many2one('res.partner', string='Partner RC', change_default=True,
+        required=False, readonly=True, states={'draft': [('readonly', False)]},
+        track_visibility='always')
+
+    rc_debit_credit_transfer_id = fields.Many2one('account.move', required=False, readonly=True)
+    company_partner= fields.Boolean(compute='_get_company_partner')
+
+
+    @api.depends('partner_id')
+    def _get_company_partner(self):
+        for el in self:
+            if el.partner_id == el.company_id.partner_id:
+                el.company_partner = True
+
     def rc_inv_line_vals(self, line):
         return {
             'product_id': line.product_id.id,
@@ -50,7 +64,7 @@ class AccountInvoice(models.Model):
         else:
             type = 'out_refund'
 
-        return {
+        vals = {
             'partner_id': partner.id,
             'type': type,
             'account_id': account.id,
@@ -61,8 +75,22 @@ class AccountInvoice(models.Model):
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
-            'fiscal_position_id': None
+            'fiscal_position_id': None,
+            'rc_partner_supplier_id': None
             }
+        # controllare se rc_type è other e se partner è la company
+        # setto rc_partner_supplier con il partner di partenza
+        if (
+            rc_type.partner_type == 'other' and
+            partner == self.company_id.partner_id
+            ):
+            # CREAZIONE DI UN'AUTOFATTURA
+            vals['rc_partner_supplier_id'] = (
+                self.rc_partner_supplier_id.id or
+                self.partner_id.id
+                )
+
+        return vals
 
     def get_inv_line_to_reconcile(self):
         for inv_line in self.move_id.line_ids:
@@ -285,7 +313,7 @@ class AccountInvoice(models.Model):
         if rc_invoice_lines:
             inv_vals = self.rc_inv_vals(
                 rc_partner, rc_account, rc_type, rc_invoice_lines)
-
+            inv_vals['comment'] = self.fiscal_position_id.note
             # create or write the self invoice
             if self.rc_self_invoice_id:
                 # this is needed when user takes back to draft supplier
@@ -306,6 +334,7 @@ class AccountInvoice(models.Model):
                 rc_payment = self.prepare_reconcile_supplier_invoice()
                 self.reconcile_rc_invoice(rc_payment)
                 self.partially_reconcile_supplier_invoice(rc_payment)
+
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
@@ -339,10 +368,22 @@ class AccountInvoice(models.Model):
         supplier_invoice.action_invoice_open()
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
+        self._set_rc_partner_supplier_id(rc_type, supplier_invoice)
+
+    def _set_rc_partner_supplier_id(self, rc_type, supplier_invoice):
+        if (
+            rc_type.partner_type == 'other' and
+            rc_type.partner_id == self.company_id.partner_id
+            ):
+            partner_ref = self.rc_partner_supplier_id or self.partner_id
+            # ref del partner da cui si stanno generando le autofatture
+            supplier_invoice.rc_partner_supplier_id = partner_ref
+
     @api.multi
     def invoice_validate(self):
         self.ensure_one()
         res = super(AccountInvoice, self).invoice_validate()
+
         fp = self.fiscal_position_id
         rc_type = fp and fp.rc_type_id
         if rc_type and rc_type.method == 'selfinvoice'\
@@ -353,7 +394,90 @@ class AccountInvoice(models.Model):
                 # See with_supplier_self_invoice field help
                 self.generate_supplier_self_invoice()
                 self.rc_self_purchase_invoice_id.generate_self_invoice()
+
+        if (rc_type
+            and rc_type.method == 'selfinvoice'
+            and self.amount_total
+            and self.type in ('in_invoice', 'in_refund')
+            and self.company_partner is True
+            ):
+            self.transfer_debit_partner_supplier()
+
         return res
+
+    def transfer_debit_partner_supplier(self):
+        """
+        Se il partner della fattura di partenza (no RC) è la company ed
+        è una fattura di acquisto, deve essere aperto un debito vs il
+        parnter di partenza e chiuso quello del partner
+        """
+        #import pdb; pdb.set_trace()
+        total_payment = self.amount_untaxed
+        move_model = self.env['account.move']
+        move_line_model = self.env['account.move.line']
+        move_val_trans_payment = self.move_id.copy_data()[0]
+        # move giroconto, company e supplier per il quale si sta
+        # facendo l'autofattura
+        move_val_trans_payment['amount'] = total_payment
+        move_val_trans_payment['company_id'] = self.company_id.id
+        move_val_trans_payment['line_ids'] = []
+
+        move_transfer = move_model.create(move_val_trans_payment)
+
+        for inv_line in self.move_id.line_ids:
+            move_line_vals_partner = inv_line.copy_data()[0]
+            move_line_vals_supplier = inv_line.copy_data()[0]
+
+            if (self.type == 'in_invoice') and inv_line.credit:
+
+                # move per lo storno del pagamento dell'autofattura
+                move_line_vals_partner.update(
+                    {
+                    'credit': 0,
+                    'debit': total_payment,
+                    'company_id': self.company_id.id,
+                    'move_id': move_transfer.id
+                    }
+                                              )
+
+                move_line_vals_supplier.update(
+                    {
+                    'credit': total_payment,
+                    'partner_id': self.rc_partner_supplier_id.id,
+                    'company_id': self.company_id.id,
+                    'move_id': move_transfer.id
+                    }
+                                               )
+            elif (self.type == 'in_refund') and inv_line.debit:
+                # move per lo storno del pagamento dell'autofattura
+                move_line_vals_partner.update(
+                    {
+                    'credit': total_payment,
+                    'debit': 0,
+                    'company_id': self.company_id.id,
+                    'move_id': move_transfer.id
+                    }
+                                              )
+
+                move_line_vals_supplier.update(
+                    {
+                    'debit': total_payment,
+                    'partner_id': self.rc_partner_supplier_id.id,
+                    'company_id': self.company_id.id,
+                    'move_id': move_transfer.id
+                    }
+                                               )
+            else:
+                continue
+
+            move_transfer.line_ids = [
+                (0, 0, move_line_vals_partner),
+                (0, 0, move_line_vals_supplier)
+                ]
+
+        self.write({'rc_debit_credit_transfer_id': move_transfer.id})
+
+        return
 
     def remove_rc_payment(self):
         inv = self
@@ -412,6 +536,7 @@ class AccountInvoice(models.Model):
             ):
                 inv.rc_self_purchase_invoice_id.remove_rc_payment()
                 inv.rc_self_purchase_invoice_id.action_invoice_cancel()
+
         return super(AccountInvoice, self).action_cancel()
 
     @api.multi

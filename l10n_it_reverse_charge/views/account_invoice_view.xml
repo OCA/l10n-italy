@@ -11,6 +11,12 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
         <field name="arch" type="xml">
+            <field  name="partner_id" position="after">
+                <field name="company_partner" attrs="{'invisible': 1}"/>
+                <field  name="rc_partner_supplier_id"
+                domain="[('supplier', '=', True)]"
+                attrs="{'invisible': [('company_partner', '=', False)]}"></field>
+            </field>
             <field name="move_id"
                    position="after">
                 <field name="rc_self_invoice_id" readonly="True"
@@ -43,6 +49,12 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
+            <field  name="partner_id" position="after">
+                <field name="company_partner" attrs="{'invisible': 1}"/>
+                <field  name="rc_partner_supplier_id"
+                domain="[('supplier', '=', True)]"
+                attrs="{'invisible': [('company_partner', '=', False)]}"></field>
+            </field>
             <field name="move_id"
                    position="after">
                 <field name="rc_purchase_invoice_id" readonly="True"

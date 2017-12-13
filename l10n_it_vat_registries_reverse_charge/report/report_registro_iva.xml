@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_registro_iva_reverse_charge"
+                    inherit_id="l10n_it_vat_registries.report_registro_iva">
+            <xpath expr="//tr[@name='vat_body_invoice']" position="after">
+                <t t-set="invoice_supplier" t-value="data['get_invoice_supplier'](move)"/>
+                <t t-if="line['index'] == 0">
+                    <t t-if="invoice_supplier['name'] != ''">
+                        <tr style="page-break-inside: avoid; border:1px solid #fff;" name="vat_body_invoice_reverse">
+                            <!-- Data registrazione -->
+                            <td class="left_without_line_bold"></td>
+                            <!-- Numero registrazione -->
+                            <td class="left_without_line_bold"></td>
+                            <t t-if="registry_type != 'corrispettivi'">
+                                <!-- Causale -->
+                                <td class="left_without_line_bold">
+                                </td>
+                                <!-- Data fattura -->
+                                <td class="left_without_line_bold"></td>
+                                <!-- Numero fattura (fornitore)-->
+                                <td class="left_without_line_bold"></td>
+                                <!-- Ragione sociale -->
+                                <td class="left_without_line_bold">
+                                    <div style="page-break-inside: avoid" t-esc="invoice_supplier['name']"/>
+                                </td>
+                                <!-- PIVA -->
+                                <td class="left_without_line_bold">
+                                    <div style="page-break-inside: avoid" t-esc="invoice_supplier['vat']"/>
+                                </td>
+                            </t>
+                            <td class="left_without_line"></td>
+                            <!-- totale -->
+                            <td class="right_without_line_bold"></td>
+                        </tr>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>
