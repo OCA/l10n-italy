@@ -6,12 +6,12 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Fiscal Code">
-                <group col="2"  width="250">
+                <group>
                     <group string="Individual Data">
-                        <field name="fiscalcode_surname" colspan="2" default_focus="1"/>
-                        <field name="fiscalcode_firstname" colspan="2"/>
-                        <field name="sex" colspan="2"/>
-                        <field name="birth_date" colspan="2"/>
+                        <field name="fiscalcode_surname" default_focus="1"/>
+                        <field name="fiscalcode_firstname"/>
+                        <field name="sex"/>
+                        <field name="birth_date"/>
                         <field name="birth_city"/>
                         <field name="birth_province" />
                     </group>
