@@ -7,13 +7,13 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@name='vat_info']" position="after">
+                <field name="type" position="after">
                     <label for="fiscalcode" />
                     <div name="fiscalcode_info">
                         <field name="fiscalcode" class="oe_inline" />
                         <field name="individual" colspan="1" groups="base.group_extended" />
                     </div>
-                </xpath>
+                </field>
             </field>
         </record>
 
