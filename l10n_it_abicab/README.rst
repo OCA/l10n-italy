@@ -19,6 +19,7 @@ Contributors
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Davide Corio <davide.corio@abstract.it>
+* Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 
 Maintainer
 ----------
