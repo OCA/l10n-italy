@@ -110,7 +110,7 @@
             <field name="model">withholding.tax.statement</field>
             <field name="arch" type="xml">
 
-                <form string="Withholding Tax statement">
+                <form string="Withholding Tax statement" delete="false">
                     <sheet> 
                         <group>
                             <group>
@@ -123,7 +123,7 @@
                                 <field name="date"/>
                                 <field name="move_id"/>
                                 <field name="invoice_id"/>
-                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                             </group>
                         </group>
                         <newline/>
@@ -131,7 +131,7 @@
                             <page string="WT moves" name="wt_moves">
                                 <group>
                                     <field name="move_ids" nolabel="1">
-                                        <tree>
+                                        <tree delete="false">
                                             <field name="date"/>
                                             <field name="withholding_tax_id"/>
                                             <field name="date_maturity"/>
@@ -197,7 +197,7 @@
             <field name="name">view.withholding.tax.move.form</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
-                <form string="Withholding Tax Move">
+                <form string="Withholding Tax Move" delete="false">
                     <header>
                         <button name="action_set_to_draft" states="paid" string="Set to Draft" type="object" />
                         <button name="action_paid" states="due" string="Paid" type="object" />
@@ -221,7 +221,7 @@
                                 <field name="reconcile_partial_id"/>
                                 <field name="date_maturity"/>
                                 <field name="wt_account_move_id"/>
-                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                             </group>
                         </group>
                     </sheet>

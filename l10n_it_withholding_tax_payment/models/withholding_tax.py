@@ -33,7 +33,7 @@ class WithholdingTaxMove(models.Model):
             raise ValidationError(
                 _('Warning! Withholding Tax moves in a payment: {}'
                   .format(
-                      wt_moves_not_eresable[0].sudo().wt_move_payment_id.name)))
+                    wt_moves_not_eresable[0].sudo().wt_move_payment_id.name)))
         super(WithholdingTaxMove, self).check_unlink()
 
 
@@ -187,3 +187,10 @@ class WithholdingTaxMovePayment(models.Model):
                 # Wt move set to due
                 for wt_move in move.line_ids:
                     wt_move.action_paid()
+
+    @api.multi
+    def unlink(self):
+        for payment in self:
+            if payment.state != 'draft':
+                raise ValidationError(_("You can only delete draft payments"))
+        return super(WithholdingTaxMovePayment, self).unlink()

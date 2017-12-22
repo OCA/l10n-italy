@@ -54,11 +54,22 @@ class StockDdtType(models.Model):
 
     _name = 'stock.ddt.type'
     _description = 'Stock DdT Type'
-    _inherit = ['mail.thread']
 
     name = fields.Char(required=True)
     sequence_id = fields.Many2one('ir.sequence', required=True)
     note = fields.Text(string='Note')
+    default_carriage_condition_id = fields.Many2one(
+        'stock.picking.carriage_condition',
+        string='Default Carriage Condition')
+    default_goods_description_id = fields.Many2one(
+        'stock.picking.goods_description',
+        string='Default Description of Goods')
+    default_transportation_reason_id = fields.Many2one(
+        'stock.picking.transportation_reason',
+        string='Default Reason for Transportation')
+    default_transportation_method_id = fields.Many2one(
+        'stock.picking.transportation_method',
+        string='Default Method of Transportation')
 
 
 class StockPickingPackagePreparation(models.Model):
@@ -129,18 +140,22 @@ class StockPickingPackagePreparation(models.Model):
         if self.ddt_type_id:
             addr = self.partner_id.address_get(['delivery', 'invoice'])
             self.partner_shipping_id = addr['delivery']
-            self.carriage_condition_id = \
-                self.partner_id.carriage_condition_id.id \
-                if self.partner_id.carriage_condition_id else False
-            self.goods_description_id = \
-                self.partner_id.goods_description_id.id \
-                if self.partner_id.goods_description_id else False
-            self.transportation_reason_id = \
-                self.partner_id.transportation_reason_id.id \
-                if self.partner_id.transportation_reason_id else False
-            self.transportation_method_id = \
-                self.partner_id.transportation_method_id.id \
-                if self.partner_id.transportation_method_id else False
+            self.carriage_condition_id = (
+                self.partner_id.carriage_condition_id.id
+                if self.partner_id.carriage_condition_id
+                else self.ddt_type_id.default_carriage_condition_id)
+            self.goods_description_id = (
+                self.partner_id.goods_description_id.id
+                if self.partner_id.goods_description_id
+                else self.ddt_type_id.default_goods_description_id)
+            self.transportation_reason_id = (
+                self.partner_id.transportation_reason_id.id
+                if self.partner_id.transportation_reason_id
+                else self.ddt_type_id.default_transportation_reason_id)
+            self.transportation_method_id = (
+                self.partner_id.transportation_method_id.id
+                if self.partner_id.transportation_method_id
+                else self.ddt_type_id.default_transportation_method_id)
             self.show_price = self.partner_id.ddt_show_price
 
     @api.model
@@ -187,10 +202,9 @@ class StockPickingPackagePreparation(models.Model):
         return True
 
     @api.multi
-    @api.depends('name',
-                'ddt_number',
-                'partner_id.name',
-                'date')
+    @api.depends(
+        'name', 'ddt_number', 'partner_id.name', 'date'
+    )
     def _compute_clean_display_name(self):
         for prep in self:
             name = u''
@@ -256,9 +270,7 @@ class StockPickingPackagePreparation(models.Model):
                 datetime.strptime(
                     ddt_date_to,
                     DEFAULT_SERVER_DATE_FORMAT).strftime(date_format)
-                )
-        if not invoice_description:
-            invoice_description = self.ddt_number or ''
+            )
         return invoice_description
 
     @api.multi
@@ -337,16 +349,25 @@ class StockPickingPackagePreparation(models.Model):
                 continue
             order = ddt._get_sale_order_ref()
 
-            group_method = (
-                order and order.ddt_invoicing_group or 'shipping_partner')
-
+            if order:
+                group_method = (
+                    order and order.ddt_invoicing_group or 'shipping_partner')
+                group_partner_invoice_id = order.partner_invoice_id.id
+                group_currency_id = order.currency_id.id
+            else:
+                group_method = (
+                    ddt.partner_shipping_id.ddt_invoicing_group)
+                group_partner_invoice_id = ddt.partner_id.id
+                group_currency_id = ddt.partner_id.currency_id.id
             if group_method == 'billing_partner':
-                group_key = (order.partner_invoice_id.id, order.currency_id.id)
+                group_key = (group_partner_invoice_id,
+                             group_currency_id)
             elif group_method == 'shipping_partner':
-                group_key = (ddt.partner_id.id, ddt.company_id.currency_id.id)
+                group_key = (ddt.partner_shipping_id.id,
+                             ddt.company_id.currency_id.id)
             elif group_method == 'code_group':
-                group_key = (ddt.partner_id.ddt_code_group,
-                             order.partner_invoice_id.id)
+                group_key = (ddt.partner_shipping_id.ddt_code_group,
+                             group_partner_invoice_id)
             else:
                 group_key = ddt.id
 
@@ -378,6 +399,10 @@ class StockPickingPackagePreparation(models.Model):
             raise UserError(_('There is no invoicable line.'))
 
         for invoice in invoices.values():
+            if not invoice.name:
+                invoice.write({
+                    'name': invoice.origin
+                })
             if not invoice.invoice_line_ids:
                 raise UserError(_('There is no invoicable line.'))
             # If invoice is negative, do a refund invoice instead
