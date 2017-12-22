@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 08:24+0000\n"
-"PO-Revision-Date: 2017-12-06 08:24+0000\n"
+"POT-Creation-Date: 2017-12-09 15:10+0000\n"
+"PO-Revision-Date: 2017-12-09 15:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "Imposta a Bozza"
 msgid "Status"
 msgstr "Stato"
 
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:131
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:132
 #. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "The selected moves must have the same company!"
@@ -197,19 +197,19 @@ msgstr "Importo Ritenuta"
 #: model:ir.model,name:l10n_it_withholding_tax_payment.model_wizard_wt_move_payment_create
 #. module: l10n_it_withholding_tax_payment
 msgid "WT wizard create move payment"
-msgstr "Ritenuta: Crea versamento ritenuta"
+msgstr "Wizard creazione versamento ritenuta"
 
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:78
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:79
 #. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Warning! Datas required for account move creation:                         Date payment, journal, account"
 msgstr "Attenzione! Per la creazione della registrazione sono richiesti:Data pagamento, sezionale, conto"
 
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:35
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:36
 #. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Warning! Withholding Tax moves in a payment: {}"
-msgstr "Attenzione! Le voci di ritenute collegate si trovano nel seguente versamento: {}"
+msgstr "Attenzione! Si sta cancellando una voce di ritenuta contenuta in un versamento: {}"
 
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_tree
@@ -228,15 +228,15 @@ msgstr "Voci ritenuta"
 msgid "Withholding Tax Move Payment"
 msgstr "Versamenti Ritenuta"
 
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:110
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:118
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:111
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:119
 #: code:addons/l10n_it_withholding_tax_payment/wizard/create_move_payment.py:34
 #. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Withholding Tax Payment"
 msgstr "Versamenti Ritenuta"
 
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:91
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:92
 #. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Withholding Tax Payment %s"
@@ -245,22 +245,28 @@ msgstr "Versamento Ritenuta %s"
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax_payment.action_withholding_tax_move_payment
 #. module: l10n_it_withholding_tax_payment
 msgid "Withhoulding Tax Move Payment"
-msgstr "Versamento ritenuta"
+msgstr "Versamento di ritenuta"
 
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create_wt_move_ids
 #. module: l10n_it_withholding_tax_payment
 msgid "Wt Moves"
-msgstr "Voci ritenuta"
+msgstr "Voci Ritenuta"
 
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:142
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:143
 #. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Wt move already in a move payment!                         Move paym. %s -Ref WT: %s - %s - %s"
-msgstr "Voce già presente in un versamento!                         Versamento %s -Ref WT: %s - %s - %s"
+msgstr "Voce ritenuta già presente in un versamento!                         Versamento %s -Ref Rit: %s - %s - %s"
 
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:136
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:137
 #. module: l10n_it_withholding_tax_payment
 #, python-format
 msgid "Wt move already paid! - %s - %s - %s"
-msgstr "Voce ritenuta già pagata! - %s - %s - %s"
+msgstr "Voce ritenuta già versata! - %s - %s - %s"
+
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:195
+#. module: l10n_it_withholding_tax_payment
+#, python-format
+msgid "You can only delete draft payments"
+msgstr "E' possibile cancellare solo versamenti in bozza"
 

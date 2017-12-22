@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 08:20+0000\n"
-"PO-Revision-Date: 2017-12-06 08:20+0000\n"
+"POT-Creation-Date: 2017-12-09 15:08+0000\n"
+"PO-Revision-Date: 2017-12-09 15:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "Da pagare"
 #. module: l10n_it_withholding_tax
 #, python-format
 msgid "Error! Rates are required"
-msgstr "Errore! Inserire almeno uno scaglione di validità per le aliquote"
+msgstr "Attenzione! Inserire almeno uno scaglione"
 
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:128
 #. module: l10n_it_withholding_tax
@@ -204,7 +204,7 @@ msgstr "Riga Fattura"
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_withholding_tax
 #. module: l10n_it_withholding_tax
 msgid "Invoice Withholding Tax Line"
-msgstr "Ritenuta Riga Fattura"
+msgstr "Invoice Withholding Tax Line"
 
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_move_line
 #. module: l10n_it_withholding_tax
@@ -275,7 +275,7 @@ msgstr "Partner"
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 #. module: l10n_it_withholding_tax
 msgid "Partners"
-msgstr "Partners"
+msgstr "Partner"
 
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move_payment_line_id
 #. module: l10n_it_withholding_tax
@@ -424,7 +424,7 @@ msgstr "Ritenuta Versata"
 msgid "WT moves"
 msgstr "Voci Ritenuta"
 
-#: code:addons/l10n_it_withholding_tax/models/account.py:137
+#: code:addons/l10n_it_withholding_tax/models/account.py:127
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:369
 #. module: l10n_it_withholding_tax
 #, python-format

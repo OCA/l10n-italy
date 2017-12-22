@@ -32,8 +32,9 @@ class WithholdingTax(models.Model):
 
     active = fields.Boolean('Active', default=True)
     company_id = fields.Many2one(
-        'res.company', string='Company', required=True, default=lambda self:
-        self.env['res.company']._company_default_get('account.account'))
+        'res.company', string='Company', required=True,
+        default=lambda self: self.env['res.company'].
+        _company_default_get('account.account'))
     name = fields.Char('Name', size=256, required=True)
     code = fields.Char('Code', size=256, required=True)
     certification = fields.Boolean('Certification')
