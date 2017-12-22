@@ -70,13 +70,16 @@ class AccountVatPeriodEndStatement(models.Model):
         precision = self.env.user.company_id.currency_id.decimal_places
         for statement in self:
             residual = 0.0
-            if not statement.move_id:
-                statement.residual = 0.0
-                statement.reconciled = False
-                return
-            for line in statement.move_id.line_ids:
-                if line.account_id.id == statement.authority_vat_account_id.id:
-                    residual += line.amount_residual
+            if statement.move_id.exists():
+                if not statement.move_id:
+                    statement.residual = 0.0
+                    statement.reconciled = False
+                    return
+                for line in statement.move_id.line_ids:
+                    authority_vat_account_id = (
+                        statement.authority_vat_account_id.id)
+                    if line.account_id.id == authority_vat_account_id:
+                        residual += line.amount_residual
             statement.residual = abs(residual)
             if float_is_zero(statement.residual, precision_digits=precision):
                 statement.reconciled = True
@@ -88,13 +91,14 @@ class AccountVatPeriodEndStatement(models.Model):
     def _compute_lines(self):
         for statement in self:
             payment_lines = []
-            for line in statement.move_id.line_ids:
-                payment_lines.extend(filter(None, [
-                    rp.credit_move_id.id for rp in line.matched_credit_ids
-                ]))
-                payment_lines.extend(filter(None, [
-                    rp.debit_move_id.id for rp in line.matched_debit_ids
-                ]))
+            if statement.move_id.exists():
+                for line in statement.move_id.line_ids:
+                    payment_lines.extend(filter(None, [
+                        rp.credit_move_id.id for rp in line.matched_credit_ids
+                    ]))
+                    payment_lines.extend(filter(None, [
+                        rp.debit_move_id.id for rp in line.matched_debit_ids
+                    ]))
             statement.payment_ids = self.env['account.move.line'].browse(
                 list(set(payment_lines)))
 
@@ -295,6 +299,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def statement_draft(self):
         for statement in self:
             if statement.move_id:
+                statement.move_id.button_cancel()
                 statement.move_id.unlink()
             statement.state = 'draft'
 
@@ -484,6 +489,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 lines_to_create.append((0, 0, end_debit_vat_data))
 
             move.line_ids = lines_to_create
+            move.post()
             statement.state = 'confirmed'
 
         return True
