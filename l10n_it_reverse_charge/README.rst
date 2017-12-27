@@ -119,7 +119,8 @@ Contributors
 
 * Davide Corio
 * Alex Comba <alex.comba@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alessandro Camilli <alessandrocamilli@openforce.it>
 
 Maintainer
 ----------

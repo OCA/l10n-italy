@@ -23,6 +23,8 @@
                        context="{'form_view_ref': 'account.invoice_form'}"/>
                 <field name="rc_self_purchase_invoice_id" readonly="True"
                        context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
+                <field name="rc_debit_credit_transfer_id" readonly="True"
+                       context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
             </field>
             <field name="price_subtotal"
                    position="after">
