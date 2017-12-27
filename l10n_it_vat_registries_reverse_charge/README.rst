@@ -6,6 +6,9 @@
 Italian Localization - VAT Registries - Reverse Charge
 =====================================================
 
+Visualizza nel registro IVA, il riferimento del partner per il quale si sta
+creando un autofattura.
+
 Installation
 ============
 
