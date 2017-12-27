@@ -3,13 +3,13 @@
    :alt: License: LGPL-3
 
 =====================================================
-Italian Localization - VAT Registries - Cash Basis
+Italian Localization - VAT Registries - Reverse Charge
 =====================================================
 
 Installation
 ============
 
-Autoinstalled when the l10n_it_vat_registrie and account_tax_cash_basis are installed.
+Autoinstalled when the l10n_it_vat_registrie and l10n_it_reverse_charge are installed.
 
 Configuration
 =============
