@@ -35,10 +35,11 @@ class AccountInvoice(models.Model):
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
 
-    rc_partner_supplier_id = fields.Many2one('res.partner', string='Partner RC', change_default=True,
-                                             required=False, readonly=True, states={
-                                                 'draft': [('readonly', False)]},
-                                             track_visibility='always')
+    rc_partner_supplier_id = fields.Many2one(
+        'res.partner', string='Partner RC', change_default=True,
+        required=False, readonly=True,
+        states={'draft': [('readonly', False)]},
+        track_visibility='always')
 
     rc_debit_credit_transfer_id = fields.Many2one(
         'account.move', required=False, readonly=True)
@@ -395,12 +396,13 @@ class AccountInvoice(models.Model):
                 self.generate_supplier_self_invoice()
                 self.rc_self_purchase_invoice_id.generate_self_invoice()
 
-        if (rc_type
-                    and rc_type.method == 'selfinvoice'
-                    and self.amount_total
-                    and self.type in ('in_invoice', 'in_refund')
-                    and self.company_partner is True
-                ):
+        if (
+            rc_type and
+            rc_type.method == 'selfinvoice' and
+            self.amount_total and
+            self.type in ('in_invoice', 'in_refund') and
+            self.company_partner is True
+        ):
             self.transfer_debit_partner_supplier()
 
         return res
@@ -428,10 +430,12 @@ class AccountInvoice(models.Model):
             company_line = {
                 'partner_id': self.partner_id.id,
                 'account_id': ml_company.account_id.id,
-                'credit': ml_company and ml_company.debit and self.residual
-                or 0,
-                'debit': ml_company and ml_company.credit and self.residual
-                or 0,
+                'credit': (ml_company and
+                           ml_company.debit and
+                           self.residual or 0),
+                'debit': (ml_company and
+                          ml_company.credit and
+                          self.residual or 0),
                 'name': desc,
             }
             move_lines.append((0, 0, company_line))
@@ -439,10 +443,12 @@ class AccountInvoice(models.Model):
             partner_rc_line = {
                 'partner_id': self.rc_partner_supplier_id.id,
                 'account_id': ml_company.account_id.id,
-                'credit': ml_company and ml_company.credit and self.residual
-                or 0,
-                'debit': ml_company and ml_company.debit and self.residual
-                or 0,
+                'credit': (ml_company and
+                           ml_company.credit and
+                           self.residual or 0),
+                'debit': (ml_company and
+                          ml_company.debit and
+                          self.residual or 0),
                 'name': desc,
             }
             move_lines.append((0, 0, partner_rc_line))

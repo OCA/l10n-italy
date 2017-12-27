@@ -20,8 +20,6 @@ class ReportRegistroIva(models.AbstractModel):
 
         return super(ReportRegistroIva, self).render_html(docids, data)
 
-
-
     def _get_invoice_supplier(self, move):
         rc_supplier = {
             'name': '',
