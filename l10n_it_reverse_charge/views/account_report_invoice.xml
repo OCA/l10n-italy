@@ -12,6 +12,19 @@
                     <span t-if="o.rc_partner_supplier_id.vat">TIN: <span t-field="o.rc_partner_supplier_id.vat"/></span>
                 </div>
             </xpath>
+
+        <xpath expr="//h2/span[1]" position="replace">
+
+            <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and o.company_partner != True">Invoice</span>
+            <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and o.company_partner == True">Self-invoice</span>
+
+        </xpath>
+        <xpath expr="//h2/span[8]" position="replace">
+        <span t-if="o.type == 'in_invoice' and o.company_partner != True">Vendor Bill</span>
+        <span t-if="o.type == 'in_invoice' and o.company_partner == True">Self-invoice</span>
+
+        </xpath>
+
         </template>
 
     </data>
