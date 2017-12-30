@@ -3,18 +3,15 @@
 # * l10n_it_pec
 # 
 # Translators:
-# Franco Tampieri <franco@tampieri.info>, 2017
-# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
-# Paolo Valier, 2016
-# Paolo Valier, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-italy (10.0)\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-07 15:11+0000\n"
-"PO-Revision-Date: 2017-11-30 13:16+0000\n"
-"Last-Translator: Franco Tampieri <franco@tampieri.info>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/it/)\n"
+"POT-Creation-Date: 2017-12-23 03:42+0000\n"
+"PO-Revision-Date: 2017-12-23 03:42+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -27,12 +24,12 @@ msgid "<span> (PEC)</span>"
 msgstr "<span> (PEC)</span>"
 
 #. module: l10n_it_pec
+#: model:ir.model,name:l10n_it_pec.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_it_pec
 #: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner_pec_mail
 #: model:ir.model.fields,field_description:l10n_it_pec.field_res_users_pec_mail
 msgid "PEC Mail"
 msgstr "PEC Email"
-
-#. module: l10n_it_pec
-#: model:ir.model,name:l10n_it_pec.model_res_partner
-msgid "Partner"
-msgstr "Partner"
