@@ -415,16 +415,16 @@ class AccountInvoice(models.Model):
         return super(AccountInvoice, self).action_cancel()
 
     @api.multi
-    def action_cancel_draft(self):
-        super(AccountInvoice, self).action_cancel_draft()
+    def action_invoice_draft(self):
+        super(AccountInvoice, self).action_invoice_draft()
         invoice_model = self.env['account.invoice']
         for inv in self:
             if inv.rc_self_invoice_id:
                 self_invoice = invoice_model.browse(
                     inv.rc_self_invoice_id.id)
-                self_invoice.action_cancel_draft()
+                self_invoice.action_invoice_draft()
             if inv.rc_self_purchase_invoice_id:
                 self_purchase_invoice = invoice_model.browse(
                     inv.rc_self_purchase_invoice_id.id)
-                self_purchase_invoice.action_cancel_draft()
+                self_purchase_invoice.action_invoice_draft()
         return True
