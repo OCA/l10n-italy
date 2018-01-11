@@ -299,6 +299,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def statement_draft(self):
         for statement in self:
             if statement.move_id:
+                statement.move_id.button_cancel()
                 statement.move_id.unlink()
             statement.state = 'draft'
 
@@ -488,6 +489,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 lines_to_create.append((0, 0, end_debit_vat_data))
 
             move.line_ids = lines_to_create
+            move.post()
             statement.state = 'confirmed'
 
         return True
