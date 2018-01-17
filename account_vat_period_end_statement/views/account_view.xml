@@ -141,6 +141,14 @@
         <menuitem id="menu_account_vat_period_end_statement" action="action_account_vat_period_end_statement"
             name="VAT statements" parent="account.menu_finance_entries"/>
 
+<!--    date range   -->
+
+        <menuitem id="menu_date_range" name="Date ranges"
+            parent="account.account_account_menu"/>
+        <menuitem action="date_range.date_range_action" id="menu_date_range_action" parent="menu_date_range"/>
+        <menuitem action="date_range.date_range_type_action"
+            id="menu_date_range_type_action" parent="menu_date_range"/>
+
 <!--    tax code   -->
 
         <record id="view_tax_form_vat" model="ir.ui.view">
