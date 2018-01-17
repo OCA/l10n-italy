@@ -8,7 +8,8 @@
             <form string="Fiscal Code">
                 <group col="2"  width="250">
                     <group string="Individual Data">
-                        <field name="fiscalcode_surname" colspan="2" default_focus="1"/>
+                        <field name="fiscalcode_surname" colspan="2" 
+                                default_focus="1"/>
                         <field name="fiscalcode_firstname" colspan="2"/>
                         <field name="sex" colspan="2"/>
                         <field name="birth_date" colspan="2"/>
@@ -39,13 +40,13 @@
     <record id="view_partner_form_fiscalcode_button" model="ir.ui.view">
         <field name="name">res.partner.fiscalcode.button</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="l10n_it_fiscalcode.view_partner_form_fiscalcode_data"/>
+        <field name="inherit_id" ref="view_partner_form_fiscalcode_data"/>
         <field name="arch" type="xml">
             <field name="fiscalcode" position="after">
                 <button name="%(l10n_it_fiscalcode.action_compute_fc)d"
-                    string="Compute F.C." type="action" icon="fa-gear" colspan="2"/>
-            </field>
+                        string="Compute F.C." type="action" icon="fa-gears" 
+                        colspan="2" style="margin-left: 10px"/>
+          </field>
         </field>
     </record>
-
 </odoo>
