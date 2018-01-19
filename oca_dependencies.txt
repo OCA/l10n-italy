@@ -2,3 +2,4 @@ partner-contact
 stock-logistics-workflow
 account-payment
 account-financial-reporting
+server-tools
