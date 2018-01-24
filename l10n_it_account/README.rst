@@ -35,6 +35,7 @@ Contributors
 * Davide Corio
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alex Comba <alex.comba@agilebg.com>
+* Luigi Di Naro <luigi.dinaro@teuron.it>
 
 Funders
 -------

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2018 Alex Comba - Agile Business Group
+     Copyright 2018 Luigi Di Naro - Teuron S.r.l.
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -11,5 +12,12 @@
         id="menu_date_range_type_action" parent="menu_date_range"/>
     <menuitem action="date_range.date_range_generator_action"
         id="menu_date_range_generator_action" parent="menu_date_range"/>
+    <!-- Report menu for compatibility whith enterprise-->
+    <menuitem id="account_reports_it_statements_menu"
+              name="Italian Statements" parent="account.menu_finance_reports" sequence="3"
+              groups="account.group_account_user"/>
+    <!-- Generic italian localization menu-->
+    <menuitem id="account_italian_localization" name="Italian Localization"
+              sequence="2" parent="account.account_account_menu"/>
 
 </odoo>

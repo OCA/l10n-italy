@@ -16,8 +16,7 @@
         'date_range',
     ],
     "data": [
-        'views/account_setting.xml',
-        'views/account_view.xml',
+        'data/menu_items.xml',
         'reports/account_reports_view.xml',
     ],
     'installable': True,

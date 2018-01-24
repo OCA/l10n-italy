@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
 
       <record id="l10n_it_account_a4_portrait" model="report.paperformat">
@@ -77,7 +77,7 @@
 
         <template id="minimal_layout" inherit_id="report.minimal_layout">
             <xpath expr="//head" position="inside">
-                <link rel="stylesheet" href="/l10n_it_vat_registries/static/src/css/l10n_it_vat_registries.css"/>
+                <link rel="stylesheet" href="/l10n_it_account/static/src/css/l10n_it_account.css"/>
             </xpath>
             <xpath expr="//head/t/script" position="replace">
                 <script>
@@ -112,4 +112,4 @@
             </xpath>
         </template>
     </data>
-</openerp>
+</odoo>

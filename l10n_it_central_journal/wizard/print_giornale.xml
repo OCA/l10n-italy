@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
 
         <record id="wizard_giornale" model="ir.ui.view">
@@ -19,42 +19,42 @@
                     </group>
                     <separator string="Journals"/>
                     <group>
-                    <field name="journal_ids" colspan="4" nolabel="1" height="250"
-                           domain="[('central_journal_exclude', '=', False)]"/>
+                        <field name="journal_ids" colspan="4" nolabel="1" height="250"
+                               domain="[('central_journal_exclude', '=', False)]"/>
                     </group>
-                        <separator string="Layout"/>
+                    <separator string="Layout"/>
                     <group>
-                    <field name="target_move"/>
-                    <field name="fiscal_page_base"/>
-                    <field name="start_row"/>
-                    <field name="progressive_credit" invisible="1"/>
-                    <field name="progressive_debit2" invisible="1"/>
-                </group>
-                <footer>
-                    <button name="print_giornale" string="Print" type="object" class="oe_highlight"/>
-                    <button name="print_giornale_final" string="Final print" type="object" class="oe_highlight"/>
-                    or
-                    <button string="Cancel" class="oe_link" special="cancel"/>
-                </footer>
-            </form>
-        </field>
-    </record>
+                        <field name="target_move"/>
+                        <field name="fiscal_page_base"/>
+                        <field name="start_row"/>
+                        <field name="progressive_credit" invisible="1"/>
+                        <field name="progressive_debit2" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="print_giornale" string="Print" type="object" class="oe_highlight"/>
+                        <button name="print_giornale_final" string="Final print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
 
-    <record id="action_giornale" model="ir.actions.act_window">
-        <field name="name">Central Journal</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">wizard.giornale</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-    </record>
+        <record id="action_giornale" model="ir.actions.act_window">
+            <field name="name">Central Journal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.giornale</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
 
-    <menuitem
-            name="Central Journal"
-            parent="account.menu_finance_reports"
-            action="action_giornale"
-            id="menu_giornale"
-            icon="STOCK_PRINT"/>
+        <menuitem
+                name="Central Journal"
+                parent="l10n_it_account.account_reports_it_statements_menu"
+                action="action_giornale"
+                id="menu_giornale"
+                icon="STOCK_PRINT"/>
 
-</data>
-        </openerp>
+    </data>
+</odoo>
