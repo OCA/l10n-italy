@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_reverse_charge
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-12-08 03:45+0000\n"
 "PO-Revision-Date: 2017-12-08 03:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Slovak (Slovakia) (https://www.transifex.com/oca/teams/23907/sk_SK/)\n"
+"Language-Team: Slovak (Slovakia) (https://www.transifex.com/oca/teams/23907/"
+"sk_SK/)\n"
+"Language: sk_SK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sk_SK\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: l10n_it_reverse_charge
@@ -290,7 +291,8 @@ msgstr ""
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
-"In that case account entries cannot be canceledautomatically. Please proceed manually"
+"In that case account entries cannot be canceledautomatically. Please proceed "
+"manually"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
