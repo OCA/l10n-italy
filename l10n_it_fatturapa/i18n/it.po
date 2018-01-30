@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Paolo Valier <paolo.valier@hotmail.it>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2017-12-08 03:45+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-30 05:36+0000\n"
+"PO-Revision-Date: 2017-12-30 05:36+0000\n"
+"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +26,12 @@ msgstr ""
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_ns
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_rc
 msgid "00"
-msgstr ""
+msgstr "00"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,description:l10n_it_fatturapa.tax_22
 msgid "22"
-msgstr ""
+msgstr "22"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,description:l10n_it_fatturapa.tax_22_SP
@@ -50,7 +51,7 @@ msgstr "ABI"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_activity_progress_fatturapa_activity_progress
 msgid "Activity Progress"
-msgstr ""
+msgstr "Progresso Attività"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_line_admin_ref
@@ -86,32 +87,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_art73
 msgid "Art73"
-msgstr ""
+msgstr "Art73"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_ir_attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Allegato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_name
 msgid "Attachment Name"
-msgstr ""
+msgstr "Nome Allegato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_local_url
 msgid "Attachment URL"
-msgstr ""
+msgstr "URL Allegato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_bic
 msgid "BIC"
-msgstr ""
+msgstr "BIC"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_name
 msgid "Bank name"
-msgstr ""
+msgstr "Nome Banca"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_cab
@@ -121,12 +122,12 @@ msgstr "CAB"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_cig
 msgid "CIG Code"
-msgstr ""
+msgstr "Codice CIG"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_cup
 msgid "CUP Code"
-msgstr ""
+msgstr "Codice CUP"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_carrier_id
@@ -136,7 +137,7 @@ msgstr "Corriere"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_checksum
 msgid "Checksum/SHA1"
-msgstr ""
+msgstr "Checksum/SHA1"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_document_type_code
@@ -170,7 +171,7 @@ msgstr "Configurazione"
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
 msgid "Contract"
-msgstr ""
+msgstr "Contratto"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_create_uid
@@ -250,7 +251,7 @@ msgstr "Descrizione"
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
 msgid "Discount"
-msgstr ""
+msgstr "Sconto"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_discount_rise_price_ids
@@ -280,7 +281,7 @@ msgstr "Nome Visualizzato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_doc_type
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_type
 msgid "Document Type"
-msgstr ""
+msgstr "Tipo Documento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_name
@@ -292,7 +293,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_eori_code
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_eori_code
 msgid "EORI Code"
-msgstr ""
+msgstr "Codice EORI"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_penalty_date
@@ -401,17 +402,17 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_datas
 msgid "File Content"
-msgstr ""
+msgstr "Contenuto del File"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_datas_fname
 msgid "File Name"
-msgstr ""
+msgstr "Nome del File"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_file_size
 msgid "File Size"
-msgstr ""
+msgstr "Dimensione File"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_fiscal_position_id
@@ -428,7 +429,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_format
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_gross_weight
@@ -576,7 +577,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_license_number
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_license_number
 msgid "License Code"
-msgstr ""
+msgstr "Codice Licenza"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_lineRef
@@ -602,7 +603,7 @@ msgstr "Tipo Socio"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_mimetype
 msgid "Mime Type"
-msgstr ""
+msgstr "Tipo Mime"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,ftpa_withholding_type:0
@@ -612,7 +613,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_net_weight
 msgid "Net Weight"
-msgstr ""
+msgstr "Peso Netto"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_ni
@@ -638,7 +639,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
 msgid "Order"
-msgstr ""
+msgstr "Ordine"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_code
@@ -674,7 +675,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_account_move_line_id
 msgid "Payment Line"
-msgstr ""
+msgstr "Riga Pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_payment_term
@@ -694,7 +695,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_code
 msgid "Payment code"
-msgstr ""
+msgstr "Codice Pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_due_date
@@ -709,7 +710,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_percentage
 msgid "Percentage"
-msgstr ""
+msgstr "Percentuale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_pickup_datetime
@@ -832,7 +833,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_related_documents
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_invoice_line_form_fatturapa
 msgid "Related Documents"
-msgstr ""
+msgstr "Documenti Correlati"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_line_related_documents
@@ -891,7 +892,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_res_name
 msgid "Resource Name"
-msgstr ""
+msgstr "Nome Risorsa"
 
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
@@ -917,7 +918,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
@@ -984,7 +985,7 @@ msgstr "Tipo"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_url
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_tax_representative

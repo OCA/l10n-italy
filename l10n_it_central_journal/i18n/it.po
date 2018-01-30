@@ -4,13 +4,15 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2017
+# Paolo Valier <paolo.valier@hotmail.it>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2017-12-08 03:45+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-30 05:36+0000\n"
+"PO-Revision-Date: 2017-12-30 05:36+0000\n"
+"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +90,7 @@ msgstr "Data"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
 msgid "Date Range"
-msgstr ""
+msgstr "Intervallo Data"
 
 #. module: l10n_it_central_journal
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
@@ -120,7 +122,7 @@ msgstr "Bozza"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal_central_journal_exclude
 msgid "Exclude from Central             Journal"
-msgstr ""
+msgstr "Escludi da Libro Giornale"
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
@@ -179,12 +181,12 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_last_def_date_print
 msgid "Last definitive date print"
-msgstr ""
+msgstr "Ultima Data stampata in definitivo"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_date_last_print
 msgid "Last printed date"
-msgstr ""
+msgstr "Ultima datadi stampa"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_fiscal_page_base
@@ -242,7 +244,7 @@ msgstr "Progressivo dare"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_line_number
 msgid "Progressive line"
-msgstr ""
+msgstr "Riga progressiva"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_page_number
@@ -297,9 +299,9 @@ msgstr "o"
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_report_l10n_it_central_journal_report_giornale
 msgid "report.l10n_it_central_journal.report_giornale"
-msgstr ""
+msgstr "report.l10n_it_central_journal.report_giornale"
 
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
 msgid "wizard.giornale"
-msgstr ""
+msgstr "Wizard libro giornale"

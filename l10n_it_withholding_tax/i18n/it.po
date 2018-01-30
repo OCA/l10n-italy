@@ -1,11 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_withholding_tax
-#
+
+# * l10n_it_withholding_tax
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Stefano <stefano.sforzi@agilebg.com>, 2017
+# Paolo Valier <paolo.valier@hotmail.it>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
+
 "POT-Creation-Date: 2017-12-09 15:08+0000\n"
 "PO-Revision-Date: 2017-12-09 15:08+0000\n"
 "Last-Translator: <>\n"
@@ -70,7 +76,7 @@ msgstr "Coeff. Imponibile"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_certification
 #. module: l10n_it_withholding_tax
 msgid "Certification"
-msgstr "Da Certificare"
+msgstr "Certificazione"
 
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_code
 #. module: l10n_it_withholding_tax
@@ -135,12 +141,12 @@ msgstr "Data Scadenza"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate_date_start
 #. module: l10n_it_withholding_tax
 msgid "Date Start"
-msgstr "Data inizio"
+msgstr "Data Inizio"
 
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate_date_stop
 #. module: l10n_it_withholding_tax
 msgid "Date Stop"
-msgstr "Data fine"
+msgstr "Data Fine"
 
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_display_name
@@ -161,7 +167,7 @@ msgstr "Da pagare"
 #. module: l10n_it_withholding_tax
 #, python-format
 msgid "Error! Rates are required"
-msgstr "Attenzione! Inserire almeno uno scaglione"
+msgstr "Errore! I tassi sono obbligatori"
 
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:128
 #. module: l10n_it_withholding_tax
@@ -178,7 +184,7 @@ msgstr "Posizione Fiscale"
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 #. module: l10n_it_withholding_tax
 msgid "Group By..."
-msgstr "Raggruppa per..."
+msgstr "Raggruppa Per..."
 
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_id
@@ -251,7 +257,7 @@ msgstr "Nome"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_amount_net_pay
 #. module: l10n_it_withholding_tax
 msgid "Net To Pay"
-msgstr "Netto a Pagare"
+msgstr "Netto da Pagare"
 
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
@@ -339,7 +345,7 @@ msgstr "Imposta"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_tax
 #. module: l10n_it_withholding_tax
 msgid "Tax %"
-msgstr "Ritenuta %"
+msgstr "Imposta %"
 
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_tax_coeff
 #. module: l10n_it_withholding_tax
@@ -360,12 +366,12 @@ msgstr "Tot"
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
 #. module: l10n_it_withholding_tax
 msgid "Tot Amount"
-msgstr "Importo totale"
+msgstr "Importo Tot"
 
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
 #. module: l10n_it_withholding_tax
 msgid "Tot Amount Paid"
-msgstr "Tot Importo Pagato"
+msgstr "Importo Totale Pagato"
 
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
 #. module: l10n_it_withholding_tax
