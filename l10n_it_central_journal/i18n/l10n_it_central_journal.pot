@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_central_journal
+#	* l10n_it_central_journal
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2017-12-08 03:45+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Czech (https://www.transifex.com/oca/teams/23907/cs/)\n"
-"Language: cs\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: \n"
 
 #. module: l10n_it_central_journal
 #: model:ir.actions.report.xml,name:l10n_it_central_journal.action_report_giornale
@@ -46,7 +41,7 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
@@ -68,12 +63,12 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_create_uid
 msgid "Created by"
-msgstr "Vytvořil(a)"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_create_date
 msgid "Created on"
-msgstr "Vytvořeno"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
@@ -83,7 +78,7 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
@@ -110,7 +105,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale_display_name
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_display_name
 msgid "Display Name"
-msgstr "Zobrazovaný název"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: selection:wizard.giornale,target_move:0
@@ -142,7 +137,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale_id
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
@@ -164,17 +159,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale___last_update
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale___last_update
 msgid "Last Modified on"
-msgstr "Naposled upraveno"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_write_uid
 msgid "Last Updated by"
-msgstr "Naposled upraveno"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_write_date
 msgid "Last Updated on"
-msgstr "Naposled upraveno"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_last_def_date_print
@@ -199,7 +194,7 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Name"
-msgstr "Název"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:95
@@ -292,7 +287,7 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "or"
-msgstr "nebo"
+msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_report_l10n_it_central_journal_report_giornale
@@ -303,3 +298,4 @@ msgstr ""
 #: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
 msgid "wizard.giornale"
 msgstr ""
+
