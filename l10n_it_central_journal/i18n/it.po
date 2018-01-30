@@ -1,23 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_central_journal
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Alessandro Camilli <alessandrocamilli@openforce.it>, 2017
 # Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2017
-# Paolo Valier <paolo.valier@hotmail.it>, 2018
+# Paolo Valier, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 05:36+0000\n"
-"PO-Revision-Date: 2017-12-30 05:36+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2018\n"
+"POT-Creation-Date: 2018-05-04 14:09+0000\n"
+"PO-Revision-Date: 2018-05-04 14:09+0000\n"
+"Last-Translator: Paolo Valier, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_central_journal
@@ -55,7 +56,7 @@ msgstr "Annulla"
 #: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Central Journal"
-msgstr "Giornale Centralizzato"
+msgstr "Libro giornale"
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
@@ -90,7 +91,7 @@ msgstr "Data"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
 msgid "Date Range"
-msgstr "Intervallo Data"
+msgstr "Intervallo Date"
 
 #. module: l10n_it_central_journal
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
