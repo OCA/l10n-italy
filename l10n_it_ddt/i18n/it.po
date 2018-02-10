@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2017-12-01 20:36+0000\n"
-"Last-Translator: Paolo Valier\n"
+"POT-Creation-Date: 2018-01-30 11:07+0000\n"
+"PO-Revision-Date: 2018-01-30 11:08+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -295,6 +295,11 @@ msgid "Group By"
 msgstr "Raggruppa per"
 
 #. module: l10n_it_ddt
+#: field:ddt.create.invoice,group:0
+msgid "Group DDT by partner"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: help:stock.ddt.type,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
@@ -338,11 +343,6 @@ msgstr "Fatturabile"
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Invoiced"
 msgstr "Fatturato"
-
-#. module: l10n_it_ddt
-#: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
-msgid "Invoices created will group DDT by partner"
-msgstr "Le fatture create raggrupperanno i DDT per partner"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_is_follower:0
@@ -426,10 +426,10 @@ msgid "Methods of Transportation"
 msgstr "Metodi di trasporto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:86
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:90
 #, python-format
-msgid "Move {move} is not invoiceable ({ddt})"
-msgstr "Il movimento {move} non è fatturabile ({ddt})"
+msgid "Move {m} is not invoiceable ({d})"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,name:0
@@ -603,31 +603,31 @@ msgid "Search DDT"
 msgstr "Cerca DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:39
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:40
 #, python-format
 msgid "Selected DDTs have different Carriage Conditions"
 msgstr "I DDT selezionati hanno i Resi Merce differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:45
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:46
 #, python-format
 msgid "Selected DDTs have different Descriptions of Goods"
 msgstr "I DDT selezionati hanno differenti Descrizioni dell'aspetto esteriori dei beni"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:58
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:59
 #, python-format
 msgid "Selected DDTs have different Methods of Transportation"
 msgstr "I DDT selezionati hanno Metodi di Trasporto differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:51
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:52
 #, python-format
 msgid "Selected DDTs have different Reasons for Transportation"
 msgstr "I DDT selezionati hanno Casuali di Trasporto differenti"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:65
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:66
 #, python-format
 msgid "Selected DDTs have different parcels"
 msgstr "I DDT Selezionati hanno colli differenti"
