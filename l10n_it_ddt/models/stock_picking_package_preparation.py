@@ -183,8 +183,7 @@ class StockPickingPackagePreparation(models.Model):
             # ----- Assign ddt number if ddt type is set
             if package.ddt_type_id and not package.ddt_number:
                 package.ddt_number = (
-                    package.ddt_type_id.sequence_id.next_by_code(
-                        package.ddt_type_id.sequence_id.code))
+                    package.ddt_type_id.sequence_id.next_by_id())
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.multi
@@ -196,8 +195,7 @@ class StockPickingPackagePreparation(models.Model):
         for package in self:
             if not package.ddt_number:
                 package.ddt_number = (
-                    package.ddt_type_id.sequence_id.next_by_code(
-                        package.ddt_type_id.sequence_id.code))
+                    package.ddt_type_id.sequence_id.next_by_id())
         self.write({'state': 'done', 'date_done': fields.Datetime.now()})
         return True
 
