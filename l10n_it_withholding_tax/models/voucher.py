@@ -436,10 +436,13 @@ class account_voucher_line(orm.Model):
                 if len(inv.withholding_tax_line):
                     rate_num = len(inv.withholding_tax_line)
                     # Rates
-                    wt_amount_rate = round(
-                        voucher_line.amount_withholding_tax / rate_num,
-                        dp_obj.precision_get(cr, uid, 'Account'))
                     wt_residual = voucher_line.amount_withholding_tax
+                    # pencent of wt paid on wt total
+                    wt_perc = 1.0
+                    if voucher_line.amount_original_withholding_tax != 0:
+                        wt_perc = (
+                            voucher_line.amount_withholding_tax /
+                            voucher_line.amount_original_withholding_tax)
                     # Re-read move lines to assign the amounts of wt
                     i = 0
                     for wt_invoice_line in inv.withholding_tax_line:
@@ -447,7 +450,9 @@ class account_voucher_line(orm.Model):
                         if i == rate_num:
                             wt_amount = wt_residual
                         else:
-                            wt_amount = wt_amount_rate
+                            wt_amount = round(wt_invoice_line.tax * wt_perc,
+                                              dp_obj.precision_get(cr, uid,
+                                                                   'Account'))
                         wt_residual -= wt_amount
 
                         val = {

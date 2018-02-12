@@ -142,8 +142,10 @@ class StockPickingPackagePreparation(models.Model):
                     _("Not every picking is in done status"))
         for package in self:
             if not package.ddt_number:
-                package.ddt_number = package.ddt_type_id.sequence_id.get(
-                    package.ddt_type_id.sequence_id.code)
+                package.ddt_number = (
+                    package.ddt_type_id.sequence_id.next_by_id(
+                        package.ddt_type_id.sequence_id.id)
+                )
         self.write({'state': 'done', 'date_done': fields.Datetime.now()})
         return True
 
