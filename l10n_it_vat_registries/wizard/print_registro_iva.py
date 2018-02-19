@@ -18,9 +18,8 @@ class WizardRegistroIva(models.TransientModel):
     layout_type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
-        ('corrispettivi', 'Corrispettivi'),
-        ], 'Layout', required=True,
-        default='customer')
+        ('corrispettivi', 'Corrispettivi'), ],
+        'Layout', required=True, default='customer')
     tax_registry_id = fields.Many2one('account.tax.registry', 'VAT registry')
     journal_ids = fields.Many2many(
         'account.journal',
@@ -28,17 +27,17 @@ class WizardRegistroIva(models.TransientModel):
         'journal_id',
         'registro_id',
         string='Journals',
-        help='Select journals you want retrieve documents from',
-        required=True)
+        help='Select journals you want retrieve documents from')
     message = fields.Char(string='Message', size=64, readonly=True)
     only_totals = fields.Boolean(
         string='Prints only totals')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
 
-    @api.onchange('tax_registry_id')
-    def on_change_vat_registry(self):
+    @api.multi
+    def load_journal_ids(self):
+        self.ensure_one()
         self.journal_ids = self.tax_registry_id.journal_ids
-        self.layout_type = self.tax_registry_id.layout_type
+        return {"type": "ir.actions.do_nothing"}
 
     @api.onchange('date_range_id')
     def on_change_date_range_id(self):
@@ -47,22 +46,25 @@ class WizardRegistroIva(models.TransientModel):
             self.to_date = self.date_range_id.date_end
 
     def _get_move_ids(self, wizard):
-        move_ids = self.env['account.move'].search([
+        moves = self.env['account.move'].search([
             ('date', '>=', self.from_date),
             ('date', '<=', self.to_date),
             ('journal_id', 'in', [j.id for j in self.journal_ids]),
-            ('state', '=', 'posted'),
-            ], order='date, name')
+            ('state', '=', 'posted'), ], order='date, name')
 
-        if not move_ids:
+        if not moves:
             raise UserError(_('No documents found in the current selection'))
 
-        return [move.id for move in move_ids]
+        return moves.ids
 
+    @api.multi
     def print_registro(self):
+        self.ensure_one()
         wizard = self
+        if not wizard.journal_ids:
+            raise UserError(_('No journals found in the current selection.\n'
+                              'Please load them before to retry!'))
         move_ids = self._get_move_ids(wizard)
-
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
 
