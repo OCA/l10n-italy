@@ -81,6 +81,7 @@ Contributors
 * Davide Corio <info@davidecorio.com>
 * Giacomo Grasso <giacomo.grasso@agilebg.com>
 * Gabriele Baldessari <gabriele.baldessari@gmail.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------
