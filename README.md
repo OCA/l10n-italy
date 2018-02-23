@@ -25,7 +25,7 @@ addon | version | summary
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_central_journal](l10n_it_central_journal/) | 10.0.0.0.1 | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
-[l10n_it_ddt](l10n_it_ddt/) | 10.0.1.2.3 | Documento di Trasporto
+[l10n_it_ddt](l10n_it_ddt/) | 10.0.1.2.4 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.1.0.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.0.0 | Electronic invoices emission
@@ -35,9 +35,9 @@ addon | version | summary
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.1.1 | Reverse Charge for Italy
-[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.0.1.4 | Ricevute Bancarie
+[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.0.0 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
-[l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.1.0 | Italian Localization - VAT Registries
+[l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.0 | Italian Localization - VAT Registries
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.0.1 | Italian Withholding Tax
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.1.0.0 | Italian Withholding Tax Payment
