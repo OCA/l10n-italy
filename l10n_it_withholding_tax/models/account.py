@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2018 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
@@ -29,7 +30,11 @@ class AccountPartialReconcile(models.Model):
                 break
         # Limit value of reconciliation
         if invoice and invoice.amount_net_pay:
-            if vals.get('amount') > invoice.amount_net_pay:
+            # We must consider amount in foreign currency, if present
+            # Note that this is always executed, for every reconciliation.
+            # Thus, we must not chnage amount when not in withholding tax case
+            amount = vals.get('amount_currency') or vals.get('amount')
+            if amount > invoice.amount_net_pay:
                 vals.update({'amount': invoice.amount_net_pay})
 
         # Create reconciliation
