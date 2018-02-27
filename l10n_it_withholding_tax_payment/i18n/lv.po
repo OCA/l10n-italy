@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_withholding_tax_payment
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-12-08 03:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Latvian (https://www.transifex.com/oca/teams/23907/lv/)\n"
+"Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: lv\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_account_id
@@ -37,6 +38,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
 msgid "Cancel"
 msgstr "Atcelt"
+
+#. module: l10n_it_withholding_tax_payment
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment_company_id
+msgid "Company"
+msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
@@ -167,6 +173,12 @@ msgid "Status"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:132
+#, python-format
+msgid "The selected moves must have the same company!"
+msgstr ""
+
+#. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
 msgid "Tot"
 msgstr ""
@@ -192,11 +204,17 @@ msgid "WT wizard create move payment"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:53
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:79
 #, python-format
 msgid ""
 "Warning! Datas required for account move creation:                         "
 "Date payment, journal, account"
+msgstr ""
+
+#. module: l10n_it_withholding_tax_payment
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:35
+#, python-format
+msgid "Warning! Withholding Tax moves in a payment: {}"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
@@ -217,14 +235,15 @@ msgid "Withholding Tax Move Payment"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:85
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:93
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:111
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:119
+#: code:addons/l10n_it_withholding_tax_payment/wizard/create_move_payment.py:34
 #, python-format
 msgid "Withholding Tax Payment"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:66
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:92
 #, python-format
 msgid "Withholding Tax Payment %s"
 msgstr ""
@@ -240,21 +259,21 @@ msgid "Wt Moves"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:113
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:143
 #, python-format
 msgid ""
-"Wt move already in a move payment!                         Move paym. %s "
-"-Ref WT: %s - %s - %s"
+"Wt move already in a move payment!                         Move paym. %s -"
+"Ref WT: %s - %s - %s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:107
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:137
 #, python-format
 msgid "Wt move already paid! - %s - %s - %s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:165
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:195
 #, python-format
 msgid "You can only delete draft payments"
 msgstr ""
