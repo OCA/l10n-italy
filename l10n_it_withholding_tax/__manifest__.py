@@ -16,6 +16,7 @@
         'views/withholding_tax.xml',
         'security/ir.model.access.csv',
         'workflow.xml',
+        'security/security.xml',
     ],
     "installable": True
 }
