@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 03:46+0000\n"
-"PO-Revision-Date: 2017-12-08 03:46+0000\n"
+"POT-Creation-Date: 2018-03-02 01:46+0000\n"
+"PO-Revision-Date: 2018-03-02 01:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -87,6 +87,14 @@ msgid "Coeff used         to compute amount competence in the riconciliation"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_company_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move_company_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement_company_id
+#: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+msgid "Company"
+msgstr "Družba"
+
+#. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_create_uid
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_create_uid
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move_create_uid
@@ -153,13 +161,13 @@ msgid "Due"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:55
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:58
 #, python-format
 msgid "Error! Rates are required"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:124
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:127
 #, python-format
 msgid ""
 "Error! You cannot have 2 pricelist versions that                     "
@@ -380,13 +388,13 @@ msgid "W.T."
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:250
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:267
 #, python-format
 msgid "WT %s - %s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:260
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:277
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr ""
@@ -422,7 +430,8 @@ msgid "WT moves"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:121
+#: code:addons/l10n_it_withholding_tax/models/account.py:132
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:368
 #, python-format
 msgid ""
 "Warning! Only Withholding Tax moves in Due status                     can be"
@@ -430,7 +439,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:246
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:263
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr ""
@@ -480,6 +489,11 @@ msgstr ""
 #: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_statement
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "Withholding Tax Statement"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line_withholding_tax_generated_by_move_id
+msgid "Withholding Tax generated from"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
