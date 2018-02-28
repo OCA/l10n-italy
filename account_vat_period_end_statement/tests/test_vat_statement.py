@@ -35,8 +35,8 @@ class TestTax(TransactionCase):
         self.invoice_line_model = self.env['account.invoice.line']
         today = datetime.now().date()
         self.current_period = self.env['date.range'].search([
-            ('date_start', '<', today),
-            ('date_end', '>', today)
+            ('date_start', '<=', today),
+            ('date_end', '>=', today)
         ])
         self.vat_statement_model = self.env['account.vat.period.end.statement']
         paid_vat_account = self.env['account.account'].search([
