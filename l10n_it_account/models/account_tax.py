@@ -39,15 +39,20 @@ class AccountTax(models.Model):
             'from_date': data['from_date'],
             'to_date': data['to_date'],
         }
+        registry_type = data.get('registry_type', 'customer')
         if data.get('journal_ids'):
             context['vat_registry_journal_ids'] = data['journal_ids']
 
         tax = self.env['account.tax'].with_context(context).browse(self.id)
         tax_name = tax._get_tax_name()
         if not tax.children_tax_ids:
+            base_balance = tax.base_balance
+            balance = tax.balance
+            if registry_type == 'supplier':
+                base_balance = -base_balance
+                balance = -balance
             return (
-                tax_name, abs(tax.base_balance), abs(tax.balance),
-                abs(tax.balance), 0
+                tax_name, base_balance, balance, balance, 0
             )
         else:
             base_balance = tax.base_balance
@@ -69,7 +74,7 @@ class AccountTax(models.Model):
                 ):
                     # Prendo la parte di competenza di ogni registro e lo
                     # sommo sempre
-                    child_balance = abs(child_balance)
+                    child_balance = child_balance
 
                 elif child.cee_type:
                     continue
@@ -79,7 +84,11 @@ class AccountTax(models.Model):
                     deductible += child_balance
                 else:
                     undeductible += child_balance
+            if registry_type == 'supplier':
+                base_balance = -base_balance
+                tax_balance = -tax_balance
+                deductible = -deductible
+                undeductible = -undeductible
             return (
-                tax_name, abs(base_balance), abs(tax_balance), abs(deductible),
-                abs(undeductible)
+                tax_name, base_balance, tax_balance, deductible, undeductible
             )
