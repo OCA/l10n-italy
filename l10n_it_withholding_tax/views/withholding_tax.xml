@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <menuitem id="wt_main" name="Withholding tax" parent="account.menu_finance" sequence="5" />
+        <menuitem id="wt_main" name="Withholding tax" parent="account.menu_finance" sequence="5" groups="account.group_account_user"/>
 
         <!--
         WITHHOLDING TAX
