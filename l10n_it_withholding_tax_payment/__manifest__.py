@@ -4,7 +4,7 @@
 
 {
     'name': 'Italian Withholding Tax Payment',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'Account',
     'author': 'Openforce, Odoo Italia Network, '
               'Odoo Community Association (OCA)',
@@ -18,6 +18,7 @@
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'wizard/create_move_payment_view.xml',
+        'security/security.xml',
     ],
     "active": False,
     "installable": True
