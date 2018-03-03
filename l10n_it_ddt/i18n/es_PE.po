@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 03:26+0000\n"
-"PO-Revision-Date: 2017-02-18 03:26+0000\n"
+"POT-Creation-Date: 2018-02-10 06:10+0000\n"
+"PO-Revision-Date: 2018-02-10 06:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Peru) (https://www.transifex.com/oca/teams/23907/es_PE/)\n"
 "MIME-Version: 1.0\n"
@@ -265,7 +265,7 @@ msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:113
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:114
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
@@ -273,7 +273,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_message_is_follower
@@ -347,7 +347,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:126
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:127
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
