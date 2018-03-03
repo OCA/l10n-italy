@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 11:07+0000\n"
+"POT-Creation-Date: 2018-02-22 11:45+0000\n"
 "PO-Revision-Date: 2018-01-30 11:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
@@ -247,7 +247,7 @@ msgid "Display Name"
 msgstr "Nome da visualizzare"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:221
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:225
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il Documento {d} ha fattura collegata"
@@ -447,7 +447,7 @@ msgid "None"
 msgstr "Nessuno"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:142
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:144
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
