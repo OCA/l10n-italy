@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Paolo Valier <paolo.valier@hotmail.it>, 2017
+# Paolo Valier, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 05:36+0000\n"
-"PO-Revision-Date: 2017-12-30 05:36+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
+"POT-Creation-Date: 2018-03-02 01:45+0000\n"
+"PO-Revision-Date: 2018-03-02 01:45+0000\n"
+"Last-Translator: Paolo Valier, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +130,7 @@ msgid "Code group"
 msgstr "Codice Raggruppamento"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:266
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:264
 #, python-format
 msgid "Competenza:"
 msgstr "Competenza:"
@@ -352,7 +352,7 @@ msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:432
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:430
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -521,7 +521,7 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:195
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:194
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
@@ -603,13 +603,13 @@ msgid "Pickings"
 msgstr "Picking"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:293
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:291
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definisci un sezionale di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:546
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:544
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -823,8 +823,8 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:399
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:407
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:397
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:405
 #, python-format
 msgid "There is no invoicable line."
 msgstr "Non ci sono righe fatturabili"
