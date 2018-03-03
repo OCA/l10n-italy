@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 03:46+0000\n"
-"PO-Revision-Date: 2017-12-08 03:46+0000\n"
+"POT-Creation-Date: 2018-03-02 01:46+0000\n"
+"PO-Revision-Date: 2018-03-02 01:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -186,6 +186,11 @@ msgid "Layout"
 msgstr "Postavitev"
 
 #. module: l10n_it_vat_registries
+#: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Load Journals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_message
 msgid "Message"
 msgstr "Sporočilo"
@@ -212,11 +217,19 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:58
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:67
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:56
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:69
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "V trenutnem izboru ni najdenih dokumentov"
+
+#. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:65
+#, python-format
+msgid ""
+"No journals found in the current selection.\n"
+"Please load them before to retry!"
+msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
