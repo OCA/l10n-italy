@@ -278,13 +278,6 @@ class account_invoice_withholding_tax(models.Model):
 
         return wt_st_id
 
-    @api.onchange('fiscal_position')
-    def onchange_fiscal_position(self):
-        use_wt = False
-        if self.fiscal_position and self.fiscal_position.withholding_tax_ids:
-            use_wt = True
-        self.withholding_tax = use_wt
-
     @api.onchange('withholding_tax_id')
     def onchange_withholding_tax_id(self):
         if self.withholding_tax_id:
