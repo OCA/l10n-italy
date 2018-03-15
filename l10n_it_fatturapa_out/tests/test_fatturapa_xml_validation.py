@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
+# Copyright 2018 Alex Comba - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import base64
@@ -45,13 +46,6 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         self.fatturapa_attach = self.env['fatturapa.attachments']
         self.context = {}
         self.maxDiff = None
-        self.company = self.env.ref('base.main_company')
-        self.company.sp_account_id = self.env['account.account'].search([
-            (
-                'user_type_id', '=',
-                self.env.ref('account.data_account_type_current_assets').id
-            )
-        ], limit=1)
         self.sales_journal = self.env['account.journal'].search(
             [('type', '=', 'sale')])[0]
         account_user_type = self.env.ref(
@@ -80,8 +74,17 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
             'l10n_it_fatturapa.res_partner_fatturapa_0')
         self.fiscal_position_sp = self.env.ref(
             'l10n_it_fatturapa.fiscal_position_sp')
+        company = self.env.ref('base.main_company')
+        company.sp_account_id = self.env['account.account'].search([
+            (
+                'user_type_id', '=',
+                self.env.ref('account.data_account_type_current_assets').id
+            )
+        ], limit=1)
         self.EUR = self.env.ref('base.EUR')
-        self.env.user.company_id.currency_id = self.EUR.id
+        self.cr.execute(
+            "UPDATE res_company SET currency_id = %s WHERE id = %s",
+            [self.EUR.id, company.id])
 
     def AttachFileToInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -100,9 +103,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         ftpa_seq = seq_pool.browse(seq_id)
         ftpa_seq.write({
             'implementation': 'no_gap',
-            'number_next_actual': file_number,
-            }
-        )
+            'number_next_actual': file_number, })
         inv_seq = seq_pool.search([('name', '=', 'Customer Invoices')])[0]
         seq_date = self.env['ir.sequence.date_range'].search([
             ('sequence_id', '=', inv_seq.id),
@@ -146,8 +147,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id
-                        })]
+                        self.tax_22.id})]
                 }),
                 (0, 0, {
                     'account_id': self.a_sale.id,
@@ -157,8 +157,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 4,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id
-                        })]
+                        self.tax_22.id})]
                 })],
         })
         invoice.action_invoice_open()
@@ -193,8 +192,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id
-                        })]
+                        self.tax_22.id})]
                 }),
                 (0, 0, {
                     'account_id': self.a_sale.id,
@@ -204,8 +202,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 4,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id
-                        })]
+                        self.tax_22.id})]
                 })],
             'related_documents': [(0, 0, {
                 'type': 'order',
@@ -243,8 +240,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'price_unit': 10,
                     'admin_ref': 'D122353',
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id
-                        })]
+                        self.tax_22.id})]
                 }),
                 (0, 0, {
                     'account_id': self.a_sale.id,
@@ -254,8 +250,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 4,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id
-                        })]
+                        self.tax_22.id})]
                 })],
             'related_documents': [(0, 0, {
                 'type': 'order',
@@ -294,8 +289,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22_SP.id
-                        })]
+                        self.tax_22_SP.id})]
                 }),
                 (0, 0, {
                     'account_id': self.a_sale.id,
@@ -305,8 +299,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 4,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22_SP.id
-                        })]
+                        self.tax_22_SP.id})]
                 })],
         })
         invoice.action_invoice_open()
@@ -336,8 +329,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                     'price_unit': 10,
                     'discount': 10,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id
-                        })]
+                        self.tax_22.id})]
                 }),
             ],
         })
