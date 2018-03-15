@@ -127,7 +127,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         xml = etree.fromstring(xml_content, parser)
         self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
 
-    def test_0_xml_export(self):
+    def test_1_xml_export(self):
         self.set_sequences(1, 13, '2016-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-01-07',
@@ -171,7 +171,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00001.xml')
 
-    def test_1_xml_export(self):
+    def test_2_xml_export(self):
         self.set_sequences(2, 14, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
@@ -218,7 +218,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00002.xml')
 
-    def test_2_xml_export(self):
+    def test_3_xml_export(self):
         self.set_sequences(3, 15, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
@@ -268,7 +268,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
 
         self.check_content(xml_content, 'IT06363391001_00003.xml')
 
-    def test_3_xml_export(self):
+    def test_4_xml_export(self):
         self.set_sequences(4, 16, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
@@ -308,7 +308,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00004.xml')
 
-    def test_4_xml_export(self):
+    def test_5_xml_export(self):
         self.set_sequences(5, 17, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
