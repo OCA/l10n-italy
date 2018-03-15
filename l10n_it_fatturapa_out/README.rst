@@ -34,6 +34,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------
