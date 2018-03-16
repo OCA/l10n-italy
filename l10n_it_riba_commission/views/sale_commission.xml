@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_commission_riba_form" model="ir.ui.view">
+        <field name="name">Include Only paid RiBas flag</field>
+        <field name="model">sale.commission</field>
+        <field name="inherit_id" ref="sale_commission.sale_commission_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_state" position="after">
+                <field name="only_paid_riba" attrs="{'invisible':[('invoice_state','!=','paid')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
