@@ -6,3 +6,4 @@ id,code,name,out_invoice,in_invoice,out_refund,in_refund,priority
 5,TD08,nota di credito semplificata,False,False,True,False,3
 6,TD10, fattura di acquisto intracomunitario beni,False,True,False,False,3
 7,TD11, fattura di acquisto intracomunitario servizi,False,True,False,False,3
+8,TD12,documento riepilogativo,False,True,False,False,3
