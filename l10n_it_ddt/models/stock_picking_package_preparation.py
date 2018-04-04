@@ -10,6 +10,7 @@
 
 
 from openerp import models, fields, api, exceptions, _
+from openerp.exceptions import ValidationError
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -64,6 +65,10 @@ class StockDdtType(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id, )
+    restrict_pickings = fields.Boolean(
+        help='Pickings already in other DDTs cannot be added'
+             ' to DDTs having this type',
+        default=True)
 
 
 class StockPickingPackagePreparation(models.Model):
@@ -120,6 +125,19 @@ class StockPickingPackagePreparation(models.Model):
             self.transportation_method_id = \
                 self.partner_id.transportation_method_id.id \
                 if self.partner_id.transportation_method_id else False
+
+    @api.constrains('picking_ids')
+    def _check_multiple_picking_ids(self):
+        for package in self:
+            if not package.ddt_type_id.restrict_pickings:
+                continue
+            for picking in package.picking_ids:
+                other_ddts = picking.ddt_ids - package
+                if other_ddts:
+                    raise ValidationError(
+                        _("The picking %s is already in DDT %s")
+                        % (picking.name_get()[0][1],
+                           other_ddts.name_get()[0][1]))
 
     @api.multi
     def action_put_in_pack(self):

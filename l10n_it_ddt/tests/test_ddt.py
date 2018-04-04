@@ -8,7 +8,7 @@
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #
 ##############################################################################
-
+from openerp.exceptions import ValidationError
 from openerp.tests.common import TransactionCase
 
 
@@ -76,16 +76,16 @@ class TestDdt(TransactionCase):
         self.product1 = self.env.ref('product.product_product_25')
         self.product2 = self.env.ref('product.product_product_26')
         self.ddt_model = self.env['stock.picking.package.preparation']
-        self.picking = self._create_picking()
-        self.move = self._create_move(self.picking, self.product1)
         self.ddt = self._create_ddt()
 
     def test_invoice_from_ddt_created_by_picking(self):
         # ----- Create a ddt from an existing picking, create invoice and test
         #       it
-        self.picking.action_confirm()
-        self.picking.action_assign()
-        self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
+        picking = self._create_picking()
+        picking.action_confirm()
+        self._create_move(picking, self.product1, quantity=2)
+        picking.action_assign()
+        self.ddt.picking_ids = [(6, 0, [picking.id, ])]
         self.ddt.action_put_in_pack()
         self.ddt.action_done()
         wizard = self._create_invoice_wizard([self.ddt.id, ])
@@ -117,37 +117,37 @@ class TestDdt(TransactionCase):
                           self.ddt.line_ids[0].product_uom_qty)
 
     def test_create_ddt_from_picking(self):
-        self.picking1 = self._create_picking()
-        self._create_move(self.picking1, self.product1, quantity=2)
-        self.picking2 = self._create_picking()
-        self._create_move(self.picking2, self.product2, quantity=3)
+        picking1 = self._create_picking()
+        self._create_move(picking1, self.product1, quantity=2)
+        picking2 = self._create_picking()
+        self._create_move(picking2, self.product2, quantity=3)
         wizard = self.env['ddt.from.pickings'].with_context({
-            'active_ids': [self.picking1.id, self.picking2.id]
+            'active_ids': [picking1.id, picking2.id]
             }).create({})
         res = wizard.create_ddt()
         ddt = self.ddt_model.browse(res['res_id'])
 
         self.assertEqual(len(ddt.picking_ids), 2)
         self.assertEqual(len(ddt.line_ids), 2)
-        self.assertTrue(self.picking1 | self.picking2 == ddt.picking_ids)
+        self.assertTrue(picking1 | picking2 == ddt.picking_ids)
         for line in ddt.line_ids:
             if line.product_id == self.product1:
                 self.assertEqual(line.product_uom_qty, 2)
             if line.product_id == self.product2:
                 self.assertEqual(line.product_uom_qty, 3)
 
-        self.picking3 = self._create_picking()
-        self._create_move(self.picking3, self.product1, quantity=1)
-        self._create_move(self.picking3, self.product2, quantity=2)
+        picking3 = self._create_picking()
+        self._create_move(picking3, self.product1, quantity=1)
+        self._create_move(picking3, self.product2, quantity=2)
         wizard = self.env['add.pickings.to.ddt'].with_context({
-            'active_ids': [self.picking3.id]
+            'active_ids': [picking3.id]
             }).create({'ddt_id': ddt.id})
         wizard.add_to_ddt()
 
         self.assertEqual(len(ddt.picking_ids), 3)
         self.assertEqual(len(ddt.line_ids), 4)
         self.assertTrue(
-            self.picking1 | self.picking2 | self.picking3 == ddt.picking_ids)
+            picking1 | picking2 | picking3 == ddt.picking_ids)
         for line in ddt.line_ids:
             if line.product_id == self.product1:
                 self.assertTrue(line.product_uom_qty in [1, 2])
@@ -155,9 +155,11 @@ class TestDdt(TransactionCase):
                 self.assertTrue(line.product_uom_qty in [2, 3])
 
     def test_keep_changed_description(self):
-        self.picking.action_confirm()
-        self.picking.action_assign()
-        self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
+        picking = self._create_picking()
+        self._create_move(picking, self.product1, quantity=2)
+        picking.action_confirm()
+        picking.action_assign()
+        self.ddt.picking_ids = [(6, 0, [picking.id, ])]
         self.ddt.line_ids[0].name = 'Changed for test'
         self.ddt.action_put_in_pack()
         self.assertEqual(self.ddt.line_ids[0].name, 'Changed for test')
@@ -197,3 +199,20 @@ class TestDdt(TransactionCase):
         self.assertEqual(len(invoice.invoice_line), 2)
         for line in invoice.invoice_line:
             self.assertEqual(line.product_id.id, self.product1.id)
+
+    def test_picking_multi_ddt(self):
+        picking1 = self._create_picking()
+        self._create_move(picking1, self.product1, quantity=2)
+        wizard = self.env['ddt.from.pickings'].with_context({
+            'active_ids': [picking1.id]
+            }).create({})
+        wizard.create_ddt()
+
+        wizard = self.env['ddt.from.pickings'].with_context({
+            'active_ids': [picking1.id]
+            }).create({})
+        with self.assertRaises(ValidationError):
+            wizard.create_ddt()
+
+        self.ddt_model._default_ddt_type().restrict_pickings = False
+        wizard.create_ddt()
