@@ -34,7 +34,7 @@ addon | version | summary
 [l10n_it_central_journal](l10n_it_central_journal/) | 8.0.2.0.0 | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 8.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.0 | Italian Localization - Corrispettivi
-[l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | Documento di Trasporto
+[l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.1 | Documento di Trasporto
 [l10n_it_ddt_delivery](l10n_it_ddt_delivery/) | 8.0.1.0.0 | Copy carrier from picking and from sale order
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 8.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.1.0 | Electronic invoices
