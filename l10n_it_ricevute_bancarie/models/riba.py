@@ -380,6 +380,7 @@ class RibaListLine(models.Model):
             settlement_move_line = move_line_model.search([
                 ('account_id', '=', riba_line.acceptance_account_id.id),
                 ('move_id', '=', riba_line.acceptance_move_id.id),
+                ('debit', '!=', 0)
                 ])
 
             settlement_move_amount = settlement_move_line.debit
