@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Paolo Valier <paolo.valier@hotmail.it>, 2018
+# Paolo Valier, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 05:36+0000\n"
-"PO-Revision-Date: 2017-12-30 05:36+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2018\n"
+"POT-Creation-Date: 2018-05-11 12:21+0000\n"
+"PO-Revision-Date: 2018-05-11 12:21+0000\n"
+"Last-Translator: Paolo Valier, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +31,7 @@ msgstr "Nome Allegato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_local_url
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_website_url
 msgid "Attachment URL"
 msgstr "URL Allegato"
 
@@ -122,7 +123,7 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:314
 #, python-format
 msgid "Customer city not set."
-msgstr ""
+msgstr "La Città del Cliente non è impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:320
@@ -162,7 +163,7 @@ msgstr "Nome Visualizzato"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:130
 #, python-format
 msgid "Email address not set."
-msgstr ""
+msgstr "Indirizzo email non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
