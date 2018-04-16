@@ -19,7 +19,7 @@ Visto che le aliquote possono variare nel corso del tempo, nella codifica sono p
 
 E’ necessario anche inserire i conti contabili che verranno utilizzati quando il modulo si occuperà di generare registrazioni contabili per la rilevazione della ritenuta.
 
-.. figure:: static/img/ritenuta-acconto-odoo-codifica-768x457.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/10.0/l10n_it_withholding_tax/static/img/ritenuta-acconto-odoo-codifica-768x457.png
    :alt: alternative description
    :width: 600 px
 
@@ -31,7 +31,7 @@ Il modulo ritenute per Odoo calcolerà i valori corrispondenti e ne mostrerà il
 
 In calce ai totali, verrà totalizzato l’ammontare della ritenuta e il netto a pagare. Questa sezione sarà visibile solamente in presenza di almeno una ritenuta
 
-.. figure:: static/img/fattura-fornitore-768x517.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/10.0/l10n_it_withholding_tax/static/img/fattura-fornitore-768x517.png
    :alt: alternative description
    :width: 600 px
 
@@ -45,10 +45,9 @@ I campi principalmente da tenere in considerazione in questa tabella sono: riten
 
 *Ritenuta versata* contiene l’importo di ritenuta, già applicata, che è stata versata all’erario
 
-.. figure:: static/img/foto-3-1-1024x505.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/10.0/l10n_it_withholding_tax/static/img/foto-3-1-1024x505.png
    :alt: alternative description
    :width: 600 px
-
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
