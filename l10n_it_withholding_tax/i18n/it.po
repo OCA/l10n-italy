@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 08:47+0000\n"
-"PO-Revision-Date: 2018-04-16 08:47+0000\n"
+"POT-Creation-Date: 2018-04-16 14:18+0000\n"
+"PO-Revision-Date: 2018-04-16 14:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -167,13 +167,13 @@ msgid "Due"
 msgstr "Da pagare"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:58
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:70
 #, python-format
 msgid "Error! Rates are required"
 msgstr "Errore! I tassi sono obbligatori"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:127
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:139
 #, python-format
 msgid "Error! You cannot have 2 pricelist versions that                     overlap!"
 msgstr "Errore! I periodi si sovrappongono"
@@ -221,8 +221,7 @@ msgid "Journal Item"
 msgstr "Voce sezionale"
 
 #. module: l10n_it_withholding_tax
-#: model:ir.model.fields,help:l10n_it_withholding_tax.field_account_config_settings_withholding_tax_journal_id
-#: model:ir.model.fields,help:l10n_it_withholding_tax.field_res_company_withholding_tax_journal_id
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax_journal_id
 msgid "Journal used at invoice payment to register withholding tax"
 msgstr "Sezionale utilizzato al pagamento della fattura per rilevare la ritenuta"
 
@@ -398,13 +397,13 @@ msgid "W.T."
 msgstr "R.A."
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:267
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:279
 #, python-format
 msgid "WT %s - %s"
 msgstr "WT %s - %s"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:277
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:289
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr "Rit. %s - %s - %s"
@@ -441,18 +440,19 @@ msgstr "Voci Ritenuta"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:132
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:368
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:380
 #, python-format
 msgid "Warning! Only Withholding Tax moves in Due status                     can be deleted"
 msgstr "Attenzione! Solo Voci di ritenuta \"Da pagare\" possono essere cancellate"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:263
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:275
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr "Attenzione! Movimento di ritenuta già esistente: %s"
 
 #. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_fiscal_position_withholding_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax
@@ -481,6 +481,7 @@ msgid "Withholding Tax Base"
 msgstr "Imponibile Ritenuta"
 
 #. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_move
 #: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_move
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
@@ -494,6 +495,7 @@ msgid "Withholding Tax Rates"
 msgstr "Ritenuta D'Acconto Validita"
 
 #. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_statement
 #: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_statement
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "Withholding Tax Statement"
@@ -520,30 +522,13 @@ msgstr "Ritenute"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_amount
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_withholding_tax_id
 #: model:ir.ui.menu,name:l10n_it_withholding_tax.wt_main
-#: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_account_config_settings_wt
 msgid "Withholding tax"
 msgstr "Ritenuta"
 
 #. module: l10n_it_withholding_tax
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_config_settings_withholding_tax_journal_id
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_res_company_withholding_tax_journal_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_journal_id
 msgid "Withholding tax journal"
 msgstr "Sezionale ritenute"
-
-#. module: l10n_it_withholding_tax
-#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax
-msgid "Withhoulding Tax"
-msgstr "Ritenuta"
-
-#. module: l10n_it_withholding_tax
-#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_move
-msgid "Withhoulding Tax Move"
-msgstr "Voce Ritenuta"
-
-#. module: l10n_it_withholding_tax
-#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_statement
-msgid "Withhoulding Tax Statement"
-msgstr "Situazione Ritenuta"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_config_settings
