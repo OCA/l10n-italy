@@ -75,7 +75,7 @@
         </record>
 
         <record id="action_withholding_tax" model="ir.actions.act_window">
-            <field name="name">Withhoulding Tax</field>
+            <field name="name">Withholding Tax</field>
             <field name="res_model">withholding.tax</field>
             <field name="view_id" ref="view_withholding_tax_tree"/>
         </record>
@@ -165,7 +165,7 @@
         </record>
 
         <record id="action_withholding_tax_statement" model="ir.actions.act_window">
-            <field name="name">Withhoulding Tax Statement</field>
+            <field name="name">Withholding Tax Statement</field>
             <field name="res_model">withholding.tax.statement</field>
             <field name="view_id" ref="view_withholding_statement_tree"/>
             <field name="search_view_id" ref="view_withholding_tax_statement_search" />
@@ -252,7 +252,7 @@
         </record>
 
         <record id="action_withholding_tax_move" model="ir.actions.act_window">
-            <field name="name">Withhoulding Tax Move</field>
+            <field name="name">Withholding Tax Move</field>
             <field name="res_model">withholding.tax.move</field>
             <field name="view_id" ref="view_withholding_move_tree"/>
             <field name="search_view_id" ref="view_withholding_move_search" />
