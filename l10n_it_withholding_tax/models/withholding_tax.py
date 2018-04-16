@@ -30,6 +30,13 @@ class WithholdingTax(models.Model):
             self.tax = 0
             self.base = 1
 
+    def _default_wt_journal(self):
+        misc_journal = self.env['account.journal'].search(
+            [("code", "=", "MISC")])
+        if misc_journal:
+            return misc_journal[0].id
+        return False
+
     active = fields.Boolean('Active', default=True)
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, default=lambda self:
@@ -42,7 +49,12 @@ class WithholdingTax(models.Model):
     account_receivable_id = fields.Many2one(
         'account.account', string='Account Receivable', required=True)
     account_payable_id = fields.Many2one(
-        'account.account', string='Account Payable', required=True,)
+        'account.account', string='Account Payable', required=True)
+    journal_id = fields.Many2one(
+        'account.journal', string="Withholding tax journal",
+        help="Journal used at invoice payment to register withholding tax",
+        default=lambda self: self._default_wt_journal(), required=True
+    )
     payment_term = fields.Many2one('account.payment.term', 'Payment Terms',
                                    required=True)
     tax = fields.Float(string='Tax %', compute='_get_rate')
@@ -267,7 +279,7 @@ class WithholdingTaxMove(models.Model):
             'ref': _('WT %s - %s') % (
                 self.withholding_tax_id.code,
                 self.credit_debit_line_id.move_id.name),
-            'journal_id': self.payment_line_id.journal_id.id,
+            'journal_id': self.withholding_tax_id.journal_id.id,
             'date': self.payment_line_id.move_id.date,
         }
         # Move - lines
