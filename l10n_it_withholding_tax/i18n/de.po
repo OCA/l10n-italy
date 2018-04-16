@@ -504,15 +504,15 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax
-msgid "Withhoulding Tax"
+msgid "Withholding Tax"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_move
-msgid "Withhoulding Tax Move"
+msgid "Withholding Tax Move"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_statement
-msgid "Withhoulding Tax Statement"
+msgid "Withholding Tax Statement"
 msgstr ""
