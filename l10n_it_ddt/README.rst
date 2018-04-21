@@ -19,15 +19,15 @@ You can automatically create a DDT From a Sale Order, setting
 Sale Order confirmation.
 
 You can also directly create a DDT using
-warehouse -> operations -> package preparations
+Inventory -> Operations -> DDT
 menu and add existings delivery orders to it, in the 'transfers' tab.
 
-You can add lines to an existing DDT using the 'details' tab.
+You can add lines to an existing DDT using the 'Details' tab.
 Lines can be descriptive or linked to a product. If linked to a product,
 the stock movement will also be created.
 
 When you work with delivery orders, you can create a DDT selecting 1 or more
-pickings and running wizard 'DDT from pickings'.
+pickings and launching the action 'DDT from pickings'.
 
 Also, you can select 1 or more pickings and run 'add pickings to DDT' to add
 the selected delivery orders to an existing DDT
@@ -45,31 +45,31 @@ invoice lines
 Italian
 -------
 
-E' possibile creare automaticamente un DDT da un ordine di vendita, impostando
+È possibile creare automaticamente un DDT da un ordine di vendita, impostando
 il campo 'crea automaticamente il DDT' che creerà il DDT alla conferma
 dell'ordine.
 
-E' anche possibile creare un DDT direttamente, usando
-magazzino -> operazioni -> preparazione pacchi
+È anche possibile creare un DDT direttamente, usando
+Inventario -> Operazioni -> DDT
 e aggiungendo degli ordini di consegna esistenti al DDT, nel tab
 'trasferimenti'.
 
-E' possibile aggiungere righe ad un DDT esistente usando il tab 'dettagli'.
+È possibile aggiungere righe ad un DDT esistente usando il tab 'Dettaglio'.
 Le righe possono essere descrittive o collegate a prodotti. Le righe collegate
 ad un prodotto creeranno anche i movimenti di magazzino.
 
 Se si lavora con gli ordini di consegna, è possibile creare un DDT selezionando
-1 o più ordini di consegna ed eseguendo il wizard 'DDT da picking'.
+1 o più ordini di consegna ed eseguendo l'azione 'DDT da Picking'.
 
 Inoltre, è possibile selezionare 1 o più ordini di consegna ed eseguire
-'aggiungi i picking al DDT' per aggiungere gli ordini selezionati ad un DDT
+'aggiungi Picking al DDT' per aggiungere gli ordini selezionati ad un DDT
 esistente.
 
 Se lo stato degli ordini di consegna lo permette, è possibile consegnarli tutti
 direttamente dal DDT, cliccando sui bottoni 'metti nel pacco' e
 'pacco completato'.
 
-Altrimenti, è possibile processare gli ordini di consegna separamente, poi
+Altrimenti, è possibile processare gli ordini di consegna separatamente, poi
 andare sul DDT e cliccare su 'imposta completato'.
 
 Infine, è possibile creare la fattura direttamente dal DDT usando il bottone
