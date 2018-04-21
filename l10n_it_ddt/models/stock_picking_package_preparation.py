@@ -11,6 +11,7 @@ from odoo.exceptions import Warning as UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 import odoo.addons.decimal_precision as dp
 from odoo.tools import float_is_zero
+from odoo.tools.misc import formatLang
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -79,7 +80,7 @@ class StockPickingPackagePreparation(models.Model):
     _order = 'date desc'
 
     @api.multi
-    @api.depends('transportation_reason_id')
+    @api.depends('transportation_reason_id.to_be_invoiced')
     def _compute_to_be_invoiced(self):
         for ddt in self:
             ddt.to_be_invoiced = ddt.transportation_reason_id and \
@@ -118,9 +119,10 @@ class StockPickingPackagePreparation(models.Model):
              "Transportation of this DDT")
     show_price = fields.Boolean(string='Show prices on report')
     weight_manual = fields.Float(
-        string="Force Weight",
+        string="Force Net Weight",
         help="Fill this field with the value you want to be used as weight. "
              "Leave empty to let the system to compute it")
+    gross_weight = fields.Float(string="Gross Weight")
     check_if_picking_done = fields.Boolean(
         compute='_compute_check_if_picking_done',
         )
@@ -602,3 +604,20 @@ class StockPickingPackagePreparationLine(models.Model):
                             (6, 0, [line.sale_line_id.id])
                         ]})
                 self.env['account.invoice.line'].create(vals)
+
+    def quantity_by_lot(self):
+        res = {}
+        for quant in self.move_id.quant_ids:
+            if quant.lot_id:
+                if quant.location_id.id == self.move_id.location_dest_id.id:
+                    if quant.lot_id not in res:
+                        res[quant.lot_id] = quant.qty
+                    else:
+                        res[quant.lot_id] += quant.qty
+        for lot in res:
+            if lot.product_id.tracking == 'lot':
+                res[lot] = formatLang(self.env, res[lot])
+            else:
+                # If not tracking by lots, quantity is not relevant
+                res[lot] = False
+        return res
