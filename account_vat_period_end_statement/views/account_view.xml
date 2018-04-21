@@ -18,6 +18,8 @@
                         -->
                         <field name="move_id"  select="1"/>
                         <field name="payment_term_id"  select="1"/>
+                        <field name="authority_partner_id" domain="[('supplier', '=', True)]" contenxt="{'default_supplier': True}"/>
+                        <field name="authority_vat_account_id" />
                         <field name="company_id" groups="base.group_multi_company"/>
                         <field name="interest" />
                     <field name="interest_percent"
@@ -92,12 +94,16 @@
                                 </field>
                             </group>
                             <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"></button>
+                            <group>
+                                <field name="state"  select="1"/>
+                                <field name="reconciled"/>
+                            </group>
+                            <button name="create_move" states="draft" type="object" string="Create Move" colspan="2"/>
+                            <button name="statement_draft" type="object" states="confirmed,paid" string="Set to draft" colspan="2"/>
                         </page>
                         <page string="Tax Authority">
                             <group>
-                                <field name="authority_partner_id" domain="[('supplier', '=', True)]" contenxt="{'default_supplier': True}"/>
                                 <field name="authority_vat_amount" />
-                                <field name="authority_vat_account_id" />
                                 <field name="residual" />
                             </group>
                             <separator string="Payments"/>
@@ -109,12 +115,6 @@
                             </group>
                         </page>
                     </notebook>
-                    <group>
-                        <field name="state"  select="1"/>
-                        <field name="reconciled"/>
-                    </group>
-                    <button name="create_move" states="draft" type="object" string="Create Move" colspan="2"/>
-                    <button name="statement_draft" type="object" states="confirmed,paid" string="Set to draft" colspan="2"/>
                </form>
             </field>
         </record>
