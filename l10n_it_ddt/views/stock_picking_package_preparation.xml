@@ -101,6 +101,7 @@
                         <field name="volume"/>
                         <field name="weight"/>
                         <field name="weight_manual"/>
+                        <field name="gross_weight"/>
                         <field name="show_price"/>
                     </group>
                 </page>
