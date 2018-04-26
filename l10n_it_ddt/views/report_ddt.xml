@@ -97,10 +97,10 @@
                         <thead>
                             <tr>
                                 <th><strong>Description</strong></th>
-                                <th name="lot_serial" t-if="has_serial_number">
+                                <th class="text-right"><strong>Quantity</strong></th>
+                                <th name="lot_serial" t-if="has_serial_number" class="text-right">
                                     <strong>Lots/Serial Numbers</strong>
                                 </th>
-                                <th class="text-right"><strong>Quantity</strong></th>
                                 <t t-if="o.show_price">
                                     <th class="text-right"><strong>Price</strong></th>
                                     <th class="text-right"><strong>Discount</strong></th>
@@ -109,14 +109,17 @@
                         </thead>
                         <tbody>
                             <tr t-foreach="o.line_ids" t-as="line">
+                                <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
                                 <td><span t-field="line.name"></span></td>
+                                <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
                                 <t t-if="has_serial_number">
-                                    <td t-if="line.move_id.lot_ids">
-                                        <span><t t-esc="', '.join([lot.name for lot in line.move_id.lot_ids])"/></span>
-                                    </td>
+                                    <td t-if="line.move_id.lot_ids" class="text-right">
+                                        <t t-foreach="lot_dict" t-as="lot">
+                                            <div>· <t t-esc="lot.name"/> <t t-if="lot_dict[lot]">(<t t-esc="lot_dict[lot]"/>)</t></div>
+                                        </t>
+                                </td>
                                     <td t-if="not line.move_id.lot_ids"/>
                                 </t>
-                                <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
                                 <t t-if="o.show_price">
                                     <td class="text-right" id="line_price_unit"><span t-field="line.price_unit"></span></td>
                                     <td class="text-right" id="line_discount"><span t-field="line.discount"></span></td>
