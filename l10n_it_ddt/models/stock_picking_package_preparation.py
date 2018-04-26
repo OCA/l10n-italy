@@ -119,9 +119,10 @@ class StockPickingPackagePreparation(models.Model):
              "Transportation of this DDT")
     show_price = fields.Boolean(string='Show prices on report')
     weight_manual = fields.Float(
-        string="Force Weight",
+        string="Force Net Weight",
         help="Fill this field with the value you want to be used as weight. "
              "Leave empty to let the system to compute it")
+    gross_weight = fields.Float(string="Gross Weight")
     check_if_picking_done = fields.Boolean(
         compute='_compute_check_if_picking_done',
         )

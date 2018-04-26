@@ -27,8 +27,12 @@
                         <div class="signature" t-field="ddt.goods_description_id"></div>
                     </td>
                     <td>
-                        <h6>Gross Weight</h6>
+                        <h6>Net Weight</h6>
                         <div class="signature" t-field="ddt.weight"></div>
+                    </td>
+                    <td>
+                        <h6>Gross Weight</h6>
+                        <div class="signature" t-field="ddt.gross_weight"></div>
                     </td>
                 </tr>
                 <tr>
