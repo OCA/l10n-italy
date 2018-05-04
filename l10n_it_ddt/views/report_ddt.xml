@@ -16,13 +16,17 @@
                     </td>
                     <td>
                         <h6>Carriage Condition</h6>
-                        <div class="signature" t-field="ddt.carriage_condition_id"></div>
+                        <div t-field="ddt.carriage_condition_id"></div>
+                    </td>
+                    <td>
+                        <h6>Transportation Method</h6>
+                        <div t-field="ddt.transportation_method_id"></div>
                     </td>
                     <td>
                         <h6>Goods Description</h6>
                         <div class="signature" t-field="ddt.goods_description_id"></div>
                     </td>
-                    <td colspan="2">
+                    <td>
                         <h6>Gross Weight</h6>
                         <div class="signature" t-field="ddt.weight"></div>
                     </td>
