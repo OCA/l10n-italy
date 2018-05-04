@@ -320,8 +320,10 @@ class WithholdingTaxMove(models.Model):
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
-            credit_debit_moves = line_to_reconcile.account_id.user_type_id.type == "payable" and \
-                                 ("debit_move_id", "credit_move_id") or ("credit_move_id", "debit_move_id")
+            if line_to_reconcile.account_id.user_type_id.type == "payable":
+                credit_debit_moves = ("debit_move_id", "credit_move_id")
+            else:
+                credit_debit_moves = ("credit_move_id", "debit_move_id")
             self.env['account.partial.reconcile'].\
                 with_context(no_generate_wt_move=True).create({
                     credit_debit_moves[0]: line_to_reconcile.id,
