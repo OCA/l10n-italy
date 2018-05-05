@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-13 10:35+0000\n"
-"PO-Revision-Date: 2018-04-13 10:35+0000\n"
+"POT-Creation-Date: 2018-05-04 14:08+0000\n"
+"PO-Revision-Date: 2018-05-04 14:08+0000\n"
 "Last-Translator: Niki Waibel, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_id_4933
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_id_4934
 msgid "ID"
 msgstr "ID"
 
