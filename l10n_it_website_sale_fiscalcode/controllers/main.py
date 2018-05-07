@@ -8,6 +8,13 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 class WebsiteSaleFiscalCode(WebsiteSale):
 
+    def _get_mandatory_billing_fields(self):
+        res = super(
+            WebsiteSaleFiscalCode, self
+        )._get_mandatory_billing_fields()
+        res.append('fiscalcode')
+        return res
+
     def _checkout_form_save(self, mode, checkout, all_values):
         res = super(WebsiteSaleFiscalCode, self)._checkout_form_save(
             mode, checkout, all_values)
