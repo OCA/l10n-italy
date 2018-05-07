@@ -29,10 +29,10 @@ class AccountPartialReconcile(models.Model):
             if invoice:
                 break
         # Limit value of reconciliation
-        if invoice and invoice.amount_net_pay:
+        if invoice and invoice.withholding_tax and invoice.amount_net_pay:
             # We must consider amount in foreign currency, if present
             # Note that this is always executed, for every reconciliation.
-            # Thus, we must not chnage amount when not in withholding tax case
+            # Thus, we must not change amount when not in withholding tax case
             amount = vals.get('amount_currency') or vals.get('amount')
             if amount > invoice.amount_net_pay:
                 vals.update({'amount': invoice.amount_net_pay})
