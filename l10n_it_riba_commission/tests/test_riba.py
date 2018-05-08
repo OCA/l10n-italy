@@ -4,20 +4,21 @@
 
 import dateutil
 from odoo import fields
-from odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba \
-    import TestInvoiceDueCost
-from odoo.addons.sale_commission.tests.test_sale_commission \
-    import TestSaleCommission
+from odoo.addons.l10n_it_ricevute_bancarie.tests.riba_common import (
+    TestRibaCommon
+)
 
 
-class TestRiBa(TestInvoiceDueCost, TestSaleCommission):
+class TestRiBa(TestRibaCommon):
 
-    def setUp(self, *args, **kwargs):
+    def setUp(self):
         super(TestRiBa, self).setUp()
         self.sale_order_model = self.env['sale.order']
         self.account_model = self.env['account.account']
         self.advance_inv_model = self.env['sale.advance.payment.inv']
         self.commission_model = self.env['sale.commission']
+        self.settle_model = self.env['sale.commission.settlement']
+        self.make_settle_model = self.env['sale.commission.make.settle']
 
         self.product = self.env['product.product'].search([], limit=1)
         self.riba_payment_term = self.env['account.payment.term'].create({
@@ -99,15 +100,6 @@ class TestRiBa(TestInvoiceDueCost, TestSaleCommission):
                 if move_line.account_id.id == \
                         self.env.ref('l10n_generic_coa.1_conf_a_recv').id:
                     riba_move_line_id = move_line.id
-                    self.move_line_model.search([
-                        '&',
-                        '|',
-                        ('riba', '=', 'True'),
-                        ('unsolved_invoice_ids', '!=', False),
-                        ('account_id.internal_type', '=', 'receivable'),
-                        ('reconciled', '=', False),
-                        ('distinta_line_ids', '=', False)
-                    ])
 
             wizard_riba_issue = self.env['riba.issue'].create({
                 'configuration_id': self.riba_config.id

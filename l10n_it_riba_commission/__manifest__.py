@@ -4,7 +4,7 @@
 {
     "name": "Ricevute bancarie & commissioni",
     "summary": "Ricevute bancarie & commissioni",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-italy/tree/10.0/"
                "l10n_it_riba_commission",
