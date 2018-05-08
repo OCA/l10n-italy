@@ -6,7 +6,7 @@
 
 {
     'name': "Account invoice report grouped by DDT",
-    'version': '10.0.0.3.0',
+    'version': '10.0.0.3.1',
     'category': 'Localization/Italy',
     'author': 'Agile Business Group, Apulia Software, Openforce,'
               'Odoo Community Association (OCA)',
