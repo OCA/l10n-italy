@@ -40,7 +40,7 @@ addon | version | summary
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.0 | Italian Localization - VAT Registries
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.2.1 | Italian Withholding Tax
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.2.2 | Italian Withholding Tax
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.1.1.0 | Italian Withholding Tax Payment
 
 
