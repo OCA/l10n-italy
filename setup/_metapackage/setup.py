@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_split_payment',
         'odoo10-addon-l10n_it_vat_registries',
         'odoo10-addon-l10n_it_vat_registries_cash_basis',
+        'odoo10-addon-l10n_it_website_sale_fiscalcode',
         'odoo10-addon-l10n_it_withholding_tax',
         'odoo10-addon-l10n_it_withholding_tax_payment',
     ],
