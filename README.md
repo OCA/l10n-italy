@@ -16,7 +16,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.0 | Account invoice report grouped by DDT
+[account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.1 | Account invoice report grouped by DDT
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.1.4.2 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 10.0.1.1.2 | Italian Localization - Account
@@ -35,11 +35,12 @@ addon | version | summary
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.1.1 | Reverse Charge for Italy
-[l10n_it_riba_commission](l10n_it_riba_commission/) | 10.0.1.0.0 | Ricevute bancarie & commissioni
-[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.0.2 | Ricevute Bancarie
+[l10n_it_riba_commission](l10n_it_riba_commission/) | 10.0.1.0.1 | Ricevute bancarie & commissioni
+[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.0.3 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.0 | Italian Localization - VAT Registries
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
+[l10n_it_website_sale_fiscalcode](l10n_it_website_sale_fiscalcode/) | 10.0.1.0.1 | Website Sale FiscalCode
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.2.2 | Italian Withholding Tax
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.1.1.0 | Italian Withholding Tax Payment
 
