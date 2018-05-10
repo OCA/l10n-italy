@@ -20,7 +20,7 @@ class AccountPartialReconcile(models.Model):
         ml_ids = []
         if vals.get('debit_move_id'):
             ml_ids.append(vals.get('debit_move_id'))
-        if vals.get('debit_move_id'):
+        if vals.get('credit_move_id'):
             ml_ids.append(vals.get('credit_move_id'))
         for ml in self.env['account.move.line'].browse(ml_ids):
             domain = [('move_id', '=', ml.move_id.id)]
@@ -240,6 +240,39 @@ class account_payment(models.Model):
         return rec
 
 
+class account_register_payments(models.TransientModel):
+    _inherit = "account.register.payments"
+
+    @api.model
+    def get_amount_residual(self, invoice):
+        amount_residual = 0
+        if invoice.withholding_tax_amount:
+            coeff_net = invoice.residual / invoice.amount_total
+            amount_residual = invoice.amount_net_pay * coeff_net
+            return amount_residual
+        return False
+
+    @api.model
+    def default_get(self, fields):
+        rec = super(account_register_payments, self).default_get(fields)
+        context = dict(self._context or {})
+        active_model = context.get('active_model')
+        active_ids = context.get('active_ids')
+        invoices = self.env[active_model].browse(active_ids)
+        total_amount = 0
+        for inv in invoices:
+            # Recompute residual amount only in case of WT
+            # in the other case the standard amount(residual)
+            # will be used
+            amount_residual = self.get_amount_residual(inv)
+            if inv.type in ['out_invoice', 'in_refund']:
+                total_amount += amount_residual or inv.residual
+            else:
+                total_amount -= amount_residual or inv.residual
+        rec['amount'] = abs(total_amount)
+        return rec
+
+
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
@@ -451,14 +484,19 @@ class AccountInvoice(models.Model):
         """
         wt_statement_obj = self.env['withholding.tax.statement']
         for inv_wt in self.withholding_tax_line_ids:
+            wt_base_amount = inv_wt.base
+            wt_tax_amount = inv_wt.tax
+            if self.type in ['in_refund', 'out_refund']:
+                wt_base_amount = -1 * wt_base_amount
+                wt_tax_amount = -1 * wt_tax_amount
             val = {
                 'date': self.move_id.date,
                 'move_id': self.move_id.id,
                 'invoice_id': self.id,
                 'partner_id': self.partner_id.id,
                 'withholding_tax_id': inv_wt.withholding_tax_id.id,
-                'base': inv_wt.base,
-                'tax': inv_wt.tax,
+                'base': wt_base_amount,
+                'tax': wt_tax_amount,
             }
             wt_statement_obj.create(val)
 
