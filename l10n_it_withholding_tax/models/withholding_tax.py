@@ -209,6 +209,8 @@ class WithholdingTaxStatement(models.Model):
                     base = round(amount_base * wt_inv.base_coeff, 5)
                     amount_wt = round(base * wt_inv.tax_coeff,
                                       dp_obj.precision_get('Account'))
+                if st.invoice_id.type in ['in_refund', 'out_refund']:
+                    amount_wt = -1 * amount_wt
             elif st.move_id:
                 tax_data = st.withholding_tax_id.compute_tax(amount_reconcile)
                 amount_wt = tax_data['tax']
@@ -298,22 +300,32 @@ class WithholdingTaxMove(models.Model):
                 ml_vals['withholding_tax_generated_by_move_id'] = \
                     self.payment_line_id.move_id.id
                 if self.payment_line_id.credit:
-                    ml_vals['credit'] = self.amount
+                    ml_vals['credit'] = abs(self.amount)
                 else:
-                    ml_vals['debit'] = self.amount
+                    ml_vals['debit'] = abs(self.amount)
             # Authority tax line
             elif type == 'tax':
                 ml_vals['name'] = '%s - %s' % (
                     self.withholding_tax_id.code,
                     self.credit_debit_line_id.move_id.name)
                 if self.payment_line_id.credit:
-                    ml_vals['debit'] = self.amount
-                    ml_vals['account_id'] = \
-                        self.withholding_tax_id.account_payable_id.id
+                    ml_vals['debit'] = abs(self.amount)
+                    if self.credit_debit_line_id.invoice_id.type in\
+                            ['in_refund', 'out_refund']:
+                        ml_vals['account_id'] = \
+                            self.withholding_tax_id.account_payable_id.id
+                    else:
+                        ml_vals['account_id'] = \
+                            self.withholding_tax_id.account_receivable_id.id
                 else:
-                    ml_vals['credit'] = self.amount
-                    ml_vals['account_id'] = \
-                        self.withholding_tax_id.account_receivable_id.id
+                    ml_vals['credit'] = abs(self.amount)
+                    if self.credit_debit_line_id.invoice_id.type in\
+                            ['in_refund', 'out_refund']:
+                        ml_vals['account_id'] = \
+                            self.withholding_tax_id.account_receivable_id.id
+                    else:
+                        ml_vals['account_id'] = \
+                            self.withholding_tax_id.account_payable_id.id
             # self.env['account.move.line'].create(move_vals)
             move_lines.append((0, 0, ml_vals))
 
@@ -326,15 +338,23 @@ class WithholdingTaxMove(models.Model):
         # Find lines for reconcile
         line_to_reconcile = False
         for line in move.line_ids:
-            if line.account_id.user_type_id.type in ['payable', 'receivable']:
+            if line.account_id.user_type_id.type in ['payable', 'receivable']\
+                    and line.partner_id:
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
+            if self.credit_debit_line_id.invoice_id.type in\
+                    ['in_refund', 'out_invoice']:
+                debit_move_id = self.credit_debit_line_id.id
+                credit_move_id = line_to_reconcile.id
+            else:
+                debit_move_id = line_to_reconcile.id
+                credit_move_id = self.credit_debit_line_id.id
             self.env['account.partial.reconcile'].\
                 with_context(no_generate_wt_move=True).create({
-                    'debit_move_id': line_to_reconcile.id,
-                    'credit_move_id': self.credit_debit_line_id.id,
-                    'amount': self.amount,
+                    'debit_move_id': debit_move_id,
+                    'credit_move_id': credit_move_id,
+                    'amount': abs(self.amount),
                 })
 
     def _compute_display_name(self):
