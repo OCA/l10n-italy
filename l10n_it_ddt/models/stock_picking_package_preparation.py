@@ -332,13 +332,9 @@ class StockPickingPackagePreparation(models.Model):
         return invoice_vals
 
     @api.multi
-    def action_invoice_create(self, grouped=False, final=False):
+    def action_invoice_create(self):
         """
-        Create the invoice associated to the SO.
-        :param grouped: if True, invoices are grouped by SO id.
-                        If False, invoices are grouped by
-                        (partner_invoice_id, currency)
-        :param final: if True, refunds will be generated if necessary
+        Create the invoice associated to the DDT.
         :returns: list of created invoices
         """
         inv_obj = self.env['account.invoice']
@@ -532,57 +528,69 @@ class StockPickingPackagePreparationLine(models.Model):
         ddt line.
 
         :param qty: float quantity to invoice
+        :param invoice_id: possible existing invoice
         """
         self.ensure_one()
-        account = (
-            self.product_id.property_account_income_id or
-            self.product_id.categ_id.property_account_income_categ_id)
-        if not account:
-            if invoice_id:
-                invoice = self.env['account.invoice'].browse(invoice_id)
-                account = invoice.journal_id.default_credit_account_id
-        if not account:
-            raise UserError(
-                _(
-                    'Please define income account for this product: "%s" '
-                    '(id:%d) - or for its category: "%s".'
-                ) % (
-                    self.product_id.name, self.product_id.id,
-                    self.product_id.categ_id.name
+        res = {}
+        if (
+            self.sale_line_id.product_id.property_account_income_id or
+            self.sale_line_id.product_id.categ_id.
+            property_account_income_categ_id
+        ):
+            # Without property_account_income_id or
+            # property_account_income_categ_id
+            # _prepare_invoice_line would fail
+            res = self.sale_line_id._prepare_invoice_line(qty)
+        else:
+            account = (
+                self.product_id.property_account_income_id or
+                self.product_id.categ_id.property_account_income_categ_id)
+            if not account:
+                if invoice_id:
+                    invoice = self.env['account.invoice'].browse(invoice_id)
+                    account = invoice.journal_id.default_credit_account_id
+            if not account:
+                raise UserError(
+                    _(
+                        'Please define income account for this product: "%s" '
+                        '(id:%d) - or for its category: "%s".'
+                    ) % (
+                        self.product_id.name, self.product_id.id,
+                        self.product_id.categ_id.name
+                    )
                 )
-            )
+            fpos = None
+            if self.sale_line_id:
+                fpos = (
+                    self.sale_line_id.order_id.fiscal_position_id or
+                    self.sale_line_id.order_id.partner_id.
+                    property_account_position_id
+                )
+            if fpos:
+                account = fpos.map_account(account)
+            res['account_id'] = account.id
 
-        fpos = None
-        if self.sale_line_id:
-            fpos = (
-                self.sale_line_id.order_id.fiscal_position_id or
-                self.sale_line_id.order_id.partner_id.
-                property_account_position_id
-            )
-        if fpos:
-            account = fpos.map_account(account)
+            if self.sale_line_id.order_id.project_id:
+                res[
+                    'account_analytic_id'
+                ] = self.sale_line_id.order_id.project_id.id
+            if self.sale_line_id.analytic_tag_ids:
+                res['analytic_tag_ids'] = [
+                    (6, 0, self.sale_line_id.analytic_tag_ids.ids)
+                ]
 
-        res = {
+        res.update({
             'ddt_line_id': self.id,
             'name': self.name,
             'sequence': self.sequence,
             'origin': self.package_preparation_id.name or '',
-            'account_id': account.id,
             'price_unit': self.price_unit,
             'quantity': qty,
             'discount': self.discount,
             'uom_id': self.product_uom_id.id,
             'product_id': self.product_id.id or False,
             'invoice_line_tax_ids': [(6, 0, self.tax_ids.ids)],
-            'account_analytic_id': (
-                self.sale_line_id and
-                self.sale_line_id.order_id.project_id.id or False
-            ),
-            'analytic_tag_ids': [(
-                6, 0, self.sale_line_id and
-                self.sale_line_id.analytic_tag_ids.ids or []
-            )],
-        }
+        })
         return res
 
     @api.multi
