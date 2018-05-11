@@ -75,6 +75,8 @@ andare sul DDT e cliccare su 'imposta completato'.
 Infine, è possibile creare la fattura direttamente dal DDT usando il bottone
 'crea fattura' il quale crea una nuova fattura usando le righe del DDT.
 
+E' possibile fatturare i DDT che hanno una 'Causale trasporto' impostata come 'da fatturare'
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/122/10.0
