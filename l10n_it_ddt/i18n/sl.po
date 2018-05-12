@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-02 01:45+0000\n"
-"PO-Revision-Date: 2018-03-02 01:45+0000\n"
+"POT-Creation-Date: 2018-05-11 12:21+0000\n"
+"PO-Revision-Date: 2018-05-11 12:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -129,7 +129,7 @@ msgid "Code group"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:264
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:266
 #, python-format
 msgid "Competenza:"
 msgstr ""
@@ -351,7 +351,7 @@ msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:430
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:432
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -380,7 +380,7 @@ msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
-msgid "Force Weight"
+msgid "Force Net Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -389,6 +389,7 @@ msgid "Goods Description"
 msgstr "Opis blaga"
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_gross_weight
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Gross Weight"
 msgstr "Bruto masa"
@@ -412,7 +413,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:182
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
@@ -518,7 +519,12 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:194
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Net Weight"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:196
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Nekateri zbirniki nimajo statusa opravljeno"
@@ -600,13 +606,13 @@ msgid "Pickings"
 msgstr "Zbirniki"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:291
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:293
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:544
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:546
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -692,7 +698,7 @@ msgid "Selected Picking %s have different transportation reason"
 msgstr "Izbrani zbirnik %s ima drugačen razlog prevoza"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:166
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:168
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
 msgstr ""
@@ -814,8 +820,8 @@ msgid "Taxes"
 msgstr "Davki"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:397
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:405
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:399
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:407
 #, python-format
 msgid "There is no invoicable line."
 msgstr ""
@@ -842,6 +848,11 @@ msgstr ""
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Transfer"
 msgstr "Premestitev"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Transportation Method"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
