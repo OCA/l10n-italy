@@ -54,7 +54,7 @@ Contributors
 * Franco Tampieri <franco@tampieri.info>
 * Andrea Cometa <info@andreacometa.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
-
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------
