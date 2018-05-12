@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Niki Waibel <niki.waibel@gmail.com>, 2017
+# Niki Waibel, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2017-12-08 03:45+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"POT-Creation-Date: 2018-05-11 12:21+0000\n"
+"PO-Revision-Date: 2018-05-11 12:21+0000\n"
+"Last-Translator: Niki Waibel, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,7 +381,7 @@ msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
-msgid "Force Weight"
+msgid "Force Net Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -390,6 +390,7 @@ msgid "Goods Description"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_gross_weight
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Gross Weight"
 msgstr "Bruttogewicht"
@@ -413,7 +414,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:182
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
@@ -519,7 +520,12 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:195
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Net Weight"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:196
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -693,7 +699,7 @@ msgid "Selected Picking %s have different transportation reason"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:166
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:168
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
 msgstr ""
@@ -843,6 +849,11 @@ msgstr ""
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Transfer"
 msgstr "Transfer"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Transportation Method"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
