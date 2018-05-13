@@ -30,7 +30,7 @@ addon | version | summary
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.1.0.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.0.0 | Electronic invoices emission
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.0.1.0 | Italian Localization - Tipi di documento fiscali per dichiarativi
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.0 | Italian Localisation - Fiscal Code
+[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.1 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
