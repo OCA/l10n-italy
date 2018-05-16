@@ -611,7 +611,8 @@ class StockPickingPackagePreparationLine(models.Model):
                         {'sale_line_ids': [
                             (6, 0, [line.sale_line_id.id])
                         ]})
-                self.env['account.invoice.line'].create(vals)
+                self.env['account.invoice.line'].with_context(
+                    skip_update_line_ids=True).create(vals)
 
     def quantity_by_lot(self):
         res = {}
