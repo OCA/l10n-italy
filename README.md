@@ -25,7 +25,7 @@ addon | version | summary
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_central_journal](l10n_it_central_journal/) | 10.0.0.0.1 | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
-[l10n_it_ddt](l10n_it_ddt/) | 10.0.1.4.0 | Documento di Trasporto
+[l10n_it_ddt](l10n_it_ddt/) | 10.0.1.4.1 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.1.0.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.0.0 | Electronic invoices emission
