@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_fatturapa_out',
         'odoo10-addon-l10n_it_fiscal_document_type',
         'odoo10-addon-l10n_it_fiscalcode',
+        'odoo10-addon-l10n_it_fiscalcode_invoice',
         'odoo10-addon-l10n_it_ipa',
         'odoo10-addon-l10n_it_pec',
         'odoo10-addon-l10n_it_rea',
