@@ -275,6 +275,8 @@ class TestDdt(TransactionCase):
             }).create({'ddt_id': ddt.id})
             wizard.add_to_ddt()
         order3.carriage_condition_id = self.carriage_condition_PF.id
+        order3.weight = 2
+        order3.gross_weight = 3
         order3.goods_description_id = self.goods_description_BAN.id
         with self.assertRaises(UserError):
             wizard = self.env['add.pickings.to.ddt'].with_context({
@@ -309,6 +311,8 @@ class TestDdt(TransactionCase):
         invoice = order3.invoice_ids[0]
         self.assertEqual(
             order3.carriage_condition_id.id, invoice.carriage_condition_id.id)
+        self.assertEqual(order3.gross_weight, invoice.gross_weight)
+        self.assertEqual(order3.weight, invoice.weight)
         invoice._onchange_partner_id()
         self.assertFalse(invoice.carriage_condition_id)
 
