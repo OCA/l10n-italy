@@ -33,6 +33,7 @@ class AccountInvoice(models.Model):
         'res.partner', string='Carrier')
     parcels = fields.Integer('Parcels')
     weight = fields.Float(string="Weight")
+    gross_weight = fields.Float(string="Gross Weight")
     volume = fields.Float('Volume')
     ddt_ids = fields.One2many(
         'stock.picking.package.preparation', 'invoice_id', string='DDT')
