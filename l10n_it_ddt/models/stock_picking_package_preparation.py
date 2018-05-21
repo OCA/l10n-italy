@@ -327,6 +327,7 @@ class StockPickingPackagePreparation(models.Model):
             'carrier_id': self.carrier_id.id,
             'parcels': self.parcels,
             'weight': self.weight,
+            'gross_weight': self.gross_weight,
             'volume': self.volume,
         }
         return invoice_vals

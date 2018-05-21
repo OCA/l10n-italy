@@ -170,6 +170,13 @@ class DdTFromPickings(models.TransientModel):
                     picking.ddt_type.default_transportation_method_id)
                 values['transportation_method_id'] = (
                     transportation_method_id.id)
+
+        if len(self.picking_ids) == 1 and self.picking_ids[0].sale_id:
+            # otherwise weights and volume should be different
+            values['weight_manual'] = self.picking_ids[0].sale_id.weight
+            values['gross_weight'] = self.picking_ids[0].sale_id.gross_weight
+            values['volume'] = self.picking_ids[0].sale_id.volume
+
         picking_ids = [p.id for p in self.picking_ids]
         values.update({'picking_ids': [(6, 0, picking_ids)]})
         ddt = self.env['stock.picking.package.preparation'].create(values)

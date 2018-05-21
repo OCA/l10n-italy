@@ -21,6 +21,7 @@
                                 <field name="ddt_carrier_id" />
                                 <field name="parcels" />
                                 <field name="weight" />
+                                <field name="gross_weight"/>
                                 <field name="volume" />
                             </group>
                             <group>

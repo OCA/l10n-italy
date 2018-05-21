@@ -36,7 +36,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <h6>Carrier</h6>
                         <div class="signature" t-field="ddt.carrier_id.name"></div>
                     </td>
