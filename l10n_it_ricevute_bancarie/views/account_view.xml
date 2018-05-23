@@ -54,7 +54,8 @@
                 <field name="payment_term_id" readonly="1"/>
                 <field name="account_id" readonly="1"/>
                 <field name="debit" readonly="1" sum="Total Debit"/>
-                <field name="amount_residual" readonly="1" sum="Total Amount" />
+                <field name="credit" readonly="1" sum="Total Credit"/>
+                <field name="amount_residual_signed" readonly="1" sum="Total Amount" />
                 <field name="date_maturity"/>
                 <field name="riba" />
                 <field name="distinta_line_ids" invisible="1" />

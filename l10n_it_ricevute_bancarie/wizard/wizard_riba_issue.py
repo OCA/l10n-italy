@@ -103,22 +103,35 @@ class RibaIssue(models.TransientModel):
                             self.configuration_id.acceptance_account_id.id).id
                         # total = 0.0
                         # invoice_date_group = ''
+                        if sum(x.amount_residual_signed for x in
+                               grouped_lines[key]) < 0.0:
+                            raise exceptions.Warning(
+                                _('Attention!'),
+                                _('Ri.ba. cannot be negative! Group with other'
+                                  ' positive one(s)')
+                            )
                         for grouped_line in grouped_lines[key]:
                             riba_list_move_line.create({
                                 'riba_line_id': rdl_id,
-                                'amount': grouped_line.amount_residual,
+                                'amount': grouped_line.amount_residual_signed,
                                 'move_line_id': grouped_line.id,
                             })
                         del grouped_lines[key]
                         break
             else:
+                if move_line.amount_residual_signed < 0.0:
+                    raise exceptions.Warning(
+                        _('Attention!'),
+                        _('Ri.ba. cannot be negative! Group with other '
+                          'positive one(s).')
+                    )
                 rdl_id = create_rdl(
                     countme, bank_id.id, rd_id, move_line.date_maturity,
                     move_line.partner_id.id,
                     self.configuration_id.acceptance_account_id.id).id
                 riba_list_move_line.create({
                     'riba_line_id': rdl_id,
-                    'amount': move_line.amount_residual,
+                    'amount': move_line.amount_residual_signed,
                     'move_line_id': move_line.id,
                 })
 

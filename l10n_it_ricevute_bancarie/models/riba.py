@@ -353,8 +353,10 @@ class RibaListLine(models.Model):
                         'partner_id': line.partner_id.id,
                         'account_id': (
                             riba_move_line.move_line_id.account_id.id),
-                        'credit': riba_move_line.amount,
-                        'debit': 0.0,
+                        'credit': riba_move_line.amount if
+                        riba_move_line.amount > 0 else 0.0,
+                        'debit': 0.0 if riba_move_line.amount > 0 else
+                        riba_move_line.amount * -1,
                         'move_id': move_id,
                     }, self._context)
                 to_be_reconciled.append([move_line_id,

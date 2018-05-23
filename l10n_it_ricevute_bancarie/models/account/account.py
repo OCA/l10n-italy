@@ -64,6 +64,15 @@ class ResPartnerBankAdd(orm.Model):
 class AccountMoveLine(orm.Model):
     _inherit = "account.move.line"
 
+    def _get_amount_residual_signed(
+            self, cr, uid, ids, name, args, context=None):
+        res = {}
+        for move in self.browse(cr, uid, ids, context=context):
+            res[move.id] = (
+                move.amount_residual if move.debit != 0.0
+                else move.amount_residual * -1)
+        return res
+
     _columns = {
         'distinta_line_ids': fields.one2many(
             'riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
@@ -76,6 +85,10 @@ class AccountMoveLine(orm.Model):
         'iban': fields.related(
             'partner_id', 'bank_ids', 'iban', type='char', string='IBAN',
             store=False),
+        'amount_residual_signed': fields.function(
+            _get_amount_residual_signed,
+            type='float',
+            string='Amount Residual Signed'),
     }
     _defaults = {
         'distinta_line_ids': None,
