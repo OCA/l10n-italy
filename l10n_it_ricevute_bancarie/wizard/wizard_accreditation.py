@@ -110,14 +110,18 @@ class RibaAccreditation(models.TransientModel):
                     'debit': wizard.bank_amount,
                     'credit': 0.0,
                 }),
+            ]
+        }
+
+        if wizard.expense_amount:
+            move_vals['line_ids'].append(
                 (0, 0, {
                     'name':  _('Bank'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,
-                }),
-            ]
-        }
+                }),)
+
         move = move_model.create(move_vals)
         distinta.write({'accreditation_move_id': move.id})
         distinta_model.browse(active_id).signal_workflow(
