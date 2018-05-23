@@ -427,6 +427,7 @@ class RibaListLine(models.Model):
             to_be_settled |= settlement_move_line
 
             to_be_settled.reconcile()
+            settlement_move.post()
 
 
 class RibaListMoveLine(models.Model):
