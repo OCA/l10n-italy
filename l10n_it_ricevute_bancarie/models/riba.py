@@ -221,11 +221,14 @@ class RibaListLine(models.Model):
             for move_line in line.move_line_ids:
                 line.amount += move_line.amount
                 if not line.invoice_date:
-                    line.invoice_date = str(
-                        move_line.move_line_id.invoice_id.date_invoice)
+                    line.invoice_date = str(fields.Date.from_string(
+                        move_line.move_line_id.invoice_id.date_invoice
+                    ).strftime('%d/%m/%Y'))
                 else:
-                    line.invoice_date = "%s, %s" % (line.invoice_date, str(
-                        move_line.move_line_id.invoice_id.date_invoice))
+                    line.invoice_date = "%s, %s" % (
+                        line.invoice_date, str(fields.Date.from_string(
+                            move_line.move_line_id.invoice_id.date_invoice
+                        ).strftime('%d/%m/%Y')))
                 if not line.invoice_number:
                     line.invoice_number = str(
                         move_line.move_line_id.invoice_id.move_name)
