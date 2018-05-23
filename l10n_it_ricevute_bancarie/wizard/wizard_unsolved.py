@@ -148,15 +148,20 @@ class RibaUnsolved(models.TransientModel):
                     'credit': wizard.bank_amount,
                     'debit': 0.0,
                 }),
+            ]
+        }
+
+        if wizard.expense_amount:
+            move_vals['line_ids'].append(
                 (0, 0, {
-                    'name':  _('Expenses'),
+                    'name': _('Expenses'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,
-                }),
-            ]
-        }
+                }),)
+
         move = move_model.create(move_vals)
+        move.post()
 
         to_be_reconciled = []
         for move_line in move.line_ids:
