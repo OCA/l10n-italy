@@ -25,7 +25,7 @@ eventualmente da creare).
 La configurazione relativa alla fase di accredito, verrà usata nel momento in
 cui la banca accredita l'importo della distinta.
 E' possibile utilizzare un sezionale creato appositamente, ad esempio "accredito RiBa",
-ed un conto chiamato ad esempio "banche c/RIBA all'incasso".
+ed un conto chiamato ad esempio "banche c/RIBA all'incasso", che non deve essere di tipo 'banca'.
 
 La configurazione relativa all'insoluto verrà utilizzata in caso di mancato pagamento da parte del cliente.
 Il conto può chiamarsi ad esempio "crediti insoluti".
