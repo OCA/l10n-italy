@@ -40,7 +40,8 @@ class RibaConfiguration(models.Model):
         help="Journal used when Ri.Ba. amount is accredited by the bank")
     accreditation_account_id = fields.Many2one(
         'account.account', "Ri.Ba. bank account",
-        help='Account used when Ri.Ba. is accepted by the bank')
+        help='Account used when Ri.Ba. is accepted by the bank',
+        domain=[('internal_type', '!=', 'liquidity')])
     bank_account_id = fields.Many2one(
         'account.account', "Bank account",
         domain=[('internal_type', '=', 'liquidity')])
