@@ -37,7 +37,7 @@ addon | version | summary
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.1.1 | Reverse Charge for Italy
 [l10n_it_riba_commission](l10n_it_riba_commission/) | 10.0.1.0.1 | Ricevute bancarie & commissioni
-[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.0.3 | Ricevute Bancarie
+[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.1.0 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.0 | Italian Localization - VAT Registries
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
