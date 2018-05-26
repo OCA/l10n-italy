@@ -1,19 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ddt
-#
+# * l10n_it_ddt
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Paolo Valier, 2017
+# Alessandro Camilli <alessandrocamilli@openforce.it>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 07:35+0000\n"
-"PO-Revision-Date: 2018-05-20 07:35+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2018-05-25 05:17+0000\n"
+"PO-Revision-Date: 2018-05-25 05:17+0000\n"
+"Last-Translator: Alessandro Camilli <alessandrocamilli@openforce.it>, 2018\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -96,7 +101,6 @@ msgid "Carriage Conditions"
 msgstr "Condizioni di Trasporto"
 
 #. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_carrier_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_ddt_carrier_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_carrier_id
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -371,8 +375,12 @@ msgstr "Data di fine"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
-msgid "Fill this field with the value you want to be used as weight. Leave empty to let the system to compute it"
-msgstr "Riempire questo campo con il valore che si vuole usare come peso. Lasciare vuoto per far sì che il sistema lo calcoli"
+msgid ""
+"Fill this field with the value you want to be used as weight. Leave empty to"
+" let the system to compute it"
+msgstr ""
+"Riempire questo campo con il valore che si vuole usare come peso. Lasciare "
+"vuoto per far sì che il sistema lo calcoli"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
@@ -385,7 +393,6 @@ msgid "Goods Description"
 msgstr "Aspetto esteriore dei beni"
 
 #. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_gross_weight
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_gross_weight
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_gross_weight
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -612,8 +619,12 @@ msgstr "Definisci un sezionale di vendita per questa azienda."
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:555
 #, python-format
-msgid "Please define income account for this product: \"%s\" (id:%d) - or for its category: \"%s\"."
-msgstr "Definisci un conto di ricavo per questo prodotto: \"%s\" (id:%d) - o per questa categoria: \"%s\"."
+msgid ""
+"Please define income account for this product: \"%s\" (id:%d) - or for its "
+"category: \"%s\"."
+msgstr ""
+"Definisci un conto di ricavo per questo prodotto: \"%s\" (id:%d) - o per "
+"questa categoria: \"%s\"."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_name
@@ -684,7 +695,9 @@ msgstr "I Picking selezionati %s hanno condizioni di trasporto differenti"
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:51
 #, python-format
 msgid "Selected Picking %s have different goods description"
-msgstr "I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore dei beni"
+msgstr ""
+"I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore"
+" dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
@@ -715,7 +728,9 @@ msgstr "I Picking selezionati hanno il Reso Merce differente"
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
 #, python-format
 msgid "Selected Pickings have different goods description"
-msgstr "I Picking selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
+msgstr ""
+"I Picking selezionati hanno una differente Descrizione dell'aspetto "
+"esteriore dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:69
@@ -824,8 +839,12 @@ msgstr "Non ci sono righe fatturabili"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation_to_be_invoiced
-msgid "This depends on 'To be Invoiced' field of the Reason for Transportation of this DDT"
-msgstr "Questo dipende dal campo 'da fatturare' sulla 'causale del trasporto' di questo DDT"
+msgid ""
+"This depends on 'To be Invoiced' field of the Reason for Transportation of "
+"this DDT"
+msgstr ""
+"Questo dipende dal campo 'da fatturare' sulla 'causale del trasporto' di "
+"questo DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
@@ -922,4 +941,3 @@ msgstr "ddt.invoicing"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 msgid "or"
 msgstr "o"
-
