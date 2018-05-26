@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2017-12-08 03:45+0000\n"
+"POT-Creation-Date: 2018-05-25 05:18+0000\n"
+"PO-Revision-Date: 2018-05-25 05:18+0000\n"
 "Last-Translator: Stefano <stefano.sforzi@agilebg.com>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,7 @@ msgstr "Conto utilizzato quando la RiBa viene accettata dalla banca"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Accounting"
 msgstr "Contabilità"
 
@@ -84,7 +85,7 @@ msgid "Accreditation"
 msgstr "Accredito"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:126
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:130
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_accreditation_move_id
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 #, python-format
@@ -139,7 +140,7 @@ msgstr "Banca Estera"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:108
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:114
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:119
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:146
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_bank
 #, python-format
@@ -320,6 +321,7 @@ msgstr "Descrizione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Detail"
 msgstr "Dettaglio"
 
@@ -408,7 +410,7 @@ msgid "Every account is mandatory"
 msgstr "Ogni conto è obbligatorio"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:152
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:157
 #, python-format
 msgid "Expenses"
 msgstr "Spese"
@@ -451,6 +453,7 @@ msgstr "Riconciliazione completa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "General"
 msgstr "Generale"
 
@@ -529,7 +532,7 @@ msgid "Invoice Number"
 msgstr "Numero Fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Invoice entries"
 msgstr "Registrazioni fattura"
 
@@ -646,12 +649,12 @@ msgid "Modalità Emissione"
 msgstr "Modalità Emissione"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Move line"
 msgstr "Move line"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Move lines"
 msgstr "Move lines"
 
@@ -763,11 +766,12 @@ msgstr "Termine di pagamento"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_payment_ids
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_payment_ids
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:374
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:378
 #, python-format
 msgid "Please define a Settlement journal"
 msgstr ""
@@ -1060,7 +1064,7 @@ msgid "Unsolved Entries"
 msgstr "Voci non risolte"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:196
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:201
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_unsolved_move_id
 #, python-format
 msgid "Unsolved Entry"
