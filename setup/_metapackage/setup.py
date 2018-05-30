@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_base_location_geonames_import',
         'odoo10-addon-l10n_it_central_journal',
         'odoo10-addon-l10n_it_codici_carica',
+        'odoo10-addon-l10n_it_corrispettivi',
         'odoo10-addon-l10n_it_ddt',
         'odoo10-addon-l10n_it_esigibilita_iva',
         'odoo10-addon-l10n_it_fatturapa',
