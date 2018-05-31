@@ -35,8 +35,10 @@ class SaleOrder(models.Model):
     def _default_journal_not_corr(self):
         # Copied from account_invoice default behavior
         if self._context.get('default_journal_id', False):
-            return self.env['account.journal'] \
-                .browse(self._context.get('default_journal_id'))
+            journal = self.env['account.journal'] \
+                          .browse(self._context.get('default_journal_id'))
+            if not journal.corrispettivi:
+                return journal
         inv_type = self._context.get('type', 'out_invoice')
         inv_types = inv_type if isinstance(inv_type, list) else [inv_type]
         company_id = self._context \
