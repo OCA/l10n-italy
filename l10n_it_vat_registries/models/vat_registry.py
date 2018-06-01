@@ -71,12 +71,18 @@ class ReportRegistroIva(models.AbstractModel):
                 continue
 
             if move_line.tax_ids and len(move_line.tax_ids) != 1:
+               tax_ok = filter(
+                   lambda x: x.exclude_from_registries == False,
+                   move_line.tax_ids)
+               if len(tax_ok) != 1:
                     raise UserError(
                         _("Move line %s has too many base taxes")
                         % move_line.name)
 
             if move_line.tax_ids:
-                tax = move_line.tax_ids[0]
+                tax = filter(
+                   lambda x: x.exclude_from_registries == False,
+                   move_line.tax_ids)[0]
                 is_base = True
             else:
                 tax = move_line.tax_line_id
@@ -182,6 +188,12 @@ class ReportRegistroIva(models.AbstractModel):
         total = 0.0
         receivable_payable_found = False
         for move_line in move.line_ids:
+            if (
+                    (move_line.tax_line_id) and
+                    (move_line.tax_line_id.exclude_from_registries)
+            ):
+                total -= move_line.credit
+                continue
             if move_line.account_id.internal_type == 'receivable':
                 total += move_line.debit or (- move_line.credit)
                 receivable_payable_found = True
