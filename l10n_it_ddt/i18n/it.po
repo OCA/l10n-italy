@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-22 11:45+0000\n"
-"PO-Revision-Date: 2018-04-04 12:48+0000\n"
+"POT-Creation-Date: 2018-05-29 10:06+0000\n"
+"PO-Revision-Date: 2018-05-29 10:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -247,7 +247,7 @@ msgid "Display Name"
 msgstr "Nome da visualizzare"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:225
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:243
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il Documento {d} ha fattura collegata"
@@ -322,7 +322,7 @@ msgid "If checked new messages require your attention."
 msgstr "Se selezionato i nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:130
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:148
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
@@ -447,7 +447,7 @@ msgid "None"
 msgstr "Nessuno"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:144
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:162
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
@@ -535,6 +535,12 @@ msgid "Pickings"
 msgstr "Picking"
 
 #. module: l10n_it_ddt
+#: help:stock.ddt.type,restrict_pickings:0
+msgid ""
+"Pickings already in other DDTs cannot be added to DDTs having this type"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
 msgid "Quantity"
 msgstr "Quantità"
@@ -581,6 +587,11 @@ msgstr "DDT correlati"
 #: field:sale.order,ddt_ids:0
 msgid "Related DdTs"
 msgstr "DDT correlati"
+
+#. module: l10n_it_ddt
+#: field:stock.ddt.type,restrict_pickings:0
+msgid "Restrict pickings"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_RES
@@ -725,6 +736,12 @@ msgstr "Tipo Stock DDT"
 #: field:stock.ddt.type,message_summary:0
 msgid "Summary"
 msgstr "Riepilogo"
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:138
+#, python-format
+msgid "The picking %s is already in DDT %s"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
