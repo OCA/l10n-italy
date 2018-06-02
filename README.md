@@ -53,7 +53,6 @@ Unported addons
 addon | version | summary
 --- | --- | ---
 [account_central_journal](account_central_journal/) | 3 (unported) | Account Central Journal
-[account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 (unported) | Fiscal Year Closing
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 (unported) | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 0.1 (unported) | Check invoice date consistency
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Italy - 4th EU Directive - Consolidation Chart of Accounts
