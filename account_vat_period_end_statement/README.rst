@@ -10,9 +10,6 @@ This module helps to register the VAT statement of period end.
 Configuration
 =============
 
-English
--------
-
 In order to generate VAT statement's periods,
 open Accounting > Configuration > Accounting > Date range > Generate Date Ranges and select:
 
@@ -32,8 +29,8 @@ for the field 'Account used for VAT statement'.
 If you need to calculate interest, you can add default information in your
 company data (percentage and account), in the VAT statement tab.
 
-Italian
--------
+Italian - Configurazione
+------------------------
 
 Per generare i periodi della dichiarazione IVA,
 aprire Contabilità > Configurazione > Contabilità > Intervalli date > Genera intervalli date.
@@ -55,9 +52,6 @@ nei dati aziendali, nel tab Liquidazione IVA.
 
 Usage
 =====
-
-English
--------
 
 In order to create a 'VAT Statement', open Accounting > Adviser > VAT Statements.
 Select a Journal that will contain the journal entries of the statement.
@@ -81,8 +75,8 @@ reconciliation.
 
 It is also possible to print the 'VAT statement' clicking on print > Print VAT period end statement.
 
-Italian
--------
+Italian - Utilizzo
+------------------
 
 Per fare la liquidazione IVA, aprire Contabilità > Contabilità > Liquidazioni IVA.
 Selezionare un sezionale che conterrà le registrazioni contabili della liquidazione.
