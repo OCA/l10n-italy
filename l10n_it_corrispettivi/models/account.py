@@ -75,6 +75,37 @@ class AccountJournal(models.Model):
         return corr_journal_id
 
 
+class AccountFiscalPosition(models.Model):
+    _inherit = 'account.fiscal.position'
+
+    corrispettivi = fields.Boolean(string='Corrispettivi')
+
+    @api.model
+    def get_corr_fiscal_pos(self, company_id):
+        corr_fiscal_pos = self.search([
+            ('corrispettivi', '=', True),
+            ('company_id', '=', company_id.id)], limit=1)
+
+        return corr_fiscal_pos
+
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
     use_corrispettivi = fields.Boolean(string='Use Corrispettivi')
+
+    @api.onchange('use_corrispettivi')
+    def onchange_use_corrispettivi(self):
+        if self.use_corrispettivi:
+            # Partner is corrispettivi, assign a corrispettivi fiscal position
+            # only if there is none
+            if not self.property_account_position_id:
+                company = self.company_id or \
+                    self.default_get(['company_id'])['company_id']
+                self.property_account_position_id = \
+                    self.env['account.fiscal.position'] \
+                        .get_corr_fiscal_pos(company)
+        else:
+            # Unset the fiscal position only if it was corrispettivi
+            if self.property_account_position_id.corrispettivi:
+                self.property_account_position_id = False
