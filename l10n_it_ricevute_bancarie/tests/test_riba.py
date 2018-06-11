@@ -138,6 +138,27 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         wiz_accreditation.create_move()
         self.assertEqual(riba_list.state, 'accredited')
         riba_list.accreditation_move_id.assert_balanced()
+        bank_accreditation_line = False
+        for accr_line in riba_list.accreditation_move_id.line_ids:
+            if accr_line.account_id.id == self.bank_account.id:
+                bank_accreditation_line = accr_line
+                break
+        self.assertTrue(bank_accreditation_line)
+
+        # register the bank statement with the bank accreditation
+        st = self.env['account.bank.statement'].create({
+            'journal_id': self.bank_journal.id,
+            'name': 'bank statement',
+            'line_ids': [(0, 0, {
+                'name': 'riba',
+                'amount': 445,
+            })]
+        })
+        # must be possible to close the bank statement line with the
+        # accreditation journal item generate by riba
+        move_lines_for_rec = st.line_ids[0].get_move_lines_for_reconciliation()
+        self.assertTrue(
+            bank_accreditation_line.id in [l.id for l in move_lines_for_rec])
 
         # bank notifies cash in
         bank_move = self.move_model.create({
@@ -241,6 +262,29 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(len(riba_list.line_ids), 1)
         self.assertEqual(riba_list.line_ids[0].state, 'unsolved')
         self.assertTrue(invoice.unsolved_move_line_ids)
+        self.assertEqual(len(riba_list.unsolved_move_ids), 1)
+
+        bank_unsolved_line = False
+        for unsolved_line in riba_list.unsolved_move_ids[0].line_ids:
+            if unsolved_line.account_id.id == self.bank_account.id:
+                bank_unsolved_line = unsolved_line
+                break
+        self.assertTrue(bank_unsolved_line)
+
+        # register the bank statement with the bank accreditation
+        st = self.env['account.bank.statement'].create({
+            'journal_id': self.bank_journal.id,
+            'name': 'bank statement',
+            'line_ids': [(0, 0, {
+                'name': 'riba',
+                'amount': -102,
+            })]
+        })
+        # must be possible to close the bank statement line with the
+        # unsolved journal item generate by riba
+        move_lines_for_rec = st.line_ids[0].get_move_lines_for_reconciliation()
+        self.assertTrue(
+            bank_unsolved_line.id in [l.id for l in move_lines_for_rec])
 
         riba_list.line_ids[0].unsolved_move_id.line_ids.remove_move_reconcile()
         self.assertEqual(riba_list.state, 'accredited')
