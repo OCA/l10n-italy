@@ -57,6 +57,14 @@ class AccountInvoice(models.Model):
             invoice.journal_id = self.env['account.journal'] \
                 .get_corr_journal(invoice.company_id)
 
+    @api.multi
+    def corrispettivo_print(self):
+        """ Print the corrispettivo and mark it as sent"""
+        self.ensure_one()
+        self.sent = True
+        return self.env['report'].get_action(
+            self, 'l10n_it_corrispettivi.report_corrispettivi')
+
 
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
