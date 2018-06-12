@@ -232,6 +232,8 @@ class account_voucher(orm.Model):
                         'credit': line_payment.credit + debit,
                         'debit': line_payment.debit + credit
                     }
+                    if line_payment.move_id.state == 'posted':
+                        line_payment.move_id.button_cancel()
                     move_line_obj.write(cr, uid, [line_payment.id], val)
 
         # Merge with existing lines to reconcile
