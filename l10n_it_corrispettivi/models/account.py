@@ -21,7 +21,6 @@ class AccountInvoice(models.Model):
     corrispettivo = fields.Boolean(
         string='Corrispettivo', related="journal_id.corrispettivi",
         readonly=True, store=True)
-    account_id = fields.Many2one()
     partner_id = fields.Many2one(default=_default_partner_id)
 
     @api.model
