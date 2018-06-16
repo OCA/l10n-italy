@@ -1,53 +1,30 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright 2014-2015 Agile Business Group http://www.agilebg.com
-#    @authors
-#       Alessio Gerace <alessio.gerace@gmail.com>
-#       Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-#       Roberto Onnis <roberto.onnis@innoviu.com>
-#
-#   About license see __openerp__.py
-#
-##############################################################################
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from openerp.osv import orm
-from email.utils import formataddr
-from openerp import SUPERUSER_ID
-from email.utils import COMMASPACE
+from odoo import models, api
 
 
-class MailMail(orm.Model):
+class MailMail(models.Model):
     _inherit = "mail.mail"
 
-    def create(self, cr, uid, values, context=None):
+    @api.model
+    def create(self, values):
         """
-        when replying to a PEC message, or sending a new PEC message,
+        when sending a new PEC message,
         use the linked SMTP server and SMTP user
         """
-        mail_msg_pool = self.pool.get('mail.message')
-        if context.get('new_pec_server_id'):
-            values['type'] = 'email'
+        if self.env.context.get('new_pec_server_id'):
             values['auto_delete'] = False
-        res = super(MailMail, self).create(cr, uid, values, context=context)
-        mail = self.browse(cr, uid, res, context=context)
-        if (
-            (
-                mail.parent_id and mail.parent_id.server_id and
-                mail.parent_id.server_id.pec) or
-
-            context.get('new_pec_server_id')
-        ):
-            in_server_id = context.get(
+        mail = super(MailMail, self).create(values)
+        if self.env.context.get('new_pec_server_id'):
+            in_server_id = self.env.context.get(
                 'new_pec_server_id'
-            ) or mail.parent_id.server_id.id
-            server_pool = self.pool['ir.mail_server']
+            )
+            server_pool = self.env['ir.mail_server']
             server_ids = server_pool.search(
-                cr, uid, [('in_server_id', '=', in_server_id)],
-                context=context)
+                [('in_server_id', '=', in_server_id)])
             if server_ids:
-                server = server_pool.browse(
-                    cr, uid, server_ids[0], context=context)
+                server = server_ids[0]
                 mail.write({
                     'email_from': server.smtp_user,
                     'mail_server_id': server.id,
@@ -55,56 +32,39 @@ class MailMail(orm.Model):
                     'out_server_id': server.id,
                     'pec_type': 'posta-certificata',
                     'direction': 'out'
-                }, context=context)
-                mail_msg_pool.write(
-                    cr, uid, mail.mail_message_id.id,
-                    {'email_from': server.smtp_user})
-        return res
+                })
+                mail.mail_message_id.email_from = server.smtp_user
+        return mail
 
-    def send_get_email_dict(self, cr, uid, mail, partner=None, context=None):
-        res = super(MailMail, self).send_get_email_dict(
-            cr, uid, mail, partner=partner, context=context)
-        if mail.mail_server_id.pec and partner:
-            email_to = [formataddr((partner.name, partner.pec_mail))]
-            res['email_to'] = email_to
-        return res
+    @api.multi
+    def send(self, auto_commit=False, raise_exception=False):
+        config_parameter = self.env['ir.config_parameter'].sudo()
+        bounce_alias = config_parameter.get_param("mail.bounce.alias")
+        catchall_domain = config_parameter.get_param("mail.catchall.domain")
+        catchall_alias = config_parameter.get_param("mail.catchall.alias")
 
-    def send(
-        self, cr, uid, ids, auto_commit=False,
-        raise_exception=False, context=None
-    ):
-        for mail in self.browse(cr, uid, ids, context=context):
-            if mail.mail_server_id.pec and mail.recipient_ids:
-                # remove duplicate id if there are
-                recipient_ids = sorted(
-                    set([r.id for r in mail.recipient_ids]))
-                if recipient_ids:
-                    address_lst = ''
-                    # save old value of email_to
-                    if mail.email_to:
-                        address_lst = mail.email_to
-                    partner_obj = self.pool.get('res.partner')
-                    existing_recipient_ids = partner_obj.exists(
-                        cr, SUPERUSER_ID, recipient_ids, context=context)
-                    for partner in partner_obj.browse(
-                        cr, SUPERUSER_ID, existing_recipient_ids,
-                        context=context
-                    ):
-                        if address_lst:
-                            address_lst += COMMASPACE
-                        address_lst += formataddr(
-                            (partner.name, partner.pec_mail))
-                    self.write(
-                        cr, uid, mail.id,
-                        {
-                            'email_to': address_lst,
-                            'recipient_ids': [
-                                (3, pid) for pid in recipient_ids]
-                        },
-                        context=context
-                    )
-        return super(MailMail, self).send(
-            cr, uid, ids, auto_commit=auto_commit,
-            raise_exception=raise_exception,
-            context=context
-        )
+        for mail in self:
+            is_pec = mail.exists() and mail.mail_server_id.pec
+            if is_pec:
+                # temporary disable email parameters incompatible with PEC
+                if bounce_alias:
+                    config_parameter.set_param('mail.bounce.alias', False)
+                if catchall_domain:
+                    config_parameter.set_param('mail.catchall.domain', False)
+                if catchall_alias:
+                    config_parameter.set_param('mail.catchall.alias', False)
+
+            super(MailMail, mail).send(
+                auto_commit=auto_commit, raise_exception=raise_exception)
+
+            if is_pec:
+                if bounce_alias:
+                    config_parameter.set_param(
+                        'mail.bounce.alias', bounce_alias)
+                if catchall_domain:
+                    config_parameter.set_param(
+                        'mail.catchall.domain', catchall_domain)
+                if catchall_alias:
+                    config_parameter.set_param(
+                        'mail.catchall.alias', catchall_alias)
+        return True

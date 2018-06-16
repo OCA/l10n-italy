@@ -1,17 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright 2014-2015 Agile Business Group http://www.agilebg.com
-#    @authors
-#       Alessio Gerace <alessio.gerace@gmail.com>
-#       Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-#       Roberto Onnis <roberto.onnis@innoviu.com>
-#
-#   About license see __openerp__.py
-#
-##############################################################################
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from openerp import models, fields
+from odoo import models, fields
 
 
 class FetchmailServer(models.Model):
@@ -33,9 +23,3 @@ class FetchmailServer(models.Model):
         string='Outgoing Server',
         readonly=True,
         copy=False)
-
-    force_create_partner_from_mail = fields.Boolean(
-        "Force Create Partner",
-        help="If checked then if there is no partner"
-             " to link a fetched mail with,"
-             "the system creates a contact partner")

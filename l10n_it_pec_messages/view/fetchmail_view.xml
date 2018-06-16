@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
 <data>
 
     <record model="ir.ui.view" id="view_document_file_protocol_form_pec">
@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <field name="date" position="after" >
                 <field name="pec" />
-                <field name="force_create_partner_from_mail" />
+                <!--<field name="force_create_partner_from_mail" />-->
             </field>
             <field name="original" position="attributes">
                 <attribute name="attrs">{'invisible': [('pec','=',True)]}</attribute>
@@ -24,4 +24,4 @@
     </record>
 
 </data>
-</openerp>
+</odoo>

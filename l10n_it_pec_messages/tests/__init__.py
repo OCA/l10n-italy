@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-#
-#    About license see __openerp__.py
-#
-##############################################################################
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from . import test_pec_messages

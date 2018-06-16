@@ -11,27 +11,24 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+from odoo import models, fields, api
 
 
-class MailComposeMessage(osv.TransientModel):
+class MailComposeMessage(models.TransientModel):
     _inherit = 'mail.compose.message'
 
-    def _get_def_server(self, cr, uid, context=None):
-        res = self.pool.get('fetchmail.server').search(
-            cr, uid, [('user_ids', 'in', uid)], context=context)
-        return res and res[0] or False
+    def _get_def_server(self):
+        res = self.env['fetchmail.server'].search([
+            ('user_ids', 'in', self.env.uid),
+            ('pec', '=', True),
+        ])
+        return res and res.id or False
 
-    _columns = {
-        'server_id': fields.many2one(
-            'fetchmail.server', 'Server', required=True),
-    }
-    _defaults = {
-        'server_id': _get_def_server,
-    }
+    in_server_id = fields.Many2one(
+        'fetchmail.server', 'Server', default=_get_def_server)
 
-    def send_mail(self, cr, uid, ids, context=None):
+    @api.multi
+    def send_mail(self, auto_commit=False):
         """ Override of send_mail to duplicate attachments linked to the
         email.template.
             Indeed, basic mail.compose.message wizard duplicates attachments
@@ -39,55 +36,27 @@ class MailComposeMessage(osv.TransientModel):
             mailing mode. But in 'single post' mode, attachments of an
             email template
             also have to be duplicated to avoid changing their ownership. """
-        for wizard in self.browse(cr, uid, ids, context=context):
-            if context.get('new_pec_mail'):
-                context['new_pec_server_id'] = wizard.server_id.id
-                for partner in wizard.partner_ids:
-                    if not partner.pec_mail:
-                        raise osv.except_osv(
-                            _('Error'),
-                            _('No PEC mail for partner %s') % partner.name)
+        self.ensure_one()
+        if self.env.context.get('new_pec_mail'):
+
+            if not self.record_name:
+                self.record_name = self.subject
+            self.email_from = self.in_server_id.user
+            res = super(MailComposeMessage, self.with_context(
+                new_pec_server_id=self.in_server_id.id
+            )).send_mail(
+                auto_commit=auto_commit)
+            return res
         return super(MailComposeMessage, self).send_mail(
-            cr, uid, ids, context=context)
+            auto_commit=auto_commit)
 
-    def get_message_data(self, cr, uid, message_id, context=None):
-        if not message_id:
-            return {}
-        if context is None:
-            context = {}
-        if context.get('reply_pec'):
-            result = super(MailComposeMessage, self).get_message_data(
-                cr, uid, message_id, context=context)
-            # get partner_ids from action context
-            partner_ids = context.get('default_partner_ids', [])
-            # update the result
-            result.update({
-                'partner_ids': partner_ids,
-            })
-            return result
-        else:
-            return super(MailComposeMessage, self).get_message_data(
-                cr, uid, message_id, context=context)
-
-    def get_record_data(self, cr, uid, values, context=None):
-        """ Returns a defaults-like dict with initial values for the
-        composition wizard when sending an email related a previous email
-        (parent_id) or a document (model, res_id).
-        This is based on previously computed default values. """
-        if context is None:
-            context = {}
-        result = super(MailComposeMessage, self).get_record_data(
-            cr, uid, values, context=context)
-        if 'reply_pec' in context and context['reply_pec']:
-            if 'parent_id' in values:
-                parent = self.pool.get('mail.message').browse(
-                    cr, uid, values.get('parent_id'), context=context)
-                result['parent_id'] = parent.id
-                subject = parent.subject
-                re_prefix = _('Re:')
-                if subject and not \
-                        (subject.startswith('Re:') or
-                         subject.startswith(re_prefix)):
-                    subject = "%s %s" % (re_prefix, subject)
-                    result['subject'] = subject
-        return result
+    @api.model
+    def default_get(self, fields):
+        res = super(MailComposeMessage, self).default_get(fields)
+        if self.env.context.get('new_pec_mail'):
+            if res.get('in_server_id'):
+                server = self.env['fetchmail.server'].browse(
+                    res['in_server_id'])
+                res['email_from'] = server.user
+                res['reply_to'] = server.user
+        return res

@@ -1,12 +1,13 @@
 <?xml version="1.0" ?>
-<openerp>
+<odoo>
     <data>
         <record model="res.users" id="base.user_root">
-            <field name="groups_id" eval="[(4, ref('base.group_pec'))]"/>
+            <field name="groups_id" eval="[(4, ref('l10n_it_pec_messages.group_pec'))]"/>
         </record>
         <record model="fetchmail.server" id="imap_pec_server">
             <field name="name">IMAP PEC server</field>
             <field name="type">imap</field>
+            <field name="user">l.battistini@pec.it</field>
             <field name="pec" eval="True"></field>
             <field name="user_ids" eval="[(6, 0,[ref('base.user_root')])]"></field>
         </record>
@@ -15,14 +16,15 @@
             <field name="smtp_host">pechost</field>
             <field name="pec" eval="True"></field>
             <field name="in_server_id" ref="imap_pec_server"></field>
+            <field name="smtp_user">l.battistini@pec.it</field>
         </record>
-
-        <record model="mail.alias" id="pec_user_alias">
-            <field name="alias_name">l.battistini</field>
-            <field name="alias_contact">partners</field>
-            <field name="alias_user_id" eval="int(1)"></field>
-            <field name="alias_force_thread_id" eval="int(1)"></field>
-            <field model="ir.model" name="alias_model_id" search="[('model','ilike','res.users')]"/>
+        <record model="res.partner" id="pec_partner_1">
+            <field name="email">thinkstudio@pec.it</field>
+            <field name="name">PEC contact 1</field>
+        </record>
+        <record model="res.partner" id="pec_partner_2">
+            <field name="email">l.battistini@pec.it</field>
+            <field name="name">PEC contact 2</field>
         </record>
     </data>
-</openerp>
+</odoo>

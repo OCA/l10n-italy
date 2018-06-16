@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fetchmail_server,access_fetchmail_server,model_fetchmail_server,base.group_pec,1,0,0,0
-access_mail_message,access_mail_message,model_mail_message,base.group_pec,1,1,1,0
-ir_mail_pec,ir.mail_server.pec,model_ir_mail_server,base.group_user,1,0,1,0
+access_fetchmail_server,access_fetchmail_server,model_fetchmail_server,l10n_it_pec_messages.group_pec,1,0,0,0
+access_mail_message,access_mail_message,model_mail_message,l10n_it_pec_messages.group_pec,1,1,1,0
+ir_mail_pec,ir.mail_server.pec,model_ir_mail_server,l10n_it_pec_messages.group_pec,1,0,0,0
+mail_tracking_value_pec,mail_tracking_value_pec,mail.model_mail_tracking_value,l10n_it_pec_messages.group_pec,1,0,0,0
