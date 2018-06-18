@@ -16,15 +16,12 @@ addons:
 
 env:
   global:
-  - VERSION="11.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
-  - TRANSIFEX_USER='transbot@odoo-community.org'
-  - secure: ABaQffZycmzdJs9Slg4OLC8K+wnmpkS5R7bEIOAgsZYMYnOntZz6SzhF8/TOqI2hdUyvxgyVLhUlZdLrgogUgG/V2QjdmIErE6+x4iHECgQ4iXvhqtTpN2S/SVyjVP+7QE8Ugnth/tykWxXpgMpkuA6xnGC2HU8r/s4261tys4g=
+  - VERSION="11.0" TESTS="0" LINT_CHECK="0"
 
   matrix:
   - LINT_CHECK="1"
-  - TRANSIFEX="1"
   - TESTS="1" ODOO_REPO="OCA/OCB"
-  - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1"
 
 
 install:
