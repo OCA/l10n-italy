@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_fiscalcode
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-01-19 08:05+0000\n"
 "PO-Revision-Date: 2016-01-14 07:30+0000\n"
 "Last-Translator: rubencr7 <rubencr7@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_fiscalcode
@@ -74,6 +75,14 @@ msgid "Date of birth"
 msgstr "Fecha de nacimiento"
 
 #. module: l10n_it_fiscalcode
+#: field:res.city.it.code,display_name:0
+#: field:res.city.it.code.distinct,display_name:0
+#: field:res.city.it.code.province,display_name:0
+#: field:wizard.compute.fc,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:159
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:163
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:168
@@ -122,6 +131,15 @@ msgstr "Datos de persona física"
 #: help:res.partner,fiscalcode:0
 msgid "Italian Fiscal Code"
 msgstr "Código Fiscal Italiano"
+
+#. module: l10n_it_fiscalcode
+#: field:res.city.it.code,__last_update:0
+#: field:res.city.it.code.distinct,__last_update:0
+#: field:res.city.it.code.province,__last_update:0
+#: field:wizard.compute.fc,__last_update:0
+#, fuzzy
+msgid "Last Modified on"
+msgstr "Última Actualización el"
 
 #. module: l10n_it_fiscalcode
 #: field:res.city.it.code,write_uid:0 field:wizard.compute.fc,write_uid:0
