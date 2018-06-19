@@ -1,125 +1,118 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_fiscal_document_type
+#	* l10n_it_fiscal_document_type
 #
-# Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-20 06:12+0000\n"
-"PO-Revision-Date: 2017-10-20 06:12+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
-"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
-"Language: sl\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,code:0
 msgid "Codice"
-msgstr "Koda"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,create_uid:0
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,create_date:0
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,display_name:0
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,in_invoice:0
 msgid "Fattura acquisto"
-msgstr "Prejeti račun"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,out_invoice:0
 msgid "Fattura vendita"
-msgstr "Izdani račun"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr "Fiskalni položaj"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_invoice
 msgid "Invoice"
-msgstr "Račun"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_journal
 msgid "Journal"
-msgstr "Dnevnik"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: code:addons/l10n_it_fiscal_document_type/model/journal.py:19
 #, python-format
 msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
 msgstr ""
-"Dnevnik %s se lahko poveže z le 1 fiskalnim dokumentom tipa (najdeno v %s)"
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,__last_update:0
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,name:0
 msgid "Nome"
-msgstr "Naziv"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,out_refund:0
 msgid "Nota di credito"
-msgstr "Dobropis"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,in_refund:0
 msgid "Nota di debito"
-msgstr "Bremepis"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_res_partner
 msgid "Partner"
-msgstr "Poslovni partner"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,priority:0
 msgid "Priority"
-msgstr "Prioriteta"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,journal_ids:0
 msgid "Sezionali"
-msgstr "Sekcijski regirstri"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: view:fiscal.document.type:l10n_it_fiscal_document_type.view_fiscal_document_type_form
@@ -127,7 +120,7 @@ msgstr "Sekcijski regirstri"
 #: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
 #: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
 msgid "Tipi di documento fiscale"
-msgstr "Tip fiskalnega dokumenta"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:account.fiscal.position,fiscal_document_type_id:0
@@ -135,4 +128,5 @@ msgstr "Tip fiskalnega dokumenta"
 #: field:res.partner,in_fiscal_document_type:0
 #: field:res.partner,out_fiscal_document_type:0
 msgid "Tipo documento fiscale"
-msgstr "Tip fiskalnega dokumenta"
+msgstr ""
+
