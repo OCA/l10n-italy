@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_corrispettivi
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2016-10-25 00:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:l10n_it_corrispettivi.corrispettivi_form
@@ -288,8 +289,8 @@ msgstr "Davki"
 #: view:account.invoice:l10n_it_corrispettivi.corrispettivi_form
 msgid ""
 "This button only appears when the state of the invoice is 'paid' (showing "
-"that it has been fully reconciled) and auto-computed boolean 'reconciled' is"
-" False (depicting that it's not the case anymore). In other words, the "
+"that it has been fully reconciled) and auto-computed boolean 'reconciled' is "
+"False (depicting that it's not the case anymore). In other words, the "
 "invoice has been dereconciled and it does not fit anymore the 'paid' state. "
 "You should press this button to re-open it and let it continue its normal "
 "process after having resolved the eventual exceptions it may have created."
@@ -297,9 +298,9 @@ msgstr ""
 "Ta gumb se pojavi le, ko je stanje računa 'plačano' (prikazuje, da še ni "
 "popolnoma usklajeno) in ko je samodejno obdelan Bool izraz 'usklajeno' enak "
 "'False' (nakazuje, da ni več tako). Z drugimi besedami, račun je bil od-"
-"usklajen in ne ustreza več stanju 'plačano'. Da bi ga ponovno odprli, morate"
-" pritisniti ta gumb in tako po odpravi morebitnih izjem, ki bi lahko "
-"nastale, nadaljevati z običajnim procesom."
+"usklajen in ne ustreza več stanju 'plačano'. Da bi ga ponovno odprli, morate "
+"pritisniti ta gumb in tako po odpravi morebitnih izjem, ki bi lahko nastale, "
+"nadaljevati z običajnim procesom."
 
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:l10n_it_corrispettivi.corrispettivi_tree
