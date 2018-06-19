@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_ddt
-# 
+#
 # Translators:
 # Aeshna <synieoka@gmail.com>, 2014
 # Albert Cervera i Areny <albert@nan-tic.com>, 2009
@@ -35,11 +35,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-24 15:14+0000\n"
 "PO-Revision-Date: 2017-01-24 15:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ddt
@@ -187,6 +188,11 @@ msgid "DDT number:"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
+msgid "DDT type"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: field:ddt.create.invoice,date:0
 msgid "Date"
 msgstr ""
@@ -261,13 +267,31 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:243
+#, python-format
+msgid "Document {d} has invoice linked"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
 msgid "Driver's Signature"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: help:stock.picking.package.preparation,weight_manual:0
+msgid ""
+"Fill this field with the value you want to be used as weight. Leave empty to "
+"let the system to compute it"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: field:stock.ddt.type,message_follower_ids:0
 msgid "Followers"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: field:stock.picking.package.preparation,weight_manual:0
+msgid "Force Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -288,6 +312,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Group By"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: field:ddt.create.invoice,group:0
+msgid "Group DDT by partner"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -313,7 +342,7 @@ msgid "If checked new messages require your attention."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:125
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:148
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
@@ -417,9 +446,9 @@ msgid "Methods of Transportation"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:84
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:90
 #, python-format
-msgid "Move %s is not invoiceable"
+msgid "Move {m} is not invoiceable ({d})"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -438,7 +467,7 @@ msgid "None"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:137
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:162
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -526,6 +555,11 @@ msgid "Pickings"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: help:stock.ddt.type,restrict_pickings:0
+msgid "Pickings already in other DDTs cannot be added to DDTs having this type"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
 msgid "Quantity"
 msgstr ""
@@ -574,6 +608,11 @@ msgid "Related DdTs"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: field:stock.ddt.type,restrict_pickings:0
+msgid "Restrict pickings"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_RES
 msgid "Returned"
 msgstr ""
@@ -594,37 +633,31 @@ msgid "Search DDT"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:75
-#, python-format
-msgid "Selected DDTs belong to different partners"
-msgstr ""
-
-#. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:39
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:40
 #, python-format
 msgid "Selected DDTs have different Carriage Conditions"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:45
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:46
 #, python-format
 msgid "Selected DDTs have different Descriptions of Goods"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:58
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:59
 #, python-format
 msgid "Selected DDTs have different Methods of Transportation"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:51
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:52
 #, python-format
 msgid "Selected DDTs have different Reasons for Transportation"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:65
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:66
 #, python-format
 msgid "Selected DDTs have different parcels"
 msgstr ""
@@ -721,6 +754,12 @@ msgstr ""
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_summary:0
 msgid "Summary"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:138
+#, python-format
+msgid "The picking %s is already in DDT %s"
 msgstr ""
 
 #. module: l10n_it_ddt
