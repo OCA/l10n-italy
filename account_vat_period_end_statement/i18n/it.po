@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_vat_period_end_statement
-# 
+#
 # Translators:
 # Paolo Valier, 2016
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
 "PO-Revision-Date: 2017-12-01 20:32+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_vat_period_end_statement
@@ -285,9 +286,10 @@ msgstr "Interessi su liquidazione - Conto"
 #: help:account.vat.period.end.statement,reconciled:0
 msgid ""
 "It indicates that the statement has been paid and the journal entry of the "
-"statement has been reconciled with one or several journal entries of "
-"payment."
-msgstr "It indicates that the statement has been paid and the journal entry of the statement has been reconciled with one or several journal entries of payment."
+"statement has been reconciled with one or several journal entries of payment."
+msgstr ""
+"It indicates that the statement has been paid and the journal entry of the "
+"statement has been reconciled with one or several journal entries of payment."
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,journal_id:0
@@ -352,7 +354,9 @@ msgstr "Altri Crediti / Debiti per IVA o compensazioni di imposta"
 msgid ""
 "Other VAT Credits / Debits or Tax Compensations (Positive amounts for "
 "credits, negative for debits)"
-msgstr "Altri crediti / debiti per IVA o compensazioni di imposta (importi positivi per i crediti, negativi per i debiti)"
+msgstr ""
+"Altri crediti / debiti per IVA o compensazioni di imposta (importi positivi "
+"per i crediti, negativi per i debiti)"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -484,9 +488,15 @@ msgstr "Report"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid ""
-"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.\n"
-"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE"
-msgstr "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.\nOperazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE"
+"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
+"Italia, Beni FUE in Italia, Cell., Microproc.\n"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
+"Cell. UE, Microproc. UE"
+msgstr ""
+"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
+"Italia, Beni FUE in Italia, Cell., Microproc.\n"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
+"Cell. UE, Microproc. UE"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
@@ -568,7 +578,9 @@ msgstr "Il termine di pagamento %s non ha date di scadenza"
 msgid ""
 "The tax code balance will be associated to this account after selecting the "
 "period in VAT statement"
-msgstr "Il saldo del codice imposta sarà associato a questo account dopo aver selezionato il periodo nella dichiarazione IVA"
+msgstr ""
+"Il saldo del codice imposta sarà associato a questo account dopo aver "
+"selezionato il periodo nella dichiarazione IVA"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
