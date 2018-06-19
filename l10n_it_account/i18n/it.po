@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_account
-# 
+#
 # Translators:
 # Paolo Valier, 2016
 # Andrea Stirpe <a.stirpe@isa.it>, 2015
@@ -16,11 +16,12 @@ msgstr ""
 "POT-Creation-Date: 2017-07-29 03:34+0000\n"
 "PO-Revision-Date: 2017-08-11 19:01+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_account
@@ -122,7 +123,9 @@ msgstr "Parzialmente o totalmente indetraibile"
 msgid ""
 "Set this for not Italian companies, to skip checking things like tax codes "
 "consistencies"
-msgstr "Selezionare per aziende non italiane per ignorare verifiche quali la consistenza dei conti imposta"
+msgstr ""
+"Selezionare per aziende non italiane per ignorare verifiche quali la "
+"consistenza dei conti imposta"
 
 #. module: l10n_it_account
 #: field:l10n_it.config.settings,skip_it_account_check:0
@@ -152,14 +155,18 @@ msgstr "Il conto imposta %s è già usato in un'altra imposta d'acquisto"
 #. module: l10n_it_account
 #: help:account.tax.code,vat_statement_type:0
 msgid "This establish whether amount will be loaded as debit or credit"
-msgstr "Questo stabilisce se il saldo debba essere caricato come debito o come credito"
+msgstr ""
+"Questo stabilisce se il saldo debba essere caricato come debito o come "
+"credito"
 
 #. module: l10n_it_account
 #: help:account.tax.code,is_base:0
 msgid ""
 "This tax code is used for base amounts          (field used by VAT "
 "registries)"
-msgstr "Questo conto imposta è usato per gli imponibili          (campo usato dai registri IVA)"
+msgstr ""
+"Questo conto imposta è usato per gli imponibili          (campo usato dai "
+"registri IVA)"
 
 #. module: l10n_it_account
 #: field:account.tax.code,vat_statement_type:0
@@ -172,7 +179,9 @@ msgstr "Tipo"
 msgid ""
 "Used on balance sheet to report this account when its balance is         "
 "negative"
-msgstr "Used on balance sheet to report this account when its balance is         negative"
+msgstr ""
+"Used on balance sheet to report this account when its balance is         "
+"negative"
 
 #. module: l10n_it_account
 #: view:account.tax.code:l10n_it_account.view_tax_code_form_vat

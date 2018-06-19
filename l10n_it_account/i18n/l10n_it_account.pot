@@ -1,61 +1,54 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_account
+#	* l10n_it_account
 #
-# Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016-2017
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-italy (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 02:58+0000\n"
-"PO-Revision-Date: 2017-07-28 05:30+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
-"language/sl/)\n"
-"Language: sl\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account
 msgid "Account"
-msgstr "Konto"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_res_company
 msgid "Companies"
-msgstr "Družbe"
+msgstr ""
 
 #. module: l10n_it_account
 #: field:l10n_it.config.settings,company_id:0
 msgid "Company"
-msgstr "Družba"
+msgstr ""
 
 #. module: l10n_it_account
 #: selection:account.tax.code,vat_statement_type:0
 msgid "Credit"
-msgstr "V dobro"
+msgstr ""
 
 #. module: l10n_it_account
 #: selection:account.tax.code,vat_statement_type:0
 msgid "Debit"
-msgstr "V breme"
+msgstr ""
 
 #. module: l10n_it_account
 #: view:account.tax.code:l10n_it_account.view_tax_code_form_vat
 msgid "Description"
-msgstr "Opis"
+msgstr ""
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_tax.py:101
 #: code:addons/l10n_it_account/models/account_tax.py:110
 #, python-format
 msgid "Error"
-msgstr "Napaka"
+msgstr ""
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_tax.py:184
@@ -64,80 +57,76 @@ msgstr "Napaka"
 #: code:addons/l10n_it_account/models/account_tax.py:211
 #, python-format
 msgid "Error!"
-msgstr "Napaka!"
+msgstr ""
 
 #. module: l10n_it_account
 #: view:website:l10n_it_account.internal_layout
 msgid "Fiscalcode:"
-msgstr "Davčna koda:"
+msgstr ""
 
 #. module: l10n_it_account
 #: field:account.account,inverse_user_type:0
 msgid "Inverse Account Type"
-msgstr "Inverzni tip konta"
+msgstr ""
 
 #. module: l10n_it_account
 #: field:account.account,inverse_parent_id:0
 msgid "Inverse Parent"
-msgstr "Inverzni nadrejeni"
+msgstr ""
 
 #. module: l10n_it_account
 #: field:account.tax.code,is_base:0
 msgid "Is base"
-msgstr "Je osnova"
+msgstr ""
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_tax.py:102
 #, python-format
 msgid "No base code found for tax code %s"
-msgstr "Za davčno kodo %s ni najdena kode osnove"
+msgstr ""
 
 #. module: l10n_it_account
 #: field:account.tax,nondeductible:0
 msgid "Non-deductible"
-msgstr "Neodbitni"
+msgstr ""
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_tax.py:111
 #, python-format
 msgid "Not every tax linked to tax code %s is linked to the same base code"
-msgstr "Vsak davek v povezavi z davčno kodo %s ni povezan z isto kodo osnove"
+msgstr ""
 
 #. module: l10n_it_account
 #: view:website:l10n_it_account.internal_layout
 msgid "Pag:"
-msgstr "Plač:"
+msgstr ""
 
 #. module: l10n_it_account
 #: help:account.tax,nondeductible:0
 msgid "Partially or totally non-deductible."
-msgstr "Delno ali v celoti ne-odbitni."
+msgstr ""
 
 #. module: l10n_it_account
 #: help:l10n_it.config.settings,skip_it_account_check:0
 #: help:res.company,skip_it_account_check:0
-msgid ""
-"Set this for not Italian companies, to skip checking things like tax codes "
-"consistencies"
+msgid "Set this for not Italian companies, to skip checking things like tax codes consistencies"
 msgstr ""
-"Nastavite za ne italijanske družbe, da preskočite stvari, kot npr. "
-"nekonsistenca davčnih kod"
 
 #. module: l10n_it_account
 #: field:l10n_it.config.settings,skip_it_account_check:0
 #: field:res.company,skip_it_account_check:0
 msgid "Skip Italian checks"
-msgstr "Preskoči italijanske preverbe"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax
 msgid "Tax"
-msgstr "Davek"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax_code
 msgid "Tax Code"
-msgstr "Davčna koda"
+msgstr ""
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_tax.py:185
@@ -146,43 +135,36 @@ msgstr "Davčna koda"
 #: code:addons/l10n_it_account/models/account_tax.py:212
 #, python-format
 msgid "Tax code %s already used in other purchase tax"
-msgstr "Davčna koda %s je že uporabljena pri drugem davku nabave"
+msgstr ""
 
 #. module: l10n_it_account
 #: help:account.tax.code,vat_statement_type:0
 msgid "This establish whether amount will be loaded as debit or credit"
-msgstr "Ugotovi, če bo znesek obravnavan kot terjatev ali kot obveznost"
+msgstr ""
 
 #. module: l10n_it_account
 #: help:account.tax.code,is_base:0
-msgid ""
-"This tax code is used for base amounts          (field used by VAT "
-"registries)"
+msgid "This tax code is used for base amounts          (field used by VAT registries)"
 msgstr ""
-"Ta davčna koda se uporablja za zneske osnove (polje uporabljeno v DDV "
-"registru)"
 
 #. module: l10n_it_account
 #: field:account.tax.code,vat_statement_type:0
 msgid "Type"
-msgstr "Tip"
+msgstr ""
 
 #. module: l10n_it_account
 #: help:account.account,inverse_parent_id:0
 #: help:account.account,inverse_user_type:0
-msgid ""
-"Used on balance sheet to report this account when its balance is         "
-"negative"
+msgid "Used on balance sheet to report this account when its balance is         negative"
 msgstr ""
-"Uporabljeno pri bilanci za poročanje tega konta, ko je njegova bilanca "
-"negativna"
 
 #. module: l10n_it_account
 #: view:account.tax.code:l10n_it_account.view_tax_code_form_vat
 msgid "VAT statement"
-msgstr "DDV izjava"
+msgstr ""
 
 #. module: l10n_it_account
 #: view:website:l10n_it_account.internal_layout
 msgid "Vat:"
-msgstr "DDV:"
+msgstr ""
+
