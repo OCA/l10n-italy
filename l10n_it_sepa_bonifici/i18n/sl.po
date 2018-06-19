@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_sepa_bonifici
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-10-20 06:13+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_sepa_bonifici
 #: field:banking.export.sepa.cbi.estero.wizard,batch_booking:0
@@ -123,12 +124,12 @@ msgstr "Raven storitev"
 #: help:banking.export.sepa.cbi.wizard,charge_bearer:0
 msgid ""
 "Following service level : transaction charges are to be applied following "
-"the rules agreed in the service level and/or scheme (SEPA Core messages must"
-" use this). Shared : transaction charges on the creditor side are to be "
-"borne by the creditor, transaction charges on the debtor side are to be "
-"borne by the debtor. Borne by creditor : all transaction charges are to be "
-"borne by the creditor. Borne by debtor : all transaction charges are to be "
-"borne by the debtor."
+"the rules agreed in the service level and/or scheme (SEPA Core messages must "
+"use this). Shared : transaction charges on the creditor side are to be borne "
+"by the creditor, transaction charges on the debtor side are to be borne by "
+"the debtor. Borne by creditor : all transaction charges are to be borne by "
+"the creditor. Borne by debtor : all transaction charges are to be borne by "
+"the debtor."
 msgstr ""
 "Nivo sledenja: stroške transakcije se dodeli glede na naslednja pravila v "
 "sporazumu o ravni storitev in/ali shemi (SEPA temeljna sporočila morajo to "
@@ -216,8 +217,8 @@ msgid ""
 "supported for SEPA Credit Transfers "
 "'CBIBdyCrossBorderPaymentRequest.00.01.01'. "
 msgstr ""
-"Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta za"
-" SEPA bremenilne transakcije, je 'CBIBdyCrossBorderPaymentRequest.00.01.01'."
+"Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta za "
+"SEPA bremenilne transakcije, je 'CBIBdyCrossBorderPaymentRequest.00.01.01'."
 
 #. module: l10n_it_sepa_bonifici
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:111
@@ -226,8 +227,8 @@ msgid ""
 "Payment Type Code '%s' is not supported. The only Payment Type Code "
 "supported for SEPA Credit Transfers 'CBIBdyPaymentRequest.00.04.00'. "
 msgstr ""
-"Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta za"
-" SEPA bremenilne transakcije, je 'CBIBdyPaymentRequest.00.04.00'."
+"Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta za "
+"SEPA bremenilne transakcije, je 'CBIBdyPaymentRequest.00.04.00'."
 
 #. module: l10n_it_sepa_bonifici
 #: view:banking.export.sepa.cbi.estero.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_estero_wizard_view

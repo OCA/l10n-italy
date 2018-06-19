@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_sepa_bonifici
+#	* l10n_it_sepa_bonifici
 #
-# Translators:
-# Paolo Valier <paolo.valier@hotmail.it>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2017-10-28 05:14+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
-"Language: it\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_it_sepa_bonifici
 #: field:banking.export.sepa.cbi.estero.wizard,batch_booking:0
@@ -52,25 +47,25 @@ msgstr ""
 #: selection:banking.export.sepa.cbi.estero.wizard,state:0
 #: selection:banking.export.sepa.cbi.wizard,state:0
 msgid "Create"
-msgstr "Crea"
+msgstr ""
 
 #. module: l10n_it_sepa_bonifici
 #: field:banking.export.sepa.cbi.estero.wizard,create_uid:0
 #: field:banking.export.sepa.cbi.wizard,create_uid:0
 msgid "Created by"
-msgstr "Creato da"
+msgstr ""
 
 #. module: l10n_it_sepa_bonifici
 #: field:banking.export.sepa.cbi.estero.wizard,create_date:0
 #: field:banking.export.sepa.cbi.wizard,create_date:0
 msgid "Created on"
-msgstr "Creato il"
+msgstr ""
 
 #. module: l10n_it_sepa_bonifici
 #: field:banking.export.sepa.cbi.estero.wizard,display_name:0
 #: field:banking.export.sepa.cbi.wizard,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr ""
 
 #. module: l10n_it_sepa_bonifici
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:79
@@ -121,14 +116,7 @@ msgstr ""
 #. module: l10n_it_sepa_bonifici
 #: help:banking.export.sepa.cbi.estero.wizard,charge_bearer:0
 #: help:banking.export.sepa.cbi.wizard,charge_bearer:0
-msgid ""
-"Following service level : transaction charges are to be applied following "
-"the rules agreed in the service level and/or scheme (SEPA Core messages must "
-"use this). Shared : transaction charges on the creditor side are to be borne "
-"by the creditor, transaction charges on the debtor side are to be borne by "
-"the debtor. Borne by creditor : all transaction charges are to be borne by "
-"the creditor. Borne by debtor : all transaction charges are to be borne by "
-"the debtor."
+msgid "Following service level : transaction charges are to be applied following the rules agreed in the service level and/or scheme (SEPA Core messages must use this). Shared : transaction charges on the creditor side are to be borne by the creditor, transaction charges on the debtor side are to be borne by the debtor. Borne by creditor : all transaction charges are to be borne by the creditor. Borne by debtor : all transaction charges are to be borne by the debtor."
 msgstr ""
 
 #. module: l10n_it_sepa_bonifici
@@ -146,10 +134,7 @@ msgstr ""
 #. module: l10n_it_sepa_bonifici
 #: help:banking.export.sepa.cbi.estero.wizard,batch_booking:0
 #: help:banking.export.sepa.cbi.wizard,batch_booking:0
-msgid ""
-"If true, the bank statement will display only one credit line for all the "
-"direct debits of the SEPA file ; if false, the bank statement will display "
-"one credit line per direct debit of the SEPA file."
+msgid "If true, the bank statement will display only one credit line for all the direct debits of the SEPA file ; if false, the bank statement will display one credit line per direct debit of the SEPA file."
 msgstr ""
 
 #. module: l10n_it_sepa_bonifici
@@ -174,8 +159,7 @@ msgstr ""
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:238
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:301
 #, python-format
-msgid ""
-"Missing Bank Account on invoice '%s' (payment order line reference '%s')"
+msgid "Missing Bank Account on invoice '%s' (payment order line reference '%s')"
 msgstr ""
 
 #. module: l10n_it_sepa_bonifici
@@ -200,18 +184,13 @@ msgstr ""
 #. module: l10n_it_sepa_bonifici
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:172
 #, python-format
-msgid ""
-"Payment Type Code '%s' is not supported. The only Payment Type Code "
-"supported for SEPA Credit Transfers "
-"'CBIBdyCrossBorderPaymentRequest.00.01.01'. "
+msgid "Payment Type Code '%s' is not supported. The only Payment Type Code supported for SEPA Credit Transfers 'CBIBdyCrossBorderPaymentRequest.00.01.01'. "
 msgstr ""
 
 #. module: l10n_it_sepa_bonifici
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:111
 #, python-format
-msgid ""
-"Payment Type Code '%s' is not supported. The only Payment Type Code "
-"supported for SEPA Credit Transfers 'CBIBdyPaymentRequest.00.04.00'. "
+msgid "Payment Type Code '%s' is not supported. The only Payment Type Code supported for SEPA Credit Transfers 'CBIBdyPaymentRequest.00.04.00'. "
 msgstr ""
 
 #. module: l10n_it_sepa_bonifici
@@ -243,3 +222,4 @@ msgstr ""
 #: view:banking.export.sepa.cbi.wizard:l10n_it_sepa_bonifici.banking_export_sepa_cbi_wizard_view
 msgid "Validate"
 msgstr ""
+
