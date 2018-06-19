@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_ricevute_bancarie
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016-2017
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2017-10-20 06:12+0000\n"
 "PO-Revision-Date: 2017-09-23 22:17+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
@@ -209,7 +211,9 @@ msgstr "Koda SIA"
 msgid ""
 "Collection fees amount. If different from 0, for each payment deadline an "
 "invoice line will be added to invoice, with this amount"
-msgstr "Znesek prejetih zneskov. Če različen od 0, se za vsako zapadlo plačilo v račun doda postavka s tem zneskom."
+msgstr ""
+"Znesek prejetih zneskov. Če različen od 0, se za vsako zapadlo plačilo v "
+"račun doda postavka s tem zneskom."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_company
@@ -310,7 +314,8 @@ msgstr "Banka dolžnika"
 #. module: l10n_it_ricevute_bancarie
 #: help:account.config.settings,due_cost_service_id:0
 msgid "Default Service for RiBa Due Cost (collection fees) on invoice"
-msgstr "Privzeta storitev za RiBa zapadle stroške (zbirne pristojbine) na računu"
+msgstr ""
+"Privzeta storitev za RiBa zapadle stroške (zbirne pristojbine) na računu"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.configuration,name:0
@@ -964,7 +969,9 @@ msgstr "Čarovnik za ustvarjanje Ri.Ba. seznama. Želite potrditi?"
 msgid ""
 "This wizard generates the journal entry related to accreditation received "
 "from the bank"
-msgstr "Čarovnik za ustvarjanje dnevniških postavk v zvezi z od banke prejeto akreditacijo"
+msgstr ""
+"Čarovnik za ustvarjanje dnevniških postavk v zvezi z od banke prejeto "
+"akreditacijo"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
@@ -1075,13 +1082,17 @@ msgstr "Znesek pologa"
 msgid ""
 "You can also skip this step and set the distinta status to 'accredited' "
 "anyway"
-msgstr "Ta korak lahko tudi preskočite in vseeno nastavite stanje popisa v 'akreditirano'"
+msgstr ""
+"Ta korak lahko tudi preskočite in vseeno nastavite stanje popisa v "
+"'akreditirano'"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.unsolved:l10n_it_ricevute_bancarie.riba_unsolved
 msgid ""
 "You can also skip this step and set the line status to 'unsolved' anyway"
-msgstr "Ta korak lahko tudi preskočite in vseeno nastavite stanje vrstice v 'nerešeno'"
+msgstr ""
+"Ta korak lahko tudi preskočite in vseeno nastavite stanje vrstice v "
+"'nerešeno'"
 
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.file.export,state:0

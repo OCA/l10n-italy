@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_ricevute_bancarie
-# 
+#
 # Translators:
 # Hotellook, 2014
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-27 13:18+0000\n"
 "PO-Revision-Date: 2017-04-27 13:19+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ricevute_bancarie
@@ -58,6 +59,7 @@ msgstr ""
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
 #: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
 msgid "Accepted"
 msgstr ""
 
@@ -109,7 +111,9 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: selection:riba.distinta.line,state:0
 msgid "Accredited"
 msgstr ""
 
@@ -120,6 +124,7 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_tree
 #: field:riba.distinta.line,amount:0 field:riba.distinta.move.line,amount:0
 #: view:website:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Amount"
@@ -218,7 +223,8 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: field:riba.distinta,config_id:0 field:riba.issue,configuration_id:0
+#: field:riba.distinta,config_id:0 field:riba.distinta.line,config_id:0
+#: field:riba.issue,configuration_id:0
 msgid "Configuration"
 msgstr ""
 
@@ -229,6 +235,7 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: selection:riba.distinta.line,state:0
 msgid "Confirmed"
 msgstr ""
@@ -317,6 +324,21 @@ msgid "Detail"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.detail_riba_action
+msgid "Dettaglio distinta Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_detail
+msgid "Dettaglio distinte"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_tree
+msgid "Dettaglio distinte Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: field:account.move.line,distinta_line_ids:0
 msgid "Dettaglio riba"
 msgstr ""
@@ -345,12 +367,15 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_tree
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
 msgid "Distinte Ri.Ba."
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: selection:riba.distinta.line,state:0
 msgid "Draft"
 msgstr ""
 
@@ -709,7 +734,9 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: selection:riba.distinta.line,state:0
 msgid "Paid"
 msgstr ""
 
@@ -852,7 +879,7 @@ msgid "Riba"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: help:riba.distinta,config_id:0
+#: help:riba.distinta,config_id:0 help:riba.distinta.line,config_id:0
 msgid "Riba configuration to be used"
 msgstr ""
 
@@ -980,7 +1007,10 @@ msgstr ""
 #: view:account.move.line:l10n_it_ricevute_bancarie.riba_filter
 #: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
-#: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
+#: selection:riba.distinta,state:0
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#: view:riba.distinta.line:l10n_it_ricevute_bancarie.view_detail_riba_tree
+#: selection:riba.distinta.line,state:0
 msgid "Unsolved"
 msgstr ""
 
