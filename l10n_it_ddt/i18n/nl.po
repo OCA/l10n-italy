@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_ddt
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-12-08 03:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ddt
@@ -351,7 +351,7 @@ msgid "Display Name"
 msgstr "Te tonen naam"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:432
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:429
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -374,13 +374,13 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
 msgid ""
-"Fill this field with the value you want to be used as weight. Leave empty to"
-" let the system to compute it"
+"Fill this field with the value you want to be used as weight. Leave empty to "
+"let the system to compute it"
 msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
-msgid "Force Weight"
+msgid "Force Net Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -389,6 +389,8 @@ msgid "Goods Description"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_gross_weight
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_gross_weight
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Gross Weight"
 msgstr ""
@@ -412,7 +414,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:182
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
@@ -518,7 +520,12 @@ msgid "Name"
 msgstr "Naam"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:195
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Net Weight"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:196
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -606,7 +613,7 @@ msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:546
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:555
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -692,7 +699,7 @@ msgid "Selected Picking %s have different transportation reason"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:166
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:168
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
 msgstr ""
@@ -814,8 +821,8 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:399
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:407
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:396
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:404
 #, python-format
 msgid "There is no invoicable line."
 msgstr ""
@@ -841,6 +848,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Transportation Method"
 msgstr ""
 
 #. module: l10n_it_ddt
