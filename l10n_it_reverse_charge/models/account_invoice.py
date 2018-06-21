@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
@@ -35,6 +34,27 @@ class AccountInvoice(models.Model):
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
 
+    rc_partner_supplier_id = fields.Many2one(
+        'res.partner', string='Partner RC', change_default=True,
+        required=False, readonly=True,
+        states={'draft': [('readonly', False)]},
+        track_visibility='always')
+
+    rc_debit_credit_transfer_id = fields.Many2one(
+        'account.move', required=False, readonly=True)
+    company_partner = fields.Boolean(compute='_compute_company_partner')
+
+    rc_payment_move_id = fields.Many2one(
+        string="Reconciliation move", comodel_name='account.move',
+        required=False, readonly=True,
+        help="Move that reconciles the purchase and sale invoice")
+
+    @api.depends('partner_id')
+    def _compute_company_partner(self):
+        for el in self:
+            if el.partner_id == el.company_id.partner_id:
+                el.company_partner = True
+
     def rc_inv_line_vals(self, line):
         return {
             'product_id': line.product_id.id,
@@ -42,7 +62,7 @@ class AccountInvoice(models.Model):
             'uom_id': line.product_id.uom_id.id,
             'price_unit': line.price_unit,
             'quantity': line.quantity,
-            }
+        }
 
     def rc_inv_vals(self, partner, account, rc_type, lines):
         if self.type == 'in_invoice':
@@ -50,7 +70,7 @@ class AccountInvoice(models.Model):
         else:
             type = 'out_refund'
 
-        return {
+        vals = {
             'partner_id': partner.id,
             'type': type,
             'account_id': account.id,
@@ -61,8 +81,21 @@ class AccountInvoice(models.Model):
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
-            'fiscal_position_id': None
+            'fiscal_position_id': None,
+            'rc_partner_supplier_id': None
             }
+
+        # controllare se rc_type è other e se partner è la company
+        # setto rc_partner_supplier con il partner di partenza
+        if (rc_type.partner_type == 'other' and
+                partner == self.company_id.partner_id):
+            # CREAZIONE DI UN'AUTOFATTURA
+            vals['rc_partner_supplier_id'] = (
+                self.rc_partner_supplier_id.id or
+                self.partner_id.id
+            )
+
+        return vals
 
     def get_inv_line_to_reconcile(self):
         for inv_line in self.move_id.line_ids:
@@ -85,7 +118,7 @@ class AccountInvoice(models.Model):
             'journal_id': rc_type.payment_journal_id.id,
             # 'period_id': self.period_id.id,
             'date': self.date,
-            }
+        }
 
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
@@ -100,7 +133,7 @@ class AccountInvoice(models.Model):
             'debit': debit,
             'account_id': journal.default_credit_account_id.id,
             'company_id': self.company_id.id,
-            }
+        }
 
     def rc_debit_line_vals(self, amount=None):
         credit = debit = 0.0
@@ -121,14 +154,14 @@ class AccountInvoice(models.Model):
             'account_id': self.get_inv_line_to_reconcile().account_id.id,
             'partner_id': self.partner_id.id,
             'company_id': self.company_id.id
-            }
+        }
 
     def rc_invoice_payment_vals(self, rc_type):
         return {
             'journal_id': rc_type.payment_journal_id.id,
             # 'period_id': self.period_id.id,
             'date': self.date,
-            }
+        }
 
     def rc_payment_credit_line_vals(self, invoice):
         credit = debit = 0.0
@@ -144,7 +177,7 @@ class AccountInvoice(models.Model):
                 invoice).account_id.id,
             'partner_id': invoice.partner_id.id,
             'company_id': self.company_id.id
-            }
+        }
 
     def rc_payment_debit_line_vals(self, invoice, journal):
         credit = debit = 0.0
@@ -158,7 +191,7 @@ class AccountInvoice(models.Model):
             'credit': credit,
             'account_id': journal.default_credit_account_id.id,
             'company_id': self.company_id.id
-            }
+        }
 
     def reconcile_supplier_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
@@ -206,24 +239,32 @@ class AccountInvoice(models.Model):
             rc_type.payment_journal_id)
 
         payment_debit_line_data = self.rc_debit_line_vals()
-        rc_payment.line_ids = [
-            (0, 0, payment_debit_line_data),
-            (0, 0, payment_credit_line_data),
-        ]
+        # Avoid payment lines without amounts
+        if (payment_credit_line_data['debit'] or
+                payment_credit_line_data['credit']):
+            rc_payment.line_ids = [
+                (0, 0, payment_debit_line_data),
+                (0, 0, payment_credit_line_data),
+            ]
         return rc_payment
 
     def partially_reconcile_supplier_invoice(self, rc_payment):
         move_line_model = self.env['account.move.line']
+        inv_line_to_reconcile = self.get_inv_line_to_reconcile()
+        payment_debit_line = False
         for move_line in rc_payment.line_ids:
+            if (inv_line_to_reconcile.account_id.id !=
+                    move_line.account_id.id):
+                continue
             # testa se nota credito o debito
-            if (self.type == 'in_invoice') and move_line.debit:
+            if self.type == 'in_invoice' and move_line.debit:
                 payment_debit_line = move_line
-            elif (self.type == 'in_refund') and move_line.credit:
+            elif self.type == 'in_refund' and move_line.credit:
                 payment_debit_line = move_line
-        inv_lines_to_rec = move_line_model.browse(
-            [self.get_inv_line_to_reconcile().id,
-                payment_debit_line.id])
-        inv_lines_to_rec.reconcile()
+        if payment_debit_line:
+            inv_lines_to_rec = move_line_model.browse(
+                [inv_line_to_reconcile.id, payment_debit_line.id])
+            inv_lines_to_rec.reconcile()
 
     def reconcile_rc_invoice(self, rc_payment):
         rc_type = self.fiscal_position_id.rc_type_id
@@ -286,6 +327,7 @@ class AccountInvoice(models.Model):
             inv_vals = self.rc_inv_vals(
                 rc_partner, rc_account, rc_type, rc_invoice_lines)
 
+            inv_vals['comment'] = self.fiscal_position_id.note
             # create or write the self invoice
             if self.rc_self_invoice_id:
                 # this is needed when user takes back to draft supplier
@@ -304,6 +346,7 @@ class AccountInvoice(models.Model):
                 self.reconcile_supplier_invoice()
             else:
                 rc_payment = self.prepare_reconcile_supplier_invoice()
+                self.write({'rc_payment_move_id': rc_payment.id})
                 self.reconcile_rc_invoice(rc_payment)
                 self.partially_reconcile_supplier_invoice(rc_payment)
 
@@ -339,10 +382,20 @@ class AccountInvoice(models.Model):
         supplier_invoice.action_invoice_open()
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
+        self._set_rc_partner_supplier_id(rc_type, supplier_invoice)
+
+    def _set_rc_partner_supplier_id(self, rc_type, supplier_invoice):
+        if (rc_type.partner_type == 'other' and
+                rc_type.partner_id == self.company_id.partner_id):
+            partner_ref = self.rc_partner_supplier_id or self.partner_id
+            # ref del partner da cui si stanno generando le autofatture
+            supplier_invoice.rc_partner_supplier_id = partner_ref
+
     @api.multi
     def invoice_validate(self):
         self.ensure_one()
         res = super(AccountInvoice, self).invoice_validate()
+
         fp = self.fiscal_position_id
         rc_type = fp and fp.rc_type_id
         if rc_type and rc_type.method == 'selfinvoice'\
@@ -353,7 +406,83 @@ class AccountInvoice(models.Model):
                 # See with_supplier_self_invoice field help
                 self.generate_supplier_self_invoice()
                 self.rc_self_purchase_invoice_id.generate_self_invoice()
+
+        if (rc_type and
+                rc_type.method == 'selfinvoice' and
+                self.amount_total and
+                self.type in ('in_invoice', 'in_refund') and
+                self.company_partner is True):
+
+            self.transfer_debit_partner_supplier()
         return res
+
+    def transfer_debit_partner_supplier(self):
+        """
+        Se il partner della fattura di partenza (no RC) è la company ed
+        è una fattura di acquisto, deve essere aperto un debito vs il
+        parnter di partenza e chiuso quello del partner
+        """
+        # Credit/debit logic refund
+        ml_company = False
+        for ml in self.move_id.line_ids:
+            if ml.account_id.user_type_id.type in ['receivable', 'payable']:
+                ml_company = ml
+                break
+
+        if ml_company:
+            move_lines = []
+            # Refund my company
+            if ml_company.debit:
+                desc = _('Credit transfer for reverse charge')
+            else:
+                desc = _('Debit transfer for reverse charge')
+            company_line = {
+                'partner_id': self.partner_id.id,
+                'account_id': ml_company.account_id.id,
+                'credit': (ml_company and
+                           ml_company.debit and
+                           self.residual or 0),
+                'debit': (ml_company and
+                          ml_company.credit and
+                          self.residual or 0),
+                'name': desc,
+            }
+            move_lines.append((0, 0, company_line))
+            # Add debit/credit to RC partner
+            partner_rc_line = {
+                'partner_id': self.rc_partner_supplier_id.id,
+                'account_id': ml_company.account_id.id,
+                'credit': (ml_company and
+                           ml_company.credit and
+                           self.residual or 0),
+                'debit': (ml_company and
+                          ml_company.debit and
+                          self.residual or 0),
+                'name': desc,
+            }
+            move_lines.append((0, 0, partner_rc_line))
+
+            move_val = {
+                'date': self.move_id.date,
+                'company_id': self.move_id.company_id.id,
+                'journal_id':
+                    self.fiscal_position_id.rc_type_id.payment_journal_id.id,
+                'line_ids': move_lines
+            }
+            move_transfer = self.env['account.move'].create(move_val)
+            self.write({'rc_debit_credit_transfer_id': move_transfer.id})
+
+            # Reconcile supplier invoice with transfer
+            lines_to_reconcile = []
+            domain = [('move_id', '=', move_transfer.id),
+                      ('partner_id', '=', self.partner_id.id)]
+            ml_transfer_company = self.env['account.move.line']\
+                .search(domain, order='id', limit=1)
+            if ml_transfer_company:
+                lines_to_reconcile = ml_transfer_company + ml_company
+                lines_to_reconcile.reconcile()
+
+        return move_transfer
 
     def remove_rc_payment(self):
         inv = self
