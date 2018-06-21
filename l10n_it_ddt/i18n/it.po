@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_ddt
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-03-28 04:13+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ddt
@@ -490,8 +490,8 @@ msgstr "I Picking selezionati %s hanno condizioni di trasporto differenti"
 #, python-format
 msgid "Selected Picking %s have different goods description"
 msgstr ""
-"I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore"
-" dei beni"
+"I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore "
+"dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:53
