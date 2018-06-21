@@ -206,24 +206,32 @@ class AccountInvoice(models.Model):
             rc_type.payment_journal_id)
 
         payment_debit_line_data = self.rc_debit_line_vals()
-        rc_payment.line_ids = [
-            (0, 0, payment_debit_line_data),
-            (0, 0, payment_credit_line_data),
-        ]
+        # Avoid payment lines without amounts
+        if payment_credit_line_data['debit'] or \
+                payment_credit_line_data['credit']:
+            rc_payment.line_ids = [
+                (0, 0, payment_debit_line_data),
+                (0, 0, payment_credit_line_data),
+            ]
         return rc_payment
 
     def partially_reconcile_supplier_invoice(self, rc_payment):
         move_line_model = self.env['account.move.line']
+        inv_line_to_reconcile = self.get_inv_line_to_reconcile()
+        payment_debit_line = False
         for move_line in rc_payment.line_ids:
+            if inv_line_to_reconcile.account_id.id !=\
+                    move_line.account_id.id:
+                continue
             # testa se nota credito o debito
             if (self.type == 'in_invoice') and move_line.debit:
                 payment_debit_line = move_line
             elif (self.type == 'in_refund') and move_line.credit:
                 payment_debit_line = move_line
-        inv_lines_to_rec = move_line_model.browse(
-            [self.get_inv_line_to_reconcile().id,
-                payment_debit_line.id])
-        inv_lines_to_rec.reconcile()
+        if payment_debit_line:
+            inv_lines_to_rec = move_line_model.browse(
+                [inv_line_to_reconcile.id, payment_debit_line.id])
+            inv_lines_to_rec.reconcile()
 
     def reconcile_rc_invoice(self, rc_payment):
         rc_type = self.fiscal_position_id.rc_type_id
