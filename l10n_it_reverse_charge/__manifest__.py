@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
@@ -7,14 +6,14 @@
 
 {
     'name': 'Reverse Charge IVA',
-    'version': '10.0.1.1.1',
+    'version': '11.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Reverse Charge for Italy',
     'author': 'Odoo Italia Network,Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'website': 'https://www.odoo-italia.net',
     'depends': [
-        'account_accountant',
+        # 'account_menu_group',
         'account_cancel',
     ],
     'data': [
@@ -24,6 +23,7 @@
         'views/account_invoice_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_rc_type_view.xml',
+        'views/account_report_invoice.xml',
     ],
     'installable': True,
 }

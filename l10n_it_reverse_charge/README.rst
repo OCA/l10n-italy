@@ -119,7 +119,8 @@ Contributors
 
 * Davide Corio
 * Alex Comba <alex.comba@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Giacomo Grasso <giacomo.grasso.82@gmail.com>
 
 Maintainer
 ----------

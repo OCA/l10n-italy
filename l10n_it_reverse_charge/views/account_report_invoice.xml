@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="account_invoice_print_incoterm"
+                inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@name='invoice_address']" position="after">
+            <div name="invoice_address_supplier" class="col-xs-5 col-xs-offset-7" t-if="o.rc_partner_supplier_id">
+                <br/>
+                <address t-field="o.rc_partner_supplier_id"
+                    t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                <span t-if="o.rc_partner_supplier_id.vat">TIN: <span t-field="o.rc_partner_supplier_id.vat"/></span>
+            </div>
+        </xpath>
+
+    <xpath expr="//h2/span[1]" position="replace">
+
+        <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and o.company_partner != True">Invoice</span>
+        <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and o.company_partner == True">Self-invoice</span>
+
+    </xpath>
+    <xpath expr="//h2/span[8]" position="replace">
+    <span t-if="o.type == 'in_invoice' and o.company_partner != True">Vendor Bill</span>
+    <span t-if="o.type == 'in_invoice' and o.company_partner == True">Self-invoice</span>
+
+    </xpath>
+
+    </template>
+
+</odoo>
