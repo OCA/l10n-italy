@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
@@ -80,7 +79,9 @@ class AccountRCType(models.Model):
         string='Self Invoice Tax Mapping',
         copy=False)
     description = fields.Text('Description')
-    self_invoice_text = fields.Text('Text in Self Invoice')
+    self_invoice_text = fields.Text(
+        string='Text in Self Invoice',
+        help="Reference/Description in Customer Invoice")
 
     @api.multi
     @api.constrains('with_supplier_self_invoice', 'tax_ids')
