@@ -14,6 +14,6 @@ def migrate(cr, version):
         env = api.Environment(cr, SUPERUSER_ID, {})
         partners = env['res.partner'].search(
             [('is_company', '=', True)])
-        for idx, partner in enumerate(partners):
+        for partner in partners:
             partner = env['res.partner'].browse(partner.id)
             partner.with_prefetch()._commercial_sync_to_children()
