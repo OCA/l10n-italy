@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -96,12 +95,12 @@ class AccountPartialReconcile(models.Model):
             p_date_maturity = False
             payment_lines = wt_st.withholding_tax_id.payment_term.compute(
                 amount_wt,
-                rec_line_statement.date or False)
+                rec_line_payment.date or False)
             if payment_lines and payment_lines[0]:
                 p_date_maturity = payment_lines[0][0][0]
             wt_move_vals = {
                 'statement_id': wt_st.id,
-                'date': rec_line_statement.date,
+                'date': rec_line_payment.date,
                 'partner_id': rec_line_statement.partner_id.id,
                 'reconcile_partial_id': self.id,
                 'payment_line_id': rec_line_payment.id,
@@ -109,7 +108,7 @@ class AccountPartialReconcile(models.Model):
                 'withholding_tax_id': wt_st.withholding_tax_id.id,
                 'account_move_id': rec_line_payment.move_id.id or False,
                 'date_maturity':
-                    p_date_maturity or rec_line_statement.date_maturity,
+                    p_date_maturity or rec_line_payment.date_maturity,
                 'amount': amount_wt
             }
             wt_move_vals = self._prepare_wt_move(wt_move_vals)
