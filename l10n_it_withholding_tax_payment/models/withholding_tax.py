@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
-from odoo import netsvc
 
 
 class WithholdingTaxMove(models.Model):
@@ -161,32 +159,20 @@ class WithholdingTaxMovePayment(models.Model):
         return wt_payment
 
     def action_confirmed(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(
-                self.env.uid, self._name, pt.id, 'confirmed', self.env.cr)
-
-    def action_set_to_draft(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(
-                self.env.uid, self._name, pt.id, 'cancel', self.env.cr)
-
-    def move_payment_to_draft(self):
-        for move in self:
-            if move.state in ['confirmed']:
-                move.state = 'draft'
-                # Wt move set to due
-                for wt_move in move.line_ids:
-                    wt_move.action_set_to_draft()
-
-    def move_payment_confirmed(self):
         for move in self:
             if move.state in ['draft']:
                 move.state = 'confirmed'
                 # Wt move set to due
                 for wt_move in move.line_ids:
                     wt_move.action_paid()
+
+    def action_set_to_draft(self):
+        for move in self:
+            if move.state in ['confirmed']:
+                move.state = 'draft'
+                # Wt move set to due
+                for wt_move in move.line_ids:
+                    wt_move.action_set_to_draft()
 
     @api.multi
     def unlink(self):
