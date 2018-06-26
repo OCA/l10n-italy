@@ -175,7 +175,7 @@ msgstr "Errore! I tassi sono obbligatori"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:139
 #, python-format
 msgid ""
-"Error! You cannot have 2 pricelist versions that                     overlap!"
+"Error! You cannot have 2 rates that overlap!"
 msgstr "Errore! I periodi si sovrappongono"
 
 #. module: l10n_it_withholding_tax
