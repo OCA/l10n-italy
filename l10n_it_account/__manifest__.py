@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Abstract srl (<http://www.abstract.it>)
 # Copyright 2015-2017 Agile Business Group (<http://www.agilebg.com>)
 # Copyright 2015 Link It Spa (<http://www.linkgroup.it/>)
@@ -6,7 +5,7 @@
 
 {
     'name': 'Italian Localization - Account',
-    'version': '10.0.1.1.2',
+    'version': '11.0.1.0.0',
     'category': 'Hidden',
     'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.net',
@@ -14,6 +13,7 @@
     "depends": [
         'account',
         'date_range',
+        'web',
     ],
     "data": [
         'views/account_setting.xml',
