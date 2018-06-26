@@ -111,6 +111,7 @@ Contributors
 * Alex Comba <alex.comba@agilebg.com>
 * Alessandro Camilli <camillialex@gmail.com>
 * Simone Rubino <simone.rubino@agilebg.com>
+* Giacomo Grasso <giacomo.grasso.82@gmail.com>
 
 Do not contact contributors directly about support or help with technical issues.
 

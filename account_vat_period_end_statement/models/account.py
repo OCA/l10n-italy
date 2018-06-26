@@ -1,33 +1,10 @@
-# -*- coding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2015 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
 import math
+from datetime import datetime
 from odoo import models, fields, api
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 import odoo.addons.decimal_precision as dp
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, DEFAULT_SERVER_DATE_FORMAT
 
 
 class AccountVatPeriodEndStatement(models.Model):
@@ -93,12 +70,12 @@ class AccountVatPeriodEndStatement(models.Model):
             payment_lines = []
             if statement.move_id.exists():
                 for line in statement.move_id.line_ids:
-                    payment_lines.extend(filter(None, [
+                    payment_lines.extend([_f for _f in [
                         rp.credit_move_id.id for rp in line.matched_credit_ids
-                    ]))
-                    payment_lines.extend(filter(None, [
+                    ] if _f])
+                    payment_lines.extend([_f for _f in [
                         rp.debit_move_id.id for rp in line.matched_debit_ids
-                    ]))
+                    ] if _f])
             statement.payment_ids = self.env['account.move.line'].browse(
                 list(set(payment_lines)))
 
@@ -265,6 +242,8 @@ class AccountVatPeriodEndStatement(models.Model):
         'Interest - Percent', default=_get_default_interest_percent)
     fiscal_page_base = fields.Integer(
         'Last printed page', required=True, default=0)
+    fiscal_year = fields.Char(
+        'Fiscal year for report')
     company_id = fields.Many2one(
         'res.company', 'Company',
         default=lambda self: self.env['res.company']._company_default_get(
@@ -278,6 +257,13 @@ class AccountVatPeriodEndStatement(models.Model):
                     _('You cannot delete a confirmed or paid statement'))
         res = super(AccountVatPeriodEndStatement, self).unlink()
         return res
+
+    @api.multi
+    def set_fiscal_year(self):
+        for statement in self:
+            if statement.date_range_ids:
+                date = min([x.date_start for x in statement.date_range_ids])
+                statement.update({'fiscal_year': datetime.strptime(date, DEFAULT_SERVER_DATE_FORMAT).year})
 
     @api.multi
     def _write(self, vals):

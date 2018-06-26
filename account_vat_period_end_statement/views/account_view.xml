@@ -11,19 +11,28 @@
             <field name="arch" type="xml">
                 <form string="Vat statement">
                     <group>
-                        <field name="journal_id"   widget="selection" select="1"/>
-                        <field name="date"  select="1" />
-                        <!-- TODO check if it's manageable
-                        <button name="open_chart_of_taxes" string="View chart of taxes for selected period" type="object"/>
-                        -->
-                        <field name="move_id"  select="1"/>
-                        <field name="payment_term_id"  select="1"/>
-                        <field name="authority_partner_id" domain="[('supplier', '=', True)]" contenxt="{'default_supplier': True}"/>
-                        <field name="authority_vat_account_id" />
-                        <field name="company_id" groups="base.group_multi_company"/>
-                        <field name="interest" />
-                    <field name="interest_percent"
-                        attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
+                        <group>
+                            <field name="journal_id"   widget="selection" select="1"/>
+                            <field name="date"  select="1" />
+                            <!-- TODO check if it's manageable
+                            <button name="open_chart_of_taxes" string="View chart of taxes for selected period" type="object"/>
+                            -->
+                            <field name="payment_term_id"  select="1"/>
+                            <field name="authority_partner_id" domain="[('supplier', '=', True)]" contenxt="{'default_supplier': True}"/>
+                            <field name="authority_vat_account_id" />
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="interest" />
+                            <field name="interest_percent"
+                                   attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"></button>
+                            <field name="state"  select="1"/>
+                            <field name="reconciled"/>
+                            <button name="create_move" states="draft" type="object" string="Create Move" colspan="2"/>
+                            <button name="statement_draft" type="object" states="confirmed,paid" string="Set to draft" colspan="2"/>
+                            <field name="move_id"  select="1"/>
+                        </group>
                     </group>
                     <notebook colspan="4">
                         <page string="Periods">
@@ -93,13 +102,6 @@
                                    </form>
                                 </field>
                             </group>
-                            <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"></button>
-                            <group>
-                                <field name="state"  select="1"/>
-                                <field name="reconciled"/>
-                            </group>
-                            <button name="create_move" states="draft" type="object" string="Create Move" colspan="2"/>
-                            <button name="statement_draft" type="object" states="confirmed,paid" string="Set to draft" colspan="2"/>
                         </page>
                         <page string="Tax Authority">
                             <group>
@@ -112,6 +114,7 @@
                         <page string="Print Options">
                             <group colspan="4" string="Page Number">
                                 <field name="fiscal_page_base"/>
+                                <field name="fiscal_year" reaquired="1"/>
                             </group>
                         </page>
                     </notebook>

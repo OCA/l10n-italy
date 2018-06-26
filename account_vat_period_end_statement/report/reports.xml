@@ -10,7 +10,7 @@
             name="account_vat_period_end_statement.vat_statement"
             file="account_vat_period_end_statement.vat_statement"
         />
-        <record id="account_vat_period_end_statement.report_vat_statement" model="ir.actions.report.xml">
+        <record id="account_vat_period_end_statement.report_vat_statement" model="ir.actions.report">
             <field name="paperformat_id"
             ref="l10n_it_account.l10n_it_account_a4_portrait"/>
        </record>
