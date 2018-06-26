@@ -263,7 +263,8 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             if statement.date_range_ids:
                 date = min([x.date_start for x in statement.date_range_ids])
-                statement.update({'fiscal_year': datetime.strptime(date, DEFAULT_SERVER_DATE_FORMAT).year})
+                statement.update({'fiscal_year': datetime.strptime(
+                    date, DEFAULT_SERVER_DATE_FORMAT).year})
 
     @api.multi
     def _write(self, vals):
