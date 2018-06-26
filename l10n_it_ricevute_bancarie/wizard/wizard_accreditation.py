@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
@@ -75,8 +74,7 @@ class RibaAccreditation(models.TransientModel):
         active_id = self.env.context.get('active_id') or False
         if not active_id:
             raise UserError(_('No active ID found'))
-        self.env['riba.distinta'].browse(active_id).signal_workflow(
-            'accredited')
+        self.env['riba.distinta'].browse(active_id).state = 'accredited'
         return {'type': 'ir.actions.act_window_close'}
 
     def create_move(self):
@@ -123,9 +121,17 @@ class RibaAccreditation(models.TransientModel):
                 }),)
 
         move = move_model.create(move_vals)
-        distinta.write({'accreditation_move_id': move.id})
-        distinta_model.browse(active_id).signal_workflow(
-            'accredited')
+        vals = {
+            'accreditation_move_id': move.id,
+            'state': 'accredited',
+        }
+        if not distinta.date_accreditation:
+            vals.update({'date_accreditation': fields.Date.context_today(self)})
+        distinta.update(vals)
+
+        for line in distinta.line_ids:
+            line.state = 'accredited'
+
         return {
             'name': _('Accreditation Entry'),
             'view_type': 'form',

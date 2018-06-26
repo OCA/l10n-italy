@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
-# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
+# Copyright (C) 2012-2018 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api, _
@@ -35,6 +34,16 @@ class ResPartnerBankAdd(models.Model):
     codice_sia = fields.Char(
         "SIA Code", size=5,
         help="Identification Code of the Company in the System Interbank")
+
+
+class AccountMove(models.Model):
+    _inherit = 'account.move'
+    riba_accredited_ids = fields.One2many(
+        'riba.distinta', 'accreditation_move_id', 'Distinte RiBa accredited',
+        readonly=True)
+    riba_unsolved_ids = fields.One2many(
+        'riba.distinta.line', 'unsolved_move_id', 'Distinte RiBa unsolved',
+        readonly=True)
 
 
 # se distinta_line_ids == None allora non è stata emessa
@@ -88,7 +97,7 @@ class AccountMoveLine(models.Model):
                 if riba_line.state in ['confirmed', 'accredited']:
                     if riba_line.test_reconciled():
                         riba_line.state = 'paid'
-                        riba_line.distinta_id.signal_workflow('paid')
+                        riba_line.distinta_id.state = 'paid'
 
     @api.multi
     def reconcile(
@@ -236,6 +245,7 @@ class AccountInvoice(models.Model):
                         ))
         super(AccountInvoice, self).action_cancel()
 
+    @api.multi
     def copy(self, default=None):
         self.ensure_one()
         # Delete Due Cost Line of invoice when copying
@@ -272,10 +282,10 @@ class AccountFullReconcile(models.Model):
                 if not riba_line.test_reconciled():
                     if riba_line.distinta_id.accreditation_move_id:
                         riba_line.state = 'accredited'
-                        riba_line.distinta_id.signal_workflow('accredited')
+                        riba_line.distinta_id.state = 'accredited'
                     else:
                         riba_line.state = 'confirmed'
-                        riba_line.distinta_id.signal_workflow('accepted')
+                        riba_line.distinta_id.state = 'accepted'
 
     @api.multi
     def unlink(self):
