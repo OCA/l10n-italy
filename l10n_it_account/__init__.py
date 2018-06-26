@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010 OpenERP Italian Community
 # (<http://www.openerp-italia.org>).
 # Copyright 2014 Associazione Odoo Italia
