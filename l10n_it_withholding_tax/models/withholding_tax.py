@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
-from odoo import netsvc
 
 
 class WithholdingTax(models.Model):
@@ -136,8 +134,7 @@ class WithholdingTaxRate(models.Model):
                     self.id))
             if self.env.cr.fetchall():
                 raise ValidationError(
-                    _('Error! You cannot have 2 pricelist versions that \
-                    overlap!'))
+                    _('Error! You cannot have 2 rates that overlap!'))
 
     withholding_tax_id = fields.Many2one('withholding.tax',
                                          string='Withholding Tax',
@@ -345,26 +342,12 @@ class WithholdingTaxMove(models.Model):
 
     @api.multi
     def action_paid(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(self.env.uid, self._name, pt.id, 'paid',
-                                    self.env.cr)
-
-    @api.multi
-    def action_set_to_draft(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(self.env.uid, self._name, pt.id, 'cancel',
-                                    self.env.cr)
-
-    @api.multi
-    def move_paid(self):
         for move in self:
             if move.state in ['due']:
                 move.write({'state': 'paid'})
 
     @api.multi
-    def move_set_due(self):
+    def action_set_to_draft(self):
         for move in self:
             if move.state in ['paid']:
                 move.write({'state': 'due'})
