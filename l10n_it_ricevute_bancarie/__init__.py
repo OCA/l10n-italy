@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016 Andrea Cometa (<http://www.andreacometa.it>)
 # © 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 # © 2012 Domsense srl (<http://www.domsense.com>)

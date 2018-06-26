@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
 
-    <record model="ir.ui.view" id="account_config_view_service_due_cost">
+    <!-- TODO: record model="ir.ui.view" id="account_config_view_service_due_cost">
         <field name="name">account.config.view.service.due.cost</field>
         <field name="model">account.config.settings</field>
         <field name="inherit_id" ref="account.view_account_config_settings"/>
@@ -20,8 +19,32 @@
                 </group>
             </xpath>
         </field>
-    </record>
-    
+    </record-->
+    <record id="view_account_config_settings_riba" model="ir.ui.view">
+        <field name="name">view_account_config_settings_riba</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div id="eu_service" position="after">
+                <div class="col-xs-12 col-md-6 o_setting_box"
+                     title="Ri.Ba. Config">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <label for="due_cost_service_id"/>
+                        <span class="fa fa-lg" title="Ri.Ba. Due Cost Service account"/>
+                        <div class="text-muted">
+                           Ri.Ba. due cost service account
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label string="Account" for="due_cost_service_id" class="col-md-3 o_light_label"/>
+                                <field name="due_cost_service_id"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</data>
+        </field>
+    </record>
 </odoo>
