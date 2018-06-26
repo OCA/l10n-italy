@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
@@ -8,3 +7,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import account
+from . import bank_statement

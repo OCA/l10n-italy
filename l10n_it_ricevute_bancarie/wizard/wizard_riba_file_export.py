@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2011-2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group

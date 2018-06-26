@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
@@ -95,7 +94,7 @@ class RibaUnsolved(models.TransientModel):
         line_model = self.env['riba.distinta.line']
         line = line_model.browse(active_id)
         line.state = 'unsolved'
-        line.distinta_id.signal_workflow('unsolved')
+        line.distinta_id.state = 'unsolved'
         return {'type': 'ir.actions.act_window_close'}
 
     def create_move(self):
@@ -196,7 +195,7 @@ class RibaUnsolved(models.TransientModel):
         to_be_reconciled_lines = move_line_model.with_context(
             {'unsolved_reconciliation': True}).browse(to_be_reconciled)
         to_be_reconciled_lines.reconcile()
-        distinta_line.distinta_id.signal_workflow('unsolved')
+        distinta_line.distinta_id.state = 'unsolved'
         return {
             'name': _('Unsolved Entry'),
             'view_type': 'form',
