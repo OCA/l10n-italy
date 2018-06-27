@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015  Davide Corio <davide.corio@abstract.it>
 # Copyright 2015  Lorenzo Battistini - Agile Business Group
 # Copyright 2016  Alessio Gerace - Agile Business Group
@@ -16,7 +15,7 @@ class ResCompany(models.Model):
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
 
     sp_account_id = fields.Many2one(
         related='company_id.sp_account_id',
