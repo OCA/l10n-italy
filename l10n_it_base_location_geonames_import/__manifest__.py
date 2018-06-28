@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
@@ -21,7 +20,7 @@
 
 {
     'name': 'Base Location Provinces Import',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'summary': 'Import base_location entries (provinces) from Geonames',
