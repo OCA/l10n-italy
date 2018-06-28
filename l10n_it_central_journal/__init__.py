@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Author: Gianmarco Conte - Dinamiche Aziendali Srl
 # Copyright 2018
 # Dinamiche Aziendali Srl <www.dinamicheaziendali.it>
