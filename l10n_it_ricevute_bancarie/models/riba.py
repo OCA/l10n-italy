@@ -311,7 +311,7 @@ class RibaListLine(models.Model):
         'account.move.line', compute='_compute_lines', string='Payments')
     type = fields.Char(
         relation='distinta_id.type', size=32, string='Type', readonly=True)
-    
+
     @api.multi
     def confirm(self):
         move_model = self.env['account.move']
