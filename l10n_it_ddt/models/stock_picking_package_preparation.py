@@ -221,30 +221,27 @@ class StockPickingPackagePreparation(models.Model):
             prep.display_name = name
 
     @api.multi
-    # TODO: CHECK THIS DEPENDS (no children_ids in stock.quant.package for Odoo 11)
     @api.depends('package_id',
-                 # 'package_id.children_ids',
                  'package_id.quant_ids',
                  'picking_ids',
                  'picking_ids.move_lines',
-                 # 'picking_ids.move_lines.quant_ids',
+                 'picking_ids.move_lines.quantity_done',
                  'weight_manual')
     def _compute_weight(self):
         super(StockPickingPackagePreparation, self)._compute_weight()
         for prep in self:
             if prep.weight_manual:
                 prep.weight = prep.weight_manual
-            # TODO: CHECK THIS PART OF METHOD (no quant_ids in stock.move for Odoo 11)
-            # elif not prep.package_id:
-            #     quants = self.env['stock.quant']
-            #     for picking in prep.picking_ids:
-            #         for line in picking.move_lines:
-            #             for quant in line.quant_ids:
-            #                 if quant.qty >= 0:
-            #                     quants |= quant
-            #     weight = sum(l.product_id.weight * l.qty for l in quants)
-            #     prep.net_weight = weight
-            #     prep.weight = weight
+            elif not prep.package_id:
+                stock_moves = []
+                for picking in prep.picking_ids:
+                    for move in picking.move_lines:
+                        if move.quantity_done > 0:
+                            stock_moves.append(move)
+                weight = sum(sm.product_id.weight * sm.quantity_done
+                             for sm in stock_moves)
+                prep.net_weight = weight
+                prep.weight = weight
 
     def _get_sale_order_ref(self):
         """
