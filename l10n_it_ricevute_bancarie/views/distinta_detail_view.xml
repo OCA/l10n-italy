@@ -10,6 +10,7 @@
             <field name="model">riba.distinta.line</field>
             <field name="arch" type="xml">
                 <search string="Dettaglio Distinte Ri.Ba.">
+                    <filter string="Unsolved" domain="[('state', '=', 'unsolved')]"/>
                     <field name="partner_id"></field>
                     <field name="bank_id"></field>
                     <field name="distinta_id"></field>
@@ -52,7 +53,7 @@
             <field name="res_model">riba.distinta.line</field>
             <field name="src_model">riba.distinta.line</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_dettaglio_distinta_riba_filtri"/>
         </record>
         
