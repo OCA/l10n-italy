@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 # @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
@@ -126,6 +125,9 @@ class StockPickingPackagePreparation(models.Model):
     check_if_picking_done = fields.Boolean(
         compute='_compute_check_if_picking_done',
         )
+    date_transport_start = fields.Datetime(
+        string="Transport Start"
+    )
 
     @api.multi
     @api.depends('picking_ids',
@@ -207,40 +209,42 @@ class StockPickingPackagePreparation(models.Model):
     )
     def _compute_clean_display_name(self):
         for prep in self:
-            name = u''
+            name = ''
             if prep.name:
                 name = prep.name
             if prep.ddt_number and prep.name:
-                name = u'[%s] %s' % (prep.name, prep.ddt_number)
+                name = '[%s] %s' % (prep.name, prep.ddt_number)
             if prep.ddt_number and not prep.name:
                 name = prep.ddt_number
             if not name:
-                name = u'%s - %s' % (prep.partner_id.name, prep.date)
+                name = '%s - %s' % (prep.partner_id.name, prep.date)
             prep.display_name = name
 
     @api.multi
+    # TODO: CHECK THIS DEPENDS (no children_ids in stock.quant.package for Odoo 11)
     @api.depends('package_id',
-                 'package_id.children_ids',
+                 # 'package_id.children_ids',
                  'package_id.quant_ids',
                  'picking_ids',
                  'picking_ids.move_lines',
-                 'picking_ids.move_lines.quant_ids',
+                 # 'picking_ids.move_lines.quant_ids',
                  'weight_manual')
     def _compute_weight(self):
         super(StockPickingPackagePreparation, self)._compute_weight()
         for prep in self:
             if prep.weight_manual:
                 prep.weight = prep.weight_manual
-            elif not prep.package_id:
-                quants = self.env['stock.quant']
-                for picking in prep.picking_ids:
-                    for line in picking.move_lines:
-                        for quant in line.quant_ids:
-                            if quant.qty >= 0:
-                                quants |= quant
-                weight = sum(l.product_id.weight * l.qty for l in quants)
-                prep.net_weight = weight
-                prep.weight = weight
+            # TODO: CHECK THIS PART OF METHOD (no quant_ids in stock.move for Odoo 11)
+            # elif not prep.package_id:
+            #     quants = self.env['stock.quant']
+            #     for picking in prep.picking_ids:
+            #         for line in picking.move_lines:
+            #             for quant in line.quant_ids:
+            #                 if quant.qty >= 0:
+            #                     quants |= quant
+            #     weight = sum(l.product_id.weight * l.qty for l in quants)
+            #     prep.net_weight = weight
+            #     prep.weight = weight
 
     def _get_sale_order_ref(self):
         """
@@ -249,8 +253,8 @@ class StockPickingPackagePreparation(models.Model):
         sale_order = False
         for picking in self.picking_ids:
             for sm in picking.move_lines:
-                if sm.procurement_id and sm.procurement_id.sale_line_id:
-                    sale_order = sm.procurement_id.sale_line_id.order_id
+                if sm.sale_line_id:
+                    sale_order = sm.sale_line_id.order_id
                     return sale_order
         return sale_order
 
@@ -395,7 +399,7 @@ class StockPickingPackagePreparation(models.Model):
         if not invoices:
             raise UserError(_('There is no invoicable line.'))
 
-        for invoice in invoices.values():
+        for invoice in list(invoices.values()):
             if not invoice.name:
                 invoice.write({
                     'name': invoice.origin
@@ -419,7 +423,7 @@ class StockPickingPackagePreparation(models.Model):
                 values={
                     'self': invoice, 'origin': references[invoice]},
                 subtype_id=self.env.ref('mail.mt_note').id)
-        return [inv.id for inv in invoices.values()]
+        return [inv.id for inv in list(invoices.values())]
 
     @api.multi
     def unlink(self):
@@ -430,13 +434,18 @@ class StockPickingPackagePreparation(models.Model):
                         d=ddt.ddt_number)))
         return super(StockPickingPackagePreparation, self).unlink()
 
+    def get_date_for_ddt_report(self):
+        date = datetime.strptime(self.date, '%Y-%m-%d %H:%M:%S')
+        date_str = datetime.strftime(date, '%d/%m/%Y')
+        return date_str
+
 
 class StockPickingPackagePreparationLine(models.Model):
 
     _inherit = 'stock.picking.package.preparation.line'
 
     sale_line_id = fields.Many2one(
-        related='move_id.procurement_id.sale_line_id',
+        related='move_id.move_id.sale_line_id',
         string='Sale order line',
         store=True, readonly=True)
     price_unit = fields.Float('Unit Price', digits=dp.get_precision(
@@ -484,7 +493,7 @@ class StockPickingPackagePreparationLine(models.Model):
                     self.product_id, rule_id, self.product_uom_qty,
                     self.product_uom_id, order.pricelist_id.id)
                 datas = self._prepare_price_discount(new_list_price, rule_id)
-                for key in datas.keys():
+                for key in list(datas.keys()):
                     setattr(self, key, datas[key])
 
     @api.model
@@ -509,13 +518,13 @@ class StockPickingPackagePreparationLine(models.Model):
         """
         Add values used for invoice creation
         """
-        lines = super(StockPickingPackagePreparationLine, self).\
+        lines = super(StockPickingPackagePreparationLine, self). \
             _prepare_lines_from_pickings(picking_ids)
         for line in lines:
             sale_line = False
             if line['move_id']:
                 move = self.env['stock.move'].browse(line['move_id'])
-                sale_line = move.procurement_id.sale_line_id or False
+                sale_line = move.sale_line_id or False
             if sale_line:
                 line['price_unit'] = sale_line.price_unit or 0
                 line['discount'] = sale_line.discount or 0
@@ -615,19 +624,19 @@ class StockPickingPackagePreparationLine(models.Model):
                 self.env['account.invoice.line'].with_context(
                     skip_update_line_ids=True).create(vals)
 
-    def quantity_by_lot(self):
-        res = {}
-        for quant in self.move_id.quant_ids:
-            if quant.lot_id:
-                if quant.location_id.id == self.move_id.location_dest_id.id:
-                    if quant.lot_id not in res:
-                        res[quant.lot_id] = quant.qty
-                    else:
-                        res[quant.lot_id] += quant.qty
-        for lot in res:
-            if lot.product_id.tracking == 'lot':
-                res[lot] = formatLang(self.env, res[lot])
-            else:
-                # If not tracking by lots, quantity is not relevant
-                res[lot] = False
-        return res
+    # def quantity_by_lot(self):
+    #     res = {}
+    #     for quant in self.move_id.quant_ids:
+    #         if quant.lot_id:
+    #             if quant.location_id.id == self.move_id.location_dest_id.id:
+    #                 if quant.lot_id not in res:
+    #                     res[quant.lot_id] = quant.qty
+    #                 else:
+    #                     res[quant.lot_id] += quant.qty
+    #     for lot in res:
+    #         if lot.product_id.tracking == 'lot':
+    #             res[lot] = formatLang(self.env, res[lot])
+    #         else:
+    #             # If not tracking by lots, quantity is not relevant
+    #             res[lot] = False
+    #     return res

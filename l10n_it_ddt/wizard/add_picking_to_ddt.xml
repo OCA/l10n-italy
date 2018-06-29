@@ -21,12 +21,14 @@
             <field name="name">Add Pickings to DDT</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">add.pickings.to.ddt</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_add_pickings_to_ddt"/>
             <field name="target">new</field>
         </record>
 
+    <!--
         <record model="ir.values" id="add_pickingd_to_ddt">
             <field name="model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation" />
             <field name="name">Add Pickings to DDT</field>
@@ -35,5 +37,6 @@
             <field name="key">action</field>
             <field name="model">stock.picking</field>
         </record>
+    -->
 
 </odoo>
