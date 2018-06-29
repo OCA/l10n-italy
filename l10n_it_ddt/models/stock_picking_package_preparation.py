@@ -580,10 +580,10 @@ class StockPickingPackagePreparationLine(models.Model):
                 account = fpos.map_account(account)
             res['account_id'] = account.id
 
-            if self.sale_line_id.order_id.project_id:
+            if self.sale_line_id.order_id.analytic_account_id:
                 res[
                     'account_analytic_id'
-                ] = self.sale_line_id.order_id.project_id.id
+                ] = self.sale_line_id.order_id.analytic_account_id.id
             if self.sale_line_id.analytic_tag_ids:
                 res['analytic_tag_ids'] = [
                     (6, 0, self.sale_line_id.analytic_tag_ids.ids)
