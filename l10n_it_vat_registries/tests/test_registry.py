@@ -10,7 +10,7 @@ class TestRegistry(AccountingTestCase):
 
     def test_invoice_and_report(self):
         self.journal = self.env['account.journal'].search(
-            [('type', '=', 'purchase')])[0]
+            [('type', '=', 'sale')])[0]
         self.ova = self.env['account.account'].search([
             (
                 'user_type_id', '=',
@@ -21,6 +21,11 @@ class TestRegistry(AccountingTestCase):
             'amount': 10.0,
             'amount_type': 'fixed',
             'account_id': self.ova.id,
+        })
+        tax_registry = self.env['account.tax.registry'].create({
+            'name': 'Sales',
+            'layout_type': 'customer',
+            'journal_ids': [(6, 0, [self.journal.id])],
         })
         invoice_account = self.env['account.account'].search([
             (
@@ -56,10 +61,11 @@ class TestRegistry(AccountingTestCase):
         wizard = self.env['wizard.registro.iva'].create({
             'from_date': fields.Date.today(),
             'to_date': fields.Date.today(),
+            'tax_registry_id': tax_registry.id,
             'layout_type': 'supplier',
-            'journal_ids': [(6, 0, [self.journal.id])],
             'fiscal_page_base': 0,
         })
+        wizard.load_journal_ids()
         res = wizard.print_registro()
         html = self.env['report'].get_html(
             res['data']['ids'], 'l10n_it_vat_registries.report_registro_iva',

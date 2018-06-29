@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_fiscalcode
-# 
+#
 # Translators:
 # Andrea Gallina <4everamd@gmail.com>, 2016
 # Andrea Gallina <4everamd@gmail.com>, 2016
@@ -15,11 +15,12 @@ msgstr ""
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
 "PO-Revision-Date: 2016-12-17 15:12+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_fiscalcode
@@ -95,7 +96,10 @@ msgid ""
 "Existing fiscal code %(partner_fiscalcode)s is different from the computed "
 "one (%(compute)s). If you want to use the computed one, remove the existing "
 "onepartner_fiscalcode"
-msgstr "Il codice fiscale esistente %(partner_fiscalcode)s risulta differente da quello calcolato (%(compute)s). Se si vuole usare il valore calcolato, rimuovere prima quello esistente"
+msgstr ""
+"Il codice fiscale esistente %(partner_fiscalcode)s risulta differente da "
+"quello calcolato (%(compute)s). Se si vuole usare il valore calcolato, "
+"rimuovere prima quello esistente"
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
@@ -126,7 +130,9 @@ msgstr "ID"
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_individual
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_individual
 msgid "If checked the C.F. is referred to a Individual Person"
-msgstr "Se selezionato il Cofice Fiscale farà riferimento a quello di una Persona Fisica"
+msgstr ""
+"Se selezionato il Cofice Fiscale farà riferimento a quello di una Persona "
+"Fisica"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_individual

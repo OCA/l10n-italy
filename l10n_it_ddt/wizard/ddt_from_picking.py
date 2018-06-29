@@ -1,21 +1,16 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
 #    Author: Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+#    Author: Gianmarco Conte <gconte@dinamicheaziendali.it>
+#    Author: Gabriele Baldessari <gabriele.baldessari@abstract-technology.com>
 #    Copyright (C) Francesco Apruzzese
 #    Copyright (C) 2014-2015 Agile Business Group (http://www.agilebg.com)
-#
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
-
 
 from odoo import fields, models, api, _
 from odoo.exceptions import Warning as UserError
 
 
 class DdTFromPickings(models.TransientModel):
-
     _name = "ddt.from.pickings"
 
     def _get_picking_ids(self):
@@ -31,8 +26,9 @@ class DdTFromPickings(models.TransientModel):
             'carriage_condition_id': False,
             'goods_description_id': False,
             'transportation_reason_id': False,
-            'transportation_method_id': False
-            }
+            'transportation_method_id': False,
+        }
+        type_list = []
         partner = False
         for picking in self.picking_ids:
             # check if picking is already linked to a DDT
@@ -53,7 +49,19 @@ class DdTFromPickings(models.TransientModel):
             else:
                 values['partner_shipping_id'] = (
                     picking.location_dest_id.partner_id.id)
+            # get ddt type from the first picking
+            if picking.ddt_type:
+                type_list.append(picking.ddt_type.id)
+        # check if selected picking have different destinations
+        if len(self.picking_ids.mapped('location_dest_id')) > 1:
+            raise UserError(_("Selected pickings have different destinations"))
+        if len(type_list) > 0:
+            values.update(
+                {'ddt_type_id': type_list[0]})
         parcels = 0
+        # for each of the following fields (carriage condition id,
+        # goods description id, transportation id, transportation method)
+        # get values from sale id, else from partner, else from ddt type
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.parcels:
                 if parcels and parcels != picking.sale_id.parcels:
@@ -65,13 +73,25 @@ class DdTFromPickings(models.TransientModel):
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.carriage_condition_id:
                 if carriage_condition_id and (
-                        carriage_condition_id != (
-                            picking.sale_id.carriage_condition_id)):
+                    carriage_condition_id != (
+                        picking.sale_id.carriage_condition_id)):
                     raise UserError(
                         _("Selected Pickings have"
                           " different carriage condition"))
                 carriage_condition_id = (
                     picking.sale_id.carriage_condition_id)
+                values['carriage_condition_id'] = (
+                    carriage_condition_id.id)
+            elif picking.partner_id and \
+                    picking.partner_id.carriage_condition_id:
+                carriage_condition_id = (
+                    picking.partner_id.carriage_condition_id)
+                values['carriage_condition_id'] = (
+                    carriage_condition_id.id)
+            elif picking.ddt_type and \
+                    picking.ddt_type.default_carriage_condition_id:
+                carriage_condition_id = (
+                    picking.ddt_type.default_carriage_condition_id)
                 values['carriage_condition_id'] = (
                     carriage_condition_id.id)
         goods_description_id = False
@@ -86,18 +106,42 @@ class DdTFromPickings(models.TransientModel):
                 goods_description_id = picking.sale_id.goods_description_id
                 values['goods_description_id'] = (
                     goods_description_id.id)
+            elif picking.partner_id and \
+                    picking.partner_id.goods_description_id:
+                goods_description_id = (
+                    picking.partner_id.goods_description_id)
+                values['goods_description_id'] = (
+                    goods_description_id.id)
+            elif picking.ddt_type and \
+                    picking.ddt_type.default_goods_description_id:
+                goods_description_id = (
+                    picking.ddt_type.default_goods_description_id)
+                values['goods_description_id'] = (
+                    goods_description_id.id)
         transportation_reason_id = False
         for picking in self.picking_ids:
             if picking.sale_id and (
                     picking.sale_id.transportation_reason_id):
                 if transportation_reason_id and (
-                        transportation_reason_id != (
-                            picking.sale_id.transportation_reason_id)):
+                    transportation_reason_id != (
+                        picking.sale_id.transportation_reason_id)):
                     raise UserError(
                         _("Selected Pickings have"
-                            " different transportation reason"))
+                          " different transportation reason"))
                 transportation_reason_id = (
                     picking.sale_id.transportation_reason_id)
+                values['transportation_reason_id'] = (
+                    transportation_reason_id.id)
+            elif picking.partner_id and \
+                    picking.partner_id.transportation_reason_id:
+                transportation_reason_id = (
+                    picking.partner_id.transportation_reason_id)
+                values['transportation_reason_id'] = (
+                    transportation_reason_id.id)
+            elif picking.ddt_type and \
+                    picking.ddt_type.default_transportation_reason_id:
+                transportation_reason_id = (
+                    picking.ddt_type.default_transportation_reason_id)
                 values['transportation_reason_id'] = (
                     transportation_reason_id.id)
         transportation_method_id = False
@@ -114,10 +158,27 @@ class DdTFromPickings(models.TransientModel):
                     picking.sale_id.transportation_method_id)
                 values['transportation_method_id'] = (
                     transportation_method_id.id)
+            elif picking.partner_id \
+                    and picking.partner_id.transportation_method_id:
+                transportation_method_id = (
+                    picking.partner_id.transportation_method_id)
+                values['transportation_method_id'] = (
+                    transportation_method_id.id)
+            elif picking.ddt_type and \
+                    picking.ddt_type.default_transportation_method_id:
+                transportation_method_id = (
+                    picking.ddt_type.default_transportation_method_id)
+                values['transportation_method_id'] = (
+                    transportation_method_id.id)
+
+        if len(self.picking_ids) == 1 and self.picking_ids[0].sale_id:
+            # otherwise weights and volume should be different
+            values['weight_manual'] = self.picking_ids[0].sale_id.weight
+            values['gross_weight'] = self.picking_ids[0].sale_id.gross_weight
+            values['volume'] = self.picking_ids[0].sale_id.volume
+
         picking_ids = [p.id for p in self.picking_ids]
-        values.update({
-            'picking_ids': [(6, 0, picking_ids)]
-            })
+        values.update({'picking_ids': [(6, 0, picking_ids)]})
         ddt = self.env['stock.picking.package.preparation'].create(values)
         # ----- Show new ddt
         ir_model_data = self.env['ir.model.data']
@@ -139,3 +200,11 @@ class DdTFromPickings(models.TransientModel):
             'views': [(form_id, 'form'), (tree_id, 'tree')],
             'type': 'ir.actions.act_window',
         }
+
+
+class StockPicking(models.Model):
+    _inherit = "stock.picking"
+
+    ddt_type = fields.Many2one(
+        'stock.ddt.type',
+        related='picking_type_id.default_location_src_id.type_ddt_id')

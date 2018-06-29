@@ -1,22 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_vat_registries
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-12 02:40+0000\n"
-"PO-Revision-Date: 2017-05-12 02:40+0000\n"
+"POT-Creation-Date: 2018-03-02 01:46+0000\n"
+"PO-Revision-Date: 2018-03-02 01:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
@@ -112,7 +113,7 @@ msgstr "Izključi iz DDV registrov"
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_from_date
 msgid "From date"
-msgstr ""
+msgstr "Od datuma"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_id
@@ -130,11 +131,6 @@ msgstr "Obdavčljivo"
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Imposta"
 msgstr "Davek"
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_cee_type
-msgid "Include in VAT register"
-msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -191,12 +187,17 @@ msgid "Layout"
 msgstr "Postavitev"
 
 #. module: l10n_it_vat_registries
+#: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Load Journals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_message
 msgid "Message"
 msgstr "Sporočilo"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:80
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:75
 #, python-format
 msgid "Move line %s has too many base taxes"
 msgstr ""
@@ -217,20 +218,24 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:58
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:56
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:69
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "V trenutnem izboru ni najdenih dokumentov"
 
 #. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:65
+#, python-format
+msgid ""
+"No journals found in the current selection.\n"
+"Please load them before to retry!"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "P.IVA"
 msgstr "ID za DDV"
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_parent_tax_ids
-msgid "Parent Taxes"
-msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
@@ -243,19 +248,9 @@ msgid "Prints only totals"
 msgstr "Natisni le skupne zneske"
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Purchase"
-msgstr ""
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "RAGIONE SOCIALE"
 msgstr "NAZIV DRUŽBE"
-
-#. module: l10n_it_vat_registries
-#: selection:account.tax,cee_type:0
-msgid "Sale"
-msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_journal_ids
@@ -291,7 +286,7 @@ msgstr "Davki"
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_to_date
 msgid "To date"
-msgstr ""
+msgstr "Do zdaj"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -302,13 +297,6 @@ msgstr "Splošni skupni znesek EUR"
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Totali"
 msgstr "Skupni zneski"
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_tax_cee_type
-msgid ""
-"Use in the case of tax with 'VAT integration'. This specifies the VAT "
-"register (sales / purchases) where the tax must be computed."
-msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_registro_iva

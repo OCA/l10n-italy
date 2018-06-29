@@ -6,7 +6,16 @@
 Base Bank ABI/CAB codes
 =======================
 
+English
+-------
+
 This module add to res.bank the ABI/CAB data (bank identification numbers).
+
+
+Italian
+-------
+
+Questo modulo aggiunge a res.bank i codici ABI/CAB (numeri di identificazione della banca)
 
 Credits
 =======

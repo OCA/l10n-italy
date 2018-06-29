@@ -11,6 +11,7 @@ class TestFiscalCode(TransactionCase):
     def setUp(self):
         super(TestFiscalCode, self).setUp()
         self.partner = self.env.ref('base.res_partner_2')
+        self.partner_address = self.env.ref('base.res_partner_address_31')
 
     def test_fiscalcode_compute(self):
         wizard = self.env['wizard.compute.fc'].with_context(
@@ -25,3 +26,4 @@ class TestFiscalCode(TransactionCase):
         # ---- Compute FiscalCode
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04H501X')
+        self.assertEqual(self.partner_address.fiscalcode, 'RSSMRA84H04H501X')

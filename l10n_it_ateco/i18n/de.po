@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_it_ateco
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-01 19:47+0000\n"
 "PO-Revision-Date: 2016-10-24 13:00+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ateco
@@ -36,6 +37,7 @@ msgstr ""
 #. module: l10n_it_ateco
 #: model:ir.actions.act_window,name:l10n_it_ateco.action_ateco_category_search
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner_ateco_category_ids
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_users_ateco_category_ids
 #: model:ir.ui.menu,name:l10n_it_ateco.menu_ateco_category_form
 #: model:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_tree
 msgid "Ateco categories"

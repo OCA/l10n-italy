@@ -1,5 +1,6 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License: LGPL-3
 
 Italian Localization - FatturaPA
 ================================
@@ -13,7 +14,7 @@ See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
 Installation
 ============
 
-This module requires PyXB 1.2.4
+This module requires PyXB 1.2.5
 http://pyxb.sourceforge.net/
 
 

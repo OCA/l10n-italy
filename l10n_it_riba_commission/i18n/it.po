@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_riba_commission
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+# Paolo Valier, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-13 10:36+0000\n"
+"PO-Revision-Date: 2018-04-13 10:36+0000\n"
+"Last-Translator: Paolo Valier, 2018\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_riba_commission
+#: model:ir.model,name:l10n_it_riba_commission.model_sale_commission
+msgid "Commission in sales"
+msgstr "Commissione in vendite"
+
+#. module: l10n_it_riba_commission
+#: model:ir.model.fields,help:l10n_it_riba_commission.field_sale_commission_only_paid_riba
+msgid "Include only paid RiBas"
+msgstr "Includi solo Ricevute Bancarie pagate"
+
+#. module: l10n_it_riba_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_commission.field_sale_commission_only_paid_riba
+msgid "Only paid riba"
+msgstr "Solo RiBa pagate"
+
+#. module: l10n_it_riba_commission
+#: model:ir.model,name:l10n_it_riba_commission.model_sale_commission_make_settle
+msgid "sale.commission.make.settle"
+msgstr "sale.commission.make.settle"

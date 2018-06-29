@@ -1,12 +1,13 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License: LGPL-3
 
 
 Italian Localization - FatturaPA - Emission
 ===========================================
 
-This module allows you to generate the fatturaPA XML file version 1.1
-http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
+This module allows you to generate the fatturaPA XML file version 1.2
+http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 to be sent to the Exchange System
 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
@@ -33,6 +34,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------

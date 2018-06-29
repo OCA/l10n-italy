@@ -24,7 +24,7 @@ thead {background: #F5F5F5;}
     text-align:left; vertical-align:text-top; padding:5px; font-weight: bold;
 }
 .right_without_line_bold {
-    text-align:right; vertical-align:text-top; padding:5px; font-weight: bold;
+    text-align:right; vertical-align:text-top; padding:5px; font-weight: bold; white-space: nowrap;
 }
 
 .first_th_row {

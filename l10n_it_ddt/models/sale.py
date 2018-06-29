@@ -43,6 +43,7 @@ class SaleOrder(models.Model):
         'res.partner', string='Carrier')
     parcels = fields.Integer('Parcels')
     weight = fields.Float(string="Weight")
+    gross_weight = fields.Float(string="Gross Weight")
     volume = fields.Float('Volume')
     ddt_ids = fields.Many2many(
         'stock.picking.package.preparation',
@@ -83,6 +84,7 @@ class SaleOrder(models.Model):
             'carrier_id': self.ddt_carrier_id.id,
             'parcels': self.parcels,
             'weight': self.weight,
+            'gross_weight': self.gross_weight,
             'volume': self.volume,
         })
         return vals
@@ -100,7 +102,8 @@ class SaleOrder(models.Model):
             self.transportation_method_id.id,
             'carrier_id': self.ddt_carrier_id.id,
             'parcels': self.parcels,
-            'weight': self.weight,
+            'weight_manual': self.weight,
+            'gross_weight': self.gross_weight,
             'volume': self.volume,
             'picking_ids': [(6, 0, picking_ids)],
         }

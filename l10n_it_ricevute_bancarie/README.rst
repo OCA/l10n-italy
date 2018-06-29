@@ -6,27 +6,36 @@
 Ricevute Bancarie
 =================
 
-Gestione delle Ricevute Bancarie
---------------------------------
+Configurazione
+--------------
 
 Nella configurazione delle Ri.Ba. è possibile specificare se si tratti di
-'salvo buon fine' o 'al dopo incasso'. I due tipi di Ri.Ba. hanno un flusso
-completamente diverso. In caso di 'al dopo incasso', nessuna registrazione
-verrà effettuata automaticamente e le fatture risulteranno pagate solo al
-momento dell'effettivo incasso.
+'salvo buon fine' o 'al dopo incasso', che hanno un flusso completamente diverso.
+
+ - Al dopo incasso: nessuna registrazione verrà effettuata automaticamente e le fatture risulteranno pagate solo al momento dell'effettivo incasso.
+ - Salvo buon fine: le registrazioni generate seguiranno la struttura descritta nel documento http://goo.gl/jpRhJp
 
 E' possibile specificare diverse configurazioni (dal menù
 configurazioni -> varie -> Ri.Ba.). Per ognuna, in caso di 'salvo buon fine',
 è necessario specificare almeno il sezionale ed il conto da
 utilizzare al momento dell'accettazione della distinta da parte della banca.
-
-Può essere necessario modificare in 'Receivable' il tipo dei conti che si
-desiderano utilizzare.
+Tale conto deve essere di tipo 'crediti' (ad esempio "Ri.Ba. all'incasso",
+eventualmente da creare).
 
 La configurazione relativa alla fase di accredito, verrà usata nel momento in
-cui la banca accredita l'importo della distinta. Mentre quella relativa
-all'insoluto verrà utilizzato in caso di
-mancato pagamento da parte del cliente.
+cui la banca accredita l'importo della distinta.
+E' possibile utilizzare un sezionale creato appositamente, ad esempio "accredito RiBa",
+ed un conto chiamato ad esempio "banche c/RIBA all'incasso", che non deve essere di tipo 'banca'.
+
+La configurazione relativa all'insoluto verrà utilizzata in caso di mancato pagamento da parte del cliente.
+Il conto può chiamarsi ad esempio "crediti insoluti".
+
+Nel caso si vogliano gestire anche le spese per ogni scadenza con ricevuta bancaria,
+si deve configurare un prodotto di tipo servizio e legarlo in
+Configurazione -> Contabilità -> Ri.Ba. Configurazione spese d'incasso -> Servizio spese d'incasso.
+
+Utilizzo
+--------
 
 Per utilizzare il meccanismo delle Ri.Ba. è necessario configurare un termine
 di pagamento di tipo 'Ri.Ba.'.
@@ -42,16 +51,6 @@ insoluta, annullata.
 Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
 contabili, le quali verranno riepilogate nel tab 'contabilità'.
 Questo tab è presente sia sulla distinta che sulle sue righe.
-
-Qui
-http://goo.gl/jpRhJp abbiamo un esempio delle tipiche registrazioni generate
-da un flusso 'salvo buon fine'.
-
-Configuration
-=============
-
-Nel caso si voglia gestire anche le spese per ogni scadenza con ricevuta bancaria,
-si deve configurare un prodotto di tipo servizio e legarlo in Configurazione -> Contabilità
 
 
 Usage
@@ -79,6 +78,9 @@ Contributors
 * Andrea Cometa <a.cometa@apuliasoftware.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Davide Corio <info@davidecorio.com>
+* Giacomo Grasso <giacomo.grasso@agilebg.com>
+* Gabriele Baldessari <gabriele.baldessari@gmail.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------

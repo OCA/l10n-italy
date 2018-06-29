@@ -40,7 +40,8 @@ class RibaConfiguration(models.Model):
         help="Journal used when Ri.Ba. amount is accredited by the bank")
     accreditation_account_id = fields.Many2one(
         'account.account', "Ri.Ba. bank account",
-        help='Account used when Ri.Ba. is accepted by the bank')
+        help='Account used when Ri.Ba. is accepted by the bank',
+        domain=[('internal_type', '!=', 'liquidity')])
     bank_account_id = fields.Many2one(
         'account.account', "Bank account",
         domain=[('internal_type', '=', 'liquidity')])
@@ -55,6 +56,9 @@ class RibaConfiguration(models.Model):
         domain=[('internal_type', '=', 'receivable')])
     protest_charge_account_id = fields.Many2one(
         'account.account', "Protest charge account")
+    settlement_journal_id = fields.Many2one(
+        'account.journal', "Settlement Journal",
+        help="Journal used when the clients finally pays the invoice to bank")
 
     def get_default_value_by_list(self, field_name):
         if not self.env.context.get('active_id', False):

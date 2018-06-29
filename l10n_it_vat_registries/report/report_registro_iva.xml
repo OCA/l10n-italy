@@ -31,7 +31,7 @@
                         </tr>
 
                         <t t-if="print_details > 0 ">
-                            <tr style="page-break-inside: avoid">
+                            <tr style="page-break-inside: avoid" name="vat_header_invoice">
                                 <th class="left_without_line">DATA REG.</th>
                                 <th class="left_without_line">NUM. REG.</th>
                                 <t t-if="registry_type != 'corrispettivi'">
@@ -44,7 +44,7 @@
                                 <th class="left_without_line"></th>
                                 <th class="right_without_line">TOTALE</th>
                             </tr>
-                            <tr style="page-break-inside: avoid">
+                            <tr style="page-break-inside: avoid" name="vat_header_tax">
                                 <t t-if="registry_type != 'corrispettivi'">
                                     <th class="left_with_line_bottom"></th>
                                     <th class="left_with_line_bottom"></th>
@@ -72,7 +72,7 @@
                                     <t t-set="line_class_left" t-value="left_without_line"/>
                                     <t t-set="line_class_right" t-value="right_without_line"/>
                                     <t t-if="line['index'] == 0">
-                                        <tr style="page-break-inside: avoid; border:1px solid #fff;" >
+                                        <tr style="page-break-inside: avoid; border:1px solid #fff;" name="vat_body_invoice">
                                             <!-- Data registrazione -->
                                             <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(move.date,date_format)"/></td>
                                             <!-- Numero registrazione -->
@@ -102,7 +102,7 @@
                                             <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(env, invoice_total(move))"/></td>
                                         </tr>
                                     </t>
-                                    <tr style="page-break-inside: avoid; ">
+                                    <tr style="page-break-inside: avoid; " name="vat_body_tax">
                                         <t t-if="registry_type != 'corrispettivi'">
                                             <td class="left_without_line"></td>
                                             <td class="left_without_line"></td>

@@ -51,10 +51,10 @@ Contributors
 * Giovanni Barzan <giovanni.barzan@gmail.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <onnis.roberto@gmail.com>
-* Franco Tampieri <franco.tampieri@agilebg.com>
+* Franco Tampieri <franco@tampieri.info>
 * Andrea Cometa <info@andreacometa.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
-
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------

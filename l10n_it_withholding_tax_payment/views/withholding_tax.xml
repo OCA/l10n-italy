@@ -1,0 +1,102 @@
+<odoo>
+        <!--
+        WITHHOLDING TAX MOVE (new fields)
+         -->
+        <record id="view_withholding_move_payment_move_tree" model="ir.ui.view">
+            <field name="name">withholding.move.payment.move.view.tree</field>
+            <field name="model">withholding.tax.move</field>
+            <field name="inherit_id" ref="l10n_it_withholding_tax.view_withholding_move_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="wt_move_payment_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_withholding_move_payment_move_form" model="ir.ui.view">
+            <field name="name">withholding.move.payment.move.view.form</field>
+            <field name="model">withholding.tax.move</field>
+            <field name="inherit_id" ref="l10n_it_withholding_tax.view_withholding_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_move_id']" position="after">
+                    <field name="wt_move_payment_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--
+        WITHHOLDING TAX MOVE PAYMENT
+         -->
+        <record id="view_withholding_move_payment_tree" model="ir.ui.view">
+            <field name="name">withholding.tax.move.payment.view.tree</field>
+            <field name="model">withholding.tax.move.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Withholding Move Payment">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="date_start"/>
+                    <field name="date_stop"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_withholding_move_payment_form" model="ir.ui.view">
+            <field name="name">withholding.tax.move.payment.view.form</field>
+            <field name="model">withholding.tax.move.payment</field>
+            <field name="arch" type="xml">
+                <form string="Withholding Tax Move Payment">
+                    <header>
+                        <button name="action_set_to_draft" states="confirmed" string="Set to Draft" type="object" />
+                        <button name="action_confirmed" states="draft" string="Confirm" type="object" />
+                        <button name="create_account_move" string="Create Account Move" type="object" 
+                            attrs="{'invisible': ['|', ('state', '!=', 'confirmed'), ('move_id', '!=', False)]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                    </header>
+                    <sheet string="Withholding Move Payment">
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                        </group>
+                        <newline/>
+                        <group>
+                            <group string="Period">
+                                <field name="date_start"/>
+                                <field name="date_stop"/>
+                            </group>
+                            <group string="Account Setting">
+                                <field name="date_payment"/>
+                                <field name="journal_id"/>
+                                <field name="account_id"/>
+                                <field name="move_id"/>
+                            </group>
+                        </group>
+                        <newline/>
+                        <group>
+                            <field name="line_ids" nolabel="1">
+                                <tree delete="false">
+                                    <field name="date"/>
+                                    <field name="partner_id"/>
+                                    <field name="withholding_tax_id"/>
+                                    <field name="amount" sum="Tot"/>
+                                </tree>
+                            </field>    
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_withholding_tax_move_payment" model="ir.actions.act_window">
+            <field name="name">Withhoulding Tax Move Payment</field>
+            <field name="res_model">withholding.tax.move.payment</field>
+            <field name="view_id" ref="view_withholding_move_payment_tree"/>
+        </record>
+
+        <menuitem id="menu_withholding_tax_move_payment" name="WT Move Payments" 
+            action="action_withholding_tax_move_payment" parent="l10n_it_withholding_tax.wt_main" sequence="20"/>
+
+</odoo>

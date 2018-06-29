@@ -12,7 +12,7 @@
                     <group>
                         <field name="name" />
                         <field name="type" />
-                        <field name="bank_id" />
+                        <field name="bank_id" domain="[('partner_id.ref_company_ids', 'in', [company_id])]"/>
                         <field name="company_id"  widget="selection" groups="base.group_multi_company"/>
                     </group>
                     <group string="Salvo buon fine" attrs="{'invisible': [('type','!=','sbf')]}" colspan="4" col="4">
@@ -28,6 +28,8 @@
                         <field name="unsolved_journal_id" />
                         <field name="overdue_effects_account_id" />
                         <field name="protest_charge_account_id" />
+                        <separator colspan="4" string="Settlement"/>
+                        <field name="settlement_journal_id" />
                     </group>
                 </form>
             </field>

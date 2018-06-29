@@ -9,6 +9,12 @@ from odoo import models, fields, api
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    @api.model
+    def _commercial_fields(self):
+        res = super(ResPartner, self)._commercial_fields()
+        res += ['fiscalcode']
+        return res
+
     @api.multi
     def check_fiscalcode(self):
         for partner in self:

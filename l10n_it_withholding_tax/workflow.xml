@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- WT move -->
+        <!-- Workflow definition -->
+
+        <record id="wkf_wt_move" model="workflow">
+            <field name="name">withholding.tax.move.wkf</field>
+            <field name="osv">withholding.tax.move</field>
+            <field name="on_create">True</field>
+        </record>
+
+
+        <record id="act_due" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_wt_move"/>
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+            <field name="action">
+            move_set_due()
+            </field>
+            <field name="flow_start">True</field>
+        </record>
+
+        <record id="act_paid" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_wt_move"/>
+            <field name="name">paid</field>
+            <field name="kind">function</field>
+            <field name="action">
+            move_paid()
+            </field>
+        </record>
+
+        <!-- transitions -->
+        <record id="rec_move_t1" model="workflow.transition">
+            <field name="act_from" ref="act_due"/>
+            <field name="act_to" ref="act_paid"/>
+            <field name="signal">paid</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="rec_move_t3" model="workflow.transition">
+            <field name="act_from" ref="act_paid"/>
+            <field name="act_to" ref="act_due"/>
+            <field name="signal">cancel</field>
+            <!--<field name="group_id" ref="group_relate_manager"/>-->
+        </record>
+
+</odoo>

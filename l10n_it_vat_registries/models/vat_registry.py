@@ -5,6 +5,8 @@
 from odoo import api, models
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
+from odoo.exceptions import Warning as UserError
+
 import time
 
 
@@ -16,11 +18,7 @@ class ReportRegistroIva(models.AbstractModel):
         # docids required by caller but not used
         # see addons/account/report/account_balance.py
 
-        lang_code = self._context.get('company_id',
-                                      self.env.user.company_id.partner_id.lang)
-        lang = self.env['res.lang']
-        lang_id = lang._lang_get(lang_code)
-        date_format = lang_id.date_format
+        date_format = data['form']['date_format']
 
         docargs = {
             'doc_ids': data['ids'],
@@ -57,26 +55,23 @@ class ReportRegistroIva(models.AbstractModel):
                                        time.strptime(my_date, '%Y-%m-%d'))
         return formatted_date or ''
 
-    def _get_tax_name(self, tax):
-        name = tax.name
-        if tax.parent_tax_ids and len(tax.parent_tax_ids) == 1:
-            name = tax.parent_tax_ids[0].name
-        return name
-
     def _get_invoice_from_move(self, move):
         return self.env['account.invoice'].search([
             ('move_id', '=', move.id)])
 
-    def _tax_amounts_by_tax_id(self, move, registry_type):
+    def _get_move_line(self, move, data):
+        return [move_line for move_line in move.line_ids]
+
+    def _tax_amounts_by_tax_id(self, move, move_lines, registry_type):
         res = {}
 
-        for move_line in move.line_ids:
+        for move_line in move_lines:
             set_cee_absolute_value = False
             if not(move_line.tax_line_id or move_line.tax_ids):
                 continue
 
             if move_line.tax_ids and len(move_line.tax_ids) != 1:
-                    raise Exception(
+                    raise UserError(
                         _("Move line %s has too many base taxes")
                         % move_line.name)
 
@@ -157,12 +152,17 @@ class ReportRegistroIva(models.AbstractModel):
         else:
             invoice_type = "FA"
 
+        move_lines = self._get_move_line(move, data)
+
         amounts_by_tax_id = self._tax_amounts_by_tax_id(
-            move, data['registry_type'])
+            move,
+            move_lines,
+            data['registry_type'])
+
         for tax_id in amounts_by_tax_id:
             tax = self.env['account.tax'].browse(tax_id)
             tax_item = {
-                'tax_code_name': self._get_tax_name(tax),
+                'tax_code_name': tax._get_tax_name(),
                 'base': amounts_by_tax_id[tax_id]['base'],
                 'tax': amounts_by_tax_id[tax_id]['tax'],
                 'index': index,
@@ -198,58 +198,8 @@ class ReportRegistroIva(models.AbstractModel):
 
     def _compute_totals_tax(self, tax, data):
         """
-
-        Args:
-            tax: The tax to compute the totals for
-
         Returns:
             A tuple: (tax_name, base, tax, deductible, undeductible)
 
         """
-        context = {
-            'from_date': data['from_date'],
-            'to_date': data['to_date'],
-            'vat_registry_journal_ids': data['journal_ids'],
-        }
-
-        tax = self.env['account.tax'].with_context(context).browse(tax.id)
-        tax_name = self._get_tax_name(tax)
-        if not tax.children_tax_ids:
-            return (
-                tax_name, abs(tax.base_balance), abs(tax.balance),
-                abs(tax.balance), 0
-            )
-        else:
-            base_balance = tax.base_balance
-
-            tax_balance = 0
-            deductible = 0
-            undeductible = 0
-            for child in tax.children_tax_ids:
-                child_balance = child.balance
-                if (
-                    (
-                        data['registry_type'] == 'customer' and
-                        child.cee_type == 'sale'
-                    ) or
-                    (
-                        data['registry_type'] == 'supplier' and
-                        child.cee_type == 'purchase'
-                    )
-                ):
-                    # Prendo la parte di competenza di ogni registro e lo
-                    # sommo sempre
-                    child_balance = abs(child_balance)
-
-                elif child.cee_type:
-                    continue
-
-                tax_balance += child_balance
-                if child.account_id:
-                    deductible += child_balance
-                else:
-                    undeductible += child_balance
-            return (
-                tax_name, abs(base_balance), abs(tax_balance), abs(deductible),
-                abs(undeductible)
-            )
+        return tax._compute_totals_tax(data)
