@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 # @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
