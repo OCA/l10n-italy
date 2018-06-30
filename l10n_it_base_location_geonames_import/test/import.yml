@@ -1,0 +1,28 @@
+-
+  I create the wizard
+-
+  !record {model: better.zip.geonames.import, id: import_wizard_1, view: base_location_geonames_import.better_zip_geonames_import_form}:
+    country_id: base.it
+-
+  I run the import
+-
+  !python {model: better.zip.geonames.import}: |
+    wzd = self.browse(ref('import_wizard_1'))
+    wzd.run_import()
+-
+  I check the data
+-
+  !python {model: res.better.zip}: |
+    state_model = self.env['res.country.state']
+    state_ids = state_model.search([
+        ('code', '=', 'GE'),
+        ('country_id', '=', ref('base.it')),
+        ])
+    assert len(state_ids) == 1, "There must be 1 GE"
+    zip_ids = self.search([
+        ('name', '=', '16017'),
+        ('city', '=', 'Isola Del Cantone'),
+        ('state_id', '=', state_ids[0].id),
+        ('country_id', '=', ref('base.it'))
+        ])
+    assert len(zip_ids) == 1, "There must be 1 'Isola Del Cantone'"
