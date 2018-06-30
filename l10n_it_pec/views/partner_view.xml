@@ -30,7 +30,7 @@
             <field name="email" position="after">
                 <field name="pec_mail"/>
             </field>
-            <xpath expr="//div[contains(@class, 'oe_kanban_details')]/ul" position="inside">
+            <xpath expr="//div[hasclass('oe_kanban_details')]/ul" position="inside">
                 <li t-if="record.pec_mail.raw_value">
                     <a t-attf-href="mailto:#{record.pec_mail.raw_value}"><field name="pec_mail"/></a><span> (PEC)</span>
                 </li>
