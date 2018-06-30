@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+         <record forcecreate="True" id="decimal_custom_dp1" model="decimal.precision">
+            <field name="name">Fringe Benefit cost km</field>
+            <field name="digits">4</field>
+        </record>
+
+    </data>
+</openerp>
