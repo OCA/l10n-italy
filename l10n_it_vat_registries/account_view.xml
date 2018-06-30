@@ -11,6 +11,18 @@
                 </field>
             </field>
         </record>
+        <record id="view_tax_cee_type" model="ir.ui.view">
+            <field name="name">account.tax.cee.type.form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"></field>
+            <field name="arch" type="xml">
+                <field name="child_depend" position="after">
+                    <field name="parent_id" invisible="1"/>
+                    <field name="cee_type" attrs="{'invisible': [('parent_id','=',False)]}"/>
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>
 
