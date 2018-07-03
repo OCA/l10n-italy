@@ -62,6 +62,11 @@ msgid "Accepted"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move
+msgid "Account Entry"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_account_id
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
 msgid "Account used when Ri.Ba. is accepted by the bank"
@@ -152,6 +157,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_bank_expense_account_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_bank_expense_account_id
 msgid "Bank Expenses account"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_bank_statement_line
+msgid "Bank Statement Line"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -352,6 +362,16 @@ msgid "Distinte Ri.Ba."
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_riba_accredited_ids
+msgid "Distinte RiBa accredited"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_riba_unsolved_ids
+msgid "Distinte RiBa unsolved"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: selection:riba.distinta,state:0
 #: selection:riba.distinta.line,state:0
@@ -530,7 +550,7 @@ msgid "Invoice entries"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:234
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:244
 #, python-format
 msgid "Invoice is linked to RI.BA. list nr {riba}"
 msgstr ""
@@ -940,7 +960,7 @@ msgid "Search Journal Items"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:157
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:167
 #, python-format
 msgid "Set a Service for Due Cost in Company Config"
 msgstr ""
@@ -1141,7 +1161,7 @@ msgid "riba.unsolved"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:188
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:198
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr ""
