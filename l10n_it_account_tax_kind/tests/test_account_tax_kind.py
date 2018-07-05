@@ -12,7 +12,6 @@ class TestAccountTaxKind(TransactionCase):
         self.tax_kind_n1 = self.env.ref('l10n_it_account_tax_kind.n1')
 
     def test_compute_display_name(self):
-        self.tax_kind_n1._compute_display_name()
         self.assertEqual(
             self.tax_kind_n1.display_name,
             u'[%s] %s' % (self.tax_kind_n1.code, self.tax_kind_n1.name))

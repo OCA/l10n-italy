@@ -18,7 +18,7 @@ class RibaConfiguration(models.Model):
     name = fields.Char("Description", size=64, required=True)
     type = fields.Selection(
         (('sbf', 'Salvo buon fine'), ('incasso', 'Al dopo incasso')),
-        "Modalità Emissione", required=True)
+        "Emission mode", required=True)
     bank_id = fields.Many2one(
         'res.partner.bank', "Banca", required=True,
         help="Bank account used for Ri.Ba. issuing")
