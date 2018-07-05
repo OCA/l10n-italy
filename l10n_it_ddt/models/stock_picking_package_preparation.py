@@ -284,6 +284,19 @@ class StockPickingPackagePreparation(models.Model):
         """
         self.ensure_one()
         order = self._get_sale_order_ref()
+        if order:
+            # Most of the values will be overwritten below,
+            # but this preserves inheritance chain
+            res = order._prepare_invoice()
+        else:
+            # Initialise res with the fields in sale._prepare_invoice
+            # that won't be overwritten below
+            res = {
+                'type': 'out_invoice',
+                'partner_shipping_id':
+                    self.partner_id.address_get(['delivery'])['delivery'],
+                'company_id': self.company_id.id
+            }
         journal_id = self._context.get('invoice_journal_id', False)
         if not journal_id:
             journal_id = self.env['account.invoice'].default_get(
@@ -297,29 +310,30 @@ class StockPickingPackagePreparation(models.Model):
             order and order.partner_invoice_id.id or
             self.partner_id.address_get(['invoice'])['invoice'])
         invoice_partner = self.env['res.partner'].browse(invoice_partner_id)
+        invoice_description = self._prepare_invoice_description()
         currency_id = (
             order and order.pricelist_id.currency_id.id or
             journal.currency_id.id or journal.company_id.currency_id.id)
         payment_term_id = (
             order and order.payment_term_id.id or
             self.partner_id.property_payment_term_id.id)
-        invoice_description = self._prepare_invoice_description()
-        invoice_vals = {
+        fiscal_position_id = (
+            order and order.fiscal_position_id.id or
+            invoice_partner.property_account_position_id.id)
+        res.update({
             'name': invoice_description or '',
-            'date_invoice': self._context.get('invoice_date', False),
             'origin': self.ddt_number,
-            'type': 'out_invoice',
+            'date_invoice': self._context.get('invoice_date', False),
             'account_id': (
                 invoice_partner.property_account_receivable_id.id),
             'partner_id': invoice_partner_id,
-            'partner_shipping_id': self.partner_id.id,
             'journal_id': journal_id,
             'currency_id': currency_id,
-            # TO DO 'comment': self.note,
-            'payment_term_id': payment_term_id,
-            'fiscal_position_id': (
-                order and order.fiscal_position_id.id or
-                invoice_partner.property_account_position_id.id),
+            'fiscal_position_id': fiscal_position_id,
+            'payment_term_id': payment_term_id
+        })
+        # Now the rest of the fields dedicated to DDT
+        res.update({
             'carriage_condition_id': self.carriage_condition_id.id,
             'goods_description_id': self.goods_description_id.id,
             'transportation_reason_id': self.transportation_reason_id.id,
@@ -329,8 +343,8 @@ class StockPickingPackagePreparation(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
-        }
-        return invoice_vals
+        })
+        return res
 
     @api.multi
     def action_invoice_create(self):
