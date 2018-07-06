@@ -85,7 +85,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:153
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:152
 #, python-format
 msgid "Existing fiscal code %(partner_fiscalcode)s is different from the computed one (%(compute)s). If you want to use the computed one, remove the existing onepartner_fiscalcode"
 msgstr ""
@@ -182,7 +182,7 @@ msgid "National code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:148
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:147
 #, python-format
 msgid "National code is missing"
 msgstr ""
@@ -198,7 +198,7 @@ msgid "Notes"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:144
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:143
 #, python-format
 msgid "One or more fields are missing"
 msgstr ""
