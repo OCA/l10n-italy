@@ -645,8 +645,8 @@ msgstr "Riga distinta"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_type
-msgid "Modalità Emissione"
-msgstr "Modalità Emissione"
+msgid "Modalita' Emissione"
+msgstr "Modalita' Emissione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form

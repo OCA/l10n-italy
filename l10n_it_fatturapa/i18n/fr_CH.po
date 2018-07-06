@@ -518,7 +518,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line___last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type___last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "Dernie're modification le"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_write_uid
@@ -1123,9 +1123,9 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
 msgid ""
-"il progressivo univoco del file è rappresentato da una stringa alfanumerica "
-"di lunghezza massima di 5 caratteri e con valori ammessi da “A” a “Z” e da "
-"“0” a “9”."
+"il progressivo univoco del file e' rappresentato da una stringa alfanumerica "
+"di lunghezza massima di 5 caratteri e con valori ammessi da 'A' a 'Z' e da "
+"'0' a '9'."
 msgstr ""
 
 #. module: l10n_it_fatturapa

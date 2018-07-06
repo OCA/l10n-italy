@@ -641,7 +641,7 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_type
-msgid "Modalità Emissione"
+msgid "Modalita' Emissione"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
