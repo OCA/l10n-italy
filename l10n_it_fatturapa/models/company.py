@@ -2,7 +2,8 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 
 
 class ResCompany(models.Model):
@@ -10,7 +11,7 @@ class ResCompany(models.Model):
 
     fatturapa_fiscal_position_id = fields.Many2one(
         'fatturapa.fiscal_position', 'Fiscal Position',
-        help="Fiscal position used by FatturaPA",
+        help="Fiscal position used by Fattura Elettronica",
         )
     fatturapa_sequence_id = fields.Many2one(
         'ir.sequence', 'Sequence',
@@ -39,16 +40,40 @@ class ResCompany(models.Model):
         'res.partner', 'Legal Tax Representative'
         )
     fatturapa_sender_partner = fields.Many2one(
-        'res.partner', 'Third Party/Sender'
+        'res.partner', 'Third Party/Sender',
+        help="Dati relativi al soggetto terzo che emette fattura per conto "
+             "del cedente / prestatore"
         )
+    fatturapa_stabile_organizzazione = fields.Many2one(
+        'res.partner', 'Stabile Organizzazione',
+        help='Blocco da valorizzare nei casi di cedente / prestatore non '
+             'residente, con stabile organizzazione in Italia'
+        )
+
+    @api.multi
+    @api.constrains(
+        'fatturapa_sequence_id'
+    )
+    def _check_fatturapa_sequence_id(self):
+        for company in self:
+            if company.fatturapa_sequence_id:
+                journal = self.env['account.journal'].search([
+                    ('sequence_id', '=', company.fatturapa_sequence_id.id)
+                ], limit=1)
+                if journal:
+                    raise ValidationError(_(
+                        "Sequence %s already used by journal %s. Please select"
+                        " another one"
+                    ) % (company.fatturapa_sequence_id.name, journal.name))
 
 
 class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'
+
     fatturapa_fiscal_position_id = fields.Many2one(
         related='company_id.fatturapa_fiscal_position_id',
         string="Fiscal Position",
-        help='Fiscal position used by FatturaPA'
+        help='Fiscal position used by Fattura Elettronica'
         )
     fatturapa_sequence_id = fields.Many2one(
         related='company_id.fatturapa_sequence_id',
@@ -94,14 +119,20 @@ class AccountConfigSettings(models.TransientModel):
     fatturapa_tax_representative = fields.Many2one(
         related='company_id.fatturapa_tax_representative',
         string="Legal Tax Representative",
-        help="Used when a foreign company needs to send invoices to an"
-             "Italian PA and has a tax representative in Italy"
+        help="Blocco da valorizzare nei casi in cui il cedente / prestatore "
+             "si avvalga di un rappresentante fiscale in Italia"
         )
     fatturapa_sender_partner = fields.Many2one(
         related='company_id.fatturapa_sender_partner',
         string="Third Party/Sender",
-        help="Used when company sends invoices to a third party and they "
-             "send invoices to SDI"
+        help="Dati relativi al soggetto terzo che emette fattura per conto "
+             "del cedente / prestatore"
+        )
+    fatturapa_stabile_organizzazione = fields.Many2one(
+        related='company_id.fatturapa_stabile_organizzazione',
+        string="Stabile Organizzazione",
+        help="Blocco da valorizzare nei casi di cedente / prestatore non "
+             "residente, con stabile organizzazione in Italia"
         )
 
     @api.onchange('company_id')
@@ -109,13 +140,18 @@ class AccountConfigSettings(models.TransientModel):
         res = super(AccountConfigSettings, self).onchange_company_id()
         if self.company_id:
             company = self.company_id
+            default_sequence = self.env['ir.sequence'].search([
+                ('code', '=', 'account.invoice.fatturapa')
+            ])
+            default_sequence = (
+                default_sequence[0].id if default_sequence else False)
             self.fatturapa_fiscal_position_id = (
                 company.fatturapa_fiscal_position_id and
                 company.fatturapa_fiscal_position_id.id or False
                 )
             self.fatturapa_sequence_id = (
                 company.fatturapa_sequence_id and
-                company.fatturapa_sequence_id.id or False
+                company.fatturapa_sequence_id.id or default_sequence
                 )
             self.fatturapa_art73 = (
                 company.fatturapa_art73 or False
@@ -147,6 +183,10 @@ class AccountConfigSettings(models.TransientModel):
                 company.fatturapa_sender_partner and
                 company.fatturapa_sender_partner.id or False
                 )
+            self.fatturapa_stabile_organizzazione = (
+                company.fatturapa_stabile_organizzazione and
+                company.fatturapa_stabile_organizzazione.id or False
+                )
         else:
             self.fatturapa_fiscal_position_id = False
             self.fatturapa_sequence_id = False
@@ -159,4 +199,5 @@ class AccountConfigSettings(models.TransientModel):
             self.fatturapa_rea_liquidation = False
             self.fatturapa_tax_representative = False
             self.fatturapa_sender_partner = False
+            self.fatturapa_stabile_organizzazione = False
         return res
