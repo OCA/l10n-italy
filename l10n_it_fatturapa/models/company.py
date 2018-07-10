@@ -39,7 +39,9 @@ class ResCompany(models.Model):
         'res.partner', 'Legal Tax Representative'
         )
     fatturapa_sender_partner = fields.Many2one(
-        'res.partner', 'Third Party/Sender'
+        'res.partner', 'Third Party/Sender',
+        help="Dati relativi al soggetto terzo che emette fattura per conto "
+             "del cedente / prestatore"
         )
 
 
