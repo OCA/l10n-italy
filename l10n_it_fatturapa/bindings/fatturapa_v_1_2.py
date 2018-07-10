@@ -1305,8 +1305,13 @@ class String60LatinType (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String60LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
+# strings of blank spaces are allowed by SDI.
+# {1,60} would produce
+# SimpleFacetValueError: Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String1000LatinType pattern constraint violated by value
 String60LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,60}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,60}')
 String60LatinType._InitializeFacetMap(String60LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
@@ -1332,7 +1337,7 @@ class String80LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String80LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,80}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,80}')
 String80LatinType._InitializeFacetMap(String80LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
@@ -1359,7 +1364,7 @@ class String100LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String100LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,100}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,100}')
 String100LatinType._InitializeFacetMap(String100LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
@@ -1386,7 +1391,7 @@ class String200LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String200LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String200LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,200}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,200}')
 String200LatinType._InitializeFacetMap(String200LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
@@ -1413,7 +1418,7 @@ class String1000LatinType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 String1000LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String1000LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,1000}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,1000}')
 String1000LatinType._InitializeFacetMap(String1000LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',

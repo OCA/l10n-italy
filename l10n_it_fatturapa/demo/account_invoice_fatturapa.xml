@@ -6,6 +6,14 @@
             <field name="name">22% ftPA</field>
             <field name="description">22</field>
             <field name="amount">22</field>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="tax_22_acq" model="account.tax">
+            <field name="name">22% ftPA acq</field>
+            <field name="description">22 acq</field>
+            <field name="amount">22</field>
+            <field name="type_tax_use">purchase</field>
         </record>
 
         <record id="tax_22_SP" model="account.tax">
@@ -13,6 +21,7 @@
             <field name="description">22 Split Payment</field>
             <field name="amount">22</field>
             <field name="payability">S</field>
+            <field name="type_tax_use">sale</field>
         </record>
 
         <record id="tax_00_minimi" model="account.tax">
@@ -21,6 +30,16 @@
             <field name="amount">0.00</field>
             <field name="kind_id" ref="l10n_it_account_tax_kind.n4"></field>
             <field name="law_reference">regime contribuenti minimi art.27 c.1-2 DL.98/11</field>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="tax_00_minimi_acq" model="account.tax">
+            <field name="name">Esente Acq</field>
+            <field name="description">00 Acq</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n4"></field>
+            <field name="law_reference">regime contribuenti minimi art.27 c.1-2 DL.98/11</field>
+            <field name="type_tax_use">purchase</field>
         </record>
 
         <record id="tax_00_e15" model="account.tax">
@@ -68,7 +87,7 @@
             <field name="vat">IT06363391001</field>
         </record>
         <record id="base.main_partner" model="res.partner">
-            <field name="ipa_code">79SRAK</field>
+            <field name="ipa_code">UFPQ1O</field>
         </record>
 
         <record id="account.account_payment_term" model="account.payment.term">
@@ -91,7 +110,23 @@
             <field name="website">www.mypa.it</field>
             <field name="fiscalcode">00146089990</field>
             <field name="vat">IT00146089990</field>
-            <field name="ipa_code">79SRAK</field>
+            <field name="ipa_code">UFPQ1O</field>
+        </record>
+
+        <record id="res_partner_fatturapa_1" model="res.partner">
+            <field name="name">Intermediario</field>
+            <field name="customer">0</field>
+            <field name="supplier">1</field>
+            <field name="is_company">1</field>
+            <field name="city">Torino</field>
+            <field name="zip">10100</field>
+            <field name="country_id" ref="base.it"/>
+            <field name="state_id" ref="base.state_us_2"/>
+            <field name="street">Via Milano, 1</field>
+            <field name="email">info@mycompany.it</field>
+            <field name="phone">123456789</field>
+            <field name="fiscalcode">03297040366</field>
+            <field name="vat">IT03297040366</field>
         </record>
 
         <record id="fiscal_position_sp" model="account.fiscal.position">

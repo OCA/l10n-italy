@@ -114,7 +114,7 @@ class WelfareFundDataLine(models.Model):
     welfare_taxable = fields.Float('Welfare Taxable')
     welfare_Iva_tax = fields.Float('Welfare  tax')
     subjected_withholding = fields.Char(
-        'Subjected at Withholding', size=2)
+        'Subjected to Withholding', size=2)
     pa_line_code = fields.Char('PA Code for this record', size=20)
     invoice_id = fields.Many2one(
         'account.invoice', 'Related Invoice',
@@ -131,8 +131,12 @@ class DiscountRisePrice(models.Model):
         [('SC', 'Discount'), ('MG', 'Rise Price')], 'Type')
     percentage = fields.Float('Percentage')
     amount = fields.Float('Amount')
-    invoice_id = fields.Many2one(
+    invoice_line_id = fields.Many2one(
         'account.invoice.line', 'Related Invoice',
+        ondelete='cascade', index=True
+    )
+    invoice_id = fields.Many2one(
+        'account.invoice', 'Related Invoice',
         ondelete='cascade', index=True
     )
 
@@ -237,6 +241,10 @@ class AccountInvoiceLine(models.Model):
         'Related DdT'
     )
     admin_ref = fields.Char('Administration ref.', size=20)
+    discount_rise_price_ids = fields.One2many(
+        'discount.rise.price', 'invoice_line_id',
+        'Discount and Rise Price Details'
+    )
 
 
 class FaturapaSummaryData(models.Model):
@@ -250,6 +258,7 @@ class FaturapaSummaryData(models.Model):
         ('N4', 'esenti'),
         ('N5', 'regime del margine'),
         ('N6', 'inversione contabile (reverse charge)'),
+        ('N7', 'IVA assolta in altro stato UE')
     ], string="Non taxable nature")
     incidental_charges = fields.Float('Incidental Charges')
     rounding = fields.Float('Rounding')
@@ -282,21 +291,14 @@ class AccountInvoice(models.Model):
     #  1.6
     sender = fields.Selection(
         [('CC', 'assignee / partner'), ('TZ', 'third person')], 'Sender')
-    #  2.1.1.1
-    doc_type = fields.Many2one(
-        'fatturapa.document_type', string="Document Type")
     #  2.1.1.5
     #  2.1.1.5.1
     ftpa_withholding_type = fields.Selection(
         [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
         'Withholding type'
     )
-    #  2.1.1.5.2 withholding_amount in module
-    #  2.1.1.5.3
-    ftpa_withholding_rate = fields.Float('Withholding rate')
-    #  2.1.1.5.4
-    ftpa_withholding_payment_reason = fields.Char(
-        'Withholding reason', size=2)
+    #  2.1.1.5.2 2.1.1.5.3 2.1.1.5.4 mapped to l10n_it_withholding_tax fields
+
     #  2.1.1.6
     virtual_stamp = fields.Boolean('Virtual Stamp', default=False)
     stamp_amount = fields.Float('Stamp Amount')
@@ -304,11 +306,6 @@ class AccountInvoice(models.Model):
     welfare_fund_ids = fields.One2many(
         'welfare.fund.data.line', 'invoice_id',
         'Welfare Fund'
-    )
-    #  2.1.1.8
-    discount_rise_price_ids = fields.One2many(
-        'discount.rise.price', 'invoice_id',
-        'Discount and Rise Price Details'
     )
     #  2.1.2 - 2.1.6
     related_documents = fields.One2many(
@@ -328,7 +325,7 @@ class AccountInvoice(models.Model):
     #  2.1.9
     carrier_id = fields.Many2one(
         'res.partner', string="Carrier")
-    transport_vaicle = fields.Char('Veicle', size=80)
+    transport_vehicle = fields.Char('Vehicle', size=80)
     transport_reason = fields.Char('Reason', size=80)
     number_items = fields.Integer('number of items')
     description = fields.Char('Description', size=100)
@@ -339,6 +336,7 @@ class AccountInvoice(models.Model):
     transport_date = fields.Date('Transport Date')
     delivery_address = fields.Text('Delivery Address')
     delivery_datetime = fields.Datetime('Delivery Date Time')
+    ftpa_incoterms = fields.Char(string="Incoterms")
     #  2.1.10
     related_invoice_code = fields.Char('Related invoice code')
     related_invoice_date = fields.Date('Related invoice date')
@@ -361,3 +359,48 @@ class AccountInvoice(models.Model):
         'fatturapa.attachments', 'invoice_id',
         'FatturaPA attachments'
     )
+    # 1.2.3
+    efatt_stabile_organizzazione_indirizzo = fields.Char(
+        string="Indirizzo Organizzazione",
+        help="Blocco da valorizzare nei casi di cedente / prestatore non "
+             "residente, con stabile organizzazione in Italia. Indirizzo "
+             "della stabile organizzazione in Italia (nome della via, piazza "
+             "etc.)",
+        readonly=True)
+    efatt_stabile_organizzazione_civico = fields.Char(
+        string="Civico Organizzazione",
+        help="Numero civico riferito all'indirizzo (non indicare se già "
+             "presente nell'elemento informativo indirizzo)",
+        readonly=True)
+    efatt_stabile_organizzazione_cap = fields.Char(
+        string="CAP Organizzazione",
+        help="Codice Avviamento Postale",
+        readonly=True)
+    efatt_stabile_organizzazione_comune = fields.Char(
+        string="Comune Organizzazione",
+        help="Comune relativo alla stabile organizzazione in Italia",
+        readonly=True)
+    efatt_stabile_organizzazione_provincia = fields.Char(
+        string="Provincia Organizzazione",
+        help="Sigla della provincia di appartenenza del comune indicato "
+             "nell'elemento informativo 1.2.3.4 <Comune>. Da valorizzare se "
+             "l'elemento informativo 1.2.3.6 <Nazione> è uguale a IT",
+        readonly=True)
+    efatt_stabile_organizzazione_nazione = fields.Char(
+        string="Nazione Organizzazione",
+        help="Codice della nazione espresso secondo lo standard "
+             "ISO 3166-1 alpha-2 code",
+        readonly=True)
+    # 2.1.1.10
+    efatt_rounding = fields.Float(
+        "Arrotondamento", readonly=True,
+        help="Eventuale arrotondamento sul totale documento (ammette anche il "
+             "segno negativo)"
+    )
+    art73 = fields.Boolean(
+        'Art73', readonly=True,
+        help="Indica se il documento è stato emesso secondo modalità e "
+             "termini stabiliti con decreto ministeriale ai sensi "
+             "dell'articolo 73 del DPR 633/72 (ciò consente al "
+             "cedente/prestatore l'emissione nello stesso anno di più "
+             "documenti aventi stesso numero)")
