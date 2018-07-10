@@ -1,40 +1,66 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 AgileBG SAGL <http://www.agilebg.com>
-#    Copyright (C) 2015 innoviu Srl <http://www.innoviu.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
-from openerp.osv import fields, orm
+from odoo import fields, models, api
 
 
-class FatturaPAAttachmentIn(orm.Model):
+class FatturaPAAttachmentIn(models.Model):
     _name = "fatturapa.attachment.in"
     _description = "FatturaPA import File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
+    _order = 'id desc'
 
-    _columns = {
-        'ir_attachment_id': fields.many2one(
-            'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
-        'in_invoice_ids': fields.one2many(
-            'account.invoice', 'fatturapa_attachment_in_id',
-            string="In Invoices", readonly=True),
-    }
+    ir_attachment_id = fields.Many2one(
+        'ir.attachment', 'Attachment', required=True, ondelete="cascade")
+    in_invoice_ids = fields.One2many(
+        'account.invoice', 'fatturapa_attachment_in_id',
+        string="In Invoices", readonly=True)
+    xml_supplier_id = fields.Many2one(
+        "res.partner", string="Supplier", compute="_compute_xml_data",
+        store=True)
+    invoices_number = fields.Integer(
+        "Invoices number", compute="_compute_xml_data", store=True)
+    invoices_total = fields.Float(
+        "Invoices total", compute="_compute_xml_data", store=True,
+        help="Se indicato dal fornitore, Importo totale del documento al "
+             "netto dell'eventuale sconto e comprensivo di imposta a debito "
+             "del cessionario / committente"
+    )
+    registered = fields.Boolean(
+        "Registered", compute="_compute_registered", store=True)
 
-    def set_name(self, cr, uid, ids, datas_fname, context=None):
-        return {'value': {'name': datas_fname}}
+    @api.onchange('datas_fname')
+    def onchagne_datas_fname(self):
+        self.name = self.datas_fname
+
+    def get_xml_string(self):
+        return self.ir_attachment_id.get_xml_string()
+
+    @api.multi
+    @api.depends('ir_attachment_id.datas')
+    def _compute_xml_data(self):
+        for att in self:
+            fatt = self.env['wizard.import.fatturapa'].get_invoice_obj(att)
+            cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
+            partner_id = self.env['wizard.import.fatturapa'].getCedPrest(
+                cedentePrestatore)
+            att.xml_supplier_id = partner_id
+            att.invoices_number = len(fatt.FatturaElettronicaBody)
+            att.invoices_total = 0
+            for invoice_body in fatt.FatturaElettronicaBody:
+                att.invoices_total += float(
+                    invoice_body.DatiGenerali.DatiGeneraliDocumento.
+                    ImportoTotaleDocumento or 0
+                )
+
+    @api.multi
+    @api.depends('in_invoice_ids')
+    def _compute_registered(self):
+        for att in self:
+            if (
+                att.in_invoice_ids and
+                len(att.in_invoice_ids) == att.invoices_number
+            ):
+                att.registered = True
+            else:
+                att.registered = False

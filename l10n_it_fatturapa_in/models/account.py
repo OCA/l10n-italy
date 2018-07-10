@@ -1,75 +1,116 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
-from openerp.osv import fields, orm
+from odoo import fields, models, api
+import odoo.addons.decimal_precision as dp
 
 
-class account_invoice(orm.Model):
+class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    _columns = {
-        'fatturapa_attachment_in_id': fields.many2one(
-            'fatturapa.attachment.in', 'FatturaPA Import File',
-            ondelete='restrict'),
-        'inconsistencies': fields.text('Import Inconsistencies'),
-    }
+    fatturapa_attachment_in_id = fields.Many2one(
+        'fatturapa.attachment.in', 'E-Invoice Import File',
+        ondelete='restrict', copy=False)
+    inconsistencies = fields.Text('Import Inconsistencies', copy=False)
+    e_invoice_line_ids = fields.One2many(
+        "einvoice.line", "invoice_id", string="Dettaglio Linee",
+        readonly=True, copy=False)
+
+    @api.multi
+    def name_get(self):
+        result = super(AccountInvoice, self).name_get()
+        res = []
+        for tup in result:
+            invoice = self.browse(tup[0])
+            if invoice.type in ('in_invoice', 'in_refund'):
+                name = "%s, %s" % (tup[1], invoice.partner_id.name)
+                if invoice.origin:
+                    name += ', %s' % invoice.origin
+                res.append((invoice.id, name))
+            else:
+                res.append(tup)
+        return res
+
+    @api.multi
+    def remove_attachment_link(self):
+        self.ensure_one()
+        self.fatturapa_attachment_in_id = False
+        return {'type': 'ir.actions.client', 'tag': 'reload'}
 
 
-class fatturapa_article_code(orm.Model):
+class fatturapa_article_code(models.Model):
     # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
     _description = 'FatturaPA Article Code'
 
-    _columns = {
-        'name': fields.char('Cod Type', size=35),
-        'code_val': fields.char('Code Value', size=35),
-        'invoice_line_id': fields.many2one(
-            'account.invoice.line', 'Related Invoice line',
-            ondelete='cascade', select=True
-        )
-    }
+    name = fields.Char('Cod Type')
+    code_val = fields.Char('Code Value')
+    e_invoice_line_id = fields.Many2one(
+        'einvoice.line', 'Related E-Invoice line', readonly=True
+    )
 
 
-class account_invoice_line(orm.Model):
+class AccountInvoiceLine(models.Model):
     # _position = [
     #     '2.2.1.3', '2.2.1.6', '2.2.1.7',
     #     '2.2.1.8', '2.1.1.10'
     # ]
     _inherit = "account.invoice.line"
 
-    _columns = {
-        'cod_article_ids': fields.one2many(
-            'fatturapa.article.code', 'invoice_line_id',
-            'Cod. Articles'
-        ),
-        'service_type': fields.selection([
-            ('SC', 'sconto'),
-            ('PR', 'premio'),
-            ('AB', 'abbuono'),
-            ('AC', 'spesa accessoria'),
-            ], string="Service Type"),
-        'ftpa_uom': fields.char('Fattura Pa Unit of Measure', size=10),
-        'service_start': fields.date('Service start at'),
-        'service_end': fields.date('Service end at'),
-        'discount_rise_price_ids': fields.one2many(
-            'discount.rise.price', 'invoice_line_id',
-            'Discount and Rise Price Details'
-        ),
-    }
+    fatturapa_attachment_in_id = fields.Many2one(
+        'fatturapa.attachment.in', 'E-Invoice Import File',
+        readonly=True, related='invoice_id.fatturapa_attachment_in_id')
+
+
+class DiscountRisePrice(models.Model):
+    _inherit = "discount.rise.price"
+    e_invoice_line_id = fields.Many2one(
+        'einvoice.line', 'Related E-Invoice line', readonly=True
+    )
+
+
+class EInvoiceLine(models.Model):
+    _name = 'einvoice.line'
+    invoice_id = fields.Many2one(
+        "account.invoice", "Invoice", readonly=True)
+    line_number = fields.Integer('Numero Linea', readonly=True)
+    service_type = fields.Char('Tipo Cessione Prestazione', readonly=True)
+    cod_article_ids = fields.One2many(
+        'fatturapa.article.code', 'e_invoice_line_id',
+        'Cod. Articles', readonly=True
+    )
+    name = fields.Char("Descrizione", readonly=True)
+    qty = fields.Float(
+        "Quantita'", readonly=True,
+        digits=dp.get_precision('Product Unit of Measure')
+    )
+    uom = fields.Char("Unita' di misura", readonly=True)
+    period_start_date = fields.Date("Data Inizio Periodo", readonly=True)
+    period_end_date = fields.Date("Data Fine Periodo", readonly=True)
+    unit_price = fields.Float(
+        "Prezzo unitario", readonly=True,
+        digits=dp.get_precision('Product Price')
+    )
+    discount_rise_price_ids = fields.One2many(
+        'discount.rise.price', 'e_invoice_line_id',
+        'Discount and Rise Price Details', readonly=True
+    )
+    total_price = fields.Float("Prezzo Totale", readonly=True)
+    tax_amount = fields.Float("Aliquota IVA", readonly=True)
+    wt_amount = fields.Char("Ritenuta", readonly=True)
+    tax_kind = fields.Char("Natura", readonly=True)
+    admin_ref = fields.Char("Riferimento mministrazione", readonly=True)
+    other_data_ids = fields.One2many(
+        "einvoice.line.other.data", "e_invoice_line_id",
+        string="Altri dati gestionali", readonly=True)
+
+
+class EInvoiceLineOtherData(models.Model):
+    _name = 'einvoice.line.other.data'
+
+    e_invoice_line_id = fields.Many2one(
+        'einvoice.line', 'Related E-Invoice line', readonly=True
+    )
+    name = fields.Char("Tipo Dato", readonly=True)
+    text_ref = fields.Char("Riferimento Testo", readonly=True)
+    num_ref = fields.Float("Riferimento Numero", readonly=True)
+    date_ref = fields.Char("Riferimento Data", readonly=True)
