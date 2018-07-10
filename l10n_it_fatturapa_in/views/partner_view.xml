@@ -6,18 +6,20 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="l10n_it_fatturapa.view_partner_form_fatturapa"></field>
             <field name="arch" type="xml">
-                <field name="license_number" position="after">
-                    <separator colspan="2" string="FatturaPA Registration"></separator>
-                    <group>
-                        <field name="register"></field>
-                        <field name="register_code"></field>
-                        <field name="register_fiscalpos"></field>
+                <group name="fatturapa_group" position="inside">
+                    <group attrs="{'invisible': ['|', ('supplier', '=', False), ('electronic_invoice_subjected', '=', False)]}">
+                        <field name="e_invoice_detail_level" />
+                        <field name="e_invoice_default_product_id" ></field>
                     </group>
-                    <group>
-                        <field name="register_province"></field>
-                        <field name="register_regdate"></field>
+                    <newline/>
+                    <group attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                        <field name="register" readonly="1"></field>
+                        <field name="register_code" readonly="1"></field>
+                        <field name="register_fiscalpos" readonly="1"></field>
+                        <field name="register_province" readonly="1"></field>
+                        <field name="register_regdate" readonly="1"></field>
                     </group>
-                </field>
+                </group>
             </field>
         </record>
     </data>
