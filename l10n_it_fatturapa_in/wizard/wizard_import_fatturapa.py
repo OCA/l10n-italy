@@ -1,99 +1,104 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 AgileBG SAGL <http://www.agilebg.com>
-#    Copyright (C) 2015 innoviu Srl <http://www.innoviu.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+
 import base64
-import os
-import shlex
-import subprocess
-from openerp.osv import orm
-from openerp.tools.translate import _
 import logging
+from odoo import models, api, fields
+from odoo.tools import float_is_zero
+from odoo.tools.translate import _
+from odoo.exceptions import UserError
 
-
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_1
-from openerp.addons.base_iban import base_iban
-from lxml import etree
+from odoo.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
+from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
 
 _logger = logging.getLogger(__name__)
 
 
-class WizardImportFatturapa(orm.TransientModel):
+class WizardImportFatturapa(models.TransientModel):
     _name = "wizard.import.fatturapa"
     _description = "Import FatturaPA"
 
-    def saveAttachment(self, cr, uid, context=None):
-        if not context:
-            context = {}
+    e_invoice_detail_level = fields.Selection([
+        ('0', 'Minimo'),
+        # ('1', 'Aliquote'),
+        ('2', 'Massimo'),
+    ], string="Livello di dettaglio Fatture elettroniche",
+        help="Livello minimo: La fattura passiva viene creata senza righe; "
+             "sara' l'utente a doverle creare in base a quanto indicato dal "
+             "fornitore nella fattura elettronica\n"
+             # "Livello Aliquote: viene creata una riga fattura per ogni "
+             # "aliquota presente nella fattura elettronica\n"
+             "Livello Massimo: tutte le righe presenti nella fattura "
+             "elettronica vengono create come righe della fattura passiva",
+        required=True
+    )
 
-        return False
+    @api.model
+    def default_get(self, fields):
+        res = super(WizardImportFatturapa, self).default_get(fields)
+        res['e_invoice_detail_level'] = '2'
+        fatturapa_attachment_ids = self.env.context.get('active_ids', False)
+        fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
+        partners = self.env['res.partner']
+        for fatturapa_attachment_id in fatturapa_attachment_ids:
+            fatturapa_attachment = fatturapa_attachment_obj.browse(
+                fatturapa_attachment_id)
+            if fatturapa_attachment.in_invoice_ids:
+                raise UserError(
+                    _("File %s is linked to invoices yet")
+                    % fatturapa_attachment.name)
+            partners |= fatturapa_attachment.xml_supplier_id
+            if len(partners) == 1:
+                res['e_invoice_detail_level'] = (
+                    partners[0].e_invoice_detail_level)
+        return res
 
-    def CountryByCode(self, cr, uid, CountryCode, context=None):
-        country_model = self.pool['res.country']
-        return country_model.search(
-            cr, uid, [('code', '=', CountryCode)], context=context)
+    def CountryByCode(self, CountryCode):
+        country_model = self.env['res.country']
+        return country_model.search([('code', '=', CountryCode)])
 
-    def ProvinceByCode(self, cr, uid, provinceCode, context=None):
-        province_model = self.pool['res.province']
-        return province_model.search(
-            cr, uid, [('code', '=', provinceCode)], context=context)
+    def ProvinceByCode(self, provinceCode):
+        province_model = self.env['res.country.state']
+        return province_model.search([
+            ('code', '=', provinceCode),
+            ('country_id.code', '=', 'IT')
+        ])
 
-    def check_partner_base_data(
-        self, cr, uid, partner_id, DatiAnagrafici, context=None
-    ):
-        if context is None:
-            context = {}
-        partner = self.pool['res.partner'].browse(
-            cr, uid, partner_id, context=context)
+    def log_inconsistency(self, message):
+        inconsistencies = self.env.context.get('inconsistencies', '')
+        if inconsistencies:
+            inconsistencies += '\n'
+        inconsistencies += message
+        # we can't set
+        # self = self.with_context(inconsistencies=inconsistencies)
+        # because self is a locale variable.
+        # We use __dict__ to modify attributes of self
+        self.__dict__.update(
+            self.with_context(inconsistencies=inconsistencies).__dict__
+        )
+
+    def check_partner_base_data(self, partner_id, DatiAnagrafici):
+        partner = self.env['res.partner'].browse(partner_id)
         if (
             DatiAnagrafici.Anagrafica.Denominazione and
             partner.name != DatiAnagrafici.Anagrafica.Denominazione
         ):
-            if context.get('inconsistencies'):
-                context['inconsistencies'] += '\n'
-            context['inconsistencies'] += (
-                _(
-                    "DatiAnagrafici.Anagrafica.Denominazione contains \"%s\"."
-                    " Your System contains \"%s\""
-                )
-                % (DatiAnagrafici.Anagrafica.Denominazione, partner.name)
-            )
+            self.log_inconsistency(_(
+                "DatiAnagrafici.Anagrafica.Denominazione contains \"%s\"."
+                " Your System contains \"%s\""
+            ) % (DatiAnagrafici.Anagrafica.Denominazione, partner.name))
         if (
             DatiAnagrafici.Anagrafica.Nome and
             partner.firstname != DatiAnagrafici.Anagrafica.Nome
         ):
-            if context.get('inconsistencies'):
-                context['inconsistencies'] += '\n'
-            context['inconsistencies'] += (
-                _(
-                    "DatiAnagrafici.Anagrafica.Nome contains \"%s\"."
-                    " Your System contains \"%s\""
-                )
-                % (DatiAnagrafici.Anagrafica.Nome, partner.firstname)
-            )
+            self.log_inconsistency(_(
+                "DatiAnagrafici.Anagrafica.Nome contains \"%s\"."
+                " Your System contains \"%s\""
+            ) % (DatiAnagrafici.Anagrafica.Nome, partner.firstname))
         if (
             DatiAnagrafici.Anagrafica.Cognome and
             partner.lastname != DatiAnagrafici.Anagrafica.Cognome
         ):
-            if context.get('inconsistencies'):
-                context['inconsistencies'] += '\n'
-            context['inconsistencies'] += (
+            self.log_inconsistency(
                 _(
                     "DatiAnagrafici.Anagrafica.Cognome contains \"%s\"."
                     " Your System contains \"%s\""
@@ -101,10 +106,10 @@ class WizardImportFatturapa(orm.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
             )
 
-    def getPartnerBase(self, cr, uid, DatiAnagrafici, context=None):
+    def getPartnerBase(self, DatiAnagrafici):
         if not DatiAnagrafici:
             return False
-        partner_model = self.pool['res.partner']
+        partner_model = self.env['res.partner']
         cf = DatiAnagrafici.CodiceFiscale or False
         vat = False
         if DatiAnagrafici.IdFiscaleIVA:
@@ -112,63 +117,37 @@ class WizardImportFatturapa(orm.TransientModel):
                 DatiAnagrafici.IdFiscaleIVA.IdPaese,
                 DatiAnagrafici.IdFiscaleIVA.IdCodice
             )
-        partner_ids = partner_model.search(
-            cr, uid,
-            ['|',
-             ('vat', '=', vat or 0),
-             ('fiscalcode', '=', cf or 0),
-             ],
-            context=context)
+        partners = partner_model.search([
+            '|',
+            ('vat', '=', vat or 0),
+            ('fiscalcode', '=', cf or 0),
+        ])
         commercial_partner = False
-        if len(partner_ids) > 1:
-            for partner in partner_model.browse(
-                cr, uid, partner_ids, context=context
-            ):
+        if len(partners) > 1:
+            for partner in partners:
                 if (
                     commercial_partner and
                     partner.commercial_partner_id.id != commercial_partner
                 ):
-                    raise orm.except_orm(
-                        _('Error !'),
+                    raise UserError(
                         _("Two distinct partners with "
                           "Vat %s and Fiscalcode %s already present in db" %
                           (vat, cf))
                         )
-                commercial_partner = partner.commercial_partner_id.id
-        if not partner_ids:
-            if DatiAnagrafici.Anagrafica.Denominazione:
-                partner_ids = partner_model.search(
-                    cr, uid,
-                    [('name', '=', DatiAnagrafici.Anagrafica.Denominazione)],
-                    context=context)
-            elif (
-                DatiAnagrafici.Anagrafica.Nome and
-                DatiAnagrafici.Anagrafica.Cognome
-            ):
-                partner_ids = partner_model.search(
-                    cr, uid,
-                    [
-                        ('firstname', '=', DatiAnagrafici.Anagrafica.Nome),
-                        ('lastname', '=', DatiAnagrafici.Anagrafica.Cognome),
-                    ],
-                    context=context)
-        if partner_ids:
-            commercial_partner = partner_ids[0]
-            self.check_partner_base_data(
-                cr, uid, commercial_partner, DatiAnagrafici, context=context)
-            return commercial_partner
+        if partners:
+            commercial_partner_id = partners[0].id
+            self.check_partner_base_data(commercial_partner_id, DatiAnagrafici)
+            return commercial_partner_id
         else:
             # partner to be created
             country_id = False
             if DatiAnagrafici.IdFiscaleIVA:
                 CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-                country_ids = self.CountryByCode(
-                    cr, uid, CountryCode, context=context)
-                if country_ids:
-                    country_id = country_ids[0]
+                countries = self.CountryByCode(CountryCode)
+                if countries:
+                    country_id = countries[0].id
                 else:
-                    raise orm.except_orm(
-                        _('Error !'),
+                    raise UserError(
                         _("Country Code %s not found in system") % CountryCode
                     )
             vals = {
@@ -188,14 +167,12 @@ class WizardImportFatturapa(orm.TransientModel):
             if DatiAnagrafici.Anagrafica.Denominazione:
                 vals['name'] = DatiAnagrafici.Anagrafica.Denominazione
 
-            return partner_model.create(cr, uid, vals, context=context)
+            return partner_model.create(vals).id
 
-    def getCedPrest(self, cr, uid, cedPrest, context=None):
-        partner_model = self.pool['res.partner']
-        partner_id = self.getPartnerBase(
-            cr, uid, cedPrest.DatiAnagrafici, context=context)
-        fiscalPosModel = self.pool['fatturapa.fiscal_position']
-        vals = {}
+    def getCedPrest(self, cedPrest):
+        partner_model = self.env['res.partner']
+        partner_id = self.getPartnerBase(cedPrest.DatiAnagrafici)
+        fiscalPosModel = self.env['fatturapa.fiscal_position']
         if partner_id:
             vals = {
                 'street': cedPrest.Sede.Indirizzo,
@@ -205,15 +182,24 @@ class WizardImportFatturapa(orm.TransientModel):
             }
             if cedPrest.DatiAnagrafici.ProvinciaAlbo:
                 ProvinciaAlbo = cedPrest.DatiAnagrafici.ProvinciaAlbo
-                prov_ids = self.ProvinceByCode(
-                    cr, uid, ProvinciaAlbo, context=context)
-                if not prov_ids:
-                    raise orm.except_orm(
-                        _('Error !'),
-                        _('ProvinciaAlbo ( %s ) not present in system') %
-                        ProvinciaAlbo
-                        )
-                vals['register_province'] = prov_ids[0]
+                prov = self.ProvinceByCode(ProvinciaAlbo)
+                if not prov:
+                    self.log_inconsistency(
+                        _('ProvinciaAlbo ( %s ) not present in system')
+                        % ProvinciaAlbo
+                    )
+                else:
+                    vals['register_province'] = prov[0].id
+            if cedPrest.Sede.Provincia:
+                Provincia = cedPrest.Sede.Provincia
+                prov_sede = self.ProvinceByCode(Provincia)
+                if not prov_sede:
+                    self.log_inconsistency(
+                        _('Provincia ( %s ) not present in system')
+                        % Provincia
+                    )
+                else:
+                    vals['state_id'] = prov_sede[0].id
 
             vals['register_code'] = (
                 cedPrest.DatiAnagrafici.NumeroIscrizioneAlbo)
@@ -222,34 +208,31 @@ class WizardImportFatturapa(orm.TransientModel):
 
             if cedPrest.DatiAnagrafici.RegimeFiscale:
                 rfPos = cedPrest.DatiAnagrafici.RegimeFiscale
-                FiscalPosIds = fiscalPosModel.search(
-                    cr, uid,
-                    [('code', '=', rfPos)],
-                    context=context
+                FiscalPos = fiscalPosModel.search(
+                    [('code', '=', rfPos)]
                 )
-                if not FiscalPosIds:
-                    raise orm.except_orm(
-                        _('Error!'),
+                if not FiscalPos:
+                    raise UserError(
                         _('RegimeFiscale %s is not present in your system')
                         % rfPos
                     )
                 else:
-                    vals['register_fiscalpos'] = FiscalPosIds[0]
+                    vals['register_fiscalpos'] = FiscalPos[0].id
 
             if cedPrest.IscrizioneREA:
                 REA = cedPrest.IscrizioneREA
                 vals['rea_code'] = REA.NumeroREA
-                office_id = False
-                office_ids = self.ProvinceByCode(
-                    cr, uid, REA.Ufficio, context=context)
-                if not office_ids:
-                    raise orm.except_orm(
-                        _('Error !'),
-                        _('REA Office Code ( %s ) not present in system') %
-                        REA.Ufficio
-                        )
-                office_id = office_ids[0]
-                vals['rea_office'] = office_id
+                offices = self.ProvinceByCode(REA.Ufficio)
+                if not offices:
+                    self.log_inconsistency(
+                        _(
+                            'REA Office (Province) Code ( %s ) not present in '
+                            'system'
+                        ) % REA.Ufficio
+                    )
+                else:
+                    office_id = offices[0].id
+                    vals['rea_office'] = office_id
                 vals['rea_capital'] = REA.CapitaleSociale or 0.0
                 vals['rea_member_type'] = REA.SocioUnico or False
                 vals['rea_liquidation_state'] = REA.StatoLiquidazione or False
@@ -258,73 +241,61 @@ class WizardImportFatturapa(orm.TransientModel):
                 vals['phone'] = cedPrest.Contatti.Telefono
                 vals['email'] = cedPrest.Contatti.Email
                 vals['fax'] = cedPrest.Contatti.Fax
-            partner_model.write(cr, uid, partner_id, vals, context=context)
+            partner_model.browse(partner_id).write(vals)
         return partner_id
 
-    def getCarrirerPartner(self, cr, uid, Carrier, context=None):
-        partner_model = self.pool['res.partner']
-        partner_id = self.getPartnerBase(
-            cr, uid, Carrier.DatiAnagraficiVettore, context=context)
-        vals = {}
+    def getCarrirerPartner(self, Carrier):
+        partner_model = self.env['res.partner']
+        partner_id = self.getPartnerBase(Carrier.DatiAnagraficiVettore)
         if partner_id:
             vals = {
                 'license_number':
                 Carrier.DatiAnagraficiVettore.NumeroLicenzaGuida or '',
             }
-            partner_model.write(cr, uid, partner_id, vals, context=context)
+            partner_model.browse(partner_id).write(vals)
         return partner_id
 
-    def _prepareInvoiceLine(
-        self, cr, uid, credit_account_id, line, context=None
-    ):
-        account_tax_model = self.pool['account.tax']
+    def _prepare_generic_line_data(self, line):
+        retLine = {}
+        account_tax_model = self.env['account.tax']
         # check if a default tax exists and generate def_purchase_tax object
-        ir_values = self.pool.get('ir.values')
-        company_id = self.pool.get('res.company')._company_default_get(
-            cr, uid, 'account.invoice.line', context=context
-        )
+        ir_values = self.env['ir.values']
+        company_id = self.env['res.company']._company_default_get(
+            'account.invoice.line').id
         supplier_taxes_ids = ir_values.get_default(
-            cr, uid, 'product.product', 'supplier_taxes_id',
-            company_id=company_id
-        )
+            'product.product', 'supplier_taxes_id', company_id=company_id)
         def_purchase_tax = False
         if supplier_taxes_ids:
-            def_purchase_tax = account_tax_model.browse(
-                cr, uid, supplier_taxes_ids, context=context)[0]
+            def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
         if float(line.AliquotaIVA) == 0.0 and line.Natura:
-            account_tax_ids = account_tax_model.search(
-                cr, uid,
+            account_taxes = account_tax_model.search(
                 [
-                    ('type_tax_use', 'in', ('purchase', 'all')),
-                    ('non_taxable_nature', '=', line.Natura),
+                    ('type_tax_use', '=', 'purchase'),
+                    ('kind_id.code', '=', line.Natura),
                     ('amount', '=', 0.0),
-                ], context=context)
-            if not account_tax_ids:
-                raise orm.except_orm(
-                    _('Error!'),
+                ])
+            if not account_taxes:
+                raise UserError(
                     _('No tax with percentage '
-                      '%s and nature %s found')
+                      '%s and nature %s found. Please configure this tax')
                     % (line.AliquotaIVA, line.Natura))
-            if len(account_tax_ids) > 1:
-                raise orm.except_orm(
-                    _('Error!'),
+            if len(account_taxes) > 1:
+                raise UserError(
                     _('Too many taxes with percentage '
                       '%s and nature %s found')
                     % (line.AliquotaIVA, line.Natura))
         else:
-            account_tax_ids = account_tax_model.search(
-                cr, uid,
+            account_taxes = account_tax_model.search(
                 [
-                    ('type_tax_use', 'in', ('purchase', 'all')),
-                    ('amount', '=', float(line.AliquotaIVA) / 100),
+                    ('type_tax_use', '=', 'purchase'),
+                    ('amount', '=', float(line.AliquotaIVA)),
                     ('price_include', '=', False),
                     # partially deductible VAT must be set by user
-                    ('child_ids', '=', False),
-                ], context=context)
-            if not account_tax_ids:
-                if context.get('inconsistencies'):
-                    context['inconsistencies'] += '\n'
-                context['inconsistencies'] += (
+                    ('children_tax_ids', '=', False),
+                ]
+            )
+            if not account_taxes:
+                self.log_inconsistency(
                     _(
                         'XML contains tax with percentage "%s" '
                         'but it does not exist in your system'
@@ -332,7 +303,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 )
             # check if there are multiple taxes with
             # same percentage
-            if len(account_tax_ids) > 1:
+            if len(account_taxes) > 1:
                 # just logging because this is an usual case: see split payment
                 _logger.warning(_(
                     "Line '%s': Too many taxes with percentage equals "
@@ -343,44 +314,93 @@ class WizardImportFatturapa(orm.TransientModel):
                 # set taxes list equal to supplier_taxes_id, loaded before
                 if (
                     def_purchase_tax and
-                    def_purchase_tax.amount == (float(line.AliquotaIVA) / 100)
+                    def_purchase_tax.amount == (float(line.AliquotaIVA))
                 ):
-                    account_tax_ids = supplier_taxes_ids
-        retLine = {
+                    account_taxes = def_purchase_tax
+        if account_taxes:
+            retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
+        return retLine
+
+    def get_line_product(self, line, partner):
+        product = None
+        supplier_info = self.env['product.supplierinfo']
+        if len(line.CodiceArticolo) == 1:
+            supplier_code = line.CodiceArticolo[0].CodiceValore
+            supplier_infos = supplier_info.search([
+                ('product_code', '=', supplier_code),
+                ('name', '=', partner.id)
+            ])
+            if supplier_infos:
+                products = supplier_infos.mapped('product_id')
+                if len(products) == 1:
+                    product = products[0]
+                else:
+                    templates = supplier_infos.mapped('product_tmpl_id')
+                    if len(templates) == 1:
+                        product = templates.product_variant_ids[0]
+        if not product and partner.e_invoice_default_product_id:
+            product = partner.e_invoice_default_product_id
+        return product
+
+    def adjust_accounting_data(self, product, line_vals):
+        if product.product_tmpl_id.property_account_expense_id:
+            line_vals['account_id'] = (
+                product.product_tmpl_id.property_account_expense_id.id)
+        elif (
+            product.product_tmpl_id.categ_id.property_account_expense_categ_id
+        ):
+            line_vals['account_id'] = (
+                product.product_tmpl_id.categ_id.
+                property_account_expense_categ_id.id
+            )
+        account = self.env['account.account'].browse(line_vals['account_id'])
+        new_tax = None
+        if len(product.product_tmpl_id.supplier_taxes_id) == 1:
+            new_tax = product.product_tmpl_id.supplier_taxes_id[0]
+        elif len(account.tax_ids) == 1:
+            new_tax = account.tax_ids[0]
+        if new_tax:
+            line_tax_id = (
+                line_vals.get('invoice_line_tax_ids') and
+                line_vals['invoice_line_tax_ids'][0][2][0]
+            )
+            line_tax = self.env['account.tax'].browse(line_tax_id)
+            if new_tax.id != line_tax_id:
+                if new_tax._get_tax_amount() != line_tax._get_tax_amount():
+                    self.log_inconsistency(_(
+                        "XML contains tax %s. Product %s has tax %s. Using "
+                        "the XML one"
+                    ) % (line_tax.name, product.name, new_tax.name))
+                else:
+                    # If product has the same amount of the one in XML,
+                    # I use it. Typical case: 22% det 50%
+                    line_vals['invoice_line_tax_ids'] = [
+                        (6, 0, [new_tax.id])]
+
+    def _prepareInvoiceLine(self, credit_account_id, line, wt_found=False):
+        retLine = self._prepare_generic_line_data(line)
+        retLine.update({
             'name': line.Descrizione,
             'sequence': int(line.NumeroLinea),
             'account_id': credit_account_id,
-        }
-        if account_tax_ids:
-            retLine['invoice_line_tax_id'] = [(6, 0, [account_tax_ids[0]])]
+        })
         if line.PrezzoUnitario:
             retLine['price_unit'] = float(line.PrezzoUnitario)
         if line.Quantita:
             retLine['quantity'] = float(line.Quantita)
-        if line.TipoCessionePrestazione:
-            retLine['service_type'] = line.TipoCessionePrestazione
-        if line.TipoCessionePrestazione:
-            retLine['service_type'] = line.TipoCessionePrestazione
-        if line.UnitaMisura:
-            retLine['ftpa_uom'] = line.UnitaMisura
-        if line.DataInizioPeriodo:
-            retLine['service_start'] = line.DataInizioPeriodo
-        if line.DataFinePeriodo:
-            retLine['service_end'] = line.DataFinePeriodo
         if (
             line.PrezzoTotale and line.PrezzoUnitario and line.Quantita and
             line.ScontoMaggiorazione
         ):
-            retLine['discount'] = self._computeDiscount(
-                cr, uid, line, context=context)
+            retLine['discount'] = self._computeDiscount(line)
         if line.RiferimentoAmministrazione:
             retLine['admin_ref'] = line.RiferimentoAmministrazione
+        if wt_found and line.Ritenuta:
+            retLine['invoice_line_tax_wt_ids'] = [(6, 0, [wt_found.id])]
 
         return retLine
 
-    def _prepareRelDocsLine(
-        self, cr, uid, invoice_id, line, type, context=None
-    ):
+    def _prepareRelDocsLine(self, invoice_id, line, type):
         res = []
         lineref = line.RiferimentoNumeroLinea or False
         IdDoc = line.IdDocumento or 'Error'
@@ -393,15 +413,14 @@ class WizardImportFatturapa(orm.TransientModel):
         if lineref:
             for numline in lineref:
                 invoice_lineid = False
-                invoice_line_model = self.pool['account.invoice.line']
-                invoice_line_ids = invoice_line_model.search(
-                    cr, uid,
+                invoice_line_model = self.env['account.invoice.line']
+                invoice_lines = invoice_line_model.search(
                     [
                         ('invoice_id', '=', invoice_id),
                         ('sequence', '=', int(numline)),
-                    ], context=context)
-                if invoice_line_ids:
-                    invoice_lineid = invoice_line_ids[0]
+                    ])
+                if invoice_lines:
+                    invoice_lineid = invoice_lines[0].id
                 val = {
                     'type': type,
                     'name': IdDoc,
@@ -430,10 +449,7 @@ class WizardImportFatturapa(orm.TransientModel):
             res.append(val)
         return res
 
-    def _prepareWelfareLine(
-        self, cr, uid, invoice_id, line, context=None
-    ):
-        res = []
+    def _prepareWelfareLine(self, invoice_id, line):
         TipoCassa = line.TipoCassa or False
         AlCassa = line.AlCassa and (float(line.AlCassa)/100) or None
         ImportoContributoCassa = (
@@ -445,17 +461,26 @@ class WizardImportFatturapa(orm.TransientModel):
             line.AliquotaIVA and (float(line.AliquotaIVA)/100) or None)
         Ritenuta = line.Ritenuta or ''
         Natura = line.Natura or False
+        kind_id = False
+        if Natura:
+            kind = self.env['account.tax.kind'].search([
+                ('code', '=', Natura)
+            ])
+            if not kind:
+                self.log_inconsistency(
+                    _("Tax kind %s not found") % Natura
+                )
+            else:
+                kind_id = kind[0].id
+
         RiferimentoAmministrazione = line.RiferimentoAmministrazione or ''
-        WelfareTypeModel = self.pool['welfare.fund.type']
+        WelfareTypeModel = self.env['welfare.fund.type']
         if not TipoCassa:
-            raise orm.except_orm(
-                _('Error!'),
+            raise UserError(
                 _('TipoCassa is not defined ')
             )
-        WelfareTypeId = WelfareTypeModel.search(
-            cr, uid,
-            [('name', '=', TipoCassa)],
-            context=context
+        WelfareType = WelfareTypeModel.search(
+            [('name', '=', TipoCassa)]
         )
 
         res = {
@@ -464,38 +489,32 @@ class WizardImportFatturapa(orm.TransientModel):
             'welfare_taxable': ImponibileCassa,
             'welfare_Iva_tax': AliquotaIVA,
             'subjected_withholding': Ritenuta,
-            'fund_nature': Natura or False,
+            'kind_id': kind_id,
             'pa_line_code': RiferimentoAmministrazione,
             'invoice_id': invoice_id,
         }
-        if not WelfareTypeId:
-            raise orm.except_orm(
-                _('Error'),
+        if not WelfareType:
+            raise UserError(
                 _('TipoCassa %s is not present in your system') % TipoCassa)
         else:
-            res['name'] = WelfareTypeId[0]
+            res['name'] = WelfareType[0].id
 
         return res
 
-    def _prepareDiscRisePriceLine(
-        self, cr, uid, id, line, context=None
-    ):
-        res = []
+    def _prepareDiscRisePriceLine(self, id, line):
         Tipo = line.Tipo or False
         Percentuale = line.Percentuale and float(line.Percentuale) or 0.0
         Importo = line.Importo and float(line.Importo) or 0.0
         res = {
             'percentage': Percentuale,
             'amount': Importo,
-            context.get('drtype'): id,
+            self.env.context.get('drtype'): id,
         }
         res['name'] = Tipo
 
         return res
 
-    def _computeDiscount(
-        self, cr, uid, DettaglioLinea, context=None
-    ):
+    def _computeDiscount(self, DettaglioLinea):
         line_total = float(DettaglioLinea.PrezzoTotale)
         line_unit = line_total / float(DettaglioLinea.Quantita)
         discount = (
@@ -503,14 +522,13 @@ class WizardImportFatturapa(orm.TransientModel):
             ) * 100.0
         return discount
 
-    def _addGlobalDiscount(
-        self, cr, uid, invoice_id, DatiGeneraliDocumento, context=None
-    ):
+    def _addGlobalDiscount(self, invoice_id, DatiGeneraliDocumento):
         discount = 0.0
-        if DatiGeneraliDocumento.ScontoMaggiorazione:
-            invoice = self.pool['account.invoice'].browse(
-                cr, uid, invoice_id, context=context)
-            invoice.button_compute(context=context, set_total=True)
+        if (
+            DatiGeneraliDocumento.ScontoMaggiorazione and
+            self.e_invoice_detail_level == '2'
+        ):
+            invoice = self.env['account.invoice'].browse(invoice_id)
             for DiscRise in DatiGeneraliDocumento.ScontoMaggiorazione:
                 if DiscRise.Percentuale:
                     amount = (
@@ -525,8 +543,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         discount -= float(DiscRise.Importo)
                     elif DiscRise.Tipo == 'MG':
                         discount += float(DiscRise.Importo)
-            journal = self.get_purchase_journal(
-                cr, uid, invoice.company_id, context=context)
+            journal = self.get_purchase_journal(invoice.company_id)
             credit_account_id = journal.default_credit_account_id.id
             line_vals = {
                 'invoice_id': invoice_id,
@@ -536,29 +553,59 @@ class WizardImportFatturapa(orm.TransientModel):
                 'price_unit': discount,
                 'quantity': 1,
                 }
-            self.pool['account.invoice.line'].create(
-                cr, uid, line_vals, context=context)
+            if self.env.user.company_id.sconto_maggiorazione_product_id:
+                sconto_maggiorazione_product = (
+                    self.env.user.company_id.sconto_maggiorazione_product_id)
+                line_vals['product_id'] = sconto_maggiorazione_product.id
+                line_vals['name'] = sconto_maggiorazione_product.name
+                self.adjust_accounting_data(
+                    sconto_maggiorazione_product, line_vals
+                )
+            self.env['account.invoice.line'].create(line_vals)
         return True
 
-    def _createPayamentsLine(
-        self, cr, uid, payment_id, line, partner_id,
-        context=None
-    ):
-        PaymentModel = self.pool['fatturapa.payment.detail']
-        PaymentMethodModel = self.pool['fatturapa.payment_method']
+    def add_dati_bollo(self, invoice, DatiGeneraliDocumento):
+        # 2.1.1.6
+        Stamps = DatiGeneraliDocumento.DatiBollo
+        if Stamps:
+            invoice.virtual_stamp = Stamps.BolloVirtuale
+            invoice.stamp_amount = float(Stamps.ImportoBollo)
+            if self.e_invoice_detail_level == '2':
+                journal = self.get_purchase_journal(invoice.company_id)
+                credit_account_id = journal.default_credit_account_id.id
+                line_vals = {
+                    'invoice_id': invoice.id,
+                    'name': _(
+                        "Bollo assolto ai sensi del decreto MEF 17 giugno "
+                        "2014 (art. 6)"
+                    ),
+                    'account_id': credit_account_id,
+                    'price_unit': invoice.stamp_amount,
+                    'quantity': 1,
+                    }
+                if self.env.user.company_id.dati_bollo_product_id:
+                    dati_bollo_product = (
+                        self.env.user.company_id.dati_bollo_product_id)
+                    line_vals['product_id'] = dati_bollo_product.id
+                    line_vals['name'] = dati_bollo_product.name
+                    self.adjust_accounting_data(
+                        dati_bollo_product, line_vals
+                    )
+                self.env['account.invoice.line'].create(line_vals)
+
+    def _createPayamentsLine(self, payment_id, line, partner_id):
+        PaymentModel = self.env['fatturapa.payment.detail']
+        PaymentMethodModel = self.env['fatturapa.payment_method']
         details = line.DettaglioPagamento or False
         if details:
             for dline in details:
-                BankModel = self.pool['res.bank']
-                PartnerBankModel = self.pool['res.partner.bank']
-                method_id = PaymentMethodModel.search(
-                    cr, uid,
-                    [('code', '=', dline.ModalitaPagamento)],
-                    context=context
+                BankModel = self.env['res.bank']
+                PartnerBankModel = self.env['res.partner.bank']
+                method = PaymentMethodModel.search(
+                    [('code', '=', dline.ModalitaPagamento)]
                 )
-                if not method_id:
-                    raise orm.except_orm(
-                        _('Error!'),
+                if not method:
+                    raise UserError(
                         _(
                             'ModalitaPagamento %s not defined in your system'
                             % dline.ModalitaPagamento
@@ -566,7 +613,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     )
                 val = {
                     'recipient': dline.Beneficiario,
-                    'fatturapa_pm_id': method_id[0],
+                    'fatturapa_pm_id': method[0].id,
                     'payment_term_start':
                     dline.DataRiferimentoTerminiPagamento or False,
                     'payment_days':
@@ -611,45 +658,36 @@ class WizardImportFatturapa(orm.TransientModel):
                 bankid = False
                 payment_bank_id = False
                 if dline.BIC:
-                    bankids = BankModel.search(
-                        cr, uid,
-                        [('bic', '=', dline.BIC.strip())], context=context
+                    banks = BankModel.search(
+                        [('bic', '=', dline.BIC.strip())]
                     )
-                    if not bankids:
+                    if not banks:
                         if not dline.IstitutoFinanziario:
-                            if context.get('inconsistencies'):
-                                context['inconsistencies'] += '\n'
-                            context['inconsistencies'] += (
+                            self.log_inconsistency(
                                 _("Name of Bank with BIC \"%s\" is not set."
                                   " Can't create bank") % dline.BIC
                             )
                         else:
                             bankid = BankModel.create(
-                                cr, uid,
                                 {
                                     'name': dline.IstitutoFinanziario,
                                     'bic': dline.BIC,
-                                },
-                                context=context
-                            )
+                                }
+                            ).id
                     else:
-                        bankid = bankids[0]
+                        bankid = banks[0].id
                 if dline.IBAN:
                     SearchDom = [
-                        ('state', '=', 'iban'),
                         (
                             'acc_number', '=',
-                            base_iban._pretty_iban(dline.IBAN.strip())
+                            pretty_iban(dline.IBAN.strip())
                         ),
                         ('partner_id', '=', partner_id),
                     ]
                     payment_bank_id = False
-                    payment_bank_ids = PartnerBankModel.search(
-                        cr, uid, SearchDom, context=context)
-                    if not payment_bank_ids and not bankid:
-                        if context.get('inconsistencies'):
-                            context['inconsistencies'] += '\n'
-                        context['inconsistencies'] += (
+                    payment_banks = PartnerBankModel.search(SearchDom)
+                    if not payment_banks and not bankid:
+                        self.log_inconsistency(
                             _(
                                 'BIC is required and not exist in Xml\n'
                                 'Curr bank data is: \n'
@@ -661,93 +699,139 @@ class WizardImportFatturapa(orm.TransientModel):
                                 dline.IstitutoFinanziario or ''
                             )
                         )
-
-                    elif not payment_bank_ids and bankid:
+                    elif not payment_banks and bankid:
                         payment_bank_id = PartnerBankModel.create(
-                            cr, uid,
                             {
-                                'state': 'iban',
                                 'acc_number': dline.IBAN.strip(),
                                 'partner_id': partner_id,
-                                'bank': bankid,
+                                'bank_id': bankid,
                                 'bank_name': dline.IstitutoFinanziario,
                                 'bank_bic': dline.BIC
-                            },
-                            context=context
-                        )
-                    if payment_bank_ids:
-                        payment_bank_id = payment_bank_ids[0]
+                            }
+                        ).id
+                    if payment_banks:
+                        payment_bank_id = payment_banks[0].id
 
                 if payment_bank_id:
                     val['payment_bank'] = payment_bank_id
-                PaymentModel.create(cr, uid, val, context=context)
+                PaymentModel.create(val)
         return True
 
-    def get_purchase_journal(self, cr, uid, company, context=None):
-        journal_model = self.pool['account.journal']
-        journal_ids = journal_model.search(
-            cr, uid,
+    # TODO sul partner?
+    def set_StabileOrganizzazione(self, CedentePrestatore, invoice):
+        if CedentePrestatore.StabileOrganizzazione:
+            invoice.efatt_stabile_organizzazione_indirizzo = (
+                CedentePrestatore.StabileOrganizzazione.Indirizzo)
+            invoice.efatt_stabile_organizzazione_civico = (
+                CedentePrestatore.StabileOrganizzazione.NumeroCivico)
+            invoice.efatt_stabile_organizzazione_cap = (
+                CedentePrestatore.StabileOrganizzazione.CAP)
+            invoice.efatt_stabile_organizzazione_comune = (
+                CedentePrestatore.StabileOrganizzazione.Comune)
+            invoice.efatt_stabile_organizzazione_provincia = (
+                CedentePrestatore.StabileOrganizzazione.Provincia)
+            invoice.efatt_stabile_organizzazione_nazione = (
+                CedentePrestatore.StabileOrganizzazione.Nazione)
+
+    def get_purchase_journal(self, company):
+        journal_model = self.env['account.journal']
+        journals = journal_model.search(
             [
                 ('type', '=', 'purchase'),
                 ('company_id', '=', company.id)
             ],
-            limit=1, context=context)
-        if not journal_ids:
-            raise orm.except_orm(
-                _('Error!'),
+            limit=1)
+        if not journals:
+            raise UserError(
                 _(
                     'Define a purchase journal '
                     'for this company: "%s" (id:%d).'
                 ) % (company.name, company.id)
             )
-        purchase_journal = journal_model.browse(
-            cr, uid, journal_ids[0], context=context)
-        return purchase_journal
+        return journals[0]
+
+    def create_e_invoice_line(self, line):
+        vals = {
+            'line_number': int(line.NumeroLinea or 0),
+            'service_type': line.TipoCessionePrestazione,
+            'name': line.Descrizione,
+            'qty': float(line.Quantita or 0),
+            'uom': line.UnitaMisura,
+            'period_start_date': line.DataInizioPeriodo,
+            'period_end_date': line.DataFinePeriodo,
+            'unit_price': float(line.PrezzoUnitario or 0),
+            'total_price': float(line.PrezzoTotale or 0),
+            'tax_amount': float(line.AliquotaIVA or 0),
+            'wt_amount': line.Ritenuta,
+            'tax_kind': line.Natura,
+            'admin_ref': line.RiferimentoAmministrazione,
+        }
+        einvoiceline = self.env['einvoice.line'].create(vals)
+        if line.CodiceArticolo:
+            for caline in line.CodiceArticolo:
+                self.env['fatturapa.article.code'].create(
+                    {
+                        'name': caline.CodiceTipo or '',
+                        'code_val': caline.CodiceValore or '',
+                        'e_invoice_line_id': einvoiceline.id
+                    }
+                )
+        if line.ScontoMaggiorazione:
+            for DiscRisePriceLine in line.ScontoMaggiorazione:
+                DiscRisePriceVals = self.with_context(
+                    drtype='e_invoice_line_id'
+                )._prepareDiscRisePriceLine(
+                    einvoiceline.id, DiscRisePriceLine
+                )
+                self.env['discount.rise.price'].create(DiscRisePriceVals)
+        if line.AltriDatiGestionali:
+            for dato in line.AltriDatiGestionali:
+                self.env['einvoice.line.other.data'].create(
+                    {
+                        'name': dato.TipoDato,
+                        'text_ref': dato.RiferimentoTesto,
+                        'num_ref': float(dato.RiferimentoNumero or 0),
+                        'date_ref': dato.RiferimentoData,
+                        'e_invoice_line_id': einvoiceline.id
+                    }
+                )
+        return einvoiceline
 
     def invoiceCreate(
-        self, cr, uid, fatt, fatturapa_attachment, FatturaBody,
-        partner_id, context=None
+        self, fatt, fatturapa_attachment, FatturaBody, partner_id
     ):
-        if context is None:
-            context = {}
-        partner_model = self.pool['res.partner']
-        invoice_model = self.pool['account.invoice']
-        currency_model = self.pool['res.currency']
-        invoice_line_model = self.pool['account.invoice.line']
-        ftpa_doctype_poll = self.pool['fatturapa.document_type']
-        rel_docs_model = self.pool['fatturapa.related_document_type']
-        WelfareFundLineModel = self.pool['welfare.fund.data.line']
-        DiscRisePriceModel = self.pool['discount.rise.price']
-        SalModel = self.pool['faturapa.activity.progress']
-        DdTModel = self.pool['fatturapa.related_ddt']
-        PaymentDataModel = self.pool['fatturapa.payment.data']
-        PaymentTermsModel = self.pool['fatturapa.payment_term']
-        SummaryDatasModel = self.pool['faturapa.summary.data']
+        partner_model = self.env['res.partner']
+        invoice_model = self.env['account.invoice']
+        currency_model = self.env['res.currency']
+        invoice_line_model = self.env['account.invoice.line']
+        ftpa_doctype_model = self.env['fiscal.document.type']
+        rel_docs_model = self.env['fatturapa.related_document_type']
+        WelfareFundLineModel = self.env['welfare.fund.data.line']
+        SalModel = self.env['faturapa.activity.progress']
+        DdTModel = self.env['fatturapa.related_ddt']
+        PaymentDataModel = self.env['fatturapa.payment.data']
+        PaymentTermsModel = self.env['fatturapa.payment_term']
+        SummaryDatasModel = self.env['faturapa.summary.data']
 
-        company = self.pool['res.users'].browse(
-            cr, uid, uid, context=context).company_id
-        partner = partner_model.browse(cr, uid, partner_id, context=context)
-        pay_acc_id = partner.property_account_payable.id
+        company = self.env.user.company_id
+        partner = partner_model.browse(partner_id)
+        pay_acc_id = partner.property_account_payable_id.id
         # currency 2.1.1.2
-        currency_id = currency_model.search(
-            cr, uid,
+        currency = currency_model.search(
             [
                 (
                     'name', '=',
                     FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
                 )
-            ],
-            context=context)
-        if not currency_id:
-            raise orm.except_orm(
-                _('Error!'),
+            ])
+        if not currency:
+            raise UserError(
                 _(
                     'No currency found with code %s'
                     % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
                 )
             )
-        purchase_journal = self.get_purchase_journal(
-            cr, uid, company, context=context)
+        purchase_journal = self.get_purchase_journal(company)
         credit_account_id = purchase_journal.default_credit_account_id.id
         invoice_lines = []
         comment = ''
@@ -756,179 +840,197 @@ class WizardImportFatturapa(orm.TransientModel):
         invtype = 'in_invoice'
         docType = FatturaBody.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
         if docType:
-            docType_ids = ftpa_doctype_poll.search(
-                cr, uid,
+            docType_record = ftpa_doctype_model.search(
                 [
                     ('code', '=', docType)
-                ],
-                context=context
+                ]
             )
-            if docType_ids:
-                docType_id = docType_ids[0]
+            if docType_record:
+                docType_id = docType_record[0].id
             else:
-                raise orm.except_orm(
-                    _("Error"),
+                raise UserError(
                     _("tipoDocumento %s not handled")
                     % docType)
-            if docType == 'TD04' or docType == 'TD05':
+            if docType == 'TD04':
                 invtype = 'in_refund'
         # 2.1.1.11
         causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
         if causLst:
             for item in causLst:
                 comment += item + '\n'
-        # 2.2.1
-        CodeArts = self.pool['fatturapa.article.code']
-        for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
-            invoice_line_data = self._prepareInvoiceLine(
-                cr, uid, credit_account_id, line, context=context)
-            invoice_line_id = invoice_line_model.create(
-                cr, uid, invoice_line_data, context=context)
-
-            if line.CodiceArticolo:
-                for caline in line.CodiceArticolo:
-                    CodeArts.create(
-                        cr, uid,
-                        {
-                            'name': caline.CodiceTipo or '',
-                            'code_val': caline.CodiceValore or '',
-                            'invoice_line_id': invoice_line_id
-                        },
-                        context=context
-                    )
-            if line.ScontoMaggiorazione:
-                context['drtype'] = 'invoice_line_id'
-                for DiscRisePriceLine in line.ScontoMaggiorazione:
-                    DiscRisePriceVals = self._prepareDiscRisePriceLine(
-                        cr, uid, invoice_line_id, DiscRisePriceLine,
-                        context=context
-                    )
-                    DiscRisePriceModel.create(
-                        cr, uid, DiscRisePriceVals, context=context)
-            invoice_lines.append(invoice_line_id)
 
         invoice_data = {
-            'doc_type': docType_id,
+            'fiscal_document_type_id': docType_id,
             'date_invoice':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
-            'supplier_invoice_number':
+            'reference':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             'account_id': pay_acc_id,
             'type': invtype,
             'partner_id': partner_id,
-            'currency_id': currency_id[0],
+            'currency_id': currency[0].id,
             'journal_id': purchase_journal.id,
-            'invoice_line': [(6, 0, invoice_lines)],
             # 'origin': xmlData.datiOrdineAcquisto,
-            'fiscal_position': False,
-            'payment_term': False,
+            'fiscal_position_id': False,
+            'payment_term_id': False,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
             'comment': comment
         }
+
+        # 2.1.1.10
+        if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
+            invoice_data['efatt_rounding'] = float(
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
+            )
+        # 2.1.1.12
+        if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Art73:
+            invoice_data['art73'] = True
+
         # 2.1.1.5
         Withholding = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiRitenuta
+        wt_found = None
         if Withholding:
-            invoice_data['withholding_amount'] = Withholding.ImportoRitenuta
+            wts = self.env['withholding.tax'].search([
+                ('causale_pagamento_id.code', '=',
+                 Withholding.CausalePagamento)
+            ])
+            if not wts:
+                raise UserError(_(
+                    "Supplier invoice contains withholding tax with "
+                    "CausalePagamento %s, "
+                    "but such a tax is not found in your system. Please "
+                    "set it"
+                ) % Withholding.CausalePagamento)
+            wt_found = False
+            for wt in wts:
+                if wt.tax == float(Withholding.AliquotaRitenuta):
+                    wt_found = wt
+                    break
+            if not wt_found:
+                raise UserError(_(
+                    "No withholding tax found with Causale %s and rate %s"
+                ) % (
+                    Withholding.CausalePagamento, Withholding.AliquotaRitenuta
+                ))
             invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
-            invoice_data['ftpa_withholding_rate'] = float(
-                Withholding.AliquotaRitenuta)/100
-            invoice_data['ftpa_withholding_payment_reason'] = Withholding.\
-                CausalePagamento
-        # 2.1.1.6
-        Stamps = FatturaBody.DatiGenerali.\
-            DatiGeneraliDocumento.DatiBollo
-        if Stamps:
-            invoice_data['virtual_stamp'] = Stamps.BolloVirtuale
-            invoice_data['stamp_amount'] = float(Stamps.ImportoBollo)
-        invoice_id = invoice_model.create(
-            cr, uid, invoice_data, context=context)
+        # 2.2.1
+        e_invoice_line_ids = []
+        for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
+            if self.e_invoice_detail_level == '2':
+                invoice_line_data = self._prepareInvoiceLine(
+                    credit_account_id, line, wt_found)
+                product = self.get_line_product(line, partner)
+                if product:
+                    invoice_line_data['product_id'] = product.id
+                    self.adjust_accounting_data(product, invoice_line_data)
+                invoice_line_id = invoice_line_model.create(
+                    invoice_line_data).id
+                invoice_lines.append(invoice_line_id)
+            einvoiceline = self.create_e_invoice_line(line)
+            e_invoice_line_ids.append(einvoiceline.id)
+        invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
+        invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
+        invoice = invoice_model.create(invoice_data)
+        invoice._onchange_invoice_line_wt_ids()
+        invoice.write(invoice._convert_to_write(invoice._cache))
+        invoice_id = invoice.id
 
-        invoice = invoice_model.browse(cr, uid, invoice_id, context=context)
+        self.add_dati_bollo(
+            invoice, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
+
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiCassaPrevidenziale
-        if Walfares:
+        if Walfares and self.e_invoice_detail_level == '2':
             for walfareLine in Walfares:
                 WalferLineVals = self._prepareWelfareLine(
-                    cr, uid, invoice_id, walfareLine, context=context)
-                WelfareFundLineModel.create(
-                    cr, uid, WalferLineVals, context=context)
-        # 2.1.1.8
-        DiscountRises = FatturaBody.DatiGenerali.\
-            DatiGeneraliDocumento.ScontoMaggiorazione
-        if DiscountRises:
-            context['drtype'] = 'invoice_id'
-            for DiscRisePriceLine in DiscountRises:
-                DiscRisePriceVals = self._prepareDiscRisePriceLine(
-                    cr, uid, invoice_id, DiscRisePriceLine, context=context)
-                DiscRisePriceModel.create(
-                    cr, uid, DiscRisePriceVals, context=context)
+                    invoice_id, walfareLine)
+                WelfareFundLineModel.create(WalferLineVals)
+                line_vals = self._prepare_generic_line_data(walfareLine)
+                line_vals.update({
+                    'name': _(
+                        "Cassa Previdenziale: %s") % walfareLine.TipoCassa,
+                    'price_unit': float(walfareLine.ImportoContributoCassa),
+                    'invoice_id': invoice.id,
+                    'account_id': credit_account_id,
+                })
+                if walfareLine.Ritenuta:
+                    if not wt_found:
+                        raise UserError(_(
+                            "CassaPrevidenziale %s has Ritenuta but no "
+                            "withholding tax was found in the system"
+                            % walfareLine.TipoCassa))
+                    line_vals['invoice_line_tax_wt_ids'] = [
+                        (6, 0, [wt_found.id])]
+                if self.env.user.company_id.cassa_previdenziale_product_id:
+                    cassa_previdenziale_product = (
+                        self.env.user.company_id.
+                        cassa_previdenziale_product_id
+                    )
+                    line_vals['product_id'] = cassa_previdenziale_product.id
+                    line_vals['name'] = cassa_previdenziale_product.name
+                    self.adjust_accounting_data(
+                        cassa_previdenziale_product, line_vals
+                    )
+                self.env['account.invoice.line'].create(line_vals)
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
         if relOrders:
             for order in relOrders:
                 doc_datas = self._prepareRelDocsLine(
-                    cr, uid, invoice_id, order, 'order', context=context)
+                    invoice_id, order, 'order')
                 if doc_datas:
                     for doc_data in doc_datas:
-                        rel_docs_model.create(
-                            cr, uid, doc_data, context=context)
+                        rel_docs_model.create(doc_data)
         # 2.1.3
         relContracts = FatturaBody.DatiGenerali.DatiContratto
         if relContracts:
             for contract in relContracts:
                 doc_datas = self._prepareRelDocsLine(
-                    cr, uid, invoice_id, contract, 'contract', context=context)
+                    invoice_id, contract, 'contract')
                 if doc_datas:
                     for doc_data in doc_datas:
-                        rel_docs_model.create(
-                            cr, uid, doc_data, context=context)
+                        rel_docs_model.create(doc_data)
         # 2.1.4
         relAgreements = FatturaBody.DatiGenerali.DatiConvenzione
         if relAgreements:
             for agreement in relAgreements:
                 doc_datas = self._prepareRelDocsLine(
-                    cr, uid, invoice_id, agreement,
-                    'agreement', context=context)
+                    invoice_id, agreement, 'agreement')
                 if doc_datas:
                     for doc_data in doc_datas:
-                        rel_docs_model.create(
-                            cr, uid, doc_data, context=context)
+                        rel_docs_model.create(doc_data)
         # 2.1.5
         relReceptions = FatturaBody.DatiGenerali.DatiRicezione
         if relReceptions:
             for reception in relReceptions:
                 doc_datas = self._prepareRelDocsLine(
-                    cr, uid, invoice_id, reception,
-                    'reception', context=context)
+                    invoice_id, reception, 'reception')
                 if doc_datas:
                     for doc_data in doc_datas:
-                        rel_docs_model.create(
-                            cr, uid, doc_data, context=context)
+                        rel_docs_model.create(doc_data)
         # 2.1.6
         RelInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
         if RelInvoices:
             for invoice in RelInvoices:
                 doc_datas = self._prepareRelDocsLine(
-                    cr, uid, invoice_id, invoice, 'invoice', context=context)
+                    invoice_id, invoice, 'invoice')
                 if doc_datas:
                     for doc_data in doc_datas:
-                        rel_docs_model.create(
-                            cr, uid, doc_data, context=context)
+                        rel_docs_model.create(doc_data)
         # 2.1.7
         SalDatas = FatturaBody.DatiGenerali.DatiSAL
         if SalDatas:
             for SalDataLine in SalDatas:
                 SalModel.create(
-                    cr, uid,
                     {
                         'fatturapa_activity_progress': (
                             SalDataLine.RiferimentoFase or 0),
                         'invoice_id': invoice_id
-                    }, context=context
+                    }
                 )
         # 2.1.8
         DdtDatas = FatturaBody.DatiGenerali.DatiDDT
@@ -936,38 +1038,34 @@ class WizardImportFatturapa(orm.TransientModel):
             for DdtDataLine in DdtDatas:
                 if not DdtDataLine.RiferimentoNumeroLinea:
                     DdTModel.create(
-                        cr, uid,
                         {
                             'name': DdtDataLine.NumeroDDT or '',
                             'date': DdtDataLine.DataDDT or False,
                             'invoice_id': invoice_id
-                        }, context=context
+                        }
                     )
                 else:
                     for numline in DdtDataLine.RiferimentoNumeroLinea:
-                        invoice_line_ids = invoice_line_model.search(
-                            cr, uid,
+                        invoice_lines = invoice_line_model.search(
                             [
                                 ('invoice_id', '=', invoice_id),
                                 ('sequence', '=', int(numline)),
-                            ], context=context)
+                            ])
                         invoice_lineid = False
-                        if invoice_line_ids:
-                            invoice_lineid = invoice_line_ids[0]
+                        if invoice_lines:
+                            invoice_lineid = invoice_lines[0].id
                         DdTModel.create(
-                            cr, uid,
                             {
                                 'name': DdtDataLine.NumeroDDT or '',
                                 'date': DdtDataLine.DataDDT or False,
                                 'invoice_id': invoice_id,
                                 'invoice_line_id': invoice_lineid
-                            }, context=context
+                            }
                         )
         # 2.1.9
         Delivery = FatturaBody.DatiGenerali.DatiTrasporto
         if Delivery:
-            delivery_id = self.getCarrirerPartner(
-                cr, uid, Delivery, context=context)
+            delivery_id = self.getCarrirerPartner(Delivery)
             delivery_dict = {
                 'carrier_id': delivery_id,
                 'transport_vehicle': Delivery.MezzoTrasporto or '',
@@ -981,6 +1079,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 'transport_date': Delivery.DataInizioTrasporto or False,
                 'delivery_datetime': Delivery.DataOraConsegna or False,
                 'delivery_address': '',
+                'ftpa_incoterms': Delivery.TipoResa,
             }
 
             if Delivery.IndirizzoResa:
@@ -994,16 +1093,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         Delivery.IndirizzoResa.Nazione or ''
                     )
                 )
-            if Delivery.TipoResa:
-                StockModel = self.pool['stock.incoterms']
-                stock_incoterm_id = StockModel.search(
-                    cr, uid, [('code', '=', Delivery.TipoResa)],
-                    context=context
-                )
-                if stock_incoterm_id:
-                    delivery_dict['incoterm'] = stock_incoterm_id[0]
-            invoice_model.write(
-                cr, uid, invoice_id, delivery_dict, context=context)
+            invoice.write(delivery_dict)
         # 2.2.2
         Summary_datas = FatturaBody.DatiBeniServizi.DatiRiepilogo
         if Summary_datas:
@@ -1011,7 +1101,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 summary_line = {
                     'tax_rate': summary.AliquotaIVA or 0.0,
                     'non_taxable_nature': summary.Natura or False,
-                    'incidental charges': summary.SpeseAccessorie or 0.0,
+                    'incidental_charges': summary.SpeseAccessorie or 0.0,
                     'rounding': summary.Arrotondamento or 0.0,
                     'amount_untaxed': summary.ImponibileImporto or 0.0,
                     'amount_tax': summary.Imposta or 0.0,
@@ -1019,8 +1109,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     'law_reference': summary.RiferimentoNormativo or '',
                     'invoice_id': invoice_id,
                 }
-                SummaryDatasModel.create(
-                    cr, uid, summary_line, context=context)
+                SummaryDatasModel.create(summary_line)
 
         # 2.1.10
         ParentInvoice = FatturaBody.DatiGenerali.FatturaPrincipale
@@ -1031,8 +1120,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 'related_invoice_date':
                 ParentInvoice.DataFatturaPrincipale or False
             }
-            invoice_model.write(
-                cr, uid, invoice_id, parentinv_vals, context=context)
+            invoice.write(parentinv_vals)
         # 2.3
         Vehicle = FatturaBody.DatiVeicoli
         if Vehicle:
@@ -1040,52 +1128,40 @@ class WizardImportFatturapa(orm.TransientModel):
                 'vehicle_registration': Vehicle.Data or False,
                 'total_travel': Vehicle.TotalePercorso or '',
             }
-            invoice_model.write(
-                cr, uid, invoice_id, veicle_vals, context=context)
+            invoice.write(veicle_vals)
         # 2.4
         PaymentsData = FatturaBody.DatiPagamento
         if PaymentsData:
             for PaymentLine in PaymentsData:
                 cond = PaymentLine.CondizioniPagamento or False
                 if not cond:
-                    raise orm.except_orm(
-                        _('Error!'),
+                    raise UserError(
                         _('Payment method Code not found in document')
                     )
-                term_id = False
-                term_ids = PaymentTermsModel.search(
-                    cr, uid, [('code', '=', cond)], context=context)
-                if not term_ids:
-                    raise orm.except_orm(
-                        _('Error!'),
+                terms = PaymentTermsModel.search([('code', '=', cond)])
+                if not terms:
+                    raise UserError(
                         _('Payment method Code %s is incorrect') % cond
                     )
                 else:
-                    term_id = term_ids[0]
+                    term_id = terms[0].id
                 PayDataId = PaymentDataModel.create(
-                    cr, uid,
                     {
                         'payment_terms': term_id,
                         'invoice_id': invoice_id
-                    },
-                    context=context
-                )
-                self._createPayamentsLine(
-                    cr, uid, PayDataId, PaymentLine, partner_id,
-                    context=context
-                )
+                    }
+                ).id
+                self._createPayamentsLine(PayDataId, PaymentLine, partner_id)
         # 2.5
         AttachmentsData = FatturaBody.Allegati
         if AttachmentsData:
-            AttachModel = self.pool['fatturapa.attachments']
+            AttachModel = self.env['fatturapa.attachments']
             for attach in AttachmentsData:
                 if not attach.NomeAttachment:
-                    raise orm.except_orm(
-                        _('Error!'),
-                        _('Attachment Name is Required')
-                    )
+                    name = _("Attachment without name")
+                else:
+                    name = attach.NomeAttachment
                 content = attach.Attachment
-                name = attach.NomeAttachment
                 _attach_dict = {
                     'name': name,
                     'datas': base64.b64encode(str(content)),
@@ -1095,50 +1171,22 @@ class WizardImportFatturapa(orm.TransientModel):
                     'format': attach.FormatoAttachment or '',
                     'invoice_id': invoice_id,
                 }
-                AttachModel.create(
-                    cr, uid, _attach_dict, context=context)
+                AttachModel.create(_attach_dict)
 
         self._addGlobalDiscount(
-            cr, uid, invoice_id,
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento, context=context)
+            invoice_id, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
 
         # compute the invoice
-        invoice_model.button_compute(
-            cr, uid, [invoice_id], context=context,
-            set_total=True)
+        invoice.compute_taxes()
         return invoice_id
 
-    def check_CessionarioCommittente(
-        self, cr, uid, company, FatturaElettronicaHeader, context=None
-    ):
-        if (
-            company.partner_id.ipa_code !=
-            FatturaElettronicaHeader.DatiTrasmissione.CodiceDestinatario
-        ):
-            raise orm.except_orm(
-                _('Error'),
-                _('XML IPA code (%s) different from company IPA code (%s)')
-                % (
-                    FatturaElettronicaHeader.DatiTrasmissione.
-                    CodiceDestinatario, company.partner_id.ipa_code))
-
-    def compute_xml_amount_untaxed(self, cr, uid, DatiRiepilogo, context=None):
+    def compute_xml_amount_untaxed(self, DatiRiepilogo):
         amount_untaxed = 0.0
         for Riepilogo in DatiRiepilogo:
             amount_untaxed += float(Riepilogo.ImponibileImporto)
         return amount_untaxed
 
-    def check_invoice_amount(
-        self, cr, uid, invoice, FatturaElettronicaBody, context=None
-    ):
-        if context is None:
-            context = {}
-
-        invoice.write(
-            {
-                'check_total': FatturaElettronicaBody.DatiGenerali.
-                DatiGeneraliDocumento.ImportoTotaleDocumento
-            }, context=context)
+    def check_invoice_amount(self, invoice, FatturaElettronicaBody):
         if (
             FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
             ScontoMaggiorazione and
@@ -1151,10 +1199,10 @@ class WizardImportFatturapa(orm.TransientModel):
             ImportoTotaleDocumento = float(
                 FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
                 ImportoTotaleDocumento)
-            if invoice.amount_total != ImportoTotaleDocumento:
-                if context.get('inconsistencies'):
-                    context['inconsistencies'] += '\n'
-                context['inconsistencies'] += (
+            if not float_is_zero(
+                invoice.amount_total-ImportoTotaleDocumento, precision_digits=2
+            ):
+                self.log_inconsistency(
                     _('Invoice total %s is different from '
                       'ImportoTotaleDocumento %s')
                     % (invoice.amount_total, ImportoTotaleDocumento)
@@ -1162,212 +1210,98 @@ class WizardImportFatturapa(orm.TransientModel):
         else:
             # else, we can only check DatiRiepilogo if
             # DatiGeneraliDocumento.ScontoMaggiorazione is not present,
-            # because otherwise DatiRiepilogo and openerp invoice total would
+            # because otherwise DatiRiepilogo and odoo invoice total would
             # differ
             amount_untaxed = self.compute_xml_amount_untaxed(
-                cr, uid,
-                FatturaElettronicaBody.DatiBeniServizi.DatiRiepilogo,
-                context=context)
-            if invoice.amount_untaxed != amount_untaxed:
-                if context.get('inconsistencies'):
-                    context['inconsistencies'] += '\n'
-                context['inconsistencies'] += (
+                FatturaElettronicaBody.DatiBeniServizi.DatiRiepilogo)
+            if not float_is_zero(
+                invoice.amount_untaxed-amount_untaxed, precision_digits=2
+            ):
+                self.log_inconsistency(
                     _('Computed amount untaxed %s is different from'
                       ' DatiRiepilogo %s')
                     % (invoice.amount_untaxed, amount_untaxed)
                 )
 
-    def strip_xml_content(self, xml):
-        root = etree.XML(xml)
-        for elem in root.iter('*'):
-            if elem.text is not None:
-                elem.text = elem.text.strip()
-        return etree.tostring(root)
+    def get_invoice_obj(self, fatturapa_attachment):
+        xml_string = fatturapa_attachment.get_xml_string()
+        return fatturapa_v_1_2.CreateFromDocument(xml_string)
 
-    def remove_xades_sign(self, xml):
-        root = etree.XML(xml)
-        for elem in root.iter('*'):
-            if elem.tag.find('Signature') > -1:
-                elem.getparent().remove(elem)
-                break
-        return etree.tostring(root)
-
-    def check_file_is_pem(self, p7m_file):
-        file_is_pem = True
-        strcmd = (
-            'openssl asn1parse  -inform PEM -in %s'
-        ) % (p7m_file)
-        cmd = shlex.split(strcmd)
-        try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-            stdoutdata, stderrdata = proc.communicate()
-            if proc.wait() != 0:
-                file_is_pem = False
-        except Exception as e:
-            raise orm.except_orm(
-                _('Errore'),
-                _(
-                    'Check PEM file %s'
-                ) % e.args
-            )
-        return file_is_pem
-
-    def parse_pem_2_der(self, pem_file, tmp_der_file):
-        strcmd = (
-            'openssl asn1parse -in %s -out %s'
-        ) % (pem_file, tmp_der_file)
-        cmd = shlex.split(strcmd)
-        try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-            stdoutdata, stderrdata = proc.communicate()
-            if proc.wait() != 0:
-                _logger.warning(stdoutdata)
-                raise Exception(stderrdata)
-        except Exception as e:
-            raise orm.except_orm(
-                _('Errore'),
-                _(
-                    'Parsing PEM to DER  file %s'
-                ) % e.args
-            )
-        if not os.path.isfile(tmp_der_file):
-            raise orm.except_orm(
-                _('Errore'),
-                _(
-                    'ASN.1 structure is not parsable in DER'
-                )
-            )
-        return tmp_der_file
-
-    def decrypt_to_xml(self, signed_file, xml_file):
-        strcmd = (
-            'openssl smime -decrypt -verify -inform'
-            ' DER -in %s -noverify -out %s'
-        ) % (signed_file, xml_file)
-        cmd = shlex.split(strcmd)
-        try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-            stdoutdata, stderrdata = proc.communicate()
-            if proc.wait() != 0:
-                _logger.warning(stdoutdata)
-                raise Exception(stderrdata)
-        except Exception as e:
-            raise orm.except_orm(
-                _('Errore'),
-                _(
-                    'Signed Xml file %s'
-                ) % e.args
-            )
-        if not os.path.isfile(xml_file):
-            raise orm.except_orm(
-                _('Errore'),
-                _(
-                    'Signed Xml file not decryptable'
-                )
-            )
-        return xml_file
-
-    def importFatturaPA(self, cr, uid, ids, context=None):
-        if not context:
-            context = {}
-        context['inconsistencies'] = ''
-        fatturapa_attachment_obj = self.pool['fatturapa.attachment.in']
-        fatturapa_attachment_ids = context.get('active_ids', False)
-        invoice_model = self.pool['account.invoice']
+    @api.multi
+    def importFatturaPA(self):
+        fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
+        fatturapa_attachment_ids = self.env.context.get('active_ids', False)
+        invoice_model = self.env['account.invoice']
         new_invoices = []
         for fatturapa_attachment_id in fatturapa_attachment_ids:
-            ctx = context.copy()
+            self.__dict__.update(
+                self.with_context(inconsistencies='').__dict__
+            )
             fatturapa_attachment = fatturapa_attachment_obj.browse(
-                cr, uid, fatturapa_attachment_id, context=ctx)
+                fatturapa_attachment_id)
             if fatturapa_attachment.in_invoice_ids:
-                raise orm.except_orm(
-                    _("Error"), _("File is linked to invoices yet"))
-            # decrypt  p7m file
-            if fatturapa_attachment.datas_fname.lower().endswith('.p7m'):
-                temp_file_name = (
-                    '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
-                temp_der_file_name = (
-                    '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
-                with open(temp_file_name, 'w') as p7m_file:
-                    p7m_file.write(fatturapa_attachment.datas.decode('base64'))
-                xml_file_name = os.path.splitext(temp_file_name)[0]
-
-                # check if temp_file_name is a PEM file
-                file_is_pem = self.check_file_is_pem(temp_file_name)
-
-                # if temp_file_name is a PEM file
-                # parse it in a DER file
-                if file_is_pem:
-                    temp_file_name = self.parse_pem_2_der(
-                        temp_file_name, temp_der_file_name)
-
-                # decrypt signed DER file in XML readable
-                xml_file_name = self.decrypt_to_xml(
-                    temp_file_name, xml_file_name)
-
-                with open(xml_file_name, 'r') as fatt_file:
-                    file_content = fatt_file.read()
-                xml_string = file_content
-            elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
-                xml_string = fatturapa_attachment.datas.decode('base64')
-            xml_string = self.remove_xades_sign(xml_string)
-            xml_string = self.strip_xml_content(xml_string)
-            fatt = fatturapa_v_1_1.CreateFromDocument(xml_string)
+                raise UserError(
+                    _("File is linked to invoices yet"))
+            fatt = self.get_invoice_obj(fatturapa_attachment)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
-            partner_id = self.getCedPrest(
-                cr, uid, cedentePrestatore, context=ctx)
+            partner_id = self.getCedPrest(cedentePrestatore)
             # 1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\
                 RappresentanteFiscale
             # 1.5
             Intermediary = fatt.FatturaElettronicaHeader.\
                 TerzoIntermediarioOSoggettoEmittente
+
+            generic_inconsistencies = ''
+            if self.env.context.get('inconsistencies'):
+                generic_inconsistencies = (
+                    self.env.context['inconsistencies'] + '\n\n')
+
             # 2
             for fattura in fatt.FatturaElettronicaBody:
+
+                # reset inconsistencies
+                self.__dict__.update(
+                    self.with_context(inconsistencies='').__dict__
+                )
+
                 invoice_id = self.invoiceCreate(
-                    cr, uid, fatt, fatturapa_attachment, fattura,
-                    partner_id, context=ctx)
+                    fatt, fatturapa_attachment, fattura, partner_id)
+                invoice = invoice_model.browse(invoice_id)
+                self.set_StabileOrganizzazione(cedentePrestatore, invoice)
                 if TaxRappresentative:
                     tax_partner_id = self.getPartnerBase(
-                        cr, uid, TaxRappresentative.DatiAnagrafici,
-                        context=ctx)
-                    invoice_model.write(
-                        cr, uid, invoice_id,
+                        TaxRappresentative.DatiAnagrafici)
+                    invoice.write(
                         {
                             'tax_representative_id': tax_partner_id
-                        }, context=ctx
+                        }
                     )
                 if Intermediary:
                     Intermediary_id = self.getPartnerBase(
-                        cr, uid, Intermediary.DatiAnagrafici, context=ctx)
-                    invoice_model.write(
-                        cr, uid, invoice_id,
+                        Intermediary.DatiAnagrafici)
+                    invoice.write(
                         {
                             'intermediary': Intermediary_id
-                        }, context=ctx
+                        }
                     )
                 new_invoices.append(invoice_id)
-                invoice = invoice_model.browse(cr, uid, invoice_id, ctx)
-                self.check_CessionarioCommittente(
-                    cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
-                    context=ctx)
-                self.check_invoice_amount(
-                    cr, uid, invoice,
-                    fattura,
-                    context=ctx)
+                self.check_invoice_amount(invoice, fattura)
 
-            if ctx.get('inconsistencies'):
-                invoice.write(
-                    {'inconsistencies': ctx['inconsistencies']},
-                    context=ctx)
+                if self.env.context.get('inconsistencies'):
+                    invoice_inconsistencies = (
+                        self.env.context['inconsistencies'])
+                else:
+                    invoice_inconsistencies = ''
+                invoice.inconsistencies = (
+                    generic_inconsistencies + invoice_inconsistencies)
 
         return {
             'view_type': 'form',
-            'name': "PA Supplier Invoices",
+            'name': "Supplier Electronic Invoices",
             'view_mode': 'tree,form',
             'res_model': 'account.invoice',
             'type': 'ir.actions.act_window',
             'domain': [('id', 'in', new_invoices)],
-            'context': context
         }
