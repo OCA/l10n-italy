@@ -73,6 +73,8 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         self.tax_22_SP = self.env.ref('l10n_it_fatturapa.tax_22_SP')
         self.res_partner_fatturapa_0 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_0')
+        self.intermediario = self.env.ref(
+            'l10n_it_fatturapa.res_partner_fatturapa_1')
         self.fiscal_position_sp = self.env.ref(
             'l10n_it_fatturapa.fiscal_position_sp')
         company = self.env.ref('base.main_company')
@@ -315,6 +317,8 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         self.check_content(xml_content, 'IT06363391001_00004.xml')
 
     def test_5_xml_export(self):
+        self.env.user.company_id.fatturapa_sender_partner = (
+            self.intermediario.id)
         self.set_sequences(5, 17, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
