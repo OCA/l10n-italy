@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<p:FatturaElettronica versione="1.1" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<p:FatturaElettronica versione="FPR12" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
   <FatturaElettronicaHeader>
     <DatiTrasmissione>
       <IdTrasmittente>
         <IdPaese>IT</IdPaese>
-        <IdCodice>01234567890</IdCodice>
+        <IdCodice>05979361218</IdCodice>
       </IdTrasmittente>
       <ProgressivoInvio>00001</ProgressivoInvio>
-      <FormatoTrasmissione>SDI11</FormatoTrasmissione>
-      <CodiceDestinatario>AAAAAA</CodiceDestinatario>
+      <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+      <CodiceDestinatario>0000000</CodiceDestinatario>
       <ContattiTrasmittente/>
     </DatiTrasmissione>
     <CedentePrestatore>
       <DatiAnagrafici>
         <IdFiscaleIVA>
           <IdPaese>IT</IdPaese>
-          <IdCodice>02537410900</IdCodice>
+          <IdCodice>02780790107</IdCodice>
         </IdFiscaleIVA>
         <Anagrafica>
           <Denominazione>SOCIETA' ALPHA SRL</Denominazione>
@@ -32,9 +32,9 @@
     </CedentePrestatore>
     <CessionarioCommittente>
       <DatiAnagrafici>
-        <CodiceFiscale>02537410900</CodiceFiscale>
+        <CodiceFiscale>03533590174</CodiceFiscale>
         <Anagrafica>
-          <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
+          <Denominazione>BETA GAMMA</Denominazione>
         </Anagrafica>
       </DatiAnagrafici>
       <Sede>
@@ -60,36 +60,12 @@
         <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
         <IdDocumento>66685</IdDocumento>
         <NumItem>1</NumItem>
-        <CodiceCUP>123abc</CodiceCUP>
-	<CodiceCIG>456def</CodiceCIG>
       </DatiOrdineAcquisto>
-      <DatiContratto>
-	<RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
-	<IdDocumento>123</IdDocumento>
-	<Data>2012-09-01</Data>
-	<NumItem>5</NumItem>
-	<CodiceCUP>123abc</CodiceCUP>
-	<CodiceCIG>456def</CodiceCIG>
-      </DatiContratto>
-      <DatiConvenzione>
-	<RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
-	<IdDocumento>123</IdDocumento>
-	<NumItem>5</NumItem>
-	<CodiceCUP>123abc</CodiceCUP>
-	<CodiceCIG>456def</CodiceCIG>
-      </DatiConvenzione>
-      <DatiRicezione>
-	<RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
-	<IdDocumento>123</IdDocumento>
-	<NumItem>5</NumItem>
-	<CodiceCUP>123abc</CodiceCUP>
-	<CodiceCIG>456def</CodiceCIG>
-      </DatiRicezione>
       <DatiTrasporto>
 	<DatiAnagraficiVettore>				
 	  <IdFiscaleIVA>
 	    <IdPaese>IT</IdPaese>
-	    <IdCodice>24681012141</IdCodice>
+	    <IdCodice>04507990150</IdCodice>
 	  </IdFiscaleIVA>
     	  <Anagrafica>
 	    <Denominazione>Trasporto spa</Denominazione>
@@ -101,6 +77,10 @@
     <DatiBeniServizi>
       <DettaglioLinee>
         <NumeroLinea>1</NumeroLinea>
+        <CodiceArticolo>
+          <CodiceTipo>INT</CodiceTipo>
+          <CodiceValore>ART123</CodiceValore>
+        </CodiceArticolo>
         <Descrizione>LA DESCRIZIONE DELLA FORNITURA PUO' SUPERARE I CENTO CARATTERI CHE RAPPRESENTAVANO IL PRECEDENTE LIMITE DIMENSIONALE. TALE LIMITE NELLA NUOVA VERSIONE E' STATO PORTATO A MILLE CARATTERI</Descrizione>
         <Quantita>5.00</Quantita>
         <PrezzoUnitario>1.00</PrezzoUnitario>
@@ -117,9 +97,9 @@
       </DettaglioLinee>
       <DatiRiepilogo>
         <AliquotaIVA>22.00</AliquotaIVA>
-        <ImponibileImporto>27.00</ImponibileImporto>
-        <Imposta>5.95</Imposta>
-        <EsigibilitaIVA>D</EsigibilitaIVA>
+        <ImponibileImporto>25.00</ImponibileImporto>
+        <Imposta>5.50</Imposta>
+        <EsigibilitaIVA>I</EsigibilitaIVA>
       </DatiRiepilogo>
     </DatiBeniServizi>
     <DatiPagamento>
@@ -127,7 +107,47 @@
       <DettaglioPagamento>
         <ModalitaPagamento>MP01</ModalitaPagamento>
         <DataScadenzaPagamento>2015-01-30</DataScadenzaPagamento>
-        <ImportoPagamento>32.95</ImportoPagamento>
+        <ImportoPagamento>32.50</ImportoPagamento>
+      </DettaglioPagamento>
+    </DatiPagamento>
+  </FatturaElettronicaBody>
+  <FatturaElettronicaBody>
+    <DatiGenerali>
+      <DatiGeneraliDocumento>
+        <TipoDocumento>TD01</TipoDocumento>
+        <Divisa>EUR</Divisa>
+        <Data>2014-12-20</Data>
+        <Numero>456</Numero>
+        <Causale>LA FATTURA FA RIFERIMENTO AD UNA OPERAZIONE AAAA BBBBBBBBBBBBBBBBBB CCC DDDDDDDDDDDDDDD E FFFFFFFFFFFFFFFFFFFF GGGGGGGGGG HHHHHHH II LLLLLLLLLLLLLLLLL MMM NNNNN OO PPPPPPPPPPP QQQQ RRRR SSSSSSSSSSSSSS</Causale>
+        <Causale>SEGUE DESCRIZIONE CAUSALE NEL CASO IN CUI NON SIANO STATI SUFFICIENTI 200 CARATTERI AAAAAAAAAAA BBBBBBBBBBBBBBBBB</Causale>
+      </DatiGeneraliDocumento>
+      <DatiOrdineAcquisto>
+        <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+        <IdDocumento>66685</IdDocumento>
+        <NumItem>1</NumItem>
+      </DatiOrdineAcquisto>
+    </DatiGenerali>
+    <DatiBeniServizi>
+      <DettaglioLinee>
+        <NumeroLinea>1</NumeroLinea>
+        <Descrizione>PRESTAZIONE DEL SEGUENTE SERVIZIO PROFESSIONALE: LA DESCRIZIONE DELLA PRESTAZIONE PUO' SUPERARE I CENTO CARATTERI CHE RAPPRESENTAVANO IL PRECEDENTE LIMITE DIMENSIONALE. TALE LIMITE NELLA NUOVA VERSIONE E' STATO PORTATO A MILLE CARATTERI</Descrizione>
+        <PrezzoUnitario>2000.00</PrezzoUnitario>
+        <PrezzoTotale>2000.00</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DatiRiepilogo>
+        <AliquotaIVA>22.00</AliquotaIVA>
+        <ImponibileImporto>2000.00</ImponibileImporto>
+        <Imposta>440.00</Imposta>
+        <EsigibilitaIVA>I</EsigibilitaIVA>
+      </DatiRiepilogo>
+    </DatiBeniServizi>
+    <DatiPagamento>
+      <CondizioniPagamento>TP01</CondizioniPagamento>
+      <DettaglioPagamento>
+        <ModalitaPagamento>MP19</ModalitaPagamento>
+        <DataScadenzaPagamento>2015-01-28</DataScadenzaPagamento>
+        <ImportoPagamento>2440.00</ImportoPagamento>
       </DettaglioPagamento>
     </DatiPagamento>
   </FatturaElettronicaBody>

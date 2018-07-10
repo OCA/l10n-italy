@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="latin1"?>
-<ns1:FatturaElettronica versione="1.1" xmlns:ns1="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
+<?xml version="1.0" encoding="UTF-8"?>
+<p:FatturaElettronica versione="FPA12" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
     <FatturaElettronicaHeader>
         <DatiTrasmissione>
             <IdTrasmittente>
@@ -7,8 +10,8 @@
                 <IdCodice>05979361218</IdCodice>
             </IdTrasmittente>
             <ProgressivoInvio>007</ProgressivoInvio>
-            <FormatoTrasmissione>SDI11</FormatoTrasmissione>
-            <CodiceDestinatario>79SRAK</CodiceDestinatario>
+            <FormatoTrasmissione>FPA12</FormatoTrasmissione>
+            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
         </DatiTrasmissione>
         <CedentePrestatore>
             <DatiAnagrafici>
@@ -50,7 +53,7 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2015-03-16+02:00</Data>
+                <Data>2015-03-16</Data>
                 <Numero>FT/2015/0009</Numero>
                 <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
             </DatiGeneraliDocumento>
@@ -84,11 +87,11 @@
                 <DataScadenzaPagamento>2015-06-03+02:00</DataScadenzaPagamento>
                 <ImportoPagamento>9.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
-                <IBAN>IT28V0100003245232200001200</IBAN>
+                <IBAN>IT24J0617501400000006042218</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>2.00</PenalitaPagamentiRitardati>
                 <DataDecorrenzaPenale>2015-06-04+02:00</DataDecorrenzaPenale>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>
-</ns1:FatturaElettronica>
+</p:FatturaElettronica>
