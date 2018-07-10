@@ -23,6 +23,8 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     CessionarioCommittenteType,
     DatiAnagraficiCedenteType,
     DatiAnagraficiCessionarioType,
+    TerzoIntermediarioSoggettoEmittenteType,
+    DatiAnagraficiTerzoIntermediarioType,
     FatturaElettronicaBodyType,
     DatiGeneraliType,
     DettaglioLineeType,
@@ -311,6 +313,37 @@ class WizardExportFatturapa(models.TransientModel):
 
         return True
 
+    def _setTerzoIntermediarioOSoggettoEmittente(self, partner, fatturapa):
+        fatturapa.FatturaElettronicaHeader.\
+            TerzoIntermediarioOSoggettoEmittente = (
+                TerzoIntermediarioSoggettoEmittenteType()
+            )
+        fatturapa.FatturaElettronicaHeader.\
+            TerzoIntermediarioOSoggettoEmittente.\
+            DatiAnagrafici = DatiAnagraficiTerzoIntermediarioType()
+        if not partner.vat and not partner.fiscalcode:
+            raise UserError(
+                _('Partner VAT and Fiscalcode not set.'))
+        if partner.fiscalcode:
+            fatturapa.FatturaElettronicaHeader.\
+                TerzoIntermediarioOSoggettoEmittente.\
+                DatiAnagrafici.CodiceFiscale = partner.fiscalcode
+        if partner.vat:
+            fatturapa.FatturaElettronicaHeader.\
+                TerzoIntermediarioOSoggettoEmittente.\
+                DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+        fatturapa.FatturaElettronicaHeader.\
+            TerzoIntermediarioOSoggettoEmittente.\
+            DatiAnagrafici.Anagrafica = AnagraficaType(
+                Denominazione=partner.name)
+        if partner.eori_code:
+            fatturapa.FatturaElettronicaHeader.\
+                TerzoIntermediarioOSoggettoEmittente.\
+                DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code
+        fatturapa.FatturaElettronicaHeader.SoggettoEmittente = 'TZ'
+        return True
+
     def _setSedeCessionario(self, partner, fatturapa):
 
         if not partner.street:
@@ -377,20 +410,10 @@ class WizardExportFatturapa(models.TransientModel):
         self._setDatiAnagraficiCessionario(partner, fatturapa)
         self._setSedeCessionario(partner, fatturapa)
 
-    def setTerzoIntermediarioOSoggettoEmittente(self, company):
+    def setTerzoIntermediarioOSoggettoEmittente(self, company, fatturapa):
         if company.fatturapa_sender_partner:
-            # TODO
-            raise UserError(
-                _("TerzoIntermediarioOSoggettoEmittente not handled"))
-        return True
-
-    def setSoggettoEmittente(self):
-
-        # TODO: this record is to be checked invoice by invoice
-        # so a control is needed to verify that all invoices are
-        # of type CC, TZ or internally created by the company
-
-        # SoggettoEmittente.text = 'CC'
+            self._setTerzoIntermediarioOSoggettoEmittente(
+                company.fatturapa_sender_partner, fatturapa)
         return True
 
     def setDatiGeneraliDocumento(self, invoice, body):
@@ -616,8 +639,7 @@ class WizardExportFatturapa(models.TransientModel):
         self.setCedentePrestatore(company, fatturapa)
         self.setRappresentanteFiscale(company)
         self.setCessionarioCommittente(partner, fatturapa)
-        self.setTerzoIntermediarioOSoggettoEmittente(company)
-        self.setSoggettoEmittente()
+        self.setTerzoIntermediarioOSoggettoEmittente(company, fatturapa)
 
     def setFatturaElettronicaBody(self, inv, FatturaElettronicaBody):
 
