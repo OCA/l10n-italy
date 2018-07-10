@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_fatturapa_in_attachment_form" model="ir.ui.view">
+            <field name="name">fatturapa.attachment.in.form</field>
+            <field name="model">fatturapa.attachment.in</field>
+            <field name="arch" type="xml">
+                <form string="Import FatturaPA" version="7.0">
+                    <div>
+                        <group>
+                            <field filename="datas_fname" name="datas"></field>
+                            <field name="datas_fname"  on_change="set_name(datas_fname)"></field>
+                            <field name="name"></field>
+                        </group>
+                        <separator string="Invoices"></separator>
+                        <field name="in_invoice_ids"></field>
+                        <group groups="base.group_no_one" string="History">
+                            <label for="create_uid" string="Creation"></label>
+                            <div name="creation_div">
+                                <field class="oe_inline" name="create_uid" readonly="1"></field> on
+                                <field class="oe_inline" name="create_date" readonly="1"></field>
+                            </div>
+                        </group>
+                    </div>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"></field>
+                        <field name="message_ids" widget="mail_thread"></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_fatturapa_in_attachment_tree" model="ir.ui.view">
+            <field name="name">fatturapa.attachment.in.tree</field>
+            <field name="model">fatturapa.attachment.in</field>
+            <field name="arch" type="xml">
+                <tree string="Xml Attachment">
+                    <field name="name"></field>
+                    <field name="create_date"></field>
+                </tree>
+            </field>
+        </record>
+        <record id="action_fattura_pa_in" model="ir.actions.act_window">
+            <field name="name">Incoming fatturaPA files</field>
+            <field name="res_model">fatturapa.attachment.in</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_fatturapa_in_attachment_tree"></field>
+        </record>
+        <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
+                              parent="l10n_it_fatturapa.menu_fattura_pa_payables"></menuitem>
+        <!-- Extend purchase invoice line -->
+        <record id="view_invoice_line_form_fatturapa_in" model="ir.ui.view">
+            <field name="name">account.invoice.line.fatturapa.in</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_invoice_line_form_fatturapa"></field>
+            <field name="arch" type="xml">
+                <field name="invoice_line_tax_id" position="before">
+                    <field name="ftpa_uom" readonly="1"/>
+                </field>
+                <field name="product_id" position="after">
+                    <field name="service_type" readonly="1"/>
+                </field>
+                <xpath expr="//div[contains(@id, 'admin_ref')]" position="after">
+                    <group>
+                        <group>
+                             <field name="service_start" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="service_end" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Articles Code">
+                        <field name="cod_article_ids" nolabel="1" readonly="1">
+                            <tree editable="bottom">
+                                <field name="name"></field>
+                                <field name="code_val"></field>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Discount Rise Price">
+                        <field name="discount_rise_price_ids" nolabel="1" readonly="1">
+                            <tree editable="bottom">
+                                <field name="name"></field>
+                                <field name="percentage"></field>
+                                <field name="amount"></field>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <!-- Extend purchase invoice  -->
+        <record id="view_invoice_form_fatturapa_in" model="ir.ui.view">
+            <field name="name">account.invoice.fatturapa_in</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_it_withholding_tax.invoice_supplier_form"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[contains(@class, 'oe_title')]" position="after">
+                    <div class="oe_right">
+                        <a href="http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.1/Formato_FatturaPA_tabellare_V1.1.pdf"
+                        id="ftpa_schema" style="color: #0000AD!important; padding: 5px; border: 1px solid black; background-color: lightgray !important; border-radius: 5px;" target="_blank">
+                        Fattura PA  V1.1 Schema
+                        </a>
+                    </div>
+                </xpath>
+                <field name="partner_id" position="after">
+                    <field name="tax_representative_id" readonly="1"></field>
+                    <field name="intermediary" readonly="1"></field>
+                </field>
+                <field name="date_invoice" position="before">
+                    <field name="sender" readonly="1"></field>
+                    <field name="doc_type" readonly="1"></field>
+                    <field name="protocol_number" ></field>
+                </field>
+                <field name="has_withholding" position="before">
+                    <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_type" readonly="1"></field>
+                    <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_rate" readonly="1"></field>
+                    <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_payment_reason" readonly="1"></field>
+                </field>
+                <field name="price_unit" position="before">
+                    <field name="ftpa_uom" readonly="1"></field>
+                </field>
+                <field name="tax_line" position="after">
+                    <field name="discount_rise_price_ids" nolabel="1" readonly="1">
+                        <tree editable="bottom" string="Rise Price Discount">
+                            <field name="name"></field>
+                            <field name="percentage"></field>
+                            <field name="amount"></field>
+                        </tree>
+                    </field>
+                    <field name="activity_progress_ids" nolabel="1" readonly="1">
+                        <tree editable="bottom" string="Progress Work">
+                            <field name="fatturapa_activity_progress"></field>
+                        </tree>
+                    </field>
+                </field>
+                <field name="residual" position="after">
+                    <field name="virtual_stamp" readonly="1"></field>
+                    <field name="stamp_amount" readonly="1"></field>
+                </field>
+                <field name="payment_ids" position="before">
+                    <separator string="FatturaPA Payment"></separator>
+                    <group>
+                        <field name="fatturapa_payments" nolabel="1" readonly="1">
+                            <tree string="Payments">
+                                <field name="payment_terms"></field>
+                            </tree>
+                            <form string="Payments" version="7.0">
+                                <sheet>
+                                    <group>
+                                        <field name="payment_terms"></field>
+                                    </group>
+                                    <group string="Payments Details">
+                                        <field name="payment_methods" nolabel="1" readonly="1">
+                                            <tree editable="bottom" string="Payments">
+                                                <field name="recipient"></field>
+                                                <field name="fatturapa_pm_id"></field>
+                                                <field name="payment_term_start"></field>
+                                                <field name="payment_days"></field>
+                                                <field name="payment_due_date"></field>
+                                                <field name="payment_amount"></field>
+                                                <field name="post_office_code"></field>
+                                                <field name="payment_bank_name"></field>
+                                                <field name="prepayment_discount"></field>
+                                                <field name="max_payment_date"></field>
+                                                <field name="penalty_amount"></field>
+                                                <field name="penalty_date"></field>
+                                                <field name="payment_code"></field>
+                                                <field name="account_move_line_id"></field>
+                                                <field invisible="1" name="payment_data_id"></field>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </group>
+                </field>
+                <xpath expr="//notebook" position="inside">
+                    <page string="FatturaPA">
+                        <notebook>
+                            <page string="Inconsistencies">
+                                <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>
+                            </page>
+                            <page string="Summary Data">
+                                <group string="Summary Data">
+                                    <field name="fatturapa_summary_ids" nolabel="1" readonly="1">
+                                        <tree editable="bottom" string="Summary Data">
+                                            <field name="tax_rate"></field>
+                                            <field name="non_taxable_nature"></field>
+                                            <field name="incidental charges" readonly="1"></field>
+                                            <field name="rounding"></field>
+                                            <field name="amount_untaxed"></field>
+                                            <field name="amount_tax"></field>
+                                            <field name="payability"></field>
+                                            <field name="law_reference"></field>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="FatturaPA attachments">
+                                <group string="Attachments">
+                                    <field name="fatturapa_doc_attachments" nolabel="1" readonly="1">
+                                        <tree string="Attachments">
+                                            <field name="ir_attachment_id"></field>
+                                            <field name="name"></field>
+                                            <field name="description"></field>
+                                        </tree>
+                                        <form string="Attachments">
+                                            <group>
+                                                <group>
+                                                    <field name="name"></field>
+                                                    <field name="description"></field>
+                                                </group>
+                                                <group>
+                                                    <field name="ir_attachment_id"></field>
+                                                    <field name="invoice_id"></field>
+                                                </group>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Delivery">
+                                <group>
+                                    <group string="Delivery">
+                                        <field name="carrier_id" readonly="1"></field>
+                                        <field name="transport_vehicle" readonly="1"></field>
+                                        <field name="description" readonly="1"></field>
+                                        <field name="pickup_datetime" readonly="1"></field>
+                                        <field name="transport_date" readonly="1"></field>
+                                        <field name="delivery_datetime" readonly="1"></field>
+                                    </group>
+                                    <group>
+                                        <field name="unit_weight" readonly="1"></field>
+                                        <field name="gross_weight" readonly="1"></field>
+                                        <field name="net_weight" readonly="1"></field>
+                                        <field name="number_items" readonly="1"></field>
+                                        <field name="incoterm" readonly="1" widget="selection"></field>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="delivery_address" readonly="1"></field>
+                                </group>
+                            </page>
+                            <page string="Related Documents ">
+                                <group string="Related Documents">
+                                    <field name="related_documents" nolabel="1" readonly="1">
+                                        <tree editable="bottom" string="Related Documents">
+                                            <field name="type"></field>
+                                            <field name="name"></field>
+                                            <field name="lineRef" readonly="1"></field>
+                                            <field name="date"></field>
+                                            <field name="numitem"></field>
+                                            <field name="code"></field>
+                                            <field name="cig"></field>
+                                            <field name="cup"></field>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Welfare Fund">
+                                <group string="Welfare Fund">
+                                    <field name="welfare_fund_ids" nolabel="1" readonly="1">
+                                        <tree editable="bottom" string="Welfare Fund Details">
+                                            <field name="name"></field>
+                                            <field name="fund_nature"></field>
+                                            <field name="welfare_rate_tax" readonly="1"></field>
+                                            <field name="welfare_amount_tax"></field>
+                                            <field name="welfare_Iva_tax"></field>
+                                            <field name="welfare_taxable"></field>
+                                            <field name="subjected_withholding"></field>
+                                            <field name="pa_line_code"></field>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                        <group>
+                            <group string="Results">
+                                <field name="fatturapa_attachment_in_id" readonly="1"></field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

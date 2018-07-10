@@ -1,0 +1,201 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_it_fatturapa_in_notifications
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-25 16:46+0000\n"
+"PO-Revision-Date: 2015-11-25 16:47+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_in_notifications.action_wizard_fatturapa_in_reject
+msgid "Reject fatturaPA"
+msgstr "Rifiuta fatturaPA"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.model,name:l10n_it_fatturapa_in_notifications.model_wizard_fatturapa_import_notification
+msgid "wizard.fatturapa.import.notification"
+msgstr "wizard.fatturapa.import.notification"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: field:fatturapa.notification,fatturapa_in_attachment_id:0
+msgid "FatturaPA received"
+msgstr "FatturaPA recevute"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:wizard.fatturapa.in.accept:0 view:wizard.fatturapa.in.reject:0
+msgid "Message..."
+msgstr "Message..."
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:wizard.fatturapa.in.accept:0 view:wizard.fatturapa.in.reject:0
+msgid "Send"
+msgstr "Invia"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: field:fatturapa.attachment.in,meta_data_notification_id:0
+msgid "Meta data file"
+msgstr "File metadati"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/wizard/send_notification.py:38
+#, python-format
+msgid "Result notification already present"
+msgstr "Questa fattura ha gia una notifica"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:account.invoice:0
+msgid "Reject"
+msgstr "Rifiuta"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:57
+#, python-format
+msgid "No fatturaPA found with ID %s"
+msgstr "FatturaPA con ID %s non trovata"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.model,name:l10n_it_fatturapa_in_notifications.model_fatturapa_attachment_in
+msgid "FatturaPA import File"
+msgstr "Fattura PA Importazione File"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/account.py:45
+#, python-format
+msgid "Attention"
+msgstr "Attenzione"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: field:account.invoice,rejected:0
+msgid "Rejected"
+msgstr "Rifiutata"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:fatturapa.attachment.in:0
+#: field:fatturapa.attachment.in,notification_ids:0
+msgid "Notifications"
+msgstr "Notifiche"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:61
+#, python-format
+msgid "Too many fatturaPA found with ID %s"
+msgstr "Troppe fatturaPA con ID %s"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/account.py:46
+#, python-format
+msgid "It is not possible to activate a rejected invoice"
+msgstr "Impossibile riportare a bozza una fattura rifiutata."
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:88
+#, python-format
+msgid "No SDI identifier found for fatturaPA %s"
+msgstr "Identificativo SDI non trovato per fatturaPA %s"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: field:account.invoice,result_notification_id:0
+msgid "Result notification"
+msgstr "Notifica"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/wizard/send_notification.py:30
+#, python-format
+msgid "Missing active ID"
+msgstr "Id non presente."
+
+#. module: l10n_it_fatturapa_in_notifications
+#: field:fatturapa.attachment.in,sdi_identifier:0
+msgid "SDI identifier"
+msgstr "Identificativo SDI"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:131
+#, python-format
+msgid "Too many MT notifications for fatturaPA %s"
+msgstr "Troppi file notifica MT (metadati) per fatturaPA %s"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:57
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:61
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:80
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:88
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:130
+#: code:addons/l10n_it_fatturapa_in_notifications/wizard/send_notification.py:30
+#: code:addons/l10n_it_fatturapa_in_notifications/wizard/send_notification.py:38
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: field:fatturapa.attachment.in,file_identifier:0
+msgid "File identifier"
+msgstr "Identificativo File"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: code:addons/l10n_it_fatturapa_in_notifications/attachment.py:80
+#, python-format
+msgid "Invoice %s not linked to XML file"
+msgstr "Fattura %s non collegata al file XML"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.model,name:l10n_it_fatturapa_in_notifications.model_wizard_fatturapa_in_reject
+msgid "wizard.fatturapa.in.reject"
+msgstr "wizard.fatturapa.in.reject"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_in_notifications.action_wizard_fatturapa_in_accept
+msgid "Accept fatturaPA"
+msgstr "Accetta fatturaPA"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.model,name:l10n_it_fatturapa_in_notifications.model_wizard_fatturapa_in_accept
+msgid "wizard.fatturapa.in.accept"
+msgstr "wizard.fatturapa.in.accept"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.model,name:l10n_it_fatturapa_in_notifications.model_fatturapa_notification
+msgid "FatturaPA Notification"
+msgstr "Notifiche FatturaPA"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:account.invoice:0
+msgid "Accept"
+msgstr "Accetta"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:wizard.fatturapa.in.accept:0 view:wizard.fatturapa.in.reject:0
+msgid "Import FatturaPA"
+msgstr "Importa FatturaPA"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: model:ir.model,name:l10n_it_fatturapa_in_notifications.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:wizard.fatturapa.in.accept:0 view:wizard.fatturapa.in.reject:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: field:wizard.fatturapa.in.accept,name:0
+#: field:wizard.fatturapa.in.reject,name:0
+msgid "Message"
+msgstr "Message"
+
+#. module: l10n_it_fatturapa_in_notifications
+#: view:wizard.fatturapa.in.accept:0 view:wizard.fatturapa.in.reject:0
+msgid "or"
+msgstr "o"

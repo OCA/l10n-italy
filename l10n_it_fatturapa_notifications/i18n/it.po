@@ -1,0 +1,177 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_it_fatturapa_notifications
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-25 16:46+0000\n"
+"PO-Revision-Date: 2015-11-25 16:47+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_fatturapa_notifications
+#: field:wizard.fatturapa.import.notification,name:0
+msgid "XML"
+msgstr "XML"
+
+#. module: l10n_it_fatturapa_notifications
+#: model:ir.model,name:l10n_it_fatturapa_notifications.model_wizard_fatturapa_import_notification
+msgid "wizard.fatturapa.import.notification"
+msgstr "wizard.fatturapa.import.notification"
+
+#. module: l10n_it_fatturapa_notifications
+#: field:fatturapa.notification,ir_attachment_id:0
+msgid "Attachment"
+msgstr "Allegato"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:wizard.fatturapa.import.notification,invoice_type:0
+msgid "Supplier"
+msgstr "Fornitore"
+
+#. module: l10n_it_fatturapa_notifications
+#: view:wizard.fatturapa.import.notification:0
+msgid "Import"
+msgstr "Importa"
+
+#. module: l10n_it_fatturapa_notifications
+#: help:wizard.fatturapa.import.notification,name:0
+msgid "XML notification file"
+msgstr "File XML di notifica"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "Ricevuta di consegna"
+msgstr "Ricevuta di consegna"
+
+#. module: l10n_it_fatturapa_notifications
+#: field:fatturapa.notification,file_identifier:0
+msgid "File identifier"
+msgstr "Identificativo File"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "Notifica esito cedente / prestatore"
+msgstr "Notifica esito cedente / prestatore"
+
+#. module: l10n_it_fatturapa_notifications
+#: field:wizard.fatturapa.import.notification,invoice_type:0
+msgid "Invoice type"
+msgstr "Tipo fattura"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid ""
+"Attestazione di avvenuta trasmissione della fattura con impossibilità di "
+"recapito"
+msgstr "Attestazione di avvenuta trasmissione della fattura con impossibilità di recapito"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "File dei metadati"
+msgstr "File dei metadati"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "Notifica di esito cessionario / committente"
+msgstr "Notifica di esito cessionario / committente"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:wizard.fatturapa.import.notification,invoice_type:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "Notifica di scarto esito cessionario / committente"
+msgstr "Notifica di scarto esito cessionario / committente"
+
+#. module: l10n_it_fatturapa_notifications
+#: view:fatturapa.notification:0
+msgid "FatturaPA notification"
+msgstr "FatturaPA notifica"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "Notifica decorrenza termini"
+msgstr "Notifica decorrenza termini"
+
+#. module: l10n_it_fatturapa_notifications
+#: help:fatturapa.notification,sequence:0
+msgid ""
+"It must be an alphanumeric string with a maximum length of 3 characters and "
+"allowed values [a - z], [A - Z], [0-9] which uniquely identifies each "
+"notification / receipt for the sent file"
+msgstr "Deve essere una stringa alfanumerica con una lunghezza massima di 3 caratteri e valori consentiti [a - z ] , [A - Z ] , [ 0-9 ], che identifica in modo univoco ogni notifica / ricevuta per il file inviato"
+
+#. module: l10n_it_fatturapa_notifications
+#: view:fatturapa.notification:0
+msgid "FatturaPA notifications"
+msgstr "FatturaPA notifiche"
+
+#. module: l10n_it_fatturapa_notifications
+#: field:fatturapa.notification,message_type:0
+msgid "Message Type"
+msgstr "Tipo messaggio"
+
+#. module: l10n_it_fatturapa_notifications
+#: model:ir.model,name:l10n_it_fatturapa_notifications.model_fatturapa_notification
+msgid "FatturaPA Notification"
+msgstr "Notifiche FatturaPA"
+
+#. module: l10n_it_fatturapa_notifications
+#: field:fatturapa.notification,sequence:0
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: l10n_it_fatturapa_notifications
+#: field:wizard.fatturapa.import.notification,file_name:0
+msgid "File Name"
+msgstr "Nome file"
+
+#. module: l10n_it_fatturapa_notifications
+#: view:wizard.fatturapa.import.notification:0
+msgid "Import FatturaPA"
+msgstr "Importa FatturaPA"
+
+#. module: l10n_it_fatturapa_notifications
+#: help:fatturapa.notification,message_type:0
+msgid ""
+"Page 32 of "
+"http://www.fatturapa.gov.it/export/fatturazione/sdi/Specifiche_tecniche_SdI_v1.1.pdf"
+" "
+msgstr "Page 32 of http://www.fatturapa.gov.it/export/fatturazione/sdi/Specifiche_tecniche_SdI_v1.1.pdf "
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "Notifica di scarto"
+msgstr "Notifica di scarto"
+
+#. module: l10n_it_fatturapa_notifications
+#: view:wizard.fatturapa.import.notification:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_fatturapa_notifications
+#: selection:fatturapa.notification,message_type:0
+msgid "Notifica di mancata consegna"
+msgstr "Notifica di mancata consegna"
+
+#. module: l10n_it_fatturapa_notifications
+#: view:wizard.fatturapa.import.notification:0
+msgid "or"
+msgstr "o"
+
+#. module: l10n_it_fatturapa_notifications
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_notifications.action_wizard_fatturapa_import_notification
+#: model:ir.ui.menu,name:l10n_it_fatturapa_notifications.menu_action_wizard_fatturapa_import_notification
+msgid "FatturaPA import notification"
+msgstr "FatturaPA importa notifiche"

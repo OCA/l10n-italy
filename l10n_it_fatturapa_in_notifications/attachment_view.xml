@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<record model="ir.ui.view" id="view_fatturapa_in_attachment_form">
+			<field name="name">fatturapa.attachment.in.form</field>
+			<field name="model">fatturapa.attachment.in</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa_in.view_fatturapa_in_attachment_form"></field>
+			<field name="arch" type="xml">
+                <field name="datas" position="after">
+                    <field name="file_identifier"></field>
+                    <field name="meta_data_notification_id"></field>
+                    <field name="sdi_identifier"></field>
+                </field>
+                <field name="in_invoice_ids" position="after">
+                    <separator string="Notifications" colspan="4"></separator>
+                    <field name="notification_ids" nolabel="1"></field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

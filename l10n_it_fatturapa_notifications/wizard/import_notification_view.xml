@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_fatturapa_import_notification" model="ir.ui.view">
+            <field name="name">Import notification</field>
+            <field name="model">wizard.fatturapa.import.notification</field>
+            <field name="arch" type="xml">
+                <form string="Import FatturaPA" version="7.0">
+                    <group>
+                        <field name="name" filename="file_name"/>
+                        <field name="file_name"/>
+                        <field name="invoice_type"/>
+                    </group>
+                    <footer>
+                        <button name="import_file" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_fatturapa_import_notification" model="ir.actions.act_window">
+            <field name="name">FatturaPA import notification</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.fatturapa.import.notification</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_fatturapa_import_notification"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_wizard_fatturapa_import_notification"
+            parent="l10n_it_fatturapa.menu_fattura_pa_payables"
+            name="FatturaPA import notification"
+            id="menu_action_wizard_fatturapa_import_notification"/>
+    </data>
+</openerp>

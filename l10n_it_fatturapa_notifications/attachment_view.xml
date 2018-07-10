@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<record model="ir.ui.view" id="view_fatturapa_notification_form">
+			<field name="name">view_fatturapa_notification_form</field>
+			<field name="model">fatturapa.notification</field>
+			<field name="arch" type="xml">
+                <form string="FatturaPA notification">
+                    <field name="message_type"></field>
+                    <field name="sequence"></field>
+                    <field name="file_identifier"></field>
+                    <field name="datas_fname"/>
+                    <field name="datas" filename="datas_fname" />
+                </form>
+            </field>
+        </record>
+    	<record model="ir.ui.view" id="view_fatturapa_notification_tree">
+			<field name="name">view_fatturapa_notification_tree</field>
+			<field name="model">fatturapa.notification</field>
+			<field name="arch" type="xml">
+                <tree string="FatturaPA notifications">
+                    <field name="message_type"></field>
+                    <field name="sequence"></field>
+                    <field name="file_identifier"></field>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>
