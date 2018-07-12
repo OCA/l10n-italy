@@ -7,7 +7,7 @@
     'category': 'e-commerce',
     'author': 'Agile Business Group,'
               'Odoo Community Association (OCA)',
-    'version': '10.0.1.1.0',
+    'version': '10.0.1.1.1',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
                'l10n_it_website_sale_corrispettivi',
