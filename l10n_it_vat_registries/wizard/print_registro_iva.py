@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2011 Associazione OpenERP Italia
 # (<http://www.openerp-italia.org>).
 # Copyright 2014-2017 Lorenzo Battistini - Agile Business Group
@@ -7,6 +6,8 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
+
+from datetime import datetime
 
 
 class WizardRegistroIva(models.TransientModel):
@@ -32,6 +33,9 @@ class WizardRegistroIva(models.TransientModel):
     only_totals = fields.Boolean(
         string='Prints only totals')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
+    year_footer = fields.Char(
+        string='Year for Footer',
+        help="Value printed near number of page in the footer")
 
     @api.multi
     def load_journal_ids(self):
@@ -44,6 +48,12 @@ class WizardRegistroIva(models.TransientModel):
         if self.date_range_id:
             self.from_date = self.date_range_id.date_start
             self.to_date = self.date_range_id.date_end
+
+    @api.onchange('from_date')
+    def get_year_footer(self):
+        if self.from_date:
+            self.year_footer = datetime.strptime(self.from_date,
+                                                 "%Y-%m-%d").year
 
     def _get_move_ids(self, wizard):
         moves = self.env['account.move'].search([
@@ -74,6 +84,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.layout_type
+        datas_form['year_footer'] = wizard.year_footer
 
         lang_code = self.env.user.company_id.partner_id.lang
         lang = self.env['res.lang']
@@ -86,10 +97,11 @@ class WizardRegistroIva(models.TransientModel):
         else:
             datas_form['tax_registry_name'] = ''
         datas_form['only_totals'] = wizard.only_totals
-        report_name = 'l10n_it_vat_registries.report_registro_iva'
+        # report_name = 'l10n_it_vat_registries.report_registro_iva'
+        report_name = 'l10n_it_vat_registries.action_report_registro_iva'
         datas = {
             'ids': move_ids,
             'model': 'account.move',
             'form': datas_form
         }
-        return self.env['report'].get_action([], report_name, data=datas)
+        return self.env.ref(report_name).report_action(self, data=datas)
