@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
 <template id="report_registro_iva">
-    <t t-call="report.html_container">
+    <t t-call="web.html_container">
         <t t-if="registry_type == 'customer'">
             <t t-set="title" t-value="'Registro Iva Vendite'"/>
         </t>
@@ -13,8 +12,9 @@
         <t t-if="registry_type == 'corrispettivi'">
             <t t-set="title" t-value="'Registro Corrispettivi'"/>
         </t>
+        <t t-set="l10n_it_count_fiscal_year" t-value="year_footer"/>
         <t t-call="l10n_it_account.internal_layout">
-            <div class="page">
+            <div class="article">
                 <t t-set="print_details" t-value="1"/>
                 <t t-if="only_totals == True">
                     <t t-set="print_details" t-value="0"/>
@@ -174,4 +174,5 @@
         </t>
     </t>
 </template>
+
 </odoo>
