@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data noupdate="1">
         <report
             id="action_report_registro_iva"
@@ -11,10 +11,12 @@
             menu="False"
             auto="False"
         />
-        <record id="action_report_registro_iva" model="ir.actions.report.xml">
+
+        <record id="action_report_registro_iva" model="ir.actions.report">
             <field name="paperformat_id"
             ref="l10n_it_account.l10n_it_account_a4_portrait"/>
        </record>
-    </data>
-</openerp>
 
+    </data>
+
+</odoo>
