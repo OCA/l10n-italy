@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright 2011-2013 Associazione OpenERP Italia
 # (<http://www.openerp-italia.org>).
 # Copyright 2012 Domsense srl (<http://www.domsense.com>)
 # Copyright 2012-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
+# Copyright 2012-15 LinkIt srl (<http://http://www.linkgroup.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Italian Localization - VAT Registries',
-    'version': '10.0.1.2.0',
+    'version': '11.0.1.0.0',
     'category': 'Localization/Italy',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Srl",
@@ -18,11 +17,11 @@
         'base_setup',
         'account',
         'l10n_it_account',
-        'report',
+        'web',
         'account_tax_balance',
-        'account_accountant',
+        'account_invoicing',
         'date_range',
-        ],
+    ],
     "data": [
         'security/ir.model.access.csv',
         'security/vat_registry_security.xml',
