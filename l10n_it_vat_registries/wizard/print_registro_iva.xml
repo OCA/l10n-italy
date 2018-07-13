@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_registro_iva" model="ir.ui.view">
+            <field name="name">VAT Registry</field>
+            <field name="model">wizard.registro.iva</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tax Journal">
+                    <group>
+                        <field name="date_range_id"/>
+                        <group>
+                            <field name="from_date"/>
+                        </group>
+                        <group>
+                            <field name="to_date"/>
+                        </group>
+                        <separator string="Journals" colspan="2"/>
+                        <group>
+                            <field name="tax_registry_id"></field>
+                        </group>
+                        <group>
+                            <button name="load_journal_ids" type="object" string="Load Journals" icon="fa-upload"/>
+                        </group>
+                        <field name="journal_ids" colspan="2" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase'))]"/>
+                        <separator string="Layout" colspan="2"/>
+                        <field name="layout_type"/>
+                        <field name="only_totals" />
+                        <field name="fiscal_page_base"/>
+                        <newline/>
+                        <field name="message" nolabel="1" colspan="2"/>
+                    </group>
+                    <footer>
+                        <button string="Print" name="print_registro" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_registro_iva" model="ir.actions.act_window">
+            <field name="name">VAT Registry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.registro.iva</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+          id="menu_finance_legal_statement_taxes"
+          name="Taxes"
+          parent="account.menu_finance_reports"
+          groups="account.group_account_user,account.group_account_manager"/>
+
+        <menuitem
+            name="VAT Registries"
+            parent="menu_finance_legal_statement_taxes"
+            action="action_registro_iva"
+            id="menu_registro_iva"
+            icon="STOCK_PRINT"/>
+
+    </data>
+</openerp>
