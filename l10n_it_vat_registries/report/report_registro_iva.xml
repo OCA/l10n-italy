@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<template id="report_registro_iva">
+    <t t-call="report.html_container">
+        <t t-if="registry_type == 'customer'">
+            <t t-set="title" t-value="'Registro Iva Vendite'"/>
+        </t>
+        <t t-if="registry_type == 'supplier'">
+            <t t-set="title" t-value="'Registro Iva Acquisti'"/>
+        </t>
+        <t t-if="registry_type == 'corrispettivi'">
+            <t t-set="title" t-value="'Registro Corrispettivi'"/>
+        </t>
+        <t t-call="l10n_it_account.internal_layout">
+            <div class="page">
+                <t t-set="print_details" t-value="1"/>
+                <t t-if="only_totals == True">
+                    <t t-set="print_details" t-value="0"/>
+                </t>
+                <table style="width:100%; font-size: small;" cellspacing="0">
+                    <thead>
+                        <tr class="first_th_row">
+                            <t t-if="registry_type == 'corrispettivi'">
+                                <td colspan="4" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"/>
+                            </t>
+                            <t t-if="registry_type != 'corrispettivi'">
+                                <td colspan="9" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"/>
+                            </t>
+                        </tr>
+
+                        <t t-if="print_details > 0 ">
+                            <tr style="page-break-inside: avoid" name="vat_header_invoice">
+                                <th class="left_without_line">DATA REG.</th>
+                                <th class="left_without_line">NUM. REG.</th>
+                                <t t-if="registry_type != 'corrispettivi'">
+                                    <th class="left_without_line">CAUS.</th>
+                                    <th class="left_without_line">DT FATT.</th>
+                                    <th class="left_without_line">NUM FATT.</th>
+                                    <th class="left_without_line">RAGIONE SOCIALE</th>
+                                    <th class="left_without_line">P.IVA</th>
+                                </t>
+                                <th class="left_without_line"></th>
+                                <th class="right_without_line">TOTALE</th>
+                            </tr>
+                            <tr style="page-break-inside: avoid" name="vat_header_tax">
+                                <t t-if="registry_type != 'corrispettivi'">
+                                    <th class="left_with_line_bottom"></th>
+                                    <th class="left_with_line_bottom"></th>
+                                    <th class="left_with_line_bottom"></th>
+                                    <th class="left_with_line_bottom"></th>
+                                    <th class="left_with_line_bottom"></th>
+                                </t>
+                                <th class="left_with_line_bottom">Descrizione Imposta</th>
+                                <th class="right_with_line_bottom">Imponibile</th>
+                                <th class="right_with_line_bottom">Imposta</th>
+                                <th class="right_with_line_bottom"></th>
+                            </tr>
+                        </t>
+                    </thead>
+
+                    <tbody>
+                        <t t-set="total_used_taxes" t-value="env['account.tax']"></t>
+                        <t t-foreach="get_move(doc_ids)" t-as="move">
+                            <t t-set="taxes_tuple" t-value="tax_lines(move, data)"/>
+                            <t t-set="inv_taxes" t-value="taxes_tuple[0]"/>
+                            <t t-set="used_taxes" t-value="taxes_tuple[1]"/>
+                            <t t-set="total_used_taxes" t-value="total_used_taxes | used_taxes"></t>
+                            <t t-foreach="inv_taxes" t-as="line">
+                                <t t-if="print_details > 0 ">
+                                    <t t-set="line_class_left" t-value="left_without_line"/>
+                                    <t t-set="line_class_right" t-value="right_without_line"/>
+                                    <t t-if="line['index'] == 0">
+                                        <tr style="page-break-inside: avoid; border:1px solid #fff;" name="vat_body_invoice">
+                                            <!-- Data registrazione -->
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(move.date,date_format)"/></td>
+                                            <!-- Numero registrazione -->
+                                            <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
+                                            <t t-if="registry_type != 'corrispettivi'">
+                                                <!-- Causale -->
+                                                <td class="left_without_line_bold">
+                                                    <div style="page-break-inside: avoid" t-esc="line['invoice_type']"/>
+                                                </td>
+                                                <!-- Data fattura -->
+                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/></td>
+                                                <t t-if="move.journal_id.type == 'purchase'">
+                                                    <!-- Numero fattura (fornitore)-->
+                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['reference']"/></td>
+                                                </t>
+                                                <t t-if="move.journal_id.type == 'sale'">
+                                                    <!-- Numero fattura -->
+                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
+                                                </t>
+                                                <!-- Ragione sociale -->
+                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></td>
+                                                <!-- PIVA -->
+                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.vat"/></td>
+                                            </t>
+                                            <td class="left_without_line"></td>
+                                            <!-- totale -->
+                                            <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(env, invoice_total(move))"/></td>
+                                        </tr>
+                                    </t>
+                                    <tr style="page-break-inside: avoid; " name="vat_body_tax">
+                                        <t t-if="registry_type != 'corrispettivi'">
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                            <td class="left_without_line"></td>
+                                        </t>
+                                        <!--  imposta -->
+                                        <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="(line['tax_code_name'])"/></td>
+                                        <!-- base -->
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(env, line['base'])"/></td>
+                                        <!-- tax -->
+                                        <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(env, line['tax'])"/></td>
+                                        <td class="left_without_line"></td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+                <br/>
+
+                <t t-set="tot_base" t-value="0"/>
+                <t t-set="tot_tax" t-value="0"/>
+                <t t-set="tot_ded" t-value="0"/>
+                <t t-set="tot_unded" t-value="0"/>
+                <div style="page-break-inside: avoid;">
+                    <table style="width:100%;" >
+                       <tr>
+                            <td colspan="2" style="vertical-align:text-top;padding:10">
+                                <h3>Totali</h3>
+                                <table style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="left_without_line_bold">Descrizione</th>
+                                            <th class="right_without_line_bold">Imponibile</th>
+                                            <th class="right_without_line_bold">Imposta</th>
+                                            <th class="right_without_line_bold">Detraibile</th>
+                                            <th class="right_without_line_bold">Indetraibile</th>
+                                        </tr>
+                                    </thead>
+                                    <t t-foreach="total_used_taxes" t-as="total_used_tax">
+                                        <t t-set="tax_code_tuple" t-value="compute_totals_tax(total_used_tax, data)"/>
+                                        <t t-set="tot_base" t-value="tot_base + tax_code_tuple[1]"/>
+                                        <t t-set="tot_tax" t-value="tot_tax + tax_code_tuple[2]"/>
+                                        <t t-set="tot_ded" t-value="tot_ded + tax_code_tuple[3]"/>
+                                        <t t-set="tot_unded" t-value="tot_unded + tax_code_tuple[4]"/>
+                                        <tr>
+                                            <td class="left_without_line" t-esc="tax_code_tuple[0]"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[1])"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[2])"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[3])"/>
+                                            <td class="right_without_line" t-esc="formatLang(env, tax_code_tuple[4])"/>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td class="left_without_line_bold">Totale generale euro</td>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_base)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_tax)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_ded)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, tot_unded)"/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+</odoo>
