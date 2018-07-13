@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <report
+            id="action_report_registro_iva"
+            model="account.move"
+            string="Invoices VAT Registry"
+            report_type="qweb-pdf"
+            name="l10n_it_vat_registries.report_registro_iva"
+            file="l10n_it_vat_registries.report_registro_iva"
+            menu="False"
+            auto="False"
+        />
+        <record id="action_report_registro_iva" model="ir.actions.report.xml">
+            <field name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_portrait"/>
+       </record>
+    </data>
+</openerp>
+
