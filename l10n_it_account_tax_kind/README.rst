@@ -55,6 +55,10 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alex Comba <alex.comba@agilebg.com>
 
+Porting to v11:
+
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
+
 Do not contact contributors directly about support or help with technical issues.
 
 Maintainer

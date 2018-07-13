@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 #    Copyright (C) 2017 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 #    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #
@@ -7,7 +5,7 @@
 
 {
     'name': 'Italian Localisation - Natura delle aliquote IVA',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Localisation/Italy',
     'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
     'website': 'https://www.odoo-italia.net/',
