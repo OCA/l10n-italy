@@ -39,6 +39,10 @@ Contributors
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
+Porting from v10:
+
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
+
 Do not contact contributors directly about support or help with technical issues.
 
 Funders

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Alessandro Camilli
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Italian Localization - '
             'Tipi di documento fiscali per dichiarativi',
-    'version': '10.0.0.1.0',
+    'version': '11.0.0.0.1',
     'category': 'Localisation/Italy',
     'author': "Link It srl, Odoo Community Association (OCA)",
     'website': 'https://www.odoo-italia.net/',
