@@ -39,6 +39,7 @@
         'wizard/ddt_create_invoice.xml',
         'wizard/ddt_invoicing.xml',
         'views/report_ddt.xml',
+        'data/mail_template_data.xml',
     ],
     'installable': True,
 }
