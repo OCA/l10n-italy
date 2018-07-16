@@ -39,6 +39,7 @@ Contributors
 ------------
 
 * Alessandro Camilli <alessandrocamilli@openforce.it>
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
 
 Funders
 -------
