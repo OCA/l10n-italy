@@ -1,3 +1,2 @@
 account-financial-reporting
 server-ux
-account-financial-reporting
