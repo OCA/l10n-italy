@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# Author: Gianmarco Conte - Dinamiche Aziendali Srl
-# Copyright 2017
-# Dinamiche Aziendali Srl <www.dinamicheaziendali.it>
+# Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import models, fields, api, _
@@ -51,6 +48,15 @@ class WizardGiornale(models.TransientModel):
                                    'Target Move', default='all')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
     start_row = fields.Integer('Start row', required=True)
+    year_footer = fields.Char(string='Year for Footer',
+                              help="Value printed near number "
+                                   "of page in the footer")
+
+    @api.onchange('date_move_line_from_view')
+    def get_year_footer(self):
+        if self.date_move_line_from_view:
+            self.year_footer = datetime.strptime(self.date_move_line_from_view,
+                                                 "%Y-%m-%d").year
 
     @api.onchange('daterange')
     def on_change_daterange(self):
@@ -89,6 +95,7 @@ class WizardGiornale(models.TransientModel):
         move_line_ids = move_line_obj.search([
             ('date', '>=', wizard.date_move_line_from),
             ('date', '<=', wizard.date_move_line_to),
+            ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
             ('move_id.state', 'in', target_type)
         ], order='date, move_id asc')
         if not move_line_ids:
@@ -103,17 +110,20 @@ class WizardGiornale(models.TransientModel):
         datas_form['start_row'] = wizard.start_row
         datas_form['daterange'] = wizard.daterange.id
         datas_form['print_state'] = 'draft'
-        report_name = 'l10n_it_central_journal.report_giornale'
+        datas_form['year_footer'] = wizard.year_footer
         datas = {
             'ids': move_line_ids.ids,
             'model': 'account.move',
             'form': datas_form}
-        return self.env['report'].get_action([], report_name, data=datas)
+        return self.env.ref(
+            'l10n_it_central_journal.action_report_giornale').report_action(
+            self, data=datas)
 
     def print_giornale_final(self):
         wizard = self
         res_company_obj = self.env['res.company']
-        if wizard.date_move_line_from <= wizard.last_def_date_print:
+        if wizard.last_def_date_print and \
+                wizard.date_move_line_from <= wizard.last_def_date_print:
             raise UserError(_('Date already printed'))
         else:
             if wizard.target_move == 'all':
@@ -139,7 +149,7 @@ class WizardGiornale(models.TransientModel):
             datas_form['daterange'] = wizard.daterange.id
             datas_form['start_row'] = wizard.start_row
             datas_form['print_state'] = 'def'
-            report_name = 'l10n_it_central_journal.report_giornale'
+            datas_form['year_footer'] = wizard.year_footer
             datas = {
                 'ids': move_line_ids.ids,
                 'model': 'account.move',
@@ -149,4 +159,6 @@ class WizardGiornale(models.TransientModel):
             if not company.period_lock_date or company.period_lock_date \
                     < self.date_move_line_to:
                 company.sudo().period_lock_date = self.date_move_line_to
-            return self.env['report'].get_action([], report_name, data=datas)
+            return self.env.ref(
+                'l10n_it_central_journal.action_report_giornale').\
+                report_action(self, data=datas)

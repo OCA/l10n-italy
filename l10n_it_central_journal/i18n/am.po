@@ -52,7 +52,7 @@ msgstr "Cancelar"
 #: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
 #: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
-msgid "Central Journal"
+msgid "General journal"
 msgstr ""
 
 #. module: l10n_it_central_journal

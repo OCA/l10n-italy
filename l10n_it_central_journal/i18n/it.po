@@ -55,7 +55,7 @@ msgstr "Annulla"
 #: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
 #: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
-msgid "Central Journal"
+msgid "General journal"
 msgstr "Libro giornale"
 
 #. module: l10n_it_central_journal
@@ -306,3 +306,10 @@ msgstr "report.l10n_it_central_journal.report_giornale"
 #: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
 msgid "wizard.giornale"
 msgstr "Wizard libro giornale"
+
+#. module: l10n_it_central_journal
+#: model:ir.ui.view,arch_db:l10n_it_central_journal.layout_header
+msgid "<br/>\n"
+"                    <span class=\"text-right\">Vat:</span>"
+msgstr "<br/>\n"
+"                    <span class=\"text-right\">P.Iva:</span>"

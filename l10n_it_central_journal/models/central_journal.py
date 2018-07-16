@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# Author: Gianmarco Conte - Dinamiche Aziendali Srl
-# Copyright 2017
-# Dinamiche Aziendali Srl <www.dinamicheaziendali.it>
+# Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import models, api
@@ -15,13 +12,13 @@ class ReportGiornale(models.AbstractModel):
     _name = 'report.l10n_it_central_journal.report_giornale'
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         lang_code = self._context.get('company_id',
                                       self.env.user.company_id.partner_id.lang)
         lang = self.env['res.lang']
         lang_id = lang._lang_get(lang_code)
         date_format = lang_id.date_format
-        docargs = {
+        return {
             'doc_ids': data['ids'],
             'doc_model': self.env['account.move.line'],
             'data': data,
@@ -35,12 +32,11 @@ class ReportGiornale(models.AbstractModel):
             'date_move_line_to': data['form']['date_move_line_to'],
             'daterange': data['form']['daterange'],
             'print_state': data['form']['print_state'],
+            'year_footer': data['form']['year_footer'],
             'progressive_credit': data['form']['progressive_credit'],
             'progressive_debit': data['form']['progressive_debit'],
             'date_format': date_format,
         }
-        return self.env['report'].render(
-            'l10n_it_central_journal.report_giornale', docargs)
 
     def _get_move(self, move_ids):
         move_list = self.env[

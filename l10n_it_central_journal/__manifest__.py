@@ -1,21 +1,19 @@
-# -*- coding: utf-8 -*-
-# Author: Gianmarco Conte - Dinamiche Aziendali Srl
-# Copyright 2017
-# Dinamiche Aziendali Srl <www.dinamicheaziendali.it>
+# Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Account central journal',
-    'version': '10.0.0.0.1',
+    'name': 'Italian Localization - Libro giornale',
+    'version': '11.0.1.0.0',
     'category': 'Localization/Italy',
-    'author': 'Dinamiche Aziendali, Odoo Community Association (OCA)',
+    'author': 'Gianmarco Conte - Dinamiche Aziendali srl, '
+              'Odoo Community Association (OCA)',
     'website': 'http://www.dinamicheaziendali.it',
     'license': 'AGPL-3',
     "depends": [
         'account',
         'l10n_it_account',
         'date_range'
-        ],
+    ],
     "data": [
         'security/ir.model.access.csv',
         'report/reports.xml',
