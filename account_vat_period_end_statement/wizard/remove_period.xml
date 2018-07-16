@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="remove_period" model="ir.ui.view">
+            <field name="name">remove_period</field>
+            <field name="model">remove.period.from.vat.statement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Remove period">
+                    <field name="period_id"></field>
+                    <group col="2" colspan="4">
+                        <button special="cancel" string="Cancel"/>
+                        <button name="remove_period" string="Remove" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="action_remove_period" model="ir.actions.act_window">
+            <field name="name">Remove period</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">remove.period.from.vat.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

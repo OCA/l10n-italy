@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="add_period" model="ir.ui.view">
+            <field name="name">add_period</field>
+            <field name="model">add.period.to.vat.statement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Add period" version="7.0">
+                    <group>
+                        <label for="period_id"/>
+                        <div>
+                            <field name="period_id" class="oe_inline"></field>
+                        </div>
+                    </group>
+                    <footer>
+                        <button special="cancel" string="Cancel"/>
+                        <button name="add_period" string="Add" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_add_period" model="ir.actions.act_window">
+            <field name="name">Add period</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">add.period.to.vat.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>
