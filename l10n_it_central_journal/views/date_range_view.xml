@@ -21,7 +21,7 @@
                    ref="date_range.view_date_range_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/group" position="after">
-                    <separator string="Central journal info"/>
+                    <separator string="General Journal Info"/>
                     <group>
                         <field name="date_last_print"/>
                         <field name="progressive_page_number"/>
