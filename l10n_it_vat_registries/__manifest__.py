@@ -1,7 +1,7 @@
 # Copyright 2011-2013 Associazione OpenERP Italia
 # (<http://www.openerp-italia.org>).
 # Copyright 2012 Domsense srl (<http://www.domsense.com>)
-# Copyright 2012-2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2012-2018 Lorenzo Battistini - Agile Business Group
 # Copyright 2012-15 LinkIt srl (<http://http://www.linkgroup.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -13,6 +13,7 @@
               ", LinkIt Srl",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
+    'development_status': 'Production/Stable',
     "depends": [
         'base_setup',
         'account',
