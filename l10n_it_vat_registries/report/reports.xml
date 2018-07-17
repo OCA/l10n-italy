@@ -9,7 +9,6 @@
             name="l10n_it_vat_registries.report_registro_iva"
             file="l10n_it_vat_registries.report_registro_iva"
             menu="False"
-            auto="False"
         />
 
         <record id="action_report_registro_iva" model="ir.actions.report">
