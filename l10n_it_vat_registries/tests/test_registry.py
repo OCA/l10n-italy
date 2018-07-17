@@ -74,4 +74,4 @@ class TestRegistry(AccountingTestCase):
         report = self.env['ir.actions.report'].search(domain)
         html = report.render_qweb_html(res['data']['ids'], res['data'])
 
-        self.assertTrue('Tax 10.0' in html)
+        self.assertTrue(b'Tax 10.0' in html[0])
