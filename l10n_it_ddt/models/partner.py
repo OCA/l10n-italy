@@ -30,7 +30,9 @@ class ResPartner(models.Model):
         [('nothing', 'One DDT - One Invoice'),
          ('billing_partner', 'Billing Partner'),
          ('shipping_partner', 'Shipping Partner'),
-         ('code_group', 'Code group')], 'DDT invoicing group',
+         ('code_group', 'Code group'),
+         ('each_order', 'One Order - One Invoice')],
+        'DDT invoicing group',
         default='billing_partner')
     ddt_code_group = fields.Char(string='Code group')
     ddt_show_price = fields.Boolean(
