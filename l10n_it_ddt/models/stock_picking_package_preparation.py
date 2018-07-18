@@ -406,8 +406,6 @@ class StockPickingPackagePreparation(models.Model):
                     'name': invoice.origin
                 })
             if not invoice.invoice_line_ids:
-                import pdb
-                pdb.set_trace()
                 raise UserError(_('There is no invoicable line.'))
             # If invoice is negative, do a refund invoice instead
             if invoice.amount_untaxed < 0:
