@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 #
 #    OpenERP, Open Source Management Solution
@@ -50,6 +49,7 @@ class RemovePeriod(models.TransientModel):
         period.vat_statement_id = False
         statement = self.env['account.vat.period.end.statement'].browse(
             self.env.context['active_id'])
+        statement.set_fiscal_year()
         statement.compute_amounts()
         return {
             'type': 'ir.actions.act_window_close',

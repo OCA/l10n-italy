@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
