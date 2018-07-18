@@ -43,7 +43,7 @@
         </record>
         <record id="fatturapa_RF04" model="fatturapa.fiscal_position">
             <field name="code">RF04</field>
-            <field name="name">Agricoltura e attività connesse e pesca (artt. 34 e 34-bis, D.P.R. 633/1972)</field>
+            <field name="name">Agricoltura e attivita' connesse e pesca (artt. 34 e 34-bis, D.P.R. 633/1972)</field>
         </record>
         <record id="fatturapa_RF05" model="fatturapa.fiscal_position">
             <field name="code">RF05</field>
@@ -67,7 +67,7 @@
         </record>
         <record id="fatturapa_RF10" model="fatturapa.fiscal_position">
             <field name="code">RF10</field>
-            <field name="name">Intrattenimenti, giochi e altre attività di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)</field>
+            <field name="name">Intrattenimenti, giochi e altre attivita' di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)</field>
         </record>
         <record id="fatturapa_RF11" model="fatturapa.fiscal_position">
             <field name="code">RF11</field>
@@ -186,7 +186,7 @@
         </record>
         <record id="fatturapa_mp15" model="fatturapa.payment_method">
             <field name="code">MP15</field>
-            <field name="name">giroconto su conti di contabilità speciale</field>
+            <field name="name">giroconto su conti di contabilita' speciale</field>
         </record>
         <record id="fatturapa_mp16" model="fatturapa.payment_method">
             <field name="code">MP16</field>
@@ -214,7 +214,7 @@
         </record>
         <record id="fatturapa_mp22" model="fatturapa.payment_method">
             <field name="code">MP22</field>
-            <field name="name">Trattenuta su somme già riscosse</field>
+            <field name="name">Trattenuta su somme gia' riscosse</field>
         </record>
     </data>
 </openerp>

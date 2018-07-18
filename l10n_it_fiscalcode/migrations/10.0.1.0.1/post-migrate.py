@@ -8,7 +8,7 @@ from openerp import api, SUPERUSER_ID
 
 def migrate(cr, version):
     """ Sync of fiscalcode field to descendants """
-    if not version:
+    if version:
         return
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})

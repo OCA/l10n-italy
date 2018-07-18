@@ -4846,7 +4846,7 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
     """
-        Il campo Denominazione è in alternativa ai campi Nome e Cognome
+        Il campo Denominazione e' in alternativa ai campi Nome e Cognome
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
