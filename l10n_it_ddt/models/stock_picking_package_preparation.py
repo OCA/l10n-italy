@@ -342,6 +342,7 @@ class StockPickingPackagePreparation(models.Model):
         inv_obj = self.env['account.invoice']
         invoices = {}
         references = {}
+
         for ddt in self:
             if not ddt.to_be_invoiced or ddt.invoice_id:
                 continue
@@ -357,6 +358,7 @@ class StockPickingPackagePreparation(models.Model):
                     ddt.partner_shipping_id.ddt_invoicing_group)
                 group_partner_invoice_id = ddt.partner_id.id
                 group_currency_id = ddt.partner_id.currency_id.id
+
             if group_method == 'billing_partner':
                 group_key = (group_partner_invoice_id,
                              group_currency_id)
@@ -366,6 +368,8 @@ class StockPickingPackagePreparation(models.Model):
             elif group_method == 'code_group':
                 group_key = (ddt.partner_shipping_id.ddt_code_group,
                              group_partner_invoice_id)
+            elif order and group_method == 'each_order':
+                group_key = (order.id,)
             else:
                 group_key = ddt.id
 
@@ -402,6 +406,8 @@ class StockPickingPackagePreparation(models.Model):
                     'name': invoice.origin
                 })
             if not invoice.invoice_line_ids:
+                import pdb
+                pdb.set_trace()
                 raise UserError(_('There is no invoicable line.'))
             # If invoice is negative, do a refund invoice instead
             if invoice.amount_untaxed < 0:

@@ -53,7 +53,9 @@ class SaleOrder(models.Model):
         [('nothing', 'One DDT - One Invoice'),
          ('billing_partner', 'Billing Partner'),
          ('shipping_partner', 'Shipping Partners'),
-         ('code_group', 'Code group')], 'DDT invoicing group',
+         ('code_group', 'Code group'),
+         ('each_order', 'One Order - One Invoice')],
+        'DDT invoicing group',
         default='billing_partner')
 
     @api.multi
