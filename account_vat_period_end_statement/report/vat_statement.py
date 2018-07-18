@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 #
 #    OpenERP, Open Source Management Solution
@@ -35,9 +34,9 @@ class VatPeriodEndStatementReport(models.AbstractModel):
     _name = 'report.account_vat_period_end_statement.vat_statement'
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         docs = self.env['account.vat.period.end.statement'].browse(docids)
-        docargs = {
+        vals = {
             'docs': docs,
             'time': time,
             'tax_amounts': self._get_taxes_amounts,
@@ -45,8 +44,7 @@ class VatPeriodEndStatementReport(models.AbstractModel):
             'formatLang': formatLang,
             'env': self.env,
         }
-        return self.env['report'].render(
-            'account_vat_period_end_statement.vat_statement', docargs)
+        return vals
 
     def _get_statement(self, statement_id):
         statement_obj = self.env['account.vat.period.end.statement']

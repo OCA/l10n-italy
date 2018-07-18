@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 #
 #    OpenERP, Open Source Management Solution
@@ -26,16 +25,16 @@
 
 {
     "name": "Period End VAT Statement",
-    "version": "10.0.1.4.2",
+    "version": "11.0.1.0.0",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": [
-        "l10n_it_account",
-        "report",
-        "l10n_it_fiscalcode",
-        "date_range",
-        "account_accountant",
+        "account_invoicing",
         "account_tax_balance",
+        "date_range",
+        "l10n_it_account",
+        "l10n_it_fiscalcode",
+        "web",
         ],
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Spa",
