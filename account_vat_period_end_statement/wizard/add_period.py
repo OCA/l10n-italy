@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 #
 #    OpenERP, Open Source Management Solution
@@ -50,6 +49,7 @@ class AddPeriod(models.TransientModel):
         statement_id = self.env.context['active_id']
         wizard.period_id.vat_statement_id = statement_id
         statement = statement_env.browse(statement_id)
+        statement.set_fiscal_year()
         statement.compute_amounts()
         return {
             'type': 'ir.actions.act_window_close',
