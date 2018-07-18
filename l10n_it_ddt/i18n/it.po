@@ -561,6 +561,12 @@ msgid "One DDT - One Invoice"
 msgstr "Un DDT - Una fattura"
 
 #. module: l10n_it_ddt
+#: selection:res.partner,ddt_invoicing_group:0
+#: selection:sale.order,ddt_invoicing_group:0
+msgid "One Order - One Invoice"
+msgstr "Un ordine - Una fattura"
+
+#. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
 msgid "Package Preparation"
 msgstr "Preparazione pacco"
