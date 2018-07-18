@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
 
 <!--    Statement   -->
@@ -112,6 +112,7 @@
                         <page string="Print Options">
                             <group colspan="4" string="Page Number">
                                 <field name="fiscal_page_base"/>
+                                <field name="fiscal_year"/>
                             </group>
                         </page>
                     </notebook>
@@ -156,4 +157,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>
