@@ -75,8 +75,15 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('FatturaPA sequence not configured.'))
         number = fatturapa_sequence.next_by_id()
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            ProgressivoInvio = number
+        try:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+                ProgressivoInvio = number
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
+            msg = _(
+                'FatturaElettronicaHeader.DatiTrasmissione.'
+                'ProgressivoInvio:\n%s'
+            ) % unicode(e)
+            raise UserError(msg)
         return number
 
     def _setIdTrasmittente(self, company, fatturapa):
@@ -151,8 +158,11 @@ class WizardExportFatturapa(models.TransientModel):
         CedentePrestatore.DatiAnagrafici = DatiAnagraficiCedenteType()
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
-            raise UserError(
-                _('FatturaPA fiscal position not set.'))
+            raise UserError(_(
+                'FatturaPA fiscal position not set for company %s. '
+                '(Go to Accounting --> Configuration --> Settings --> '
+                'Fattura PA)' % company.name
+            ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
@@ -660,6 +670,7 @@ class WizardExportFatturapa(models.TransientModel):
                         _("Invoice %s has FatturaPA Export File yet") % (
                             inv.number))
                 invoice_body = FatturaElettronicaBodyType()
+                inv.preventive_checks()
                 self.with_context(context_partner).setFatturaElettronicaBody(
                     inv, invoice_body)
                 fatturapa.FatturaElettronicaBody.append(invoice_body)
@@ -667,8 +678,7 @@ class WizardExportFatturapa(models.TransientModel):
 
             number = self.setProgressivoInvio(fatturapa)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
-            raise UserError(
-                (unicode(e)))
+            raise UserError(unicode(e))
 
         attach = self.saveAttachment(fatturapa, number)
 
