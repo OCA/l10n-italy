@@ -151,8 +151,11 @@ class WizardExportFatturapa(models.TransientModel):
         CedentePrestatore.DatiAnagrafici = DatiAnagraficiCedenteType()
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
-            raise UserError(
-                _('FatturaPA fiscal position not set.'))
+            raise UserError(_(
+                'FatturaPA fiscal position not set for company %s. '
+                '(Go to Accounting --> Configuration --> Settings --> '
+                'Fattura PA)' % company.name
+            ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
