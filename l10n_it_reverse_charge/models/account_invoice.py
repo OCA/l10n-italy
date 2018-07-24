@@ -87,12 +87,30 @@ class AccountInvoice(models.Model):
             'date': self.date,
             }
 
+    def compute_rc_amount(self):
+        amount_rc_tax = 0.0
+        rc_lines = self.invoice_line_ids.filtered(lambda l: l.rc)
+        for rc_line in rc_lines:
+            price_unit = \
+                rc_line.price_unit * (1 - (rc_line.discount or 0.0) / 100.0)
+            res = rc_line.invoice_line_tax_ids.compute_all(
+                price_unit,
+                rc_line.currency_id,
+                rc_line.quantity,
+                product=rc_line.product_id,
+                partner=rc_line.partner_id)
+            amount_rc_tax += res['total_included'] - res['total_excluded']
+
+        return amount_rc_tax
+
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
+        amount_rc_tax = self.compute_rc_amount()
+
         if self.type == 'in_invoice':
-            credit = self.amount_tax
+            credit = amount_rc_tax
         else:
-            debit = self.amount_tax
+            debit = amount_rc_tax
 
         return {
             'name': self.number,
@@ -104,16 +122,18 @@ class AccountInvoice(models.Model):
 
     def rc_debit_line_vals(self, amount=None):
         credit = debit = 0.0
+        amount_rc_tax = self.compute_rc_amount()
+
         if self.type == 'in_invoice':
             if amount:
                 debit = amount
             else:
-                debit = self.amount_tax
+                debit = amount_rc_tax
         else:
             if amount:
                 credit = amount
             else:
-                credit = self.amount_tax
+                credit = amount_rc_tax
         return {
             'name': self.number,
             'debit': debit,
