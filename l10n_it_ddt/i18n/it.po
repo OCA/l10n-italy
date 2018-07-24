@@ -197,11 +197,6 @@ msgid "DDT"
 msgstr "DDT"
 
 #. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_ddt_client_order_ref
-msgid "DDT Client Order Ref"
-msgstr "Riferimento cliente DDT"
-
-#. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_create_invoice
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_create_invoice
 msgid "DDT Create Invoice"
