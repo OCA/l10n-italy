@@ -128,6 +128,9 @@ class StockPickingPackagePreparation(models.Model):
     date_transport_start = fields.Datetime(
         string="Transport Start"
     )
+    client_order_ref = fields.Text(
+        string="Client Order Ref",
+    )
 
     @api.multi
     @api.depends('picking_ids',

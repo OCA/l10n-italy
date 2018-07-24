@@ -107,7 +107,10 @@
                         </div>
                     </div>
                     <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
-                    <h5>Date: <span t-esc="o.get_date_for_ddt_report()"></span></h5>
+                    <h5><strong>Date:</strong> <span t-esc="o.get_date_for_ddt_report()"></span></h5>
+                    <t t-if="o.client_order_ref">
+                        <h5><strong>Client Ref:</strong> <span t-esc="o.client_order_ref"></span></h5>
+                    </t>
                     <table class="table table-condensed">
                         <t t-set="has_serial_number"
                            t-value="o.line_ids.filtered('move_id.lot_id')"
