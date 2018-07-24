@@ -416,6 +416,11 @@ msgid "Effects amount"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_type
+msgid "Emission mode"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:96
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:118
 #, python-format
@@ -650,11 +655,6 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_move_line_riba_line_id
 msgid "List line"
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_type
-msgid "Modalità Emissione"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
