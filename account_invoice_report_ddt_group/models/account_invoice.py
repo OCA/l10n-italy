@@ -3,7 +3,7 @@
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import models, api, fields
+from odoo import models, api, fields
 import collections
 
 
@@ -15,6 +15,7 @@ class AccountInvoice(models.Model):
         """
         Returns invoice lines from a specified invoice grouped by ddt
         """
+
         all_lines = self.invoice_line_ids
         ddt_dict = {}
         for line in all_lines:
@@ -24,6 +25,7 @@ class AccountInvoice(models.Model):
                 ddt_dict[ddts] = [line]
             else:
                 ddt_dict[ddts].append(line)
+
         # convert recordset to string.
         group = {}
         for key in ddt_dict:
@@ -50,6 +52,7 @@ class AccountInvoice(models.Model):
             if string_key not in group:
                 group[string_key] = {'lines': ddt_dict[key]}
                 group[string_key]['shipping_address'] = ''
+                group[string_key]['client_order_ref'] = ddt.client_order_ref
                 if string_key and ddt.partner_shipping_id.parent_id.\
                         ddt_invoice_print_shipping_address:
                     group[string_key]['shipping_address'] =\
@@ -68,6 +71,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def has_serial_number(self):
+
         self.ensure_one()
         for line in self.invoice_line_ids:
             if line.ddt_line_id.lot_ids:
