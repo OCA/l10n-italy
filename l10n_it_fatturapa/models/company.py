@@ -14,9 +14,9 @@ class ResCompany(models.Model):
         )
     fatturapa_sequence_id = fields.Many2one(
         'ir.sequence', 'Sequence',
-        help="il progressivo univoco del file è rappresentato da una "
-             "stringa alfanumerica di lunghezza massima di 5 caratteri "
-             "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
+        help="The univocal progressive of the file is represented by "
+             "an alphanumeric sequence of maximum length 5, "
+             "its values are included in 'A'-'Z' and '0'-'9'"
         )
     fatturapa_art73 = fields.Boolean('Art73')
     fatturapa_pub_administration_ref = fields.Char(
@@ -53,9 +53,9 @@ class AccountConfigSettings(models.TransientModel):
     fatturapa_sequence_id = fields.Many2one(
         related='company_id.fatturapa_sequence_id',
         string="Sequence",
-        help="il progressivo univoco del file è rappresentato da una "
-             "stringa alfanumerica di lunghezza massima di 5 caratteri "
-             "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
+        help="The univocal progressive of the file is represented by "
+             "an alphanumeric sequence of maximum length 5, "
+             "its values are included in 'A'-'Z' and '0'-'9'"
         )
     fatturapa_art73 = fields.Boolean(
         related='company_id.fatturapa_art73',
