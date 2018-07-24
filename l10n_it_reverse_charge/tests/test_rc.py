@@ -20,6 +20,18 @@ class TestReverseCharge(TransactionCase):
         self._create_fiscal_position()
 
         self.sample_product = self.env['product.product'].search([], limit=1)
+        self.supplier_intraEU = self.partner_model.create({
+            'name': 'Intra EU supplier',
+            'customer': False,
+            'supplier': True,
+            'property_account_position_id': self.fiscal_position_intra.id
+        })
+        self.invoice_account = self.env['account.account'].search(
+            [('user_type_id', '=', self.env.ref(
+                'account.data_account_type_payable').id)], limit=1).id
+        self.invoice_line_account = self.env['account.account'].search(
+            [('user_type_id', '=', self.env.ref(
+                'account.data_account_type_expenses').id)], limit=1).id
 
     def _create_account(self):
         account_model = self.env['account.account']
@@ -50,6 +62,11 @@ class TestReverseCharge(TransactionCase):
         self.tax_22ve = tax_model.create({
             'name': "Tax 22% Sales Extra-EU",
             'type_tax_use': 'sale',
+            'amount': 22
+        })
+        self.tax_22 = tax_model.create({
+            'name': "Tax 22%",
+            'type_tax_use': 'purchase',
             'amount': 22
         })
 
@@ -135,30 +152,16 @@ class TestReverseCharge(TransactionCase):
         })
 
     def test_intra_EU_invoice_line_no_tax(self):
-        supplier_intraEU = self.partner_model.create({
-            'name': 'Intra EU supplier',
-            'customer': False,
-            'supplier': True,
-            'property_account_position_id': self.fiscal_position_intra.id
-        })
-
-        # Should be changed by automatic on_change later
-        invoice_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_payable').id)], limit=1).id
-        invoice_line_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_expenses').id)], limit=1).id
 
         invoice = self.invoice_model.create({
-            'partner_id': supplier_intraEU.id,
-            'account_id': invoice_account,
+            'partner_id': self.supplier_intraEU.id,
+            'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
 
         invoice_line = self.invoice_line_model.create({
             'name': 'Invoice for sample product',
-            'account_id': invoice_line_account,
+            'account_id': self.invoice_line_account,
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100
@@ -168,30 +171,16 @@ class TestReverseCharge(TransactionCase):
             invoice.action_invoice_open()
 
     def test_intra_EU(self):
-        supplier_intraEU = self.partner_model.create({
-            'name': 'Intra EU supplier',
-            'customer': False,
-            'supplier': True,
-            'property_account_position_id': self.fiscal_position_intra.id
-        })
-
-        # Should be changed by automatic on_change later
-        invoice_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_payable').id)], limit=1).id
-        invoice_line_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_expenses').id)], limit=1).id
 
         invoice = self.invoice_model.create({
-            'partner_id': supplier_intraEU.id,
-            'account_id': invoice_account,
+            'partner_id': self.supplier_intraEU.id,
+            'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
-            'account_id': invoice_line_account,
+            'account_id': self.invoice_line_account,
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
@@ -207,6 +196,44 @@ class TestReverseCharge(TransactionCase):
             invoice.rc_self_invoice_id.payment_move_line_ids.move_id.state,
             'posted')
 
+    def test_intra_EU_2_mixed_lines(self):
+        """Create an invoice with two lines: one is RC and the other is not.
+        By default, the onchange method `onchange_invoice_line_tax_id` assigns
+        the same RC flag to both lines, so we force one of them not to be RC"""
+        invoice = self.invoice_model.create({
+            'partner_id': self.supplier_intraEU.id,
+            'account_id': self.invoice_account,
+            'type': 'in_invoice',
+        })
+
+        invoice_line_vals = {
+            'name': 'Invoice for sample product 1',
+            'account_id': self.invoice_line_account,
+            'invoice_id': invoice.id,
+            'product_id': self.sample_product.id,
+            'price_unit': 100,
+            'rc': True,
+            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+        invoice_line = self.invoice_line_model.create(invoice_line_vals)
+        invoice_line.onchange_invoice_line_tax_id()
+        invoice_line_vals = {
+            'name': 'Invoice for sample product 2',
+            'account_id': self.invoice_line_account,
+            'invoice_id': invoice.id,
+            'price_unit': 200,
+            'rc': False,
+            'invoice_line_tax_ids': [(4, self.tax_22.id, 0)]}
+        invoice_line = self.invoice_line_model.create(invoice_line_vals)
+        invoice_line.onchange_invoice_line_tax_id()
+        invoice_line.rc = False
+
+        invoice.compute_taxes()
+
+        invoice.action_invoice_open()
+        # Only the tax in the RC line (22) should result as paid
+        self.assertEqual(invoice.amount_total, 366.0)
+        self.assertEqual(invoice.residual, 344.0)
+
     def test_extra_EU(self):
         supplier_extraEU = self.partner_model.create({
             'name': 'Extra EU supplier',
@@ -215,23 +242,15 @@ class TestReverseCharge(TransactionCase):
             'property_account_position_id': self.fiscal_position_extra.id
         })
 
-        # Should be changed by automatic on_change later
-        invoice_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_payable').id)], limit=1).id
-        invoice_line_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_expenses').id)], limit=1).id
-
         invoice = self.invoice_model.create({
             'partner_id': supplier_extraEU.id,
-            'account_id': invoice_account,
+            'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
-            'account_id': invoice_line_account,
+            'account_id': self.invoice_line_account,
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
@@ -248,30 +267,16 @@ class TestReverseCharge(TransactionCase):
             move_id.state, 'posted')
 
     def test_intra_EU_cancel_and_draft(self):
-        supplier_intraEU = self.partner_model.create({
-            'name': 'Intra EU supplier',
-            'customer': False,
-            'supplier': True,
-            'property_account_position_id': self.fiscal_position_intra.id
-        })
-
-        # Should be changed by automatic on_change later
-        invoice_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_payable').id)], limit=1).id
-        invoice_line_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_expenses').id)], limit=1).id
 
         invoice = self.invoice_model.create({
-            'partner_id': supplier_intraEU.id,
-            'account_id': invoice_account,
+            'partner_id': self.supplier_intraEU.id,
+            'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
-            'account_id': invoice_line_account,
+            'account_id': self.invoice_line_account,
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
