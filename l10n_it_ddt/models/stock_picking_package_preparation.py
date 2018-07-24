@@ -333,7 +333,6 @@ class StockPickingPackagePreparation(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
-            'ddt_client_order_ref': self.client_order_ref,
         }
         return invoice_vals
 
