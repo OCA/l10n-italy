@@ -663,6 +663,7 @@ class WizardExportFatturapa(models.TransientModel):
                         _("Invoice %s has FatturaPA Export File yet") % (
                             inv.number))
                 invoice_body = FatturaElettronicaBodyType()
+                inv.preventive_checks()
                 self.with_context(context_partner).setFatturaElettronicaBody(
                     inv, invoice_body)
                 fatturapa.FatturaElettronicaBody.append(invoice_body)
