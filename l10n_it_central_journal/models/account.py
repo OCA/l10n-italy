@@ -24,9 +24,9 @@ class DateRangeInherit(models.Model):
     progressive_line_number = fields.Integer('Progressive line', default=0)
     progressive_credit = fields.Float(
         'Progressive Credit',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         default=lambda *a: float())
     progressive_debit = fields.Float(
         'Progressive Debit',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         default=lambda *a: float())
