@@ -267,6 +267,12 @@ msgid "Invoice line %s does not have tax"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/models/account.py:22
+#, python-format
+msgid "Invoice line [%s] must not contain new line character"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Invoices"
 msgstr ""
