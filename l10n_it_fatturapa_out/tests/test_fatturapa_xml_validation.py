@@ -8,6 +8,7 @@ import base64
 import tempfile
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 from odoo.modules.module import get_module_resource
+from odoo.exceptions import UserError
 from lxml import etree
 import shutil
 import os
@@ -142,7 +143,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                 (0, 0, {
                     'account_id': self.a_sale.id,
                     'product_id': self.product_product_10.id,
-                    'name': 'Mouse, Optical',
+                    'name': 'Mouse\nOptical',
                     'quantity': 1,
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 10,
@@ -161,6 +162,11 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
                 })],
         })
         invoice.action_invoice_open()
+        with self.assertRaises(UserError):
+            self.run_wizard(invoice.id)
+        for line in invoice.invoice_line_ids:
+            if line.name == 'Mouse\nOptical':
+                line.name = 'Mouse, Optical'
         res = self.run_wizard(invoice.id)
 
         self.assertTrue(res)
