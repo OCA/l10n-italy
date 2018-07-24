@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from odoo import models, api
 from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
