@@ -123,6 +123,16 @@ msgid "Check if picking done"
 msgstr "Controlla se il picking è completato"
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_client_order_ref
+msgid "Client Order Ref"
+msgstr "Riferimento cliente"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "Client Ref"
+msgstr "Riferimento Cliente"
+
+#. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_code_group
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users_ddt_code_group
 #: selection:res.partner,ddt_invoicing_group:0

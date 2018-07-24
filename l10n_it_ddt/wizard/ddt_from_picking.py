@@ -177,7 +177,13 @@ class DdTFromPickings(models.TransientModel):
             values['volume'] = self.picking_ids[0].sale_id.volume
 
         picking_ids = [p.id for p in self.picking_ids]
-        values.update({'picking_ids': [(6, 0, picking_ids)]})
+        client_order_ref = ", ".join(
+            [p.sale_id.client_order_ref
+             for p in self.picking_ids
+             if p.sale_id and p.sale_id.client_order_ref]
+        )
+        values.update({'picking_ids': [(6, 0, picking_ids)],
+                       'client_order_ref': client_order_ref})
         ddt = self.env['stock.picking.package.preparation'].create(values)
         # ----- Show new ddt
         ir_model_data = self.env['ir.model.data']
