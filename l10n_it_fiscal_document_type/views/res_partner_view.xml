@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+        <record id="view_partner_fiscal_document_type" model="ir.ui.view">
+            <field name="name">res.partner.fiscal.document.type.form</field>
+            <field name="model">res.partner</field>
+            <field name="groups_id" eval="[(6, 0, [ref('account.group_account_invoice')])]"/>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_payment_term_id']" position="before">
+                        <field name="out_fiscal_document_type" class="oe_inline" />
+                </xpath>
+                <xpath expr="//field[@name='property_supplier_payment_term_id']" position="before">
+                        <field name="in_fiscal_document_type" class="oe_inline" />
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

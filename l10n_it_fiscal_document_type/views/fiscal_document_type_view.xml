@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_fiscal_document_type_tree" model="ir.ui.view">
+        <field name="name">fiscal.document.type.tree</field>
+        <field name="model">fiscal.document.type</field>
+        <field name="arch" type="xml">
+            <tree string="Tipi di documento fiscale">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="out_invoice"/>
+                <field name="in_invoice"/>
+                <field name="out_refund"/>
+                <field name="in_refund"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_fiscal_document_type_form" model="ir.ui.view">
+        <field name="name">fiscal.document.type.form</field>
+        <field name="model">fiscal.document.type</field>
+        <field name="arch" type="xml">
+            <form string="Tipi di documento fiscale">
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="out_invoice"/>
+                    <field name="in_invoice"/>
+                    <field name="out_refund"/>
+                    <field name="in_refund"/>
+                    <field name="journal_ids" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_fiscal_document_type">
+        <field name="name">Tipi di documento fiscale</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fiscal.document.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_fiscal_document_type_tree"/>
+    </record>
+
+    <menuitem id="menu_fiscal_document_type"
+                parent="l10n_it_account.account_italian_localization"
+                name="Tipi di documento fiscale"
+                action="action_view_fiscal_document_type"
+                groups="account.group_account_manager"
+                sequence="10"/>
+
+</odoo>
