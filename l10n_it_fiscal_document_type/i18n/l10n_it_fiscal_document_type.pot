@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -16,6 +16,11 @@ msgstr ""
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_code
 msgid "Codice"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
@@ -64,7 +69,7 @@ msgid "Journal"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: code:addons/l10n_it_fiscal_document_type/models/journal.py:19
+#: code:addons/l10n_it_fiscal_document_type/models/journal.py:17
 #, python-format
 msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
 msgstr ""
@@ -97,11 +102,6 @@ msgstr ""
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_refund
 msgid "Nota di debito"
-msgstr ""
-
-#. module: l10n_it_fiscal_document_type
-#: model:ir.model,name:l10n_it_fiscal_document_type.model_res_partner
-msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
