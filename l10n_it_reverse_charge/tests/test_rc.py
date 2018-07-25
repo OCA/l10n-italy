@@ -203,6 +203,9 @@ class TestReverseCharge(TransactionCase):
         invoice.action_invoice_open()
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
         self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
+        self.assertEqual(
+            invoice.rc_self_invoice_id.payment_move_line_ids.move_id.state,
+            'posted')
 
     def test_extra_EU(self):
         supplier_extraEU = self.partner_model.create({
@@ -240,6 +243,9 @@ class TestReverseCharge(TransactionCase):
         invoice.action_invoice_open()
         self.assertIsNot(bool(invoice.rc_self_purchase_invoice_id), False)
         self.assertEqual(invoice.rc_self_purchase_invoice_id.state, 'paid')
+        self.assertEqual(
+            invoice.rc_self_purchase_invoice_id.payment_move_line_ids.
+            move_id.state, 'posted')
 
     def test_intra_EU_cancel_and_draft(self):
         supplier_intraEU = self.partner_model.create({
