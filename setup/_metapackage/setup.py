@@ -10,6 +10,8 @@ setuptools.setup(
     install_requires=[
         'odoo11-addon-l10n_it_abicab',
         'odoo11-addon-l10n_it_account',
+        'odoo11-addon-l10n_it_codici_carica',
+        'odoo11-addon-l10n_it_esigibilita_iva',
         'odoo11-addon-l10n_it_fiscalcode',
         'odoo11-addon-l10n_it_pec',
     ],
