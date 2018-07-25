@@ -287,20 +287,21 @@ class AccountInvoice(models.Model):
         for line in self.invoice_line_ids:
             if line.rc:
                 rc_invoice_line = self.rc_inv_line_vals(line)
-                line_tax = line.invoice_line_tax_ids
-                if not line_tax:
+                line_tax_ids = line.invoice_line_tax_ids
+                if not line_tax_ids:
                     raise UserError(_(
                         "Invoice line\n%s\nis RC but has not tax") % line.name)
-                tax_id = None
+                tax_ids = list()
                 for tax_mapping in rc_type.tax_ids:
-                    if tax_mapping.purchase_tax_id == line_tax[0]:
-                        tax_id = tax_mapping.sale_tax_id.id
-                if not tax_id:
+                    for line_tax_id in line_tax_ids:
+                        if tax_mapping.purchase_tax_id == line_tax_id:
+                            tax_ids.append(tax_mapping.sale_tax_id.id)
+                if not tax_ids:
                     raise UserError(_("Tax code used is not a RC tax.\nCan't "
                                       "find tax mapping"))
-                if line_tax:
+                if line_tax_ids:
                     rc_invoice_line['invoice_line_tax_ids'] = [
-                        (6, False, [tax_id])]
+                        (6, False, tax_ids)]
                 rc_invoice_line[
                     'account_id'] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
