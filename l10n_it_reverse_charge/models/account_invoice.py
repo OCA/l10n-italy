@@ -183,6 +183,7 @@ class AccountInvoice(models.Model):
                 payment_debit_line = move_line
             elif move_line.credit:
                 payment_credit_line = move_line
+        rc_payment.post()
 
         lines_to_rec = move_line_model.browse([
             self.get_inv_line_to_reconcile().id,
@@ -239,6 +240,7 @@ class AccountInvoice(models.Model):
             (0, 0, rc_payment_debit_line_data),
             (0, 0, rc_payment_credit_line_data),
         ]
+        rc_payment.post()
         inv_line_to_reconcile = self.get_rc_inv_line_to_reconcile(rc_invoice)
         for move_line in rc_payment.line_ids:
             if move_line.account_id.id == inv_line_to_reconcile.account_id.id:
