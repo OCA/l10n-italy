@@ -156,14 +156,13 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_it_sepa_bonifici
-#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:238
+#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:234
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:301
 #, python-format
 msgid "Missing Bank Account on invoice '%s' (payment order line reference '%s')"
 msgstr ""
 
 #. module: l10n_it_sepa_bonifici
-#: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi.py:260
 #: code:addons/l10n_it_sepa_bonifici/wizard/export_sepa_cbi_estero.py:323
 #, python-format
 msgid "Missing Country for Partner '%s' (payment order line reference '%s')"

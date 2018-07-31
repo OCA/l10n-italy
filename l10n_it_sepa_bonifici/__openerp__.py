@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Banking SEPA Italian Credit Transfer CBI',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Banking',
     'author':
     'Openforce di Alessandro Camilli, Odoo Community Association (OCA)',

@@ -184,12 +184,8 @@ class BankingExportSepaCbiWizard(models.TransientModel):
             CtrlSum_node.getparent().remove(CtrlSum_node)
             self.generate_party_block(
                 payment_info_2_0, 'Dbtr', 'B',
-                'self.payment_order_ids[0].mode.bank_id.partner_id.'
-                'name',
-                'self.payment_order_ids[0].mode.bank_id.acc_number',
-                'self.payment_order_ids[0].mode.bank_id.bank.bic or '
-                'self.payment_order_ids[0].mode.bank_id.bank_bic',
-                {'self': self}, gen_args)
+                self.payment_order_ids[0].mode.bank_id,
+                gen_args)
             charge_bearer_2_24 = etree.SubElement(payment_info_2_0, 'ChrgBr')
             charge_bearer_2_24.text = self.charge_bearer
             transactions_count_2_4 = 0
@@ -240,36 +236,7 @@ class BankingExportSepaCbiWizard(models.TransientModel):
                         % (line.ml_inv_ref.number, line.name))
                 self.generate_party_block(
                     credit_transfer_transaction_info_2_27, 'Cdtr', 'C',
-                    'line.partner_id.name', 'line.bank_id.acc_number',
-                    'line.bank_id.bank.bic', {'line': line}, gen_args)
-                # Add info for Cross Border payment
-                partner_creditor = line.partner_id
-                creditor_node = credit_transfer_transaction_info_2_27\
-                    .xpath('//Cdtr')[transactions_count_1_6 - 1]
-                creditor_address_node = etree.SubElement(creditor_node,
-                                                         'PstlAdr')
-                creditor_address_country_node = etree.SubElement(
-                    creditor_address_node, 'Ctry')
-                iso_country = False
-                if line.bank_id.state == 'iban':
-                    iso_country = line.bank_id.iban[:2]
-                elif partner_creditor.country_id:
-                    iso_country = partner_creditor.country_id.code
-                if not iso_country:
-                    raise UserError(
-                        _("Missing Country for Partner '%s' (payment "
-                            "order line reference '%s')") %
-                        (line.partner_id.name, line.name))
-                creditor_address_country_node.text = iso_country
-                creditor_address_line_node = etree.SubElement(
-                    creditor_address_node, 'AdrLine')
-                if partner_creditor:
-                    address = '%s %s %s' % (
-                        partner_creditor.street or '',
-                        partner_creditor.city or '',
-                        partner_creditor.country_id and
-                        partner_creditor.country_id.name or '',)
-                creditor_address_line_node.text = address[:70]
+                    line.bank_id, gen_args)
 
                 self.generate_remittance_info_block(
                     credit_transfer_transaction_info_2_27, line, gen_args)
