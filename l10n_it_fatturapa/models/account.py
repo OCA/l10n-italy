@@ -31,24 +31,6 @@ class FatturapaDocumentType(models.Model):
     code = fields.Char('Code', size=4)
 
 
-class FatturapaPaymentTerm(models.Model):
-    # _position = ['2.4.1']
-    _name = "fatturapa.payment_term"
-    _description = 'FatturaPA Payment Term'
-
-    name = fields.Char('Description', size=128)
-    code = fields.Char('Code', size=4)
-
-
-class FatturapaPaymentMethod(models.Model):
-    # _position = ['2.4.2.2']
-    _name = "fatturapa.payment_method"
-    _description = 'FatturaPA Payment Method'
-
-    name = fields.Char('Description', size=128)
-    code = fields.Char('Code', size=4)
-
-
 #  used in fatturaPa import
 class FatturapaPaymentData(models.Model):
     # _position = ['2.4.2.2']
@@ -99,17 +81,6 @@ class FatturapaPaymentDetail(models.Model):
     payment_data_id = fields.Many2one(
         'fatturapa.payment.data', 'Related payments Data',
         ondelete='cascade', index=True)
-
-
-#  used in fatturaPa export
-class AccountPaymentTerm(models.Model):
-    # _position = ['2.4.2.2']
-    _inherit = 'account.payment.term'
-
-    fatturapa_pt_id = fields.Many2one(
-        'fatturapa.payment_term', string="FatturaPA Payment Term")
-    fatturapa_pm_id = fields.Many2one(
-        'fatturapa.payment_method', string="FatturaPA Payment Method")
 
 
 class FatturapaFiscalPosition(models.Model):
