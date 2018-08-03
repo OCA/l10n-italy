@@ -23,8 +23,6 @@ Configuration
 
  * Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the
    electronic invoices. IPA code is mandatory, EORI code is not.
- * Configure payment terms filling the fatturaPA fields related to payment
-   terms and payment methods.
  * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
  * Configure FatturaPA data in Accounting Configuration. Note that a sequence 'fatturaPA' is already loaded by the module and selectable.
 
