@@ -72,8 +72,8 @@
         </record>
 
         <record id="account.account_payment_term" model="account.payment.term">
-            <field name="fatturapa_pt_id" ref="fatturapa_tp02"/>
-            <field name="fatturapa_pm_id" ref="fatturapa_mp05"/>
+            <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
+            <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         </record>
 
         <record id="res_partner_fatturapa_0" model="res.partner">
