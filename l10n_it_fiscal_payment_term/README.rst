@@ -2,29 +2,24 @@
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-Italian Localization - FatturaPA
-================================
+Italian Localization - Fiscal Payment Term
+==========================================
 
-Base module to handle FatturaPA data.
+Propedeutic module to handle electronic invoices.
 http://fatturapa.gov.it
-
-See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
 
 
 Installation
 ============
 
-This module requires PyXB 1.2.5
-http://pyxb.sourceforge.net/
+This module requires none
 
 
 Configuration
 =============
 
- * Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the
-   electronic invoices. IPA code is mandatory, EORI code is not.
- * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
- * Configure FatturaPA data in Accounting Configuration. Note that a sequence 'fatturaPA' is already loaded by the module and selectable.
+ * Configure payment terms filling the fiscal fields related to payment
+   terms and payment methods.
 
 Credits
 =======

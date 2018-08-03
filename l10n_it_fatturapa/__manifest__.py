@@ -21,6 +21,7 @@
         'base_iban',
         'l10n_it_account_tax_kind',
         'l10n_it_esigibilita_iva',
+        'l10n_it_fiscal_payment_term',
         ],
     "data": [
         'data/fatturapa_data.xml',
