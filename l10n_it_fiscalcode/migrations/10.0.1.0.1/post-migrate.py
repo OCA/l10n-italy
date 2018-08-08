@@ -15,4 +15,5 @@ def migrate(cr, version):
         partners = env['res.partner'].search(
             [('is_company', '=', True)])
         for partner in partners:
-            partner._commercial_sync_to_children()
+            partner = env['res.partner'].browse(partner.id)
+            partner.with_prefetch()._commercial_sync_to_children()
