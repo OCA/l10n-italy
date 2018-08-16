@@ -87,12 +87,30 @@ class AccountInvoice(models.Model):
             'date': self.date,
             }
 
+    def compute_rc_amount(self):
+        amount_rc_tax = 0.0
+        rc_lines = self.invoice_line_ids.filtered(lambda l: l.rc)
+        for rc_line in rc_lines:
+            price_unit = \
+                rc_line.price_unit * (1 - (rc_line.discount or 0.0) / 100.0)
+            res = rc_line.invoice_line_tax_ids.compute_all(
+                price_unit,
+                rc_line.currency_id,
+                rc_line.quantity,
+                product=rc_line.product_id,
+                partner=rc_line.partner_id)
+            amount_rc_tax += res['total_included'] - res['total_excluded']
+
+        return amount_rc_tax
+
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
+        amount_rc_tax = self.compute_rc_amount()
+
         if self.type == 'in_invoice':
-            credit = self.amount_tax
+            credit = amount_rc_tax
         else:
-            debit = self.amount_tax
+            debit = amount_rc_tax
 
         return {
             'name': self.number,
@@ -104,16 +122,18 @@ class AccountInvoice(models.Model):
 
     def rc_debit_line_vals(self, amount=None):
         credit = debit = 0.0
+        amount_rc_tax = self.compute_rc_amount()
+
         if self.type == 'in_invoice':
             if amount:
                 debit = amount
             else:
-                debit = self.amount_tax
+                debit = amount_rc_tax
         else:
             if amount:
                 credit = amount
             else:
-                credit = self.amount_tax
+                credit = amount_rc_tax
         return {
             'name': self.number,
             'debit': debit,
@@ -267,20 +287,21 @@ class AccountInvoice(models.Model):
         for line in self.invoice_line_ids:
             if line.rc:
                 rc_invoice_line = self.rc_inv_line_vals(line)
-                line_tax = line.invoice_line_tax_ids
-                if not line_tax:
+                line_tax_ids = line.invoice_line_tax_ids
+                if not line_tax_ids:
                     raise UserError(_(
                         "Invoice line\n%s\nis RC but has not tax") % line.name)
-                tax_id = None
+                tax_ids = list()
                 for tax_mapping in rc_type.tax_ids:
-                    if tax_mapping.purchase_tax_id == line_tax[0]:
-                        tax_id = tax_mapping.sale_tax_id.id
-                if not tax_id:
+                    for line_tax_id in line_tax_ids:
+                        if tax_mapping.purchase_tax_id == line_tax_id:
+                            tax_ids.append(tax_mapping.sale_tax_id.id)
+                if not tax_ids:
                     raise UserError(_("Tax code used is not a RC tax.\nCan't "
                                       "find tax mapping"))
-                if line_tax:
+                if line_tax_ids:
                     rc_invoice_line['invoice_line_tax_ids'] = [
-                        (6, False, [tax_id])]
+                        (6, False, tax_ids)]
                 rc_invoice_line[
                     'account_id'] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
