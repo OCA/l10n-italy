@@ -75,8 +75,15 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('FatturaPA sequence not configured.'))
         number = fatturapa_sequence.next_by_id()
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            ProgressivoInvio = number
+        try:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+                ProgressivoInvio = number
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
+            msg = _(
+                'FatturaElettronicaHeader.DatiTrasmissione.'
+                'ProgressivoInvio:\n%s'
+            ) % unicode(e)
+            raise UserError(msg)
         return number
 
     def _setIdTrasmittente(self, company, fatturapa):
@@ -671,8 +678,7 @@ class WizardExportFatturapa(models.TransientModel):
 
             number = self.setProgressivoInvio(fatturapa)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
-            raise UserError(
-                (unicode(e)))
+            raise UserError(unicode(e))
 
         attach = self.saveAttachment(fatturapa, number)
 
