@@ -107,13 +107,20 @@ class wizard_giornale(models.TransientModel):
             target_type = ['posted', 'draft']
         else:
             target_type = [wizard.target_move]
+        params =  {'target_type': tuple(target_type)}
 
-        move_line_obj = self.pool['account.move.line']
-        move_line_ids = move_line_obj.search(cr, uid, [
-            ('date', '>=', wizard.date_move_line_from),
-            ('date', '<=', wizard.date_move_line_to),
-            ('move_id.state', 'in', target_type)
-            ], order='date, move_id asc')
+        request = """
+            SELECT aml.id FROM account_move_line aml
+                LEFT JOIN account_move am ON (am.id = aml.move_id)
+            WHERE
+                aml.date >= '{}' AND aml.date <= '{}'
+                 AND am.state IN %(target_type)s
+            ORDER BY aml.date, am.name, am.id
+        """.format(
+            wizard.date_move_line_from,
+            wizard.date_move_line_to)
+        cr.execute(request, params)
+        move_line_ids = [line[0] for line in cr.fetchall()]
         if not move_line_ids:
             raise UserError(_('No documents found in the current selection'))
         datas = {}
@@ -145,13 +152,20 @@ class wizard_giornale(models.TransientModel):
                 target_type = ['posted', 'draft']
             else:
                 target_type = [wizard.target_move]
+            params =  {'target_type': tuple(target_type)}
 
-            move_line_obj = self.pool['account.move.line']
-            move_line_ids = move_line_obj.search(cr, uid, [
-                ('date', '>=', wizard.date_move_line_from),
-                ('date', '<=', wizard.date_move_line_to),
-                ('move_id.state', 'in', target_type)
-                ], order='date, move_id asc')
+            request = """
+                SELECT aml.id FROM account_move_line aml
+                    LEFT JOIN account_move am ON (am.id = aml.move_id)
+                WHERE
+                    aml.date >= '{}' AND aml.date <= '{}'
+                     AND am.state IN %(target_type)s
+                ORDER BY aml.date, am.name, am.id
+            """.format(
+                wizard.date_move_line_from,
+                wizard.date_move_line_to)
+            cr.execute(request, params)
+            move_line_ids = [line[0] for line in cr.fetchall()]
             if not move_line_ids:
                 raise UserError(
                     _('No documents found in the current selection'))
