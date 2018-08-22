@@ -470,14 +470,14 @@ class AccountInvoiceWithholdingTax(models.Model):
             (1 - (line.discount or 0.0) / 100.0)
         return price_unit
 
-    @api.depends('base', 'tax')
+    @api.depends('base', 'tax', 'invoice_id.amount_untaxed')
     def _compute_coeff(self):
         for inv_wt in self:
             if inv_wt.invoice_id.amount_untaxed:
-                inv_wt.base_coeff = round(
-                    inv_wt.base / inv_wt.invoice_id.amount_untaxed, 5)
+                inv_wt.base_coeff = \
+                    inv_wt.base / inv_wt.invoice_id.amount_untaxed
             if inv_wt.base:
-                inv_wt.tax_coeff = round(inv_wt.tax / inv_wt.base, 5)
+                inv_wt.tax_coeff = inv_wt.tax / inv_wt.base
 
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  ondelete="cascade")
