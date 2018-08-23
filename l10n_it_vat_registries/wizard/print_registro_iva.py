@@ -53,6 +53,10 @@ class WizardRegistroIva(models.TransientModel):
         ], 'Layout', required=True,
         default='customer')
     tax_registry_id = fields.Many2one('account.tax.registry', 'VAT registry')
+    order = fields.Selection([
+        ('date_name', 'Date - Number'),
+        ('journal_date_name', 'Journal - Date - Number'),
+        ], 'Order Moves')
     journal_ids = fields.Many2many(
         'account.journal',
         'registro_iva_journals_rel',
@@ -75,6 +79,7 @@ class WizardRegistroIva(models.TransientModel):
     def on_change_vat_registry(self):
         self.journal_ids = self.tax_registry_id.journal_ids
         self.type = self.tax_registry_id.type
+        self.order = self.tax_registry_id.order
         if self.type:
             if self.type == 'supplier':
                 self.tax_sign = -1
@@ -84,11 +89,17 @@ class WizardRegistroIva(models.TransientModel):
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)
         move_obj = self.pool['account.move']
-        move_ids = move_obj.search(cr, uid, [
+        domain = [
             ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
             ('period_id', 'in', [p.id for p in wizard.period_ids]),
             ('state', '=', 'posted'),
-            ], order='date, name')
+            ]
+        if wizard.order == 'journal_date_name':
+            move_ids = move_obj.search(
+                cr, uid, domain, order='journal_id, date, name')
+        else:
+            move_ids = move_obj.search(
+                cr, uid, domain, order='date, name')
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
         datas = {}
@@ -103,6 +114,7 @@ class WizardRegistroIva(models.TransientModel):
         else:
             datas_form['tax_registry_name'] = ''
         datas_form['only_totals'] = wizard.only_totals
+        datas_form['order'] = wizard.order
         report_name = 'l10n_it_vat_registries.report_registro_iva'
         datas = {
             'ids': move_ids,

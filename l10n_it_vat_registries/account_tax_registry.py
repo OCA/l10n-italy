@@ -28,6 +28,10 @@ class AccountTaxRegistry(models.Model):
         'res.company', 'Company', required=True,
         default=lambda self: self.env['res.company']._company_default_get(
             'account.tax.registry'))
+    order = fields.Selection([
+        ('date_name', 'Date - Number'),
+        ('journal_date_name', 'Journal - Date - Number'),
+        ], 'Order Moves')
     journal_ids = fields.One2many(
         'account.journal', 'tax_registry_id', 'Journals', readonly=True)
     type = fields.Selection([
