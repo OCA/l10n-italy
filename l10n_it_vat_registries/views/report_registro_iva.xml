@@ -41,7 +41,11 @@
                                     <th class="left_without_line">DT FATT.</th>
                                     <th class="left_without_line">NUM FATT.</th>
                                     <th class="left_without_line">RAGIONE SOCIALE</th>
-                                    <th class="left_without_line">P.IVA</th>
+                                    <th class="left_without_line">P.IVA
+                                        <t t-if="fiscalcode == True">
+                                            <br/>Cod.Fiscale
+                                        </t>
+                                    </th>
                                 </t>
                                 <th class="left_without_line"></th>
                                 <th class="right_without_line">TOTALE</th>
@@ -99,7 +103,12 @@
                                                 <!-- Ragione sociale -->
                                                 <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.name"/></td>
                                                 <!-- PIVA -->
-                                                <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.partner_id.vat"/></td>
+                                                <td class="left_without_line_bold">
+                                                    <div style="page-break-inside: avoid" t-esc="move.partner_id.vat"/>
+                                                    <t t-if="fiscalcode == True and move.partner_id.fiscalcode">
+                                                        <div style="page-break-inside: avoid" t-esc="move.partner_id.fiscalcode"/>
+                                                    </t>
+                                                </td>
                                             </t>
                                             <td class="left_without_line"></td>
                                             <!-- totale -->

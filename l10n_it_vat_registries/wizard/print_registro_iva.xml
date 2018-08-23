@@ -18,6 +18,7 @@
                         <field name="type"/>
                         <field name="tax_sign" />
                         <field name="only_totals" />
+                        <field name="fiscalcode" />
                         <field name="fiscal_page_base"/>
                         <newline/>
                         <field name="message" nolabel="1" colspan="4"/>

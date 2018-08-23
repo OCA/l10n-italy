@@ -70,6 +70,7 @@ class WizardRegistroIva(models.TransientModel):
     only_totals = fields.Boolean(
         string='Prints only totals')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
+    fiscalcode = fields.Boolean(string='Print fiscalcode')
 
     @api.onchange('tax_registry_id')
     def on_change_vat_registry(self):
@@ -103,6 +104,7 @@ class WizardRegistroIva(models.TransientModel):
         else:
             datas_form['tax_registry_name'] = ''
         datas_form['only_totals'] = wizard.only_totals
+        datas_form['fiscalcode'] = wizard.fiscalcode
         report_name = 'l10n_it_vat_registries.report_registro_iva'
         datas = {
             'ids': move_ids,
