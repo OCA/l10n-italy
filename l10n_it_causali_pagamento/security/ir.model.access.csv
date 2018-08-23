@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_causale_pagamento_user,causale_pagamento user,model_causale_pagamento,base.group_user,1,0,0,0
+access_causale_pagamento_manager,causale_pagamento manager,model_causale_pagamento,account.group_account_manager,1,1,1,1
+
