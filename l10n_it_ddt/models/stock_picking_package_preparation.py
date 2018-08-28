@@ -14,8 +14,9 @@ class StockPickingCarriageCondition(models.Model):
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
 
-    name = fields.Char(string='Carriage Condition', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Carriage Condition', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
 
 
 class StockPickingGoodsDescription(models.Model):
@@ -23,8 +24,9 @@ class StockPickingGoodsDescription(models.Model):
     _name = 'stock.picking.goods_description'
     _description = "Description of Goods"
 
-    name = fields.Char(string='Description of Goods', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Description of Goods', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
 
 
 class StockPickingTransportationReason(models.Model):
@@ -32,8 +34,9 @@ class StockPickingTransportationReason(models.Model):
     _name = 'stock.picking.transportation_reason'
     _description = 'Reason for Transportation'
 
-    name = fields.Char(string='Reason For Transportation', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Reason For Transportation', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
 
 
 class StockPickingTransportationMethod(models.Model):
@@ -41,8 +44,9 @@ class StockPickingTransportationMethod(models.Model):
     _name = 'stock.picking.transportation_method'
     _description = 'Method of Transportation'
 
-    name = fields.Char(string='Method of Transportation', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Method of Transportation', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
 
 
 class StockDdtType(models.Model):
@@ -67,7 +71,7 @@ class StockPickingPackagePreparation(models.Model):
 
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
-    ddt_number = fields.Char(string='DdT Number')
+    ddt_number = fields.Char(string='DdT Number', copy=False)
     partner_shipping_id = fields.Many2one(
         'res.partner', string="Shipping Address")
     carriage_condition_id = fields.Many2one(
