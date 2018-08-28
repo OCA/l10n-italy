@@ -683,8 +683,13 @@ msgid "Selected Picking %s have different goods description"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:61
+#, python-format
+msgid "Selected Picking %s have different transportation method"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
 #, python-format
 msgid "Selected Picking %s have different transportation reason"
 msgstr ""
