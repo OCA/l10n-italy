@@ -6,14 +6,14 @@
 
 {
     'name': 'Italian Localization - Account',
-    'version': '10.0.1.1.2',
+    'version': '10.0.1.2.2',
     'category': 'Hidden',
-    'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
+    'author': "Agile Business Group, Abstract, "
+              "Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.net',
     'license': 'AGPL-3',
     "depends": [
-        'account',
-        'date_range',
+        'account_fiscal_year',
     ],
     "data": [
         'views/account_setting.xml',
