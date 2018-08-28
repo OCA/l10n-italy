@@ -59,7 +59,7 @@ class AddPickingToDdt(models.TransientModel):
                         self.ddt_id.transportation_method_id):
                     raise UserError(
                         _("Selected Picking %s have"
-                          " different transportation reason") % picking.name)
+                          " different transportation method") % picking.name)
             self.ddt_id.picking_ids = [(4, picking.id)]
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference(
