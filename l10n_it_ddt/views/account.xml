@@ -6,6 +6,10 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//page/group/group/field[@name='origin']"
+                       position="after">
+                    <field name="ddt_client_order_ref"/>
+                </xpath>
                 <notebook position="inside">
                     <page string="Shipping Informations">
                         <group string="Shipping Informations">
