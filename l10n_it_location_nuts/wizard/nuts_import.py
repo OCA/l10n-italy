@@ -11,35 +11,34 @@ class NutsImport(models.TransientModel):
         'ITG14': 'base.state_it_ag',  # Agrigento
         'ITC18': 'base.state_it_al',  # Alessandria
         'ITI32': 'base.state_it_an',  # Ancona
-        'ITI18': 'base.state_it_ao',  # Arezzo
-        'ITI34': 'base.state_it_ar',  # Ascoli Piceno
-        'ITC17': 'base.state_it_ap',  # Asti
-        'ITF34': 'base.state_it_at',  # Avellino
-        'ITF47': 'base.state_it_av',  # Bari
-        'ITF48': 'base.state_it_ba',  # Barletta-Andria-Trani
-        'ITH33': 'base.state_it_bt',  # Belluno
-        'ITF32': 'base.state_it_bl',  # Benevento
-        'ITC46': 'base.state_it_bn',  # Bergamo
-        'ITC13': 'base.state_it_bg',  # Biella
-        'ITH55': 'base.state_it_bi',  # Bologna
-        'ITH10': 'base.state_it_bo',  # Bolzano-Bozen
-        'ITC47': 'base.state_it_bz',  # Brescia
-        'ITF44': 'base.state_it_bs',  # Brindisi
-        'ITG27': 'base.state_it_br',  # Cagliari
-        'ITG15': 'base.state_it_ca',  # Caltanissetta
-        'ITF22': 'base.state_it_cl',  # Campobasso
-        'ITG2C': 'base.state_it_cb',  # Carbonia-Iglesias
-        'ITF31': 'base.state_it_ci',  # Caserta
-        'ITG17': 'base.state_it_ce',  # Catania
-        'ITF63': 'base.state_it_ct',  # Catanzaro
-        'ITF14': 'base.state_it_cz',  # Chieti
-        'ITC42': 'base.state_it_ch',  # Como
-        'ITF61': 'base.state_it_co',  # Cosenza
-        'ITC4A': 'base.state_it_cs',  # Cremona
-        'ITF62': 'base.state_it_cr',  # Crotone
-        'ITC16': 'base.state_it_kr',  # Cuneo
-        'ITG16': 'base.state_it_cn',  # Enna
-        'ITZZZ': 'base.state_it_en',  # Extra-Regio NUTS 3
+        'ITI18': 'base.state_it_ar',  # Arezzo
+        'ITI34': 'base.state_it_ap',  # Ascoli Piceno
+        'ITC17': 'base.state_it_at',  # Asti
+        'ITF34': 'base.state_it_av',  # Avellino
+        'ITF47': 'base.state_it_ba',  # Bari
+        'ITF48': 'base.state_it_bt',  # Barletta-Andria-Trani
+        'ITH33': 'base.state_it_bl',  # Belluno
+        'ITF32': 'base.state_it_bn',  # Benevento
+        'ITC46': 'base.state_it_bg',  # Bergamo
+        'ITC13': 'base.state_it_bi',  # Biella
+        'ITH55': 'base.state_it_bo',  # Bologna
+        'ITH10': 'base.state_it_bz',  # Bolzano
+        'ITC47': 'base.state_it_bs',  # Brescia
+        'ITF44': 'base.state_it_br',  # Brindisi
+        'ITG27': 'base.state_it_ca',  # Cagliari
+        'ITG15': 'base.state_it_cl',  # Caltanissetta
+        'ITF22': 'base.state_it_cb',  # Campobasso
+        'ITG2C': 'base.state_it_ci',  # Carbonia-Iglesias
+        'ITF31': 'base.state_it_ce',  # Caserta
+        'ITG17': 'base.state_it_ct',  # Catania
+        'ITF63': 'base.state_it_cz',  # Catanzaro
+        'ITF14': 'base.state_it_ch',  # Chieti
+        'ITC42': 'base.state_it_co',  # Como
+        'ITF61': 'base.state_it_cs',  # Cosenza
+        'ITC4A': 'base.state_it_cr',  # Cremona
+        'ITF62': 'base.state_it_kr',  # Crotone
+        'ITC16': 'base.state_it_cn',  # Cuneo
+        'ITG16': 'base.state_it_en',  # Enna
         'ITI35': 'base.state_it_fm',  # Fermo
         'ITH56': 'base.state_it_fe',  # Ferrara
         'ITI14': 'base.state_it_fi',  # Firenze
@@ -51,8 +50,8 @@ class NutsImport(models.TransientModel):
         'ITI1A': 'base.state_it_gr',  # Grosseto
         'ITC31': 'base.state_it_im',  # Imperia
         'ITF21': 'base.state_it_is',  # Isernia
-        'ITF11': 'base.state_it_sp',  # L'Aquila
-        'ITC34': 'base.state_it_aq',  # La Spezia
+        'ITF11': 'base.state_it_aq',  # L'Aquila
+        'ITC34': 'base.state_it_sp',  # La Spezia
         'ITI44': 'base.state_it_lt',  # Latina
         'ITF45': 'base.state_it_le',  # Lecce
         'ITC43': 'base.state_it_lc',  # Lecco
@@ -67,7 +66,7 @@ class NutsImport(models.TransientModel):
         'ITG13': 'base.state_it_me',  # Messina
         'ITC4C': 'base.state_it_mi',  # Milano
         'ITH54': 'base.state_it_mo',  # Modena
-        'ITC4D': 'base.state_it_mb',  # Monza e della Brianza
+        'ITC4D': 'base.state_it_mb',  # Monza e Brianza
         'ITF33': 'base.state_it_na',  # Napoli
         'ITC15': 'base.state_it_no',  # Novara
         'ITG26': 'base.state_it_nu',  # Nuoro
@@ -89,8 +88,8 @@ class NutsImport(models.TransientModel):
         'ITI15': 'base.state_it_po',  # Prato
         'ITG18': 'base.state_it_rg',  # Ragusa
         'ITH57': 'base.state_it_ra',  # Ravenna
-        'ITF65': 'base.state_it_rc',  # Reggio di Calabria
-        'ITH53': 'base.state_it_re',  # Reggio nell'Emilia
+        'ITF65': 'base.state_it_rc',  # Reggio Calabria
+        'ITH53': 'base.state_it_re',  # Reggio Emilia
         'ITI42': 'base.state_it_ri',  # Rieti
         'ITH59': 'base.state_it_rn',  # Rimini
         'ITI43': 'base.state_it_rm',  # Roma
@@ -110,14 +109,14 @@ class NutsImport(models.TransientModel):
         'ITH34': 'base.state_it_tv',  # Treviso
         'ITH44': 'base.state_it_ts',  # Trieste
         'ITH42': 'base.state_it_ud',  # Udine
-        'ITC20': 'base.state_it_va',  # Valle d'Aosta/Vallée d'Aoste
-        'ITC41': 'base.state_it_ve',  # Varese
-        'ITH35': 'base.state_it_vb',  # Venezia
-        'ITC14': 'base.state_it_vc',  # Verbano-Cusio-Ossola
-        'ITC12': 'base.state_it_vr',  # Vercelli
-        'ITH31': 'base.state_it_vv',  # Verona
-        'ITF64': 'base.state_it_vi',  # Vibo Valentia
-        'ITH32': 'base.state_it_vt'  # Vicenza
+        'ITC41': 'base.state_it_va',  # Varese
+        'ITH35': 'base.state_it_ve',  # Venezia
+        'ITC14': 'base.state_it_vb',  # Verbano-Cusio-Ossola
+        'ITC12': 'base.state_it_vc',  # Vercelli
+        'ITH31': 'base.state_it_vr',  # Verona
+        'ITF64': 'base.state_it_vv',  # Vibo Valentia
+        'ITH32': 'base.state_it_vi',  # Vicenza
+        'ITI41': 'base.state_it_vt'  # Viterbo
     }
 
     @api.model
