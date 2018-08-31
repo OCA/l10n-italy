@@ -29,4 +29,4 @@ class CausalePagamento(models.Model):
         return res
 
     code = fields.Char(string='Code', size=2, required=True)
-    name = fields.Char(string='Description', required=True)
+    name = fields.Text(string='Description', required=True)
