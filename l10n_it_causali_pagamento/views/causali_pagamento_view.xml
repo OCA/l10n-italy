@@ -17,10 +17,12 @@
         <field name="model">causale.pagamento</field>
         <field name="arch" type="xml">
             <form string="Causale pagamento">
-                <group>
-                    <field name="code"/>
-                    <field name="name"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
