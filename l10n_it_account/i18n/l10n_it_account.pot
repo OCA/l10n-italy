@@ -20,21 +20,6 @@ msgid "<br/>\n"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action
-msgid "Date Range Types"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_action
-msgid "Date Ranges"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range
-msgid "Date ranges"
-msgstr ""
-
-#. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
 msgid "Generate Date Ranges"
 msgstr ""
