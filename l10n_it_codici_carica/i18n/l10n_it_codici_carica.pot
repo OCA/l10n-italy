@@ -80,8 +80,8 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_codici_carica
-#: code:addons/l10n_it_codici_carica/models/codice_carica.py:19
+#: code:addons/l10n_it_codici_carica/models/codice_carica.py:20
 #, python-format
-msgid "The element with this code already exists"
+msgid "The element with code %s already exists"
 msgstr ""
 
