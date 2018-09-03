@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, models, _
-from openerp.exceptions import Warning as UserError
+from odoo import api, models, _
+from odoo.exceptions import Warning as UserError
 
 
 class DdtFromPickings(models.TransientModel):

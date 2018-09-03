@@ -2,18 +2,21 @@
 # Copyright 2016 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
-from openerp import exceptions
+from odoo.exceptions import UserError
+from odoo.tests.common import TransactionCase
 
 
 class TestDdtDelivery(TransactionCase):
 
     def _picking_factory(self, partner, carrier):
-        return self.env['stock.picking'].create({
+        picking_model = self.env['stock.picking']
+        pick = picking_model.new({
             'picking_type_id': self.env.ref('stock.picking_type_out').id,
             'partner_id': partner.id,
             'carrier_id': carrier.id,
         })
+        pick.onchange_picking_type()
+        return pick
 
     def _move_factory(self, product, qty=5.0):
         return self.env['stock.move'].create({
@@ -27,8 +30,8 @@ class TestDdtDelivery(TransactionCase):
 
     def setUp(self):
         super(TestDdtDelivery, self).setUp()
-        self.product1 = self.env.ref('product.product_product_33')
-        self.product2 = self.env.ref('product.product_product_36')
+        self.product1 = self.env.ref('product.product_product_3')
+        self.product2 = self.env.ref('product.product_product_4')
         self.partner1 = self.env.ref('base.res_partner_1')
         self.partner2 = self.env.ref('base.res_partner_2')
         self.carrier1 = self.env.ref('delivery.normal_delivery_carrier')
@@ -45,7 +48,7 @@ class TestDdtDelivery(TransactionCase):
             'order_id': self.so.id,
             'product_id': self.product1.id,
         })
-        self.so.action_button_confirm()
+        self.so.action_confirm()
         self.assertEqual(1, len(self.so.ddt_ids))
         self.assertEqual(
             self.so.ddt_ids.carrier_id, self.so.carrier_id.partner_id)
@@ -73,9 +76,9 @@ class TestDdtDelivery(TransactionCase):
         wizard = self.env['ddt.from.pickings'].with_context({
             'active_ids': [pick1.id, pick2.id]
             }).create({})
-        with self.assertRaises(exceptions.Warning) as exc:
+        with self.assertRaises(UserError) as exc:
             wizard.create_ddt()
         self.assertEqual(
-            exc.exception.message,
+            exc.exception.name,
             'Selected Pickings have different carriers'
         )
