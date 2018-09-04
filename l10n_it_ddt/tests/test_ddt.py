@@ -1,7 +1,9 @@
-# -*- coding: utf-8 -*-
-# Author: Francesco Apruzzese
-# Copyright 2015 Apulia Software srl
-# Copyright 2016 Lorenzo Battistini - Agile Business Group
+# Copyright 2014 Abstract (http://www.abstract.it)
+# Copyright Davide Corio <davide.corio@abstract.it>
+# Copyright 2014-2018 Agile Business Group (http://www.agilebg.com)
+# Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+# Copyright Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
@@ -210,6 +212,12 @@ class TestDdt(TransactionCase):
     def test_action_put_in_pack_done_pickings_error(self):
         self.picking.action_confirm()
         self.picking.action_assign()
+        wiz_vals = self.picking.button_validate()
+        if wiz_vals:
+            # The picking might require further approval
+            wiz = self.env[wiz_vals['res_model']] \
+                .browse(wiz_vals['res_id'])
+            wiz.process()
         self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
         self.picking.action_done()
         self.assertTrue(self.ddt.check_if_picking_done)
@@ -301,6 +309,12 @@ class TestDdt(TransactionCase):
         order3.picking_ids.action_confirm()
         order3.picking_ids.action_assign()
         for picking in order3.picking_ids:
+            wiz_vals = picking.button_validate()
+            if wiz_vals:
+                # The picking might require further approval
+                wiz = self.env[wiz_vals['res_model']] \
+                    .browse(wiz_vals['res_id'])
+                wiz.process()
             picking.do_transfer()
 
         # test invoice
@@ -380,7 +394,14 @@ class TestDdt(TransactionCase):
     def test_set_done(self):
         picking1 = self._create_picking()
         self._create_move(picking1, self.product1, quantity=2)
+        picking1.action_assign()
         ddt = self._create_ddt(picking1)
+        wiz_vals = picking1.button_validate()
+        if wiz_vals:
+            # The picking might require further approval
+            wiz = self.env[wiz_vals['res_model']] \
+                .browse(wiz_vals['res_id'])
+            wiz.process()
         picking1.do_transfer()
         ddt.set_done()
         self.assertTrue('DDT' in ddt.display_name)
@@ -393,8 +414,8 @@ class TestDdt(TransactionCase):
         self._create_sale_order_line(order1, self.product1, quantity=2)
         order1.action_confirm()
         order1.picking_ids[0].action_assign()
-        order1.picking_ids[0].pack_operation_product_ids[0].qty_done = 1
-        wiz_id = order1.picking_ids[0].do_new_transfer()['res_id']
+        order1.picking_ids[0].move_line_ids[0].qty_done = 1
+        wiz_id = order1.picking_ids[0].button_validate()['res_id']
         wizard = self.env['stock.backorder.confirmation'].browse(wiz_id)
         wizard.process()
         self.assertEqual(len(order1.picking_ids), 2)
