@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Localization - FatturaPA',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
