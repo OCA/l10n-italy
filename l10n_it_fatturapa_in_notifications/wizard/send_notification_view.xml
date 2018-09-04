@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_fatturapa_in_accept" model="ir.ui.view">
+            <field name="name">Accept fatturaPA</field>
+            <field name="model">wizard.fatturapa.in.accept</field>
+            <field name="arch" type="xml">
+                <form string="Import FatturaPA" version="7.0">
+                    <group>
+                        <field name="name" colspan="4" nolabel="1" placeholder="Message..."/>
+                    </group>
+                    <footer>
+                        <button name="send" string="Send" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="wizard_fatturapa_in_reject" model="ir.ui.view">
+            <field name="name">Reject fatturaPA</field>
+            <field name="model">wizard.fatturapa.in.reject</field>
+            <field name="arch" type="xml">
+                <form string="Import FatturaPA" version="7.0">
+                    <group>
+                        <field name="name" colspan="4" nolabel="1" placeholder="Message..."/>
+                    </group>
+                    <footer>
+                        <button name="send" string="Send" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_fatturapa_in_accept" model="ir.actions.act_window">
+            <field name="name">Accept fatturaPA</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.fatturapa.in.accept</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_fatturapa_in_accept"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+        <record id="action_wizard_fatturapa_in_reject" model="ir.actions.act_window">
+            <field name="name">Reject fatturaPA</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.fatturapa.in.reject</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_fatturapa_in_reject"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+
+	</data>
+</openerp>
