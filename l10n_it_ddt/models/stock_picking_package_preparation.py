@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 # @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
@@ -207,15 +206,15 @@ class StockPickingPackagePreparation(models.Model):
     )
     def _compute_clean_display_name(self):
         for prep in self:
-            name = u''
+            name = ''
             if prep.name:
                 name = prep.name
             if prep.ddt_number and prep.name:
-                name = u'[%s] %s' % (prep.name, prep.ddt_number)
+                name = '[%s] %s' % (prep.name, prep.ddt_number)
             if prep.ddt_number and not prep.name:
                 name = prep.ddt_number
             if not name:
-                name = u'%s - %s' % (prep.partner_id.name, prep.date)
+                name = '%s - %s' % (prep.partner_id.name, prep.date)
             prep.display_name = name
 
     @api.multi
@@ -409,7 +408,7 @@ class StockPickingPackagePreparation(models.Model):
         if not invoices:
             raise UserError(_('There is no invoicable line.'))
 
-        for invoice in invoices.values():
+        for invoice in list(invoices.values()):
             if not invoice.name:
                 invoice.write({
                     'name': invoice.origin
@@ -433,7 +432,7 @@ class StockPickingPackagePreparation(models.Model):
                 values={
                     'self': invoice, 'origin': references[invoice]},
                 subtype_id=self.env.ref('mail.mt_note').id)
-        return [inv.id for inv in invoices.values()]
+        return [inv.id for inv in list(invoices.values())]
 
     @api.multi
     def unlink(self):
@@ -498,7 +497,7 @@ class StockPickingPackagePreparationLine(models.Model):
                     self.product_id, rule_id, self.product_uom_qty,
                     self.product_uom_id, order.pricelist_id.id)
                 datas = self._prepare_price_discount(new_list_price, rule_id)
-                for key in datas.keys():
+                for key in list(datas.keys()):
                     setattr(self, key, datas[key])
 
     @api.model

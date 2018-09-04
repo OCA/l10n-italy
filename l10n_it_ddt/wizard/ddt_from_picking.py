@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #    Author: Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 #    Author: Gianmarco Conte <gconte@dinamicheaziendali.it>
 #    Author: Gabriele Baldessari <gabriele.baldessari@abstract-technology.com>
