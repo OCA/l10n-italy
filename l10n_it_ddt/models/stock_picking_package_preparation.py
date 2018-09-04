@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
-# Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-# @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-# Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2017 Gianmarco Conte - Dinamiche Aziendali
+# Copyright 2014 Abstract (http://www.abstract.it)
+# Copyright Davide Corio <davide.corio@abstract.it>
+# Copyright 2014-2018 Agile Business Group (http://www.agilebg.com)
+# Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+# Copyright Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
@@ -136,8 +137,8 @@ class StockPickingPackagePreparation(models.Model):
     def _compute_check_if_picking_done(self):
         for record in self:
             record.check_if_picking_done = False
-            for package in record.picking_ids:
-                if package.state == 'done':
+            for picking in record.picking_ids:
+                if picking.state == 'done':
                     record.check_if_picking_done = True
 
     @api.onchange('partner_id', 'ddt_type_id')
@@ -223,11 +224,10 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     @api.depends('package_id',
-                 'package_id.children_ids',
                  'package_id.quant_ids',
                  'picking_ids',
                  'picking_ids.move_lines',
-                 'picking_ids.move_lines.quant_ids',
+                 'picking_ids.move_lines.quantity_done',
                  'weight_manual')
     def _compute_weight(self):
         super(StockPickingPackagePreparation, self)._compute_weight()
@@ -235,26 +235,27 @@ class StockPickingPackagePreparation(models.Model):
             if prep.weight_manual:
                 prep.weight = prep.weight_manual
             elif not prep.package_id:
-                quants = self.env['stock.quant']
+                stock_moves = []
                 for picking in prep.picking_ids:
-                    for line in picking.move_lines:
-                        for quant in line.quant_ids:
-                            if quant.qty >= 0:
-                                quants |= quant
-                weight = sum(l.product_id.weight * l.qty for l in quants)
+                    for move in picking.move_lines:
+                        if move.quantity_done > 0:
+                            stock_moves.append(move)
+                weight = sum(sm.product_id.weight * sm.quantity_done
+                             for sm in stock_moves)
                 prep.net_weight = weight
                 prep.weight = weight
 
+    @api.multi
     def _get_sale_order_ref(self):
         """
         It returns the first sale order of the ddt.
         """
+        self.ensure_one()
         sale_order = False
-        for picking in self.picking_ids:
-            for sm in picking.move_lines:
-                if sm.procurement_id and sm.procurement_id.sale_line_id:
-                    sale_order = sm.procurement_id.sale_line_id.order_id
-                    return sale_order
+        for sm in self.picking_ids.mapped('move_lines'):
+            if sm.sale_line_id:
+                sale_order = sm.sale_line_id.order_id
+                break
         return sale_order
 
     @api.multi
@@ -369,10 +370,10 @@ class StockPickingPackagePreparation(models.Model):
                 group_partner_invoice_id = order.partner_invoice_id.id
                 group_currency_id = order.currency_id.id
             else:
-                group_method = (
-                    ddt.partner_shipping_id.ddt_invoicing_group)
+                group_method = ddt.partner_shipping_id.ddt_invoicing_group
                 group_partner_invoice_id = ddt.partner_id.id
                 group_currency_id = ddt.partner_id.currency_id.id
+
             if group_method == 'billing_partner':
                 group_key = (group_partner_invoice_id,
                              group_currency_id)
@@ -412,7 +413,7 @@ class StockPickingPackagePreparation(models.Model):
         if not invoices:
             raise UserError(_('There is no invoicable line.'))
 
-        for invoice in invoices.values():
+        for invoice in list(invoices.values()):
             if not invoice.name:
                 invoice.write({
                     'name': invoice.origin
@@ -436,7 +437,7 @@ class StockPickingPackagePreparation(models.Model):
                 values={
                     'self': invoice, 'origin': references[invoice]},
                 subtype_id=self.env.ref('mail.mt_note').id)
-        return [inv.id for inv in invoices.values()]
+        return [inv.id for inv in list(invoices.values())]
 
     @api.multi
     def action_send_ddt_mail(self):
@@ -491,7 +492,7 @@ class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
 
     sale_line_id = fields.Many2one(
-        related='move_id.procurement_id.sale_line_id',
+        related='move_id.sale_line_id',
         string='Sale order line',
         store=True, readonly=True)
     price_unit = fields.Float('Unit Price', digits=dp.get_precision(
@@ -539,7 +540,7 @@ class StockPickingPackagePreparationLine(models.Model):
                     self.product_id, rule_id, self.product_uom_qty,
                     self.product_uom_id, order.pricelist_id.id)
                 datas = self._prepare_price_discount(new_list_price, rule_id)
-                for key in datas.keys():
+                for key in list(datas.keys()):
                     setattr(self, key, datas[key])
 
     @api.model
@@ -564,13 +565,13 @@ class StockPickingPackagePreparationLine(models.Model):
         """
         Add values used for invoice creation
         """
-        lines = super(StockPickingPackagePreparationLine, self).\
+        lines = super(StockPickingPackagePreparationLine, self). \
             _prepare_lines_from_pickings(picking_ids)
         for line in lines:
             sale_line = False
             if line['move_id']:
                 move = self.env['stock.move'].browse(line['move_id'])
-                sale_line = move.procurement_id.sale_line_id or False
+                sale_line = move.sale_line_id or False
             if sale_line:
                 line['price_unit'] = sale_line.price_unit or 0
                 line['discount'] = sale_line.discount or 0
@@ -626,10 +627,10 @@ class StockPickingPackagePreparationLine(models.Model):
                 account = fpos.map_account(account)
             res['account_id'] = account.id
 
-            if self.sale_line_id.order_id.project_id:
+            if self.sale_line_id.order_id.analytic_account_id:
                 res[
                     'account_analytic_id'
-                ] = self.sale_line_id.order_id.project_id.id
+                ] = self.sale_line_id.order_id.analytic_account_id.id
             if self.sale_line_id.analytic_tag_ids:
                 res['analytic_tag_ids'] = [
                     (6, 0, self.sale_line_id.analytic_tag_ids.ids)
@@ -670,15 +671,18 @@ class StockPickingPackagePreparationLine(models.Model):
                 self.env['account.invoice.line'].with_context(
                     skip_update_line_ids=True).create(vals)
 
+    @api.multi
     def quantity_by_lot(self):
+        """Build a dictionary mapping each lot in the current line
+        to its quantity (if the product is tracked with lots)"""
+        self.ensure_one()
         res = {}
-        for quant in self.move_id.quant_ids:
-            if quant.lot_id:
-                if quant.location_id.id == self.move_id.location_dest_id.id:
-                    if quant.lot_id not in res:
-                        res[quant.lot_id] = quant.qty
-                    else:
-                        res[quant.lot_id] += quant.qty
+        for quant in self.lot_ids.mapped('quant_ids'):
+            if quant.location_id == self.move_id.location_dest_id:
+                if quant.lot_id not in res:
+                    res[quant.lot_id] = quant.quantity
+                else:
+                    res[quant.lot_id] += quant.quantity
         for lot in res:
             if lot.product_id.tracking == 'lot':
                 res[lot] = formatLang(self.env, res[lot])
