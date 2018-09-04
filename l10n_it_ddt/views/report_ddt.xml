@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
         <template id="delivery_data">
 
             <style type="text/css">
-                table.delivery_data td h6 { margin: 0; }
-                .signature { min-height: 4em; }
+                table.delivery_data td h6 {
+                margin: 0;
+                }
+                 .signature {
+                min-height: 4em;
+                }
             </style>
 
             <table class="table table-condensed table-bordered delivery_data">
@@ -82,7 +88,7 @@
         </template>
 
         <template id="report_ddt">
-            <t t-call="report.external_layout">
+            <t t-call="web.external_layout">
                 <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
                 <div class="page">
                     <div class="row">
@@ -101,7 +107,9 @@
                     </div>
                     <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
                     <table class="table table-condensed">
-                        <t t-set="has_serial_number" t-value="o.line_ids.filtered('move_id.lot_ids')" groups="stock.group_production_lot"/>
+                        <t t-set="has_serial_number"
+                           t-value="o.line_ids.filtered('lot_ids')"
+                           groups="stock.group_production_lot"/>
                         <thead>
                             <tr>
                                 <th><strong>Description</strong></th>
@@ -117,16 +125,15 @@
                         </thead>
                         <tbody>
                             <tr t-foreach="o.line_ids" t-as="line">
-                                <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
                                 <td><span t-field="line.name"></span></td>
                                 <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
                                 <t t-if="has_serial_number">
-                                    <td t-if="line.move_id.lot_ids" class="text-right">
+                                    <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
+                                    <td class="text-right">
                                         <t t-foreach="lot_dict" t-as="lot">
                                             <div>· <t t-esc="lot.name"/> <t t-if="lot_dict[lot]">(<t t-esc="lot_dict[lot]"/>)</t></div>
                                         </t>
-                                </td>
-                                    <td t-if="not line.move_id.lot_ids"/>
+                                    </td>
                                 </t>
                                 <t t-if="o.show_price">
                                     <td class="text-right" id="line_price_unit"><span t-field="line.price_unit"></span></td>
@@ -143,7 +150,7 @@
         </template>
 
         <template id="report_ddt_main">
-            <t t-call="report.html_container">
+            <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="l10n_it_ddt.report_ddt" t-lang="o.partner_id.lang"/>
                 </t>

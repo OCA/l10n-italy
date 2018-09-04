@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
         <record id="view_ddt_from_pickings" model="ir.ui.view">
@@ -14,7 +16,6 @@
                         <field name="ddt_type"/>
                         <field name="location_dest_id"/>
                         <field name="partner_id"/>
-                        <field name="min_date"/>
                         <field name="origin"/>
                         <field name="backorder_id"/>
                         <field name="state"/>
@@ -37,15 +38,7 @@
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_ddt_from_pickings"/>
             <field name="target">new</field>
-        </record>
-
-        <record model="ir.values" id="ddt_from_pickings">
-            <field name="model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation" />
-            <field name="name">Create DDT</field>
-            <field name="key2">client_action_multi</field>
-            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_from_pickings'))" />
-            <field name="key">action</field>
-            <field name="model">stock.picking</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
         </record>
 
 </odoo>

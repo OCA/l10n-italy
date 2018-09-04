@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
-#    Author: Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-#    Author: Gianmarco Conte <gconte@dinamicheaziendali.it>
-#    Author: Gabriele Baldessari <gabriele.baldessari@abstract-technology.com>
-#    Copyright (C) Francesco Apruzzese
-#    Copyright (C) 2014-2015 Agile Business Group (http://www.agilebg.com)
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2014 Abstract (http://www.abstract.it)
+# Copyright Davide Corio <davide.corio@abstract.it>
+# Copyright 2014-2018 Agile Business Group (http://www.agilebg.com)
+# Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+# Copyright Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models, api, _
 from odoo.exceptions import Warning as UserError
@@ -73,7 +73,7 @@ class DdTFromPickings(models.TransientModel):
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.carriage_condition_id:
                 if carriage_condition_id and (
-                    carriage_condition_id != (
+                        carriage_condition_id != (
                         picking.sale_id.carriage_condition_id)):
                     raise UserError(
                         _("Selected Pickings have"
@@ -98,7 +98,7 @@ class DdTFromPickings(models.TransientModel):
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.goods_description_id:
                 if goods_description_id and (
-                    goods_description_id != (
+                        goods_description_id != (
                         picking.sale_id.goods_description_id)):
                     raise UserError(
                         _("Selected Pickings have "
@@ -123,7 +123,7 @@ class DdTFromPickings(models.TransientModel):
             if picking.sale_id and (
                     picking.sale_id.transportation_reason_id):
                 if transportation_reason_id and (
-                    transportation_reason_id != (
+                        transportation_reason_id != (
                         picking.sale_id.transportation_reason_id)):
                     raise UserError(
                         _("Selected Pickings have"
@@ -149,7 +149,7 @@ class DdTFromPickings(models.TransientModel):
             if picking.sale_id and (
                     picking.sale_id.transportation_method_id):
                 if transportation_method_id and (
-                    transportation_method_id != (
+                        transportation_method_id != (
                         picking.sale_id.transportation_method_id)):
                     raise UserError(
                         _("Selected Pickings have"
