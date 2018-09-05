@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_partner_form_fatturapa_in" model="ir.ui.view">
+            <field name="name">partner.form.fatturapa.in</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_partner_form_fatturapa"></field>
+            <field name="arch" type="xml">
+                <field name="license_number" position="after">
+                    <separator colspan="2" string="FatturaPA Registration"></separator>
+                    <group>
+                        <field name="register"></field>
+                        <field name="register_code"></field>
+                        <field name="register_fiscalpos"></field>
+                    </group>
+                    <group>
+                        <field name="register_province"></field>
+                        <field name="register_regdate"></field>
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
