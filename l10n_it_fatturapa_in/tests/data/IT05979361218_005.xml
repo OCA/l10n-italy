@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="latin1"?>
+<ns1:FatturaElettronica versione="1.1" xmlns:ns1="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
+    <FatturaElettronicaHeader>
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>05979361218</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>005</ProgressivoInvio>
+            <FormatoTrasmissione>SDI11</FormatoTrasmissione>
+            <CodiceDestinatario>79SRAK</CodiceDestinatario>
+        </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>05979361218</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>SOCIETA' ALPHA BETA SRL</Denominazione>
+                </Anagrafica>
+                <RegimeFiscale>RF02</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIALE ROMA 543B</Indirizzo>
+                <CAP>07100</CAP>
+                <Comune>SASSARI</Comune>
+                <Provincia>SS</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CedentePrestatore>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <CodiceFiscale>80213330584</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIA TORINO 38-B</Indirizzo>
+                <CAP>00145</CAP>
+                <Comune>ROMA</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+    </FatturaElettronicaHeader>
+    <FatturaElettronicaBody>
+        <DatiGenerali>
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2015-02-16</Data>
+                <Numero>FT/2015/0010</Numero>
+				<ScontoMaggiorazione>
+					<Tipo>SC</Tipo>
+					<Percentuale>10.00</Percentuale>
+				</ScontoMaggiorazione>
+                <ImportoTotaleDocumento>1288.61</ImportoTotaleDocumento>
+                <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
+            </DatiGeneraliDocumento>
+        </DatiGenerali>
+		<DatiBeniServizi>
+			<DettaglioLinee>
+				<NumeroLinea>1</NumeroLinea>
+				<CodiceArticolo>
+					<CodiceTipo>SA</CodiceTipo>
+					<CodiceValore>123456-01</CodiceValore>
+				</CodiceArticolo>
+				<Descrizione>USB</Descrizione>
+				<Quantita>4.00</Quantita>
+				<UnitaMisura>PZ</UnitaMisura>
+				<PrezzoUnitario>177.00</PrezzoUnitario>
+				<ScontoMaggiorazione>
+					<Tipo>SC</Tipo>
+					<Percentuale>10.00</Percentuale>
+				</ScontoMaggiorazione>
+				<PrezzoTotale>637.20</PrezzoTotale>
+				<AliquotaIVA>22.00</AliquotaIVA>
+			</DettaglioLinee>
+			
+			<DettaglioLinee>
+				<NumeroLinea>2</NumeroLinea>
+				<CodiceArticolo>
+					<CodiceTipo>SA</CodiceTipo>
+					<CodiceValore>123456-04</CodiceValore>
+				</CodiceArticolo>
+				<Descrizione>USB</Descrizione>
+				<Quantita>1.00</Quantita>
+				<UnitaMisura>PZ</UnitaMisura>
+				<PrezzoUnitario>596.00</PrezzoUnitario>
+				<ScontoMaggiorazione>
+					<Tipo>SC</Tipo>
+					<Percentuale>10.00</Percentuale>
+				</ScontoMaggiorazione>
+				<PrezzoTotale>536.40</PrezzoTotale>
+				<AliquotaIVA>22.00</AliquotaIVA>
+			</DettaglioLinee>
+			
+			<DatiRiepilogo>
+				<AliquotaIVA>22.00</AliquotaIVA>
+				<ImponibileImporto>1173.60</ImponibileImporto>
+				<Imposta>258.19</Imposta>
+				<EsigibilitaIVA>S</EsigibilitaIVA>
+				<RiferimentoNormativo>SCISSIONE PAGAMENTI Split Payment art.17-ter del DPR 633/1972</RiferimentoNormativo>				
+			</DatiRiepilogo>
+		</DatiBeniServizi>
+    </FatturaElettronicaBody>
+</ns1:FatturaElettronica>
