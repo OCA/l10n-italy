@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ddt_invoicing" model="ir.ui.view">
+        <field name="name">DdT Invoicing</field>
+        <field name="model">ddt.invoicing</field>
+        <field name="arch" type="xml">
+            <form string="DDT Invoicing">
+                <separator string="DDT"/>
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <separator string="Setting"/>
+                <group>
+                    <field name="journal_id" widget="selection"/>
+                    <field name="date_invoice"/>
+                </group>
+                <footer>
+                    <button name="create_invoices" string="Create" type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ddt_invoicing" model="ir.actions.act_window">
+        <field name="name">DDT Invoicing</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ddt.invoicing</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_ddt_invoicing"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_ddt_invoicing"
+              id="menu_ddt_invoicing" parent="sale.menu_sale_invoicing"
+              sequence="20"/>
+
+</odoo>

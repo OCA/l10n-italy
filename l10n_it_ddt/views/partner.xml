@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_partner_form_ddt" model="ir.ui.view">
+            <field name="name">res.partner.form.ddt</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales_purchases']/group[1]">
+                    <group string="Shipping Informations">
+                        <field name="goods_description_id"
+                            widget="selection"/>
+                        <field name="carriage_condition_id"
+                            widget="selection"/>
+                        <field name="transportation_reason_id"
+                            widget="selection"/>
+                        <field name="transportation_method_id"
+                            widget="selection"/>
+                        <field name="ddt_invoicing_group"/>
+                        <field name="ddt_code_group" 
+                            attrs="{'invisible': [('ddt_invoicing_group','!=','code_group')],
+                                    'required': [('ddt_invoicing_group','=','code_group')]} "/>
+                        <field name="ddt_show_price"/>
+                    </group>
+                </xpath>
+                
+                <xpath expr="//div[@name='div_address']/../../.." position="after">
+                    <group string="DDT info" name="ddt_info" 
+                            attrs="{'invisible': [('type','not in', ['invoice', 'delivery'])]}">
+                        <field name="ddt_invoicing_group"/>
+                        <field name="ddt_code_group" 
+                            attrs="{'invisible': [('ddt_invoicing_group','!=','code_group')],
+                                    'required': [('ddt_invoicing_group','=','code_group')]} "/>
+                        <field name="ddt_show_price"/>
+                    </group>
+                </xpath>
+                
+            </field>
+        </record>
+
+</odoo>
