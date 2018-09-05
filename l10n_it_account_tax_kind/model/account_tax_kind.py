@@ -6,20 +6,20 @@ from odoo import api, models, fields
 class AccountTaxKind(models.Model):
 
     _name = 'account.tax.kind'
-    _rec_name = 'display_name'
 
     code = fields.Char(string='Code', size=3, required=True)
     name = fields.Char(string='Name', required=True)
-    display_name = fields.Char(string='Name', compute='_compute_display_name')
 
-    @api.depends('code', 'name')
     @api.multi
-    def _compute_display_name(self):
-        for record in self:
-            record.display_name = u'[%s] %s' % (record.code, record.name)
+    def name_get(self):
+        res = []
+        for tax_kind in self:
+            res.append(
+                (tax_kind.id, '[%s] %s' % (tax_kind.code, tax_kind.name)))
+        return res
 
     @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
         if not args:
             args = []
         if name:

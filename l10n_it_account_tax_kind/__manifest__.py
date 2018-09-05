@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Localisation - Natura delle aliquote IVA',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'category': 'Localisation/Italy',
     'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
     'website': 'https://www.odoo-italia.net/',
