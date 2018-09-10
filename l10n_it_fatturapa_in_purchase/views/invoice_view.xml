@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_invoice_line_form_fatturapa_po_line" model="ir.ui.view">
+        <field name="name">view_invoice_line_form_fatturapa_po_line</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_invoice_line_form_fatturapa"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='admin_ref']" position="after">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="purchase_line_id"
+                           attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"
+                           domain="[('partner_id', '=', partner_id), ('to_invoice', '=', True)]"
+                           readonly="0"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
