@@ -11,6 +11,7 @@ class FatturaPAAttachment(models.Model):
     _description = "FatturaPA Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
+    _order = 'id desc'
 
     ir_attachment_id = fields.Many2one(
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")
