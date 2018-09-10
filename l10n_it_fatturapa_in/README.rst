@@ -10,22 +10,28 @@ Italian Localization - Fattura Elettronica reception
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-    :alt: License: AGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+    :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_fatturapa_in
     :alt: OCA/l10n-italy
-.. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/l10n-italy-10-0/l10n-italy-10-0-l10n_it_fatturapa_in
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/122/10.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to receive and parse the fatturaPA XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
-received from the Exchange System
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+Questo modulo permette di importare gli XML della fattura elettronica, versione 1.2
+
+http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
+
+ricevuti tramite il sistema di interscambio
+
+http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
 **Table of contents**
 
@@ -35,28 +41,47 @@ http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 Installation
 ============
 
-odoo server must run on linux and be able to run command
+odoo server deve girare su linux ed essere in grado di lanciare il comando
 
 ``openssl``
 
 Configuration
 =============
 
-See l10n_it_fatturapa
+Vedi anche il README del modulo l10n_it_fatturapa.
+
+Per ogni fornitore è possibile impostare il 'Livello di dettaglio Fatture elettroniche':
+
+ - Livello minimo: La fattura passiva viene creata senza righe; sarà l'utente a doverle creare in base a quanto indicato dal fornitore nella fattura elettronica
+ - Livello Massimo: tutte le righe presenti nella fattura elettronica vengono create come righe della fattura passiva
+
+E' inoltre possibile impostare il campo 'prodotto di default per le fatture elettroniche' nella scheda del fornitore: questo prodotto verrà usato in fase di importazione della fattura passiva quando nessun altro possibile prodotto verrà trovato dal sistema, utilizzando quindi il conto e l'imposta preconfigurati sul prodotto.
+
+Per ogni codice prodotto usato dai fornitori, impostarlo nel campo
+
+Inventario --> Fornitori
+
+nella scheda del prodotto.
+
+Se il fornitore specificherà tale codice nell'XML, il sistema lo userà per recuperare il prodotto ed usarlo nella riga della fattura, impostando il relativo conto acquisti ed eventualmente l'IVA.
 
 Usage
 =====
 
- * Go to knowledge -> Documents
- * Create a Incoming fatturaPA file
- * Run Import FatturaPA wizard
+ * Andare su Contabilità --> Acquisti --> Fattura Elettronica
+ * Caricare il file XML
+ * Visualizzare la fattura cliccando su 'mostra anteprima'
+ * Lanciare il wizard 'Importa Fattura Elettronica' per creare una fattura bozza oppure lanciare il wizard 'collega ad una fattura fornitore esistente' per collegare il file ad una fattura già creata, automaticamente o manualmente, nel sistema
+
+Nell'elenco dei file Fattura Elettronica in ingresso vengono mostrati di default i file ancora da registrare, cioè i file non ancora associati ad una o più fatture passive
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_fatturapa_in%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 

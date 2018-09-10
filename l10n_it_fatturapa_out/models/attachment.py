@@ -3,7 +3,7 @@
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class FatturaPAAttachment(models.Model):
@@ -11,6 +11,7 @@ class FatturaPAAttachment(models.Model):
     _description = "FatturaPA Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
+    _order = 'id desc'
 
     ir_attachment_id = fields.Many2one(
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")

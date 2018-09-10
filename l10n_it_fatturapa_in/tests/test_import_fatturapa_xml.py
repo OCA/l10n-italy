@@ -40,6 +40,11 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             ('user_type_id', '=', self.env.ref(
                 'account.data_account_type_payable').id)
         ], limit=1).id
+        self.headphones = self.env.ref(
+            'product.product_product_7_product_template')
+        self.imac = self.env.ref(
+            'product.product_product_8_product_template')
+        self.service = self.env.ref('product.service_delivery')
 
     def run_wizard(self, name, file_name):
         attach_id = self.attach_model.create(
@@ -48,8 +53,9 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                 'datas': self.getFile(file_name)[1],
                 'datas_fname': file_name
             }).id
-        wizard = self.wizard_model.create({})
-        return wizard.with_context(active_ids=[attach_id]).importFatturaPA()
+        wizard = self.wizard_model.with_context(
+            active_ids=[attach_id]).create({})
+        return wizard.importFatturaPA()
 
     def run_wizard_multi(self, file_name_list):
         active_ids = []
@@ -60,10 +66,13 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                     'datas': self.getFile(file_name)[1],
                     'datas_fname': file_name
                 }).id)
-        wizard = self.wizard_model.create({})
-        return wizard.with_context(active_ids=active_ids).importFatturaPA()
+        wizard = self.wizard_model.with_context(
+            active_ids=active_ids).create({})
+        return wizard.importFatturaPA()
 
     def test_00_xml_import(self):
+        self.env.user.company_id.cassa_previdenziale_product_id = (
+            self.service.id)
         res = self.run_wizard('test0', 'IT05979361218_001.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -76,6 +85,31 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.net_weight, 0.00)
         self.assertEqual(invoice.welfare_fund_ids[0].kind_id.code, 'N4')
         self.assertFalse(invoice.art73)
+        welfare_found = False
+        for line in invoice.invoice_line_ids:
+            if line.product_id.id == self.service.id:
+                self.assertEqual(line.price_unit, 3)
+                welfare_found = True
+        self.assertTrue(welfare_found)
+        self.assertTrue(len(invoice.e_invoice_line_ids)==1)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].name, 'Prodotto di test al giorno')
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].qty, 15)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].uom, 'Giorno(i)')
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].unit_price, 3.6)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].total_price, 54)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].tax_amount, 0)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].tax_kind, 'N4')
+        self.assertTrue(len(invoice.e_invoice_line_ids[0].other_data_ids)==2)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].other_data_ids[0].text_ref,
+            'Riferimento')
 
     def test_01_xml_import(self):
         res = self.run_wizard('test1', 'IT02780790107_11004.xml')
@@ -156,16 +190,22 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             invoice.invoice_line_ids[1].invoice_line_tax_ids[0].amount, 22)
         self.assertEqual(
             invoice.invoice_line_ids[1].price_unit, 2)
-        self.assertEqual(
-            invoice.invoice_line_ids[0].cod_article_ids[0].name, 'EAN')
-        self.assertEqual(
-            invoice.invoice_line_ids[0].cod_article_ids[0].code_val, '12345')
+        self.assertTrue(len(invoice.e_invoice_line_ids)==2)
+        for e_line in invoice.e_invoice_line_ids:
+            self.assertTrue(e_line.line_number in (1, 2))
+            if e_line.line_number == 1:
+                self.assertEqual(
+                    e_line.cod_article_ids[0].name, 'EAN')
+                self.assertEqual(
+                    e_line.cod_article_ids[0].code_val, '12345')
         self.assertEqual(
             invoice.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
 
     def test_05_xml_import(self):
+        self.env.user.company_id.dati_bollo_product_id = (
+            self.service.id)
         res = self.run_wizard('test5', 'IT05979361218_003.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -174,14 +214,21 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
         self.assertEqual(invoice.intermediary.lastname, 'ROSSI')
+        bollo_found = False
+        for line in invoice.invoice_line_ids:
+            if line.product_id.id == self.service.id:
+                self.assertEqual(line.price_unit, 6)
+                bollo_found = True
+        self.assertTrue(bollo_found)
         self.assertEqual(
-            invoice.invoice_line_ids[0].discount_rise_price_ids[0].name, 'SC')
+            invoice.e_invoice_line_ids[0].discount_rise_price_ids[0].name,
+            'SC')
         self.assertEqual(
-            invoice.invoice_line_ids[0].discount_rise_price_ids[0].percentage,
-            10)
-        self.assertEqual(invoice.amount_untaxed, 9)
+            invoice.e_invoice_line_ids[0].discount_rise_price_ids[0].
+                percentage, 10)
+        self.assertEqual(invoice.amount_untaxed, 15)
         self.assertEqual(invoice.amount_tax, 0)
-        self.assertEqual(invoice.amount_total, 9)
+        self.assertEqual(invoice.amount_total, 15)
 
     def test_06_import_except(self):
         # File not exist Exception
@@ -283,11 +330,11 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(
             invoice1.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
         self.assertEqual(
             invoice2.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"')
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
 
     def test_14_xml_import(self):
         # check: no tax code found , write inconsisteance and anyway
@@ -302,7 +349,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(
             invoice.inconsistencies,
             u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n'
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n'
             u'XML contains tax with percentage "15.55"'
             ' but it does not exist in your system\n'
             'XML contains tax with percentage "15.55"'
@@ -316,3 +363,58 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertAlmostEquals(invoice.withholding_tax_amount, 1)
         self.assertAlmostEquals(invoice.amount_total, 6.1)
         self.assertAlmostEquals(invoice.amount_net_pay, 5.1)
+
+    def test_16_xml_import(self):
+        # file B2B downloaded from
+        # http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm
+        res = self.run_wizard('test16', 'IT01234567890_FPR03.xml')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertEqual(len(invoices), 2)
+        for invoice in invoices:
+            self.assertEqual(invoice.inconsistencies, '')
+            self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+            self.assertTrue(invoice.reference in ('456', '123'))
+            if invoice.reference == '123':
+                self.assertTrue(len(invoice.invoice_line_ids) == 2)
+                for line in invoice.invoice_line_ids:
+                    self.assertFalse(line.product_id)
+            if invoice.reference == '456':
+                self.assertTrue(len(invoice.invoice_line_ids) == 1)
+                for line in invoice.invoice_line_ids:
+                    self.assertFalse(line.product_id)
+
+        partner = invoice.partner_id
+        partner.e_invoice_default_product_id = (
+            self.imac.product_variant_ids[0].id)
+        # I create a supplier code to be matched in XML
+        self.env['product.supplierinfo'].create({
+            'name': partner.id,
+            'product_tmpl_id': self.headphones.id,
+            'product_code': 'ART123',
+        })
+        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        for invoice in invoices:
+            self.assertTrue(invoice.reference in ('456', '123'))
+            if invoice.reference == '123':
+                self.assertEqual(
+                    invoice.invoice_line_ids[0].product_id.id,
+                    self.headphones.product_variant_ids[0].id
+                )
+            else:
+                for line in invoice.invoice_line_ids:
+                    self.assertEqual(
+                        line.product_id.id,
+                        self.imac.product_variant_ids[0].id
+                    )
+
+        # change Livello di dettaglio Fatture elettroniche to Minimo
+        partner.e_invoice_detail_level = '0'
+        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertTrue(len(invoices) == 2)
+        for invoice in invoices:
+            self.assertTrue(len(invoice.invoice_line_ids) == 0)

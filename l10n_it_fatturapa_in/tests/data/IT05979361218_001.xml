@@ -84,6 +84,15 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <PrezzoTotale>54.00</PrezzoTotale>
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Natura>N4</Natura>
+                <AltriDatiGestionali>
+                    <TipoDato>Vostro RIF</TipoDato>
+                    <RiferimentoTesto>Riferimento</RiferimentoTesto>
+                    <RiferimentoNumero>3.00</RiferimentoNumero>
+                </AltriDatiGestionali>
+                <AltriDatiGestionali>
+                    <TipoDato>Vostro RIF</TipoDato>
+                    <RiferimentoTesto>Riferimento2</RiferimentoTesto>
+                </AltriDatiGestionali>
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>

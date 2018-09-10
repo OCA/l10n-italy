@@ -69,6 +69,10 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Divisa>EUR</Divisa>
                 <Data>2015-02-16</Data>
                 <Numero>FT/2015/0008</Numero>
+                <DatiBollo>
+                    <BolloVirtuale>SI</BolloVirtuale>
+                    <ImportoBollo>6.00</ImportoBollo>
+                </DatiBollo>
                 <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
             </DatiGeneraliDocumento>
         </DatiGenerali>
