@@ -5,3 +5,4 @@
 from . import account
 from . import company
 from . import partner
+from . import ir_attachment
