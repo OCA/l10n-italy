@@ -25,7 +25,18 @@ msgid "IPA123"
 msgstr ""
 
 #. module: l10n_it_ipa
+#: model:ir.ui.view,arch_db:l10n_it_ipa.view_res_partner_filter_pa
+msgid "PA"
+msgstr ""
+
+#. module: l10n_it_ipa
 #: model:ir.model,name:l10n_it_ipa.model_res_partner
 msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_ipa
+#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_partner_is_pa
+#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_users_is_pa
+msgid "Public administration"
 msgstr ""
 
