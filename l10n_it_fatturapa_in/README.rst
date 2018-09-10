@@ -10,22 +10,28 @@ Italian Localization - Fattura Elettronica reception
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-    :alt: License: AGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+    :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_fatturapa_in
     :alt: OCA/l10n-italy
-.. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/l10n-italy-10-0/l10n-italy-10-0-l10n_it_fatturapa_in
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/122/10.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to receive and parse the fatturaPA XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
-received from the Exchange System
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+This module allows to import XML files of electronic invoices, version 1.2
+
+http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
+
+received through the exchange system (SDI)
+
+http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
 **Table of contents**
 
@@ -35,28 +41,45 @@ http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 Installation
 ============
 
-odoo server must run on linux and be able to run command
+odoo server must run on linux and be able to run
 
 ``openssl``
 
 Configuration
 =============
 
-See l10n_it_fatturapa
+Also see the README file of l10n_it_fatturapa module.
+
+For every supplier, it is possible to set the 'details level of electronic invoices':
+
+ - Minimum level: Supplier invoice is created without lines; user will have to create them, according to what specified in electronic invoice
+ - Maximum level: every line contained in electronic invoice will create a line in supplier invoice.
+
+Moreover, it is possible, in supplier form, to set the 'default product for electronic invoices': this product will be used, during generation of supplier invoices, when no other possible product is found. Tax and account of invoice line will be set according to what configured in the product.
+
+Every product code used by suppliers can be set, in product form, in
+
+Inventory --> Suppliers
+
+If supplier specifies a known code in XML, the system will use it to retrieve the correct product to be used in invoice line, setting the related tax and account.
 
 Usage
 =====
 
- * Go to knowledge -> Documents
- * Create a Incoming fatturaPA file
- * Run Import FatturaPA wizard
+ * Go to Accounting --> Purchases --> Electronic Invoice
+ * Upload XML file
+ * View invoice content clicking on 'show preview'
+ * Run 'import electronic invoice' wizard to create a draft invoice or run 'link to existing supplier invoice' to link the XML file to an already (automatically) created invoice
+
+In the incoming electronic invoice files list, by default you will see files to be registered, that is files not yet linked to one or more supplier invoices
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_fatturapa_in%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 

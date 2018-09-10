@@ -1,4 +1,7 @@
-This module allows you to receive and parse the fatturaPA XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
-received from the Exchange System
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+This module allows to import XML files of electronic invoices, version 1.2
+
+http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
+
+received through the exchange system (SDI)
+
+http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm

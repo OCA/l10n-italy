@@ -11,10 +11,9 @@
     'author': 'Agile Business Group, Innoviu, '
               'Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     "depends": [
         'l10n_it_fatturapa',
-        'partner_firstname',
         'l10n_it_withholding_tax_causali',
         ],
     "data": [
@@ -22,6 +21,8 @@
         'views/partner_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
         'security/ir.model.access.csv',
+        'wizard/link_to_existing_invoice.xml',
+        'views/company_view.xml',
     ],
     "installable": True
 }

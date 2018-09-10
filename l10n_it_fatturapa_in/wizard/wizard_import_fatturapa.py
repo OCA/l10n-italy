@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import base64
-import os
-import shlex
-import subprocess
 import logging
-from odoo import models, api
+from odoo import models, api, fields
 from odoo.tools import float_is_zero
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
-from lxml import etree
 
 _logger = logging.getLogger(__name__)
 
@@ -20,6 +16,41 @@ _logger = logging.getLogger(__name__)
 class WizardImportFatturapa(models.TransientModel):
     _name = "wizard.import.fatturapa"
     _description = "Import FatturaPA"
+
+    e_invoice_detail_level = fields.Selection([
+        ('0', 'Minimo'),
+        # ('1', 'Aliquote'),
+        ('2', 'Massimo'),
+    ], string="Livello di dettaglio Fatture elettroniche",
+        help="Livello minimo: La fattura passiva viene creata senza righe; "
+             "sara' l'utente a doverle creare in base a quanto indicato dal "
+             "fornitore nella fattura elettronica\n"
+             # "Livello Aliquote: viene creata una riga fattura per ogni "
+             # "aliquota presente nella fattura elettronica\n"
+             "Livello Massimo: tutte le righe presenti nella fattura "
+             "elettronica vengono create come righe della fattura passiva",
+        required=True
+    )
+
+    @api.model
+    def default_get(self, fields):
+        res = super(WizardImportFatturapa, self).default_get(fields)
+        res['e_invoice_detail_level'] = '2'
+        fatturapa_attachment_ids = self.env.context.get('active_ids', False)
+        fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
+        partners = self.env['res.partner']
+        for fatturapa_attachment_id in fatturapa_attachment_ids:
+            fatturapa_attachment = fatturapa_attachment_obj.browse(
+                fatturapa_attachment_id)
+            if fatturapa_attachment.in_invoice_ids:
+                raise UserError(
+                    _("File %s is linked to invoices yet")
+                    % fatturapa_attachment.name)
+            partners |= fatturapa_attachment.xml_supplier_id
+            if len(partners) == 1:
+                res['e_invoice_detail_level'] = (
+                    partners[0].e_invoice_detail_level)
+        return res
 
     def CountryByCode(self, CountryCode):
         country_model = self.env['res.country']
@@ -103,18 +134,6 @@ class WizardImportFatturapa(models.TransientModel):
                           "Vat %s and Fiscalcode %s already present in db" %
                           (vat, cf))
                         )
-        if not partners:
-            if DatiAnagrafici.Anagrafica.Denominazione:
-                partners = partner_model.search(
-                    [('name', '=', DatiAnagrafici.Anagrafica.Denominazione)])
-            elif (
-                DatiAnagrafici.Anagrafica.Nome and
-                DatiAnagrafici.Anagrafica.Cognome
-            ):
-                partners = partner_model.search([
-                    ('firstname', '=', DatiAnagrafici.Anagrafica.Nome),
-                    ('lastname', '=', DatiAnagrafici.Anagrafica.Cognome),
-                ])
         if partners:
             commercial_partner_id = partners[0].id
             self.check_partner_base_data(commercial_partner_id, DatiAnagrafici)
@@ -302,6 +321,62 @@ class WizardImportFatturapa(models.TransientModel):
             retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
         return retLine
 
+    def get_line_product(self, line, partner):
+        product = None
+        supplier_info = self.env['product.supplierinfo']
+        if len(line.CodiceArticolo) == 1:
+            supplier_code = line.CodiceArticolo[0].CodiceValore
+            supplier_infos = supplier_info.search([
+                ('product_code', '=', supplier_code),
+                ('name', '=', partner.id)
+            ])
+            if supplier_infos:
+                products = supplier_infos.mapped('product_id')
+                if len(products) == 1:
+                    product = products[0]
+                else:
+                    templates = supplier_infos.mapped('product_tmpl_id')
+                    if len(templates) == 1:
+                        product = templates.product_variant_ids[0]
+        if not product and partner.e_invoice_default_product_id:
+            product = partner.e_invoice_default_product_id
+        return product
+
+    def adjust_accounting_data(self, product, line_vals):
+        if product.product_tmpl_id.property_account_expense_id:
+            line_vals['account_id'] = (
+                product.product_tmpl_id.property_account_expense_id.id)
+        elif (
+            product.product_tmpl_id.categ_id.property_account_expense_categ_id
+        ):
+            line_vals['account_id'] = (
+                product.product_tmpl_id.categ_id.
+                property_account_expense_categ_id.id
+            )
+        account = self.env['account.account'].browse(line_vals['account_id'])
+        new_tax = None
+        if len(product.product_tmpl_id.supplier_taxes_id) == 1:
+            new_tax = product.product_tmpl_id.supplier_taxes_id[0]
+        elif len(account.tax_ids) == 1:
+            new_tax = account.tax_ids[0]
+        if new_tax:
+            line_tax_id = (
+                line_vals.get('invoice_line_tax_ids') and
+                line_vals['invoice_line_tax_ids'][0][2][0]
+            )
+            line_tax = self.env['account.tax'].browse(line_tax_id)
+            if new_tax.id != line_tax_id:
+                if new_tax._get_tax_amount() != line_tax._get_tax_amount():
+                    self.log_inconsistency(_(
+                        "XML contains tax %s. Product %s has tax %s. Using "
+                        "the XML one"
+                    ) % (line_tax.name, product.name, new_tax.name))
+                else:
+                    # If product has the same amount of the one in XML,
+                    # I use it. Typical case: 22% det 50%
+                    line_vals['invoice_line_tax_ids'] = [
+                        (6, 0, [new_tax.id])]
+
     def _prepareInvoiceLine(self, credit_account_id, line, wt_found=False):
         retLine = self._prepare_generic_line_data(line)
         retLine.update({
@@ -313,16 +388,6 @@ class WizardImportFatturapa(models.TransientModel):
             retLine['price_unit'] = float(line.PrezzoUnitario)
         if line.Quantita:
             retLine['quantity'] = float(line.Quantita)
-        if line.TipoCessionePrestazione:
-            retLine['service_type'] = line.TipoCessionePrestazione
-        if line.TipoCessionePrestazione:
-            retLine['service_type'] = line.TipoCessionePrestazione
-        if line.UnitaMisura:
-            retLine['ftpa_uom'] = line.UnitaMisura
-        if line.DataInizioPeriodo:
-            retLine['service_start'] = line.DataInizioPeriodo
-        if line.DataFinePeriodo:
-            retLine['service_end'] = line.DataFinePeriodo
         if (
             line.PrezzoTotale and line.PrezzoUnitario and line.Quantita and
             line.ScontoMaggiorazione
@@ -459,9 +524,11 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _addGlobalDiscount(self, invoice_id, DatiGeneraliDocumento):
         discount = 0.0
-        if DatiGeneraliDocumento.ScontoMaggiorazione:
+        if (
+            DatiGeneraliDocumento.ScontoMaggiorazione and
+            self.e_invoice_detail_level == '2'
+        ):
             invoice = self.env['account.invoice'].browse(invoice_id)
-            invoice.compute_taxes()
             for DiscRise in DatiGeneraliDocumento.ScontoMaggiorazione:
                 if DiscRise.Percentuale:
                     amount = (
@@ -486,8 +553,45 @@ class WizardImportFatturapa(models.TransientModel):
                 'price_unit': discount,
                 'quantity': 1,
                 }
+            if self.env.user.company_id.sconto_maggiorazione_product_id:
+                sconto_maggiorazione_product = (
+                    self.env.user.company_id.sconto_maggiorazione_product_id)
+                line_vals['product_id'] = sconto_maggiorazione_product.id
+                line_vals['name'] = sconto_maggiorazione_product.name
+                self.adjust_accounting_data(
+                    sconto_maggiorazione_product, line_vals
+                )
             self.env['account.invoice.line'].create(line_vals)
         return True
+
+    def add_dati_bollo(self, invoice, DatiGeneraliDocumento):
+        # 2.1.1.6
+        Stamps = DatiGeneraliDocumento.DatiBollo
+        if Stamps:
+            invoice.virtual_stamp = Stamps.BolloVirtuale
+            invoice.stamp_amount = float(Stamps.ImportoBollo)
+            if self.e_invoice_detail_level == '2':
+                journal = self.get_purchase_journal(invoice.company_id)
+                credit_account_id = journal.default_credit_account_id.id
+                line_vals = {
+                    'invoice_id': invoice.id,
+                    'name': _(
+                        "Bollo assolto ai sensi del decreto MEF 17 giugno "
+                        "2014 (art. 6)"
+                    ),
+                    'account_id': credit_account_id,
+                    'price_unit': invoice.stamp_amount,
+                    'quantity': 1,
+                    }
+                if self.env.user.company_id.dati_bollo_product_id:
+                    dati_bollo_product = (
+                        self.env.user.company_id.dati_bollo_product_id)
+                    line_vals['product_id'] = dati_bollo_product.id
+                    line_vals['name'] = dati_bollo_product.name
+                    self.adjust_accounting_data(
+                        dati_bollo_product, line_vals
+                    )
+                self.env['account.invoice.line'].create(line_vals)
 
     def _createPayamentsLine(self, payment_id, line, partner_id):
         PaymentModel = self.env['fatturapa.payment.detail']
@@ -646,6 +750,53 @@ class WizardImportFatturapa(models.TransientModel):
             )
         return journals[0]
 
+    def create_e_invoice_line(self, line):
+        vals = {
+            'line_number': int(line.NumeroLinea or 0),
+            'service_type': line.TipoCessionePrestazione,
+            'name': line.Descrizione,
+            'qty': float(line.Quantita or 0),
+            'uom': line.UnitaMisura,
+            'period_start_date': line.DataInizioPeriodo,
+            'period_end_date': line.DataFinePeriodo,
+            'unit_price': float(line.PrezzoUnitario or 0),
+            'total_price': float(line.PrezzoTotale or 0),
+            'tax_amount': float(line.AliquotaIVA or 0),
+            'wt_amount': line.Ritenuta,
+            'tax_kind': line.Natura,
+            'admin_ref': line.RiferimentoAmministrazione,
+        }
+        einvoiceline = self.env['einvoice.line'].create(vals)
+        if line.CodiceArticolo:
+            for caline in line.CodiceArticolo:
+                self.env['fatturapa.article.code'].create(
+                    {
+                        'name': caline.CodiceTipo or '',
+                        'code_val': caline.CodiceValore or '',
+                        'e_invoice_line_id': einvoiceline.id
+                    }
+                )
+        if line.ScontoMaggiorazione:
+            for DiscRisePriceLine in line.ScontoMaggiorazione:
+                DiscRisePriceVals = self.with_context(
+                    drtype='e_invoice_line_id'
+                )._prepareDiscRisePriceLine(
+                    einvoiceline.id, DiscRisePriceLine
+                )
+                self.env['discount.rise.price'].create(DiscRisePriceVals)
+        if line.AltriDatiGestionali:
+            for dato in line.AltriDatiGestionali:
+                self.env['einvoice.line.other.data'].create(
+                    {
+                        'name': dato.TipoDato,
+                        'text_ref': dato.RiferimentoTesto,
+                        'num_ref': float(dato.RiferimentoNumero or 0),
+                        'date_ref': dato.RiferimentoData,
+                        'e_invoice_line_id': einvoiceline.id
+                    }
+                )
+        return einvoiceline
+
     def invoiceCreate(
         self, fatt, fatturapa_attachment, FatturaBody, partner_id
     ):
@@ -656,7 +807,6 @@ class WizardImportFatturapa(models.TransientModel):
         ftpa_doctype_model = self.env['fiscal.document.type']
         rel_docs_model = self.env['fatturapa.related_document_type']
         WelfareFundLineModel = self.env['welfare.fund.data.line']
-        DiscRisePriceModel = self.env['discount.rise.price']
         SalModel = self.env['faturapa.activity.progress']
         DdTModel = self.env['fatturapa.related_ddt']
         PaymentDataModel = self.env['fatturapa.payment.data']
@@ -701,7 +851,7 @@ class WizardImportFatturapa(models.TransientModel):
                 raise UserError(
                     _("tipoDocumento %s not handled")
                     % docType)
-            if docType == 'TD04' or docType == 'TD05':
+            if docType == 'TD04':
                 invtype = 'in_refund'
         # 2.1.1.11
         causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
@@ -767,53 +917,42 @@ class WizardImportFatturapa(models.TransientModel):
                 ))
             invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
         # 2.2.1
-        CodeArts = self.env['fatturapa.article.code']
+        e_invoice_line_ids = []
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
-            invoice_line_data = self._prepareInvoiceLine(
-                credit_account_id, line, wt_found)
-            invoice_line_id = invoice_line_model.create(invoice_line_data).id
-
-            if line.CodiceArticolo:
-                for caline in line.CodiceArticolo:
-                    CodeArts.create(
-                        {
-                            'name': caline.CodiceTipo or '',
-                            'code_val': caline.CodiceValore or '',
-                            'invoice_line_id': invoice_line_id
-                        }
-                    )
-            if line.ScontoMaggiorazione:
-                for DiscRisePriceLine in line.ScontoMaggiorazione:
-                    DiscRisePriceVals = self.with_context(
-                        drtype='invoice_line_id'
-                    )._prepareDiscRisePriceLine(
-                        invoice_line_id, DiscRisePriceLine
-                    )
-                    DiscRisePriceModel.create(DiscRisePriceVals)
-            invoice_lines.append(invoice_line_id)
+            if self.e_invoice_detail_level == '2':
+                invoice_line_data = self._prepareInvoiceLine(
+                    credit_account_id, line, wt_found)
+                product = self.get_line_product(line, partner)
+                if product:
+                    invoice_line_data['product_id'] = product.id
+                    self.adjust_accounting_data(product, invoice_line_data)
+                invoice_line_id = invoice_line_model.create(
+                    invoice_line_data).id
+                invoice_lines.append(invoice_line_id)
+            einvoiceline = self.create_e_invoice_line(line)
+            e_invoice_line_ids.append(einvoiceline.id)
         invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
-        # 2.1.1.6
-        Stamps = FatturaBody.DatiGenerali.\
-            DatiGeneraliDocumento.DatiBollo
-        if Stamps:
-            invoice_data['virtual_stamp'] = Stamps.BolloVirtuale
-            invoice_data['stamp_amount'] = float(Stamps.ImportoBollo)
+        invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
         invoice = invoice_model.create(invoice_data)
         invoice._onchange_invoice_line_wt_ids()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 
+        self.add_dati_bollo(
+            invoice, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
+
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiCassaPrevidenziale
-        if Walfares:
+        if Walfares and self.e_invoice_detail_level == '2':
             for walfareLine in Walfares:
                 WalferLineVals = self._prepareWelfareLine(
                     invoice_id, walfareLine)
                 WelfareFundLineModel.create(WalferLineVals)
                 line_vals = self._prepare_generic_line_data(walfareLine)
                 line_vals.update({
-                    'name': walfareLine.TipoCassa,
+                    'name': _(
+                        "Cassa Previdenziale: %s") % walfareLine.TipoCassa,
                     'price_unit': float(walfareLine.ImportoContributoCassa),
                     'invoice_id': invoice.id,
                     'account_id': credit_account_id,
@@ -826,6 +965,16 @@ class WizardImportFatturapa(models.TransientModel):
                             % walfareLine.TipoCassa))
                     line_vals['invoice_line_tax_wt_ids'] = [
                         (6, 0, [wt_found.id])]
+                if self.env.user.company_id.cassa_previdenziale_product_id:
+                    cassa_previdenziale_product = (
+                        self.env.user.company_id.
+                        cassa_previdenziale_product_id
+                    )
+                    line_vals['product_id'] = cassa_previdenziale_product.id
+                    line_vals['name'] = cassa_previdenziale_product.name
+                    self.adjust_accounting_data(
+                        cassa_previdenziale_product, line_vals
+                    )
                 self.env['account.invoice.line'].create(line_vals)
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
@@ -1074,90 +1223,9 @@ class WizardImportFatturapa(models.TransientModel):
                     % (invoice.amount_untaxed, amount_untaxed)
                 )
 
-    def strip_xml_content(self, xml):
-        root = etree.XML(xml)
-        for elem in root.iter('*'):
-            if elem.text is not None:
-                elem.text = elem.text.strip()
-        return etree.tostring(root)
-
-    def remove_xades_sign(self, xml):
-        root = etree.XML(xml)
-        for elem in root.iter('*'):
-            if elem.tag.find('Signature') > -1:
-                elem.getparent().remove(elem)
-                break
-        return etree.tostring(root)
-
-    def check_file_is_pem(self, p7m_file):
-        file_is_pem = True
-        strcmd = (
-            'openssl asn1parse  -inform PEM -in %s'
-        ) % (p7m_file)
-        cmd = shlex.split(strcmd)
-        try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-            proc.communicate()
-            if proc.wait() != 0:
-                file_is_pem = False
-        except Exception as e:
-            raise UserError(
-                _(
-                    'An error with command "openssl asn1parse" occurred: %s'
-                ) % e.args
-            )
-        return file_is_pem
-
-    def parse_pem_2_der(self, pem_file, tmp_der_file):
-        strcmd = (
-            'openssl asn1parse -in %s -out %s'
-        ) % (pem_file, tmp_der_file)
-        cmd = shlex.split(strcmd)
-        try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-            stdoutdata, stderrdata = proc.communicate()
-            if proc.wait() != 0:
-                _logger.warning(stdoutdata)
-                raise Exception(stderrdata)
-        except Exception as e:
-            raise UserError(
-                _(
-                    'Parsing PEM to DER  file %s'
-                ) % e.args
-            )
-        if not os.path.isfile(tmp_der_file):
-            raise UserError(
-                _(
-                    'ASN.1 structure is not parsable in DER'
-                )
-            )
-        return tmp_der_file
-
-    def decrypt_to_xml(self, signed_file, xml_file):
-        strcmd = (
-            'openssl smime -decrypt -verify -inform'
-            ' DER -in %s -noverify -out %s'
-        ) % (signed_file, xml_file)
-        cmd = shlex.split(strcmd)
-        try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-            stdoutdata, stderrdata = proc.communicate()
-            if proc.wait() != 0:
-                _logger.warning(stdoutdata)
-                raise Exception(stderrdata)
-        except Exception as e:
-            raise UserError(
-                _(
-                    'Signed Xml file %s'
-                ) % e.args
-            )
-        if not os.path.isfile(xml_file):
-            raise UserError(
-                _(
-                    'Signed Xml file not decryptable'
-                )
-            )
-        return xml_file
+    def get_invoice_obj(self, fatturapa_attachment):
+        xml_string = fatturapa_attachment.get_xml_string()
+        return fatturapa_v_1_2.CreateFromDocument(xml_string)
 
     @api.multi
     def importFatturaPA(self):
@@ -1174,37 +1242,7 @@ class WizardImportFatturapa(models.TransientModel):
             if fatturapa_attachment.in_invoice_ids:
                 raise UserError(
                     _("File is linked to invoices yet"))
-            # decrypt  p7m file
-            if fatturapa_attachment.datas_fname.lower().endswith('.p7m'):
-                temp_file_name = (
-                    '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
-                temp_der_file_name = (
-                    '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
-                with open(temp_file_name, 'w') as p7m_file:
-                    p7m_file.write(fatturapa_attachment.datas.decode('base64'))
-                xml_file_name = os.path.splitext(temp_file_name)[0]
-
-                # check if temp_file_name is a PEM file
-                file_is_pem = self.check_file_is_pem(temp_file_name)
-
-                # if temp_file_name is a PEM file
-                # parse it in a DER file
-                if file_is_pem:
-                    temp_file_name = self.parse_pem_2_der(
-                        temp_file_name, temp_der_file_name)
-
-                # decrypt signed DER file in XML readable
-                xml_file_name = self.decrypt_to_xml(
-                    temp_file_name, xml_file_name)
-
-                with open(xml_file_name, 'r') as fatt_file:
-                    file_content = fatt_file.read()
-                xml_string = file_content
-            elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
-                xml_string = fatturapa_attachment.datas.decode('base64')
-            xml_string = self.remove_xades_sign(xml_string)
-            xml_string = self.strip_xml_content(xml_string)
-            fatt = fatturapa_v_1_2.CreateFromDocument(xml_string)
+            fatt = self.get_invoice_obj(fatturapa_attachment)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(cedentePrestatore)
@@ -1214,8 +1252,20 @@ class WizardImportFatturapa(models.TransientModel):
             # 1.5
             Intermediary = fatt.FatturaElettronicaHeader.\
                 TerzoIntermediarioOSoggettoEmittente
+
+            generic_inconsistencies = ''
+            if self.env.context.get('inconsistencies'):
+                generic_inconsistencies = (
+                    self.env.context['inconsistencies'] + '\n\n')
+
             # 2
             for fattura in fatt.FatturaElettronicaBody:
+
+                # reset inconsistencies
+                self.__dict__.update(
+                    self.with_context(inconsistencies='').__dict__
+                )
+
                 invoice_id = self.invoiceCreate(
                     fatt, fatturapa_attachment, fattura, partner_id)
                 invoice = invoice_model.browse(invoice_id)
@@ -1239,13 +1289,17 @@ class WizardImportFatturapa(models.TransientModel):
                 new_invoices.append(invoice_id)
                 self.check_invoice_amount(invoice, fattura)
 
-            if self.env.context.get('inconsistencies'):
-                invoice.write(
-                    {'inconsistencies': self.env.context['inconsistencies']})
+                if self.env.context.get('inconsistencies'):
+                    invoice_inconsistencies = (
+                        self.env.context['inconsistencies'])
+                else:
+                    invoice_inconsistencies = ''
+                invoice.inconsistencies = (
+                    generic_inconsistencies + invoice_inconsistencies)
 
         return {
             'view_type': 'form',
-            'name': "PA Supplier Invoices",
+            'name': "Supplier Electronic Invoices",
             'view_mode': 'tree,form',
             'res_model': 'account.invoice',
             'type': 'ir.actions.act_window',
