@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="wizard_export_fatturapa_form_view" model="ir.ui.view">
-            <field name="name">Export FatturaPA</field>
+            <field name="name">Export Electronic Invoice</field>
             <field name="model">wizard.export.fatturapa</field>
             <field name="arch" type="xml">
-                <form string="Export FatturaPA">
+                <form string="Export Electronic Invoice">
                     <group col="2" height="500" width="600">
                         <group>
                             <label string="Confirm?"/>
@@ -23,7 +23,7 @@
             </field>
         </record>
 
-        <act_window id="action_wizard_export_fatturapa" key2="client_action_multi" name="Export FatturaPA" res_model="wizard.export.fatturapa" src_model="account.invoice" target="new" view_id="wizard_export_fatturapa_form_view" view_mode="form"></act_window>
+        <act_window id="action_wizard_export_fatturapa" key2="client_action_multi" name="Export Electronic Invoice" res_model="wizard.export.fatturapa" src_model="account.invoice" target="new" view_id="wizard_export_fatturapa_form_view" view_mode="form"></act_window>
 
     </data>
-</openerp>
+</odoo>
