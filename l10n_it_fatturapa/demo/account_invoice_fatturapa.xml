@@ -100,6 +100,7 @@
             <field name="customer">1</field>
             <field name="supplier">0</field>
             <field name="is_company">1</field>
+            <field name="is_pa">1</field>
             <field name="city">Torino</field>
             <field name="zip">10100</field>
             <field name="country_id" ref="base.it"/>
@@ -127,6 +128,33 @@
             <field name="phone">123456789</field>
             <field name="fiscalcode">03297040366</field>
             <field name="vat">IT03297040366</field>
+        </record>
+
+        <record id="res_partner_fatturapa_2" model="res.partner">
+            <field name="name">Cliente B2B</field>
+            <field name="customer">1</field>
+            <field name="supplier">0</field>
+            <field name="is_company">1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Genova</field>
+            <field name="zip">16100</field>
+            <field name="country_id" ref="base.it"/>
+            <field name="state_id" ref="base.state_us_2"/>
+            <field name="street">Via Roma, 1</field>
+            <field name="email">info@mycompany.it</field>
+            <field name="fiscalcode">07973780013</field>
+            <field name="vat">IT07973780013</field>
+            <field name="codice_destinatario">0000000</field>
+            <field name="pec_destinatario">test@pec.it</field>
+        </record>
+
+        <record id="res_partner_fatturapa_3" model="res.partner">
+            <field name="name">StabileOrganizzazione</field>
+            <field name="is_company">1</field>
+            <field name="street">Via Roma, 1</field>
+            <field name="city">Milano</field>
+            <field name="zip">20100</field>
+            <field name="country_id" ref="base.it"/>
         </record>
 
         <record id="fiscal_position_sp" model="account.fiscal.position">
