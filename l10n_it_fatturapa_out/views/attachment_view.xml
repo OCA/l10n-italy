@@ -2,17 +2,29 @@
 <openerp>
     <data>
 
+        <record model="ir.ui.view" id="view_fatturapa_out_attachment_tree">
+            <field name="name">fatturapa.attachment.out.tree</field>
+            <field name="model">fatturapa.attachment.out</field>
+            <field name="arch" type="xml">
+                <tree string="Export Fattura Elettronica" create="false">
+                    <field name="name"/>
+                    <field name="out_invoice_ids"/>
+                </tree>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
             <field name="name">fatturapa.attachment.out.form</field>
             <field name="model">fatturapa.attachment.out</field>
             <field name="arch" type="xml">
-                <form string="Export FatturaPA" version="7.0">
+                <form string="Export Fattura Elettronica" create="false">
                     <div>
                         <group>
                             <field name="datas" filename="datas_fname" />
                             <field name="datas_fname"/>
                             <field name="name"/>
                         </group>
+                        <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
                         <separator string="Invoices"></separator>
                         <field name="out_invoice_ids"></field>
                         <group groups="base.group_no_one" string="History">
@@ -32,17 +44,17 @@
         </record>
 
         <record id="action_fatturapa_attachment" model="ir.actions.act_window">
-            <field name="name">FatturaPA Export Files</field>
+            <field name="name">Fattura Elettronica Export Files</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">fatturapa.attachment.out</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="base.view_attachment_tree"/>
+            <field name="view_id" ref="view_fatturapa_out_attachment_tree"/>
         </record>
 
         <menuitem action="action_fatturapa_attachment"
             parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
-            name="FatturaPA Export Files"
+            name="Fattura Elettronica Export Files"
             id="fatturapa_attachment_menu"/>
 
     </data>
