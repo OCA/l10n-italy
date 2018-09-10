@@ -13,3 +13,4 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     ipa_code = fields.Char(string='IPA Code')
+    is_pa = fields.Boolean("Public administration")
