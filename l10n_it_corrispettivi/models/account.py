@@ -12,17 +12,17 @@ class AccountInvoice(models.Model):
 
     @api.model
     def _default_partner_id(self):
-        if not self._context.get('default_corrispettivi', False):
+        if not self.env.context.get('default_corrispettivi', False):
             # If this is not a corrispettivo, do nothing
             return False
         return self.env.ref('base.public_user').partner_id.id
 
     @api.model
     def _default_journal(self):
-        if not self._context.get('default_corrispettivi', False):
+        if not self.env.context.get('default_corrispettivi', False):
             # If this is not a corrispettivo, do nothing
             return super(AccountInvoice, self)._default_journal()
-        company_id = self._context.get(
+        company_id = self.env.context.get(
             'company_id', self.env.user.company_id)
         return self.env['account.journal'] \
             .get_corr_journal(company_id)
@@ -36,7 +36,7 @@ class AccountInvoice(models.Model):
 
     @api.onchange('company_id')
     def onchange_company_id_corrispettivi(self):
-        if not self._context.get('default_corrispettivi', False):
+        if not self.env.context.get('default_corrispettivi', False):
             # If this is not a corrispettivo, do nothing
             return
 
