@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_account_tax_kind',
         'odoo10-addon-l10n_it_ateco',
         'odoo10-addon-l10n_it_base_location_geonames_import',
+        'odoo10-addon-l10n_it_causali_pagamento',
         'odoo10-addon-l10n_it_central_journal',
         'odoo10-addon-l10n_it_codici_carica',
         'odoo10-addon-l10n_it_corrispettivi',
@@ -24,6 +25,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_fatturapa',
         'odoo10-addon-l10n_it_fatturapa_out',
         'odoo10-addon-l10n_it_fiscal_document_type',
+        'odoo10-addon-l10n_it_fiscal_payment_term',
         'odoo10-addon-l10n_it_fiscalcode',
         'odoo10-addon-l10n_it_fiscalcode_invoice',
         'odoo10-addon-l10n_it_ipa',
@@ -38,6 +40,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_website_sale_corrispettivi',
         'odoo10-addon-l10n_it_website_sale_fiscalcode',
         'odoo10-addon-l10n_it_withholding_tax',
+        'odoo10-addon-l10n_it_withholding_tax_causali',
         'odoo10-addon-l10n_it_withholding_tax_payment',
     ],
     classifiers=[
