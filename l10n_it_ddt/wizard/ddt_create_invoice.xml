@@ -35,15 +35,7 @@
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_ddt_create_invoice"/>
             <field name="target">new</field>
-        </record>
-
-        <record model="ir.values" id="ddt_create_invoice">
-            <field name="model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation" />
-            <field name="name">Create Invoice</field>
-            <field name="key2">client_action_multi</field>
-            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_create_invoice'))" />
-            <field name="key">action</field>
-            <field name="model">stock.picking.package.preparation</field>
+            <field name="binding_model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation"/>
         </record>
 
 </odoo>

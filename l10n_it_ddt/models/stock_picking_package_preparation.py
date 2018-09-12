@@ -164,8 +164,8 @@ class StockPickingPackagePreparation(models.Model):
         ddt = self.search([('picking_ids', '=', picking.id)])
         if ddt:
             raise UserError(
-                _("Selected Picking is already linked to DDT: %s")
-                % ddt.display_name
+                _(f"Selected Picking is already linked to DDT:"
+                  f" {ddt.display_name}")
             )
 
     @api.multi
@@ -210,20 +210,19 @@ class StockPickingPackagePreparation(models.Model):
             if prep.name:
                 name = prep.name
             if prep.ddt_number and prep.name:
-                name = '[%s] %s' % (prep.name, prep.ddt_number)
+                name = f"[{prep.name}] {prep.ddt_number}"
             if prep.ddt_number and not prep.name:
                 name = prep.ddt_number
             if not name:
-                name = '%s - %s' % (prep.partner_id.name, prep.date)
+                name = f"{prep.partner_id.name} - {prep.date}"
             prep.display_name = name
 
     @api.multi
     @api.depends('package_id',
-                 'package_id.children_ids',
                  'package_id.quant_ids',
                  'picking_ids',
                  'picking_ids.move_lines',
-                 'picking_ids.move_lines.quant_ids',
+                 'picking_ids.move_lines.quantity_done',
                  'weight_manual')
     def _compute_weight(self):
         super(StockPickingPackagePreparation, self)._compute_weight()
@@ -231,13 +230,13 @@ class StockPickingPackagePreparation(models.Model):
             if prep.weight_manual:
                 prep.weight = prep.weight_manual
             elif not prep.package_id:
-                quants = self.env['stock.quant']
+                stock_moves = []
                 for picking in prep.picking_ids:
-                    for line in picking.move_lines:
-                        for quant in line.quant_ids:
-                            if quant.qty >= 0:
-                                quants |= quant
-                weight = sum(l.product_id.weight * l.qty for l in quants)
+                    for move in picking.move_lines:
+                        if move.quantity_done > 0:
+                            stock_moves.append(move)
+                weight = sum(sm.product_id.weight * sm.quantity_done
+                             for sm in stock_moves)
                 prep.net_weight = weight
                 prep.weight = weight
 
@@ -248,8 +247,8 @@ class StockPickingPackagePreparation(models.Model):
         sale_order = False
         for picking in self.picking_ids:
             for sm in picking.move_lines:
-                if sm.procurement_id and sm.procurement_id.sale_line_id:
-                    sale_order = sm.procurement_id.sale_line_id.order_id
+                if sm.sale_line_id:
+                    sale_order = sm.sale_line_id.order_id
                     return sale_order
         return sale_order
 
@@ -283,19 +282,6 @@ class StockPickingPackagePreparation(models.Model):
         """
         self.ensure_one()
         order = self._get_sale_order_ref()
-        if order:
-            # Most of the values will be overwritten below,
-            # but this preserves inheritance chain
-            res = order._prepare_invoice()
-        else:
-            # Initialise res with the fields in sale._prepare_invoice
-            # that won't be overwritten below
-            res = {
-                'type': 'out_invoice',
-                'partner_shipping_id':
-                    self.partner_id.address_get(['delivery'])['delivery'],
-                'company_id': self.company_id.id
-            }
         journal_id = self._context.get('invoice_journal_id', False)
         if not journal_id:
             journal_id = self.env['account.invoice'].default_get(
@@ -309,30 +295,30 @@ class StockPickingPackagePreparation(models.Model):
             order and order.partner_invoice_id.id or
             self.partner_id.address_get(['invoice'])['invoice'])
         invoice_partner = self.env['res.partner'].browse(invoice_partner_id)
-        invoice_description = self._prepare_invoice_description()
         currency_id = (
             order and order.pricelist_id.currency_id.id or
             journal.currency_id.id or journal.company_id.currency_id.id)
         payment_term_id = (
             order and order.payment_term_id.id or
             self.partner_id.property_payment_term_id.id)
-        fiscal_position_id = (
-            order and order.fiscal_position_id.id or
-            invoice_partner.property_account_position_id.id)
-        res.update({
+        invoice_description = self._prepare_invoice_description()
+        invoice_vals = {
             'name': invoice_description or '',
-            'origin': self.ddt_number,
             'date_invoice': self._context.get('invoice_date', False),
+            'origin': self.ddt_number,
+            'type': 'out_invoice',
             'account_id': (
                 invoice_partner.property_account_receivable_id.id),
             'partner_id': invoice_partner_id,
+            'partner_shipping_id': self.partner_id.id,
             'journal_id': journal_id,
             'currency_id': currency_id,
-            'fiscal_position_id': fiscal_position_id,
-            'payment_term_id': payment_term_id
-        })
-        # Now the rest of the fields dedicated to DDT
-        res.update({
+            # TODO 'comment': self.note,
+            'payment_term_id': payment_term_id,
+            'fiscal_position_id': (
+                order and order.fiscal_position_id.id or
+                invoice_partner.property_account_position_id.id),
+
             'carriage_condition_id': self.carriage_condition_id.id,
             'goods_description_id': self.goods_description_id.id,
             'transportation_reason_id': self.transportation_reason_id.id,
@@ -342,8 +328,8 @@ class StockPickingPackagePreparation(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
-        })
-        return res
+        }
+        return invoice_vals
 
     @api.multi
     def action_invoice_create(self):
@@ -365,10 +351,10 @@ class StockPickingPackagePreparation(models.Model):
                 group_partner_invoice_id = order.partner_invoice_id.id
                 group_currency_id = order.currency_id.id
             else:
-                group_method = (
-                    ddt.partner_shipping_id.ddt_invoicing_group)
+                group_method = ddt.partner_shipping_id.ddt_invoicing_group
                 group_partner_invoice_id = ddt.partner_id.id
                 group_currency_id = ddt.partner_id.currency_id.id
+
             if group_method == 'billing_partner':
                 group_key = (group_partner_invoice_id,
                              group_currency_id)
@@ -449,7 +435,7 @@ class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
 
     sale_line_id = fields.Many2one(
-        related='move_id.procurement_id.sale_line_id',
+        related='move_id.move_id.sale_line_id',
         string='Sale order line',
         store=True, readonly=True)
     price_unit = fields.Float('Unit Price', digits=dp.get_precision(
@@ -522,13 +508,13 @@ class StockPickingPackagePreparationLine(models.Model):
         """
         Add values used for invoice creation
         """
-        lines = super(StockPickingPackagePreparationLine, self).\
+        lines = super(StockPickingPackagePreparationLine, self). \
             _prepare_lines_from_pickings(picking_ids)
         for line in lines:
             sale_line = False
             if line['move_id']:
-                move = self.env['stock.move'].browse(line['move_id'])
-                sale_line = move.procurement_id.sale_line_id or False
+                move_line = self.env['stock.move.line'].browse(line['move_id'])
+                sale_line = move_line.move_id.sale_line_id or False
             if sale_line:
                 line['price_unit'] = sale_line.price_unit or 0
                 line['discount'] = sale_line.discount or 0
@@ -565,12 +551,10 @@ class StockPickingPackagePreparationLine(models.Model):
                     account = invoice.journal_id.default_credit_account_id
             if not account:
                 raise UserError(
-                    _(
-                        'Please define income account for this product: "%s" '
-                        '(id:%d) - or for its category: "%s".'
-                    ) % (
-                        self.product_id.name, self.product_id.id,
-                        self.product_id.categ_id.name
+                    _(f"Please define income account for this product:"
+                      f" \"{self.product_id.name}\" (id: {self.product_id.id})"
+                      f" - or for its category:"
+                      f" \"{self.product_id.categ_id.name}\"."
                     )
                 )
             fpos = None
@@ -584,10 +568,10 @@ class StockPickingPackagePreparationLine(models.Model):
                 account = fpos.map_account(account)
             res['account_id'] = account.id
 
-            if self.sale_line_id.order_id.project_id:
+            if self.sale_line_id.order_id.analytic_account_id:
                 res[
                     'account_analytic_id'
-                ] = self.sale_line_id.order_id.project_id.id
+                ] = self.sale_line_id.order_id.analytic_account_id.id
             if self.sale_line_id.analytic_tag_ids:
                 res['analytic_tag_ids'] = [
                     (6, 0, self.sale_line_id.analytic_tag_ids.ids)
@@ -627,20 +611,3 @@ class StockPickingPackagePreparationLine(models.Model):
                         ]})
                 self.env['account.invoice.line'].with_context(
                     skip_update_line_ids=True).create(vals)
-
-    def quantity_by_lot(self):
-        res = {}
-        for quant in self.move_id.quant_ids:
-            if quant.lot_id:
-                if quant.location_id.id == self.move_id.location_dest_id.id:
-                    if quant.lot_id not in res:
-                        res[quant.lot_id] = quant.qty
-                    else:
-                        res[quant.lot_id] += quant.qty
-        for lot in res:
-            if lot.product_id.tracking == 'lot':
-                res[lot] = formatLang(self.env, res[lot])
-            else:
-                # If not tracking by lots, quantity is not relevant
-                res[lot] = False
-        return res

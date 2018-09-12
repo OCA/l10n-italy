@@ -31,34 +31,40 @@ class AddPickingToDdt(models.TransientModel):
             if picking.ddt_ids and \
                     self.ddt_id.id in [d.id for d in picking.ddt_ids]:
                 raise UserError(
-                    _("Picking %s already in ddt") % picking.name)
+                    _(f"Picking {picking.name} already in ddt")
+                )
             elif (
                 current_ddt_shipping_partner != self.ddt_id.partner_shipping_id
             ):
                 raise UserError(
-                    _("Selected Picking %s have"
-                      " different Partner") % picking.name)
+                    _(f"Selected Picking {picking.name} have different"
+                      f" Partner")
+                )
             if picking.sale_id:
                 if picking.sale_id.carriage_condition_id != (
                         self.ddt_id.carriage_condition_id):
                     raise UserError(
-                        _("Selected Picking %s have"
-                          " different carriage condition") % picking.name)
+                        _(f"Selected Picking {picking.name} have different"
+                          f" carriage condition")
+                        )
                 elif picking.sale_id.goods_description_id != (
                         self.ddt_id.goods_description_id):
                     raise UserError(
-                        _("Selected Picking %s have "
-                          "different goods description") % picking.name)
+                        _(f"Selected Picking {picking.name} have different"
+                          f" goods description")
+                    )
                 elif picking.sale_id.transportation_reason_id != (
                         self.ddt_id.transportation_reason_id):
                     raise UserError(
-                        _("Selected Picking %s have"
-                          " different transportation reason") % picking.name)
+                        _(f"Selected Picking {picking.name} have different "
+                          f" transportation reason")
+                    )
                 elif picking.sale_id.transportation_method_id != (
                         self.ddt_id.transportation_method_id):
                     raise UserError(
-                        _("Selected Picking %s have"
-                          " different transportation method") % picking.name)
+                        _(f"Selected Picking {picking.name} have different"
+                          f" transportation method")
+                    )
             self.ddt_id.picking_ids = [(4, picking.id)]
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference(
