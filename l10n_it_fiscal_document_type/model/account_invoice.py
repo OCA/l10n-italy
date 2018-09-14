@@ -28,13 +28,14 @@ class AccountInvoice(models.Model):
             journal_id=journal_id)
         if journal_id:
             journal = self.env['account.journal'].browse(journal_id)
-            res['value']['fiscal_document_type_id'] = (
-                self._get_document_fiscal_type(
-                    journal=journal)[0] or False)
+            dt = self.env['fiscal.document.type'].search([
+                ('journal_ids', 'in', [journal.id])]).ids
+            if dt:
+                res['value']['fiscal_document_type_id'] = dt[0] or False
         return res
 
     def _get_document_fiscal_type(self, type=None, partner=None,
-                                  fiscal_position=None, journal=None):
+                                  fiscal_position=None):
         dt = []
         doc_id = False
         if not type:
@@ -42,20 +43,19 @@ class AccountInvoice(models.Model):
 
         # Partner
         if partner:
-            if type in ('out_invoice', 'out_refund'):
+            # out_refund and in_refund would be managed together as out_refund
+            # but creating another field in partner
+            if type == 'out_invoice':
                 doc_id = partner.out_fiscal_document_type.id or False
-            elif type in ('in_invoice', 'in_refund'):
+            elif type == 'in_invoice':
                 doc_id = partner.in_fiscal_document_type.id or False
         # Fiscal Position
         if not doc_id and fiscal_position:
             doc_id = fiscal_position.fiscal_document_type_id.id or False
-        # Journal
-        if not doc_id and journal:
-            dt = self.env['fiscal.document.type'].search([
-                ('journal_ids', 'in', [journal.id])]).ids
         if not doc_id and not dt:
-            # An in_refund is registered as an in_invoice. This case can be
-            # managed only by hand by user
+            # A 'nota di debito' is a particular case of invoice, not refund.
+            # So it is registered as an out_invoice by the vendor, and an
+            # in_invoice by the customer. This case can be managed only by hand
             if type == 'in_refund':
                 type = 'out_refund'
             dt = self.env['fiscal.document.type'].search([
