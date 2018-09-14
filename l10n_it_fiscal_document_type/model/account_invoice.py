@@ -54,6 +54,10 @@ class AccountInvoice(models.Model):
             dt = self.env['fiscal.document.type'].search([
                 ('journal_ids', 'in', [journal.id])]).ids
         if not doc_id and not dt:
+            # An in_refund is registered as an in_invoice. This case can be
+            # managed only by hand by user
+            if type == 'in_refund':
+                type = 'out_refund'
             dt = self.env['fiscal.document.type'].search([
                 (type, '=', True)]).ids
         if doc_id:
