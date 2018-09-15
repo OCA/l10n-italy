@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_fiscalcode',
         'odoo10-addon-l10n_it_fiscalcode_invoice',
         'odoo10-addon-l10n_it_ipa',
+        'odoo10-addon-l10n_it_location_nuts',
         'odoo10-addon-l10n_it_pec',
         'odoo10-addon-l10n_it_rea',
         'odoo10-addon-l10n_it_reverse_charge',
