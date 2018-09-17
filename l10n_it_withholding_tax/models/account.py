@@ -6,6 +6,7 @@
 from odoo import models, fields, api, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import formatLang
 
 
 class AccountPartialReconcile(models.Model):
@@ -275,6 +276,40 @@ class AccountMoveLine(models.Model):
                 wt_move.unlink()
 
         return super(AccountMoveLine, self).remove_move_reconcile()
+
+
+    @api.multi
+    def prepare_move_lines_for_reconciliation_widget(
+            self, target_currency=False, target_date=False):
+        """
+        Net amount for invoices with withholding tax
+        """
+        res = super(AccountMoveLine, self).prepare_move_lines_for_reconciliation_widget(
+            target_currency, target_date)
+        for dline in res:
+            if 'id' in dline and dline['id']:
+                line = self.browse(dline['id'])
+                company_currency = line.account_id.company_id.currency_id
+                line_currency = (line.currency_id and line.amount_currency) \
+                    and line.currency_id or company_currency
+                if line.withholding_tax_amount:
+                    dline['debit'] = line.debit - line.withholding_tax_amount \
+                        if line.debit else 0
+                    dline['credit'] = line.credit - line.withholding_tax_amount \
+                        if line.credit else 0
+                    amount = line.debit or line.credit
+                    amount_str = formatLang(
+                        self.env, abs(amount), currency_obj=target_currency)
+                    amount_currency_str = ""
+                    total_amount_currency_str = ""
+                    if line_currency != target_currency:
+                        amount_currency_str = formatLang(self.env, abs(actual_debit or actual_credit), currency_obj=line_currency)
+                        total_amount_currency_str = formatLang(self.env, total_amount, currency_obj=line_currency)
+                    dline['amount_str'] = amount_str
+                    dline['total_amount_str'] = amount_str
+                    dline['amount_currency_str'] = total_amount_currency_str
+                    dline['total_amount_currency_str'] = total_amount_currency_str
+        return res
 
 
 class AccountFiscalPosition(models.Model):
