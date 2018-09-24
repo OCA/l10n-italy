@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
+import odoo.addons.decimal_precision as dp
 
 RELATED_DOCUMENT_TYPES = {
     'order': 'DatiOrdineAcquisto',
@@ -54,7 +55,8 @@ class FatturapaPaymentDetail(models.Model):
     _name = "fatturapa.payment.detail"
     recipient = fields.Char('Recipient', size=200)
     fatturapa_pm_id = fields.Many2one(
-        'fatturapa.payment_method', string="Fattura Elettronica Payment Method")
+        'fatturapa.payment_method', string="Fattura Elettronica Payment Method"
+    )
     payment_term_start = fields.Date('Payment Term Start')
     payment_days = fields.Integer('Payment Term Days')
     payment_due_date = fields.Date('Payment due Date')
@@ -130,7 +132,7 @@ class DiscountRisePrice(models.Model):
     name = fields.Selection(
         [('SC', 'Discount'), ('MG', 'Rise Price')], 'Type')
     percentage = fields.Float('Percentage')
-    amount = fields.Float('Amount')
+    amount = fields.Float('Amount', digits=dp.get_precision('Discount'))
     invoice_line_id = fields.Many2one(
         'account.invoice.line', 'Related Invoice',
         ondelete='cascade', index=True

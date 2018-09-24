@@ -5,9 +5,6 @@ from odoo.http import Controller, route, request
 
 class FatturaElettronicaController(Controller):
 
-    #------------------------------------------------------
-    # Report controllers
-    #------------------------------------------------------
     @route([
         '/fatturapa/preview/<attachment_id>',
     ], type='http', auth='user', website=True)
@@ -17,10 +14,6 @@ class FatturaElettronicaController(Controller):
         pdf = request.env['report']._run_wkhtmltopdf(
             [], [], [[False, html]], None, None)
         pdfhttpheaders = [
-            ('Content-Type', 'application/pdf'), ('Content-Length', len(pdf)),
-            # (
-            #     'Content-Disposition', 'attachment; '
-            #     'filename="fatturaelettronica%s.pdf"' % attachment_id
-            # ),
+            ('Content-Type', 'application/pdf'), ('Content-Length', len(pdf))
         ]
         return request.make_response(pdf, headers=pdfhttpheaders)
