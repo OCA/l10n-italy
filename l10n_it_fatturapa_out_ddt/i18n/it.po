@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_ddt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-24 16:24+0000\n"
+"PO-Revision-Date: 2018-09-24 16:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
+msgid "Dati DDT"
+msgstr "Dati DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
+msgid "Export FatturaPA"
+msgstr "Esporta fattura elettronica"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: selection:wizard.export.fatturapa,include_ddt_data:0
+msgid "Includi Dati DDT"
+msgstr "Includi Dati DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
+msgid "Includi Dati DDT: Blocco da valorizzare nei casi di fattura \"differita\" per indicare il documento con cui è stato consegnato il bene\n"
+"Includi Dati Trasporto: Blocco valorizzabile nei casi di fattura \"accompagnatoria\" per inserire informazioni relative al trasporto"
+msgstr "Includi Dati DDT: Blocco da valorizzare nei casi di fattura \"differita\" per indicare il documento con cui è stato consegnato il bene\n"
+"Includi Dati Trasporto: Blocco valorizzabile nei casi di fattura \"accompagnatoria\" per inserire informazioni relative al trasporto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: selection:wizard.export.fatturapa,include_ddt_data:0
+msgid "Includi Dati Trasporto"
+msgstr "Includi Dati Trasporto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:82
+#, python-format
+msgid "TIN not set for %s"
+msgstr "Partita IVA non impostata per %s"
+
