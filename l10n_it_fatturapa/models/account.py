@@ -54,7 +54,8 @@ class FatturapaPaymentDetail(models.Model):
     _name = "fatturapa.payment.detail"
     recipient = fields.Char('Recipient', size=200)
     fatturapa_pm_id = fields.Many2one(
-        'fatturapa.payment_method', string="Fattura Elettronica Payment Method")
+        'fatturapa.payment_method', string="Fattura Elettronica Payment Method"
+    )
     payment_term_start = fields.Date('Payment Term Start')
     payment_days = fields.Integer('Payment Term Days')
     payment_due_date = fields.Date('Payment due Date')

@@ -348,7 +348,6 @@ class WizardExportFatturapa(models.TransientModel):
                     Nome=partner.firstname
                 )
 
-
         if partner.eori_code:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code

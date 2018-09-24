@@ -91,7 +91,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                 self.assertEqual(line.price_unit, 3)
                 welfare_found = True
         self.assertTrue(welfare_found)
-        self.assertTrue(len(invoice.e_invoice_line_ids)==1)
+        self.assertTrue(len(invoice.e_invoice_line_ids) == 1)
         self.assertEqual(
             invoice.e_invoice_line_ids[0].name, 'Prodotto di test al giorno')
         self.assertEqual(
@@ -106,7 +106,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             invoice.e_invoice_line_ids[0].tax_amount, 0)
         self.assertEqual(
             invoice.e_invoice_line_ids[0].tax_kind, 'N4')
-        self.assertTrue(len(invoice.e_invoice_line_ids[0].other_data_ids)==2)
+        self.assertTrue(len(invoice.e_invoice_line_ids[0].other_data_ids) == 2)
         self.assertEqual(
             invoice.e_invoice_line_ids[0].other_data_ids[0].text_ref,
             'Riferimento')
@@ -190,7 +190,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             invoice.invoice_line_ids[1].invoice_line_tax_ids[0].amount, 22)
         self.assertEqual(
             invoice.invoice_line_ids[1].price_unit, 2)
-        self.assertTrue(len(invoice.e_invoice_line_ids)==2)
+        self.assertTrue(len(invoice.e_invoice_line_ids) == 2)
         for e_line in invoice.e_invoice_line_ids:
             self.assertTrue(e_line.line_number in (1, 2))
             if e_line.line_number == 1:
@@ -225,7 +225,8 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             'SC')
         self.assertEqual(
             invoice.e_invoice_line_ids[0].discount_rise_price_ids[0].
-                percentage, 10)
+            percentage, 10
+        )
         self.assertEqual(invoice.amount_untaxed, 15)
         self.assertEqual(invoice.amount_tax, 0)
         self.assertEqual(invoice.amount_total, 15)

@@ -917,7 +917,6 @@ class WizardImportFatturapa(models.TransientModel):
                 ))
             invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
         # 2.2.1
-        CodeArts = self.env['fatturapa.article.code']
         e_invoice_line_ids = []
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
             if self.e_invoice_detail_level == '2':
@@ -1296,7 +1295,7 @@ class WizardImportFatturapa(models.TransientModel):
                 else:
                     invoice_inconsistencies = ''
                 invoice.inconsistencies = (
-                        generic_inconsistencies + invoice_inconsistencies)
+                    generic_inconsistencies + invoice_inconsistencies)
 
         return {
             'view_type': 'form',

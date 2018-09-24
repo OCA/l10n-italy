@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models, api, _
+from odoo import fields, models, api
 
 
 class AccountInvoice(models.Model):
@@ -34,6 +34,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         self.fatturapa_attachment_in_id = False
         return {'type': 'ir.actions.client', 'tag': 'reload'}
+
 
 class fatturapa_article_code(models.Model):
     # _position = ['2.2.1.3']
