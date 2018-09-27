@@ -36,7 +36,32 @@ class FatturaPAAttachmentOut(models.Model):
                              string="State",
                              default="ready",)
 
+    def get_pec_mail_server(self):
+        # TODO Should we pick a PEC SMTP server dedicated to fatturaPA only?
+        return self.env['ir.mail_server'].search([('is_pec', '=', True)],
+                                                 limit=1)
+
     @api.multi
     def send_via_pec(self):
-        # TODO Do the actual sending of PEC
+        pec_mail_server = self.get_pec_mail_server()
+
+        mail_message = self.env['mail.message'].create({
+            'model': self._name,
+            'res_id': self.id,
+            'subject': self.name,
+            'body': "XML file for FatturaPA {} sent to Exchange System to the"
+                    " email address {}."
+                .format(self.name, pec_mail_server.email_exchange_system),
+            'attachment_ids': [(6, 0, [self.ir_attachment_id.id])],
+            'email_from': pec_mail_server.email_from_for_fatturaPA,
+            'mail_server_id': pec_mail_server.id
+        })
+
+        self.env['mail.mail'].create({
+            'mail_message_id': mail_message.id,
+            'body_html': mail_message.body,
+            'email_to': pec_mail_server.email_exchange_system,
+        }).send()  # TODO Should we disable some mail.* config params before
+                   # TODO sending? See: https://tinyurl.com/ybr45fxd
+
         self.state = 'sent'
