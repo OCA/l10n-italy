@@ -22,6 +22,11 @@
 #
 ##############################################################################
 
-from . import fatturapa_attachment_out
-from . import fetchmail_server
-from . import ir_mail_server
+from odoo import fields, models
+
+
+class FetchmailServer(models.Model):
+    _inherit = "fetchmail.server"
+
+    is_pec = fields.Boolean("PEC server")
+

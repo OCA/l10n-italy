@@ -22,6 +22,15 @@
 #
 ##############################################################################
 
-from . import fatturapa_attachment_out
-from . import fetchmail_server
-from . import ir_mail_server
+from odoo import fields, models
+
+
+class IrMailServer(models.Model):
+    _inherit = "ir.mail_server"
+
+    is_pec = fields.Boolean("PEC server")
+
+    email_from_for_fatturaPA = fields.Char("Sender Email Address for FatturaPA")
+
+    email_exchange_system = fields.Char("Exchange System Email Address")
+
