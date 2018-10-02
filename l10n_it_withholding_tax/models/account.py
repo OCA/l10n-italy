@@ -21,7 +21,7 @@ class AccountPartialReconcile(models.Model):
         ml_ids = []
         if vals.get('debit_move_id'):
             ml_ids.append(vals.get('debit_move_id'))
-        if vals.get('debit_move_id'):
+        if vals.get('credit_move_id'):
             ml_ids.append(vals.get('credit_move_id'))
         for ml in self.env['account.move.line'].browse(ml_ids):
             domain = [('move_id', '=', ml.move_id.id)]
