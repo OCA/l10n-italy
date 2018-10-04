@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -156,13 +156,13 @@ msgid "Due"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:70
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:68
 #, python-format
 msgid "Error! Rates are required"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:139
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:137
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
 msgstr ""
@@ -386,13 +386,13 @@ msgid "W.T."
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:279
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:276
 #, python-format
 msgid "WT %s - %s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:289
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:286
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr ""
@@ -428,14 +428,14 @@ msgid "WT moves"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:132
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:380
+#: code:addons/l10n_it_withholding_tax/models/account.py:131
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:363
 #, python-format
 msgid "Warning! Only Withholding Tax moves in Due status                     can be deleted"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:275
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:272
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr ""
