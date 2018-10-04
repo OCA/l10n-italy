@@ -21,9 +21,9 @@
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
 <p>Dear ${object.partner_id.name},</p>
-<p>Here is your document of
+<p>Here is your document
 %if object.date:
-<strong>${object.date},</strong>
+ of <strong>${object.date},</strong>
 % endif
 %if object.date_done:
 with shipping date
