@@ -13,6 +13,11 @@
                         <field name="state" widget="statusbar"/>
                     </header>
                 </xpath>
+                <xpath expr="//div/group[last()]" position="after">
+                    <group name="last_sdi_response" string="Last Response from Exchange System" attrs="{'invisible':[('state', '=', 'ready')]}">
+                        <field name="last_sdi_response" nolabel="1"/>
+                    </group>
+                </xpath>
             </field>
         </record>
 

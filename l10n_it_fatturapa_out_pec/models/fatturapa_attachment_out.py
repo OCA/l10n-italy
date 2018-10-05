@@ -45,6 +45,9 @@ class FatturaPAAttachmentOut(models.Model):
                              string="State",
                              default="ready",)
 
+    last_sdi_response = fields.Text(string="Last Response from Exchange System",
+                                    default="No response yet")
+
     def get_pec_mail_server(self):
         # TODO Should we pick a PEC SMTP server dedicated to fatturaPA only?
         return self.env['ir.mail_server'].search([('is_pec', '=', True)],
