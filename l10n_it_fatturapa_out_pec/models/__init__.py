@@ -25,3 +25,4 @@
 from . import fatturapa_attachment_out
 from . import fetchmail_server
 from . import ir_mail_server
+from . import mail_thread

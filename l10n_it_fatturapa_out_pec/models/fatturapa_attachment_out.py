@@ -22,7 +22,16 @@
 #
 ##############################################################################
 
+import logging
+import re
+
+from lxml import etree
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
+
+RESPONSE_MAIL_REGEX = "[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_[a-zA-Z0-9]{,3}"
 
 
 class FatturaPAAttachmentOut(models.Model):
@@ -65,3 +74,45 @@ class FatturaPAAttachmentOut(models.Model):
                    # TODO sending? See: https://tinyurl.com/ybr45fxd
 
         self.state = 'sent'
+
+    @api.multi
+    def parse_pec_response(self, message_dict):
+        regex = re.compile(RESPONSE_MAIL_REGEX)
+        for attachment in message_dict['attachments']:
+            if regex.match(attachment.fname):
+                break
+
+        root = etree.fromstring(attachment.content)
+        fatturapa_name = root.find('NomeFile').text
+        fatturapa = self.search([('datas_fname', '=', fatturapa_name)])
+
+        if not fatturapa:
+            _logger.info("Error: FatturaPA {} not found.".format(fatturapa_name))
+            # TODO Send a mail warning
+            return message_dict
+
+        response_name = attachment.fname
+        message_type = response_name.split('_')[2]
+
+        if message_type == 'RC':  # Consegna
+            pass  # TODO change FatturaPA status
+        elif message_type == 'NS':  # Scarto
+            pass  # TODO change FatturaPA status
+        elif message_type == 'MC':  # Mancata consegna
+            pass  # TODO change FatturaPA status
+        elif message_type == 'NE':  # Esito cedente/prestatore
+            pass  # TODO Nothing to do
+        elif message_type == 'MT':  # Metadati
+            pass  # TODO Nothing to do
+        elif message_type == 'EC':  # Esito cessionario/committente
+            pass  # TODO Change FatturaPA status
+        elif message_type == 'SE':  # Scarto cessionario/committente
+            pass  # TODO Change fatturaPA status
+        elif message_type == 'DT':  # Decorrenza Termini
+            pass  # TODO Change FatturaPS status
+        elif message_type == 'AT':  # Avvenuta trasmissione + imposs. recapito
+            pass  # TODO Change FatturaPA status
+
+        message_dict['model'] = self._name
+        message_dict['res_id'] = fatturapa.id
+        return message_dict
