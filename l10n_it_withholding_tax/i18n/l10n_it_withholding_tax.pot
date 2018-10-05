@@ -392,13 +392,13 @@ msgid "W.T."
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:279
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:278
 #, python-format
 msgid "WT %s - %s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:289
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:288
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr ""
@@ -435,13 +435,13 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:131
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:380
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:379
 #, python-format
 msgid "Warning! Only Withholding Tax moves in Due status                     can be deleted"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:275
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:274
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr ""
