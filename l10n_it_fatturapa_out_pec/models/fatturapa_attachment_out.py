@@ -80,6 +80,9 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.multi
     def parse_pec_response(self, message_dict):
+        message_dict['model'] = self._name
+        message_dict['res_id'] = 0
+
         regex = re.compile(RESPONSE_MAIL_REGEX)
         for attachment in message_dict['attachments']:
             if regex.match(attachment.fname):
@@ -116,6 +119,5 @@ class FatturaPAAttachmentOut(models.Model):
         elif message_type == 'AT':  # Avvenuta trasmissione + imposs. recapito
             pass  # TODO Change FatturaPA status
 
-        message_dict['model'] = self._name
         message_dict['res_id'] = fatturapa.id
         return message_dict
