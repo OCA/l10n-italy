@@ -10,8 +10,8 @@ class FiscalDocumentType(models.Model):
     name = fields.Char(string='Nome', size=100)
     out_invoice = fields.Boolean(string='Fattura vendita')
     in_invoice = fields.Boolean(string='Fattura acquisto')
-    out_refund = fields.Boolean(string='Nota di credito')
-    in_refund = fields.Boolean(string='Nota di debito')
+    out_refund = fields.Boolean(string='Nota di credito (vendita)')
+    in_refund = fields.Boolean(string='Nota di credito (acquisto)')
     priority = fields.Integer(string='Priority', default='3')
 
     journal_ids = fields.Many2many(
