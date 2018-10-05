@@ -3,7 +3,6 @@
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
 from odoo import models, fields, api, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
@@ -276,6 +275,34 @@ class AccountMoveLine(models.Model):
                 wt_move.unlink()
 
         return super(AccountMoveLine, self).remove_move_reconcile()
+
+    @api.multi
+    def prepare_move_lines_for_reconciliation_widget(
+            self, target_currency=False, target_date=False):
+        """
+        Net amount for invoices with withholding tax
+        """
+        res = super(
+            AccountMoveLine, self
+        ).prepare_move_lines_for_reconciliation_widget(
+            target_currency, target_date)
+        for dline in res:
+            if 'id' in dline and dline['id']:
+                line = self.browse(dline['id'])
+                if line.withholding_tax_amount:
+                    dline['debit'] = (
+                        line.debit - line.withholding_tax_amount if line.debit
+                        else 0
+                    )
+                    dline['credit'] = (
+                        line.credit - line.withholding_tax_amount
+                        if line.credit else 0
+                    )
+                    dline['name'] += (
+                        _(' (Net to pay: %s)')
+                        % (dline['debit'] or dline['credit'])
+                    )
+        return res
 
 
 class AccountFiscalPosition(models.Model):
