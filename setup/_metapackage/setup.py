@@ -17,6 +17,8 @@ setuptools.setup(
         'odoo11-addon-l10n_it_fiscal_document_type',
         'odoo11-addon-l10n_it_fiscalcode',
         'odoo11-addon-l10n_it_pec',
+        'odoo11-addon-l10n_it_withholding_tax',
+        'odoo11-addon-l10n_it_withholding_tax_payment',
     ],
     classifiers=[
         'Programming Language :: Python',
