@@ -136,8 +136,7 @@ class WithholdingTaxRate(models.Model):
                     self.id))
             if self.env.cr.fetchall():
                 raise ValidationError(
-                    _('Error! You cannot have 2 pricelist versions that \
-                    overlap!'))
+                    _('Error! You cannot have 2 rates that overlap!'))
 
     withholding_tax_id = fields.Many2one('withholding.tax',
                                          string='Withholding Tax',
