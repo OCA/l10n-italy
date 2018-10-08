@@ -1,5 +1,5 @@
-Integra gli ordini di acquisto con le fatture elettroniche passive.
+Integrate purchase orders with supplier electronic invoices.
 
-Con questo modulo è possibile collegare una fattura elettronica passiva ad un ordine di acquisto esistente nel sistema.
+With this module you can link a supplier electronic invoice to an existing purchase order.
 
-Così facendo si potrà tracciare se l'ordine è stato fatturato o meno.
+In this way, you track whether the order is invoiced or not.
