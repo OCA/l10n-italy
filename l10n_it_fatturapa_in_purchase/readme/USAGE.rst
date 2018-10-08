@@ -1,1 +1,1 @@
-Nelle fatture elettroniche passive in stato bozza, aprire la riga che si vuole collegare ad una riga di ordine d'acquisto e riempire il campo 'Riga ordine d'acquisto'.
+In draft supplier electronic invoices, open the line to be linked to a purchase order line and fill the 'purchase order line' field.
