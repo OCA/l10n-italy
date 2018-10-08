@@ -332,11 +332,11 @@ class WithholdingTaxMove(models.Model):
                 if self.payment_line_id.credit:
                     ml_vals['debit'] = self.amount
                     ml_vals['account_id'] = \
-                        self.withholding_tax_id.account_payable_id.id
+                        self.withholding_tax_id.account_receivable_id.id
                 else:
                     ml_vals['credit'] = self.amount
                     ml_vals['account_id'] = \
-                        self.withholding_tax_id.account_receivable_id.id
+                        self.withholding_tax_id.account_payable_id.id
             # self.env['account.move.line'].create(move_vals)
             move_lines.append((0, 0, ml_vals))
 
