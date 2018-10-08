@@ -1,3 +1,3 @@
-odoo server deve girare su linux ed essere in grado di lanciare il comando
+odoo server must run on linux and be able to run
 
 ``openssl``

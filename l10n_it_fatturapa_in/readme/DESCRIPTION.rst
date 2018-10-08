@@ -1,7 +1,7 @@
-Questo modulo permette di importare gli XML della fattura elettronica, versione 1.2
+This module allows to import XML files of electronic invoices, version 1.2
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 
-ricevuti tramite il sistema di interscambio
+received through the exchange system (SDI)
 
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm

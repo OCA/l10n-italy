@@ -16,13 +16,16 @@ Fattura Elettronica & DDT
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_fatturapa_out_ddt
     :alt: OCA/l10n-italy
-.. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/l10n-italy-10-0/l10n-italy-10-0-l10n_it_fatturapa_out_ddt
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/122/10.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Il modulo permette all'utente di scegliere se e come riempire i campi dell'XML della fattura elettronica con i dati relativi al DDT, nei due scenari di fattura differita e fattura accompagnatoria
+The module allows to choose if and how to fill XML fields related to DDT, in the two cases 'fattura differita' and 'fattura accompagnatoria'
 
 **Table of contents**
 
@@ -32,18 +35,19 @@ Il modulo permette all'utente di scegliere se e come riempire i campi dell'XML d
 Usage
 =====
 
-Nel wizard di esportazione della fattura elettronica, è possibile scegliere 'Includi Dati DDT' o 'Includi Dati Trasporto'.
+In export electronic invoice wizard, you can choose 'include DDT data' or 'include transport data'.
 
-Nel primo caso viene gestito il blocco da valorizzare nei casi di fattura "differita" per indicare il documento con cui è stato consegnato il bene.
+In the first case, the system will add to XML file data related to "fattura differita", to specify the documents (DDT) that delivered goods.
 
-Nel secondo il blocco valorizzabile nei casi di fattura "accompagnatoria" per inserire informazioni relative al trasporto
+In the second one, data related to "fattura accompagnatoria", to specify information about transport.
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_fatturapa_out_ddt%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 

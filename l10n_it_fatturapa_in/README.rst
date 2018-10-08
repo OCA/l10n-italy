@@ -25,11 +25,11 @@ Italian Localization - Fattura Elettronica reception
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Questo modulo permette di importare gli XML della fattura elettronica, versione 1.2
+This module allows to import XML files of electronic invoices, version 1.2
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 
-ricevuti tramite il sistema di interscambio
+received through the exchange system (SDI)
 
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
@@ -41,39 +41,37 @@ http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 Installation
 ============
 
-odoo server deve girare su linux ed essere in grado di lanciare il comando
+odoo server must run on linux and be able to run
 
 ``openssl``
 
 Configuration
 =============
 
-Vedi anche il README del modulo l10n_it_fatturapa.
+Also see the README file of l10n_it_fatturapa module.
 
-Per ogni fornitore è possibile impostare il 'Livello di dettaglio Fatture elettroniche':
+For every supplier, it is possible to set the 'details level of electronic invoices':
 
- - Livello minimo: La fattura passiva viene creata senza righe; sarà l'utente a doverle creare in base a quanto indicato dal fornitore nella fattura elettronica
- - Livello Massimo: tutte le righe presenti nella fattura elettronica vengono create come righe della fattura passiva
+ - Minimum level: Supplier invoice is created without lines; user will have to create them, according to what specified in electronic invoice
+ - Maximum level: every line contained in electronic invoice will create a line in supplier invoice.
 
-E' inoltre possibile impostare il campo 'prodotto di default per le fatture elettroniche' nella scheda del fornitore: questo prodotto verrà usato in fase di importazione della fattura passiva quando nessun altro possibile prodotto verrà trovato dal sistema, utilizzando quindi il conto e l'imposta preconfigurati sul prodotto.
+Moreover, it is possible, in supplier form, to set the 'default product for electronic invoices': this product will be used, during generation of supplier invoices, when no other possible product is found. Tax and account of invoice line will be set according to what configured in the product.
 
-Per ogni codice prodotto usato dai fornitori, impostarlo nel campo
+Every product code used by suppliers can be set, in product form, in
 
-Inventario --> Fornitori
+Inventory --> Suppliers
 
-nella scheda del prodotto.
-
-Se il fornitore specificherà tale codice nell'XML, il sistema lo userà per recuperare il prodotto ed usarlo nella riga della fattura, impostando il relativo conto acquisti ed eventualmente l'IVA.
+If supplier specifies a known code in XML, the system will use it to retrieve the correct product to be used in invoice line, setting the related tax and account.
 
 Usage
 =====
 
- * Andare su Contabilità --> Acquisti --> Fattura Elettronica
- * Caricare il file XML
- * Visualizzare la fattura cliccando su 'mostra anteprima'
- * Lanciare il wizard 'Importa Fattura Elettronica' per creare una fattura bozza oppure lanciare il wizard 'collega ad una fattura fornitore esistente' per collegare il file ad una fattura già creata, automaticamente o manualmente, nel sistema
+ * Go to Accounting --> Purchases --> Electronic Invoice
+ * Upload XML file
+ * View invoice content clicking on 'show preview'
+ * Run 'import electronic invoice' wizard to create a draft invoice or run 'link to existing supplier invoice' to link the XML file to an already (automatically) created invoice
 
-Nell'elenco dei file Fattura Elettronica in ingresso vengono mostrati di default i file ancora da registrare, cioè i file non ancora associati ad una o più fatture passive
+In the incoming electronic invoice files list, by default you will see files to be registered, that is files not yet linked to one or more supplier invoices
 
 Bug Tracker
 ===========

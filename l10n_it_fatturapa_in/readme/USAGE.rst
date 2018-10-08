@@ -1,6 +1,6 @@
- * Andare su Contabilità --> Acquisti --> Fattura Elettronica
- * Caricare il file XML
- * Visualizzare la fattura cliccando su 'mostra anteprima'
- * Lanciare il wizard 'Importa Fattura Elettronica' per creare una fattura bozza oppure lanciare il wizard 'collega ad una fattura fornitore esistente' per collegare il file ad una fattura già creata, automaticamente o manualmente, nel sistema
+ * Go to Accounting --> Purchases --> Electronic Invoice
+ * Upload XML file
+ * View invoice content clicking on 'show preview'
+ * Run 'import electronic invoice' wizard to create a draft invoice or run 'link to existing supplier invoice' to link the XML file to an already (automatically) created invoice
 
-Nell'elenco dei file Fattura Elettronica in ingresso vengono mostrati di default i file ancora da registrare, cioè i file non ancora associati ad una o più fatture passive
+In the incoming electronic invoice files list, by default you will see files to be registered, that is files not yet linked to one or more supplier invoices

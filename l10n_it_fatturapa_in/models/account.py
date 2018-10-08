@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import fields, models, api
+import odoo.addons.decimal_precision as dp
 
 
 class AccountInvoice(models.Model):
@@ -78,11 +79,17 @@ class EInvoiceLine(models.Model):
         'Cod. Articles', readonly=True
     )
     name = fields.Char("Descrizione", readonly=True)
-    qty = fields.Float("Quantita'", readonly=True)
+    qty = fields.Float(
+        "Quantita'", readonly=True,
+        digits=dp.get_precision('Product Unit of Measure')
+    )
     uom = fields.Char("Unita' di misura", readonly=True)
     period_start_date = fields.Date("Data Inizio Periodo", readonly=True)
     period_end_date = fields.Date("Data Fine Periodo", readonly=True)
-    unit_price = fields.Float("Prezzo unitario", readonly=True)
+    unit_price = fields.Float(
+        "Prezzo unitario", readonly=True,
+        digits=dp.get_precision('Product Price')
+    )
     discount_rise_price_ids = fields.One2many(
         'discount.rise.price', 'e_invoice_line_id',
         'Discount and Rise Price Details', readonly=True

@@ -1,5 +1,5 @@
-Nel wizard di esportazione della fattura elettronica, è possibile scegliere 'Includi Dati DDT' o 'Includi Dati Trasporto'.
+In export electronic invoice wizard, you can choose 'include DDT data' or 'include transport data'.
 
-Nel primo caso viene gestito il blocco da valorizzare nei casi di fattura "differita" per indicare il documento con cui è stato consegnato il bene.
+In the first case, the system will add to XML file data related to "fattura differita", to specify the documents (DDT) that delivered goods.
 
-Nel secondo il blocco valorizzabile nei casi di fattura "accompagnatoria" per inserire informazioni relative al trasporto
+In the second one, data related to "fattura accompagnatoria", to specify information about transport.

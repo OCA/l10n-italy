@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
+import odoo.addons.decimal_precision as dp
 
 RELATED_DOCUMENT_TYPES = {
     'order': 'DatiOrdineAcquisto',
@@ -131,7 +132,7 @@ class DiscountRisePrice(models.Model):
     name = fields.Selection(
         [('SC', 'Discount'), ('MG', 'Rise Price')], 'Type')
     percentage = fields.Float('Percentage')
-    amount = fields.Float('Amount')
+    amount = fields.Float('Amount', digits=dp.get_precision('Discount'))
     invoice_line_id = fields.Many2one(
         'account.invoice.line', 'Related Invoice',
         ondelete='cascade', index=True
