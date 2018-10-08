@@ -425,6 +425,7 @@ class AccountInvoice(models.Model):
         wt_statement_obj = self.env['withholding.tax.statement']
         for inv_wt in self.withholding_tax_line_ids:
             val = {
+                'type': False,
                 'date': self.move_id.date,
                 'move_id': self.move_id.id,
                 'invoice_id': self.id,
