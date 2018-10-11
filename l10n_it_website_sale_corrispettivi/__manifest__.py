@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -7,9 +6,9 @@
     'category': 'e-commerce',
     'author': 'Agile Business Group,'
               'Odoo Community Association (OCA)',
-    'version': '10.0.1.1.1',
+    'version': '11.0.1.0.0',
     'license': 'AGPL-3',
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
+    'website': 'https://github.com/OCA/l10n-italy/tree/11.0/'
                'l10n_it_website_sale_corrispettivi',
     'depends': [
         'website_sale',
