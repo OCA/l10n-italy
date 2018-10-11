@@ -19,6 +19,16 @@ class AccountTax(models.Model):
         'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
         string='Parent Taxes')
 
+    def _get_tax_amount(self):
+        self.ensure_one()
+        res = 0.0
+        if self.amount_type == 'group':
+            for child in self.children_tax_ids:
+                res += child.amount
+        else:
+            res = self.amount
+        return res
+
     def _get_tax_name(self):
         self.ensure_one()
         name = self.name

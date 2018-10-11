@@ -1,61 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="view_invoice_form_fatturapa" model="ir.ui.view">
-            <field name="name">account.invoice.fatturapa</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_form"></field>
-            <field name="arch" type="xml">
-                <xpath expr="//notebook" position="inside">
-                    <page string="Related Documents ">
-                        <group string="Related Documents">
-                            <field name="related_documents" nolabel="1">
-                                <tree editable="bottom" string="Related Documents">
-                                    <field name="type"></field>
-                                    <field name="name"></field>
-                                    <field name="lineRef" readonly="1"></field>
-                                    <field name="date"></field>
-                                    <field name="numitem"></field>
-                                    <field name="code"></field>
-                                    <field name="cig"></field>
-                                    <field name="cup"></field>
-                                </tree>
-                            </field>
-                        </group>
-                    </page>
-                    <page string="FatturaPA">
-                        <group>
-                            <group string="Results">
-                                <field name="fatturapa_attachment_out_id"></field>
-                            </group>
-                        </group>
-                    </page>
-                    <page string="FatturaPA attachments">
-                        <group string="Attachments">
-                            <field name="fatturapa_doc_attachments" nolabel="1" >
-                                <tree string="Attachments">
-                                    <field name="ir_attachment_id"></field>
-                                    <field name="datas_fname"></field>
-                                    <field name="description"></field>
-                                </tree>
-                                <form string="Attachments">
-                                    <group>
-                                        <group>
-                                            <field name="name"></field>
-                                            <field name="description"></field>
-                                        </group>
-                                        <group>
-                                                <field name="datas" filename="datas_fname" />
-                                            <field name="datas_fname"/>
-                                        </group>
-                                    </group>
-                                </form>
-                            </field>
-                        </group>
-                    </page>
-                </xpath>
+    <record id="view_invoice_form_fatturapa" model="ir.ui.view">
+        <field name="name">account.invoice.fatturapa</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"></field>
+        <field name="arch" type="xml">
+            <button name="action_invoice_proforma2" position="before">
+                <button name="%(action_wizard_export_fatturapa)d" type="action" states="open"
+                        string="Export E-invoice" class="oe_highlight"/>
+            </button>
+            <field name="partner_id" position="after">
+                <field name="electronic_invoice_subjected" invisible="1"/>
             </field>
-        </record>
-    </data>
-</openerp>
+            <field name="analytic_tag_ids" position="after">
+                <field name="admin_ref"/>
+            </field>
+            <xpath expr="//notebook" position="inside">
+                <page string="Related Documents"
+                      attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                    <group string="Related Documents">
+                        <field name="related_documents" nolabel="1">
+                            <tree editable="bottom" string="Related Documents">
+                                <field name="type"></field>
+                                <field name="name"></field>
+                                <field name="lineRef" readonly="1"></field>
+                                <field name="date"></field>
+                                <field name="numitem"></field>
+                                <field name="code"></field>
+                                <field name="cig"></field>
+                                <field name="cup"></field>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page string="Fattura Elettronica"
+                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                    <group>
+                        <group string="Results">
+                            <field name="fatturapa_attachment_out_id"></field>
+                        </group>
+                    </group>
+                </page>
+                <page string="Fattura Elettronica attachments"
+                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                    <group string="Attachments">
+                        <field name="fatturapa_doc_attachments" nolabel="1" >
+                            <tree string="Attachments">
+                                <field name="ir_attachment_id"></field>
+                                <field name="datas_fname"></field>
+                                <field name="description"></field>
+                            </tree>
+                            <form string="Attachments">
+                                <group>
+                                    <group>
+                                        <field name="name"></field>
+                                        <field name="description"></field>
+                                    </group>
+                                    <group>
+                                            <field name="datas" filename="datas_fname" />
+                                        <field name="datas_fname"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
