@@ -19,7 +19,7 @@ addon | version | summary
 [account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.1 | Account invoice report grouped by DDT
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.1.4.2 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
-[l10n_it_account](l10n_it_account/) | 10.0.1.2.2 | Italian Localization - Account
+[l10n_it_account](l10n_it_account/) | 10.0.1.2.3 | Italian Localization - Account
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
@@ -30,13 +30,16 @@ addon | version | summary
 [l10n_it_corrispettivi_sale](l10n_it_corrispettivi_sale/) | 10.0.1.0.1 | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.7.0 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.1.1.0 | Electronic invoices
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.0.0 | Electronic invoices
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.0.0 | Electronic invoices reception
+[l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Fattura Elettronica - Purchase integration
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.0.3 | Electronic invoices emission
+[l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.0 | Bridge module
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.0.1.0 | Italian Localization - Tipi di documento fiscali per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.1 | Italian Localisation - Fiscal Code
 [l10n_it_fiscalcode_invoice](l10n_it_fiscalcode_invoice/) | 10.0.1.0.0 | Italian Fiscal Code in invoice PDF
-[l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
+[l10n_it_ipa](l10n_it_ipa/) | 10.0.2.0.0 | IPA Code (IndicePA)
 [l10n_it_location_nuts](l10n_it_location_nuts/) | 10.0.1.0.0 | NUTS specific options for Italy
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
