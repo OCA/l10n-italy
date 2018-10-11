@@ -5,12 +5,15 @@
 
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.1.0',
     'category': 'Localisation/Italy',
     'author': "Odoo Italia Network, Odoo Community Association (OCA)",
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
-    'depends': ['base_vat'],
+    'depends': [
+        'base_vat',
+        'web_widget_char_switchcase'
+    ],
     'external_dependencies': {
         'python': ['codicefiscale'],
     },

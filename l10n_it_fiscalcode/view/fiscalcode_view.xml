@@ -8,7 +8,7 @@
             <xpath expr="//div[@name='vat_info']" position="after">
                 <label for="fiscalcode"/>
                 <div name="fiscalcode_info" class="o_row">
-                    <field name="fiscalcode"/>
+                    <field name="fiscalcode" options="{'transform': 'upper'}"/>
                     <field name="individual" colspan="1" groups="base.group_extended"/>
                 </div>
             </xpath>
