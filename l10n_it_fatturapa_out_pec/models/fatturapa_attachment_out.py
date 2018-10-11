@@ -106,18 +106,8 @@ class FatturaPAAttachmentOut(models.Model):
             pass  # TODO change FatturaPA status
         elif message_type == 'MC':  # Mancata consegna
             pass  # TODO change FatturaPA status
-        elif message_type == 'NE':  # Esito cedente/prestatore
-            pass  # TODO Nothing to do
         elif message_type == 'MT':  # Metadati
             pass  # TODO Nothing to do
-        elif message_type == 'EC':  # Esito cessionario/committente
-            pass  # TODO Change FatturaPA status
-        elif message_type == 'SE':  # Scarto cessionario/committente
-            pass  # TODO Change fatturaPA status
-        elif message_type == 'DT':  # Decorrenza Termini
-            pass  # TODO Change FatturaPS status
-        elif message_type == 'AT':  # Avvenuta trasmissione + imposs. recapito
-            pass  # TODO Change FatturaPA status
 
         message_dict['res_id'] = fatturapa.id
         return message_dict
