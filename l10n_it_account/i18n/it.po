@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-21 10:38+0000\n"
-"PO-Revision-Date: 2018-04-21 10:38+0000\n"
-"Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
+"PO-Revision-Date: 2018-10-14 16:00+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
 
 #. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -23,17 +24,17 @@ msgid ""
 "                      <span class=\"text-right\">Vat:</span>"
 msgstr ""
 "<br/>\n"
-"<span class=\"text-right\">IVA:</span>"
+"                      <span class=\"text-right\">IVA:</span>"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action
 msgid "Date Range Types"
-msgstr "Tipi Intervallo Date"
+msgstr "Tipi di intervallo date"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_action
 msgid "Date Ranges"
-msgstr "Intervalli Date"
+msgstr "Intervalli date"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range
@@ -43,17 +44,17 @@ msgstr "Intervalli date"
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
 msgid "Generate Date Ranges"
-msgstr "Genera intervalli date"
+msgstr "Generazione intervalli date"
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_cee_type
 msgid "Include in VAT register"
-msgstr "Includi nel registo IVA"
+msgstr "Includi nel registro IVA"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.account_italian_localization
 msgid "Italian Localization"
-msgstr "Fiscalità Italiana"
+msgstr "Fiscalità italiana"
 
 #. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -63,7 +64,7 @@ msgstr "Pag:"
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_parent_tax_ids
 msgid "Parent Taxes"
-msgstr "Imposte genitori"
+msgstr "Imposte padre"
 
 #. module: l10n_it_account
 #: selection:account.tax,cee_type:0
@@ -86,5 +87,5 @@ msgid ""
 "Use in the case of tax with 'VAT integration'. This specifies the VAT "
 "register (sales / purchases) where the tax must be computed."
 msgstr ""
-"Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro "
-"IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
+"Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
+"registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
