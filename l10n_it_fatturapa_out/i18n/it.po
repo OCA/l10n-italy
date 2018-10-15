@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-10-09 10:03+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2018-10-18 15:58+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_ir_attachment_id
@@ -23,12 +25,12 @@ msgstr "Allegato"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_name
 msgid "Attachment Name"
-msgstr "Nome Allegato"
+msgstr "Nome allegato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_local_url
 msgid "Attachment URL"
-msgstr "URL Allegato"
+msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
@@ -49,7 +51,7 @@ msgstr "Checksum/SHA1"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:257
 #, python-format
 msgid "City not set for %s"
-msgstr "Città non impostata per %s"
+msgstr "Città non impostata per %s."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_company_id
@@ -60,36 +62,36 @@ msgstr "Azienda"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:66
 #, python-format
 msgid "Company %s TIN not set."
-msgstr "P.IVA non impostata per l'azienda %s."
+msgstr "P. IVA dell'azienda %s non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:110
 #, python-format
 msgid "Company Country not set."
-msgstr "Nazione azienda non impostato."
+msgstr "Nazione dell'azienda non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:166
 #, python-format
 msgid "Company Telephone number not set."
-msgstr "Numero di telefono azienda non impostato."
+msgstr "Numero di telefono dell'azienda non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:119
 #, python-format
 msgid "Company does not have fiscal code or VAT"
-msgstr "L'azienda non ha codice fiscale o P.IVA"
+msgstr "Codice fiscale o P. IVA dell'azienda non impostati."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Confirm?"
-msgstr "Conferma?"
+msgstr "Confermare?"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:260
 #, python-format
 msgid "Country not set for %s"
-msgstr "Nazione non impostata per %s"
+msgstr "Nazione non impostata per %s."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_create_uid
@@ -112,36 +114,36 @@ msgstr "Creazione"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:419
 #, python-format
 msgid "Customer ZIP not set."
-msgstr "CAP cliente non impostato."
+msgstr "CAP del cliente non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:422
 #, python-format
 msgid "Customer city not set."
-msgstr "La Città del Cliente non è impostata."
+msgstr "Città del cliente non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:428
 #, python-format
 msgid "Customer country not set."
-msgstr "Nazione cliente non impostata."
+msgstr "Nazione del cliente non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:425
 #, python-format
 msgid "Customer province not set."
-msgstr "La Provincia del Cliente non è impostata."
+msgstr "Provincia del cliente non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:416
-#, python-format
+#, fuzzy, python-format
 msgid "Customer street not set."
-msgstr "La Via del Cliente non è impostata."
+msgstr "Indirizzo del cliente non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_db_datas
 msgid "Database Data"
-msgstr "Dati Database"
+msgstr "Dati del database"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_description
@@ -152,7 +154,7 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:171
@@ -168,40 +170,42 @@ msgstr "Esporta"
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Export E-invoice"
-msgstr "Esporta fatt. elettronica"
+msgstr "Esporta e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_wizard_export_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export Electronic Invoice"
-msgstr "Esporta fattura elettronica"
+msgstr "Esportazione fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_tree
+#, fuzzy
 msgid "Export Fattura Elettronica"
 msgstr "Export Fattura Elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_wizard_export_fatturapa
+#, fuzzy
 msgid "Export FatturaPA"
 msgstr "Export Fattura Elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Fattura Elettronica"
-msgstr "Fattura Elettronica"
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
 #: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
 msgid "Fattura Elettronica Export Files"
-msgstr "Fattura Elettronica Export Files"
+msgstr "File esportati fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Fattura Elettronica attachments"
-msgstr "Allegati Fattura Elettronica"
+msgstr "Allegati fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:99
@@ -214,40 +218,43 @@ msgstr "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_fatturapa_attachment_out_id
+#, fuzzy
 msgid "FatturaPA Export File"
 msgstr "Fattura Elettronica Export File"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:195
-#, python-format
+#, fuzzy, python-format
 msgid "FatturaPA fiscal position not set for company %s. (Go to Accounting --> Configuration --> Settings --> Fattura PA)"
-msgstr "Posizione fiscale non impostata per l'azienda %s. (Andare su Contabilità --> Configurazione --> Impostazioni --> Fattura PA)"
+msgstr ""
+"Posizione fiscale fatturaPA non impostata per l'azienda %s. (Andare su "
+"Contabilità --> Configurazione --> Impostazioni --> Fattura PA)"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:93
 #, python-format
 msgid "FatturaPA sequence not configured."
-msgstr "Sequenza FatturaPA non configurata."
+msgstr "Sequenza fatturaPA non configurata."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_datas
 msgid "File Content"
-msgstr "Contenuto del File"
+msgstr "Contenuto file"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_datas_fname
 msgid "File Name"
-msgstr "Nome File"
+msgstr "Nome file"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_file_size
 msgid "File Size"
-msgstr "Dimensione File"
+msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "History"
-msgstr "Storico"
+msgstr "Cronologia"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_id
@@ -267,33 +274,35 @@ msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:752
-#, python-format
+#, fuzzy, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
-msgstr "La fattura %s ha già un file di export di fattura elettronica"
+msgstr "File esportato fatturaPA già presente per la fattura %s"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/account.py:30
 #, python-format
 msgid "Invoice %s has XML and can't be canceled. Delete the XML before"
-msgstr "La fattura %s ha un file XML e non può essere eliminata. Eliminare prima il file."
+msgstr ""
+"File XML già presente per la fattura %s. Per annullarla eliminare prima il "
+"file."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:466
 #, python-format
 msgid "Invoice does not have a number."
-msgstr "La fattura non ha un numero."
+msgstr "La fattura non possiede un numero."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:563
 #, python-format
 msgid "Invoice line %s does not have tax"
-msgstr "La riga fattura %s non ha imposte"
+msgstr "La riga fattura %s non contiene imposte"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/account.py:22
 #, python-format
 msgid "Invoice line [%s] must not contain new line character"
-msgstr "La riga fattura [%s] non deve contenere caratteri nuova linea"
+msgstr "La riga fattura [%s] non deve contenere caratteri \"a capo\""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
@@ -321,31 +330,31 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_write_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_write_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_mimetype
 msgid "Mime Type"
-msgstr "Tipo Mime"
+msgstr "Tipo di MIME"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:630
-#, python-format
+#, fuzzy, python-format
 msgid "No 'law reference' field for tax %s"
-msgstr "Nessun riferimento normativo per l'imposta %s"
+msgstr "Campo \"riferimento normativo\" non valorizzato per l'imposta %s"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:589
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:626
-#, python-format
+#, fuzzy, python-format
 msgid "No 'nature' field for tax %s"
-msgstr "Nessuna natura per l'imposta %s"
+msgstr "Campo \"natura\" non valorizzato per l'imposta %s"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_out_invoice_ids
@@ -356,11 +365,11 @@ msgstr "Fatture emesse"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:72
 #, python-format
 msgid "Partner %s TIN not set."
-msgstr "P.IVA del partner %s non impostata."
+msgstr "P. IVA del partner %s non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:344
-#, python-format
+#, fuzzy, python-format
 msgid "Partner %s deve avere nome e cognome"
 msgstr "Partner %s deve avere nome e cognome"
 
@@ -368,61 +377,65 @@ msgstr "Partner %s deve avere nome e cognome"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:141
 #, python-format
 msgid "Partner %s is PA but does not have IPA code"
-msgstr "Il partner %s è una PA ma non ha un codice IPA"
+msgstr "Il partner %s è una PA, manca il codice IPA"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:147
 #, python-format
 msgid "Partner %s is not PA but does not have Codice Destinatario"
-msgstr "Il partner %s non è una PA ma non ha Codice Destinatario"
+msgstr "Il partner %s non è una PA, manca il Codice Destinatario"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:391
 #, python-format
 msgid "Partner VAT and Fiscalcode not set."
-msgstr "P.IVA e codice fiscale del partner non impostati."
+msgstr "P. IVA e codice fiscale del partner non impostati."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:652
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment method"
-msgstr "Il termine di pagamento %s non ha un metodo di pagamento di fattura elettronica collegato"
+msgstr ""
+"Il termine di pagamento %s non ha un metodo di pagamento di fatturaPA "
+"collegato"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:648
 #, python-format
 msgid "Payment term %s does not have a linked fatturaPA payment term"
-msgstr "Il termine di pagamento %s non ha un termine di pagamento di fattura elettronica collegato"
+msgstr ""
+"Il termine di pagamento %s non ha un termine di pagamento di fatturaPA "
+"collegato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_ftpa_preview_link
 msgid "Preview link"
-msgstr "Preview link"
+msgstr "Collegamento di anteprima"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Related Documents"
-msgstr "Documenti Correlati"
+msgstr "Documenti correlati"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_field
 msgid "Resource Field"
-msgstr "Campo Risorsa"
+msgstr "Campo risorsa"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_id
 msgid "Resource ID"
-msgstr "ID Risorsa"
+msgstr "ID risorsa"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_model
 msgid "Resource Model"
-msgstr "Modello della Risorsa"
+msgstr "Modello risorsa"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_name
 msgid "Resource Name"
-msgstr "Nome Risorsa"
+msgstr "Nome risorsa"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
@@ -432,7 +445,7 @@ msgstr "Risultati"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_store_fname
 msgid "Stored Filename"
-msgstr "Nome del File Registrato"
+msgstr "Nome file memorizzato"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:251
@@ -444,17 +457,18 @@ msgstr "Indirizzo non impostato per %s"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:191
 #, python-format
 msgid "TIN not set."
-msgstr "P.IVA non impostata."
+msgstr "P. IVA non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_model
 msgid "The database object this attachment will be attached to."
-msgstr "L'oggetto del database a cui verrà allegato questo allegato."
+msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_id
+#, fuzzy
 msgid "The record id this is attached to."
-msgstr "L'ID del record a cui questo è allegato."
+msgstr "L'ID del record a cui questo è collegato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:566
@@ -470,43 +484,45 @@ msgstr "Tipo"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_url
 msgid "Url"
-msgstr "Url"
+msgstr "URL"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:329
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:364
 #, python-format
 msgid "VAT and Fiscalcode not set for %s"
-msgstr "P.IVA e codice fiscale non impostati per %s"
+msgstr "P. IVA e codice fiscale non impostati per %s"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_type
 msgid "You can either upload a file from your computer or copy/paste an internet link to your file."
-msgstr "Puoi inviare un file dal computer o copiare/incollare un indirizzo Internet che è collegato al tuo file."
+msgstr ""
+"È possibile caricare un file dal computer oppure fare copia/incolla di un "
+"collegamento Internet nel file."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:230
 #, python-format
 msgid "Your company City not set."
-msgstr "La città della tua azienda non è impostata."
+msgstr "La città dell'azienda non è impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:233
 #, python-format
 msgid "Your company Country not set."
-msgstr "La nazione della tua azienda non è impostata."
+msgstr "La nazione dell'azienda non è impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:224
 #, python-format
 msgid "Your company Street not set."
-msgstr "L'indirizzo della tua azienda non è impostato."
+msgstr "L'indirizzo dell'azienda non è impostato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:227
 #, python-format
 msgid "Your company ZIP not set."
-msgstr "Il CAP della tua azienda non è impostato."
+msgstr "Il CAP dell'azienda non è impostato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:254
@@ -518,4 +534,3 @@ msgstr "CAP non impostato per %s"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "on"
 msgstr "il"
-
