@@ -11,8 +11,7 @@
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': [
-        'base_vat',
-        'web_widget_char_switchcase'
+        'base_vat'
     ],
     'external_dependencies': {
         'python': ['codicefiscale'],

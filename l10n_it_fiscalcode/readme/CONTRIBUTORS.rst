@@ -10,3 +10,4 @@
 * Andrea Cometa <info@andreacometa.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
+* Simone Rubino <simone.rubino@agilebg.com>
