@@ -1,26 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-##############################################################################
-#
-#    Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
-#
-#    Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Lesser General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or (at
-#    your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Lesser General Public License
-#    along with this program. If not, see:
-#    http://www.gnu.org/licenses/lgpl-3.0.txt.
-#
-##############################################################################
+# Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
+# Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 
@@ -35,9 +16,13 @@ class MailThread(models.AbstractModel):
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
-        if "@pec.fatturapa.it" in message.__getitem__('Reply-To'): # FIXME Unreliable?
-            _logger.info("Processing FatturaPA PEC Response with Message-Id: {}"
-                         .format(message.get('Message-Id')))
+        if any("@pec.fatturapa.it" in x for x in [
+            message.get('Reply-To', ''),
+            message.get('From', ''),
+            message.get('Return-Path', '')]
+        ):
+            _logger.info("Processing FatturaPA PEC Response with Message-Id: "
+                         "{}".format(message.get('Message-Id')))
             message_dict = self.env['fatturapa.attachment.out']\
                 .parse_pec_response(message_dict)
 
@@ -58,6 +43,13 @@ class MailThread(models.AbstractModel):
                          .format(message.get('Message-Id')))
             return []
 
-        return super(MailThread, self).message_route(message, message_dict,
-            model=model, thread_id=thread_id, custom_values=custom_values)
+        elif self._context.get('fetchmail_server_id', False):
+            fetchmail_server_id = self.env['fetchmail.server'].browse(
+                self._context['fetchmail_server_id'])
+            if fetchmail_server_id.is_fatturapa_pec:
+                # todo send email for non-routable pec mail
+                return []
 
+        return super(MailThread, self).message_route(
+            message, message_dict, model=model, thread_id=thread_id,
+            custom_values=custom_values)
