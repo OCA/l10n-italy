@@ -88,15 +88,6 @@ class FatturaPAAttachmentOut(models.Model):
             if regex.match(attachment.fname):
                 break
 
-        root = etree.fromstring(attachment.content)
-        fatturapa_name = root.find('NomeFile').text
-        fatturapa = self.search([('datas_fname', '=', fatturapa_name)])
-
-        if not fatturapa:
-            _logger.info("Error: FatturaPA {} not found.".format(fatturapa_name))
-            # TODO Send a mail warning
-            return message_dict
-
         response_name = attachment.fname
         message_type = response_name.split('_')[2]
 
@@ -107,7 +98,17 @@ class FatturaPAAttachmentOut(models.Model):
         elif message_type == 'MC':  # Mancata consegna
             pass  # TODO change FatturaPA status
         elif message_type == 'MT':  # Metadati
-            pass  # TODO Nothing to do
+            # TODO Nothing to do - it is an incoming invoice
+            return message_dict, message_type
+
+        root = etree.fromstring(attachment.content)
+        fatturapa_name = root.find('NomeFile').text
+        fatturapa = self.search([('datas_fname', '=', fatturapa_name)])
+
+        if not fatturapa:
+            _logger.info("Error: FatturaPA {} not found.".format(fatturapa_name))
+            # TODO Send a mail warning
+            return message_dict, message_type
 
         message_dict['res_id'] = fatturapa.id
-        return message_dict
+        return message_dict, message_type

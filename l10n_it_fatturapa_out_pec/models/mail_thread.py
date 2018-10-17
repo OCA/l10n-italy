@@ -35,11 +35,22 @@ class MailThread(models.AbstractModel):
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
-        if "@pec.fatturapa.it" in message.__getitem__('Reply-To'): # FIXME Unreliable?
-            _logger.info("Processing FatturaPA PEC Response with Message-Id: {}"
-                         .format(message.get('Message-Id')))
-            message_dict = self.env['fatturapa.attachment.out']\
+        if "@pec.fatturapa.it" in message_dict.get('from', False):
+            _logger.info("Processing FatturaPA PEC Response with Message-Id: "
+                         "{}".format(message.get('Message-Id')))
+            message_dict, message_type = self.env['fatturapa.attachment.out']\
                 .parse_pec_response(message_dict)
+
+            if message_type == 'MT':
+                if not self.env['ir.module.module'].search([
+                        ('name', '=', 'l10n_it_fatturapa_in_pec'),
+                        ('state', '=', 'installed')]):
+                    return []
+                else:
+                    return super(MailThread, self).message_route(
+                        message, message_dict, model=model,
+                        thread_id=thread_id,
+                        custom_values=custom_values)
 
             message_dict['record_name'] = message_dict['subject']
             attachment_ids = self._message_post_process_attachments(
