@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2018-10-08 09:34+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2018-10-21 18:00+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_abi
@@ -24,17 +26,17 @@ msgstr "ABI"
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:67
 #, python-format
 msgid "ASN.1 structure is not parsable in DER"
-msgstr "ASN.1 structure is not parsable in DER"
+msgstr "La struttura ASN.1 non può essere analizzata con DER"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_activity_progress_fatturapa_activity_progress
 msgid "Activity Progress"
-msgstr "Progresso Attività"
+msgstr "Avanzamento attività"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_line_admin_ref
 msgid "Admin. ref."
-msgstr "Rif. amm."
+msgstr "Rif. ammin."
 
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
@@ -49,10 +51,11 @@ msgstr "Importo"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_penalty_amount
 msgid "Amount of Penality"
-msgstr "Penalita Pagamenti Ritardati"
+msgstr "Importo della penalità"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_amount_tax
+#, fuzzy
 msgid "Amount tax"
 msgstr "Importo imposte"
 
@@ -65,10 +68,11 @@ msgstr "Importo imponibile"
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:42
 #, python-format
 msgid "An error with command \"openssl asn1parse\" occurred: %s"
-msgstr "An error with command \"openssl asn1parse\" occurred: %s"
+msgstr "Errore del comando \"openssl asn1parse\": %s"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_rounding
+#, fuzzy
 msgid "Arrotondamento"
 msgstr "Arrotondamento"
 
@@ -76,8 +80,9 @@ msgstr "Arrotondamento"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_art73
+#, fuzzy
 msgid "Art73"
-msgstr "Art73"
+msgstr "Art. 73"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_ir_attachment_id
@@ -87,12 +92,12 @@ msgstr "Allegato"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_name
 msgid "Attachment Name"
-msgstr "Nome Allegato"
+msgstr "Nome allegato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_local_url
 msgid "Attachment URL"
-msgstr "URL Allegato"
+msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_bic
@@ -102,23 +107,33 @@ msgstr "BIC"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_name
 msgid "Bank name"
-msgstr "Nome Banca"
+msgstr "Nome banca"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_stabile_organizzazione
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company_fatturapa_stabile_organizzazione
+#, fuzzy
 msgid "Blocco da valorizzare nei casi di cedente / prestatore non residente, con stabile organizzazione in Italia"
-msgstr "Blocco da valorizzare nei casi di cedente / prestatore non residente, con stabile organizzazione in Italia"
+msgstr ""
+"Blocco da valorizzare nei casi di cedente / prestatore non residente, con "
+"stabile organizzazione in Italia"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_indirizzo
+#, fuzzy
 msgid "Blocco da valorizzare nei casi di cedente / prestatore non residente, con stabile organizzazione in Italia. Indirizzo della stabile organizzazione in Italia (nome della via, piazza etc.)"
-msgstr "Blocco da valorizzare nei casi di cedente / prestatore non residente, con stabile organizzazione in Italia. Indirizzo della stabile organizzazione in Italia (nome della via, piazza etc.)"
+msgstr ""
+"Blocco da valorizzare nei casi di cedente / prestatore non residente, con "
+"stabile organizzazione in Italia. Indirizzo della stabile organizzazione in "
+"Italia (nome della via, piazza etc.)"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_tax_representative
+#, fuzzy
 msgid "Blocco da valorizzare nei casi in cui il cedente / prestatore si avvalga di un rappresentante fiscale in Italia"
-msgstr "Blocco da valorizzare nei casi in cui il cedente / prestatore si avvalga di un rappresentante fiscale in Italia"
+msgstr ""
+"Blocco da valorizzare nei casi in cui il cedente / prestatore si avvalga di "
+"un rappresentante fiscale in Italia"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_cab
@@ -127,13 +142,15 @@ msgstr "CAB"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_cap
+#, fuzzy
 msgid "CAP Organizzazione"
-msgstr "CAP Organizzazione"
+msgstr "CAP organizzazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_recepit_cf
+#, fuzzy
 msgid "CF Quietanzante"
-msgstr "CF Quietanzante"
+msgstr "CF quietanzante"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_cig
@@ -147,6 +164,7 @@ msgstr "Codice CUP"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_carrier_id
+#, fuzzy
 msgid "Carrier"
 msgstr "Trasportatore"
 
@@ -157,8 +175,9 @@ msgstr "Checksum/SHA1"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_civico
+#, fuzzy
 msgid "Civico Organizzazione"
-msgstr "Civico Organizzazione"
+msgstr "Civico organizzazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_document_type_code
@@ -171,24 +190,28 @@ msgstr "Codice"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_cap
+#, fuzzy
 msgid "Codice Avviamento Postale"
 msgstr "Codice Avviamento Postale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_codice_destinatario
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_codice_destinatario
+#, fuzzy
 msgid "Codice Destinatario"
-msgstr "Codice Destinatario"
+msgstr "Codice destinatario"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_nazione
+#, fuzzy
 msgid "Codice della nazione espresso secondo lo standard ISO 3166-1 alpha-2 code"
-msgstr "Codice della nazione espresso secondo lo standard ISO 3166-1 alpha-2 code"
+msgstr ""
+"Codice della nazione espresso secondo lo standard ISO 3166-1 alpha-2 code"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_recepit_surname
 msgid "Cognome Quietanzante"
-msgstr "Cognome Quietanzante"
+msgstr "Cognome quietanzante"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_res_company
@@ -203,15 +226,17 @@ msgstr "Azienda"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_compression
 msgid "Compression"
-msgstr "Algoritmo Compressione"
+msgstr "Compressione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_comune
+#, fuzzy
 msgid "Comune Organizzazione"
-msgstr "Comune Organizzazione"
+msgstr "Comune organizzazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_comune
+#, fuzzy
 msgid "Comune relativo alla stabile organizzazione in Italia"
 msgstr "Comune relativo alla stabile organizzazione in Italia"
 
@@ -266,7 +291,7 @@ msgstr "Creato il"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_db_datas
 msgid "Database Data"
-msgstr "Dati Database"
+msgstr "Dati database"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_date
@@ -277,8 +302,11 @@ msgstr "Data"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_sender_partner
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company_fatturapa_sender_partner
+#, fuzzy
 msgid "Dati relativi al soggetto terzo che emette fattura per conto del cedente / prestatore"
-msgstr "Dati relativi al soggetto terzo che emette fattura per conto del cedente / prestatore"
+msgstr ""
+"Dati relativi al soggetto terzo che emette fattura per conto del cedente / "
+"prestatore"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
@@ -288,7 +316,7 @@ msgstr "Esigibilità differita"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_delivery_address
 msgid "Delivery Address"
-msgstr "Indirizzo di Consegna"
+msgstr "Indirizzo di consegna"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_delivery_datetime
@@ -333,18 +361,18 @@ msgstr "Dettagli sconto e maggiorazione"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_type
 msgid "Document Type"
-msgstr "Tipo Documento"
+msgstr "Tipo documento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_name
 msgid "DocumentID"
-msgstr "DocumentID"
+msgstr "ID documento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_eori_code
@@ -355,17 +383,20 @@ msgstr "Codice EORI"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_penalty_date
 msgid "Effective date of Penality"
-msgstr "Data Decorrenza Penale"
+msgstr "Data effettiva della sanzione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_rounding
+#, fuzzy
 msgid "Eventuale arrotondamento sul totale documento (ammette anche il segno negativo)"
-msgstr "Eventuale arrotondamento sul totale documento (ammette anche il segno negativo)"
+msgstr ""
+"Eventuale arrotondamento sul totale documento (ammette anche il segno "
+"negativo)"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_activity_progress_ids
 msgid "Fase of Activity Progress"
-msgstr "Fase dell'avanzamento attività"
+msgstr "Fase di avanzamento dell'attività"
 
 #. module: l10n_it_fatturapa
 #: model:ir.ui.menu,name:l10n_it_fatturapa.menu_fattura_pa_payables
@@ -374,7 +405,7 @@ msgstr "Fase dell'avanzamento attività"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_invoice_line_form_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_partner_form_fatturapa
 msgid "Fattura Elettronica"
-msgstr "Fattura Elettronica"
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_fiscal_position
@@ -405,75 +436,75 @@ msgstr "Allegati fattura elettronica"
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_discount_rise_price
 msgid "FatturaPA Discount Rise Price Data"
-msgstr "Dati sconto maggiorazione"
+msgstr "Dati sconto e maggiorazione fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_document_type
 msgid "FatturaPA Document Type"
-msgstr "Tipo documento"
+msgstr "Tipo documento fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_format
 msgid "FatturaPA Format"
-msgstr "Formato fattura elettronica"
+msgstr "Formato fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_payment_data
 msgid "FatturaPA Payment Data"
-msgstr "Dati pagamento fattura elettronica"
+msgstr "Dati pagamento fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_related_ddt
 msgid "FatturaPA Related DdT"
-msgstr "DDT collegati alla fattura elettronica"
+msgstr "DDT collegati alla fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_related_document_type
 msgid "FatturaPA Related Document Type"
-msgstr "Tipo di documento collegato alla fattura elettronica"
+msgstr "Tipo documento correlato alla fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_data_line
 msgid "FatturaPA Welfare Fund Data"
-msgstr "Dati cassa previdenziali fattura elettronica"
+msgstr "Dati cassa previdenziale fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_attachments
 msgid "FatturaPA attachments"
-msgstr "Allegati fattura elettronica"
+msgstr "Allegati fatturaPA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_datas
 msgid "File Content"
-msgstr "Contenuto del File"
+msgstr "Contenuto file"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_datas_fname
 msgid "File Name"
-msgstr "Nome File"
+msgstr "Nome file"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_file_size
 msgid "File Size"
-msgstr "Dimensione File"
+msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_payment_method
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_payment_term_fatturapa_pm_id
 msgid "Fiscal Payment Method"
-msgstr "Metodo di pagamento"
+msgstr "Metodo di pagamento fiscale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_payment_term
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_payment_term_fatturapa_pt_id
 msgid "Fiscal Payment Term"
-msgstr "Termini di pagamento"
+msgstr "Termini di pagamento fiscale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_fiscal_position_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_fiscal_position_id
 msgid "Fiscal Position"
-msgstr "Posizione Fiscale"
+msgstr "Posizione fiscale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_fiscal_position_id
@@ -489,7 +520,7 @@ msgstr "Formato"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_gross_weight
 msgid "Gross Weight"
-msgstr "Peso Lordo"
+msgstr "Peso lordo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_iban
@@ -522,32 +553,42 @@ msgstr "IPA123"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+#, fuzzy
 msgid "IVA assolta in altro stato UE"
 msgstr "IVA assolta in altro stato UE"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner_codice_destinatario
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users_codice_destinatario
+#, fuzzy
 msgid "Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che hanno accreditato un canale; qualora il destinatario non abbia accreditato un canale presso Sdi e riceva via PEC le fatture, l'elemento deve essere valorizzato con tutti zeri ('0000000'). "
-msgstr "Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che hanno accreditato un canale; qualora il destinatario non abbia accreditato un canale presso Sdi e riceva via PEC le fatture, l'elemento deve essere valorizzato con tutti zeri ('0000000'). "
+msgstr ""
+"Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che hanno "
+"accreditato un canale; qualora il destinatario non abbia accreditato un "
+"canale presso Sdi e riceva via PEC le fatture, l'elemento deve essere "
+"valorizzato con tutti zeri ('0000000'). "
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:66
-#, python-format
+#, fuzzy, python-format
 msgid "Il partner %s deve avere il Codice Destinatario lungo 7 caratteri"
 msgstr "Il partner %s deve avere il Codice Destinatario lungo 7 caratteri"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:75
-#, python-format
+#, fuzzy, python-format
 msgid "Il partner %s, con Codice Destinatario '0000000', deve avere o P.IVA o codice fiscale"
-msgstr "Il partner %s, con Codice Destinatario '0000000', deve avere o P.IVA o codice fiscale"
+msgstr ""
+"Il partner %s, con Codice Destinatario '0000000', deve avere o P.IVA o "
+"codice fiscale"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:58
-#, python-format
+#, fuzzy, python-format
 msgid "Il partner %s, essendo una pubblica amministrazione deve avere il codice IPA lungo 6 caratteri"
-msgstr "Il partner %s, essendo una pubblica amministrazione deve avere il codice IPA lungo 6 caratteri"
+msgstr ""
+"Il partner %s, essendo una pubblica amministrazione deve avere il codice IPA "
+"lungo 6 caratteri"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
@@ -557,10 +598,11 @@ msgstr "Esigibilità immediata"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_incidental_charges
 msgid "Incidental Charges"
-msgstr "Spese Accessorie"
+msgstr "Spese accessorie"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_incoterms
+#, fuzzy
 msgid "Incoterms"
 msgstr "Condizioni di consegna"
 
@@ -571,19 +613,28 @@ msgstr "Contenuto Indicizzato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_art73
+#, fuzzy
 msgid "Indica se il documento e' stato emesso secondo modalita' e termini stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 (cio' consente al cedente/prestatore l'emissione nello stesso anno di piu' documenti aventi stesso numero)"
-msgstr "Indica se il documento e' stato emesso secondo modalita' e termini stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 (cio' consente al cedente/prestatore l'emissione nello stesso anno di piu' documenti aventi stesso numero)"
+msgstr ""
+"Indica se il documento e' stato emesso secondo modalita' e termini stabiliti "
+"con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 (cio' "
+"consente al cedente/prestatore l'emissione nello stesso anno di piu' "
+"documenti aventi stesso numero)"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_indirizzo
+#, fuzzy
 msgid "Indirizzo Organizzazione"
-msgstr "Indirizzo Organizzazione"
+msgstr "Indirizzo organizzazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner_pec_destinatario
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users_pec_destinatario
+#, fuzzy
 msgid "Indirizzo PEC al quale inviare la fattura elettronica. Da valorizzare SOLO nei casi in cui l'elemento informativo <CodiceDestinatario> vale '0000000'"
-msgstr "Indirizzo PEC al quale inviare la fattura elettronica. Da valorizzare SOLO nei casi in cui l'elemento informativo <CodiceDestinatario> vale '0000000'"
+msgstr ""
+"Indirizzo PEC al quale inviare la fattura elettronica. Da valorizzare SOLO "
+"nei casi in cui l'elemento informativo <CodiceDestinatario> vale '0000000'"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_intermediary
@@ -598,7 +649,7 @@ msgstr "Fattura"
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga Fattura"
+msgstr "Riga fattura"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_public
@@ -641,7 +692,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_write_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price_write_date
@@ -660,29 +711,29 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_write_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_law_reference
 msgid "Law reference"
-msgstr "Riferimento Normativo"
+msgstr "Riferimento normativo"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,ftpa_withholding_type:0
 msgid "Legal Person"
-msgstr "Persona legale"
+msgstr "Persona giuridica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_tax_representative
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_tax_representative
 msgid "Legal Tax Representative"
-msgstr "Rappresentante fiscale"
+msgstr "Rappresentante legale (fiscale)"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_license_number
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_license_number
 msgid "License Code"
-msgstr "Codice Licenza"
+msgstr "Codice licenza"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_line_ftpa_line_number
@@ -692,8 +743,9 @@ msgstr "Numero riga"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_lineRef
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_lineRef
+#, fuzzy
 msgid "LineRef"
-msgstr "Riferimento riga"
+msgstr "Rif. riga"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_rea_liquidation
@@ -708,32 +760,34 @@ msgstr "Data massima per il pagamento"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_rea_partner
 msgid "Member Type"
-msgstr "Tipo Socio"
+msgstr "Tipo socio"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_mimetype
 msgid "Mime Type"
-msgstr "Tipo Mime"
+msgstr "Tipo MIME"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,ftpa_withholding_type:0
 msgid "Natural Person"
-msgstr "Persona naturale"
+msgstr "Persona fisica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_nazione
+#, fuzzy
 msgid "Nazione Organizzazione"
-msgstr "Nazione Organizzazione"
+msgstr "Nazione organizzazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_net_weight
 msgid "Net Weight"
-msgstr "Peso Netto"
+msgstr "Peso netto"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_recepit_name
+#, fuzzy
 msgid "Nome Quietanzante"
-msgstr "Nome Quietanzante"
+msgstr "Nome quietanzante"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_non_taxable_nature
@@ -743,13 +797,17 @@ msgstr "Natura esenzione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_numitem
+#, fuzzy
 msgid "NumItem"
-msgstr "Numero elemento"
+msgstr "Num. elemento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_civico
+#, fuzzy
 msgid "Numero civico riferito all'indirizzo (non indicare se gia' presente nell'elemento informativo indirizzo)"
-msgstr "Numero civico riferito all'indirizzo (non indicare se gia' presente nell'elemento informativo indirizzo)"
+msgstr ""
+"Numero civico riferito all'indirizzo (non indicare se gia' presente "
+"nell'elemento informativo indirizzo)"
 
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
@@ -758,6 +816,7 @@ msgstr "Ordine"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_code
+#, fuzzy
 msgid "Order Agreement Code"
 msgstr "Codice commessa"
 
@@ -765,24 +824,25 @@ msgstr "Codice commessa"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_pa_partner_code
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_pa_partner_code
 msgid "PA Code for partner"
-msgstr "Riferimento Amministrazione"
+msgstr "Codice PA del partner"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_pa_line_code
 msgid "PA Code for this record"
-msgstr "Riferimento Amministrazione"
+msgstr "Codice PA di questo record"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_pec_destinatario
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_pec_destinatario
+#, fuzzy
 msgid "PEC destinatario"
 msgstr "PEC destinatario"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:61
-#, python-format
+#, fuzzy, python-format
 msgid "Parsing PEM to DER  file %s"
-msgstr "Parsing PEM to DER  file %s"
+msgstr "Analisi PEM to DER  file %s"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_res_partner
@@ -796,13 +856,14 @@ msgstr "Importo pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank
+#, fuzzy
 msgid "Payment Bank"
 msgstr "Banca pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_account_move_line_id
 msgid "Payment Line"
-msgstr "Riga Pagamento"
+msgstr "Riga pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_payment_term
@@ -822,7 +883,7 @@ msgstr "Inizio termine di pagamento"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_code
 msgid "Payment code"
-msgstr "Codice Pagamento"
+msgstr "Codice pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_due_date
@@ -841,6 +902,7 @@ msgstr "Percentuale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_pickup_datetime
+#, fuzzy
 msgid "Pick up"
 msgstr "Consegna"
 
@@ -852,19 +914,19 @@ msgstr "Codice ufficio postale"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_prepayment_discount
 msgid "Prepayment Discount"
-msgstr "Sconto Pagamento Anticipato"
+msgstr "Sconto pagamento anticipato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_ftpa_preview_link
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_ir_attachment_ftpa_preview_link
 msgid "Preview link"
-msgstr "Preview link"
+msgstr "Collegamento di anteprima"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_register
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_register
 msgid "Professional Register"
-msgstr "Albo Professionale"
+msgstr "Albo professionale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_protocol_number
@@ -873,35 +935,36 @@ msgstr "Numero protocollo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_provincia
+#, fuzzy
 msgid "Provincia Organizzazione"
-msgstr "Provincia Organizzazione"
+msgstr "Provincia organizzazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_pub_administration_ref
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_pub_administration_ref
 msgid "Public Administration Reference Code"
-msgstr "Codice riferimento pubblica amministrazione"
+msgstr "Codice di riferimento pubblica amministrazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_rea_office
 msgid "REA office"
-msgstr "Ufficio"
+msgstr "Ufficio REA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_rea_capital
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_rea_capital
 msgid "Rea Capital"
-msgstr "Capitale Sociale"
+msgstr "Capitale REA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_rea_partner
 msgid "Rea Copartner"
-msgstr "Socio Unico"
+msgstr "Consocio REA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_rea_liquidation
 msgid "Rea Liquidation"
-msgstr "Stato Liquidazione"
+msgstr "Liquidazione REA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_rea_number
@@ -932,18 +995,21 @@ msgstr "Destinatario"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_register_code
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_register_code
+#, fuzzy
 msgid "Register Code"
-msgstr "Numero Iscrizione Albo"
+msgstr "Numero iscrizione Albo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_register_fiscalpos
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_register_fiscalpos
+#, fuzzy
 msgid "Register Fiscal Position"
-msgstr "Regime Fiscale"
+msgstr "Regime fiscale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_register_province
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_register_province
+#, fuzzy
 msgid "Register Province"
 msgstr "Provincia Albo"
 
@@ -963,7 +1029,7 @@ msgstr "DDT correlati"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_related_documents
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_invoice_line_form_fatturapa
 msgid "Related Documents"
-msgstr "Documenti Correlati"
+msgstr "Documenti correlati"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_line_related_documents
@@ -993,12 +1059,12 @@ msgstr "Riga fattura correlata"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_related_invoice_code
 msgid "Related invoice code"
-msgstr "Numero Fattura Principale"
+msgstr "Codice fattura correlata"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_related_invoice_date
 msgid "Related invoice date"
-msgstr "Data Fattura Principale"
+msgstr "Data fattura correlata"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_data_id
@@ -1008,22 +1074,22 @@ msgstr "Dati pagamenti correlati"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_res_field
 msgid "Resource Field"
-msgstr "Campo Risorsa"
+msgstr "Campo risorsa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_res_id
 msgid "Resource ID"
-msgstr "ID Risorsa"
+msgstr "ID risorsa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_res_model
 msgid "Resource Model"
-msgstr "Modello della Risorsa"
+msgstr "Modello risorsa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_res_name
 msgid "Resource Name"
-msgstr "Nome Risorsa"
+msgstr "Nome risorsa"
 
 #. module: l10n_it_fatturapa
 #: selection:discount.rise.price,name:0
@@ -1048,31 +1114,37 @@ msgstr "Sequenza"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_provincia
+#, fuzzy
 msgid "Sigla della provincia di appartenenza del comune indicato nell'elemento informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo 1.2.3.6 <Nazione> e' uguale a IT"
-msgstr "Sigla della provincia di appartenenza del comune indicato nell'elemento informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo 1.2.3.6 <Nazione> e' uguale a IT"
+msgstr ""
+"Sigla della provincia di appartenenza del comune indicato nell'elemento "
+"informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo "
+"1.2.3.6 <Nazione> e' uguale a IT"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:87
 #, python-format
 msgid "Signed Xml file %s"
-msgstr "Signed Xml file %s"
+msgstr "File XML firmato %s"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:93
 #, python-format
 msgid "Signed Xml file not decryptable"
-msgstr "Signed Xml file not decryptable"
+msgstr "File XML firmato non decifrabile"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
+#, fuzzy
 msgid "Split payment"
 msgstr "Scissione pagamenti"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_stabile_organizzazione
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_stabile_organizzazione
+#, fuzzy
 msgid "Stabile Organizzazione"
-msgstr "Stabile Organizzazione"
+msgstr "Stabile organizzazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_stamp_amount
@@ -1082,19 +1154,19 @@ msgstr "Importo bollo"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_store_fname
 msgid "Stored Filename"
-msgstr "Nome del File Registrato"
+msgstr "Nome file memorizzato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_subjected_withholding
 msgid "Subjected to Withholding"
-msgstr "Soggetto a ritenuta"
+msgstr "Soggetto a ritenuta fiscale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_electronic_invoice_subjected
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_electronic_invoice_subjected
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_electronic_invoice_subjected
 msgid "Subjected to electronic invoice"
-msgstr "Soggetto a fatturazione elettronica"
+msgstr "Soggetto a fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_tax_representative_id
@@ -1109,29 +1181,33 @@ msgstr "Aliquota"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_res_model
 msgid "The database object this attachment will be attached to."
-msgstr "L'oggetto del database a cui verrà allegato questo allegato."
+msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_res_id
 msgid "The record id this is attached to."
-msgstr "L'ID del record a cui questo è allegato."
+msgstr "L'ID del record a cui questo è collegato."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
 msgid "The univocal progressive of the file is represented by an alphanumeric sequence of maximum length 5, its values are included in 'A'-'Z' and '0'-'9'"
-msgstr "Il progressivo univoco del file è rappresentato da una sequenza alfanumerica di lunghezza massima 5, i cui valori sono inclusi in 'A'-'Z' e '0'-'9'"
+msgstr ""
+"Il progressivo univoco del file è rappresentato da una sequenza alfanumerica "
+"di lunghezza massima 5, i cui valori sono inclusi in \"A\"-\"Z\" e \"0\"-\""
+"9\""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_sender_partner
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_sender_partner
 msgid "Third Party/Sender"
-msgstr "Trasmittente"
+msgstr "Terzo/Trasmittente"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_recepit_title
+#, fuzzy
 msgid "Titolo Quietanzante"
-msgstr "Titolo Quietanzante"
+msgstr "Titolo quietanzante"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_transport_date
@@ -1152,7 +1228,7 @@ msgstr "Tipo"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_url
 msgid "Url"
-msgstr "Url"
+msgstr "URL"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_payability
@@ -1167,7 +1243,7 @@ msgstr "Veicolo"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_vehicle_registration
 msgid "Vehicle Registration"
-msgstr "Immatricolazione"
+msgstr "Immatricolazione veicolo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_virtual_stamp
@@ -1177,12 +1253,13 @@ msgstr "Bollo virtuale"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_unit_weight
 msgid "Weight unit"
-msgstr "Unita Misura Peso"
+msgstr "Unità di peso"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_amount_tax
+#, fuzzy
 msgid "Welfare Amount tax"
-msgstr "Importo Contributo Cassa"
+msgstr "Importo contributo cassa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_welfare_fund_ids
@@ -1197,27 +1274,30 @@ msgstr "Tipo cassa previdenziale"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_rate_tax
 msgid "Welfare Rate tax"
-msgstr "Aliquota cassa"
+msgstr "Aliquota cassa previdenziale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_taxable
 msgid "Welfare Taxable"
-msgstr "Imponibile Cassa"
+msgstr "Imponibile cassa previdenziale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_Iva_tax
+#, fuzzy
 msgid "Welfare tax"
 msgstr "Aliquota IVA"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_withholding_type
 msgid "Withholding type"
-msgstr "Tipo ritenuta"
+msgstr "Tipo ritenuta fiscale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_type
 msgid "You can either upload a file from your computer or copy/paste an internet link to your file."
-msgstr "Puoi inviare un file dal computer o copiare/incollare un indirizzo Internet che è collegato al tuo file."
+msgstr ""
+"È possibile caricare un file dal computer oppure fare copia/incolla di un "
+"collegamento Internet nel file."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_config_settings
@@ -1226,6 +1306,7 @@ msgstr "account.config.settings"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,sender:0
+#, fuzzy
 msgid "assignee / partner"
 msgstr "cessionario / committente"
 
@@ -1236,11 +1317,13 @@ msgstr "descrizione"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+#, fuzzy
 msgid "escluse ex art. 15"
 msgstr "escluse ex art. 15"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+#, fuzzy
 msgid "esenti"
 msgstr "esenti"
 
@@ -1261,11 +1344,17 @@ msgstr "faturapa.summary.data"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_art73
+#, fuzzy
 msgid "indicates whether the document has been issued in accordance with the terms and conditions established by ministerial decree in accordance with Article 73 of Presidential Decree633/72 (this allows the company to issue the same year more documents with the same number)"
-msgstr "Indica se il documento è stato emesso secondo modalità e termini stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 (ciò consente al cedente/prestatore l'emissione nello stesso anno di più documenti aventi stesso numero)"
+msgstr ""
+"Indica se il documento è stato emesso secondo le modalità e i termini "
+"stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 ("
+"ciò consente al cedente/prestatore l'emissione nello stesso anno di più "
+"documenti aventi lo stesso numero)."
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+#, fuzzy
 msgid "inversione contabile (reverse charge)"
 msgstr "inversione contabile (reverse charge)"
 
@@ -1281,21 +1370,25 @@ msgstr "nome"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+#, fuzzy
 msgid "non imponibili"
 msgstr "non imponibili"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+#, fuzzy
 msgid "non soggette"
 msgstr "non soggette"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_number_items
+#, fuzzy
 msgid "number of items"
 msgstr "numero di elementi"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+#, fuzzy
 msgid "regime del margine"
 msgstr "regime del margine"
 
@@ -1308,4 +1401,3 @@ msgstr "Terzo"
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
 msgid "welfare fund type"
 msgstr "Tipo cassa previdenziale"
-
