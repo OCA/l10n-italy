@@ -1,5 +1,5 @@
-* Alessio Gerace <alessio.gerace@agilebg.com>
+* Alessio Gerace
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Andrea Gallina <a.gallina@apuliasoftware.it>
+* Lorenzo Battistini <https://github.com/eLBati>
+* Andrea Gallina
 * Sergio Zanchetta <primes2h@gmail.com>
