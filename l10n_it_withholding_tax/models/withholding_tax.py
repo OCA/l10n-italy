@@ -169,6 +169,10 @@ class WithholdingTaxStatement(models.Model):
             statement.amount = tot_wt_amount
             statement.amount_paid = tot_wt_amount_paid
 
+    type = fields.Selection([
+        ('in', 'In'),
+        ('out', 'Out'),
+    ], 'Type', store=True, compute='_compute_type')
     date = fields.Date('Date')
     move_id = fields.Many2one('account.move', 'Account move',
                               ondelete='cascade')
@@ -190,6 +194,19 @@ class WithholdingTaxStatement(models.Model):
     move_ids = fields.One2many('withholding.tax.move',
                                'statement_id', 'Moves')
     display_name = fields.Char(compute='_compute_display_name')
+
+    @api.depends('move_id')
+    def _compute_type(self):
+        for st in self:
+            if st.move_id:
+                domain = [
+                    ('move_id', '=', st.move_id.id),
+                    ('account_id.user_type_id.type', '=', 'payable')]
+                lines = self.env['account.move.line'].search(domain)
+                if lines:
+                    st.type = 'in'
+                else:
+                    st.type = 'out'
 
     def get_wt_competence(self, amount_reconcile):
         dp_obj = self.env['decimal.precision']
@@ -232,6 +249,10 @@ class WithholdingTaxMove(models.Model):
         ('paid', 'Paid'),
     ], 'Status', readonly=True, copy=False, default='due')
     statement_id = fields.Many2one('withholding.tax.statement', 'Statement')
+    type = fields.Selection([
+        ('in', 'In'),
+        ('out', 'Out'),
+    ], 'Type', store=True, related='statement_id.type')
     date = fields.Date('Date Competence')
     reconcile_partial_id = fields.Many2one(
         'account.partial.reconcile', 'Reconcile Partial', ondelete='cascade')
@@ -308,11 +329,11 @@ class WithholdingTaxMove(models.Model):
                 if self.payment_line_id.credit:
                     ml_vals['debit'] = self.amount
                     ml_vals['account_id'] = \
-                        self.withholding_tax_id.account_payable_id.id
+                        self.withholding_tax_id.account_receivable_id.id
                 else:
                     ml_vals['credit'] = self.amount
                     ml_vals['account_id'] = \
-                        self.withholding_tax_id.account_receivable_id.id
+                        self.withholding_tax_id.account_payable_id.id
             # self.env['account.move.line'].create(move_vals)
             move_lines.append((0, 0, ml_vals))
 
@@ -329,10 +350,16 @@ class WithholdingTaxMove(models.Model):
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
+            if line_to_reconcile.account_id.user_type_id.type == 'payable':
+                debit_move_id = line_to_reconcile.id
+                credit_move_id = self.credit_debit_line_id.id
+            else:
+                credit_move_id = line_to_reconcile.id
+                debit_move_id = self.credit_debit_line_id.id
             self.env['account.partial.reconcile'].\
                 with_context(no_generate_wt_move=True).create({
-                    'debit_move_id': line_to_reconcile.id,
-                    'credit_move_id': self.credit_debit_line_id.id,
+                    'debit_move_id': debit_move_id,
+                    'credit_move_id': credit_move_id,
                     'amount': self.amount,
                 })
 
