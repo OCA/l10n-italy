@@ -9,10 +9,10 @@
             <group name="accounting_entries" position="after">
                 <group string="REA Registration">
                     <field name="rea_office" />
-                    <field name="rea_capital" />
-                    <field name="rea_liquidation_state"/>
                     <field name="rea_code" />
+                    <field name="rea_capital" />
                     <field name="rea_member_type" />
+                    <field name="rea_liquidation_state"/>
                 </group>
             </group>
         </field>
