@@ -19,7 +19,7 @@ class AccountPartialReconcile(models.Model):
         ml_ids = []
         if vals.get('debit_move_id'):
             ml_ids.append(vals.get('debit_move_id'))
-        if vals.get('debit_move_id'):
+        if vals.get('credit_move_id'):
             ml_ids.append(vals.get('credit_move_id'))
         for ml in self.env['account.move.line'].browse(ml_ids):
             domain = [('move_id', '=', ml.move_id.id)]
@@ -451,6 +451,7 @@ class AccountInvoice(models.Model):
         wt_statement_obj = self.env['withholding.tax.statement']
         for inv_wt in self.withholding_tax_line_ids:
             val = {
+                'type': False,
                 'date': self.move_id.date,
                 'move_id': self.move_id.id,
                 'invoice_id': self.id,
