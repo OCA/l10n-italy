@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 14:10+0000\n"
-"PO-Revision-Date: 2018-10-14 17:59+0000\n"
+"PO-Revision-Date: 2018-10-20 15:02+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -472,17 +472,17 @@ msgstr "Attenzione! Movimento di ritenuta già esistente: %s"
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_tree
 msgid "Withholding Tax"
-msgstr "Ritenuta"
+msgstr "Ritenuta fiscale"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line_withholding_tax_amount
 msgid "Withholding Tax Amount"
-msgstr "Ritenuta D'Acconto Allocazione"
+msgstr "Importo ritenuta fiscale"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line_withholding_tax_base
 msgid "Withholding Tax Base"
-msgstr "Imponibile Ritenuta"
+msgstr "Imponibile ritenuta fiscale"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_move
@@ -527,7 +527,7 @@ msgstr "Ritenute"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_withholding_tax_id
 #: model:ir.ui.menu,name:l10n_it_withholding_tax.wt_main
 msgid "Withholding tax"
-msgstr "Ritenuta"
+msgstr "Ritenuta fiscale"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_journal_id
