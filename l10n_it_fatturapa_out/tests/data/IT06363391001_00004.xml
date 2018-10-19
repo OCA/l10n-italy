@@ -8,7 +8,7 @@
             </IdTrasmittente>
             <ProgressivoInvio>00004</ProgressivoInvio>
             <FormatoTrasmissione>FPA12</FormatoTrasmissione>
-            <CodiceDestinatario>79SRAK</CodiceDestinatario>
+            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
             <ContattiTrasmittente>
                 <Telefono>06543534343</Telefono>
                 <Email>info@yourcompany.example.com</Email>
@@ -62,8 +62,8 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2014-06-15</Data>
-                <Numero>SAJ/2014/016</Numero>
+                <Data>2016-06-15</Data>
+                <Numero>INV/2016/0016</Numero>
                 <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
@@ -71,7 +71,7 @@
         <DatiBeniServizi>
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
-                <Descrizione>Toner Cartridge</Descrizione>
+                <Descrizione>Mouse, Optical</Descrizione>
                 <Quantita>1.00</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>10.00</PrezzoUnitario>
@@ -98,7 +98,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2014-07-31</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2016-07-31</DataScadenzaPagamento>
                 <ImportoPagamento>14.00</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>
