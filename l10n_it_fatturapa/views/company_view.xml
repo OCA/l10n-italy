@@ -8,17 +8,13 @@
             <field name="inherit_id" ref="account.view_account_config_settings"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/group[6]" position="after">
-                    <separator string="Fattura PA"/>
+                    <separator string="Fattura Elettronica"/>
                     <group name="fatturapa_settings">
                         <label for="id" string="Configuration"/>
-                        <div>
+                        <div id="fatturapa_settings">
                             <div>
                                 <label for="fatturapa_fiscal_position_id"/>
                                 <field name="fatturapa_fiscal_position_id" required="1" class="oe_inline"/>
-                            </div>
-                            <div>
-                                <label for="fatturapa_format_id"/>
-                                <field name="fatturapa_format_id" required="1" class="oe_inline"/>
                             </div>
                             <div>
                                 <label for="fatturapa_sequence_id"/>
@@ -31,6 +27,10 @@
                             <div>
                                 <label for="fatturapa_tax_representative"/>
                                 <field name="fatturapa_tax_representative" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_stabile_organizzazione"/>
+                                <field name="fatturapa_stabile_organizzazione" class="oe_inline"/>
                             </div>
                             <div>
                                 <label for="fatturapa_sender_partner"/>
@@ -61,6 +61,5 @@
                 </xpath>
             </field>
         </record>
-
-	</data>
+    </data>
 </openerp>

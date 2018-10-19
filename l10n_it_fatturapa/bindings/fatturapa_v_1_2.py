@@ -1,16 +1,18 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2017-01-10 12:31:27.348967 by PyXB version 1.2.4 using Python 2.7.12.final.0
+# Generated 2016-12-12 16:50:59.495555
+# by PyXB version 1.2.5 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 
 from __future__ import unicode_literals
-import io
-import sys
-from . import _ds as _ImportedBinding__ds
 import logging
+import io
+from . import _ds as _ImportedBinding__ds
+
 _logger = logging.getLogger(__name__)
+
 try:
     import pyxb
     import pyxb.binding
@@ -25,13 +27,17 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:49afe44e-d728-11e6-b2bd-1972c097fb02')
+    'urn:uuid:bd31195e-c082-11e6-8130-08edb9323673')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.4'
+_PyXBVersion = '1.2.5'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
+
+# A holder for module-level binding classes so we can access them from
+# inside class definitions where property names may conflict.
+_module_typeBindings = pyxb.utils.utility.Object()
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
@@ -84,14 +90,16 @@ def CreateFromDOM(node, default_namespace=None):
     """Create a Python instance from the given DOM node.
     The node tag must correspond to an element declaration in this module.
 
-    @deprecated: Forcing use of DOM interface is unnecessary; use L{CreateFromDocument}."""
+    @deprecated: Forcing use of DOM interface is unnecessary;
+    use L{CreateFromDocument}."""
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     return pyxb.binding.basis.element.AnyCreateFromDOM(node, default_namespace)
 
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceDestinatarioType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CodiceDestinatarioType
 class CodiceDestinatarioType (pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
@@ -99,7 +107,10 @@ class CodiceDestinatarioType (pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CodiceDestinatarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 55, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        55,
+        2)
     _Documentation = None
 CodiceDestinatarioType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceDestinatarioType._CF_pattern.addPattern(pattern='[A-Z0-9]{6,7}')
@@ -108,9 +119,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'CodiceDestinatarioType',
     CodiceDestinatarioType)
+_module_typeBindings.CodiceDestinatarioType = CodiceDestinatarioType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CodiceType
 
 
 class CodiceType (pyxb.binding.datatypes.string):
@@ -119,7 +132,10 @@ class CodiceType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 66, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        66,
+        2)
     _Documentation = None
 CodiceType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
@@ -128,9 +144,11 @@ CodiceType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
 CodiceType._InitializeFacetMap(CodiceType._CF_minLength,
                                CodiceType._CF_maxLength)
 Namespace.addCategoryObject('typeBinding', 'CodiceType', CodiceType)
+_module_typeBindings.CodiceType = CodiceType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FormatoTrasmissioneType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# FormatoTrasmissioneType
 
 
 class FormatoTrasmissioneType (
@@ -142,26 +160,33 @@ class FormatoTrasmissioneType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FormatoTrasmissioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 72, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        72,
+        2)
     _Documentation = None
-FormatoTrasmissioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=FormatoTrasmissioneType, enum_prefix=None)
-FormatoTrasmissioneType.FPA12 = FormatoTrasmissioneType._CF_enumeration.addEnumeration(
-    unicode_value='FPA12', tag='FPA12')
-FormatoTrasmissioneType.FPR12 = FormatoTrasmissioneType._CF_enumeration.addEnumeration(
-    unicode_value='FPR12', tag='FPR12')
 FormatoTrasmissioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(5))
+FormatoTrasmissioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
+    value_datatype=FormatoTrasmissioneType, enum_prefix=None)
+FormatoTrasmissioneType.FPA12 = (
+    FormatoTrasmissioneType._CF_enumeration.addEnumeration(
+        unicode_value='FPA12', tag='FPA12'))
+FormatoTrasmissioneType.FPR12 = (
+    FormatoTrasmissioneType._CF_enumeration.addEnumeration(
+        unicode_value='FPR12', tag='FPR12'))
 FormatoTrasmissioneType._InitializeFacetMap(
-    FormatoTrasmissioneType._CF_enumeration,
-    FormatoTrasmissioneType._CF_length)
+    FormatoTrasmissioneType._CF_length,
+    FormatoTrasmissioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'FormatoTrasmissioneType',
     FormatoTrasmissioneType)
+_module_typeBindings.FormatoTrasmissioneType = FormatoTrasmissioneType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CausalePagamentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CausalePagamentoType
 
 
 class CausalePagamentoType (
@@ -173,7 +198,10 @@ class CausalePagamentoType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CausalePagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 161, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        161,
+        2)
     _Documentation = None
 CausalePagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=CausalePagamentoType, enum_prefix=None)
@@ -236,9 +264,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'CausalePagamentoType',
     CausalePagamentoType)
+_module_typeBindings.CausalePagamentoType = CausalePagamentoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoScontoMaggiorazioneType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TipoScontoMaggiorazioneType
 
 
 class TipoScontoMaggiorazioneType (
@@ -250,26 +280,34 @@ class TipoScontoMaggiorazioneType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'TipoScontoMaggiorazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 193, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        193,
+        2)
     _Documentation = None
-TipoScontoMaggiorazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=TipoScontoMaggiorazioneType, enum_prefix=None)
-TipoScontoMaggiorazioneType.SC = TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
-    unicode_value='SC', tag='SC')
-TipoScontoMaggiorazioneType.MG = TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
-    unicode_value='MG', tag='MG')
 TipoScontoMaggiorazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
+TipoScontoMaggiorazioneType._CF_enumeration = (
+    pyxb.binding.facets.CF_enumeration(
+        value_datatype=TipoScontoMaggiorazioneType, enum_prefix=None))
+TipoScontoMaggiorazioneType.SC = (
+    TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
+        unicode_value='SC', tag='SC'))
+TipoScontoMaggiorazioneType.MG = (
+    TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(
+        unicode_value='MG', tag='MG'))
 TipoScontoMaggiorazioneType._InitializeFacetMap(
-    TipoScontoMaggiorazioneType._CF_enumeration,
-    TipoScontoMaggiorazioneType._CF_length)
+    TipoScontoMaggiorazioneType._CF_length,
+    TipoScontoMaggiorazioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'TipoScontoMaggiorazioneType',
     TipoScontoMaggiorazioneType)
+_module_typeBindings.TipoScontoMaggiorazioneType = TipoScontoMaggiorazioneType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Art73Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# Art73Type
 
 
 class Art73Type (
@@ -280,20 +318,25 @@ class Art73Type (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Art73Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 212, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        212,
+        2)
     _Documentation = None
+Art73Type._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(2))
 Art73Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=Art73Type, enum_prefix=None)
 Art73Type.SI = Art73Type._CF_enumeration.addEnumeration(
     unicode_value='SI', tag='SI')
-Art73Type._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(2))
-Art73Type._InitializeFacetMap(Art73Type._CF_enumeration,
-                              Art73Type._CF_length)
+Art73Type._InitializeFacetMap(Art73Type._CF_length,
+                              Art73Type._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'Art73Type', Art73Type)
+_module_typeBindings.Art73Type = Art73Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCassaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TipoCassaType
 
 
 class TipoCassaType (
@@ -304,8 +347,13 @@ class TipoCassaType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoCassaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 224, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        224,
+        2)
     _Documentation = None
+TipoCassaType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoCassaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=TipoCassaType, enum_prefix=None)
 TipoCassaType.TC01 = TipoCassaType._CF_enumeration.addEnumeration(
@@ -352,14 +400,14 @@ TipoCassaType.TC21 = TipoCassaType._CF_enumeration.addEnumeration(
     unicode_value='TC21', tag='TC21')
 TipoCassaType.TC22 = TipoCassaType._CF_enumeration.addEnumeration(
     unicode_value='TC22', tag='TC22')
-TipoCassaType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoCassaType._InitializeFacetMap(TipoCassaType._CF_enumeration,
-                                  TipoCassaType._CF_length)
+TipoCassaType._InitializeFacetMap(TipoCassaType._CF_length,
+                                  TipoCassaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoCassaType', TipoCassaType)
+_module_typeBindings.TipoCassaType = TipoCassaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoDocumentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TipoDocumentoType
 
 
 class TipoDocumentoType (
@@ -370,8 +418,13 @@ class TipoDocumentoType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoDocumentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 383, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        383,
+        2)
     _Documentation = None
+TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=TipoDocumentoType, enum_prefix=None)
 TipoDocumentoType.TD01 = TipoDocumentoType._CF_enumeration.addEnumeration(
@@ -386,17 +439,17 @@ TipoDocumentoType.TD05 = TipoDocumentoType._CF_enumeration.addEnumeration(
     unicode_value='TD05', tag='TD05')
 TipoDocumentoType.TD06 = TipoDocumentoType._CF_enumeration.addEnumeration(
     unicode_value='TD06', tag='TD06')
-TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_enumeration,
-                                      TipoDocumentoType._CF_length)
+TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_length,
+                                      TipoDocumentoType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'TipoDocumentoType',
     TipoDocumentoType)
+_module_typeBindings.TipoDocumentoType = TipoDocumentoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoRitenutaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TipoRitenutaType
 
 
 class TipoRitenutaType (
@@ -407,25 +460,30 @@ class TipoRitenutaType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoRitenutaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 418, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        418,
+        2)
     _Documentation = None
+TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoRitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=TipoRitenutaType, enum_prefix=None)
 TipoRitenutaType.RT01 = TipoRitenutaType._CF_enumeration.addEnumeration(
     unicode_value='RT01', tag='RT01')
 TipoRitenutaType.RT02 = TipoRitenutaType._CF_enumeration.addEnumeration(
     unicode_value='RT02', tag='RT02')
-TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoRitenutaType._InitializeFacetMap(TipoRitenutaType._CF_enumeration,
-                                     TipoRitenutaType._CF_length)
+TipoRitenutaType._InitializeFacetMap(TipoRitenutaType._CF_length,
+                                     TipoRitenutaType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'TipoRitenutaType',
     TipoRitenutaType)
+_module_typeBindings.TipoRitenutaType = TipoRitenutaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoNumeroLineaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# RiferimentoNumeroLineaType
 
 
 class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
@@ -435,22 +493,31 @@ class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RiferimentoNumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 449, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        449,
+        2)
     _Documentation = None
-RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
-RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
+RiferimentoNumeroLineaType._CF_maxInclusive = (
+    pyxb.binding.facets.CF_maxInclusive(
+        value_datatype=RiferimentoNumeroLineaType,
+        value=pyxb.binding.datatypes.integer(9999)))
+RiferimentoNumeroLineaType._CF_minInclusive = (
+    pyxb.binding.facets.CF_minInclusive(
+        value_datatype=RiferimentoNumeroLineaType,
+        value=pyxb.binding.datatypes.integer(1)))
 RiferimentoNumeroLineaType._InitializeFacetMap(
-    RiferimentoNumeroLineaType._CF_minInclusive,
-    RiferimentoNumeroLineaType._CF_maxInclusive)
+    RiferimentoNumeroLineaType._CF_maxInclusive,
+    RiferimentoNumeroLineaType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding',
     'RiferimentoNumeroLineaType',
     RiferimentoNumeroLineaType)
+_module_typeBindings.RiferimentoNumeroLineaType = RiferimentoNumeroLineaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SoggettoEmittenteType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# SoggettoEmittenteType
 
 
 class SoggettoEmittenteType (
@@ -462,26 +529,33 @@ class SoggettoEmittenteType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'SoggettoEmittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 495, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        495,
+        2)
     _Documentation = None
-SoggettoEmittenteType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=SoggettoEmittenteType, enum_prefix=None)
-SoggettoEmittenteType.CC = SoggettoEmittenteType._CF_enumeration.addEnumeration(
-    unicode_value='CC', tag='CC')
-SoggettoEmittenteType.TZ = SoggettoEmittenteType._CF_enumeration.addEnumeration(
-    unicode_value='TZ', tag='TZ')
 SoggettoEmittenteType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
+SoggettoEmittenteType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
+    value_datatype=SoggettoEmittenteType, enum_prefix=None)
+SoggettoEmittenteType.CC = (
+    SoggettoEmittenteType._CF_enumeration.addEnumeration(
+        unicode_value='CC', tag='CC'))
+SoggettoEmittenteType.TZ = (
+    SoggettoEmittenteType._CF_enumeration.addEnumeration(
+        unicode_value='TZ', tag='TZ'))
 SoggettoEmittenteType._InitializeFacetMap(
-    SoggettoEmittenteType._CF_enumeration,
-    SoggettoEmittenteType._CF_length)
+    SoggettoEmittenteType._CF_length,
+    SoggettoEmittenteType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'SoggettoEmittenteType',
     SoggettoEmittenteType)
+_module_typeBindings.SoggettoEmittenteType = SoggettoEmittenteType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RegimeFiscaleType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# RegimeFiscaleType
 
 
 class RegimeFiscaleType (
@@ -492,8 +566,13 @@ class RegimeFiscaleType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RegimeFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 537, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        537,
+        2)
     _Documentation = None
+RegimeFiscaleType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(4))
 RegimeFiscaleType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=RegimeFiscaleType, enum_prefix=None)
 RegimeFiscaleType.RF01 = RegimeFiscaleType._CF_enumeration.addEnumeration(
@@ -534,17 +613,17 @@ RegimeFiscaleType.RF19 = RegimeFiscaleType._CF_enumeration.addEnumeration(
     unicode_value='RF19', tag='RF19')
 RegimeFiscaleType.RF18 = RegimeFiscaleType._CF_enumeration.addEnumeration(
     unicode_value='RF18', tag='RF18')
-RegimeFiscaleType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
-RegimeFiscaleType._InitializeFacetMap(RegimeFiscaleType._CF_enumeration,
-                                      RegimeFiscaleType._CF_length)
+RegimeFiscaleType._InitializeFacetMap(RegimeFiscaleType._CF_length,
+                                      RegimeFiscaleType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'RegimeFiscaleType',
     RegimeFiscaleType)
+_module_typeBindings.RegimeFiscaleType = RegimeFiscaleType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CondizioniPagamentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CondizioniPagamentoType
 
 
 class CondizioniPagamentoType (
@@ -556,31 +635,39 @@ class CondizioniPagamentoType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CondizioniPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 767, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        767,
+        2)
     _Documentation = None
-CondizioniPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=CondizioniPagamentoType, enum_prefix=None)
-CondizioniPagamentoType.TP01 = CondizioniPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='TP01', tag='TP01')
-CondizioniPagamentoType.TP02 = CondizioniPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='TP02', tag='TP02')
-CondizioniPagamentoType.TP03 = CondizioniPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='TP03', tag='TP03')
 CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 CondizioniPagamentoType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
+CondizioniPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
+    value_datatype=CondizioniPagamentoType, enum_prefix=None)
+CondizioniPagamentoType.TP01 = (
+    CondizioniPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='TP01', tag='TP01'))
+CondizioniPagamentoType.TP02 = (
+    CondizioniPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='TP02', tag='TP02'))
+CondizioniPagamentoType.TP03 = (
+    CondizioniPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='TP03', tag='TP03'))
 CondizioniPagamentoType._InitializeFacetMap(
-    CondizioniPagamentoType._CF_enumeration,
     CondizioniPagamentoType._CF_minLength,
-    CondizioniPagamentoType._CF_maxLength)
+    CondizioniPagamentoType._CF_maxLength,
+    CondizioniPagamentoType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'CondizioniPagamentoType',
     CondizioniPagamentoType)
+_module_typeBindings.CondizioniPagamentoType = CondizioniPagamentoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ModalitaPagamentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# ModalitaPagamentoType
 
 
 class ModalitaPagamentoType (
@@ -592,66 +679,95 @@ class ModalitaPagamentoType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'ModalitaPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 813, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        813,
+        2)
     _Documentation = None
-ModalitaPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=ModalitaPagamentoType, enum_prefix=None)
-ModalitaPagamentoType.MP01 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP01', tag='MP01')
-ModalitaPagamentoType.MP02 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP02', tag='MP02')
-ModalitaPagamentoType.MP03 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP03', tag='MP03')
-ModalitaPagamentoType.MP04 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP04', tag='MP04')
-ModalitaPagamentoType.MP05 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP05', tag='MP05')
-ModalitaPagamentoType.MP06 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP06', tag='MP06')
-ModalitaPagamentoType.MP07 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP07', tag='MP07')
-ModalitaPagamentoType.MP08 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP08', tag='MP08')
-ModalitaPagamentoType.MP09 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP09', tag='MP09')
-ModalitaPagamentoType.MP10 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP10', tag='MP10')
-ModalitaPagamentoType.MP11 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP11', tag='MP11')
-ModalitaPagamentoType.MP12 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP12', tag='MP12')
-ModalitaPagamentoType.MP13 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP13', tag='MP13')
-ModalitaPagamentoType.MP14 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP14', tag='MP14')
-ModalitaPagamentoType.MP15 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP15', tag='MP15')
-ModalitaPagamentoType.MP16 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP16', tag='MP16')
-ModalitaPagamentoType.MP17 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP17', tag='MP17')
-ModalitaPagamentoType.MP18 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP18', tag='MP18')
-ModalitaPagamentoType.MP19 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP19', tag='MP19')
-ModalitaPagamentoType.MP20 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP20', tag='MP20')
-ModalitaPagamentoType.MP21 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP21', tag='MP21')
-ModalitaPagamentoType.MP22 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='MP22', tag='MP22')
 ModalitaPagamentoType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
+ModalitaPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
+    value_datatype=ModalitaPagamentoType, enum_prefix=None)
+ModalitaPagamentoType.MP01 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP01', tag='MP01'))
+ModalitaPagamentoType.MP02 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP02', tag='MP02'))
+ModalitaPagamentoType.MP03 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP03', tag='MP03'))
+ModalitaPagamentoType.MP04 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP04', tag='MP04'))
+ModalitaPagamentoType.MP05 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP05', tag='MP05'))
+ModalitaPagamentoType.MP06 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP06', tag='MP06'))
+ModalitaPagamentoType.MP07 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP07', tag='MP07'))
+ModalitaPagamentoType.MP08 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP08', tag='MP08'))
+ModalitaPagamentoType.MP09 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP09', tag='MP09'))
+ModalitaPagamentoType.MP10 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP10', tag='MP10'))
+ModalitaPagamentoType.MP11 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP11', tag='MP11'))
+ModalitaPagamentoType.MP12 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP12', tag='MP12'))
+ModalitaPagamentoType.MP13 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP13', tag='MP13'))
+ModalitaPagamentoType.MP14 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP14', tag='MP14'))
+ModalitaPagamentoType.MP15 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP15', tag='MP15'))
+ModalitaPagamentoType.MP16 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP16', tag='MP16'))
+ModalitaPagamentoType.MP17 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP17', tag='MP17'))
+ModalitaPagamentoType.MP18 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP18', tag='MP18'))
+ModalitaPagamentoType.MP19 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP19', tag='MP19'))
+ModalitaPagamentoType.MP20 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP20', tag='MP20'))
+ModalitaPagamentoType.MP21 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP21', tag='MP21')
+    )
+ModalitaPagamentoType.MP22 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP22', tag='MP22')
+    )
 ModalitaPagamentoType._InitializeFacetMap(
-    ModalitaPagamentoType._CF_enumeration,
-    ModalitaPagamentoType._CF_length)
+    ModalitaPagamentoType._CF_length,
+    ModalitaPagamentoType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'ModalitaPagamentoType',
     ModalitaPagamentoType)
+_module_typeBindings.ModalitaPagamentoType = ModalitaPagamentoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IBANType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# IBANType
 
 
 class IBANType (pyxb.binding.datatypes.string):
@@ -660,16 +776,21 @@ class IBANType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IBANType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 928, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        928,
+        2)
     _Documentation = None
 IBANType._CF_pattern = pyxb.binding.facets.CF_pattern()
 IBANType._CF_pattern.addPattern(
     pattern='[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{11,30}')
 IBANType._InitializeFacetMap(IBANType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'IBANType', IBANType)
+_module_typeBindings.IBANType = IBANType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BICType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# BICType
 
 
 class BICType (pyxb.binding.datatypes.string):
@@ -678,16 +799,21 @@ class BICType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'BICType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 933, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        933,
+        2)
     _Documentation = None
 BICType._CF_pattern = pyxb.binding.facets.CF_pattern()
 BICType._CF_pattern.addPattern(
     pattern='[A-Z]{6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3}){0,1}')
 BICType._InitializeFacetMap(BICType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'BICType', BICType)
+_module_typeBindings.BICType = BICType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RitenutaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# RitenutaType
 
 
 class RitenutaType (
@@ -698,20 +824,25 @@ class RitenutaType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RitenutaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1005, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1005,
+        2)
     _Documentation = None
+RitenutaType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(2))
 RitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=RitenutaType, enum_prefix=None)
 RitenutaType.SI = RitenutaType._CF_enumeration.addEnumeration(
     unicode_value='SI', tag='SI')
-RitenutaType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(2))
-RitenutaType._InitializeFacetMap(RitenutaType._CF_enumeration,
-                                 RitenutaType._CF_length)
+RitenutaType._InitializeFacetMap(RitenutaType._CF_length,
+                                 RitenutaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'RitenutaType', RitenutaType)
+_module_typeBindings.RitenutaType = RitenutaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EsigibilitaIVAType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# EsigibilitaIVAType
 
 
 class EsigibilitaIVAType (
@@ -723,8 +854,15 @@ class EsigibilitaIVAType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'EsigibilitaIVAType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1029, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1029,
+        2)
     _Documentation = None
+EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(
+    value=pyxb.binding.datatypes.nonNegativeInteger(1))
+EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+    value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=EsigibilitaIVAType, enum_prefix=None)
 EsigibilitaIVAType.D = EsigibilitaIVAType._CF_enumeration.addEnumeration(
@@ -733,20 +871,18 @@ EsigibilitaIVAType.I = EsigibilitaIVAType._CF_enumeration.addEnumeration(
     unicode_value='I', tag='I')
 EsigibilitaIVAType.S = EsigibilitaIVAType._CF_enumeration.addEnumeration(
     unicode_value='S', tag='S')
-EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(
-    value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
-    value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_enumeration,
-                                       EsigibilitaIVAType._CF_minLength,
-                                       EsigibilitaIVAType._CF_maxLength)
+EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_minLength,
+                                       EsigibilitaIVAType._CF_maxLength,
+                                       EsigibilitaIVAType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'EsigibilitaIVAType',
     EsigibilitaIVAType)
+_module_typeBindings.EsigibilitaIVAType = EsigibilitaIVAType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NaturaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# NaturaType
 
 
 class NaturaType (
@@ -757,7 +893,10 @@ class NaturaType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NaturaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1050, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1050,
+        2)
     _Documentation = None
 NaturaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=NaturaType, enum_prefix=None)
@@ -777,9 +916,11 @@ NaturaType.N7 = NaturaType._CF_enumeration.addEnumeration(
     unicode_value='N7', tag='N7')
 NaturaType._InitializeFacetMap(NaturaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'NaturaType', NaturaType)
+_module_typeBindings.NaturaType = NaturaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscaleType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CodiceFiscaleType
 
 
 class CodiceFiscaleType (pyxb.binding.datatypes.string):
@@ -788,7 +929,10 @@ class CodiceFiscaleType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1089, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1089,
+        2)
     _Documentation = None
 CodiceFiscaleType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscaleType._CF_pattern.addPattern(pattern='[A-Z0-9]{11,16}')
@@ -797,9 +941,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'CodiceFiscaleType',
     CodiceFiscaleType)
+_module_typeBindings.CodiceFiscaleType = CodiceFiscaleType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscalePFType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CodiceFiscalePFType
 
 
 class CodiceFiscalePFType (pyxb.binding.datatypes.string):
@@ -809,7 +955,10 @@ class CodiceFiscalePFType (pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CodiceFiscalePFType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1094, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1094,
+        2)
     _Documentation = None
 CodiceFiscalePFType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscalePFType._CF_pattern.addPattern(pattern='[A-Z0-9]{16}')
@@ -818,9 +967,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'CodiceFiscalePFType',
     CodiceFiscalePFType)
+_module_typeBindings.CodiceFiscalePFType = CodiceFiscalePFType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodEORIType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CodEORIType
 
 
 class CodEORIType (pyxb.binding.datatypes.string):
@@ -829,7 +980,10 @@ class CodEORIType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodEORIType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1099, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1099,
+        2)
     _Documentation = None
 CodEORIType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(13))
@@ -838,9 +992,11 @@ CodEORIType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
 CodEORIType._InitializeFacetMap(CodEORIType._CF_minLength,
                                 CodEORIType._CF_maxLength)
 Namespace.addCategoryObject('typeBinding', 'CodEORIType', CodEORIType)
+_module_typeBindings.CodEORIType = CodEORIType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SocioUnicoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# SocioUnicoType
 
 
 class SocioUnicoType (
@@ -851,7 +1007,10 @@ class SocioUnicoType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SocioUnicoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1105, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1105,
+        2)
     _Documentation = None
 SocioUnicoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=SocioUnicoType, enum_prefix=None)
@@ -861,9 +1020,11 @@ SocioUnicoType.SM = SocioUnicoType._CF_enumeration.addEnumeration(
     unicode_value='SM', tag='SM')
 SocioUnicoType._InitializeFacetMap(SocioUnicoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'SocioUnicoType', SocioUnicoType)
+_module_typeBindings.SocioUnicoType = SocioUnicoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}StatoLiquidazioneType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# StatoLiquidazioneType
 
 
 class StatoLiquidazioneType (
@@ -875,23 +1036,32 @@ class StatoLiquidazioneType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'StatoLiquidazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1119, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1119,
+        2)
     _Documentation = None
 StatoLiquidazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=StatoLiquidazioneType, enum_prefix=None)
-StatoLiquidazioneType.LS = StatoLiquidazioneType._CF_enumeration.addEnumeration(
-    unicode_value='LS', tag='LS')
-StatoLiquidazioneType.LN = StatoLiquidazioneType._CF_enumeration.addEnumeration(
-    unicode_value='LN', tag='LN')
+StatoLiquidazioneType.LS = (
+    StatoLiquidazioneType._CF_enumeration.addEnumeration(
+        unicode_value='LS', tag='LS')
+    )
+StatoLiquidazioneType.LN = (
+    StatoLiquidazioneType._CF_enumeration.addEnumeration(
+        unicode_value='LN', tag='LN')
+    )
 StatoLiquidazioneType._InitializeFacetMap(
     StatoLiquidazioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'StatoLiquidazioneType',
     StatoLiquidazioneType)
+_module_typeBindings.StatoLiquidazioneType = StatoLiquidazioneType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCessionePrestazioneType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TipoCessionePrestazioneType
 
 
 class TipoCessionePrestazioneType (
@@ -903,30 +1073,45 @@ class TipoCessionePrestazioneType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'TipoCessionePrestazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1133, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1133,
+        2)
     _Documentation = None
-TipoCessionePrestazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=TipoCessionePrestazioneType, enum_prefix=None)
-TipoCessionePrestazioneType.SC = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='SC', tag='SC')
-TipoCessionePrestazioneType.PR = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='PR', tag='PR')
-TipoCessionePrestazioneType.AB = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='AB', tag='AB')
-TipoCessionePrestazioneType.AC = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
-    unicode_value='AC', tag='AC')
 TipoCessionePrestazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
+TipoCessionePrestazioneType._CF_enumeration = (
+    pyxb.binding.facets.CF_enumeration(
+        value_datatype=TipoCessionePrestazioneType, enum_prefix=None)
+    )
+TipoCessionePrestazioneType.SC = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='SC', tag='SC')
+    )
+TipoCessionePrestazioneType.PR = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='PR', tag='PR')
+    )
+TipoCessionePrestazioneType.AB = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='AB', tag='AB')
+    )
+TipoCessionePrestazioneType.AC = (
+    TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
+        unicode_value='AC', tag='AC')
+    )
 TipoCessionePrestazioneType._InitializeFacetMap(
-    TipoCessionePrestazioneType._CF_enumeration,
-    TipoCessionePrestazioneType._CF_length)
+    TipoCessionePrestazioneType._CF_length,
+    TipoCessionePrestazioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
     'TipoCessionePrestazioneType',
     TipoCessionePrestazioneType)
+_module_typeBindings.TipoCessionePrestazioneType = TipoCessionePrestazioneType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TitoloType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TitoloType
 
 
 class TitoloType (pyxb.binding.datatypes.normalizedString):
@@ -935,18 +1120,23 @@ class TitoloType (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TitoloType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1158, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1158,
+        2)
     _Documentation = None
-TitoloType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
-    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 TitoloType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TitoloType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{2,10})')
-TitoloType._InitializeFacetMap(TitoloType._CF_whiteSpace,
-                               TitoloType._CF_pattern)
+TitoloType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
+    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+TitoloType._InitializeFacetMap(TitoloType._CF_pattern,
+                               TitoloType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'TitoloType', TitoloType)
+_module_typeBindings.TitoloType = TitoloType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String10Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String10Type
 
 
 class String10Type (pyxb.binding.datatypes.normalizedString):
@@ -955,15 +1145,20 @@ class String10Type (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String10Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1164, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1164,
+        2)
     _Documentation = None
 String10Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,10})')
 String10Type._InitializeFacetMap(String10Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String10Type', String10Type)
+_module_typeBindings.String10Type = String10Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String15Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String15Type
 
 
 class String15Type (pyxb.binding.datatypes.normalizedString):
@@ -972,15 +1167,20 @@ class String15Type (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String15Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1169, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1169,
+        2)
     _Documentation = None
 String15Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,15})')
 String15Type._InitializeFacetMap(String15Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String15Type', String15Type)
+_module_typeBindings.String15Type = String15Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String20Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String20Type
 
 
 class String20Type (pyxb.binding.datatypes.normalizedString):
@@ -989,15 +1189,20 @@ class String20Type (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String20Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1174, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1174,
+        2)
     _Documentation = None
 String20Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,20})')
 String20Type._InitializeFacetMap(String20Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String20Type', String20Type)
+_module_typeBindings.String20Type = String20Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String35Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String35Type
 
 
 class String35Type (pyxb.binding.datatypes.normalizedString):
@@ -1006,15 +1211,20 @@ class String35Type (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String35Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1179, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1179,
+        2)
     _Documentation = None
 String35Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,35})')
 String35Type._InitializeFacetMap(String35Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String35Type', String35Type)
+_module_typeBindings.String35Type = String35Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String60Type
 
 
 class String60Type (pyxb.binding.datatypes.normalizedString):
@@ -1023,15 +1233,20 @@ class String60Type (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String60Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1184, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1184,
+        2)
     _Documentation = None
 String60Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,60})')
 String60Type._InitializeFacetMap(String60Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String60Type', String60Type)
+_module_typeBindings.String60Type = String60Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String80Type
 
 
 class String80Type (pyxb.binding.datatypes.normalizedString):
@@ -1040,15 +1255,20 @@ class String80Type (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String80Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1189, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1189,
+        2)
     _Documentation = None
 String80Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,80})')
 String80Type._InitializeFacetMap(String80Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String80Type', String80Type)
+_module_typeBindings.String80Type = String80Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String100Type
 
 
 class String100Type (pyxb.binding.datatypes.normalizedString):
@@ -1057,15 +1277,20 @@ class String100Type (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String100Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1194, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1194,
+        2)
     _Documentation = None
 String100Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,100})')
 String100Type._InitializeFacetMap(String100Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String100Type', String100Type)
+_module_typeBindings.String100Type = String100Type
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60LatinType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String60LatinType
 
 
 class String60LatinType (pyxb.binding.datatypes.normalizedString):
@@ -1074,19 +1299,29 @@ class String60LatinType (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String60LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1199, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1199,
+        2)
     _Documentation = None
 String60LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
+# strings of blank spaces are allowed by SDI.
+# {1,60} would produce
+# SimpleFacetValueError: Type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String1000LatinType pattern constraint violated by value
 String60LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,60}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,60}')
 String60LatinType._InitializeFacetMap(String60LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
     'String60LatinType',
     String60LatinType)
+_module_typeBindings.String60LatinType = String60LatinType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80LatinType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String80LatinType
 
 
 class String80LatinType (pyxb.binding.datatypes.normalizedString):
@@ -1095,19 +1330,24 @@ class String80LatinType (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String80LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1204, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1204,
+        2)
     _Documentation = None
 String80LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,80}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,80}')
 String80LatinType._InitializeFacetMap(String80LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
     'String80LatinType',
     String80LatinType)
+_module_typeBindings.String80LatinType = String80LatinType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100LatinType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String100LatinType
 
 
 class String100LatinType (pyxb.binding.datatypes.normalizedString):
@@ -1117,19 +1357,24 @@ class String100LatinType (pyxb.binding.datatypes.normalizedString):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'String100LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1209, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1209,
+        2)
     _Documentation = None
 String100LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,100}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,100}')
 String100LatinType._InitializeFacetMap(String100LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
     'String100LatinType',
     String100LatinType)
+_module_typeBindings.String100LatinType = String100LatinType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String200LatinType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String200LatinType
 
 
 class String200LatinType (pyxb.binding.datatypes.normalizedString):
@@ -1139,19 +1384,24 @@ class String200LatinType (pyxb.binding.datatypes.normalizedString):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'String200LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1214, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1214,
+        2)
     _Documentation = None
 String200LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String200LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,200}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,200}')
 String200LatinType._InitializeFacetMap(String200LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
     'String200LatinType',
     String200LatinType)
+_module_typeBindings.String200LatinType = String200LatinType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String1000LatinType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# String1000LatinType
 
 
 class String1000LatinType (pyxb.binding.datatypes.normalizedString):
@@ -1161,19 +1411,24 @@ class String1000LatinType (pyxb.binding.datatypes.normalizedString):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'String1000LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1219, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1219,
+        2)
     _Documentation = None
 String1000LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String1000LatinType._CF_pattern.addPattern(
-    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,1000}')
+    pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{0,1000}')
 String1000LatinType._InitializeFacetMap(String1000LatinType._CF_pattern)
 Namespace.addCategoryObject(
     'typeBinding',
     'String1000LatinType',
     String1000LatinType)
+_module_typeBindings.String1000LatinType = String1000LatinType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ProvinciaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# ProvinciaType
 
 
 class ProvinciaType (pyxb.binding.datatypes.string):
@@ -1182,15 +1437,20 @@ class ProvinciaType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ProvinciaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1224, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1224,
+        2)
     _Documentation = None
 ProvinciaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ProvinciaType._CF_pattern.addPattern(pattern='[A-Z]{2}')
 ProvinciaType._InitializeFacetMap(ProvinciaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'ProvinciaType', ProvinciaType)
+_module_typeBindings.ProvinciaType = ProvinciaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NazioneType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# NazioneType
 
 
 class NazioneType (pyxb.binding.datatypes.string):
@@ -1199,15 +1459,20 @@ class NazioneType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1229, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1229,
+        2)
     _Documentation = None
 NazioneType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NazioneType._CF_pattern.addPattern(pattern='[A-Z]{2}')
 NazioneType._InitializeFacetMap(NazioneType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'NazioneType', NazioneType)
+_module_typeBindings.NazioneType = NazioneType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DivisaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DivisaType
 
 
 class DivisaType (pyxb.binding.datatypes.string):
@@ -1216,15 +1481,20 @@ class DivisaType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DivisaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1234, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1234,
+        2)
     _Documentation = None
 DivisaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DivisaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
 DivisaType._InitializeFacetMap(DivisaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DivisaType', DivisaType)
+_module_typeBindings.DivisaType = DivisaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoResaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TipoResaType
 
 
 class TipoResaType (pyxb.binding.datatypes.string):
@@ -1233,15 +1503,20 @@ class TipoResaType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoResaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1239, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1239,
+        2)
     _Documentation = None
 TipoResaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TipoResaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
 TipoResaType._InitializeFacetMap(TipoResaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TipoResaType', TipoResaType)
+_module_typeBindings.TipoResaType = TipoResaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroCivicoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# NumeroCivicoType
 
 
 class NumeroCivicoType (pyxb.binding.datatypes.normalizedString):
@@ -1250,7 +1525,10 @@ class NumeroCivicoType (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroCivicoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1244, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1244,
+        2)
     _Documentation = None
 NumeroCivicoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NumeroCivicoType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,8})')
@@ -1259,9 +1537,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'NumeroCivicoType',
     NumeroCivicoType)
+_module_typeBindings.NumeroCivicoType = NumeroCivicoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BolloVirtualeType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# BolloVirtualeType
 
 
 class BolloVirtualeType (
@@ -1272,7 +1552,10 @@ class BolloVirtualeType (
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'BolloVirtualeType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1249, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1249,
+        2)
     _Documentation = None
 BolloVirtualeType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=BolloVirtualeType, enum_prefix=None)
@@ -1283,9 +1566,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'BolloVirtualeType',
     BolloVirtualeType)
+_module_typeBindings.BolloVirtualeType = BolloVirtualeType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TelFaxType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TelFaxType
 
 
 class TelFaxType (pyxb.binding.datatypes.normalizedString):
@@ -1294,15 +1579,20 @@ class TelFaxType (pyxb.binding.datatypes.normalizedString):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TelFaxType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1254, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1254,
+        2)
     _Documentation = None
 TelFaxType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TelFaxType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{5,12})')
 TelFaxType._InitializeFacetMap(TelFaxType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TelFaxType', TelFaxType)
+_module_typeBindings.TelFaxType = TelFaxType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EmailType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# EmailType
 
 
 class EmailType (pyxb.binding.datatypes.string):
@@ -1311,38 +1601,48 @@ class EmailType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EmailType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1259, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1259,
+        2)
     _Documentation = None
-EmailType._CF_pattern = pyxb.binding.facets.CF_pattern()
-EmailType._CF_pattern.addPattern(pattern='.+@.+[.]+.+')
 EmailType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(7))
 EmailType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(256))
-EmailType._InitializeFacetMap(EmailType._CF_pattern,
-                              EmailType._CF_minLength,
-                              EmailType._CF_maxLength)
+EmailType._CF_pattern = pyxb.binding.facets.CF_pattern()
+EmailType._CF_pattern.addPattern(pattern='.+@.+[.]+.+')
+EmailType._InitializeFacetMap(EmailType._CF_minLength,
+                              EmailType._CF_maxLength,
+                              EmailType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'EmailType', EmailType)
+_module_typeBindings.EmailType = EmailType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}PesoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# PesoType
 
 
-class PesoType (pyxb.binding.datatypes.string):
+class PesoType (pyxb.binding.datatypes.decimal):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'PesoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1267, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1267,
+        2)
     _Documentation = None
 PesoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 PesoType._CF_pattern.addPattern(pattern='[0-9]{1,4}\\.[0-9]{1,2}')
 PesoType._InitializeFacetMap(PesoType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'PesoType', PesoType)
+_module_typeBindings.PesoType = PesoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount8DecimalType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# Amount8DecimalType
 
 
 class Amount8DecimalType (pyxb.binding.datatypes.string):
@@ -1352,7 +1652,10 @@ class Amount8DecimalType (pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'Amount8DecimalType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1272, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1272,
+        2)
     _Documentation = None
 Amount8DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount8DecimalType._CF_pattern.addPattern(
@@ -1362,9 +1665,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'Amount8DecimalType',
     Amount8DecimalType)
+_module_typeBindings.Amount8DecimalType = Amount8DecimalType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount2DecimalType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# Amount2DecimalType
 
 
 class Amount2DecimalType (pyxb.binding.datatypes.string):
@@ -1374,7 +1679,10 @@ class Amount2DecimalType (pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'Amount2DecimalType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1277, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1277,
+        2)
     _Documentation = None
 Amount2DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount2DecimalType._CF_pattern.addPattern(
@@ -1384,9 +1692,11 @@ Namespace.addCategoryObject(
     'typeBinding',
     'Amount2DecimalType',
     Amount2DecimalType)
+_module_typeBindings.Amount2DecimalType = Amount2DecimalType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RateType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# RateType
 
 
 class RateType (pyxb.binding.datatypes.string):
@@ -1395,18 +1705,23 @@ class RateType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RateType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1282, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1282,
+        2)
     _Documentation = None
+# RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive
+# (value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.00'))
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
-# RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-#     value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
-RateType._InitializeFacetMap(RateType._CF_pattern)
-#                             RateType._CF_maxInclusive)
+RateType._InitializeFacetMap(  # RateType._CF_maxInclusive,
+    RateType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
+_module_typeBindings.RateType = RateType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoFaseType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# RiferimentoFaseType
 
 
 class RiferimentoFaseType (pyxb.binding.datatypes.integer):
@@ -1416,21 +1731,28 @@ class RiferimentoFaseType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RiferimentoFaseType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1288, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1288,
+        2)
     _Documentation = None
-RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
-RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_minInclusive,
-                                        RiferimentoFaseType._CF_maxInclusive)
+    value_datatype=RiferimentoFaseType,
+    value=pyxb.binding.datatypes.integer(999))
+RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=RiferimentoFaseType,
+    value=pyxb.binding.datatypes.integer(1))
+RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_maxInclusive,
+                                        RiferimentoFaseType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding',
     'RiferimentoFaseType',
     RiferimentoFaseType)
+_module_typeBindings.RiferimentoFaseType = RiferimentoFaseType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroColliType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# NumeroColliType
 
 
 class NumeroColliType (pyxb.binding.datatypes.integer):
@@ -1439,18 +1761,23 @@ class NumeroColliType (pyxb.binding.datatypes.integer):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroColliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1294, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1294,
+        2)
     _Documentation = None
-NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
 NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
-NumeroColliType._InitializeFacetMap(NumeroColliType._CF_minInclusive,
-                                    NumeroColliType._CF_maxInclusive)
+NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
+NumeroColliType._InitializeFacetMap(NumeroColliType._CF_maxInclusive,
+                                    NumeroColliType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroColliType', NumeroColliType)
+_module_typeBindings.NumeroColliType = NumeroColliType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroLineaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# NumeroLineaType
 
 
 class NumeroLineaType (pyxb.binding.datatypes.integer):
@@ -1459,18 +1786,23 @@ class NumeroLineaType (pyxb.binding.datatypes.integer):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1300, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1300,
+        2)
     _Documentation = None
-NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
-NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_minInclusive,
-                                    NumeroLineaType._CF_maxInclusive)
+NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
+NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_maxInclusive,
+                                    NumeroLineaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroLineaType', NumeroLineaType)
+_module_typeBindings.NumeroLineaType = NumeroLineaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CAPType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CAPType
 
 
 class CAPType (pyxb.binding.datatypes.string):
@@ -1479,15 +1811,20 @@ class CAPType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CAPType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1306, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1306,
+        2)
     _Documentation = None
 CAPType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CAPType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 CAPType._InitializeFacetMap(CAPType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CAPType', CAPType)
+_module_typeBindings.CAPType = CAPType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ABIType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# ABIType
 
 
 class ABIType (pyxb.binding.datatypes.string):
@@ -1496,15 +1833,20 @@ class ABIType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ABIType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1311, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1311,
+        2)
     _Documentation = None
 ABIType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ABIType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 ABIType._InitializeFacetMap(ABIType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'ABIType', ABIType)
+_module_typeBindings.ABIType = ABIType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CABType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CABType
 
 
 class CABType (pyxb.binding.datatypes.string):
@@ -1513,15 +1855,20 @@ class CABType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CABType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1316, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1316,
+        2)
     _Documentation = None
 CABType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CABType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 CABType._InitializeFacetMap(CABType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CABType', CABType)
+_module_typeBindings.CABType = CABType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}GiorniTerminePagamentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# GiorniTerminePagamentoType
 
 
 class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
@@ -1531,22 +1878,33 @@ class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'GiorniTerminePagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1321, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1321,
+        2)
     _Documentation = None
-GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
-GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
+GiorniTerminePagamentoType._CF_maxInclusive = (
+    pyxb.binding.facets.CF_maxInclusive(
+        value_datatype=GiorniTerminePagamentoType,
+        value=pyxb.binding.datatypes.integer(999))
+    )
+GiorniTerminePagamentoType._CF_minInclusive = (
+    pyxb.binding.facets.CF_minInclusive(
+        value_datatype=GiorniTerminePagamentoType,
+        value=pyxb.binding.datatypes.integer(0))
+    )
 GiorniTerminePagamentoType._InitializeFacetMap(
-    GiorniTerminePagamentoType._CF_minInclusive,
-    GiorniTerminePagamentoType._CF_maxInclusive)
+    GiorniTerminePagamentoType._CF_maxInclusive,
+    GiorniTerminePagamentoType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding',
     'GiorniTerminePagamentoType',
     GiorniTerminePagamentoType)
+_module_typeBindings.GiorniTerminePagamentoType = GiorniTerminePagamentoType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}QuantitaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# QuantitaType
 
 
 class QuantitaType (pyxb.binding.datatypes.string):
@@ -1555,15 +1913,20 @@ class QuantitaType (pyxb.binding.datatypes.string):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'QuantitaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1327, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1327,
+        2)
     _Documentation = None
 QuantitaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 QuantitaType._CF_pattern.addPattern(pattern='[0-9]{1,12}\\.[0-9]{2,8}')
 QuantitaType._InitializeFacetMap(QuantitaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'QuantitaType', QuantitaType)
+_module_typeBindings.QuantitaType = QuantitaType
 
 # Atomic simple type:
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DataFatturaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DataFatturaType
 
 
 class DataFatturaType (pyxb.binding.datatypes.date):
@@ -1572,27 +1935,37 @@ class DataFatturaType (pyxb.binding.datatypes.date):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DataFatturaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1332, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1332,
+        2)
     _Documentation = None
 DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=DataFatturaType, value=pyxb.binding.datatypes.date('1970-01-01'))
+    value_datatype=DataFatturaType,
+    value=pyxb.binding.datatypes.date('1970-01-01'))
 DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
+_module_typeBindings.DataFatturaType = DataFatturaType
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaHeaderType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# FatturaElettronicaHeaderType
 # with content type ELEMENT_ONLY
 
 
 class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaHeaderType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}FatturaElettronicaHeaderType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaElettronicaHeaderType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 23, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        23,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -1603,10 +1976,12 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiTrasmissione'),
         'DatiTrasmissione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_DatiTrasmissione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaHeaderType_DatiTrasmissione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             25,
             6),
     )
@@ -1623,10 +1998,12 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CedentePrestatore'),
         'CedentePrestatore',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CedentePrestatore',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaHeaderType_CedentePrestatore',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             26,
             6),
     )
@@ -1644,10 +2021,12 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RappresentanteFiscale'),
         'RappresentanteFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_RappresentanteFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaHeaderType_RappresentanteFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             27,
             6),
     )
@@ -1665,10 +2044,12 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CessionarioCommittente'),
         'CessionarioCommittente',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CessionarioCommittente',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaHeaderType_CessionarioCommittente',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             28,
             6),
     )
@@ -1681,17 +2062,22 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
 
     # Element TerzoIntermediarioOSoggettoEmittente uses Python identifier
     # TerzoIntermediarioOSoggettoEmittente
-    __TerzoIntermediarioOSoggettoEmittente = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(
-            None,
-            'TerzoIntermediarioOSoggettoEmittente'),
-        'TerzoIntermediarioOSoggettoEmittente',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_TerzoIntermediarioOSoggettoEmittente',
-        False,
-        pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
-            29,
-            6),
+    __TerzoIntermediarioOSoggettoEmittente = (
+        pyxb.binding.content.ElementDeclaration(
+            pyxb.namespace.ExpandedName(
+                None,
+                'TerzoIntermediarioOSoggettoEmittente'),
+            'TerzoIntermediarioOSoggettoEmittente',
+            '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+            'FatturaElettronicaHeaderType_TerzoIntermediarioOSoggetto'
+            'Emittente',
+            False,
+            pyxb.utils.utility.Location(
+                'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa'
+                '/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+                29,
+                6),
+        )
     )
 
     TerzoIntermediarioOSoggettoEmittente = property(
@@ -1706,10 +2092,12 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'SoggettoEmittente'),
         'SoggettoEmittente',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_SoggettoEmittente',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaHeaderType_SoggettoEmittente',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             30,
             6),
     )
@@ -1725,12 +2113,15 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
         __CedentePrestatore.name(): __CedentePrestatore,
         __RappresentanteFiscale.name(): __RappresentanteFiscale,
         __CessionarioCommittente.name(): __CessionarioCommittente,
-        __TerzoIntermediarioOSoggettoEmittente.name(): __TerzoIntermediarioOSoggettoEmittente,
+        __TerzoIntermediarioOSoggettoEmittente.name(): (
+            __TerzoIntermediarioOSoggettoEmittente),
         __SoggettoEmittente.name(): __SoggettoEmittente
     })
     _AttributeMap.update({
 
     })
+_module_typeBindings.FatturaElettronicaHeaderType = (
+    FatturaElettronicaHeaderType)
 Namespace.addCategoryObject(
     'typeBinding',
     'FatturaElettronicaHeaderType',
@@ -1738,17 +2129,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaBodyType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# FatturaElettronicaBodyType
 # with content type ELEMENT_ONLY
 class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaBodyType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}FatturaElettronicaBodyType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaElettronicaBodyType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 33, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        33,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -1759,10 +2155,12 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiGenerali'),
         'DatiGenerali',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiGenerali',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaBodyType_DatiGenerali',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             35,
             6),
     )
@@ -1779,10 +2177,12 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiBeniServizi'),
         'DatiBeniServizi',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiBeniServizi',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaBodyType_DatiBeniServizi',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             36,
             6),
     )
@@ -1799,10 +2199,12 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiVeicoli'),
         'DatiVeicoli',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiVeicoli',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaBodyType_DatiVeicoli',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             37,
             6),
     )
@@ -1815,10 +2217,12 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiPagamento'),
         'DatiPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiPagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaBodyType_DatiPagamento',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             38,
             6),
     )
@@ -1835,10 +2239,12 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Allegati'),
         'Allegati',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_Allegati',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaBodyType_Allegati',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             39,
             6),
     )
@@ -1855,6 +2261,7 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.FatturaElettronicaBodyType = FatturaElettronicaBodyType
 Namespace.addCategoryObject(
     'typeBinding',
     'FatturaElettronicaBodyType',
@@ -1862,7 +2269,8 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasmissioneType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiTrasmissioneType
 # with content type ELEMENT_ONLY
 class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     """Blocco relativo ai dati di trasmissione della Fattura Elettronica"""
@@ -1872,7 +2280,10 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiTrasmissioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 42, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        42,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -1883,10 +2294,12 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IdTrasmittente'),
         'IdTrasmittente',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_IdTrasmittente',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasmissioneType_IdTrasmittente',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             47,
             6),
     )
@@ -1903,10 +2316,12 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ProgressivoInvio'),
         'ProgressivoInvio',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ProgressivoInvio',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasmissioneType_ProgressivoInvio',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             48,
             6),
     )
@@ -1923,10 +2338,12 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'FormatoTrasmissione'),
         'FormatoTrasmissione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_FormatoTrasmissione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasmissioneType_FormatoTrasmissione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             49,
             6),
     )
@@ -1943,10 +2360,12 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceDestinatario'),
         'CodiceDestinatario',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_CodiceDestinatario',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasmissioneType_CodiceDestinatario',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             50,
             6),
     )
@@ -1963,10 +2382,12 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ContattiTrasmittente'),
         'ContattiTrasmittente',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ContattiTrasmittente',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasmissioneType_ContattiTrasmittente',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             51,
             6),
     )
@@ -1983,10 +2404,12 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'PECDestinatario'),
         'PECDestinatario',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_PECDestinatario',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasmissioneType_PECDestinatario',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             52,
             6),
     )
@@ -2008,6 +2431,7 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiTrasmissioneType = DatiTrasmissioneType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiTrasmissioneType',
@@ -2015,16 +2439,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IdFiscaleType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# IdFiscaleType
 # with content type ELEMENT_ONLY
 class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IdFiscaleType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}IdFiscaleType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IdFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 60, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        60,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2035,10 +2464,12 @@ class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IdPaese'),
         'IdPaese',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdPaese',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IdFiscaleType_IdPaese',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             62,
             6),
     )
@@ -2051,10 +2482,12 @@ class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IdCodice'),
         'IdCodice',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdCodice',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IdFiscaleType_IdCodice',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             63,
             6),
     )
@@ -2068,21 +2501,27 @@ class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.IdFiscaleType = IdFiscaleType
 Namespace.addCategoryObject('typeBinding', 'IdFiscaleType', IdFiscaleType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiTrasmittenteType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# ContattiTrasmittenteType
 # with content type ELEMENT_ONLY
 class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiTrasmittenteType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}ContattiTrasmittenteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'ContattiTrasmittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 87, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        87,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2093,10 +2532,12 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Telefono'),
         'Telefono',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Telefono',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ContattiTrasmittenteType_Telefono',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             89,
             6),
     )
@@ -2109,10 +2550,12 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Email'),
         'Email',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Email',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ContattiTrasmittenteType_Email',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             90,
             6),
     )
@@ -2126,6 +2569,7 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.ContattiTrasmittenteType = ContattiTrasmittenteType
 Namespace.addCategoryObject(
     'typeBinding',
     'ContattiTrasmittenteType',
@@ -2133,18 +2577,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiGeneraliType
 # with content type ELEMENT_ONLY
 class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai Dati Generali della Fattura Elettronica
+        Blocco relativo ai Dati Generali della Fattura Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiGeneraliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 93, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        93,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2156,10 +2604,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiGeneraliDocumento'),
         'DatiGeneraliDocumento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiGeneraliDocumento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiGeneraliDocumento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             100,
             6),
     )
@@ -2176,10 +2626,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiOrdineAcquisto'),
         'DatiOrdineAcquisto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiOrdineAcquisto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiOrdineAcquisto',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             101,
             6),
     )
@@ -2196,10 +2648,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiContratto'),
         'DatiContratto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiContratto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiContratto',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             102,
             6),
     )
@@ -2216,10 +2670,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiConvenzione'),
         'DatiConvenzione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiConvenzione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiConvenzione',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             103,
             6),
     )
@@ -2236,10 +2692,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiRicezione'),
         'DatiRicezione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiRicezione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiRicezione',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             104,
             6),
     )
@@ -2256,10 +2714,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiFattureCollegate'),
         'DatiFattureCollegate',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiFattureCollegate',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiFattureCollegate',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             105,
             6),
     )
@@ -2276,10 +2736,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiSAL'),
         'DatiSAL',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiSAL',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiSAL',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             106,
             6),
     )
@@ -2292,10 +2754,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiDDT'),
         'DatiDDT',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiDDT',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiDDT',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             107,
             6),
     )
@@ -2308,10 +2772,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiTrasporto'),
         'DatiTrasporto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiTrasporto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_DatiTrasporto',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             108,
             6),
     )
@@ -2328,10 +2794,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'FatturaPrincipale'),
         'FatturaPrincipale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_FatturaPrincipale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliType_FatturaPrincipale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             109,
             6),
     )
@@ -2357,6 +2825,7 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiGeneraliType = DatiGeneraliType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiGeneraliType',
@@ -2364,17 +2833,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliDocumentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiGeneraliDocumentoType
 # with content type ELEMENT_ONLY
 class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliDocumentoType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiGeneraliDocumentoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiGeneraliDocumentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 112, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        112,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2385,10 +2859,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TipoDocumento'),
         'TipoDocumento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_TipoDocumento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_TipoDocumento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             114,
             6),
     )
@@ -2405,10 +2881,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Divisa'),
         'Divisa',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Divisa',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_Divisa',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             115,
             6),
     )
@@ -2421,10 +2899,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Data'),
         'Data',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Data',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_Data',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             116,
             6),
     )
@@ -2437,10 +2917,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Numero'),
         'Numero',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Numero',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_Numero',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             117,
             6),
     )
@@ -2453,10 +2935,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiRitenuta'),
         'DatiRitenuta',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiRitenuta',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_DatiRitenuta',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             118,
             6),
     )
@@ -2473,10 +2957,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiBollo'),
         'DatiBollo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiBollo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_DatiBollo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             119,
             6),
     )
@@ -2490,10 +2976,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiCassaPrevidenziale'),
         'DatiCassaPrevidenziale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiCassaPrevidenziale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_DatiCassaPrevidenziale',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             120,
             6),
     )
@@ -2510,10 +2998,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ScontoMaggiorazione'),
         'ScontoMaggiorazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ScontoMaggiorazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_ScontoMaggiorazione',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             121,
             6),
     )
@@ -2531,10 +3021,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ImportoTotaleDocumento'),
         'ImportoTotaleDocumento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ImportoTotaleDocumento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_ImportoTotaleDocumento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             122,
             6),
     )
@@ -2551,10 +3043,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Arrotondamento'),
         'Arrotondamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Arrotondamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_Arrotondamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             123,
             6),
     )
@@ -2571,10 +3065,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Causale'),
         'Causale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Causale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_Causale',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             124,
             6),
     )
@@ -2587,10 +3083,12 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Art73'),
         'Art73',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Art73',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiGeneraliDocumentoType_Art73',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             125,
             6),
     )
@@ -2614,6 +3112,7 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiGeneraliDocumentoType = DatiGeneraliDocumentoType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiGeneraliDocumentoType',
@@ -2621,16 +3120,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRitenutaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiRitenutaType
 # with content type ELEMENT_ONLY
 class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRitenutaType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiRitenutaType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiRitenutaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 128, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        128,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2641,10 +3145,12 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TipoRitenuta'),
         'TipoRitenuta',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_TipoRitenuta',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRitenutaType_TipoRitenuta',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             130,
             6),
     )
@@ -2661,10 +3167,12 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ImportoRitenuta'),
         'ImportoRitenuta',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_ImportoRitenuta',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRitenutaType_ImportoRitenuta',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             131,
             6),
     )
@@ -2681,10 +3189,12 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AliquotaRitenuta'),
         'AliquotaRitenuta',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_AliquotaRitenuta',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRitenutaType_AliquotaRitenuta',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             132,
             6),
     )
@@ -2701,10 +3211,12 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CausalePagamento'),
         'CausalePagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_CausalePagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRitenutaType_CausalePagamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             133,
             6),
     )
@@ -2724,6 +3236,7 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiRitenutaType = DatiRitenutaType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiRitenutaType',
@@ -2731,16 +3244,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBolloType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiBolloType
 # with content type ELEMENT_ONLY
 class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBolloType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiBolloType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiBolloType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 136, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        136,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2751,10 +3269,12 @@ class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'BolloVirtuale'),
         'BolloVirtuale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_BolloVirtuale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiBolloType_BolloVirtuale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             138,
             6),
     )
@@ -2771,10 +3291,12 @@ class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ImportoBollo'),
         'ImportoBollo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_ImportoBollo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiBolloType_ImportoBollo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             139,
             6),
     )
@@ -2792,21 +3314,27 @@ class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiBolloType = DatiBolloType
 Namespace.addCategoryObject('typeBinding', 'DatiBolloType', DatiBolloType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiCassaPrevidenzialeType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiCassaPrevidenzialeType
 # with content type ELEMENT_ONLY
 class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiCassaPrevidenzialeType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiCassaPrevidenzialeType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiCassaPrevidenzialeType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 142, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        142,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2817,10 +3345,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TipoCassa'),
         'TipoCassa',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_TipoCassa',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_TipoCassa',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             144,
             6),
     )
@@ -2833,10 +3363,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AlCassa'),
         'AlCassa',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AlCassa',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_AlCassa',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             145,
             6),
     )
@@ -2850,10 +3382,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ImportoContributoCassa'),
         'ImportoContributoCassa',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImportoContributoCassa',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_ImportoContributoCassa',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             146,
             6),
     )
@@ -2870,10 +3404,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ImponibileCassa'),
         'ImponibileCassa',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImponibileCassa',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_ImponibileCassa',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             147,
             6),
     )
@@ -2890,10 +3426,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AliquotaIVA'),
         'AliquotaIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AliquotaIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_AliquotaIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             148,
             6),
     )
@@ -2906,10 +3444,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Ritenuta'),
         'Ritenuta',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Ritenuta',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_Ritenuta',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             149,
             6),
     )
@@ -2922,10 +3462,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Natura'),
         'Natura',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Natura',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_Natura',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             150,
             6),
     )
@@ -2939,10 +3481,12 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoAmministrazione'),
         'RiferimentoAmministrazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_RiferimentoAmministrazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiCassaPrevidenzialeType_RiferimentoAmministrazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             151,
             6),
     )
@@ -2966,6 +3510,7 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiCassaPrevidenzialeType = DatiCassaPrevidenzialeType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiCassaPrevidenzialeType',
@@ -2973,17 +3518,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ScontoMaggiorazioneType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# ScontoMaggiorazioneType
 # with content type ELEMENT_ONLY
 class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ScontoMaggiorazioneType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}ScontoMaggiorazioneType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'ScontoMaggiorazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 154, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        154,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -2994,10 +3544,12 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Tipo'),
         'Tipo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Tipo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ScontoMaggiorazioneType_Tipo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             156,
             6),
     )
@@ -3010,10 +3562,12 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Percentuale'),
         'Percentuale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Percentuale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ScontoMaggiorazioneType_Percentuale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             157,
             6),
     )
@@ -3026,10 +3580,12 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Importo'),
         'Importo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Importo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ScontoMaggiorazioneType_Importo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             158,
             6),
     )
@@ -3044,6 +3600,7 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.ScontoMaggiorazioneType = ScontoMaggiorazioneType
 Namespace.addCategoryObject(
     'typeBinding',
     'ScontoMaggiorazioneType',
@@ -3051,16 +3608,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiSALType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiSALType
 # with content type ELEMENT_ONLY
 class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiSALType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiSALType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiSALType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 433, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        433,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3071,10 +3633,12 @@ class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoFase'),
         'RiferimentoFase',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiSALType_RiferimentoFase',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiSALType_RiferimentoFase',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             435,
             6),
     )
@@ -3091,21 +3655,27 @@ class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiSALType = DatiSALType
 Namespace.addCategoryObject('typeBinding', 'DatiSALType', DatiSALType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDocumentiCorrelatiType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiDocumentiCorrelatiType
 # with content type ELEMENT_ONLY
 class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDocumentiCorrelatiType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiDocumentiCorrelatiType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiDocumentiCorrelatiType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 438, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        438,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3117,10 +3687,12 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoNumeroLinea'),
         'RiferimentoNumeroLinea',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_RiferimentoNumeroLinea',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDocumentiCorrelatiType_RiferimentoNumeroLinea',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             440,
             6),
     )
@@ -3137,10 +3709,12 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IdDocumento'),
         'IdDocumento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_IdDocumento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDocumentiCorrelatiType_IdDocumento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             441,
             6),
     )
@@ -3153,10 +3727,12 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Data'),
         'Data',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_Data',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDocumentiCorrelatiType_Data',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             442,
             6),
     )
@@ -3169,10 +3745,12 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumItem'),
         'NumItem',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_NumItem',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDocumentiCorrelatiType_NumItem',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             443,
             6),
     )
@@ -3186,10 +3764,12 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceCommessaConvenzione'),
         'CodiceCommessaConvenzione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCommessaConvenzione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDocumentiCorrelatiType_CodiceCommessaConvenzione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             444,
             6),
     )
@@ -3206,10 +3786,12 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceCUP'),
         'CodiceCUP',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCUP',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDocumentiCorrelatiType_CodiceCUP',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             445,
             6),
     )
@@ -3222,10 +3804,12 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceCIG'),
         'CodiceCIG',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCIG',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDocumentiCorrelatiType_CodiceCIG',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             446,
             6),
     )
@@ -3244,6 +3828,7 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiDocumentiCorrelatiType = DatiDocumentiCorrelatiType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiDocumentiCorrelatiType',
@@ -3251,16 +3836,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDDTType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiDDTType
 # with content type ELEMENT_ONLY
 class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDDTType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiDDTType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiDDTType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 455, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        455,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3271,10 +3861,12 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroDDT'),
         'NumeroDDT',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_NumeroDDT',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDDTType_NumeroDDT',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             457,
             6),
     )
@@ -3287,10 +3879,12 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataDDT'),
         'DataDDT',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_DataDDT',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDDTType_DataDDT',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             458,
             6),
     )
@@ -3304,10 +3898,12 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoNumeroLinea'),
         'RiferimentoNumeroLinea',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_RiferimentoNumeroLinea',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiDDTType_RiferimentoNumeroLinea',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             459,
             6),
     )
@@ -3326,20 +3922,26 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiDDTType = DatiDDTType
 Namespace.addCategoryObject('typeBinding', 'DatiDDTType', DatiDDTType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasportoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiTrasportoType
 # with content type ELEMENT_ONLY
 class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasportoType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiTrasportoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiTrasportoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 462, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        462,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3351,10 +3953,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiAnagraficiVettore'),
         'DatiAnagraficiVettore',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DatiAnagraficiVettore',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_DatiAnagraficiVettore',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             464,
             6),
     )
@@ -3371,10 +3975,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'MezzoTrasporto'),
         'MezzoTrasporto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_MezzoTrasporto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_MezzoTrasporto',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             465,
             6),
     )
@@ -3391,10 +3997,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CausaleTrasporto'),
         'CausaleTrasporto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_CausaleTrasporto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_CausaleTrasporto',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             466,
             6),
     )
@@ -3411,10 +4019,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroColli'),
         'NumeroColli',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_NumeroColli',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_NumeroColli',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             467,
             6),
     )
@@ -3427,10 +4037,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Descrizione'),
         'Descrizione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_Descrizione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_Descrizione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             468,
             6),
     )
@@ -3443,10 +4055,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'UnitaMisuraPeso'),
         'UnitaMisuraPeso',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_UnitaMisuraPeso',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_UnitaMisuraPeso',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             469,
             6),
     )
@@ -3463,10 +4077,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'PesoLordo'),
         'PesoLordo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoLordo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_PesoLordo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             470,
             6),
     )
@@ -3479,10 +4095,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'PesoNetto'),
         'PesoNetto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoNetto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_PesoNetto',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             471,
             6),
     )
@@ -3495,10 +4113,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataOraRitiro'),
         'DataOraRitiro',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraRitiro',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_DataOraRitiro',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             472,
             6),
     )
@@ -3515,10 +4135,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataInizioTrasporto'),
         'DataInizioTrasporto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataInizioTrasporto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_DataInizioTrasporto',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             473,
             6),
     )
@@ -3535,10 +4157,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TipoResa'),
         'TipoResa',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_TipoResa',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_TipoResa',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             474,
             6),
     )
@@ -3551,10 +4175,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IndirizzoResa'),
         'IndirizzoResa',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_IndirizzoResa',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_IndirizzoResa',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             475,
             6),
     )
@@ -3571,10 +4197,12 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataOraConsegna'),
         'DataOraConsegna',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraConsegna',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiTrasportoType_DataOraConsegna',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             476,
             6),
     )
@@ -3603,6 +4231,7 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiTrasportoType = DatiTrasportoType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiTrasportoType',
@@ -3610,16 +4239,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IndirizzoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# IndirizzoType
 # with content type ELEMENT_ONLY
 class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IndirizzoType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}IndirizzoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IndirizzoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 479, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        479,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3630,10 +4264,12 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Indirizzo'),
         'Indirizzo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Indirizzo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IndirizzoType_Indirizzo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             481,
             6),
     )
@@ -3646,10 +4282,12 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroCivico'),
         'NumeroCivico',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_NumeroCivico',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IndirizzoType_NumeroCivico',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             482,
             6),
     )
@@ -3666,10 +4304,12 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CAP'),
         'CAP',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_CAP',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IndirizzoType_CAP',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             483,
             6),
     )
@@ -3682,10 +4322,12 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Comune'),
         'Comune',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Comune',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IndirizzoType_Comune',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             484,
             6),
     )
@@ -3698,10 +4340,12 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Provincia'),
         'Provincia',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Provincia',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IndirizzoType_Provincia',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             485,
             6),
     )
@@ -3714,10 +4358,12 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Nazione'),
         'Nazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Nazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IndirizzoType_Nazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             486,
             6),
     )
@@ -3735,21 +4381,27 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.IndirizzoType = IndirizzoType
 Namespace.addCategoryObject('typeBinding', 'IndirizzoType', IndirizzoType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaPrincipaleType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# FatturaPrincipaleType
 # with content type ELEMENT_ONLY
 class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaPrincipaleType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}FatturaPrincipaleType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaPrincipaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 489, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        489,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3761,10 +4413,12 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroFatturaPrincipale'),
         'NumeroFatturaPrincipale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_NumeroFatturaPrincipale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaPrincipaleType_NumeroFatturaPrincipale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             491,
             6),
     )
@@ -3782,10 +4436,12 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataFatturaPrincipale'),
         'DataFatturaPrincipale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_DataFatturaPrincipale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaPrincipaleType_DataFatturaPrincipale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             492,
             6),
     )
@@ -3803,6 +4459,7 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.FatturaPrincipaleType = FatturaPrincipaleType
 Namespace.addCategoryObject(
     'typeBinding',
     'FatturaPrincipaleType',
@@ -3810,11 +4467,12 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CedentePrestatoreType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CedentePrestatoreType
 # with content type ELEMENT_ONLY
 class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati del Cedente / Prestatore
+        Blocco relativo ai dati del Cedente / Prestatore
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3822,7 +4480,10 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CedentePrestatoreType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 510, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        510,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3833,10 +4494,12 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiAnagrafici'),
         'DatiAnagrafici',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_DatiAnagrafici',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CedentePrestatoreType_DatiAnagrafici',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             517,
             6),
     )
@@ -3853,10 +4516,12 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Sede'),
         'Sede',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Sede',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CedentePrestatoreType_Sede',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             518,
             6),
     )
@@ -3870,10 +4535,12 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'StabileOrganizzazione'),
         'StabileOrganizzazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_StabileOrganizzazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CedentePrestatoreType_StabileOrganizzazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             519,
             6),
     )
@@ -3890,10 +4557,12 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IscrizioneREA'),
         'IscrizioneREA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_IscrizioneREA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CedentePrestatoreType_IscrizioneREA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             520,
             6),
     )
@@ -3910,10 +4579,12 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Contatti'),
         'Contatti',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Contatti',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CedentePrestatoreType_Contatti',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             521,
             6),
     )
@@ -3927,10 +4598,12 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoAmministrazione'),
         'RiferimentoAmministrazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_RiferimentoAmministrazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CedentePrestatoreType_RiferimentoAmministrazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             522,
             6),
     )
@@ -3952,6 +4625,7 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.CedentePrestatoreType = CedentePrestatoreType
 Namespace.addCategoryObject(
     'typeBinding',
     'CedentePrestatoreType',
@@ -3959,17 +4633,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCedenteType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiAnagraficiCedenteType
 # with content type ELEMENT_ONLY
 class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCedenteType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiAnagraficiCedenteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiCedenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 525, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        525,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -3980,10 +4659,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IdFiscaleIVA'),
         'IdFiscaleIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_IdFiscaleIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_IdFiscaleIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             527,
             6),
     )
@@ -4000,10 +4681,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceFiscale'),
         'CodiceFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_CodiceFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_CodiceFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             528,
             6),
     )
@@ -4020,10 +4703,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Anagrafica'),
         'Anagrafica',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_Anagrafica',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_Anagrafica',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             529,
             6),
     )
@@ -4036,10 +4721,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AlboProfessionale'),
         'AlboProfessionale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_AlboProfessionale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_AlboProfessionale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             530,
             6),
     )
@@ -4056,10 +4743,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ProvinciaAlbo'),
         'ProvinciaAlbo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_ProvinciaAlbo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_ProvinciaAlbo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             531,
             6),
     )
@@ -4076,10 +4765,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroIscrizioneAlbo'),
         'NumeroIscrizioneAlbo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_NumeroIscrizioneAlbo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_NumeroIscrizioneAlbo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             532,
             6),
     )
@@ -4096,10 +4787,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataIscrizioneAlbo'),
         'DataIscrizioneAlbo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_DataIscrizioneAlbo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_DataIscrizioneAlbo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             533,
             6),
     )
@@ -4116,10 +4809,12 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RegimeFiscale'),
         'RegimeFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_RegimeFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCedenteType_RegimeFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             534,
             6),
     )
@@ -4143,6 +4838,7 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiAnagraficiCedenteType = DatiAnagraficiCedenteType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiAnagraficiCedenteType',
@@ -4150,18 +4846,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AnagraficaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# AnagraficaType
 # with content type ELEMENT_ONLY
 class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
     """
-                                Il campo Denominazione è in alternativa ai campi Nome e Cognome
+        Il campo Denominazione è in alternativa ai campi Nome e Cognome
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'AnagraficaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 638, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        638,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4172,10 +4872,12 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Denominazione'),
         'Denominazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Denominazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AnagraficaType_Denominazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             647,
             10),
     )
@@ -4192,10 +4894,12 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Nome'),
         'Nome',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Nome',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AnagraficaType_Nome',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             650,
             10),
     )
@@ -4208,10 +4912,12 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Cognome'),
         'Cognome',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Cognome',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AnagraficaType_Cognome',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             651,
             10),
     )
@@ -4224,10 +4930,12 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Titolo'),
         'Titolo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Titolo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AnagraficaType_Titolo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             654,
             6),
     )
@@ -4240,10 +4948,12 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodEORI'),
         'CodEORI',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_CodEORI',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AnagraficaType_CodEORI',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             655,
             6),
     )
@@ -4260,21 +4970,27 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.AnagraficaType = AnagraficaType
 Namespace.addCategoryObject('typeBinding', 'AnagraficaType', AnagraficaType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiVettoreType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiAnagraficiVettoreType
 # with content type ELEMENT_ONLY
 class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiVettoreType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiAnagraficiVettoreType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiVettoreType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 658, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        658,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4285,10 +5001,12 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IdFiscaleIVA'),
         'IdFiscaleIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_IdFiscaleIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiVettoreType_IdFiscaleIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             660,
             6),
     )
@@ -4305,10 +5023,12 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceFiscale'),
         'CodiceFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_CodiceFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiVettoreType_CodiceFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             661,
             6),
     )
@@ -4325,10 +5045,12 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Anagrafica'),
         'Anagrafica',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_Anagrafica',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiVettoreType_Anagrafica',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             662,
             6),
     )
@@ -4341,10 +5063,12 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroLicenzaGuida'),
         'NumeroLicenzaGuida',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_NumeroLicenzaGuida',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiVettoreType_NumeroLicenzaGuida',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             663,
             6),
     )
@@ -4364,6 +5088,7 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiAnagraficiVettoreType = DatiAnagraficiVettoreType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiAnagraficiVettoreType',
@@ -4371,16 +5096,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IscrizioneREAType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# IscrizioneREAType
 # with content type ELEMENT_ONLY
 class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IscrizioneREAType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}IscrizioneREAType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IscrizioneREAType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 666, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        666,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4391,10 +5121,12 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Ufficio'),
         'Ufficio',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_Ufficio',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IscrizioneREAType_Ufficio',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             668,
             6),
     )
@@ -4407,10 +5139,12 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroREA'),
         'NumeroREA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_NumeroREA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IscrizioneREAType_NumeroREA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             669,
             6),
     )
@@ -4423,10 +5157,12 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CapitaleSociale'),
         'CapitaleSociale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_CapitaleSociale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IscrizioneREAType_CapitaleSociale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             670,
             6),
     )
@@ -4443,10 +5179,12 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'SocioUnico'),
         'SocioUnico',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_SocioUnico',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IscrizioneREAType_SocioUnico',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             671,
             6),
     )
@@ -4459,10 +5197,12 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'StatoLiquidazione'),
         'StatoLiquidazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_StatoLiquidazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'IscrizioneREAType_StatoLiquidazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             672,
             6),
     )
@@ -4483,6 +5223,7 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.IscrizioneREAType = IscrizioneREAType
 Namespace.addCategoryObject(
     'typeBinding',
     'IscrizioneREAType',
@@ -4490,16 +5231,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# ContattiType
 # with content type ELEMENT_ONLY
 class ContattiType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}ContattiType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ContattiType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 675, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        675,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4510,10 +5256,12 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Telefono'),
         'Telefono',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Telefono',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ContattiType_Telefono',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             677,
             6),
     )
@@ -4526,10 +5274,12 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Fax'),
         'Fax',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Fax',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ContattiType_Fax',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             678,
             6),
     )
@@ -4542,10 +5292,12 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Email'),
         'Email',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Email',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'ContattiType_Email',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             679,
             6),
     )
@@ -4560,11 +5312,13 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.ContattiType = ContattiType
 Namespace.addCategoryObject('typeBinding', 'ContattiType', ContattiType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# RappresentanteFiscaleType
 # with content type ELEMENT_ONLY
 class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     """
@@ -4576,7 +5330,10 @@ class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RappresentanteFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 682, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        682,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4587,10 +5344,12 @@ class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiAnagrafici'),
         'DatiAnagrafici',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleType_DatiAnagrafici',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'RappresentanteFiscaleType_DatiAnagrafici',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             689,
             6),
     )
@@ -4607,6 +5366,7 @@ class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.RappresentanteFiscaleType = RappresentanteFiscaleType
 Namespace.addCategoryObject(
     'typeBinding',
     'RappresentanteFiscaleType',
@@ -4614,18 +5374,23 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiRappresentanteType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiAnagraficiRappresentanteType
 # with content type ELEMENT_ONLY
 class DatiAnagraficiRappresentanteType (
         pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiRappresentanteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 692, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        692,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4636,10 +5401,12 @@ class DatiAnagraficiRappresentanteType (
             None,
             'IdFiscaleIVA'),
         'IdFiscaleIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_IdFiscaleIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiRappresentanteType_IdFiscaleIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             694,
             6),
     )
@@ -4656,10 +5423,12 @@ class DatiAnagraficiRappresentanteType (
             None,
             'CodiceFiscale'),
         'CodiceFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_CodiceFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiRappresentanteType_CodiceFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             695,
             6),
     )
@@ -4676,10 +5445,12 @@ class DatiAnagraficiRappresentanteType (
             None,
             'Anagrafica'),
         'Anagrafica',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_Anagrafica',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiRappresentanteType_Anagrafica',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             696,
             6),
     )
@@ -4694,6 +5465,8 @@ class DatiAnagraficiRappresentanteType (
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiAnagraficiRappresentanteType = (
+    DatiAnagraficiRappresentanteType)
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiAnagraficiRappresentanteType',
@@ -4701,7 +5474,8 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CessionarioCommittenteType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CessionarioCommittenteType
 # with content type ELEMENT_ONLY
 class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
     """Blocco relativo ai dati del Cessionario / Committente"""
@@ -4711,7 +5485,10 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CessionarioCommittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 699, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        699,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4722,10 +5499,12 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiAnagrafici'),
         'DatiAnagrafici',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_DatiAnagrafici',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CessionarioCommittenteType_DatiAnagrafici',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             704,
             6),
     )
@@ -4742,10 +5521,12 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Sede'),
         'Sede',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_Sede',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CessionarioCommittenteType_Sede',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             705,
             6),
     )
@@ -4759,10 +5540,12 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'StabileOrganizzazione'),
         'StabileOrganizzazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_StabileOrganizzazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CessionarioCommittenteType_StabileOrganizzazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             706,
             3),
     )
@@ -4780,10 +5563,12 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RappresentanteFiscale'),
         'RappresentanteFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_RappresentanteFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CessionarioCommittenteType_RappresentanteFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             707,
             6),
     )
@@ -4803,6 +5588,7 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.CessionarioCommittenteType = CessionarioCommittenteType
 Namespace.addCategoryObject(
     'typeBinding',
     'CessionarioCommittenteType',
@@ -4810,18 +5596,23 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleCessionarioType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# RappresentanteFiscaleCessionarioType
 # with content type ELEMENT_ONLY
 class RappresentanteFiscaleCessionarioType (
         pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleCessionarioType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}RappresentanteFiscaleCessionarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RappresentanteFiscaleCessionarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 710, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        710,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4832,10 +5623,12 @@ class RappresentanteFiscaleCessionarioType (
             None,
             'IdFiscaleIVA'),
         'IdFiscaleIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_IdFiscaleIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'RappresentanteFiscaleCessionarioType_IdFiscaleIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             712,
             3),
     )
@@ -4852,10 +5645,12 @@ class RappresentanteFiscaleCessionarioType (
             None,
             'Denominazione'),
         'Denominazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Denominazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'RappresentanteFiscaleCessionarioType_Denominazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             715,
             10),
     )
@@ -4872,10 +5667,12 @@ class RappresentanteFiscaleCessionarioType (
             None,
             'Nome'),
         'Nome',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Nome',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'RappresentanteFiscaleCessionarioType_Nome',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             718,
             10),
     )
@@ -4888,10 +5685,12 @@ class RappresentanteFiscaleCessionarioType (
             None,
             'Cognome'),
         'Cognome',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Cognome',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'RappresentanteFiscaleCessionarioType_Cognome',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             719,
             10),
     )
@@ -4907,23 +5706,30 @@ class RappresentanteFiscaleCessionarioType (
     _AttributeMap.update({
 
     })
+_module_typeBindings.RappresentanteFiscaleCessionarioType = (
+    RappresentanteFiscaleCessionarioType)
 Namespace.addCategoryObject('typeBinding',
                             'RappresentanteFiscaleCessionarioType',
                             RappresentanteFiscaleCessionarioType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCessionarioType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiAnagraficiCessionarioType
 # with content type ELEMENT_ONLY
 class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCessionarioType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiAnagraficiCessionarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiCessionarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 724, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        724,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -4934,10 +5740,12 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IdFiscaleIVA'),
         'IdFiscaleIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_IdFiscaleIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCessionarioType_IdFiscaleIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             726,
             6),
     )
@@ -4954,10 +5762,12 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceFiscale'),
         'CodiceFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_CodiceFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCessionarioType_CodiceFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             727,
             6),
     )
@@ -4974,10 +5784,12 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Anagrafica'),
         'Anagrafica',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_Anagrafica',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiCessionarioType_Anagrafica',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             728,
             6),
     )
@@ -4992,6 +5804,8 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiAnagraficiCessionarioType = (
+    DatiAnagraficiCessionarioType)
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiAnagraficiCessionarioType',
@@ -4999,11 +5813,12 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBeniServiziType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiBeniServiziType
 # with content type ELEMENT_ONLY
 class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica
+        Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -5011,7 +5826,10 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiBeniServiziType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 731, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        731,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5022,10 +5840,12 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DettaglioLinee'),
         'DettaglioLinee',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DettaglioLinee',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiBeniServiziType_DettaglioLinee',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             738,
             6),
     )
@@ -5042,10 +5862,12 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DatiRiepilogo'),
         'DatiRiepilogo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DatiRiepilogo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiBeniServiziType_DatiRiepilogo',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             739,
             6),
     )
@@ -5063,6 +5885,7 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiBeniServiziType = DatiBeniServiziType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiBeniServiziType',
@@ -5070,21 +5893,25 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiVeicoliType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiVeicoliType
 # with content type ELEMENT_ONLY
 class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati dei Veicoli della Fattura
-                                Elettronica (da indicare nei casi di cessioni tra Paesi
-                                membri di mezzi di trasporto nuovi, in base all'art. 38,
-                                comma 4 del dl 331 del 1993)
+        Blocco relativo ai dati dei Veicoli della Fattura
+        Elettronica (da indicare nei casi di cessioni tra Paesi
+        membri di mezzi di trasporto nuovi, in base all'art. 38,
+        comma 4 del dl 331 del 1993)
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiVeicoliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 742, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        742,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5095,10 +5922,12 @@ class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Data'),
         'Data',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_Data',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiVeicoliType_Data',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             752,
             6),
     )
@@ -5111,10 +5940,12 @@ class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TotalePercorso'),
         'TotalePercorso',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_TotalePercorso',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiVeicoliType_TotalePercorso',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             753,
             6),
     )
@@ -5132,22 +5963,27 @@ class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiVeicoliType = DatiVeicoliType
 Namespace.addCategoryObject('typeBinding', 'DatiVeicoliType', DatiVeicoliType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiPagamentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiPagamentoType
 # with content type ELEMENT_ONLY
 class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati di Pagamento della Fattura	Elettronica
+        Blocco relativo ai dati di Pagamento della Fattura	Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 756, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        756,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5158,10 +5994,12 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CondizioniPagamento'),
         'CondizioniPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_CondizioniPagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiPagamentoType_CondizioniPagamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             763,
             6),
     )
@@ -5178,10 +6016,12 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DettaglioPagamento'),
         'DettaglioPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_DettaglioPagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiPagamentoType_DettaglioPagamento',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             764,
             6),
     )
@@ -5199,6 +6039,7 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiPagamentoType = DatiPagamentoType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiPagamentoType',
@@ -5206,17 +6047,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioPagamentoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DettaglioPagamentoType
 # with content type ELEMENT_ONLY
 class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioPagamentoType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DettaglioPagamentoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DettaglioPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 788, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        788,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5227,10 +6073,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Beneficiario'),
         'Beneficiario',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_Beneficiario',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_Beneficiario',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             790,
             6),
     )
@@ -5247,10 +6095,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ModalitaPagamento'),
         'ModalitaPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ModalitaPagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_ModalitaPagamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             791,
             6),
     )
@@ -5263,17 +6113,21 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
 
     # Element DataRiferimentoTerminiPagamento uses Python identifier
     # DataRiferimentoTerminiPagamento
-    __DataRiferimentoTerminiPagamento = pyxb.binding.content.ElementDeclaration(
-        pyxb.namespace.ExpandedName(
-            None,
-            'DataRiferimentoTerminiPagamento'),
-        'DataRiferimentoTerminiPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataRiferimentoTerminiPagamento',
-        False,
-        pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
-            792,
-            6),
+    __DataRiferimentoTerminiPagamento = (
+        pyxb.binding.content.ElementDeclaration(
+            pyxb.namespace.ExpandedName(
+                None,
+                'DataRiferimentoTerminiPagamento'),
+            'DataRiferimentoTerminiPagamento',
+            '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+            'DettaglioPagamentoType_DataRiferimentoTerminiPagamento',
+            False,
+            pyxb.utils.utility.Location(
+                'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa'
+                '/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+                792,
+                6),
+        )
     )
 
     DataRiferimentoTerminiPagamento = property(
@@ -5289,10 +6143,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'GiorniTerminiPagamento'),
         'GiorniTerminiPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_GiorniTerminiPagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_GiorniTerminiPagamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             793,
             6),
     )
@@ -5310,10 +6166,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataScadenzaPagamento'),
         'DataScadenzaPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataScadenzaPagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_DataScadenzaPagamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             794,
             6),
     )
@@ -5330,10 +6188,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ImportoPagamento'),
         'ImportoPagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ImportoPagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_ImportoPagamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             795,
             6),
     )
@@ -5350,10 +6210,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodUfficioPostale'),
         'CodUfficioPostale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodUfficioPostale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_CodUfficioPostale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             796,
             6),
     )
@@ -5370,10 +6232,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CognomeQuietanzante'),
         'CognomeQuietanzante',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CognomeQuietanzante',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_CognomeQuietanzante',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             797,
             6),
     )
@@ -5390,10 +6254,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NomeQuietanzante'),
         'NomeQuietanzante',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_NomeQuietanzante',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_NomeQuietanzante',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             798,
             6),
     )
@@ -5410,10 +6276,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CFQuietanzante'),
         'CFQuietanzante',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CFQuietanzante',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_CFQuietanzante',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             799,
             6),
     )
@@ -5430,10 +6298,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TitoloQuietanzante'),
         'TitoloQuietanzante',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_TitoloQuietanzante',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_TitoloQuietanzante',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             800,
             6),
     )
@@ -5450,10 +6320,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IstitutoFinanziario'),
         'IstitutoFinanziario',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IstitutoFinanziario',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_IstitutoFinanziario',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             801,
             6),
     )
@@ -5470,10 +6342,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'IBAN'),
         'IBAN',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IBAN',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_IBAN',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             802,
             6),
     )
@@ -5486,10 +6360,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ABI'),
         'ABI',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ABI',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_ABI',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             803,
             6),
     )
@@ -5502,10 +6378,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CAB'),
         'CAB',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CAB',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_CAB',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             804,
             6),
     )
@@ -5518,10 +6396,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'BIC'),
         'BIC',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_BIC',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_BIC',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             805,
             6),
     )
@@ -5535,10 +6415,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ScontoPagamentoAnticipato'),
         'ScontoPagamentoAnticipato',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ScontoPagamentoAnticipato',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_ScontoPagamentoAnticipato',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             806,
             6),
     )
@@ -5556,10 +6438,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataLimitePagamentoAnticipato'),
         'DataLimitePagamentoAnticipato',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataLimitePagamentoAnticipato',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_DataLimitePagamentoAnticipato',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             807,
             6),
     )
@@ -5577,10 +6461,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'PenalitaPagamentiRitardati'),
         'PenalitaPagamentiRitardati',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_PenalitaPagamentiRitardati',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_PenalitaPagamentiRitardati',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             808,
             6),
     )
@@ -5597,10 +6483,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataDecorrenzaPenale'),
         'DataDecorrenzaPenale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataDecorrenzaPenale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_DataDecorrenzaPenale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             809,
             6),
     )
@@ -5617,10 +6505,12 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodicePagamento'),
         'CodicePagamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodicePagamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioPagamentoType_CodicePagamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             810,
             6),
     )
@@ -5634,7 +6524,8 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap.update({
         __Beneficiario.name(): __Beneficiario,
         __ModalitaPagamento.name(): __ModalitaPagamento,
-        __DataRiferimentoTerminiPagamento.name(): __DataRiferimentoTerminiPagamento,
+        __DataRiferimentoTerminiPagamento.name(): (
+            __DataRiferimentoTerminiPagamento),
         __GiorniTerminiPagamento.name(): __GiorniTerminiPagamento,
         __DataScadenzaPagamento.name(): __DataScadenzaPagamento,
         __ImportoPagamento.name(): __ImportoPagamento,
@@ -5649,7 +6540,8 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
         __CAB.name(): __CAB,
         __BIC.name(): __BIC,
         __ScontoPagamentoAnticipato.name(): __ScontoPagamentoAnticipato,
-        __DataLimitePagamentoAnticipato.name(): __DataLimitePagamentoAnticipato,
+        __DataLimitePagamentoAnticipato.name(): (
+            __DataLimitePagamentoAnticipato),
         __PenalitaPagamentiRitardati.name(): __PenalitaPagamentiRitardati,
         __DataDecorrenzaPenale.name(): __DataDecorrenzaPenale,
         __CodicePagamento.name(): __CodicePagamento
@@ -5657,6 +6549,7 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DettaglioPagamentoType = DettaglioPagamentoType
 Namespace.addCategoryObject(
     'typeBinding',
     'DettaglioPagamentoType',
@@ -5664,14 +6557,15 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TerzoIntermediarioSoggettoEmittenteType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# TerzoIntermediarioSoggettoEmittenteType
 # with content type ELEMENT_ONLY
 class TerzoIntermediarioSoggettoEmittenteType (
         pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati del Terzo Intermediario che
-                                emette fattura elettronica per conto del
-                                Cedente/Prestatore
+        Blocco relativo ai dati del Terzo Intermediario che
+        emette fattura elettronica per conto del
+        Cedente/Prestatore
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -5679,7 +6573,10 @@ class TerzoIntermediarioSoggettoEmittenteType (
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'TerzoIntermediarioSoggettoEmittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 938, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        938,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5690,10 +6587,12 @@ class TerzoIntermediarioSoggettoEmittenteType (
             None,
             'DatiAnagrafici'),
         'DatiAnagrafici',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             947,
             6),
     )
@@ -5710,24 +6609,31 @@ class TerzoIntermediarioSoggettoEmittenteType (
     _AttributeMap.update({
 
     })
+_module_typeBindings.TerzoIntermediarioSoggettoEmittenteType = (
+    TerzoIntermediarioSoggettoEmittenteType)
 Namespace.addCategoryObject('typeBinding',
                             'TerzoIntermediarioSoggettoEmittenteType',
                             TerzoIntermediarioSoggettoEmittenteType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiTerzoIntermediarioType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiAnagraficiTerzoIntermediarioType
 # with content type ELEMENT_ONLY
 class DatiAnagraficiTerzoIntermediarioType (
         pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiTerzoIntermediarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 950, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        950,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5738,10 +6644,12 @@ class DatiAnagraficiTerzoIntermediarioType (
             None,
             'IdFiscaleIVA'),
         'IdFiscaleIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             952,
             6),
     )
@@ -5758,10 +6666,12 @@ class DatiAnagraficiTerzoIntermediarioType (
             None,
             'CodiceFiscale'),
         'CodiceFiscale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_CodiceFiscale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiTerzoIntermediarioType_CodiceFiscale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             953,
             6),
     )
@@ -5778,10 +6688,12 @@ class DatiAnagraficiTerzoIntermediarioType (
             None,
             'Anagrafica'),
         'Anagrafica',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_Anagrafica',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiAnagraficiTerzoIntermediarioType_Anagrafica',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             954,
             6),
     )
@@ -5796,13 +6708,16 @@ class DatiAnagraficiTerzoIntermediarioType (
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiAnagraficiTerzoIntermediarioType = (
+    DatiAnagraficiTerzoIntermediarioType)
 Namespace.addCategoryObject('typeBinding',
                             'DatiAnagraficiTerzoIntermediarioType',
                             DatiAnagraficiTerzoIntermediarioType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AllegatiType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# AllegatiType
 # with content type ELEMENT_ONLY
 class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     """
@@ -5813,7 +6728,10 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'AllegatiType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 957, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        957,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5824,10 +6742,12 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NomeAttachment'),
         'NomeAttachment',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_NomeAttachment',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AllegatiType_NomeAttachment',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             964,
             6),
     )
@@ -5845,10 +6765,12 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AlgoritmoCompressione'),
         'AlgoritmoCompressione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_AlgoritmoCompressione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AllegatiType_AlgoritmoCompressione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             965,
             6),
     )
@@ -5865,10 +6787,12 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'FormatoAttachment'),
         'FormatoAttachment',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_FormatoAttachment',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AllegatiType_FormatoAttachment',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             966,
             6),
     )
@@ -5886,10 +6810,12 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DescrizioneAttachment'),
         'DescrizioneAttachment',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_DescrizioneAttachment',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AllegatiType_DescrizioneAttachment',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             967,
             6),
     )
@@ -5906,10 +6832,12 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Attachment'),
         'Attachment',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_Attachment',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AllegatiType_Attachment',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             968,
             6),
     )
@@ -5926,21 +6854,27 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.AllegatiType = AllegatiType
 Namespace.addCategoryObject('typeBinding', 'AllegatiType', AllegatiType)
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioLineeType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DettaglioLineeType
 # with content type ELEMENT_ONLY
 class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioLineeType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DettaglioLineeType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DettaglioLineeType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 971, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        971,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -5951,10 +6885,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'NumeroLinea'),
         'NumeroLinea',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_NumeroLinea',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_NumeroLinea',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             973,
             6),
     )
@@ -5968,10 +6904,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TipoCessionePrestazione'),
         'TipoCessionePrestazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_TipoCessionePrestazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_TipoCessionePrestazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             974,
             6),
     )
@@ -5988,10 +6926,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceArticolo'),
         'CodiceArticolo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_CodiceArticolo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_CodiceArticolo',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             975,
             6),
     )
@@ -6008,10 +6948,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Descrizione'),
         'Descrizione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Descrizione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_Descrizione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             976,
             6),
     )
@@ -6024,10 +6966,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Quantita'),
         'Quantita',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Quantita',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_Quantita',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             977,
             6),
     )
@@ -6040,10 +6984,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'UnitaMisura'),
         'UnitaMisura',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_UnitaMisura',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_UnitaMisura',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             978,
             6),
     )
@@ -6056,10 +7002,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataInizioPeriodo'),
         'DataInizioPeriodo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataInizioPeriodo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_DataInizioPeriodo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             979,
             6),
     )
@@ -6076,10 +7024,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'DataFinePeriodo'),
         'DataFinePeriodo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataFinePeriodo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_DataFinePeriodo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             980,
             6),
     )
@@ -6096,10 +7046,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'PrezzoUnitario'),
         'PrezzoUnitario',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoUnitario',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_PrezzoUnitario',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             981,
             6),
     )
@@ -6116,10 +7068,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ScontoMaggiorazione'),
         'ScontoMaggiorazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_ScontoMaggiorazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_ScontoMaggiorazione',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             982,
             6),
     )
@@ -6136,10 +7090,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'PrezzoTotale'),
         'PrezzoTotale',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoTotale',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_PrezzoTotale',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             983,
             6),
     )
@@ -6156,10 +7112,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AliquotaIVA'),
         'AliquotaIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AliquotaIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_AliquotaIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             984,
             6),
     )
@@ -6172,10 +7130,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Ritenuta'),
         'Ritenuta',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Ritenuta',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_Ritenuta',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             985,
             6),
     )
@@ -6188,10 +7148,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Natura'),
         'Natura',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Natura',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_Natura',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             986,
             6),
     )
@@ -6205,10 +7167,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoAmministrazione'),
         'RiferimentoAmministrazione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_RiferimentoAmministrazione',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_RiferimentoAmministrazione',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             987,
             6),
     )
@@ -6225,10 +7189,12 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AltriDatiGestionali'),
         'AltriDatiGestionali',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AltriDatiGestionali',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DettaglioLineeType_AltriDatiGestionali',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             988,
             6),
     )
@@ -6260,6 +7226,7 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DettaglioLineeType = DettaglioLineeType
 Namespace.addCategoryObject(
     'typeBinding',
     'DettaglioLineeType',
@@ -6267,17 +7234,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceArticoloType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# CodiceArticoloType
 # with content type ELEMENT_ONLY
 class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceArticoloType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}CodiceArticoloType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CodiceArticoloType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 991, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        991,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -6288,10 +7260,12 @@ class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceTipo'),
         'CodiceTipo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceTipo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CodiceArticoloType_CodiceTipo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             993,
             6),
     )
@@ -6304,10 +7278,12 @@ class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'CodiceValore'),
         'CodiceValore',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceValore',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'CodiceArticoloType_CodiceValore',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             994,
             6),
     )
@@ -6325,6 +7301,7 @@ class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.CodiceArticoloType = CodiceArticoloType
 Namespace.addCategoryObject(
     'typeBinding',
     'CodiceArticoloType',
@@ -6332,17 +7309,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AltriDatiGestionaliType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# AltriDatiGestionaliType
 # with content type ELEMENT_ONLY
 class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AltriDatiGestionaliType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}AltriDatiGestionaliType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'AltriDatiGestionaliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 997, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        997,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -6353,10 +7335,12 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'TipoDato'),
         'TipoDato',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_TipoDato',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AltriDatiGestionaliType_TipoDato',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             999,
             6),
     )
@@ -6369,10 +7353,12 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoTesto'),
         'RiferimentoTesto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoTesto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AltriDatiGestionaliType_RiferimentoTesto',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1000,
             6),
     )
@@ -6389,10 +7375,12 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoNumero'),
         'RiferimentoNumero',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoNumero',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AltriDatiGestionaliType_RiferimentoNumero',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1001,
             6),
     )
@@ -6409,10 +7397,12 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoData'),
         'RiferimentoData',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoData',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'AltriDatiGestionaliType_RiferimentoData',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1002,
             6),
     )
@@ -6432,6 +7422,7 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.AltriDatiGestionaliType = AltriDatiGestionaliType
 Namespace.addCategoryObject(
     'typeBinding',
     'AltriDatiGestionaliType',
@@ -6439,16 +7430,21 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRiepilogoType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# DatiRiepilogoType
 # with content type ELEMENT_ONLY
 class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRiepilogoType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}DatiRiepilogoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiRiepilogoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1017, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        1017,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -6459,10 +7455,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'AliquotaIVA'),
         'AliquotaIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_AliquotaIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_AliquotaIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1019,
             6),
     )
@@ -6475,10 +7473,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Natura'),
         'Natura',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Natura',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_Natura',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1020,
             6),
     )
@@ -6491,10 +7491,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'SpeseAccessorie'),
         'SpeseAccessorie',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_SpeseAccessorie',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_SpeseAccessorie',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1021,
             6),
     )
@@ -6511,10 +7513,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Arrotondamento'),
         'Arrotondamento',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Arrotondamento',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_Arrotondamento',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1022,
             6),
     )
@@ -6531,10 +7535,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'ImponibileImporto'),
         'ImponibileImporto',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_ImponibileImporto',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_ImponibileImporto',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1023,
             6),
     )
@@ -6551,10 +7557,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'Imposta'),
         'Imposta',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Imposta',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_Imposta',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1024,
             6),
     )
@@ -6567,10 +7575,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'EsigibilitaIVA'),
         'EsigibilitaIVA',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_EsigibilitaIVA',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_EsigibilitaIVA',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1025,
             6),
     )
@@ -6587,10 +7597,12 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'RiferimentoNormativo'),
         'RiferimentoNormativo',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_RiferimentoNormativo',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'DatiRiepilogoType_RiferimentoNormativo',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1026,
             6),
     )
@@ -6614,6 +7626,7 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DatiRiepilogoType = DatiRiepilogoType
 Namespace.addCategoryObject(
     'typeBinding',
     'DatiRiepilogoType',
@@ -6621,17 +7634,22 @@ Namespace.addCategoryObject(
 
 
 # Complex type
-# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaType
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}
+# FatturaElettronicaType
 # with content type ELEMENT_ONLY
 class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaType with content type ELEMENT_ONLY"""
+    """Complex type{http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/
+    v1.2}FatturaElettronicaType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaElettronicaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 15, 2)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        15,
+        2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -6643,10 +7661,12 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'FatturaElettronicaHeader'),
         'FatturaElettronicaHeader',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaHeader',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaType_FatturaElettronicaHeader',
         False,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             17,
             6),
     )
@@ -6664,10 +7684,12 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'FatturaElettronicaBody'),
         'FatturaElettronicaBody',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaBody',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaType_FatturaElettronicaBody',
         True,
         pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             18,
             6),
     )
@@ -6685,10 +7707,12 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
             _Namespace_ds,
             'Signature'),
         'Signature',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature',
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             43,
             0),
     )
@@ -6701,13 +7725,18 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
             None,
             'versione'),
         'versione',
-        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_versione',
-        FormatoTrasmissioneType,
+        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_'
+        'FatturaElettronicaType_versione',
+        _module_typeBindings.FormatoTrasmissioneType,
         required=True)
     __versione._DeclarationLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 21, 4)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 21, 4)
     __versione._UseLocation = pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 21, 4)
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        21,
+        4)
 
     versione = property(__versione.value, __versione.set, None, None)
 
@@ -6719,6 +7748,7 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __versione.name(): __versione
     })
+_module_typeBindings.FatturaElettronicaType = FatturaElettronicaType
 Namespace.addCategoryObject(
     'typeBinding',
     'FatturaElettronicaType',
@@ -6730,9 +7760,11 @@ FatturaElettronica = pyxb.binding.basis.element(
         Namespace,
         'FatturaElettronica'),
     FatturaElettronicaType,
-    documentation='XML schema fatture destinate a PA e privati in forma ordinaria 1.2',
+    documentation='XML schema fatture destinate a PA e privati in forma '
+                  'ordinaria 1.2',
     location=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+        'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
+        'Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
         9,
         2))
 Namespace.addCategoryObject(
@@ -6749,7 +7781,8 @@ FatturaElettronicaHeaderType._AddElement(
         DatiTrasmissioneType,
         scope=FatturaElettronicaHeaderType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             25,
             6)))
 
@@ -6761,7 +7794,8 @@ FatturaElettronicaHeaderType._AddElement(
         CedentePrestatoreType,
         scope=FatturaElettronicaHeaderType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             26,
             6)))
 
@@ -6773,7 +7807,8 @@ FatturaElettronicaHeaderType._AddElement(
         RappresentanteFiscaleType,
         scope=FatturaElettronicaHeaderType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             27,
             6)))
 
@@ -6785,7 +7820,8 @@ FatturaElettronicaHeaderType._AddElement(
         CessionarioCommittenteType,
         scope=FatturaElettronicaHeaderType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             28,
             6)))
 
@@ -6797,7 +7833,8 @@ FatturaElettronicaHeaderType._AddElement(
         TerzoIntermediarioSoggettoEmittenteType,
         scope=FatturaElettronicaHeaderType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             29,
             6)))
 
@@ -6809,7 +7846,8 @@ FatturaElettronicaHeaderType._AddElement(
         SoggettoEmittenteType,
         scope=FatturaElettronicaHeaderType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             30,
             6)))
 
@@ -6821,22 +7859,45 @@ def _BuildAutomaton():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 27, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            27,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 29, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            29,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 30, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            30,
+            6))
     counters.add(cc_2)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaHeaderType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiTrasmissione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 25, 6))
+                None,
+                'DatiTrasmissione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            25,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -6847,8 +7908,13 @@ def _BuildAutomaton():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaHeaderType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CedentePrestatore')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 26, 6))
+                None,
+                'CedentePrestatore')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            26,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -6859,8 +7925,13 @@ def _BuildAutomaton():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaHeaderType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RappresentanteFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 27, 6))
+                None,
+                'RappresentanteFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            27,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -6871,8 +7942,13 @@ def _BuildAutomaton():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaHeaderType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CessionarioCommittente')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 28, 6))
+                None,
+                'CessionarioCommittente')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            28,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -6884,8 +7960,13 @@ def _BuildAutomaton():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaHeaderType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TerzoIntermediarioOSoggettoEmittente')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 29, 6))
+                None,
+                'TerzoIntermediarioOSoggettoEmittente')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            29,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -6897,8 +7978,13 @@ def _BuildAutomaton():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaHeaderType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'SoggettoEmittente')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 30, 6))
+                None,
+                'SoggettoEmittente')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            30,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -6949,7 +8035,8 @@ FatturaElettronicaBodyType._AddElement(
         DatiGeneraliType,
         scope=FatturaElettronicaBodyType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             35,
             6)))
 
@@ -6961,7 +8048,8 @@ FatturaElettronicaBodyType._AddElement(
         DatiBeniServiziType,
         scope=FatturaElettronicaBodyType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             36,
             6)))
 
@@ -6973,7 +8061,8 @@ FatturaElettronicaBodyType._AddElement(
         DatiVeicoliType,
         scope=FatturaElettronicaBodyType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             37,
             6)))
 
@@ -6985,7 +8074,8 @@ FatturaElettronicaBodyType._AddElement(
         DatiPagamentoType,
         scope=FatturaElettronicaBodyType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             38,
             6)))
 
@@ -6997,7 +8087,8 @@ FatturaElettronicaBodyType._AddElement(
         AllegatiType,
         scope=FatturaElettronicaBodyType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             39,
             6)))
 
@@ -7009,24 +8100,45 @@ def _BuildAutomaton_():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 37, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            37,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 38, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            38,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 39, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            39,
+            6))
     counters.add(cc_2)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaBodyType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiGenerali')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 35, 6))
+                None,
+                'DatiGenerali')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            35,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -7037,8 +8149,13 @@ def _BuildAutomaton_():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaBodyType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiBeniServizi')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 36, 6))
+                None,
+                'DatiBeniServizi')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            36,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -7050,8 +8167,13 @@ def _BuildAutomaton_():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaBodyType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiVeicoli')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 37, 6))
+                None,
+                'DatiVeicoli')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            37,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -7063,8 +8185,13 @@ def _BuildAutomaton_():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaBodyType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 38, 6))
+                None,
+                'DatiPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            38,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -7076,8 +8203,13 @@ def _BuildAutomaton_():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaBodyType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Allegati')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 39, 6))
+                None,
+                'Allegati')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            39,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -7126,7 +8258,8 @@ DatiTrasmissioneType._AddElement(
         IdFiscaleType,
         scope=DatiTrasmissioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             47,
             6)))
 
@@ -7138,7 +8271,8 @@ DatiTrasmissioneType._AddElement(
         String10Type,
         scope=DatiTrasmissioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             48,
             6)))
 
@@ -7150,7 +8284,8 @@ DatiTrasmissioneType._AddElement(
         FormatoTrasmissioneType,
         scope=DatiTrasmissioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             49,
             6)))
 
@@ -7162,7 +8297,8 @@ DatiTrasmissioneType._AddElement(
         CodiceDestinatarioType,
         scope=DatiTrasmissioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             50,
             6)))
 
@@ -7174,7 +8310,8 @@ DatiTrasmissioneType._AddElement(
         ContattiTrasmittenteType,
         scope=DatiTrasmissioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             51,
             6)))
 
@@ -7186,7 +8323,8 @@ DatiTrasmissioneType._AddElement(
         EmailType,
         scope=DatiTrasmissioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             52,
             6)))
 
@@ -7198,19 +8336,36 @@ def _BuildAutomaton_2():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 51, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            51,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 52, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            52,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasmissioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdTrasmittente')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 47, 6))
+                None,
+                'IdTrasmittente')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            47,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -7221,8 +8376,13 @@ def _BuildAutomaton_2():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasmissioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ProgressivoInvio')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 48, 6))
+                None,
+                'ProgressivoInvio')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            48,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -7233,8 +8393,13 @@ def _BuildAutomaton_2():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasmissioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'FormatoTrasmissione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 49, 6))
+                None,
+                'FormatoTrasmissione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            49,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -7245,8 +8410,13 @@ def _BuildAutomaton_2():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasmissioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceDestinatario')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 50, 6))
+                None,
+                'CodiceDestinatario')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            50,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -7258,8 +8428,13 @@ def _BuildAutomaton_2():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasmissioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ContattiTrasmittente')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 51, 6))
+                None,
+                'ContattiTrasmittente')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            51,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -7271,8 +8446,13 @@ def _BuildAutomaton_2():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasmissioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'PECDestinatario')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 52, 6))
+                None,
+                'PECDestinatario')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            52,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -7319,7 +8499,8 @@ IdFiscaleType._AddElement(
         NazioneType,
         scope=IdFiscaleType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             62,
             6)))
 
@@ -7331,7 +8512,8 @@ IdFiscaleType._AddElement(
         CodiceType,
         scope=IdFiscaleType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             63,
             6)))
 
@@ -7348,8 +8530,13 @@ def _BuildAutomaton_3():
     symbol = pyxb.binding.content.ElementUse(
         IdFiscaleType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdPaese')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 62, 6))
+                None,
+                'IdPaese')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            62,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -7360,8 +8547,13 @@ def _BuildAutomaton_3():
     symbol = pyxb.binding.content.ElementUse(
         IdFiscaleType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdCodice')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 63, 6))
+                None,
+                'IdCodice')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            63,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -7386,7 +8578,8 @@ ContattiTrasmittenteType._AddElement(
         TelFaxType,
         scope=ContattiTrasmittenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             89,
             6)))
 
@@ -7398,7 +8591,8 @@ ContattiTrasmittenteType._AddElement(
         EmailType,
         scope=ContattiTrasmittenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             90,
             6)))
 
@@ -7410,11 +8604,23 @@ def _BuildAutomaton_4():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 89, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            89,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 90, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            90,
+            6))
     counters.add(cc_1)
     states = []
     final_update = set()
@@ -7422,8 +8628,13 @@ def _BuildAutomaton_4():
     symbol = pyxb.binding.content.ElementUse(
         ContattiTrasmittenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Telefono')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 89, 6))
+                None,
+                'Telefono')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            89,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -7435,8 +8646,13 @@ def _BuildAutomaton_4():
     symbol = pyxb.binding.content.ElementUse(
         ContattiTrasmittenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Email')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 90, 6))
+                None,
+                'Email')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            90,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -7465,7 +8681,8 @@ DatiGeneraliType._AddElement(
         DatiGeneraliDocumentoType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             100,
             6)))
 
@@ -7477,7 +8694,8 @@ DatiGeneraliType._AddElement(
         DatiDocumentiCorrelatiType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             101,
             6)))
 
@@ -7489,7 +8707,8 @@ DatiGeneraliType._AddElement(
         DatiDocumentiCorrelatiType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             102,
             6)))
 
@@ -7501,7 +8720,8 @@ DatiGeneraliType._AddElement(
         DatiDocumentiCorrelatiType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             103,
             6)))
 
@@ -7513,7 +8733,8 @@ DatiGeneraliType._AddElement(
         DatiDocumentiCorrelatiType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             104,
             6)))
 
@@ -7525,7 +8746,8 @@ DatiGeneraliType._AddElement(
         DatiDocumentiCorrelatiType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             105,
             6)))
 
@@ -7537,7 +8759,8 @@ DatiGeneraliType._AddElement(
         DatiSALType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             106,
             6)))
 
@@ -7549,7 +8772,8 @@ DatiGeneraliType._AddElement(
         DatiDDTType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             107,
             6)))
 
@@ -7561,7 +8785,8 @@ DatiGeneraliType._AddElement(
         DatiTrasportoType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             108,
             6)))
 
@@ -7573,7 +8798,8 @@ DatiGeneraliType._AddElement(
         FatturaPrincipaleType,
         scope=DatiGeneraliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             109,
             6)))
 
@@ -7586,46 +8812,98 @@ def _BuildAutomaton_5():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 101, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            101,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 102, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            102,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 103, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            103,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 104, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            104,
+            6))
     counters.add(cc_3)
     cc_4 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 105, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            105,
+            6))
     counters.add(cc_4)
     cc_5 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 106, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            106,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 107, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            107,
+            6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 108, 6))
+    cc_7 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            108,
+            6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 109, 6))
+    cc_8 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            109,
+            6))
     counters.add(cc_8)
     states = []
     final_update = set()
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiGeneraliDocumento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 100, 6))
+                None,
+                'DatiGeneraliDocumento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            100,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -7637,8 +8915,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiOrdineAcquisto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 101, 6))
+                None,
+                'DatiOrdineAcquisto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            101,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -7650,8 +8933,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiContratto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 102, 6))
+                None,
+                'DatiContratto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            102,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -7663,8 +8951,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiConvenzione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 103, 6))
+                None,
+                'DatiConvenzione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            103,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -7676,8 +8969,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiRicezione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 104, 6))
+                None,
+                'DatiRicezione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            104,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -7689,8 +8987,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiFattureCollegate')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 105, 6))
+                None,
+                'DatiFattureCollegate')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            105,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -7702,8 +9005,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiSAL')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 106, 6))
+                None,
+                'DatiSAL')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            106,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -7715,8 +9023,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiDDT')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 107, 6))
+                None,
+                'DatiDDT')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            107,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=False,
@@ -7728,8 +9041,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiTrasporto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 108, 6))
+                None,
+                'DatiTrasporto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            108,
+            6))
     st_8 = fac.State(
         symbol,
         is_initial=False,
@@ -7741,8 +9059,13 @@ def _BuildAutomaton_5():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'FatturaPrincipale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 109, 6))
+                None,
+                'FatturaPrincipale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            109,
+            6))
     st_9 = fac.State(
         symbol,
         is_initial=False,
@@ -7889,7 +9212,8 @@ DatiGeneraliDocumentoType._AddElement(
         TipoDocumentoType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             114,
             6)))
 
@@ -7901,7 +9225,8 @@ DatiGeneraliDocumentoType._AddElement(
         DivisaType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             115,
             6)))
 
@@ -7913,7 +9238,8 @@ DatiGeneraliDocumentoType._AddElement(
         DataFatturaType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             116,
             6)))
 
@@ -7925,7 +9251,8 @@ DatiGeneraliDocumentoType._AddElement(
         String20Type,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             117,
             6)))
 
@@ -7937,7 +9264,8 @@ DatiGeneraliDocumentoType._AddElement(
         DatiRitenutaType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             118,
             6)))
 
@@ -7949,7 +9277,8 @@ DatiGeneraliDocumentoType._AddElement(
         DatiBolloType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             119,
             6)))
 
@@ -7961,7 +9290,8 @@ DatiGeneraliDocumentoType._AddElement(
         DatiCassaPrevidenzialeType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             120,
             6)))
 
@@ -7973,7 +9303,8 @@ DatiGeneraliDocumentoType._AddElement(
         ScontoMaggiorazioneType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             121,
             6)))
 
@@ -7985,7 +9316,8 @@ DatiGeneraliDocumentoType._AddElement(
         Amount2DecimalType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             122,
             6)))
 
@@ -7997,7 +9329,8 @@ DatiGeneraliDocumentoType._AddElement(
         Amount2DecimalType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             123,
             6)))
 
@@ -8009,7 +9342,8 @@ DatiGeneraliDocumentoType._AddElement(
         String200LatinType,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             124,
             6)))
 
@@ -8021,7 +9355,8 @@ DatiGeneraliDocumentoType._AddElement(
         Art73Type,
         scope=DatiGeneraliDocumentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             125,
             6)))
 
@@ -8033,40 +9368,90 @@ def _BuildAutomaton_6():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 118, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            118,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 119, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            119,
+            6))
     counters.add(cc_1)
     cc_2 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 120, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            120,
+            6))
     counters.add(cc_2)
     cc_3 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 121, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            121,
+            6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 122, 6))
+    cc_4 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            122,
+            6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 123, 6))
+    cc_5 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            123,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 124, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            124,
+            6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 125, 6))
+    cc_7 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            125,
+            6))
     counters.add(cc_7)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TipoDocumento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 114, 6))
+                None,
+                'TipoDocumento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            114,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -8077,8 +9462,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Divisa')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 115, 6))
+                None,
+                'Divisa')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            115,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -8089,8 +9479,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Data')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 116, 6))
+                None,
+                'Data')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            116,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -8101,8 +9496,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Numero')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 117, 6))
+                None,
+                'Numero')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            117,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -8114,8 +9514,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiRitenuta')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 118, 6))
+                None,
+                'DatiRitenuta')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            118,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -8127,8 +9532,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiBollo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 119, 6))
+                None,
+                'DatiBollo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            119,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -8140,8 +9550,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiCassaPrevidenziale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 120, 6))
+                None,
+                'DatiCassaPrevidenziale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            120,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -8153,8 +9568,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 121, 6))
+                None,
+                'ScontoMaggiorazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            121,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=False,
@@ -8166,8 +9586,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ImportoTotaleDocumento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 122, 6))
+                None,
+                'ImportoTotaleDocumento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            122,
+            6))
     st_8 = fac.State(
         symbol,
         is_initial=False,
@@ -8179,8 +9604,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Arrotondamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 123, 6))
+                None,
+                'Arrotondamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            123,
+            6))
     st_9 = fac.State(
         symbol,
         is_initial=False,
@@ -8192,8 +9622,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Causale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 124, 6))
+                None,
+                'Causale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            124,
+            6))
     st_10 = fac.State(
         symbol,
         is_initial=False,
@@ -8205,8 +9640,13 @@ def _BuildAutomaton_6():
     symbol = pyxb.binding.content.ElementUse(
         DatiGeneraliDocumentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Art73')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 125, 6))
+                None,
+                'Art73')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            125,
+            6))
     st_11 = fac.State(
         symbol,
         is_initial=False,
@@ -8343,7 +9783,8 @@ DatiRitenutaType._AddElement(
         TipoRitenutaType,
         scope=DatiRitenutaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             130,
             6)))
 
@@ -8355,7 +9796,8 @@ DatiRitenutaType._AddElement(
         Amount2DecimalType,
         scope=DatiRitenutaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             131,
             6)))
 
@@ -8367,7 +9809,8 @@ DatiRitenutaType._AddElement(
         RateType,
         scope=DatiRitenutaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             132,
             6)))
 
@@ -8379,7 +9822,8 @@ DatiRitenutaType._AddElement(
         CausalePagamentoType,
         scope=DatiRitenutaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             133,
             6)))
 
@@ -8396,8 +9840,13 @@ def _BuildAutomaton_7():
     symbol = pyxb.binding.content.ElementUse(
         DatiRitenutaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TipoRitenuta')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 130, 6))
+                None,
+                'TipoRitenuta')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            130,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -8408,8 +9857,13 @@ def _BuildAutomaton_7():
     symbol = pyxb.binding.content.ElementUse(
         DatiRitenutaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ImportoRitenuta')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 131, 6))
+                None,
+                'ImportoRitenuta')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            131,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -8420,8 +9874,13 @@ def _BuildAutomaton_7():
     symbol = pyxb.binding.content.ElementUse(
         DatiRitenutaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AliquotaRitenuta')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 132, 6))
+                None,
+                'AliquotaRitenuta')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            132,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -8432,8 +9891,13 @@ def _BuildAutomaton_7():
     symbol = pyxb.binding.content.ElementUse(
         DatiRitenutaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CausalePagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 133, 6))
+                None,
+                'CausalePagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            133,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -8466,7 +9930,8 @@ DatiBolloType._AddElement(
         BolloVirtualeType,
         scope=DatiBolloType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             138,
             6)))
 
@@ -8478,7 +9943,8 @@ DatiBolloType._AddElement(
         Amount2DecimalType,
         scope=DatiBolloType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             139,
             6)))
 
@@ -8495,8 +9961,13 @@ def _BuildAutomaton_8():
     symbol = pyxb.binding.content.ElementUse(
         DatiBolloType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'BolloVirtuale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 138, 6))
+                None,
+                'BolloVirtuale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            138,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -8507,8 +9978,13 @@ def _BuildAutomaton_8():
     symbol = pyxb.binding.content.ElementUse(
         DatiBolloType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ImportoBollo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 139, 6))
+                None,
+                'ImportoBollo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            139,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -8533,7 +10009,8 @@ DatiCassaPrevidenzialeType._AddElement(
         TipoCassaType,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             144,
             6)))
 
@@ -8545,7 +10022,8 @@ DatiCassaPrevidenzialeType._AddElement(
         RateType,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             145,
             6)))
 
@@ -8557,7 +10035,8 @@ DatiCassaPrevidenzialeType._AddElement(
         Amount2DecimalType,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             146,
             6)))
 
@@ -8569,7 +10048,8 @@ DatiCassaPrevidenzialeType._AddElement(
         Amount2DecimalType,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             147,
             6)))
 
@@ -8581,7 +10061,8 @@ DatiCassaPrevidenzialeType._AddElement(
         RateType,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             148,
             6)))
 
@@ -8593,7 +10074,8 @@ DatiCassaPrevidenzialeType._AddElement(
         RitenutaType,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             149,
             6)))
 
@@ -8605,7 +10087,8 @@ DatiCassaPrevidenzialeType._AddElement(
         NaturaType,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             150,
             6)))
 
@@ -8617,7 +10100,8 @@ DatiCassaPrevidenzialeType._AddElement(
         String20Type,
         scope=DatiCassaPrevidenzialeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             151,
             6)))
 
@@ -8629,25 +10113,54 @@ def _BuildAutomaton_9():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 147, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            147,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 149, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            149,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 150, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            150,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 151, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            151,
+            6))
     counters.add(cc_3)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TipoCassa')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 144, 6))
+                None,
+                'TipoCassa')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            144,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -8658,8 +10171,13 @@ def _BuildAutomaton_9():
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AlCassa')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 145, 6))
+                None,
+                'AlCassa')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            145,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -8670,8 +10188,13 @@ def _BuildAutomaton_9():
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ImportoContributoCassa')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 146, 6))
+                None,
+                'ImportoContributoCassa')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            146,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -8682,8 +10205,13 @@ def _BuildAutomaton_9():
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ImponibileCassa')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 147, 6))
+                None,
+                'ImponibileCassa')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            147,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -8694,8 +10222,13 @@ def _BuildAutomaton_9():
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AliquotaIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 148, 6))
+                None,
+                'AliquotaIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            148,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -8707,8 +10240,13 @@ def _BuildAutomaton_9():
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Ritenuta')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 149, 6))
+                None,
+                'Ritenuta')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            149,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -8720,8 +10258,13 @@ def _BuildAutomaton_9():
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Natura')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 150, 6))
+                None,
+                'Natura')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            150,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -8733,8 +10276,13 @@ def _BuildAutomaton_9():
     symbol = pyxb.binding.content.ElementUse(
         DatiCassaPrevidenzialeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 151, 6))
+                None,
+                'RiferimentoAmministrazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            151,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=False,
@@ -8799,7 +10347,8 @@ ScontoMaggiorazioneType._AddElement(
         TipoScontoMaggiorazioneType,
         scope=ScontoMaggiorazioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             156,
             6)))
 
@@ -8811,7 +10360,8 @@ ScontoMaggiorazioneType._AddElement(
         RateType,
         scope=ScontoMaggiorazioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             157,
             6)))
 
@@ -8823,7 +10373,8 @@ ScontoMaggiorazioneType._AddElement(
         Amount2DecimalType,
         scope=ScontoMaggiorazioneType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             158,
             6)))
 
@@ -8835,19 +10386,36 @@ def _BuildAutomaton_10():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 157, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            157,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 158, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            158,
+            6))
     counters.add(cc_1)
     states = []
     final_update = set()
     symbol = pyxb.binding.content.ElementUse(
         ScontoMaggiorazioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Tipo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 156, 6))
+                None,
+                'Tipo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            156,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -8859,8 +10427,13 @@ def _BuildAutomaton_10():
     symbol = pyxb.binding.content.ElementUse(
         ScontoMaggiorazioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Percentuale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 157, 6))
+                None,
+                'Percentuale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            157,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -8872,8 +10445,13 @@ def _BuildAutomaton_10():
     symbol = pyxb.binding.content.ElementUse(
         ScontoMaggiorazioneType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Importo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 158, 6))
+                None,
+                'Importo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            158,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -8908,7 +10486,8 @@ DatiSALType._AddElement(
         RiferimentoFaseType,
         scope=DatiSALType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             435,
             6)))
 
@@ -8925,8 +10504,13 @@ def _BuildAutomaton_11():
     symbol = pyxb.binding.content.ElementUse(
         DatiSALType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoFase')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 435, 6))
+                None,
+                'RiferimentoFase')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            435,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -8947,7 +10531,8 @@ DatiDocumentiCorrelatiType._AddElement(
         RiferimentoNumeroLineaType,
         scope=DatiDocumentiCorrelatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             440,
             6)))
 
@@ -8959,7 +10544,8 @@ DatiDocumentiCorrelatiType._AddElement(
         String20Type,
         scope=DatiDocumentiCorrelatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             441,
             6)))
 
@@ -8971,7 +10557,8 @@ DatiDocumentiCorrelatiType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DatiDocumentiCorrelatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             442,
             6)))
 
@@ -8983,7 +10570,8 @@ DatiDocumentiCorrelatiType._AddElement(
         String20Type,
         scope=DatiDocumentiCorrelatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             443,
             6)))
 
@@ -8995,7 +10583,8 @@ DatiDocumentiCorrelatiType._AddElement(
         String100LatinType,
         scope=DatiDocumentiCorrelatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             444,
             6)))
 
@@ -9007,7 +10596,8 @@ DatiDocumentiCorrelatiType._AddElement(
         String15Type,
         scope=DatiDocumentiCorrelatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             445,
             6)))
 
@@ -9019,7 +10609,8 @@ DatiDocumentiCorrelatiType._AddElement(
         String15Type,
         scope=DatiDocumentiCorrelatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             446,
             6)))
 
@@ -9032,31 +10623,71 @@ def _BuildAutomaton_12():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 440, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            440,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 442, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            442,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 443, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            443,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 444, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            444,
+            6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 445, 6))
+    cc_4 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            445,
+            6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 446, 6))
+    cc_5 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            446,
+            6))
     counters.add(cc_5)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiDocumentiCorrelatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 440, 6))
+                None,
+                'RiferimentoNumeroLinea')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            440,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -9067,8 +10698,13 @@ def _BuildAutomaton_12():
     symbol = pyxb.binding.content.ElementUse(
         DatiDocumentiCorrelatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdDocumento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 441, 6))
+                None,
+                'IdDocumento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            441,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -9080,8 +10716,13 @@ def _BuildAutomaton_12():
     symbol = pyxb.binding.content.ElementUse(
         DatiDocumentiCorrelatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Data')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 442, 6))
+                None,
+                'Data')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            442,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -9093,8 +10734,13 @@ def _BuildAutomaton_12():
     symbol = pyxb.binding.content.ElementUse(
         DatiDocumentiCorrelatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumItem')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 443, 6))
+                None,
+                'NumItem')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            443,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -9106,8 +10752,13 @@ def _BuildAutomaton_12():
     symbol = pyxb.binding.content.ElementUse(
         DatiDocumentiCorrelatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceCommessaConvenzione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 444, 6))
+                None,
+                'CodiceCommessaConvenzione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            444,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -9119,8 +10770,13 @@ def _BuildAutomaton_12():
     symbol = pyxb.binding.content.ElementUse(
         DatiDocumentiCorrelatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceCUP')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 445, 6))
+                None,
+                'CodiceCUP')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            445,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -9132,8 +10788,13 @@ def _BuildAutomaton_12():
     symbol = pyxb.binding.content.ElementUse(
         DatiDocumentiCorrelatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceCIG')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 446, 6))
+                None,
+                'CodiceCIG')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            446,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -9210,7 +10871,8 @@ DatiDDTType._AddElement(
         String20Type,
         scope=DatiDDTType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             457,
             6)))
 
@@ -9222,7 +10884,8 @@ DatiDDTType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DatiDDTType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             458,
             6)))
 
@@ -9234,7 +10897,8 @@ DatiDDTType._AddElement(
         RiferimentoNumeroLineaType,
         scope=DatiDDTType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             459,
             6)))
 
@@ -9247,16 +10911,26 @@ def _BuildAutomaton_13():
 
     counters = set()
     cc_0 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 459, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            459,
+            6))
     counters.add(cc_0)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiDDTType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroDDT')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 457, 6))
+                None,
+                'NumeroDDT')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            457,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -9267,8 +10941,13 @@ def _BuildAutomaton_13():
     symbol = pyxb.binding.content.ElementUse(
         DatiDDTType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataDDT')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 458, 6))
+                None,
+                'DataDDT')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            458,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -9280,8 +10959,13 @@ def _BuildAutomaton_13():
     symbol = pyxb.binding.content.ElementUse(
         DatiDDTType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 459, 6))
+                None,
+                'RiferimentoNumeroLinea')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            459,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -9312,7 +10996,8 @@ DatiTrasportoType._AddElement(
         DatiAnagraficiVettoreType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             464,
             6)))
 
@@ -9324,7 +11009,8 @@ DatiTrasportoType._AddElement(
         String80LatinType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             465,
             6)))
 
@@ -9336,7 +11022,8 @@ DatiTrasportoType._AddElement(
         String100LatinType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             466,
             6)))
 
@@ -9348,7 +11035,8 @@ DatiTrasportoType._AddElement(
         NumeroColliType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             467,
             6)))
 
@@ -9360,7 +11048,8 @@ DatiTrasportoType._AddElement(
         String100LatinType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             468,
             6)))
 
@@ -9372,7 +11061,8 @@ DatiTrasportoType._AddElement(
         String10Type,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             469,
             6)))
 
@@ -9384,7 +11074,8 @@ DatiTrasportoType._AddElement(
         PesoType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             470,
             6)))
 
@@ -9396,7 +11087,8 @@ DatiTrasportoType._AddElement(
         PesoType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             471,
             6)))
 
@@ -9408,7 +11100,8 @@ DatiTrasportoType._AddElement(
         pyxb.binding.datatypes.dateTime,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             472,
             6)))
 
@@ -9420,7 +11113,8 @@ DatiTrasportoType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             473,
             6)))
 
@@ -9432,7 +11126,8 @@ DatiTrasportoType._AddElement(
         TipoResaType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             474,
             6)))
 
@@ -9444,7 +11139,8 @@ DatiTrasportoType._AddElement(
         IndirizzoType,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             475,
             6)))
 
@@ -9456,7 +11152,8 @@ DatiTrasportoType._AddElement(
         pyxb.binding.datatypes.dateTime,
         scope=DatiTrasportoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             476,
             6)))
 
@@ -9468,44 +11165,122 @@ def _BuildAutomaton_14():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 464, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            464,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 465, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            465,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 466, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            466,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 467, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            467,
+            6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 468, 6))
+    cc_4 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            468,
+            6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 469, 6))
+    cc_5 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            469,
+            6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 470, 6))
+    cc_6 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            470,
+            6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 471, 6))
+    cc_7 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            471,
+            6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 472, 6))
+    cc_8 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            472,
+            6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 473, 6))
+    cc_9 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            473,
+            6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 474, 6))
+    cc_10 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            474,
+            6))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 475, 6))
+    cc_11 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            475,
+            6))
     counters.add(cc_11)
-    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 476, 6))
+    cc_12 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            476,
+            6))
     counters.add(cc_12)
     states = []
     final_update = set()
@@ -9513,8 +11288,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiAnagraficiVettore')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 464, 6))
+                None,
+                'DatiAnagraficiVettore')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            464,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -9526,8 +11306,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'MezzoTrasporto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 465, 6))
+                None,
+                'MezzoTrasporto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            465,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -9539,8 +11324,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CausaleTrasporto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 466, 6))
+                None,
+                'CausaleTrasporto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            466,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=True,
@@ -9552,8 +11342,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroColli')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 467, 6))
+                None,
+                'NumeroColli')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            467,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=True,
@@ -9565,8 +11360,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Descrizione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 468, 6))
+                None,
+                'Descrizione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            468,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=True,
@@ -9578,8 +11378,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'UnitaMisuraPeso')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 469, 6))
+                None,
+                'UnitaMisuraPeso')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            469,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=True,
@@ -9591,8 +11396,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'PesoLordo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 470, 6))
+                None,
+                'PesoLordo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            470,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=True,
@@ -9604,8 +11414,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'PesoNetto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 471, 6))
+                None,
+                'PesoNetto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            471,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=True,
@@ -9617,8 +11432,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataOraRitiro')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 472, 6))
+                None,
+                'DataOraRitiro')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            472,
+            6))
     st_8 = fac.State(
         symbol,
         is_initial=True,
@@ -9630,8 +11450,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataInizioTrasporto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 473, 6))
+                None,
+                'DataInizioTrasporto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            473,
+            6))
     st_9 = fac.State(
         symbol,
         is_initial=True,
@@ -9643,8 +11468,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TipoResa')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 474, 6))
+                None,
+                'TipoResa')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            474,
+            6))
     st_10 = fac.State(
         symbol,
         is_initial=True,
@@ -9656,8 +11486,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IndirizzoResa')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 475, 6))
+                None,
+                'IndirizzoResa')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            475,
+            6))
     st_11 = fac.State(
         symbol,
         is_initial=True,
@@ -9669,8 +11504,13 @@ def _BuildAutomaton_14():
     symbol = pyxb.binding.content.ElementUse(
         DatiTrasportoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataOraConsegna')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 476, 6))
+                None,
+                'DataOraConsegna')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            476,
+            6))
     st_12 = fac.State(
         symbol,
         is_initial=True,
@@ -9897,7 +11737,8 @@ IndirizzoType._AddElement(
         String60LatinType,
         scope=IndirizzoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             481,
             6)))
 
@@ -9909,7 +11750,8 @@ IndirizzoType._AddElement(
         NumeroCivicoType,
         scope=IndirizzoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             482,
             6)))
 
@@ -9921,7 +11763,8 @@ IndirizzoType._AddElement(
         CAPType,
         scope=IndirizzoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             483,
             6)))
 
@@ -9933,7 +11776,8 @@ IndirizzoType._AddElement(
         String60LatinType,
         scope=IndirizzoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             484,
             6)))
 
@@ -9945,7 +11789,8 @@ IndirizzoType._AddElement(
         ProvinciaType,
         scope=IndirizzoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             485,
             6)))
 
@@ -9957,7 +11802,8 @@ IndirizzoType._AddElement(
         NazioneType,
         scope=IndirizzoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             486,
             6),
         unicode_default='IT'))
@@ -9970,19 +11816,36 @@ def _BuildAutomaton_15():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 482, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            482,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 485, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            485,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         IndirizzoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Indirizzo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 481, 6))
+                None,
+                'Indirizzo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            481,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -9993,8 +11856,13 @@ def _BuildAutomaton_15():
     symbol = pyxb.binding.content.ElementUse(
         IndirizzoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroCivico')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 482, 6))
+                None,
+                'NumeroCivico')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            482,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -10005,8 +11873,13 @@ def _BuildAutomaton_15():
     symbol = pyxb.binding.content.ElementUse(
         IndirizzoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CAP')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 483, 6))
+                None,
+                'CAP')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            483,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -10017,8 +11890,13 @@ def _BuildAutomaton_15():
     symbol = pyxb.binding.content.ElementUse(
         IndirizzoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Comune')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 484, 6))
+                None,
+                'Comune')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            484,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -10029,8 +11907,13 @@ def _BuildAutomaton_15():
     symbol = pyxb.binding.content.ElementUse(
         IndirizzoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Provincia')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 485, 6))
+                None,
+                'Provincia')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            485,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -10041,8 +11924,13 @@ def _BuildAutomaton_15():
     symbol = pyxb.binding.content.ElementUse(
         IndirizzoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Nazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 486, 6))
+                None,
+                'Nazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            486,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -10091,7 +11979,8 @@ FatturaPrincipaleType._AddElement(
         String20Type,
         scope=FatturaPrincipaleType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             491,
             6)))
 
@@ -10103,7 +11992,8 @@ FatturaPrincipaleType._AddElement(
         pyxb.binding.datatypes.date,
         scope=FatturaPrincipaleType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             492,
             6)))
 
@@ -10120,8 +12010,13 @@ def _BuildAutomaton_16():
     symbol = pyxb.binding.content.ElementUse(
         FatturaPrincipaleType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroFatturaPrincipale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 491, 6))
+                None,
+                'NumeroFatturaPrincipale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            491,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -10132,8 +12027,13 @@ def _BuildAutomaton_16():
     symbol = pyxb.binding.content.ElementUse(
         FatturaPrincipaleType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataFatturaPrincipale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 492, 6))
+                None,
+                'DataFatturaPrincipale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            492,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -10158,7 +12058,8 @@ CedentePrestatoreType._AddElement(
         DatiAnagraficiCedenteType,
         scope=CedentePrestatoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             517,
             6)))
 
@@ -10170,7 +12071,8 @@ CedentePrestatoreType._AddElement(
         IndirizzoType,
         scope=CedentePrestatoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             518,
             6)))
 
@@ -10182,7 +12084,8 @@ CedentePrestatoreType._AddElement(
         IndirizzoType,
         scope=CedentePrestatoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             519,
             6)))
 
@@ -10194,7 +12097,8 @@ CedentePrestatoreType._AddElement(
         IscrizioneREAType,
         scope=CedentePrestatoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             520,
             6)))
 
@@ -10206,7 +12110,8 @@ CedentePrestatoreType._AddElement(
         ContattiType,
         scope=CedentePrestatoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             521,
             6)))
 
@@ -10218,7 +12123,8 @@ CedentePrestatoreType._AddElement(
         String20Type,
         scope=CedentePrestatoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             522,
             6)))
 
@@ -10230,25 +12136,54 @@ def _BuildAutomaton_17():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 519, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            519,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 520, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            520,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 521, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            521,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 522, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            522,
+            6))
     counters.add(cc_3)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         CedentePrestatoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 517, 6))
+                None,
+                'DatiAnagrafici')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            517,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -10259,8 +12194,13 @@ def _BuildAutomaton_17():
     symbol = pyxb.binding.content.ElementUse(
         CedentePrestatoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Sede')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 518, 6))
+                None,
+                'Sede')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            518,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -10272,8 +12212,13 @@ def _BuildAutomaton_17():
     symbol = pyxb.binding.content.ElementUse(
         CedentePrestatoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'StabileOrganizzazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 519, 6))
+                None,
+                'StabileOrganizzazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            519,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -10285,8 +12230,13 @@ def _BuildAutomaton_17():
     symbol = pyxb.binding.content.ElementUse(
         CedentePrestatoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IscrizioneREA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 520, 6))
+                None,
+                'IscrizioneREA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            520,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -10298,8 +12248,13 @@ def _BuildAutomaton_17():
     symbol = pyxb.binding.content.ElementUse(
         CedentePrestatoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Contatti')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 521, 6))
+                None,
+                'Contatti')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            521,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -10311,8 +12266,13 @@ def _BuildAutomaton_17():
     symbol = pyxb.binding.content.ElementUse(
         CedentePrestatoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 522, 6))
+                None,
+                'RiferimentoAmministrazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            522,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -10373,7 +12333,8 @@ DatiAnagraficiCedenteType._AddElement(
         IdFiscaleType,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             527,
             6)))
 
@@ -10385,7 +12346,8 @@ DatiAnagraficiCedenteType._AddElement(
         CodiceFiscaleType,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             528,
             6)))
 
@@ -10397,7 +12359,8 @@ DatiAnagraficiCedenteType._AddElement(
         AnagraficaType,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             529,
             6)))
 
@@ -10409,7 +12372,8 @@ DatiAnagraficiCedenteType._AddElement(
         String60LatinType,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             530,
             6)))
 
@@ -10421,7 +12385,8 @@ DatiAnagraficiCedenteType._AddElement(
         ProvinciaType,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             531,
             6)))
 
@@ -10433,7 +12398,8 @@ DatiAnagraficiCedenteType._AddElement(
         String60Type,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             532,
             6)))
 
@@ -10445,7 +12411,8 @@ DatiAnagraficiCedenteType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             533,
             6)))
 
@@ -10457,7 +12424,8 @@ DatiAnagraficiCedenteType._AddElement(
         RegimeFiscaleType,
         scope=DatiAnagraficiCedenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             534,
             6)))
 
@@ -10469,28 +12437,63 @@ def _BuildAutomaton_18():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 528, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            528,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 530, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            530,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 531, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            531,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 532, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            532,
+            6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 533, 6))
+    cc_4 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            533,
+            6))
     counters.add(cc_4)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 527, 6))
+                None,
+                'IdFiscaleIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            527,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -10501,8 +12504,13 @@ def _BuildAutomaton_18():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 528, 6))
+                None,
+                'CodiceFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            528,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -10513,8 +12521,13 @@ def _BuildAutomaton_18():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Anagrafica')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 529, 6))
+                None,
+                'Anagrafica')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            529,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -10525,8 +12538,13 @@ def _BuildAutomaton_18():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AlboProfessionale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 530, 6))
+                None,
+                'AlboProfessionale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            530,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -10537,8 +12555,13 @@ def _BuildAutomaton_18():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ProvinciaAlbo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 531, 6))
+                None,
+                'ProvinciaAlbo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            531,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -10549,8 +12572,13 @@ def _BuildAutomaton_18():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroIscrizioneAlbo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 532, 6))
+                None,
+                'NumeroIscrizioneAlbo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            532,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -10561,8 +12589,13 @@ def _BuildAutomaton_18():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataIscrizioneAlbo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 533, 6))
+                None,
+                'DataIscrizioneAlbo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            533,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -10573,8 +12606,13 @@ def _BuildAutomaton_18():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCedenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RegimeFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 534, 6))
+                None,
+                'RegimeFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            534,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=False,
@@ -10655,7 +12693,8 @@ AnagraficaType._AddElement(
         String80LatinType,
         scope=AnagraficaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             647,
             10)))
 
@@ -10667,7 +12706,8 @@ AnagraficaType._AddElement(
         String60LatinType,
         scope=AnagraficaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             650,
             10)))
 
@@ -10679,7 +12719,8 @@ AnagraficaType._AddElement(
         String60LatinType,
         scope=AnagraficaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             651,
             10)))
 
@@ -10691,7 +12732,8 @@ AnagraficaType._AddElement(
         TitoloType,
         scope=AnagraficaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             654,
             6)))
 
@@ -10703,7 +12745,8 @@ AnagraficaType._AddElement(
         CodEORIType,
         scope=AnagraficaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             655,
             6)))
 
@@ -10715,19 +12758,36 @@ def _BuildAutomaton_19():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 654, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            654,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 655, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            655,
+            6))
     counters.add(cc_1)
     states = []
     final_update = set()
     symbol = pyxb.binding.content.ElementUse(
         AnagraficaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Denominazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 647, 10))
+                None,
+                'Denominazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            647,
+            10))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -10738,8 +12798,13 @@ def _BuildAutomaton_19():
     symbol = pyxb.binding.content.ElementUse(
         AnagraficaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Nome')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 650, 10))
+                None,
+                'Nome')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            650,
+            10))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -10750,8 +12815,13 @@ def _BuildAutomaton_19():
     symbol = pyxb.binding.content.ElementUse(
         AnagraficaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Cognome')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 651, 10))
+                None,
+                'Cognome')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            651,
+            10))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -10763,8 +12833,13 @@ def _BuildAutomaton_19():
     symbol = pyxb.binding.content.ElementUse(
         AnagraficaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Titolo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 654, 6))
+                None,
+                'Titolo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            654,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -10776,8 +12851,13 @@ def _BuildAutomaton_19():
     symbol = pyxb.binding.content.ElementUse(
         AnagraficaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodEORI')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 655, 6))
+                None,
+                'CodEORI')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            655,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -10822,7 +12902,8 @@ DatiAnagraficiVettoreType._AddElement(
         IdFiscaleType,
         scope=DatiAnagraficiVettoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             660,
             6)))
 
@@ -10834,7 +12915,8 @@ DatiAnagraficiVettoreType._AddElement(
         CodiceFiscaleType,
         scope=DatiAnagraficiVettoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             661,
             6)))
 
@@ -10846,7 +12928,8 @@ DatiAnagraficiVettoreType._AddElement(
         AnagraficaType,
         scope=DatiAnagraficiVettoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             662,
             6)))
 
@@ -10858,7 +12941,8 @@ DatiAnagraficiVettoreType._AddElement(
         String20Type,
         scope=DatiAnagraficiVettoreType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             663,
             6)))
 
@@ -10870,19 +12954,36 @@ def _BuildAutomaton_20():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 661, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            661,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 663, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            663,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiVettoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 660, 6))
+                None,
+                'IdFiscaleIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            660,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -10893,8 +12994,13 @@ def _BuildAutomaton_20():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiVettoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 661, 6))
+                None,
+                'CodiceFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            661,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -10905,8 +13011,13 @@ def _BuildAutomaton_20():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiVettoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Anagrafica')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 662, 6))
+                None,
+                'Anagrafica')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            662,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -10918,8 +13029,13 @@ def _BuildAutomaton_20():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiVettoreType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroLicenzaGuida')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 663, 6))
+                None,
+                'NumeroLicenzaGuida')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            663,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -10958,7 +13074,8 @@ IscrizioneREAType._AddElement(
         ProvinciaType,
         scope=IscrizioneREAType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             668,
             6)))
 
@@ -10970,7 +13087,8 @@ IscrizioneREAType._AddElement(
         String20Type,
         scope=IscrizioneREAType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             669,
             6)))
 
@@ -10982,7 +13100,8 @@ IscrizioneREAType._AddElement(
         Amount2DecimalType,
         scope=IscrizioneREAType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             670,
             6)))
 
@@ -10994,7 +13113,8 @@ IscrizioneREAType._AddElement(
         SocioUnicoType,
         scope=IscrizioneREAType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             671,
             6)))
 
@@ -11006,7 +13126,8 @@ IscrizioneREAType._AddElement(
         StatoLiquidazioneType,
         scope=IscrizioneREAType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             672,
             6)))
 
@@ -11018,19 +13139,36 @@ def _BuildAutomaton_21():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 670, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            670,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 671, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            671,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         IscrizioneREAType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Ufficio')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 668, 6))
+                None,
+                'Ufficio')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            668,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11041,8 +13179,13 @@ def _BuildAutomaton_21():
     symbol = pyxb.binding.content.ElementUse(
         IscrizioneREAType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroREA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 669, 6))
+                None,
+                'NumeroREA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            669,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -11053,8 +13196,13 @@ def _BuildAutomaton_21():
     symbol = pyxb.binding.content.ElementUse(
         IscrizioneREAType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CapitaleSociale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 670, 6))
+                None,
+                'CapitaleSociale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            670,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -11065,8 +13213,13 @@ def _BuildAutomaton_21():
     symbol = pyxb.binding.content.ElementUse(
         IscrizioneREAType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'SocioUnico')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 671, 6))
+                None,
+                'SocioUnico')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            671,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -11077,8 +13230,13 @@ def _BuildAutomaton_21():
     symbol = pyxb.binding.content.ElementUse(
         IscrizioneREAType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'StatoLiquidazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 672, 6))
+                None,
+                'StatoLiquidazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            672,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -11125,7 +13283,8 @@ ContattiType._AddElement(
         TelFaxType,
         scope=ContattiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             677,
             6)))
 
@@ -11137,7 +13296,8 @@ ContattiType._AddElement(
         TelFaxType,
         scope=ContattiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             678,
             6)))
 
@@ -11149,7 +13309,8 @@ ContattiType._AddElement(
         EmailType,
         scope=ContattiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             679,
             6)))
 
@@ -11161,14 +13322,32 @@ def _BuildAutomaton_22():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 677, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            677,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 678, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            678,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 679, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            679,
+            6))
     counters.add(cc_2)
     states = []
     final_update = set()
@@ -11176,8 +13355,13 @@ def _BuildAutomaton_22():
     symbol = pyxb.binding.content.ElementUse(
         ContattiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Telefono')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 677, 6))
+                None,
+                'Telefono')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            677,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11189,8 +13373,13 @@ def _BuildAutomaton_22():
     symbol = pyxb.binding.content.ElementUse(
         ContattiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Fax')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 678, 6))
+                None,
+                'Fax')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            678,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -11202,8 +13391,13 @@ def _BuildAutomaton_22():
     symbol = pyxb.binding.content.ElementUse(
         ContattiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Email')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 679, 6))
+                None,
+                'Email')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            679,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=True,
@@ -11240,7 +13434,8 @@ RappresentanteFiscaleType._AddElement(
         DatiAnagraficiRappresentanteType,
         scope=RappresentanteFiscaleType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             689,
             6)))
 
@@ -11257,8 +13452,13 @@ def _BuildAutomaton_23():
     symbol = pyxb.binding.content.ElementUse(
         RappresentanteFiscaleType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 689, 6))
+                None,
+                'DatiAnagrafici')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            689,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11279,7 +13479,8 @@ DatiAnagraficiRappresentanteType._AddElement(
         IdFiscaleType,
         scope=DatiAnagraficiRappresentanteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             694,
             6)))
 
@@ -11291,7 +13492,8 @@ DatiAnagraficiRappresentanteType._AddElement(
         CodiceFiscaleType,
         scope=DatiAnagraficiRappresentanteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             695,
             6)))
 
@@ -11303,7 +13505,8 @@ DatiAnagraficiRappresentanteType._AddElement(
         AnagraficaType,
         scope=DatiAnagraficiRappresentanteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             696,
             6)))
 
@@ -11315,16 +13518,27 @@ def _BuildAutomaton_24():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 695, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            695,
+            6))
     counters.add(cc_0)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiRappresentanteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 694, 6))
+                None,
+                'IdFiscaleIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            694,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11335,8 +13549,13 @@ def _BuildAutomaton_24():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiRappresentanteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 695, 6))
+                None,
+                'CodiceFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            695,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -11347,8 +13566,13 @@ def _BuildAutomaton_24():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiRappresentanteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Anagrafica')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 696, 6))
+                None,
+                'Anagrafica')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            696,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -11381,7 +13605,8 @@ CessionarioCommittenteType._AddElement(
         DatiAnagraficiCessionarioType,
         scope=CessionarioCommittenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             704,
             6)))
 
@@ -11393,7 +13618,8 @@ CessionarioCommittenteType._AddElement(
         IndirizzoType,
         scope=CessionarioCommittenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             705,
             6)))
 
@@ -11405,7 +13631,8 @@ CessionarioCommittenteType._AddElement(
         IndirizzoType,
         scope=CessionarioCommittenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             706,
             3)))
 
@@ -11417,7 +13644,8 @@ CessionarioCommittenteType._AddElement(
         RappresentanteFiscaleCessionarioType,
         scope=CessionarioCommittenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             707,
             6)))
 
@@ -11429,19 +13657,36 @@ def _BuildAutomaton_25():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 706, 3))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            706,
+            3))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 707, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            707,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         CessionarioCommittenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 704, 6))
+                None,
+                'DatiAnagrafici')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            704,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11452,8 +13697,13 @@ def _BuildAutomaton_25():
     symbol = pyxb.binding.content.ElementUse(
         CessionarioCommittenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Sede')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 705, 6))
+                None,
+                'Sede')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            705,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -11465,8 +13715,13 @@ def _BuildAutomaton_25():
     symbol = pyxb.binding.content.ElementUse(
         CessionarioCommittenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'StabileOrganizzazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 706, 3))
+                None,
+                'StabileOrganizzazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            706,
+            3))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -11478,8 +13733,13 @@ def _BuildAutomaton_25():
     symbol = pyxb.binding.content.ElementUse(
         CessionarioCommittenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RappresentanteFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 707, 6))
+                None,
+                'RappresentanteFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            707,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -11518,7 +13778,8 @@ RappresentanteFiscaleCessionarioType._AddElement(
         IdFiscaleType,
         scope=RappresentanteFiscaleCessionarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             712,
             3)))
 
@@ -11530,7 +13791,8 @@ RappresentanteFiscaleCessionarioType._AddElement(
         String80LatinType,
         scope=RappresentanteFiscaleCessionarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             715,
             10)))
 
@@ -11542,7 +13804,8 @@ RappresentanteFiscaleCessionarioType._AddElement(
         String60LatinType,
         scope=RappresentanteFiscaleCessionarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             718,
             10)))
 
@@ -11554,7 +13817,8 @@ RappresentanteFiscaleCessionarioType._AddElement(
         String60LatinType,
         scope=RappresentanteFiscaleCessionarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             719,
             10)))
 
@@ -11571,8 +13835,13 @@ def _BuildAutomaton_26():
     symbol = pyxb.binding.content.ElementUse(
         RappresentanteFiscaleCessionarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 712, 3))
+                None,
+                'IdFiscaleIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            712,
+            3))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11583,8 +13852,13 @@ def _BuildAutomaton_26():
     symbol = pyxb.binding.content.ElementUse(
         RappresentanteFiscaleCessionarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Denominazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 715, 10))
+                None,
+                'Denominazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            715,
+            10))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -11595,8 +13869,13 @@ def _BuildAutomaton_26():
     symbol = pyxb.binding.content.ElementUse(
         RappresentanteFiscaleCessionarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Nome')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 718, 10))
+                None,
+                'Nome')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            718,
+            10))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -11607,8 +13886,13 @@ def _BuildAutomaton_26():
     symbol = pyxb.binding.content.ElementUse(
         RappresentanteFiscaleCessionarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Cognome')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 719, 10))
+                None,
+                'Cognome')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            719,
+            10))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -11641,7 +13925,8 @@ DatiAnagraficiCessionarioType._AddElement(
         IdFiscaleType,
         scope=DatiAnagraficiCessionarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             726,
             6)))
 
@@ -11653,7 +13938,8 @@ DatiAnagraficiCessionarioType._AddElement(
         CodiceFiscaleType,
         scope=DatiAnagraficiCessionarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             727,
             6)))
 
@@ -11665,7 +13951,8 @@ DatiAnagraficiCessionarioType._AddElement(
         AnagraficaType,
         scope=DatiAnagraficiCessionarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             728,
             6)))
 
@@ -11677,19 +13964,36 @@ def _BuildAutomaton_27():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 726, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            726,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 727, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            727,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCessionarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 726, 6))
+                None,
+                'IdFiscaleIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            726,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11700,8 +14004,13 @@ def _BuildAutomaton_27():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCessionarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 727, 6))
+                None,
+                'CodiceFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            727,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -11712,8 +14021,13 @@ def _BuildAutomaton_27():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiCessionarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Anagrafica')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 728, 6))
+                None,
+                'Anagrafica')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            728,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=True,
@@ -11748,7 +14062,8 @@ DatiBeniServiziType._AddElement(
         DettaglioLineeType,
         scope=DatiBeniServiziType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             738,
             6)))
 
@@ -11760,7 +14075,8 @@ DatiBeniServiziType._AddElement(
         DatiRiepilogoType,
         scope=DatiBeniServiziType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             739,
             6)))
 
@@ -11777,8 +14093,13 @@ def _BuildAutomaton_28():
     symbol = pyxb.binding.content.ElementUse(
         DatiBeniServiziType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DettaglioLinee')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 738, 6))
+                None,
+                'DettaglioLinee')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            738,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11789,8 +14110,13 @@ def _BuildAutomaton_28():
     symbol = pyxb.binding.content.ElementUse(
         DatiBeniServiziType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiRiepilogo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 739, 6))
+                None,
+                'DatiRiepilogo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            739,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -11819,7 +14145,8 @@ DatiVeicoliType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DatiVeicoliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             752,
             6)))
 
@@ -11831,7 +14158,8 @@ DatiVeicoliType._AddElement(
         String15Type,
         scope=DatiVeicoliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             753,
             6)))
 
@@ -11848,8 +14176,13 @@ def _BuildAutomaton_29():
     symbol = pyxb.binding.content.ElementUse(
         DatiVeicoliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Data')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 752, 6))
+                None,
+                'Data')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            752,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11860,8 +14193,13 @@ def _BuildAutomaton_29():
     symbol = pyxb.binding.content.ElementUse(
         DatiVeicoliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TotalePercorso')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 753, 6))
+                None,
+                'TotalePercorso')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            753,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -11886,7 +14224,8 @@ DatiPagamentoType._AddElement(
         CondizioniPagamentoType,
         scope=DatiPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             763,
             6)))
 
@@ -11898,7 +14237,8 @@ DatiPagamentoType._AddElement(
         DettaglioPagamentoType,
         scope=DatiPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             764,
             6)))
 
@@ -11915,8 +14255,13 @@ def _BuildAutomaton_30():
     symbol = pyxb.binding.content.ElementUse(
         DatiPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CondizioniPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 763, 6))
+                None,
+                'CondizioniPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            763,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -11927,8 +14272,13 @@ def _BuildAutomaton_30():
     symbol = pyxb.binding.content.ElementUse(
         DatiPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DettaglioPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 764, 6))
+                None,
+                'DettaglioPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            764,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -11955,7 +14305,8 @@ DettaglioPagamentoType._AddElement(
         String200LatinType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             790,
             6)))
 
@@ -11967,7 +14318,8 @@ DettaglioPagamentoType._AddElement(
         ModalitaPagamentoType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             791,
             6)))
 
@@ -11979,7 +14331,8 @@ DettaglioPagamentoType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             792,
             6)))
 
@@ -11991,7 +14344,8 @@ DettaglioPagamentoType._AddElement(
         GiorniTerminePagamentoType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             793,
             6)))
 
@@ -12003,7 +14357,8 @@ DettaglioPagamentoType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             794,
             6)))
 
@@ -12015,7 +14370,8 @@ DettaglioPagamentoType._AddElement(
         Amount2DecimalType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             795,
             6)))
 
@@ -12027,7 +14383,8 @@ DettaglioPagamentoType._AddElement(
         String20Type,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             796,
             6)))
 
@@ -12039,7 +14396,8 @@ DettaglioPagamentoType._AddElement(
         String60LatinType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             797,
             6)))
 
@@ -12051,7 +14409,8 @@ DettaglioPagamentoType._AddElement(
         String60LatinType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             798,
             6)))
 
@@ -12063,7 +14422,8 @@ DettaglioPagamentoType._AddElement(
         CodiceFiscalePFType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             799,
             6)))
 
@@ -12075,7 +14435,8 @@ DettaglioPagamentoType._AddElement(
         TitoloType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             800,
             6)))
 
@@ -12087,7 +14448,8 @@ DettaglioPagamentoType._AddElement(
         String80LatinType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             801,
             6)))
 
@@ -12099,7 +14461,8 @@ DettaglioPagamentoType._AddElement(
         IBANType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             802,
             6)))
 
@@ -12111,7 +14474,8 @@ DettaglioPagamentoType._AddElement(
         ABIType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             803,
             6)))
 
@@ -12123,7 +14487,8 @@ DettaglioPagamentoType._AddElement(
         CABType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             804,
             6)))
 
@@ -12135,7 +14500,8 @@ DettaglioPagamentoType._AddElement(
         BICType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             805,
             6)))
 
@@ -12147,7 +14513,8 @@ DettaglioPagamentoType._AddElement(
         Amount2DecimalType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             806,
             6)))
 
@@ -12159,7 +14526,8 @@ DettaglioPagamentoType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             807,
             6)))
 
@@ -12171,7 +14539,8 @@ DettaglioPagamentoType._AddElement(
         Amount2DecimalType,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             808,
             6)))
 
@@ -12183,7 +14552,8 @@ DettaglioPagamentoType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             809,
             6)))
 
@@ -12195,7 +14565,8 @@ DettaglioPagamentoType._AddElement(
         String60Type,
         scope=DettaglioPagamentoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             810,
             6)))
 
@@ -12207,70 +14578,189 @@ def _BuildAutomaton_31():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 790, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            790,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 792, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            792,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 793, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            793,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 794, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            794,
+            6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 796, 6))
+    cc_4 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            796,
+            6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 797, 6))
+    cc_5 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            797,
+            6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 798, 6))
+    cc_6 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            798,
+            6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 799, 6))
+    cc_7 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            799,
+            6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 800, 6))
+    cc_8 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            800,
+            6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 801, 6))
+    cc_9 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            801,
+            6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 802, 6))
+    cc_10 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            802,
+            6))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 803, 6))
+    cc_11 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            803,
+            6))
     counters.add(cc_11)
-    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 804, 6))
+    cc_12 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            804,
+            6))
     counters.add(cc_12)
-    cc_13 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 805, 6))
+    cc_13 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            805,
+            6))
     counters.add(cc_13)
-    cc_14 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 806, 6))
+    cc_14 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            806,
+            6))
     counters.add(cc_14)
-    cc_15 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 807, 6))
+    cc_15 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            807,
+            6))
     counters.add(cc_15)
-    cc_16 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 808, 6))
+    cc_16 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            808,
+            6))
     counters.add(cc_16)
-    cc_17 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 809, 6))
+    cc_17 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            809,
+            6))
     counters.add(cc_17)
-    cc_18 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 810, 6))
+    cc_18 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            810,
+            6))
     counters.add(cc_18)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Beneficiario')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 790, 6))
+                None,
+                'Beneficiario')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            790,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -12281,8 +14771,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ModalitaPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 791, 6))
+                None,
+                'ModalitaPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            791,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -12293,8 +14788,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataRiferimentoTerminiPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 792, 6))
+                None,
+                'DataRiferimentoTerminiPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            792,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -12305,8 +14805,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'GiorniTerminiPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 793, 6))
+                None,
+                'GiorniTerminiPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            793,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -12317,8 +14822,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataScadenzaPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 794, 6))
+                None,
+                'DataScadenzaPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            794,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -12329,8 +14839,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ImportoPagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 795, 6))
+                None,
+                'ImportoPagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            795,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -12342,8 +14857,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodUfficioPostale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 796, 6))
+                None,
+                'CodUfficioPostale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            796,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -12355,8 +14875,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CognomeQuietanzante')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 797, 6))
+                None,
+                'CognomeQuietanzante')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            797,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=False,
@@ -12368,8 +14893,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NomeQuietanzante')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 798, 6))
+                None,
+                'NomeQuietanzante')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            798,
+            6))
     st_8 = fac.State(
         symbol,
         is_initial=False,
@@ -12381,8 +14911,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CFQuietanzante')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 799, 6))
+                None,
+                'CFQuietanzante')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            799,
+            6))
     st_9 = fac.State(
         symbol,
         is_initial=False,
@@ -12394,8 +14929,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TitoloQuietanzante')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 800, 6))
+                None,
+                'TitoloQuietanzante')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            800,
+            6))
     st_10 = fac.State(
         symbol,
         is_initial=False,
@@ -12407,8 +14947,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IstitutoFinanziario')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 801, 6))
+                None,
+                'IstitutoFinanziario')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            801,
+            6))
     st_11 = fac.State(
         symbol,
         is_initial=False,
@@ -12420,8 +14965,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IBAN')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 802, 6))
+                None,
+                'IBAN')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            802,
+            6))
     st_12 = fac.State(
         symbol,
         is_initial=False,
@@ -12433,8 +14983,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ABI')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 803, 6))
+                None,
+                'ABI')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            803,
+            6))
     st_13 = fac.State(
         symbol,
         is_initial=False,
@@ -12446,8 +15001,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CAB')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 804, 6))
+                None,
+                'CAB')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            804,
+            6))
     st_14 = fac.State(
         symbol,
         is_initial=False,
@@ -12459,8 +15019,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'BIC')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 805, 6))
+                None,
+                'BIC')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            805,
+            6))
     st_15 = fac.State(
         symbol,
         is_initial=False,
@@ -12472,8 +15037,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ScontoPagamentoAnticipato')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 806, 6))
+                None,
+                'ScontoPagamentoAnticipato')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            806,
+            6))
     st_16 = fac.State(
         symbol,
         is_initial=False,
@@ -12485,8 +15055,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataLimitePagamentoAnticipato')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 807, 6))
+                None,
+                'DataLimitePagamentoAnticipato')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            807,
+            6))
     st_17 = fac.State(
         symbol,
         is_initial=False,
@@ -12498,8 +15073,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'PenalitaPagamentiRitardati')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 808, 6))
+                None,
+                'PenalitaPagamentiRitardati')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            808,
+            6))
     st_18 = fac.State(
         symbol,
         is_initial=False,
@@ -12511,8 +15091,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataDecorrenzaPenale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 809, 6))
+                None,
+                'DataDecorrenzaPenale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            809,
+            6))
     st_19 = fac.State(
         symbol,
         is_initial=False,
@@ -12524,8 +15109,13 @@ def _BuildAutomaton_31():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioPagamentoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodicePagamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 810, 6))
+                None,
+                'CodicePagamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            810,
+            6))
     st_20 = fac.State(
         symbol,
         is_initial=False,
@@ -12886,7 +15476,8 @@ TerzoIntermediarioSoggettoEmittenteType._AddElement(
         DatiAnagraficiTerzoIntermediarioType,
         scope=TerzoIntermediarioSoggettoEmittenteType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             947,
             6)))
 
@@ -12903,8 +15494,13 @@ def _BuildAutomaton_32():
     symbol = pyxb.binding.content.ElementUse(
         TerzoIntermediarioSoggettoEmittenteType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 947, 6))
+                None,
+                'DatiAnagrafici')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            947,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -12925,7 +15521,8 @@ DatiAnagraficiTerzoIntermediarioType._AddElement(
         IdFiscaleType,
         scope=DatiAnagraficiTerzoIntermediarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             952,
             6)))
 
@@ -12937,7 +15534,8 @@ DatiAnagraficiTerzoIntermediarioType._AddElement(
         CodiceFiscaleType,
         scope=DatiAnagraficiTerzoIntermediarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             953,
             6)))
 
@@ -12949,7 +15547,8 @@ DatiAnagraficiTerzoIntermediarioType._AddElement(
         AnagraficaType,
         scope=DatiAnagraficiTerzoIntermediarioType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             954,
             6)))
 
@@ -12961,19 +15560,36 @@ def _BuildAutomaton_33():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 952, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            952,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 953, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            953,
+            6))
     counters.add(cc_1)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiTerzoIntermediarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 952, 6))
+                None,
+                'IdFiscaleIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            952,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -12984,8 +15600,13 @@ def _BuildAutomaton_33():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiTerzoIntermediarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceFiscale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 953, 6))
+                None,
+                'CodiceFiscale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            953,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=True,
@@ -12996,8 +15617,13 @@ def _BuildAutomaton_33():
     symbol = pyxb.binding.content.ElementUse(
         DatiAnagraficiTerzoIntermediarioType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Anagrafica')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 954, 6))
+                None,
+                'Anagrafica')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            954,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=True,
@@ -13032,7 +15658,8 @@ AllegatiType._AddElement(
         String60LatinType,
         scope=AllegatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             964,
             6)))
 
@@ -13044,7 +15671,8 @@ AllegatiType._AddElement(
         String10Type,
         scope=AllegatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             965,
             6)))
 
@@ -13056,7 +15684,8 @@ AllegatiType._AddElement(
         String10Type,
         scope=AllegatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             966,
             6)))
 
@@ -13068,7 +15697,8 @@ AllegatiType._AddElement(
         String100LatinType,
         scope=AllegatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             967,
             6)))
 
@@ -13080,7 +15710,8 @@ AllegatiType._AddElement(
         pyxb.binding.datatypes.base64Binary,
         scope=AllegatiType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             968,
             6)))
 
@@ -13092,22 +15723,45 @@ def _BuildAutomaton_34():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 965, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            965,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 966, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            966,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 967, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            967,
+            6))
     counters.add(cc_2)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         AllegatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NomeAttachment')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 964, 6))
+                None,
+                'NomeAttachment')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            964,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -13118,8 +15772,13 @@ def _BuildAutomaton_34():
     symbol = pyxb.binding.content.ElementUse(
         AllegatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AlgoritmoCompressione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 965, 6))
+                None,
+                'AlgoritmoCompressione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            965,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -13130,8 +15789,13 @@ def _BuildAutomaton_34():
     symbol = pyxb.binding.content.ElementUse(
         AllegatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'FormatoAttachment')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 966, 6))
+                None,
+                'FormatoAttachment')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            966,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -13142,8 +15806,13 @@ def _BuildAutomaton_34():
     symbol = pyxb.binding.content.ElementUse(
         AllegatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DescrizioneAttachment')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 967, 6))
+                None,
+                'DescrizioneAttachment')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            967,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -13154,8 +15823,13 @@ def _BuildAutomaton_34():
     symbol = pyxb.binding.content.ElementUse(
         AllegatiType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Attachment')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 968, 6))
+                None,
+                'Attachment')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            968,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -13210,7 +15884,8 @@ DettaglioLineeType._AddElement(
         NumeroLineaType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             973,
             6)))
 
@@ -13222,7 +15897,8 @@ DettaglioLineeType._AddElement(
         TipoCessionePrestazioneType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             974,
             6)))
 
@@ -13234,7 +15910,8 @@ DettaglioLineeType._AddElement(
         CodiceArticoloType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             975,
             6)))
 
@@ -13246,7 +15923,8 @@ DettaglioLineeType._AddElement(
         String1000LatinType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             976,
             6)))
 
@@ -13258,7 +15936,8 @@ DettaglioLineeType._AddElement(
         QuantitaType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             977,
             6)))
 
@@ -13270,7 +15949,8 @@ DettaglioLineeType._AddElement(
         String10Type,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             978,
             6)))
 
@@ -13282,7 +15962,8 @@ DettaglioLineeType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             979,
             6)))
 
@@ -13294,7 +15975,8 @@ DettaglioLineeType._AddElement(
         pyxb.binding.datatypes.date,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             980,
             6)))
 
@@ -13306,7 +15988,8 @@ DettaglioLineeType._AddElement(
         Amount8DecimalType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             981,
             6)))
 
@@ -13318,7 +16001,8 @@ DettaglioLineeType._AddElement(
         ScontoMaggiorazioneType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             982,
             6)))
 
@@ -13330,7 +16014,8 @@ DettaglioLineeType._AddElement(
         Amount8DecimalType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             983,
             6)))
 
@@ -13342,7 +16027,8 @@ DettaglioLineeType._AddElement(
         RateType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             984,
             6)))
 
@@ -13354,7 +16040,8 @@ DettaglioLineeType._AddElement(
         RitenutaType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             985,
             6)))
 
@@ -13366,7 +16053,8 @@ DettaglioLineeType._AddElement(
         NaturaType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             986,
             6)))
 
@@ -13378,7 +16066,8 @@ DettaglioLineeType._AddElement(
         String20Type,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             987,
             6)))
 
@@ -13390,7 +16079,8 @@ DettaglioLineeType._AddElement(
         AltriDatiGestionaliType,
         scope=DettaglioLineeType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             988,
             6)))
 
@@ -13402,49 +16092,117 @@ def _BuildAutomaton_35():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 974, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            974,
+            6))
     counters.add(cc_0)
     cc_1 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 975, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            975,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 977, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            977,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 978, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            978,
+            6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 979, 6))
+    cc_4 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            979,
+            6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 980, 6))
+    cc_5 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            980,
+            6))
     counters.add(cc_5)
     cc_6 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 982, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            982,
+            6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 985, 6))
+    cc_7 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            985,
+            6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 986, 6))
+    cc_8 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            986,
+            6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 987, 6))
+    cc_9 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            987,
+            6))
     counters.add(cc_9)
     cc_10 = fac.CounterCondition(
-        min=0, max=None, metadata=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 988, 6))
+        min=0,
+        max=None,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            988,
+            6))
     counters.add(cc_10)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'NumeroLinea')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 973, 6))
+                None,
+                'NumeroLinea')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            973,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -13455,8 +16213,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TipoCessionePrestazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 974, 6))
+                None,
+                'TipoCessionePrestazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            974,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -13467,8 +16230,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceArticolo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 975, 6))
+                None,
+                'CodiceArticolo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            975,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -13479,8 +16247,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Descrizione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 976, 6))
+                None,
+                'Descrizione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            976,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -13491,8 +16264,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Quantita')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 977, 6))
+                None,
+                'Quantita')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            977,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -13503,8 +16281,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'UnitaMisura')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 978, 6))
+                None,
+                'UnitaMisura')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            978,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -13515,8 +16298,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataInizioPeriodo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 979, 6))
+                None,
+                'DataInizioPeriodo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            979,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -13527,8 +16315,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'DataFinePeriodo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 980, 6))
+                None,
+                'DataFinePeriodo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            980,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=False,
@@ -13539,8 +16332,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'PrezzoUnitario')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 981, 6))
+                None,
+                'PrezzoUnitario')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            981,
+            6))
     st_8 = fac.State(
         symbol,
         is_initial=False,
@@ -13551,8 +16349,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 982, 6))
+                None,
+                'ScontoMaggiorazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            982,
+            6))
     st_9 = fac.State(
         symbol,
         is_initial=False,
@@ -13563,8 +16366,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'PrezzoTotale')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 983, 6))
+                None,
+                'PrezzoTotale')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            983,
+            6))
     st_10 = fac.State(
         symbol,
         is_initial=False,
@@ -13575,8 +16383,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AliquotaIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 984, 6))
+                None,
+                'AliquotaIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            984,
+            6))
     st_11 = fac.State(
         symbol,
         is_initial=False,
@@ -13588,8 +16401,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Ritenuta')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 985, 6))
+                None,
+                'Ritenuta')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            985,
+            6))
     st_12 = fac.State(
         symbol,
         is_initial=False,
@@ -13601,8 +16419,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Natura')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 986, 6))
+                None,
+                'Natura')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            986,
+            6))
     st_13 = fac.State(
         symbol,
         is_initial=False,
@@ -13614,8 +16437,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 987, 6))
+                None,
+                'RiferimentoAmministrazione')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            987,
+            6))
     st_14 = fac.State(
         symbol,
         is_initial=False,
@@ -13627,8 +16455,13 @@ def _BuildAutomaton_35():
     symbol = pyxb.binding.content.ElementUse(
         DettaglioLineeType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AltriDatiGestionali')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 988, 6))
+                None,
+                'AltriDatiGestionali')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            988,
+            6))
     st_15 = fac.State(
         symbol,
         is_initial=False,
@@ -13771,7 +16604,8 @@ CodiceArticoloType._AddElement(
         String35Type,
         scope=CodiceArticoloType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             993,
             6)))
 
@@ -13783,7 +16617,8 @@ CodiceArticoloType._AddElement(
         String35Type,
         scope=CodiceArticoloType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             994,
             6)))
 
@@ -13800,8 +16635,13 @@ def _BuildAutomaton_36():
     symbol = pyxb.binding.content.ElementUse(
         CodiceArticoloType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceTipo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 993, 6))
+                None,
+                'CodiceTipo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            993,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -13812,8 +16652,13 @@ def _BuildAutomaton_36():
     symbol = pyxb.binding.content.ElementUse(
         CodiceArticoloType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'CodiceValore')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 994, 6))
+                None,
+                'CodiceValore')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            994,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -13838,7 +16683,8 @@ AltriDatiGestionaliType._AddElement(
         String10Type,
         scope=AltriDatiGestionaliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             999,
             6)))
 
@@ -13850,7 +16696,8 @@ AltriDatiGestionaliType._AddElement(
         String60LatinType,
         scope=AltriDatiGestionaliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1000,
             6)))
 
@@ -13862,7 +16709,8 @@ AltriDatiGestionaliType._AddElement(
         Amount8DecimalType,
         scope=AltriDatiGestionaliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1001,
             6)))
 
@@ -13874,7 +16722,8 @@ AltriDatiGestionaliType._AddElement(
         pyxb.binding.datatypes.date,
         scope=AltriDatiGestionaliType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1002,
             6)))
 
@@ -13886,22 +16735,45 @@ def _BuildAutomaton_37():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1000, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1000,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1001, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1001,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1002, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1002,
+            6))
     counters.add(cc_2)
     states = []
     final_update = set()
     symbol = pyxb.binding.content.ElementUse(
         AltriDatiGestionaliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'TipoDato')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 999, 6))
+                None,
+                'TipoDato')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            999,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -13913,8 +16785,13 @@ def _BuildAutomaton_37():
     symbol = pyxb.binding.content.ElementUse(
         AltriDatiGestionaliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoTesto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1000, 6))
+                None,
+                'RiferimentoTesto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1000,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -13926,8 +16803,13 @@ def _BuildAutomaton_37():
     symbol = pyxb.binding.content.ElementUse(
         AltriDatiGestionaliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoNumero')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1001, 6))
+                None,
+                'RiferimentoNumero')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1001,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -13939,8 +16821,13 @@ def _BuildAutomaton_37():
     symbol = pyxb.binding.content.ElementUse(
         AltriDatiGestionaliType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoData')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1002, 6))
+                None,
+                'RiferimentoData')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1002,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -13985,7 +16872,8 @@ DatiRiepilogoType._AddElement(
         RateType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1019,
             6)))
 
@@ -13997,7 +16885,8 @@ DatiRiepilogoType._AddElement(
         NaturaType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1020,
             6)))
 
@@ -14009,7 +16898,8 @@ DatiRiepilogoType._AddElement(
         Amount2DecimalType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1021,
             6)))
 
@@ -14021,7 +16911,8 @@ DatiRiepilogoType._AddElement(
         Amount8DecimalType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1022,
             6)))
 
@@ -14033,7 +16924,8 @@ DatiRiepilogoType._AddElement(
         Amount2DecimalType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1023,
             6)))
 
@@ -14045,7 +16937,8 @@ DatiRiepilogoType._AddElement(
         Amount2DecimalType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1024,
             6)))
 
@@ -14057,7 +16950,8 @@ DatiRiepilogoType._AddElement(
         EsigibilitaIVAType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1025,
             6)))
 
@@ -14069,7 +16963,8 @@ DatiRiepilogoType._AddElement(
         String100LatinType,
         scope=DatiRiepilogoType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             1026,
             6)))
 
@@ -14081,28 +16976,63 @@ def _BuildAutomaton_38():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1020, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1020,
+            6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1021, 6))
+    cc_1 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1021,
+            6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1022, 6))
+    cc_2 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1022,
+            6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1025, 6))
+    cc_3 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1025,
+            6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1026, 6))
+    cc_4 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1026,
+            6))
     counters.add(cc_4)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'AliquotaIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1019, 6))
+                None,
+                'AliquotaIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1019,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -14113,8 +17043,13 @@ def _BuildAutomaton_38():
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Natura')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1020, 6))
+                None,
+                'Natura')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1020,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -14125,8 +17060,13 @@ def _BuildAutomaton_38():
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'SpeseAccessorie')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1021, 6))
+                None,
+                'SpeseAccessorie')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1021,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,
@@ -14137,8 +17077,13 @@ def _BuildAutomaton_38():
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Arrotondamento')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1022, 6))
+                None,
+                'Arrotondamento')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1022,
+            6))
     st_3 = fac.State(
         symbol,
         is_initial=False,
@@ -14149,8 +17094,13 @@ def _BuildAutomaton_38():
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'ImponibileImporto')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1023, 6))
+                None,
+                'ImponibileImporto')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1023,
+            6))
     st_4 = fac.State(
         symbol,
         is_initial=False,
@@ -14161,8 +17111,13 @@ def _BuildAutomaton_38():
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'Imposta')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1024, 6))
+                None,
+                'Imposta')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1024,
+            6))
     st_5 = fac.State(
         symbol,
         is_initial=False,
@@ -14174,8 +17129,13 @@ def _BuildAutomaton_38():
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'EsigibilitaIVA')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1025, 6))
+                None,
+                'EsigibilitaIVA')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1025,
+            6))
     st_6 = fac.State(
         symbol,
         is_initial=False,
@@ -14187,8 +17147,13 @@ def _BuildAutomaton_38():
     symbol = pyxb.binding.content.ElementUse(
         DatiRiepilogoType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'RiferimentoNormativo')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 1026, 6))
+                None,
+                'RiferimentoNormativo')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            1026,
+            6))
     st_7 = fac.State(
         symbol,
         is_initial=False,
@@ -14261,7 +17226,8 @@ FatturaElettronicaType._AddElement(
         FatturaElettronicaHeaderType,
         scope=FatturaElettronicaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             17,
             6)))
 
@@ -14273,7 +17239,8 @@ FatturaElettronicaType._AddElement(
         FatturaElettronicaBodyType,
         scope=FatturaElettronicaType,
         location=pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
             18,
             6)))
 
@@ -14285,7 +17252,8 @@ FatturaElettronicaType._AddElement(
         _ImportedBinding__ds.SignatureType,
         scope=FatturaElettronicaType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             43,
             0)))
 
@@ -14297,16 +17265,27 @@ def _BuildAutomaton_39():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 19, 6))
+    cc_0 = fac.CounterCondition(
+        min=0,
+        max=1,
+        metadata=pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            19,
+            6))
     counters.add(cc_0)
     states = []
     final_update = None
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'FatturaElettronicaHeader')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 17, 6))
+                None,
+                'FatturaElettronicaHeader')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            17,
+            6))
     st_0 = fac.State(
         symbol,
         is_initial=True,
@@ -14317,8 +17296,13 @@ def _BuildAutomaton_39():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                None, 'FatturaElettronicaBody')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 18, 6))
+                None,
+                'FatturaElettronicaBody')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            18,
+            6))
     st_1 = fac.State(
         symbol,
         is_initial=False,
@@ -14330,8 +17314,13 @@ def _BuildAutomaton_39():
     symbol = pyxb.binding.content.ElementUse(
         FatturaElettronicaType._UseForTag(
             pyxb.namespace.ExpandedName(
-                _Namespace_ds, 'Signature')), pyxb.utils.utility.Location(
-            '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 19, 6))
+                _Namespace_ds,
+                'Signature')),
+        pyxb.utils.utility.Location(
+            'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'
+            'v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd',
+            19,
+            6))
     st_2 = fac.State(
         symbol,
         is_initial=False,

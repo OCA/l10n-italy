@@ -1,15 +1,17 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2017-01-10 12:31:27.348753 by PyXB version 1.2.4 using Python 2.7.12.final.0
+# Generated 2016-12-12 16:50:59.495293
+# by PyXB version 1.2.5 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 
 from __future__ import unicode_literals
 import logging
 import io
-import sys
+
 _logger = logging.getLogger(__name__)
+
 try:
     import pyxb
     import pyxb.binding
@@ -24,13 +26,17 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:49afe44e-d728-11e6-b2bd-1972c097fb02')
+    'urn:uuid:bd31195e-c082-11e6-8130-08edb9323673')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.4'
+_PyXBVersion = '1.2.5'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
+
+# A holder for module-level binding classes so we can access them from
+# inside class definitions where property names may conflict.
+_module_typeBindings = pyxb.utils.utility.Object()
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
@@ -81,7 +87,8 @@ def CreateFromDOM(node, default_namespace=None):
     """Create a Python instance from the given DOM node.
     The node tag must correspond to an element declaration in this module.
 
-    @deprecated: Forcing use of DOM interface is unnecessary; use L{CreateFromDocument}."""
+    @deprecated: Forcing use of DOM interface is unnecessary;
+    use L{CreateFromDocument}."""
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     return pyxb.binding.basis.element.AnyCreateFromDOM(node, default_namespace)
@@ -94,12 +101,14 @@ class CryptoBinary (pyxb.binding.datatypes.base64Binary):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CryptoBinary')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         36,
         0)
     _Documentation = None
 CryptoBinary._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'CryptoBinary', CryptoBinary)
+_module_typeBindings.CryptoBinary = CryptoBinary
 
 # Atomic simple type: {http://www.w3.org/2000/09/xmldsig#}DigestValueType
 
@@ -110,12 +119,14 @@ class DigestValueType (pyxb.binding.datatypes.base64Binary):
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DigestValueType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         136,
         0)
     _Documentation = None
 DigestValueType._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'DigestValueType', DigestValueType)
+_module_typeBindings.DigestValueType = DigestValueType
 
 # Atomic simple type: {http://www.w3.org/2000/09/xmldsig#}HMACOutputLengthType
 
@@ -127,7 +138,8 @@ class HMACOutputLengthType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'HMACOutputLengthType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         283,
         0)
     _Documentation = None
@@ -136,19 +148,22 @@ Namespace.addCategoryObject(
     'typeBinding',
     'HMACOutputLengthType',
     HMACOutputLengthType)
+_module_typeBindings.HMACOutputLengthType = HMACOutputLengthType
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with
 # content type ELEMENT_ONLY
 
 
 class SignatureType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with
+    content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SignatureType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         44,
         0)
     _ElementMap = {}
@@ -162,10 +177,12 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'SignatureValue'),
         'SignatureValue',
-        '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigSignatureValue',
+        '__httpwww_w3_org200009xmldsig_SignatureType_http'
+        'www_w3_org200009xmldsigSignatureValue',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             54,
             2),
     )
@@ -183,10 +200,12 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'SignedInfo'),
         'SignedInfo',
-        '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigSignedInfo',
+        '__httpwww_w3_org200009xmldsig_SignatureType_http'
+        'www_w3_org200009xmldsigSignedInfo',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             65,
             0),
     )
@@ -200,10 +219,12 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'KeyInfo'),
         'KeyInfo',
-        '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigKeyInfo',
+        '__httpwww_w3_org200009xmldsig_SignatureType_http'
+        'www_w3_org200009xmldsigKeyInfo',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             144,
             0),
     )
@@ -217,10 +238,12 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Object'),
         'Object',
-        '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigObject',
+        '__httpwww_w3_org200009xmldsig_SignatureType_http'
+        'www_w3_org200009xmldsigObject',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             243,
             0),
     )
@@ -236,9 +259,11 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_SignatureType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 51, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 51, 2)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 51, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 51, 2)
 
     Id = property(__Id.value, __Id.set, None, None)
 
@@ -251,20 +276,23 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+_module_typeBindings.SignatureType = SignatureType
 Namespace.addCategoryObject('typeBinding', 'SignatureType', SignatureType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureValueType with
 # content type SIMPLE
 class SignatureValueType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureValueType with content type SIMPLE"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureValueType
+    with content type SIMPLE"""
     _TypeDefinition = pyxb.binding.datatypes.base64Binary
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_SIMPLE
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'SignatureValueType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         55,
         2)
     _ElementMap = {}
@@ -280,9 +308,11 @@ class SignatureValueType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_SignatureValueType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 58, 8)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 58, 8)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 58, 8)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 58, 8)
 
     Id = property(__Id.value, __Id.set, None, None)
 
@@ -292,6 +322,7 @@ class SignatureValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+_module_typeBindings.SignatureValueType = SignatureValueType
 Namespace.addCategoryObject(
     'typeBinding',
     'SignatureValueType',
@@ -301,13 +332,15 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignedInfoType with
 # content type ELEMENT_ONLY
 class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignedInfoType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignedInfoType with
+    content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SignedInfoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         66,
         0)
     _ElementMap = {}
@@ -321,10 +354,12 @@ class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'CanonicalizationMethod'),
         'CanonicalizationMethod',
-        '__httpwww_w3_org200009xmldsig_SignedInfoType_httpwww_w3_org200009xmldsigCanonicalizationMethod',
+        '__httpwww_w3_org200009xmldsig_SignedInfoType_http'
+        'www_w3_org200009xmldsigCanonicalizationMethod',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             75,
             2),
     )
@@ -342,10 +377,12 @@ class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'SignatureMethod'),
         'SignatureMethod',
-        '__httpwww_w3_org200009xmldsig_SignedInfoType_httpwww_w3_org200009xmldsigSignatureMethod',
+        '__httpwww_w3_org200009xmldsig_SignedInfoType_http'
+        'www_w3_org200009xmldsigSignatureMethod',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             84,
             2),
     )
@@ -363,10 +400,12 @@ class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Reference'),
         'Reference',
-        '__httpwww_w3_org200009xmldsig_SignedInfoType_httpwww_w3_org200009xmldsigReference',
+        '__httpwww_w3_org200009xmldsig_SignedInfoType_http'
+        'www_w3_org200009xmldsigReference',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             96,
             0),
     )
@@ -382,9 +421,11 @@ class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_SignedInfoType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 72, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 72, 2)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 72, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 72, 2)
 
     Id = property(__Id.value, __Id.set, None, None)
 
@@ -396,6 +437,7 @@ class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+_module_typeBindings.SignedInfoType = SignedInfoType
 Namespace.addCategoryObject('typeBinding', 'SignedInfoType', SignedInfoType)
 
 
@@ -403,14 +445,17 @@ Namespace.addCategoryObject('typeBinding', 'SignedInfoType', SignedInfoType)
 # {http://www.w3.org/2000/09/xmldsig#}CanonicalizationMethodType with
 # content type MIXED
 class CanonicalizationMethodType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}CanonicalizationMethodType with content type MIXED"""
+    """Complex type
+    {http://www.w3.org/2000/09/xmldsig#}CanonicalizationMethodType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CanonicalizationMethodType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         76,
         2)
     _ElementMap = {}
@@ -427,9 +472,11 @@ class CanonicalizationMethodType (pyxb.binding.basis.complexTypeDefinition):
         pyxb.binding.datatypes.anyURI,
         required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 81, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 81, 4)
     __Algorithm._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 81, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 81, 4)
 
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
@@ -440,6 +487,7 @@ class CanonicalizationMethodType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+_module_typeBindings.CanonicalizationMethodType = CanonicalizationMethodType
 Namespace.addCategoryObject(
     'typeBinding',
     'CanonicalizationMethodType',
@@ -449,14 +497,16 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureMethodType
 # with content type MIXED
 class SignatureMethodType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureMethodType with content type MIXED"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureMethodType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'SignatureMethodType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         85,
         2)
     _ElementMap = {}
@@ -470,10 +520,12 @@ class SignatureMethodType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'HMACOutputLength'),
         'HMACOutputLength',
-        '__httpwww_w3_org200009xmldsig_SignatureMethodType_httpwww_w3_org200009xmldsigHMACOutputLength',
+        '__httpwww_w3_org200009xmldsig_SignatureMethodType_http'
+        'www_w3_org200009xmldsigHMACOutputLength',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             87,
             6),
     )
@@ -494,9 +546,11 @@ class SignatureMethodType (pyxb.binding.basis.complexTypeDefinition):
         pyxb.binding.datatypes.anyURI,
         required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 91, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 91, 4)
     __Algorithm._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 91, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 91, 4)
 
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
@@ -507,6 +561,7 @@ class SignatureMethodType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+_module_typeBindings.SignatureMethodType = SignatureMethodType
 Namespace.addCategoryObject(
     'typeBinding',
     'SignatureMethodType',
@@ -516,13 +571,15 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}ReferenceType with
 # content type ELEMENT_ONLY
 class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}ReferenceType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}ReferenceType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ReferenceType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         97,
         0)
     _ElementMap = {}
@@ -536,10 +593,12 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Transforms'),
         'Transforms',
-        '__httpwww_w3_org200009xmldsig_ReferenceType_httpwww_w3_org200009xmldsigTransforms',
+        '__httpwww_w3_org200009xmldsig_ReferenceType_http'
+        'www_w3_org200009xmldsigTransforms',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             108,
             2),
     )
@@ -553,10 +612,12 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'DigestMethod'),
         'DigestMethod',
-        '__httpwww_w3_org200009xmldsig_ReferenceType_httpwww_w3_org200009xmldsigDigestMethod',
+        '__httpwww_w3_org200009xmldsig_ReferenceType_http'
+        'www_w3_org200009xmldsigDigestMethod',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             127,
             0),
     )
@@ -574,10 +635,12 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'DigestValue'),
         'DigestValue',
-        '__httpwww_w3_org200009xmldsig_ReferenceType_httpwww_w3_org200009xmldsigDigestValue',
+        '__httpwww_w3_org200009xmldsig_ReferenceType_http'
+        'www_w3_org200009xmldsigDigestValue',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             135,
             0),
     )
@@ -593,9 +656,11 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_ReferenceType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 103, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 103, 2)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         103,
         2)
 
@@ -610,9 +675,11 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_ReferenceType_URI',
         pyxb.binding.datatypes.anyURI)
     __URI._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 104, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 104, 2)
     __URI._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         104,
         2)
 
@@ -627,9 +694,11 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_ReferenceType_Type',
         pyxb.binding.datatypes.anyURI)
     __Type._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 105, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 105, 2)
     __Type._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 105, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 105, 2)
 
     Type = property(__Type.value, __Type.set, None, None)
 
@@ -643,19 +712,22 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
         __URI.name(): __URI,
         __Type.name(): __Type
     })
+_module_typeBindings.ReferenceType = ReferenceType
 Namespace.addCategoryObject('typeBinding', 'ReferenceType', ReferenceType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}TransformsType with
 # content type ELEMENT_ONLY
 class TransformsType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}TransformsType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}TransformsType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TransformsType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         109,
         2)
     _ElementMap = {}
@@ -669,10 +741,12 @@ class TransformsType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Transform'),
         'Transform',
-        '__httpwww_w3_org200009xmldsig_TransformsType_httpwww_w3_org200009xmldsigTransform',
+        '__httpwww_w3_org200009xmldsig_TransformsType_http'
+        'www_w3_org200009xmldsigTransform',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             115,
             2),
     )
@@ -685,19 +759,22 @@ class TransformsType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.TransformsType = TransformsType
 Namespace.addCategoryObject('typeBinding', 'TransformsType', TransformsType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}TransformType with
 # content type MIXED
 class TransformType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}TransformType with content type MIXED"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}TransformType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TransformType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         116,
         2)
     _ElementMap = {}
@@ -711,10 +788,12 @@ class TransformType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'XPath'),
         'XPath',
-        '__httpwww_w3_org200009xmldsig_TransformType_httpwww_w3_org200009xmldsigXPath',
+        '__httpwww_w3_org200009xmldsig_TransformType_http'
+        'www_w3_org200009xmldsigXPath',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             120,
             6),
     )
@@ -731,9 +810,11 @@ class TransformType (pyxb.binding.basis.complexTypeDefinition):
         pyxb.binding.datatypes.anyURI,
         required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 122, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 122, 4)
     __Algorithm._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 122, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 122, 4)
 
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
@@ -744,19 +825,22 @@ class TransformType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+_module_typeBindings.TransformType = TransformType
 Namespace.addCategoryObject('typeBinding', 'TransformType', TransformType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}DigestMethodType with
 # content type MIXED
 class DigestMethodType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}DigestMethodType with content type MIXED"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}DigestMethodType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DigestMethodType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         128,
         0)
     _ElementMap = {}
@@ -773,9 +857,11 @@ class DigestMethodType (pyxb.binding.basis.complexTypeDefinition):
         pyxb.binding.datatypes.anyURI,
         required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 132, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 132, 2)
     __Algorithm._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 132, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 132, 2)
 
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
@@ -786,6 +872,7 @@ class DigestMethodType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+_module_typeBindings.DigestMethodType = DigestMethodType
 Namespace.addCategoryObject(
     'typeBinding',
     'DigestMethodType',
@@ -795,13 +882,15 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}KeyInfoType with
 # content type MIXED
 class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}KeyInfoType with content type MIXED"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}KeyInfoType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'KeyInfoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         145,
         0)
     _ElementMap = {}
@@ -815,10 +904,12 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'KeyName'),
         'KeyName',
-        '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigKeyName',
+        '__httpwww_w3_org200009xmldsig_KeyInfoType_http'
+        'www_w3_org200009xmldsigKeyName',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             160,
             2),
     )
@@ -832,10 +923,12 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'MgmtData'),
         'MgmtData',
-        '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigMgmtData',
+        '__httpwww_w3_org200009xmldsig_KeyInfoType_http'
+        'www_w3_org200009xmldsigMgmtData',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             161,
             2),
     )
@@ -849,10 +942,12 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'KeyValue'),
         'KeyValue',
-        '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigKeyValue',
+        '__httpwww_w3_org200009xmldsig_KeyInfoType_http'
+        'www_w3_org200009xmldsigKeyValue',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             163,
             2),
     )
@@ -866,10 +961,12 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'RetrievalMethod'),
         'RetrievalMethod',
-        '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigRetrievalMethod',
+        '__httpwww_w3_org200009xmldsig_KeyInfoType_http'
+        'www_w3_org200009xmldsigRetrievalMethod',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             172,
             2),
     )
@@ -887,10 +984,12 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509Data'),
         'X509Data',
-        '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigX509Data',
+        '__httpwww_w3_org200009xmldsig_KeyInfoType_http'
+        'www_w3_org200009xmldsigX509Data',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             183,
             0),
     )
@@ -904,10 +1003,12 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'PGPData'),
         'PGPData',
-        '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigPGPData',
+        '__httpwww_w3_org200009xmldsig_KeyInfoType_http'
+        'www_w3_org200009xmldsigPGPData',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             208,
             0),
     )
@@ -921,10 +1022,12 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'SPKIData'),
         'SPKIData',
-        '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigSPKIData',
+        '__httpwww_w3_org200009xmldsig_KeyInfoType_http'
+        'www_w3_org200009xmldsigSPKIData',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             229,
             0),
     )
@@ -940,9 +1043,11 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_KeyInfoType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 157, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 157, 2)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         157,
         2)
 
@@ -961,19 +1066,22 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+_module_typeBindings.KeyInfoType = KeyInfoType
 Namespace.addCategoryObject('typeBinding', 'KeyInfoType', KeyInfoType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}KeyValueType with
 # content type MIXED
 class KeyValueType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}KeyValueType with content type MIXED"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}KeyValueType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'KeyValueType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         164,
         2)
     _ElementMap = {}
@@ -987,10 +1095,12 @@ class KeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'DSAKeyValue'),
         'DSAKeyValue',
-        '__httpwww_w3_org200009xmldsig_KeyValueType_httpwww_w3_org200009xmldsigDSAKeyValue',
+        '__httpwww_w3_org200009xmldsig_KeyValueType_http'
+        'www_w3_org200009xmldsigDSAKeyValue',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             289,
             0),
     )
@@ -1004,10 +1114,12 @@ class KeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'RSAKeyValue'),
         'RSAKeyValue',
-        '__httpwww_w3_org200009xmldsig_KeyValueType_httpwww_w3_org200009xmldsigRSAKeyValue',
+        '__httpwww_w3_org200009xmldsig_KeyValueType_http'
+        'www_w3_org200009xmldsigRSAKeyValue',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             306,
             0),
     )
@@ -1022,20 +1134,23 @@ class KeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.KeyValueType = KeyValueType
 Namespace.addCategoryObject('typeBinding', 'KeyValueType', KeyValueType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}RetrievalMethodType
 # with content type ELEMENT_ONLY
 class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}RetrievalMethodType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}RetrievalMethodType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RetrievalMethodType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         173,
         2)
     _ElementMap = {}
@@ -1049,10 +1164,12 @@ class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Transforms'),
         'Transforms',
-        '__httpwww_w3_org200009xmldsig_RetrievalMethodType_httpwww_w3_org200009xmldsigTransforms',
+        '__httpwww_w3_org200009xmldsig_RetrievalMethodType_http'
+        'www_w3_org200009xmldsigTransforms',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             108,
             2),
     )
@@ -1068,9 +1185,11 @@ class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_RetrievalMethodType_URI',
         pyxb.binding.datatypes.anyURI)
     __URI._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 177, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 177, 4)
     __URI._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         177,
         4)
 
@@ -1085,9 +1204,11 @@ class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_RetrievalMethodType_Type',
         pyxb.binding.datatypes.anyURI)
     __Type._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 178, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 178, 4)
     __Type._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 178, 4)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 178, 4)
 
     Type = property(__Type.value, __Type.set, None, None)
 
@@ -1098,6 +1219,7 @@ class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
         __URI.name(): __URI,
         __Type.name(): __Type
     })
+_module_typeBindings.RetrievalMethodType = RetrievalMethodType
 Namespace.addCategoryObject(
     'typeBinding',
     'RetrievalMethodType',
@@ -1107,13 +1229,15 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}X509DataType with
 # content type ELEMENT_ONLY
 class X509DataType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}X509DataType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}X509DataType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'X509DataType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         184,
         0)
     _ElementMap = {}
@@ -1127,10 +1251,12 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509IssuerSerial'),
         'X509IssuerSerial',
-        '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509IssuerSerial',
+        '__httpwww_w3_org200009xmldsig_X509DataType_http'
+        'www_w3_org200009xmldsigX509IssuerSerial',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             187,
             6),
     )
@@ -1148,10 +1274,12 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509SKI'),
         'X509SKI',
-        '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509SKI',
+        '__httpwww_w3_org200009xmldsig_X509DataType_http'
+        'www_w3_org200009xmldsigX509SKI',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             188,
             6),
     )
@@ -1165,10 +1293,12 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509SubjectName'),
         'X509SubjectName',
-        '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509SubjectName',
+        '__httpwww_w3_org200009xmldsig_X509DataType_http'
+        'www_w3_org200009xmldsigX509SubjectName',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             189,
             6),
     )
@@ -1186,10 +1316,12 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509Certificate'),
         'X509Certificate',
-        '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509Certificate',
+        '__httpwww_w3_org200009xmldsig_X509DataType_http'
+        'www_w3_org200009xmldsigX509Certificate',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             190,
             6),
     )
@@ -1207,10 +1339,12 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509CRL'),
         'X509CRL',
-        '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509CRL',
+        '__httpwww_w3_org200009xmldsig_X509DataType_http'
+        'www_w3_org200009xmldsigX509CRL',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             191,
             6),
     )
@@ -1228,20 +1362,23 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.X509DataType = X509DataType
 Namespace.addCategoryObject('typeBinding', 'X509DataType', X509DataType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerialType
 # with content type ELEMENT_ONLY
 class X509IssuerSerialType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerialType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerialType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'X509IssuerSerialType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         197,
         0)
     _ElementMap = {}
@@ -1255,10 +1392,12 @@ class X509IssuerSerialType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509IssuerName'),
         'X509IssuerName',
-        '__httpwww_w3_org200009xmldsig_X509IssuerSerialType_httpwww_w3_org200009xmldsigX509IssuerName',
+        '__httpwww_w3_org200009xmldsig_X509IssuerSerialType_http'
+        'www_w3_org200009xmldsigX509IssuerName',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             199,
             4),
     )
@@ -1276,10 +1415,12 @@ class X509IssuerSerialType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'X509SerialNumber'),
         'X509SerialNumber',
-        '__httpwww_w3_org200009xmldsig_X509IssuerSerialType_httpwww_w3_org200009xmldsigX509SerialNumber',
+        '__httpwww_w3_org200009xmldsig_X509IssuerSerialType_http'
+        'www_w3_org200009xmldsigX509SerialNumber',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             200,
             4),
     )
@@ -1297,6 +1438,7 @@ class X509IssuerSerialType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.X509IssuerSerialType = X509IssuerSerialType
 Namespace.addCategoryObject(
     'typeBinding',
     'X509IssuerSerialType',
@@ -1306,13 +1448,15 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}PGPDataType with
 # content type ELEMENT_ONLY
 class PGPDataType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}PGPDataType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}PGPDataType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'PGPDataType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         209,
         0)
     _ElementMap = {}
@@ -1326,10 +1470,12 @@ class PGPDataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'PGPKeyID'),
         'PGPKeyID',
-        '__httpwww_w3_org200009xmldsig_PGPDataType_httpwww_w3_org200009xmldsigPGPKeyID',
+        '__httpwww_w3_org200009xmldsig_PGPDataType_http'
+        'www_w3_org200009xmldsigPGPKeyID',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             212,
             6),
     )
@@ -1343,10 +1489,12 @@ class PGPDataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'PGPKeyPacket'),
         'PGPKeyPacket',
-        '__httpwww_w3_org200009xmldsig_PGPDataType_httpwww_w3_org200009xmldsigPGPKeyPacket',
+        '__httpwww_w3_org200009xmldsig_PGPDataType_http'
+        'www_w3_org200009xmldsigPGPKeyPacket',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             213,
             6),
     )
@@ -1365,19 +1513,22 @@ class PGPDataType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.PGPDataType = PGPDataType
 Namespace.addCategoryObject('typeBinding', 'PGPDataType', PGPDataType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SPKIDataType with
 # content type ELEMENT_ONLY
 class SPKIDataType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}SPKIDataType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}SPKIDataType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SPKIDataType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         230,
         0)
     _ElementMap = {}
@@ -1391,10 +1542,12 @@ class SPKIDataType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'SPKISexp'),
         'SPKISexp',
-        '__httpwww_w3_org200009xmldsig_SPKIDataType_httpwww_w3_org200009xmldsigSPKISexp',
+        '__httpwww_w3_org200009xmldsig_SPKIDataType_http'
+        'www_w3_org200009xmldsigSPKISexp',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             232,
             4),
     )
@@ -1408,19 +1561,22 @@ class SPKIDataType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.SPKIDataType = SPKIDataType
 Namespace.addCategoryObject('typeBinding', 'SPKIDataType', SPKIDataType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}ObjectType with content
 # type MIXED
 class ObjectType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}ObjectType with content type MIXED"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}ObjectType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ObjectType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         244,
         0)
     _ElementMap = {}
@@ -1436,9 +1592,11 @@ class ObjectType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_ObjectType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 248, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 248, 2)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         248,
         2)
 
@@ -1453,9 +1611,11 @@ class ObjectType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_ObjectType_MimeType',
         pyxb.binding.datatypes.string)
     __MimeType._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 249, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 249, 2)
     __MimeType._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 249, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 249, 2)
 
     MimeType = property(__MimeType.value, __MimeType.set, None, None)
 
@@ -1468,9 +1628,11 @@ class ObjectType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_ObjectType_Encoding',
         pyxb.binding.datatypes.anyURI)
     __Encoding._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 250, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 250, 2)
     __Encoding._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 250, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 250, 2)
 
     Encoding = property(__Encoding.value, __Encoding.set, None, None)
 
@@ -1483,19 +1645,22 @@ class ObjectType (pyxb.binding.basis.complexTypeDefinition):
         __MimeType.name(): __MimeType,
         __Encoding.name(): __Encoding
     })
+_module_typeBindings.ObjectType = ObjectType
 Namespace.addCategoryObject('typeBinding', 'ObjectType', ObjectType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}ManifestType with
 # content type ELEMENT_ONLY
 class ManifestType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}ManifestType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}ManifestType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ManifestType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         254,
         0)
     _ElementMap = {}
@@ -1509,10 +1674,12 @@ class ManifestType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Reference'),
         'Reference',
-        '__httpwww_w3_org200009xmldsig_ManifestType_httpwww_w3_org200009xmldsigReference',
+        '__httpwww_w3_org200009xmldsig_ManifestType_http'
+        'www_w3_org200009xmldsigReference',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             96,
             0),
     )
@@ -1528,9 +1695,11 @@ class ManifestType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_ManifestType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 258, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 258, 2)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         258,
         2)
 
@@ -1542,20 +1711,23 @@ class ManifestType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+_module_typeBindings.ManifestType = ManifestType
 Namespace.addCategoryObject('typeBinding', 'ManifestType', ManifestType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertiesType
 # with content type ELEMENT_ONLY
 class SignaturePropertiesType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertiesType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertiesType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'SignaturePropertiesType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         262,
         0)
     _ElementMap = {}
@@ -1569,10 +1741,12 @@ class SignaturePropertiesType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'SignatureProperty'),
         'SignatureProperty',
-        '__httpwww_w3_org200009xmldsig_SignaturePropertiesType_httpwww_w3_org200009xmldsigSignatureProperty',
+        '__httpwww_w3_org200009xmldsig_SignaturePropertiesType_http'
+        'www_w3_org200009xmldsigSignatureProperty',
         True,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             269,
             3),
     )
@@ -1592,9 +1766,11 @@ class SignaturePropertiesType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_SignaturePropertiesType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 266, 2)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 266, 2)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         266,
         2)
 
@@ -1606,6 +1782,7 @@ class SignaturePropertiesType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+_module_typeBindings.SignaturePropertiesType = SignaturePropertiesType
 Namespace.addCategoryObject(
     'typeBinding',
     'SignaturePropertiesType',
@@ -1615,14 +1792,16 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertyType
 # with content type MIXED
 class SignaturePropertyType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertyType with content type MIXED"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertyType
+    with content type MIXED"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'SignaturePropertyType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         270,
         3)
     _ElementMap = {}
@@ -1639,9 +1818,11 @@ class SignaturePropertyType (pyxb.binding.basis.complexTypeDefinition):
         pyxb.binding.datatypes.anyURI,
         required=True)
     __Target._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 275, 5)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 275, 5)
     __Target._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 275, 5)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 275, 5)
 
     Target = property(__Target.value, __Target.set, None, None)
 
@@ -1654,9 +1835,11 @@ class SignaturePropertyType (pyxb.binding.basis.complexTypeDefinition):
         '__httpwww_w3_org200009xmldsig_SignaturePropertyType_Id',
         pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 276, 5)
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd', 276, 5)
     __Id._UseLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         276,
         5)
 
@@ -1670,6 +1853,7 @@ class SignaturePropertyType (pyxb.binding.basis.complexTypeDefinition):
         __Target.name(): __Target,
         __Id.name(): __Id
     })
+_module_typeBindings.SignaturePropertyType = SignaturePropertyType
 Namespace.addCategoryObject(
     'typeBinding',
     'SignaturePropertyType',
@@ -1679,13 +1863,15 @@ Namespace.addCategoryObject(
 # Complex type {http://www.w3.org/2000/09/xmldsig#}DSAKeyValueType with
 # content type ELEMENT_ONLY
 class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}DSAKeyValueType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}DSAKeyValueType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DSAKeyValueType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         290,
         0)
     _ElementMap = {}
@@ -1698,10 +1884,12 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'P'),
         'P',
-        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigP',
+        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_http'
+        'www_w3_org200009xmldsigP',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             293,
             6),
     )
@@ -1714,10 +1902,12 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Q'),
         'Q',
-        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigQ',
+        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_http'
+        'www_w3_org200009xmldsigQ',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             294,
             6),
     )
@@ -1730,10 +1920,12 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'G'),
         'G',
-        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigG',
+        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_http'
+        'www_w3_org200009xmldsigG',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             296,
             4),
     )
@@ -1746,10 +1938,12 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Y'),
         'Y',
-        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigY',
+        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_http'
+        'www_w3_org200009xmldsigY',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             297,
             4),
     )
@@ -1762,10 +1956,12 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'J'),
         'J',
-        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigJ',
+        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_http'
+        'www_w3_org200009xmldsigJ',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             298,
             4),
     )
@@ -1779,10 +1975,12 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Seed'),
         'Seed',
-        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigSeed',
+        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_http'
+        'www_w3_org200009xmldsigSeed',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             300,
             6),
     )
@@ -1796,10 +1994,12 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'PgenCounter'),
         'PgenCounter',
-        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigPgenCounter',
+        '__httpwww_w3_org200009xmldsig_DSAKeyValueType_http'
+        'www_w3_org200009xmldsigPgenCounter',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             301,
             6),
     )
@@ -1818,19 +2018,22 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.DSAKeyValueType = DSAKeyValueType
 Namespace.addCategoryObject('typeBinding', 'DSAKeyValueType', DSAKeyValueType)
 
 
 # Complex type {http://www.w3.org/2000/09/xmldsig#}RSAKeyValueType with
 # content type ELEMENT_ONLY
 class RSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/2000/09/xmldsig#}RSAKeyValueType with content type ELEMENT_ONLY"""
+    """Complex type {http://www.w3.org/2000/09/xmldsig#}RSAKeyValueType
+     with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RSAKeyValueType')
     _XSDLocation = pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         307,
         0)
     _ElementMap = {}
@@ -1844,10 +2047,12 @@ class RSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Modulus'),
         'Modulus',
-        '__httpwww_w3_org200009xmldsig_RSAKeyValueType_httpwww_w3_org200009xmldsigModulus',
+        '__httpwww_w3_org200009xmldsig_RSAKeyValueType_http'
+        'www_w3_org200009xmldsigModulus',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             309,
             4),
     )
@@ -1861,10 +2066,12 @@ class RSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
             Namespace,
             'Exponent'),
         'Exponent',
-        '__httpwww_w3_org200009xmldsig_RSAKeyValueType_httpwww_w3_org200009xmldsigExponent',
+        '__httpwww_w3_org200009xmldsig_RSAKeyValueType_http'
+        'www_w3_org200009xmldsigExponent',
         False,
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             310,
             4),
     )
@@ -1878,6 +2085,7 @@ class RSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+_module_typeBindings.RSAKeyValueType = RSAKeyValueType
 Namespace.addCategoryObject('typeBinding', 'RSAKeyValueType', RSAKeyValueType)
 
 
@@ -1887,7 +2095,8 @@ KeyName = pyxb.binding.basis.element(
         'KeyName'),
     pyxb.binding.datatypes.string,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         160,
         2))
 Namespace.addCategoryObject(
@@ -1901,7 +2110,8 @@ MgmtData = pyxb.binding.basis.element(
         'MgmtData'),
     pyxb.binding.datatypes.string,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         161,
         2))
 Namespace.addCategoryObject(
@@ -1915,7 +2125,8 @@ Signature = pyxb.binding.basis.element(
         'Signature'),
     SignatureType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         43,
         0))
 Namespace.addCategoryObject(
@@ -1929,7 +2140,8 @@ SignatureValue = pyxb.binding.basis.element(
         'SignatureValue'),
     SignatureValueType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         54,
         2))
 Namespace.addCategoryObject(
@@ -1943,7 +2155,8 @@ SignedInfo = pyxb.binding.basis.element(
         'SignedInfo'),
     SignedInfoType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         65,
         0))
 Namespace.addCategoryObject(
@@ -1957,7 +2170,8 @@ CanonicalizationMethod = pyxb.binding.basis.element(
         'CanonicalizationMethod'),
     CanonicalizationMethodType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         75,
         2))
 Namespace.addCategoryObject(
@@ -1971,7 +2185,8 @@ SignatureMethod = pyxb.binding.basis.element(
         'SignatureMethod'),
     SignatureMethodType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         84,
         2))
 Namespace.addCategoryObject(
@@ -1985,7 +2200,8 @@ Reference = pyxb.binding.basis.element(
         'Reference'),
     ReferenceType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         96,
         0))
 Namespace.addCategoryObject(
@@ -1999,7 +2215,8 @@ Transforms = pyxb.binding.basis.element(
         'Transforms'),
     TransformsType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         108,
         2))
 Namespace.addCategoryObject(
@@ -2013,7 +2230,8 @@ Transform = pyxb.binding.basis.element(
         'Transform'),
     TransformType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         115,
         2))
 Namespace.addCategoryObject(
@@ -2027,7 +2245,8 @@ DigestMethod = pyxb.binding.basis.element(
         'DigestMethod'),
     DigestMethodType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         127,
         0))
 Namespace.addCategoryObject(
@@ -2041,7 +2260,8 @@ DigestValue = pyxb.binding.basis.element(
         'DigestValue'),
     DigestValueType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         135,
         0))
 Namespace.addCategoryObject(
@@ -2055,7 +2275,8 @@ KeyInfo = pyxb.binding.basis.element(
         'KeyInfo'),
     KeyInfoType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         144,
         0))
 Namespace.addCategoryObject(
@@ -2069,7 +2290,8 @@ KeyValue = pyxb.binding.basis.element(
         'KeyValue'),
     KeyValueType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         163,
         2))
 Namespace.addCategoryObject(
@@ -2083,7 +2305,8 @@ RetrievalMethod = pyxb.binding.basis.element(
         'RetrievalMethod'),
     RetrievalMethodType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         172,
         2))
 Namespace.addCategoryObject(
@@ -2097,7 +2320,8 @@ X509Data = pyxb.binding.basis.element(
         'X509Data'),
     X509DataType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         183,
         0))
 Namespace.addCategoryObject(
@@ -2111,7 +2335,8 @@ PGPData = pyxb.binding.basis.element(
         'PGPData'),
     PGPDataType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         208,
         0))
 Namespace.addCategoryObject(
@@ -2125,7 +2350,8 @@ SPKIData = pyxb.binding.basis.element(
         'SPKIData'),
     SPKIDataType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         229,
         0))
 Namespace.addCategoryObject(
@@ -2139,7 +2365,8 @@ Object = pyxb.binding.basis.element(
         'Object'),
     ObjectType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         243,
         0))
 Namespace.addCategoryObject(
@@ -2153,7 +2380,8 @@ Manifest = pyxb.binding.basis.element(
         'Manifest'),
     ManifestType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         253,
         0))
 Namespace.addCategoryObject(
@@ -2167,7 +2395,8 @@ SignatureProperties = pyxb.binding.basis.element(
         'SignatureProperties'),
     SignaturePropertiesType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         261,
         0))
 Namespace.addCategoryObject(
@@ -2181,7 +2410,8 @@ SignatureProperty = pyxb.binding.basis.element(
         'SignatureProperty'),
     SignaturePropertyType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         269,
         3))
 Namespace.addCategoryObject(
@@ -2195,7 +2425,8 @@ DSAKeyValue = pyxb.binding.basis.element(
         'DSAKeyValue'),
     DSAKeyValueType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         289,
         0))
 Namespace.addCategoryObject(
@@ -2209,7 +2440,8 @@ RSAKeyValue = pyxb.binding.basis.element(
         'RSAKeyValue'),
     RSAKeyValueType,
     location=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+        'xmldsig-core-schema.xsd',
         306,
         0))
 Namespace.addCategoryObject(
@@ -2226,7 +2458,8 @@ SignatureType._AddElement(
         SignatureValueType,
         scope=SignatureType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             54,
             2)))
 
@@ -2238,7 +2471,8 @@ SignatureType._AddElement(
         SignedInfoType,
         scope=SignatureType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             65,
             0)))
 
@@ -2250,7 +2484,8 @@ SignatureType._AddElement(
         KeyInfoType,
         scope=SignatureType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             144,
             0)))
 
@@ -2262,7 +2497,8 @@ SignatureType._AddElement(
         ObjectType,
         scope=SignatureType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             243,
             0)))
 
@@ -2278,12 +2514,15 @@ def _BuildAutomaton():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             48,
             4))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 49, 4))
+    cc_1 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd', 49, 4))
     counters.add(cc_1)
     states = []
     final_update = None
@@ -2293,7 +2532,8 @@ def _BuildAutomaton():
                 Namespace,
                 'SignedInfo')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             46,
             4))
     st_0 = fac.State(
@@ -2309,7 +2549,8 @@ def _BuildAutomaton():
                 Namespace,
                 'SignatureValue')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             47,
             4))
     st_1 = fac.State(
@@ -2326,7 +2567,8 @@ def _BuildAutomaton():
                 Namespace,
                 'KeyInfo')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             48,
             4))
     st_2 = fac.State(
@@ -2343,7 +2585,8 @@ def _BuildAutomaton():
                 Namespace,
                 'Object')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             49,
             4))
     st_3 = fac.State(
@@ -2384,7 +2627,8 @@ SignedInfoType._AddElement(
         CanonicalizationMethodType,
         scope=SignedInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             75,
             2)))
 
@@ -2396,7 +2640,8 @@ SignedInfoType._AddElement(
         SignatureMethodType,
         scope=SignedInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             84,
             2)))
 
@@ -2408,7 +2653,8 @@ SignedInfoType._AddElement(
         ReferenceType,
         scope=SignedInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             96,
             0)))
 
@@ -2428,7 +2674,8 @@ def _BuildAutomaton_():
                 Namespace,
                 'CanonicalizationMethod')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             68,
             4))
     st_0 = fac.State(
@@ -2444,7 +2691,8 @@ def _BuildAutomaton_():
                 Namespace,
                 'SignatureMethod')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             69,
             4))
     st_1 = fac.State(
@@ -2460,7 +2708,8 @@ def _BuildAutomaton_():
                 Namespace,
                 'Reference')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             70,
             4))
     st_2 = fac.State(
@@ -2492,8 +2741,10 @@ def _BuildAutomaton_2():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 78, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd', 78, 6))
     counters.add(cc_0)
     states = []
     final_update = set()
@@ -2503,7 +2754,8 @@ def _BuildAutomaton_2():
             process_contents=pyxb.binding.content.Wildcard.PC_strict,
             namespace_constraint=pyxb.binding.content.Wildcard.NC_any),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             78,
             6))
     st_0 = fac.State(
@@ -2528,7 +2780,8 @@ SignatureMethodType._AddElement(
         HMACOutputLengthType,
         scope=SignatureMethodType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             87,
             6)))
 
@@ -2544,12 +2797,15 @@ def _BuildAutomaton_3():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             87,
             6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 88, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd', 88, 6))
     counters.add(cc_1)
     states = []
     final_update = set()
@@ -2560,7 +2816,8 @@ def _BuildAutomaton_3():
                 Namespace,
                 'HMACOutputLength')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             87,
             6))
     st_0 = fac.State(
@@ -2578,7 +2835,8 @@ def _BuildAutomaton_3():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             88,
             6))
     st_1 = fac.State(
@@ -2609,7 +2867,8 @@ ReferenceType._AddElement(
         TransformsType,
         scope=ReferenceType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             108,
             2)))
 
@@ -2621,7 +2880,8 @@ ReferenceType._AddElement(
         DigestMethodType,
         scope=ReferenceType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             127,
             0)))
 
@@ -2633,7 +2893,8 @@ ReferenceType._AddElement(
         DigestValueType,
         scope=ReferenceType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             135,
             0)))
 
@@ -2649,7 +2910,8 @@ def _BuildAutomaton_4():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             99,
             4))
     counters.add(cc_0)
@@ -2661,7 +2923,8 @@ def _BuildAutomaton_4():
                 Namespace,
                 'Transforms')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             99,
             4))
     st_0 = fac.State(
@@ -2677,7 +2940,8 @@ def _BuildAutomaton_4():
                 Namespace,
                 'DigestMethod')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             100,
             4))
     st_1 = fac.State(
@@ -2693,7 +2957,8 @@ def _BuildAutomaton_4():
                 Namespace,
                 'DigestValue')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             101,
             4))
     st_2 = fac.State(
@@ -2726,7 +2991,8 @@ TransformsType._AddElement(
         TransformType,
         scope=TransformsType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             115,
             2)))
 
@@ -2746,7 +3012,8 @@ def _BuildAutomaton_5():
                 Namespace,
                 'Transform')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             111,
             6))
     st_0 = fac.State(
@@ -2771,7 +3038,8 @@ TransformType._AddElement(
         pyxb.binding.datatypes.string,
         scope=TransformType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             120,
             6)))
 
@@ -2787,7 +3055,8 @@ def _BuildAutomaton_6():
         min=0,
         max=None,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             117,
             4))
     counters.add(cc_0)
@@ -2801,7 +3070,8 @@ def _BuildAutomaton_6():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             118,
             6))
     st_0 = fac.State(
@@ -2818,7 +3088,8 @@ def _BuildAutomaton_6():
                 Namespace,
                 'XPath')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             120,
             6))
     st_1 = fac.State(
@@ -2854,7 +3125,8 @@ def _BuildAutomaton_7():
         min=0,
         max=None,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             130,
             4))
     counters.add(cc_0)
@@ -2868,7 +3140,8 @@ def _BuildAutomaton_7():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             130,
             4))
     st_0 = fac.State(
@@ -2893,7 +3166,8 @@ KeyInfoType._AddElement(
         pyxb.binding.datatypes.string,
         scope=KeyInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             160,
             2)))
 
@@ -2905,7 +3179,8 @@ KeyInfoType._AddElement(
         pyxb.binding.datatypes.string,
         scope=KeyInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             161,
             2)))
 
@@ -2917,7 +3192,8 @@ KeyInfoType._AddElement(
         KeyValueType,
         scope=KeyInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             163,
             2)))
 
@@ -2929,7 +3205,8 @@ KeyInfoType._AddElement(
         RetrievalMethodType,
         scope=KeyInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             172,
             2)))
 
@@ -2941,7 +3218,8 @@ KeyInfoType._AddElement(
         X509DataType,
         scope=KeyInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             183,
             0)))
 
@@ -2953,7 +3231,8 @@ KeyInfoType._AddElement(
         PGPDataType,
         scope=KeyInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             208,
             0)))
 
@@ -2965,7 +3244,8 @@ KeyInfoType._AddElement(
         SPKIDataType,
         scope=KeyInfoType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             229,
             0)))
 
@@ -2985,7 +3265,8 @@ def _BuildAutomaton_8():
                 Namespace,
                 'KeyName')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             147,
             4))
     st_0 = fac.State(
@@ -3001,7 +3282,8 @@ def _BuildAutomaton_8():
                 Namespace,
                 'KeyValue')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             148,
             4))
     st_1 = fac.State(
@@ -3017,7 +3299,8 @@ def _BuildAutomaton_8():
                 Namespace,
                 'RetrievalMethod')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             149,
             4))
     st_2 = fac.State(
@@ -3033,7 +3316,8 @@ def _BuildAutomaton_8():
                 Namespace,
                 'X509Data')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             150,
             4))
     st_3 = fac.State(
@@ -3049,7 +3333,8 @@ def _BuildAutomaton_8():
                 Namespace,
                 'PGPData')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             151,
             4))
     st_4 = fac.State(
@@ -3065,7 +3350,8 @@ def _BuildAutomaton_8():
                 Namespace,
                 'SPKIData')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             152,
             4))
     st_5 = fac.State(
@@ -3081,7 +3367,8 @@ def _BuildAutomaton_8():
                 Namespace,
                 'MgmtData')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             153,
             4))
     st_6 = fac.State(
@@ -3098,7 +3385,8 @@ def _BuildAutomaton_8():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             154,
             4))
     st_7 = fac.State(
@@ -3263,7 +3551,8 @@ KeyValueType._AddElement(
         DSAKeyValueType,
         scope=KeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             289,
             0)))
 
@@ -3275,7 +3564,8 @@ KeyValueType._AddElement(
         RSAKeyValueType,
         scope=KeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             306,
             0)))
 
@@ -3295,7 +3585,8 @@ def _BuildAutomaton_9():
                 Namespace,
                 'DSAKeyValue')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             166,
             5))
     st_0 = fac.State(
@@ -3311,7 +3602,8 @@ def _BuildAutomaton_9():
                 Namespace,
                 'RSAKeyValue')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             167,
             5))
     st_1 = fac.State(
@@ -3328,7 +3620,8 @@ def _BuildAutomaton_9():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             168,
             5))
     st_2 = fac.State(
@@ -3355,7 +3648,8 @@ RetrievalMethodType._AddElement(
         TransformsType,
         scope=RetrievalMethodType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             108,
             2)))
 
@@ -3371,7 +3665,8 @@ def _BuildAutomaton_10():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             175,
             6))
     counters.add(cc_0)
@@ -3384,7 +3679,8 @@ def _BuildAutomaton_10():
                 Namespace,
                 'Transforms')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             175,
             6))
     st_0 = fac.State(
@@ -3409,7 +3705,8 @@ X509DataType._AddElement(
         X509IssuerSerialType,
         scope=X509DataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             187,
             6)))
 
@@ -3421,7 +3718,8 @@ X509DataType._AddElement(
         pyxb.binding.datatypes.base64Binary,
         scope=X509DataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             188,
             6)))
 
@@ -3433,7 +3731,8 @@ X509DataType._AddElement(
         pyxb.binding.datatypes.string,
         scope=X509DataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             189,
             6)))
 
@@ -3445,7 +3744,8 @@ X509DataType._AddElement(
         pyxb.binding.datatypes.base64Binary,
         scope=X509DataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             190,
             6)))
 
@@ -3457,7 +3757,8 @@ X509DataType._AddElement(
         pyxb.binding.datatypes.base64Binary,
         scope=X509DataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             191,
             6)))
 
@@ -3477,7 +3778,8 @@ def _BuildAutomaton_11():
                 Namespace,
                 'X509IssuerSerial')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             187,
             6))
     st_0 = fac.State(
@@ -3493,7 +3795,8 @@ def _BuildAutomaton_11():
                 Namespace,
                 'X509SKI')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             188,
             6))
     st_1 = fac.State(
@@ -3509,7 +3812,8 @@ def _BuildAutomaton_11():
                 Namespace,
                 'X509SubjectName')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             189,
             6))
     st_2 = fac.State(
@@ -3525,7 +3829,8 @@ def _BuildAutomaton_11():
                 Namespace,
                 'X509Certificate')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             190,
             6))
     st_3 = fac.State(
@@ -3541,7 +3846,8 @@ def _BuildAutomaton_11():
                 Namespace,
                 'X509CRL')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             191,
             6))
     st_4 = fac.State(
@@ -3558,7 +3864,8 @@ def _BuildAutomaton_11():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             192,
             6))
     st_5 = fac.State(
@@ -3663,7 +3970,8 @@ X509IssuerSerialType._AddElement(
         pyxb.binding.datatypes.string,
         scope=X509IssuerSerialType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             199,
             4)))
 
@@ -3675,7 +3983,8 @@ X509IssuerSerialType._AddElement(
         pyxb.binding.datatypes.integer,
         scope=X509IssuerSerialType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             200,
             4)))
 
@@ -3695,7 +4004,8 @@ def _BuildAutomaton_12():
                 Namespace,
                 'X509IssuerName')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             199,
             4))
     st_0 = fac.State(
@@ -3711,7 +4021,8 @@ def _BuildAutomaton_12():
                 Namespace,
                 'X509SerialNumber')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             200,
             4))
     st_1 = fac.State(
@@ -3738,7 +4049,8 @@ PGPDataType._AddElement(
         pyxb.binding.datatypes.base64Binary,
         scope=PGPDataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             212,
             6)))
 
@@ -3750,7 +4062,8 @@ PGPDataType._AddElement(
         pyxb.binding.datatypes.base64Binary,
         scope=PGPDataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             213,
             6)))
 
@@ -3766,7 +4079,8 @@ def _BuildAutomaton_13():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             213,
             6))
     counters.add(cc_0)
@@ -3774,7 +4088,8 @@ def _BuildAutomaton_13():
         min=0,
         max=None,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             214,
             6))
     counters.add(cc_1)
@@ -3782,7 +4097,8 @@ def _BuildAutomaton_13():
         min=0,
         max=None,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             219,
             6))
     counters.add(cc_2)
@@ -3794,7 +4110,8 @@ def _BuildAutomaton_13():
                 Namespace,
                 'PGPKeyID')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             212,
             6))
     st_0 = fac.State(
@@ -3811,7 +4128,8 @@ def _BuildAutomaton_13():
                 Namespace,
                 'PGPKeyPacket')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             213,
             6))
     st_1 = fac.State(
@@ -3829,7 +4147,8 @@ def _BuildAutomaton_13():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             214,
             6))
     st_2 = fac.State(
@@ -3845,7 +4164,8 @@ def _BuildAutomaton_13():
                 Namespace,
                 'PGPKeyPacket')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             218,
             6))
     st_3 = fac.State(
@@ -3863,7 +4183,8 @@ def _BuildAutomaton_13():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             219,
             6))
     st_4 = fac.State(
@@ -3908,7 +4229,8 @@ SPKIDataType._AddElement(
         pyxb.binding.datatypes.base64Binary,
         scope=SPKIDataType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             232,
             4)))
 
@@ -3924,7 +4246,8 @@ def _BuildAutomaton_14():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             233,
             4))
     counters.add(cc_0)
@@ -3936,7 +4259,8 @@ def _BuildAutomaton_14():
                 Namespace,
                 'SPKISexp')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             232,
             4))
     st_0 = fac.State(
@@ -3954,7 +4278,8 @@ def _BuildAutomaton_14():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             233,
             4))
     st_1 = fac.State(
@@ -3990,7 +4315,8 @@ def _BuildAutomaton_15():
         min=0,
         max=None,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             245,
             2))
     counters.add(cc_0)
@@ -4002,7 +4328,8 @@ def _BuildAutomaton_15():
             process_contents=pyxb.binding.content.Wildcard.PC_lax,
             namespace_constraint=pyxb.binding.content.Wildcard.NC_any),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             246,
             4))
     st_0 = fac.State(
@@ -4027,7 +4354,8 @@ ManifestType._AddElement(
         ReferenceType,
         scope=ManifestType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             96,
             0)))
 
@@ -4047,7 +4375,8 @@ def _BuildAutomaton_16():
                 Namespace,
                 'Reference')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             256,
             4))
     st_0 = fac.State(
@@ -4072,7 +4401,8 @@ SignaturePropertiesType._AddElement(
         SignaturePropertyType,
         scope=SignaturePropertiesType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             269,
             3)))
 
@@ -4092,7 +4422,8 @@ def _BuildAutomaton_17():
                 Namespace,
                 'SignatureProperty')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             264,
             4))
     st_0 = fac.State(
@@ -4125,7 +4456,8 @@ def _BuildAutomaton_18():
                 pyxb.binding.content.Wildcard.NC_not,
                 'http://www.w3.org/2000/09/xmldsig#')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             272,
             7))
     st_0 = fac.State(
@@ -4150,7 +4482,8 @@ DSAKeyValueType._AddElement(
         CryptoBinary,
         scope=DSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             293,
             6)))
 
@@ -4162,7 +4495,8 @@ DSAKeyValueType._AddElement(
         CryptoBinary,
         scope=DSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             294,
             6)))
 
@@ -4174,7 +4508,8 @@ DSAKeyValueType._AddElement(
         CryptoBinary,
         scope=DSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             296,
             4)))
 
@@ -4186,7 +4521,8 @@ DSAKeyValueType._AddElement(
         CryptoBinary,
         scope=DSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             297,
             4)))
 
@@ -4198,7 +4534,8 @@ DSAKeyValueType._AddElement(
         CryptoBinary,
         scope=DSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             298,
             4)))
 
@@ -4210,7 +4547,8 @@ DSAKeyValueType._AddElement(
         CryptoBinary,
         scope=DSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             300,
             6)))
 
@@ -4222,7 +4560,8 @@ DSAKeyValueType._AddElement(
         CryptoBinary,
         scope=DSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             301,
             6)))
 
@@ -4238,7 +4577,8 @@ def _BuildAutomaton_19():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             292,
             4))
     counters.add(cc_0)
@@ -4246,7 +4586,8 @@ def _BuildAutomaton_19():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             296,
             4))
     counters.add(cc_1)
@@ -4254,7 +4595,8 @@ def _BuildAutomaton_19():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             298,
             4))
     counters.add(cc_2)
@@ -4262,7 +4604,8 @@ def _BuildAutomaton_19():
         min=0,
         max=1,
         metadata=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             299,
             4))
     counters.add(cc_3)
@@ -4274,7 +4617,8 @@ def _BuildAutomaton_19():
                 Namespace,
                 'P')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             293,
             6))
     st_0 = fac.State(
@@ -4290,7 +4634,8 @@ def _BuildAutomaton_19():
                 Namespace,
                 'Q')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             294,
             6))
     st_1 = fac.State(
@@ -4306,7 +4651,8 @@ def _BuildAutomaton_19():
                 Namespace,
                 'G')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             296,
             4))
     st_2 = fac.State(
@@ -4322,7 +4668,8 @@ def _BuildAutomaton_19():
                 Namespace,
                 'Y')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             297,
             4))
     st_3 = fac.State(
@@ -4339,7 +4686,8 @@ def _BuildAutomaton_19():
                 Namespace,
                 'J')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             298,
             4))
     st_4 = fac.State(
@@ -4355,7 +4703,8 @@ def _BuildAutomaton_19():
                 Namespace,
                 'Seed')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             300,
             6))
     st_5 = fac.State(
@@ -4372,7 +4721,8 @@ def _BuildAutomaton_19():
                 Namespace,
                 'PgenCounter')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             301,
             6))
     st_6 = fac.State(
@@ -4431,7 +4781,8 @@ RSAKeyValueType._AddElement(
         CryptoBinary,
         scope=RSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             309,
             4)))
 
@@ -4443,7 +4794,8 @@ RSAKeyValueType._AddElement(
         CryptoBinary,
         scope=RSAKeyValueType,
         location=pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             310,
             4)))
 
@@ -4463,7 +4815,8 @@ def _BuildAutomaton_20():
                 Namespace,
                 'Modulus')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             309,
             4))
     st_0 = fac.State(
@@ -4479,7 +4832,8 @@ def _BuildAutomaton_20():
                 Namespace,
                 'Exponent')),
         pyxb.utils.utility.Location(
-            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd',
+            'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/'
+            'xmldsig-core-schema.xsd',
             310,
             4))
     st_1 = fac.State(

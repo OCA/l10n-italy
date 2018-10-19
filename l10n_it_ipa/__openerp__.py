@@ -7,6 +7,9 @@
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
 #
+#    Copyright (C) 2018 Dinamiche Aziendali srl
+#    (<http://www.dinamicheaziendali.it>).
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -23,7 +26,7 @@
 ##############################################################################
 {
     "name": "IPA Code (IndicePA)",
-    "version": "8.0.1.0.0",
+    "version": "8.0.2.0.0",
     "category": "Localisation/Italy",
     "author": "KTec S.r.l, Odoo Community Association (OCA)",
     "website": "http://www.ktec.it",
