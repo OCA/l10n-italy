@@ -17,9 +17,11 @@ class MailThread(models.AbstractModel):
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
 
-        # FIXME a received invoice can be only to my companies, so check vat
-        # FIXME --inside the xml-- to find what company it belongs?
-        if "@pec.fatturapa.it" in message_dict.get('from', False):
+        if any("@pec.fatturapa.it" in x for x in [
+                    message.__getitem__('Reply-To'),
+                    message.__getitem__('From'),
+                    message.__getitem__('Return-Path')
+        ]):
             _logger.info("Processing FatturaPA PEC Invoice with Message-Id: "
                          "{}".format(message.get('Message-Id')))
             message_dict, message_type = self.env['fatturapa.attachment.out']\
