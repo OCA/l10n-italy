@@ -50,6 +50,11 @@ Authors
 
 * Agile Business Group
 
+Contributors
+------------
+
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -63,6 +68,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_withholding_tax_causali>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_withholding_tax_causali>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

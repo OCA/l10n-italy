@@ -2,6 +2,8 @@
 ##############################################################################
 #
 #    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#    Copyright (C) 2018 Gianmarco Conte    <gconte@dinamicheaziendali.it>
+#    Copyright (C) 2018 Marco Calcagni     <mcalcagni@dinamicheaziendali.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2018 Gianmarco Conte - Dinamiche Aziendali srl
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {

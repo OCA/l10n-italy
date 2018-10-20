@@ -3,3 +3,5 @@
 * Roberto Onnis
 * Alessio Gerace
 * Alex Comba
+* Gianmarco Conte
+* Marco Calcagni
