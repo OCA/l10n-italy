@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 14:10+0000\n"
-"PO-Revision-Date: 2018-10-20 15:02+0000\n"
+"PO-Revision-Date: 2018-10-21 21:01+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -332,7 +332,7 @@ msgstr "Sequenza"
 #. module: l10n_it_withholding_tax
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
 msgid "Set to Draft"
-msgstr "Imposta a bozza"
+msgstr "Imposta a «Bozza»"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move_statement_id
