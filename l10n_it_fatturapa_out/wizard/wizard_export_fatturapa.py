@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
 import logging
 
-from odoo import models
+from odoo import api, fields, models
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
@@ -56,6 +57,17 @@ except ImportError as err:
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export FatturaPA"
+
+    @api.model
+    def _domain_ir_values(self):
+        """Get all print actions for current model"""
+        return [('model', '=', self.env.context.get('active_model', False)),
+                ('key2', '=', 'client_print_multi')]
+
+    report_print_menu = fields.Many2one(
+        comodel_name='ir.values',
+        domain=_domain_ir_values,
+        help='This report will be automatically included in the created XML')
 
     def saveAttachment(self, fatturapa, number):
 
@@ -193,9 +205,10 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
             raise UserError(_(
-                'FatturaPA fiscal position not set for company %s. '
+                'Fiscal position for Fattura Elettronica not set '
+                'for company %s. '
                 '(Go to Accounting --> Configuration --> Settings --> '
-                'Fattura PA)' % company.name
+                'Fattura Elettronica)' % company.name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
@@ -683,7 +696,7 @@ class WizardExportFatturapa(models.TransientModel):
             for doc_id in invoice.fatturapa_doc_attachments:
                 AttachDoc = AllegatiType(
                     NomeAttachment=doc_id.datas_fname,
-                    Attachment=doc_id.datas
+                    Attachment=base64.decodestring(doc_id.datas)
                 )
                 body.Allegati.append(AttachDoc)
         return True
@@ -751,6 +764,8 @@ class WizardExportFatturapa(models.TransientModel):
                     raise UserError(
                         _("Invoice %s has FatturaPA Export File yet") % (
                             inv.number))
+                if self.report_print_menu:
+                    self.generate_attach_report(inv)
                 invoice_body = FatturaElettronicaBodyType()
                 inv.preventive_checks()
                 self.with_context(context_partner).setFatturaElettronicaBody(
@@ -780,3 +795,18 @@ class WizardExportFatturapa(models.TransientModel):
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
             }
+
+    def generate_attach_report(self, inv):
+        action_report_model, action_report_id = (
+            self.report_print_menu.value.split(',')[0],
+            int(self.report_print_menu.value.split(',')[1]))
+        action_report = self.env[action_report_model] \
+            .browse(action_report_id)
+        report_model = self.env['report']
+        report_model.get_pdf(inv.ids, action_report.report_name)
+        attachment = report_model._attachment_stored(
+            inv, action_report)[inv.id]
+        inv.write({
+            'fatturapa_doc_attachments': [(0, 0, {
+                'ir_attachment_id': attachment.id})]
+        })
