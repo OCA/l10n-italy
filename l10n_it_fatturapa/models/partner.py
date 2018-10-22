@@ -48,7 +48,8 @@ class ResPartner(models.Model):
     @api.constrains(
         'is_pa', 'ipa_code', 'codice_destinatario', 'company_type',
         'electronic_invoice_subjected', 'vat', 'fiscalcode', 'lastname',
-        'firstname'
+        'firstname', 'customer', 'street', 'zip', 'city', 'state_id',
+        'country_id'
     )
     def _check_ftpa_partner_data(self):
         for partner in self:
@@ -83,4 +84,27 @@ class ResPartner(models.Model):
                         raise ValidationError(_(
                             "Il partner %s, con Codice Destinatario '0000000',"
                             " deve avere o P.IVA o codice fiscale"
+                        ) % partner.name)
+                if partner.customer:
+                    if not partner.street:
+                        raise ValidationError(_(
+                            'Customer %s: street is needed for XML generation.'
+                        ) % partner.name)
+                    if not partner.zip:
+                        raise ValidationError(_(
+                            'Customer %s: ZIP is needed for XML generation.'
+                        ) % partner.name)
+                    if not partner.city:
+                        raise ValidationError(_(
+                            'Customer %s: city is needed for XML generation.'
+                        ) % partner.name)
+                    if not partner.state_id:
+                        raise ValidationError(_(
+                            'Customer %s: province is needed for XML '
+                            'generation.'
+                        ) % partner.name)
+                    if not partner.country_id:
+                        raise ValidationError(_(
+                            'Customer %s: country is needed for XML'
+                            ' generation.'
                         ) % partner.name)
