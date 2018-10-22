@@ -7,6 +7,11 @@
             <form string="Export Electronic Invoice">
                 <sheet>
                     <label string="Confirm?"/>
+                    <group>
+                        <field name="report_print_menu"
+                               string="Attached report"
+                               widget="selection"/>
+                    </group>
                 </sheet>
                 <footer>
                     <button name="exportFatturaPA" string="Export"
