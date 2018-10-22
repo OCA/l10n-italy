@@ -16,7 +16,6 @@
                         <field name="pec_destinatario"
                                attrs="{'invisible': ['|',('is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"/>
                         <field name="eori_code"/>
-                        <field name="license_number"/>
                     </group>
                 </group>
             </page>
