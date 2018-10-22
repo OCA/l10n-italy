@@ -30,8 +30,8 @@ addon | version | summary
 [l10n_it_corrispettivi_sale](l10n_it_corrispettivi_sale/) | 10.0.1.0.1 | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.7.0 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.0.0 | Electronic invoices
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.0.0 | Electronic invoices reception
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.1.0 | Electronic invoices
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.1.0 | Electronic invoices reception
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Fattura Elettronica - Purchase integration
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.0.3 | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.0 | Bridge module
