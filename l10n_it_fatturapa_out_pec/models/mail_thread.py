@@ -46,28 +46,23 @@ class MailThread(models.AbstractModel):
                         ('name', '=', 'l10n_it_fatturapa_in_pec'),
                         ('state', '=', 'installed')]):
                     return []
-                else:
-                    return super(MailThread, self).message_route(
-                        message, message_dict, model=model,
-                        thread_id=thread_id,
-                        custom_values=custom_values)
 
-            message_dict['record_name'] = message_dict['subject']
-            attachment_ids = self._message_post_process_attachments(
-                message_dict['attachments'], [], message_dict)
-            message_dict['attachment_ids'] = attachment_ids
-            del message_dict['attachments']
-            del message_dict['cc']
-            del message_dict['from']
-            del message_dict['to']
+                message_dict['record_name'] = message_dict['subject']
+                attachment_ids = self._message_post_process_attachments(
+                    message_dict['attachments'], [], message_dict)
+                message_dict['attachment_ids'] = attachment_ids
+                del message_dict['attachments']
+                del message_dict['cc']
+                del message_dict['from']
+                del message_dict['to']
 
-            # message_create_from_mail_mail to avoid to notify message
-            # (see mail.message.create)
-            self.env['mail.message'].with_context(
-                message_create_from_mail_mail=True).create(message_dict)
-            _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
-                         .format(message.get('Message-Id')))
-            return []
+                # message_create_from_mail_mail to avoid to notify message
+                # (see mail.message.create)
+                self.env['mail.message'].with_context(
+                    message_create_from_mail_mail=True).create(message_dict)
+                _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
+                             .format(message.get('Message-Id')))
+                return []
 
         return super(MailThread, self).message_route(message, message_dict,
             model=model, thread_id=thread_id, custom_values=custom_values)
