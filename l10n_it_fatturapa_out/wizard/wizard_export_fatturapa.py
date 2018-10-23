@@ -696,7 +696,7 @@ class WizardExportFatturapa(models.TransientModel):
             for doc_id in invoice.fatturapa_doc_attachments:
                 AttachDoc = AllegatiType(
                     NomeAttachment=doc_id.datas_fname,
-                    Attachment=doc_id.datas
+                    Attachment=base64.decodestring(doc_id.datas)
                 )
                 body.Allegati.append(AttachDoc)
         return True
