@@ -751,6 +751,11 @@ msgid "Supplier"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_partner_form_fatturapa_in
+msgid "Supplier data"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:901
 #, python-format
 msgid "Supplier invoice contains withholding tax with CausalePagamento %s, but such a tax is not found in your system. Please set it"
