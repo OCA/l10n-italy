@@ -18,9 +18,9 @@ class MailThread(models.AbstractModel):
                       custom_values=None):
 
         if any("@pec.fatturapa.it" in x for x in [
-                    message.__getitem__('Reply-To'),
-                    message.__getitem__('From'),
-                    message.__getitem__('Return-Path')
+                    message.get('Reply-To'),
+                    message.get('From'),
+                    message.get('Return-Path')
         ]):
             _logger.info("Processing FatturaPA PEC Invoice with Message-Id: "
                          "{}".format(message.get('Message-Id')))

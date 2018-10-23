@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import zipfile
+import logging
 import os
 import re
 import base64
@@ -10,6 +11,8 @@ from odoo import api, tools, exceptions, models, _
 from odoo.tools import config
 from odoo.addons.l10n_it_fatturapa_in_pec.models.mail import \
     RESPONSE_MAIL_REGEX
+
+_logger = logging.getLogger(__name__)
 
 
 class FatturaPAAttachmentIn(models.Model):
@@ -29,11 +32,21 @@ class FatturaPAAttachmentIn(models.Model):
                     for inv_file_name in zf.namelist():
                         inv_file = zf.open(inv_file_name)
                         if regex.match(inv_file_name):
-                            fatturapa_in = self.create({
-                                'name': inv_file_name,
-                                'datas_fname': inv_file_name,
-                                'datas': base64.encodestring(
-                                    inv_file.read())})
+                            # check if this invoice is already parsed and
+                            # present in other fatturapa.attachment.in
+                            existing_fatturapa_atts = self.search([
+                                ('name', '=', inv_file_name)
+                            ])
+                            if existing_fatturapa_atts:
+                                _logger.info(
+                                    "Invoice xml already processed in %s"
+                                    % existing_fatturapa_atts.mapped('name'))
+                            else:
+                                fatturapa_in = self.create({
+                                    'name': inv_file_name,
+                                    'datas_fname': inv_file_name,
+                                    'datas': base64.encodestring(
+                                        inv_file.read())})
                 else:
                     fatturapa_in = self.create({
                         'ir_attachment_id': attachment.id})
