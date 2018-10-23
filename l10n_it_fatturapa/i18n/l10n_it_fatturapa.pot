@@ -291,6 +291,36 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:94
+#, python-format
+msgid "Customer %s: ZIP is needed for XML generation."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:98
+#, python-format
+msgid "Customer %s: city is needed for XML generation."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:107
+#, python-format
+msgid "Customer %s: country is needed for XML generation."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:102
+#, python-format
+msgid "Customer %s: province is needed for XML generation."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:90
+#, python-format
+msgid "Customer %s: street is needed for XML generation."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_db_datas
 msgid "Database Data"
 msgstr ""
@@ -551,25 +581,25 @@ msgid "Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che hanno accred
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:67
+#: code:addons/l10n_it_fatturapa/models/partner.py:68
 #, python-format
 msgid "Il partner %s deve avere il Codice Destinatario lungo 7 caratteri"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:83
+#: code:addons/l10n_it_fatturapa/models/partner.py:84
 #, python-format
 msgid "Il partner %s, con Codice Destinatario '0000000', deve avere o P.IVA o codice fiscale"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:74
+#: code:addons/l10n_it_fatturapa/models/partner.py:75
 #, python-format
 msgid "Il partner %s, essendo persona deve avere Nome e Cognome"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:59
+#: code:addons/l10n_it_fatturapa/models/partner.py:60
 #, python-format
 msgid "Il partner %s, essendo una pubblica amministrazione deve avere il codice IPA lungo 6 caratteri"
 msgstr ""
@@ -1078,6 +1108,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
 msgid "Sequence"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/company.py:64
+#, python-format
+msgid "Sequence %s already used by journal %s. Please select another one"
 msgstr ""
 
 #. module: l10n_it_fatturapa
