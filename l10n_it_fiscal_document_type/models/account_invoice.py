@@ -41,5 +41,5 @@ class AccountInvoice(models.Model):
 
     fiscal_document_type_id = fields.Many2one(
         'fiscal.document.type',
-        string="Tipo documento fiscale",
+        string="Fiscal Document Type",
         readonly=False)
