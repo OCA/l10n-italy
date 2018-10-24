@@ -35,7 +35,11 @@ class MailThread(models.AbstractModel):
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
-        if "@pec.fatturapa.it" in message_dict.get('from', False):
+        if any("@pec.fatturapa.it" in x for x in [
+            message.get('Reply-To'),
+            message.get('From'),
+            message.get('Return-Path')
+        ]):
             _logger.info("Processing FatturaPA PEC Response with Message-Id: "
                          "{}".format(message.get('Message-Id')))
             message_dict, message_type = self.env['fatturapa.attachment.out']\

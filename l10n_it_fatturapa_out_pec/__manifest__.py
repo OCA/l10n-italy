@@ -30,12 +30,13 @@
     'author': 'Openforce Srls Unipersonale',
     'website': 'http://www.openforce.it',
     'license': 'LGPL-3',
-    "depends": ['fetchmail',
-                'l10n_it_fatturapa_out', ],
+    "depends": [
+        'fetchmail',
+        'l10n_it_fatturapa_out',
+        'l10n_it_sdi_channel',
+    ],
     "data": [
         'views/fatturapa_attachment_out.xml',
-        'views/fetchmail_server.xml',
-        'views/ir_mail_server.xml',
     ],
     "installable": True
 }
