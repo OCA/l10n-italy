@@ -48,6 +48,14 @@ class FatturaPAAttachmentIn(models.Model):
                                     'datas': base64.encodestring(
                                         inv_file.read())})
                 else:
-                    fatturapa_in = self.create({
-                        'ir_attachment_id': attachment.id})
+                    existing_fatturapa_atts = self.search([
+                        ('name', '=', attachment.name)
+                    ])
+                    if existing_fatturapa_atts:
+                        _logger.info(
+                            "Invoice xml already processed in %s"
+                            % existing_fatturapa_atts.mapped('name'))
+                    else:
+                        fatturapa_in = self.create({
+                            'ir_attachment_id': attachment.id})
         return True
