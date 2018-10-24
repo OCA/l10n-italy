@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-06 01:45+0000\n"
-"PO-Revision-Date: 2018-10-14 16:55+0000\n"
+"PO-Revision-Date: 2018-10-25 09:02+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -22,6 +22,7 @@ msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_code
+#, fuzzy
 msgid "Codice"
 msgstr "Codice"
 
@@ -95,16 +96,19 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_name
+#, fuzzy
 msgid "Nome"
 msgstr "Nome"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_refund
+#, fuzzy
 msgid "Nota di credito"
 msgstr "Nota di credito"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_refund
+#, fuzzy
 msgid "Nota di debito"
 msgstr "Nota di debito"
 
