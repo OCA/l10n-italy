@@ -118,70 +118,77 @@ class AccountConfigSettings(models.TransientModel):
         help="Blocco da valorizzare nei casi di cedente / prestatore non "
              "residente, con stabile organizzazione in Italia"
         )
-
-    # @api.onchange('company_id')
-    # def onchange_company_id(self):
-    #     # res = super(AccountConfigSettings, self).onchange_company_id()
-    #     if self.company_id:
-    #         company = self.company_id
-    #         default_sequence = self.env['ir.sequence'].search([
-    #             ('code', '=', 'account.invoice.fatturapa')
-    #         ])
-    #         default_sequence = (
-    #             default_sequence[0].id if default_sequence else False)
-    #         self.fatturapa_fiscal_position_id = (
-    #             company.fatturapa_fiscal_position_id and
-    #             company.fatturapa_fiscal_position_id.id or False
-    #             )
-    #         self.fatturapa_sequence_id = (
-    #             company.fatturapa_sequence_id and
-    #             company.fatturapa_sequence_id.id or default_sequence
-    #             )
-    #         self.fatturapa_art73 = (
-    #             company.fatturapa_art73 or False
-    #             )
-    #         self.fatturapa_pub_administration_ref = (
-    #             company.fatturapa_pub_administration_ref or False
-    #             )
-    #         self.fatturapa_rea_office = (
-    #             company.fatturapa_rea_office and
-    #             company.fatturapa_rea_office.id or False
-    #             )
-    #         self.fatturapa_rea_number = (
-    #             company.fatturapa_rea_number or False
-    #             )
-    #         self.fatturapa_rea_capital = (
-    #             company.fatturapa_rea_capital or False
-    #             )
-    #         self.fatturapa_rea_partner = (
-    #             company.fatturapa_rea_partner or False
-    #             )
-    #         self.fatturapa_rea_liquidation = (
-    #             company.fatturapa_rea_liquidation or False
-    #             )
-    #         self.fatturapa_tax_representative = (
-    #             company.fatturapa_tax_representative and
-    #             company.fatturapa_tax_representative.id or False
-    #             )
-    #         self.fatturapa_sender_partner = (
-    #             company.fatturapa_sender_partner and
-    #             company.fatturapa_sender_partner.id or False
-    #             )
-    #         self.fatturapa_stabile_organizzazione = (
-    #             company.fatturapa_stabile_organizzazione and
-    #             company.fatturapa_stabile_organizzazione.id or False
-    #             )
-    #     else:
-    #         self.fatturapa_fiscal_position_id = False
-    #         self.fatturapa_sequence_id = False
-    #         self.fatturapa_art73 = False
-    #         self.fatturapa_pub_administration_ref = False
-    #         self.fatturapa_rea_office = False
-    #         self.fatturapa_rea_number = False
-    #         self.fatturapa_rea_capital = False
-    #         self.fatturapa_rea_partner = False
-    #         self.fatturapa_rea_liquidation = False
-    #         self.fatturapa_tax_representative = False
-    #         self.fatturapa_sender_partner = False
-    #         self.fatturapa_stabile_organizzazione = False
-    #     return res
+    
+    @api.v7
+    def onchange_company_id(self, cr, uid, ids, company_id, context=None):
+        res = super(AccountConfigSettings, self).onchange_company_id(
+            cr, uid, ids, company_id, context=context)
+        if company_id:
+            company = self.pool.get('res.company').browse(
+                cr, uid, company_id, context=context)
+            default_sequence = self.pool.get('ir.sequence').search(cr, uid, [
+                ('code', '=', 'account.invoice.fatturapa')
+            ])
+            default_sequence = (
+                default_sequence[0] if default_sequence else False
+                )
+            res['value'].update({
+                'fatturapa_fiscal_position_id': (
+                    company.fatturapa_fiscal_position_id and
+                    company.fatturapa_fiscal_position_id.id or False
+                    ),
+                'fatturapa_sequence_id': (
+                    company.fatturapa_sequence_id and
+                    company.fatturapa_sequence_id.id or default_sequence
+                    ),
+                'fatturapa_art73': (
+                    company.fatturapa_art73 or False
+                    ),
+                'fatturapa_pub_administration_ref': (
+                    company.fatturapa_pub_administration_ref or False
+                    ),
+                'fatturapa_rea_office': (
+                    company.fatturapa_rea_office and
+                    company.fatturapa_rea_office.id or False
+                    ),
+                'fatturapa_rea_number': (
+                    company.fatturapa_rea_number or False
+                    ),
+                'fatturapa_rea_capital': (
+                    company.fatturapa_rea_capital or False
+                    ),
+                'fatturapa_rea_partner': (
+                    company.fatturapa_rea_partner or False
+                    ),
+                'fatturapa_rea_liquidation': (
+                    company.fatturapa_rea_liquidation or False
+                    ),
+                'fatturapa_tax_representative': (
+                    company.fatturapa_tax_representative and
+                    company.fatturapa_tax_representative.id or False
+                    ),
+                'fatturapa_sender_partner': (
+                    company.fatturapa_sender_partner and
+                    company.fatturapa_sender_partner.id or False
+                    ),
+                'fatturapa_stabile_organizzazione': (
+                    company.fatturapa_stabile_organizzazione and
+                    company.fatturapa_stabile_organizzazione.id or False
+                    ),
+                })
+        else:
+            res['value'].update({
+                'fatturapa_fiscal_position_id': False,
+                'fatturapa_sequence_id': False,
+                'fatturapa_art73': False,
+                'fatturapa_pub_administration_ref': False,
+                'fatturapa_rea_office': False,
+                'fatturapa_rea_number': False,
+                'fatturapa_rea_capital': False,
+                'fatturapa_rea_partner': False,
+                'fatturapa_rea_liquidation': False,
+                'fatturapa_tax_representative': False,
+                'fatturapa_sender_partner': False,
+                'fatturapa_stabile_organizzazione': False,
+                })
+        return res
