@@ -35,28 +35,38 @@ class MailThread(models.AbstractModel):
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
-        if "@pec.fatturapa.it" in message.__getitem__('Reply-To'): # FIXME Unreliable?
-            _logger.info("Processing FatturaPA PEC Response with Message-Id: {}"
-                         .format(message.get('Message-Id')))
-            message_dict = self.env['fatturapa.attachment.out']\
+        if any("@pec.fatturapa.it" in x for x in [
+            message.get('Reply-To'),
+            message.get('From'),
+            message.get('Return-Path')
+        ]):
+            _logger.info("Processing FatturaPA PEC Response with Message-Id: "
+                         "{}".format(message.get('Message-Id')))
+            message_dict, message_type = self.env['fatturapa.attachment.out']\
                 .parse_pec_response(message_dict)
 
-            message_dict['record_name'] = message_dict['subject']
-            attachment_ids = self._message_post_process_attachments(
-                message_dict['attachments'], [], message_dict)
-            message_dict['attachment_ids'] = attachment_ids
-            del message_dict['attachments']
-            del message_dict['cc']
-            del message_dict['from']
-            del message_dict['to']
+            if message_type == 'MT':
+                if not self.env['ir.module.module'].search([
+                        ('name', '=', 'l10n_it_fatturapa_in_pec'),
+                        ('state', '=', 'installed')]):
+                    return []
 
-            # message_create_from_mail_mail to avoid to notify message
-            # (see mail.message.create)
-            self.env['mail.message'].with_context(
-                message_create_from_mail_mail=True).create(message_dict)
-            _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
-                         .format(message.get('Message-Id')))
-            return []
+                message_dict['record_name'] = message_dict['subject']
+                attachment_ids = self._message_post_process_attachments(
+                    message_dict['attachments'], [], message_dict)
+                message_dict['attachment_ids'] = attachment_ids
+                del message_dict['attachments']
+                del message_dict['cc']
+                del message_dict['from']
+                del message_dict['to']
+
+                # message_create_from_mail_mail to avoid to notify message
+                # (see mail.message.create)
+                self.env['mail.message'].with_context(
+                    message_create_from_mail_mail=True).create(message_dict)
+                _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
+                             .format(message.get('Message-Id')))
+                return []
 
         return super(MailThread, self).message_route(message, message_dict,
             model=model, thread_id=thread_id, custom_values=custom_values)

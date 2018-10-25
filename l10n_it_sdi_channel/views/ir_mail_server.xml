@@ -9,8 +9,6 @@
                 <xpath expr="//sheet/group[last()]" position="after">
                     <group string="PEC and FatturaPA">
                         <field name="is_pec"/>
-                        <field name="email_from_for_fatturaPA" attrs="{'invisible':[('is_pec', '=', False)]}"/>
-                        <field name="email_exchange_system" attrs="{'invisible':[('is_pec', '=', False)]}"/>
                     </group>
                 </xpath>
             </field>
