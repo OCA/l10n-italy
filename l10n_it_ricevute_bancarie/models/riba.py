@@ -105,7 +105,7 @@ class RibaList(models.Model):
     @api.multi
     def unlink(self):
         for riba_list in self:
-            if riba_list.state not in ('draft',  'cancel'):
+            if riba_list.state not in ('draft', 'cancel'):
                 raise UserError(_(
                     'List %s is in state %s. You can only delete documents'
                     ' in state draft or canceled')
@@ -114,8 +114,8 @@ class RibaList(models.Model):
 
     @api.multi
     def confirm(self):
-        for list in self:
-            for line in list.line_ids:
+        for ribalist in self:
+            for line in ribalist.line_ids:
                 line.confirm()
 
     @api.multi
@@ -385,20 +385,20 @@ class RibaListLine(models.Model):
                 ('account_id', '=', riba_line.acceptance_account_id.id),
                 ('move_id', '=', riba_line.acceptance_move_id.id),
                 ('debit', '!=', 0)
-                ])
+            ])
 
             settlement_move_amount = settlement_move_line.debit
 
-            move_ref = "Settlement RIBA {} - {}".format(
+            move_ref = u"Settlement RIBA {} - {}".format(
                 riba_line.distinta_id.name,
                 riba_line.partner_id.name,
-                )
+            )
             settlement_move = move_model.create({
                 'journal_id':
                     riba_line.distinta_id.config_id.settlement_journal_id.id,
                 'date': date.today().strftime('%Y-%m-%d'),
                 'ref': move_ref,
-                })
+            })
 
             move_line_credit = move_line_model.with_context({
                 'check_move_validity': False}).create(
