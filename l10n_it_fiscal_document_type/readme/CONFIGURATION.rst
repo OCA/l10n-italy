@@ -1,11 +1,11 @@
 **Italiano**
 
-Contabilità --> Configurazione --> Varie
+Per configurare i tipi di documenti fiscali selezionare:
 
-Nei vari tipi di documento fiscale, inserire i registri relativi.
+Contabilità --> Configurazione --> Contabilità --> Localizzazione italiana --> Tipi documenti fiscali
 
 **Inglese**
 
-Accounting --> Configuration --> Miscellaneous
+You can configure fiscal document types choosing:
 
-Add pertinent journals on fiscal document types.
+Accounting --> Configuration --> Accounting --> Italian Localization --> Fiscal document types
