@@ -19,6 +19,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/security.xml",
         "views/sdi_view.xml",
         "views/company_view.xml",
         'views/fetchmail_server.xml',
