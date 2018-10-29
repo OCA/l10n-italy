@@ -108,6 +108,11 @@ msgid "Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
+#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.print_invoice_inherit
+msgid "Fiscal code:"
+msgstr ""
+
+#. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_id
