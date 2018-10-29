@@ -1,26 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-##############################################################################
-#
-#    Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
-#
-#    Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Lesser General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or (at
-#    your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Lesser General Public License
-#    along with this program. If not, see:
-#    http://www.gnu.org/licenses/lgpl-3.0.txt.
-#
-##############################################################################
+# Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
+# Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 import re
@@ -31,7 +12,8 @@ from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
-RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_[a-zA-Z0-9]{,3}'
+RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
+                      '[a-zA-Z0-9]{,3}'
 
 
 class FatturaPAAttachmentOut(models.Model):
@@ -45,8 +27,8 @@ class FatturaPAAttachmentOut(models.Model):
                              string='State',
                              default='ready',)
 
-    last_sdi_response = fields.Text(string='Last Response from Exchange System',
-                                    default='No response yet')
+    last_sdi_response = fields.Text(
+        string='Last Response from Exchange System', default='No response yet')
 
     @api.multi
     def send_via_pec(self):
@@ -70,8 +52,9 @@ class FatturaPAAttachmentOut(models.Model):
             'mail_message_id': mail_message.id,
             'body_html': mail_message.body,
             'email_to': self.env.user.company_id.email_exchange_system,
-        }).send()  # TODO Should we disable some mail.* config params before
-                   # TODO sending? See: https://tinyurl.com/ybr45fxd
+        }).send()
+        # TODO Should we disable some mail.* config params before
+        # TODO sending? See: https://tinyurl.com/ybr45fxd
 
         self.state = 'sent'
 

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
-from odoo import api, tools, exceptions, models, _
+from odoo import api, models
 
 _logger = logging.getLogger(__name__)
 
@@ -18,9 +18,9 @@ class MailThread(models.AbstractModel):
                       custom_values=None):
 
         if any("@pec.fatturapa.it" in x for x in [
-                    message.get('Reply-To'),
-                    message.get('From'),
-                    message.get('Return-Path')
+            message.get('Reply-To'),
+            message.get('From'),
+            message.get('Return-Path')
         ]):
             _logger.info("Processing FatturaPA PEC Invoice with Message-Id: "
                          "{}".format(message.get('Message-Id')))

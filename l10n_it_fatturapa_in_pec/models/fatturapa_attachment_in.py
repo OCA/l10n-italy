@@ -7,7 +7,7 @@ import logging
 import os
 import re
 import base64
-from odoo import api, tools, exceptions, models, _
+from odoo import api, models
 from odoo.tools import config
 from odoo.addons.l10n_it_fatturapa_in_pec.models.mail import \
     RESPONSE_MAIL_REGEX
@@ -42,7 +42,7 @@ class FatturaPAAttachmentIn(models.Model):
                                     "Invoice xml already processed in %s"
                                     % existing_fatturapa_atts.mapped('name'))
                             else:
-                                fatturapa_in = self.create({
+                                self.create({
                                     'name': inv_file_name,
                                     'datas_fname': inv_file_name,
                                     'datas': base64.encodestring(
@@ -56,6 +56,6 @@ class FatturaPAAttachmentIn(models.Model):
                             "Invoice xml already processed in %s"
                             % existing_fatturapa_atts.mapped('name'))
                     else:
-                        fatturapa_in = self.create({
+                        self.create({
                             'ir_attachment_id': attachment.id})
         return True
