@@ -14,10 +14,11 @@
         'python': ['codicefiscale'],
     },
     'data': [
-        'view/fiscalcode_view.xml',
-        'wizard/compute_fc_view.xml',
+        "security/ir.model.access.csv",
         'data/res.city.it.code.csv',
-        "security/ir.model.access.csv"
+        'view/fiscalcode_view.xml',
+        'view/report_invoice_document.xml',
+        'wizard/compute_fc_view.xml',
         ],
     'installable': True
 }
