@@ -6,17 +6,17 @@
     'name': 'Italian Localization - FatturaPA - Emission - PEC Support',
     'version': '10.0.1.0.3',
     'category': 'Localization/Italy',
-    'summary': "Send electronic invoices via PEC",
+    'summary': 'Send electronic invoices via PEC',
     'author': 'Openforce Srls Unipersonale, Odoo Community Association (OCA)',
-    'website': 'http://www.openforce.it',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
-    "depends": [
+    'depends': [
         'fetchmail',
         'l10n_it_fatturapa_out',
         'l10n_it_sdi_channel',
     ],
-    "data": [
+    'data': [
         'views/fatturapa_attachment_out.xml',
     ],
-    "installable": True
+    'installable': True
 }
