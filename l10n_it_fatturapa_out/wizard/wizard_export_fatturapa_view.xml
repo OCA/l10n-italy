@@ -6,11 +6,22 @@
         <field name="arch" type="xml">
             <form string="Export Electronic Invoice">
                 <sheet>
-                    <label string="Confirm?"/>
                     <group>
+                        <label string="Confirm?" colspan="2"/>
+                        <field name="attach_report"
+                               class="oe_inline"
+                               string="Do you want to attach any report to the generated invoice?"/>
                         <field name="report_print_menu"
                                string="Attached report"
-                               widget="selection"/>
+                               widget="selection"
+                               attrs="{
+                               'invisible': [('attach_report', '=', False)],
+                               'required': [('attach_report', '=', True)]}"/>
+                        <field name="attach_mode"
+                               widget="radio"
+                               attrs="{
+                               'invisible': [('attach_report', '=', False)],
+                               'required': [('attach_report', '=', True)]}"/>
                     </group>
                 </sheet>
                 <footer>

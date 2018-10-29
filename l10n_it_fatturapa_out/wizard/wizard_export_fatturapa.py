@@ -68,6 +68,13 @@ class WizardExportFatturapa(models.TransientModel):
         comodel_name='ir.values',
         domain=_domain_ir_values,
         help='This report will be automatically included in the created XML')
+    attach_report = fields.Boolean()
+    attach_mode = fields.Selection(
+        selection=[
+            ('xml', 'Inside XML'),
+            ('mail', 'By mail'),
+            ('both', 'Both')],
+        default='xml')
 
     def saveAttachment(self, fatturapa, number):
 
@@ -757,14 +764,15 @@ class WizardExportFatturapa(models.TransientModel):
         try:
             self.with_context(context_partner).setFatturaElettronicaHeader(
                 company, partner, fatturapa)
-            for invoice_id in invoice_ids:
-                inv = invoice_obj.with_context(context_partner).browse(
-                    invoice_id)
+            invoices = invoice_obj \
+                .with_context(context_partner) \
+                .browse(invoice_ids)
+            for inv in invoices:
                 if inv.fatturapa_attachment_out_id:
                     raise UserError(
                         _("Invoice %s has FatturaPA Export File yet") % (
                             inv.number))
-                if self.report_print_menu:
+                if self.attach_report:
                     self.generate_attach_report(inv)
                 invoice_body = FatturaElettronicaBodyType()
                 inv.preventive_checks()
@@ -796,17 +804,41 @@ class WizardExportFatturapa(models.TransientModel):
             'type': 'ir.actions.act_window',
             }
 
-    def generate_attach_report(self, inv):
+    def generate_attach_report(self, invoices):
+        # Generate the report
+        if not self.report_print_menu:
+            return
         action_report_model, action_report_id = (
             self.report_print_menu.value.split(',')[0],
             int(self.report_print_menu.value.split(',')[1]))
         action_report = self.env[action_report_model] \
             .browse(action_report_id)
         report_model = self.env['report']
-        report_model.get_pdf(inv.ids, action_report.report_name)
-        attachment = report_model._attachment_stored(
-            inv, action_report)[inv.id]
-        inv.write({
-            'fatturapa_doc_attachments': [(0, 0, {
-                'ir_attachment_id': attachment.id})]
-        })
+
+        # Manage the attachment in the selected mode
+        if self.attach_mode in ('mail', 'both'):
+            for invoice in invoices:
+                composer_action = invoice.action_invoice_sent()
+                composer_model_name = composer_action['res_model']
+                composer_context = composer_action['context']
+                # Override composition mode so we can send silently
+                composer_context.update(composition_mode='mass_mail')
+                composer = self.env[composer_model_name] \
+                    .with_context(composer_context) \
+                    .create({})
+                composer.onchange_template_id_wrapper()
+                composer.send_mail()
+
+        if self.attach_mode in ('xml', 'both'):
+            # Generate the PDFs,
+            # they are automatically attached to the invoices
+            report_model.get_pdf(invoices.ids, action_report.report_name)
+
+            attachments_dict = report_model._attachment_stored(
+                invoices, action_report)
+            for invoice in invoices:
+                attachment = attachments_dict[invoice.id]
+                invoice.write({
+                    'fatturapa_doc_attachments': [(0, 0, {
+                        'ir_attachment_id': attachment.id})]
+                })
