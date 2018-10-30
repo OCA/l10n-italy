@@ -808,12 +808,6 @@ class WizardExportFatturapa(models.TransientModel):
         # Generate the report
         if not self.report_print_menu:
             return
-        action_report_model, action_report_id = (
-            self.report_print_menu.value.split(',')[0],
-            int(self.report_print_menu.value.split(',')[1]))
-        action_report = self.env[action_report_model] \
-            .browse(action_report_id)
-        report_model = self.env['report']
 
         # Manage the attachment in the selected mode
         if self.attach_mode in ('mail', 'both'):
@@ -830,14 +824,33 @@ class WizardExportFatturapa(models.TransientModel):
                 composer.send_mail()
 
         if self.attach_mode in ('xml', 'both'):
-            # Generate the PDFs,
-            # they are automatically attached to the invoices
-            report_model.get_pdf(invoices.ids, action_report.report_name)
+            action_report_model, action_report_id = (
+                self.report_print_menu.value.split(',')[0],
+                int(self.report_print_menu.value.split(',')[1]))
+            action_report = self.env[action_report_model] \
+                .browse(action_report_id)
+            report_model = self.env['report']
+            attachment_model = self.env['ir.attachment']
 
-            attachments_dict = report_model._attachment_stored(
-                invoices, action_report)
             for invoice in invoices:
-                attachment = attachments_dict[invoice.id]
+                # Generate the PDF: if report_action.attachment is set
+                # they will be automatically attached to the invoice,
+                # otherwise use res to build a new attachment
+                res = report_model.get_pdf(
+                    invoice.ids, action_report.report_name)
+                if action_report.attachment:
+                    attachment = report_model._attachment_stored(
+                        invoices, action_report)[invoice.id]
+                else:
+                    filename = invoice.number
+                    data_attach = {
+                        'name': filename,
+                        'datas': base64.b64encode(res),
+                        'datas_fname': filename,
+                        'type': 'binary'
+                    }
+                    attachment = attachment_model.create(data_attach)
+
                 invoice.write({
                     'fatturapa_doc_attachments': [(0, 0, {
                         'ir_attachment_id': attachment.id})]
