@@ -19,32 +19,32 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_cadastre_code
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__cadastre_code
 msgid "Belfiore cadastre code (not used anymore)"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_cadastre_code_var
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__cadastre_code_var
 msgid "Cadastre code variation"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Cancel"
 msgstr "취소"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_city
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__birth_city
 msgid "City of birth"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Compute"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.view_partner_form_fiscalcode_button
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.view_partner_form_fiscalcode_button
 msgid "Compute F.C."
 msgstr ""
 
@@ -60,37 +60,36 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_create_uid
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_create_uid
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__create_uid
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__create_uid
 msgid "Created by"
 msgstr "작성자"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_create_date
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_create_date
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__create_date
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__create_date
 msgid "Created on"
 msgstr "작성일"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_creation_date
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__creation_date
 msgid "Creation date"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_date
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__birth_date
 msgid "Date of birth"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__display_name
 msgid "Display Name"
 msgstr "표시 이름"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:153
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:192
 #, python-format
 msgid ""
 "Existing fiscal code %(partner_fiscalcode)s is different from the computed "
@@ -104,65 +103,54 @@ msgid "Female"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_fiscalcode_firstname
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__fiscalcode_firstname
 msgid "First name"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_fiscalcode
-#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__fiscalcode
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_id
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_id
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_id
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.print_invoice_inherit
+msgid "Fiscal code:"
+msgstr ""
+
+#. module: l10n_it_fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__id
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__id
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_individual
-#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_individual
-msgid "If checked the C.F. is referred to a Individual Person"
-msgstr ""
-
-#. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_individual
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_individual
-msgid "Individual"
-msgstr ""
-
-#. module: l10n_it_fiscalcode
-#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Individual Data"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_fiscalcode
-#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_fiscalcode
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner__fiscalcode
 msgid "Italian Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code___last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct___last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province___last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc___last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc____last_update
 msgid "Last Modified on"
 msgstr "최근 수정"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_write_uid
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_write_uid
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__write_uid
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__write_uid
 msgid "Last Updated by"
 msgstr "최근 갱신한 사람"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_write_date
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_write_date
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__write_date
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__write_date
 msgid "Last Updated on"
 msgstr "최근 갱신 날짜"
 
@@ -172,63 +160,71 @@ msgid "Male"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_town_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__name
 msgid "Name"
 msgstr "이름"
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_name_var
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__name_var
 msgid "Name variation"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_national_code
+#: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code
+msgid "National city codes"
+msgstr ""
+
+#. module: l10n_it_fiscalcode
+#: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_distinct
+msgid "National city codes distinct"
+msgstr ""
+
+#. module: l10n_it_fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__national_code
 msgid "National code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:148
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:188
 #, python-format
 msgid "National code is missing"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_national_code_var
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__national_code_var
 msgid "National code variation"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_notes
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__notes
 msgid "Notes"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:144
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:184
 #, python-format
 msgid "One or more fields are missing"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_province
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__province
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__birth_province
 msgid "Province"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_var
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__province_var
 msgid "Province variation"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_sex
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__sex
 msgid "Sex"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_fiscalcode_surname
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__fiscalcode_surname
 msgid "Surname"
 msgstr ""
 
@@ -238,21 +234,6 @@ msgid "The fiscal code doesn't seem to be correct."
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_var_date
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__var_date
 msgid "Variation date"
-msgstr ""
-
-#. module: l10n_it_fiscalcode
-#: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code
-msgid "res.city.it.code"
-msgstr ""
-
-#. module: l10n_it_fiscalcode
-#: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_distinct
-msgid "res.city.it.code.distinct"
-msgstr ""
-
-#. module: l10n_it_fiscalcode
-#: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_province
-msgid "res.city.it.code.province"
 msgstr ""
