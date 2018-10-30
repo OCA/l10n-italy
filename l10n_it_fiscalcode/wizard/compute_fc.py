@@ -1,54 +1,101 @@
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
+# Copyright © 2018 Matteo Bilotta (Link IT s.r.l.)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+import datetime
+import logging
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-import logging
-import datetime
+from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
 try:
     from codicefiscale import build
+
 except ImportError:
     _logger.warning(
-        'codicefiscale library not found. '
-        'If you plan to use it, please install the codicefiscale library '
-        'from https://pypi.python.org/pypi/codicefiscale')
+        "codicefiscale library not found. "
+        "If you plan to use it, please install the codicefiscale library"
+        " from https://pypi.python.org/pypi/codicefiscale")
 
 
 class WizardComputeFc(models.TransientModel):
-
-    _name = "wizard.compute.fc"
+    _name = 'wizard.compute.fc'
     _description = "Compute Fiscal Code"
     _rec_name = 'fiscalcode_surname'
 
-    fiscalcode_surname = fields.Char('Surname', size=64)
-    fiscalcode_firstname = fields.Char('First name', size=64)
-    birth_date = fields.Date('Date of birth')
-    birth_city = fields.Many2one(
-        'res.city.it.code.distinct', string='City of birth')
-    birth_province = fields.Many2one(
-        'res.city.it.code.province', string='Province')
-    sex = fields.Selection([
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ], "Sex")
+    fiscalcode_surname = fields.Char("Surname", required=True, size=64)
+    fiscalcode_firstname = fields.Char("First name", required=True, size=64)
+    birth_date = fields.Date("Date of birth", required=True)
+    birth_city = fields.Many2one('res.city.it.code.distinct',
+                                 required=True,
+                                 string="City of birth")
+    birth_province = fields.Many2one('res.country.state',
+                                     required=True,
+                                     string="Province")
+    sex = fields.Selection([('M', "Male"), ('F', "Female")],
+                           required=True,
+                           string="Sex")
 
     @api.multi
     @api.onchange('birth_city')
     def onchange_birth_city(self):
         self.ensure_one()
-        res = {}
+
+        it = self.env.ref('base.it').id
+        res = {
+            'domain': {'birth_province': [('country_id', '=', it)]},
+            'value': {'birth_province': False}
+        }
+
         if self.birth_city:
-            ct = self.birth_city
-            res['domain'] = {
-                'birth_province': [('town_name', '=', ct.name)]
-            }
-        else:
-            res['domain'] = {'birth_province': []}
-        res['value'] = {'birth_province': ''}
+            # SMELLS: Add a foreign key in "res_city_it_code"
+            #          instead using the weak link "code" <-> "province".
+            #
+            city_ids = self.env['res.city.it.code'] \
+                .search([('name', '=', self.birth_city.name)])
+            provinces = city_ids.mapped('province')
+            province_ids = self.env['res.country.state'] \
+                .search([('country_id', '=', it), ('code', 'in', provinces)])
+
+            res['domain']['birth_province'] = \
+                expression.AND([
+                    res['domain']['birth_province'],
+                    [('id', 'in', province_ids.ids)]
+                ])
+
+            if len(province_ids) == 1:
+                res['value']['birth_province'] = province_ids.id
+
+        return res
+
+    @api.multi
+    @api.onchange('birth_province')
+    def onchange_birth_province(self):
+        self.ensure_one()
+
+        res = {'domain': {'birth_city': []}}
+
+        if not self.birth_city:
+            if self.birth_province:
+                # SMELLS: Add a foreign key in "res_city_it_code"
+                #          instead using the weak link "code" <-> "province".
+                #
+                city_ids = self.env['res.city.it.code'] \
+                    .search([('province', '=', self.birth_province.code)])
+                names = city_ids.mapped('name')
+                distinct_city_ids = self.env['res.city.it.code.distinct'] \
+                    .search([('name', 'in', names)])
+
+                res['domain']['birth_city'] = \
+                    expression.AND([
+                        res['domain']['birth_city'],
+                        [('id', 'in', distinct_city_ids.ids)]
+                    ])
+
         return res
 
     def _get_national_code(self, birth_city, birth_prov, birth_date):
@@ -88,11 +135,9 @@ class WizardComputeFc(models.TransientModel):
                 break
         if newcts:
             cities = newcts
-        return self._check_national_codes(
-            birth_city, birth_prov, birth_date, cities)
+        return self._check_national_codes(birth_date, cities)
 
-    def _check_national_codes(
-            self, birth_city, birth_prov, birth_date, cities):
+    def _check_national_codes(self, birth_date, cities):
         nc = ''
         dtcostvar = None
         for ct in cities:
@@ -142,7 +187,7 @@ class WizardComputeFc(models.TransientModel):
                     not f.birth_date or not f.birth_city or not f.sex):
                 raise UserError(_('One or more fields are missing'))
             nat_code = self._get_national_code(
-                f.birth_city.name, f.birth_province.name, f.birth_date)
+                f.birth_city.name, f.birth_province.code, f.birth_date)
             if not nat_code:
                 raise UserError(_('National code is missing'))
             birth_date = datetime.datetime.strptime(f.birth_date, "%Y-%m-%d")

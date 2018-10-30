@@ -6,23 +6,32 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Fiscal Code">
+                <h2>Individual Data</h2>
                 <group>
-                    <group string="Individual Data">
-                        <field name="fiscalcode_surname" default_focus="1"/>
-                        <field name="fiscalcode_firstname"/>
-                        <field name="sex"/>
-                        <field name="birth_date"/>
-                        <field name="birth_city"/>
-                        <field name="birth_province" />
+                    <group>
+                        <field name="fiscalcode_surname" default_focus="1" />
+                        <field name="fiscalcode_firstname" />
+                        <field name="sex" widget="radio" />
                     </group>
-                    <newline/>
-                    <footer>
-                        <button name="compute_fc" type="object"
-                                string="Compute" class="btn-primary"/>
-                        <button string="Cancel" special="cancel"
-                                class="btn-default"/>
-                    </footer>
+                    <group>
+                        <field name="birth_date" />
+                        <field name="birth_city"
+                               options="{'no_create': True,
+                                         'no_open': True}" />
+                        <field name="birth_province"
+                               options="{'no_create': True,
+                                         'no_open': True}" />
+                    </group>
                 </group>
+                <footer>
+                    <button class="btn-primary"
+                            type="object"
+                            name="compute_fc"
+                            string="Compute" />
+                    <button class="btn-default"
+                            special="cancel"
+                            string="Cancel" />
+                </footer>
             </form>
         </field>
     </record>
