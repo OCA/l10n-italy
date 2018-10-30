@@ -1,9 +1,5 @@
-# Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
-# Copyright 2016 Andrea Gallina (Apulia Software)
-# Copyright © 2018 Matteo Bilotta (Link IT s.r.l.)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import datetime
 import logging
 
 from odoo import models, fields, api, _
@@ -190,9 +186,8 @@ class WizardComputeFc(models.TransientModel):
                 f.birth_city.name, f.birth_province.code, f.birth_date)
             if not nat_code:
                 raise UserError(_('National code is missing'))
-            birth_date = datetime.datetime.strptime(f.birth_date, "%Y-%m-%d")
             c_f = build(f.fiscalcode_surname, f.fiscalcode_firstname,
-                        birth_date, f.sex, nat_code)
+                        f.birth_date, f.sex, nat_code)
             if partner.fiscalcode and partner.fiscalcode != c_f:
                 raise UserError(_(
                     'Existing fiscal code %(partner_fiscalcode)s is different '
@@ -201,5 +196,5 @@ class WizardComputeFc(models.TransientModel):
                         'partner_fiscalcode': partner.fiscalcode,
                         'compute': c_f}))
             partner.fiscalcode = c_f
-            partner.individual = True
+            partner.company_type = 'person'
         return {'type': 'ir.actions.act_window_close'}
