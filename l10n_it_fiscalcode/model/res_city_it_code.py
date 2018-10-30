@@ -1,11 +1,42 @@
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
+# Copyright © 2018 Matteo Bilotta (Link IT s.r.l.)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, tools
 
 
 class ResCityItCode(models.Model):
+    #
+    # First...
+    #  FIXME: URL in class description is no more useful...
+    #
+    #  Visit:
+    #      https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/
+    #       Strumenti/Codici+attivita+e+tributo/Codici+territorio/
+    #   ... and then click on "Consultazione Archivio Comuni e Stati esteri".
+    #  You will be redirected on:
+    #      https://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/schede/
+    #       fabbricatiterreni/archivio+comuni+e+stati+esteri/
+    #        consultazione+archivio+comuni+stati+esteri
+    #  Here, you can download the new and updated file CSV.
+    #   (last update on 30/07/2018)
+    #
+    #
+    # ... BUT then...
+    #  TODO: Find out how to import the new CSV without breaking existing data.
+    #
+    #  The new CSV as a new structure:
+    #   - some records have been deleted.
+    #   - some columns no longer exist.
+    #   - ...
+    #   - ... and so on...
+    #   - ...
+    #
+    #
+    # Good luck! ;)
+    #
+
     """
     To create res.city.it.code.csv:
     http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/
@@ -52,22 +83,4 @@ class ResCityItCodeDistinct(models.Model):
             CREATE OR REPLACE VIEW res_city_it_code_distinct AS (
             SELECT name, MAX(id) AS id FROM res_city_it_code
             GROUP BY name)
-            """)
-
-
-class ResCityItCodeProvince(models.Model):
-    _name = 'res.city.it.code.province'
-    _auto = False
-
-    name = fields.Char('Name', size=100)
-    town_name = fields.Char('Name', size=100)
-
-    def init(self):
-        tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute(
-            """
-            CREATE OR REPLACE VIEW res_city_it_code_province AS (
-            SELECT province AS name, name as town_name, MAX(id) AS id
-            FROM res_city_it_code
-            GROUP BY province, name)
             """)
