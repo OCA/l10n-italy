@@ -1,7 +1,4 @@
-# Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
-# Copyright 2016 Andrea Gallina (Apulia Software)
-# Copyright © 2018 Matteo Bilotta (Link IT s.r.l.)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, tools
 
@@ -54,6 +51,7 @@ cadastre_code_var,province_var,name_var,creation_date,var_date
     - save as csv in data/res.city.it.code.csv
     """
     _name = "res.city.it.code"
+    _description = "National city codes"
 
     national_code = fields.Char('National code', size=4)
     cadastre_code = fields.Char(
@@ -72,6 +70,7 @@ cadastre_code_var,province_var,name_var,creation_date,var_date
 
 class ResCityItCodeDistinct(models.Model):
     _name = 'res.city.it.code.distinct'
+    _description = "National city codes distinct"
     _auto = False
 
     name = fields.Char('Name', size=100)
