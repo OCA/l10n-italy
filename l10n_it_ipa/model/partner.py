@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 KTec S.r.l.
 # (<http://www.ktec.it>).
 # Copyright 2014 Associazione Odoo Italia
