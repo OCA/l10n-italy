@@ -9,7 +9,7 @@
     'name': 'Italian localization - Registro REA',
     'version': '12.0.1.0.0',
     'category': 'Localisation/Italy',
-    'development_status': 'Beta',
+    'development_status': 'Production/Stable',
     'summary': 'Manage fields for Economic Administrative catalogue',
     'author': 'Agile Business Group, Odoo Italia Network,'
               'Odoo Community Association (OCA)',
