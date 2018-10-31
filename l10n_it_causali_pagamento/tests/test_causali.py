@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
@@ -20,5 +19,5 @@ class TestCausali(TransactionCase):
         name = self.causale_b.name_get()
         self.assertEqual(name, [(
             self.causale_b.id,
-            u"B - Utilizzazione economica, da parte dell'autore ..."
+            "B - Utilizzazione economica, da parte dell'autore ..."
         )])
