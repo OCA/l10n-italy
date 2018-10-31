@@ -17,20 +17,14 @@ class MailThread(models.AbstractModel):
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
         if any("@pec.fatturapa.it" in x for x in [
-            message.get('Reply-To'),
-            message.get('From'),
-            message.get('Return-Path')
-        ]):
+            message.get('Reply-To', ''),
+            message.get('From', ''),
+            message.get('Return-Path', '')]
+        ):
             _logger.info("Processing FatturaPA PEC Response with Message-Id: "
                          "{}".format(message.get('Message-Id')))
-            message_dict, message_type = self.env['fatturapa.attachment.out']\
+            message_dict = self.env['fatturapa.attachment.out']\
                 .parse_pec_response(message_dict)
-
-            if message_type == 'MT':
-                if not self.env['ir.module.module'].search([
-                        ('name', '=', 'l10n_it_fatturapa_in_pec'),
-                        ('state', '=', 'installed')]):
-                    return []
 
             message_dict['record_name'] = message_dict['subject']
             attachment_ids = self._message_post_process_attachments(
