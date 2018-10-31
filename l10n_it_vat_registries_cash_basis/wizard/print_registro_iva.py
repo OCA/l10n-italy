@@ -102,7 +102,10 @@ class WizardRegistroIva(models.TransientModel):
         cash_move_ids = {}
         move_ids = []
         # controllare se la contabilità è in regime di cassa
-        move_ids, cash_move_ids = self._get_cash_basis_move_ids(wizard)
+        if self.env.user.company_id.tax_cash_basis_journal_id:
+            move_ids, cash_move_ids = self._get_cash_basis_move_ids(wizard)
+        else:
+            move_ids = super(WizardRegistroIva, self)._get_move_ids(wizard)
 
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
