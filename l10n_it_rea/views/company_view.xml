@@ -13,8 +13,8 @@
                         <field name="rea_code" />
                         <field name="rea_capital" />
                         <field name="rea_member_type" />
-                        <field name="rea_liquidation_state"/>
-                        <field name="company_registry"/>
+                        <field name="rea_liquidation_state" />
+                        <field name="company_registry" />
                     </group>
                 </page>
             </notebook>

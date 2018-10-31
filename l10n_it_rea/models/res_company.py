@@ -9,17 +9,22 @@ class Company(models.Model):
 
     rea_office = fields.Many2one(
         'res.country.state', string='Office Province',
-        related='partner_id.rea_office')
-    rea_code = fields.Char('REA Code', size=20, related='partner_id.rea_code')
-    rea_capital = fields.Float('Capital', related='partner_id.rea_capital')
+        related='partner_id.rea_office', store=True, readonly=False)
+    rea_code = fields.Char(
+        'REA Code', size=20, related='partner_id.rea_code',
+        store=True, readonly=False)
+    rea_capital = fields.Float(
+        'Capital', related='partner_id.rea_capital',
+        store=True, readonly=False)
     rea_member_type = fields.Selection(
         [('SU', 'Unique Member'),
          ('SM', 'Multiple Members')], 'Member Type',
-        related='partner_id.rea_member_type')
+        related='partner_id.rea_member_type', store=True, readonly=False)
     rea_liquidation_state = fields.Selection(
         [('LS', 'In liquidation'),
          ('LN', 'Not in liquidation')], 'Liquidation State',
-        related='partner_id.rea_liquidation_state')
+        related='partner_id.rea_liquidation_state',
+        store=True, readonly=False)
 
     @api.onchange(
         "rea_office", "rea_code", "rea_capital", "rea_member_type",
