@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 KTec S.r.l.
 # (<http://www.ktec.it>).
 # Copyright 2014 Associazione Odoo Italia
@@ -8,11 +7,12 @@
 
 {
     "name": "IPA Code (IndicePA)",
-    "version": "10.0.2.0.0",
+    "version": "11.0.1.0.0",
+    'development_status': 'Production/Stable',
     "category": "Localisation/Italy",
     "author": "KTec S.r.l,Odoo Community Association (OCA),"
               "Odoo Italia Network",
-    "website": "http://www.ktec.it",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": ['base'],
     "data": [
