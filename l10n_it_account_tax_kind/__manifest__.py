@@ -1,14 +1,16 @@
-#    Copyright (C) 2017 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-#
-#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2017 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+# @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2017 Alex Comba - Agile Business Group
+# Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
     'name': 'Italian Localisation - Natura delle aliquote IVA',
-    'version': '11.0.1.0.1',
+    'version': '12.0.1.0.0',
+    'development_status': 'Production/Stable',
     'category': 'Localisation/Italy',
     'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
-    'website': 'https://www.odoo-italia.net/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'l10n_it_account',
