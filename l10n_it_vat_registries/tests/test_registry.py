@@ -1,4 +1,3 @@
-# Copyright 2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.addons.account.tests.account_test_classes import AccountingTestCase
@@ -64,7 +63,7 @@ class TestRegistry(AccountingTestCase):
             'layout_type': 'supplier',
             'fiscal_page_base': 0,
         })
-        wizard.load_journal_ids()
+        wizard.on_change_tax_registry_id()
         res = wizard.print_registro()
 
         domain = [('report_type', 'like', 'qweb'),
