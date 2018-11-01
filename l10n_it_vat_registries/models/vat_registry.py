@@ -1,4 +1,3 @@
-# Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -11,9 +10,10 @@ import time
 
 class ReportRegistroIva(models.AbstractModel):
     _name = 'report.l10n_it_vat_registries.report_registro_iva'
+    _description = 'Report VAT registry'
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         # docids required by caller but not used
         # see addons/account/report/account_balance.py
 
@@ -49,8 +49,12 @@ class ReportRegistroIva(models.AbstractModel):
         return move_list
 
     def _format_date(self, my_date, date_format):
-        formatted_date = time.strftime(date_format,
-                                       time.strptime(my_date, '%Y-%m-%d'))
+        # supporting both cases, as data['form']['from_date'] is string
+        if isinstance(my_date, str):
+            formatted_date = time.strftime(
+                date_format, time.strptime(my_date, '%Y-%m-%d'))
+        else:
+            formatted_date = my_date.strftime(date_format)
         return formatted_date or ''
 
     def _get_invoice_from_move(self, move):

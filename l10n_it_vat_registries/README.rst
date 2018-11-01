@@ -14,13 +14,16 @@ Italian Localization - VAT Registries
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_vat_registries
+    :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_vat_registries
     :alt: OCA/l10n-italy
-.. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/10.0
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_vat_registries
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/122/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Law: Decreto del Presidente della Repubblica del 26 ottobre 1972 n. 633
 https://goo.gl/31yTVj
@@ -50,8 +53,8 @@ aprire Contabilità > Configurazione > Contabilità > Intervalli date > Genera i
 Tramite
 Contabilità -> Configurazione -> Contabilità -> Registri IVA
 è possibile configurare i registri IVA, ad esempio 'vendite', 'acquisti' o 'corrispettivi'.
-Per associare un sezionale ad un registro IVA, aprire il sezionale tramite
-Contabilità -> Configurazione -> Contabilità -> Sezionali
+Per associare un registro ad un registro IVA, aprire il registro tramite
+Contabilità -> Configurazione -> Contabilità -> Registri
 ed impostare il campo 'Registro IVA'
 
 
@@ -82,10 +85,10 @@ Usage
 **Italiano**
 
 Dal menu
-Contabilità -> Report -> Imposte -> Registri IVA
+Contabilità -> Rendicontazione -> Imposte -> Registri IVA
 è possibile lanciare il wizard di stampa, nel quale è necessario impostare un intervallo di date. Qui è possibile utilizzare un periodo fiscale nel campo 'Intervallo Date'.
 
-Nel campo 'Registro IVA' è possibile selezionare un registro preconfigurato, oppure è possibile andare direttamente a impostare i sezionali ed il layout nei campi sottostanti.
+Nel campo 'Registro IVA' è possibile selezionare un registro preconfigurato, oppure è possibile andare direttamente a impostare i registri ed il layout nei campi sottostanti.
 
 
 **English**
@@ -101,7 +104,8 @@ Bug Tracker
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_vat_registries%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -119,8 +123,8 @@ Contributors
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Sergio Corato <sergiocorato@gmail.com>
+* Elena Carlesso <ecarlesso@linkgroup.it>
 * Alex Comba <alex.comba@agilebg.com>
-* Lara Baggio <lbaggio@linkgroup.it>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -142,6 +146,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_vat_registries>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_vat_registries>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
