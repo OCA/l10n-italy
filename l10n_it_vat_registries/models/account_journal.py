@@ -1,5 +1,3 @@
-# Copyright 2015-2017 Lorenzo Battistini - Agile Business Group
-# (<http://www.agilebg.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
