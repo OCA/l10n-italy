@@ -1,10 +1,10 @@
 **Italiano**
 
 Dal menu
-Contabilità -> Report -> Imposte -> Registri IVA
+Contabilità -> Rendicontazione -> Imposte -> Registri IVA
 è possibile lanciare il wizard di stampa, nel quale è necessario impostare un intervallo di date. Qui è possibile utilizzare un periodo fiscale nel campo 'Intervallo Date'.
 
-Nel campo 'Registro IVA' è possibile selezionare un registro preconfigurato, oppure è possibile andare direttamente a impostare i sezionali ed il layout nei campi sottostanti.
+Nel campo 'Registro IVA' è possibile selezionare un registro preconfigurato, oppure è possibile andare direttamente a impostare i registri ed il layout nei campi sottostanti.
 
 
 **English**
