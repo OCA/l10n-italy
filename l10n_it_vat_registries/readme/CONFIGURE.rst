@@ -15,8 +15,8 @@ aprire Contabilità > Configurazione > Contabilità > Intervalli date > Genera i
 Tramite
 Contabilità -> Configurazione -> Contabilità -> Registri IVA
 è possibile configurare i registri IVA, ad esempio 'vendite', 'acquisti' o 'corrispettivi'.
-Per associare un sezionale ad un registro IVA, aprire il sezionale tramite
-Contabilità -> Configurazione -> Contabilità -> Sezionali
+Per associare un registro ad un registro IVA, aprire il registro tramite
+Contabilità -> Configurazione -> Contabilità -> Registri
 ed impostare il campo 'Registro IVA'
 
 

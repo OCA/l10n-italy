@@ -1,5 +1,3 @@
-# Copyright 2015-2017 Lorenzo Battistini - Agile Business Group
-# (<http://www.agilebg.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -7,6 +5,7 @@ from odoo import fields, models
 
 class AccountTaxRegistry(models.Model):
     _name = 'account.tax.registry'
+    _description = 'Tax registry'
     name = fields.Char('Name', required=True)
     company_id = fields.Many2one(
         'res.company', 'Company', required=True,
