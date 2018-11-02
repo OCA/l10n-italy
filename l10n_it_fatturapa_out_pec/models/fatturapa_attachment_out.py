@@ -84,6 +84,10 @@ class FatturaPAAttachmentOut(models.Model):
                     ['|',
                      ('datas_fname', '=', file_name),
                      ('datas_fname', '=', file_name.replace('.p7m', ''))])
+                if len(fatturapa_attachment_out) > 1:
+                    _logger.info('More than 1 out invoice found for incoming'
+                                 'message')
+                    fatturapa_attachment_out = fatturapa_attachment_out[0]
                 if not fatturapa_attachment_out:
                     if message_type == 'MT':  # Metadati
                         # out invoice not found, so it is an incoming invoice
