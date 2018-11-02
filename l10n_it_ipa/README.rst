@@ -41,6 +41,7 @@ Contributors
 * Luigi Di Naro <luigi.dinaro@ktec.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Andrea Cometa <a.cometa@apuliasoftware.it>
 
 Maintainer
 ----------
