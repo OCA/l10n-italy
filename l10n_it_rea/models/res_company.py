@@ -26,10 +26,6 @@ class Company(orm.Model):
             selection=sel_liquidation_state),
     }
 
-    #@api.onchange(
-    #    "rea_office", "rea_code", "rea_capital", "rea_member_type",
-    #    "rea_liquidation_state"
-    #)
     def onchange_rea_data(self, cr, uid, ids, rea_office, rea_code, rea_capital,
             rea_member_type, rea_liquidation_state):
         company_registry = ''
@@ -51,5 +47,4 @@ class Company(orm.Model):
                 rea_office_code['code'] or '', rea_code or '',
                 _(rea_capital), member_type, liquidation_state
             )
-            #rea_obj.write({'company_registry': company_registry})
         return {'value': {'company_registry': company_registry}}
