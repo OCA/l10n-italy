@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_company_form_rea">
+            <field name="name">view_company_form_rea</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="REA data">
+                        <group>
+                            <field name="rea_office"
+                                on_change="onchange_rea_data(rea_office, rea_code, rea_capital, rea_member_type, rea_liquidation_state)"/>
+                            <field name="rea_code"
+                                on_change="onchange_rea_data(rea_office, rea_code, rea_capital, rea_member_type, rea_liquidation_state)" />
+                            <field name="rea_capital"
+                                on_change="onchange_rea_data(rea_office, rea_code, rea_capital, rea_member_type, rea_liquidation_state)"/>
+                            <field name="rea_member_type"
+                                on_change="onchange_rea_data(rea_office, rea_code, rea_capital, rea_member_type, rea_liquidation_state)"/>
+                            <field name="rea_liquidation_state"
+                                   on_change="onchange_rea_data(rea_office, rea_code, rea_capital, rea_member_type, rea_liquidation_state)"/>
+                            <field name="company_registry" />
+                        </group>
+                    </page>
+                </notebook>
+                <field name="company_registry" position="replace"/>
+            </field>
+        </record>
+    </data>
+</openerp>
