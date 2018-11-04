@@ -9,7 +9,7 @@
 
 {
     "name": "IPA Code (IndicePA)",
-    "version": "6.1.0.0.1",
+    "version": "0.0.1",
     "category": "Localisation/Italy",
     "author": "KTec S.r.l,Odoo Community Association (OCA),"
               "Odoo Italia Network",
