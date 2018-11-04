@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    <record id="view_account_config_settings" model="ir.ui.view">
+        <field name="name">view_account_config_settings</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@string='Configuration']" position="inside">
+                <separator string="Split Payment" colspan="4"/>
+                <group name="Split Payment">
+                    <field name="sp_account_id" />
+                    <newline />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+  </data>
+</openerp>
