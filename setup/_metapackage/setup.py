@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-l10n_it_fiscalcode',
+        'odoo12-addon-l10n_it_rea',
     ],
     classifiers=[
         'Programming Language :: Python',
