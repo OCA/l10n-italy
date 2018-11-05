@@ -9,7 +9,9 @@
             <notebook position="inside">
             <page name="fatturapa" string="Fattura Elettronica" groups="account.group_account_invoice">
                 <group name="fatturapa_group">
+                    <label for="electronic_invoice_subjected"/>
                     <field name="electronic_invoice_subjected"/>
+
                     <group attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                         <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_pa','=', False)]}"/>
                         <field name="codice_destinatario" attrs="{'invisible': [('is_pa', '=', True)]}"/>

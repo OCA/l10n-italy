@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -43,7 +42,7 @@ class ResPartner(models.Model):
              "<CodiceDestinatario> vale '0000000'"
     )
     electronic_invoice_subjected = fields.Boolean(
-        "Subjected to electronic invoice")
+        string="Subjected to electronic invoice")
 
     @api.multi
     @api.constrains(
