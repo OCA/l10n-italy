@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2018-10-21 18:00+0000\n"
+"PO-Revision-Date: 2018-11-07 15:31+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.1\n"
+"X-Generator: Weblate 3.2.2\n"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_abi
@@ -566,21 +566,21 @@ msgstr ""
 "Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che hanno "
 "accreditato un canale; qualora il destinatario non abbia accreditato un "
 "canale presso Sdi e riceva via PEC le fatture, l'elemento deve essere "
-"valorizzato con tutti zeri ('0000000'). "
+"valorizzato con tutti zeri (\"0000000\"). "
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:66
 #, fuzzy, python-format
 msgid "Il partner %s deve avere il Codice Destinatario lungo 7 caratteri"
-msgstr "Il partner %s deve avere il Codice Destinatario lungo 7 caratteri"
+msgstr "Il partner %s deve avere il codice destinatario lungo 7 caratteri"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:75
 #, fuzzy, python-format
 msgid "Il partner %s, con Codice Destinatario '0000000', deve avere o P.IVA o codice fiscale"
 msgstr ""
-"Il partner %s, con Codice Destinatario '0000000', deve avere o P.IVA o "
-"codice fiscale"
+"Il partner %s, con codice destinatario \"0000000\", deve avere o partita IVA "
+"o codice fiscale"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:58
@@ -616,9 +616,9 @@ msgstr "Contenuto Indicizzato"
 #, fuzzy
 msgid "Indica se il documento e' stato emesso secondo modalita' e termini stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 (cio' consente al cedente/prestatore l'emissione nello stesso anno di piu' documenti aventi stesso numero)"
 msgstr ""
-"Indica se il documento e' stato emesso secondo modalita' e termini stabiliti "
-"con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 (cio' "
-"consente al cedente/prestatore l'emissione nello stesso anno di piu' "
+"Indica se il documento è stato emesso secondo modalità e termini stabiliti "
+"con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 (ciò "
+"consente al cedente/prestatore l'emissione nello stesso anno di più "
 "documenti aventi stesso numero)"
 
 #. module: l10n_it_fatturapa
@@ -634,7 +634,7 @@ msgstr "Indirizzo organizzazione"
 msgid "Indirizzo PEC al quale inviare la fattura elettronica. Da valorizzare SOLO nei casi in cui l'elemento informativo <CodiceDestinatario> vale '0000000'"
 msgstr ""
 "Indirizzo PEC al quale inviare la fattura elettronica. Da valorizzare SOLO "
-"nei casi in cui l'elemento informativo <CodiceDestinatario> vale '0000000'"
+"nei casi in cui l'elemento informativo <CodiceDestinatario> vale \"0000000\""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_intermediary
@@ -806,7 +806,7 @@ msgstr "Num. elemento"
 #, fuzzy
 msgid "Numero civico riferito all'indirizzo (non indicare se gia' presente nell'elemento informativo indirizzo)"
 msgstr ""
-"Numero civico riferito all'indirizzo (non indicare se gia' presente "
+"Numero civico riferito all'indirizzo (non indicare se già presente "
 "nell'elemento informativo indirizzo)"
 
 #. module: l10n_it_fatturapa
@@ -1119,7 +1119,7 @@ msgid "Sigla della provincia di appartenenza del comune indicato nell'elemento i
 msgstr ""
 "Sigla della provincia di appartenenza del comune indicato nell'elemento "
 "informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo "
-"1.2.3.6 <Nazione> e' uguale a IT"
+"1.2.3.6 <Nazione> è uguale a IT"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:87
@@ -1350,7 +1350,7 @@ msgstr ""
 "Indica se il documento è stato emesso secondo le modalità e i termini "
 "stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 ("
 "ciò consente al cedente/prestatore l'emissione nello stesso anno di più "
-"documenti aventi lo stesso numero)."
+"documenti aventi lo stesso numero)"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
