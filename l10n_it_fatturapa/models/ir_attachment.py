@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
 import lxml.etree as ET
 import os
+import base64
 import shlex
 import subprocess
 import logging
@@ -120,7 +119,9 @@ class Attachment(models.Model):
             temp_der_file_name = (
                 '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
             with open(temp_file_name, 'w') as p7m_file:
-                p7m_file.write(fatturapa_attachment.datas.decode('base64'))
+                datas = fatturapa_attachment.datas
+                format_data = base64.decodestring(datas).decode('utf-8')
+                p7m_file.write(format_data)
             xml_file_name = os.path.splitext(temp_file_name)[0]
 
             # check if temp_file_name is a PEM file
@@ -140,7 +141,7 @@ class Attachment(models.Model):
                 file_content = fatt_file.read()
             xml_string = file_content
         elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
-            xml_string = fatturapa_attachment.datas.decode('base64')
+            xml_string = base64.decodestring(fatturapa_attachment.datas)
         xml_string = self.remove_xades_sign(xml_string)
         xml_string = self.strip_xml_content(xml_string)
         return xml_string
