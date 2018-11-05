@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
@@ -6,13 +5,12 @@
 
 {
     'name': 'Italian Localization - Fattura Elettronica - Base',
-    'version': '10.0.2.2.2',
+    'version': '11.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Italia Network, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
-               'l10n_it_fatturapa',
+    'website': 'https://github.com/OCA/l10n-italy/',
     'license': 'LGPL-3',
     "depends": [
         'l10n_it_account',

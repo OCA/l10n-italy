@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_it_fatturapa
+#     * l10n_it_fatturapa
 #
 msgid ""
 msgstr ""
@@ -84,7 +84,6 @@ msgstr "Avanzamento attività"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_codice_destinatario
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_codice_destinatario
-#, fuzzy
 msgid "Addressee Code"
 msgstr "Codice licenza"
 
@@ -453,38 +452,32 @@ msgstr "Soggetto a fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_fatturapa_doc_attachments
-#, fuzzy
 msgid "Electronic Invoice Attachments"
 msgstr "Allegati fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_fiscal_position
-#, fuzzy
 msgid "Electronic Invoice Fiscal Position"
 msgstr "Posizione fiscale fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_fatturapa_payments
-#, fuzzy
 msgid "Electronic Invoice Payment Data"
 msgstr "Dati pagamento fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_data_payment_terms
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_fatturapa_pm_id
-#, fuzzy
 msgid "Electronic Invoice Payment Method"
 msgstr "Metodo pagamento fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_fatturapa_summary_ids
-#, fuzzy
 msgid "Electronic Invoice Summary Data"
 msgstr "Dati riepilogo fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_e15
-#, fuzzy
 msgid "Excluding ex Art. 15"
 msgstr "escluse ex art. 15"
 
@@ -527,7 +520,6 @@ msgstr "Posizione fiscale"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_fiscal_position_id
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company_fatturapa_fiscal_position_id
-#, fuzzy
 msgid "Fiscal position used by Electronic Invoice"
 msgstr "Posizione fiscale usata dalla fattura elettronica"
 
@@ -575,7 +567,6 @@ msgstr "Spese accessorie"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_incoterms
-#, fuzzy
 msgid "Incoterms"
 msgstr "Condizioni di consegna"
 
@@ -586,7 +577,6 @@ msgstr "Contenuto Indicizzato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_art73
-#, fuzzy
 msgid ""
 "Indicates whether the document has been issued according to methods and "
 "terms laid down in a ministerial decree under the terms of Article 73 of "
@@ -600,7 +590,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_art73
-#, fuzzy
 msgid ""
 "Indicates whether the document has been issued according to methods and "
 "terms laid down in a ministerial decree under the terms of Article 73 of "
@@ -713,7 +702,6 @@ msgstr "Numero riga"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_lineRef
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_lineRef
-#, fuzzy
 msgid "LineRef"
 msgstr "Rif. riga"
 
@@ -765,13 +753,11 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_ni
-#, fuzzy
 msgid "Not Taxable"
 msgstr "Natura esenzione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_numitem
-#, fuzzy
 msgid "NumItem"
 msgstr "Num. elemento"
 
