@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2018-10-18 15:58+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2018-11-15 13:38+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.1\n"
+"X-Generator: Weblate 3.2.2\n"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_tax_amount
@@ -381,9 +381,8 @@ msgstr "Import Fattura Elettronica"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_wizard_import_fatturapa
-#, fuzzy
 msgid "Import FatturaPA"
-msgstr "Importa fatturaPA"
+msgstr "Importa e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_inconsistencies
@@ -481,7 +480,7 @@ msgid ""
 "Line '%s': Too many taxes with percentage equals to \"%s\"\n"
 "fix it if required"
 msgstr ""
-"Riga '%s': troppe imposte con aliquota pari a\"%s\"\n"
+"Riga \"%s\": troppe imposte con aliquota pari a\"%s\".\n"
 "Correggere se necessario"
 
 #. module: l10n_it_fatturapa_in
@@ -511,7 +510,7 @@ msgstr "Livello di dettaglio Fatture elettroniche"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users_e_invoice_detail_level
 #, fuzzy
 msgid "Livello di dettaglio Fatture elettroniche passive"
-msgstr "Livello di dettaglio Fatture elettroniche"
+msgstr "Livello di dettaglio Fatture elettroniche passive"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner_e_invoice_detail_level
@@ -534,6 +533,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: selection:res.partner,e_invoice_detail_level:0
 #: selection:wizard.import.fatturapa,e_invoice_detail_level:0
+#, fuzzy
 msgid "Massimo"
 msgstr "Massimo"
 
@@ -589,6 +589,7 @@ msgstr "Ritenuta fiscale con causale %s e importo %s non trovata"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_line_number
+#, fuzzy
 msgid "Numero Linea"
 msgstr "Numero riga"
 
@@ -706,7 +707,7 @@ msgstr "ProvinciaAlbo ( %s ) non presente nel sistema"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_qty
 #, fuzzy
 msgid "Quantita'"
-msgstr "Quantita'"
+msgstr "Quantità"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:228
@@ -864,11 +865,13 @@ msgstr "L'ID del record a cui questo è collegato."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_service_type
+#, fuzzy
 msgid "Tipo Cessione Prestazione"
 msgstr "Tipo cessione prestazione"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_name
+#, fuzzy
 msgid "Tipo Dato"
 msgstr "Tipo dato"
 
@@ -893,7 +896,7 @@ msgstr "Da registrare"
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:284
 #, python-format
 msgid "Too many taxes with percentage %s and nature %s found"
-msgstr "Trovate troppe imposte con aliquota %s e natura %s"
+msgstr "Rilevate troppe imposte con aliquota %s e natura %s"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:135
@@ -901,8 +904,8 @@ msgstr "Trovate troppe imposte con aliquota %s e natura %s"
 msgid ""
 "Two distinct partners with Vat %s and Fiscalcode %s already present in db"
 msgstr ""
-"Nel database sono già presenti due diversi partner con P. IVA %s e codice "
-"fiscale %s"
+"Nel database sono già presenti due diversi partner con partita IVA %s e "
+"codice fiscale %s"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_type
@@ -913,7 +916,7 @@ msgstr "Tipo"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_uom
 #, fuzzy
 msgid "Unita' di misura"
-msgstr "Unita' di misura"
+msgstr "Unità di misura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_url
@@ -976,7 +979,7 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:19
 #, python-format
 msgid "You can select only 1 XML file to link"
-msgstr "E' possibile selezionare solo un file XML da collegare"
+msgstr "È possibile selezionare solo un file XML da collegare"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_account_config_settings
