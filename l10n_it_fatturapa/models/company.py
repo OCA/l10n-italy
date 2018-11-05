@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -72,7 +71,7 @@ class ResCompany(models.Model):
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
 
     fatturapa_fiscal_position_id = fields.Many2one(
         related='company_id.fatturapa_fiscal_position_id',
@@ -141,7 +140,6 @@ class AccountConfigSettings(models.TransientModel):
 
     @api.onchange('company_id')
     def onchange_company_id(self):
-        res = super(AccountConfigSettings, self).onchange_company_id()
         if self.company_id:
             company = self.company_id
             default_sequence = self.env['ir.sequence'].search([
@@ -204,4 +202,4 @@ class AccountConfigSettings(models.TransientModel):
             self.fatturapa_tax_representative = False
             self.fatturapa_sender_partner = False
             self.fatturapa_stabile_organizzazione = False
-        return res
+

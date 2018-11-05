@@ -1,12 +1,11 @@
 # flake8: noqa
-# -*- coding: utf-8 -*-
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
 # Generated 2016-12-12 16:50:59.495555
 # by PyXB version 1.2.5 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 
-from __future__ import unicode_literals
+
 import logging
 import io
 from . import _ds as _ImportedBinding__ds
@@ -5818,7 +5817,7 @@ Namespace.addCategoryObject(
 # with content type ELEMENT_ONLY
 class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
     """
-        Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica
+        Blocco relativo ai dati di Beni Servizi della Fattura    Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -5973,7 +5972,7 @@ Namespace.addCategoryObject('typeBinding', 'DatiVeicoliType', DatiVeicoliType)
 # with content type ELEMENT_ONLY
 class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     """
-        Blocco relativo ai dati di Pagamento della Fattura	Elettronica
+        Blocco relativo ai dati di Pagamento della Fattura    Elettronica
                         """
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
