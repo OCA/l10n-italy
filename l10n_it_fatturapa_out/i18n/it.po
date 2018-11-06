@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-11-06 11:47+0000\n"
+"PO-Revision-Date: 2018-11-07 15:31+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -62,7 +62,7 @@ msgstr "Azienda"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:66
 #, python-format
 msgid "Company %s TIN not set."
-msgstr "P.  IVA dell'azienda %s non impostata."
+msgstr "Partita IVA dell'azienda %s non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:110
@@ -80,7 +80,7 @@ msgstr "Numero di telefono dell'azienda non impostato."
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:119
 #, python-format
 msgid "Company does not have fiscal code or VAT"
-msgstr "Codice fiscale o P. IVA dell'azienda non impostati."
+msgstr "Codice fiscale o partita IVA dell'azienda non impostati."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -200,7 +200,7 @@ msgstr "Fattura elettronica"
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
 #: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
 msgid "Fattura Elettronica Export Files"
-msgstr "File esportati fattura elettronica"
+msgstr "File fattura elettronica esportati"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
@@ -365,7 +365,7 @@ msgstr "Fatture emesse"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:72
 #, python-format
 msgid "Partner %s TIN not set."
-msgstr "P. IVA del partner %s non impostata."
+msgstr "Partita IVA del partner %s non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:344
@@ -389,7 +389,7 @@ msgstr "Il partner %s non è una PA, manca il Codice Destinatario"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:391
 #, python-format
 msgid "Partner VAT and Fiscalcode not set."
-msgstr "P. IVA e codice fiscale del partner non impostati."
+msgstr "Partita IVA e codice fiscale del partner non impostati."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:652
@@ -457,7 +457,7 @@ msgstr "Indirizzo non impostato per %s"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:191
 #, python-format
 msgid "TIN not set."
-msgstr "P. IVA non impostata."
+msgstr "Partita IVA non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_model
@@ -491,7 +491,7 @@ msgstr "URL"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:364
 #, python-format
 msgid "VAT and Fiscalcode not set for %s"
-msgstr "P. IVA e codice fiscale non impostati per %s"
+msgstr "Partita IVA e codice fiscale non impostati per %s"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_type
