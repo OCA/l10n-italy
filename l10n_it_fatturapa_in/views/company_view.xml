@@ -3,7 +3,7 @@
 
     <record id="view_account_config_settings_ftpa_in" model="ir.ui.view">
         <field name="name">view_account_config_settings_ftpa_in</field>
-        <field name="model">account.config.settings</field>
+        <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@id='fatturapa_settings']" position="inside">
