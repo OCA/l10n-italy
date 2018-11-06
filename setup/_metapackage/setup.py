@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo11-addon-l10n_it_abicab',
         'odoo11-addon-l10n_it_account',
         'odoo11-addon-l10n_it_account_tax_kind',
+        'odoo11-addon-l10n_it_causali_pagamento',
         'odoo11-addon-l10n_it_codici_carica',
         'odoo11-addon-l10n_it_corrispettivi',
         'odoo11-addon-l10n_it_corrispettivi_sale',
