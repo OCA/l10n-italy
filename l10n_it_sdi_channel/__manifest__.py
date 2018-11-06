@@ -6,7 +6,7 @@
     "summary": "Add channel to send-receice xml files to SdI.",
     "version": "10.0.1.0.0",
     "development_status": "Alpha",
-    "category": "other",
+    "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
@@ -19,6 +19,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/security.xml",
         "views/sdi_view.xml",
         "views/company_view.xml",
         'views/fetchmail_server.xml',

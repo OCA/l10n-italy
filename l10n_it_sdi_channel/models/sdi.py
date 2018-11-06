@@ -6,7 +6,7 @@ from odoo import models, fields, api, _, exceptions
 
 SDI_CHANNELS = [
     ('pec', 'PEC'),
-    ('web', 'Web service'),
+    # ('web', 'Web service'), # not implemented
     # ('sftp', 'SFTP'), # not implemented
 ]
 
@@ -21,7 +21,9 @@ class SdiChannel(models.Model):
         default=lambda self:
         self.env['res.company']._company_default_get('sdi.channel'))
     channel_type = fields.Selection(
-        string='SdI channel type', selection=SDI_CHANNELS, required=True)
+        string='SdI channel type', selection=SDI_CHANNELS, required=True,
+        help='PEC is the only implemented channel in this module. Other '
+             'channels (Web, Sftp) could be provided by external modules.')
     pec_server_id = fields.Many2one(
         'ir.mail_server', string='Pec mail server', required=False,
         domain=[('is_pec', '=', True)])

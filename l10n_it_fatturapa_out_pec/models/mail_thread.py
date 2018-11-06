@@ -1,26 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-##############################################################################
-#
-#    Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
-#
-#    Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Lesser General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or (at
-#    your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Lesser General Public License
-#    along with this program. If not, see:
-#    http://www.gnu.org/licenses/lgpl-3.0.txt.
-#
-##############################################################################
+# Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
+# Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 
@@ -36,20 +17,14 @@ class MailThread(models.AbstractModel):
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
         if any("@pec.fatturapa.it" in x for x in [
-            message.get('Reply-To'),
-            message.get('From'),
-            message.get('Return-Path')
-        ]):
+            message.get('Reply-To', ''),
+            message.get('From', ''),
+            message.get('Return-Path', '')]
+        ):
             _logger.info("Processing FatturaPA PEC Response with Message-Id: "
                          "{}".format(message.get('Message-Id')))
-            message_dict, message_type = self.env['fatturapa.attachment.out']\
+            message_dict = self.env['fatturapa.attachment.out']\
                 .parse_pec_response(message_dict)
-
-            if message_type == 'MT':
-                if not self.env['ir.module.module'].search([
-                        ('name', '=', 'l10n_it_fatturapa_in_pec'),
-                        ('state', '=', 'installed')]):
-                    return []
 
             message_dict['record_name'] = message_dict['subject']
             attachment_ids = self._message_post_process_attachments(
@@ -68,6 +43,6 @@ class MailThread(models.AbstractModel):
                          .format(message.get('Message-Id')))
             return []
 
-        return super(MailThread, self).message_route(message, message_dict,
-            model=model, thread_id=thread_id, custom_values=custom_values)
-
+        return super(MailThread, self).message_route(
+            message, message_dict, model=model, thread_id=thread_id,
+            custom_values=custom_values)
