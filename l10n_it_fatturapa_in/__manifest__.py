@@ -1,16 +1,16 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 AgileBG SAGL <http://www.agilebg.com>
 # Copyright 2015 innoviu Srl <http://www.innoviu.com>
 # Copyright 2018 Lorenzo Battistini
 
 {
     'name': 'Italian Localization - Fattura Elettronica reception',
-    'version': '10.0.1.2.0',
+    'version': '11.0.1.0.0',
+    "development_status": "Beta",
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
     'author': 'Agile Business Group, Innoviu, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.agilebg.com',
+    'website': 'http://github.com/OCA/l10n-italy/',
     'license': 'LGPL-3',
     "depends": [
         'l10n_it_fatturapa',

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo import fields, models, api
 
@@ -24,7 +23,7 @@ class ResCompany(models.Model):
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
 
     dati_bollo_product_id = fields.Many2one(
         related='company_id.dati_bollo_product_id',
