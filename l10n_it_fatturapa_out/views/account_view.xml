@@ -6,7 +6,7 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
-            <button name="action_invoice_proforma2" position="before">
+            <button name="invoice_print" position="before">
                 <button name="%(action_wizard_export_fatturapa)d" type="action" states="open"
                         string="Export E-invoice" class="oe_highlight"/>
             </button>
