@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 import base64
 import tempfile
@@ -106,13 +105,13 @@ class FatturaPACommon(AccountTestUsers):
     def check_content(self, xml_content, file_name, module_name=None):
         parser = etree.XMLParser(remove_blank_text=True)
         test_fatt_data = self.getFile(file_name, module_name=module_name)[1]
-        test_fatt_content = test_fatt_data.decode('base64')
+        test_fatt_content = base64.decodebytes(test_fatt_data)
         test_fatt = etree.fromstring(test_fatt_content, parser)
         xml = etree.fromstring(xml_content, parser)
         self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
 
     def getFilePath(self, filepath):
-        with open(filepath) as test_data:
+        with open(filepath, 'rb') as test_data:
             with tempfile.TemporaryFile() as out:
                 base64.encode(test_data, out)
                 out.seek(0)

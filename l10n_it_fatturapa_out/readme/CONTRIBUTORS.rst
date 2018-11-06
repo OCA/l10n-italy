@@ -4,3 +4,4 @@
 * Alessio Gerace
 * Alex Comba
 * Sergio Zanchetta <https://github.com/primes2h>
+* Lara Baggio <http://linkgroup.it/>

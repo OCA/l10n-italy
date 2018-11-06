@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Simone Rubino - Agile Business Group
@@ -61,12 +60,25 @@ class WizardExportFatturapa(models.TransientModel):
 
     @api.model
     def _domain_ir_values(self):
-        """Get all print actions for current model"""
-        return [('model', '=', self.env.context.get('active_model', False)),
-                ('key2', '=', 'client_print_multi')]
+        model_name = self.env.context.get('active_model', False)
+        # Get all print actions for current model
+        return [('binding_model_id', '=', model_name),
+                ('type', '=', 'ir.actions.report')]
 
     report_print_menu = fields.Many2one(
-        comodel_name='ir.values',
+        comodel_name='ir.actions.actions',
+        domain=_domain_ir_values,
+        help='This report will be automatically included in the created XML')
+
+    @api.model
+    def _domain_ir_values(self):
+        model_name = self.env.context.get('active_model', False)
+        # Get all print actions for current model
+        return [('binding_model_id', '=', model_name),
+                ('type', '=', 'ir.actions.report')]
+
+    report_print_menu = fields.Many2one(
+        comodel_name='ir.actions.actions',
         domain=_domain_ir_values,
         help='This report will be automatically included in the created XML')
 
@@ -112,7 +124,7 @@ class WizardExportFatturapa(models.TransientModel):
             msg = _(
                 'FatturaElettronicaHeader.DatiTrasmissione.'
                 'ProgressivoInvio:\n%s'
-            ) % unicode(e)
+            ) % str(e)
             raise UserError(msg)
         return number
 
@@ -304,7 +316,7 @@ class WizardExportFatturapa(models.TransientModel):
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
             Telefono=company.partner_id.phone or None,
-            Fax=company.partner_id.fax or None,
+            Fax=getattr(company.partner_id, 'fax', None) or None,
             Email=company.partner_id.email or None
             )
 
@@ -579,8 +591,13 @@ class WizardExportFatturapa(models.TransientModel):
         line_no = 1
         price_precision = self.env['decimal.precision'].precision_get(
             'Product Price')
+        # XML wants at least 2 decimals always
+        if price_precision < 2:
+            price_precision = 2
         uom_precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
+        if uom_precision < 2:
+            uom_precision = 2
         for line in invoice.invoice_line_ids:
             if not line.invoice_line_tax_ids:
                 raise UserError(
@@ -589,7 +606,7 @@ class WizardExportFatturapa(models.TransientModel):
                 raise UserError(
                     _("Too many taxes for invoice line %s.") % line.name)
             aliquota = line.invoice_line_tax_ids[0].amount
-            AliquotaIVA = '%.2f' % (aliquota)
+            AliquotaIVA = '{val:.2f}'.format(val=aliquota)
             line.ftpa_line_number = line_no
             prezzo_unitario = self._get_prezzo_unitario(line)
             DettaglioLinea = DettaglioLineeType(
@@ -597,23 +614,24 @@ class WizardExportFatturapa(models.TransientModel):
                 # can't insert newline with pyxb
                 # see https://tinyurl.com/ycem923t
                 # and '&#10;' would not be correctly visualized anyway
-                # (for example firefox replaces '&#10;' with space
+                # (for example firefox replaces '&#10;' with space)
                 Descrizione=line.name.replace('\n', ' ').encode(
                     'latin', 'ignore').decode('latin'),
-                PrezzoUnitario=('%.' + str(
-                    price_precision
-                ) + 'f') % prezzo_unitario,
-                Quantita=('%.' + str(
-                    uom_precision
-                ) + 'f') % line.quantity,
+                PrezzoUnitario='{price:.{precision}f}'.format(
+                    price=prezzo_unitario,
+                    precision=price_precision
+                ),
+                Quantita='{qta:.{precision}f}'.format(qta=line.quantity,
+                                                      precision=uom_precision),
+
                 UnitaMisura=line.uom_id and (
                     unidecode(line.uom_id.name)) or None,
-                PrezzoTotale='%.2f' % line.price_subtotal,
+                PrezzoTotale='{val:.2f}'.format(val=line.price_subtotal),
                 AliquotaIVA=AliquotaIVA)
             if line.discount:
                 ScontoMaggiorazione = ScontoMaggiorazioneType(
                     Tipo='SC',
-                    Percentuale='%.2f' % line.discount
+                    Percentuale='{val:.2f}'.format(val=line.discount)
                 )
                 DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
             if aliquota == 0.0:
@@ -649,9 +667,9 @@ class WizardExportFatturapa(models.TransientModel):
         for tax_line in invoice.tax_line_ids:
             tax = tax_line.tax_id
             riepilogo = DatiRiepilogoType(
-                AliquotaIVA='%.2f' % tax.amount,
-                ImponibileImporto='%.2f' % tax_line.base,
-                Imposta='%.2f' % tax_line.amount
+                AliquotaIVA='{val:.2f}'.format(val=tax.amount),
+                ImponibileImporto='{val:.2f}'.format(val=tax_line.base),
+                Imposta='{val:.2f}'.format(val=tax_line.amount)
                 )
             if tax.amount == 0.0:
                 if not tax.kind_id:
@@ -691,7 +709,7 @@ class WizardExportFatturapa(models.TransientModel):
             payment_line_ids = invoice.get_receivable_line_ids()
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = '%.2f' % move_line.debit
+                ImportoPagamento = '{val:.2f}'.format(val=move_line.debit)
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
@@ -805,7 +823,7 @@ class WizardExportFatturapa(models.TransientModel):
 
                 number = self.setProgressivoInvio(fatturapa)
             except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise UserError(unicode(e))
+                raise UserError(str(e))
 
             attach = self.saveAttachment(fatturapa, number)
             attachments |= attach
@@ -829,41 +847,45 @@ class WizardExportFatturapa(models.TransientModel):
         return action
 
     def generate_attach_report(self, inv):
-        action_report_model, action_report_id = (
-            self.report_print_menu.value.split(',')[0],
-            int(self.report_print_menu.value.split(',')[1]))
-        action_report = self.env[action_report_model] \
-            .browse(action_report_id)
-        report_model = self.env['report']
-        attachment_model = self.env['ir.attachment']
-        # Generate the PDF: if report_action.attachment is set
-        # they will be automatically attached to the invoice,
-        # otherwise use res to build a new attachment
-        res = report_model.get_pdf(
-            inv.ids, action_report.report_name)
-        if action_report.attachment:
-            # If the report is configured to be attached
-            # to the current invoice, just get that from the attachments.
-            # Note that in this case the attachment in
-            # fatturapa_doc_attachments is exactly the same
-            # that is attached to the invoice.
-            attachment = report_model._attachment_stored(
-                inv, action_report)[inv.id]
-        else:
-            # Otherwise, create a new attachment to be stored in
-            # fatturapa_doc_attachments.
-            filename = inv.number
-            data_attach = {
-                'name': filename,
-                'datas': base64.b64encode(res),
-                'datas_fname': filename,
-                'type': 'binary'
-            }
-            attachment = attachment_model.create(data_attach)
-        inv.write({
-            'fatturapa_doc_attachments': [(0, 0, {
-                'is_pdf_invoice_print': True,
-                'ir_attachment_id': attachment.id,
-                'description': _("Attachment generated by "
-                                 "electronic invoice export")})]
-        })
+
+        try:
+            ir_actions_report = self.env['ir.actions.report']
+            report_invoice = ir_actions_report._get_report_from_name(
+                'account.report_invoice'
+            )
+        except IndexError:
+            report_invoice = False
+            attachment_id = None
+        if report_invoice and report_invoice.attachment:
+            attachment_id = self.env.ref(
+                'account.account_invoices').retrieve_attachment(inv)
+
+        if not report_invoice or not attachment_id:
+
+            binding_model_id = self.with_context(
+                lang=None).report_print_menu.binding_model_id.id
+            name = self.report_print_menu.name
+            report_model = self.env['ir.actions.report'].with_context(
+                lang=None).search(
+                [('binding_model_id', '=', binding_model_id),
+                 ('name', '=', name)]
+                )
+            attachment, attachment_type = report_model.render_qweb_pdf(inv.ids)
+            attachment_id = self.env.ref(
+                'account.account_invoices').retrieve_attachment(inv)
+            if not attachment_id.id:
+                attachment_id = self.env['ir.attachment'].create({
+                    'name': inv.number,
+                    'type': 'binary',
+                    'datas': base64.encodestring(attachment),
+                    'datas_fname': '{}.pdf'.format(inv.number),
+                    'res_model': 'account.invoice',
+                    'res_id': inv.id,
+                    'mimetype': 'application/x-pdf'})
+
+        inv.write({'fatturapa_doc_attachments': [(0, 0, {
+                   'is_pdf_invoice_print': True,
+                   'ir_attachment_id': attachment_id.id,
+                   'description': _("Attachment generated by "
+                                    "electronic invoice export")})]
+                   })
