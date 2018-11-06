@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Simone Rubino - Agile Business Group
@@ -60,12 +59,25 @@ class WizardExportFatturapa(models.TransientModel):
 
     @api.model
     def _domain_ir_values(self):
+        model_name = self.env.context.get('active_model', False)
         """Get all print actions for current model"""
-        return [('model', '=', self.env.context.get('active_model', False)),
-                ('key2', '=', 'client_print_multi')]
+        return [('binding_model_id', '=', model_name),
+                ('type', '=', 'ir.actions.report')]
 
     report_print_menu = fields.Many2one(
-        comodel_name='ir.values',
+        comodel_name='ir.actions.actions',
+        domain=_domain_ir_values,
+        help='This report will be automatically included in the created XML')
+
+    @api.model
+    def _domain_ir_values(self):
+        model_name = self.env.context.get('active_model', False)
+        """Get all print actions for current model"""
+        return [('binding_model_id', '=', model_name),
+                ('type', '=', 'ir.actions.report')]
+
+    report_print_menu = fields.Many2one(
+        comodel_name='ir.actions.actions',
         domain=_domain_ir_values,
         help='This report will be automatically included in the created XML')
 
@@ -111,7 +123,7 @@ class WizardExportFatturapa(models.TransientModel):
             msg = _(
                 'FatturaElettronicaHeader.DatiTrasmissione.'
                 'ProgressivoInvio:\n%s'
-            ) % unicode(e)
+            ) % str(e)
             raise UserError(msg)
         return number
 
@@ -574,6 +586,7 @@ class WizardExportFatturapa(models.TransientModel):
             'Product Price')
         uom_precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
+
         for line in invoice.invoice_line_ids:
             if not line.invoice_line_tax_ids:
                 raise UserError(
@@ -592,12 +605,10 @@ class WizardExportFatturapa(models.TransientModel):
                 # and '&#10;' would not be correctly visualized anyway
                 # (for example firefox replaces '&#10;' with space
                 Descrizione=line.name.replace('\n', ' '),
-                PrezzoUnitario=('%.' + str(
-                    price_precision
-                ) + 'f') % prezzo_unitario,
-                Quantita=('%.' + str(
-                    uom_precision
-                ) + 'f') % line.quantity,
+                PrezzoUnitario='{prezzo:.{precision}f}'.format(
+                    prezzo=prezzo_unitario, precision=price_precision),
+                Quantita='{qta:.{precision}f}'.format(
+                    qta=line.quantity, precision=uom_precision),
                 UnitaMisura=line.uom_id and (
                     unidecode(line.uom_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
@@ -796,7 +807,7 @@ class WizardExportFatturapa(models.TransientModel):
 
                 number = self.setProgressivoInvio(fatturapa)
             except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise UserError(unicode(e))
+                raise UserError(str(e))
 
             attach = self.saveAttachment(fatturapa, number)
             attachments |= attach
@@ -820,41 +831,23 @@ class WizardExportFatturapa(models.TransientModel):
         return action
 
     def generate_attach_report(self, inv):
-        action_report_model, action_report_id = (
-            self.report_print_menu.value.split(',')[0],
-            int(self.report_print_menu.value.split(',')[1]))
-        action_report = self.env[action_report_model] \
-            .browse(action_report_id)
-        report_model = self.env['report']
-        attachment_model = self.env['ir.attachment']
-        # Generate the PDF: if report_action.attachment is set
-        # they will be automatically attached to the invoice,
-        # otherwise use res to build a new attachment
-        res = report_model.get_pdf(
-            inv.ids, action_report.report_name)
-        if action_report.attachment:
-            # If the report is configured to be attached
-            # to the current invoice, just get that from the attachments.
-            # Note that in this case the attachment in
-            # fatturapa_doc_attachments is exactly the same
-            # that is attached to the invoice.
-            attachment = report_model._attachment_stored(
-                inv, action_report)[inv.id]
-        else:
-            # Otherwise, create a new attachment to be stored in
-            # fatturapa_doc_attachments.
-            filename = inv.number
-            data_attach = {
-                'name': filename,
-                'datas': base64.b64encode(res),
-                'datas_fname': filename,
-                'type': 'binary'
-            }
-            attachment = attachment_model.create(data_attach)
+        binding_model_id = self.with_context(lang=None).report_print_menu.binding_model_id.id
+        name = self.report_print_menu.name
+        report_model = self.env['ir.actions.report'].with_context(lang=None).search(
+            [('binding_model_id', '=', binding_model_id),
+             ('name', '=', name)]
+            )
+        attachment, attachment_type = report_model.render_qweb_pdf(inv.ids)
+        att_id = self.env['ir.attachment'].create({
+            'name': inv.number,
+            'type': 'binary',
+            'datas': base64.encodestring(attachment),
+            'datas_fname': '{}.pdf'.format(inv.number),
+            'res_model': 'account.invoice',
+            'res_id': inv.id,
+            'mimetype': 'application/x-pdf'
+            })
         inv.write({
             'fatturapa_doc_attachments': [(0, 0, {
-                'is_pdf_invoice_print': True,
-                'ir_attachment_id': attachment.id,
-                'description': _("Attachment generated by "
-                                 "Electronic invoice export")})]
+                'ir_attachment_id': att_id.id})]
         })
