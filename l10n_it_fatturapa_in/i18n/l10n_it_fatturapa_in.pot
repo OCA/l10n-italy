@@ -872,7 +872,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_account_config_settings
-msgid "account.config.settings"
+msgid "res.config.settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
