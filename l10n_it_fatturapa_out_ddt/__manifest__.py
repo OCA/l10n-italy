@@ -5,7 +5,7 @@
 {
     "name": "Fattura Elettronica & DDT",
     "summary": "Bridge module",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
