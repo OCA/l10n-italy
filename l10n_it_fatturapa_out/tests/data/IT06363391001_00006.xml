@@ -77,7 +77,7 @@
                     <CodiceValore>ODOOCODE</CodiceValore>
                 </CodiceArticolo>
                 <Descrizione>Mouse Optical</Descrizione>
-                <Quantita>1.00</Quantita>
+                <Quantita>1.000</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>10.00</PrezzoUnitario>
                 <PrezzoTotale>10.00</PrezzoTotale>
@@ -90,7 +90,7 @@
                     <CodiceValore>987654</CodiceValore>
                 </CodiceArticolo>
                 <Descrizione>Zed+ Antivirus</Descrizione>
-                <Quantita>1.00</Quantita>
+                <Quantita>1.000</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>4.00</PrezzoUnitario>
                 <PrezzoTotale>4.00</PrezzoTotale>
