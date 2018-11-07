@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <form string="Export Electronic Invoice">
                 <sheet>
-                    <label string="Confirm?"/>
                     <group>
                         <field name="report_print_menu"
                                string="Attached report"
