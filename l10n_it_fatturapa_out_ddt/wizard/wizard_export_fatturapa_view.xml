@@ -5,10 +5,9 @@
         <field name="model">wizard.export.fatturapa</field>
         <field name="inherit_id" ref="l10n_it_fatturapa_out.wizard_export_fatturapa_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//label" position="replace">
+            <xpath expr="//sheet/group" position="inside">
                 <field name="include_ddt_data"/>
             </xpath>
         </field>
     </record>
-
 </odoo>
