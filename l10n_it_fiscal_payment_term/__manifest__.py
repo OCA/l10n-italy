@@ -4,7 +4,7 @@
 
 {
     'name': 'Italian Localization - Fiscal payment term',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices payment',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
