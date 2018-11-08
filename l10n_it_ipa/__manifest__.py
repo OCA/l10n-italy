@@ -7,8 +7,8 @@
 
 {
     "name": "IPA Code (IndicePA)",
-    "version": "11.0.1.0.0",
-    'development_status': 'Production/Stable',
+    "version": "12.0.1.0.0",
+    "development_status": "Beta",
     "category": "Localisation/Italy",
     "author": "KTec S.r.l,Odoo Community Association (OCA),"
               "Odoo Italia Network",
