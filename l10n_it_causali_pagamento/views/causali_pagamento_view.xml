@@ -34,7 +34,7 @@
     </record>
 
     <menuitem id="menu_causale_pagamento" name="Causali pagamento"
-        action="action_causale_pagamento" parent="account.account_account_menu"
+        action="action_causale_pagamento" parent="l10n_it_account.account_italian_localization"
         groups="account.group_account_manager" sequence="45"/>
 
 </odoo>
