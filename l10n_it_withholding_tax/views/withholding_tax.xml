@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <menuitem id="wt_main" name="Withholding tax" parent="account.menu_finance" sequence="5" groups="account.group_account_user"/>
+        <menuitem id="wt_main" name="Withholding tax" parent="account.menu_finance" sequence="5" groups="account.group_account_manager"/>
 
         <!--
         WITHHOLDING TAX
@@ -156,9 +156,9 @@
                     <field name="partner_id" filter_domain="[('partner_id','ilike',self)]"/>
                     <field name="withholding_tax_id" filter_domain="[('withholding_tax_id','ilike',self)]"/>
                     <group expand="0" string="Group By...">
-                        <filter string="Partners" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
-                        <filter string="Withholding Tax" icon="terp-personal" domain="[]" context="{'group_by':'withholding_tax_id'}"/>
-                        <filter string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
+                        <filter name="group_by_partners" string="Partners" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="group_by_wt" string="Withholding Tax" icon="terp-personal" domain="[]" context="{'group_by':'withholding_tax_id'}"/>
+                        <filter name="group_by_date" string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
                     </group>
                 </search>
             </field>
@@ -241,11 +241,11 @@
                     <field name="withholding_tax_id" filter_domain="[('withholding_tax_id','ilike',self)]"/>
                     <field name="company_id" filter_domain="[('company_id','ilike',self)]" groups="base.group_multi_company"/>
                     <group expand="0" string="Group By...">
-                        <filter string="Partners" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
-                        <filter string="Withholding Tax" icon="terp-personal" domain="[]" context="{'group_by':'withholding_tax_id'}"/>
-                        <filter string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
-                        <filter string="Date Maturity" icon="terp-go-month" domain="[]" context="{'group_by':'date_maturity'}"/>
-                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                        <filter name="group_by_partner" string="Partners" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="group_by_wt" string="Withholding Tax" icon="terp-personal" domain="[]" context="{'group_by':'withholding_tax_id'}"/>
+                        <filter name="group_by_date" string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
+                        <filter name="group_by_maturity" string="Date Maturity" icon="terp-go-month" domain="[]" context="{'group_by':'date_maturity'}"/>
+                        <filter name="group_by_company" string="Company" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
                     </group>
                 </search>
             </field>

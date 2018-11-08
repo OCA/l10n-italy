@@ -1,13 +1,14 @@
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'Italian Withholding Tax',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Account',
     'author': 'Openforce, Odoo Italia Network, '
               'Odoo Community Association (OCA)',
-    'website': 'https://www.odoo-italia.net/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": ['account'],
     "data": [
