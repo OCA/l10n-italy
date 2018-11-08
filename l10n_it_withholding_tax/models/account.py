@@ -275,19 +275,25 @@ class AccountMoveLine(models.Model):
 
         return super(AccountMoveLine, self).remove_move_reconcile()
 
+
+class AccountReconciliation(models.AbstractModel):
+    _inherit = 'account.reconciliation.widget'
+
     @api.multi
-    def prepare_move_lines_for_reconciliation_widget(
-            self, target_currency=False, target_date=False):
+    def _prepare_move_lines(
+        self, move_lines, target_currency=False, target_date=False,
+        recs_count=0
+    ):
         """
         Net amount for invoices with withholding tax
         """
         res = super(
-            AccountMoveLine, self
-        ).prepare_move_lines_for_reconciliation_widget(
-            target_currency, target_date)
+            AccountReconciliation, self
+        )._prepare_move_lines(
+            move_lines, target_currency, target_date, recs_count)
         for dline in res:
             if 'id' in dline and dline['id']:
-                line = self.browse(dline['id'])
+                line = self.env['account.move.line'].browse(dline['id'])
                 if line.withholding_tax_amount:
                     dline['debit'] = (
                         line.debit - line.withholding_tax_amount if line.debit
@@ -334,11 +340,12 @@ class AccountInvoice(models.Model):
 
     withholding_tax = fields.Boolean('Withholding Tax')
     withholding_tax_line_ids = fields.One2many(
-        'account.invoice.withholding.tax', 'invoice_id', 'Withholding Tax',
+        'account.invoice.withholding.tax', 'invoice_id',
+        'Withholding Tax Lines',
         readonly=True, states={'draft': [('readonly', False)]})
     withholding_tax_amount = fields.Float(
         compute='_amount_withholding_tax',
-        digits=dp.get_precision('Account'), string='Withholding tax',
+        digits=dp.get_precision('Account'), string='Withholding tax Amount',
         store=True, readonly=True)
     amount_net_pay = fields.Float(
         compute='_amount_withholding_tax',
