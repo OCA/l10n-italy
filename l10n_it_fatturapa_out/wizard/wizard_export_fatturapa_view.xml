@@ -6,8 +6,8 @@
         <field name="arch" type="xml">
             <form string="Export Electronic Invoice">
                 <sheet>
-                    <label string="Confirm?"/>
                     <group>
+                        <separator colspan="2" string="If you want to add a PDF version of the invoice into the XML, select which one"/>
                         <field name="report_print_menu"
                                string="Attached report"
                                widget="selection"/>

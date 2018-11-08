@@ -16,7 +16,12 @@ class AccountInvoice(models.Model):
         'fatturapa.attachment.out', 'FatturaPA Export File',
         readonly=True, copy=False)
 
+    has_pdf_invoice_print = fields.Boolean(
+        related='fatturapa_attachment_out_id.has_pdf_invoice_print',
+        readonly=True)
+
     def preventive_checks(self):
+        self.ensure_one()
         for line in self.invoice_line_ids:
             if '\n' in line.name:
                 raise UserError(_(
