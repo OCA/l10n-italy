@@ -818,9 +818,16 @@ class WizardExportFatturapa(models.TransientModel):
         res = report_model.get_pdf(
             inv.ids, action_report.report_name)
         if action_report.attachment:
+            # If the report is configured to be attached
+            # to the current invoice, just get that from the attachments.
+            # Note that in this case the attachment in
+            # fatturapa_doc_attachments is exactly the same
+            # that is attached to the invoice.
             attachment = report_model._attachment_stored(
                 inv, action_report)[inv.id]
         else:
+            # Otherwise, create a new attachment to be stored in
+            # fatturapa_doc_attachments.
             filename = inv.number
             data_attach = {
                 'name': filename,
