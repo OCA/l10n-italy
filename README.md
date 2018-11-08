@@ -48,4 +48,4 @@ Vedi la nostra [documentazione per i traduttori](https://github.com/OCA/l10n-ita
 
 ## Translation Status
 
-[![Translation status](https://translation.odoo-community.org/widgets/l10n-italy-12-0/-/multi-auto.svg)](https://translation.odoo-community.org/engage/l10n-italyserver-tools-12-0/?utm_source=widget)
+[![Translation status](https://translation.odoo-community.org/widgets/l10n-italy-12-0/-/multi-auto.svg)](https://translation.odoo-community.org/engage/l10n-italy-12-0/?utm_source=widget)
