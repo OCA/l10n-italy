@@ -4,7 +4,7 @@
     <record id="view_invoice_form_fatturapa" model="ir.ui.view">
         <field name="name">account.invoice.fatturapa</field>
         <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form"></field>
+        <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <button name="action_invoice_proforma2" position="before">
                 <button name="%(action_wizard_export_fatturapa)d" type="action" states="open"
@@ -22,14 +22,14 @@
                     <group string="Related Documents">
                         <field name="related_documents" nolabel="1">
                             <tree editable="bottom" string="Related Documents">
-                                <field name="type"></field>
-                                <field name="name"></field>
-                                <field name="lineRef" readonly="1"></field>
-                                <field name="date"></field>
-                                <field name="numitem"></field>
-                                <field name="code"></field>
-                                <field name="cig"></field>
-                                <field name="cup"></field>
+                                <field name="type"/>
+                                <field name="name"/>
+                                <field name="lineRef" readonly="1"/>
+                                <field name="date"/>
+                                <field name="numitem"/>
+                                <field name="code"/>
+                                <field name="cig"/>
+                                <field name="cup"/>
                             </tree>
                         </field>
                     </group>
@@ -38,7 +38,9 @@
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                     <group>
                         <group string="Results">
-                            <field name="fatturapa_attachment_out_id"></field>
+                            <field name="fatturapa_attachment_out_id"/>
+                            <field name="has_pdf_invoice_print"
+                                   attrs="{'invisible': [('fatturapa_attachment_out_id', '=', False)]}"/>
                         </group>
                     </group>
                 </page>
@@ -47,18 +49,20 @@
                     <group string="Attachments">
                         <field name="fatturapa_doc_attachments" nolabel="1" >
                             <tree string="Attachments">
-                                <field name="ir_attachment_id"></field>
-                                <field name="datas_fname"></field>
-                                <field name="description"></field>
+                                <field name="ir_attachment_id"/>
+                                <field name="datas_fname"/>
+                                <field name="description"/>
+                                <field name="is_pdf_invoice_print"/>
                             </tree>
                             <form string="Attachments">
                                 <group>
                                     <group>
-                                        <field name="name"></field>
-                                        <field name="description"></field>
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                        <field name="is_pdf_invoice_print"/>
                                     </group>
                                     <group>
-                                            <field name="datas" filename="datas_fname" />
+                                        <field name="datas" filename="datas_fname"/>
                                         <field name="datas_fname"/>
                                     </group>
                                 </group>

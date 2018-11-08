@@ -9,6 +9,7 @@
                 <tree string="Export Fattura Elettronica" create="false">
                     <field name="name"/>
                     <field name="out_invoice_ids"/>
+                    <field name="has_pdf_invoice_print"/>
                 </tree>
             </field>
         </record>
@@ -23,10 +24,11 @@
                             <field name="datas" filename="datas_fname" />
                             <field name="datas_fname"/>
                             <field name="name"/>
+                            <field name="has_pdf_invoice_print"/>
                         </group>
                         <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
-                        <separator string="Invoices"></separator>
-                        <field name="out_invoice_ids"></field>
+                        <separator string="Invoices"/>
+                        <field name="out_invoice_ids"/>
                         <group groups="base.group_no_one" string="History">
                             <label for="create_uid" string="Creation"/>
                             <div name="creation_div">
