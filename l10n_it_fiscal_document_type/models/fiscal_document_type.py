@@ -3,6 +3,7 @@ from odoo import models, fields, api
 
 class FiscalDocumentType(models.Model):
     _name = 'fiscal.document.type'
+    _description = 'Fiscal document type'
 
     code = fields.Char(string='Code', size=5)
     name = fields.Char(string='Name', size=100)
