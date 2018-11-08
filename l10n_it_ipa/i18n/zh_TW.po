@@ -19,17 +19,29 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_it_ipa
-#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_partner_ipa_code
-#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_users_ipa_code
+#: model:ir.model,name:l10n_it_ipa.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_it_ipa
+#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_partner__ipa_code
 msgid "IPA Code"
 msgstr ""
 
 #. module: l10n_it_ipa
-#: model:ir.ui.view,arch_db:l10n_it_ipa.view_partner_ipa_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_ipa.view_partner_ipa_form
 msgid "IPA123"
 msgstr ""
 
 #. module: l10n_it_ipa
-#: model:ir.model,name:l10n_it_ipa.model_res_partner
-msgid "Partner"
-msgstr "夥伴"
+#: model_terms:ir.ui.view,arch_db:l10n_it_ipa.view_res_partner_filter_pa
+msgid "PA"
+msgstr ""
+
+#. module: l10n_it_ipa
+#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_partner__is_pa
+msgid "Public administration"
+msgstr ""
+
+#~ msgid "Partner"
+#~ msgstr "夥伴"
