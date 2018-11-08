@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo11-addon-l10n_it_rea',
         'odoo11-addon-l10n_it_website_sale_corrispettivi',
         'odoo11-addon-l10n_it_withholding_tax',
+        'odoo11-addon-l10n_it_withholding_tax_causali',
         'odoo11-addon-l10n_it_withholding_tax_payment',
     ],
     classifiers=[
