@@ -51,6 +51,10 @@
                     <field name="amount_net_pay" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
                 </xpath>
+                <xpath expr="//field[@name='residual']" position="after">
+                    <field name="amount_net_pay_residual" widget="monetary" options="{'currency_field': 'currency_id'}"
+                        attrs="{'invisible': ['|', ('state', '=', 'draft'), ('withholding_tax', '=', False)]}" class="oe_subtotal_footer_separator"/>
+                </xpath>
 
             </field>
         </record>
@@ -105,6 +109,10 @@
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
                     <field name="amount_net_pay" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='residual']" position="after">
+                    <field name="amount_net_pay_residual" widget="monetary" options="{'currency_field': 'currency_id'}"
+                        attrs="{'invisible': ['|', ('state', '=', 'draft'), ('withholding_tax', '=', False)]}" class="oe_subtotal_footer_separator"/>
                 </xpath>
 
             </field>
