@@ -65,8 +65,8 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Company %s TIN not set.') % company.name)
         if (
-            company.fatturapa_sender_partner and not
-            company.fatturapa_sender_partner.vat
+                    company.fatturapa_sender_partner and not
+                company.fatturapa_sender_partner.vat
         ):
             raise UserError(
                 _('Partner %s TIN not set.')
@@ -93,7 +93,7 @@ class WizardExportFatturapa(models.TransientModel):
                 _('FatturaPA sequence not configured.'))
         number = fatturapa_sequence.next_by_id(fatturapa_sequence.id)
         try:
-            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
                 ProgressivoInvio = number
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             msg = _(
@@ -118,15 +118,15 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Company does not have fiscal code or VAT'))
 
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+        fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
             IdTrasmittente = IdFiscaleType(
-                IdPaese=IdPaese, IdCodice=IdCodice)
+            IdPaese=IdPaese, IdCodice=IdCodice)
 
         return True
 
     def _setFormatoTrasmissione(self, partner, fatturapa):
         if partner.is_pa:
-            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
                 FormatoTrasmissione = 'FPA12'
         else:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
@@ -151,7 +151,7 @@ class WizardExportFatturapa(models.TransientModel):
             code = partner.codice_destinatario
             if code == '0000000':
                 pec_destinatario = partner.pec_destinatario
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+        fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
             CodiceDestinatario = code.upper()
         if pec_destinatario:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
@@ -170,9 +170,9 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Email address not set.'))
         Email = company.email
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+        fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
             ContattiTrasmittente = ContattiTrasmittenteType(
-                Telefono=Telefono, Email=Email)
+            Telefono=Telefono, Email=Email)
 
         return True
 
@@ -193,9 +193,10 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
             raise UserError(_(
-                'FatturaPA fiscal position not set for company %s. '
+                'Fiscal position for Fattura Elettronica not set '
+                'for company %s. '
                 '(Go to Accounting --> Configuration --> Settings --> '
-                'Fattura PA)' % company.name
+                'Fattura Elettronica)' % company.name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
@@ -281,14 +282,14 @@ class WizardExportFatturapa(models.TransientModel):
                     '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
-                )
+            )
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
             Telefono=company.partner_id.phone or None,
             Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
-            )
+        )
 
     def _setPubAdministrationRef(self, CedentePrestatore, company):
         if company.fatturapa_pub_administration_ref:
@@ -322,36 +323,36 @@ class WizardExportFatturapa(models.TransientModel):
             company)
 
     def _setDatiAnagraficiCessionario(self, partner, fatturapa):
-        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         if not partner.vat and not partner.fiscalcode:
             raise UserError(
                 _('VAT and Fiscalcode not set for %s') % partner.name)
         if partner.fiscalcode:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
         if partner.vat:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
         # if partner.company_type == 'company':
         if partner.is_company == True:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica = AnagraficaType(
-                    Denominazione=partner.name)
+                Denominazione=partner.name)
         # elif partner.company_type == 'person':
         elif partner.is_company == False:
             if not partner.lastname or not partner.firstname:
                 raise UserError(
                     _("Partner %s deve avere nome e cognome") % partner.name)
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica = AnagraficaType(
-                    Cognome=partner.lastname,
-                    Nome=partner.firstname
-                )
+                Cognome=partner.lastname,
+                Nome=partner.firstname
+            )
 
         if partner.eori_code:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code
 
         return True
@@ -359,54 +360,54 @@ class WizardExportFatturapa(models.TransientModel):
     def _setDatiAnagraficiRappresentanteFiscale(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.RappresentanteFiscale = (
             RappresentanteFiscaleType())
-        fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
+        fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
             DatiAnagrafici = DatiAnagraficiRappresentanteType()
         if not partner.vat and not partner.fiscalcode:
             raise UserError(
                 _('VAT and Fiscalcode not set for %s') % partner.name)
         if partner.fiscalcode:
-            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
+            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
         if partner.vat:
-            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
+            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
-        fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
+                IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+        fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
             DatiAnagrafici.Anagrafica = AnagraficaType(
-                Denominazione=partner.name)
+            Denominazione=partner.name)
         if partner.eori_code:
-            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
+            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
                 DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code
 
         return True
 
     def _setTerzoIntermediarioOSoggettoEmittente(self, partner, fatturapa):
-        fatturapa.FatturaElettronicaHeader.\
+        fatturapa.FatturaElettronicaHeader. \
             TerzoIntermediarioOSoggettoEmittente = (
-                TerzoIntermediarioSoggettoEmittenteType()
-            )
-        fatturapa.FatturaElettronicaHeader.\
-            TerzoIntermediarioOSoggettoEmittente.\
+            TerzoIntermediarioSoggettoEmittenteType()
+        )
+        fatturapa.FatturaElettronicaHeader. \
+            TerzoIntermediarioOSoggettoEmittente. \
             DatiAnagrafici = DatiAnagraficiTerzoIntermediarioType()
         if not partner.vat and not partner.fiscalcode:
             raise UserError(
                 _('Partner VAT and Fiscalcode not set.'))
         if partner.fiscalcode:
-            fatturapa.FatturaElettronicaHeader.\
-                TerzoIntermediarioOSoggettoEmittente.\
+            fatturapa.FatturaElettronicaHeader. \
+                TerzoIntermediarioOSoggettoEmittente. \
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
         if partner.vat:
-            fatturapa.FatturaElettronicaHeader.\
-                TerzoIntermediarioOSoggettoEmittente.\
+            fatturapa.FatturaElettronicaHeader. \
+                TerzoIntermediarioOSoggettoEmittente. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
-        fatturapa.FatturaElettronicaHeader.\
-            TerzoIntermediarioOSoggettoEmittente.\
+                IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+        fatturapa.FatturaElettronicaHeader. \
+            TerzoIntermediarioOSoggettoEmittente. \
             DatiAnagrafici.Anagrafica = AnagraficaType(
-                Denominazione=partner.name)
+            Denominazione=partner.name)
         if partner.eori_code:
-            fatturapa.FatturaElettronicaHeader.\
-                TerzoIntermediarioOSoggettoEmittente.\
+            fatturapa.FatturaElettronicaHeader. \
+                TerzoIntermediarioOSoggettoEmittente. \
                 DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code
         fatturapa.FatturaElettronicaHeader.SoggettoEmittente = 'TZ'
         return True
@@ -546,8 +547,8 @@ class WizardExportFatturapa(models.TransientModel):
     def _get_prezzo_unitario(self, line):
         res = line.price_unit
         if (
-            line.invoice_line_tax_id and
-            line.invoice_line_tax_id[0].price_include
+                    line.invoice_line_tax_id and
+                    line.invoice_line_tax_id[0].price_include
         ):
             res = line.price_unit / (
                 1 + (line.invoice_line_tax_id[0].amount / 100))
@@ -624,7 +625,7 @@ class WizardExportFatturapa(models.TransientModel):
                 AliquotaIVA='%.2f' % (tax.amount * 100),
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
-                )
+            )
             if tax.amount == 0.0:
                 if not tax.kind_id:
                     raise UserError(
@@ -669,14 +670,14 @@ class WizardExportFatturapa(models.TransientModel):
                         invoice.payment_term.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento=ImportoPagamento
-                    )
+                )
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
                         invoice.partner_bank_id.bank_name)
                     if invoice.partner_bank_id.acc_number:
                         DettaglioPagamento.IBAN = (
                             ''.join(invoice.partner_bank_id.acc_number.split())
-                            )
+                        )
                     if invoice.partner_bank_id.bank_bic:
                         DettaglioPagamento.BIC = (
                             invoice.partner_bank_id.bank_bic)
@@ -786,4 +787,4 @@ class WizardExportFatturapa(models.TransientModel):
             'view_mode': 'form',
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
-            }
+        }
