@@ -19,6 +19,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from openerp.osv.osv import except_osv
 
 
 class res_partner(orm.Model):
@@ -80,3 +81,71 @@ class res_partner(orm.Model):
 #    electronic_invoice_subjected = fields.Boolean(
 #        "Subjected to electronic invoice")
     }
+    
+
+    def _check_ftpa_partner_data(self):
+        for partner in self:
+            if partner.electronic_invoice_subjected:
+                if partner.is_pa and (
+                    not partner.ipa_code or len(partner.ipa_code) != 6
+                ):
+                    raise except_osv(_('Error' ),
+                             _(
+                        "Il partner %s, essendo una pubblica amministrazione "
+                        "deve avere il codice IPA lungo 6 caratteri"
+                    ) % partner.name)
+                if not partner.is_pa and (
+                    not partner.codice_destinatario or
+                    len(partner.codice_destinatario) != 7
+                ):
+                    raise except_osv(_('Error' ),_(
+                        "Il partner %s "
+                        "deve avere il Codice Destinatario lungo 7 caratteri"
+                    ) % partner.name)
+                if partner.company_type == 'person' and (
+                    not partner.lastname or not partner.firstname
+                ):
+                    raise except_osv(_('Error' ),_(
+                        "Il partner %s, essendo persona "
+                        "deve avere Nome e Cognome"
+                    ) % partner.name)
+                if (
+                    not partner.is_pa and
+                    partner.codice_destinatario == '0000000'
+                ):
+                    if not partner.vat and not partner.fiscalcode:
+                        raise except_osv(_('Error' ),_(
+                            "Il partner %s, con Codice Destinatario '0000000',"
+                            " deve avere o P.IVA o codice fiscale"
+                        ) % partner.name)
+                if partner.customer:
+                    if not partner.street:
+                        raise except_osv(_('Error' ),_(
+                            'Customer %s: street is needed for XML generation.'
+                        ) % partner.name)
+                    if not partner.zip:
+                        raise except_osv(_('Error' ),_(
+                            'Customer %s: ZIP is needed for XML generation.'
+                        ) % partner.name)
+                    if not partner.city:
+                        raise except_osv(_('Error' ),_(
+                            'Customer %s: city is needed for XML generation.'
+                        ) % partner.name)
+                    if not partner.state_id:
+                        raise except_osv(_('Error' ),_(
+                            'Customer %s: province is needed for XML '
+                            'generation.'
+                        ) % partner.name)
+                    if not partner.country_id:
+                        raise except_osv(_('Error' ),_(
+                            'Customer %s: country is needed for XML'
+                            ' generation.'
+                        ) % partner.name)
+
+    _constraints = [
+        (_check_ftpa_partner_data, 'Some customer infos are needed.', ['is_pa', 'ipa_code', 'codice_destinatario', 'company_type',
+        'electronic_invoice_subjected', 'vat', 'fiscalcode', 'lastname',
+        'firstname', 'customer', 'street', 'zip', 'city', 'state_id',
+        'country_id']),
+    ]
+
