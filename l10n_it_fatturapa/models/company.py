@@ -84,6 +84,20 @@ class res_company(orm.Model):
 #        )
     }
 
+    def _check_fatturapa_sequence_id(self, cr, uid, ids, context=None):
+        for company in self.browse(cr, uid, ids, context):
+            if company.fatturapa_sequence_id:
+                journal = self.pool.get('account.journal').search(cr, uid, [
+                    ('sequence_id', '=', company.fatturapa_sequence_id.id)
+                ], limit=1)
+                if journal:
+                    return False
+        return True
+
+    _constraints = [
+        (_check_fatturapa_sequence_id, 'Sequence already used by journal. Please select another one.', ['fatturapa_sequence_id']),
+    ]
+
 
 class account_config_settings(orm.TransientModel):
     _inherit = 'account.config.settings'
@@ -203,18 +217,20 @@ class account_config_settings(orm.TransientModel):
         if company_id:
             company = self.pool.get('res.company').browse(
                 cr, uid, company_id, context=context)
+            # TODO: Check if works sequence
+            default_sequence = self.pool.get('ir.sequence').search(cr, uid, [
+                ('code', '=', 'account.invoice.fatturapa')
+            ])
+            default_sequence = (
+                default_sequence[0].id if default_sequence else False)
             res['value'].update({
                 'fatturapa_fiscal_position_id': (
                     company.fatturapa_fiscal_position_id and
                     company.fatturapa_fiscal_position_id.id or False
                     ),
-                'fatturapa_format_id': (
-                    company.fatturapa_format_id and
-                    company.fatturapa_format_id.id or False
-                    ),
                 'fatturapa_sequence_id': (
                     company.fatturapa_sequence_id and
-                    company.fatturapa_sequence_id.id or False
+                    company.fatturapa_sequence_id.id or default_sequence
                     ),
                 'fatturapa_art73': (
                     company.fatturapa_art73 or False
@@ -246,11 +262,18 @@ class account_config_settings(orm.TransientModel):
                     company.fatturapa_sender_partner and
                     company.fatturapa_sender_partner.id or False
                     ),
+                'fatturapa_stabile_organizzazione': (
+                    company.fatturapa_stabile_organizzazione and
+                    company.fatturapa_stabile_organizzazione.id or False
+                    ),
+                'fatturapa_format_id': (
+                    company.fatturapa_format_id and
+                    company.fatturapa_format_id.id or False
+                    ),
                 })
         else:
             res['value'].update({
                 'fatturapa_fiscal_position_id': False,
-                'fatturapa_format_id': False,
                 'fatturapa_sequence_id': False,
                 'fatturapa_art73': False,
                 'fatturapa_pub_administration_ref': False,
@@ -261,5 +284,7 @@ class account_config_settings(orm.TransientModel):
                 'fatturapa_rea_liquidation': False,
                 'fatturapa_tax_representative': False,
                 'fatturapa_sender_partner': False,
+                'fatturapa_stabile_organizzazione': False,
+                'fatturapa_format_id': False,
                 })
         return res
