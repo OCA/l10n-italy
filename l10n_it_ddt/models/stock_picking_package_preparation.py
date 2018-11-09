@@ -192,6 +192,11 @@ class StockPickingPackagePreparation(models.Model):
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.multi
+    def action_done(self):
+        return super(StockPickingPackagePreparation,
+                     self.with_context(ddt_processing=True)).action_done()
+
+    @api.multi
     def set_done(self):
         for picking in self.picking_ids:
             if picking.state != 'done':

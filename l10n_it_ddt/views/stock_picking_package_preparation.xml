@@ -85,6 +85,9 @@
                        domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
                        attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
             </field>
+            <field name="picking_ids" position="attributes">
+                <attribute name="widget">one2many_list</attribute>
+            </field>
             <notebook position="inside">
                 <page string="Shipping Informations"
                       attrs="{'invisible':[('ddt_type_id', '=', False)]}">
