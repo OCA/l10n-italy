@@ -30,7 +30,8 @@ class AccountInvoice(models.Model):
     @api.one
     @api.depends(
         'invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
-        'currency_id', 'company_id', 'date_invoice'
+        'tax_line_ids.amount_rounding',
+        'currency_id', 'company_id', 'date_invoice', 'type'
     )
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
@@ -62,16 +63,9 @@ class AccountInvoice(models.Model):
     @api.multi
     def get_receivable_line_ids(self):
         # return the move line ids with the same account as the invoice self
-        if not self.id:
-            return []
-        query = (
-            "SELECT l.id "
-            "FROM account_move_line l, account_invoice i "
-            "WHERE i.id = %s AND l.move_id = i.move_id "
-            "AND l.account_id = i.account_id"
-        )
-        self._cr.execute(query, (self.id,))
-        return [row[0] for row in self._cr.fetchall()]
+        self.ensure_one()
+        return self.move_id.line_ids.filtered(
+            lambda r: r.account_id.id == self.account_id.id).ids
 
     @api.multi
     def _compute_split_payments(self):
@@ -101,10 +95,7 @@ class AccountInvoice(models.Model):
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()
         for invoice in self:
-            if (
-                invoice.fiscal_position_id and
-                invoice.fiscal_position_id.split_payment
-            ):
+            if invoice.split_payment:
                 if invoice.type in ['in_invoice', 'in_refund']:
                     raise UserError(
                         _("Can't handle supplier invoices with split payment"))
