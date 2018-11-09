@@ -8,4 +8,4 @@ from odoo import models, fields
 class FetchmailServer(models.Model):
     _inherit = "fetchmail.server"
 
-    is_fatturapa_pec = fields.Boolean("PEC server")
+    is_fatturapa_pec = fields.Boolean("FatturaPA PEC server")
