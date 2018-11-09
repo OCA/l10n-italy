@@ -59,8 +59,6 @@ class FatturaPAAttachmentOut(models.Model):
             res = mail.send()
             if res:
                 self.state = 'sent'
-        # TODO Should we disable some mail.* config params before
-        # TODO sending? See: https://tinyurl.com/ybr45fxd
 
     @api.multi
     def parse_pec_response(self, message_dict):

@@ -16,6 +16,7 @@
         'l10n_it_sdi_channel',
     ],
     'data': [
+        'views/account.xml',
         'views/fatturapa_attachment_out.xml',
     ],
     'installable': True
