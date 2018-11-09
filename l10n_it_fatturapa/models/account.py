@@ -181,6 +181,7 @@ class welfare_fund_data_line(orm.Model):
             ('N5', 'regime del margine'),
             ('N6', 'inversione contabile (reverse charge)'),
         ], string="Non taxable nature"),
+        #TODO: Il campo fund_nature è stato sostiruito con kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),
@@ -331,6 +332,20 @@ class account_invoice_line(orm.Model):
             'Related DdT'
         ),
         'admin_ref': fields.char('Administration ref.', size=20),
+        
+        
+        
+    'discount_rise_price_ids': fields.one2many(
+        'discount.rise.price', 'invoice_line_id',
+        'Discount and Rise Price Details', copy=False
+    ),
+    'ftpa_line_number': fields.integer("Line number", readonly=True, copy=False) ,
+#TODO: Campi da migrare perchè non presenti 
+#    discount_rise_price_ids = fields.One2many(
+#        'discount.rise.price', 'invoice_line_id',
+#        'Discount and Rise Price Details', copy=False
+#    )
+#    ftpa_line_number = fields.Integer("Line number", readonly=True, copy=False) 
     }
 
 
@@ -346,6 +361,7 @@ class faturapa_summary_data(orm.Model):
             ('N4', 'esenti'),
             ('N5', 'regime del margine'),
             ('N6', 'inversione contabile (reverse charge)'),
+            ('N7', 'IVA assolta in altro stato UE')
         ], string="Non taxable nature"),
         'incidental charges': fields.float('Incidental Charges'),
         'rounding': fields.float('Rounding'),
@@ -437,6 +453,12 @@ class account_invoice(orm.Model):
         'transport_date': fields.date('Transport Date'),
         'delivery_address': fields.text('Delivery Address'),
         'delivery_datetime': fields.datetime('Delivery Date Time'),
+        
+        
+        'ftpa_incoterms': fields.char(string="Incoterms", copy=False),
+#TODO: Campo da migrare
+#    ftpa_incoterms = fields.Char(string="Incoterms", copy=False)
+
         #  2.1.10
         'related_invoice_code': fields.char('Related invoice code'),
         'related_invoice_date': fields.date('Related invoice date'),
@@ -459,6 +481,106 @@ class account_invoice(orm.Model):
             'fatturapa.attachments', 'invoice_id',
             'FatturaPA attachments'
         ),
+        
+        
+        
+    'efatt_stabile_organizzazione_indirizzo': fields.char(
+        string="Indirizzo Organizzazione",
+        help="Blocco da valorizzare nei casi di cedente / prestatore non "
+             "residente, con stabile organizzazione in Italia. Indirizzo "
+             "della stabile organizzazione in Italia (nome della via, piazza "
+             "etc.)",
+        readonly=True, copy=False),
+    'efatt_stabile_organizzazione_civico': fields.char(
+        string="Civico Organizzazione",
+        help="Numero civico riferito all'indirizzo (non indicare se gia' "
+             "presente nell'elemento informativo indirizzo)",
+        readonly=True, copy=False),
+    'efatt_stabile_organizzazione_cap': fields.char(
+        string="CAP Organizzazione",
+        help="Codice Avviamento Postale",
+        readonly=True, copy=False),
+    'efatt_stabile_organizzazione_comune': fields.char(
+        string="Comune Organizzazione",
+        help="Comune relativo alla stabile organizzazione in Italia",
+        readonly=True, copy=False),
+    'efatt_stabile_organizzazione_provincia': fields.char(
+        string="Provincia Organizzazione",
+        help="Sigla della provincia di appartenenza del comune indicato "
+             "nell'elemento informativo 1.2.3.4 <Comune>. Da valorizzare se "
+             "l'elemento informativo 1.2.3.6 <Nazione> e' uguale a IT",
+        readonly=True, copy=False),
+    'efatt_stabile_organizzazione_nazione': fields.char(
+        string="Nazione Organizzazione",
+        help="Codice della nazione espresso secondo lo standard "
+             "ISO 3166-1 alpha-2 code",
+        readonly=True, copy=False),
+    # 2.1.1.10
+    'efatt_rounding': fields.float(
+        "Arrotondamento", readonly=True,
+        help="Eventuale arrotondamento sul totale documento (ammette anche il "
+             "segno negativo)", copy=False
+    ),
+    'art73': fields.boolean(
+        'Art73', readonly=True,
+        help="Indica se il documento e' stato emesso secondo modalita' e "
+             "termini stabiliti con decreto ministeriale ai sensi "
+             "dell'articolo 73 del DPR 633/72 (cio' consente al "
+             "cedente/prestatore l'emissione nello stesso anno di piu' "
+             "documenti aventi stesso numero)", copy=False),
+    'electronic_invoice_subjected': fields.boolean(
+        'Subjected to electronic invoice',
+        related='partner_id.electronic_invoice_subjected', readonly=True),
+
+#TODO: Campi da migrare
+#    efatt_stabile_organizzazione_indirizzo = fields.Char(
+#        string="Indirizzo Organizzazione",
+#        help="Blocco da valorizzare nei casi di cedente / prestatore non "
+#             "residente, con stabile organizzazione in Italia. Indirizzo "
+#             "della stabile organizzazione in Italia (nome della via, piazza "
+#             "etc.)",
+#        readonly=True, copy=False)
+#    efatt_stabile_organizzazione_civico = fields.Char(
+#        string="Civico Organizzazione",
+#        help="Numero civico riferito all'indirizzo (non indicare se gia' "
+#             "presente nell'elemento informativo indirizzo)",
+#        readonly=True, copy=False)
+#    efatt_stabile_organizzazione_cap = fields.Char(
+#        string="CAP Organizzazione",
+#        help="Codice Avviamento Postale",
+#        readonly=True, copy=False)
+#    efatt_stabile_organizzazione_comune = fields.Char(
+#        string="Comune Organizzazione",
+#        help="Comune relativo alla stabile organizzazione in Italia",
+#        readonly=True, copy=False)
+#    efatt_stabile_organizzazione_provincia = fields.Char(
+#        string="Provincia Organizzazione",
+#        help="Sigla della provincia di appartenenza del comune indicato "
+#             "nell'elemento informativo 1.2.3.4 <Comune>. Da valorizzare se "
+#             "l'elemento informativo 1.2.3.6 <Nazione> e' uguale a IT",
+#        readonly=True, copy=False)
+#    efatt_stabile_organizzazione_nazione = fields.Char(
+#        string="Nazione Organizzazione",
+#        help="Codice della nazione espresso secondo lo standard "
+#             "ISO 3166-1 alpha-2 code",
+#        readonly=True, copy=False)
+#    # 2.1.1.10
+#    efatt_rounding = fields.Float(
+#        "Arrotondamento", readonly=True,
+#        help="Eventuale arrotondamento sul totale documento (ammette anche il "
+#             "segno negativo)", copy=False
+#    )
+#    art73 = fields.Boolean(
+#        'Art73', readonly=True,
+#        help="Indica se il documento e' stato emesso secondo modalita' e "
+#             "termini stabiliti con decreto ministeriale ai sensi "
+#             "dell'articolo 73 del DPR 633/72 (cio' consente al "
+#             "cedente/prestatore l'emissione nello stesso anno di piu' "
+#             "documenti aventi stesso numero)", copy=False)
+#    electronic_invoice_subjected = fields.Boolean(
+#        'Subjected to electronic invoice',
+#        related='partner_id.electronic_invoice_subjected', readonly=True)
+    
     }
     _defaults = {
         'virtual_stamp': False

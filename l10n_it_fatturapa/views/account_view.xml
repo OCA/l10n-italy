@@ -3,6 +3,7 @@
     <data>
         <menuitem name="Fattura PA" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
         <menuitem name="Fattura PA" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
+
         <record id="view_payment_term_form_fatturapa" model="ir.ui.view">
             <field name="name">account.payment.term.fatturapa</field>
             <field name="model">account.payment.term</field>
@@ -17,6 +18,7 @@
                 </field>
             </field>
         </record>
+
         <record id="customer_invoice_lines_not_editable" model="ir.ui.view">
             <field name="name">customer_invoice_lines_not_editable</field>
             <field name="model">account.invoice</field>
@@ -27,6 +29,7 @@
                 </xpath>
             </field>
         </record>
+
         <record id="supplier_invoice_lines_not_editable" model="ir.ui.view">
             <field name="name">supplier_invoice_lines_not_editable</field>
             <field name="model">account.invoice</field>
@@ -44,7 +47,7 @@
             <field name="inherit_id" ref="account.view_invoice_line_form"></field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
-                    <separator string="FatturaPA"></separator>
+                    <separator string="Fattura Elettronica"></separator>
                     <div id="admin_ref">
                         <group>
                             <field name="admin_ref"/>

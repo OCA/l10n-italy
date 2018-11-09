@@ -33,6 +33,10 @@
                                 <field name="fatturapa_tax_representative" class="oe_inline"/>
                             </div>
                             <div>
+                                <label for="fatturapa_stabile_organizzazione"/>
+                                <field name="fatturapa_stabile_organizzazione" class="oe_inline"/>
+                            </div>
+                            <div>
                                 <label for="fatturapa_sender_partner"/>
                                 <field name="fatturapa_sender_partner" class="oe_inline"/>
                             </div>
