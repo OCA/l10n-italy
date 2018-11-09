@@ -1,5 +1,5 @@
 # Copyright 2015  Davide Corio <davide.corio@abstract.it>
-# Copyright 2015-2016  Lorenzo Battistini - Agile Business Group
+# Copyright 2015-2018  Lorenzo Battistini - Agile Business Group
 # Copyright 2016  Alessio Gerace - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -15,6 +15,10 @@ class TestSP(AccountTestUsers):
         self.term_model = self.env['account.payment.term']
         self.inv_line_model = self.env['account.invoice.line']
         self.fp_model = self.env['account.fiscal.position']
+        self.tax22sp = self.tax_model.create({
+            'name': '22% SP',
+            'amount': 22,
+            })
         self.tax22 = self.tax_model.create({
             'name': '22%',
             'amount': 22,
@@ -22,6 +26,10 @@ class TestSP(AccountTestUsers):
         self.sp_fp = self.fp_model.create({
             'name': 'Split payment',
             'split_payment': True,
+            'tax_ids': [(0, 0, {
+                'tax_src_id': self.tax22.id,
+                'tax_dest_id': self.tax22sp.id
+            })]
             })
         self.company = self.env.ref('base.main_company')
         self.company.sp_account_id = self.env['account.account'].search([
@@ -68,6 +76,7 @@ class TestSP(AccountTestUsers):
             limit=1).date_invoice
 
     def test_invoice(self):
+        self.assertTrue(self.tax22sp.is_split_payment)
         invoice = self.invoice_model.create({
             'date_invoice': self.recent_date,
             'partner_id': self.env.ref('base.res_partner_3').id,
@@ -80,7 +89,7 @@ class TestSP(AccountTestUsers):
                 'quantity': 1,
                 'price_unit': 100,
                 'invoice_line_tax_ids': [(6, 0, {
-                    self.tax22.id
+                    self.tax22sp.id
                     })]
                 })]
             })
@@ -115,7 +124,7 @@ class TestSP(AccountTestUsers):
                 'quantity': 1,
                 'price_unit': 100,
                 'invoice_line_tax_ids': [(6, 0, {
-                    self.tax22.id
+                    self.tax22sp.id
                     })]
                 })]
             })
@@ -150,7 +159,7 @@ class TestSP(AccountTestUsers):
                 'quantity': 1,
                 'price_unit': 100,
                 'invoice_line_tax_ids': [(6, 0, {
-                    self.tax22.id
+                    self.tax22sp.id
                     })]
                 })]
         })
