@@ -3,7 +3,8 @@
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from openerp import fields, models, api
+from openerp import fields, models, api, _
+from openerp.exceptions import ValidationError
 
 
 class ResCompany(models.Model):
@@ -50,6 +51,21 @@ class ResCompany(models.Model):
              'residente, con stabile organizzazione in Italia'
         )
 
+    @api.multi
+    @api.constrains(
+        'fatturapa_sequence_id'
+    )
+    def _check_fatturapa_sequence_id(self):
+        for company in self:
+            if company.fatturapa_sequence_id:
+                journal = self.env['account.journal'].search([
+                    ('sequence_id', '=', company.fatturapa_sequence_id.id)
+                ], limit=1)
+                if journal:
+                    raise ValidationError(_(
+                        "Sequence %s already used by journal %s. Please select"
+                        " another one"
+                    ) % (company.fatturapa_sequence_id.name, journal.name))
 
 class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'
