@@ -28,8 +28,6 @@ class SdiChannel(models.Model):
     pec_server_id = fields.Many2one(
         'ir.mail_server', string='Pec mail server', required=False,
         domain=[('is_fatturapa_pec', '=', True)])
-    email_from_for_fatturaPA = fields.Char(
-        "Sender Email Address")
     email_exchange_system = fields.Char("Exchange System Email Address")
     web_server_address = fields.Char(string='Web server address')
     web_server_login = fields.Char(string='Web server login')
@@ -46,13 +44,9 @@ class SdiChannel(models.Model):
                     _("The channel %s with pec server %s already exists")
                     % (channel.name, channel.pec_server_id.name))
 
-    @api.constrains('email_from_for_fatturaPA', 'email_exchange_system')
+    @api.constrains('email_exchange_system')
     def check_email_validity(self):
         for channel in self:
-            if not extract_rfc2822_addresses(channel.email_from_for_fatturaPA):
-                raise exceptions.ValidationError(
-                    _("Email %s is not valid")
-                    % channel.email_from_for_fatturaPA)
             if not extract_rfc2822_addresses(channel.email_exchange_system):
                 raise exceptions.ValidationError(
                     _("Email %s is not valid")

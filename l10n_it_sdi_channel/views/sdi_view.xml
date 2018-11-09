@@ -9,7 +9,6 @@
                 <field name="channel_type"/>
                 <field name="pec_server_id" attrs="{'invisible': [('channel_type', '!=', 'pec')]}"/>
                 <field name="email_exchange_system" attrs="{'invisible': [('channel_type', '!=', 'pec')]}"/>
-                <field name="email_from_for_fatturaPA" attrs="{'invisible': [('channel_type', '!=', 'pec')]}"/>
                 <field name="web_server_address" attrs="{'invisible': [('channel_type', '!=', 'web')]}"/>
                 <field name="web_server_login" attrs="{'invisible': [('channel_type', '!=', 'web')]}"/>
                 <field name="web_server_password" attrs="{'invisible': [('channel_type', '!=', 'web')]}"/>
@@ -30,7 +29,6 @@
                     <group attrs="{'invisible': [('channel_type', '!=', 'pec')]}">
                         <field name="pec_server_id" context="{'default_is_pec': True}"/>
                         <field name="email_exchange_system"/>
-                        <field name="email_from_for_fatturaPA"/>
                     </group>
                     <group attrs="{'invisible': [('channel_type', '!=', 'web')]}">
                         <field name="web_server_address"/>

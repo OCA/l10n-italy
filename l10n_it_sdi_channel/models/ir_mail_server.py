@@ -8,4 +8,6 @@ from odoo import models, fields
 class IrMailServer(models.Model):
     _inherit = "ir.mail_server"
 
-    is_fatturapa_pec = fields.Boolean("PEC server")
+    is_fatturapa_pec = fields.Boolean("FatturaPA PEC server")
+    email_from_for_fatturaPA = fields.Char(
+        "Sender Email Address")
