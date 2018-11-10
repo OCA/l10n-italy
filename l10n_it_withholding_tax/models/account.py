@@ -7,6 +7,35 @@ import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
 
 
+class AccountFullReconcile(models.Model):
+    _inherit = "account.full.reconcile"
+
+    def _get_wt_moves(self):
+        moves = self.mapped('reconciled_line_ids.move_id')
+        wt_moves = self.env['withholding.tax.move'].search([
+            ('wt_account_move_id', 'in', moves.ids)])
+        return wt_moves
+
+    @api.model
+    def create(self, vals):
+        res = super(AccountFullReconcile, self).create(vals)
+        wt_moves = res._get_wt_moves()
+        for wt_move in wt_moves:
+            if wt_move.full_reconcile_id:
+                wt_move.action_paid()
+        return res
+
+    @api.multi
+    def unlink(self):
+        for rec in self:
+            wt_moves = rec._get_wt_moves()
+            super(AccountFullReconcile, rec).unlink()
+            for wt_move in wt_moves:
+                if not wt_move.full_reconcile_id:
+                    wt_move.action_set_to_draft()
+        return True
+
+
 class AccountPartialReconcile(models.Model):
     _inherit = "account.partial.reconcile"
 
@@ -21,7 +50,8 @@ class AccountPartialReconcile(models.Model):
             ml_ids.append(vals.get('debit_move_id'))
         if vals.get('credit_move_id'):
             ml_ids.append(vals.get('credit_move_id'))
-        for ml in self.env['account.move.line'].browse(ml_ids):
+        move_lines = self.env['account.move.line'].browse(ml_ids)
+        for ml in move_lines:
             domain = [('move_id', '=', ml.move_id.id)]
             invoice = self.env['account.invoice'].search(domain)
             if invoice:
@@ -494,6 +524,19 @@ class AccountInvoice(models.Model):
                 'tax': wt_tax_amount,
             }
             wt_statement_obj.create(val)
+
+    @api.model
+    def _get_payments_vals(self):
+        payment_vals = super(AccountInvoice, self)._get_payments_vals()
+        if self.payment_move_line_ids:
+            for payment_val in payment_vals:
+                move_line = self.env['account.move.line'].browse(
+                    payment_val['payment_id'])
+                if move_line.withholding_tax_generated_by_move_id:
+                    payment_val['wt_move_line'] = True
+                else:
+                    payment_val['wt_move_line'] = False
+        return payment_vals
 
 
 class AccountInvoiceLine(models.Model):
