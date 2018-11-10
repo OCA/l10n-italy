@@ -44,7 +44,7 @@ Visto che le aliquote possono variare nel corso del tempo, nella codifica sono p
 E’ necessario anche inserire i conti contabili che verranno utilizzati quando il modulo si occuperà di generare registrazioni contabili per la rilevazione della ritenuta.
 
 .. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_withholding_tax/static/img/ritenuta-acconto-odoo-codifica-768x457.png
-   :alt: alternative description
+   :alt: Withholding tax
    :width: 600 px
 
 Una volta aggiunta, nella tabella ritenute, potrà essere utilizzata all’interno della fattura, in corrispondenza delle righe soggette a ritenute.
@@ -56,7 +56,7 @@ Il modulo ritenute calcolerà i valori corrispondenti e ne mostrerà il dettagli
 In calce ai totali, verrà totalizzato l’ammontare della ritenuta e il netto a pagare. Questa sezione sarà visibile solamente in presenza di almeno una ritenuta
 
 .. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_withholding_tax/static/img/fattura-fornitore-768x517.png
-   :alt: alternative description
+   :alt: Supplier invoice
    :width: 600 px
 
 Successivamente andando nella sezione situazione ritenute d’acconto il sistema vi mostrerà una situazione riepilogativa delle varie ritenute divisa per documento di origine.
@@ -70,7 +70,7 @@ I campi principalmente da tenere in considerazione in questa tabella sono: riten
 *Ritenuta versata* contiene l’importo di ritenuta, già applicata, che è stata versata all’erario
 
 .. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_withholding_tax/static/img/foto-3-1-1024x505.png
-   :alt: alternative description
+   :alt: WT statement
    :width: 600 px
 
 Bug Tracker
