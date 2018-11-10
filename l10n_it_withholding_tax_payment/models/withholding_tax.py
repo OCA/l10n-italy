@@ -87,7 +87,7 @@ class WithholdingTaxMovePayment(models.Model):
                 if wt_move.amount > 0:
                     debit = wt_move.amount
                 else:
-                    credit = wt_move.amount
+                    credit = abs(wt_move.amount)
                 vals = {
                     'name': _('Withholding Tax Payment %s')
                     % wt_move.partner_id.name,
