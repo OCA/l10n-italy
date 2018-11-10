@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-l10n_it_account',
+        'odoo12-addon-l10n_it_fiscal_document_type',
         'odoo12-addon-l10n_it_fiscal_payment_term',
         'odoo12-addon-l10n_it_fiscalcode',
         'odoo12-addon-l10n_it_ipa',
