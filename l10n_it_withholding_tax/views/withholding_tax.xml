@@ -91,7 +91,7 @@
             <field name="name">view.withholding.tax.statement.tree</field>
             <field name="model">withholding.tax.statement</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Tax statement" delete="false">
+                <tree string="Withholding Tax statement" create="false" edit="false" delete="false">
                     <field name="partner_id"/>
                     <field name="date"/>
                     <field name="move_id"/>
@@ -111,7 +111,7 @@
             <field name="model">withholding.tax.statement</field>
             <field name="arch" type="xml">
 
-                <form string="Withholding Tax statement" delete="false">
+                <form string="Withholding Tax statement" create="false" edit="false" delete="false">
                     <sheet> 
                         <group>
                             <group>
@@ -181,7 +181,7 @@
             <field name="name">view.withholding.tax.move.tree</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Tax Move" delete="false">
+                <tree string="Withholding Tax Move" create="false" edit="false" delete="false">
                     <field name="partner_id"/>
                     <field name="date"/>
                     <field name="withholding_tax_id"/>
@@ -198,9 +198,9 @@
             <field name="name">view.withholding.tax.move.form</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
-                <form string="Withholding Tax Move" delete="false">
+                <form string="Withholding Tax Move" create="false" edit="false" delete="false">
                     <header>
-                        <button name="action_set_to_draft" states="paid" string="Set to Draft" type="object" />
+                        <button name="action_set_to_draft" states="paid" string="Set to Due" type="object" />
                         <button name="action_paid" states="due" string="Paid" type="object" />
                         <field name="state" widget="statusbar" statusbar_visible="due,paid"/>
                     </header>
@@ -222,6 +222,7 @@
                                 <field name="reconcile_partial_id"/>
                                 <field name="date_maturity"/>
                                 <field name="wt_account_move_id"/>
+                                <field name="full_reconcile_id"/>
                                 <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                             </group>
                         </group>
@@ -256,6 +257,7 @@
             <field name="res_model">withholding.tax.move</field>
             <field name="view_id" ref="view_withholding_move_tree"/>
             <field name="search_view_id" ref="view_withholding_move_search" />
+            <field name="context">{'search_default_due': True}</field>
         </record>
 
         <menuitem id="menu_withholding_tax_move" name="WT Moves" 
