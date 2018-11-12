@@ -587,7 +587,11 @@ class WizardExportFatturapa(models.TransientModel):
             prezzo_unitario = self._get_prezzo_unitario(line)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
-                Descrizione=line.name,
+                # can't insert newline with pyxb
+                # see https://tinyurl.com/ycem923t
+                # and '&#10;' would not be correctly visualized anyway
+                # (for example firefox replaces '&#10;' with space
+                Descrizione=line.name.replace('\n', ' '),
                 PrezzoUnitario=('%.' + str(
                     price_precision
                 ) + 'f') % prezzo_unitario,
@@ -745,64 +749,76 @@ class WizardExportFatturapa(models.TransientModel):
 
         return partner
 
+    def group_invoices_by_partner(self):
+        invoice_ids = self.env.context.get('active_ids', False)
+        res = {}
+        for invoice in self.env['account.invoice'].browse(invoice_ids):
+            if invoice.partner_id.id not in res:
+                res[invoice.partner_id.id] = []
+            res[invoice.partner_id.id].append(invoice.id)
+        return res
+
     def exportFatturaPA(self):
-
-        # self.setNameSpace()
-
         model_data_obj = self.env['ir.model.data']
         invoice_obj = self.env['account.invoice']
-        invoice_ids = self.env.context.get('active_ids', False)
-        partner = self.getPartnerId(invoice_ids)
+        invoices_by_partner = self.group_invoices_by_partner()
+        attachments = self.env['fatturapa.attachment.out']
+        for partner_id in invoices_by_partner:
+            invoice_ids = invoices_by_partner[partner_id]
+            partner = self.getPartnerId(invoice_ids)
+            if partner.is_pa:
+                fatturapa = FatturaElettronica(versione='FPA12')
+            else:
+                fatturapa = FatturaElettronica(versione='FPR12')
 
-        if partner.is_pa:
-            fatturapa = FatturaElettronica(versione='FPA12')
-        else:
-            fatturapa = FatturaElettronica(versione='FPR12')
+            company = self.env.user.company_id
+            context_partner = self.env.context.copy()
+            context_partner.update({'lang': partner.lang})
+            try:
+                self.with_context(context_partner).setFatturaElettronicaHeader(
+                    company, partner, fatturapa)
+                for invoice_id in invoice_ids:
+                    inv = invoice_obj.with_context(context_partner).browse(
+                        invoice_id)
+                    if inv.fatturapa_attachment_out_id:
+                        raise UserError(
+                            _("Invoice %s has FatturaPA Export File yet") % (
+                                inv.number))
+                    if self.report_print_menu:
+                        self.generate_attach_report(inv)
+                    invoice_body = FatturaElettronicaBodyType()
+                    inv.preventive_checks()
+                    self.with_context(
+                        context_partner
+                    ).setFatturaElettronicaBody(
+                        inv, invoice_body)
+                    fatturapa.FatturaElettronicaBody.append(invoice_body)
+                    # TODO DatiVeicoli
 
-        company = self.env.user.company_id
-        context_partner = self.env.context.copy()
-        context_partner.update({'lang': partner.lang})
-        try:
-            self.with_context(context_partner).setFatturaElettronicaHeader(
-                company, partner, fatturapa)
+                number = self.setProgressivoInvio(fatturapa)
+            except (SimpleFacetValueError, SimpleTypeValueError) as e:
+                raise UserError(unicode(e))
+
+            attach = self.saveAttachment(fatturapa, number)
+            attachments |= attach
+
             for invoice_id in invoice_ids:
-                inv = invoice_obj.with_context(context_partner).browse(
-                    invoice_id)
-                if inv.fatturapa_attachment_out_id:
-                    raise UserError(
-                        _("Invoice %s has FatturaPA Export File yet") % (
-                            inv.number))
-                if self.report_print_menu:
-                    self.generate_attach_report(inv)
-                invoice_body = FatturaElettronicaBodyType()
-                inv.preventive_checks()
-                self.with_context(context_partner).setFatturaElettronicaBody(
-                    inv, invoice_body)
-                fatturapa.FatturaElettronicaBody.append(invoice_body)
-                # TODO DatiVeicoli
+                inv = invoice_obj.browse(invoice_id)
+                inv.write({'fatturapa_attachment_out_id': attach.id})
 
-            number = self.setProgressivoInvio(fatturapa)
-        except (SimpleFacetValueError, SimpleTypeValueError) as e:
-            raise UserError(unicode(e))
-
-        attach = self.saveAttachment(fatturapa, number)
-
-        for invoice_id in invoice_ids:
-            inv = invoice_obj.browse(invoice_id)
-            inv.write({'fatturapa_attachment_out_id': attach.id})
-
-        view_id = model_data_obj.xmlid_to_res_id(
-            'l10n_it_fatturapa_out.view_fatturapa_out_attachment_form')
-
-        return {
+        action = {
             'view_type': 'form',
             'name': "Export Electronic Invoice",
-            'view_id': [view_id],
-            'res_id': attach.id,
-            'view_mode': 'form',
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
             }
+        if len(attachments) == 1:
+            action['view_mode'] = 'form'
+            action['res_id'] = attachments[0].id
+        else:
+            action['view_mode'] = 'tree,form'
+            action['domain'] = [('id', 'in', attachments.ids)]
+        return action
 
     def generate_attach_report(self, inv):
         action_report_model, action_report_id = (
