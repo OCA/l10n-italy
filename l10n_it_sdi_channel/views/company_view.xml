@@ -12,11 +12,11 @@
                             <label for="sdi_channel_id"/>
                             <field name="sdi_channel_id" required="1" class="oe_inline"/>
                         </div>
-                        <div>
+                        <div attrs="{'invisible': [('sdi_channel_id.channel_type', '!=', 'pec')]}">
                             <label for="email_from_for_fatturaPA"/>
                             <field name="email_from_for_fatturaPA" class="oe_inline"/>
                         </div>
-                        <div>
+                        <div attrs="{'invisible': [('sdi_channel_id.channel_type', '!=', 'pec')]}">
                             <label for="email_exchange_system"/>
                             <field name="email_exchange_system" class="oe_inline"/>
                         </div>

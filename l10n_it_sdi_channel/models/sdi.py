@@ -21,6 +21,11 @@ class SdiChannel(models.Model):
         'res.company', string='Company', required=True,
         default=lambda self:
         self.env['res.company']._company_default_get('sdi.channel'))
+
+
+class SdiChannelPEC(models.Model):
+    _inherit = "sdi.channel"
+
     channel_type = fields.Selection(
         string='SdI channel type', selection=SDI_CHANNELS, required=True,
         help='PEC is the only implemented channel in this module. Other '
@@ -29,10 +34,6 @@ class SdiChannel(models.Model):
         'ir.mail_server', string='Pec mail server', required=False,
         domain=[('is_fatturapa_pec', '=', True)])
     email_exchange_system = fields.Char("Exchange System Email Address")
-    web_server_address = fields.Char(string='Web server address')
-    web_server_login = fields.Char(string='Web server login')
-    web_server_password = fields.Char(string='Web server password')
-    web_server_token = fields.Char(string='Web server token')
 
     @api.constrains('pec_server_id')
     def check_pec_server_id(self):
@@ -51,3 +52,12 @@ class SdiChannel(models.Model):
                 raise exceptions.ValidationError(
                     _("Email %s is not valid")
                     % channel.email_exchange_system)
+
+
+class SdiChannelWEB(models.Model):
+    _inherit = "sdi.channel"
+
+    web_server_address = fields.Char(string='Web server address')
+    web_server_login = fields.Char(string='Web server login')
+    web_server_password = fields.Char(string='Web server password')
+    web_server_token = fields.Char(string='Web server token')
