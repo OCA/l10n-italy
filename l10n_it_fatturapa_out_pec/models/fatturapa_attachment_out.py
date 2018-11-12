@@ -21,7 +21,7 @@ class FatturaPAAttachmentOut(models.Model):
 
     state = fields.Selection([('ready', 'Ready to Send'),
                               ('sent', 'Sent'),
-                              ('validated', 'Validated'),
+                              ('validated', 'Delivered'),
                               ('sender_error', 'Sender Error'),
                               ('recipient_error', 'Recipient Error'),
                               ('rejected', 'Rejected (PA)')],
@@ -56,7 +56,30 @@ class FatturaPAAttachmentOut(models.Model):
         })
 
         if mail:
-            res = mail.send()
+            config_parameter = self.env['ir.config_parameter'].sudo()
+            bounce_alias = config_parameter.get_param("mail.bounce.alias")
+            catchall_domain = config_parameter.get_param("mail.catchall.domain")
+            catchall_alias = config_parameter.get_param("mail.catchall.alias")
+            # temporary disable email parameters incompatible with PEC
+            if bounce_alias:
+                config_parameter.set_param('mail.bounce.alias', False)
+            if catchall_domain:
+                config_parameter.set_param('mail.catchall.domain', False)
+            if catchall_alias:
+                config_parameter.set_param('mail.catchall.alias', False)
+
+            res = mail.send(raise_exception=True)
+
+            if bounce_alias:
+                config_parameter.set_param(
+                    'mail.bounce.alias', bounce_alias)
+            if catchall_domain:
+                config_parameter.set_param(
+                    'mail.catchall.domain', catchall_domain)
+            if catchall_alias:
+                config_parameter.set_param(
+                    'mail.catchall.alias', catchall_alias)
+
             if res:
                 self.state = 'sent'
 

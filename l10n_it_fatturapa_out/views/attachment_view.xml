@@ -13,6 +13,15 @@
                 </tree>
             </field>
         </record>
+        <record model="ir.ui.view" id="view_fatturapa_out_attachment_search">
+            <field name="name">fatturapa.attachment.out.search</field>
+            <field name="model">fatturapa.attachment.out</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
 
         <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
             <field name="name">fatturapa.attachment.out.form</field>

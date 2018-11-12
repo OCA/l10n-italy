@@ -15,7 +15,7 @@ class AccountInvoice(models.Model):
          ('sent', 'Sent'),
          ('delivered', 'Delivered'),
          ('error', 'Error')],
-        string='Fattura Elettronica State',
+        string='E-invoice State',
         compute='compute_fatturapa_state',
         store='true',
     )

@@ -16,11 +16,8 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"></field>
         <field name="arch" type="xml">
-            <!-- FIXME: We should find a better position and a better look for this field -->
-            <xpath expr="//field[@name='type']" position="after">
-                <group>
-                    <field name="fatturapa_state"/>
-                </group>
+            <xpath expr="//field[@name='date_invoice']" position="after">
+                <field name="fatturapa_state"/>
             </xpath>
         </field>
     </record>
