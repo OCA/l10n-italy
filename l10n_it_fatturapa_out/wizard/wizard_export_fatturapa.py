@@ -63,20 +63,19 @@ class WizardExportFatturapa(orm.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export FatturaPA"
 
-#    def __init__(self, cr, uid, **kwargs):
-#        fatturapa = False
-#        self.number = False
-#        super(WizardExportFatturapa, self).__init__(cr, uid, **kwargs)
+    def __init__(self, cr, uid, **kwargs):
+        fatturapa = False
+        self.number = False
+        super(WizardExportFatturapa, self).__init__(cr, uid, **kwargs)
 
     def _domain_ir_values(self, cr, uid, context={}):
         return [('model', '=', context.get('active_model', False)),
                 ('key2', '=', 'client_print_multi')]
 
     _columns = {
-        #'report_print_menu': fields.many2one(
-        #    comodel_name='ir.values',
-        #    domain=_domain_ir_values,
-        #    help='This report will be automatically included in the created XML')
+        'report_print_menu': fields.many2one('ir.values',
+            #domain=_domain_ir_values,
+            help='This report will be automatically included in the created XML')
         
         }
 
@@ -244,16 +243,6 @@ class WizardExportFatturapa(orm.TransientModel):
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
             Denominazione=company.name)
-
-        # not using for now
-
-        # Anagrafica = DatiAnagrafici.find('Anagrafica')
-        # Nome = Anagrafica.find('Nome')
-        # Cognome = Anagrafica.find('Cognome')
-        # Titolo = Anagrafica.find('Titolo')
-        # Anagrafica.remove(Nome)
-        # Anagrafica.remove(Cognome)
-        # Anagrafica.remove(Titolo)
 
         if company.partner_id.fiscalcode:
             CedentePrestatore.DatiAnagrafici.CodiceFiscale = (
@@ -637,7 +626,6 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def setRelatedDocumentTypes(self, cr, uid, invoice, body,
                                 context=None):
-        linecount = 1
         for line in invoice.invoice_line:
             for related_document in line.related_documents:
                 doc_type = RELATED_DOCUMENT_TYPES[related_document.type]
@@ -645,7 +633,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 if related_document.name:
                     documento.IdDocumento = related_document.name
                 if related_document.lineRef:
-                    documento.RiferimentoNumeroLinea.append(linecount)
+                    documento.RiferimentoNumeroLinea.append(line.ftpa_line_number)
                 if related_document.date:
                     documento.Data = related_document.date
                 if related_document.numitem:
@@ -657,7 +645,6 @@ class WizardExportFatturapa(orm.TransientModel):
                 if related_document.cig:
                     documento.CodiceCIG = related_document.cig
                 getattr(body.DatiGenerali, doc_type).append(documento)
-            linecount += 1
         for related_document in invoice.related_documents:
             doc_type = RELATED_DOCUMENT_TYPES[related_document.type]
             documento = DatiDocumentiCorrelatiType()
@@ -682,6 +669,19 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
+    def setDatiDDT(self, cr, uid, invoice, body):
+        return True
+
+    def _get_prezzo_unitario(self, cr, uid, line):
+        res = line.price_unit
+        if (
+            line.invoice_line_tax_ids and
+            line.invoice_line_tax_ids[0].price_include
+        ):
+            res = line.price_unit / (
+                1 + (line.invoice_line_tax_ids[0].amount / 100))
+        return res
+
     def setDettaglioLinee(self, cr, uid, invoice, body, context=None):
         if context is None:
             context = {}
@@ -692,6 +692,10 @@ class WizardExportFatturapa(orm.TransientModel):
         # TODO CodiceArticolo
 
         line_no = 1
+        price_precision = self.pool['decimal.precision'].precision_get(cr, uid, 
+            'Product Price')
+        uom_precision = self.pool['decimal.precision'].precision_get(cr, uid, 
+            'Product Unit of Measure')
         for line in invoice.invoice_line:
             if not line.invoice_line_tax_id:
                 raise orm.except_orm(
@@ -703,15 +707,26 @@ class WizardExportFatturapa(orm.TransientModel):
                     _("Too many taxes for invoice line %s") % line.name)
             aliquota = line.invoice_line_tax_id[0].amount * 100
             AliquotaIVA = '%.2f' % (aliquota)
+            prezzo_unitario = self._get_prezzo_unitario(cr, uid, line)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
                 Descrizione=line.name,
-                PrezzoUnitario='%.2f' % line.price_unit,
-                Quantita='%.2f' % line.quantity,
+                PrezzoUnitario=('%.' + str(
+                    price_precision
+                ) + 'f') % prezzo_unitario,
+                Quantita=('%.' + str(
+                    uom_precision
+                ) + 'f') % line.quantity,
                 UnitaMisura=line.uos_id and (
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA=AliquotaIVA)
+            if line.discount:
+                ScontoMaggiorazione = ScontoMaggiorazioneType(
+                    Tipo='SC',
+                    Percentuale='%.2f' % line.discount
+                )
+                DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
             if aliquota == 0.0:
                 if not line.invoice_line_tax_id[0].non_taxable_nature:
                     raise orm.except_orm(
@@ -723,15 +738,20 @@ class WizardExportFatturapa(orm.TransientModel):
                 ].non_taxable_nature
             if line.admin_ref:
                 DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
+            if line.product_id:
+                if line.product_id.default_code:
+                    CodiceArticolo = CodiceArticoloType(
+                        CodiceTipo='ODOO',
+                        CodiceValore=line.product_id.default_code
+                    )
+                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+                if line.product_id.barcode:
+                    CodiceArticolo = CodiceArticoloType(
+                        CodiceTipo='EAN',
+                        CodiceValore=line.product_id.barcode
+                    )
+                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
             line_no += 1
-
-            # not handled
-
-            # el.remove(el.find('DataInizioPeriodo'))
-            # el.remove(el.find('DataFinePeriodo'))
-            # el.remove(el.find('ScontoMaggiorazione'))
-            # el.remove(el.find('Ritenuta'))
-            # el.remove(el.find('AltriDatiGestionali'))
 
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
@@ -832,18 +852,18 @@ class WizardExportFatturapa(orm.TransientModel):
         return True
 
     def setFatturaElettronicaHeader(self, cr, uid, company,
-                                    partner, context=None):
+                                    partner, fatturapa, context=None):
         if context is None:
             context = {}
         fatturapa.FatturaElettronicaHeader = (
             FatturaElettronicaHeaderType())
-        self.setDatiTrasmissione(cr, uid, company, partner, context=context)
-        self.setCedentePrestatore(cr, uid, company, context=context)
-        self.setRappresentanteFiscale(cr, uid, company, context=context)
+        self.setDatiTrasmissione(cr, uid, company, partner, fatturapa, context=context)
+        self.setCedentePrestatore(cr, uid, company, fatturapa, context=context)
+        self.setRappresentanteFiscale(cr, uid, company, fatturapa, context=context)
         self.setCessionarioCommittente(
-            cr, uid, partner, context=context)
+            cr, uid, partner, fatturapa, context=context)
         self.setTerzoIntermediarioOSoggettoEmittente(
-            cr, uid, company, context=context)
+            cr, uid, company, fatturapa, context=context)
         self.setSoggettoEmittente(cr, uid, context=context)
 
     def setFatturaElettronicaBody(
@@ -891,13 +911,18 @@ class WizardExportFatturapa(orm.TransientModel):
             context = {}
 
         # self.setNameSpace()
-
+        obj = self.browse(cr, uid, ids[0])
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
 
-        fatturapa = FatturaElettronica(versione='1.1')
+        fatturapa = FatturaElettronica(versione='1.2')
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
+
+        if partner.is_pa:
+            fatturapa = FatturaElettronica(versione='FPA12')
+        else:
+            fatturapa = FatturaElettronica(versione='FPR12')
 
         user_obj = self.pool['res.users']
         company = user_obj.browse(cr, uid, uid).company_id
@@ -905,7 +930,7 @@ class WizardExportFatturapa(orm.TransientModel):
         context_partner.update({'lang': partner.lang})
         try:
             self.setFatturaElettronicaHeader(cr, uid, company,
-                                             partner, context=context_partner)
+                                             partner, fatturapa, context=context_partner)
             for invoice_id in invoice_ids:
                 inv = invoice_obj.browse(
                     cr, uid, invoice_id, context=context_partner)
@@ -914,19 +939,22 @@ class WizardExportFatturapa(orm.TransientModel):
                         _("Error"),
                         _("Invoice %s has FatturaPA Export File yet") % (
                             inv.number))
+                if obj.report_print_menu:
+                    self.generate_attach_report(cr, uid, ids, inv)
                 invoice_body = FatturaElettronicaBodyType()
+                inv.preventive_checks()
                 self.setFatturaElettronicaBody(
                     cr, uid, inv, invoice_body, context=context_partner)
                 fatturapa.FatturaElettronicaBody.append(invoice_body)
                 # TODO DatiVeicoli
 
-            self.setProgressivoInvio(cr, uid, context=context)
+            number = self.setProgressivoInvio(cr, uid, fatturapa, context=context)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             raise orm.except_orm(
                 _("XML SDI validation error"),
                 (unicode(e)))
 
-        attach_id = self.saveAttachment(cr, uid, context=context)
+        attach_id = self.saveAttachment(cr, uid, fatturapa, number, context=context)
 
         for invoice_id in invoice_ids:
             inv = invoice_obj.browse(cr, uid, invoice_id)
@@ -948,3 +976,44 @@ class WizardExportFatturapa(orm.TransientModel):
             'type': 'ir.actions.act_window',
             'context': context
         }
+
+    def generate_attach_report(self, cr, uid, ids, inv):
+        obj = self.browse(cr, uid, ids[0])
+        action_report_model, action_report_id = (
+            obj.report_print_menu.value.split(',')[0],
+            int(obj.report_print_menu.value.split(',')[1]))
+        action_report = self.pool[action_report_model] \
+            .browse(action_report_id)
+        report_model = self.pool['report']
+        attachment_model = self.pool['ir.attachment']
+        # Generate the PDF: if report_action.attachment is set
+        # they will be automatically attached to the invoice,
+        # otherwise use res to build a new attachment
+        res = report_model.get_pdf(cr, uid, 
+            inv.ids, action_report.report_name)
+        if action_report.attachment:
+            # If the report is configured to be attached
+            # to the current invoice, just get that from the attachments.
+            # Note that in this case the attachment in
+            # fatturapa_doc_attachments is exactly the same
+            # that is attached to the invoice.
+            attachment = report_model._attachment_stored(
+                inv, action_report)[inv.id]
+        else:
+            # Otherwise, create a new attachment to be stored in
+            # fatturapa_doc_attachments.
+            filename = inv.number
+            data_attach = {
+                'name': filename,
+                'datas': base64.b64encode(res),
+                'datas_fname': filename,
+                'type': 'binary'
+            }
+            attachment = attachment_model.create(data_attach)
+        inv.write({
+            'fatturapa_doc_attachments': [(0, 0, {
+                'is_pdf_invoice_print': True,
+                'ir_attachment_id': attachment.id,
+                'description': _("Attachment generated by "
+                                 "Electronic invoice export")})]
+        })
