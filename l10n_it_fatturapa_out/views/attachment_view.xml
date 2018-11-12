@@ -8,9 +8,19 @@
             <field name="arch" type="xml">
                 <tree string="Export Fattura Elettronica" create="false">
                     <field name="name"/>
+                    <field name="invoice_partner_id"/>
                     <field name="out_invoice_ids"/>
-                    <field name="has_pdf_invoice_print"/>
                 </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_fatturapa_out_attachment_search">
+            <field name="name">fatturapa.attachment.out.search</field>
+            <field name="model">fatturapa.attachment.out</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="invoice_partner_id"/>
+                </search>
             </field>
         </record>
 
@@ -21,16 +31,22 @@
                 <form string="Export Fattura Elettronica" create="false">
                     <div>
                         <group>
-                            <field name="datas" filename="datas_fname" />
-                            <field name="datas_fname"/>
-                            <field name="name"/>
-                            <field name="has_pdf_invoice_print"/>
+                            <group>
+                                <field name="datas" filename="datas_fname" />
+                                <field name="datas_fname" />
+                                <field name="name" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="has_pdf_invoice_print"/>
+                                <field name="invoice_partner_id"/>
+                            </group>
                         </group>
                         <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
                         <separator string="Invoices"/>
-                        <field name="out_invoice_ids"/>
-                        <group groups="base.group_no_one" string="History">
-                            <label for="create_uid" string="Creation"/>
+                        <field name="out_invoice_ids"
+                               context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"/>
+                        <group string="History">
+                            <label for="create_uid" string="Created by"/>
                             <div name="creation_div">
                                 <field name="create_uid" readonly="1" class="oe_inline"/> on
                                 <field name="create_date" readonly="1" class="oe_inline"/>

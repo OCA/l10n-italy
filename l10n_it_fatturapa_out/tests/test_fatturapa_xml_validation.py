@@ -5,7 +5,6 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from .fatturapa_common import FatturaPACommon
-from odoo.exceptions import UserError
 
 
 class TestFatturaPAXMLValidation(FatturaPACommon):
@@ -47,11 +46,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 })],
         })
         invoice.action_invoice_open()
-        with self.assertRaises(UserError):
-            self.run_wizard(invoice.id)
-        for line in invoice.invoice_line_ids:
-            if line.name == 'Mouse\nOptical':
-                line.name = 'Mouse, Optical'
         res = self.run_wizard(invoice.id)
 
         self.assertTrue(res)
