@@ -21,12 +21,8 @@ class AccountInvoice(models.Model):
         readonly=True)
 
     def preventive_checks(self):
-        self.ensure_one()
-        for line in self.invoice_line_ids:
-            if '\n' in line.name:
-                raise UserError(_(
-                    "Invoice line [%s] must not contain new line character"
-                ) % line.name)
+        # hook for preventive checks. Override and raise exception, in case
+        return
 
     @api.multi
     def action_invoice_cancel(self):
