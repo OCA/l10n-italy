@@ -27,10 +27,40 @@ class FatturaPAAttachment(orm.Model):
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
 
+    def _compute_has_pdf_invoice_print(self, cr, uid, ids, context={}):
+        ret = {}
+        for attachment_out in self.browse(cr, uid, ids, context):
+            for invoice in attachment_out.out_invoice_ids:
+                invoice_attachments = invoice.fatturapa_doc_attachments
+                if any([ia.is_pdf_invoice_print
+                        for ia in invoice_attachments]):
+                    continue
+                else:
+                    ret[attachment_out.id] = False
+                    break
+            else:
+                ret[attachment_out.id] = True
+        return ret
+
     _columns = {
         'ir_attachment_id': fields.many2one(
             'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
         'out_invoice_ids': fields.one2many(
             'account.invoice', 'fatturapa_attachment_out_id',
             string="Out Invoices", readonly=True),
+        'has_pdf_invoice_print': fields.function(_compute_has_pdf_invoice_print, 
+                                                 type='boolean', 
+                                                 string='Has PDF Invoice Print',
+                                                 help="True if all the invoices have a printed "
+                                                 "report attached in the XML, False otherwise.",
+                                                 store=True),
+    }
+    
+
+class FatturaAttachments(orm.Model):
+    _inherit = "fatturapa.attachments"
+
+    _columns = {
+        'is_pdf_invoice_print': fields.boolean(
+        help="This attachment contains the PDF report of the linked invoice")
     }

@@ -100,36 +100,37 @@ class Attachment(orm.Model):
                 elem.text = elem.text.strip()
         return ET.tostring(root)
 
-    def get_xml_string(self):
-        fatturapa_attachment = self
-        # decrypt  p7m file
-        if fatturapa_attachment.datas_fname.lower().endswith('.p7m'):
-            temp_file_name = (
-                '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
-            temp_der_file_name = (
-                '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
-            with open(temp_file_name, 'w') as p7m_file:
-                p7m_file.write(fatturapa_attachment.datas.decode('base64'))
-            xml_file_name = os.path.splitext(temp_file_name)[0]
-
-            # check if temp_file_name is a PEM file
-            file_is_pem = self.check_file_is_pem(temp_file_name)
-
-            # if temp_file_name is a PEM file
-            # parse it in a DER file
-            if file_is_pem:
-                temp_file_name = self.parse_pem_2_der(
-                    temp_file_name, temp_der_file_name)
-
-            # decrypt signed DER file in XML readable
-            xml_file_name = self.decrypt_to_xml(
-                temp_file_name, xml_file_name)
-
-            with open(xml_file_name, 'r') as fatt_file:
-                file_content = fatt_file.read()
-            xml_string = file_content
-        elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
-            xml_string = fatturapa_attachment.datas.decode('base64')
+    def get_xml_string(self, cr, uid, ids, context={}):
+        for fatturapa_attachment in self.browse(cr, uid, [ids], context):
+            # decrypt  p7m file
+            if fatturapa_attachment.datas_fname.lower().endswith('.p7m'):
+                temp_file_name = (
+                    '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
+                temp_der_file_name = (
+                    '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
+                with open(temp_file_name, 'w') as p7m_file:
+                    p7m_file.write(fatturapa_attachment.datas.decode('base64'))
+                xml_file_name = os.path.splitext(temp_file_name)[0]
+    
+                # check if temp_file_name is a PEM file
+                file_is_pem = self.check_file_is_pem(temp_file_name)
+    
+                # if temp_file_name is a PEM file
+                # parse it in a DER file
+                if file_is_pem:
+                    temp_file_name = self.parse_pem_2_der(
+                        temp_file_name, temp_der_file_name)
+    
+                # decrypt signed DER file in XML readable
+                xml_file_name = self.decrypt_to_xml(
+                    temp_file_name, xml_file_name)
+    
+                with open(xml_file_name, 'r') as fatt_file:
+                    file_content = fatt_file.read()
+                xml_string = file_content
+            elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
+                xml_string = fatturapa_attachment.datas.decode('base64')
+            break
         xml_string = self.remove_xades_sign(xml_string)
         xml_string = self.strip_xml_content(xml_string)
         return xml_string
@@ -138,6 +139,7 @@ class Attachment(orm.Model):
         xsl_path = get_module_resource(
             'l10n_it_fatturapa', 'data', 'fatturaordinaria_v1.2.1.xsl')
         xslt = ET.parse(xsl_path)
+        # FIXME:    cr, uid in get_xml_string call
         xml_string = self.get_xml_string()
         xml_file = BytesIO(xml_string)
         dom = ET.parse(xml_file)

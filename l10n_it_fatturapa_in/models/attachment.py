@@ -29,7 +29,8 @@ class FatturaPAAttachmentIn(orm.Model):
     _inherit = ['mail.thread']
     _order = 'id desc'
 
-    def _compute_xml_data(self, cr, uid, ids, context={}):
+    def _compute_xml_data(self, cr, uid, ids, name, unknow_none, context={}):
+        ret = {}
         for att in self.browse(cr, uid, ids, context):
             fatt = self.pool.get('wizard.import.fatturapa').get_invoice_obj(cr, uid, att)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
@@ -46,17 +47,18 @@ class FatturaPAAttachmentIn(orm.Model):
                 invoices_total += float(
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento or 0
                 )
-            vals['invoices_total'] = invoices_total
-            self.write(cr, uid, [att.id], vals)
+            vals['invoices_total'] = invoices_total            
+            ret[att.id] = vals.get(name, False)
+        return ret
 
-    def _compute_registered(self, cr, uid, ids, context={}):
+    def _compute_registered(self, cr, uid, ids, name, unknow_none, context=None):
+        ret = {}
         for att in self.browse(cr, uid, ids, context):
-            vals = {}
             if (att.in_invoice_ids and len(att.in_invoice_ids) == att.invoices_number):
-                vals['registered'] = True
+                ret[att.id] = True
             else:
-                vals['registered'] = False
-            self.write(cr, uid, [att.id], vals)
+                ret[att.id] = False
+        return ret
 
     _columns = {
         'ir_attachment_id': fields.many2one(
@@ -68,6 +70,7 @@ class FatturaPAAttachmentIn(orm.Model):
         'xml_supplier_id': fields.function(_compute_xml_data, 
                                            method=True, 
                                            string="Supplier", 
+                                           relation="res.partner",
                                            type="many2one"),
         'invoices_number': fields.function(_compute_xml_data, 
                                            method=True, 
@@ -80,14 +83,15 @@ class FatturaPAAttachmentIn(orm.Model):
                                            help="Se indicato dal fornitore, Importo totale del documento al "
                  "netto dell'eventuale sconto e comprensivo di imposta a debito "
                  "del cessionario / committente"),
-        'registered': fields.function(_compute_registered, 
-                                           method=True, 
+        'registered': fields.function(_compute_registered,
                                            string="Registered", 
                                            type="boolean"),
     }
 
-    def get_xml_string(self):
-        return self.ir_attachment_id.get_xml_string()
+    def get_xml_string(self, cr, uid, ids, context={}):
+        for fattAttInBrws in self.browse(cr, uid, ids, context):
+            return fattAttInBrws.ir_attachment_id.get_xml_string(cr, uid, fattAttInBrws.ir_attachment_id.id)
+        return ''
 
     def set_name(self, cr, uid, ids, datas_fname, context=None):
         return {'value': {'name': datas_fname}}

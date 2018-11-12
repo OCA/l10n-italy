@@ -25,4 +25,5 @@ class ResPartner(orm.Model):
     _inherit = 'res.partner'
     _columns = {
         'ipa_code': fields.char('IPA Code', size=128),
+        'is_pa': fields.boolean("Public administration"),
         }

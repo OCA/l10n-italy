@@ -27,8 +27,7 @@ from openerp.tools.translate import _
 from openerp.osv import fields
 import logging
 
-
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_1
+from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
 from openerp.addons.base_iban import base_iban
 from openerp.osv.osv import except_osv
 from lxml import etree
@@ -63,17 +62,18 @@ class WizardImportFatturapa(orm.TransientModel):
         res['e_invoice_detail_level'] = '2'
         fatturapa_attachment_ids = context.get('active_ids', False)
         fatturapa_attachment_obj = self.pool.get('fatturapa.attachment.in')
-        partners = self.pool.get('res.partner')
+        partnerList = []
         for fatturapa_attachment_id in fatturapa_attachment_ids:
             fatturapa_attachment = fatturapa_attachment_obj.browse(cr, uid,
                 fatturapa_attachment_id)
             if fatturapa_attachment.in_invoice_ids:
                 raise except_osv(_('Error' ),
                              _("File %s is linked to invoices yet") % fatturapa_attachment.name)
-            partners |= fatturapa_attachment.xml_supplier_id
-            if len(partners) == 1:
+            if fatturapa_attachment.xml_supplier_id not in partnerList:
+                partnerList.append(fatturapa_attachment.xml_supplier_id)
+            if len(partnerList) == 1:
                 res['e_invoice_detail_level'] = (
-                    partners[0].e_invoice_detail_level)
+                    partnerList[0].e_invoice_detail_level)
         return res
 
     def CountryByCode(self, cr, uid, CountryCode, context=None):
@@ -82,7 +82,7 @@ class WizardImportFatturapa(orm.TransientModel):
             cr, uid, [('code', '=', CountryCode)], context=context)
 
     def ProvinceByCode(self, cr, uid, provinceCode, context=None):
-        province_model = self.pool['res.province']
+        province_model = self.pool['res.country.state']
         return province_model.search(
             cr, uid, [('code', '=', provinceCode)], context=context)
         
@@ -255,7 +255,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         % Provincia
                     )
                 else:
-                    vals['state_id'] = prov_sede[0].id
+                    vals['state_id'] = prov_sede[0]
             vals['register_code'] = (
                 cedPrest.DatiAnagrafici.NumeroIscrizioneAlbo)
             vals['register_regdate'] = (
@@ -803,11 +803,12 @@ class WizardImportFatturapa(orm.TransientModel):
         return purchase_journal
 
     def invoiceCreate(
-        self, cr, uid, fatt, fatturapa_attachment, FatturaBody,
+        self, cr, uid, ids, fatt, fatturapa_attachment, FatturaBody,
         partner_id, context=None
     ):
         if context is None:
             context = {}
+        wizardObj = self.browse(cr, uid, ids[0])
         partner_model = self.pool['res.partner']
         invoice_model = self.pool['account.invoice']
         currency_model = self.pool['res.currency']
@@ -879,7 +880,7 @@ class WizardImportFatturapa(orm.TransientModel):
         e_invoice_line_ids = []
         CodeArts = self.pool['fatturapa.article.code']
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
-            if self.e_invoice_detail_level == '2':
+            if wizardObj.e_invoice_detail_level == '2':
                 invoice_line_data = self._prepareInvoiceLine(
                     cr, uid, credit_account_id, line, context=context)
                 invoice_line_id = invoice_line_model.create(
@@ -1214,6 +1215,53 @@ class WizardImportFatturapa(orm.TransientModel):
             set_total=True)
         return invoice_id
 
+    def create_e_invoice_line(self, cr, uid, line):
+        vals = {
+            'line_number': int(line.NumeroLinea or 0),
+            'service_type': line.TipoCessionePrestazione,
+            'name': line.Descrizione,
+            'qty': float(line.Quantita or 0),
+            'uom': line.UnitaMisura,
+            'period_start_date': line.DataInizioPeriodo,
+            'period_end_date': line.DataFinePeriodo,
+            'unit_price': float(line.PrezzoUnitario or 0),
+            'total_price': float(line.PrezzoTotale or 0),
+            'tax_amount': float(line.AliquotaIVA or 0),
+            'wt_amount': line.Ritenuta,
+            'tax_kind': line.Natura,
+            'admin_ref': line.RiferimentoAmministrazione,
+        }
+        einvoiceline = self.pool['einvoice.line'].create(cr, uid, vals)
+        if line.CodiceArticolo:
+            for caline in line.CodiceArticolo:
+                self.env['fatturapa.article.code'].create(
+                    {
+                        'name': caline.CodiceTipo or '',
+                        'code_val': caline.CodiceValore or '',
+                        'e_invoice_line_id': einvoiceline
+                    }
+                )
+        if line.ScontoMaggiorazione:
+            for DiscRisePriceLine in line.ScontoMaggiorazione:
+                DiscRisePriceVals = self.with_context(
+                    drtype='e_invoice_line_id'
+                )._prepareDiscRisePriceLine(
+                    einvoiceline, DiscRisePriceLine
+                )
+                self.env['discount.rise.price'].create(cr, uid, DiscRisePriceVals)
+        if line.AltriDatiGestionali:
+            for dato in line.AltriDatiGestionali:
+                self.env['einvoice.line.other.data'].create(cr, uid, 
+                    {
+                        'name': dato.TipoDato,
+                        'text_ref': dato.RiferimentoTesto,
+                        'num_ref': float(dato.RiferimentoNumero or 0),
+                        'date_ref': dato.RiferimentoData,
+                        'e_invoice_line_id': einvoiceline
+                    }
+                )
+        return self.pool['einvoice.line'].browse(cr, uid, einvoiceline)
+
     def add_dati_bollo(self, cr, uid, invoice, DatiGeneraliDocumento):
         # 2.1.1.6
         Stamps = DatiGeneraliDocumento.DatiBollo
@@ -1258,7 +1306,7 @@ class WizardImportFatturapa(orm.TransientModel):
                     FatturaElettronicaHeader.DatiTrasmissione.
                     CodiceDestinatario, company.partner_id.ipa_code))
 
-    def compute_xml_amount_untaxed(self, _cr, _uid, DatiRiepilogo, _context=None):
+    def compute_xml_amount_untaxed(self, cr, uid, DatiRiepilogo, context=None):
         amount_untaxed = 0.0
         for Riepilogo in DatiRiepilogo:
             amount_untaxed += float(Riepilogo.ImponibileImporto)
@@ -1405,7 +1453,7 @@ class WizardImportFatturapa(orm.TransientModel):
             )
         return xml_file
 
-    def importFatturaPA(self, cr, uid, _ids, context=None):
+    def importFatturaPA(self, cr, uid, ids, context=None):
         if not context:
             context = {}
         context['inconsistencies'] = ''
@@ -1450,7 +1498,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 xml_string = fatturapa_attachment.datas.decode('base64')
             xml_string = self.remove_xades_sign(xml_string)
             xml_string = self.strip_xml_content(xml_string)
-            fatt = fatturapa_v_1_1.CreateFromDocument(xml_string)
+            fatt = fatturapa_v_1_2.CreateFromDocument(xml_string)
             
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
@@ -1465,7 +1513,7 @@ class WizardImportFatturapa(orm.TransientModel):
             # 2
             for fattura in fatt.FatturaElettronicaBody:
                 invoice_id = self.invoiceCreate(
-                    cr, uid, fatt, fatturapa_attachment, fattura,
+                    cr, uid, ids, fatt, fatturapa_attachment, fattura,
                     partner_id, context=ctx)
                 self.set_StabileOrganizzazione(cr, uid, cedentePrestatore, invoice_id)
                 if TaxRappresentative:
@@ -1529,3 +1577,7 @@ class WizardImportFatturapa(orm.TransientModel):
             vals['efatt_stabile_organizzazione_nazione'] = (
                 CedentePrestatore.StabileOrganizzazione.Nazione)
             self.pool.get('account.invoice').write(cr, uid, invoice, vals)
+
+    def get_invoice_obj(self, cr, uid, fatturapa_attachment):
+        xml_string = self.pool.get('ir.attachment').get_xml_string(cr, uid, fatturapa_attachment.id)
+        return fatturapa_v_1_2.CreateFromDocument(xml_string)

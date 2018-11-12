@@ -8,10 +8,22 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <field name="website" position="after">
-                    <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_company','=', False)]}"/>
+                	<field name="is_pa" />
+                    <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_company','=', False)], 'readonly': [('is_pa','=', False)]}"/>
                 </field>
             </field>
         </record>
+
+       <record id="view_res_partner_filter_pa" model="ir.ui.view">
+            <field name="name">view_res_partner_filter_pa</field>
+            <field name="model">res.partner</field>
+           <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <filter name="supplier" position="after">
+                    <filter string="PA" name="is_pa" domain="[('is_pa','=',1)]"/>
+                </filter>
+            </field>
+       </record>
 
     </data>
 </openerp>

@@ -20,6 +20,7 @@
 
 from openerp.osv import fields, orm
 from openerp.osv.osv import except_osv
+from openerp.tools.translate import _
 
 
 class res_partner(orm.Model):
@@ -102,7 +103,7 @@ class res_partner(orm.Model):
                         "Il partner %s "
                         "deve avere il Codice Destinatario lungo 7 caratteri"
                     ) % partner.name)
-                if partner.company_type == 'person' and (
+                if not partner.is_company and (
                     not partner.lastname or not partner.firstname
                 ):
                     raise except_osv(_('Error' ),_(

@@ -7,6 +7,16 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"></field>
             <field name="arch" type="xml">
+	            <button name="invoice_proforma2" position="before">
+	                <button name="%(action_wizard_export_fatturapa)d" type="action" states="open"
+	                        string="Export E-invoice" class="oe_highlight"/>
+	            </button>
+	            <field name="partner_id" position="after">
+	                <field name="electronic_invoice_subjected" invisible="1"/>
+	            </field>
+	            <field name="invoice_line_tax_id" position="after">
+	                <field name="admin_ref"/>
+	            </field>
                 <xpath expr="//notebook" position="inside">
                     <page string="Related Documents ">
                         <group string="Related Documents">
@@ -24,29 +34,34 @@
                             </field>
                         </group>
                     </page>
-                    <page string="FatturaPA">
-                        <group>
-                            <group string="Results">
-                                <field name="fatturapa_attachment_out_id"></field>
-                            </group>
-                        </group>
-                    </page>
-                    <page string="FatturaPA attachments">
+	                <page string="Fattura Elettronica"
+	                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+	                    <group>
+	                        <group string="Results">
+	                            <field name="fatturapa_attachment_out_id"/>
+	                            <field name="has_pdf_invoice_print"
+	                                   attrs="{'invisible': [('fatturapa_attachment_out_id', '=', False)]}"/>
+	                        </group>
+	                    </group>
+	                </page>
+                    <page string="FatturaPA attachments" attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"> 
                         <group string="Attachments">
                             <field name="fatturapa_doc_attachments" nolabel="1" >
                                 <tree string="Attachments">
                                     <field name="ir_attachment_id"></field>
                                     <field name="datas_fname"></field>
                                     <field name="description"></field>
+                                    <field name="is_pdf_invoice_print"/>
                                 </tree>
                                 <form string="Attachments">
                                     <group>
                                         <group>
                                             <field name="name"></field>
                                             <field name="description"></field>
+                                            <field name="is_pdf_invoice_print"/>
                                         </group>
                                         <group>
-                                                <field name="datas" filename="datas_fname" />
+                                            <field name="datas" filename="datas_fname" />
                                             <field name="datas_fname"/>
                                         </group>
                                     </group>
