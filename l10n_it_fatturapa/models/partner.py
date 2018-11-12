@@ -32,7 +32,8 @@ class ResPartner(models.Model):
         help="Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che "
              "hanno accreditato un canale; qualora il destinatario non abbia "
              "accreditato un canale presso Sdi e riceva via PEC le fatture, "
-             "l'elemento deve essere valorizzato con tutti zeri ('0000000'). ")
+             "l'elemento deve essere valorizzato con tutti zeri ('0000000').",
+        default='0000000')
     # 1.1.6
     pec_destinatario = fields.Char(
         "PEC destinatario",

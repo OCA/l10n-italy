@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Localization - Fattura Elettronica - Base',
-    'version': '10.0.2.1.0',
+    'version': '10.0.2.2.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
