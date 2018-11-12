@@ -2,6 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+#    Copyright (C) 2018 Copyright (C) OmniaSolutions (<http://www.omniasolutions.eu>). All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,7 +19,9 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp.osv import fields
+from openerp.osv import orm
+
 
 RELATED_DOCUMENT_TYPES = {
     'order': 'DatiOrdineAcquisto',

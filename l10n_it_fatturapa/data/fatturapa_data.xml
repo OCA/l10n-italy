@@ -101,6 +101,10 @@
             <field name="code">RF18</field>
             <field name="name">Altro</field>
         </record>
+        <record id="fatturapa_RF19" model="fatturapa.fiscal_position">
+            <field name="code">RF19</field>
+            <field name="name">Regime forfettario (art.1, c.54-89, L. 190/2014)</field>
+        </record>
 
         <!-- FatturaPA Formats -->
         <record id="fatturapa_format_1_1" model="fatturapa.format">
@@ -118,6 +122,14 @@
             <field name="code">account.invoice.fatturapa</field>
             <field name="padding">5</field>
         </record>
+<!-- 
+	This sequence has been renamed in V10
+        <record id="seq_fatturapa" model="ir.sequence">
+            <field name="name">Electronic Invoices</field>
+            <field name="code">account.invoice.fatturapa</field>
+            <field name="padding">5</field>
+        </record>
+ -->
 
         <!-- Payment Terms -->
         <record id="fatturapa_TP01" model="fatturapa.payment_term">

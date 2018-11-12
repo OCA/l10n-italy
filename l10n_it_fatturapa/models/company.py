@@ -222,7 +222,7 @@ class account_config_settings(orm.TransientModel):
                 ('code', '=', 'account.invoice.fatturapa')
             ])
             default_sequence = (
-                default_sequence[0].id if default_sequence else False)
+                default_sequence[0] if default_sequence else False)
             res['value'].update({
                 'fatturapa_fiscal_position_id': (
                     company.fatturapa_fiscal_position_id and
