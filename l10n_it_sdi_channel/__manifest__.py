@@ -15,6 +15,7 @@
     "installable": True,
     "depends": [
         "account",
+        "fetchmail",
         "l10n_it_fatturapa",
     ],
     "data": [
