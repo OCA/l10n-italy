@@ -33,7 +33,7 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.multi
     def send_via_pec(self):
-
+        self.ensure_one()
         mail_message = self.env['mail.message'].create({
             'model': self._name,
             'res_id': self.id,

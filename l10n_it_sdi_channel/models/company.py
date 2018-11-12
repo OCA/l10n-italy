@@ -10,6 +10,8 @@ class ResCompany(models.Model):
 
     sdi_channel_id = fields.Many2one(
         'sdi.channel', string='SdI channel')
+    sdi_channel_type = fields.Selection(
+        related='sdi_channel_id.channel_type', readonly=True)
     email_from_for_fatturaPA = fields.Char(
         string='Sender Email Address',
         related='sdi_channel_id.pec_server_id.email_from_for_fatturaPA', readonly=True)
@@ -23,6 +25,8 @@ class AccountConfigSettings(models.TransientModel):
 
     sdi_channel_id = fields.Many2one(
         related='company_id.sdi_channel_id', string='SdI channel')
+    sdi_channel_type = fields.Selection(
+        related='sdi_channel_id.channel_type', readonly=True)
     email_from_for_fatturaPA = fields.Char(
         string='Sender Email Address',
         related='sdi_channel_id.pec_server_id.email_from_for_fatturaPA', readonly=True)
