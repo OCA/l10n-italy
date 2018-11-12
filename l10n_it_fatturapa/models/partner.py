@@ -83,8 +83,8 @@ class res_partner(orm.Model):
     }
     
 
-    def _check_ftpa_partner_data(self):
-        for partner in self:
+    def _check_ftpa_partner_data(self, cr, uid, ids, context={}):
+        for partner in self.browse(cr, uid, ids):
             if partner.electronic_invoice_subjected:
                 if partner.is_pa and (
                     not partner.ipa_code or len(partner.ipa_code) != 6
@@ -141,6 +141,7 @@ class res_partner(orm.Model):
                             'Customer %s: country is needed for XML'
                             ' generation.'
                         ) % partner.name)
+        return True
 
     _constraints = [
         (_check_ftpa_partner_data, 'Some customer infos are needed.', ['is_pa', 'ipa_code', 'codice_destinatario', 'company_type',

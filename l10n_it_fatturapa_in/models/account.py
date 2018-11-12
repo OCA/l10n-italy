@@ -19,7 +19,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
-from odoo.addons import decimal_precision as dp
+from openerp.addons import decimal_precision as dp
 
 
 class account_invoice(orm.Model):
@@ -127,20 +127,20 @@ class EInvoiceLine(orm.Model):
         'line_number': fields.integer('Numero Linea', readonly=True),
         'service_type': fields.char('Tipo Cessione Prestazione', readonly=True),
         'cod_article_ids': fields.one2many(
-            'fatturapa.article.code', 'e_invoice_line_id',
+            'fatturapa.article.code', 'invoice_line_id',
             'Cod. Articles', readonly=True
         ),
         'name': fields.char("Descrizione", readonly=True),
         'qty': fields.float(
             "Quantita'", readonly=True,
-            digits=dp.get_precision('Product Unit of Measure')
+            digits_compute=dp.get_precision('Product Unit of Measure')
         ),
         'uom': fields.char("Unita' di misura", readonly=True),
         'period_start_date': fields.date("Data Inizio Periodo", readonly=True),
         'period_end_date': fields.date("Data Fine Periodo", readonly=True),
         'unit_price': fields.float(
             "Prezzo unitario", readonly=True,
-            digits=dp.get_precision('Product Price')
+            digits_compute=dp.get_precision('Product Price')
         ),
         'discount_rise_price_ids': fields.one2many(
             'discount.rise.price', 'e_invoice_line_id',

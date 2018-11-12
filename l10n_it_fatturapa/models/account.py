@@ -185,6 +185,10 @@ class welfare_fund_data_line(orm.Model):
             ('N6', 'inversione contabile (reverse charge)'),
         ], string="Non taxable nature"),
         #TODO: Il campo fund_nature è stato sostiruito con kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
+        # TODO:    account.tax.kind è generato nel modulo l10n_it_account_tax_kind, da migrare?
+        # Se mettiamo questo campo è necessario decommentarlo dalla vista l10n_it_fatturapa_in/views/account_view.xml
+        # kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
+        # Il campo kind_id è utilizzato nei wizard
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),

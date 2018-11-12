@@ -1258,11 +1258,13 @@ class WizardImportFatturapa(orm.TransientModel):
                     FatturaElettronicaHeader.DatiTrasmissione.
                     CodiceDestinatario, company.partner_id.ipa_code))
 
-    def compute_xml_amount_untaxed(self, cr, uid, DatiRiepilogo, context=None):
+    def compute_xml_amount_untaxed(self, _cr, _uid, DatiRiepilogo, _context=None):
         amount_untaxed = 0.0
         for Riepilogo in DatiRiepilogo:
             amount_untaxed += float(Riepilogo.ImponibileImporto)
         return amount_untaxed
+
+    # TODO: Migrare funzione _prepare_generic_line_data
 
     def check_invoice_amount(
         self, cr, uid, invoice, FatturaElettronicaBody, context=None
@@ -1403,7 +1405,7 @@ class WizardImportFatturapa(orm.TransientModel):
             )
         return xml_file
 
-    def importFatturaPA(self, cr, uid, ids, context=None):
+    def importFatturaPA(self, cr, uid, _ids, context=None):
         if not context:
             context = {}
         context['inconsistencies'] = ''

@@ -135,6 +135,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="l10n_it_withholding_tax.invoice_supplier_form"></field>
             <field name="arch" type="xml">
+            	
                 <xpath expr="//div[contains(@class, 'oe_title')]" position="after">
                     <div class="oe_right">
                         <a href="http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.1/Formato_FatturaPA_tabellare_V1.1.pdf"
@@ -143,19 +144,19 @@
                         </a>
                     </div>
                 </xpath>
+                
                 <field name="partner_id" position="after">
                 	<field name="electronic_invoice_subjected" invisible="1"/>
                     <field name="tax_representative_id" readonly="1"></field>
                     <field name="intermediary" readonly="1"></field>
                 </field>
+                
                 <field name="date_invoice" position="before">
                     <field name="sender" readonly="1"></field>
                     <field name="doc_type" readonly="1"></field>
                     <field name="protocol_number" ></field>
                 </field>
-	            <field name="analytic_tag_ids" position="after">
-	                <field name="admin_ref"/>
-	            </field>
+                 
                 <field name="has_withholding" position="before">
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_type" readonly="1"></field>
                     <field attrs="{'invisible': [('has_withholding', '=', False)]}" name="ftpa_withholding_rate" readonly="1"></field>
@@ -183,6 +184,7 @@
                     <field name="virtual_stamp" readonly="1"></field>
                     <field name="stamp_amount" readonly="1"></field>
                 </field>
+                
                 <field name="payment_ids" position="before">
                     <separator string="FatturaPA Payment"></separator>
                     <group>
@@ -221,13 +223,14 @@
                         </field>
                     </group>
                 </field>
+                
                 <xpath expr="//notebook" position="inside">
                     <page string="FatturaPA">
                         <notebook>
                             <page string="Inconsistencies">
                                 <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>
                             </page>
-                            
+                             
                 			<page string="E-invoice details" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
 			                    <group string="Dettaglio Linee">
 			                        <field name="e_invoice_line_ids" nolabel="1">
@@ -239,6 +242,7 @@
 			                                <field name="unit_price"></field>
 			                                <field name="tax_amount"></field>
 			                                <field name="total_price"></field>
+			                                
 			                            </tree>
 			                            <form string="Dettaglio Linea">
 			                                <group>
@@ -343,12 +347,12 @@
                                         </tree>
                                     </field>
                                 </group>
-                                
+                                 
                                 <group string="Welfare Fund">
                                     <field name="welfare_fund_ids" nolabel="1" readonly="1">
                                         <tree editable="bottom" string="Welfare Fund Details">
                                             <field name="name"></field>
-                                            <field name="kind_id"></field>
+                                            <!-- <field name="kind_id"></field>  -->
                                             <field name="fund_nature"></field>
                                             <field name="welfare_rate_tax" readonly="1"></field>
                                             <field name="welfare_amount_tax"></field>
@@ -359,7 +363,7 @@
                                         </tree>
                                     </field>
                                 </group>
-                                
+                                 
 			                    <group string="Payments">
 			                        <field name="fatturapa_payments" nolabel="1" readonly="1">
 			                            <tree string="Payments">
@@ -404,7 +408,6 @@
                             </page>
 
 
-
                         </notebook>
                     </page>
                 </xpath>
@@ -420,7 +423,7 @@
         <field name="name">fatturapa.article.code.tree</field>
         <field name="model">fatturapa.article.code</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Article Code">
                 <field name="name"/>
                 <field name="code_val"/>
             </tree>
@@ -430,7 +433,7 @@
         <field name="name">discount.rise.price.tree</field>
         <field name="model">discount.rise.price</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Discount Rise">
                 <field name="name"/>
                 <field name="percentage"/>
                 <field name="amount"/>
@@ -441,7 +444,7 @@
         <field name="name">einvoice.line.other.data.tree</field>
         <field name="model">einvoice.line.other.data</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Invoice Line Data">
                 <field name="name"/>
                 <field name="text_ref"/>
                 <field name="num_ref"/>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<openerp>
+<data>
 
     <record id="wizard_link_supplier_invoice" model="ir.ui.view">
         <field name="name">wizard_link_supplier_invoice</field>
         <field name="model">wizard.link.to.invoice</field>
         <field name="arch" type="xml">
-            <form string="Link to existing supplier invoice" >
+            <form string="Link to existing supplier invoice" version="7.0">
+            	<sheet>
                 <group>
                     <group>
                         <field name="invoice_id"
@@ -18,6 +20,7 @@
                         <button name="link" string="Link" type="object"/>
                     </footer>
                 </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -31,4 +34,5 @@
         id="action_wizard_link_supplier_invoice"
         view_id="wizard_link_supplier_invoice"/>
 
-</odoo>
+</data>
+</openerp>
