@@ -9,6 +9,8 @@
                 <field name="license_number" position="after">
                     <separator colspan="2" string="FatturaPA Registration"></separator>
                     <group>
+                        <field name="e_invoice_detail_level" />
+                        <field name="e_invoice_default_product_id" ></field>
                         <field name="register"></field>
                         <field name="register_code"></field>
                         <field name="register_fiscalpos"></field>

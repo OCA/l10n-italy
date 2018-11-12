@@ -48,3 +48,24 @@ class AccountConfigSettings(osv.TransientModel):
              'viene valorizzato l\'elemento ScontoMaggiorazione'),
     
     }
+
+    def onchange_company_id(self, cr, uid, ids, company_id, context=None):
+        res = super(AccountConfigSettings, self).onchange_company_id(cr, uid, ids, company_id, context)
+        if company_id:
+            res['value']['dati_bollo_product_id'] = (
+                company_id.dati_bollo_product_id and
+                company_id.dati_bollo_product_id.id or False
+                )
+            res['value']['cassa_previdenziale_product_id'] = (
+                company_id.cassa_previdenziale_product_id and
+                company_id.cassa_previdenziale_product_id.id or False
+                )
+            res['value']['sconto_maggiorazione_product_id'] = (
+                company_id.sconto_maggiorazione_product_id and
+                company_id.sconto_maggiorazione_product_id.id or False
+                )
+        else:
+            res['value']['dati_bollo_product_id'] = False
+            res['value']['cassa_previdenziale_product_id'] = False
+            res['value']['sconto_maggiorazione_product_id'] = False
+        return res

@@ -27,6 +27,7 @@ class FatturaPAAttachmentIn(orm.Model):
     _description = "FatturaPA import File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
+    _order = 'id desc'
 
     def _compute_xml_data(self, cr, uid, ids, context={}):
         for att in self.browse(cr, uid, ids, context):
@@ -84,6 +85,9 @@ class FatturaPAAttachmentIn(orm.Model):
                                            string="Registered", 
                                            type="boolean"),
     }
+
+    def get_xml_string(self):
+        return self.ir_attachment_id.get_xml_string()
 
     def set_name(self, cr, uid, ids, datas_fname, context=None):
         return {'value': {'name': datas_fname}}

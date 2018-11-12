@@ -87,7 +87,9 @@ To contribute to this module, please visit http://odoo-community.org.
     "data": [
         'views/account_view.xml',
         'views/partner_view.xml',
+        'views/company_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
+        'wizard/link_to_existing_invoice.xml',
         'security/ir.model.access.csv',
     ],
     "installable": True

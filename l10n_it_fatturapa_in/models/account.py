@@ -19,6 +19,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from odoo.addons import decimal_precision as dp
 
 
 class account_invoice(orm.Model):
@@ -36,6 +37,24 @@ class account_invoice(orm.Model):
             readonly=True, copy=False),
     }
 
+    def name_get(self, cr, uid, ids, context={}):
+        result = super(account_invoice, self).name_get(cr, uid, ids, context)
+        res = []
+        for tup in result:
+            invoice = self.browse(cr, uid, tup[0])
+            if invoice.type in ('in_invoice', 'in_refund'):
+                name = "%s, %s" % (tup[1], invoice.partner_id.name)
+                if invoice.origin:
+                    name += ', %s' % invoice.origin
+                res.append((invoice.id, name))
+            else:
+                res.append(tup)
+        return res
+
+    def remove_attachment_link(self, cr, uid, ids, context={}):
+        self.write(cr, uid, ids, {'fatturapa_attachment_in_id': False}, context)
+        return {'type': 'ir.actions.client', 'tag': 'reload'}
+
 
 class fatturapa_article_code(orm.Model):
     # _position = ['2.2.1.3']
@@ -50,7 +69,7 @@ class fatturapa_article_code(orm.Model):
             ondelete='cascade', select=True
         ),
         # TODO: This field in V10 has changes it's name
-#         e_invoice_line_id = fields.Many2one(
+#         e_invoice_line_id: fields.many2one(
 #             'einvoice.line', 'Related E-Invoice line', readonly=True
 #         )
     }
@@ -86,4 +105,67 @@ class account_invoice_line(orm.Model):
         'fatturapa_attachment_in_id': fields.related(
             'invoice_id', 'fatturapa_attachment_in_id', type='many2one',
             relation='fatturapa.attachment.in', string='E-Invoice Import File'),
+    }
+
+
+class DiscountRisePrice(orm.Model):
+    _inherit = "discount.rise.price"
+    
+    _columns = {
+        'e_invoice_line_id': fields.many2one(
+            'einvoice.line', 'Related E-Invoice line', readonly=True
+            )
+    }
+
+
+class EInvoiceLine(orm.Model):
+    _name = 'einvoice.line'
+
+    _columns = {
+        'invoice_id': fields.many2one(
+            "account.invoice", "Invoice", readonly=True),
+        'line_number': fields.integer('Numero Linea', readonly=True),
+        'service_type': fields.char('Tipo Cessione Prestazione', readonly=True),
+        'cod_article_ids': fields.one2many(
+            'fatturapa.article.code', 'e_invoice_line_id',
+            'Cod. Articles', readonly=True
+        ),
+        'name': fields.char("Descrizione", readonly=True),
+        'qty': fields.float(
+            "Quantita'", readonly=True,
+            digits=dp.get_precision('Product Unit of Measure')
+        ),
+        'uom': fields.char("Unita' di misura", readonly=True),
+        'period_start_date': fields.date("Data Inizio Periodo", readonly=True),
+        'period_end_date': fields.date("Data Fine Periodo", readonly=True),
+        'unit_price': fields.float(
+            "Prezzo unitario", readonly=True,
+            digits=dp.get_precision('Product Price')
+        ),
+        'discount_rise_price_ids': fields.one2many(
+            'discount.rise.price', 'e_invoice_line_id',
+            'Discount and Rise Price Details', readonly=True
+        ),
+        'total_price': fields.float("Prezzo Totale", readonly=True),
+        'tax_amount': fields.float("Aliquota IVA", readonly=True),
+        'wt_amount': fields.char("Ritenuta", readonly=True),
+        'tax_kind': fields.char("Natura", readonly=True),
+        'admin_ref': fields.char("Riferimento mministrazione", readonly=True),
+        'other_data_ids': fields.one2many(
+            "einvoice.line.other.data", "e_invoice_line_id",
+            string="Altri dati gestionali", readonly=True),
+    }
+
+
+class EInvoiceLineOtherData(orm.Model):
+    _name = 'einvoice.line.other.data'
+
+    _columns = {
+        'e_invoice_line_id': fields.many2one(
+            'einvoice.line', 'Related E-Invoice line', readonly=True
+        ),
+        'name': fields.char("Tipo Dato", readonly=True),
+        'text_ref': fields.char("Riferimento Testo", readonly=True),
+        'num_ref': fields.float("Riferimento Numero", readonly=True),
+        'date_ref': fields.char("Riferimento Data", readonly=True),
     }
