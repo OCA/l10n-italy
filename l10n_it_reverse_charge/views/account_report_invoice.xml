@@ -18,7 +18,7 @@
         <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and o.company_partner == True">Self-invoice</span>
 
     </xpath>
-    <xpath expr="//h2/span[8]" position="replace">
+    <xpath expr="//h2/span[6]" position="replace">
     <span t-if="o.type == 'in_invoice' and o.company_partner != True">Vendor Bill</span>
     <span t-if="o.type == 'in_invoice' and o.company_partner == True">Self-invoice</span>
 
