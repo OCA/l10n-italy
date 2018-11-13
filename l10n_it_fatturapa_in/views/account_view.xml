@@ -24,7 +24,7 @@
                     <notebook>
                         <page string="Invoices">
                             <field name="in_invoice_ids"
-                                   context="{'form_view_ref': 'account.invoice_supplier_form'}">
+                                   context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}">
                                 <tree>
                                     <field name="partner_id"/>
                                     <field name="date_invoice"/>
@@ -103,14 +103,6 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"></field>
         <field name="arch" type="xml">
-            <xpath expr="//h1[@class='mt0']" position="after">
-                <div class="oe_right" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
-                    <a href="http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2.1/Rappresentazione_tabellare_del_tracciato_FatturaPA_versione_1.2.1.pdf"
-                    id="ftpa_schema" style="color: #0000AD!important; padding: 5px; border: 1px solid black; background-color: lightgray !important; border-radius: 5px;" target="_blank">
-                    Fattura PA  V1.2 Schema
-                    </a>
-                </div>
-            </xpath>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1"/>
                 <field name="tax_representative_id" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
