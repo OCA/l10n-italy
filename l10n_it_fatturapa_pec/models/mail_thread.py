@@ -3,7 +3,7 @@
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
 import re
@@ -22,6 +22,12 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_MT_' \
 
 class MailThread(models.AbstractModel):
     _inherit = 'mail.thread'
+
+    def clean_message_dict(self, message_dict):
+        del message_dict['attachments']
+        del message_dict['cc']
+        del message_dict['from']
+        del message_dict['to']
 
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None,
@@ -57,10 +63,7 @@ class MailThread(models.AbstractModel):
                         self.create_fatturapa_attachment_in(attachment)
 
                 message_dict['attachment_ids'] = attachment_ids
-                del message_dict['attachments']
-                del message_dict['cc']
-                del message_dict['from']
-                del message_dict['to']
+                self.clean_message_dict(message_dict)
 
                 # model and res_id are only needed by
                 # _message_post_process_attachments: we don't attach to
@@ -84,10 +87,7 @@ class MailThread(models.AbstractModel):
                 attachment_ids = self._message_post_process_attachments(
                     message_dict['attachments'], [], message_dict)
                 message_dict['attachment_ids'] = attachment_ids
-                del message_dict['attachments']
-                del message_dict['cc']
-                del message_dict['from']
-                del message_dict['to']
+                self.clean_message_dict(message_dict)
 
                 # message_create_from_mail_mail to avoid to notify message
                 # (see mail.message.create)
@@ -101,12 +101,39 @@ class MailThread(models.AbstractModel):
             fetchmail_server_id = self.env['fetchmail.server'].browse(
                 self._context['fetchmail_server_id'])
             if fetchmail_server_id.is_fatturapa_pec:
-                # todo send email for non-routable pec mail
+                att = self.find_attachment_by_subject(message_dict['subject'])
+                if att:
+                    message_dict['model'] = 'fatturapa.attachment.out'
+                    message_dict['res_id'] = att.id
+                    self.clean_message_dict(message_dict)
+                    self.env['mail.message'].with_context(
+                        message_create_from_mail_mail=True).create(message_dict)
+                else:
+                    # todo send email for non-routable pec mail
+                    _logger.error('Can\'t route PEC E-Mail with Message-Id: {}'
+                                 .format(message.get('Message-Id')))
                 return []
 
         return super(MailThread, self).message_route(
             message, message_dict, model=model, thread_id=thread_id,
             custom_values=custom_values)
+
+    def find_attachment_by_subject(self, subject):
+        if 'CONSEGNA: ' in subject:
+            att_name = subject.replace('CONSEGNA: ', '')
+            fatturapa_attachment_out = self.env[
+                'fatturapa.attachment.out'
+            ].search([('datas_fname', '=', att_name)])
+            if len(fatturapa_attachment_out) == 1:
+                return fatturapa_attachment_out
+        if 'ACCETTAZIONE: ' in subject:
+            att_name = subject.replace('ACCETTAZIONE: ', '')
+            fatturapa_attachment_out = self.env[
+                'fatturapa.attachment.out'
+            ].search([('datas_fname', '=', att_name)])
+            if len(fatturapa_attachment_out) == 1:
+                return fatturapa_attachment_out
+        return False
 
     def create_fatturapa_attachment_in(self, attachment):
         decoded = base64.b64decode(attachment.datas)

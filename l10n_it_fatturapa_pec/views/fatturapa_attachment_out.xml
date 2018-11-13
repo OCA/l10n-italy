@@ -9,6 +9,7 @@
             <xpath expr="//div" position="before">
                 <header>
                     <button name="send_via_pec" states="ready" string="Send Via PEC" type="object" class="oe_highlight"/>
+                    <button name="reset_to_ready" states="sender_error" string="Reset to ready" type="object" />
                     <field name="state" widget="statusbar"/>
                 </header>
             </xpath>
@@ -17,6 +18,20 @@
                     <field name="last_sdi_response" nolabel="1"/>
                 </group>
             </xpath>
+            <field name="datas" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', 'not in', ['ready', 'sender_error'])]}</attribute>
+            </field>
+            <div name="creation_div" position="after">
+                <label for="sending_user" string="Sent by" attrs="{'invisible': [('sending_user' ,'=', False)]}"/>
+                <div name="sending_user" attrs="{'invisible': [('sending_user' ,'=', False)]}">
+                    <field name="sending_user" readonly="1" class="oe_inline"/> on
+                    <field name="sending_date" readonly="1" class="oe_inline"/>
+                </div>
+                <label for="delivered_date" string="Delivered" attrs="{'invisible': [('delivered_date' ,'=', False)]}"/>
+                <div name="delivered_date" attrs="{'invisible': [('delivered_date' ,'=', False)]}">
+                    <field name="delivered_date" readonly="1" class="oe_inline"/>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -27,6 +42,8 @@
         <field name="arch" type="xml">
             <field name="out_invoice_ids" position="after">
                 <field name="state"/>
+                <field name="sending_date"/>
+                <field name="delivered_date"/>
             </field>
         </field>
     </record>
@@ -37,8 +54,13 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="state"/>
+                <filter name="ready" string="Ready" domain="[('state','=','ready')]"/>
             </field>
         </field>
+    </record>
+
+    <record id="l10n_it_fatturapa_out.action_fatturapa_attachment" model="ir.actions.act_window">
+        <field name="context">{'search_default_ready': True}</field>
     </record>
 
 </odoo>
