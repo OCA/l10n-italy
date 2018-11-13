@@ -1234,7 +1234,7 @@ class WizardImportFatturapa(orm.TransientModel):
         einvoiceline = self.pool['einvoice.line'].create(cr, uid, vals)
         if line.CodiceArticolo:
             for caline in line.CodiceArticolo:
-                self.env['fatturapa.article.code'].create(
+                self.pool['fatturapa.article.code'].create(cr, uid,
                     {
                         'name': caline.CodiceTipo or '',
                         'code_val': caline.CodiceValore or '',
@@ -1248,10 +1248,10 @@ class WizardImportFatturapa(orm.TransientModel):
                 )._prepareDiscRisePriceLine(
                     einvoiceline, DiscRisePriceLine
                 )
-                self.env['discount.rise.price'].create(cr, uid, DiscRisePriceVals)
+                self.pool['discount.rise.price'].create(cr, uid, DiscRisePriceVals)
         if line.AltriDatiGestionali:
             for dato in line.AltriDatiGestionali:
-                self.env['einvoice.line.other.data'].create(cr, uid, 
+                self.pool['einvoice.line.other.data'].create(cr, uid, 
                     {
                         'name': dato.TipoDato,
                         'text_ref': dato.RiferimentoTesto,
@@ -1262,7 +1262,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 )
         return self.pool['einvoice.line'].browse(cr, uid, einvoiceline)
 
-    def add_dati_bollo(self, cr, uid, invoice, DatiGeneraliDocumento):
+    def add_dati_bollo(self, cr, uid, invoice, DatiGeneraliDocumento, context={}):
         # 2.1.1.6
         Stamps = DatiGeneraliDocumento.DatiBollo
         if Stamps:
@@ -1282,9 +1282,9 @@ class WizardImportFatturapa(orm.TransientModel):
                     'price_unit': invoice.stamp_amount,
                     'quantity': 1,
                     }
-                if self.env.user.company_id.dati_bollo_product_id:
+                if self.pool.user.company_id.dati_bollo_product_id:
                     dati_bollo_product = (
-                        self.env.user.company_id.dati_bollo_product_id)
+                        self.pool.user.company_id.dati_bollo_product_id)
                     line_vals['product_id'] = dati_bollo_product.id
                     line_vals['name'] = dati_bollo_product.name
                     self.adjust_accounting_data(cr, uid,
@@ -1579,5 +1579,5 @@ class WizardImportFatturapa(orm.TransientModel):
             self.pool.get('account.invoice').write(cr, uid, invoice, vals)
 
     def get_invoice_obj(self, cr, uid, fatturapa_attachment):
-        xml_string = self.pool.get('ir.attachment').get_xml_string(cr, uid, fatturapa_attachment.id)
+        xml_string = self.pool.get('ir.attachment').get_xml_string(cr, uid, fatturapa_attachment.ir_attachment_id.id)
         return fatturapa_v_1_2.CreateFromDocument(xml_string)
