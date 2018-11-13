@@ -51,6 +51,7 @@ class AccountConfigSettings(osv.TransientModel):
 
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
         res = super(AccountConfigSettings, self).onchange_company_id(cr, uid, ids, company_id, context)
+        company_id = self.pool.get('res.company').browse(cr, uid, company_id)
         if company_id:
             res['value']['dati_bollo_product_id'] = (
                 company_id.dati_bollo_product_id and

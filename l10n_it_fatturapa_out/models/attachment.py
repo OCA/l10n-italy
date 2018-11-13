@@ -27,7 +27,7 @@ class FatturaPAAttachment(orm.Model):
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
 
-    def _compute_has_pdf_invoice_print(self, cr, uid, ids, context={}):
+    def _compute_has_pdf_invoice_print(self, cr, uid, ids, name, unknow_none, context={}):
         ret = {}
         for attachment_out in self.browse(cr, uid, ids, context):
             for invoice in attachment_out.out_invoice_ids:

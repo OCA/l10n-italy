@@ -163,11 +163,8 @@ class WizardExportFatturapa(orm.TransientModel):
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
                 FormatoTrasmissione = 'FPA12'
         else:
-            if not company.fatturapa_format_id:
-                raise orm.except_orm(
-                    _('Error!'), _('FatturaPA format not set.'))
-            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-                FormatoTrasmissione = company.fatturapa_format_id.code
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
+                FormatoTrasmissione = 'FPR12'
 
         return True
 
@@ -222,7 +219,7 @@ class WizardExportFatturapa(orm.TransientModel):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
             DatiTrasmissioneType())
         self._setIdTrasmittente(cr, uid, company, fatturapa, context=context)
-        self._setFormatoTrasmissione(cr, uid, company, fatturapa, context=context)
+        self._setFormatoTrasmissione(cr, uid, partner, fatturapa, company, context=context)
         self._setCodiceDestinatario(cr, uid, partner, fatturapa, context=context)
         self._setContattiTrasmittente(cr, uid, company, fatturapa, context=context)
 
@@ -399,11 +396,11 @@ class WizardExportFatturapa(orm.TransientModel):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
-        if partner.company_type == 'company':
+        if partner.is_company:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Denominazione=partner.name)
-        elif partner.company_type == 'person':
+        else:
             if not partner.lastname or not partner.firstname:
                 raise orm.except_orm(_('Error!'),
                     _("Partner %s deve avere nome e cognome") % partner.name)
@@ -675,11 +672,11 @@ class WizardExportFatturapa(orm.TransientModel):
     def _get_prezzo_unitario(self, cr, uid, line):
         res = line.price_unit
         if (
-            line.invoice_line_tax_ids and
-            line.invoice_line_tax_ids[0].price_include
+            line.invoice_line_tax_id and
+            line.invoice_line_tax_id[0].price_include
         ):
             res = line.price_unit / (
-                1 + (line.invoice_line_tax_ids[0].amount / 100))
+                1 + (line.invoice_line_tax_id[0].amount / 100))
         return res
 
     def setDettaglioLinee(self, cr, uid, invoice, body, context=None):
@@ -745,7 +742,7 @@ class WizardExportFatturapa(orm.TransientModel):
                         CodiceValore=line.product_id.default_code
                     )
                     DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-                if line.product_id.barcode:
+                if line.product_id.ean13:
                     CodiceArticolo = CodiceArticoloType(
                         CodiceTipo='EAN',
                         CodiceValore=line.product_id.barcode
@@ -860,10 +857,8 @@ class WizardExportFatturapa(orm.TransientModel):
         self.setDatiTrasmissione(cr, uid, company, partner, fatturapa, context=context)
         self.setCedentePrestatore(cr, uid, company, fatturapa, context=context)
         self.setRappresentanteFiscale(cr, uid, company, fatturapa, context=context)
-        self.setCessionarioCommittente(
-            cr, uid, partner, fatturapa, context=context)
-        self.setTerzoIntermediarioOSoggettoEmittente(
-            cr, uid, company, fatturapa, context=context)
+        self.setCessionarioCommittente(cr, uid, partner, fatturapa, context=context)
+        self.setTerzoIntermediarioOSoggettoEmittente(cr, uid, company, fatturapa, context=context)
         self.setSoggettoEmittente(cr, uid, context=context)
 
     def setFatturaElettronicaBody(
@@ -915,7 +910,6 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
 
-        fatturapa = FatturaElettronica(versione='1.2')
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
 

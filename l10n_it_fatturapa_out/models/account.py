@@ -36,7 +36,7 @@ class account_invoice(orm.Model):
 
     def preventive_checks(self, cr, uid, ids, context={}):
         for invoiceBrws in self.browse(cr, uid, ids, context):
-            for line in invoiceBrws.invoice_line_ids:
+            for line in invoiceBrws.invoice_line:
                 if '\n' in line.name:
                     raise except_osv(_('Error' ),
                                  _(
