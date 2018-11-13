@@ -287,8 +287,8 @@ class WizardExportFatturapa(orm.TransientModel):
             Comune=company.city,
             Provincia=company.partner_id.province.code,
             Nazione=company.country_id.code)
-        if company.partner_id.state_id:
-            CedentePrestatore.Sede.Provincia = company.partner_id.state_id.code
+        if company.partner_id.province:
+            CedentePrestatore.Sede.Provincia = company.partner_id.province.code
         return True
 
     def _setStabileOrganizzazione(self, cr, uid, CedentePrestatore,
@@ -314,9 +314,9 @@ class WizardExportFatturapa(orm.TransientModel):
                 CAP=stabile_organizzazione.zip,
                 Comune=stabile_organizzazione.city,
                 Nazione=stabile_organizzazione.country_id.code)
-            if stabile_organizzazione.state_id:
+            if stabile_organizzazione.province:
                 CedentePrestatore.StabileOrganizzazione.Provincia = (
-                    stabile_organizzazione.state_id.code)
+                    stabile_organizzazione.province.code)
         return True
 
     def _setRea(self, cr, uid, CedentePrestatore, company, context=None):

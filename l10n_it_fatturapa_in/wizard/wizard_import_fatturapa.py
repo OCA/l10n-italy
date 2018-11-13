@@ -82,7 +82,7 @@ class WizardImportFatturapa(orm.TransientModel):
             cr, uid, [('code', '=', CountryCode)], context=context)
 
     def ProvinceByCode(self, cr, uid, provinceCode, context=None):
-        province_model = self.pool['res.country.state']
+        province_model = self.pool['res.province']
         return province_model.search(
             cr, uid, [('code', '=', provinceCode)], context=context)
         
@@ -255,7 +255,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         % Provincia
                     )
                 else:
-                    vals['state_id'] = prov_sede[0]
+                    vals['province'] = prov_sede[0]
             vals['register_code'] = (
                 cedPrest.DatiAnagrafici.NumeroIscrizioneAlbo)
             vals['register_regdate'] = (

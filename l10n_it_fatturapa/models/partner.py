@@ -132,7 +132,7 @@ class res_partner(orm.Model):
                         raise except_osv(_('Error' ),_(
                             'Customer %s: city is needed for XML generation.'
                         ) % partner.name)
-                    if not partner.state_id:
+                    if not partner.province:
                         raise except_osv(_('Error' ),_(
                             'Customer %s: province is needed for XML '
                             'generation.'
@@ -147,7 +147,7 @@ class res_partner(orm.Model):
     _constraints = [
         (_check_ftpa_partner_data, 'Some customer infos are needed.', ['is_pa', 'ipa_code', 'codice_destinatario', 'company_type',
         'electronic_invoice_subjected', 'vat', 'fiscalcode', 'lastname',
-        'firstname', 'customer', 'street', 'zip', 'city', 'state_id',
+        'firstname', 'customer', 'street', 'zip', 'city', 'province',
         'country_id']),
     ]
 
