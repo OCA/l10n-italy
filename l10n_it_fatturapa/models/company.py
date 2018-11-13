@@ -57,6 +57,10 @@ class ResCompany(models.Model):
     def _check_fatturapa_sequence_id(self):
         for company in self:
             if company.fatturapa_sequence_id:
+                if company.fatturapa_sequence_id.use_date_range:
+                    raise ValidationError(_(
+                        "Sequence %s can't use subsequences"
+                    ) % company.fatturapa_sequence_id.name)
                 journal = self.env['account.journal'].search([
                     ('sequence_id', '=', company.fatturapa_sequence_id.id)
                 ], limit=1)
