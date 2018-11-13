@@ -387,8 +387,9 @@ ul.auto-toc {
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#id1">Configuration</a></h1>
-<p>Nel menu: Contabilità &gt; Configurazione &gt; Contabilità &gt; SdI Channels va creato
-un nuovo canale di tipo PEC (unico supportato per ora) in cui vanno inseriti:</p>
+<p>Nel menu: Contabilità &gt; Configurazione &gt; Contabilità</p>
+<p>Sotto Fattura elettronica &gt; SDI channels</p>
+<p>va creato un nuovo canale di tipo PEC (unico supportato per ora) in cui vanno inseriti:</p>
 <ul class="simple">
 <li>La mail PEC dello SdI, inizialmente uguale a <a class="reference external" href="mailto:sdi01&#64;pec.fatturapa.it">sdi01&#64;pec.fatturapa.it</a>.</li>
 </ul>
@@ -404,6 +405,8 @@ letti.</p>
 <p>In questo server va indicata la mail di invio/ricezione, solitamente
 uguale all’utente di connessione (potrebbe essere diversa dall’utente di
 connessione in casi particolari).</p>
+<p>Se si usano altri SMTP server, per l’invio di email non PEC, bisogna dare loro priorità maggiore rispetto al server PEC.</p>
+<p>Creare infine il mail server in ingresso, impostando ‘FatturaPA PEC server’</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#id2">Bug Tracker</a></h1>

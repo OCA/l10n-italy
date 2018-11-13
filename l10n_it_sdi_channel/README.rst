@@ -41,8 +41,11 @@ http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 Configuration
 =============
 
-Nel menu: Contabilità > Configurazione > Contabilità > SdI Channels va creato
-un nuovo canale di tipo PEC (unico supportato per ora) in cui vanno inseriti:
+Nel menu: Contabilità > Configurazione > Contabilità
+
+Sotto Fattura elettronica > SDI channels
+
+va creato un nuovo canale di tipo PEC (unico supportato per ora) in cui vanno inseriti:
 
 - La mail PEC dello SdI, inizialmente uguale a sdi01@pec.fatturapa.it.
 
@@ -59,6 +62,10 @@ letti.
 In questo server va indicata la mail di invio/ricezione, solitamente
 uguale all'utente di connessione (potrebbe essere diversa dall'utente di
 connessione in casi particolari).
+
+Se si usano altri SMTP server, per l'invio di email non PEC, bisogna dare loro priorità maggiore rispetto al server PEC.
+
+Creare infine il mail server in ingresso, impostando 'FatturaPA PEC server'
 
 Bug Tracker
 ===========
