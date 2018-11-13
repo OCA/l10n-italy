@@ -23,6 +23,10 @@ class AccountInvoice(models.Model):
             invoice = self.browse(tup[0])
             if invoice.type in ('in_invoice', 'in_refund'):
                 name = "%s, %s" % (tup[1], invoice.partner_id.name)
+                if invoice.amount_total_signed:
+                    name += ', %s %s' % (
+                        invoice.amount_total_signed, invoice.currency_id.symbol
+                    )
                 if invoice.origin:
                     name += ', %s' % invoice.origin
                 res.append((invoice.id, name))
