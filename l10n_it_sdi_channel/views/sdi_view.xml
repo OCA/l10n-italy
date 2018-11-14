@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sdi_channel_tree" model="ir.ui.view">
+            <field name="model">sdi.channel</field>
+            <field name="name">view_sdi_channel_tree</field>
+            <field name="arch" type="xml">
+                <tree string="SdI Channel">
+                    <field name="name"/>
+                    <field name="channel_type"/>
+                    <field name="pec_server_id" attrs="{'invisible': [('channel_type', '!=', 'pec')]}"/>
+                    <field name="email_exchange_system" attrs="{'invisible': [('channel_type', '!=', 'pec')]}"/>
+                    <field name="web_server_address" attrs="{'invisible': [('channel_type', '!=', 'web')]}"/>
+                    <field name="web_server_login" attrs="{'invisible': [('channel_type', '!=', 'web')]}"/>
+                    <field name="web_server_password" attrs="{'invisible': [('channel_type', '!=', 'web')]}"/>
+                    <field name="web_server_token" attrs="{'invisible': [('channel_type', '!=', 'web')]}"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_sdi_channel_form" model="ir.ui.view">
+            <field name="model">sdi.channel</field>
+            <field name="name">view_sdi_channel_form</field>
+            <field name="arch" type="xml">
+                <form string="SdI Channel">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="channel_type"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <newline/>
+                        <group attrs="{'invisible': [('channel_type', '!=', 'pec')]}">
+                            <field name="pec_server_id" context="{'default_is_fatturapa_pec': True}"/>
+                            <field name="email_exchange_system"/>
+                        </group>
+                        <!--<group attrs="{'invisible': [('channel_type', '!=', 'web')]}">-->
+                            <!--<field name="web_server_address"/>-->
+                            <!--<field name="web_server_login"/>-->
+                            <!--<field name="web_server_password"/>-->
+                            <!--<field name="web_server_token"/>-->
+                        <!--</group>-->
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="action_sdi_channel" model="ir.actions.act_window">
+            <field name="name">SdI Channel</field>
+            <field name="res_model">sdi.channel</field>
+            <field name="view_id" ref="view_sdi_channel_tree"/>
+        </record>
+        <menuitem id="menu_sdi_channel" name="SdI Channels"
+            action="action_sdi_channel" parent="account.account_account_menu"
+            groups="account.group_account_manager" sequence="50"/>
+    </data>
+</openerp>
