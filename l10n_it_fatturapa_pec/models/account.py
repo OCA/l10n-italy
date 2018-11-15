@@ -16,13 +16,13 @@ class AccountInvoice(models.Model):
          ('delivered', 'Delivered'),
          ('error', 'Error')],
         string='E-invoice State',
-        compute='compute_fatturapa_state',
+        compute='_compute_fatturapa_state',
         store='true',
     )
 
     @api.multi
     @api.depends('fatturapa_attachment_out_id.state')
-    def compute_fatturapa_state(self):
+    def _compute_fatturapa_state(self):
         mapping = {
             'ready': 'ready',
             'sent': 'sent',
