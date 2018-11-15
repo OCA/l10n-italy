@@ -72,9 +72,8 @@ class FatturaPAAttachment(models.Model):
             for attachment in self:
                 attachment.message_post(
                     subject=_("E-invoice attachment changed"),
-                    body=_(
-                            "User %s uploaded a new e-invoice file"
-                        ) % self.env.user.login
+                    body=_("User %s uploaded a new e-invoice file"
+                           ) % self.env.user.login
                 )
         return res
 

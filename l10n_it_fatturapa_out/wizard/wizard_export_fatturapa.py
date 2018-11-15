@@ -759,7 +759,6 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     def exportFatturaPA(self):
-        model_data_obj = self.env['ir.model.data']
         invoice_obj = self.env['account.invoice']
         invoices_by_partner = self.group_invoices_by_partner()
         attachments = self.env['fatturapa.attachment.out']
