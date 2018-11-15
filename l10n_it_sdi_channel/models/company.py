@@ -14,7 +14,8 @@ class ResCompany(models.Model):
         related='sdi_channel_id.channel_type', readonly=True)
     email_from_for_fatturaPA = fields.Char(
         string='Sender Email Address',
-        related='sdi_channel_id.pec_server_id.email_from_for_fatturaPA', readonly=True)
+        related='sdi_channel_id.pec_server_id.email_from_for_fatturaPA',
+        readonly=True)
     email_exchange_system = fields.Char(
         string='Exchange System Email Address',
         related='sdi_channel_id.email_exchange_system', readonly=True)
@@ -29,7 +30,8 @@ class AccountConfigSettings(models.TransientModel):
         related='sdi_channel_id.channel_type', readonly=True)
     email_from_for_fatturaPA = fields.Char(
         string='Sender Email Address',
-        related='sdi_channel_id.pec_server_id.email_from_for_fatturaPA', readonly=True)
+        related='sdi_channel_id.pec_server_id.email_from_for_fatturaPA',
+        readonly=True)
     email_exchange_system = fields.Char(
         string='Exchange System Email Address',
         related='sdi_channel_id.email_exchange_system', readonly=True)
