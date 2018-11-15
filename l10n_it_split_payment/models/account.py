@@ -75,17 +75,23 @@ class AccountInvoice(models.Model):
             for receivable_line in move_line_pool.browse(receivable_line_ids):
                 inv_total = invoice.amount_sp + invoice.amount_total
                 if invoice.type == 'out_invoice':
-                    receivable_line_amount = (
-                        invoice.amount_total * receivable_line.debit
-                        ) / inv_total
+                    if inv_total:
+                        receivable_line_amount = (
+                            invoice.amount_total * receivable_line.debit
+                            ) / inv_total
+                    else:
+                        receivable_line_amount = 0
                     receivable_line.with_context(
                         check_move_validity=False
                     ).write(
                         {'debit': receivable_line_amount})
                 elif invoice.type == 'out_refund':
-                    receivable_line_amount = (
-                        invoice.amount_total * receivable_line.credit
-                        ) / inv_total
+                    if inv_total:
+                        receivable_line_amount = (
+                            invoice.amount_total * receivable_line.credit
+                            ) / inv_total
+                    else:
+                        receivable_line_amount = 0
                     receivable_line.with_context(
                         check_move_validity=False
                     ).write(
