@@ -58,7 +58,7 @@ class MailThread(models.AbstractModel):
                 attachment_ids = self._message_post_process_attachments(
                     message_dict['attachments'], [], message_dict)
                 for attachment in self.env['ir.attachment'].browse(
-                        [att_id for model, att_id in attachment_ids]):
+                        [att_id for m, att_id in attachment_ids]):
                     if fatturapa_regex.match(attachment.name):
                         self.create_fatturapa_attachment_in(attachment)
 
@@ -107,11 +107,12 @@ class MailThread(models.AbstractModel):
                     message_dict['res_id'] = att.id
                     self.clean_message_dict(message_dict)
                     self.env['mail.message'].with_context(
-                        message_create_from_mail_mail=True).create(message_dict)
+                        message_create_from_mail_mail=True).create(
+                            message_dict)
                 else:
                     # todo send email for non-routable pec mail
                     _logger.error('Can\'t route PEC E-Mail with Message-Id: {}'
-                                 .format(message.get('Message-Id')))
+                                  .format(message.get('Message-Id')))
                 return []
 
         return super(MailThread, self).message_route(

@@ -200,10 +200,7 @@ class FatturaPAAttachmentOut(models.Model):
                     esito_committente = root.find('EsitoCommittente')
                     if esito_committente is not None:
                         # more than one esito?
-                        id_sdi_esito = esito_committente.find(
-                            'IdentificativoSdI')
-                        esito = esito_committente.find(
-                            'Esito')
+                        esito = esito_committente.find('Esito')
                         if esito is not None:
                             if esito.text == 'EC01':
                                 state = 'validated'
