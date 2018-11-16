@@ -1537,9 +1537,6 @@ class WizardImportFatturapa(orm.TransientModel):
                     )
                 new_invoices.append(invoice_id)
                 invoice = invoice_model.browse(cr, uid, invoice_id, ctx)
-                self.check_CessionarioCommittente(
-                    cr, uid, invoice.company_id, fatt.FatturaElettronicaHeader,
-                    context=ctx)
                 self.check_invoice_amount(
                     cr, uid, invoice,
                     fattura,
