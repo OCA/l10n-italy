@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2018-11-07 15:31+0000\n"
+"PO-Revision-Date: 2018-11-16 11:34+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -55,7 +55,6 @@ msgstr "Importo della penalità"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_amount_tax
-#, fuzzy
 msgid "Amount tax"
 msgstr "Importo imposte"
 
@@ -404,6 +403,7 @@ msgstr "Fase di avanzamento dell'attività"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_invoice_line_form_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_partner_form_fatturapa
+#, fuzzy
 msgid "Fattura Elettronica"
 msgstr "Fattura elettronica"
 
@@ -840,9 +840,9 @@ msgstr "PEC destinatario"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:61
-#, fuzzy, python-format
+#, python-format
 msgid "Parsing PEM to DER  file %s"
-msgstr "Analisi PEM to DER  file %s"
+msgstr "Analisi file da PEM a DER  %s"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_res_partner
@@ -858,12 +858,12 @@ msgstr "Importo pagamento"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank
 #, fuzzy
 msgid "Payment Bank"
-msgstr "Banca pagamento"
+msgstr "Banca per il pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_account_move_line_id
 msgid "Payment Line"
-msgstr "Riga pagamento"
+msgstr "Riga di pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_payment_term
@@ -1002,14 +1002,12 @@ msgstr "Numero iscrizione Albo"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_register_fiscalpos
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_register_fiscalpos
-#, fuzzy
 msgid "Register Fiscal Position"
-msgstr "Regime fiscale"
+msgstr "Posizione fiscale Albo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_register_province
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_register_province
-#, fuzzy
 msgid "Register Province"
 msgstr "Provincia Albo"
 
@@ -1017,7 +1015,7 @@ msgstr "Provincia Albo"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_register_regdate
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_register_regdate
 msgid "Register Registration Date"
-msgstr "Data Iscrizione Albo"
+msgstr "Data iscrizione Albo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_related_ddts
@@ -1135,7 +1133,6 @@ msgstr "File XML firmato non decifrabile"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
-#, fuzzy
 msgid "Split payment"
 msgstr "Scissione pagamenti"
 
@@ -1159,7 +1156,7 @@ msgstr "Nome file memorizzato"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_subjected_withholding
 msgid "Subjected to Withholding"
-msgstr "Soggetto a ritenuta fiscale"
+msgstr "Soggetto a ritenuta"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_electronic_invoice_subjected
@@ -1290,7 +1287,7 @@ msgstr "Aliquota IVA"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_withholding_type
 msgid "Withholding type"
-msgstr "Tipo ritenuta fiscale"
+msgstr "Tipo ritenuta"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_type
@@ -1344,13 +1341,12 @@ msgstr "faturapa.summary.data"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_art73
-#, fuzzy
 msgid "indicates whether the document has been issued in accordance with the terms and conditions established by ministerial decree in accordance with Article 73 of Presidential Decree633/72 (this allows the company to issue the same year more documents with the same number)"
 msgstr ""
 "Indica se il documento è stato emesso secondo le modalità e i termini "
-"stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72 ("
-"ciò consente al cedente/prestatore l'emissione nello stesso anno di più "
-"documenti aventi lo stesso numero)"
+"stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR n. 633/"
+"72 (ciò consente all'azienda l'emissione nello stesso anno di più documenti "
+"aventi lo stesso numero)"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
