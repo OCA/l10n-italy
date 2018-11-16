@@ -3,6 +3,7 @@
 # Copyright 2018 Alex Comba - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+import base64
 from .fatturapa_common import FatturaPACommon
 
 
@@ -52,7 +53,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.assertEqual(attachment.datas_fname, 'IT06363391001_00001.xml')
 
         # XML doc to be validated
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00001.xml')
 
     def test_2_xml_export(self):
@@ -99,7 +100,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
 
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00002.xml')
 
     def test_3_xml_export(self):
@@ -148,7 +149,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.AttachFileToInvoice(invoice.id, 'test2.pdf')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
 
         self.check_content(xml_content, 'IT06363391001_00003.xml')
 
@@ -189,7 +190,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00004.xml')
 
     def test_5_xml_export(self):
@@ -222,7 +223,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
         self.assertEqual(attachment.datas_fname, 'IT03297040366_00005.xml')
         self.check_content(xml_content, 'IT03297040366_00005.xml')
 
@@ -266,7 +267,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         attachment = self.attach_model.browse(res['res_id'])
         self.assertEqual(attachment.datas_fname, 'IT06363391001_00006.xml')
 
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00006.xml')
 
     def test_7_xml_export(self):
@@ -309,7 +310,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.assertEqual(
             attachment.datas_fname, 'CHE114993395IVA_00007.xml')
 
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'CHE114993395IVA_00007.xml')
 
     def test_8_xml_export(self):
@@ -351,5 +352,5 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         attachment = self.attach_model.browse(res['res_id'])
         self.assertEqual(attachment.datas_fname, 'IT06363391001_00008.xml')
 
-        xml_content = attachment.datas.decode('base64')
+        xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00008.xml')

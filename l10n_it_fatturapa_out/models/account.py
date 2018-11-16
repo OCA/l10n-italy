@@ -12,7 +12,7 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     fatturapa_attachment_out_id = fields.Many2one(
-        'fatturapa.attachment.out', 'FatturaPA Export File',
+        'fatturapa.attachment.out', 'E-invoice Export File',
         readonly=True, copy=False)
 
     has_pdf_invoice_print = fields.Boolean(

@@ -55,12 +55,12 @@ except ImportError as err:
 
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
-    _description = "Export FatturaPA"
+    _description = "Export E-invoice"
 
     @api.model
     def _domain_ir_values(self):
         model_name = self.env.context.get('active_model', False)
-        """Get all print actions for current model"""
+        # Get all print actions for current model
         return [('binding_model_id', '=', model_name),
                 ('type', '=', 'ir.actions.report')]
 
@@ -72,7 +72,7 @@ class WizardExportFatturapa(models.TransientModel):
     @api.model
     def _domain_ir_values(self):
         model_name = self.env.context.get('active_model', False)
-        """Get all print actions for current model"""
+        # Get all print actions for current model
         return [('binding_model_id', '=', model_name),
                 ('type', '=', 'ir.actions.report')]
 
@@ -114,7 +114,7 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_sequence = company.fatturapa_sequence_id
         if not fatturapa_sequence:
             raise UserError(
-                _('FatturaPA sequence not configured.'))
+                _('E-invoice sequence not configured.'))
         number = fatturapa_sequence.next_by_id()
         try:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
@@ -217,10 +217,10 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
             raise UserError(_(
-                'Fiscal position for Fattura Elettronica not set '
+                'Fiscal position for E-invoice not set '
                 'for company %s. '
                 '(Go to Accounting --> Configuration --> Settings --> '
-                'Fattura Elettronica)' % company.name
+                'E-invoice)' % company.name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
@@ -295,23 +295,21 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setRea(self, CedentePrestatore, company):
 
-        if company.fatturapa_rea_office and company.fatturapa_rea_number:
+        if company.rea_office and company.rea_code:
             CedentePrestatore.IscrizioneREA = IscrizioneREAType(
                 Ufficio=(
-                    company.fatturapa_rea_office and
-                    company.fatturapa_rea_office.code or None),
-                NumeroREA=company.fatturapa_rea_number or None,
+                    company.rea_office and company.rea_office.code or None),
+                NumeroREA=company.rea_code or None,
                 CapitaleSociale=(
-                    company.fatturapa_rea_capital and
-                    '%.2f' % company.fatturapa_rea_capital or None),
-                SocioUnico=(company.fatturapa_rea_partner or None),
-                StatoLiquidazione=company.fatturapa_rea_liquidation or None
+                    company.rea_capital and
+                    '%.2f' % company.rea_capital or None),
+                SocioUnico=(company.rea_member_type or None),
+                StatoLiquidazione=company.rea_liquidation_state or None
                 )
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
             Telefono=company.partner_id.phone or None,
-            Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
             )
 
@@ -366,7 +364,8 @@ class WizardExportFatturapa(models.TransientModel):
         elif partner.company_type == 'person':
             if not partner.lastname or not partner.firstname:
                 raise UserError(
-                    _("Partner %s deve avere nome e cognome") % partner.name)
+                    _("Partner %s must have firstname and lastname")
+                    % partner.name)
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Cognome=partner.lastname,
@@ -681,11 +680,11 @@ class WizardExportFatturapa(models.TransientModel):
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term_id.fatturapa_pt_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked E-invoice '
                       'payment term') % invoice.payment_term_id.name)
             if not invoice.payment_term_id.fatturapa_pm_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked E-invoice '
                       'payment method') % invoice.payment_term_id.name)
             DatiPagamento.CondizioniPagamento = (
                 invoice.payment_term_id.fatturapa_pt_id.code)
@@ -792,7 +791,7 @@ class WizardExportFatturapa(models.TransientModel):
                         invoice_id)
                     if inv.fatturapa_attachment_out_id:
                         raise UserError(
-                            _("Invoice %s has FatturaPA Export File yet") % (
+                            _("Invoice %s has E-invoice Export File yet") % (
                                 inv.number))
                     if self.report_print_menu:
                         self.generate_attach_report(inv)
@@ -831,9 +830,12 @@ class WizardExportFatturapa(models.TransientModel):
         return action
 
     def generate_attach_report(self, inv):
-        binding_model_id = self.with_context(lang=None).report_print_menu.binding_model_id.id
+        binding_model_id = self.with_context(
+            lang=None).report_print_menu.binding_model_id.id
         name = self.report_print_menu.name
-        report_model = self.env['ir.actions.report'].with_context(lang=None).search(
+        report_model = self.env['ir.actions.report'].with_context(
+            lang=None
+        ).search(
             [('binding_model_id', '=', binding_model_id),
              ('name', '=', name)]
             )
@@ -841,7 +843,7 @@ class WizardExportFatturapa(models.TransientModel):
         att_id = self.env['ir.attachment'].create({
             'name': inv.number,
             'type': 'binary',
-            'datas': base64.encodestring(attachment),
+            'datas': base64.encodebytes(attachment),
             'datas_fname': '{}.pdf'.format(inv.number),
             'res_model': 'account.invoice',
             'res_id': inv.id,
@@ -849,5 +851,8 @@ class WizardExportFatturapa(models.TransientModel):
             })
         inv.write({
             'fatturapa_doc_attachments': [(0, 0, {
-                'ir_attachment_id': att_id.id})]
+                'is_pdf_invoice_print': True,
+                'ir_attachment_id': att_id.id,
+                'description': _("Attachment generated by "
+                                 "Electronic invoice export")})]
         })

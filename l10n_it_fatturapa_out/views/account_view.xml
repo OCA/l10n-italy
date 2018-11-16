@@ -6,9 +6,10 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
-            <button name="invoice_print" position="before">
-                <button name="%(action_wizard_export_fatturapa)d" type="action" states="open"
-                        string="Export E-invoice" class="oe_highlight"/>
+            <button name="preview_invoice" position="before">
+                <button name="%(action_wizard_export_fatturapa)d" type="action"
+                        string="Export E-invoice" class="oe_highlight"
+                        attrs="{'invisible': ['|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'!=', 'open')]}"/>
             </button>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1"/>
@@ -34,7 +35,7 @@
                         </field>
                     </group>
                 </page>
-                <page string="Fattura Elettronica"
+                <page string="E-invoice"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                     <group>
                         <group string="Results">
@@ -44,7 +45,7 @@
                         </group>
                     </group>
                 </page>
-                <page string="Fattura Elettronica attachments"
+                <page string="E-invoice attachments"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                     <group string="Attachments">
                         <field name="fatturapa_doc_attachments" nolabel="1" >
