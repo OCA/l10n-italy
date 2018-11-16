@@ -11,7 +11,7 @@ class ResCompany(models.Model):
     sp_account_id = fields.Many2one(
         'account.account',
         string='Split Payment Write-off Account',
-        help='Account used to write off the VAT amount')
+        help='Account used to write off the VAT amount', readonly=False)
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -20,4 +20,4 @@ class AccountConfigSettings(models.TransientModel):
     sp_account_id = fields.Many2one(
         related='company_id.sp_account_id',
         string='Split Payment Write-off account',
-        help='Account used to write off the VAT amount')
+        help='Account used to write off the VAT amount', readonly=False)
