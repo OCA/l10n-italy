@@ -52,6 +52,7 @@ class FatturapaPaymentData(models.Model):
 class FatturapaPaymentDetail(models.Model):
     # _position = ['2.4.2']
     _name = "fatturapa.payment.detail"
+    _description = "E-invoice payment details"
     recipient = fields.Char('Recipient', size=200)
     fatturapa_pm_id = fields.Many2one(
         'fatturapa.payment_method', string="Fattura Elettronica Payment Method"
@@ -133,7 +134,7 @@ class DiscountRisePrice(models.Model):
     percentage = fields.Float('Percentage')
     amount = fields.Float('Amount', digits=dp.get_precision('Discount'))
     invoice_line_id = fields.Many2one(
-        'account.invoice.line', 'Related Invoice',
+        'account.invoice.line', 'Related Invoice from line',
         ondelete='cascade', index=True
     )
     invoice_id = fields.Many2one(
@@ -183,6 +184,7 @@ class FatturapaRelatedDocumentType(models.Model):
 class FaturapaActivityProgress(models.Model):
     # _position = ['2.1.7']
     _name = "faturapa.activity.progress"
+    _description = "E-invoice activity progress"
 
     fatturapa_activity_progress = fields.Integer('Activity Progress')
     invoice_id = fields.Many2one(
@@ -252,6 +254,7 @@ class AccountInvoiceLine(models.Model):
 class FaturapaSummaryData(models.Model):
     # _position = ['2.2.2']
     _name = "faturapa.summary.data"
+    _description = "E-invoice summary data"
     tax_rate = fields.Float('Tax Rate')
     non_taxable_nature = fields.Selection([
         ('N1', 'escluse ex art. 15'),
