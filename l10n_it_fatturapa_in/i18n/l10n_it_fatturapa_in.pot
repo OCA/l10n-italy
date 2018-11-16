@@ -269,11 +269,6 @@ msgid "E-invoice details"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
-msgid "Fattura PA  V1.2 Schema"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_article_code
 msgid "FatturaPA Article Code"
 msgstr ""
