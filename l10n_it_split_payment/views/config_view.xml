@@ -7,20 +7,20 @@
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <div id="eu_service" position="after">
-                <div class="col-xs-12 col-md-6 o_setting_box"
+                <div class="col-12 col-lg-6 o_setting_box"
                      title="Configuration for Split Payment module">
                     <div class="o_setting_left_pane"/>
                     <div class="o_setting_right_pane">
-                        <label for="sp_account_id"/>
-                        <span class="fa fa-lg fa-building-o"
-                              title="Configuration for Split Payment module."
-                              groups="base.group_multi_company"/>
+                        <span class="o_form_label">Configuration for Split Payment module</span>
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                              aria-label="Values set here are company-specific."
+                              groups="base.group_multi_company" role="img"/>
                         <div class="text-muted">
-                           Configuration for Split Payment module.
+                            Split Payment Write-off account
                         </div>
                         <div class="content-group">
                             <div class="row mt16">
-                                <label string="Account" for="sp_account_id" class="col-md-3 o_light_label"/>
+                                <label string="SP account" for="sp_account_id" class="col-lg-3 o_light_label"/>
                                 <field name="sp_account_id"/>
                             </div>
                         </div>
