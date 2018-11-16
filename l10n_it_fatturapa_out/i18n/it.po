@@ -187,6 +187,7 @@ msgstr "Export Fattura Elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_wizard_export_fatturapa
+#, fuzzy
 msgid "Export FatturaPA"
 msgstr "Export Fattura Elettronica"
 
@@ -466,7 +467,6 @@ msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_id
-#, fuzzy
 msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
 
