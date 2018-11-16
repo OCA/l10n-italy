@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-11-15 13:38+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2018-11-16 11:34+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgstr "Provincia del cliente non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:416
-#, fuzzy, python-format
+#, python-format
 msgid "Customer street not set."
 msgstr "Indirizzo del cliente non impostato."
 
@@ -218,6 +218,7 @@ msgstr "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_fatturapa_attachment_out_id
+#, fuzzy
 msgid "FatturaPA Export File"
 msgstr "E-fattura Export File"
 
@@ -226,9 +227,9 @@ msgstr "E-fattura Export File"
 #, python-format
 msgid "FatturaPA fiscal position not set for company %s. (Go to Accounting --> Configuration --> Settings --> Fattura PA)"
 msgstr ""
-"Posizione fiscale di fatturazione elettronica non impostata per l'azienda %"
-"s. (Andare su Contabilità --> Configurazione --> Impostazioni --> Fattura "
-"Elettronica)"
+"Posizione fiscale di fatturazione elettronica non impostata per l'azienda %s "
+"(andare su Contabilità --> Configurazione --> Impostazioni --> Fattura "
+"Elettronica)."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:93
@@ -265,7 +266,7 @@ msgstr "ID"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_index_content
 msgid "Indexed Content"
-msgstr "Contenuto Indicizzato"
+msgstr "Contenuto indicizzato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_account_invoice
@@ -274,7 +275,7 @@ msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:752
-#, python-format
+#, fuzzy, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
 msgstr "File di fattura elettronica già presente per la fattura %s"
 
@@ -345,7 +346,7 @@ msgstr "Tipo di MIME"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:630
-#, fuzzy, python-format
+#, python-format
 msgid "No 'law reference' field for tax %s"
 msgstr "Campo \"riferimento normativo\" non valorizzato per l'imposta %s"
 
