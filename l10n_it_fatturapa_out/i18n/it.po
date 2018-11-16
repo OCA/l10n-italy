@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-11-16 11:34+0000\n"
+"PO-Revision-Date: 2018-11-17 11:44+0000\n"
 "Last-Translator: Marco Calcagni <mcalcagni@dinamicheaziendali.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -181,7 +181,6 @@ msgstr "Esportazione fattura elettronica"
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_tree
-#, fuzzy
 msgid "Export Fattura Elettronica"
 msgstr "Export Fattura Elettronica"
 
@@ -218,7 +217,6 @@ msgstr "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_fatturapa_attachment_out_id
-#, fuzzy
 msgid "FatturaPA Export File"
 msgstr "E-fattura Export File"
 
@@ -275,7 +273,7 @@ msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:752
-#, fuzzy, python-format
+#, python-format
 msgid "Invoice %s has FatturaPA Export File yet"
 msgstr "File di fattura elettronica già presente per la fattura %s"
 
