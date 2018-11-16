@@ -1111,9 +1111,15 @@ msgid "Sequence"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:64
+#: code:addons/l10n_it_fatturapa/models/company.py:68
 #, python-format
 msgid "Sequence %s already used by journal %s. Please select another one"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/company.py:61
+#, python-format
+msgid "Sequence %s can't use subsequences"
 msgstr ""
 
 #. module: l10n_it_fatturapa
