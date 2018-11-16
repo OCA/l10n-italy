@@ -7,7 +7,7 @@
             <form string="Export Electronic Invoice">
                 <sheet>
                     <group>
-                        <separator colspan="2" string="If you want to add a PDF version of the invoice into the XML, select which one"/>
+                        <separator colspan="2" string="If you want to add a PDF version of the invoice into the XML, select which one. Leave empty otherwise"/>
                         <field name="report_print_menu"
                                string="Attached report"
                                widget="selection"/>
