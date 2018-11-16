@@ -6,7 +6,7 @@
             <field name="name">fatturapa.attachment.out.tree</field>
             <field name="model">fatturapa.attachment.out</field>
             <field name="arch" type="xml">
-                <tree string="Export Fattura Elettronica" create="false">
+                <tree string="Export Electronic Invoice" create="false">
                     <field name="name"/>
                     <field name="invoice_partner_id"/>
                     <field name="out_invoice_ids"/>
@@ -28,11 +28,15 @@
             <field name="name">fatturapa.attachment.out.form</field>
             <field name="model">fatturapa.attachment.out</field>
             <field name="arch" type="xml">
-                <form string="Export Fattura Elettronica" create="false">
+                <form string="Export Electronic Invoice" create="false">
                     <div>
                         <group>
                             <group>
-                                <field name="datas" filename="datas_fname" />
+                                <label for="datas"/>
+                                <div>
+                                    <field name="datas" filename="datas_fname"/>
+                                    <field name="ftpa_preview_link" widget="url" text="Show preview"/>
+                                </div>
                                 <field name="datas_fname" />
                                 <field name="name" readonly="1"/>
                             </group>
@@ -41,7 +45,6 @@
                                 <field name="invoice_partner_id"/>
                             </group>
                         </group>
-                        <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
                         <separator string="Invoices"/>
                         <field name="out_invoice_ids"
                                context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"/>
@@ -62,7 +65,7 @@
         </record>
 
         <record id="action_fatturapa_attachment" model="ir.actions.act_window">
-            <field name="name">Fattura Elettronica Export Files</field>
+            <field name="name">E-invoice Export Files</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">fatturapa.attachment.out</field>
             <field name="view_type">form</field>
