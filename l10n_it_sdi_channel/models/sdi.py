@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _, exceptions
-from odoo.addons.base.ir.ir_mail_server import extract_rfc2822_addresses
+from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
 
 SDI_CHANNELS = [
     ('pec', 'PEC'),
