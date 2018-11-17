@@ -9,7 +9,13 @@
                 <div>
                     <group>
                         <group>
-                            <field filename="datas_fname" name="datas"></field>
+                            <field name='id' invisible="1"/>
+                            <label for="datas"/>
+                            <div>
+                                <field name="datas" filename="datas_fname"/>
+                                <field name="ftpa_preview_link" widget="url" text="Show preview"
+                                       attrs="{'invisible': [('id', '=', False)]}"/>
+                            </div>
                             <field name="datas_fname" invisible="1"></field>
                             <field name="name"></field>
                         </group>
@@ -20,7 +26,6 @@
                             <field name="invoices_total"/>
                         </group>
                     </group>
-                    <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
                     <notebook>
                         <page string="Invoices">
                             <field name="in_invoice_ids"
