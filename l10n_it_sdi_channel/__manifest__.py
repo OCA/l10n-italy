@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 {
     "name": "SdI channel",
     "summary": "Add channel to send-receice xml files to SdI.",
-    "version": "10.0.1.1.0",
-    "development_status": "Alpha",
+    "version": "12.0.1.0.0",
+    "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
