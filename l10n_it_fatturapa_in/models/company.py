@@ -29,19 +29,22 @@ class AccountConfigSettings(models.TransientModel):
         related='company_id.dati_bollo_product_id',
         string="Product for Dati Bollo",
         help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento DatiBollo'
+             'viene valorizzato l\'elemento DatiBollo',
+        readonly=False
         )
     cassa_previdenziale_product_id = fields.Many2one(
         related='company_id.cassa_previdenziale_product_id',
         string="Product for Dati Cassa Previdenziale",
         help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento DatiCassaPrevidenziale'
+             'viene valorizzato l\'elemento DatiCassaPrevidenziale',
+        readonly=False
         )
     sconto_maggiorazione_product_id = fields.Many2one(
         related='company_id.sconto_maggiorazione_product_id',
         string="Product for Sconto Maggiorazione",
         help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento ScontoMaggiorazione'
+             'viene valorizzato l\'elemento ScontoMaggiorazione',
+        readonly=False
         )
 
     @api.onchange('company_id')
