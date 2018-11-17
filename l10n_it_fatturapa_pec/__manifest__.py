@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+
 {
     'name': 'Italian Localization - FatturaPA - Emission - PEC Support',
-    'version': '10.0.1.1.0',
+    'version': '12.0.1.1.0',
     'category': 'Localization/Italy',
     'summary': 'Send electronic invoices via PEC',
     'author': 'Openforce Srls Unipersonale, Odoo Community Association (OCA)',
