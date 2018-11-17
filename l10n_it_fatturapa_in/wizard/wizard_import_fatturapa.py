@@ -239,7 +239,6 @@ class WizardImportFatturapa(models.TransientModel):
             if cedPrest.Contatti:
                 vals['phone'] = cedPrest.Contatti.Telefono
                 vals['email'] = cedPrest.Contatti.Email
-                vals['fax'] = cedPrest.Contatti.Fax
             partner_model.browse(partner_id).write(vals)
         return partner_id
 
@@ -258,10 +257,10 @@ class WizardImportFatturapa(models.TransientModel):
         retLine = {}
         account_tax_model = self.env['account.tax']
         # check if a default tax exists and generate def_purchase_tax object
-        ir_values = self.env['ir.values']
+        ir_values = self.env['ir.default']
         company_id = self.env['res.company']._company_default_get(
             'account.invoice.line').id
-        supplier_taxes_ids = ir_values.get_default(
+        supplier_taxes_ids = ir_values.get(
             'product.product', 'supplier_taxes_id', company_id=company_id)
         def_purchase_tax = False
         if supplier_taxes_ids:
@@ -861,7 +860,7 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_data = {
             'fiscal_document_type_id': docType_id,
             'date_invoice':
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date(),
             'reference':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
@@ -1163,7 +1162,7 @@ class WizardImportFatturapa(models.TransientModel):
                 content = attach.Attachment
                 _attach_dict = {
                     'name': name,
-                    'datas': base64.b64encode(str(content)),
+                    'datas': base64.b64encode(content),
                     'datas_fname': name,
                     'description': attach.DescrizioneAttachment or '',
                     'compression': attach.AlgoritmoCompressione or '',

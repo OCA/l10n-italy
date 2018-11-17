@@ -1,6 +1,7 @@
 
 import base64
 import tempfile
+from datetime import date
 from odoo.tests.common import SingleTransactionCase
 from odoo.modules import get_module_resource
 from odoo.exceptions import UserError
@@ -11,7 +12,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
     def getFile(self, filename):
         path = get_module_resource(
             'l10n_it_fatturapa_in', 'tests', 'data', filename)
-        with open(path) as test_data:
+        with open(path, 'rb') as test_data:
             with tempfile.TemporaryFile() as out:
                 base64.encode(test_data, out)
                 out.seek(0)
@@ -43,7 +44,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             'product.product_product_7_product_template')
         self.imac = self.env.ref(
             'product.product_product_8_product_template')
-        self.service = self.env.ref('product.service_delivery')
+        self.service = self.env.ref('product.product_product_1')
 
     def run_wizard(self, name, file_name):
         attach_id = self.attach_model.create(
@@ -210,7 +211,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.reference, 'FT/2015/0008')
         self.assertEqual(invoice.sender, 'TZ')
-        self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
+        self.assertEqual(invoice.intermediary.name, 'MARIO ROSSI')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
         self.assertEqual(invoice.intermediary.lastname, 'ROSSI')
         bollo_found = False
@@ -281,10 +282,10 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.reference, 'FT/2015/0009')
         self.assertEqual(
-            invoice.date_invoice, '2015-03-16')
+            invoice.date_invoice, date(2015, 3, 16))
         self.assertEqual(
             invoice.fatturapa_payments[0].payment_methods[0].payment_due_date,
-            '2015-06-03'
+            date(2015, 6, 3)
         )
         self.assertEqual(
             invoice.fatturapa_payments[0].payment_methods[0].
@@ -313,7 +314,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.reference, 'FT/2015/0012')
         self.assertEqual(invoice.sender, 'TZ')
-        self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
+        self.assertEqual(invoice.intermediary.name, 'MARIO ROSSI')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
         self.assertEqual(invoice.intermediary.lastname, 'ROSSI')
 
