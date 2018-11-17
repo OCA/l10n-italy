@@ -34,7 +34,7 @@
             </xpath>
 
             <xpath expr="//group" position="inside">
-                <filter string="Fattura Elettronica State" context="{'group_by':'fatturapa_state'}"/>
+                <filter name="group_by_ftpa_state" string="Fattura Elettronica State" context="{'group_by':'fatturapa_state'}"/>
             </xpath>
         </field>
     </record>
