@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
@@ -12,7 +11,7 @@ from lxml import etree
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-from odoo.addons.base.ir.ir_mail_server import MailDeliveryException
+from odoo.addons.base.models.ir_mail_server import MailDeliveryException
 
 _logger = logging.getLogger(__name__)
 
@@ -97,7 +96,7 @@ class FatturaPAAttachmentOut(models.Model):
                     att.sending_user = self.env.user.id
                 except MailDeliveryException as e:
                     att.state = 'sender_error'
-                    mail.body = e[1]
+                    mail.body = str(e)
 
                 if bounce_alias:
                     config_parameter.set_param(
