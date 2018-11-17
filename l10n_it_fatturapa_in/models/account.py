@@ -73,6 +73,7 @@ class DiscountRisePrice(models.Model):
 
 class EInvoiceLine(models.Model):
     _name = 'einvoice.line'
+    _description = 'E-invoice line'
     invoice_id = fields.Many2one(
         "account.invoice", "Invoice", readonly=True)
     line_number = fields.Integer('Numero Linea', readonly=True)
@@ -109,6 +110,7 @@ class EInvoiceLine(models.Model):
 
 class EInvoiceLineOtherData(models.Model):
     _name = 'einvoice.line.other.data'
+    _description = 'E-invoice line other data'
 
     e_invoice_line_id = fields.Many2one(
         'einvoice.line', 'Related E-Invoice line', readonly=True
