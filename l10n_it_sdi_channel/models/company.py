@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -22,10 +21,11 @@ class ResCompany(models.Model):
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
 
     sdi_channel_id = fields.Many2one(
-        related='company_id.sdi_channel_id', string='SdI channel')
+        related='company_id.sdi_channel_id', string='SdI channel',
+        readonly=False)
     sdi_channel_type = fields.Selection(
         related='sdi_channel_id.channel_type', readonly=True)
     email_from_for_fatturaPA = fields.Char(
