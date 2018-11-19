@@ -5,8 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo import fields, models, api
 
 
 class StockPicking(models.Model):
@@ -20,22 +19,6 @@ class StockPicking(models.Model):
         column2='stock_picking_package_preparation_id',
         string='DdT',
         copy=False, )
-
-    @api.multi
-    @api.constrains('state')
-    def _ddt_constrain_state(self):
-        """Prevent pickings that are included in a DDT to be set as done
-        unless it is being processed by DDT"""
-        if self.env.context.get('ddt_processing', False):
-            return
-        for picking in self:
-            if picking.state == 'done' and picking.ddt_ids:
-                raise ValidationError(
-                    _('Cannot set to "Done" picking %s '
-                      'because it is included in DDT %s.\n'
-                      'Process the DDT or unlink the picking from the DDT.')
-                    % (picking.display_name,
-                       picking.ddt_ids[0].display_name))
 
     @api.multi
     def write(self, values):

@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import Warning as UserError, ValidationError
+from odoo.exceptions import Warning as UserError
 
 
 class TestDdt(TransactionCase):
@@ -202,7 +202,8 @@ class TestDdt(TransactionCase):
         self.assertEqual(self.ddt.line_ids[0].name, 'Changed for test')
         with self.assertRaises(UserError):
             self.ddt.set_done()
-        self.ddt.action_done()
+        for picking in self.ddt.picking_ids:
+            picking.do_transfer()
         self.ddt.set_done()
         self.assertTrue('DDT' in self.ddt.display_name)
 
@@ -210,8 +211,10 @@ class TestDdt(TransactionCase):
         self.picking.action_confirm()
         self.picking.action_assign()
         self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
-        with self.assertRaises(ValidationError):
-            self.picking.action_done()
+        self.picking.action_done()
+        self.assertTrue(self.ddt.check_if_picking_done)
+        with self.assertRaises(UserError):
+            self.ddt.action_put_in_pack()
 
     def test_action_put_in_pack_error(self):
         self.picking.action_confirm()
@@ -378,10 +381,7 @@ class TestDdt(TransactionCase):
         picking1 = self._create_picking()
         self._create_move(picking1, self.product1, quantity=2)
         ddt = self._create_ddt(picking1)
-        picking1.action_confirm()
-        picking1.action_assign()
-        ddt.action_put_in_pack()
-        ddt.action_done()
+        picking1.do_transfer()
         ddt.set_done()
         self.assertTrue('DDT' in ddt.display_name)
         self.assertEqual(ddt.weight, 0)
