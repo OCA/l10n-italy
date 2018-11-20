@@ -21,6 +21,7 @@
 
 import base64
 import logging
+import phonenumbers
 from openerp.osv import orm
 from openerp.osv import fields
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
@@ -202,7 +203,7 @@ class WizardExportFatturapa(orm.TransientModel):
         if not company.phone:
             raise orm.except_orm(
                 _('Error!'), _('Company Telephone number not set.'))
-        Telefono = company.phone
+        Telefono = self.checkSetupPhone(company.phone)
 
         if not company.email:
             raise orm.except_orm(
@@ -214,6 +215,11 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
+    def checkSetupPhone(self, phone_number):
+        if '+' in phone_number:
+            phone_number = phonenumbers.format_number(phonenumbers.parse(phone_number), phonenumbers.PhoneNumberFormat.NATIONAL)
+        return phone_number
+        
     def setDatiTrasmissione(self, cr, uid, company, partner, fatturapa, context=None):
         if context is None:
             context = {}
@@ -342,8 +348,8 @@ class WizardExportFatturapa(orm.TransientModel):
         if context is None:
             context = {}
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=company.partner_id.phone or None,
-            Fax=company.partner_id.fax or None,
+            Telefono=self.checkSetupPhone(company.partner_id.phone) or None,
+            Fax=self.checkSetupPhone(company.partner_id.fax) or None,
             Email=company.partner_id.email or None
         )
 
