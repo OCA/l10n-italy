@@ -560,6 +560,10 @@ class WizardExportFatturapa(models.TransientModel):
         # TipoCessionePrestazione not handled
 
         line_no = 1
+        price_precision = self.env['decimal.precision'].precision_get(
+            'Product Price')
+        uom_precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         for line in invoice.invoice_line:
             if not line.invoice_line_tax_id:
                 raise UserError(
@@ -574,8 +578,12 @@ class WizardExportFatturapa(models.TransientModel):
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
                 Descrizione=line.name,
-                PrezzoUnitario='%.2f' % prezzo_unitario,
-                Quantita='%.2f' % line.quantity,
+                PrezzoUnitario=('%.' + str(
+                    price_precision
+                ) + 'f') % prezzo_unitario,
+                Quantita=('%.' + str(
+                    uom_precision
+                ) + 'f') % line.quantity,
                 UnitaMisura=line.uos_id and (
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
