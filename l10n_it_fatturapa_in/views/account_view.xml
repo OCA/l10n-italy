@@ -63,8 +63,6 @@
                 <tree string="Xml Attachment">
                     <field name="name"></field>
                     <field name="create_date"></field>
-	                <field name="xml_supplier_id"/>
-	                <field name="invoices_number"/>
 	                <field name="registered"/>
 	                <field name="in_invoice_ids"/>
                 </tree>
