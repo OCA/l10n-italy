@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Account',
-    'version': '11.0.1.2.1',
+    'version': '11.0.1.2.2',
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
