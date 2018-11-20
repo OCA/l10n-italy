@@ -91,6 +91,7 @@ class WizardImportFatturapa(orm.TransientModel):
     ):
         if context is None:
             context = {}
+        context['inconsistencies'] = ''
         partner = self.pool['res.partner'].browse(
             cr, uid, partner_id, context=context)
         if (
