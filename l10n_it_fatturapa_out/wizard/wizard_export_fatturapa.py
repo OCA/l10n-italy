@@ -7,8 +7,10 @@
 import base64
 import logging
 
-from openerp import models, api, _
+from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
+from openerp.tools.safe_eval import safe_eval
+import time
 
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
@@ -56,6 +58,17 @@ except ImportError as err:
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export FatturaPA"
+
+    @api.model
+    def _domain_ir_values(self):
+        """Get all print actions for current model"""
+        return [('model', '=', self.env.context.get('active_model', False)),
+                ('key2', '=', 'client_print_multi')]
+
+    report_print_menu = fields.Many2one(
+        comodel_name='ir.values',
+        domain=_domain_ir_values,
+        help='This report will be automatically included in the created XML')
 
     def saveAttachment(self, fatturapa, number):
 
@@ -336,12 +349,12 @@ class WizardExportFatturapa(models.TransientModel):
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                 IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
         # if partner.company_type == 'company':
-        if partner.is_company == True:
+        if partner.is_company:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                 Denominazione=partner.name)
         # elif partner.company_type == 'person':
-        elif partner.is_company == False:
+        else:
             if not partner.lastname or not partner.firstname:
                 raise UserError(
                     _("Partner %s deve avere nome e cognome") % partner.name)
@@ -560,6 +573,10 @@ class WizardExportFatturapa(models.TransientModel):
         # TipoCessionePrestazione not handled
 
         line_no = 1
+        price_precision = self.env['decimal.precision'].precision_get(
+            'Product Price')
+        uom_precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         for line in invoice.invoice_line:
             if not line.invoice_line_tax_id:
                 raise UserError(
@@ -573,9 +590,17 @@ class WizardExportFatturapa(models.TransientModel):
             prezzo_unitario = self._get_prezzo_unitario(line)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
-                Descrizione=line.name,
-                PrezzoUnitario='%.2f' % prezzo_unitario,
-                Quantita='%.2f' % line.quantity,
+                # can't insert newline with pyxb
+                # see https://tinyurl.com/ycem923t
+                # and '&#10;' would not be correctly visualized anyway
+                # (for example firefox replaces '&#10;' with space
+                Descrizione=line.name.replace('\n', ' '),
+                PrezzoUnitario=('%.' + str(
+                    price_precision
+                ) + 'f') % prezzo_unitario,
+                Quantita=('%.' + str(
+                    uom_precision
+                ) + 'f') % line.quantity,
                 UnitaMisura=line.uos_id and (
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
@@ -731,60 +756,134 @@ class WizardExportFatturapa(models.TransientModel):
 
         return partner
 
+    def group_invoices_by_partner(self):
+        invoice_ids = self.env.context.get('active_ids', False)
+        res = {}
+        for invoice in self.env['account.invoice'].browse(invoice_ids):
+            if invoice.partner_id.id not in res:
+                res[invoice.partner_id.id] = []
+            res[invoice.partner_id.id].append(invoice.id)
+        return res
+
     @api.multi
     def exportFatturaPA(self):
-
-        # self.setNameSpace()
-
-        model_data_obj = self.env['ir.model.data']
         invoice_obj = self.env['account.invoice']
-        invoice_ids = self.env.context.get('active_ids', False)
-        partner = self.getPartnerId(invoice_ids)
+        invoices_by_partner = self.group_invoices_by_partner()
+        attachments = self.env['fatturapa.attachment.out']
+        for partner_id in invoices_by_partner:
+            invoice_ids = invoices_by_partner[partner_id]
+            partner = self.getPartnerId(invoice_ids)
+            if partner.is_pa:
+                fatturapa = FatturaElettronica(versione='FPA12')
+            else:
+                fatturapa = FatturaElettronica(versione='FPR12')
 
-        if partner.is_pa:
-            fatturapa = FatturaElettronica(versione='FPA12')
-        else:
-            fatturapa = FatturaElettronica(versione='FPR12')
+            company = self.env.user.company_id
+            context_partner = self.env.context.copy()
+            context_partner.update({'lang': partner.lang})
+            try:
+                self.with_context(context_partner).setFatturaElettronicaHeader(
+                    company, partner, fatturapa)
+                for invoice_id in invoice_ids:
+                    inv = invoice_obj.with_context(context_partner).browse(
+                        invoice_id)
+                    if inv.fatturapa_attachment_out_id:
+                        raise UserError(
+                            _("Invoice %s has FatturaPA Export File yet") % (
+                                inv.number))
+                    if self.report_print_menu:
+                        self.generate_attach_report(inv)
+                    invoice_body = FatturaElettronicaBodyType()
+                    inv.preventive_checks()
+                    self.with_context(
+                        context_partner
+                    ).setFatturaElettronicaBody(
+                        inv, invoice_body)
+                    fatturapa.FatturaElettronicaBody.append(invoice_body)
+                    # TODO DatiVeicoli
 
-        company = self.env.user.company_id
-        context_partner = self.env.context.copy()
-        context_partner.update({'lang': partner.lang})
-        try:
-            self.with_context(context_partner).setFatturaElettronicaHeader(
-                company, partner, fatturapa)
+                number = self.setProgressivoInvio(fatturapa)
+            except (SimpleFacetValueError, SimpleTypeValueError) as e:
+                raise UserError(unicode(e))
+
+            attach = self.saveAttachment(fatturapa, number)
+            attachments |= attach
+
             for invoice_id in invoice_ids:
-                inv = invoice_obj.with_context(context_partner).browse(
-                    invoice_id)
-                if inv.fatturapa_attachment_out_id:
-                    raise UserError(
-                        _("Invoice %s has FatturaPA Export File yet") % (
-                            inv.number))
-                invoice_body = FatturaElettronicaBodyType()
-                inv.preventive_checks()
-                self.with_context(context_partner).setFatturaElettronicaBody(
-                    inv, invoice_body)
-                fatturapa.FatturaElettronicaBody.append(invoice_body)
-                # TODO DatiVeicoli
+                inv = invoice_obj.browse(invoice_id)
+                inv.write({'fatturapa_attachment_out_id': attach.id})
 
-            number = self.setProgressivoInvio(fatturapa)
-        except (SimpleFacetValueError, SimpleTypeValueError) as e:
-            raise UserError(unicode(e))
-
-        attach = self.saveAttachment(fatturapa, number)
-
-        for invoice_id in invoice_ids:
-            inv = invoice_obj.browse(invoice_id)
-            inv.write({'fatturapa_attachment_out_id': attach.id})
-
-        view_id = model_data_obj.xmlid_to_res_id(
-            'l10n_it_fatturapa_out.view_fatturapa_out_attachment_form')
-
-        return {
+        action = {
             'view_type': 'form',
             'name': "Export Electronic Invoice",
-            'view_id': [view_id],
-            'res_id': attach.id,
-            'view_mode': 'form',
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
         }
+        if len(attachments) == 1:
+            action['view_mode'] = 'form'
+            action['res_id'] = attachments[0].id
+        else:
+            action['view_mode'] = 'tree,form'
+            action['domain'] = [('id', 'in', attachments.ids)]
+        return action
+
+    @api.v8
+    def generate_attach_report(self, inv):
+        action_report_model, action_report_id = (
+            self.report_print_menu.value.split(',')[0],
+            int(self.report_print_menu.value.split(',')[1]))
+        action_report = self.env[action_report_model] \
+            .browse(action_report_id)
+        report_model = self.env['report']
+        attachment_model = self.env['ir.attachment']
+        # Generate the PDF: if report_action.attachment is set
+        # they will be automatically attached to the invoice,
+        # otherwise use res to build a new attachment
+        res = report_model.get_pdf(inv, action_report.report_name, html=None,
+                                   data=None)
+        if action_report.attachment:
+            # If the report is configured to be attached
+            # to the current invoice, just get that from the attachments.
+            # Note that in this case the attachment in
+            # fatturapa_doc_attachments is exactly the same
+            # that is attached to the invoice.
+            attachment = report_model._attachment_stored(
+                inv, action_report)[inv.id]
+        else:
+            # Otherwise, create a new attachment to be stored in
+            # fatturapa_doc_attachments.
+            filename = inv.number
+            data_attach = {
+                'name': filename,
+                'datas': base64.b64encode(res),
+                'datas_fname': filename,
+                'type': 'binary'
+            }
+            attachment = attachment_model.create(data_attach)
+        inv.write({
+            'fatturapa_doc_attachments': [(0, 0, {
+                'is_pdf_invoice_print': True,
+                'ir_attachment_id': attachment.id,
+                'description': _("Attachment generated by "
+                                 "Electronic invoice export")})]
+        })
+
+
+class Report(models.Model):
+    _inherit = "report"
+
+    @api.model
+    def _attachment_filename(self, records, report):
+        return dict((record.id, safe_eval(report.attachment,
+                                          {'object': record, 'time': time})) for
+                    record in records)
+
+    @api.model
+    def _attachment_stored(self, records, report, filenames=None):
+        if not filenames:
+            filenames = self._attachment_filename(records, report)
+        return dict((record.id, self.env['ir.attachment'].search([
+            ('datas_fname', '=', filenames[record.id]),
+            ('res_model', '=', report.model),
+            ('res_id', '=', record.id)
+        ], limit=1)) for record in records)

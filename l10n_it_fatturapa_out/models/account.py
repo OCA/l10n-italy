@@ -16,12 +16,13 @@ class AccountInvoice(models.Model):
         'fatturapa.attachment.out', 'FatturaPA Export File',
         readonly=True, copy=False)
 
+    has_pdf_invoice_print = fields.Boolean(
+        related='fatturapa_attachment_out_id.has_pdf_invoice_print',
+        readonly=True)
+
     def preventive_checks(self):
-        for line in self.invoice_line:
-            if '\n' in line.name:
-                raise UserError(_(
-                    "Invoice line [%s] must not contain new line character"
-                ) % line.name)
+        # hook for preventive checks. Override and raise exception, in case
+        return
 
     @api.multi
     def action_invoice_cancel(self):
