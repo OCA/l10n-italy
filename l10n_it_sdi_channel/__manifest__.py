@@ -26,5 +26,6 @@
         "views/company_view.xml",
         'views/fetchmail_server.xml',
         'views/ir_mail_server.xml',
+        "data/config_parameter.xml"
     ],
 }
