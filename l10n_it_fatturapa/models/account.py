@@ -489,8 +489,6 @@ class account_invoice(orm.Model):
             'FatturaPA attachments'
         ),
         
-        
-        
     'efatt_stabile_organizzazione_indirizzo': fields.char(
         string="Indirizzo Organizzazione",
         help="Blocco da valorizzare nei casi di cedente / prestatore non "
@@ -538,57 +536,13 @@ class account_invoice(orm.Model):
     'electronic_invoice_subjected': fields.boolean(
         'Subjected to electronic invoice',
         related='partner_id.electronic_invoice_subjected', readonly=True),
-
-#TODO: Campi da migrare
-#    efatt_stabile_organizzazione_indirizzo = fields.Char(
-#        string="Indirizzo Organizzazione",
-#        help="Blocco da valorizzare nei casi di cedente / prestatore non "
-#             "residente, con stabile organizzazione in Italia. Indirizzo "
-#             "della stabile organizzazione in Italia (nome della via, piazza "
-#             "etc.)",
-#        readonly=True, copy=False)
-#    efatt_stabile_organizzazione_civico = fields.Char(
-#        string="Civico Organizzazione",
-#        help="Numero civico riferito all'indirizzo (non indicare se gia' "
-#             "presente nell'elemento informativo indirizzo)",
-#        readonly=True, copy=False)
-#    efatt_stabile_organizzazione_cap = fields.Char(
-#        string="CAP Organizzazione",
-#        help="Codice Avviamento Postale",
-#        readonly=True, copy=False)
-#    efatt_stabile_organizzazione_comune = fields.Char(
-#        string="Comune Organizzazione",
-#        help="Comune relativo alla stabile organizzazione in Italia",
-#        readonly=True, copy=False)
-#    efatt_stabile_organizzazione_provincia = fields.Char(
-#        string="Provincia Organizzazione",
-#        help="Sigla della provincia di appartenenza del comune indicato "
-#             "nell'elemento informativo 1.2.3.4 <Comune>. Da valorizzare se "
-#             "l'elemento informativo 1.2.3.6 <Nazione> e' uguale a IT",
-#        readonly=True, copy=False)
-#    efatt_stabile_organizzazione_nazione = fields.Char(
-#        string="Nazione Organizzazione",
-#        help="Codice della nazione espresso secondo lo standard "
-#             "ISO 3166-1 alpha-2 code",
-#        readonly=True, copy=False)
-#    # 2.1.1.10
-#    efatt_rounding = fields.Float(
-#        "Arrotondamento", readonly=True,
-#        help="Eventuale arrotondamento sul totale documento (ammette anche il "
-#             "segno negativo)", copy=False
-#    )
-#    art73 = fields.Boolean(
-#        'Art73', readonly=True,
-#        help="Indica se il documento e' stato emesso secondo modalita' e "
-#             "termini stabiliti con decreto ministeriale ai sensi "
-#             "dell'articolo 73 del DPR 633/72 (cio' consente al "
-#             "cedente/prestatore l'emissione nello stesso anno di piu' "
-#             "documenti aventi stesso numero)", copy=False)
-#    electronic_invoice_subjected = fields.Boolean(
-#        'Subjected to electronic invoice',
-#        related='partner_id.electronic_invoice_subjected', readonly=True)
     
     }
     _defaults = {
         'virtual_stamp': False
     }
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        default['fatturapa_attachment_out_id'] = False
+        ret_id = super(account_invoice, self).copy(cr, uid, id, default, context=context)
+        return ret_id
