@@ -46,8 +46,20 @@ class FatturaPAAttachmentOut(models.Model):
                 raise UserError(_("Yo can only reset 'sender error' files"))
             att.state = 'ready'
 
+    @api.model
+    def _check_fetchmail(self):
+        server = self.env['fetchmail.server'].search([
+            ('is_fatturapa_pec', '=', True),
+            ('state', '=', 'done')
+        ])
+        if not server:
+            raise UserError(_(
+                "No incoming PEC server found. Please configure it."))
+
     @api.multi
     def send_via_pec(self):
+        self._check_fetchmail()
+        self.env.user.company_id.sdi_channel_id.check_first_pec_sending()
         states = self.mapped('state')
         if set(states) != set(['ready']):
             raise UserError(_("You can only send 'ready to send' files"))
@@ -94,6 +106,8 @@ class FatturaPAAttachmentOut(models.Model):
                     att.state = 'sent'
                     att.sending_date = fields.Datetime.now()
                     att.sending_user = self.env.user.id
+                    self.env.user.company_id.sdi_channel_id.\
+                        update_after_first_pec_sending()
                 except MailDeliveryException as e:
                     att.state = 'sender_error'
                     mail.body = str(e)
