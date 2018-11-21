@@ -8,7 +8,10 @@
                 <form string="Export Electronic Invoice">
                     <group col="2" height="500" width="600">
                         <group>
-                            <label string="Confirm?"/>
+                            <!--<label string="Confirm?"/>-->
+                            <field name="report_print_menu"
+                               string="Attached report"
+                               widget="selection"/>
                         </group>
                         <newline/>
                         <group col="3">

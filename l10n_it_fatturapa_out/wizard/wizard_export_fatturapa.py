@@ -7,8 +7,10 @@
 import base64
 import logging
 
-from openerp import models, api, _
+from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
+from openerp.tools.safe_eval import safe_eval
+import time
 
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
@@ -56,6 +58,17 @@ except ImportError as err:
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export FatturaPA"
+
+    @api.model
+    def _domain_ir_values(self):
+        """Get all print actions for current model"""
+        return [('model', '=', self.env.context.get('active_model', False)),
+                ('key2', '=', 'client_print_multi')]
+
+    report_print_menu = fields.Many2one(
+        comodel_name='ir.values',
+        domain=_domain_ir_values,
+        help='This report will be automatically included in the created XML')
 
     def saveAttachment(self, fatturapa, number):
 
@@ -767,6 +780,8 @@ class WizardExportFatturapa(models.TransientModel):
                     raise UserError(
                         _("Invoice %s has FatturaPA Export File yet") % (
                             inv.number))
+                if self.report_print_menu:
+                    self.generate_attach_report(inv)
                 invoice_body = FatturaElettronicaBodyType()
                 inv.preventive_checks()
                 self.with_context(context_partner).setFatturaElettronicaBody(
@@ -796,3 +811,42 @@ class WizardExportFatturapa(models.TransientModel):
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
         }
+
+    @api.v8
+    def generate_attach_report(self, inv):
+        action_report_model, action_report_id = (
+            self.report_print_menu.value.split(',')[0],
+            int(self.report_print_menu.value.split(',')[1]))
+        action_report = self.env[action_report_model] \
+            .browse(action_report_id)
+        report_model = self.env['report']
+        report_model.get_pdf(inv, action_report.report_name, html=None,
+                             data=None)
+        # report_model.get_pdf([inv.ids], action_report.report_name, html=None, data=None)
+        # if action_report.attachment:
+        # attachment = report_model._check_attachment_use(inv, action_report)
+        attachment = report_model._attachment_stored(inv, action_report)[inv.id]
+        inv.write({
+            'fatturapa_doc_attachments': [(0, 0, {
+                'ir_attachment_id': attachment.id})]
+        })
+
+
+class Report(models.Model):
+    _inherit = "report"
+
+    @api.model
+    def _attachment_filename(self, records, report):
+        return dict((record.id, safe_eval(report.attachment,
+                                          {'object': record, 'time': time})) for
+                    record in records)
+
+    @api.model
+    def _attachment_stored(self, records, report, filenames=None):
+        if not filenames:
+            filenames = self._attachment_filename(records, report)
+        return dict((record.id, self.env['ir.attachment'].search([
+            ('datas_fname', '=', filenames[record.id]),
+            ('res_model', '=', report.model),
+            ('res_id', '=', record.id)
+        ], limit=1)) for record in records)
