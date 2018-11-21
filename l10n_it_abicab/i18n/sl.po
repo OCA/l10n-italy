@@ -20,8 +20,9 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_abicab
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank_abi
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank_bank_abi
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_abi
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__abi
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_abi
 msgid "ABI"
 msgstr "ABI"
 
@@ -36,12 +37,13 @@ msgid "Bank Accounts"
 msgstr "Bančni računi"
 
 #. module: l10n_it_abicab
-#: model:ir.ui.view,arch_db:l10n_it_abicab.view_bank_form_abicab
+#: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_form_abicab
 msgid "Bank Details"
 msgstr "Bančni podatki"
 
 #. module: l10n_it_abicab
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank_cab
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank_bank_cab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_cab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__cab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_cab
 msgid "CAB"
 msgstr "CAB"
