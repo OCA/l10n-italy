@@ -4,7 +4,7 @@
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from openerp import api, fields, models
+from openerp import api, fields, models, _
 
 
 class FatturaPAAttachment(models.Model):
@@ -47,6 +47,18 @@ class FatturaPAAttachment(models.Model):
                 # one attachment having is_pdf_invoice_print = True
                 attachment_out.has_pdf_invoice_print = True
 
+    @api.multi
+    def write(self, vals):
+        res = super(FatturaPAAttachment, self).write(vals)
+        if 'datas' in vals and 'message_ids' not in vals:
+            for attachment in self:
+                attachment.message_post(
+                    subject=_("E-invoice attachment changed"),
+                    body=_(
+                        "User %s uploaded a new e-invoice file"
+                    ) % self.env.user.login
+                )
+        return res
 
 class FatturaAttachments(models.Model):
     _inherit = "fatturapa.attachments"
