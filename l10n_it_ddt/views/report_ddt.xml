@@ -42,7 +42,7 @@
                     </td>
                     <td>
                         <h6>Date</h6>
-                        <div class="signature" t-field="ddt.date"></div>
+                        <div class="signature" t-field="ddt.date" t-field-options='{"widget": "date"}'></div>
                     </td>
                     <td>
                         <h6>Pick up time</h6>
