@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_fiscalcode',
         'odoo12-addon-l10n_it_ipa',
         'odoo12-addon-l10n_it_rea',
+        'odoo12-addon-l10n_it_split_payment',
     ],
     classifiers=[
         'Programming Language :: Python',
