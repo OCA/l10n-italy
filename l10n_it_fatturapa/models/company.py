@@ -202,13 +202,6 @@ class account_config_settings(orm.TransientModel):
             ),
 
     }
-#TODO Campo da migrare
-#    fatturapa_stabile_organizzazione = fields.Many2one(
-#        related='company_id.fatturapa_stabile_organizzazione',
-#        string="Stabile Organizzazione",
-#        help="Blocco da valorizzare nei casi di cedente / prestatore non "
-#             "residente, con stabile organizzazione in Italia"
-#        )
 
 
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):

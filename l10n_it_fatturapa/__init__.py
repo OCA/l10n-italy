@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-from . import models
+import models
 from . import bindings

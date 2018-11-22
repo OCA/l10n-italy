@@ -533,9 +533,9 @@ class account_invoice(orm.Model):
              "dell'articolo 73 del DPR 633/72 (cio' consente al "
              "cedente/prestatore l'emissione nello stesso anno di piu' "
              "documenti aventi stesso numero)", copy=False),
-    'electronic_invoice_subjected': fields.boolean(
-        'Subjected to electronic invoice',
-        related='partner_id.electronic_invoice_subjected', readonly=True),
+    'electronic_invoice_subjected': fields.related('partner_id', 'electronic_invoice_subjected',
+                                                type='boolean', relation='res.partner',
+                                                string='Subjected to electronic invoice', readonly=True),
     
     }
     _defaults = {
