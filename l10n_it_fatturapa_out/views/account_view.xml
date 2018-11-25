@@ -34,7 +34,7 @@
                         </field>
                     </group>
                 </page>
-                <page string="Fattura Elettronica"
+                <page string="Electronic Invoice"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                     <group>
                         <group string="Results">
@@ -44,7 +44,7 @@
                         </group>
                     </group>
                 </page>
-                <page string="Fattura Elettronica attachments"
+                <page string="Electronic Invoice attachments"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                     <group string="Attachments">
                         <field name="fatturapa_doc_attachments" nolabel="1" >
