@@ -19,6 +19,137 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: l10n_it_ddt
+#: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
+msgid ""
+"\n"
+"<p>Dear ${object.partner_id.name},</p>\n"
+"<p>Here is your document\n"
+"%if object.date:\n"
+" of <strong>${object.date},</strong>\n"
+"% endif\n"
+"%if object.date_done:\n"
+"with shipping date\n"
+"<strong>${object.date_done}</strong>\n"
+"%endif\n"
+"from ${object.company_id.name}.\n"
+"</p>\n"
+"<p>You can reply to this email if you have any questions.</p>\n"
+"<p>Thank you.</p>\n"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:mail.template,report_name:l10n_it_ddt.email_template_edi_ddt
+msgid "${(object.ddt_number)}"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:mail.template,subject:l10n_it_ddt.email_template_edi_ddt
+msgid ""
+"${object.company_id.name} (${object.ddt_number})\n"
+"            "
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:mail.template,subject:l10n_it_ddt.mail_template_data_notification_email_ddt
+msgid "${object.subject}"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:mail.template,body_html:l10n_it_ddt.mail_template_data_notification_email_ddt
+msgid ""
+"<html>\n"
+"                <head></head>\n"
+"                % set record = ctx.get('record')\n"
+"                % set company = record and record.company_id or user."
+"company_id\n"
+"                <body style=\"margin: 0; padding: 0;\">\n"
+"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor="
+"\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-"
+"collapse:separate;\" summary=\"o_mail_notification\">\n"
+"                    <tbody>\n"
+"\n"
+"                      <!-- HEADER -->\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding="
+"\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: "
+"rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\">\n"
+"                                  <span style=\"font-size:20px; color:white; "
+"font-weight: bold;\">\n"
+"                                      ${object.record_name}\n"
+"                                  </span>\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\">\n"
+"                                  <img src=\"/logo.png?company=${company."
+"id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt="
+"\"${company.name}\">\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- CONTENT -->\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding="
+"\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: "
+"rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                              <td valign=\"top\" style=\"font-family:Arial,"
+"Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
+"                                ${object.body | safe}\n"
+"                              </td>\n"
+"                            </tbody>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- FOOTER -->\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding="
+"\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: "
+"rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\" align=\"left\" style="
+"\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                ${company.name}<br/>\n"
+"                                ${company.phone or ''}\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\" style="
+"\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                % if company.email:\n"
+"                                <a href=\"mailto:${company.email}\" style="
+"\"text-decoration:none; color: white;\">${company.email}</a><br/>\n"
+"                                % endif\n"
+"                                % if company.website:\n"
+"                                    <a href=\"${company.website}\" style="
+"\"text-decoration:none; color: white;\">\n"
+"                                        ${company.website}\n"
+"                                    </a>\n"
+"                                % endif\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                      <tr>\n"
+"                        <td align=\"center\">\n"
+"                            Powered by <a href=\"https://www.odoo.com"
+"\">Odoo</a>.\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"                </body>\n"
+"                </html>\n"
+"            "
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Description</strong>"
 msgstr ""
@@ -99,6 +230,7 @@ msgid "Carriage Conditions"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_carrier_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_ddt_carrier_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_carrier_id
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -129,7 +261,12 @@ msgid "Code group"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:266
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:269
 #, python-format
 msgid "Competenza:"
 msgstr ""
@@ -353,7 +490,7 @@ msgid "Display Name"
 msgstr "Zobraziť meno"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:429
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:484
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -391,6 +528,7 @@ msgid "Goods Description"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_gross_weight
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_gross_weight
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_gross_weight
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -416,7 +554,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:187
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
@@ -527,7 +665,7 @@ msgid "Net Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:196
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:199
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -609,13 +747,13 @@ msgid "Pickings"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:293
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:309
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:555
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:610
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -694,14 +832,19 @@ msgid "Selected Picking %s have different goods description"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:61
+#, python-format
+msgid "Selected Picking %s have different transportation method"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
 #, python-format
 msgid "Selected Picking %s have different transportation reason"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:168
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:171
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
 msgstr ""
@@ -746,6 +889,11 @@ msgstr ""
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:57
 #, python-format
 msgid "Selected pickings have different destinations"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
+msgid "Send by Mail"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -823,8 +971,8 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:396
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:404
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:413
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:421
 #, python-format
 msgid "There is no invoicable line."
 msgstr ""
