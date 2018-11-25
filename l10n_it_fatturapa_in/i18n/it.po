@@ -299,12 +299,6 @@ msgid "E-invoice details"
 msgstr "Dettagli e-fattura"
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
-#, fuzzy
-msgid "Fattura PA  V1.2 Schema"
-msgstr "XML Schema V1.2"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_article_code
 msgid "FatturaPA Article Code"
 msgstr "Codice articolo fatturaPA"
@@ -840,6 +834,12 @@ msgid "Supplier"
 msgstr "Fornitore"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_partner_form_fatturapa_in
+#, fuzzy
+msgid "Supplier data"
+msgstr "Fornitore"
+
+#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:901
 #, python-format
 msgid ""
@@ -1008,6 +1008,10 @@ msgstr "il"
 #, python-format
 msgid "tipoDocumento %s not handled"
 msgstr "tipoDocumento %s non gestito"
+
+#, fuzzy
+#~ msgid "Fattura PA  V1.2 Schema"
+#~ msgstr "XML Schema V1.2"
 
 #~ msgid "Show preview"
 #~ msgstr "Mostra anteprima"
