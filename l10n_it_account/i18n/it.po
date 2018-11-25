@@ -26,21 +26,6 @@ msgstr ""
 "<span class=\"text-right\">IVA:</span>"
 
 #. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action
-msgid "Date Range Types"
-msgstr "Tipi Intervallo Date"
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_action
-msgid "Date Ranges"
-msgstr "Intervalli Date"
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range
-msgid "Date ranges"
-msgstr "Intervalli date"
-
-#. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
 msgid "Generate Date Ranges"
 msgstr "Genera intervalli date"
@@ -88,3 +73,12 @@ msgid ""
 msgstr ""
 "Utilizzare nel caso di imposta per 'integrazione IVA'. Specifica il registro "
 "IVA (Vendite / acquisti) in cui deve essere computata l'imposta."
+
+#~ msgid "Date Range Types"
+#~ msgstr "Tipi Intervallo Date"
+
+#~ msgid "Date Ranges"
+#~ msgstr "Intervalli Date"
+
+#~ msgid "Date ranges"
+#~ msgstr "Intervalli date"
