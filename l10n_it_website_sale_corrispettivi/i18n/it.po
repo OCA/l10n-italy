@@ -21,5 +21,10 @@ msgstr ""
 msgid "Want invoice"
 msgstr "Voglio fattura"
 
+#. module: l10n_it_website_sale_corrispettivi
+#: model:ir.model,name:l10n_it_website_sale_corrispettivi.model_website
+msgid "Website"
+msgstr ""
+
 #~ msgid "Partner"
 #~ msgstr "Partner"
