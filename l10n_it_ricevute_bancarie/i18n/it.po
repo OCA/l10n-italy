@@ -68,6 +68,12 @@ msgid "Accepted"
 msgstr "Accettata"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move
+#, fuzzy
+msgid "Account Entry"
+msgstr "Contabilità"
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_account_id
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
 msgid "Account used when Ri.Ba. is accepted by the bank"
@@ -158,6 +164,11 @@ msgstr "Conti Bancari"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_bank_expense_account_id
 msgid "Bank Expenses account"
 msgstr "Conto spese bancarie"
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_bank_account_id
@@ -360,6 +371,18 @@ msgid "Distinte Ri.Ba."
 msgstr "Distinte Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_riba_accredited_ids
+#, fuzzy
+msgid "Distinte RiBa accredited"
+msgstr "Distinte Ri.Ba."
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_riba_unsolved_ids
+#, fuzzy
+msgid "Distinte RiBa unsolved"
+msgstr "Distinte Ri.Ba."
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Draft"
@@ -401,6 +424,11 @@ msgstr "Conto effetti"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_effects_amount
 msgid "Effects amount"
 msgstr "Importo effetti"
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_type
+msgid "Emission mode"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:96
@@ -537,7 +565,7 @@ msgid "Invoice entries"
 msgstr "Registrazioni fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:234
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:244
 #, python-format
 msgid "Invoice is linked to RI.BA. list nr {riba}"
 msgstr "La fattura è inserita nella distinta RI.BA. n. {riba}"
@@ -642,11 +670,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_move_line_riba_line_id
 msgid "List line"
 msgstr "Riga distinta"
-
-#. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_type
-msgid "Modalità Emissione"
-msgstr "Modalità Emissione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
@@ -950,7 +973,7 @@ msgid "Search Journal Items"
 msgstr "Cerca scritture"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:157
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:167
 #, python-format
 msgid "Set a Service for Due Cost in Company Config"
 msgstr ""
@@ -1163,7 +1186,10 @@ msgid "riba.unsolved"
 msgstr "riba.unsolved"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:188
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:198
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "Modalità Emissione"
+#~ msgstr "Modalità Emissione"
