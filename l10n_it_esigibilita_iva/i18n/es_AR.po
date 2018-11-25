@@ -40,6 +40,6 @@ msgid "Tax"
 msgstr "Impuesto"
 
 #. module: l10n_it_esigibilita_iva
-#: model:ir.model.fields,field_description:l10n_it_esigibilita_iva.field_account_tax_payability
+#: model:ir.model.fields,field_description:l10n_it_esigibilita_iva.field_account_tax__payability
 msgid "VAT payability"
 msgstr ""
