@@ -20,61 +20,57 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.actions.act_window,name:l10n_it_account_tax_kind.view_account_tax_kind_action
-#: model:ir.ui.menu,name:l10n_it_account_tax_kind.account_tax_kind_menu
-#: model:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_form
-#: model:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_tree
-msgid "Account Tax Kind"
-msgstr ""
-
-#. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_code
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__code
 msgid "Code"
 msgstr ""
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_create_uid
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__create_uid
 msgid "Created by"
 msgstr "Ustvaril"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_create_date
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__create_date
 msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_id_5465
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__kind_id
+msgid "Exemption Kind"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_id
-msgid "Kind"
-msgstr ""
-
-#. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind___last_update
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind____last_update
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_write_uid
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__write_uid
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_write_date
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__write_date
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_law_reference
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__law_reference
 msgid "Law reference"
 msgstr ""
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_display_name
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_name
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__name
 msgid "Name"
 msgstr "Naziv"
 
@@ -84,6 +80,14 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_it_account_tax_kind
+#: model:ir.actions.act_window,name:l10n_it_account_tax_kind.view_account_tax_kind_action
+#: model:ir.ui.menu,name:l10n_it_account_tax_kind.account_tax_kind_menu
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_tree
+msgid "Tax Exemption Kind"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
 #: model:ir.model,name:l10n_it_account_tax_kind.model_account_tax_kind
-msgid "account.tax.kind"
+msgid "Tax exemption kind"
 msgstr ""
