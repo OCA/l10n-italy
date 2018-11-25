@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 import base64
 import logging
@@ -135,7 +134,7 @@ class WizardImportFatturapa(models.TransientModel):
                 ):
                     raise UserError(
                         _("Two distinct partners with "
-                          "VAT number %s and Fiscal Code %s already "
+                          "VAT number %s or Fiscal Code %s already "
                           "present in db." %
                           (vat, cf))
                         )
@@ -247,7 +246,6 @@ class WizardImportFatturapa(models.TransientModel):
             if cedPrest.Contatti:
                 vals['phone'] = cedPrest.Contatti.Telefono
                 vals['email'] = cedPrest.Contatti.Email
-                vals['fax'] = cedPrest.Contatti.Fax
             partner_model.browse(partner_id).write(vals)
         return partner_id
 
@@ -266,10 +264,10 @@ class WizardImportFatturapa(models.TransientModel):
         retLine = {}
         account_tax_model = self.env['account.tax']
         # check if a default tax exists and generate def_purchase_tax object
-        ir_values = self.env['ir.values']
+        ir_values = self.env['ir.default']
         company_id = self.env['res.company']._company_default_get(
             'account.invoice.line').id
-        supplier_taxes_ids = ir_values.get_default(
+        supplier_taxes_ids = ir_values.get(
             'product.product', 'supplier_taxes_id', company_id=company_id)
         def_purchase_tax = False
         if supplier_taxes_ids:
@@ -282,12 +280,12 @@ class WizardImportFatturapa(models.TransientModel):
                     ('amount', '=', 0.0),
                 ])
             if not account_taxes:
-                raise UserError(
+                self.log_inconsistency(
                     _('No tax with percentage '
                       '%s and nature %s found. Please configure this tax.')
                     % (line.AliquotaIVA, line.Natura))
             if len(account_taxes) > 1:
-                raise UserError(
+                self.log_inconsistency(
                     _('Too many taxes with percentage '
                       '%s and nature %s found.')
                     % (line.AliquotaIVA, line.Natura))
@@ -840,7 +838,7 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_data = {
             'fiscal_document_type_id': docType_id,
             'date_invoice':
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date(),
             'reference':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
@@ -965,9 +963,9 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.1.6
         RelInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
         if RelInvoices:
-            for invoice in RelInvoices:
+            for rel_invoice in RelInvoices:
                 doc_datas = self._prepareRelDocsLine(
-                    invoice_id, invoice, 'invoice')
+                    invoice_id, rel_invoice, 'invoice')
                 if doc_datas:
                     for doc_data in doc_datas:
                         rel_docs_model.create(doc_data)
@@ -1114,7 +1112,7 @@ class WizardImportFatturapa(models.TransientModel):
                 content = attach.Attachment
                 _attach_dict = {
                     'name': name,
-                    'datas': base64.b64encode(str(content)),
+                    'datas': base64.b64encode(content),
                     'datas_fname': name,
                     'description': attach.DescrizioneAttachment or '',
                     'compression': attach.AlgoritmoCompressione or '',

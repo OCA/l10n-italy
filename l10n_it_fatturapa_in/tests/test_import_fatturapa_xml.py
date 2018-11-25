@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 import base64
 import tempfile
@@ -12,7 +11,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
     def getFile(self, filename):
         path = get_module_resource(
             'l10n_it_fatturapa_in', 'tests', 'data', filename)
-        with open(path) as test_data:
+        with open(path, 'rb') as test_data:
             with tempfile.TemporaryFile() as out:
                 base64.encode(test_data, out)
                 out.seek(0)
@@ -142,29 +141,6 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.ftpa_incoterms, 'DAP')
         self.assertEqual(invoice.fiscal_document_type_id.code, 'TD01')
         self.assertTrue(invoice.art73)
-
-    # def test_02_xml_import(self):
-    #     res = self.run_wizard('test2', 'IT03638121008_X11111.xml')
-    #     invoice_id = res.get('domain')[0][2][0]
-    #     invoice = self.invoice_model.browse(invoice_id)
-    #     self.assertEqual(invoice.supplier_invoice_number, '00001')
-    #     self.assertEqual(invoice.amount_untaxed, 3)
-    #     self.assertEqual(invoice.amount_tax, 0.66)
-    #     self.assertEqual(
-    #         invoice.fatturapa_summary_ids[0].amount_untaxed, 3)
-    #     self.assertEqual(
-    #         invoice.fatturapa_summary_ids[0].amount_tax, 0.66)
-    #     self.assertEqual(invoice.partner_id.name, "Societa' alpha S.r.l.")
-
-    # def test_03_xml_import(self):
-    #     res = self.run_wizard('test3', 'IT05979361218_002.xml.p7m')
-    #     invoice_id = res.get('domain')[0][2][0]
-    #     invoice = self.invoice_model.browse(invoice_id)
-    #     self.assertEqual(invoice.partner_id.register_code, 'TO1258B')
-    #     self.assertEqual(
-    #         invoice.partner_id.register_fiscalpos.code, 'RF02')
-    #     self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0007')
-    #     self.assertEqual(invoice.amount_total, 54.00)
 
     def test_04_xml_import(self):
         res = self.run_wizard('test4', 'IT02780790107_11005.xml')
@@ -353,9 +329,9 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test15', 'IT05979361218_009.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertAlmostEquals(invoice.withholding_tax_amount, 1)
-        self.assertAlmostEquals(invoice.amount_total, 6.1)
-        self.assertAlmostEquals(invoice.amount_net_pay, 5.1)
+        self.assertAlmostEqual(invoice.withholding_tax_amount, 1)
+        self.assertAlmostEqual(invoice.amount_total, 6.1)
+        self.assertAlmostEqual(invoice.amount_net_pay, 5.1)
 
     def test_16_xml_import(self):
         # file B2B downloaded from
@@ -411,3 +387,25 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertTrue(len(invoices) == 2)
         for invoice in invoices:
             self.assertTrue(len(invoice.invoice_line_ids) == 0)
+
+    def test_03_xml_import(self):
+        # Testing CAdES signature
+        res = self.run_wizard('test18', 'IT01234567890_FPR03.xml.p7m')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertEqual(len(invoices), 2)
+        for invoice in invoices:
+            self.assertEqual(invoice.inconsistencies, '')
+            self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+            self.assertTrue(invoice.reference in ('456', '123'))
+            if invoice.reference == '123':
+                self.assertTrue(len(invoice.invoice_line_ids) == 2)
+            if invoice.reference == '456':
+                self.assertTrue(len(invoice.invoice_line_ids) == 1)
+
+    def test_17_xml_import(self):
+        res = self.run_wizard('test17', 'IT05979361218_010.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(
+            invoice.related_documents[0].type, "invoice")

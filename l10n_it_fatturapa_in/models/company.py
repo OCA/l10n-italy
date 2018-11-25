@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo import fields, models, api
 
@@ -12,11 +11,12 @@ class ResCompany(models.Model):
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
     sconto_maggiorazione_product_id = fields.Many2one(
         related='company_id.sconto_maggiorazione_product_id',
         string="Discount Supplement Product",
-        help="Product used to model ScontoMaggiorazione XML element on bills."
+        help='Product used to model ScontoMaggiorazione XML element on bills',
+        readonly=False
         )
 
     @api.onchange('company_id')
