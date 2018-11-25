@@ -193,6 +193,11 @@ msgid "Date"
 msgstr "Kuupäev"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_date_range
+msgid "Date Range"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Debit Account Lines"
 msgstr ""
@@ -634,11 +639,6 @@ msgstr ""
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_add_period_to_vat_statement
 msgid "add.period.to.vat.statement"
-msgstr ""
-
-#. module: account_vat_period_end_statement
-#: model:ir.model,name:account_vat_period_end_statement.model_date_range
-msgid "date.range"
 msgstr ""
 
 #. module: account_vat_period_end_statement

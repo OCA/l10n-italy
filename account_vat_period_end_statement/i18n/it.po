@@ -193,6 +193,12 @@ msgid "Date"
 msgstr "Data"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_date_range
+#, fuzzy
+msgid "Date Range"
+msgstr "date.range"
+
+#. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Debit Account Lines"
 msgstr "Righe conti di debito"
@@ -645,11 +651,6 @@ msgstr "account.vat.period.end.statement"
 #: model:ir.model,name:account_vat_period_end_statement.model_add_period_to_vat_statement
 msgid "add.period.to.vat.statement"
 msgstr "add.period.to.vat.statement"
-
-#. module: account_vat_period_end_statement
-#: model:ir.model,name:account_vat_period_end_statement.model_date_range
-msgid "date.range"
-msgstr "date.range"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_remove_period_from_vat_statement
