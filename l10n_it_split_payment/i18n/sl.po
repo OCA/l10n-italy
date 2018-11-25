@@ -52,6 +52,12 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_tax_is_split_payment
+#, fuzzy
+msgid "Is split payment"
+msgstr "Deljeno plačilo"
+
+#. module: l10n_it_split_payment
 #: code:addons/l10n_it_split_payment/models/account.py:47
 #, python-format
 msgid ""
@@ -83,6 +89,11 @@ msgstr "Konto odpisov deljenih plačil"
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_config_settings_sp_account_id
 msgid "Split Payment Write-off account"
 msgstr "Konto odpisov deljenih plačil"
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_account_tax
+msgid "Tax"
+msgstr ""
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_config_settings

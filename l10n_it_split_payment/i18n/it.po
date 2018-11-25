@@ -27,7 +27,8 @@ msgstr "Account utilizzato per ammortizzare l'importo dell'IVA"
 #: code:addons/l10n_it_split_payment/models/account.py:111
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
-msgstr "Impossibile gestire le fatture fornitore con la scissione dei pagamenti"
+msgstr ""
+"Impossibile gestire le fatture fornitore con la scissione dei pagamenti"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company
@@ -48,6 +49,12 @@ msgstr "Posizione fiscale"
 #: model:ir.model,name:l10n_it_split_payment.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_tax_is_split_payment
+#, fuzzy
+msgid "Is split payment"
+msgstr "Scissione pagamenti"
 
 #. module: l10n_it_split_payment
 #: code:addons/l10n_it_split_payment/models/account.py:47
@@ -82,6 +89,11 @@ msgstr "Conto storno scissione pagamenti"
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_config_settings_sp_account_id
 msgid "Split Payment Write-off account"
 msgstr "Conto storno scissione pagamenti"
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_account_tax
+msgid "Tax"
+msgstr ""
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_config_settings
