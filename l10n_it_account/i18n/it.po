@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-21 10:38+0000\n"
-"PO-Revision-Date: 2018-10-14 16:00+0000\n"
+"PO-Revision-Date: 2018-11-26 22:20+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.1\n"
+"X-Generator: Weblate 3.2.2\n"
 
 #. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -31,7 +31,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
 #: model:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
-msgstr ""
+msgstr "Contabilità"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
