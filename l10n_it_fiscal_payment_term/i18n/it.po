@@ -89,5 +89,6 @@ msgstr "Ultima modifica il"
 
 #. module: l10n_it_fiscal_payment_term
 #: model:ir.model,name:l10n_it_fiscal_payment_term.model_account_payment_term
-msgid "Payment Term"
+#, fuzzy
+msgid "Payment Terms"
 msgstr "Termine di pagamento"
