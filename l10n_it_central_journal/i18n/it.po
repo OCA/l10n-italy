@@ -89,6 +89,7 @@ msgid "Date"
 msgstr "Data"
 
 #. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_date_range
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
 msgid "Date Range"
 msgstr "Intervallo Date"
@@ -288,11 +289,6 @@ msgid "To date"
 msgstr "Alla data"
 
 #. module: l10n_it_central_journal
-#: model:ir.model,name:l10n_it_central_journal.model_date_range
-msgid "date.range"
-msgstr "date.range"
-
-#. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "or"
 msgstr "o"
@@ -306,3 +302,6 @@ msgstr "report.l10n_it_central_journal.report_giornale"
 #: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
 msgid "wizard.giornale"
 msgstr "Wizard libro giornale"
+
+#~ msgid "date.range"
+#~ msgstr "date.range"

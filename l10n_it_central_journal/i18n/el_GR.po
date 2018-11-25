@@ -87,6 +87,7 @@ msgid "Date"
 msgstr "Ημερομηνία"
 
 #. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_date_range
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
 msgid "Date Range"
 msgstr ""
@@ -283,11 +284,6 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_to
 msgid "To date"
-msgstr ""
-
-#. module: l10n_it_central_journal
-#: model:ir.model,name:l10n_it_central_journal.model_date_range
-msgid "date.range"
 msgstr ""
 
 #. module: l10n_it_central_journal
