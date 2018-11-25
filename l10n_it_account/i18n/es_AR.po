@@ -20,34 +20,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_account
-#: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid ""
 "<br/>\n"
-"                      <span class=\"text-right\">Vat:</span>"
+"                      <span class=\"text-right\">TIN: </span>"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action
-msgid "Date Range Types"
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
+msgid "Accounting"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_action
-msgid "Date Ranges"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range
-msgid "Date ranges"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
-msgid "Generate Date Ranges"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_cee_type
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
 msgid "Include in VAT register"
 msgstr ""
 
@@ -57,12 +44,12 @@ msgid "Italian Localization"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
-msgid "Pag:"
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+msgid "Page:"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_parent_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__parent_tax_ids
 msgid "Parent Taxes"
 msgstr ""
 
@@ -82,7 +69,7 @@ msgid "Tax"
 msgstr "Impuesto"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_tax_cee_type
+#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
 msgid ""
 "Use in the case of tax with 'VAT integration'. This specifies the VAT "
 "register (sales / purchases) where the tax must be computed."
