@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_vat_registries_cash_basis
-#: code:addons/l10n_it_vat_registries_cash_basis/wizard/print_registro_iva.py:108
+#: code:addons/l10n_it_vat_registries_cash_basis/wizard/print_registro_iva.py:111
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "No se han encontrado documentos en la selección actual"
