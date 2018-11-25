@@ -20,13 +20,22 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_split_payment
-#: model:ir.model.fields,help:l10n_it_split_payment.field_account_config_settings_sp_account_id
-#: model:ir.model.fields,help:l10n_it_split_payment.field_res_company_sp_account_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid ""
+"<span class=\"o_form_label\">Configuration for Split Payment module</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,help:l10n_it_split_payment.field_res_company__sp_account_id
+#: model:ir.model.fields,help:l10n_it_split_payment.field_res_config_settings__sp_account_id
 msgid "Account used to write off the VAT amount"
 msgstr "Konto za odpis zneska DDV"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:111
+#: code:addons/l10n_it_split_payment/models/account.py:107
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
 msgstr "Prejetih računov se ne more obravnavati z deljenim plačilom"
@@ -37,9 +46,15 @@ msgid "Companies"
 msgstr "Družbe"
 
 #. module: l10n_it_split_payment
-#: model:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
-msgid "Configuration"
+#: model:ir.model,name:l10n_it_split_payment.model_res_config_settings
+#, fuzzy
+msgid "Config Settings"
 msgstr "Nastavitve"
+
+#. module: l10n_it_split_payment
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid "Configuration for Split Payment module"
+msgstr ""
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_fiscal_position
@@ -52,6 +67,18 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_invoice__split_payment
+#, fuzzy
+msgid "Is Split Payment"
+msgstr "Deljeno plačilo"
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_tax__is_split_payment
+#, fuzzy
+msgid "Is split payment"
+msgstr "Deljeno plačilo"
+
+#. module: l10n_it_split_payment
 #: code:addons/l10n_it_split_payment/models/account.py:47
 #, python-format
 msgid ""
@@ -61,10 +88,13 @@ msgstr ""
 "Nastavite polje 'Konto odpisov deljenih plačil' v knjigovodskih nastavitvah."
 
 #. module: l10n_it_split_payment
-#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_fiscal_position_split_payment
-#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_invoice_amount_sp
-#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_invoice_split_payment
-#: model:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid "SP account"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_fiscal_position__split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_invoice__amount_sp
 msgid "Split Payment"
 msgstr "Deljeno plačilo"
 
@@ -75,16 +105,17 @@ msgid "Split Payment Write Off"
 msgstr "Odpis deljenega plačila"
 
 #. module: l10n_it_split_payment
-#: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_company_sp_account_id
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_company__sp_account_id
 msgid "Split Payment Write-off Account"
 msgstr "Konto odpisov deljenih plačil"
 
 #. module: l10n_it_split_payment
-#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_config_settings_sp_account_id
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_config_settings__sp_account_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
 msgid "Split Payment Write-off account"
 msgstr "Konto odpisov deljenih plačil"
 
 #. module: l10n_it_split_payment
-#: model:ir.model,name:l10n_it_split_payment.model_account_config_settings
-msgid "account.config.settings"
+#: model:ir.model,name:l10n_it_split_payment.model_account_tax
+msgid "Tax"
 msgstr ""
