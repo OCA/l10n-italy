@@ -84,13 +84,12 @@ msgstr "Geburtsdatum"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:153
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:197
 #, python-format
 msgid ""
 "Existing fiscal code %(partner_fiscalcode)s is different from the computed "
@@ -119,9 +118,14 @@ msgid "Fiscal Code"
 msgstr "Steuernummer"
 
 #. module: l10n_it_fiscalcode
+#: model:ir.ui.view,arch_db:l10n_it_fiscalcode.print_invoice_inherit
+#, fuzzy
+msgid "Fiscal code:"
+msgstr "Steuernummer"
+
+#. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_id
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_id
 msgid "ID"
 msgstr "ID"
@@ -152,7 +156,6 @@ msgstr "Italienische Steuernummer"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code___last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct___last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province___last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc___last_update
 msgid "Last Modified on"
 msgstr "Zuletzt modifiziert am"
@@ -177,8 +180,6 @@ msgstr "Männlich"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_town_name
 msgid "Name"
 msgstr "Name"
 
@@ -193,7 +194,7 @@ msgid "National code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:148
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:192
 #, python-format
 msgid "National code is missing"
 msgstr ""
@@ -209,7 +210,7 @@ msgid "Notes"
 msgstr "Notizen"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:144
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:188
 #, python-format
 msgid "One or more fields are missing"
 msgstr "Eines oder mehrere Felder fehlen"
@@ -255,7 +256,5 @@ msgstr "res.city.it.code"
 msgid "res.city.it.code.distinct"
 msgstr "res.city.it.code.distinct"
 
-#. module: l10n_it_fiscalcode
-#: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_province
-msgid "res.city.it.code.province"
-msgstr "res.city.it.code.province"
+#~ msgid "res.city.it.code.province"
+#~ msgstr "res.city.it.code.province"
