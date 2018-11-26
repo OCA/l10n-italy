@@ -331,25 +331,6 @@ class WithholdingTaxMove(models.Model):
                     self.withholding_tax_id.code,
                     self.credit_debit_line_id.move_id.name)
                 if self.payment_line_id.credit:
-<<<<<<< HEAD
-                    ml_vals['debit'] = abs(self.amount)
-                    if self.credit_debit_line_id.invoice_id.type in\
-                            ['in_refund', 'out_refund']:
-                        ml_vals['account_id'] = \
-                            self.withholding_tax_id.account_payable_id.id
-                    else:
-                        ml_vals['account_id'] = \
-                            self.withholding_tax_id.account_receivable_id.id
-                else:
-                    ml_vals['credit'] = abs(self.amount)
-                    if self.credit_debit_line_id.invoice_id.type in\
-                            ['in_refund', 'out_refund']:
-                        ml_vals['account_id'] = \
-                            self.withholding_tax_id.account_receivable_id.id
-                    else:
-                        ml_vals['account_id'] = \
-                            self.withholding_tax_id.account_payable_id.id
-=======
                     ml_vals['debit'] = self.amount
                     ml_vals['account_id'] = \
                         self.withholding_tax_id.account_receivable_id.id
@@ -357,7 +338,6 @@ class WithholdingTaxMove(models.Model):
                     ml_vals['credit'] = self.amount
                     ml_vals['account_id'] = \
                         self.withholding_tax_id.account_payable_id.id
->>>>>>> [l10n_it_withholding_tax] Fix account to user for in-out WT move
             # self.env['account.move.line'].create(move_vals)
             move_lines.append((0, 0, ml_vals))
 
