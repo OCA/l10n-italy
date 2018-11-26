@@ -25,7 +25,18 @@ Italian Localization - Fattura Elettronica - Base
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
+**Italiano**
+
+Modulo base per gestire le fatture elettroniche.
+
+http://fatturapa.gov.it
+
+Consultare anche i file README di l10n_it_fatturapa_out e l10n_it_fatturapa_in.
+
+**English**
+
 Base module to handle Electronic Invoices.
+
 http://fatturapa.gov.it
 
 See also l10n_it_fatturapa_out and l10n_it_fatturapa_in README files.
@@ -38,17 +49,36 @@ See also l10n_it_fatturapa_out and l10n_it_fatturapa_in README files.
 Installation
 ============
 
+**Italiano**
+
+Questo modulo richiede PyXB 1.2.5
+
+http://pyxb.sourceforge.net/
+
+**English**
+
 This module requires PyXB 1.2.5
+
 http://pyxb.sourceforge.net/
 
 Configuration
 =============
 
+**Italiano**
+
+ * Nella scheda "Fattura Elettronica" del partner, selezionare "Soggetto a fattura elettronica" per i clienti e i fornitori soggetti alla fatturazione elettronica.
+ * Le pubbliche amministrazioni devono avere un codice IPA
+ * Gli altri devono avere il Codice Destinatario o la PEC
+ * Configurare le imposte riguardo a "Natura non imponibile', "Riferimento normativo" ed "Esigibilità IVA"
+ * Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
+
+**English**
+
  * In partner form, select 'Subjected to electronic invoice' in Electronic Invoice tab for customers and suppliers subjected to electronic invoicing
  * Public administrations must have IPA code
- * Others must have Codice Destinatario
+ * Others must have Codice Destinatario or PEC
  * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
- * Configure Electronic Invoice data in Accounting Configuration, where needed.
+ * Configure Electronic Invoice data in Accounting Configuration, where needed
 
 Bug Tracker
 ===========
@@ -78,6 +108,7 @@ Contributors
 * Lorenzo Battistini <https://github.com/eLBati>
 * Roberto Onnis
 * Alessio Gerace
+* Sergio Zanchetta <https://github.com/primes2h>
 
 Maintainers
 ~~~~~~~~~~~

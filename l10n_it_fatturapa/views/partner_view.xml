@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="account.view_partner_property_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
-            <page name="fatturapa" string="Fattura Elettronica" groups="account.group_account_invoice">
+            <page name="fatturapa" string="Electronic Invoice" groups="account.group_account_invoice">
                 <group name="fatturapa_group">
                     <label for="electronic_invoice_subjected"/>
                     <field name="electronic_invoice_subjected"/>
