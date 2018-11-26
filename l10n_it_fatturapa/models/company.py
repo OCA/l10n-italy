@@ -12,10 +12,10 @@ class ResCompany(models.Model):
 
     fatturapa_fiscal_position_id = fields.Many2one(
         'fatturapa.fiscal_position', 'Fiscal Position',
-        help="Fiscal position used by Fattura Elettronica",
+        help="Fiscal position used by Electronic Invoice",
         )
     fatturapa_sequence_id = fields.Many2one(
-        'ir.sequence', 'Sequence',
+        'ir.sequence', 'E-invoice Sequence',
         help="The univocal progressive of the file is represented by "
              "an alphanumeric sequence of maximum length 5, "
              "its values are included in 'A'-'Z' and '0'-'9'"
@@ -42,13 +42,13 @@ class ResCompany(models.Model):
         )
     fatturapa_sender_partner = fields.Many2one(
         'res.partner', 'Third Party/Sender',
-        help="Dati relativi al soggetto terzo che emette fattura per conto "
-             "del cedente / prestatore"
+        help="Data of Third-Party Issuer Intermediary who emits the "
+             "invoice on behalf of the seller/provider"
         )
     fatturapa_stabile_organizzazione = fields.Many2one(
-        'res.partner', 'Stabile Organizzazione',
-        help='Blocco da valorizzare nei casi di cedente / prestatore non '
-             'residente, con stabile organizzazione in Italia'
+        'res.partner', 'Stable Organization',
+        help='The fields must be entered only when the seller/provider is '
+             'non-resident, with a stable organization in Italy'
         )
     fatturapa_preview_style = fields.Selection([
         ('fatturaordinaria_v1.2.1.xsl', 'FatturaOrdinaria'),
@@ -79,24 +79,25 @@ class AccountConfigSettings(models.TransientModel):
     fatturapa_fiscal_position_id = fields.Many2one(
         related='company_id.fatturapa_fiscal_position_id',
         string="Fiscal Position",
-        help='Fiscal position used by Fattura Elettronica'
+        help='Fiscal position used by Electronic Invoice'
         )
     fatturapa_sequence_id = fields.Many2one(
         related='company_id.fatturapa_sequence_id',
         string="Sequence",
         help="The univocal progressive of the file is represented by "
              "an alphanumeric sequence of maximum length 5, "
-             "its values are included in 'A'-'Z' and '0'-'9'"
+             "its values are included in 'A'-'Z' and '0'-'9'",
+        readonly=False
         )
     fatturapa_art73 = fields.Boolean(
         related='company_id.fatturapa_art73',
         string="Art73",
-        help="indicates whether the document has been issued in accordance"
-             " with the terms and conditions established by ministerial "
-             "decree in accordance with Article 73 of Presidential Decree"
-             ""
-             "633/72 (this allows the company to issue the same"
-             " year more documents with the same number)"
+        help="Indicates whether the document has been issued according to "
+             "methods and terms laid down in a ministerial decree under "
+             "the terms of Article 73 of Italian Presidential Decree "
+             "633/72 (this enables the company to issue in the same "
+             "year several documents with same number)",
+        readonly=False
         )
     fatturapa_pub_administration_ref = fields.Char(
         related='company_id.fatturapa_pub_administration_ref',
@@ -125,20 +126,20 @@ class AccountConfigSettings(models.TransientModel):
     fatturapa_tax_representative = fields.Many2one(
         related='company_id.fatturapa_tax_representative',
         string="Legal Tax Representative",
-        help="Blocco da valorizzare nei casi in cui il cedente / prestatore "
-             "si avvalga di un rappresentante fiscale in Italia"
+        help='The fields must be entered only when the seller/provider makes '
+             'use of a tax representative in Italy',
         )
     fatturapa_sender_partner = fields.Many2one(
         related='company_id.fatturapa_sender_partner',
         string="Third Party/Sender",
-        help="Dati relativi al soggetto terzo che emette fattura per conto "
-             "del cedente / prestatore"
+        help="Data of Third-Party Issuer Intermediary who emits the "
+             "invoice on behalf of the seller/provider",
         )
     fatturapa_stabile_organizzazione = fields.Many2one(
         related='company_id.fatturapa_stabile_organizzazione',
-        string="Stabile Organizzazione",
-        help="Blocco da valorizzare nei casi di cedente / prestatore non "
-             "residente, con stabile organizzazione in Italia"
+        string="Stable Organization",
+        help="The fields must be entered only when the seller/provider is "
+             "non-resident, with a stable organization in Italy",
         )
     fatturapa_preview_style = fields.Selection(
         related='company_id.fatturapa_preview_style',
