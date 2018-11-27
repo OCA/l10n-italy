@@ -71,12 +71,9 @@ class ResPartner(models.Model):
                         "Il partner %s "
                         "deve avere il Codice Destinatario lungo 7 caratteri"
                     ) % partner.name)
-                if partner.is_company == False and (
+                if not partner.is_company and (
                     not partner.lastname or not partner.firstname
                 ):
-                # if partner.company_type == 'person' and (
-                #             not partner.lastname or not partner.firstname
-                # ):
                     raise ValidationError(_(
                         "Il partner %s, essendo persona "
                         "deve avere Nome e Cognome"
