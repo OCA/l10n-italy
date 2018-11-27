@@ -6,7 +6,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Italian Localization - FatturaPA - Emission - PEC Support',
-    'version': '10.0.1.1.0',
+    'version': '8.0.1.1.0',
     'category': 'Localization/Italy',
     'summary': 'Send electronic invoices via PEC',
     'author': 'Openforce Srls Unipersonale, Odoo Community Association (OCA)',
