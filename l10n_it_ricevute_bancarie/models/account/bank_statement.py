@@ -10,7 +10,7 @@ class AccountBankStatementLine(models.Model):
 
     def get_move_lines_for_reconciliation(
         self, excluded_ids=None, str=False, offset=0, limit=None,
-        additional_domain=None, overlook_partner=False
+        additional_domain=None, overlook_partner=False, partner_id=None,
     ):
         res = super(
             AccountBankStatementLine, self
@@ -28,8 +28,7 @@ class AccountBankStatementLine(models.Model):
         ctx['bank_statement_line'] = self
         generic_domain = self.env['account.move.line'].with_context(
             ctx
-        ).domain_move_lines_for_reconciliation(
-            excluded_ids=excluded_ids, str=str)
+        ).domain_move_lines_for_reconciliation(str=str)
 
         # Include move lines without payment_id but linked to a RiBa distinta
         # in order to allow to close bank statement lines with accreditation
