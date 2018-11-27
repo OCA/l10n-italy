@@ -5,7 +5,6 @@
 
 import os
 from . import riba_common
-from odoo.report import render_report
 from odoo.tools import config
 
 
@@ -117,11 +116,15 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         riba_list.acceptance_move_ids[0].assert_balanced()
 
         # I print the distina report
-        data, format = render_report(
-            self.env.cr, self.env.uid, riba_list.ids,
-            'l10n_it_ricevute_bancarie.distinta_qweb', {}, {})
+        docargs = {
+            'doc_ids': riba_list.ids,
+            'doc_model': 'riba.distinta',
+            'docs': self.env['riba.distinta'].browse(riba_list.ids),
+        }
+        data = self.env.ref('l10n_it_ricevute_bancarie.distinta_qweb')\
+            .render(docargs)
         if config.get('test_report_directory'):
-            file(os.path.join(
+            open(os.path.join(
                 config['test_report_directory'], 'riba-list.' + format
             ), 'wb+').write(data)
 

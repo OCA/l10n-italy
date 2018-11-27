@@ -126,7 +126,8 @@ class RibaAccreditation(models.TransientModel):
             'state': 'accredited',
         }
         if not distinta.date_accreditation:
-            vals.update({'date_accreditation': fields.Date.context_today(self)})
+            vals.update({
+                'date_accreditation': fields.Date.context_today(self)})
         distinta.update(vals)
 
         for line in distinta.line_ids:

@@ -9,13 +9,10 @@ class DistintaReportQweb(models.AbstractModel):
     _name = 'report.l10n_it_ricevute_bancarie.distinta_qweb'
 
     @api.multi
-    def render_html(self, docids, data=None):
-        report_obj = self.env['report']
-        docargs = {
+    def get_report_values(self, docids, data=None):
+        return {
             'doc_ids': docids,
             'doc_model': 'riba.distinta',
             'docs': self.env['riba.distinta'].browse(docids),
+            'data': data,
         }
-        return report_obj.render(
-            'l10n_it_ricevute_bancarie.distinta_qweb',
-            values=docargs)

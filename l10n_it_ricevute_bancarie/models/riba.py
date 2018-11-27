@@ -342,8 +342,8 @@ class RibaListLine(models.Model):
             })
             line.distinta_id.state = 'accepted'
             if not line.distinta_id.date_accepted:
-                line.distinta_id.date_accepted = fields.Date.context_today(self)
-
+                line.distinta_id.date_accepted = \
+                    fields.Date.context_today(self)
 
     @api.multi
     def riba_line_settlement(self):
