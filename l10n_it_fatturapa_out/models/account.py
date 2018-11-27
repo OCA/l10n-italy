@@ -29,7 +29,7 @@ class AccountInvoice(models.Model):
             if invoice.fatturapa_attachment_out_id:
                 raise UserError(_(
                     "Invoice %s has XML and can't be canceled. "
-                    "Delete the XML before"
+                    "Delete the XML before."
                 ) % invoice.number)
         res = super(AccountInvoice, self).action_invoice_cancel()
         return res
