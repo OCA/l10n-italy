@@ -84,11 +84,14 @@ class FatturaPAAttachmentOut(models.Model):
                         "mail.catchall.alias")
                     # temporary disable email parameters incompatible with PEC
                     if bounce_alias:
-                        config_parameter.set_param('mail.bounce.alias', '')
+                        config_parameter.set_param(
+                            'mail.bounce.alias', 'False')
                     if catchall_domain:
-                        config_parameter.set_param('mail.catchall.domain', '')
+                        config_parameter.set_param(
+                            'mail.catchall.domain', 'False')
                     if catchall_alias:
-                        config_parameter.set_param('mail.catchall.alias', '')
+                        config_parameter.set_param(
+                            'mail.catchall.alias', 'False')
 
                     try:
                         mail.send(raise_exception=True)
