@@ -25,18 +25,18 @@
         <RegimeFiscale>RF01</RegimeFiscale>
       </DatiAnagrafici>
       <Sede>
-		<Indirizzo>Via Roma</Indirizzo>
-		<CAP>00166</CAP>
-		<Comune>Roma</Comune>
-		<Provincia>RM</Provincia>
-		<Nazione>IT</Nazione>
+                <Indirizzo>Via Roma</Indirizzo>
+                <CAP>00166</CAP>
+                <Comune>Roma</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
       </Sede>
       <StabileOrganizzazione>
-		<Indirizzo>Piazza Garibaldi</Indirizzo>
-		<CAP>00100</CAP>
-		<Comune>Roma</Comune>
-		<Provincia>RM</Provincia>
-		<Nazione>IT</Nazione>
+                <Indirizzo>Piazza Garibaldi</Indirizzo>
+                <CAP>00100</CAP>
+                <Comune>Roma</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
       </StabileOrganizzazione>
     </CedentePrestatore>
     <CessionarioCommittente>
@@ -48,81 +48,81 @@
       </DatiAnagrafici>
       <Sede>
         <Indirizzo>Via Milano</Indirizzo>
-		<CAP>00100</CAP>
-		<Comune>Roma</Comune>
-		<Provincia>RM</Provincia>
-		<Nazione>IT</Nazione>
+                <CAP>00100</CAP>
+                <Comune>Roma</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
       </Sede>
     </CessionarioCommittente>
     <SoggettoEmittente>CC</SoggettoEmittente>
   </FatturaElettronicaHeader>  
-	<FatturaElettronicaBody>
-		<DatiGenerali>
-			<DatiGeneraliDocumento>
-				<TipoDocumento>TD01</TipoDocumento>
-				<Divisa>EUR</Divisa>
-				<Data>2012-11-27</Data>
-				<Numero>00001</Numero>
-				<Art73>SI</Art73>
-			</DatiGeneraliDocumento>
-			<DatiOrdineAcquisto>
-				<RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
-				<IdDocumento>123</IdDocumento>
-				<CodiceCUP>123abc</CodiceCUP>
-				<CodiceCIG>456def</CodiceCIG>
-			</DatiOrdineAcquisto>
-			<DatiContratto>
-				<RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
-				<IdDocumento>123</IdDocumento>
-				<Data>2012-09-01</Data>
-				<NumItem>5</NumItem>
-				<CodiceCUP>123abc</CodiceCUP>
-				<CodiceCIG>456def</CodiceCIG>
-			</DatiContratto>
-			<DatiConvenzione>
-				<RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
-				<IdDocumento>123</IdDocumento>
-				<Data>2012-09-01</Data>
-				<NumItem>5</NumItem>
-				<CodiceCUP>123abc</CodiceCUP>
-				<CodiceCIG>456def</CodiceCIG>
-			</DatiConvenzione>
-			<DatiRicezione>
-				<RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
-				<IdDocumento>123</IdDocumento>
-				<Data>2012-09-01</Data>
-				<NumItem>5</NumItem>
-				<CodiceCUP>123abc</CodiceCUP>
-				<CodiceCIG>456def</CodiceCIG>
-			</DatiRicezione>
-			<DatiTrasporto>
-				<DatiAnagraficiVettore>				
-					<IdFiscaleIVA>
-						<IdPaese>IT</IdPaese>
-						<IdCodice>09399880153</IdCodice>
-					</IdFiscaleIVA>
-					<Anagrafica>
-						<Denominazione>Trasporto spa</Denominazione>
-					</Anagrafica>
-				</DatiAnagraficiVettore>
-				<DataOraConsegna>2012-10-22T16:46:12.000+02:00</DataOraConsegna>
-			</DatiTrasporto>
-		</DatiGenerali>
-		<DatiBeniServizi>
-			<DettaglioLinee>
-				<NumeroLinea>1</NumeroLinea>
-				<Descrizione>BADGES MAGNETICI - PVC laminato bianco</Descrizione>
-				<PrezzoUnitario>3.00000000</PrezzoUnitario>
-				<PrezzoTotale>3.00</PrezzoTotale>
-				<AliquotaIVA>22.00</AliquotaIVA>
-			</DettaglioLinee>
-			<DatiRiepilogo>
-				<AliquotaIVA>22.00</AliquotaIVA>
-				<ImponibileImporto>3.00</ImponibileImporto>
-				<Imposta>0.66</Imposta>
-			</DatiRiepilogo>
-		</DatiBeniServizi>
-		 <DatiPagamento>
+        <FatturaElettronicaBody>
+                <DatiGenerali>
+                        <DatiGeneraliDocumento>
+                                <TipoDocumento>TD01</TipoDocumento>
+                                <Divisa>EUR</Divisa>
+                                <Data>2012-11-27</Data>
+                                <Numero>00001</Numero>
+                                <Art73>SI</Art73>
+                        </DatiGeneraliDocumento>
+                        <DatiOrdineAcquisto>
+                                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                                <IdDocumento>123</IdDocumento>
+                                <CodiceCUP>123abc</CodiceCUP>
+                                <CodiceCIG>456def</CodiceCIG>
+                        </DatiOrdineAcquisto>
+                        <DatiContratto>
+                                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                                <IdDocumento>123</IdDocumento>
+                                <Data>2012-09-01</Data>
+                                <NumItem>5</NumItem>
+                                <CodiceCUP>123abc</CodiceCUP>
+                                <CodiceCIG>456def</CodiceCIG>
+                        </DatiContratto>
+                        <DatiConvenzione>
+                                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                                <IdDocumento>123</IdDocumento>
+                                <Data>2012-09-01</Data>
+                                <NumItem>5</NumItem>
+                                <CodiceCUP>123abc</CodiceCUP>
+                                <CodiceCIG>456def</CodiceCIG>
+                        </DatiConvenzione>
+                        <DatiRicezione>
+                                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                                <IdDocumento>123</IdDocumento>
+                                <Data>2012-09-01</Data>
+                                <NumItem>5</NumItem>
+                                <CodiceCUP>123abc</CodiceCUP>
+                                <CodiceCIG>456def</CodiceCIG>
+                        </DatiRicezione>
+                        <DatiTrasporto>
+                                <DatiAnagraficiVettore>				
+                                        <IdFiscaleIVA>
+                                                <IdPaese>IT</IdPaese>
+                                                <IdCodice>09399880153</IdCodice>
+                                        </IdFiscaleIVA>
+                                        <Anagrafica>
+                                                <Denominazione>Trasporto spa</Denominazione>
+                                        </Anagrafica>
+                                </DatiAnagraficiVettore>
+                                <DataOraConsegna>2012-10-22T16:46:12.000+02:00</DataOraConsegna>
+                        </DatiTrasporto>
+                </DatiGenerali>
+                <DatiBeniServizi>
+                        <DettaglioLinee>
+                                <NumeroLinea>1</NumeroLinea>
+                                <Descrizione>BADGES MAGNETICI - PVC laminato bianco</Descrizione>
+                                <PrezzoUnitario>3.00000000</PrezzoUnitario>
+                                <PrezzoTotale>3.00</PrezzoTotale>
+                                <AliquotaIVA>22.00</AliquotaIVA>
+                        </DettaglioLinee>
+                        <DatiRiepilogo>
+                                <AliquotaIVA>22.00</AliquotaIVA>
+                                <ImponibileImporto>3.00</ImponibileImporto>
+                                <Imposta>0.66</Imposta>
+                        </DatiRiepilogo>
+                </DatiBeniServizi>
+                <DatiPagamento>
       <CondizioniPagamento>TP01</CondizioniPagamento>
       <DettaglioPagamento>
         <ModalitaPagamento>MP01</ModalitaPagamento>

@@ -6,9 +6,9 @@ from odoo.exceptions import UserError
 
 class WizardLinkToInvoice(models.TransientModel):
     _name = "wizard.link.to.invoice"
-    _description = "Link to Supplier Invoice"
+    _description = "Link to Bill"
     invoice_id = fields.Many2one(
-        'account.invoice', string="Invoice", required=True)
+        'account.invoice', string="Bill", required=True)
 
     @api.multi
     def link(self):

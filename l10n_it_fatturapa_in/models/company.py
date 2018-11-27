@@ -6,19 +6,17 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
 
     dati_bollo_product_id = fields.Many2one(
-        'product.product', 'Product for Dati Bollo',
-        help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento DatiBollo'
+        'product.product', 'Stamp Data Product',
+        help="Product used to model DatiBollo XML element on bills."
         )
     cassa_previdenziale_product_id = fields.Many2one(
-        'product.product', 'Product for Dati Cassa Previdenziale',
-        help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento DatiCassaPrevidenziale'
+        'product.product', 'Welfare Fund Data Product',
+        help="Product used to model DatiCassaPrevidenziale XML element "
+             "on bills."
         )
     sconto_maggiorazione_product_id = fields.Many2one(
-        'product.product', 'Product for Sconto Maggiorazione',
-        help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento ScontoMaggiorazione'
+        'product.product', 'Discount Supplement Product',
+        help="Product used to model ScontoMaggiorazione XML element on bills."
         )
 
 
@@ -27,23 +25,21 @@ class AccountConfigSettings(models.TransientModel):
 
     dati_bollo_product_id = fields.Many2one(
         related='company_id.dati_bollo_product_id',
-        string="Product for Dati Bollo",
-        help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento DatiBollo',
+        string="Stamp Data Product",
+        help='Product used to model DatiBollo XML element on bills',
         readonly=False
         )
     cassa_previdenziale_product_id = fields.Many2one(
         related='company_id.cassa_previdenziale_product_id',
-        string="Product for Dati Cassa Previdenziale",
-        help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento DatiCassaPrevidenziale',
+        string="Welfare Fund Data Product",
+        help='Product used to model DatiCassaPrevidenziale XML element '
+             'on bills',
         readonly=False
         )
     sconto_maggiorazione_product_id = fields.Many2one(
         related='company_id.sconto_maggiorazione_product_id',
-        string="Product for Sconto Maggiorazione",
-        help='Prodotto da utilizzare nelle fatture passive quando nell\'XML '
-             'viene valorizzato l\'elemento ScontoMaggiorazione',
+        string="Discount Supplement Product",
+        help='Product used to model ScontoMaggiorazione XML element on bills',
         readonly=False
         )
 

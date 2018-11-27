@@ -5,7 +5,7 @@
         <field name="name">wizard_link_supplier_invoice</field>
         <field name="model">wizard.link.to.invoice</field>
         <field name="arch" type="xml">
-            <form string="Link to existing supplier invoice" >
+            <form string="Link to existing supplier bill" >
                 <group>
                     <group>
                         <field name="invoice_id"
@@ -23,7 +23,7 @@
         </field>
     </record>
 
-    <act_window name="Link to existing supplier invoice"
+    <act_window name="Link to existing supplier bill"
         res_model="wizard.link.to.invoice"
         src_model="fatturapa.attachment.in"
         view_mode="form"
