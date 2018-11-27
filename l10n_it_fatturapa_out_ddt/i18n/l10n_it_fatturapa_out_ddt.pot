@@ -20,7 +20,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
-msgid "Export FatturaPA"
+msgid "Export E-invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
