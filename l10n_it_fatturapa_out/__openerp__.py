@@ -6,12 +6,13 @@
 
 {
     'name': 'Italian Localization - Fattura Elettronica - Emission',
-    'version': '8.0.1.2.2',
+    'version': '8.0.1.2.3',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices emission',
     'author': 'Davide Corio, Agile Business Group, Innoviu,'
               'Odoo Community Association (OCA)',
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy/tree/8.0/'
+               'l10n_it_fatturapa_out',
     'license': 'LGPL-3',
     "depends": [
         'l10n_it_fatturapa',

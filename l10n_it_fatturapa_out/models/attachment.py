@@ -10,7 +10,7 @@ from openerp.exceptions import Warning as UserError
 
 class FatturaPAAttachment(models.Model):
     _name = "fatturapa.attachment.out"
-    _description = "FatturaPA Export File"
+    _description = "E-invoice Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
     _order = 'id desc'

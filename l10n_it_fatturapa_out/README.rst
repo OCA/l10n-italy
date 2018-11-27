@@ -14,20 +14,29 @@ Italian Localization - Fattura Elettronica - Emission
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_fatturapa_out
+    :target: https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fatturapa_out
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-10-0/l10n-italy-10-0-l10n_it_fatturapa_out
+    :target: https://translation.odoo-community.org/projects/l10n-italy-8-0/l10n-italy-8-0-l10n_it_fatturapa_out
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/10.0
+    :target: https://runbot.odoo-community.org/runbot/122/8.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to generate the fatturaPA XML file version 1.2
+**Italiano**
+
+Questo modulo consente di generare il file XML fatturaPA versione 1.2
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
-to be sent to the Exchange System
+da inviare al Sistema di Interscambio (SDI)
+http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+
+**English**
+
+This module allows you to generate the fatturaPA XML file version 1.2
+http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
+to be sent to the Exchange System (ES)
 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
 **Table of contents**
@@ -38,12 +47,25 @@ http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 Configuration
 =============
 
+**Italiano**
+
+Consultare il file README di l10n_it_fatturapa.
+
+**English**
+
 See l10n_it_fatturapa README file.
 
 Usage
 =====
 
- * Fill invoice data you need to export. For instance, in 'Electronic Invoice Attachments' TAB.
+**Italiano**
+
+ * Compilare la fattura con i dati necessari per l'esportazione. Per esempio, nella scheda "Allegati fattura elettronica"
+ * Selezionare 1 o N fatture ed eseguire la procedura guidata "Esporta fattura elettronica"
+
+**English**
+
+ * Fill invoice data you need to export. For instance, in 'Electronic Invoice Attachments' TAB
  * Select 1 or N invoices and run 'Export Electronic Invoice' wizard
 
 Bug Tracker
@@ -52,7 +74,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_fatturapa_out%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_fatturapa_out%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -74,8 +96,10 @@ Contributors
 * Roberto Onnis
 * Alessio Gerace
 * Alex Comba
+* Sergio Zanchetta <https://github.com/primes2h>
 * Gianmarco Conte
 * Marco Calcagni
+* Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
 ~~~~~~~~~~~
