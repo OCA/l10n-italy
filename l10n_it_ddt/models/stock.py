@@ -61,3 +61,15 @@ class StockPicking(models.Model):
                 return self.partner_id
         else:
             return self.location_dest_id.partner_id
+
+    @api.multi
+    def open_form_current(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': self._name,
+            'res_id': self.id,
+            'target': 'current'
+        }
