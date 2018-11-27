@@ -51,7 +51,7 @@
                 </IdFiscaleIVA>
                 <CodiceFiscale>03297040366</CodiceFiscale>
                 <Anagrafica>
-                    <Denominazione>Intermediario</Denominazione>
+                    <Denominazione>Intermediary</Denominazione>
                 </Anagrafica>
             </DatiAnagrafici>
         </RappresentanteFiscale>
@@ -63,7 +63,7 @@
                 </IdFiscaleIVA>
                 <CodiceFiscale>07973780013</CodiceFiscale>
                 <Anagrafica>
-                    <Denominazione>Cliente B2B</Denominazione>
+                    <Denominazione>B2B Customer</Denominazione>
                 </Anagrafica>
             </DatiAnagrafici>
             <Sede>
