@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_export_vat_settlement_form_view" model="ir.ui.view">
+            <field name="name">Export VAT Settlement</field>
+            <field name="model">wizard.vat.settlement</field>
+            <field name="arch" type="xml">
+                <form string="Export VAT Settlement">
+                    <group col="2" height="500" width="600" states="create">
+                        <!--<group>-->
+                            <!--<label string="Confirm?"></label>-->
+                        <!--</group>-->
+                        <!--<newline></newline>-->
+                        <group col="3">
+                            <button colspan="1" icon="gtk-cancel" special="cancel" string="Cancel"></button>
+                            <button colspan="1" icon="gtk-ok" name="export_vat_settlemet" string="Start Export" type="object"></button>
+                        </group>
+                        <field invisible="1" name="state"/>
+                    </group>
+                    <group col="6" fill="0" states="get">
+                        <separator colspan="5" string="Your download is ready"/>
+                        <field name="data" filename="name"/>
+                        <field name="name" select="1" invisible="1" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_wizard_export_vat_settlement"
+                    key2="client_action_multi"
+                    name="Export VAT settlement"
+                    res_model="wizard.vat.settlement"
+                    src_model="account.vat.period.end.statement"
+                    target="new"
+                    view_id="wizard_export_vat_settlement_form_view"
+                    view_mode="form">
+        </act_window>
+
+    </data>
+</openerp>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_account_vat_period_end_statement_ivp17" model="ir.ui.view">
+        <field name="name">account.vat.period.end.statement.form.ivp17</field>
+        <field name="model">account.vat.period.end.statement</field>
+        <field name="inherit_id" ref="account_vat_period_end_statement.view_account_vat_period_end_statement"/>
+        <field name="arch" type="xml">
+            <group string="Page Number" position="after">
+                <group colspan="4" string="Legal Notice">
+                    <field name="soggetto_codice_fiscale"
+                           on_change="onchange_fiscalcode(soggetto_codice_fiscale,
+                           'soggetto_codice_fiscale')" />
+                    <field name="codice_carica" />
+                    <field name="incaricato_trasmissione_codice_fiscale"
+                           on_change="onchange_fiscalcode(incaricato_trasmissione_codice_fiscale,
+                           'incaricato_trasmissione_codice_fiscale')" />
+                    <field name="incaricato_trasmissione_numero_CAF" />
+                    <field name="incaricato_trasmissione_data_impegno" />
+                    <field name="progressivo_telematico"
+                           readonly="1"/>
+                </group>
+            </group>
+        </field>
+    </record>
+    <!-- Attachment -->
+    <record id="view_vat_settlement_attachment_form" model="ir.ui.view">
+        <field name="name">account.vat.settlement.attachment.form</field>
+        <field name="model">account.vat.settlement.attachment</field>
+        <field name="arch" type="xml">
+            <form string="Export VAT Settlement" col="4">
+                <field name="datas" filename="datas_fname" readonly="1" nolabel="1"/>
+                <field name="datas_fname" invisible="1"/>
+                <field name="name" invisible="1"/>
+                <newline/>
+                <separator string="VAT Settlements"/>
+                <newline/>
+                <field name="vat_statement_ids" nolabel="1"/>
+                <newline/>
+                <group groups="base.group_no_one" string="History">
+                    <field name="create_uid" readonly="1"/>
+                    <field name="create_date" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</data>
+</openerp>
