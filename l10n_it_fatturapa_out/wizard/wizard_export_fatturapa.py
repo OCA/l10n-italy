@@ -56,7 +56,7 @@ except ImportError as err:
 
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
-    _description = "Export FatturaPA"
+    _description = "Export E-invoice"
 
     @api.model
     def _domain_ir_values(self):
@@ -102,7 +102,7 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_sequence = company.fatturapa_sequence_id
         if not fatturapa_sequence:
             raise UserError(
-                _('FatturaPA sequence not configured.'))
+                _('E-invoice sequence not configured.'))
         number = fatturapa_sequence.next_by_id()
         try:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
@@ -205,10 +205,10 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
             raise UserError(_(
-                'Fiscal position for Fattura Elettronica not set '
+                'Fiscal position for Electronic Invoice not set '
                 'for company %s. '
                 '(Go to Accounting --> Configuration --> Settings --> '
-                'Fattura Elettronica)' % company.name
+                'Electronic Invoice)' % company.name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
@@ -670,11 +670,11 @@ class WizardExportFatturapa(models.TransientModel):
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term_id.fatturapa_pt_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked e-invoice '
                       'payment term') % invoice.payment_term_id.name)
             if not invoice.payment_term_id.fatturapa_pm_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked e-invoice '
                       'payment method') % invoice.payment_term_id.name)
             DatiPagamento.CondizioniPagamento = (
                 invoice.payment_term_id.fatturapa_pt_id.code)
@@ -781,7 +781,7 @@ class WizardExportFatturapa(models.TransientModel):
                         invoice_id)
                     if inv.fatturapa_attachment_out_id:
                         raise UserError(
-                            _("Invoice %s has FatturaPA Export File yet") % (
+                            _("Invoice %s has E-invoice Export File yet") % (
                                 inv.number))
                     if self.report_print_menu:
                         self.generate_attach_report(inv)
