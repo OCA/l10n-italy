@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 
 class FatturaPAAttachment(models.Model):
     _name = "fatturapa.attachment.out"
-    _description = "FatturaPA Export File"
+    _description = "E-invoice Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
     _order = 'id desc'
@@ -40,7 +40,9 @@ class FatturaPAAttachment(models.Model):
         for att in self:
             res = self.search([('datas_fname', '=', att.datas_fname)])
             if len(res) > 1:
-                raise UserError(_("File %s already present") % att.datas_fname)
+                raise UserError(
+                    _("File %s already present.") %
+                    att.datas_fname)
 
     @api.multi
     @api.depends(
