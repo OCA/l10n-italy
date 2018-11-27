@@ -57,7 +57,7 @@ except ImportError as err:
 
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
-    _description = "Export FatturaPA"
+    _description = "Export E-invoice"
 
     @api.model
     def _domain_ir_values(self):
@@ -103,7 +103,7 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_sequence = company.fatturapa_sequence_id
         if not fatturapa_sequence:
             raise UserError(
-                _('FatturaPA sequence not configured.'))
+                _('E-invoice sequence not configured.'))
         number = fatturapa_sequence.next_by_id(fatturapa_sequence.id)
         try:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
@@ -206,10 +206,10 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
             raise UserError(_(
-                'Fiscal position for Fattura Elettronica not set '
+                'Fiscal position for Electronic Invoice not set '
                 'for company %s. '
                 '(Go to Accounting --> Configuration --> Settings --> '
-                'Fattura Elettronica)' % company.name
+                'Electronic Invoice)' % company.name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
@@ -348,12 +348,10 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                 IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
-        # if partner.company_type == 'company':
         if partner.is_company:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                 Denominazione=partner.name)
-        # elif partner.company_type == 'person':
         else:
             if not partner.lastname or not partner.firstname:
                 raise UserError(
@@ -643,8 +641,6 @@ class WizardExportFatturapa(models.TransientModel):
     def setDatiRiepilogo(self, invoice, body):
         model_tax = self.env['account.tax']
         for tax_line in invoice.tax_line:
-            # tax = tax_line.tax_id
-            # tax = model_tax.get_tax_by_invoice_tax(tax_line.name)
             tax = model_tax.get_tax_by_invoice_tax(tax_line.name)
             riepilogo = DatiRiepilogoType(
                 AliquotaIVA='%.2f' % (tax.amount * 100),
@@ -676,17 +672,16 @@ class WizardExportFatturapa(models.TransientModel):
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term.fatturapa_pt_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked e-invoice '
                       'payment term') % invoice.payment_term.name)
             if not invoice.payment_term.fatturapa_pm_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked e-invoice '
                       'payment method') % invoice.payment_term.name)
             DatiPagamento.CondizioniPagamento = (
                 invoice.payment_term.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
             payment_line_ids = invoice.move_line_id_payment_get()
-            # payment_line_ids = invoice.get_receivable_line_ids()
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
                 ImportoPagamento = '%.2f' % move_line.debit
@@ -789,7 +784,7 @@ class WizardExportFatturapa(models.TransientModel):
                         invoice_id)
                     if inv.fatturapa_attachment_out_id:
                         raise UserError(
-                            _("Invoice %s has FatturaPA Export File yet") % (
+                            _("Invoice %s has E-invoice Export File yet") % (
                                 inv.number))
                     if self.report_print_menu:
                         self.generate_attach_report(inv)

@@ -8,7 +8,6 @@
                 <form string="Export Electronic Invoice">
                     <group col="2" height="500" width="600">
                         <group>
-                            <!--<label string="Confirm?"/>-->
                             <separator colspan="2" string="If you want to add a PDF version of the invoice into the XML, select which one"/>
                             <field name="report_print_menu"
                                    string="Attached report"
