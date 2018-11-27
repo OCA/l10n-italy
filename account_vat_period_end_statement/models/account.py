@@ -631,17 +631,25 @@ class AccountVatPeriodEndStatement(orm.Model):
             for debit_tax_code_id in debit_tax_code_ids:
                 debit_tax_code = tax_code_pool.browse(
                     cr, uid, debit_tax_code_id, context)
-                total = 0.0
+                total = total_base = 0.0
                 for period in statement.period_ids:
                     ctx = context.copy()
                     ctx['period_id'] = period.id
                     total += tax_code_pool.browse(
                         cr, uid, debit_tax_code_id, ctx).sum_period
+                    #  get total from periods for base amount
+                    res = tax_code_pool._get_tax_codes_amounts(
+                        cr, uid, period.id, tax_code_ids=debit_tax_code.id)
+                    total_base += sum(res[a]['base'] for a in res)
+
                 debit_line_ids.append({
                     'account_id': debit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': debit_tax_code.id,
-                    'amount': total * debit_tax_code.vat_statement_sign,
-                })
+                    'amount': not debit_tax_code.is_base and total *
+                    debit_tax_code.vat_statement_sign or 0.0,
+                    'amount_base': debit_tax_code.is_base and total *
+                    debit_tax_code.vat_statement_sign or total_base *
+                    debit_tax_code.vat_statement_sign, })
 
             credit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
@@ -650,17 +658,26 @@ class AccountVatPeriodEndStatement(orm.Model):
             for credit_tax_code_id in credit_tax_code_ids:
                 credit_tax_code = tax_code_pool.browse(
                     cr, uid, credit_tax_code_id, context)
-                total = 0.0
+                total = total_base = 0.0
                 for period in statement.period_ids:
                     ctx = context.copy()
                     ctx['period_id'] = period.id
                     total += tax_code_pool.browse(
                         cr, uid, credit_tax_code_id, ctx).sum_period
+                    #  get total from periods for base amount
+                    res = tax_code_pool._get_tax_codes_amounts(
+                        cr, uid, period.id,
+                        tax_code_ids=credit_tax_code.id)
+                    total_base += sum(res[a]['base'] for a in res)
+
                 credit_line_ids.append({
                     'account_id': credit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': credit_tax_code.id,
-                    'amount': total * credit_tax_code.vat_statement_sign,
-                })
+                    'amount': not credit_tax_code.is_base and total *
+                    credit_tax_code.vat_statement_sign or 0.0,
+                    'amount_base': credit_tax_code.is_base and total *
+                    credit_tax_code.vat_statement_sign or total_base *
+                    credit_tax_code.vat_statement_sign, })
 
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
@@ -750,6 +767,8 @@ class StatementDebitAccountLine(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
+        'amount_base': fields.float(
+            'Amount base', digits_compute=dp.get_precision('Account')),
     }
 
 
@@ -765,6 +784,8 @@ class StatementCreditAccountLine(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
+        'amount_base': fields.float(
+            'Amount base', digits_compute=dp.get_precision('Account')),
     }
 
 
