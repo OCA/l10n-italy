@@ -65,7 +65,7 @@
         </record>
 
         <record id="action_fatturapa_attachment" model="ir.actions.act_window">
-            <field name="name">E-invoice Export Files</field>
+            <field name="name">Electronic Invoice Export Files</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">fatturapa.attachment.out</field>
             <field name="view_type">form</field>
@@ -75,7 +75,7 @@
 
         <menuitem action="action_fatturapa_attachment"
             parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
-            name="Fattura Elettronica Export Files"
+            name="E-invoice Export Files"
             id="fatturapa_attachment_menu"/>
 
     </data>
