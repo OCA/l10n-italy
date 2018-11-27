@@ -165,10 +165,47 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_fatturapa_attachment_out_id
+#, fuzzy
+msgid "E-invoice Export File"
+msgstr "File fattura elettronica esportati"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
+#, fuzzy
+msgid "E-invoice Export Files"
+msgstr "File fattura elettronica esportati"
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/attachment.py:74
 #, python-format
 msgid "E-invoice attachment changed"
 msgstr "Allegato e-fattura modificato"
+
+#. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:105
+#, fuzzy, python-format
+msgid "E-invoice sequence not configured."
+msgstr "Sequenza fatturaPA non configurata."
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
+#, fuzzy
+msgid "Electronic Invoice"
+msgstr "Esporta fattura elettronica"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
+#, fuzzy
+msgid "Electronic Invoice Export Files"
+msgstr "File fattura elettronica esportati"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
+#, fuzzy
+msgid "Electronic Invoice attachments"
+msgstr "Allegati fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:183
@@ -182,47 +219,18 @@ msgid "Export"
 msgstr "Esporta"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model,name:l10n_it_fatturapa_out.model_wizard_export_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Export E-invoice"
 msgstr "Esporta e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_wizard_export_fatturapa
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_tree
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export Electronic Invoice"
 msgstr "Esporta fattura elettronica"
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_tree
-#, fuzzy
-msgid "Export Fattura Elettronica"
-msgstr "Export Fattura Elettronica"
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.model,name:l10n_it_fatturapa_out.model_wizard_export_fatturapa
-#, fuzzy
-msgid "Export FatturaPA"
-msgstr "Export Fattura Elettronica"
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
-#, fuzzy
-msgid "Fattura Elettronica"
-msgstr "Fattura elettronica"
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
-#: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
-#, fuzzy
-msgid "Fattura Elettronica Export Files"
-msgstr "File fattura elettronica esportati"
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
-#, fuzzy
-msgid "Fattura Elettronica attachments"
-msgstr "Allegati fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:111
@@ -235,23 +243,10 @@ msgstr ""
 "%s"
 
 #. module: l10n_it_fatturapa_out
-#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_fatturapa_attachment_out_id
-#, fuzzy
-msgid "FatturaPA Export File"
-msgstr "E-fattura Export File"
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachments
 #, fuzzy
 msgid "FatturaPA attachments"
 msgstr "Allegati fattura elettronica"
-
-#. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:105
-#, python-format
-msgid "FatturaPA sequence not configured."
-msgstr "Sequenza fatturaPA non configurata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/attachment.py:44
@@ -278,8 +273,8 @@ msgstr "Dimensione file"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:207
 #, fuzzy, python-format
 msgid ""
-"Fiscal position for Fattura Elettronica not set for company %s. (Go to "
-"Accounting --> Configuration --> Settings --> Fattura Elettronica)"
+"Fiscal position for Electronic Invoice not set for company %s. (Go to "
+"Accounting --> Configuration --> Settings --> Electronic Invoice)"
 msgstr ""
 "Posizione fiscale di fatturazione elettronica non impostata per l'azienda %s "
 "(andare su Contabilità --> Configurazione --> Impostazioni --> Fattura "
@@ -323,7 +318,7 @@ msgstr "Fattura"
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:784
 #, fuzzy, python-format
-msgid "Invoice %s has FatturaPA Export File yet"
+msgid "Invoice %s has E-invoice Export File yet"
 msgstr "File di fattura elettronica già presente per la fattura %s"
 
 #. module: l10n_it_fatturapa_out
@@ -441,16 +436,16 @@ msgstr "Partita IVA e codice fiscale del partner non impostati."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:677
-#, python-format
-msgid "Payment term %s does not have a linked fatturaPA payment method"
+#, fuzzy, python-format
+msgid "Payment term %s does not have a linked e-invoice payment method"
 msgstr ""
 "Il termine di pagamento %s non ha un metodo di pagamento di fatturaPA "
 "collegato"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:673
-#, python-format
-msgid "Payment term %s does not have a linked fatturaPA payment term"
+#, fuzzy, python-format
+msgid "Payment term %s does not have a linked e-invoice payment term"
 msgstr ""
 "Il termine di pagamento %s non ha un termine di pagamento di fatturaPA "
 "collegato"
@@ -615,6 +610,22 @@ msgstr "CAP non impostato per %s"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "on"
 msgstr "il"
+
+#, fuzzy
+#~ msgid "Export Fattura Elettronica"
+#~ msgstr "Export Fattura Elettronica"
+
+#, fuzzy
+#~ msgid "Export FatturaPA"
+#~ msgstr "Export Fattura Elettronica"
+
+#, fuzzy
+#~ msgid "Fattura Elettronica"
+#~ msgstr "Fattura elettronica"
+
+#, fuzzy
+#~ msgid "FatturaPA Export File"
+#~ msgstr "E-fattura Export File"
 
 #~ msgid "Confirm?"
 #~ msgstr "Confermare?"
