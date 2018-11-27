@@ -25,8 +25,8 @@ msgstr "Dati DDT"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
-msgid "Export FatturaPA"
-msgstr "Esporta fatturaPA"
+msgid "Export E-invoice"
+msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
@@ -45,8 +45,8 @@ msgid ""
 msgstr ""
 "Includere dati DDT: blocco da valorizzare nei casi di fattura \"differita\" "
 "per indicare il documento con cui è stato consegnato il bene\n"
-"Includere dati trasporto: blocco da valorizzare nei casi di fattura \""
-"accompagnatoria\" per inserire informazioni relative al trasporto"
+"Includere dati trasporto: blocco da valorizzare nei casi di fattura "
+"\"accompagnatoria\" per inserire informazioni relative al trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
@@ -59,3 +59,6 @@ msgstr "Includere dati trasporto"
 #, python-format
 msgid "TIN not set for %s"
 msgstr "Partita IVA non impostata per %s"
+
+#~ msgid "Export FatturaPA"
+#~ msgstr "Esporta fatturaPA"
