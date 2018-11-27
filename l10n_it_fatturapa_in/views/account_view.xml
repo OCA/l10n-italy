@@ -5,7 +5,7 @@
         <field name="name">fatturapa.attachment.in.form</field>
         <field name="model">fatturapa.attachment.in</field>
         <field name="arch" type="xml">
-            <form string="Import Fattura Elettronica" duplicate="false">
+            <form string="Import e-bill" duplicate="false">
                 <div>
                     <group>
                         <group>
@@ -27,7 +27,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Invoices">
+                        <page string="Bills">
                             <field name="in_invoice_ids"
                                    context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}">
                                 <tree>
@@ -82,7 +82,7 @@
         </field>
     </record>
     <record id="action_fattura_pa_in" model="ir.actions.act_window">
-        <field name="name">Incoming Fattura Elettronica files</field>
+        <field name="name">Incoming E-bill Files</field>
         <field name="res_model">fatturapa.attachment.in</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
@@ -128,13 +128,13 @@
                 <field name="stamp_amount" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
             </field>
             <xpath expr="//notebook" position="inside">
-                <page string="E-invoice Inconsistencies" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
+                <page string="E-bill Inconsistencies" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
                     <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>
                 </page>
-                <page string="E-invoice details" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
-                    <group string="Dettaglio Linee">
+                <page string="E-bill Details" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
+                    <group string="Lines Detail">
                         <field name="e_invoice_line_ids" nolabel="1">
-                            <tree string="Dettaglio Linee">
+                            <tree string="Lines Detail">
                                 <field name="line_number"></field>
                                 <field name="name"></field>
                                 <field name="qty"></field>
@@ -143,7 +143,7 @@
                                 <field name="tax_amount"></field>
                                 <field name="total_price"></field>
                             </tree>
-                            <form string="Dettaglio Linea">
+                            <form string="Line Detail">
                                 <group>
                                     <group>
                                         <field name="line_number"></field>
@@ -162,13 +162,13 @@
                                         <field name="tax_kind"></field>
                                         <field name="admin_ref"></field>
                                     </group>
-                                    <separator string="Codice Articoli"/>
+                                    <separator string="Articles Code"/>
                                     <field name="cod_article_ids" nolabel="1" colspan="4">
                                     </field>
-                                    <separator string="Sconto Maggiorazione"/>
+                                    <separator string="Discount Supplement"/>
                                     <field name="discount_rise_price_ids" nolabel="1" colspan="4">
                                     </field>
-                                    <separator string="Altri Dati Gestionali"/>
+                                    <separator string="Other Administrative Data"/>
                                     <field name="other_data_ids" nolabel="1" colspan="4">
                                     </field>
                                 </group>
@@ -281,7 +281,7 @@
                         </field>
                    </group>
                     <group>
-                        <group string="Stabile Organizzazione">
+                        <group string="Stable Organization">
                             <field name="efatt_stabile_organizzazione_indirizzo"/>
                             <field name="efatt_stabile_organizzazione_civico"/>
                             <field name="efatt_stabile_organizzazione_cap"/>
@@ -291,7 +291,7 @@
                        </group>
                     </group>
                     <group>
-                        <group string="Dati generali">
+                        <group string="General Data">
                             <field name="efatt_rounding"/>
                             <field name="art73"/>
                        </group>

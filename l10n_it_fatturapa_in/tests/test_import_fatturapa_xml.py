@@ -122,7 +122,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             len(invoice.invoice_line_ids[0].invoice_line_tax_ids), 1)
         self.assertEqual(
             invoice.invoice_line_ids[0].invoice_line_tax_ids[0].name,
-            '22% ftPA acq')
+            '22% e-bill')
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].amount_untaxed, 34.00)
         self.assertEqual(
@@ -180,10 +180,10 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(
             invoice.invoice_line_ids[0].invoice_line_tax_ids[0].name,
-            '22% ftPA acq')
+            '22% e-bill')
         self.assertEqual(
             invoice.invoice_line_ids[1].invoice_line_tax_ids[0].name,
-            '22% ftPA acq')
+            '22% e-bill')
         self.assertEqual(
             invoice.invoice_line_ids[0].invoice_line_tax_ids[0].amount, 22)
         self.assertEqual(
@@ -200,7 +200,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                     e_line.cod_article_ids[0].code_val, '12345')
         self.assertEqual(
             invoice.inconsistencies,
-            'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            u'Company Name field contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
 
     def test_05_xml_import(self):
@@ -273,7 +273,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(
             invoice.inconsistencies,
             'Computed amount untaxed 1030.42 is different from'
-            ' DatiRiepilogo 1173.6')
+            ' summary data 1173.6')
 
     def test_10_xml_import(self):
         # Fix Date format
@@ -330,11 +330,11 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice2 = self.invoice_model.browse(invoice2_id)
         self.assertEqual(
             invoice1.inconsistencies,
-            'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            u'Company Name field contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
         self.assertEqual(
             invoice2.inconsistencies,
-            'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            u'Company Name field contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
 
     def test_14_xml_import(self):
@@ -349,7 +349,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.amount_tax, 0.0)
         self.assertEqual(
             invoice.inconsistencies,
-            'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
+            u'Company Name field contains "Societa\' '
             'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n'
             'XML contains tax with percentage "15.55"'
             ' but it does not exist in your system\n'
