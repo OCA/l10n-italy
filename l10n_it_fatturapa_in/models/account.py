@@ -7,11 +7,11 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     fatturapa_attachment_in_id = fields.Many2one(
-        'fatturapa.attachment.in', 'E-Invoice Import File',
+        'fatturapa.attachment.in', 'E-bill Import File',
         ondelete='restrict', copy=False)
     inconsistencies = fields.Text('Import Inconsistencies', copy=False)
     e_invoice_line_ids = fields.One2many(
-        "einvoice.line", "invoice_id", string="Dettaglio Linee",
+        "einvoice.line", "invoice_id", string="Lines detail",
         readonly=True, copy=False)
 
     @api.multi
@@ -48,7 +48,7 @@ class fatturapa_article_code(models.Model):
     name = fields.Char('Cod Type')
     code_val = fields.Char('Code Value')
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-Invoice line', readonly=True
+        'einvoice.line', 'Related E-bill line', readonly=True
     )
 
 
@@ -60,14 +60,14 @@ class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     fatturapa_attachment_in_id = fields.Many2one(
-        'fatturapa.attachment.in', 'E-Invoice Import File',
+        'fatturapa.attachment.in', 'E-bill Import File',
         readonly=True, related='invoice_id.fatturapa_attachment_in_id')
 
 
 class DiscountRisePrice(models.Model):
     _inherit = "discount.rise.price"
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-Invoice line', readonly=True
+        'einvoice.line', 'Related E-bill line', readonly=True
     )
 
 
@@ -75,37 +75,37 @@ class EInvoiceLine(models.Model):
     _name = 'einvoice.line'
     _description = 'E-invoice line'
     invoice_id = fields.Many2one(
-        "account.invoice", "Invoice", readonly=True)
-    line_number = fields.Integer('Numero Linea', readonly=True)
-    service_type = fields.Char('Tipo Cessione Prestazione', readonly=True)
+        "account.invoice", "Bill", readonly=True)
+    line_number = fields.Integer('Line Number', readonly=True)
+    service_type = fields.Char('Sale Provision Type', readonly=True)
     cod_article_ids = fields.One2many(
         'fatturapa.article.code', 'e_invoice_line_id',
         'Cod. Articles', readonly=True
     )
-    name = fields.Char("Descrizione", readonly=True)
+    name = fields.Char("Description", readonly=True)
     qty = fields.Float(
-        "Quantita'", readonly=True,
+        "Quantity", readonly=True,
         digits=dp.get_precision('Product Unit of Measure')
     )
-    uom = fields.Char("Unita' di misura", readonly=True)
-    period_start_date = fields.Date("Data Inizio Periodo", readonly=True)
-    period_end_date = fields.Date("Data Fine Periodo", readonly=True)
+    uom = fields.Char("Unit of measure", readonly=True)
+    period_start_date = fields.Date("Period Start Date", readonly=True)
+    period_end_date = fields.Date("Period End Date", readonly=True)
     unit_price = fields.Float(
-        "Prezzo unitario", readonly=True,
+        "Unit Price", readonly=True,
         digits=dp.get_precision('Product Price')
     )
     discount_rise_price_ids = fields.One2many(
         'discount.rise.price', 'e_invoice_line_id',
-        'Discount and Rise Price Details', readonly=True
+        'Discount and Supplement Price Details', readonly=True
     )
-    total_price = fields.Float("Prezzo Totale", readonly=True)
-    tax_amount = fields.Float("Aliquota IVA", readonly=True)
-    wt_amount = fields.Char("Ritenuta", readonly=True)
-    tax_kind = fields.Char("Natura", readonly=True)
-    admin_ref = fields.Char("Riferimento mministrazione", readonly=True)
+    total_price = fields.Float("Total Price", readonly=True)
+    tax_amount = fields.Float("VAT Rate", readonly=True)
+    wt_amount = fields.Char("Tax Withholding", readonly=True)
+    tax_kind = fields.Char("Nature", readonly=True)
+    admin_ref = fields.Char("Administration Reference", readonly=True)
     other_data_ids = fields.One2many(
         "einvoice.line.other.data", "e_invoice_line_id",
-        string="Altri dati gestionali", readonly=True)
+        string="Other Administrative Data", readonly=True)
 
 
 class EInvoiceLineOtherData(models.Model):
@@ -113,9 +113,9 @@ class EInvoiceLineOtherData(models.Model):
     _description = 'E-invoice line other data'
 
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-Invoice line', readonly=True
+        'einvoice.line', 'Related E-bill line', readonly=True
     )
-    name = fields.Char("Tipo Dato", readonly=True)
-    text_ref = fields.Char("Riferimento Testo", readonly=True)
-    num_ref = fields.Float("Riferimento Numero", readonly=True)
-    date_ref = fields.Char("Riferimento Data", readonly=True)
+    name = fields.Char("Data Type", readonly=True)
+    text_ref = fields.Char("Text Reference", readonly=True)
+    num_ref = fields.Float("Number Reference", readonly=True)
+    date_ref = fields.Char("Date Reference", readonly=True)
