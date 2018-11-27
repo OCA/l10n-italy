@@ -46,6 +46,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
+msgid "E-invoice Export File"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_account_invoice_fatturapa_state
 msgid "E-invoice State"
 msgstr ""
@@ -73,11 +78,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
 msgid "Fattura Elettronica State"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
-msgid "FatturaPA Export File"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
