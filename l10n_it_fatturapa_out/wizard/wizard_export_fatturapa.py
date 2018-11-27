@@ -140,7 +140,7 @@ class WizardExportFatturapa(models.TransientModel):
                 IdCodice = company.vat[2:]
         if not IdCodice:
             raise UserError(
-                _('Company does not have fiscal code or VAT'))
+                _('Company does not have fiscal code or VAT number.'))
 
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             IdTrasmittente = IdFiscaleType(
@@ -163,14 +163,14 @@ class WizardExportFatturapa(models.TransientModel):
         if partner.is_pa:
             if not partner.ipa_code:
                 raise UserError(_(
-                    "Partner %s is PA but does not have IPA code"
+                    "Partner %s is PA but does not have IPA code."
                 ) % partner.name)
             code = partner.ipa_code
         else:
             if not partner.codice_destinatario:
                 raise UserError(_(
-                    "Partner %s is not PA but does not have Codice "
-                    "Destinatario"
+                    "Partner %s is not PA but does not have Addressee "
+                    "Code."
                 ) % partner.name)
             code = partner.codice_destinatario
             if code == '0000000':
@@ -217,10 +217,10 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
             raise UserError(_(
-                'Fiscal position for E-invoice not set '
+                'Fiscal position for electronic invoice not set '
                 'for company %s. '
-                '(Go to Accounting --> Configuration --> Settings --> '
-                'E-invoice)' % company.name
+                '(Go to Accounting →  Configuration →  Settings →  '
+                'Electronic Invoice)' % company.name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
@@ -246,16 +246,16 @@ class WizardExportFatturapa(models.TransientModel):
 
         if not company.street:
             raise UserError(
-                _('Your company Street not set.'))
+                _('Your company Street is not set.'))
         if not company.zip:
             raise UserError(
-                _('Your company ZIP not set.'))
+                _('Your company ZIP is not set.'))
         if not company.city:
             raise UserError(
-                _('Your company City not set.'))
+                _('Your company City is not set.'))
         if not company.country_id:
             raise UserError(
-                _('Your company Country not set.'))
+                _('Your company Country is not set.'))
         # TODO: manage address number in <NumeroCivico>
         # see https://github.com/OCA/partner-contact/pull/96
         CedentePrestatore.Sede = IndirizzoType(
@@ -273,16 +273,20 @@ class WizardExportFatturapa(models.TransientModel):
             stabile_organizzazione = company.fatturapa_stabile_organizzazione
             if not stabile_organizzazione.street:
                 raise UserError(
-                    _('Street not set for %s') % stabile_organizzazione.name)
+                    _('Street is not set for %s.') %
+                    stabile_organizzazione.name)
             if not stabile_organizzazione.zip:
                 raise UserError(
-                    _('ZIP not set for %s') % stabile_organizzazione.name)
+                    _('ZIP is not set for %s.') %
+                    stabile_organizzazione.name)
             if not stabile_organizzazione.city:
                 raise UserError(
-                    _('City not set for %s') % stabile_organizzazione.name)
+                    _('City is not set for %s.') %
+                    stabile_organizzazione.name)
             if not stabile_organizzazione.country_id:
                 raise UserError(
-                    _('Country not set for %s') % stabile_organizzazione.name)
+                    _('Country is not set for %s.') %
+                    stabile_organizzazione.name)
             CedentePrestatore.StabileOrganizzazione = IndirizzoType(
                 Indirizzo=stabile_organizzazione.street,
                 CAP=stabile_organizzazione.zip,
@@ -349,7 +353,8 @@ class WizardExportFatturapa(models.TransientModel):
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         if not partner.vat and not partner.fiscalcode:
             raise UserError(
-                _('VAT and Fiscalcode not set for %s') % partner.name)
+                _('VAT number and fiscal code are not set for %s.') %
+                partner.name)
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
@@ -364,8 +369,8 @@ class WizardExportFatturapa(models.TransientModel):
         elif partner.company_type == 'person':
             if not partner.lastname or not partner.firstname:
                 raise UserError(
-                    _("Partner %s must have firstname and lastname")
-                    % partner.name)
+                    _("Partner %s must have name and surname.") %
+                    partner.name)
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Cognome=partner.lastname,
@@ -385,7 +390,8 @@ class WizardExportFatturapa(models.TransientModel):
             DatiAnagrafici = DatiAnagraficiRappresentanteType()
         if not partner.vat and not partner.fiscalcode:
             raise UserError(
-                _('VAT and Fiscalcode not set for %s') % partner.name)
+                _('VAT number and fiscal code are not set for %s.') %
+                partner.name)
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
@@ -412,7 +418,7 @@ class WizardExportFatturapa(models.TransientModel):
             DatiAnagrafici = DatiAnagraficiTerzoIntermediarioType()
         if not partner.vat and not partner.fiscalcode:
             raise UserError(
-                _('Partner VAT and Fiscalcode not set.'))
+                _('Partner VAT number and fiscal code are not set.'))
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.\
                 TerzoIntermediarioOSoggettoEmittente.\
@@ -437,19 +443,19 @@ class WizardExportFatturapa(models.TransientModel):
 
         if not partner.street:
             raise UserError(
-                _('Customer street not set.'))
+                _('Customer street is not set.'))
         if not partner.zip:
             raise UserError(
-                _('Customer ZIP not set.'))
+                _('Customer ZIP is not set.'))
         if not partner.city:
             raise UserError(
-                _('Customer city not set.'))
+                _('Customer city is not set.'))
         if not partner.state_id:
             raise UserError(
-                _('Customer province not set.'))
+                _('Customer province is not set.'))
         if not partner.country_id:
             raise UserError(
-                _('Customer country not set.'))
+                _('Customer country is not set.'))
 
         # TODO: manage address number in <NumeroCivico>
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
@@ -589,10 +595,10 @@ class WizardExportFatturapa(models.TransientModel):
         for line in invoice.invoice_line_ids:
             if not line.invoice_line_tax_ids:
                 raise UserError(
-                    _("Invoice line %s does not have tax") % line.name)
+                    _("Invoice line %s does not have tax.") % line.name)
             if len(line.invoice_line_tax_ids) > 1:
                 raise UserError(
-                    _("Too many taxes for invoice line %s") % line.name)
+                    _("Too many taxes for invoice line %s.") % line.name)
             aliquota = line.invoice_line_tax_ids[0].amount
             AliquotaIVA = '%.2f' % (aliquota)
             line.ftpa_line_number = line_no
@@ -621,7 +627,7 @@ class WizardExportFatturapa(models.TransientModel):
             if aliquota == 0.0:
                 if not line.invoice_line_tax_ids[0].kind_id:
                     raise UserError(
-                        _("No 'nature' field for tax %s") %
+                        _("No 'nature' field for tax %s.") %
                         line.invoice_line_tax_ids[0].name)
                 DettaglioLinea.Natura = line.invoice_line_tax_ids[
                     0
@@ -658,11 +664,11 @@ class WizardExportFatturapa(models.TransientModel):
             if tax.amount == 0.0:
                 if not tax.kind_id:
                     raise UserError(
-                        _("No 'nature' field for tax %s") % tax.name)
+                        _("No 'nature' field for tax %s.") % tax.name)
                 riepilogo.Natura = tax.kind_id.code
                 if not tax.law_reference:
                     raise UserError(
-                        _("No 'law reference' field for tax %s") % tax.name)
+                        _("No 'law reference' field for tax %s.") % tax.name)
                 riepilogo.RiferimentoNormativo = tax.law_reference
             if tax.payability:
                 riepilogo.EsigibilitaIVA = tax.payability
@@ -680,12 +686,12 @@ class WizardExportFatturapa(models.TransientModel):
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term_id.fatturapa_pt_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked E-invoice '
-                      'payment term') % invoice.payment_term_id.name)
+                    _('Payment term %s does not have a linked e-invoice '
+                      'payment term.') % invoice.payment_term_id.name)
             if not invoice.payment_term_id.fatturapa_pm_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked E-invoice '
-                      'payment method') % invoice.payment_term_id.name)
+                    _('Payment term %s does not have a linked e-invoice '
+                      'payment method.') % invoice.payment_term_id.name)
             DatiPagamento.CondizioniPagamento = (
                 invoice.payment_term_id.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
@@ -755,7 +761,7 @@ class WizardExportFatturapa(models.TransientModel):
                 partner = invoice.partner_id
             if invoice.partner_id != partner:
                 raise UserError(
-                    _('Invoices must belong to the same partner'))
+                    _('Invoices must belong to the same partner.'))
 
         return partner
 
@@ -791,7 +797,7 @@ class WizardExportFatturapa(models.TransientModel):
                         invoice_id)
                     if inv.fatturapa_attachment_out_id:
                         raise UserError(
-                            _("Invoice %s has E-invoice Export File yet") % (
+                            _("Invoice %s has e-invoice export file yet.") % (
                                 inv.number))
                     if self.report_print_menu:
                         self.generate_attach_report(inv)
@@ -854,5 +860,5 @@ class WizardExportFatturapa(models.TransientModel):
                 'is_pdf_invoice_print': True,
                 'ir_attachment_id': att_id.id,
                 'description': _("Attachment generated by "
-                                 "Electronic invoice export")})]
+                                 "electronic invoice export")})]
         })
