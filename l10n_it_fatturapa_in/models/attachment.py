@@ -21,9 +21,8 @@ class FatturaPAAttachmentIn(models.Model):
         "Invoices number", compute="_compute_xml_data", store=True)
     invoices_total = fields.Float(
         "Invoices total", compute="_compute_xml_data", store=True,
-        help="Se indicato dal fornitore, Importo totale del documento al "
-             "netto dell'eventuale sconto e comprensivo di imposta a debito "
-             "del cessionario / committente"
+        help="If specified by supplier, total amount of the document net of "
+             "any discount and including tax charged to the buyer/ordered"
     )
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
