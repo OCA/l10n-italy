@@ -19,7 +19,7 @@ except ImportError:
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    is_individual = fields.Boolean()
+    is_individual = fields.Boolean(default=True)
     fiscalcode = fields.Char(
         string='Fiscal Code', size=16, help="""For non-italian partners, this can be used as a SSN field.""")
 
@@ -55,11 +55,10 @@ class ResPartner(models.Model):
         extended by inheriting classes. """
         return super(ResPartner,self)._commercial_fields() + ['fiscalcode']
 
-    @api.multi
-    @api.constrains('fiscalcode')
+    @api.constrains('fiscalcode', 'is_individual', 'is_company')
     def _check_fiscalcode(self):
         for partner in self:
-            if (not partner.country_id) or partner.commercial_partner_id:
+            if (not partner.country_id) or (partner.commercial_partner_id.id != partner.id):  # We can't check on country-less partners, and shouldn't be too strict on partners with no commercial implications.
                 continue
             check_func = getattr(partner, '_{}_check_fiscalcode'.format(partner.country_id.code.lower()), False)
             if not check_func:
