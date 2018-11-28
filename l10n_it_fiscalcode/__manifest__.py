@@ -1,30 +1,17 @@
-# Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
-# Copyright 2016 Andrea Gallina (Apulia Software)
-# Copyright 2018 Matteo Bilotta (Link IT s.r.l.)
-# Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# -*- coding: utf-8 -*-
+# Copyright 2018 Teuron (<http://www.teuron.it>)
 
 {
-    'name': 'Italian Localization - Fiscal Code',
-    'version': '12.0.1.0.0',
-    'development_status': 'Production/Stable',
+    'name': 'Italian Localisation - Fiscal Code',
+    'version': '12.0.0.0.0',
     'category': 'Localisation/Italy',
-    'author': "Link IT s.r.l., "
-              "Apulia Software, "
-              "Odoo Italia Network, "
-              "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy',
+    'author': "Teuron S.r.l.",
+    'website': 'http://www.teuron.it',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
-    'external_dependencies': {
-        'python': ['codicefiscale'],
-    },
     'data': [
-        "security/ir.model.access.csv",
-        'data/res.city.it.code.csv',
-        'view/fiscalcode_view.xml',
-        'view/report_invoice_document.xml',
-        'wizard/compute_fc_view.xml',
+        'view/fiscalcode_view.xml'
         ],
+    'images': [],
     'installable': True
 }
