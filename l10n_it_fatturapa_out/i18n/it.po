@@ -184,6 +184,12 @@ msgid "E-invoice attachment changed"
 msgstr "Allegato e-fattura modificato"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachments
+#, fuzzy
+msgid "E-invoice attachments"
+msgstr "Allegato e-fattura modificato"
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:105
 #, fuzzy, python-format
 msgid "E-invoice sequence not configured."
@@ -196,16 +202,16 @@ msgid "Electronic Invoice"
 msgstr "Esporta fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
+#, fuzzy
+msgid "Electronic Invoice Attachments"
+msgstr "Allegati fattura elettronica"
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
 #, fuzzy
 msgid "Electronic Invoice Export Files"
 msgstr "File fattura elettronica esportati"
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
-#, fuzzy
-msgid "Electronic Invoice attachments"
-msgstr "Allegati fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:183
@@ -241,12 +247,6 @@ msgid ""
 msgstr ""
 "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
 "%s"
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachments
-#, fuzzy
-msgid "FatturaPA attachments"
-msgstr "Allegati fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/attachment.py:44
@@ -610,6 +610,10 @@ msgstr "CAP non impostato per %s"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "on"
 msgstr "il"
+
+#, fuzzy
+#~ msgid "FatturaPA attachments"
+#~ msgstr "Allegati fattura elettronica"
 
 #, fuzzy
 #~ msgid "Export Fattura Elettronica"

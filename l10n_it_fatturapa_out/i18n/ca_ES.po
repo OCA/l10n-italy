@@ -184,6 +184,11 @@ msgid "E-invoice attachment changed"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachments
+msgid "E-invoice attachments"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:105
 #, python-format
 msgid "E-invoice sequence not configured."
@@ -195,13 +200,13 @@ msgid "Electronic Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
-msgid "Electronic Invoice Export Files"
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
+msgid "Electronic Invoice Attachments"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
-msgid "Electronic Invoice attachments"
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
+msgid "Electronic Invoice Export Files"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -235,11 +240,6 @@ msgstr ""
 msgid ""
 "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
 "%s"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachments
-msgid "FatturaPA attachments"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
