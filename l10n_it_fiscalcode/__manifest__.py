@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2016 Andrea Gallina (Apulia Software)
 # Copyright 2018 Matteo Bilotta (Link IT s.r.l.)
@@ -9,10 +8,15 @@
 
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '12.0.0.0.0',
+    'version': '12.0.2.0.0',
     'category': 'Localisation/Italy',
-    'author': "Teuron S.r.l.",
-    'website': 'http://www.teuron.it',
+    'author': "Link IT s.r.l., "
+              "Teuron SRL, "
+              "RDS Moulding Technology SpA, "
+              "Apulia Software, "
+              "Odoo Italia Network, "
+              "Odoo Community Association (OCA)",
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
     'data': [
