@@ -35,7 +35,7 @@ addon | version | summary
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Fattura Elettronica - Purchase integration
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.2.3 | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.1 | Bridge module
-[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.1.0 | Send electronic invoices via PEC
+[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.2.0 | Send electronic invoices via PEC
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.0.1.0 | Italian Localization - Tipi di documento fiscali per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.1.0 | Italian Localisation - Fiscal Code
