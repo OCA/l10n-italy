@@ -96,6 +96,11 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server_last_pec_error_message
+msgid "Last PEC error message"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_last_sdi_response
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Last Response from Exchange System"
@@ -109,6 +114,22 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
+msgid "Last error message"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:57
+#, python-format
+msgid "No incoming PEC server found. Please configure it."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
+msgid "POP/IMAP Server"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -195,19 +216,19 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
-#, python-format
-msgid "Yo can only reset 'sender error' files"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:247
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:258
 #, python-format
 msgid "You can only delete 'ready to send' files"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:54
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
+#, python-format
+msgid "You can only reset 'sender error' files"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
 #, python-format
 msgid "You can only send 'ready to send' files"
 msgstr ""
