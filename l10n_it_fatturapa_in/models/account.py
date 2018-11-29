@@ -31,7 +31,6 @@ class account_invoice(orm.Model):
             ondelete='restrict'),
         'inconsistencies': fields.text('Import Inconsistencies'),
         
-        #TODO: Fields imported
         'e_invoice_line_ids': fields.one2many(
             "einvoice.line", "invoice_id", string="Dettaglio Linee",
             readonly=True, copy=False),
@@ -68,10 +67,6 @@ class fatturapa_article_code(orm.Model):
             'account.invoice.line', 'Related Invoice line',
             ondelete='cascade', select=True
         ),
-        # TODO: This field in V10 has changes it's name
-#         e_invoice_line_id: fields.many2one(
-#             'einvoice.line', 'Related E-Invoice line', readonly=True
-#         )
     }
 
 
@@ -101,7 +96,6 @@ class account_invoice_line(orm.Model):
             'Discount and Rise Price Details'
         ),
         
-        #TODO: Migrated field
         'fatturapa_attachment_in_id': fields.related(
             'invoice_id', 'fatturapa_attachment_in_id', type='many2one',
             relation='fatturapa.attachment.in', string='E-Invoice Import File'),

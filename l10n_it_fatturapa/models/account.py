@@ -185,10 +185,8 @@ class welfare_fund_data_line(orm.Model):
             ('N6', 'inversione contabile (reverse charge)'),
         ], string="Non taxable nature"),
         #TODO: Il campo fund_nature è stato sostiruito con kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
-        # TODO:    account.tax.kind è generato nel modulo l10n_it_account_tax_kind, da migrare?
         # Se mettiamo questo campo è necessario decommentarlo dalla vista l10n_it_fatturapa_in/views/account_view.xml
         # kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
-        # Il campo kind_id è utilizzato nei wizard
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),
@@ -347,12 +345,6 @@ class account_invoice_line(orm.Model):
         'Discount and Rise Price Details', copy=False
     ),
     'ftpa_line_number': fields.integer("Line number", readonly=True, copy=False) ,
-#TODO: Campi da migrare perchè non presenti 
-#    discount_rise_price_ids = fields.One2many(
-#        'discount.rise.price', 'invoice_line_id',
-#        'Discount and Rise Price Details', copy=False
-#    )
-#    ftpa_line_number = fields.Integer("Line number", readonly=True, copy=False) 
     }
 
 
@@ -463,8 +455,6 @@ class account_invoice(orm.Model):
         
         
         'ftpa_incoterms': fields.char(string="Incoterms", copy=False),
-#TODO: Campo da migrare
-#    ftpa_incoterms = fields.Char(string="Incoterms", copy=False)
 
         #  2.1.10
         'related_invoice_code': fields.char('Related invoice code'),

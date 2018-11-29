@@ -210,7 +210,6 @@ class account_config_settings(orm.TransientModel):
         if company_id:
             company = self.pool.get('res.company').browse(
                 cr, uid, company_id, context=context)
-            # TODO: Check if works sequence
             default_sequence = self.pool.get('ir.sequence').search(cr, uid, [
                 ('code', '=', 'account.invoice.fatturapa')
             ])

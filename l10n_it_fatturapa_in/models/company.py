@@ -30,7 +30,6 @@ class AccountConfigSettings(osv.TransientModel):
 
     _columns = {
 
-        # TODO: check model relation
         'dati_bollo_product_id': fields.related(
             'company_id', 'dati_bollo_product_id', type='many2one',
             relation='product.product', string='Product for Dati Bollo',

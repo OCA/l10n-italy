@@ -66,7 +66,6 @@ class FatturaPAAttachmentIn(orm.Model):
         'in_invoice_ids': fields.one2many(
             'account.invoice', 'fatturapa_attachment_in_id',
             string="In Invoices", readonly=True),
-        #TODO: Imported fields
         'xml_supplier_id': fields.function(_compute_xml_data, 
                                            method=True, 
                                            string="Supplier", 

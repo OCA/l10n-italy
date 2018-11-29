@@ -1313,8 +1313,6 @@ class WizardImportFatturapa(orm.TransientModel):
             amount_untaxed += float(Riepilogo.ImponibileImporto)
         return amount_untaxed
 
-    # TODO: Migrare funzione _prepare_generic_line_data
-
     def check_invoice_amount(
         self, cr, uid, invoice, FatturaElettronicaBody, context=None
     ):
@@ -1558,7 +1556,6 @@ class WizardImportFatturapa(orm.TransientModel):
             'context': context
         }
 
-    # TODO sul partner?
     def set_StabileOrganizzazione(self, cr, uid, CedentePrestatore, invoice):
         vals = {}
         if CedentePrestatore.StabileOrganizzazione:
