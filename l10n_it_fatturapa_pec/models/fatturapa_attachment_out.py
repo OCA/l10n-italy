@@ -43,7 +43,7 @@ class FatturaPAAttachmentOut(models.Model):
     def reset_to_ready(self):
         for att in self:
             if att.state != 'sender_error':
-                raise UserError(_("Yo can only reset 'sender error' files"))
+                raise UserError(_("You can only reset 'sender error' files"))
             att.state = 'ready'
 
     @api.model
