@@ -216,7 +216,7 @@ class WizardExportFatturapa(orm.TransientModel):
         return True
 
     def checkSetupPhone(self, phone_number):
-        if '' in phone_number:
+        if '+' in phone_number:
             phone_number = phonenumbers.format_number(phonenumbers.parse(phone_number), phonenumbers.PhoneNumberFormat.NATIONAL)
         return phone_number
         
@@ -602,7 +602,7 @@ class WizardExportFatturapa(orm.TransientModel):
             TipoDocumento = 'TD04'
         ImportoTotaleDocumento = invoice.amount_total
         if invoice.split_payment:
-            ImportoTotaleDocumento = invoice.amount_sp
+            ImportoTotaleDocumento += invoice.amount_sp
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
             TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
@@ -683,7 +683,7 @@ class WizardExportFatturapa(orm.TransientModel):
             line.invoice_line_tax_id[0].price_include
         ):
             res = line.price_unit / (
-                1  (line.invoice_line_tax_id[0].amount / 100))
+                1 + (line.invoice_line_tax_id[0].amount / 100))
         return res
 
     def setDettaglioLinee(self, cr, uid, invoice, body, context=None):
@@ -715,12 +715,12 @@ class WizardExportFatturapa(orm.TransientModel):
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
                 Descrizione=line.name.replace('\n', ' '),
-                PrezzoUnitario=('%.'  str(
+                PrezzoUnitario=('%.' + str(
                     price_precision
-                )  'f') % prezzo_unitario,
-                Quantita=('%.'  str(
+                ) + 'f') % prezzo_unitario,
+                Quantita=('%.' + str(
                     uom_precision
-                )  'f') % line.quantity,
+                ) + 'f') % line.quantity,
                 UnitaMisura=line.uos_id and (
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
@@ -755,7 +755,7 @@ class WizardExportFatturapa(orm.TransientModel):
                         CodiceValore=line.product_id.barcode
                     )
                     DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-            line_no = 1
+            line_no += 1
 
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
