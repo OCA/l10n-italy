@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.view_account_config_settings"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/group[6]" position="after">
-                    <separator string="Fattura Elettronica"/>
+                    <separator string="Electronic Invoice"/>
                     <group name="fatturapa_settings">
                         <label for="id" string="Configuration"/>
                         <div id="fatturapa_settings">
