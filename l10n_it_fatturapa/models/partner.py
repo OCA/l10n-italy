@@ -61,28 +61,11 @@ class res_partner(orm.Model):
              ),
         'electronic_invoice_subjected' : fields.boolean(
         "Subjected to electronic invoice"),
-        
-        
-#TODO: Campi da migrare
-#    # 1.1.4
-#    codice_destinatario = fields.Char(
-#        "Codice Destinatario",
-#        help="Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che "
-#             "hanno accreditato un canale; qualora il destinatario non abbia "
-#             "accreditato un canale presso Sdi e riceva via PEC le fatture, "
-#             "l'elemento deve essere valorizzato con tutti zeri ('0000000'). ")
-#    # 1.1.6
-#    pec_destinatario = fields.Char(
-#        "PEC destinatario",
-#        help="Indirizzo PEC al quale inviare la fattura elettronica. "
-#             "Da valorizzare "
-#             "SOLO nei casi in cui l'elemento informativo "
-#             "<CodiceDestinatario> vale '0000000'"
-#    )
-#    electronic_invoice_subjected = fields.Boolean(
-#        "Subjected to electronic invoice")
     }
     
+    _defaults = {
+        'codice_destinatario': '0000000',
+        }
 
     def _check_ftpa_partner_data(self, cr, uid, ids, context={}):
         for partner in self.browse(cr, uid, ids):
