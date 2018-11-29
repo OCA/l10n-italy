@@ -85,6 +85,34 @@
                        domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
                        attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
             </field>
+            <field name="picking_ids" position="replace">
+                <field name="picking_ids" options="{'no_create': True, 'no_edit': True}">
+                    <tree>
+                        <field name="name"/>
+                        <field name="state"/>
+                        <button name="open_form_current"
+                                type="object"
+                                string="Open full-screen"
+                                icon="fa-external-link"/>
+                    </tree>
+                    <form>
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="name" readonly="True"/>
+                                    <field name="state"/>
+                                    <field name="partner_id" readonly="True"/>
+                                    <field name="origin" readonly="True"/>
+                                </group>
+                                <group>
+                                    <field name="location_id"/>
+                                    <field name="location_dest_id"/>
+                                </group>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </field>
             <notebook position="inside">
                 <page string="Shipping Informations"
                       attrs="{'invisible':[('ddt_type_id', '=', False)]}">
