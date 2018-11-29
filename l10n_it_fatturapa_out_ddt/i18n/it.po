@@ -19,9 +19,8 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
-#, fuzzy
-msgid "Dati DDT"
-msgstr "Dati DDT"
+msgid "DDT Data"
+msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
@@ -31,34 +30,45 @@ msgstr ""
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
 #, fuzzy
-msgid "Includi Dati DDT"
+msgid "Include DDT data"
 msgstr "Includere dati DDT"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
-#, fuzzy
 msgid ""
-"Includi Dati DDT: Blocco da valorizzare nei casi di fattura \"differita\" "
-"per indicare il documento con cui e' stato consegnato il bene\n"
-"Includi Dati Trasporto: Blocco valorizzabile nei casi di fattura "
-"\"accompagnatoria\" per inserire informazioni relative al trasporto"
+"Include DDT data: The field must be entered when a transport document "
+"associated with a deferred invoice is present\n"
+"Include transport data: The field must be entered when a shipping invoice to "
+"be filled with transport data is present"
 msgstr ""
-"Includere dati DDT: blocco da valorizzare nei casi di fattura \"differita\" "
-"per indicare il documento con cui è stato consegnato il bene\n"
-"Includere dati trasporto: blocco da valorizzare nei casi di fattura "
-"\"accompagnatoria\" per inserire informazioni relative al trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
 #, fuzzy
-msgid "Includi Dati Trasporto"
+msgid "Include transport data"
 msgstr "Includere dati trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
-#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:82
+#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:80
 #, python-format
 msgid "TIN not set for %s"
 msgstr "Partita IVA non impostata per %s"
+
+#, fuzzy
+#~ msgid "Dati DDT"
+#~ msgstr "Dati DDT"
+
+#, fuzzy
+#~ msgid ""
+#~ "Includi Dati DDT: Blocco da valorizzare nei casi di fattura \"differita\" "
+#~ "per indicare il documento con cui e' stato consegnato il bene\n"
+#~ "Includi Dati Trasporto: Blocco valorizzabile nei casi di fattura "
+#~ "\"accompagnatoria\" per inserire informazioni relative al trasporto"
+#~ msgstr ""
+#~ "Includere dati DDT: blocco da valorizzare nei casi di fattura \"differita"
+#~ "\" per indicare il documento con cui è stato consegnato il bene\n"
+#~ "Includere dati trasporto: blocco da valorizzare nei casi di fattura "
+#~ "\"accompagnatoria\" per inserire informazioni relative al trasporto"
 
 #~ msgid "Export FatturaPA"
 #~ msgstr "Esporta fatturaPA"
