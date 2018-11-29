@@ -1,16 +1,16 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 {
-    'name': 'Italian Localization - Fattura elettronica - Canale SdI',
+    "name": "Italian Localization - Fattura elettronica - Canale SdI",
     "summary": "Aggiunge il canale di invio/ricezione dei file XML "
                "attraverso lo SdI",
-    "version": "10.0.1.2.0",
-    "development_status": "Alpha",
+    "version": "11.0.1.0.0",
+    "development_status": "Beta",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
+    'website': 'https://github.com/OCA/l10n-italy/tree/11.0/'
                'l10n_it_sdi_channel',
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
@@ -29,5 +29,7 @@
         "views/company_view.xml",
         'views/fetchmail_server.xml',
         'views/ir_mail_server.xml',
+        "data/config_parameter.xml",
+        "demo/sdi_channel_demo.xml"
     ],
 }
