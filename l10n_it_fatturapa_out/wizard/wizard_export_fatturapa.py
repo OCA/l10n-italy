@@ -25,9 +25,6 @@ import phonenumbers
 from openerp.osv import orm
 from openerp.osv import fields
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
-    FatturaElettronica,
-    FatturaElettronicaHeaderType,
-    DatiTrasmissioneType,
     IdFiscaleType,
     ContattiTrasmittenteType,
     CedentePrestatoreType,
@@ -35,8 +32,12 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     IndirizzoType,
     IscrizioneREAType,
     CessionarioCommittenteType,
+    RappresentanteFiscaleType,
     DatiAnagraficiCedenteType,
     DatiAnagraficiCessionarioType,
+    DatiAnagraficiRappresentanteType,
+    TerzoIntermediarioSoggettoEmittenteType,
+    DatiAnagraficiTerzoIntermediarioType,
     FatturaElettronicaBodyType,
     DatiGeneraliType,
     DettaglioLineeType,
@@ -48,7 +49,11 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DatiPagamentoType,
     DettaglioPagamentoType,
     AllegatiType,
-    CodiceArticoloType
+    ScontoMaggiorazioneType,
+    CodiceArticoloType,
+    FatturaElettronica,
+    FatturaElettronicaHeaderType,
+    DatiTrasmissioneType
 )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -446,8 +451,8 @@ class WizardExportFatturapa(orm.TransientModel):
         fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
             DatiAnagrafici = DatiAnagraficiRappresentanteType()
         if not partner.vat and not partner.fiscalcode:
-            raise UserError(
-                _('VAT and Fiscalcode not set for %s') % partner.name)
+            raise orm.except_orm(
+                _('Error!'), _('VAT and Fiscalcode not set for %s') % partner.name)
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
@@ -473,8 +478,8 @@ class WizardExportFatturapa(orm.TransientModel):
             TerzoIntermediarioOSoggettoEmittente.\
             DatiAnagrafici = DatiAnagraficiTerzoIntermediarioType()
         if not partner.vat and not partner.fiscalcode:
-            raise UserError(
-                _('Partner VAT and Fiscalcode not set.'))
+            raise orm.except_orm(
+                _('Error!'), _('Partner VAT and Fiscalcode not set.'))
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.\
                 TerzoIntermediarioOSoggettoEmittente.\
@@ -494,25 +499,6 @@ class WizardExportFatturapa(orm.TransientModel):
                 DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code
         fatturapa.FatturaElettronicaHeader.SoggettoEmittente = 'TZ'
         return True
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     def _setSedeCessionario(self, cr, uid, partner, fatturapa, context=None):
@@ -915,6 +901,7 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
         attachments = self.pool['fatturapa.attachment.out']
+        user_obj = self.pool['res.users']
         attachment_ids = []
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
@@ -977,11 +964,11 @@ class WizardExportFatturapa(orm.TransientModel):
             'context': context
         }
         if len(attachment_ids) == 1:
-            action['view_mode'] = 'form'
-            action['res_id'] = attachment_ids[0]
+            action_to_return['view_mode'] = 'form'
+            action_to_return['res_id'] = attachment_ids[0]
         else:
-            action['view_mode'] = 'tree,form'
-            action['domain'] = [('id', 'in', attachment_ids)]
+            action_to_return['view_mode'] = 'tree,form'
+            action_to_return['domain'] = [('id', 'in', attachment_ids)]
         return action_to_return
 
     def generate_attach_report(self, cr, uid, ids, inv):
