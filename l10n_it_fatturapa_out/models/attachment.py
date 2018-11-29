@@ -23,7 +23,7 @@ from openerp.osv import fields, orm
 
 class FatturaPAAttachment(orm.Model):
     _name = "fatturapa.attachment.out"
-    _description = "FatturaPA Export File"
+    _description = "E-invoice Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
 
@@ -42,6 +42,21 @@ class FatturaPAAttachment(orm.Model):
                 ret[attachment_out.id] = True
         return ret
 
+    def _compute_invoice_partner_id(self, cr, uid, ids, name, unknow_none, context={}):
+        ret = {}
+        for att in self.browse(cr, uid, ids):
+            partners = att.mapped('out_invoice_ids.partner_id')
+            if len(partners) == 1:
+                ret[att.id] = partners.id
+        return ret
+
+    def _check_datas_fname(self, cr, uid, ids, context=None):
+        for att in self.browse(cr, uid, ids, context):
+            res = self.search(cr, uid, [('datas_fname', '=', att.datas_fname)])
+            if len(res) > 1:
+                return False
+        return True
+
     _columns = {
         'ir_attachment_id': fields.many2one(
             'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
@@ -54,8 +69,31 @@ class FatturaPAAttachment(orm.Model):
                                                  help="True if all the invoices have a printed "
                                                  "report attached in the XML, False otherwise.",
                                                  store=True),
+        'invoice_partner_id': fields.function(_compute_invoice_partner_id, 
+                                                 type='many2one', 
+                                                 string='Customer',
+                                                 store=True),
     }
     
+    def write(self, cr, uid, ids, vals, context={}):
+        res = super(FatturaPAAttachment, self).write(cr, uid, ids, vals, context=context)
+        user_name = str(uid)
+        userRead = self.pool.get('res.users').read(cr, uid, uid, ['login'], context=context)
+        for userDict in userRead:
+            user_name = userDict.get('login', str(uid))
+        if 'datas' in vals and 'message_ids' not in vals:
+            for attachment in self.browse(cr, uid, ids):
+                attachment.message_post(cr, uid, [attachment.id],
+                    subject=_("E-invoice attachment changed"),
+                    body=_("User %s uploaded a new e-invoice file"
+                        ) % user_name
+                )
+        return res
+
+    _constraints = [
+        (_check_datas_fname, 'File Already Present.', ['datas_fname']),
+    ]
+
 
 class FatturaAttachments(orm.Model):
     _inherit = "fatturapa.attachments"

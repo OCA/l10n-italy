@@ -63,7 +63,7 @@ except ImportError as err:
 
 class WizardExportFatturapa(orm.TransientModel):
     _name = "wizard.export.fatturapa"
-    _description = "Export FatturaPA"
+    _description = "Export E-invoice"
 
     def __init__(self, cr, uid, **kwargs):
         fatturapa = False
@@ -118,7 +118,7 @@ class WizardExportFatturapa(orm.TransientModel):
 
         if not fatturapa_sequence:
             raise orm.except_orm(
-                _('Error!'), _('FatturaPA sequence not configured.'))
+                _('Error!'), _('E-invoice sequence not configured.'))
 
         number = sequence_obj.next_by_id(
             cr, uid, fatturapa_sequence.id, context=context)
@@ -216,7 +216,7 @@ class WizardExportFatturapa(orm.TransientModel):
         return True
 
     def checkSetupPhone(self, phone_number):
-        if '+' in phone_number:
+        if '' in phone_number:
             phone_number = phonenumbers.format_number(phonenumbers.parse(phone_number), phonenumbers.PhoneNumberFormat.NATIONAL)
         return phone_number
         
@@ -602,7 +602,7 @@ class WizardExportFatturapa(orm.TransientModel):
             TipoDocumento = 'TD04'
         ImportoTotaleDocumento = invoice.amount_total
         if invoice.split_payment:
-            ImportoTotaleDocumento += invoice.amount_sp
+            ImportoTotaleDocumento = invoice.amount_sp
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
             TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
@@ -683,7 +683,7 @@ class WizardExportFatturapa(orm.TransientModel):
             line.invoice_line_tax_id[0].price_include
         ):
             res = line.price_unit / (
-                1 + (line.invoice_line_tax_id[0].amount / 100))
+                1  (line.invoice_line_tax_id[0].amount / 100))
         return res
 
     def setDettaglioLinee(self, cr, uid, invoice, body, context=None):
@@ -715,12 +715,12 @@ class WizardExportFatturapa(orm.TransientModel):
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
                 Descrizione=line.name.replace('\n', ' '),
-                PrezzoUnitario=('%.' + str(
+                PrezzoUnitario=('%.'  str(
                     price_precision
-                ) + 'f') % prezzo_unitario,
-                Quantita=('%.' + str(
+                )  'f') % prezzo_unitario,
+                Quantita=('%.'  str(
                     uom_precision
-                ) + 'f') % line.quantity,
+                )  'f') % line.quantity,
                 UnitaMisura=line.uos_id and (
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
@@ -755,7 +755,7 @@ class WizardExportFatturapa(orm.TransientModel):
                         CodiceValore=line.product_id.barcode
                     )
                     DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-            line_no += 1
+            line_no = 1
 
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
@@ -804,12 +804,12 @@ class WizardExportFatturapa(orm.TransientModel):
             if not invoice.payment_term.fatturapa_pt_id:
                 raise orm.except_orm(
                     _('Error'),
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked e-invoice '
                       'payment term') % invoice.payment_term.name)
             if not invoice.payment_term.fatturapa_pm_id:
                 raise orm.except_orm(
                     _('Error'),
-                    _('Payment term %s does not have a linked fatturaPA '
+                    _('Payment term %s does not have a linked e-invoice '
                       'payment method') % invoice.payment_term.name)
             DatiPagamento.CondizioniPagamento = (
                 invoice.payment_term.fatturapa_pt_id.code)
@@ -911,55 +911,57 @@ class WizardExportFatturapa(orm.TransientModel):
     def exportFatturaPA(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-
-        # self.setNameSpace()
         obj = self.browse(cr, uid, ids[0])
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
-
+        attachments = self.pool['fatturapa.attachment.out']
+        attachment_ids = []
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
+        invoices_by_partner = self.group_invoices_by_partner(cr, uid, ids, context)
+        for partner_id in invoices_by_partner:
+            invoice_ids = invoices_by_partner[partner_id]
+            partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
+            if partner.is_pa:
+                fatturapa = FatturaElettronica(versione='FPA12')
+            else:
+                fatturapa = FatturaElettronica(versione='FPR12')
+            company = user_obj.browse(cr, uid, uid).company_id
+            context_partner = context.copy()
+            context_partner.update({'lang': partner.lang})
+            user_obj = self.pool['res.users']
+            try:
+                self.setFatturaElettronicaHeader(cr, uid, company,
+                                                 partner, fatturapa, context=context_partner)
+                for invoice_id in invoice_ids:
+                    inv = invoice_obj.browse(
+                        cr, uid, invoice_id, context=context_partner)
+                    if inv.fatturapa_attachment_out_id:
+                        raise orm.except_orm(
+                            _("Error"),
+                            _("Invoice %s has E-invoice Export File yet") % (
+                                inv.number))
+                    if obj.report_print_menu:
+                        self.generate_attach_report(cr, uid, ids, inv)
+                    invoice_body = FatturaElettronicaBodyType()
+                    invoice_obj.preventive_checks(cr, uid, inv.id)
+                    self.setFatturaElettronicaBody(
+                        cr, uid, inv, invoice_body, context=context_partner)
+                    fatturapa.FatturaElettronicaBody.append(invoice_body)
+                    # TODO DatiVeicoli
+    
+                number = self.setProgressivoInvio(cr, uid, fatturapa, context=context)
+            except (SimpleFacetValueError, SimpleTypeValueError) as e:
+                raise orm.except_orm(
+                    _("XML SDI validation error"),
+                    (unicode(e)))
 
-        if partner.is_pa:
-            fatturapa = FatturaElettronica(versione='FPA12')
-        else:
-            fatturapa = FatturaElettronica(versione='FPR12')
+            attach_id = self.saveAttachment(cr, uid, fatturapa, number, context=context)
+            attachment_ids.append(attach_id)
 
-        user_obj = self.pool['res.users']
-        company = user_obj.browse(cr, uid, uid).company_id
-        context_partner = context.copy()
-        context_partner.update({'lang': partner.lang})
-        try:
-            self.setFatturaElettronicaHeader(cr, uid, company,
-                                             partner, fatturapa, context=context_partner)
             for invoice_id in invoice_ids:
-                inv = invoice_obj.browse(
-                    cr, uid, invoice_id, context=context_partner)
-                if inv.fatturapa_attachment_out_id:
-                    raise orm.except_orm(
-                        _("Error"),
-                        _("Invoice %s has FatturaPA Export File yet") % (
-                            inv.number))
-                if obj.report_print_menu:
-                    self.generate_attach_report(cr, uid, ids, inv)
-                invoice_body = FatturaElettronicaBodyType()
-                #inv.preventive_checks()
-                self.setFatturaElettronicaBody(
-                    cr, uid, inv, invoice_body, context=context_partner)
-                fatturapa.FatturaElettronicaBody.append(invoice_body)
-                # TODO DatiVeicoli
-
-            number = self.setProgressivoInvio(cr, uid, fatturapa, context=context)
-        except (SimpleFacetValueError, SimpleTypeValueError) as e:
-            raise orm.except_orm(
-                _("XML SDI validation error"),
-                (unicode(e)))
-
-        attach_id = self.saveAttachment(cr, uid, fatturapa, number, context=context)
-
-        for invoice_id in invoice_ids:
-            inv = invoice_obj.browse(cr, uid, invoice_id)
-            inv.write({'fatturapa_attachment_out_id': attach_id})
+                inv = invoice_obj.browse(cr, uid, invoice_id)
+                inv.write({'fatturapa_attachment_out_id': attach_id})
 
         view_rec = model_data_obj.get_object_reference(
             cr, uid, 'l10n_it_fatturapa_out',
@@ -967,16 +969,20 @@ class WizardExportFatturapa(orm.TransientModel):
         if view_rec:
             view_id = view_rec and view_rec[1] or False
 
-        return {
+        action_to_return = {
             'view_type': 'form',
             'name': "Export FatturaPA",
-            'view_id': [view_id],
-            'res_id': attach_id,
-            'view_mode': 'form',
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
             'context': context
         }
+        if len(attachment_ids) == 1:
+            action['view_mode'] = 'form'
+            action['res_id'] = attachment_ids[0]
+        else:
+            action['view_mode'] = 'tree,form'
+            action['domain'] = [('id', 'in', attachment_ids)]
+        return action_to_return
 
     def generate_attach_report(self, cr, uid, ids, inv):
         obj = self.browse(cr, uid, ids[0])
@@ -1018,3 +1024,12 @@ class WizardExportFatturapa(orm.TransientModel):
                 'description': _("Attachment generated by "
                                  "Electronic invoice export")})]
         })
+
+    def group_invoices_by_partner(self, cr, uid, ids, context={}):
+        invoice_ids = context.get('active_ids', [])
+        res = {}
+        for invoice in self.pool.get('account.invoice').browse(cr, uid, invoice_ids):
+            if invoice.partner_id.id not in res:
+                res[invoice.partner_id.id] = []
+            res[invoice.partner_id.id].append(invoice.id)
+        return res

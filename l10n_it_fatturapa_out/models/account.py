@@ -27,7 +27,7 @@ class account_invoice(orm.Model):
 
     _columns = {
         'fatturapa_attachment_out_id': fields.many2one(
-            'fatturapa.attachment.out', 'FatturaPA Export File',
+            'fatturapa.attachment.out', 'E-invoice Export File',
             readonly=True),
         'has_pdf_invoice_print': fields.related('fatturapa_attachment_out_id', 'has_pdf_invoice_print',
                                                 type='boolean', relation='fatturapa.attachment.out',
@@ -35,13 +35,8 @@ class account_invoice(orm.Model):
     }
 
     def preventive_checks(self, cr, uid, ids, context={}):
-        for invoiceBrws in self.browse(cr, uid, ids, context):
-            for line in invoiceBrws.invoice_line:
-                if '\n' in line.name:
-                    raise except_osv(_('Error' ),
-                                 _(
-                        "Invoice line [%s] must not contain new line character"
-                    ) % line.name)
+        # hook for preventive checks. Override and raise exception, in case
+        return
 
     def action_invoice_cancel(self, cr, uid, ids, context={}):
         for invoice in self.browse(cr, uid, ids, context):

@@ -80,7 +80,7 @@ promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
 """,
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy/tree/7.0/',
     'license': 'AGPL-3',
     "depends": [
         'l10n_it_fatturapa',
