@@ -136,7 +136,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="l10n_it_withholding_tax.invoice_supplier_form"></field>
             <field name="arch" type="xml">
-                
+                 
                 <field name="partner_id" position="after">
                 	<field name="electronic_invoice_subjected" invisible="1"/>
                     <field name="tax_representative_id" readonly="1"></field>
@@ -344,7 +344,6 @@
                                     <field name="welfare_fund_ids" nolabel="1" readonly="1">
                                         <tree editable="bottom" string="Welfare Fund Details">
                                             <field name="name"></field>
-                                            <!-- <field name="kind_id"></field>  -->
                                             <field name="fund_nature"></field>
                                             <field name="welfare_rate_tax" readonly="1"></field>
                                             <field name="welfare_amount_tax"></field>
@@ -394,6 +393,7 @@
 			                        <group string="Dati generali">
 			                            <field name="efatt_rounding"/>
 			                            <field name="art73"/>
+			                            
 			                       </group>
 			                    </group>
                                 
@@ -403,9 +403,9 @@
                         </notebook>
                     </page>
                 </xpath>
-                
-	            <field name="move_id" position="after">
-	                <field name="fatturapa_attachment_in_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}"></field>
+                 
+	            <field name="period_id" position="after">
+	                <field name="fatturapa_attachment_in_id" attrs="{'readonly': [('state', 'not in', ['draft'])]}"></field>
 	            </field>
                 
             </field>
