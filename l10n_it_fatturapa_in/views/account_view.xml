@@ -273,7 +273,7 @@
                             </form>
                         </field>
                     </group>
-                    <group string="SAL data">
+                    <group string="Progress data">
                         <field name="activity_progress_ids" nolabel="1" readonly="1" colspan="2">
                             <tree>
                                 <field name="fatturapa_activity_progress"></field>
