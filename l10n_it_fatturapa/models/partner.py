@@ -53,13 +53,22 @@ class ResPartner(models.Model):
     )
     def _check_ftpa_partner_data(self):
         for partner in self:
-            if partner.electronic_invoice_subjected:
+            if partner.electronic_invoice_subjected and partner.customer:
+                # These checks must be done for customers only, as only
+                # needed for XML generation
                 if partner.is_pa and (
                     not partner.ipa_code or len(partner.ipa_code) != 6
                 ):
                     raise ValidationError(_(
                         "As a Public Administration, partner %s IPA Code "
                         "must be 6 characters long"
+                    ) % partner.name)
+                if partner.company_type == 'person' and (
+                    not partner.lastname or not partner.firstname
+                ):
+                    raise ValidationError(_(
+                        "As a natural person, partner %s "
+                        "must have Name and Surname"
                     ) % partner.name)
                 if not partner.is_pa and (
                     not partner.codice_destinatario or
@@ -69,42 +78,29 @@ class ResPartner(models.Model):
                         "Partner %s Addressee Code "
                         "must be 7 characters long"
                     ) % partner.name)
-                if partner.company_type == 'person' and (
-                    not partner.lastname or not partner.firstname
-                ):
+                if not partner.vat and not partner.fiscalcode:
                     raise ValidationError(_(
-                        "As a natural person, partner %s "
-                        "must have Name and Surname"
+                        "Partner %s, must have VAT Number or Fiscal Code"
                     ) % partner.name)
-                if (
-                    not partner.is_pa and
-                    partner.codice_destinatario == '0000000'
-                ):
-                    if not partner.vat and not partner.fiscalcode:
-                        raise ValidationError(_(
-                            "Partner %s, with Addressee Code '0000000', "
-                            "must have VAT Number or Fiscal Code"
-                        ) % partner.name)
-                if partner.customer:
-                    if not partner.street:
-                        raise ValidationError(_(
-                            'Customer %s: street is needed for XML generation.'
-                        ) % partner.name)
-                    if not partner.zip:
-                        raise ValidationError(_(
-                            'Customer %s: ZIP is needed for XML generation.'
-                        ) % partner.name)
-                    if not partner.city:
-                        raise ValidationError(_(
-                            'Customer %s: city is needed for XML generation.'
-                        ) % partner.name)
-                    if not partner.state_id:
-                        raise ValidationError(_(
-                            'Customer %s: province is needed for XML '
-                            'generation.'
-                        ) % partner.name)
-                    if not partner.country_id:
-                        raise ValidationError(_(
-                            'Customer %s: country is needed for XML'
-                            ' generation.'
-                        ) % partner.name)
+                if not partner.street:
+                    raise ValidationError(_(
+                        'Customer %s: street is needed for XML generation.'
+                    ) % partner.name)
+                if not partner.zip:
+                    raise ValidationError(_(
+                        'Customer %s: ZIP is needed for XML generation.'
+                    ) % partner.name)
+                if not partner.city:
+                    raise ValidationError(_(
+                        'Customer %s: city is needed for XML generation.'
+                    ) % partner.name)
+                if not partner.state_id:
+                    raise ValidationError(_(
+                        'Customer %s: province is needed for XML '
+                        'generation.'
+                    ) % partner.name)
+                if not partner.country_id:
+                    raise ValidationError(_(
+                        'Customer %s: country is needed for XML'
+                        ' generation.'
+                    ) % partner.name)
