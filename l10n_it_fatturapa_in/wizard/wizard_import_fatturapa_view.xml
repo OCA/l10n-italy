@@ -18,7 +18,7 @@
             </field>
         </record>
 
-        <act_window name="Electronic Bill Import"
+        <act_window name="Import Electronic Bill"
             res_model="wizard.import.fatturapa"
             src_model="fatturapa.attachment.in"
             view_mode="form"

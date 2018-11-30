@@ -200,8 +200,8 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                     e_line.cod_article_ids[0].code_val, '12345')
         self.assertEqual(
             invoice.inconsistencies,
-            u'Company Name field contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
+            u"Company Name field contains 'Societa\' "
+            "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
 
     def test_05_xml_import(self):
         self.env.user.company_id.dati_bollo_product_id = (
@@ -330,12 +330,12 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice2 = self.invoice_model.browse(invoice2_id)
         self.assertEqual(
             invoice1.inconsistencies,
-            u'Company Name field contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
+            u"Company Name field contains 'Societa\' "
+            "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
         self.assertEqual(
             invoice2.inconsistencies,
-            u'Company Name field contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
+            u"Company Name field contains 'Societa\' "
+            "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
 
     def test_14_xml_import(self):
         # check: no tax code found , write inconsisteance and anyway
@@ -349,12 +349,12 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.amount_tax, 0.0)
         self.assertEqual(
             invoice.inconsistencies,
-            u'Company Name field contains "Societa\' '
-            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n'
-            'XML contains tax with percentage "15.55"'
-            ' but it does not exist in your system\n'
-            'XML contains tax with percentage "15.55"'
-            ' but it does not exist in your system')
+            u"Company Name field contains 'Societa\' "
+            "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n"
+            u"XML contains tax with percentage '15.55'"
+            " but it does not exist in your system\n"
+            "XML contains tax with percentage '15.55'"
+            " but it does not exist in your system")
 
     def test_15_xml_import(self):
         self.wt = self.create_wt()
