@@ -141,14 +141,14 @@ msgid "Art73"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:61
+#: code:addons/l10n_it_fatturapa/models/partner.py:63
 #, python-format
 msgid ""
 "As a Public Administration, partner %s IPA Code must be 6 characters long"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:76
+#: code:addons/l10n_it_fatturapa/models/partner.py:70
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname"
 msgstr ""
@@ -271,31 +271,31 @@ msgid "Created on"
 msgstr "Vytvořeno"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:95
+#: code:addons/l10n_it_fatturapa/models/partner.py:91
 #, python-format
 msgid "Customer %s: ZIP is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:99
+#: code:addons/l10n_it_fatturapa/models/partner.py:95
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:108
+#: code:addons/l10n_it_fatturapa/models/partner.py:104
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:103
+#: code:addons/l10n_it_fatturapa/models/partner.py:99
 #, python-format
 msgid "Customer %s: province is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:91
+#: code:addons/l10n_it_fatturapa/models/partner.py:87
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
 msgstr ""
@@ -815,17 +815,15 @@ msgid "Partner"
 msgstr "Společník"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:69
+#: code:addons/l10n_it_fatturapa/models/partner.py:78
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:85
+#: code:addons/l10n_it_fatturapa/models/partner.py:83
 #, python-format
-msgid ""
-"Partner %s, with Addressee Code '0000000', must have VAT Number or Fiscal "
-"Code"
+msgid "Partner %s, must have VAT Number or Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_fatturapa
