@@ -11,7 +11,7 @@ class ResCompany(models.Model):
 
     fatturapa_fiscal_position_id = fields.Many2one(
         'fatturapa.fiscal_position', 'Fiscal Position',
-        help="Fiscal position used by Electronic Invoice",
+        help="Fiscal position used by electronic invoice",
         )
     fatturapa_sequence_id = fields.Many2one(
         'ir.sequence', 'Sequence',
@@ -19,17 +19,17 @@ class ResCompany(models.Model):
              "an alphanumeric sequence of maximum length 5, "
              "its values are included in 'A'-'Z' and '0'-'9'"
         )
-    fatturapa_art73 = fields.Boolean('Art73')
+    fatturapa_art73 = fields.Boolean('Art. 73')
     fatturapa_pub_administration_ref = fields.Char(
         'Public Administration Reference Code', size=20,
         )
     fatturapa_rea_office = fields.Many2one(
-        related="partner_id.rea_office", string='REA office')
+        related="partner_id.rea_office", string='REA Office')
     fatturapa_rea_number = fields.Char(
-        related="partner_id.rea_code", string='Rea Number')
+        related="partner_id.rea_code", string='REA Number')
     fatturapa_rea_capital = fields.Float(
         related='partner_id.rea_capital',
-        string='Rea Capital')
+        string='REA Capital')
     fatturapa_rea_partner = fields.Selection(
         related='partner_id.rea_member_type',
         string='Member Type')
@@ -59,7 +59,7 @@ class ResCompany(models.Model):
             if company.fatturapa_sequence_id:
                 if company.fatturapa_sequence_id.use_date_range:
                     raise ValidationError(_(
-                        "Sequence %s can't use subsequences"
+                        "Sequence %s can't use subsequences."
                     ) % company.fatturapa_sequence_id.name)
                 journal = self.env['account.journal'].search([
                     ('sequence_id', '=', company.fatturapa_sequence_id.id)
@@ -67,7 +67,7 @@ class ResCompany(models.Model):
                 if journal:
                     raise ValidationError(_(
                         "Sequence %s already used by journal %s. Please select"
-                        " another one"
+                        " another one."
                     ) % (company.fatturapa_sequence_id.name, journal.name))
 
 
@@ -77,7 +77,7 @@ class AccountConfigSettings(models.TransientModel):
     fatturapa_fiscal_position_id = fields.Many2one(
         related='company_id.fatturapa_fiscal_position_id',
         string="Fiscal Position",
-        help='Fiscal position used by Electronic Invoice'
+        help='Fiscal position used by electronic invoice'
         )
     fatturapa_sequence_id = fields.Many2one(
         related='company_id.fatturapa_sequence_id',
@@ -88,7 +88,7 @@ class AccountConfigSettings(models.TransientModel):
         )
     fatturapa_art73 = fields.Boolean(
         related='company_id.fatturapa_art73',
-        string="Art73",
+        string="Art. 73",
         help="Indicates whether the document has been issued according to "
              "methods and terms laid down in a ministerial decree under "
              "the terms of Article 73 of Italian Presidential Decree "
@@ -101,23 +101,23 @@ class AccountConfigSettings(models.TransientModel):
         )
     fatturapa_rea_office = fields.Many2one(
         related='company_id.fatturapa_rea_office',
-        string="Rea Office"
+        string="REA Office"
         )
     fatturapa_rea_number = fields.Char(
         related='company_id.fatturapa_rea_number',
-        string="Rea Number"
+        string="REA Number"
         )
     fatturapa_rea_capital = fields.Float(
         related='company_id.fatturapa_rea_capital',
-        string="Rea Capital"
+        string="REA Capital"
         )
     fatturapa_rea_partner = fields.Selection(
         related='company_id.fatturapa_rea_partner',
-        string="Rea Copartner"
+        string="REA Copartner"
         )
     fatturapa_rea_liquidation = fields.Selection(
         related='company_id.fatturapa_rea_liquidation',
-        string="Rea Liquidation"
+        string="REA Liquidation"
         )
     fatturapa_tax_representative = fields.Many2one(
         related='company_id.fatturapa_tax_representative',
