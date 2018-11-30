@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)

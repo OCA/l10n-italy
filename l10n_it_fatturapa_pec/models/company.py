@@ -13,8 +13,8 @@ class ResCompany(models.Model):
     )
 
 
-class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
     e_invoice_user_id = fields.Many2one(
         related='company_id.e_invoice_user_id',
         string="Supplier e-invoice creator",

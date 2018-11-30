@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
@@ -205,7 +204,7 @@ class MailThread(models.AbstractModel):
                             fatturapa_attachment_in.create({
                                 'name': file_name,
                                 'datas_fname': file_name,
-                                'datas': base64.encodestring(inv_file.read()),
+                                'datas': base64.encodebytes()(inv_file.read()),
                                 'company_id': company_id,
                             })
         else:

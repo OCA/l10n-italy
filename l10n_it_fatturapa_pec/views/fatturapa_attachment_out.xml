@@ -74,5 +74,4 @@
     <record id="l10n_it_fatturapa_out.action_fatturapa_attachment" model="ir.actions.act_window">
         <field name="context">{'search_default_ready': True}</field>
     </record>
-
 </odoo>
