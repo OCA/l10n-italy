@@ -11,7 +11,7 @@ class ResPartner(models.Model):
     eori_code = fields.Char('EORI Code', size=20)
     license_number = fields.Char('License Code', size=20)
     # 1.2.6 RiferimentoAmministrazione
-    pa_partner_code = fields.Char('PA Code for partner', size=20)
+    pa_partner_code = fields.Char('PA Code for Partner', size=20)
     # 1.2.1.4
     register = fields.Char('Professional Register', size=60)
     # 1.2.1.5
@@ -36,13 +36,13 @@ class ResPartner(models.Model):
     # 1.1.6
     pec_destinatario = fields.Char(
         "Addressee PEC",
-        help="PEC to which the Electronic Invoice will be sent. "
+        help="PEC to which the electronic invoice will be sent. "
              "Must be filled "
              "ONLY when the information element "
              "<CodiceDestinatario> is '0000000'"
     )
     electronic_invoice_subjected = fields.Boolean(
-        string="Subjected to electronic invoice")
+        "Subjected to Electronic Invoice")
 
     @api.multi
     @api.constrains(
@@ -61,14 +61,14 @@ class ResPartner(models.Model):
                 ):
                     raise ValidationError(_(
                         "As a Public Administration, partner %s IPA Code "
-                        "must be 6 characters long"
+                        "must be 6 characters long."
                     ) % partner.name)
                 if partner.company_type == 'person' and (
                     not partner.lastname or not partner.firstname
                 ):
                     raise ValidationError(_(
                         "As a natural person, partner %s "
-                        "must have Name and Surname"
+                        "must have Name and Surname."
                     ) % partner.name)
                 if not partner.is_pa and (
                     not partner.codice_destinatario or
@@ -76,11 +76,11 @@ class ResPartner(models.Model):
                 ):
                     raise ValidationError(_(
                         "Partner %s Addressee Code "
-                        "must be 7 characters long"
+                        "must be 7 characters long."
                     ) % partner.name)
                 if not partner.vat and not partner.fiscalcode:
                     raise ValidationError(_(
-                        "Partner %s, must have VAT Number or Fiscal Code"
+                        "Partner %s must have VAT Number or Fiscal Code."
                     ) % partner.name)
                 if not partner.street:
                     raise ValidationError(_(
