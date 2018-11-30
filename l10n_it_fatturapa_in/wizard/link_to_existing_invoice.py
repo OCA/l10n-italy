@@ -15,5 +15,5 @@ class WizardLinkToInvoice(models.TransientModel):
         self.ensure_one()
         active_ids = self.env.context.get('active_ids')
         if len(active_ids) != 1:
-            raise UserError(_("You can select only 1 XML file to link"))
+            raise UserError(_("You can select only one XML file to link."))
         self.invoice_id.fatturapa_attachment_in_id = active_ids[0]

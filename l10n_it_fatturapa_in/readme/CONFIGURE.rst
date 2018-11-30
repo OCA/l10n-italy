@@ -22,7 +22,7 @@ See also the README file of l10n_it_fatturapa module.
 For every supplier, it is possible to set the 'E-bills Detail Level':
 
  - Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill 
- - Maximum level: every line contained in electronic bill will create a line in bill
+ - Maximum level: Every line contained in electronic bill will create a line in bill
 
 Moreover, in supplier form you can set the 'E-bill Default Product': this product will be used, during generation of bills, when no other possible product is found. Tax and account of bill line will be set according to what configured in the product.
 
