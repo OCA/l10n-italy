@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-12-03 01:09+0000\n"
+"PO-Revision-Date: 2018-12-04 07:43+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -167,9 +167,8 @@ msgstr "Nome visualizzato"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_fatturapa_attachment_out_id
-#, fuzzy
 msgid "E-invoice Export File"
-msgstr "File fattura elettronica esportati"
+msgstr "File e-fattura esportati"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
@@ -205,7 +204,6 @@ msgstr "Allegati fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
-#, fuzzy
 msgid "Electronic Invoice Export Files"
 msgstr "File fattura elettronica esportati"
 
@@ -267,14 +265,13 @@ msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:207
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Fiscal position for Electronic Invoice not set for company %s. (Go to "
 "Accounting --> Configuration --> Settings --> Electronic Invoice)"
 msgstr ""
-"Posizione fiscale di fatturazione elettronica non impostata per l'azienda %s "
-"(andare su Contabilità --> Configurazione --> Impostazioni --> Fattura "
-"elettronica)."
+"Posizione fiscale dell'azienda %s non impostata per la fattura elettronica ("
+"andare in Contabilità → Configurazione → Impostazioni → Fattura elettronica)."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_has_pdf_invoice_print
@@ -313,9 +310,9 @@ msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:784
-#, fuzzy, python-format
+#, python-format
 msgid "Invoice %s has E-invoice Export File yet"
-msgstr "File di fattura elettronica già presente per la fattura %s"
+msgstr "File e-fattura già presente per la fattura %s"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/account.py:31
@@ -408,7 +405,7 @@ msgstr "Partita IVA del partner %s non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:357
-#, fuzzy, python-format
+#, python-format
 msgid "Partner %s deve avere nome e cognome"
 msgstr "Il partner %s deve avere nome e cognome"
 
@@ -432,19 +429,17 @@ msgstr "Partita IVA e codice fiscale del partner non impostati."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:677
-#, fuzzy, python-format
+#, python-format
 msgid "Payment term %s does not have a linked e-invoice payment method"
 msgstr ""
-"Il termine di pagamento %s non ha un metodo di pagamento di fatturaPA "
-"collegato"
+"Il termine di pagamento %s non ha un metodo di pagamento e-fattura collegato"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:673
-#, fuzzy, python-format
+#, python-format
 msgid "Payment term %s does not have a linked e-invoice payment term"
 msgstr ""
-"Il termine di pagamento %s non ha un termine di pagamento di fatturaPA "
-"collegato"
+"Il termine di pagamento %s non ha un termine di pagamento e-fattura collegato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_ftpa_preview_link

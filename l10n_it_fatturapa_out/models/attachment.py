@@ -41,7 +41,9 @@ class FatturaPAAttachment(models.Model):
         for att in self:
             res = self.search([('datas_fname', '=', att.datas_fname)])
             if len(res) > 1:
-                raise UserError(_("File %s already present") % att.datas_fname)
+                raise UserError(
+                    _("File %s already present.") %
+                    att.datas_fname)
 
     @api.multi
     @api.depends(
