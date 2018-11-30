@@ -4,7 +4,7 @@ from odoo import fields, models, api
 
 class FatturaPAAttachmentIn(models.Model):
     _name = "fatturapa.attachment.in"
-    _description = "FatturaPA import File"
+    _description = "E-bill import file"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
     _order = 'id desc'
@@ -13,14 +13,14 @@ class FatturaPAAttachmentIn(models.Model):
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")
     in_invoice_ids = fields.One2many(
         'account.invoice', 'fatturapa_attachment_in_id',
-        string="In Invoices", readonly=True)
+        string="In Bills", readonly=True)
     xml_supplier_id = fields.Many2one(
         "res.partner", string="Supplier", compute="_compute_xml_data",
         store=True)
     invoices_number = fields.Integer(
-        "Invoices number", compute="_compute_xml_data", store=True)
+        "Bills Number", compute="_compute_xml_data", store=True)
     invoices_total = fields.Float(
-        "Invoices total", compute="_compute_xml_data", store=True,
+        "Bills Total", compute="_compute_xml_data", store=True,
         help="If specified by supplier, total amount of the document net of "
              "any discount and including tax charged to the buyer/ordered"
     )
