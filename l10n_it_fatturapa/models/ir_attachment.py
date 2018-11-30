@@ -39,7 +39,7 @@ class Attachment(models.Model):
         except Exception as e:
             raise UserError(
                 _(
-                    'An error with command "openssl asn1parse" occurred: %s'
+                    "An error with command 'openssl asn1parse' occurred: %s."
                 ) % e.args
             )
         return file_is_pem
@@ -58,13 +58,13 @@ class Attachment(models.Model):
         except Exception as e:
             raise UserError(
                 _(
-                    'Parsing PEM to DER  file %s'
+                    'Parsing PEM to DER file %s.'
                 ) % e.args
             )
         if not os.path.isfile(tmp_der_file):
             raise UserError(
                 _(
-                    'ASN.1 structure is not parsable in DER'
+                    'ASN.1 structure is not parsable in DER.'
                 )
             )
         return tmp_der_file
@@ -84,13 +84,13 @@ class Attachment(models.Model):
         except Exception as e:
             raise UserError(
                 _(
-                    'Signed Xml file %s'
+                    'Signed Xml file %s.'
                 ) % e.args
             )
         if not os.path.isfile(xml_file):
             raise UserError(
                 _(
-                    'Signed Xml file not decryptable'
+                    'Signed Xml file not decryptable.'
                 )
             )
         return xml_file
