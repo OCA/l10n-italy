@@ -1,5 +1,5 @@
 =========================================================
-Italian Localization - FatturaPA - Emission - PEC Support
+Italian Localization - Fattura Elettronica - Supporto PEC
 =========================================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -25,11 +25,25 @@ Italian Localization - FatturaPA - Emission - PEC Support
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to send and receive electronic invoice XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
-via PEC
+**Italiano**
 
-Notifications from SDI are parsed and transmission state is tracked.
+Questo modulo consente di inviare e ricevere i file XML della fattura elettronica versione 1.2
+
+http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+
+via PEC.
+
+Analizza le notifiche provenienti dallo SdI e monitora lo stato della trasmissione.
+
+**English**
+
+This module allows you to send and receive electronic invoice/bill XML files version 1.2
+
+http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+
+via PEC.
+
+Notifications from ES are parsed and transmission state is tracked.
 
 **Table of contents**
 
@@ -39,14 +53,28 @@ Notifications from SDI are parsed and transmission state is tracked.
 Configuration
 =============
 
-See `l10n_it_sdi_channel` module
+**Italiano**
+
+Consultare il modulo `l10n_it_sdi_channel`.
+
+**English**
+
+See `l10n_it_sdi_channel` module.
 
 Usage
 =====
 
+**Italiano**
+
+Nell'allegato fattura elettronica in uscita fare clic sul pulsante "Invia con PEC".
+
+Le fatture elettroniche fornitore vengono create in modo automatico, prelevate dalla casella PEC.
+
+**English**
+
 In electronic invoice out attachment you can click "Send Via PEC" button.
 
-Supplier electronic invoices are automatically created, fetched from PEC mailbox.
+Supplier electronic bills are automatically created, fetched from PEC mailbox.
 
 Bug Tracker
 ===========
@@ -72,6 +100,7 @@ Contributors
 * Andrea Colangelo <andreacolangelo@openforce.it>
 * Sergio Corato <info@efatto.it>
 * Lorenzo Battistini <https://github.com/eLBati>
+* Sergio Zanchetta <https://github.com/primes2h>
 
 Maintainers
 ~~~~~~~~~~~
