@@ -28,7 +28,7 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     include_ddt_data = fields.Selection([
-        ('dati_ddt', 'Include DDT data'),
+        ('dati_ddt', 'Include DDT Data'),
         ('dati_trasporto', 'Include transport data'),
         ],
         string="DDT Data",
@@ -77,7 +77,7 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.carrier_id:
                 if not invoice.carrier_id.vat:
                     raise UserError(
-                        _('TIN not set for %s') % invoice.carrier_id.name)
+                        _('TIN not set for %s.') % invoice.carrier_id.name)
                 body.DatiGenerali.DatiTrasporto.DatiAnagraficiVettore = (
                     DatiAnagraficiVettoreType())
                 if invoice.carrier_id.fiscalcode:

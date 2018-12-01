@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura Elettronica & DDT',
+    'name': 'Italian Localization - Fattura Elettronica - DDT integration',
     "summary": "Bridge module",
     "version": "10.0.1.0.2",
     "development_status": "Beta",
