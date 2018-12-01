@@ -29,12 +29,12 @@
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='late']" position="after">
                 <separator/>
-                <filter name="fatturapa_ready" string="Fattura Elettronica Ready to Send" domain="[('fatturapa_state','=','ready')]"/>
-                <filter name="fatturapa_errors" string="Fattura Elettronica Error" domain="[('fatturapa_state','=','error')]"/>
+                <filter name="fatturapa_ready" string="Electronic Invoice Ready to Send" domain="[('fatturapa_state','=','ready')]"/>
+                <filter name="fatturapa_errors" string="Electronic Invoice Error" domain="[('fatturapa_state','=','error')]"/>
             </xpath>
 
             <xpath expr="//group" position="inside">
-                <filter name="group_by_ftpa_state" string="Fattura Elettronica State" context="{'group_by':'fatturapa_state'}"/>
+                <filter name="group_by_ftpa_state" string="Electronic Invoice State" context="{'group_by':'fatturapa_state'}"/>
             </xpath>
         </field>
     </record>
