@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.ir_mail_server_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet/group[last()]" position="after">
-                <group string="PEC and FatturaPA">
+                <group string="PEC and Electronic Invoice">
                     <field name="is_fatturapa_pec"/>
                     <field name="email_from_for_fatturaPA"
                            attrs="{'invisible': [('is_fatturapa_pec', '=', False)],

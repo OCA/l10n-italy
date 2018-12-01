@@ -12,7 +12,7 @@ MAX_POP_MESSAGES = 50
 class Fetchmail(models.Model):
     _inherit = 'fetchmail.server'
     last_pec_error_message = fields.Text(
-        "Last PEC error message", readonly=True)
+        "Last PEC Error Message", readonly=True)
 
     @api.multi
     def fetch_mail(self):
