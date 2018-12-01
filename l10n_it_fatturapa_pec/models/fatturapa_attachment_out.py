@@ -35,15 +35,15 @@ class FatturaPAAttachmentOut(models.Model):
     last_sdi_response = fields.Text(
         string='Last Response from Exchange System', default='No response yet',
         readonly=True)
-    sending_date = fields.Datetime("Sent date", readonly=True)
-    delivered_date = fields.Datetime("Delivered date", readonly=True)
-    sending_user = fields.Many2one("res.users", "Sending user", readonly=True)
+    sending_date = fields.Datetime("Sent Date", readonly=True)
+    delivered_date = fields.Datetime("Delivered Date", readonly=True)
+    sending_user = fields.Many2one("res.users", "Sending User", readonly=True)
 
     @api.multi
     def reset_to_ready(self):
         for att in self:
             if att.state != 'sender_error':
-                raise UserError(_("You can only reset 'sender error' files"))
+                raise UserError(_("You can only reset 'sender error' files."))
             att.state = 'ready'
 
     @api.model
@@ -62,7 +62,7 @@ class FatturaPAAttachmentOut(models.Model):
         self.env.user.company_id.sdi_channel_id.check_first_pec_sending()
         states = self.mapped('state')
         if set(states) != set(['ready']):
-            raise UserError(_("You can only send 'ready to send' files"))
+            raise UserError(_("You can only send 'ready to send' files."))
         for att in self:
             mail_message = self.env['mail.message'].create({
                 'model': self._name,
@@ -258,6 +258,6 @@ class FatturaPAAttachmentOut(models.Model):
         for att in self:
             if att.state != 'ready':
                 raise UserError(_(
-                    "You can only delete 'ready to send' files"
+                    "You can only delete 'ready to send' files."
                 ))
         return super(FatturaPAAttachmentOut, self).unlink()
