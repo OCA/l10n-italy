@@ -6,7 +6,7 @@ from odoo import models, fields, api
 class POLine(models.Model):
     _inherit = 'purchase.order.line'
     to_invoice = fields.Boolean(
-        "To invoice", compute="_compute_to_invoice", store=True)
+        "To Invoice", compute="_compute_to_invoice", store=True)
 
     @api.depends(
         "invoice_lines.invoice_id.state", "product_qty", "product_uom",
