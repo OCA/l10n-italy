@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-11-26 09:14+0000\n"
+"PO-Revision-Date: 2018-12-03 01:09+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.2\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -173,9 +173,8 @@ msgstr "File fattura elettronica esportati"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
-#, fuzzy
 msgid "E-invoice Export Files"
-msgstr "File fattura elettronica esportati"
+msgstr "File e-fattura esportati"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/attachment.py:74
@@ -185,25 +184,22 @@ msgstr "Allegato e-fattura modificato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachments
-#, fuzzy
 msgid "E-invoice attachments"
-msgstr "Allegato e-fattura modificato"
+msgstr "Allegati e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "E-invoice sequence not configured."
-msgstr "Sequenza fatturaPA non configurata."
+msgstr "Sequenza e-fattura non configurata."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
-#, fuzzy
 msgid "Electronic Invoice"
-msgstr "Esporta fattura elettronica"
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
-#, fuzzy
 msgid "Electronic Invoice Attachments"
 msgstr "Allegati fattura elettronica"
 
