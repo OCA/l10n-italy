@@ -58,7 +58,7 @@ To configure this module, you need to:
 
 * go to Accounting → Configuration → Settings and configure 'Split Payment Write-off account' (like 'IVA n/debito sospesa SP'). Write-off account should be different from standard debit VAT, in order to separately add it in VAT statement.
 
-.. figure:: static/settings.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_split_payment/static/settings.png
    :alt: Configuration
    :width: 600 px
 
@@ -73,11 +73,11 @@ To configure this module, you need to:
 * add a new tax (Accounting → Configuration → Accounting → Taxes). IVA al 22% SPL should be configured like the following:
 
 
-.. figure:: static/SP.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_split_payment/static/SP.png
    :alt: 22SPL
    :width: 600 px
 
-.. figure:: static/SP2.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_split_payment/static/SP2.png
    :alt: 22SPL
    :width: 600 px
 
@@ -92,7 +92,7 @@ To configure this module, you need to:
 * configure the fiscal position (Accounting → Configuration → Accounting → Fiscal Positions) used for split payment, setting 'Split Payment' flag. In fiscal position, map standard VAT with SP VAT, like the following:
 
 
-.. figure:: static/fiscal_position.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_split_payment/static/fiscal_position.png
    :alt: Fiscal position
    :width: 600 px
 
