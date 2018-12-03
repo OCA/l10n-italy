@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2018-12-03 13:31+0000\n"
+"PO-Revision-Date: 2018-12-04 07:43+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1331,7 +1331,6 @@ msgstr "Unità di peso"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_amount_tax
-#, fuzzy
 msgid "Welfare Amount tax"
 msgstr "Importo contributo cassa"
 
@@ -1348,16 +1347,15 @@ msgstr "Tipo cassa previdenziale"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_rate_tax
 msgid "Welfare Rate tax"
-msgstr "Aliquota cassa previdenziale"
+msgstr "Aliquota cassa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_taxable
 msgid "Welfare Taxable"
-msgstr "Imponibile cassa previdenziale"
+msgstr "Imponibile cassa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_Iva_tax
-#, fuzzy
 msgid "Welfare tax"
 msgstr "Aliquota IVA"
 
@@ -1387,9 +1385,8 @@ msgstr "account.config.settings"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,sender:0
-#, fuzzy
 msgid "assignee / partner"
-msgstr "cessionario / committente"
+msgstr "cessionario/committente"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_description
@@ -1398,14 +1395,13 @@ msgstr "descrizione"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
-#, fuzzy
 msgid "excluding ex Art. 15"
 msgstr "escluse ex art. 15"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "exempt"
-msgstr ""
+msgstr "esenti"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_payment_detail
@@ -1430,7 +1426,7 @@ msgstr "ir.attachment"
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "margin regime"
-msgstr ""
+msgstr "regime del margine"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_name
@@ -1440,29 +1436,27 @@ msgstr "nome"
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not subject"
-msgstr ""
+msgstr "non soggette"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
-#, fuzzy
 msgid "not taxable"
-msgstr "Natura esenzione"
+msgstr "non imponibili"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_number_items
-#, fuzzy
 msgid "number of items"
 msgstr "numero di elementi"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
-msgstr ""
+msgstr "inversione contabile"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,sender:0
 msgid "third person"
-msgstr "Terzo"
+msgstr "soggetto terzo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
