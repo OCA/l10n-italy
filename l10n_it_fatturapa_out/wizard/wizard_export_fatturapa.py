@@ -192,19 +192,11 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
-
-        if not company.phone:
-            raise UserError(
-                _('Company Telephone number not set.'))
         Telefono = company.phone
-
-        if not company.email:
-            raise UserError(
-                _('Email address not set.'))
         Email = company.email
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
             ContattiTrasmittente = ContattiTrasmittenteType(
-                Telefono=Telefono, Email=Email)
+                Telefono=Telefono or None, Email=Email or None)
 
         return True
 
@@ -472,9 +464,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.city:
             raise UserError(
                 _('Customer city is not set.'))
-        if not partner.state_id:
-            raise UserError(
-                _('Customer province is not set.'))
         if not partner.country_id:
             raise UserError(
                 _('Customer country is not set.'))
