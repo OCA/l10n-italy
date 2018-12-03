@@ -67,6 +67,7 @@ class ResCompany(models.Model):
                         " another one"
                     ) % (company.fatturapa_sequence_id.name, journal.name))
 
+
 class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'
 
@@ -134,7 +135,7 @@ class AccountConfigSettings(models.TransientModel):
         help="Blocco da valorizzare nei casi di cedente / prestatore non "
              "residente, con stabile organizzazione in Italia"
         )
-    
+
     @api.v7
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
         res = super(AccountConfigSettings, self).onchange_company_id(

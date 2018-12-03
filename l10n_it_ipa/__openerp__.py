@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2014 KTec S.r.l.
@@ -38,6 +38,5 @@
     "qweb": [],
     "demo": [],
     "test": [],
-    "active": False,
     'installable': True
 }

@@ -26,7 +26,6 @@ from openerp import models, exceptions, _
 class AccountTax(models.Model):
     _inherit = 'account.tax'
 
-
     def get_tax_by_invoice_tax(self, invoice_tax):
         if ' - ' in invoice_tax:
             tax_descr = invoice_tax.split(' - ')[0]

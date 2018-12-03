@@ -77,10 +77,8 @@ class WizardExportFatturapa(models.TransientModel):
         if not company.vat:
             raise UserError(
                 _('Company %s TIN not set.') % company.name)
-        if (
-                    company.fatturapa_sender_partner and not
-                company.fatturapa_sender_partner.vat
-        ):
+        if (company.fatturapa_sender_partner and
+                not company.fatturapa_sender_partner.vat):
             raise UserError(
                 _('Partner %s TIN not set.')
                 % company.fatturapa_sender_partner.name
@@ -130,11 +128,9 @@ class WizardExportFatturapa(models.TransientModel):
         if not IdCodice:
             raise UserError(
                 _('Company does not have fiscal code or VAT'))
-
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
             IdTrasmittente = IdFiscaleType(
-            IdPaese=IdPaese, IdCodice=IdCodice)
-
+                IdPaese=IdPaese, IdCodice=IdCodice)
         return True
 
     def _setFormatoTrasmissione(self, partner, fatturapa):
@@ -185,7 +181,7 @@ class WizardExportFatturapa(models.TransientModel):
         Email = company.email
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
             ContattiTrasmittente = ContattiTrasmittenteType(
-            Telefono=Telefono, Email=Email)
+                Telefono=Telefono, Email=Email)
 
         return True
 
@@ -347,20 +343,19 @@ class WizardExportFatturapa(models.TransientModel):
         if partner.vat:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
         if partner.is_company:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica = AnagraficaType(
-                Denominazione=partner.name)
+                    Denominazione=partner.name)
         else:
             if not partner.lastname or not partner.firstname:
                 raise UserError(
                     _("Partner %s deve avere nome e cognome") % partner.name)
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica = AnagraficaType(
-                Cognome=partner.lastname,
-                Nome=partner.firstname
-            )
+                    Cognome=partner.lastname,
+                    Nome=partner.firstname)
 
         if partner.eori_code:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
@@ -382,10 +377,10 @@ class WizardExportFatturapa(models.TransientModel):
         if partner.vat:
             fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
         fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
             DatiAnagrafici.Anagrafica = AnagraficaType(
-            Denominazione=partner.name)
+                Denominazione=partner.name)
         if partner.eori_code:
             fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
                 DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code
@@ -394,9 +389,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setTerzoIntermediarioOSoggettoEmittente(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader. \
-            TerzoIntermediarioOSoggettoEmittente = (
-            TerzoIntermediarioSoggettoEmittenteType()
-        )
+            TerzoIntermediarioOSoggettoEmittente = \
+            (TerzoIntermediarioSoggettoEmittenteType())
         fatturapa.FatturaElettronicaHeader. \
             TerzoIntermediarioOSoggettoEmittente. \
             DatiAnagrafici = DatiAnagraficiTerzoIntermediarioType()
@@ -411,11 +405,12 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader. \
                 TerzoIntermediarioOSoggettoEmittente. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                    IdPaese=partner.vat[0:2],
+                    IdCodice=partner.vat[2:])
         fatturapa.FatturaElettronicaHeader. \
             TerzoIntermediarioOSoggettoEmittente. \
-            DatiAnagrafici.Anagrafica = AnagraficaType(
-            Denominazione=partner.name)
+            DatiAnagrafici.Anagrafica = \
+            AnagraficaType(Denominazione=partner.name)
         if partner.eori_code:
             fatturapa.FatturaElettronicaHeader. \
                 TerzoIntermediarioOSoggettoEmittente. \
@@ -557,10 +552,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _get_prezzo_unitario(self, line):
         res = line.price_unit
-        if (
-                    line.invoice_line_tax_id and
-                    line.invoice_line_tax_id[0].price_include
-        ):
+        if (line.invoice_line_tax_id and
+                line.invoice_line_tax_id[0].price_include):
             res = line.price_unit / (
                 1 + (line.invoice_line_tax_id[0].amount / 100))
         return res
@@ -710,7 +703,7 @@ class WizardExportFatturapa(models.TransientModel):
             for doc_id in invoice.fatturapa_doc_attachments:
                 AttachDoc = AllegatiType(
                     NomeAttachment=doc_id.datas_fname,
-                    Attachment=doc_id.datas
+                    Attachment=base64.decodestring(doc_id.datas)
                 )
                 body.Allegati.append(AttachDoc)
         return True
@@ -870,7 +863,8 @@ class Report(models.Model):
     @api.model
     def _attachment_filename(self, records, report):
         return dict((record.id, safe_eval(report.attachment,
-                                          {'object': record, 'time': time})) for
+                                          {'object': record,
+                                           'time': time})) for
                     record in records)
 
     @api.model

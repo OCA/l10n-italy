@@ -15,7 +15,8 @@
     'depends': [
         'fetchmail',
         'l10n_it_fatturapa_out',
-        # 'l10n_it_fatturapa_in', Enable this dep as soon as the module is ready
+        # 'l10n_it_fatturapa_in', Enable this dep as soon as
+        # the module is ready
         'l10n_it_sdi_channel',
     ],
     'data': [

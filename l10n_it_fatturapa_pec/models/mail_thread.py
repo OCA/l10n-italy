@@ -110,7 +110,6 @@ class MailThread(models.AbstractModel):
                         message_create_from_mail_mail=True).create(
                             message_dict)
                 else:
-                # todo send email for non-routable pec mail
                     _logger.error('Can\'t route PEC E-Mail with Message-Id: {}'
                                   .format(message.get('Message-Id')))
                 return []

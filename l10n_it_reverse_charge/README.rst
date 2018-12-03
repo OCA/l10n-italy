@@ -67,8 +67,7 @@ Then, in fiscal position, set the 'RC Type'
   :width: 600 px
 
 Example :
-**1)** Intra CEE Autofattura e stampa sui registri con Ragione sociale del
-    fornitore. Es. imponibile 100 iva 22 .
+**1)** Intra CEE Autofattura e stampa sui registri con Ragione sociale del fornitore. Es. imponibile 100 iva 22 .
 
 .. figure:: /l10n_it_reverse_charge/static/description/exemple1_0.png
   :alt: Esempio 1
