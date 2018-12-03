@@ -8,7 +8,7 @@
 
 from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
-from odoo.addons.base.ir.ir_mail_server import extract_rfc2822_addresses
+from openerp.addons.base.ir.ir_mail_server import extract_rfc2822_addresses
 
 SDI_CHANNELS = [
     ('pec', 'PEC'),
@@ -31,7 +31,7 @@ class SdiChannel(orm.Model):
             cr, uid, 'sdi.channel', context=ctx),
     }
 
-class SdiChannelPEC(models.Model):
+class SdiChannelPEC(orm.Model):
     _inherit = "sdi.channel"
 
     def _check_pec_server_id(self, cr, uid, ids, context=None):
@@ -49,7 +49,7 @@ class SdiChannelPEC(models.Model):
         return True
 
     _columns = {
-        'field_name': fields.selection(SDI_CHANNELS, string='SdI channel type', required=True,
+        'channel_type': fields.selection(SDI_CHANNELS, string='SdI channel type', required=True,
             help='PEC is the only implemented channel in this module. Other '
                  'channels (Web, Sftp) could be provided by external modules.'),
         'pec_server_id': fields.many2one('ir.mail_server', string='Pec mail server', required=False,
@@ -63,7 +63,7 @@ class SdiChannelPEC(models.Model):
     ]
 
 
-class SdiChannelWEB(models.Model):
+class SdiChannelWEB(orm.Model):
     _inherit = "sdi.channel"
 
     _columns = {

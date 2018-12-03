@@ -17,7 +17,7 @@ from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
-from odoo.addons.base.ir.ir_mail_server import MailDeliveryException
+from openerp.addons.base.ir.ir_mail_server import MailDeliveryException
 
 _logger = logging.getLogger(__name__)
 

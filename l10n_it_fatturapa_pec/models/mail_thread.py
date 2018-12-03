@@ -70,7 +70,7 @@ class MailThread(orm.AbstractModel):
                 message_dict['record_name'] = message_dict['subject']
                 message_dict['res_id'] = 0
 
-                attachment_ids = self._create_message_attachments(cr, uid, message_dict, context=context):
+                attachment_ids = self._create_message_attachments(cr, uid, message_dict, context=context)
                 for attachment in self.pool.get('ir.attachment').browse(cr, uid, attachment_ids, context=context):
                     if fatturapa_regex.match(attachment.name):
                         self.create_fatturapa_attachment_in(cr, uid, attachment, context=context)
@@ -95,7 +95,7 @@ class MailThread(orm.AbstractModel):
                 message_dict = self.pool.get('fatturapa.attachment.out').parse_pec_response(message_dict)
 
                 message_dict['record_name'] = message_dict['subject']
-                attachment_ids = self._create_message_attachments(cr, uid, message_dict, context=context):
+                attachment_ids = self._create_message_attachments(cr, uid, message_dict, context=context)
                 message_dict['attachment_ids'] = attachment_ids
                 self._clean_message_dict(message_dict)
 

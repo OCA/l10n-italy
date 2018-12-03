@@ -41,7 +41,7 @@ USAGE
     """,
 
     'website': 'https://github.com/OCA/l10n-italy',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'fetchmail',
         'l10n_it_fatturapa_out',
