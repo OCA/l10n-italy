@@ -11,7 +11,7 @@
                         <group>
                             <field filename="datas_fname" name="datas"></field>
                             <field name="datas_fname" invisible="1"></field>
-                            <field name="name"></field>
+                            <field name="name" invisible="1"></field>
                         </group>
                         <group>
                             <field name="xml_supplier_id"/>
