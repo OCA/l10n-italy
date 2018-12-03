@@ -23,7 +23,7 @@ class Attachment(models.Model):
     @api.multi
     def _compute_ftpa_preview_link(self):
         for att in self:
-            att.ftpa_preview_link = '/fatturapa/preview/%s' % self.id
+            att.ftpa_preview_link = '/fatturapa/preview/%s' % att.id
 
     def check_file_is_pem(self, p7m_file):
         file_is_pem = True
