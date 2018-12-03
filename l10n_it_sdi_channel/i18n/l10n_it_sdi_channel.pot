@@ -1,0 +1,181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_sdi_channel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:53
+#, python-format
+msgid "Email %s is not valid"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_email_exchange_system
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_email_exchange_system
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_email_exchange_system
+msgid "Exchange System Email Address"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fetchmail_server_is_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_ir_mail_server_is_fatturapa_pec
+msgid "FatturaPA PEC server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: selection:sdi.channel,channel_type:0
+msgid "PEC"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.ir_mail_server_fatturapa_out_pec_form
+msgid "PEC and FatturaPA"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company_sdi_channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel_channel_type
+msgid "PEC is the only implemented channel in this module. Other channels (Web, Sftp) could be provided by external modules."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_fetchmail_server
+msgid "POP/IMAP Server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_pec_server_id
+msgid "Pec mail server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
+#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
+#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
+#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_tree
+msgid "SdI Channel"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.ui.menu,name:l10n_it_sdi_channel.menu_sdi_channel
+msgid "SdI Channels"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_sdi_channel_id
+msgid "SdI channel"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_sdi_channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_channel_type
+msgid "SdI channel type"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_email_from_for_fatturaPA
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_ir_mail_server_email_from_for_fatturaPA
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_email_from_for_fatturaPA
+msgid "Sender Email Address"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:45
+#, python-format
+msgid "The channel %s with pec server %s already exists"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_web_server_address
+msgid "Web server address"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_web_server_login
+msgid "Web server login"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_web_server_password
+msgid "Web server password"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_web_server_token
+msgid "Web server token"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_account_config_settings
+msgid "account.config.settings"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_ir_mail_server
+msgid "ir.mail_server"
+msgstr ""
+
