@@ -94,11 +94,6 @@ class ResPartner(models.Model):
                     raise ValidationError(_(
                         'Customer %s: city is needed for XML generation.'
                     ) % partner.name)
-                if not partner.state_id:
-                    raise ValidationError(_(
-                        'Customer %s: province is needed for XML '
-                        'generation.'
-                    ) % partner.name)
                 if not partner.country_id:
                     raise ValidationError(_(
                         'Customer %s: country is needed for XML'
