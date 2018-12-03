@@ -6,55 +6,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2018-12-04 07:43+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creata da"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creata il"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Delivered"
-msgstr ""
+msgstr "Consegnata"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_delivered_date
 msgid "Delivered date"
-msgstr ""
+msgstr "Data consegna"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
 msgid "E-invoice Export File"
-msgstr ""
+msgstr "File e-fattura esportato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_account_invoice_fatturapa_state
 msgid "E-invoice State"
-msgstr ""
+msgstr "Stato e-fattura"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_mail_thread
@@ -64,7 +66,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 msgid "Error"
-msgstr ""
+msgstr "Errore"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
@@ -84,22 +86,22 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server_last_pec_error_message
 msgid "Last PEC error message"
-msgstr ""
+msgstr "Ultimo messaggio di errore PEC"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_last_sdi_response
@@ -110,28 +112,28 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
 msgid "Last error message"
-msgstr ""
+msgstr "Ultimo messaggio di errore"
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:57
-#, python-format
+#, fuzzy, python-format
 msgid "No incoming PEC server found. Please configure it."
-msgstr ""
+msgstr "Nessun server PEC in ingresso trovato. Configurarne uno."
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
 msgid "POP/IMAP Server"
-msgstr ""
+msgstr "Server POP/IMAP"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
@@ -162,12 +164,12 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Selected files will be sent to the Exchange System"
-msgstr ""
+msgstr "I file selezionati verranno inviati al sistema di interscambio"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Send"
-msgstr ""
+msgstr "Invia"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_fatturapa_send_pec
@@ -178,7 +180,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Send Via PEC"
-msgstr ""
+msgstr "Invia con PEC"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:fatturapa.attachment.out,state:0
@@ -204,17 +206,18 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_sending_date
 msgid "Sent date"
-msgstr ""
+msgstr "Data invio"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_state
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_fatturapa_send_pec
+#, fuzzy
 msgid "Wizard to send multiple e-invoice PEC"
-msgstr ""
+msgstr "Procedura per inviare PEC e-fattura multiple"
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:258
@@ -237,4 +240,4 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "on"
-msgstr ""
+msgstr "il"
