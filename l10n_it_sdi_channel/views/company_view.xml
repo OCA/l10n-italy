@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
         <field name="arch" type="xml">
             <xpath expr="/form/group[@name='fatturapa_settings']/div[@id='fatturapa_settings']" position="after">
-                <label for="id" string="SdI Channel"/>
+                <label for="id" string="ES Channel"/>
                     <div id="sdi_channel">
                         <div>
                             <label for="sdi_channel_id"/>
