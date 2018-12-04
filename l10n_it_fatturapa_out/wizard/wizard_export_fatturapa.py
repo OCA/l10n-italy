@@ -440,9 +440,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.city:
             raise UserError(
                 _('Customer city is not set.'))
-        if not partner.state_id:
-            raise UserError(
-                _('Customer province is not set.'))
         if not partner.country_id:
             raise UserError(
                 _('Customer country is not set.'))
@@ -453,8 +450,10 @@ class WizardExportFatturapa(models.TransientModel):
                 Indirizzo=partner.street,
                 CAP=partner.zip,
                 Comune=partner.city,
-                Provincia=partner.state_id.code,
                 Nazione=partner.country_id.code))
+        if partner.state_id:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
+                Provincia = partner.state_id.code
 
         return True
 
