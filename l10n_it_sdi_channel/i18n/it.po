@@ -43,6 +43,43 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fetchmail_server_is_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_ir_mail_server_is_fatturapa_pec
+msgid "E-invoice PEC server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
+#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
+#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
+#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_tree
+#, fuzzy
+msgid "ES Channel"
+msgstr "Canale SdI"
+
+#. module: l10n_it_sdi_channel
+#: model:ir.ui.menu,name:l10n_it_sdi_channel.menu_sdi_channel
+#, fuzzy
+msgid "ES Channels"
+msgstr "Canali SdI"
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_sdi_channel_id
+#, fuzzy
+msgid "ES channel"
+msgstr "Canale SdI"
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_sdi_channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_channel_type
+#, fuzzy
+msgid "ES channel type"
+msgstr "Tipo di canale SdI"
+
+#. module: l10n_it_sdi_channel
 #: code:addons/l10n_it_sdi_channel/models/sdi.py:53
 #, python-format
 msgid "Email %s is not valid"
@@ -54,12 +91,6 @@ msgstr "L'email %s non è valida"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_email_exchange_system
 msgid "Exchange System Email Address"
 msgstr "Indirizzo email sistema di scambio"
-
-#. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fetchmail_server_is_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_ir_mail_server_is_fatturapa_pec
-msgid "FatturaPA PEC server"
-msgstr "Server PEC fatturaPA"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_id
@@ -93,8 +124,8 @@ msgstr "PEC"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.ui.view,arch_db:l10n_it_sdi_channel.ir_mail_server_fatturapa_out_pec_form
-msgid "PEC and FatturaPA"
-msgstr "PEC e fatturaPA"
+msgid "PEC and Electronic Invoice"
+msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_type
@@ -116,33 +147,6 @@ msgstr "Server POP/IMAP"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_pec_server_id
 msgid "Pec mail server"
 msgstr "Server email PEC"
-
-#. module: l10n_it_sdi_channel
-#: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
-#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
-#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
-#: model:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_tree
-msgid "SdI Channel"
-msgstr "Canale SdI"
-
-#. module: l10n_it_sdi_channel
-#: model:ir.ui.menu,name:l10n_it_sdi_channel.menu_sdi_channel
-msgid "SdI Channels"
-msgstr "Canali SdI"
-
-#. module: l10n_it_sdi_channel
-#: model:ir.model,name:l10n_it_sdi_channel.model_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_id
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_sdi_channel_id
-msgid "SdI channel"
-msgstr "Canale SdI"
-
-#. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_sdi_channel_type
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_sdi_channel_type
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_channel_type
-msgid "SdI channel type"
-msgstr "Tipo di canale SdI"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_account_config_settings_email_from_for_fatturaPA
@@ -186,3 +190,9 @@ msgstr "account.config.settings"
 #: model:ir.model,name:l10n_it_sdi_channel.model_ir_mail_server
 msgid "ir.mail_server"
 msgstr "ir.mail_server"
+
+#~ msgid "FatturaPA PEC server"
+#~ msgstr "Server PEC fatturaPA"
+
+#~ msgid "PEC and FatturaPA"
+#~ msgstr "PEC e fatturaPA"
