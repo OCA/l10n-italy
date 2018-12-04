@@ -7,7 +7,7 @@
     'name': 'Italian Localization - Fattura Elettronica - Base',
     'version': '12.0.1.0.0',
     'category': 'Localization/Italy',
-    'summary': 'Electronic invoices',
+    'summary': 'Fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Italia Network, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
