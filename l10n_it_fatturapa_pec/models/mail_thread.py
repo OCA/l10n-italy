@@ -17,9 +17,9 @@ from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
+FATTURAPA_ACCOUNT = "@pec.fatturapa.it"
 FATTURAPA_IN_REGEX = "^[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}.(xml|zip)"
-RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_MT_' \
-                      '[a-zA-Z0-9]{,3}'
+RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_MT_[a-zA-Z0-9]{,3}'
 
 
 class MailThread(orm.AbstractModel):
@@ -36,8 +36,8 @@ class MailThread(orm.AbstractModel):
                 'datas': base64.b64encode(str(content)),
                 'datas_fname': name,
                 'description': name,
-                'res_model': message_dict['model'],
-                'res_id': message_dict['res_id'],
+                'res_model': message_dict.get('model', False),
+                'res_id': message_dict.get('res_id', False),
             }
             attachment_ids.append(ir_attachment_obj.create(cr, uid, data_attach, context=context))
         return attachment_ids
@@ -49,7 +49,7 @@ class MailThread(orm.AbstractModel):
         del message_dict['to']
 
     def message_route(self, cr, uid, message, model=None, thread_id=None, custom_values=None, context=None):
-        if any("@pec.fatturapa.it" in x for x in [
+        if any(FATTURAPA_ACCOUNT in x for x in [
             message.get('Reply-To', ''),
             message.get('From', ''),
             message.get('Return-Path', '')]
@@ -75,7 +75,7 @@ class MailThread(orm.AbstractModel):
                     if fatturapa_regex.match(attachment.name):
                         self.create_fatturapa_attachment_in(cr, uid, attachment, context=context)
 
-                message_dict['attachment_ids'] = attachment_ids
+                message_dict['attachment_ids'] = [(6, 0, attachment_ids)]
                 self._clean_message_dict(message_dict)
 
                 # model and res_id are only needed by
@@ -83,8 +83,6 @@ class MailThread(orm.AbstractModel):
                 del message_dict['model']
                 del message_dict['res_id']
 
-                # TODO: test if:
-                # message_dict has no subtype_id: pure log message -> no partners, no one notified
                 self.pool.get('mail.message').create(cr, uid, message_dict, context=context)
 
                 _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'.format(message.get('Message-Id')))
@@ -92,32 +90,34 @@ class MailThread(orm.AbstractModel):
 
             else:
                 # this is an SDI notification
-                message_dict = self.pool.get('fatturapa.attachment.out').parse_pec_response(message_dict)
+                message_dict = self.pool.get('fatturapa.attachment.out').parse_pec_response(cr, uid, message_dict,
+                    context=context)
 
                 message_dict['record_name'] = message_dict['subject']
                 attachment_ids = self._create_message_attachments(cr, uid, message_dict, context=context)
-                message_dict['attachment_ids'] = attachment_ids
+                message_dict['attachment_ids'] = [(6, 0, attachment_ids)]
                 self._clean_message_dict(message_dict)
 
-                # TODO: test if:
-                # message_dict has no subtype_id: pure log message -> no partners, no one notified
                 self.pool.get('mail.message').create(cr, uid, message_dict, context=context)
                 _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'.format(message.get('Message-Id')))
                 return []
 
         elif context.get('fetchmail_server_id', False):
-            fetchmail_server_id = self.pool.get('fetchmail.server').browse(context['fetchmail_server_id'])
+            fetchmail_server_id = self.pool.get('fetchmail.server').browse(cr, uid, context['fetchmail_server_id'],
+                context=context)
             if fetchmail_server_id.is_fatturapa_pec:
-                attachment_id = self.find_attachment_by_subject(message_dict['subject'])
+                message_dict = self.message_parse(cr, uid, message, save_original=True, context=context)
+                attachment_ids = self._create_message_attachments(cr, uid, message_dict, context=context)
+                message_dict['attachment_ids'] = [(6, 0, attachment_ids)]
+                attachment_id = self.find_attachment_by_subject(cr, uid, message_dict['subject'], context=context)
                 if attachment_id:
                     message_dict['model'] = 'fatturapa.attachment.out'
                     message_dict['res_id'] = attachment_id
                     self._clean_message_dict(message_dict)
-                    # TODO: test if:
-                    # message_dict has no subtype_id: pure log message -> no partners, no one notified
                     self.pool.get('mail.message').create(cr, uid, message_dict, context=context)
                 else:
-                    # todo send email for non-routable pec mail
+                    self._clean_message_dict(message_dict)
+                    self.pool.get('mail.message').create(cr, uid, message_dict, context=context)
                     _logger.error('Can\'t route PEC E-Mail with Message-Id: {}'.format(message.get('Message-Id')))
                 return []
 
@@ -162,7 +162,7 @@ class MailThread(orm.AbstractModel):
                                 })
         else:
             fatturapa_attachment_ids = fatturapa_attachment_in.search(cr, uid, [('name', '=', attachment.name)],
-                            context=context)
+                    context=context)
             if fatturapa_attachment_ids:
                 _logger.info("Invoice xml already processed in %s" % attachment.name)
             else:

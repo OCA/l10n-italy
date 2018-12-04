@@ -10,7 +10,7 @@
 #    Copyright © 2018 Enrico Ganzaroli (enrico.gz@gmail.com)
 #    Copyright © 2018 Ermanno Gnan (ermannognan@gmail.it)
 #
-#    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+#    License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 #
 ##############################################################################
 {
@@ -53,6 +53,7 @@ USAGE
         'views/fatturapa_attachment_out.xml',
         'wizard/send_pec_view.xml',
         'views/fetchmail_view.xml',
+        'views/mail_message_view.xml',
     ],
     'installable': True
 }

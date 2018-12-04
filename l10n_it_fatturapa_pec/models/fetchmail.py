@@ -27,6 +27,8 @@ class Fetchmail(orm.Model):
     }
 
     def fetch_mail(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
         for server in self.browse(cr, uid, ids, context=context):
             if not server.is_fatturapa_pec:
                 super(Fetchmail, server).fetch_mail(cr, uid, ids, context=context)
@@ -99,7 +101,7 @@ class Fetchmail(orm.Model):
                                 try:
                                     mail_thread.message_process(
                                         cr, uid, server.object_id.model,
-                                        msg,
+                                        message,
                                         save_original=server.original,
                                         strip_attachments=(not server.attach),
                                         context=context)
@@ -109,8 +111,7 @@ class Fetchmail(orm.Model):
                                     server.last_pec_error_message = ''
                                 except Exception as e:
                                     _logger.info(
-                                        'Failed to process mail from %s server'
-                                        '%s. Resetting server status',
+                                        'Failed to process mail from %s server %s. Resetting server status',
                                         server.type, server.name, exc_info=True
                                     )
                                     # See the comments in the IMAP part
@@ -125,8 +126,7 @@ class Fetchmail(orm.Model):
                             pop_server.quit()
                     except Exception as e:
                         _logger.info(
-                            "General failure when trying to fetch mail from %s"
-                            " server %s.",
+                            "General failure when trying to fetch mail from %s server %s.",
                             server.type, server.name, exc_info=True)
                         # See the comments in the IMAP part
                         server.write({
