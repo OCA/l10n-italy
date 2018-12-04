@@ -37,7 +37,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_delivered_date
-msgid "Delivered date"
+msgid "Delivered Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -56,6 +56,21 @@ msgid "E-invoice State"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Electronic Invoice Error"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Electronic Invoice Ready to Send"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Electronic Invoice State"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_mail_thread
 msgid "Email Thread"
 msgstr ""
@@ -63,21 +78,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 msgid "Error"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
-msgid "Fattura Elettronica Error"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
-msgid "Fattura Elettronica Ready to Send"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
-msgid "Fattura Elettronica State"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -97,7 +97,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server_last_pec_error_message
-msgid "Last PEC error message"
+msgid "Last PEC Error Message"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -186,7 +186,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_sending_user
-msgid "Sending user"
+msgid "Sending User"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -196,13 +196,13 @@ msgid "Sent"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Sent by"
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_sending_date
+msgid "Sent Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_sending_date
-msgid "Sent date"
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Sent by"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -218,19 +218,19 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:258
 #, python-format
-msgid "You can only delete 'ready to send' files"
+msgid "You can only delete 'ready to send' files."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
 #, python-format
-msgid "You can only reset 'sender error' files"
+msgid "You can only reset 'sender error' files."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
 #, python-format
-msgid "You can only send 'ready to send' files"
+msgid "You can only send 'ready to send' files."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
