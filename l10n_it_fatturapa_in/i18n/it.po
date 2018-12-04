@@ -440,10 +440,10 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:310
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Line '%s': Too many taxes with percentage equals to '%s'.\n"
-" Fix it if required"
+"Fix it if required"
 msgstr ""
 "Riga \"%s\": troppe imposte con aliquota pari a\"%s\".\n"
 "Correggere se necessario."
@@ -613,7 +613,8 @@ msgstr "Collegamento di anteprima"
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_dati_bollo_product_id
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_company_dati_bollo_product_id
 msgid "Product used to model DatiBollo XML element on bills."
-msgstr "Prodotto usato come modello per l'elemento XML DatiBollo delle fatture."
+msgstr ""
+"Prodotto usato come modello per l'elemento XML DatiBollo delle fatture."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_cassa_previdenziale_product_id
@@ -671,13 +672,9 @@ msgstr "Documenti collegati"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price_e_invoice_line_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_e_invoice_line_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code_e_invoice_line_id
 msgid "Related E-bill Line"
-msgstr "Riga e-fattura collegata"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_e_invoice_line_id
-msgid "Related E-bill line"
 msgstr "Riga e-fattura collegata"
 
 #. module: l10n_it_fatturapa_in
@@ -957,6 +954,9 @@ msgstr "einvoice.line.other.data"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "on"
 msgstr "il"
+
+#~ msgid "Related E-bill line"
+#~ msgstr "Riga e-fattura collegata"
 
 #~ msgid "Cod. Articles"
 #~ msgstr "Codici articoli"
