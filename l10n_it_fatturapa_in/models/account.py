@@ -113,7 +113,7 @@ class EInvoiceLineOtherData(models.Model):
     _description = 'E-invoice line other data'
 
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-bill line', readonly=True
+        'einvoice.line', 'Related E-bill Line', readonly=True
     )
     name = fields.Char("Data Type", readonly=True)
     text_ref = fields.Char("Text Reference", readonly=True)
