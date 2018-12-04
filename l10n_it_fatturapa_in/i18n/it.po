@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2018-12-04 07:44+0000\n"
+"PO-Revision-Date: 2018-12-04 08:38+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -204,7 +204,7 @@ msgstr "Prodotto per sconto maggiorazione"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_discount_rise_price_ids
 msgid "Discount and Supplement Price Details"
-msgstr "Dettagli  prezzo sconto e maggiorazione"
+msgstr "Dettagli  sconto e maggiorazione"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_display_name
@@ -237,7 +237,7 @@ msgstr "Dettagli e-fattura"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_fatturapa_attachment_in_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_line_fatturapa_attachment_in_id
 msgid "E-bill Import File"
-msgstr "File importazione e-fattura"
+msgstr "File importato e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -254,29 +254,30 @@ msgstr "Livello di dettaglio e-fatture"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_discount_rise_price
 msgid "E-invoice Discount Supplement Price Data"
-msgstr ""
+msgstr "Dati sconto maggiorazioni e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_import_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_import_fatturapa_form_view
+#, fuzzy
 msgid "Electronic Bill Import"
 msgstr "Importazione fattura elettronica"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_article_code
 msgid "FatturaPA Article Code"
-msgstr "Codice articolo fatturaPA"
+msgstr "Codice articolo e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
 msgid "FatturaPA import File"
-msgstr "File importazione fatturaPA"
+msgstr "File importazione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:47
 #, python-format
 msgid "File %s is linked to bills yet"
-msgstr "Il file %s è già collegato a delle fatture"
+msgstr "Il file %s è già collegato alle fatture"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_datas
@@ -295,9 +296,9 @@ msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1247
-#, fuzzy, python-format
+#, python-format
 msgid "File is linked to bills yet"
-msgstr "Il file è già collegato a delle fatture"
+msgstr "Il file è già collegato alle fatture"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -331,6 +332,9 @@ msgid ""
 "If specified by supplier, total amount of the document net of any discount "
 "and including tax charged to the buyer/ordered"
 msgstr ""
+"Se specificato dal fornitore, importo totale del documento al netto di "
+"eventuali sconti e comprensivo di imposta a debito del cessionario/"
+"committente"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_import_fatturapa_form_view
