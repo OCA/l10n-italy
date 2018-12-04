@@ -82,7 +82,10 @@ class FatturaPAAttachmentOut(orm.Model):
                 .format(
                     attachment.name,
                     company.email_exchange_system),
-                'attachment_ids': [(6, 0, [a.id for a in attachment.ir_attachment_id])],
+                'attachment_ids': [(6, 0, [
+                    a.id for a in (attachment.ir_attachment_id if isinstance(
+                        attachment.ir_attachment_id, list) else
+                                   [attachment.ir_attachment_id])])],
                 'email_from': company.email_from_for_fatturaPA,
                 # TODO: verify 'sdi_channel_id' and 'pec_server_id'
                 'mail_server_id': company.sdi_channel_id.pec_server_id.id,
@@ -259,5 +262,8 @@ class FatturaPAAttachmentOut(orm.Model):
             ids = [ids]
         for attachment in self.browse(cr, uid, ids, context=context):
             if attachment.state != 'ready':
-                raise UserError(_("You can only delete 'ready to send' files"))
-        return super(FatturaPAAttachmentOut, self).unlink(cr, uid, ids, context=context)
+                raise osv.except_osv(
+                    _('UserError'),
+                    _("You can only delete 'ready to send' files"))
+        return super(FatturaPAAttachmentOut, self).unlink(
+            cr, uid, ids, context=context)

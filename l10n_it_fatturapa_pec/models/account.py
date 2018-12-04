@@ -23,7 +23,7 @@ class account_invoice(osv.osv):
         }
         res = {}
         for record in self.browse(cr, uid, ids, context=context):
-            res[o.id] = mapping.get(record.fatturapa_attachment_out_id.state)
+            res[record.id] = mapping.get(record.fatturapa_attachment_out_id.state)
         return res
 
 

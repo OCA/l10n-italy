@@ -42,7 +42,7 @@ class SdiChannelPEC(orm.Model):
                 return False
         return True
 
-    def _check_email_validity(self):
+    def _check_email_validity(self, cr, uid, ids, context=None):
         for channel in self.browse(cr, uid, ids, context):
             if not extract_rfc2822_addresses(channel.email_exchange_system):
                 return False

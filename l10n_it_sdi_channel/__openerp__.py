@@ -15,7 +15,7 @@
 {
     "name": "SdI channel",
     "summary": "Add channel to send-receice xml files to SdI.",
-    "version": "10.0.1.1.0",
+    "version": "7.0.1.1.0",
     "development_status": "Alpha",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
