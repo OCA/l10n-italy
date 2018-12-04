@@ -23,6 +23,7 @@ msgid "Administration Reference"
 msgstr "Riferimento amministrazione"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_cod_article_ids
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Articles Code"
 msgstr "Codice articoli"
@@ -75,8 +76,26 @@ msgid "Bill"
 msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1209
+#, fuzzy, python-format
+msgid "Bill total %s is different from document total amount %s"
+msgstr "Il totale fattura %s è diverso dall'importo totale del documento %s"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "Bills"
+msgstr "Fatture"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_invoices_number
+#, fuzzy
+msgid "Bills Number"
+msgstr "Numero riga"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_invoices_total
+#, fuzzy
+msgid "Bills Total"
 msgstr "Fatture"
 
 #. module: l10n_it_fatturapa_in
@@ -92,13 +111,9 @@ msgstr "Checksum/SHA1"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code_name
-msgid "Cod Type"
+#, fuzzy
+msgid "Code Type"
 msgstr "Tipo codice"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_cod_article_ids
-msgid "Cod. Articles"
-msgstr "Codici articoli"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code_code_val
@@ -117,8 +132,8 @@ msgstr "Azienda"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:85
-#, python-format
-msgid "Company Name field contains \"%s\". Your System contains \"%s\""
+#, fuzzy, python-format
+msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr "Il campo nome azienda contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
@@ -129,8 +144,8 @@ msgstr "L'imponibile calcolato %s è diverso da quello dei dati di riepilogo %s"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:152
-#, python-format
-msgid "Country Code %s not found in system"
+#, fuzzy, python-format
+msgid "Country Code %s not found in system."
 msgstr "Codice nazione %s non trovato nel sistema"
 
 #. module: l10n_it_fatturapa_in
@@ -175,8 +190,8 @@ msgstr "Riferimento data"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:748
-#, python-format
-msgid "Define a purchase journal for this company: \"%s\" (id:%d)."
+#, fuzzy, python-format
+msgid "Define a purchase journal for this company: '%s' (id: %d)."
 msgstr "Definire un registro di acquisto per questa azienda: \"%s\" (id: %d)."
 
 #. module: l10n_it_fatturapa_in
@@ -203,7 +218,8 @@ msgstr "Prodotto per sconto maggiorazione"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_discount_rise_price_ids
-msgid "Discount and Supplement Price Details"
+#, fuzzy
+msgid "Discount and Supplement Details"
 msgstr "Dettagli  sconto e maggiorazione"
 
 #. module: l10n_it_fatturapa_in
@@ -218,9 +234,15 @@ msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:854
-#, python-format
-msgid "Document type %s not handled"
+#, fuzzy, python-format
+msgid "Document type %s not handled."
 msgstr "Tipo documento %s non gestito"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_article_code
+#, fuzzy
+msgid "E-bill Article Code"
+msgstr "Codice articoli"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner_e_invoice_default_product_id
@@ -245,6 +267,12 @@ msgid "E-bill Inconsistencies"
 msgstr "Incongruenze e-fattura"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
+#, fuzzy
+msgid "E-bill import file"
+msgstr "File importato e-fattura"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner_e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users_e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa_e_invoice_detail_level
@@ -253,30 +281,20 @@ msgstr "Livello di dettaglio e-fatture"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_discount_rise_price
-msgid "E-invoice Discount Supplement Price Data"
+#, fuzzy
+msgid "E-invoice Discount Supplement Data"
 msgstr "Dati sconto maggiorazioni e-fattura"
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_import_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_import_fatturapa_form_view
 #, fuzzy
 msgid "Electronic Bill Import"
 msgstr "Importazione fattura elettronica"
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_article_code
-msgid "FatturaPA Article Code"
-msgstr "Codice articolo e-fattura"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
-msgid "FatturaPA import File"
-msgstr "File importazione e-fattura"
-
-#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:47
-#, python-format
-msgid "File %s is linked to bills yet"
+#, fuzzy, python-format
+msgid "File %s is linked to bills yet."
 msgstr "Il file %s è già collegato alle fatture"
 
 #. module: l10n_it_fatturapa_in
@@ -296,8 +314,8 @@ msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1247
-#, python-format
-msgid "File is linked to bills yet"
+#, fuzzy, python-format
+msgid "File is linked to bills yet."
 msgstr "Il file è già collegato alle fatture"
 
 #. module: l10n_it_fatturapa_in
@@ -347,6 +365,12 @@ msgid "Import E-bill"
 msgstr "Importa e-fattura"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_import_fatturapa
+#, fuzzy
+msgid "Import Electronic Bill"
+msgstr "Importazione fattura elettronica"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_inconsistencies
 msgid "Import Inconsistencies"
 msgstr "Incongruenze nell'importazione"
@@ -359,8 +383,8 @@ msgstr "Importa e-fattura"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_in_invoice_ids
 #, fuzzy
-msgid "In Invoices"
-msgstr "Fatture passive"
+msgid "In Bills"
+msgstr "Fatture"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_fattura_pa_in
@@ -382,22 +406,6 @@ msgstr "Fattura"
 #: model:ir.model,name:l10n_it_fatturapa_in.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Riga fattura"
-
-#. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1209
-#, python-format
-msgid "Invoice total %s is different from document total amount %s"
-msgstr "Il totale fattura %s è diverso dall'importo totale del documento %s"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_invoices_number
-msgid "Invoices number"
-msgstr "Numero fatture"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_invoices_total
-msgid "Invoices total"
-msgstr "Totale fatture"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_public
@@ -436,10 +444,10 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:310
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Line '%s': Too many taxes with percentage equals to \"%s\"\n"
-"fix it if required"
+"Line '%s': Too many taxes with percentage equals to '%s'.\n"
+" Fix it if required"
 msgstr ""
 "Riga \"%s\": troppe imposte con aliquota pari a\"%s\".\n"
 "Correggere se necessario"
@@ -455,13 +463,9 @@ msgid "Line Number"
 msgstr "Numero riga"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_line_ids
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Lines Detail"
-msgstr "Dettagli righe"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_line_ids
-msgid "Lines detail"
 msgstr "Dettagli righe"
 
 #. module: l10n_it_fatturapa_in
@@ -502,7 +506,7 @@ msgstr "Minimo"
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users_e_invoice_detail_level
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa_e_invoice_detail_level
 msgid ""
-"Minumum level: Bill is created with no lines; User will have to create them, "
+"Minimum level: Bill is created with no lines; User will have to create them, "
 "according to what specified in the electronic bill.\n"
 "Maximum level: every line contained in the electronic bill will create a "
 "line in the bill."
@@ -511,14 +515,14 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:93
 #, fuzzy, python-format
-msgid "Name field contains \"%s\". Your System contains \"%s\""
+msgid "Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 "DatiAnagrafici.Anagrafica.Nome contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:669
-#, python-format
-msgid "Name of Bank with BIC \"%s\" is not set. Can't create bank"
+#, fuzzy, python-format
+msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
 msgstr "Nome banca con BIC \"%s\" non impostato, impossibile creare la banca."
 
 #. module: l10n_it_fatturapa_in
@@ -529,22 +533,22 @@ msgstr "Natura"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:831
-#, python-format
-msgid "No currency found with code %s"
+#, fuzzy, python-format
+msgid "No currency found with code %s."
 msgstr "Valuta con codice %s non trovata"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:281
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"No tax with percentage %s and nature %s found. Please configure this tax"
+"No tax with percentage %s and nature %s found. Please configure this tax."
 msgstr ""
 "Imposta con aliquota %s e natura %s non trovata, configurare questa imposta."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:915
 #, fuzzy, python-format
-msgid "No withholding tax found with document payment reason %s and rate %s"
+msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr "Ritenuta fiscale con causale %s e importo %s non trovata"
 
 #. module: l10n_it_fatturapa_in
@@ -566,19 +570,19 @@ msgstr "Partner"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:611
 #, fuzzy, python-format
-msgid "Payment method %s is not defined in your system"
+msgid "Payment method %s is not defined in your system."
 msgstr "ModalitaPagamento %s non definito nel sistema"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1147
-#, python-format
-msgid "Payment method Code %s is incorrect"
+#, fuzzy, python-format
+msgid "Payment method code %s is incorrect."
 msgstr "Codice metodo di pagamento %s non corretto"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1142
-#, python-format
-msgid "Payment method Code not found in document"
+#, fuzzy, python-format
+msgid "Payment method code not found in document."
 msgstr "Codice metodo di pagamento non trovato nel documento"
 
 #. module: l10n_it_fatturapa_in
@@ -627,6 +631,11 @@ msgid "Product used to model ScontoMaggiorazione XML element on bills."
 msgstr "Prodotto per sconto maggiorazione"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
+msgid "Progress data"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:200
 #, fuzzy, python-format
 msgid "Province ( %s ) not present in your system"
@@ -662,8 +671,13 @@ msgstr "Documenti correlati"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price_e_invoice_line_id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_e_invoice_line_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code_e_invoice_line_id
+#, fuzzy
+msgid "Related E-bill Line"
+msgstr "Riga e-fattura correlata"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_e_invoice_line_id
 #, fuzzy
 msgid "Related E-bill line"
 msgstr "Riga e-fattura correlata"
@@ -692,11 +706,6 @@ msgstr "Modello risorsa"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_res_name
 msgid "Resource Name"
 msgstr "Nome risorsa"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
-msgid "SAL data"
-msgstr "Dati SAL"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_service_type
@@ -745,14 +754,14 @@ msgstr "Fornitore"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:102
 #, fuzzy, python-format
-msgid "Surname field contains \"%s\". Your System contains \"%s\""
+msgid "Surname field contains '%s'. Your System contains '%s'"
 msgstr ""
 "DatiAnagrafici.Anagrafica.Nome contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:218
 #, fuzzy, python-format
-msgid "Tax Regime %s not present in your system"
+msgid "Tax Regime %s not present in your system."
 msgstr "RegimeFiscale %s non presente nel sistema"
 
 #. module: l10n_it_fatturapa_in
@@ -776,7 +785,7 @@ msgstr ""
 #, fuzzy, python-format
 msgid ""
 "The bill contains withholding tax with payment reason %s, but such a tax is "
-"not found in your system. Please set it"
+"not found in your system. Please set it."
 msgstr ""
 "La fattura contiene una ritenuta fiscale con causale pagamento %s. Tale "
 "ritenuta non è presente nel sistema, è necessario impostarla."
@@ -798,8 +807,8 @@ msgstr "Da registrare"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:286
-#, python-format
-msgid "Too many taxes with percentage %s and nature %s found"
+#, fuzzy, python-format
+msgid "Too many taxes with percentage %s and nature %s found."
 msgstr "Rilevate troppe imposte con aliquota %s e natura %s"
 
 #. module: l10n_it_fatturapa_in
@@ -812,7 +821,7 @@ msgstr ""
 #, fuzzy, python-format
 msgid ""
 "Two distinct partners with VAT number %s and Fiscal Code %s already present "
-"in db"
+"in db."
 msgstr ""
 "Nel database sono già presenti due diversi partner con partita IVA %s e "
 "codice fiscale %s"
@@ -841,9 +850,10 @@ msgstr "URL"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner_e_invoice_default_product_id
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users_e_invoice_default_product_id
+#, fuzzy
 msgid ""
-"Used by electronic invoice XML import. If filled, generated invoice lines "
-"will use this product, when no other possible product is found."
+"Used by electronic invoice XML import. If filled in, generated bill lines "
+"will use this product when no other possible product is found."
 msgstr ""
 "Usato nell'importazione XML delle fatture elettroniche. Se valorizzato, le "
 "righe fattura generate useranno questo prodotto se non ce ne sono altri "
@@ -862,7 +872,7 @@ msgstr "Cassa previdenziale"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:500
 #, fuzzy, python-format
-msgid "Welfare Fund %s not present in your system"
+msgid "Welfare Fund %s not present in your system."
 msgstr "RegimeFiscale %s non presente nel sistema"
 
 #. module: l10n_it_fatturapa_in
@@ -882,14 +892,14 @@ msgstr "Dettagli cassa previdenziale"
 #, fuzzy, python-format
 msgid ""
 "Welfare Fund data %s has withholding tax but no withholding tax was found in "
-"the system"
+"the system."
 msgstr ""
 "La cassa previdenziale %s ha la ritenuta ma non sono presenti nel sistema"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:482
 #, fuzzy, python-format
-msgid "Welfare Fund is not defined "
+msgid "Welfare Fund is not defined."
 msgstr "TipoCassa non definito "
 
 #. module: l10n_it_fatturapa_in
@@ -908,9 +918,9 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:301
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"XML contains tax with percentage \"%s\" but it does not exist in your system"
+"XML contains tax with percentage '%s' but it does not exist in your system"
 msgstr ""
 "Il file XML contiene l'imposta con aliquota \"%s\" ma questa non esiste nel "
 "sistema."
@@ -931,8 +941,8 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:19
-#, python-format
-msgid "You can select only 1 XML file to link"
+#, fuzzy, python-format
+msgid "You can select only one XML file to link."
 msgstr "È possibile selezionare solo un file XML da collegare"
 
 #. module: l10n_it_fatturapa_in
@@ -954,6 +964,31 @@ msgstr "einvoice.line.other.data"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "on"
 msgstr "il"
+
+#~ msgid "Cod. Articles"
+#~ msgstr "Codici articoli"
+
+#~ msgid "FatturaPA Article Code"
+#~ msgstr "Codice articolo e-fattura"
+
+#~ msgid "FatturaPA import File"
+#~ msgstr "File importazione e-fattura"
+
+#, fuzzy
+#~ msgid "In Invoices"
+#~ msgstr "Fatture passive"
+
+#~ msgid "Invoices number"
+#~ msgstr "Numero fatture"
+
+#~ msgid "Invoices total"
+#~ msgstr "Totale fatture"
+
+#~ msgid "Lines detail"
+#~ msgstr "Dettagli righe"
+
+#~ msgid "SAL data"
+#~ msgstr "Dati SAL"
 
 #, fuzzy
 #~ msgid "Aliquota IVA"
