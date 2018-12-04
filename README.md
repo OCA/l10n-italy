@@ -32,7 +32,7 @@ addon | version | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.2.2 | Electronic invoices
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.2.2 | Electronic invoices reception
-[l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Fattura Elettronica - Purchase integration
+[l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Italian Localization - Fattura Elettronica - Purchase integration
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.2.3 | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.2 | Bridge module
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.2.0 | Send electronic invoices via PEC
