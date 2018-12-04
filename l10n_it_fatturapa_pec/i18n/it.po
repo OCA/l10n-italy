@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-04 08:38+0000\n"
+"PO-Revision-Date: 2018-12-04 17:52+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -230,19 +230,19 @@ msgstr "Procedura per inviare PEC e-fattura multiple"
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:258
 #, python-format
 msgid "You can only delete 'ready to send' files."
-msgstr ""
+msgstr "È possibile eliminare solo file \"pronti all'invio\"."
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
 #, python-format
 msgid "You can only reset 'sender error' files."
-msgstr ""
+msgstr "È possibile reimpostare solo file con \"errore mittente\"."
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
 #, python-format
 msgid "You can only send 'ready to send' files."
-msgstr ""
+msgstr "È possibile inviare solo file \"pronti all'invio\"."
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
