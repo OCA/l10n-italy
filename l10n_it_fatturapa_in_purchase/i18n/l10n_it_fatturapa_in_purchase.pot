@@ -20,6 +20,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in_purchase
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_purchase.field_purchase_order_line_to_invoice
-msgid "To invoice"
+msgid "To Invoice"
 msgstr ""
 
