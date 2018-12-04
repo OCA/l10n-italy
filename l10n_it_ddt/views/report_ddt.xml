@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+        <template id="delivery_data">
+
+            <style type="text/css">
+                table.delivery_data td h6 {
+                margin: 0;
+                }
+                 .signature {
+                min-height: 4em;
+                }
+            </style>
+
+            <table class="table table-condensed table-bordered delivery_data">
+                <tr>
+                    <td>
+                        <h6>Transportation Reason</h6>
+                        <div class="signature" t-field="ddt.transportation_reason_id"></div>
+                    </td>
+                    <td>
+                        <h6>Carriage Condition</h6>
+                        <div t-field="ddt.carriage_condition_id"></div>
+                    </td>
+                    <td>
+                        <h6>Transportation Method</h6>
+                        <div t-field="ddt.transportation_method_id"></div>
+                    </td>
+                    <td>
+                        <h6>Goods Description</h6>
+                        <div class="signature" t-field="ddt.goods_description_id"></div>
+                    </td>
+                    <td>
+                        <h6>Net Weight</h6>
+                        <div class="signature" t-field="ddt.weight"></div>
+                    </td>
+                    <td>
+                        <h6>Gross Weight</h6>
+                        <div class="signature" t-field="ddt.gross_weight"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h6>Carrier</h6>
+                        <div class="signature" t-field="ddt.carrier_id.name"></div>
+                    </td>
+                    <td>
+                        <h6>Date</h6>
+                        <div class="signature" t-field="ddt.date" t-field-options='{"widget": "date"}'></div>
+                    </td>
+                    <td>
+                        <h6>Pick up time</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Parcels</h6>
+                        <div class="signature" t-field="ddt.parcels"></div>
+                    </td>
+                    <td>
+                        <h6>Size</h6>
+                        <div class="signature" t-field="ddt.volume"></div>
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-condensed table-bordered delivery_data">
+                <tr>
+                    <td>
+                        <h6>Carrier's Signature</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Driver's Signature</h6>
+                        <div class="signature"></div>
+                    </td>
+                    <td>
+                        <h6>Recipient's Signature</h6>
+                        <div class="signature"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"><h6>Notes</h6>
+                        <div class="signature" t-field="ddt.note"></div>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+        <template id="report_ddt">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2>Destinatario</h2>
+                            <div t-field="o.partner_shipping_id"
+                                t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                            <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div>
+                        </div>
+                        <div class="col-xs-6">
+                            <h2>Cessionario</h2>
+                            <div t-field="o.partner_id"
+                                t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                            <div t-if="o.partner_id">VAT number: <span t-field="o.partner_id.vat"/></div>
+                        </div>
+                    </div>
+                    <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
+                    <table class="table table-condensed">
+                        <t t-set="has_serial_number"
+                           t-value="o.line_ids.filtered('lot_ids')"
+                           groups="stock.group_production_lot"/>
+                        <thead>
+                            <tr>
+                                <th><strong>Description</strong></th>
+                                <th class="text-right"><strong>Quantity</strong></th>
+                                <th name="lot_serial" t-if="has_serial_number" class="text-right">
+                                    <strong>Lots/Serial Numbers</strong>
+                                </th>
+                                <t t-if="o.show_price">
+                                    <th class="text-right"><strong>Price</strong></th>
+                                    <th class="text-right"><strong>Discount</strong></th>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.line_ids" t-as="line">
+                                <td><span t-field="line.name"></span></td>
+                                <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
+                                <t t-if="has_serial_number">
+                                    <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
+                                    <td class="text-right">
+                                        <t t-foreach="lot_dict" t-as="lot">
+                                            <div>· <t t-esc="lot.name"/> <t t-if="lot_dict[lot]">(<t t-esc="lot_dict[lot]"/>)</t></div>
+                                        </t>
+                                    </td>
+                                </t>
+                                <t t-if="o.show_price">
+                                    <td class="text-right" id="line_price_unit"><span t-field="line.price_unit"></span></td>
+                                    <td class="text-right" id="line_discount"><span t-field="line.discount"></span></td>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <t t-call="l10n_it_ddt.delivery_data">
+                        <t t-set="ddt" t-value="o"/>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_ddt_main">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="l10n_it_ddt.report_ddt" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+        <report
+            string="DDT"
+            id="action_report_ddt"
+            model="stock.picking.package.preparation"
+            report_type="qweb-pdf"
+            name="l10n_it_ddt.report_ddt_main"
+            file="l10n_it_ddt.report_ddt_main"/>
+
+</odoo>
