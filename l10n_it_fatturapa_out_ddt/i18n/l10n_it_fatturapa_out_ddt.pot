@@ -25,7 +25,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
-msgid "Include DDT data"
+msgid "Include DDT Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
@@ -42,6 +42,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_out_ddt
 #: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:80
 #, python-format
-msgid "TIN not set for %s"
+msgid "TIN not set for %s."
 msgstr ""
 
