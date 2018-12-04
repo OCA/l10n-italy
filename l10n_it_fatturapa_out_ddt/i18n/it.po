@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 16:24+0000\n"
-"PO-Revision-Date: 2018-12-04 08:38+0000\n"
+"PO-Revision-Date: 2018-12-04 17:52+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -29,7 +29,6 @@ msgstr "Esporta e-fattura"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
-#, fuzzy
 msgid "Include DDT Data"
 msgstr "Includere dati DDT"
 
@@ -53,9 +52,9 @@ msgstr "Includere dati trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "TIN not set for %s."
-msgstr "Partita IVA non impostata per %s"
+msgstr "Partita IVA non impostata per %s."
 
 #, fuzzy
 #~ msgid "Dati DDT"
