@@ -307,7 +307,7 @@ class WizardImportFatturapa(models.TransientModel):
                 # just logging because this is an usual case: see split payment
                 _logger.warning(_(
                     "Line '%s': Too many taxes with percentage equals "
-                    "to '%s'.\n Fix it if required"
+                    "to '%s'.\nFix it if required"
                 ) % (line.Descrizione, line.AliquotaIVA))
                 # if there are multiple taxes with same percentage
                 # and there is a default tax with this percentage,
