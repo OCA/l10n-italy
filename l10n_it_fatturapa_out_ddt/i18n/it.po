@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 16:24+0000\n"
-"PO-Revision-Date: 2018-12-01 11:09+0000\n"
+"PO-Revision-Date: 2018-12-04 08:38+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -29,7 +29,6 @@ msgstr "Esporta e-fattura"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
-#, fuzzy
 msgid "Include DDT data"
 msgstr "Includere dati DDT"
 
@@ -41,10 +40,13 @@ msgid ""
 "Include transport data: The field must be entered when a shipping invoice to "
 "be filled with transport data is present"
 msgstr ""
+"Includere dati DDT: campo da valorizzare quando è presente una fattura "
+"differita con un documento di trasporto associato\n"
+"Includere dati trasporto: campo da valorizzare quando è presente un fattura "
+"accompagnatoria da compilare con i dati di trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
-#, fuzzy
 msgid "Include transport data"
 msgstr "Includere dati trasporto"
 
