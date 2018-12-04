@@ -423,7 +423,7 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:310
 #, python-format
 msgid "Line '%s': Too many taxes with percentage equals to '%s'.\n"
-" Fix it if required"
+"Fix it if required"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -635,13 +635,9 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price_e_invoice_line_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_e_invoice_line_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code_e_invoice_line_id
 msgid "Related E-bill Line"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_e_invoice_line_id
-msgid "Related E-bill line"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
