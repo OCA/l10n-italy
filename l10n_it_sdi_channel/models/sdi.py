@@ -14,7 +14,7 @@ SDI_CHANNELS = [
 
 class SdiChannel(models.Model):
     _name = "sdi.channel"
-    _description = "SdI channel"
+    _description = "ES channel"
 
     name = fields.Char(string='Name', required=True)
     company_id = fields.Many2one(
@@ -27,7 +27,7 @@ class SdiChannelPEC(models.Model):
     _inherit = "sdi.channel"
 
     channel_type = fields.Selection(
-        string='SdI channel type', selection=SDI_CHANNELS, required=True,
+        string='ES channel type', selection=SDI_CHANNELS, required=True,
         help='PEC is the only implemented channel in this module. Other '
              'channels (Web, Sftp) could be provided by external modules.')
     pec_server_id = fields.Many2one(
