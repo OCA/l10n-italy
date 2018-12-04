@@ -289,16 +289,10 @@ msgid "Customer %s: city is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:104
+#: code:addons/l10n_it_fatturapa/models/partner.py:99
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:99
-#, python-format
-msgid "Customer %s: province is needed for XML generation."
-msgstr "Cliente %s: per la generazione dell'XML è necessaria la provincia."
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:87
@@ -1448,6 +1442,9 @@ msgstr "non imponibili"
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
 msgstr "inversione contabile"
+
+#~ msgid "Customer %s: province is needed for XML generation."
+#~ msgstr "Cliente %s: per la generazione dell'XML è necessaria la provincia."
 
 #~ msgid "Art73"
 #~ msgstr "Art. 73"

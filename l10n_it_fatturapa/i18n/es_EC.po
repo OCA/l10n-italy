@@ -285,15 +285,9 @@ msgid "Customer %s: city is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:104
-#, python-format
-msgid "Customer %s: country is needed for XML generation."
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:99
 #, python-format
-msgid "Customer %s: province is needed for XML generation."
+msgid "Customer %s: country is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
