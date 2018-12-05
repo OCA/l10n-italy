@@ -10,7 +10,7 @@ import base64
 import zipfile
 import io
 
-from odoo import api, models
+from odoo import api, models, _
 
 _logger = logging.getLogger(__name__)
 
@@ -97,11 +97,14 @@ class MailThread(models.AbstractModel):
                 return []
 
         elif self._context.get('fetchmail_server_id', False):
-            fetchmail_server_id = self.env['fetchmail.server'].browse(
+            # This is not an email coming from SDI
+            fetchmail_server = self.env['fetchmail.server'].browse(
                 self._context['fetchmail_server_id'])
-            if fetchmail_server_id.is_fatturapa_pec:
+            if fetchmail_server.is_fatturapa_pec:
                 att = self.find_attachment_by_subject(message_dict['subject'])
                 if att:
+                    # This a PEC response (CONSEGNA o ACCETTAZIONE)
+                    # related to a message sent to SDI by us
                     message_dict['model'] = 'fatturapa.attachment.out'
                     message_dict['res_id'] = att.id
                     self.clean_message_dict(message_dict)
@@ -109,9 +112,42 @@ class MailThread(models.AbstractModel):
                         message_create_from_mail_mail=True).create(
                             message_dict)
                 else:
-                    # todo send email for non-routable pec mail
-                    _logger.error('Can\'t route PEC E-Mail with Message-Id: {}'
-                                  .format(message.get('Message-Id')))
+                    _logger.info(
+                        'Can\'t route PEC E-Mail with Message-Id: {}'.format(
+                            message.get('Message-Id'))
+                    )
+                    if fetchmail_server.e_inv_notify_partner_ids:
+                        self.env['mail.mail'].create({
+                            'subject': _(
+                                "PEC message [%s] not processed"
+                            ) % message.get('Subject'),
+                            'body_html': _(
+                                "<p>"
+                                "PEC message with Message-Id %s has been read "
+                                "but not processed, as not related to an "
+                                "e-invoice.</p>"
+                                "<p>Please check PEC mailbox %s, at server %s,"
+                                " with user %s</p>"
+                            ) % (
+                                message.get('Message-Id'),
+                                fetchmail_server.name, fetchmail_server.server,
+                                fetchmail_server.user
+                            ),
+                            'recipient_ids': [(
+                                6, 0,
+                                fetchmail_server.e_inv_notify_partner_ids.ids
+                            )]
+                        })
+                        _logger.info(
+                            'Notifying partners %s about message with '
+                            'Message-Id: %s' % (
+                                fetchmail_server.e_inv_notify_partner_ids.ids,
+                                message.get('Message-Id')))
+                    else:
+                        _logger.error(
+                            'Can\'t notify anyone about not processed '
+                            'PEC E-Mail with Message-Id: {}'.format(
+                                message.get('Message-Id')))
                 return []
 
         return super(MailThread, self).message_route(
