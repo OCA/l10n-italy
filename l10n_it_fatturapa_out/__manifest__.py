@@ -4,11 +4,11 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura Elettronica - Emission',
+    'name': 'Italian Localization - Fattura Elettronica - Emissione',
     'version': '12.0.1.0.0',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
-    'summary': 'Electronic invoices emission',
+    'summary': 'Emissione fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu,'
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
