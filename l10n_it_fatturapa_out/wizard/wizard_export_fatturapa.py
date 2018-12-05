@@ -220,8 +220,8 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
-    def checkSetupPhone(self, phone_number):
-        if '+' in phone_number:
+    def checkSetupPhone(self, phone_number=False):
+        if phone_number and '+' in phone_number:
             phone_number = phonenumbers.format_number(phonenumbers.parse(phone_number), phonenumbers.PhoneNumberFormat.NATIONAL)
         return phone_number
         
@@ -285,9 +285,6 @@ class WizardExportFatturapa(orm.TransientModel):
         if not company.city:
             raise orm.except_orm(
                 _('Error!'), _('City not set.'))
-        if not company.partner_id.province:
-            raise orm.except_orm(
-                _('Error!'), _('Province not set.'))
         if not company.country_id:
             raise orm.except_orm(
                 _('Error!'), _('Country not set.'))
@@ -297,7 +294,6 @@ class WizardExportFatturapa(orm.TransientModel):
             Indirizzo=company.street,
             CAP=company.zip,
             Comune=company.city,
-            Provincia=company.partner_id.province.code,
             Nazione=company.country_id.code)
         if company.partner_id.province:
             CedentePrestatore.Sede.Provincia = company.partner_id.province.code
@@ -514,9 +510,6 @@ class WizardExportFatturapa(orm.TransientModel):
         if not partner.city:
             raise orm.except_orm(
                 _('Error!'), _('Customer city not set.'))
-        if not partner.province:
-            raise orm.except_orm(
-                _('Error!'), _('Customer province not set.'))
         if not partner.country_id:
             raise orm.except_orm(
                 _('Error!'), _('Customer country not set.'))
@@ -527,8 +520,10 @@ class WizardExportFatturapa(orm.TransientModel):
                 Indirizzo=partner.street,
                 CAP=partner.zip,
                 Comune=partner.city,
-                Provincia=partner.province.code,
                 Nazione=partner.country_id.code))
+        if partner.province:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
+                Provincia=partner.province.code
 
         return True
 
