@@ -1244,10 +1244,9 @@ class WizardImportFatturapa(orm.TransientModel):
                 )
         if line.ScontoMaggiorazione:
             for DiscRisePriceLine in line.ScontoMaggiorazione:
-                DiscRisePriceVals = self.with_context(
-                    drtype='e_invoice_line_id'
-                )._prepareDiscRisePriceLine(
-                    einvoiceline, DiscRisePriceLine
+                DiscRisePriceVals = self._prepareDiscRisePriceLine(
+                    cr, uid, einvoiceline, DiscRisePriceLine,
+                    context={'drtype': 'e_invoice_line_id'}
                 )
                 self.pool['discount.rise.price'].create(cr, uid, DiscRisePriceVals)
         if line.AltriDatiGestionali:
