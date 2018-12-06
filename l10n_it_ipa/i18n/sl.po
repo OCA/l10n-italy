@@ -34,3 +34,8 @@ msgstr "IPA123"
 #: model:ir.model,name:l10n_it_ipa.model_res_partner
 msgid "Partner"
 msgstr "Partner"
+
+#. module: l10n_it_ipa
+#: field:res.partner,is_pa:0
+msgid "Public administration"
+msgstr ""
