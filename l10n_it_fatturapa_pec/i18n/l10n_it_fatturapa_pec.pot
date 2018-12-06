@@ -216,7 +216,7 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:258
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:240
 #, python-format
 msgid "You can only delete 'ready to send' files."
 msgstr ""
