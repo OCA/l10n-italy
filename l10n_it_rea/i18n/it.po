@@ -9,21 +9,22 @@ msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2016-10-19 16:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2018-12-07 15:08+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:54
 #, python-format
 msgid "%s %s Share Cap. %s â¬ %s %s"
-msgstr ""
+msgstr "%s %s Cap. Soc. %s â¬ %s %s"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
@@ -34,12 +35,12 @@ msgstr "Capitale Sociale"
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: l10n_it_rea
 #: selection:res.partner,rea_liquidation_state:0
@@ -87,9 +88,8 @@ msgstr "Registrazione REA"
 
 #. module: l10n_it_rea
 #: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
-#, fuzzy
 msgid "REA data"
-msgstr "Codice REA"
+msgstr "Dati REA"
 
 #. module: l10n_it_rea
 #: sql_constraint:res.partner:0
