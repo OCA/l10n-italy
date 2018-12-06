@@ -28,3 +28,8 @@ msgstr ""
 msgid "Partner"
 msgstr ""
 
+#. module: l10n_it_ipa
+#: field:res.partner,is_pa:0
+msgid "Public administration"
+msgstr ""
+
