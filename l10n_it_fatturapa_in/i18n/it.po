@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2018-12-06 09:27+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2018-12-06 16:54+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -517,8 +517,7 @@ msgstr "Il campo nome contiene \"%s\", il sistema contiene \"%s\""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:669
 #, python-format
 msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
-msgstr ""
-"Nome non impostato per la banca con BIC \"%s\", impossibile creare la banca."
+msgstr "Impossibile creare la banca con BIC \"%s\", il nome non è impostato."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_tax_kind
