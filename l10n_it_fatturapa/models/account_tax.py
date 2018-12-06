@@ -2,6 +2,8 @@
 ##############################################################################
 #
 #    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#    Copyright (C) 2018 Gianmarco Conte    <gconte@dinamicheaziendali.it>
+#    Copyright (C) 2018 Marco Calcagni     <mcalcagni@dinamicheaziendali.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,38 +20,33 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
-from openerp.tools.translate import _
+from openerp import models, exceptions, _
 
 
-class AccountTax(orm.Model):
+class AccountTax(models.Model):
     _inherit = 'account.tax'
 
-    def get_tax_by_invoice_tax(self, cr, uid, invoice_tax, context=None):
+    def get_tax_by_invoice_tax(self, invoice_tax):
         if ' - ' in invoice_tax:
             tax_descr = invoice_tax.split(' - ')[0]
-            tax_ids = self.search(cr, uid, [
-                ('description', '=', tax_descr),
-                ], context=context)
+            tax_ids = self.search([('description', '=', tax_descr)])
             if not tax_ids:
-                raise orm.except_orm(
+                raise exceptions.Warning(
                     _('Error'), _('No tax %s found') %
                     tax_descr)
             if len(tax_ids) > 1:
-                raise orm.except_orm(
+                raise exceptions.Warning(
                     _('Error'), _('Too many tax %s found') %
                     tax_descr)
         else:
             tax_name = invoice_tax
-            tax_ids = self.search(cr, uid, [
-                ('name', '=', tax_name),
-                ], context=context)
+            tax_ids = self.search([('name', '=', tax_name)])
             if not tax_ids:
-                raise orm.except_orm(
+                raise exceptions.Warning(
                     _('Error'), _('No tax %s found') %
                     tax_name)
             if len(tax_ids) > 1:
-                raise orm.except_orm(
+                raise exceptions.Warning(
                     _('Error'), _('Too many tax %s found') %
                     tax_name)
         return tax_ids[0]

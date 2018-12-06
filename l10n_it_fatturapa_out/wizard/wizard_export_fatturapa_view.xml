@@ -2,23 +2,38 @@
 <openerp>
     <data>
         <record id="wizard_export_fatturapa_form_view" model="ir.ui.view">
-            <field name="name">Export FatturaPA</field>
+            <field name="name">Export Electronic Invoice</field>
             <field name="model">wizard.export.fatturapa</field>
             <field name="arch" type="xml">
-                <form string="Export FatturaPA">
+                <form string="Export Electronic Invoice">
                     <group col="2" height="500" width="600">
                         <group>
-                            <label string="Confirm?"></label>
+                            <separator colspan="2" string="If you want to add a PDF version of the invoice into the XML, select which one"/>
+                            <field name="report_print_menu"
+                                   string="Attached report"
+                                   widget="selection"/>
                         </group>
-                        <newline></newline>
+                        <newline/>
                         <group col="3">
-                            <button colspan="1" icon="gtk-cancel" special="cancel" string="Cancel"></button>
-                            <button colspan="1" icon="gtk-ok" name="exportFatturaPA" string="Export" type="object"></button>
+                            <button colspan="1" special="cancel" string="Cancel"/>
+                            <button colspan="1" name="exportFatturaPA" string="Export" type="object" class="oe_highlight"/>
                         </group>
                     </group>
+                    <footer>
+                        <div></div>
+                    </footer>
                 </form>
             </field>
         </record>
-        <act_window id="action_wizard_export_fatturapa" key2="client_action_multi" name="Export FatturaPA" res_model="wizard.export.fatturapa" src_model="account.invoice" target="new" view_id="wizard_export_fatturapa_form_view" view_mode="form"></act_window>
+
+        <act_window id="action_wizard_export_fatturapa"
+                    key2="client_action_multi"
+                    name="Export Electronic Invoice"
+                    res_model="wizard.export.fatturapa"
+                    src_model="account.invoice"
+                    target="new"
+                    view_id="wizard_export_fatturapa_form_view"
+                    view_mode="form"/>
+
     </data>
 </openerp>

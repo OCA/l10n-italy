@@ -7,6 +7,9 @@
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
 #
+#    Copyright (C) 2018 Dinamiche Aziendali srl
+#    (<http://www.dinamicheaziendali.it>).
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -30,3 +33,4 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     ipa_code = fields.Char(string='IPA Code')
+    is_pa = fields.Boolean("Public administration")

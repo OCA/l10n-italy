@@ -42,6 +42,7 @@ Contributors
 
 * Luigi Di Naro <luigi.dinaro@ktec.it>
 * Alex Comba <alex.comba@agilebg.com>
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
 
 Maintainer
 ----------

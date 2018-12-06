@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2014 KTec S.r.l.
@@ -6,6 +6,9 @@
 #
 #    Copyright (C) 2014 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
+#
+#    Copyright (C) 2018 Dinamiche Aziendali srl
+#    (<http://www.dinamicheaziendali.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -23,7 +26,7 @@
 ##############################################################################
 {
     "name": "IPA Code (IndicePA)",
-    "version": "8.0.1.0.0",
+    "version": "8.0.2.0.0",
     "category": "Localisation/Italy",
     "author": "KTec S.r.l, Odoo Community Association (OCA)",
     "website": "http://www.ktec.it",
@@ -35,6 +38,5 @@
     "qweb": [],
     "demo": [],
     "test": [],
-    "active": False,
     'installable': True
 }
