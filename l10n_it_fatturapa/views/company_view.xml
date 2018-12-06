@@ -11,7 +11,7 @@
                     <separator string="Fattura PA"/>
                     <group name="fatturapa_settings">
                         <label for="id" string="Configuration"/>
-                        <div id="fatturapa_settings">
+                        <div>
                             <div>
                                 <label for="fatturapa_fiscal_position_id"/>
                                 <field name="fatturapa_fiscal_position_id" required="1" class="oe_inline"/>

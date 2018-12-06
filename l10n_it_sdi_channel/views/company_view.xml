@@ -6,7 +6,7 @@
             <field name="model">account.config.settings</field>
             <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/group[@name='fatturapa_settings']/div[@id='fatturapa_settings']" position="after">
+                <xpath expr="/form/group[@name='fatturapa_settings']/div[last()]" position="after">
                     <label for="id" string="SdI Channel"/>
                         <div id="sdi_channel">
                             <div>
