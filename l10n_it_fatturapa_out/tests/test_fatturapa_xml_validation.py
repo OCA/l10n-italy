@@ -325,6 +325,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             'user_id': self.user_demo.id,
             'type': 'out_invoice',
             'currency_id': self.EUR.id,
+            'comment': "firsrt line\n\nsecond line",
             'invoice_line_ids': [
                 (0, 0, {
                     'account_id': self.a_sale.id,
