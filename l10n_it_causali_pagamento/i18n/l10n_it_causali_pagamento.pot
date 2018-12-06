@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -19,8 +19,8 @@ msgid "Causale Pagamento"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_form
-#: model:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_tree
+#: view:causale.pagamento:l10n_it_causali_pagamento.view_causale_pagamento_form
+#: view:causale.pagamento:l10n_it_causali_pagamento.view_causale_pagamento_tree
 msgid "Causale pagamento"
 msgstr ""
 
@@ -31,47 +31,47 @@ msgid "Causali pagamento"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_code
+#: field:causale.pagamento,code:0
 msgid "Code"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_create_uid
+#: field:causale.pagamento,create_uid:0
 msgid "Created by"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_create_date
+#: field:causale.pagamento,create_date:0
 msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_name
+#: field:causale.pagamento,name:0
 msgid "Description"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_display_name
+#: field:causale.pagamento,display_name:0
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_id
+#: field:causale.pagamento,id:0
 msgid "ID"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento___last_update
+#: field:causale.pagamento,__last_update:0
 msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_write_uid
+#: field:causale.pagamento,write_uid:0
 msgid "Last Updated by"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_write_date
+#: field:causale.pagamento,write_date:0
 msgid "Last Updated on"
 msgstr ""
 
