@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-11 07:51+0000\n"
-"PO-Revision-Date: 2018-11-11 07:51+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2018-12-07 15:08+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:352
@@ -39,7 +41,7 @@ msgstr "Conto Cliente"
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_reconciliation_widget
 msgid "Account Reconciliation widget"
-msgstr ""
+msgstr "Widget riconciliazione"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__move_id
@@ -123,7 +125,7 @@ msgstr "Creato il"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__credit_debit_line_id
 msgid "Credit/Debit Line"
-msgstr ""
+msgstr "Riga dare/avere"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__date
@@ -203,7 +205,7 @@ msgstr "Raggruppa per..."
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice
@@ -220,7 +222,7 @@ msgstr "Riga fattura"
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_withholding_tax
 msgid "Invoice Withholding Tax Line"
-msgstr ""
+msgstr "Riga ritenuta d'acconto"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__reconcile_partial_id
@@ -584,4 +586,3 @@ msgstr "Importo ritenuta"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__journal_id
 msgid "Withholding tax journal"
 msgstr "Registro ritenuta d'acconto"
-
