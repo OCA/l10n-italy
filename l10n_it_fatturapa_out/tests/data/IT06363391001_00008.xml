@@ -66,6 +66,8 @@
                 <Data>2018-01-07</Data>
                 <Numero>INV/2018/0015</Numero>
                 <ImportoTotaleDocumento>14.00</ImportoTotaleDocumento>
+                <Causale>firsrt line</Causale>
+                <Causale>second line</Causale>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
         </DatiGenerali>
