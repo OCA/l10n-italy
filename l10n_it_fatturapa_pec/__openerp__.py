@@ -26,8 +26,8 @@
 
 Italian Localization - FatturaPA - Emission - PEC Support
 =========================================================
-This module allows you to send and receive electronic invoice XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+This module allows you to send and receive electronic invoice XML file version
+1.2 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 via PEC
 
 Notifications from SDI are parsed and transmission state is tracked.
@@ -37,7 +37,8 @@ USAGE
 
 * In electronic invoice out attachment you can click "Send Via PEC" button.
 
-* Supplier electronic invoices are automatically created, fetched from PEC mailbox.
+* Supplier electronic invoices are automatically created, fetched from PEC
+mailbox.
     """,
 
     'website': 'https://github.com/OCA/l10n-italy',

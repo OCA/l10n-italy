@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Italian Localization - FatturaPA - Emission - PEC Support
-#    See __openerp__.py file for copyright and licensing details.
-#
-##############################################################################
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 import re
@@ -42,16 +37,19 @@ class FatturaPAAttachmentOut(orm.Model):
                 ('rejected', 'Rejected (PA)'),
                 ('validated', 'Delivered'),
             ], string='State'),
-        'last_sdi_response': fields.text('Last Response from Exchange System', readonly=True),
+        'last_sdi_response': fields.text('Last Response from Exchange System',
+                                         readonly=True),
         'sending_date': fields.datetime('Sent date', readonly=True),
         'delivered_date': fields.datetime('Delivered date', readonly=True),
-        'sending_user': fields.many2one('res.users', string='Sending user', readonly=True),
+        'sending_user': fields.many2one('res.users', string='Sending user',
+                                        readonly=True),
     }
 
     def reset_to_ready(self, cr, uid, ids, context=None):
         for attachment in self.browse(cr, uid, ids, context=context):
             if attachment.state != 'sender_error':
-                raise osv.except_osv(_('UserError'), _("You can only reset 'sender error' files"))
+                raise osv.except_osv(_('UserError'), _(
+                    "You can only reset 'sender error' files"))
             attachment.write({'state': 'ready'})
 
     def _check_fetchmail(self, cr, uid, context=None):
@@ -60,17 +58,21 @@ class FatturaPAAttachmentOut(orm.Model):
                 ('state', '=', 'done')
             ], context=context)
         if not server_ids:
-            raise osv.except_osv(_('UserError'), _("No incoming PEC server found. Please configure it."))
+            raise osv.except_osv(
+                _('UserError'),
+                _("No incoming PEC server found. Please configure it."))
 
     def send_via_pec(self, cr, uid, ids, context=None):
         self._check_fetchmail(cr, uid, context=context)
-        company = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id
+        company = self.pool.get('res.users').browse(
+            cr, uid, uid, context=context).company_id
         attachments = self.browse(cr, uid, ids, context=context)
 
         for attachment in attachments:
             if attachment.state != 'ready':
-                raise osv.except_osv(_('UserError'), _("You can only send 'ready to send' files"))
-
+                raise osv.except_osv(
+                    _('UserError'),
+                    _("You can only send 'ready to send' files"))
 
         for attachment in attachments:
             mail_message_id = self.pool.get('mail.message').create(cr, uid, {
@@ -86,57 +88,43 @@ class FatturaPAAttachmentOut(orm.Model):
                     a.id for a in (attachment.ir_attachment_id if isinstance(
                         attachment.ir_attachment_id, list) else
                                    [attachment.ir_attachment_id])])],
-                'email_from': company.email_from_for_fatturaPA,
-                # TODO: verify 'sdi_channel_id' and 'pec_server_id'
-                'mail_server_id': company.sdi_channel_id.pec_server_id.id,
             }, context=context)
 
             mail_obj = self.pool.get('mail.mail')
             mail_id = mail_obj.create(cr, uid, {
                 'mail_message_id': mail_message_id,
+                'body_html': self.pool['mail.message'].browse(
+                    cr, uid, mail_message_id, context=context).body,
                 'email_to': company.email_exchange_system,
+                'email_from': company.email_from_for_fatturaPA,
+                'mail_server_id': company.sdi_channel_id.pec_server_id.id,
             })
 
             if mail_id:
-                config_parameter_obj = self.pool.get('ir.config_parameter')
-                bounce_alias = config_parameter_obj.get_param(cr, openerp.SUPERUSER_ID, "mail.bounce.alias")
-                catchall_domain = config_parameter_obj.get_param(cr, openerp.SUPERUSER_ID, "mail.catchall.domain")
-                catchall_alias = config_parameter_obj.get_param(cr, openerp.SUPERUSER_ID, "mail.catchall.alias")
-                # temporary disable email parameters incompatible with PEC
-                if bounce_alias:
-                    config_parameter_obj.set_param(cr, openerp.SUPERUSER_ID, 'mail.bounce.alias', False)
-                if catchall_domain:
-                    config_parameter_obj.set_param(cr, openerp.SUPERUSER_ID, 'mail.catchall.domain', False)
-                if catchall_alias:
-                    config_parameter_obj.set_param(cr, openerp.SUPERUSER_ID, 'mail.catchall.alias', False)
-
                 mail_obj.send(cr, uid, [mail_id], context=context)
                 mail = mail_obj.browse(cr, uid, mail_id, context=context)
                 if mail.state == 'sent':
                     attachment.write({
                             'state': 'sent',
-                            'sending_date': datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                            'sending_date': datetime.now().strftime(
+                                DEFAULT_SERVER_DATETIME_FORMAT),
                             'sending_user': uid,
                         })
                 else:
                     attachment.write({
                             'state': 'sender_error',
                         })
-                    mail_obj.write(cr, uid, [mail_id], {'body': 'sender_error'}, context=context)
-
-                if bounce_alias:
-                    config_parameter_obj.set_param(cr, openerp.SUPERUSER_ID, 'mail.bounce.alias', bounce_alias)
-                if catchall_domain:
-                    config_parameter_obj.set_param(cr, openerp.SUPERUSER_ID, 'mail.catchall.domain', catchall_domain)
-                if catchall_alias:
-                    config_parameter_obj.set_param(cr, openerp.SUPERUSER_ID, 'mail.catchall.alias', catchall_alias)
+                    mail_obj.write(cr, uid, [mail_id], {
+                        'body': 'sender_error'}, context=context)
+            return True
 
     def parse_pec_response(self, cr, uid, message_dict, context=None):
         message_dict['model'] = self._name
         message_dict['res_id'] = 0
 
         regex = re.compile(RESPONSE_MAIL_REGEX)
-        attachments = [a for a in message_dict['attachments'] if regex.match(a[0])]
+        attachments = [a for a in message_dict['attachments']
+                       if regex.match(a[0])]
 
         for attachment in attachments:
             response_name = attachment[0]
@@ -156,24 +144,29 @@ class FatturaPAAttachmentOut(orm.Model):
                         ('datas_fname', '=', file_name.replace('.p7m', '')),
                         ], context=context)
                 if len(fatturapa_attachment_out_ids) > 1:
-                    _logger.info('More than 1 out invoice found for incoming message')
+                    _logger.info(
+                        'More than 1 out invoice found for incoming message')
                 if not fatturapa_attachment_out_ids:
                     if message_type == 'MT':  # Metadati
                         # out invoice not found, so it is an incoming invoice
                         return message_dict
                     else:
-                        _logger.info('Error: FatturaPA {} not found.'.format(file_name))
+                        _logger.info('Error: FatturaPA {} not found.'.format(
+                            file_name))
                         # TODO Send a mail warning
                         return message_dict
 
             if fatturapa_attachment_out_ids:
-                fatturapa_attachment_out = self.browse(cr, uid, fatturapa_attachment_out_ids[0], context=context)
+                fatturapa_attachment_out = self.browse(
+                    cr, uid, fatturapa_attachment_out_ids[0], context=context)
                 id_sdi = root.find('IdentificativoSdI')
                 receipt_dt = root.find('DataOraRicezione')
                 message_id = root.find('MessageId')
                 id_sdi = id_sdi.text if id_sdi is not None else False
-                receipt_dt = receipt_dt.text if receipt_dt is not None else False
-                message_id = message_id.text if message_id is not None else False
+                receipt_dt = receipt_dt.text if receipt_dt is not None else \
+                    False
+                message_id = message_id.text if message_id is not None else \
+                    False
                 if message_type == 'NS':  # 2A. Notifica di Scarto
                     error_list = root.find('ListaErrori')
                     error_str = ''

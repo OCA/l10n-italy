@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Italian Localization - FatturaPA - Emission - PEC Support
-#    See __openerp__.py file for copyright and licensing details.
-#
-##############################################################################
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import account
 from . import fatturapa_attachment_out

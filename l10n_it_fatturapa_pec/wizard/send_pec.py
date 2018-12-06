@@ -15,4 +15,5 @@ class SendPEC(orm.TransientModel):
 
     def send_pec(self, cr, uid, ids, context=None):
         if context and context.get('active_ids'):
-            self.pol.get('fatturapa.attachment.out').send_via_pec(cr, uid, context['active_ids'], context=context)
+            self.pol.get('fatturapa.attachment.out').send_via_pec(
+                cr, uid, context['active_ids'], context=context)

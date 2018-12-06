@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Italian Localization - FatturaPA - Emission - PEC Support
-#    See __openerp__.py file for copyright and licensing details.
-#
-##############################################################################
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 
@@ -23,7 +18,8 @@ class Fetchmail(orm.Model):
     _inherit = 'fetchmail.server'
 
     _columns = {
-        'last_pec_error_message': fields.text('Last PEC error message', readonly=True),
+        'last_pec_error_message': fields.text(
+            'Last PEC error message', readonly=True),
     }
 
     def fetch_mail(self, cr, uid, ids, context=None):
@@ -31,10 +27,12 @@ class Fetchmail(orm.Model):
             context = {}
         for server in self.browse(cr, uid, ids, context=context):
             if not server.is_fatturapa_pec:
-                super(Fetchmail, server).fetch_mail(cr, uid, ids, context=context)
+                super(Fetchmail, server).fetch_mail(
+                    cr, uid, ids, context=context)
             else:
                 mail_thread = self.pool.get('mail.thread')
-                _logger.info('start checking for new emails on %s server %s', server.type, server.name)
+                _logger.info('start checking for new emails on %s server %s',
+                             server.type, server.name)
                 context.update({
                         'fetchmail_server_id': server.id,
                         'server_type': server.type,
@@ -62,7 +60,8 @@ class Fetchmail(orm.Model):
                                 server.write({'last_pec_error_message': ''})
                             except Exception:
                                 _logger.info(
-                                    'Failed to process mail from %s server %s. Resetting server status',
+                                    'Failed to process mail from %s server %s.'
+                                    ' Resetting server status',
                                     server.type, server.name, exc_info=True)
                                 # Here is where we need to intervene.
                                 # Setting to draft prevents new e-invoices to
@@ -79,7 +78,8 @@ class Fetchmail(orm.Model):
                             cr.commit()
                     except Exception as e:
                         _logger.info(
-                            "General failure when trying to fetch mail from %s server %s.",
+                            "General failure when trying to fetch mail from %s"
+                            " server %s.",
                             server.type, server.name, exc_info=True)
                         server.write({
                                 'state': 'draft',
@@ -95,7 +95,8 @@ class Fetchmail(orm.Model):
                             pop_server = server.connect()
                             (num_messages, total_size) = pop_server.stat()
                             pop_server.list()
-                            for num in range(1, min(MAX_POP_MESSAGES, num_messages) + 1):
+                            for num in range(1, min(
+                                    MAX_POP_MESSAGES, num_messages) + 1):
                                 (header, messages, octets) = pop_server.retr(num)
                                 message = '\n'.join(messages)
                                 try:
@@ -111,7 +112,8 @@ class Fetchmail(orm.Model):
                                     server.last_pec_error_message = ''
                                 except Exception as e:
                                     _logger.info(
-                                        'Failed to process mail from %s server %s. Resetting server status',
+                                        'Failed to process mail from %s server'
+                                        ' %s. Resetting server status',
                                         server.type, server.name, exc_info=True
                                     )
                                     # See the comments in the IMAP part
@@ -126,7 +128,8 @@ class Fetchmail(orm.Model):
                             pop_server.quit()
                     except Exception as e:
                         _logger.info(
-                            "General failure when trying to fetch mail from %s server %s.",
+                            "General failure when trying to fetch mail from %s"
+                            " server %s.",
                             server.type, server.name, exc_info=True)
                         # See the comments in the IMAP part
                         server.write({
@@ -136,5 +139,6 @@ class Fetchmail(orm.Model):
                     finally:
                         if pop_server:
                             pop_server.quit()
-            server.write({'date': datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)})
+            server.write({'date': datetime.now().strftime(
+                DEFAULT_SERVER_DATETIME_FORMAT)})
         return True
