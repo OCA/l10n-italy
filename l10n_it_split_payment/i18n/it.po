@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-13 09:40+0000\n"
-"PO-Revision-Date: 2016-12-13 09:40+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2018-12-07 15:08+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_split_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
@@ -24,6 +25,12 @@ msgid ""
 "\"Values set here are company-specific.\" aria-label=\"Values set here are "
 "company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
+"<span class=\"o_form_label\">Configurazione per il modulo Split "
+"Payment</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"I "
+"valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
+"impostati qui sono specifici per azienda.\" groups=\"base."
+"group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,help:l10n_it_split_payment.field_res_company__sp_account_id
@@ -46,14 +53,13 @@ msgstr "Aziende"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_config_settings
-#, fuzzy
 msgid "Config Settings"
 msgstr "Configurazione"
 
 #. module: l10n_it_split_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
 msgid "Configuration for Split Payment module"
-msgstr ""
+msgstr "Configurazione per il modulo Split Payment"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_fiscal_position
@@ -67,15 +73,13 @@ msgstr "Fattura"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_invoice__split_payment
-#, fuzzy
 msgid "Is Split Payment"
-msgstr "Scissione Pagamenti"
+msgstr "Scissione pagamenti"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_tax__is_split_payment
-#, fuzzy
 msgid "Is split payment"
-msgstr "Scissione Pagamenti"
+msgstr "Scissione pagamenti"
 
 #. module: l10n_it_split_payment
 #: code:addons/l10n_it_split_payment/models/account.py:47
@@ -90,7 +94,7 @@ msgstr ""
 #. module: l10n_it_split_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
 msgid "SP account"
-msgstr ""
+msgstr "Conto SP"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_fiscal_position__split_payment
@@ -118,7 +122,7 @@ msgstr "Conto Storno Scissione Pagamenti"
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_tax
 msgid "Tax"
-msgstr ""
+msgstr "Imposta"
 
 #~ msgid "account.config.settings"
 #~ msgstr "account.config.settings"
