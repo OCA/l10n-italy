@@ -33,7 +33,7 @@ addon | version | summary
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.2.2 | Fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.2.2 | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.2.3 | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.2.4 | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.2.0 | Invio fatture elettroniche tramite PEC
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.0.1.0 | Italian Localization - Tipi di documento fiscali per dichiarativi
