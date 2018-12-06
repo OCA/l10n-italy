@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Italian Localization - SdI channel
-#    See __openerp__.py file for copyright and licensing details.
-#
-##############################################################################
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import ir_mail_server
 from . import fetchmail_server

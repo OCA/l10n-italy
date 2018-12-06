@@ -16,7 +16,7 @@
     "name": "SdI channel",
     "summary": "Add channel to send-receice xml files to SdI.",
     "version": "7.0.1.1.0",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
@@ -26,7 +26,8 @@
 
 Italian Localization  - SdI channel
 ===================================
-This module add some useful fields as a pre-requisite to send XML and ZIP files of electronic invoices
+This module add some useful fields as a pre-requisite to send XML and ZIP
+ files of electronic invoices
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 
@@ -40,7 +41,8 @@ Nel menu: Contabilità > Configurazione > Contabilità
 
 Sotto Fattura elettronica > SDI channels
 
-va creato un nuovo canale di tipo PEC (unico supportato per ora) in cui vanno inseriti:
+va creato un nuovo canale di tipo PEC (unico supportato per ora) in cui 
+vanno inseriti:
 
 - La mail PEC dello SdI, inizialmente uguale a sdi01@pec.fatturapa.it.
 
@@ -58,11 +60,11 @@ In questo server va indicata la mail di invio/ricezione, solitamente
 uguale all'utente di connessione (potrebbe essere diversa dall'utente di
 connessione in casi particolari).
 
-Se si usano altri SMTP server, per l'invio di email non PEC, bisogna dare loro priorità maggiore rispetto al server PEC.
+Se si usano altri SMTP server, per l'invio di email non PEC, bisogna dare loro
+ priorità maggiore rispetto al server PEC.
 
 Creare infine il mail server in ingresso, impostando 'FatturaPA PEC server'
     """,
-    "maintainers": ["sergiocorato"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
