@@ -9,7 +9,7 @@
             <button name="preview_invoice" position="before">
                 <button name="%(action_wizard_export_fatturapa)d" type="action"
                         string="Export E-invoice" class="oe_highlight"
-                        attrs="{'invisible': ['|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'!=', 'open')]}"/>
+                        attrs="{'invisible': ['|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'not in', ['open', 'paid'])]}"/>
             </button>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1"/>
