@@ -97,7 +97,8 @@ class Fetchmail(orm.Model):
                             pop_server.list()
                             for num in range(1, min(
                                     MAX_POP_MESSAGES, num_messages) + 1):
-                                (header, messages, octets) = pop_server.retr(num)
+                                (header, messages, octets) = pop_server.retr(
+                                    num)
                                 message = '\n'.join(messages)
                                 try:
                                     mail_thread.message_process(
@@ -108,7 +109,8 @@ class Fetchmail(orm.Model):
                                         context=context)
                                     pop_server.dele(num)
                                     # See the comments in the IMAP part
-                                    server.write({'last_pec_error_message': ''})
+                                    server.write(
+                                        {'last_pec_error_message': ''})
                                     server.last_pec_error_message = ''
                                 except Exception as e:
                                     _logger.info(
