@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_form_fatturapa_in" model="ir.ui.view">
+            <field name="name">partner.form.fatturapa.in</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_partner_form_fatturapa"></field>
+            <field name="arch" type="xml">
+                <group name="fatturapa_group" position="inside">
+                    <group attrs="{'invisible': ['|', ('supplier', '=', False), ('electronic_invoice_subjected', '=', False)]}">
+                        <field name="e_invoice_detail_level" />
+                        <field name="e_invoice_default_product_id" ></field>
+                    </group>
+                    <newline/>
+                    <group attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                        <field name="register" readonly="1"></field>
+                        <field name="register_code" readonly="1"></field>
+                        <field name="register_fiscalpos" readonly="1"></field>
+                        <field name="register_province" readonly="1"></field>
+                        <field name="register_regdate" readonly="1"></field>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>
