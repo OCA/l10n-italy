@@ -32,7 +32,7 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
   - pip install unidecode==0.04.17
-  - pip install PyXB==1.2.4
+  - pip install PyXB==1.2.5
 
 script:
   - travis_run_tests
