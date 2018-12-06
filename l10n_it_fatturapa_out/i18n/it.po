@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_fatturapa_out
+# 	* l10n_it_fatturapa_out
 #
 msgid ""
 msgstr ""
@@ -29,6 +29,7 @@ msgstr "Nome allegato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_local_url
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_website_url
 msgid "Attachment URL"
 msgstr "URL allegato"
 
@@ -210,9 +211,11 @@ msgstr "Allegati fattura elettronica"
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:99
 #, python-format
-msgid "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
+msgid ""
+"FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
 "%s"
-msgstr "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
+msgstr ""
+"FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
 "%s"
 
 #. module: l10n_it_fatturapa_out
@@ -225,7 +228,9 @@ msgstr "Fattura Elettronica Export File"
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:195
 #, fuzzy, python-format
-msgid "FatturaPA fiscal position not set for company %s. (Go to Accounting --> Configuration --> Settings --> Fattura PA)"
+msgid ""
+"FatturaPA fiscal position not set for company %s. (Go to Accounting --> "
+"Configuration --> Settings --> Fattura PA)"
 msgstr ""
 "Posizione fiscale fatturaPA non impostata per l'azienda %s. (Andare su "
 "Contabilità --> Configurazione --> Impostazioni --> Fattura PA)"
@@ -495,7 +500,9 @@ msgstr "P. IVA e codice fiscale non impostati per %s"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_type
-msgid "You can either upload a file from your computer or copy/paste an internet link to your file."
+msgid ""
+"You can either upload a file from your computer or copy/paste an internet "
+"link to your file."
 msgstr ""
 "È possibile caricare un file dal computer oppure fare copia/incolla di un "
 "collegamento Internet nel file."
