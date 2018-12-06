@@ -211,7 +211,7 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(_(
                 'Fiscal position for electronic invoice not set '
                 'for company %s. '
-                '(Go to Accounting →  Configuration →  Settings →  '
+                '(Go to Accounting / Configuration / Settings / '
                 'Electronic Invoice)' % company.name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
