@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-01 08:10+0000\n"
-"PO-Revision-Date: 2018-10-15 15:59+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2018-12-07 15:08+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.1\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_account_tax_kind
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__code
@@ -38,12 +38,12 @@ msgstr "Creato il"
 #. module: l10n_it_account_tax_kind
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_account_tax_kind
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__kind_id
 msgid "Exemption Kind"
-msgstr ""
+msgstr "Natura esenzione"
 
 #. module: l10n_it_account_tax_kind
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__id
@@ -86,12 +86,12 @@ msgstr "Imposta"
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_tree
 msgid "Tax Exemption Kind"
-msgstr ""
+msgstr "Natura esenzione imposta"
 
 #. module: l10n_it_account_tax_kind
 #: model:ir.model,name:l10n_it_account_tax_kind.model_account_tax_kind
 msgid "Tax exemption kind"
-msgstr ""
+msgstr "Natura esenzione imposta"
 
 #~ msgid "Kind"
 #~ msgstr "Tipo"
