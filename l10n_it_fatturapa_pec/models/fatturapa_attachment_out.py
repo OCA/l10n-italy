@@ -76,31 +76,23 @@ class FatturaPAAttachmentOut(models.Model):
                 'attachment_ids': [(6, 0, att.ir_attachment_id.ids)],
                 'email_from': (
                     self.env.user.company_id.email_from_for_fatturaPA),
+                'reply_to': (
+                    self.env.user.company_id.email_from_for_fatturaPA),
                 'mail_server_id': self.env.user.company_id.sdi_channel_id.
                 pec_server_id.id,
             })
 
             mail = self.env['mail.mail'].create({
                 'mail_message_id': mail_message.id,
+                'body_html': mail_message.body,
                 'email_to': self.env.user.company_id.email_exchange_system,
+                'headers': {
+                    'Return-Path':
+                    self.env.user.company_id.email_from_for_fatturaPA
+                }
             })
 
             if mail:
-                config_parameter = self.env['ir.config_parameter'].sudo()
-                bounce_alias = config_parameter.get_param(
-                    "mail.bounce.alias")
-                catchall_domain = config_parameter.get_param(
-                    "mail.catchall.domain")
-                catchall_alias = config_parameter.get_param(
-                    "mail.catchall.alias")
-                # temporary disable email parameters incompatible with PEC
-                if bounce_alias:
-                    config_parameter.set_param('mail.bounce.alias', False)
-                if catchall_domain:
-                    config_parameter.set_param('mail.catchall.domain', False)
-                if catchall_alias:
-                    config_parameter.set_param('mail.catchall.alias', False)
-
                 try:
                     mail.send(raise_exception=True)
                     att.state = 'sent'
@@ -111,16 +103,6 @@ class FatturaPAAttachmentOut(models.Model):
                 except MailDeliveryException as e:
                     att.state = 'sender_error'
                     mail.body = str(e)
-
-                if bounce_alias:
-                    config_parameter.set_param(
-                        'mail.bounce.alias', bounce_alias)
-                if catchall_domain:
-                    config_parameter.set_param(
-                        'mail.catchall.domain', catchall_domain)
-                if catchall_alias:
-                    config_parameter.set_param(
-                        'mail.catchall.alias', catchall_alias)
 
     @api.multi
     def parse_pec_response(self, message_dict):
