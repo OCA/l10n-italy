@@ -19,10 +19,6 @@
                                 Default products used in electronic supplier invoices
                             </div>
                             <div class="content-group">
-                                <div class="row mt16">
-                                    <label for="dati_bollo_product_id" class="col-lg-6 o_light_label"/>
-                                    <field name="dati_bollo_product_id" class="col-lg-6"/>
-                                </div>
                                 <div class="row">
                                     <label for="cassa_previdenziale_product_id" class="col-lg-6 o_light_label"/>
                                     <field name="cassa_previdenziale_product_id" class="col-lg-6"/>
