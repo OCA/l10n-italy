@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_template_form_view_account_stamp" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <page string='Accounting' position="inside">
+                    <group string="Tax stamp">
+                        <field name="is_stamp"/>
+                        <p attrs="{'invisible': [('is_stamp', '=', False)]}" colspan="2">
+                            For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
+                        </p>
+                        <field name="stamp_apply_min_total_base" attrs="{'invisible': [('is_stamp', '=', False)], 'required': [('is_stamp', '=', True)]}"/>
+                        <field name="stamp_apply_tax_ids" attrs="{'invisible': [('is_stamp', '=', False)]}" widget="many2many_tags">
+                            <tree>
+                                <field name="description"/>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+
+                <xpath expr="//field[@name='property_account_income']" position="attributes">
+                    <attribute name="attrs">{'required': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='property_account_expense']" position="attributes">
+                    <attribute name="attrs">{'required': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>
