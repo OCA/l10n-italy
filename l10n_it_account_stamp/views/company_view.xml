@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_account_config_settings">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">account.config.settings</field>
+            <field name="inherit_id" ref="account.view_account_config_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='account_config']" position="after">
+                    <label for="id" string="Tax Stamp Product"/>
+                        <div id="tax_stamp">
+                            <div>
+                                <label for="tax_stamp_product_id"/>
+                                <field name="tax_stamp_product_id" required="1" class="oe_inline"/>
+                            </div>
+                        </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
