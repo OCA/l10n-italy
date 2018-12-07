@@ -123,10 +123,6 @@
             <field name="analytic_tag_ids" position="after">
                 <field name="admin_ref"/>
             </field>
-            <field name="residual" position="after">
-                <field name="virtual_stamp" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
-                <field name="stamp_amount" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
-            </field>
             <xpath expr="//notebook" position="inside">
                 <page string="E-bill Inconsistencies" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
                     <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>

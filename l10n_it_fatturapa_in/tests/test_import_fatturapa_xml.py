@@ -204,8 +204,6 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
 
     def test_05_xml_import(self):
-        self.env.user.company_id.dati_bollo_product_id = (
-            self.service.id)
         res = self.run_wizard('test5', 'IT05979361218_003.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -214,12 +212,6 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.intermediary.name, 'MARIO ROSSI')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
         self.assertEqual(invoice.intermediary.lastname, 'ROSSI')
-        bollo_found = False
-        for line in invoice.invoice_line_ids:
-            if line.product_id.id == self.service.id:
-                self.assertEqual(line.price_unit, 6)
-                bollo_found = True
-        self.assertTrue(bollo_found)
         self.assertEqual(
             invoice.e_invoice_line_ids[0].discount_rise_price_ids[0].name,
             'SC')
@@ -227,9 +219,9 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             invoice.e_invoice_line_ids[0].discount_rise_price_ids[0].
             percentage, 10
         )
-        self.assertEqual(invoice.amount_untaxed, 15)
+        self.assertEqual(invoice.amount_untaxed, 9)
         self.assertEqual(invoice.amount_tax, 0)
-        self.assertEqual(invoice.amount_total, 15)
+        self.assertEqual(invoice.amount_total, 9)
 
     def test_06_import_except(self):
         # File not exist Exception
