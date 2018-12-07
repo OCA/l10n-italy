@@ -45,6 +45,11 @@ class WizardRegistroIva(models.TransientModel):
             self.from_date = self.date_range_id.date_start
             self.to_date = self.date_range_id.date_end
 
+    @api.onchange('tax_registry_id')
+    def on_change_tax_registry_id(self):
+        if self.tax_registry_id:
+            self.layout_type = self.tax_registry_id.layout_type
+
     def _get_move_ids(self, wizard):
         moves = self.env['account.move'].search([
             ('date', '>=', self.from_date),
