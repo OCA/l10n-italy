@@ -304,9 +304,6 @@ class AccountInvoice(models.Model):
     )
     #  2.1.1.5.2 2.1.1.5.3 2.1.1.5.4 mapped to l10n_it_withholding_tax fields
 
-    #  2.1.1.6
-    virtual_stamp = fields.Boolean('Virtual Stamp', default=False, copy=False)
-    stamp_amount = fields.Float('Stamp Amount', copy=False)
     #  2.1.1.7
     welfare_fund_ids = fields.One2many(
         'welfare.fund.data.line', 'invoice_id',
