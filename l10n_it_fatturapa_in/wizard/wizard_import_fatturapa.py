@@ -564,35 +564,6 @@ class WizardImportFatturapa(models.TransientModel):
             self.env['account.invoice.line'].create(line_vals)
         return True
 
-    def add_dati_bollo(self, invoice, DatiGeneraliDocumento):
-        # 2.1.1.6
-        Stamps = DatiGeneraliDocumento.DatiBollo
-        if Stamps:
-            invoice.virtual_stamp = Stamps.BolloVirtuale
-            invoice.stamp_amount = float(Stamps.ImportoBollo)
-            if self.e_invoice_detail_level == '2':
-                journal = self.get_purchase_journal(invoice.company_id)
-                credit_account_id = journal.default_credit_account_id.id
-                line_vals = {
-                    'invoice_id': invoice.id,
-                    'name': _(
-                        "Stamp duty payed under the MEF Decree June 17, "
-                        "2014 (art. 6)"
-                    ),
-                    'account_id': credit_account_id,
-                    'price_unit': invoice.stamp_amount,
-                    'quantity': 1,
-                    }
-                if self.env.user.company_id.dati_bollo_product_id:
-                    dati_bollo_product = (
-                        self.env.user.company_id.dati_bollo_product_id)
-                    line_vals['product_id'] = dati_bollo_product.id
-                    line_vals['name'] = dati_bollo_product.name
-                    self.adjust_accounting_data(
-                        dati_bollo_product, line_vals
-                    )
-                self.env['account.invoice.line'].create(line_vals)
-
     def _createPayamentsLine(self, payment_id, line, partner_id):
         PaymentModel = self.env['fatturapa.payment.detail']
         PaymentMethodModel = self.env['fatturapa.payment_method']
@@ -938,9 +909,6 @@ class WizardImportFatturapa(models.TransientModel):
         invoice._onchange_invoice_line_wt_ids()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
-
-        self.add_dati_bollo(
-            invoice, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
 
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
