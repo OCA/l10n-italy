@@ -49,7 +49,7 @@ addon | version | summary
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.2.0 | Ricevute Bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 10.0.1.1.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.1.0 | Split Payment
-[l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.2 | Italian Localization - VAT Registries
+[l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.3 | Italian Localization - VAT Registries
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 10.0.1.0.0 | Bridge module to make VAT registries work with Split Payment
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 10.0.1.1.1 | Italian localization - Website Sale Corrispettivi
