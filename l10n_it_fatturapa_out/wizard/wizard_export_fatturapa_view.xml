@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_export_fatturapa_form_view" model="ir.ui.view">
+        <field name="name">Export Electronic Invoice</field>
+        <field name="model">wizard.export.fatturapa</field>
+        <field name="arch" type="xml">
+            <form string="Export Electronic Invoice">
+                <sheet>
+                    <group>
+                        <separator colspan="2" string="If you want to add a PDF version of the invoice into the XML, select which one. Leave empty otherwise"/>
+                        <field name="report_print_menu"
+                               string="Attached report"
+                               widget="selection"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="exportFatturaPA" string="Export"
+                            type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_wizard_export_fatturapa"
+                key2="client_action_multi"
+                name="Export Electronic Invoice"
+                res_model="wizard.export.fatturapa"
+                src_model="account.invoice"
+                target="new"
+                view_id="wizard_export_fatturapa_form_view"
+                view_mode="form"/>
+</odoo>
