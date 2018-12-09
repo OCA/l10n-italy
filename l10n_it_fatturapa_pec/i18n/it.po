@@ -1,0 +1,242 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_pec
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: \n"
+"Language: it_IT\n"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: selection:account.invoice,fatturapa_state:0
+#: selection:fatturapa.attachment.out,state:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Delivered"
+msgstr "Consegnata"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__delivered_date
+msgid "Delivered Date"
+msgstr "Data consegna"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
+msgid "E-invoice Export File"
+msgstr "File esportato e-fattura"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_account_invoice__fatturapa_state
+msgid "E-invoice State"
+msgstr "Stato e-fattura"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Electronic Invoice Error"
+msgstr "Errore fattura elettronica"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Electronic Invoice Ready to Send"
+msgstr "Fattura elettronica pronta per l'invio"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Electronic Invoice State"
+msgstr "Stato fattura elettronica"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_mail_thread
+msgid "Email Thread"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: selection:account.invoice,fatturapa_state:0
+msgid "Error"
+msgstr "Errore"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Server email in ingresso"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__last_pec_error_message
+msgid "Last PEC Error Message"
+msgstr "Ultimo messaggio di errore PEC"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__last_sdi_response
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Last Response from Exchange System"
+msgstr "Ultima risposta dal sistema di interscambio"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
+msgid "Last error message"
+msgstr "Ultimo messaggio di errore"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:56
+#, python-format
+msgid "No incoming PEC server found. Please configure it."
+msgstr "Nessun server PEC in ingresso trovato. Prego configurarlo."
+
+#. module: l10n_it_fatturapa_pec
+#: selection:account.invoice,fatturapa_state:0
+#: selection:fatturapa.attachment.out,state:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
+msgid "Ready to Send"
+msgstr "Pronta per l'invio"
+
+#. module: l10n_it_fatturapa_pec
+#: selection:fatturapa.attachment.out,state:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
+msgid "Recipient Error"
+msgstr "Errore destinatario"
+
+#. module: l10n_it_fatturapa_pec
+#: selection:fatturapa.attachment.out,state:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
+msgid "Rejected (PA)"
+msgstr "Rifiutato (PA)"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Reset to ready"
+msgstr "Pronta per l'incio"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Selected files will be sent to the Exchange System"
+msgstr "I file selezionati verranno inviati al sistema di interscambio"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Send"
+msgstr "Invia"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_fatturapa_send_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Send Electronic Invoice"
+msgstr "Invia fattura elettronica"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Send Via PEC"
+msgstr "Invia via PEC"
+
+#. module: l10n_it_fatturapa_pec
+#: selection:fatturapa.attachment.out,state:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
+msgid "Sender Error"
+msgstr "Errore trasmittente"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__sending_user
+msgid "Sending User"
+msgstr "Utente trasmittente"
+
+#. module: l10n_it_fatturapa_pec
+#: selection:account.invoice,fatturapa_state:0
+#: selection:fatturapa.attachment.out,state:0
+msgid "Sent"
+msgstr "Inviata"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__sending_date
+msgid "Sent Date"
+msgstr "Data invio"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Sent by"
+msgstr "Inviato da"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__state
+msgid "State"
+msgstr "Stato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_fatturapa_send_pec
+msgid "Wizard to send multiple e-invoice PEC"
+msgstr "Procedura per inviare PEC multiple"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:242
+#, python-format
+msgid "You can only delete 'ready to send' files."
+msgstr "E' solamente possibile eliminare file 'pronti per l'invio'."
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:46
+#, python-format
+msgid "You can only reset 'sender error' files."
+msgstr "E' solamente possibile reimpostare file in 'errore trasmittente'."
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
+#, python-format
+msgid "You can only send 'ready to send' files."
+msgstr "E' solamente possibile inviare file 'pronti per l'invio'."
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "on"
+msgstr ""
