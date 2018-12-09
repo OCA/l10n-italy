@@ -110,6 +110,7 @@ msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users__fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Fiscal Code"
 msgstr ""
@@ -133,6 +134,7 @@ msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner__fiscalcode
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users__fiscalcode
 msgid "Italian Fiscal Code"
 msgstr ""
 

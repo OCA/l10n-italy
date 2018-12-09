@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 03:08+0000\n"
-"PO-Revision-Date: 2018-10-14 16:57+0000\n"
+"PO-Revision-Date: 2018-12-10 15:58+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.1\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__cadastre_code
 msgid "Belfiore cadastre code (not used anymore)"
-msgstr "Codice catasto Belfiore (non in uso)"
+msgstr "Codice catasto Belfiore (non più in uso)"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__cadastre_code_var
@@ -54,7 +54,7 @@ msgstr "Calcola C.F."
 #: model:ir.actions.act_window,name:l10n_it_fiscalcode.action_compute_fc
 #: model:ir.model,name:l10n_it_fiscalcode.model_wizard_compute_fc
 msgid "Compute Fiscal Code"
-msgstr "Calcolo Codice Fiscale"
+msgstr "Calcolo codice fiscale"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_partner
@@ -99,8 +99,8 @@ msgid ""
 "onepartner_fiscalcode"
 msgstr ""
 "Il codice fiscale esistente %(partner_fiscalcode)s risulta diverso da quello "
-"calcolato (%(compute)s). Rimuovere prima quello esistente per usare quello "
-"calcolatopartner_fiscalcode"
+"calcolato (%(compute)s). Rimuovere prima quello esistente partner_fiscalcode "
+"per usare quello calcolato"
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
@@ -114,15 +114,15 @@ msgstr "Nome"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users__fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Fiscal Code"
-msgstr "Codice Fiscale"
+msgstr "Codice fiscale"
 
 #. module: l10n_it_fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.print_invoice_inherit
-#, fuzzy
 msgid "Fiscal code:"
-msgstr "Codice Fiscale"
+msgstr "Codice fiscale:"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__id
@@ -138,8 +138,9 @@ msgstr "Dati personali"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner__fiscalcode
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users__fiscalcode
 msgid "Italian Fiscal Code"
-msgstr "Codice Fiscale italiano"
+msgstr "Codice fiscale italiano"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code____last_update
@@ -239,7 +240,7 @@ msgstr "Cognome"
 #. module: l10n_it_fiscalcode
 #: constraint:res.partner:0
 msgid "The fiscal code doesn't seem to be correct."
-msgstr "Il Codice Fiscale non sembra corretto."
+msgstr "Il codice fiscale non sembra corretto."
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__var_date
