@@ -17,73 +17,70 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_code
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_code
+#: field:fatturapa.payment_method,code:0 field:fatturapa.payment_term,code:0
 msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_create_uid
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_create_uid
+#: field:fatturapa.payment_method,create_uid:0
+#: field:fatturapa.payment_term,create_uid:0
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_create_date
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_create_date
+#: field:fatturapa.payment_method,create_date:0
+#: field:fatturapa.payment_term,create_date:0
 msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_name
+#: field:fatturapa.payment_method,name:0 field:fatturapa.payment_term,name:0
 msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_display_name
+#: field:fatturapa.payment_method,display_name:0
+#: field:fatturapa.payment_term,display_name:0
 msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.ui.view,arch_db:l10n_it_fiscal_payment_term.view_payment_term_form_fatturapa
+#: view:account.payment.term:l10n_it_fiscal_payment_term.view_payment_term_form_fatturapa
 msgid "Fiscal"
 msgstr "Fiscale"
 
 #. module: l10n_it_fiscal_payment_term
+#: field:account.payment.term,fatturapa_pm_id:0
 #: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_method
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term_fatturapa_pm_id
 msgid "Fiscal Payment Method"
 msgstr "Metodo pagamento fiscale"
 
 #. module: l10n_it_fiscal_payment_term
+#: field:account.payment.term,fatturapa_pt_id:0
 #: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term_fatturapa_pt_id
 msgid "Fiscal Payment Term"
 msgstr "Condizioni di pagamento fiscali"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_id
+#: field:fatturapa.payment_method,id:0 field:fatturapa.payment_term,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method___last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term___last_update
+#: field:fatturapa.payment_method,__last_update:0
+#: field:fatturapa.payment_term,__last_update:0
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_write_uid
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_write_uid
+#: field:fatturapa.payment_method,write_uid:0
+#: field:fatturapa.payment_term,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultima modifica di"
 
 #. module: l10n_it_fiscal_payment_term
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_write_date
-#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term_write_date
+#: field:fatturapa.payment_method,write_date:0
+#: field:fatturapa.payment_term,write_date:0
 msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
