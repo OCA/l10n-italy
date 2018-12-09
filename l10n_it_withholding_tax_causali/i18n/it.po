@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_withholding_tax_causali
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_causali.field_withholding_tax_causale_pagamento_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax_causali.field_withholding_tax__causale_pagamento_id
 msgid "Causale pagamento"
 msgstr "Causale pagamento"
 
