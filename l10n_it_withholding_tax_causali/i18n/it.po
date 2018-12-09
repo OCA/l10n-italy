@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_withholding_tax_causali
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_causali.field_withholding_tax_causale_pagamento_id
+#: field:withholding.tax,causale_pagamento_id:0
 msgid "Causale pagamento"
 msgstr "Causale pagamento"
 
