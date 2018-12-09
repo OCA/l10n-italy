@@ -1,5 +1,5 @@
 =============================================================
-Italian Localization - Fattura Elettronica - Integrazione DDT
+Italian Localization - Fattura elettronica - Integrazione DDT
 =============================================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

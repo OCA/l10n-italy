@@ -4,7 +4,7 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    'name': 'Italian Localization - Fattura Elettronica - Canale SdI',
+    'name': 'Italian Localization - Fattura elettronica - Canale SdI',
     "summary": "Aggiunge il canale di invio/ricezione dei file XML "
                "attraverso lo SdI",
     "version": "10.0.1.1.0",

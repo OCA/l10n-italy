@@ -6,7 +6,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura Elettronica - Ricezione',
+    'name': 'Italian Localization - Fattura elettronica - Ricezione',
     'version': '10.0.1.2.2',
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
