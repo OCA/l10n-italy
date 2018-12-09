@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_withholding_tax
+# 	* l10n_it_withholding_tax
 #
 msgid ""
 msgstr ""
@@ -89,7 +89,9 @@ msgstr "Codice"
 #: model:ir.model.fields,help:l10n_it_withholding_tax.field_account_invoice_withholding_tax__base_coeff
 #: model:ir.model.fields,help:l10n_it_withholding_tax.field_account_invoice_withholding_tax__tax_coeff
 msgid "Coeff used         to compute amount competence in the riconciliation"
-msgstr "Coefficiente utilizzato per calcolare l'imponibile di competenza in base all'importo del pagamento"
+msgstr ""
+"Coefficiente utilizzato per calcolare l'imponibile di competenza in base "
+"all'importo del pagamento"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__company_id
@@ -101,8 +103,11 @@ msgstr "Azienda"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_abstract_payment
-msgid "Contains the logic shared between models which allows to register payments"
-msgstr "Contiene la logica condivisa dai modelli che consente di registrare pagamenti."
+msgid ""
+"Contains the logic shared between models which allows to register payments"
+msgstr ""
+"Contiene la logica condivisa dai modelli che consente di registrare "
+"pagamenti."
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__create_uid
@@ -242,7 +247,8 @@ msgstr "Movimento contabile"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax__journal_id
 msgid "Journal used at invoice payment to register withholding tax"
-msgstr "Registro utilizzato al pagamento della fattura per rilevare la ritenuta"
+msgstr ""
+"Registro utilizzato al pagamento della fattura per rilevare la ritenuta"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax____last_update
@@ -272,10 +278,18 @@ msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:380
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:34
+#, python-format
+msgid "MISC"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:381
 #, python-format
 msgid "Move %s is reconciled (%s). You must unreconcile it first"
-msgstr "La registrazione %s è riconciliata (%s). E' necessario annullare la riconciliazione prima"
+msgstr ""
+"La registrazione %s è riconciliata (%s). E' necessario annullare la "
+"riconciliazione prima"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__move_ids
@@ -339,20 +353,10 @@ msgid "Payment Terms"
 msgstr "Termini di pagamento"
 
 #. module: l10n_it_withholding_tax
-#: model:ir.model,name:l10n_it_withholding_tax.model_account_payment
-msgid "Payments"
-msgstr "Pagamenti"
-
-#. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__rate_ids
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
 msgid "Rates"
 msgstr "Tassi"
-
-#. module: l10n_it_withholding_tax
-#: model:ir.model,name:l10n_it_withholding_tax.model_account_register_payments
-msgid "Register Payments"
-msgstr "Registrazione pagamenti"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice__amount_net_pay_residual
@@ -441,13 +445,13 @@ msgid "W.T. Reg. on"
 msgstr "R.A. reg. il"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:284
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:285
 #, python-format
 msgid "WT %s - %s"
 msgstr "R.A. %s - %s"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:294
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:295
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr "R.A. %s - %s - %s"
@@ -489,13 +493,16 @@ msgstr "Riconciliazione R.A."
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:160
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:396
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:397
 #, python-format
-msgid "Warning! Only Withholding Tax moves in Due status                     can be deleted"
-msgstr "Attenzione! Solo Voci di ritenuta \"Da pagare\" possono essere cancellate"
+msgid ""
+"Warning! Only Withholding Tax moves in Due status                     can be "
+"deleted"
+msgstr ""
+"Attenzione! Solo Voci di ritenuta \"Da pagare\" possono essere cancellate"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:280
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:281
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr "Attenzione! Movimento di ritenuta già esistente: %s"
@@ -566,7 +573,6 @@ msgid "Withholding Tax statement"
 msgstr "Situazione ritenuta"
 
 #. module: l10n_it_withholding_tax
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_invoice_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_invoice_supplier_form
 msgid "Withholding Taxes"
 msgstr "Ritenute d'acconto"
@@ -586,3 +592,9 @@ msgstr "Importo ritenuta"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__journal_id
 msgid "Withholding tax journal"
 msgstr "Registro ritenuta d'acconto"
+
+#~ msgid "Payments"
+#~ msgstr "Pagamenti"
+
+#~ msgid "Register Payments"
+#~ msgstr "Registrazione pagamenti"
