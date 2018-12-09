@@ -7,29 +7,33 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-23 17:48+0000\n"
-"PO-Revision-Date: 2018-08-23 17:48+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2018-12-10 15:58+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_causali_pagamento
 #: model:ir.model,name:l10n_it_causali_pagamento.model_causale_pagamento
+#, fuzzy
 msgid "Causale Pagamento"
-msgstr "Causale Pagamento"
+msgstr "Causale pagamento"
 
 #. module: l10n_it_causali_pagamento
 #: model_terms:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_tree
+#, fuzzy
 msgid "Causale pagamento"
 msgstr "Causale pagamento"
 
 #. module: l10n_it_causali_pagamento
 #: model:ir.actions.act_window,name:l10n_it_causali_pagamento.action_causale_pagamento
 #: model:ir.ui.menu,name:l10n_it_causali_pagamento.menu_causale_pagamento
+#, fuzzy
 msgid "Causali pagamento"
 msgstr "Causali pagamento"
 
@@ -56,7 +60,7 @@ msgstr "Descrizione"
 #. module: l10n_it_causali_pagamento
 #: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_causali_pagamento
 #: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__id
@@ -71,12 +75,12 @@ msgstr "Ultima modifica il"
 #. module: l10n_it_causali_pagamento
 #: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_causali_pagamento
 #: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_causali_pagamento
 #: code:addons/l10n_it_causali_pagamento/models/causale_pagamento.py:18
