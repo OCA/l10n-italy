@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2018-12-07 15:08+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2018-12-10 15:58+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -24,13 +24,13 @@ msgstr ""
 #: code:addons/l10n_it_rea/models/res_company.py:54
 #, python-format
 msgid "%s %s Share Cap. %s â¬ %s %s"
-msgstr "%s %s Cap. Soc. %s â¬ %s %s"
+msgstr "%s %s Cap. Sociale %s â¬ %s %s"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_capital
 msgid "Capital"
-msgstr "Capitale Sociale"
+msgstr "Capitale"
 
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_company
@@ -57,7 +57,7 @@ msgstr "Stato di liquidazione"
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_member_type
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_member_type
 msgid "Member Type"
-msgstr "Tipo Socio"
+msgstr "Tipo socio"
 
 #. module: l10n_it_rea
 #: selection:res.partner,rea_member_type:0
@@ -73,7 +73,7 @@ msgstr "Non in liquidazione"
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_office
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_office
 msgid "Office Province"
-msgstr "Provincia Ufficio"
+msgstr "Provincia ufficio"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_code
@@ -94,7 +94,7 @@ msgstr "Dati REA"
 #. module: l10n_it_rea
 #: sql_constraint:res.partner:0
 msgid "The rea code code must be unique per company !"
-msgstr "Il codice REA è unico per ogni Azieda !"
+msgstr "Il codice REA deve essere univoco per Azienda !"
 
 #. module: l10n_it_rea
 #: selection:res.partner,rea_member_type:0
