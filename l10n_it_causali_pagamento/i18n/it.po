@@ -22,8 +22,8 @@ msgid "Causale Pagamento"
 msgstr "Causale Pagamento"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_form
-#: model:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_tree
+#: model_terms:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_causali_pagamento.view_causale_pagamento_tree
 msgid "Causale pagamento"
 msgstr "Causale pagamento"
 
@@ -34,47 +34,47 @@ msgid "Causali pagamento"
 msgstr "Causali pagamento"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_code
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__code
 msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_create_uid
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__create_uid
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_create_date
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__create_date
 msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_name
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__name
 msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_display_name
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__display_name
 msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_id
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento___last_update
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_write_uid
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__write_uid
 msgid "Last Updated by"
 msgstr "Ultima modifica di"
 
 #. module: l10n_it_causali_pagamento
-#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento_write_date
+#: model:ir.model.fields,field_description:l10n_it_causali_pagamento.field_causale_pagamento__write_date
 msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
