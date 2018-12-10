@@ -932,7 +932,7 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_lines.append(invoice_line_id)
             einvoiceline = self.create_e_invoice_line(line)
             e_invoice_line_ids.append(einvoiceline.id)
-        invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
+        invoice_data['invoice_line'] = [(6, 0, invoice_lines)]
         invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
         invoice = invoice_model.create(invoice_data)
         # invoice._onchange_invoice_line_wt_ids()
