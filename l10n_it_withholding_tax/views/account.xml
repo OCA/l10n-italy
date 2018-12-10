@@ -111,7 +111,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='discount']" position="after">
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='discount']" position="after">
                     <field name="withholding_tax_exclude"/>
                 </xpath>
             </field>
