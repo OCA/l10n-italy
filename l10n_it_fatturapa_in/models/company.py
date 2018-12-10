@@ -45,25 +45,31 @@ class AccountConfigSettings(models.TransientModel):
              'viene valorizzato l\'elemento ScontoMaggiorazione'
         )
 
-    @api.onchange('company_id')
-    def onchange_company_id(self):
-        res = super(AccountConfigSettings, self).onchange_company_id()
-        if self.company_id:
-            company = self.company_id
-            self.dati_bollo_product_id = (
-                company.dati_bollo_product_id and
-                company.dati_bollo_product_id.id or False
-                )
-            self.cassa_previdenziale_product_id = (
-                company.cassa_previdenziale_product_id and
-                company.cassa_previdenziale_product_id.id or False
-                )
-            self.sconto_maggiorazione_product_id = (
-                company.sconto_maggiorazione_product_id and
-                company.sconto_maggiorazione_product_id.id or False
-                )
+    @api.v7
+    def onchange_company_id(self, cr, uid, ids, company_id, context=None):
+        res = super(AccountConfigSettings, self).onchange_company_id(
+            cr, uid, ids, company_id, context=context)
+        if company_id:
+            company = self.pool.get('res.company').browse(
+                cr, uid, company_id, context=context)
+            res['value'].update({
+                'dati_bollo_product_id': (
+                    company.dati_bollo_product_id and
+                    company.dati_bollo_product_id.id or False
+                    ),
+                'cassa_previdenziale_product_id': (
+                    company.cassa_previdenziale_product_id and
+                    company.cassa_previdenziale_product_id.id or False
+                    ),
+                'sconto_maggiorazione_product_id': (
+                    company.sconto_maggiorazione_product_id and
+                    company.sconto_maggiorazione_product_id.id or False
+                    ),
+            })
         else:
-            self.dati_bollo_product_id = False
-            self.cassa_previdenziale_product_id = False
-            self.sconto_maggiorazione_product_id = False
+            res['value'].update({
+                'dati_bollo_product_id': False,
+                'cassa_previdenziale_product_id': False,
+                'sconto_maggiorazione_product_id': False,
+            })
         return res
