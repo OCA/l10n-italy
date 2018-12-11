@@ -664,7 +664,7 @@ class WizardExportFatturapa(orm.TransientModel):
             line.invoice_line_tax_id[0].price_include
         ):
             res = line.price_unit / (
-                1 + (line.invoice_line_tax_id[0].amount / 100))
+                1 + line.invoice_line_tax_id[0].amount)
         return res
 
     def setDettaglioLinee(self, cr, uid, invoice, body, context=None):
