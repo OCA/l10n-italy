@@ -7,7 +7,6 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <!--<button name="action_invoice_proforma2" position="before">-->
                 <button name="invoice_proforma2" position="before">
                     <button name="%(action_wizard_export_fatturapa)d" type="action" states="open"
                             string="Export E-invoice" class="oe_highlight"/>
@@ -15,13 +14,9 @@
                 <field name="partner_id" position="after">
                     <field name="electronic_invoice_subjected" invisible="1"/>
                 </field>
-                <!--<field name="analytic_tag_ids" position="after">-->
                 <xpath expr="//form/sheet/notebook/page/field[@name='invoice_line']/tree/field[@name='account_id']" position="after">
                     <field name="admin_ref"/>
                 </xpath>
-                <!--<field name="account_id" position="after">-->
-                <!--<field name="admin_ref"/>-->
-                <!--</field>-->
                 <xpath expr="//notebook" position="inside">
                     <page string="Related Documents"
                           attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">

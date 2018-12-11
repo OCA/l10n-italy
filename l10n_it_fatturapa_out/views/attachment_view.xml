@@ -13,7 +13,6 @@
                 </tree>
             </field>
         </record>
-
         <record model="ir.ui.view" id="view_fatturapa_out_attachment_search">
             <field name="name">fatturapa.attachment.out.search</field>
             <field name="model">fatturapa.attachment.out</field>
@@ -33,8 +32,8 @@
                     <div>
                         <group>
                             <group>
-                                <field name="datas" filename="datas_fname"/>
-                                <field name="datas_fname"/>
+                                <field name="datas" filename="datas_fname" />
+                                <field name="datas_fname" />
                                 <field name="name" readonly="1"/>
                             </group>
                             <group>
@@ -73,9 +72,9 @@
         </record>
 
         <menuitem action="action_fatturapa_attachment"
-                  parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
-                  name="Electronic Invoice Export Files"
-                  id="fatturapa_attachment_menu"/>
+            parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
+            name="E-invoice Export Files"
+            id="fatturapa_attachment_menu"/>
 
     </data>
 </openerp>
