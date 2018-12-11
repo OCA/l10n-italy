@@ -50,7 +50,7 @@ class ResPartner(models.Model):
     @api.constrains(
         'is_pa', 'ipa_code', 'codice_destinatario', 'is_company',
         'electronic_invoice_subjected', 'vat', 'fiscalcode', 'lastname',
-        'firstname', 'customer', 'street', 'zip', 'city', 'state_id',
+        'firstname', 'customer', 'street', 'zip', 'city',
         'country_id'
     )
     def _check_ftpa_partner_data(self):
@@ -91,11 +91,6 @@ class ResPartner(models.Model):
                 if not partner.city:
                     raise ValidationError(_(
                         'Customer %s: city is needed for XML generation.'
-                    ) % partner.name)
-                if not partner.state_id:
-                    raise ValidationError(_(
-                        'Customer %s: province is needed for XML '
-                        'generation.'
                     ) % partner.name)
                 if not partner.country_id:
                     raise ValidationError(_(
