@@ -1,5 +1,5 @@
 =========================================================
-Italian Localization - Fattura Elettronica - Supporto PEC
+Italian Localization - Fattura elettronica - Supporto PEC
 =========================================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
