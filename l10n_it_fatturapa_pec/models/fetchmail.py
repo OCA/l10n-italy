@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
-from openerp import models, api, fields
+from openerp import models, api, fields, _
 
 _logger = logging.getLogger(__name__)
 MAX_POP_MESSAGES = 50
