@@ -7,7 +7,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     'name': 'Italian Localization - Fattura elettronica - Supporto PEC',
-    'version': '10.0.1.2.0',
+    'version': '10.0.1.2.1',
     'category': 'Localization/Italy',
     'summary': 'Invio fatture elettroniche tramite PEC',
     'author': 'Openforce Srls Unipersonale, Odoo Community Association (OCA)',
@@ -25,6 +25,7 @@
         'views/fatturapa_attachment_out.xml',
         'wizard/send_pec_view.xml',
         'views/fetchmail_view.xml',
+        'security/ir.model.access.csv'
     ],
     'installable': True
 }
