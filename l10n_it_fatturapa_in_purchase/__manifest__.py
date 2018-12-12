@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - '
-            'Fattura Elettronica - Integrazione acquisti',
+            'Fattura elettronica - Integrazione acquisti',
     "summary": "Modulo ponte tra ricezione fatture elettroniche e acquisti",
     'version': '10.0.1.0.0',
     'category': 'Hidden',

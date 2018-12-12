@@ -1,5 +1,5 @@
 ==================================================================
-Italian Localization - Fattura Elettronica - Integrazione acquisti
+Italian Localization - Fattura elettronica - Integrazione acquisti
 ==================================================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
