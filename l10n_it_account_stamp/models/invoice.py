@@ -48,8 +48,8 @@ class AccountInvoice(models.Model):
                     stamp_account = stamp_product_id.property_account_expense
                 if not stamp_account:
                     raise exceptions.Warning(
-                        _('Missing account configuration for %s')
-                        % stamp_product_id.name)
+                        _('Missing account income/expense configuration for'
+                          ' %s') % stamp_product_id.name)
                 invoice_line_obj.create({
                         'invoice_id': inv.id,
                         'product_id': stamp_product_id.id,
