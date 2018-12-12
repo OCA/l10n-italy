@@ -11,8 +11,19 @@ class AccountInvoice(models.Model):
         dt = self._get_document_fiscal_type(
             self.type, self.partner_id, self.fiscal_position_id,
             self.journal_id)
-        if len(dt) == 1:
+        if dt:
             self.fiscal_document_type_id = dt[0]
+
+    @api.model
+    def create(self, vals):
+        invoice = super(AccountInvoice, self).create(vals)
+        if not invoice.fiscal_document_type_id:
+            dt = self._get_document_fiscal_type(
+                invoice.type, invoice.partner_id, invoice.fiscal_position_id,
+                invoice.journal_id)
+            if dt:
+                invoice.fiscal_document_type_id = dt[0]
+        return invoice
 
     def _get_document_fiscal_type(self, type=None, partner=None,
                                   fiscal_position=None, journal=None):
