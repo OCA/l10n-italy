@@ -18,19 +18,18 @@ class AccountInvoice(models.Model):
             for key in taxes.keys():
                 tax_base_amounts[key[1]] = tax_base_amounts.get(
                     key[1], 0.0) + taxes[key]['base_amount']
-            stamp_product_id = self.env.user.company_id.\
-                account_stamp_product_id
+            stamp_product_id = self.env.user.company_id.tax_stamp_product_id
             if not stamp_product_id:
                 raise exceptions.Warning(
-                    _('Missing account stamp product in company settings!')
+                    _('Missing tax stamp product in company settings!')
                 )
             for l in inv.invoice_line:
                 if l.product_id and l.product_id.is_stamp:
                     l.unlink()
             total_tax_base = 0.0
             for tax_code_id in tax_base_amounts.keys():
-                if tax_code_id in stamp_product_id.stamp_apply_tax_code_ids.\
-                        ids:
+                if tax_code_id in stamp_product_id.stamp_apply_tax_ids.mapped(
+                        'base_code_id.id'):
                     total_tax_base += tax_base_amounts[tax_code_id]
             taxes = stamp_product_id.taxes_id
             if inv.type in ('in_invoice', 'in_refund'):
@@ -79,5 +78,5 @@ class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     is_stamp_line = fields.Boolean(
-        'product_id.is_stamp',
+        related='product_id.is_stamp',
         readonly=True)

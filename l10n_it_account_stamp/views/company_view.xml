@@ -7,11 +7,11 @@
             <field name="inherit_id" ref="account.view_account_config_settings"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='account_config']" position="after">
-                    <label for="id" string="Account Stamp Product"/>
-                        <div id="account_stamp">
+                    <label for="id" string="Tax Stamp Product"/>
+                        <div id="tax_stamp">
                             <div>
-                                <label for="account_stamp_product_id"/>
-                                <field name="account_stamp_product_id" required="1" class="oe_inline"/>
+                                <label for="tax_stamp_product_id"/>
+                                <field name="tax_stamp_product_id" required="1" class="oe_inline"/>
                             </div>
                         </div>
                 </xpath>

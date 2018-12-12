@@ -9,12 +9,12 @@
             <field name="arch" type="xml">
 
                 <page string='Accounting' position="inside">
-                    <group string="Account stamp">
+                    <group string="Tax stamp">
                         <field name="is_stamp"/>
                         <field name="stamp_apply_min_total_base" attrs="{'invisible': [('is_stamp', '=', False)], 'required': [('is_stamp', '=', True)]}"/>
-                        <field name="stamp_apply_tax_code_ids" attrs="{'invisible': [('is_stamp', '=', False)]}">
+                        <field name="stamp_apply_tax_ids" attrs="{'invisible': [('is_stamp', '=', False)]}">
                             <tree>
-                                <field name="code"/>
+                                <field name="description"/>
                                 <field name="name"/>
                             </tree>
                         </field>
