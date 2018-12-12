@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Localization - '
-            'Tipi di documento fiscali per dichiarativi',
+            'Tipi di documento fiscale per dichiarativi',
     'version': '12.0.1.0.0',
     'category': 'Localisation/Italy',
     'author': "Link It srl, Odoo Community Association (OCA)",
