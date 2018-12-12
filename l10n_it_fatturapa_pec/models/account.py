@@ -5,6 +5,15 @@
 
 from odoo import api, fields, models
 
+fatturapa_attachment_state_mapping = {
+    'ready': 'ready',
+    'sent': 'sent',
+    'validated': 'delivered',
+    'sender_error': 'error',
+    'recipient_error': 'error',
+    'rejected': 'error'
+}
+
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
@@ -22,14 +31,6 @@ class AccountInvoice(models.Model):
     @api.multi
     @api.depends('fatturapa_attachment_out_id.state')
     def _compute_fatturapa_state(self):
-        mapping = {
-            'ready': 'ready',
-            'sent': 'sent',
-            'validated': 'delivered',
-            'sender_error': 'error',
-            'recipient_error': 'error',
-            'rejected': 'error'
-        }
         for record in self:
-            record.fatturapa_state = \
-                mapping.get(record.fatturapa_attachment_out_id.state)
+            record.fatturapa_state = fatturapa_attachment_state_mapping.get(
+                record.fatturapa_attachment_out_id.state)

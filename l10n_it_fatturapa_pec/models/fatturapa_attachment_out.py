@@ -62,7 +62,7 @@ class FatturaPAAttachmentOut(models.Model):
         self.env.user.company_id.sdi_channel_id.check_first_pec_sending()
         states = self.mapped('state')
         if set(states) != set(['ready']):
-            raise UserError(_("You can only send 'ready to send' files."))
+            raise UserError(_("You can only send 'Ready to Send' files."))
         for att in self:
             mail_message = self.env['mail.message'].create({
                 'model': self._name,
