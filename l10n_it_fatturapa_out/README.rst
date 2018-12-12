@@ -1,5 +1,5 @@
 ======================================================
-Italian Localization - Fattura Elettronica - Emissione
+Italian Localization - Fattura elettronica - Emissione
 ======================================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

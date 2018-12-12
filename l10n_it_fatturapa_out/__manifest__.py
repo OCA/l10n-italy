@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura Elettronica - Emissione',
+    'name': 'Italian Localization - Fattura elettronica - Emissione',
     'version': '12.0.1.0.0',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
