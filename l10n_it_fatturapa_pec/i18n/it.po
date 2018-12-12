@@ -233,8 +233,8 @@ msgstr "È possibile reimpostare solo file con \"errore mittente\"."
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
-#, python-format
-msgid "You can only send 'ready to send' files."
+#, fuzzy, python-format
+msgid "You can only send 'Ready to Send' files."
 msgstr "È possibile inviare solo file \"pronti all'invio\"."
 
 #. module: l10n_it_fatturapa_pec
