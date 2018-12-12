@@ -4,7 +4,7 @@ Andare in Contabilità →  Configurazione →  Contabilità →  Canali SdI
 
 Creare un nuovo canale di tipo PEC (unico supportato per ora) e indicare:
 
-- Il server PEC da utilizzare per gli invii/ricezioni da e verso lo SdI
+- Il server PEC da utilizzare per inviare/ricevere attraverso lo SdI
 - La email PEC dello SdI, inizialmente uguale a sdi01@pec.fatturapa.it
 
 Dopo il primo invio, lo SdI risponderà segnalando l'indirizzo da utilizzare per gli invii successivi, da inserire nella configurazione del server PEC dedicato.
