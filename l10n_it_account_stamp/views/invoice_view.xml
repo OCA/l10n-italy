@@ -14,7 +14,7 @@
                 </xpath>
 
                 <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
-                    <attribute name="colors">Blue:is_stamp_line==True;</attribute>
+                    <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
                 </xpath>
 
             </field>
@@ -32,7 +32,7 @@
                 </xpath>
 
                 <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
-                    <attribute name="colors">Blue:is_stamp_line==True;</attribute>
+                    <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
                 </xpath>
 
             </field>
