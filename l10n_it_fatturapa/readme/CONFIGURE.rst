@@ -1,8 +1,8 @@
 **Italiano**
 
-* Nella scheda "Fattura Elettronica" del partner, selezionare "Soggetto a fattura elettronica" per i clienti e i fornitori soggetti alla fatturazione elettronica.
+* Nella scheda "Fattura elettronica" del partner, selezionare "Soggetto a fattura elettronica" per i clienti e i fornitori soggetti alla fatturazione elettronica.
 * Le pubbliche amministrazioni devono avere un codice IPA
-* Gli altri devono avere il Codice Destinatario o la PEC
+* Gli altri devono avere il codice destinatario o la PEC
 * Configurare le imposte riguardo a "Natura non imponibile", "Riferimento normativo" ed "Esigibilità IVA"
 * Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
 
