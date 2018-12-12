@@ -1,5 +1,5 @@
 ======================================================
-Italian Localization - Fattura Elettronica - Ricezione
+Italian Localization - Fattura elettronica - Ricezione
 ======================================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
