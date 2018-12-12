@@ -2,11 +2,12 @@
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2018 Sergio Corato
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Italian Localization - Fattura Elettronica - Emission',
-    'version': '8.0.1.2.3',
+    'version': '8.0.1.2.4',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices emission',
     'author': 'Davide Corio, Agile Business Group, Innoviu,'
