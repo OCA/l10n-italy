@@ -62,7 +62,7 @@ class FatturaPAAttachmentOut(models.Model):
         self._check_fetchmail()
         states = self.mapped('state')
         if set(states) != set(['ready']):
-            raise UserError(_("You can only send 'ready to send' files."))
+            raise UserError(_("You can only send 'Ready to Send' files."))
         for att in self:
             mail_message = self.env['mail.message'].create({
                 'model': self._name,
