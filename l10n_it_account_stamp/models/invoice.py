@@ -18,7 +18,8 @@ class AccountInvoice(models.Model):
             for key in taxes.keys():
                 tax_base_amounts[key[1]] = tax_base_amounts.get(
                     key[1], 0.0) + taxes[key]['base_amount']
-            stamp_product_id = self.env.user.company_id.tax_stamp_product_id
+            stamp_product_id = self.env.user.with_context(
+                    lang=inv.partner_id.lang).company_id.tax_stamp_product_id
             if not stamp_product_id:
                 raise exceptions.Warning(
                     _('Missing tax stamp product in company settings!')
