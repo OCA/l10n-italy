@@ -37,14 +37,14 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.attach_model = self.env['fatturapa.attachment.in']
         self.invoice_model = self.env['account.invoice']
         self.payable_account_id = self.env['account.account'].search([
-            ('user_type_id', '=', self.env.ref(
+            ('user_type', '=', self.env.ref(
                 'account.data_account_type_payable').id)
         ], limit=1).id
         self.headphones = self.env.ref(
             'product.product_product_7_product_template')
         self.imac = self.env.ref(
             'product.product_product_8_product_template')
-        self.service = self.env.ref('product.service_delivery')
+        self.service = self.env.ref('product.product_product_consultant')
 
     def run_wizard(self, name, file_name):
         attach_id = self.attach_model.create(
@@ -119,9 +119,9 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.amount_untaxed, 34.00)
         self.assertEqual(invoice.amount_tax, 7.48)
         self.assertEqual(
-            len(invoice.invoice_line_ids[0].invoice_line_tax_ids), 1)
+            len(invoice.invoice_line_ids[0].invoice_line_tax_id), 1)
         self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids[0].name,
+            invoice.invoice_line_ids[0].invoice_line_tax_id[0].name,
             '22% ftPA acq')
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].amount_untaxed, 34.00)
@@ -179,15 +179,15 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.reference, '124')
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids[0].name,
+            invoice.invoice_line_ids[0].invoice_line_tax_id[0].name,
             '22% ftPA acq')
         self.assertEqual(
-            invoice.invoice_line_ids[1].invoice_line_tax_ids[0].name,
+            invoice.invoice_line_ids[1].invoice_line_tax_id[0].name,
             '22% ftPA acq')
         self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids[0].amount, 22)
+            invoice.invoice_line_ids[0].invoice_line_tax_id[0].amount, 22)
         self.assertEqual(
-            invoice.invoice_line_ids[1].invoice_line_tax_ids[0].amount, 22)
+            invoice.invoice_line_ids[1].invoice_line_tax_id[0].amount, 22)
         self.assertEqual(
             invoice.invoice_line_ids[1].price_unit, 2)
         self.assertTrue(len(invoice.e_invoice_line_ids) == 2)

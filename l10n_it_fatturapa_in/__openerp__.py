@@ -3,6 +3,7 @@
 # Copyright 2015 innoviu Srl <http://www.innoviu.com>
 # Copyright 2018 Lorenzo Battistini
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2018 Sergio Corato
 
 {
     'name': 'Italian Localization - Fattura Elettronica reception',
