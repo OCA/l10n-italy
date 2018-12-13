@@ -4,10 +4,8 @@ import base64
 import logging
 from openerp import models, api, fields, _
 from openerp.tools import float_is_zero
-# from odoo.tools.translate import _
 from openerp.exceptions import Warning as UserError
 from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
-# from openerp.addons.base_iban.models.res_partner_bank import pretty_iban
 from openerp.addons.base_iban.base_iban import _pretty_iban
 
 _logger = logging.getLogger(__name__)
@@ -319,7 +317,7 @@ class WizardImportFatturapa(models.TransientModel):
                 ):
                     account_taxes = def_purchase_tax
         if account_taxes:
-            retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
+            retLine['invoice_line_tax_id'] = [(6, 0, [account_taxes[0].id])]
         return retLine
 
     def get_line_product(self, line, partner):
@@ -344,9 +342,9 @@ class WizardImportFatturapa(models.TransientModel):
         return product
 
     def adjust_accounting_data(self, product, line_vals):
-        if product.product_tmpl_id.property_account_expense_id:
+        if product.product_tmpl_id.property_account_expense:
             line_vals['account_id'] = (
-                product.product_tmpl_id.property_account_expense_id.id)
+                product.product_tmpl_id.property_account_expense.id)
         elif (
             product.product_tmpl_id.categ_id.property_account_expense_categ_id
         ):
@@ -362,8 +360,8 @@ class WizardImportFatturapa(models.TransientModel):
             new_tax = account.tax_ids[0]
         if new_tax:
             line_tax_id = (
-                line_vals.get('invoice_line_tax_ids') and
-                line_vals['invoice_line_tax_ids'][0][2][0]
+                line_vals.get('invoice_line_tax_id') and
+                line_vals['invoice_line_tax_id'][0][2][0]
             )
             line_tax = self.env['account.tax'].browse(line_tax_id)
             if new_tax.id != line_tax_id:
@@ -375,7 +373,7 @@ class WizardImportFatturapa(models.TransientModel):
                 else:
                     # If product has the same amount of the one in XML,
                     # I use it. Typical case: 22% det 50%
-                    line_vals['invoice_line_tax_ids'] = [
+                    line_vals['invoice_line_tax_id'] = [
                         (6, 0, [new_tax.id])]
 
     def _prepareInvoiceLine(self, credit_account_id, line, wt_found=False):
@@ -681,7 +679,7 @@ class WizardImportFatturapa(models.TransientModel):
                     SearchDom = [
                         (
                             'acc_number', '=',
-                            pretty_iban(dline.IBAN.strip())
+                            _pretty_iban(dline.IBAN.strip())
                         ),
                         ('partner_id', '=', partner_id),
                     ]
