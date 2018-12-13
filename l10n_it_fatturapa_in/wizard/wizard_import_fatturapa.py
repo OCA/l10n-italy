@@ -788,7 +788,8 @@ class WizardImportFatturapa(orm.TransientModel):
             cr, uid,
             [
                 ('type', '=', 'purchase'),
-                ('company_id', '=', company.id)
+                ('company_id', '=', company.id),
+                ('default_credit_account_id', '!=', False)
             ],
             limit=1, context=context)
         if not journal_ids:
