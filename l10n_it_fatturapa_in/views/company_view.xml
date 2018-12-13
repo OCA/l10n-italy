@@ -7,7 +7,7 @@
 	        <field name="model">account.config.settings</field>
 	        <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
 	        <field name="arch" type="xml">
-	            <xpath expr="//group[@name='fatturapa_settings']" position="inside">
+	            <xpath expr="//group[@name='fatturapa_settings']/div[last()]" position="inside">
 	                <div>
 	                    <label for="dati_bollo_product_id"/>
 	                    <field name="dati_bollo_product_id" class="oe_inline"/>
