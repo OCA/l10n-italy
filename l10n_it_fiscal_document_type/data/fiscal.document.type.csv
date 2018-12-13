@@ -11,3 +11,4 @@ id,code,name,out_invoice,in_invoice,out_refund,in_refund,priority
 6,TD10,fattura di acquisto intracomunitario beni,False,True,False,False,3
 7,TD11,fattura di acquisto intracomunitario servizi,False,True,False,False,3
 8,TD12,documento riepilogativo,False,True,False,False,3
+13,TD20,autofattura,True,False,False,False,3
