@@ -44,7 +44,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             'product.product_product_7_product_template')
         self.imac = self.env.ref(
             'product.product_product_8_product_template')
-        self.service = self.env.ref('product.service_delivery')
+        self.service = self.env.ref('product.product_product_consultant')
 
     def run_wizard(self, name, file_name):
         attach_id = self.attach_model.create(

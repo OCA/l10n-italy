@@ -342,9 +342,9 @@ class WizardImportFatturapa(models.TransientModel):
         return product
 
     def adjust_accounting_data(self, product, line_vals):
-        if product.product_tmpl_id.property_account_expense_id:
+        if product.product_tmpl_id.property_account_expense:
             line_vals['account_id'] = (
-                product.product_tmpl_id.property_account_expense_id.id)
+                product.product_tmpl_id.property_account_expense.id)
         elif (
             product.product_tmpl_id.categ_id.property_account_expense_categ_id
         ):
