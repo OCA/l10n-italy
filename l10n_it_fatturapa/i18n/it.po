@@ -591,13 +591,6 @@ msgid ""
 msgstr "Usato quando una societa' estera necessita di inviare fatture ad un P.A. italiana per mezzo di un rappresentante fiscale"
 
 #. module: l10n_it_fatturapa
-#: help:account.config.settings,fatturapa_format_id:0
-#: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_format
-#: help:res.company,fatturapa_format_id:0
-msgid "FatturaPA Format"
-msgstr "FatturaPA Formato"
-
-#. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_rea_liquidation:0
 msgid "In liquidation"
 msgstr "In liquidazione"
@@ -860,13 +853,6 @@ msgstr "FatturaPA Allegati"
 #: field:fatturapa.payment_method,name:0 field:fatturapa.payment_term,name:0
 msgid "Description"
 msgstr "Descrizione"
-
-#. module: l10n_it_fatturapa
-#: field:account.config.settings,fatturapa_format_id:0
-#: field:fatturapa.attachments,format:0
-#: field:res.company,fatturapa_format_id:0
-msgid "Format"
-msgstr "Formato"
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.data.line,pa_line_code:0
