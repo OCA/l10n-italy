@@ -21,3 +21,8 @@ class TestDocType(TransactionCase):
         })
         invoice._set_document_fiscal_type()
         self.assertEqual(invoice.fiscal_document_type_id.id, self.TD01.id)
+
+        invoice2 = self.inv_model.create({
+            'partner_id': self.partner3.id
+        })
+        self.assertEqual(invoice2.fiscal_document_type_id.id, self.TD01.id)
