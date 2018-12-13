@@ -20,16 +20,16 @@ class SdiChannel(models.Model):
         'res.company', string='Company', required=True,
         default=lambda self:
         self.env['res.company']._company_default_get('sdi.channel'))
-
-
-class SdiChannelPEC(models.Model):
-    _inherit = "sdi.channel"
-
     channel_type = fields.Selection(
         string='ES channel type', selection=SDI_CHANNELS, required=True,
         help='PEC is the only implemented channel in this module. Other '
              'channels (Web, Sftp) could be provided by external modules.',
         default='pec')
+
+
+class SdiChannelPEC(models.Model):
+    _inherit = "sdi.channel"
+
     pec_server_id = fields.Many2one(
         'ir.mail_server', string='Outgoing PEC server', required=False,
         domain=[('is_fatturapa_pec', '=', True)])

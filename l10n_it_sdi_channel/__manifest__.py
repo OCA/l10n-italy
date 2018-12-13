@@ -29,6 +29,7 @@
         "views/company_view.xml",
         'views/fetchmail_server.xml',
         'views/ir_mail_server.xml',
-        "data/config_parameter.xml"
+        "data/config_parameter.xml",
+        "demo/sdi_channel_demo.xml"
     ],
 }
