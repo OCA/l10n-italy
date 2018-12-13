@@ -319,7 +319,7 @@ class WizardImportFatturapa(models.TransientModel):
                 ):
                     account_taxes = def_purchase_tax
         if account_taxes:
-            retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
+            retLine['invoice_line_tax_id'] = [(6, 0, [account_taxes[0].id])]
         return retLine
 
     def get_line_product(self, line, partner):
@@ -362,8 +362,8 @@ class WizardImportFatturapa(models.TransientModel):
             new_tax = account.tax_ids[0]
         if new_tax:
             line_tax_id = (
-                line_vals.get('invoice_line_tax_ids') and
-                line_vals['invoice_line_tax_ids'][0][2][0]
+                line_vals.get('invoice_line_tax_id') and
+                line_vals['invoice_line_tax_id'][0][2][0]
             )
             line_tax = self.env['account.tax'].browse(line_tax_id)
             if new_tax.id != line_tax_id:
@@ -375,7 +375,7 @@ class WizardImportFatturapa(models.TransientModel):
                 else:
                     # If product has the same amount of the one in XML,
                     # I use it. Typical case: 22% det 50%
-                    line_vals['invoice_line_tax_ids'] = [
+                    line_vals['invoice_line_tax_id'] = [
                         (6, 0, [new_tax.id])]
 
     def _prepareInvoiceLine(self, credit_account_id, line, wt_found=False):
