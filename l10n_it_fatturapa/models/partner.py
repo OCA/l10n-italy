@@ -44,23 +44,22 @@ class res_partner(orm.Model):
         'register_fiscalpos': fields.many2one(
             'fatturapa.fiscal_position',
             string="Register Fiscal Position"),
-        
-
+        # 1.1.4
         'codice_destinatario': fields.char(
             "Codice Destinatario",
             help="Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che "
              "hanno accreditato un canale; qualora il destinatario non abbia "
              "accreditato un canale presso Sdi e riceva via PEC le fatture, "
              "l'elemento deve essere valorizzato con tutti zeri ('0000000'). "),
-        'pec_destinatario' : fields.char(
-        "PEC destinatario",
-        help="Indirizzo PEC al quale inviare la fattura elettronica. "
-             "Da valorizzare "
-             "SOLO nei casi in cui l'elemento informativo "
-             "<CodiceDestinatario> vale '0000000'"
-             ),
-        'electronic_invoice_subjected' : fields.boolean(
-        "Subjected to electronic invoice"),
+        # 1.1.6
+        'pec_destinatario': fields.char(
+            "PEC destinatario",
+            help="Indirizzo PEC al quale inviare la fattura elettronica. "
+                 "Da valorizzare "
+                 "SOLO nei casi in cui l'elemento informativo "
+                 "<CodiceDestinatario> vale '0000000'"),
+        'electronic_invoice_subjected': fields.boolean(
+            "Subjected to electronic invoice"),
     }
     
     _defaults = {
@@ -78,6 +77,13 @@ class res_partner(orm.Model):
                         "Il partner %s, essendo una pubblica amministrazione "
                         "deve avere il codice IPA lungo 6 caratteri"
                     ) % partner.name)
+                if not partner.is_company and (
+                    not partner.lastname or not partner.firstname
+                ):
+                    raise except_osv(_('Error' ),_(
+                        "Il partner %s, essendo persona "
+                        "deve avere Nome e Cognome"
+                    ) % partner.name)
                 if not partner.is_pa and (
                     not partner.codice_destinatario or
                     len(partner.codice_destinatario) != 7
@@ -85,13 +91,6 @@ class res_partner(orm.Model):
                     raise except_osv(_('Error' ),_(
                         "Il partner %s "
                         "deve avere il Codice Destinatario lungo 7 caratteri"
-                    ) % partner.name)
-                if not partner.is_company and (
-                    not partner.lastname or not partner.firstname
-                ):
-                    raise except_osv(_('Error' ),_(
-                        "Il partner %s, essendo persona "
-                        "deve avere Nome e Cognome"
                     ) % partner.name)
                 if (
                     not partner.is_pa and

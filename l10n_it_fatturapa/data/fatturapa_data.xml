@@ -106,12 +106,6 @@
             <field name="name">Regime forfettario (art.1, c.54-89, L. 190/2014)</field>
         </record>
 
-        <!-- FatturaPA Formats -->
-        <record id="fatturapa_format_1_1" model="fatturapa.format">
-            <field name="name">Formato di Trasmissione SDI Versione 1.1</field>
-            <field name="code">SDI11</field>
-        </record>
-
         <!-- Invoice Bundle Sequence -->
         <record id="seq_type_fatturapa" model="ir.sequence.type">
             <field name="name">FatturaPA</field>
