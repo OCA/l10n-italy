@@ -49,7 +49,7 @@ class ResPartner(models.Model):
     @api.constrains(
         'is_pa', 'ipa_code', 'codice_destinatario', 'company_type',
         'electronic_invoice_subjected', 'vat', 'fiscalcode', 'lastname',
-        'firstname', 'customer', 'street', 'zip', 'city', 'state_id',
+        'firstname', 'customer', 'street', 'zip', 'city',
         'country_id'
     )
     def _check_ftpa_partner_data(self):
