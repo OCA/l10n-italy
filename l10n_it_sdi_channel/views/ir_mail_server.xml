@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="ir_mail_server_fatturapa_out_pec_form">
+            <field name="name">ir.mail.server.fatturapa.out.pec.form</field>
+            <field name="model">ir.mail_server</field>
+            <field name="inherit_id" ref="base.ir_mail_server_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[last()]" position="after">
+                    <group string="PEC and FatturaPA">
+                        <field name="is_fatturapa_pec"/>
+                        <field name="email_from_for_fatturaPA"
+                               attrs="{'invisible': [('is_fatturapa_pec', '=', False)],
+                               'required': [('is_fatturapa_pec', '=', True)]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
