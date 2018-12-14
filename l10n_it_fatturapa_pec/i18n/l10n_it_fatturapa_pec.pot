@@ -229,7 +229,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
 #, python-format
-msgid "You can only send 'ready to send' files."
+msgid "You can only send 'Ready to Send' files."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
