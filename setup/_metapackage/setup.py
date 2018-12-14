@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo11-addon-l10n_it_corrispettivi_sale',
         'odoo11-addon-l10n_it_ddt',
         'odoo11-addon-l10n_it_esigibilita_iva',
+        'odoo11-addon-l10n_it_fatturapa',
         'odoo11-addon-l10n_it_fiscal_document_type',
         'odoo11-addon-l10n_it_fiscal_payment_term',
         'odoo11-addon-l10n_it_fiscalcode',
