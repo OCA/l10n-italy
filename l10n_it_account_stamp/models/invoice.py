@@ -13,11 +13,6 @@ class AccountInvoice(models.Model):
         invoice_line_obj = self.env['account.invoice.line']
         invoice_tax_obj = self.env['account.invoice.tax']
         for inv in self:
-            taxes = invoice_tax_obj.compute(inv)
-            tax_base_amounts = {}
-            for key in taxes.keys():
-                tax_base_amounts[key[1]] = tax_base_amounts.get(
-                    key[1], 0.0) + taxes[key]['base_amount']
             stamp_product_id = self.env.user.with_context(
                     lang=inv.partner_id.lang).company_id.tax_stamp_product_id
             if not stamp_product_id:
@@ -27,6 +22,11 @@ class AccountInvoice(models.Model):
             for l in inv.invoice_line:
                 if l.product_id and l.product_id.is_stamp:
                     l.unlink()
+            taxes = invoice_tax_obj.compute(inv)
+            tax_base_amounts = {}
+            for key in taxes.keys():
+                tax_base_amounts[key[1]] = tax_base_amounts.get(
+                    key[1], 0.0) + taxes[key]['base_amount']
             total_tax_base = 0.0
             for tax_code_id in tax_base_amounts.keys():
                 if tax_code_id in stamp_product_id.stamp_apply_tax_ids.mapped(
