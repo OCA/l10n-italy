@@ -697,7 +697,7 @@ class WizardExportFatturapa(orm.TransientModel):
             prezzo_unitario = self._get_prezzo_unitario(cr, uid, line)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
-                Descrizione=line.name.replace('\n', ' '),
+                Descrizione=unidecode(line.name.replace('\n', ' ')),
                 PrezzoUnitario=('%.' + str(
                     price_precision
                 ) + 'f') % prezzo_unitario,
@@ -735,7 +735,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 if line.product_id.ean13:
                     CodiceArticolo = CodiceArticoloType(
                         CodiceTipo='EAN',
-                        CodiceValore=line.product_id.barcode
+                        CodiceValore=line.product_id.ean13
                     )
                     DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
             line_no += 1
