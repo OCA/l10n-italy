@@ -1,0 +1,166 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="tax_22" model="account.tax">
+            <field name="name">22% e-inv</field>
+            <field name="description">22</field>
+            <field name="amount">22</field>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="tax_22_acq" model="account.tax">
+            <field name="name">22% e-bill</field>
+            <field name="description">22 pur</field>
+            <field name="amount">22</field>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="tax_22_SP" model="account.tax">
+            <field name="name">SP22%</field>
+            <field name="description">22 Split Payment</field>
+            <field name="amount">22</field>
+            <field name="payability">S</field>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="tax_00_minimi" model="account.tax">
+            <field name="name">Exempt</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n4"></field>
+            <field name="law_reference">Minimum contributors regime art.27 c.1-2 DL.98/11</field>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="tax_00_minimi_acq" model="account.tax">
+            <field name="name">Exempt Pur</field>
+            <field name="description">00 Pur</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n4"></field>
+            <field name="law_reference">Minimum contributors regime art.27 c.1-2 DL.98/11</field>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="tax_00_e15" model="account.tax">
+            <field name="name">Excluding ex Art. 15</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n1"></field>
+            <field name="law_reference">Excluding ex Article 15</field>
+        </record>
+
+        <record id="tax_00_ns" model="account.tax">
+            <field name="name">Not Subject</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2"></field>
+            <field name="law_reference">Not subject to VAT law</field>
+        </record>
+
+        <record id="tax_00_ni" model="account.tax">
+            <field name="name">Not Taxable</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n3"></field>
+            <field name="law_reference">Not subject to VAT law</field>
+        </record>
+
+        <record id="tax_00_rc" model="account.tax">
+            <field name="name">Reverse Charge</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n6"></field>
+            <field name="law_reference">Reverse Charge</field>
+        </record>
+
+        <record id="base.main_company" model="res.company">
+            <field name="street">Via Milano, 1</field>
+            <field name="zip">00100</field>
+            <field name="city">Roma</field>
+            <field name="country_id" ref="base.it"/>
+            <field name="state_id" ref="base.state_us_2"/>
+            <field name="phone">06543534343</field>
+            <field name="fatturapa_fiscal_position_id" ref="fatturapa_RF01"/>
+            <field name="fatturapa_sequence_id" ref="seq_fatturapa"/>
+            <field name="fatturapa_art73">True</field>
+            <field name="vat">IT06363391001</field>
+        </record>
+        <record id="base.main_partner" model="res.partner">
+            <field name="ipa_code">UFPQ1O</field>
+        </record>
+
+        <record id="account.account_payment_term" model="account.payment.term">
+            <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
+            <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
+        </record>
+
+        <record id="res_partner_fatturapa_0" model="res.partner">
+            <field name="name">Public Administration</field>
+            <field name="customer">1</field>
+            <field name="supplier">0</field>
+            <field name="is_company">1</field>
+            <field name="is_pa">1</field>
+            <field name="city">Torino</field>
+            <field name="zip">10100</field>
+            <field name="country_id" ref="base.it"/>
+            <field name="state_id" ref="base.state_us_2"/>
+            <field name="street">Via Roma, 1</field>
+            <field name="email">info@mypa.it</field>
+            <field name="phone">003901141622023</field>
+            <field name="website">www.mypa.it</field>
+            <field name="fiscalcode">00146089990</field>
+            <field name="vat">IT00146089990</field>
+            <field name="ipa_code">UFPQ1O</field>
+        </record>
+
+        <record id="res_partner_fatturapa_1" model="res.partner">
+            <field name="name">Intermediary</field>
+            <field name="customer">0</field>
+            <field name="supplier">1</field>
+            <field name="is_company">1</field>
+            <field name="city">Torino</field>
+            <field name="zip">10100</field>
+            <field name="country_id" ref="base.it"/>
+            <field name="state_id" ref="base.state_us_2"/>
+            <field name="street">Via Milano, 1</field>
+            <field name="email">info@mycompany.it</field>
+            <field name="phone">123456789</field>
+            <field name="fiscalcode">03297040366</field>
+            <field name="vat">IT03297040366</field>
+        </record>
+
+        <record id="res_partner_fatturapa_2" model="res.partner">
+            <field name="name">B2B Customer</field>
+            <field name="customer">1</field>
+            <field name="supplier">0</field>
+            <field name="is_company">1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Genova</field>
+            <field name="zip">16100</field>
+            <field name="country_id" ref="base.it"/>
+            <field name="state_id" ref="base.state_us_2"/>
+            <field name="street">Via Roma, 1</field>
+            <field name="email">info@mycompany.it</field>
+            <field name="fiscalcode">07973780013</field>
+            <field name="vat">IT07973780013</field>
+            <field name="codice_destinatario">0000000</field>
+            <field name="pec_destinatario">test@pec.it</field>
+        </record>
+
+        <record id="res_partner_fatturapa_3" model="res.partner">
+            <field name="name">Stable Organization</field>
+            <field name="is_company">1</field>
+            <field name="street">Via Roma, 1</field>
+            <field name="city">Milano</field>
+            <field name="zip">20100</field>
+            <field name="country_id" ref="base.it"/>
+        </record>
+
+        <record id="fiscal_position_sp" model="account.fiscal.position">
+            <field name="name">Split payment</field>
+            <field name="split_payment" eval="True"></field>
+        </record>
+
+    </data>
+</openerp>

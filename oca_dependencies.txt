@@ -1,3 +1,4 @@
 account-financial-tools
 server-ux
 stock-logistics-workflow
+partner-contact

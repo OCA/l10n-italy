@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_config_settings" model="ir.ui.view">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+            <xpath expr="//div[@id='analytic']" position="after">
+               <h2>Electronic Invoice</h2>
+               <div class="row mt16 o_settings_container">
+                     <div class="col-xs-12 col-md-6 o_setting_box" title="Configuration for electronic invoice">
+                           <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="id" string="Configuration"/>
+                                    <div id="fatturapa_settings" class="content-group">
+                                       <div class="row mt16">
+                                           <label for="fatturapa_fiscal_position_id" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_fiscal_position_id" required="1" class="oe_inline"/>
+                                       </div>
+                                       <div class="row">
+                                           <label for="fatturapa_sequence_id" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_sequence_id" required="1" class="oe_inline"/>
+                                       </div>
+                                       <div class="row mt16">
+                                           <label for="fatturapa_art73" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_art73" class="oe_inline"/>
+                                       </div>
+                                       <div class="row">
+                                           <label for="fatturapa_tax_representative" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_tax_representative" class="oe_inline"/>
+                                       </div>
+                                       <div class="row mt16">
+                                           <label for="fatturapa_stabile_organizzazione" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_stabile_organizzazione" class="oe_inline"/>
+                                       </div>
+                                       <div class="row">
+                                           <label for="fatturapa_sender_partner" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_sender_partner" class="oe_inline"/>
+                                       </div>
+                                       <div class="row mt16">
+                                           <label for="fatturapa_rea_office" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_rea_office" class="oe_inline"/>
+                                       </div>
+                                       <div class="row">
+                                           <label for="fatturapa_rea_number" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_rea_number" class="oe_inline"/>
+                                       </div>
+                                       <div class="row mt16">
+                                           <label for="fatturapa_rea_capital" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_rea_capital" class="oe_inline"/>
+                                       </div>
+                                       <div class="row">
+                                           <label for="fatturapa_rea_partner" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_rea_partner" class="oe_inline"/>
+                                       </div>
+                                       <div class="row mt16">
+                                           <label for="fatturapa_rea_liquidation" class="col-md-3 o_light_label"/>
+                                           <field name="fatturapa_rea_liquidation" class="oe_inline"/>
+                                       </div>
+                                    </div>
+                                <!-- /group -->
+                                </div>
+                            </div>
+                        </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
