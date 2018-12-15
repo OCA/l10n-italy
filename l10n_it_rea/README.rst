@@ -1,5 +1,5 @@
 ===================================
-Italian localization - Registro REA
+Italian Localization - Registro REA
 ===================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -33,7 +33,7 @@ http://www.registroimprese.it/codice-fiscale-p.iva-rea
 
 I campi vengono aggiunti nella sezione contabile della scheda del partner, dove è possibile inserire i dati del Registro Imprese.
 
-I dati REA sono anche disponibili nella scheda dell'azienda. Valorizzandoli, il campo 'registro imprese' verrà calcolato di conseguenza.
+I dati REA sono anche disponibili nella scheda dell'azienda. Valorizzandoli, il campo "Registro Imprese" verrà calcolato di conseguenza.
 
 
 **English**
@@ -78,6 +78,7 @@ Contributors
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Lorenzo Battistini <https://github.com/eLBati>
 * Andrea Gallina
+* Sergio Zanchetta <https://github.com/primes2h>
 
 Maintainers
 ~~~~~~~~~~~
