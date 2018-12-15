@@ -98,7 +98,7 @@
             <field name="name">Esente Acq</field>
             <field name="description">00 Acq</field>
             <field name="amount">0.00</field>
-            <field name="kind_id" ref="l10n_it_account_tax_kind.n4"></field>
+<!--             <field name="kind_id" ref="l10n_it_account_tax_kind.n4"></field> -->
             <field name="law_reference">regime contribuenti minimi art.27 c.1-2 DL.98/11</field>
             <field name="type_tax_use">purchase</field>
         </record>
