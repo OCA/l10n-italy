@@ -21,7 +21,7 @@ msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_code
-msgid "Codice"
+msgid "Code"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
@@ -35,19 +35,40 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_refund
+msgid "Customer Credit Note"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_invoice
+#, fuzzy
+msgid "Customer Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_display_name
 msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_invoice
-msgid "Fattura acquisto"
-msgstr ""
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position_fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_invoice_fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_out_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_out_fiscal_document_type
+#, fuzzy
+msgid "Fiscal Document Type"
+msgstr "fiscal.document.type"
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_invoice
-msgid "Fattura vendita"
-msgstr ""
+#: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
+#: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
+#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
+#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
+#, fuzzy
+msgid "Fiscal Document Types"
+msgstr "fiscal.document.type"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_fiscal_position
@@ -78,6 +99,12 @@ msgstr ""
 "(trovato in %s)"
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_journal_ids
+#, fuzzy
+msgid "Journals"
+msgstr "Sezionale"
+
+#. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type___last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -94,17 +121,7 @@ msgstr "Ultima modifica il"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_name
-msgid "Nome"
-msgstr ""
-
-#. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_refund
-msgid "Nota di credito (acquisto)"
-msgstr ""
-
-#. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_refund
-msgid "Nota di credito (vendita)"
+msgid "Name"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
@@ -118,26 +135,13 @@ msgid "Priority"
 msgstr "Priorità"
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_journal_ids
-msgid "Sezionali"
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_invoice
+msgid "Vendor Bill"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
-#: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
-#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
-#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
-msgid "Tipi di documento fiscale"
-msgstr ""
-
-#. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position_fiscal_document_type_id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_invoice_fiscal_document_type_id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_in_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_out_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_in_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_out_fiscal_document_type
-msgid "Tipo documento fiscale"
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_refund
+msgid "Vendor Credit Note"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
