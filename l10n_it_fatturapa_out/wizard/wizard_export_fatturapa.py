@@ -1,6 +1,7 @@
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Simone Rubino - Agile Business Group
+# Copyright 2018 Sergio Corato
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -600,7 +601,8 @@ class WizardExportFatturapa(models.TransientModel):
                 # see https://tinyurl.com/ycem923t
                 # and '&#10;' would not be correctly visualized anyway
                 # (for example firefox replaces '&#10;' with space
-                Descrizione=line.name.replace('\n', ' '),
+                Descrizione=line.name.replace('\n', ' ').encode(
+                    'latin', 'ignore').decode('latin'),
                 PrezzoUnitario='{prezzo:.{precision}f}'.format(
                     prezzo=prezzo_unitario, precision=price_precision),
                 Quantita='{qta:.{precision}f}'.format(
@@ -660,7 +662,8 @@ class WizardExportFatturapa(models.TransientModel):
                 if not tax.law_reference:
                     raise UserError(
                         _("No 'law reference' field for tax %s.") % tax.name)
-                riepilogo.RiferimentoNormativo = tax.law_reference
+                riepilogo.RiferimentoNormativo = tax.law_reference.encode(
+                    'latin', 'ignore').decode('latin')
             if tax.payability:
                 riepilogo.EsigibilitaIVA = tax.payability
             # TODO
