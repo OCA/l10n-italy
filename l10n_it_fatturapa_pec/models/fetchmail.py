@@ -11,8 +11,18 @@ MAX_POP_MESSAGES = 50
 
 class Fetchmail(models.Model):
     _inherit = 'fetchmail.server'
+
+    def _default_e_inv_notify_partner_ids(self):
+        return [(6, 0, [self.env.user.partner_id.id])]
+
     last_pec_error_message = fields.Text(
         "Last PEC Error Message", readonly=True)
+    e_inv_notify_partner_ids = fields.Many2many(
+        "res.partner", string="Contacts to notify",
+        help="Contacts to notify when PEC message can't be processed",
+        domain=[('email', '!=', False)],
+        default=_default_e_inv_notify_partner_ids
+    )
 
     @api.multi
     def fetch_mail(self):
