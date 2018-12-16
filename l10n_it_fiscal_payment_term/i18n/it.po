@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-17 07:29+0000\n"
-"PO-Revision-Date: 2018-12-12 10:55+0000\n"
+"PO-Revision-Date: 2018-12-16 23:58+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -62,7 +62,7 @@ msgstr "Metodo pagamento fiscale"
 #: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_term
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term_fatturapa_pt_id
 msgid "Fiscal Payment Term"
-msgstr "Termini di pagamento fiscali"
+msgstr "Termini pagamento fiscali"
 
 #. module: l10n_it_fiscal_payment_term
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method_id
