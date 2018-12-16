@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2018-12-04 17:52+0000\n"
+"PO-Revision-Date: 2018-12-16 23:58+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -123,7 +123,7 @@ msgstr "Importo imponibile"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_penalty_amount
 msgid "Amount of Penalty"
-msgstr "Importo della penalità"
+msgstr "Importo della sanzione"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:42
@@ -561,12 +561,12 @@ msgstr "Spese accessorie"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_incoterms
 msgid "Incoterms"
-msgstr "Incoterms"
+msgstr "Incoterm"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_index_content
 msgid "Indexed Content"
-msgstr "Contenuto Indicizzato"
+msgstr "Contenuto indicizzato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_art73
@@ -706,7 +706,7 @@ msgstr "Rif. riga"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_rea_liquidation
 msgid "Liquidation State"
-msgstr "Stato di liquidazione"
+msgstr "Stato liquidazione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_max_payment_date
@@ -772,7 +772,7 @@ msgstr "Ordine"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type_code
 msgid "Order Agreement Code"
-msgstr "Codice commessa"
+msgstr "Codice commessa convenzione"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_indirizzo
@@ -856,7 +856,7 @@ msgstr "Importo pagamento"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank
 msgid "Payment Bank"
-msgstr "Banca di pagamento"
+msgstr "Banca per il pagamento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_code
@@ -1221,7 +1221,7 @@ msgstr ""
 "Codice di 7 caratteri assegnato dallo SdI ai soggetti con canale "
 "accreditato. Se il destinatario non ha un canale accreditato presso lo SdI e "
 "riceve le fatture via PEC, l'elemento informativo deve essere valorizzato "
-"con tutti zeri ('0000000')."
+"con tutti zeri (\"0000000\")."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_res_model
@@ -1354,15 +1354,13 @@ msgstr "Tipo cassa previdenziale"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_amount_tax
-#, fuzzy
 msgid "Welfare Tax Amount"
 msgstr "Importo contributo cassa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_rate_tax
-#, fuzzy
 msgid "Welfare Tax Rate"
-msgstr "Imponibile cassa"
+msgstr "Aliquota IVA cassa"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_welfare_taxable
