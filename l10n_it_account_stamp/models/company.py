@@ -19,7 +19,7 @@ class AccountConfigSettings(models.TransientModel):
     tax_stamp_product_id = fields.Many2one(
         related='company_id.tax_stamp_product_id',
         string="Tax Stamp Product",
-        help="Product used to model DatiBollo XML element on bills."
+        help="Product used as Tax Stamp in customer invoices."
         )
 
     @api.v7
