@@ -10,16 +10,7 @@
     'version': '8.0.0.0.1',
     'category': 'Localisation/Italy',
     'summary': 'Tax stamp automatic management',
-    'description': """
-Tax Stamp
-
-Functionalities:
-
-- Adds tax stamp support.
-- Invoices stamp lines reports: "assolvimento dell’imposta di bollo ai sensi 
-dell’articolo 6, comma 2, del Dm 17 giugno 2014".
-
-""",
+    'license': 'LGPL-3',
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
               'Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org',
