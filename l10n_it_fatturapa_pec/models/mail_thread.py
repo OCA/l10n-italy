@@ -72,8 +72,7 @@ class MailThread(models.AbstractModel):
                 message_dict['model'] = 'fatturapa.attachment.in'
                 message_dict['record_name'] = message_dict['subject']
                 message_dict['res_id'] = 0
-                attachment_ids = self._create_message_attachments(
-                    message_dict['attachments'], [], message_dict)
+                attachment_ids = self._create_message_attachments(message_dict)
                 for attachment in self.env['ir.attachment'].browse(
                         [att_id for m, att_id in attachment_ids]):
                     if fatturapa_regex.match(attachment.name):
@@ -101,8 +100,7 @@ class MailThread(models.AbstractModel):
                     .parse_pec_response(message_dict)
 
                 message_dict['record_name'] = message_dict['subject']
-                attachment_ids = self._create_message_attachments(
-                    message_dict)
+                attachment_ids = self._create_message_attachments(message_dict)
                 message_dict['attachment_ids'] = attachment_ids
                 self.clean_message_dict(message_dict)
 
