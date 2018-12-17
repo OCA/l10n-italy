@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-06 16:54+0000\n"
+"PO-Revision-Date: 2018-12-16 23:58+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -24,6 +24,9 @@ msgid ""
 "related to an e-invoice.</p><p>Please check PEC mailbox %s, at server %s, "
 "with user %s</p>"
 msgstr ""
+"<p>Il messaggio PEC con message-Id %s è stato letto ma non elaborato, perché "
+"non è relativo a una e-fattura.</p><p>Controllare la casella PEC %s: server %"
+"s, utente %s</p>"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
@@ -33,29 +36,29 @@ msgstr "Annulla"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server_e_inv_notify_partner_ids
 msgid "Contacts to notify"
-msgstr ""
+msgstr "Contatti da notificare"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_fetchmail_server_e_inv_notify_partner_ids
 msgid "Contacts to notify when PEC message can't be processed"
-msgstr ""
+msgstr "Contatti da notificare se il messaggio PEC non può essere elaborato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_create_uid
 msgid "Created by"
-msgstr "Creata da"
+msgstr "Creato da"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_create_date
 msgid "Created on"
-msgstr "Creata il"
+msgstr "Creato il"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Delivered"
-msgstr "Consegnata"
+msgstr "Consegnato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_delivered_date
@@ -147,13 +150,13 @@ msgstr "Ultimo messaggio di errore"
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:57
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
-msgstr "Nessun server PEC in ingresso trovato. Configurarne uno."
+msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:122
 #, python-format
 msgid "PEC message [%s] not processed"
-msgstr ""
+msgstr "Messaggio PEC [%s] non elaborato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
@@ -163,13 +166,13 @@ msgstr "Server POP/IMAP"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
 msgid "Ready"
-msgstr "Pronta"
+msgstr "Pronto"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Ready to Send"
-msgstr "Pronta all'invio"
+msgstr "Pronto per l'invio"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:fatturapa.attachment.out,state:0
@@ -179,12 +182,12 @@ msgstr "Errore destinatario"
 #. module: l10n_it_fatturapa_pec
 #: selection:fatturapa.attachment.out,state:0
 msgid "Rejected (PA)"
-msgstr "Rifiutata (PA)"
+msgstr "Rifiutato (PA)"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Reset to ready"
-msgstr "Reimposta a pronta"
+msgstr "Reimposta a pronto"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
@@ -199,7 +202,6 @@ msgstr "Invia"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_fatturapa_send_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
-#, fuzzy
 msgid "Send Electronic Invoice"
 msgstr "Invia fattura elettronica"
 
@@ -211,18 +213,18 @@ msgstr "Invia con PEC"
 #. module: l10n_it_fatturapa_pec
 #: selection:fatturapa.attachment.out,state:0
 msgid "Sender Error"
-msgstr "Errore mittente"
+msgstr "Errore trasmittente"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_sending_user
 msgid "Sending User"
-msgstr "Inviata dall'utente"
+msgstr "Utente trasmittente"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Sent"
-msgstr "Inviata"
+msgstr "Inviato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_sending_date
@@ -232,7 +234,7 @@ msgstr "Data invio"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Sent by"
-msgstr "Inviata da"
+msgstr "Inviato da"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_state
@@ -248,19 +250,19 @@ msgstr "Procedura per inviare PEC e-fattura multiple"
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:240
 #, python-format
 msgid "You can only delete 'ready to send' files."
-msgstr "È possibile eliminare solo file \"pronti all'invio\"."
+msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
 #, python-format
 msgid "You can only reset 'sender error' files."
-msgstr "È possibile reimpostare solo file con \"errore mittente\"."
+msgstr "È possibile reimpostare solo file con stato «Errore trasmittente\"."
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
-#, fuzzy, python-format
+#, python-format
 msgid "You can only send 'Ready to Send' files."
-msgstr "È possibile inviare solo file \"pronti all'invio\"."
+msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
