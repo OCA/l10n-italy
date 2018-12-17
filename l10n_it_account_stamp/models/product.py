@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-import openerp.addons.decimal_precision as dp
-
-from openerp import fields, models, api, exceptions, _
+import odoo.addons.decimal_precision as dp
+from odoo import fields, models, api, exceptions, _
 
 
 class ProductTemplate(models.Model):
