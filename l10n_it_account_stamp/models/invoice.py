@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from openerp import fields, api, models, exceptions
 from openerp.tools.translate import _

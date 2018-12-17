@@ -66,8 +66,8 @@ msgstr "Modello Prodotto"
 #. module: l10n_it_account_stamp
 #: help:account.config.settings,tax_stamp_product_id:0
 #: help:res.company,tax_stamp_product_id:0
-msgid "Product used to model DatiBollo XML element on bills."
-msgstr "Prodotto usato per campo DatiBollo nell'elemento XML nelle fatture."
+msgid "Product used as Tax Stamp in customer invoices."
+msgstr "Prodotto usato come Marca da Bollo nelle fatture clienti."
 
 #. module: l10n_it_account_stamp
 #: field:product.template,stamp_apply_tax_ids:0
