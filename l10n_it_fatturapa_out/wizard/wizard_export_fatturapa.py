@@ -197,8 +197,8 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
             DatiTrasmissioneType())
         self._setIdTrasmittente(company, fatturapa)
-        self._setFormatoTrasmissione(partner, fatturapa)
-        self._setCodiceDestinatario(partner, fatturapa)
+        self._setFormatoTrasmissione(partner.commercial_partner_id, fatturapa)
+        self._setCodiceDestinatario(partner.commercial_partner_id, fatturapa)
         self._setContattiTrasmittente(company, fatturapa)
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
@@ -469,7 +469,8 @@ class WizardExportFatturapa(models.TransientModel):
     def setCessionarioCommittente(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
             CessionarioCommittenteType())
-        self._setDatiAnagraficiCessionario(partner, fatturapa)
+        self._setDatiAnagraficiCessionario(
+            partner.commercial_partner_id, fatturapa)
         self._setSedeCessionario(partner, fatturapa)
 
     def setTerzoIntermediarioOSoggettoEmittente(self, company, fatturapa):
