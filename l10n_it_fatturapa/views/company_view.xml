@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_config_settings" model="ir.ui.view">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Fattura PA">
+                        <group name="fatturapa_settings">
+                            <field name="fatturapa_fiscal_position_id" required="1" />
+                            <field name="fatturapa_sequence_id" required="1" />
+                            <field name="fatturapa_art73" />
+                            <field name="fatturapa_tax_representative" />
+                            <field name="fatturapa_stabile_organizzazione" />
+                            <field name="fatturapa_sender_partner" />
+                            <field name="fatturapa_rea_office" />
+                            <field name="fatturapa_rea_number" />
+                            <field name="fatturapa_rea_capital" />
+                            <field name="fatturapa_rea_partner" />
+                            <field name="fatturapa_rea_liquidation" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+	</data>
+</openerp>
