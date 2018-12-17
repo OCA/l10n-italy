@@ -40,7 +40,7 @@ class MailThread(models.AbstractModel):
             attachment_ids.append(ir_attachment_obj.create(data_attach))
         return attachment_ids
 
-    def _clean_message_dict(self, message_dict):
+    def clean_message_dict(self, message_dict):
         del message_dict['attachments']
         del message_dict['cc']
         del message_dict['from']
@@ -80,7 +80,7 @@ class MailThread(models.AbstractModel):
                         self.create_fatturapa_attachment_in(attachment)
 
                 message_dict['attachment_ids'] = attachment_ids
-                self._clean_message_dict(message_dict)
+                self.clean_message_dict(message_dict)
 
                 # model and res_id are only needed by
                 # _create_message_attachments: we don't attach to
@@ -104,7 +104,7 @@ class MailThread(models.AbstractModel):
                 attachment_ids = self._create_message_attachments(
                     message_dict)
                 message_dict['attachment_ids'] = attachment_ids
-                self._clean_message_dict(message_dict)
+                self.clean_message_dict(message_dict)
 
                 # message_create_from_mail_mail to avoid to notify message
                 # (see mail.message.create)
@@ -122,7 +122,7 @@ class MailThread(models.AbstractModel):
                 if att:
                     message_dict['model'] = 'fatturapa.attachment.out'
                     message_dict['res_id'] = att.id
-                    self._clean_message_dict(message_dict)
+                    self.clean_message_dict(message_dict)
                     self.env['mail.message'].with_context(
                         message_create_from_mail_mail=True).create(
                             message_dict)
