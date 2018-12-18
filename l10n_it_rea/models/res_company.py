@@ -41,7 +41,7 @@ class Company(orm.Model):
                 liquidation_state = dict(sel_liquidation_state)[
                     rea_liquidation_state]
             # using always €, as this is a registry of Italian companies
-            rea_office_code = self.pool['res.country.state'].read(
+            rea_office_code = self.pool['res.province'].read(
                 cr, uid, rea_office, ['code'])
             company_registry = _("%s %s Share Cap. %s € %s %s") % (
                 rea_office_code['code'] or '', rea_code or '',

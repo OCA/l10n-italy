@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wizard_export_fatturapa_form_view" model="ir.ui.view">
+            <field name="name">Export FatturaPA</field>
+            <field name="model">wizard.export.fatturapa</field>
+            <field name="arch" type="xml">
+                <form string="Export FatturaPA">
+                    <group col="2" height="500" width="600">
+                        <group>
+                            <label string="Confirm?"></label>
+                        </group>
+                        <newline></newline>
+                        <group col="3">
+                            <button colspan="1" icon="gtk-cancel" special="cancel" string="Cancel"></button>
+                            <button colspan="1" icon="gtk-ok" name="exportFatturaPA" string="Export" type="object"></button>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_wizard_export_fatturapa" key2="client_action_multi" name="Export FatturaPA" res_model="wizard.export.fatturapa" src_model="account.invoice" target="new" view_id="wizard_export_fatturapa_form_view" view_mode="form"></act_window>
+    </data>
+</openerp>

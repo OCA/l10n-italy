@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+#    Copyright (C) 2014 Davide Corio
 #    Copyright 2015 Agile Business Group <http://www.agilebg.com>
 #    Copyright 2018 Andrea Cometa <a.cometa@apuliasoftware.it>
 #
@@ -20,44 +20,40 @@
 #
 ##############################################################################
 {
-    'name': 'Italian Localization - FatturaPA',
-    'version': '0.1',
+    'name': 'Italian Localization - FatturaPA - Emission',
+    'version': '7.0.0.1.1',
     'category': 'Localization/Italy',
-    'summary': 'Electronic invoices',
+    'summary': 'Electronic invoices emission',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.odoo-italia.org',
     'description': """
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-Italian Localization - FatturaPA
-================================
 
-Base module to handle FatturaPA data.
-http://fatturapa.gov.it
+Italian Localization - FatturaPA - Emission
+===========================================
 
-See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
-
-
-Installation
-============
-
-This module requires PyXB 1.2.4
-http://pyxb.sourceforge.net/
+This module allows you to generate the fatturaPA XML file version 1.1
+http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
+to be sent to the Exchange System
+http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
 
 Configuration
 =============
 
- * Edit the FatturaPA fields of the partners (in partner form) who will receive
-   (send) the electronic invoices. IPA code is mandatory, EORI code is not.
- * Configure payment terms filling the fatturaPA fields related to payment
-   terms and payment methods.
- * Configure taxes about 'Non taxable nature', 'Law reference'
-   and 'VAT payability'
- * Configure FatturaPA data in Accounting Configuration. Note that a sequence
-   'fatturaPA' is already loaded by the module and selectable.
+See l10n_it_fatturapa
+
+
+Usage
+=====
+
+ * Fill invoice data you need to export. For instance, in
+   'related documents' TAB, or in 'related documents' section
+   within invoice line.
+
+ * Select N invoices and run 'Export FatturaPA' wizard
 
 Credits
 =======
@@ -85,29 +81,20 @@ promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
 """,
+    'website': 'https://github.com/OCA/l10n-italy/tree/7.0/',
     'license': 'AGPL-3',
     "depends": [
-        'account',
-        'l10n_it_base',
-        'l10n_it_fiscalcode',
-        'document',
-        'l10n_it_ipa',
-        'l10n_it_rea',
-        'base_iban',
+        'l10n_it_fatturapa',
+        'l10n_it_split_payment',
         ],
-
     "data": [
-        'data/fatturapa_data.xml',
-        'data/welfare.fund.type.csv',
+        'wizard/wizard_export_fatturapa_view.xml',
+        'views/attachment_view.xml',
         'views/account_view.xml',
-        'views/company_view.xml',
-        'views/partner_view.xml',
-        'views/account_tax_view.xml',
         'security/ir.model.access.csv',
     ],
-    #"demo": ['demo/account_invoice_fatturapa.xml'],
     "installable": True,
     'external_dependencies': {
-        'python': ['pyxb'],
+        'python': ['unidecode'],
     }
 }

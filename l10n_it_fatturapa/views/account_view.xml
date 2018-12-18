@@ -26,14 +26,14 @@
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_form" />
             <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <separator string="Fattura Elettronica" />
-                    <group>
-                        <field name="admin_ref"/>
-                    </group>
-                    <group>
-                        <group string="Related Documents">
-                            <field name="related_documents" nolabel="1">
+                <field name="invoice_line_tax_id" position="after">
+                    <separator string="Fattura Elettronica" colspan="4"/>
+                    <group colspan="4">
+                        <group colspan="4">
+                            <field name="admin_ref"/>
+                        </group>
+                        <group string="Related Documents" colspan="4">
+                            <field name="related_documents" nolabel="1" colspan="4">
                                 <tree editable="bottom" string="Related Documents">
                                     <field name="type" />
                                     <field name="name" />
