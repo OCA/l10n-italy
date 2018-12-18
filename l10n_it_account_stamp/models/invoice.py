@@ -8,6 +8,8 @@ from openerp.tools.translate import _
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+    tax_stamp_applicable = fields.Boolean(readonly=True)
+
     @api.multi
     def compute_stamps(self):
         invoice_tax_obj = self.env['account.invoice.tax']
@@ -46,7 +48,9 @@ class AccountInvoice(models.Model):
                 taxes_ids = taxes
 
             if total_tax_base >= stamp_product_id.stamp_apply_min_total_base:
-                if not stamp_line:
+                inv.tax_stamp_applicable = True
+                if not stamp_line and inv.type not in (
+                        'in_invoice', 'in_refund'):
                     stamp_account = stamp_product_id.property_account_income \
                         if inv.type in ('out_invoice', 'out_refund') else \
                         stamp_product_id.property_account_expense
@@ -69,9 +73,12 @@ class AccountInvoice(models.Model):
                         'account_analytic_id': None,
                     })
             else:
-                for line in inv.invoice_line:
-                    if line.product_id and line.product_id.is_stamp:
-                        line.unlink()
+                if inv.type not in (
+                        'in_invoice', 'in_refund'):
+                    inv.tax_stamp_applicable = False
+                    for line in inv.invoice_line:
+                        if line.product_id and line.product_id.is_stamp:
+                            line.unlink()
 
     @api.multi
     def button_reset_taxes(self):
