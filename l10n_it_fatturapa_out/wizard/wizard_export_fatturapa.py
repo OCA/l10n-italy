@@ -136,7 +136,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 'FatturaElettronicaHeader.DatiTrasmissione.'
                 'ProgressivoInvio:\n%s'
             ) % unicode(e)
-            raise _('Error!'), _(msg)
+            raise orm.except_orm(_('Error!'), _(msg))
         return number
 
     def _setIdTrasmittente(self, cr, uid, company, fatturapa, context=None):
