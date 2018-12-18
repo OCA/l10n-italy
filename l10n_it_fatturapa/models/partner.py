@@ -62,7 +62,7 @@ class ResPartner(orm.Model):
                         "Il partner %s, essendo una pubblica amministrazione "
                         "deve avere il codice IPA lungo 6 caratteri"
                     ) % partner.name)
-                if not partner.is_company and (
+                if partner.individual and (
                     not partner.lastname or not partner.firstname
                 ):
                     raise except_osv(_('Error' ),_(
@@ -87,19 +87,20 @@ class ResPartner(orm.Model):
                             " deve avere o P.IVA o codice fiscale"
                         ) % partner.name)
                 if partner.customer:
-                    if not partner.street:
+                    address = partner.address and partner.address[0] or False
+                    if not address or not address.street:
                         raise except_osv(_('Error' ),_(
                             'Customer %s: street is needed for XML generation.'
                         ) % partner.name)
-                    if not partner.zip:
+                    if not address or not address.zip:
                         raise except_osv(_('Error' ),_(
                             'Customer %s: ZIP is needed for XML generation.'
                         ) % partner.name)
-                    if not partner.city:
+                    if not address or not address.city:
                         raise except_osv(_('Error' ),_(
                             'Customer %s: city is needed for XML generation.'
                         ) % partner.name)
-                    if not partner.country_id:
+                    if not address or not address.country_id:
                         raise except_osv(_('Error' ),_(
                             'Customer %s: country is needed for XML'
                             ' generation.'
