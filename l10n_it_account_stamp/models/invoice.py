@@ -10,7 +10,6 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def compute_stamps(self):
-        invoice_line_obj = self.env['account.invoice.line']
         invoice_tax_obj = self.env['account.invoice.tax']
         for inv in self:
             stamp_product_id = self.env.user.with_context(
@@ -19,9 +18,8 @@ class AccountInvoice(models.Model):
                 raise exceptions.Warning(
                     _('Missing tax stamp product in company settings!')
                 )
-            for l in inv.invoice_line:
-                if l.product_id and l.product_id.is_stamp:
-                    l.unlink()
+            stamp_line = [x for x in inv.invoice_line
+                          if x.product_id and x.product_id.is_stamp]
             taxes = invoice_tax_obj.compute(inv)
             tax_base_amounts = {}
             for key in taxes.keys():
@@ -36,24 +34,31 @@ class AccountInvoice(models.Model):
             if inv.type in ('in_invoice', 'in_refund'):
                 total_tax_base = total_tax_base * -1.0
                 taxes = stamp_product_id.supplier_taxes_id
+            # exclude stamp lines amount from total base if tax line in tax_ids
+            for l in inv.invoice_line:
+                if l.product_id and l.product_id.is_stamp and \
+                        l.invoice_line_tax_id in \
+                        l.product_id.stamp_apply_tax_ids:
+                    total_tax_base -= l.price_subtotal
             if inv.fiscal_position:
                 taxes_ids = inv.fiscal_position.map_tax(taxes)
             else:
                 taxes_ids = taxes
 
             if total_tax_base >= stamp_product_id.stamp_apply_min_total_base:
-                if inv.type in ('out_invoice', 'out_refund'):
-                    stamp_account = stamp_product_id.property_account_income
-                else:
-                    stamp_account = stamp_product_id.property_account_expense
-                if not stamp_account:
-                    raise exceptions.Warning(
-                        _('Missing account income/expense configuration for'
-                          ' %s') % stamp_product_id.name)
-                invoice_line_obj.create({
+                if not stamp_line:
+                    stamp_account = stamp_product_id.property_account_income \
+                        if inv.type in ('out_invoice', 'out_refund') else \
+                        stamp_product_id.property_account_expense
+                    if not stamp_account:
+                        raise exceptions.Warning(
+                            _('Missing account income/expense configuration '
+                              'for %s') % stamp_product_id.name)
+                    self.env['account.invoice.line'].create({
                         'invoice_id': inv.id,
                         'product_id': stamp_product_id.id,
-                        'name': stamp_product_id.description_sale,
+                        'name': stamp_product_id.description_sale or
+                        stamp_product_id.name,
                         'sequence': 99999,
                         'account_id': stamp_account.id,
                         'price_unit': stamp_product_id.list_price,
@@ -63,6 +68,10 @@ class AccountInvoice(models.Model):
                             (6, 0, taxes_ids.ids)],
                         'account_analytic_id': None,
                     })
+            else:
+                for line in inv.invoice_line:
+                    if line.product_id and line.product_id.is_stamp:
+                        line.unlink()
 
     @api.multi
     def button_reset_taxes(self):
