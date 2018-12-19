@@ -11,20 +11,20 @@
                 <page name='invoicing' position="inside">
                     <group string="Tax stamp">
                         <field name="is_stamp"/>
+                        <p attrs="{'invisible': [('is_stamp', '=', False)]}" colspan="2">
+                            For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
+                        </p>
                         <field name="stamp_apply_min_total_base" attrs="{'invisible': [('is_stamp', '=', False)], 'required': [('is_stamp', '=', True)]}"/>
-                        <field name="stamp_apply_tax_ids" attrs="{'invisible': [('is_stamp', '=', False)]}">
-                            <tree>
-                                <field name="description"/>
-                                <field name="name"/>
-                            </tree>
+                        <field name="stamp_apply_tax_ids" attrs="{'invisible': [('is_stamp', '=', False)]}" widget="many2many_tags">
                         </field>
                     </group>
-                    <p attrs="{'invisible': [('is_stamp', '=', False)]}">
-                        For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
-                    </p>
                 </page>
 
                 <xpath expr="//field[@name='property_account_income_id']" position="attributes">
+                    <attribute name="attrs">{'required': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='property_account_expense_id']" position="attributes">
                     <attribute name="attrs">{'required': [('is_stamp', '=', True)]}</attribute>
                 </xpath>
 
