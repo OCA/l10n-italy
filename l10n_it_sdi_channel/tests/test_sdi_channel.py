@@ -23,7 +23,7 @@ class SdICase(TransactionCase):
                     'name': 'Sdi Channel',
                     'channel_type': 'pec',
                     'pec_server_id': self.mail_pec_server.id,
-                    'email_exchange_system': 'test%x@pec.it'
+                    'email_exchange_system': 'test%pec.it'
                 })
         self.assertEqual(e.exception.message,
-                         "Email test%x@pec.it is not valid")
+                         "Email test%pec.it is not valid")
