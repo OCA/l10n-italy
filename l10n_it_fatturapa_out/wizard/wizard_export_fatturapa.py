@@ -173,19 +173,12 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
-
-        if not company.phone:
-            raise UserError(
-                _('Company Telephone number not set.'))
-        Telefono = company.phone
-
         if not company.email:
             raise UserError(
                 _('Email address not set.'))
         Email = company.email
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            ContattiTrasmittente = ContattiTrasmittenteType(
-                Telefono=Telefono, Email=Email)
+            ContattiTrasmittente = ContattiTrasmittenteType(Email=Email)
 
         return True
 
@@ -303,7 +296,6 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=company.partner_id.phone or None,
             Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
             )
@@ -446,10 +438,13 @@ class WizardExportFatturapa(models.TransientModel):
                 _('Customer country is not set.'))
 
         # TODO: manage address number in <NumeroCivico>
+        cap = partner.zip
+        if (partner.codice_destinatario.upper() == 'XXXXXXX'):
+            cap = '00000'
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
             IndirizzoType(
                 Indirizzo=partner.street,
-                CAP=partner.zip,
+                CAP=cap,
                 Comune=partner.city,
                 Nazione=partner.country_id.code))
         if partner.state_id:
