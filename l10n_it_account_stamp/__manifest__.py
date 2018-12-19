@@ -13,6 +13,7 @@
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-italy',
+    'license': 'LGPL-3',
     'depends': [
         'product',
         'account',
