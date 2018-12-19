@@ -58,7 +58,7 @@ class Fetchmail(orm.Model):
                                     context=context)
                                 # if message is processed without exceptions
                                 server.write({'last_pec_error_message': ''})
-                            except Exception:
+                            except Exception as e:
                                 _logger.info(
                                     'Failed to process mail from %s server %s.'
                                     ' Resetting server status',
