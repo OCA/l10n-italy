@@ -5,7 +5,7 @@
 {
     'name': 'Italian Localization - '
             'Tipi di documento fiscale per dichiarativi',
-    'version': '11.0.1.1.1',
+    'version': '11.0.1.1.2',
     'category': 'Localisation/Italy',
     'author': "Link It srl, Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/tree/11.0/'
