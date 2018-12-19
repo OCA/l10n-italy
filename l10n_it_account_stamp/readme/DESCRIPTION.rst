@@ -1,2 +1,1 @@
-- Adds tax stamp support.
-- Invoices stamp lines reports: "assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del Dm 17 giugno 2014".
+This module supports Italian Tax Stamp in invoices.
