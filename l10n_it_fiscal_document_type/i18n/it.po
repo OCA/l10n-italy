@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-06 01:45+0000\n"
-"PO-Revision-Date: 2018-12-07 15:08+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2018-12-20 15:58+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__fiscal_document_type_id
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_invoice__fiscal_document_type_id
 msgid "Fiscal Document Type"
-msgstr "Tipo documento fiscale"
+msgstr "Tipo di documento fiscale"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
@@ -67,7 +67,7 @@ msgstr "Tipo documento fiscale"
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
 msgid "Fiscal Document Types"
-msgstr "Tipi di documenti fiscali"
+msgstr "Tipi di documento fiscale"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_fiscal_position
@@ -77,7 +77,7 @@ msgstr "Posizione fiscale"
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_fiscal_document_type
 msgid "Fiscal document type"
-msgstr "Tipo documento fiscale"
+msgstr "Tipo di documento fiscale"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__id
@@ -86,6 +86,7 @@ msgstr "ID"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users__in_fiscal_document_type
 msgid "In Fiscal Document Type"
 msgstr "Tipo di documento fiscale ricevuto"
 
@@ -134,6 +135,7 @@ msgstr "Nome"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__out_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users__out_fiscal_document_type
 msgid "Out Fiscal Document Type"
 msgstr "Tipo di documento fiscale emesso"
 
