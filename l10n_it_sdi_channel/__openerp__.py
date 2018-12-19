@@ -5,8 +5,8 @@
 {
     "name": "SdI channel",
     "summary": "Add channel to send-receice xml files to SdI.",
-    "version": "8.0.1.0.0",
-    "development_status": "Alpha",
+    "version": "8.0.1.0.1",
+    "development_status": "Production/Stable",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
