@@ -832,7 +832,7 @@ class WizardExportFatturapa(orm.TransientModel):
         if invoice.fatturapa_doc_attachments:
             for doc_id in invoice.fatturapa_doc_attachments:
                 AttachDoc = AllegatiType(
-                    NomeAttachment=doc_id.datas_fname,
+                    NomeAttachment=doc_id.datas_fname[:60],
                     Attachment=doc_id.datas
                 )
                 body.Allegati.append(AttachDoc)
