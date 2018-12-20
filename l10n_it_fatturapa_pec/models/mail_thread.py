@@ -116,6 +116,9 @@ class MailThread(models.AbstractModel):
             fetchmail_server_id = self.env['fetchmail.server'].browse(
                 self._context['fetchmail_server_id'])
             if fetchmail_server_id.is_fatturapa_pec:
+                attachment_ids = self._create_message_attachments(
+                    message_dict)
+                message_dict['attachment_ids'] = attachment_ids
                 att = self.find_attachment_by_subject(message_dict['subject'])
                 if att:
                     message_dict['model'] = 'fatturapa.attachment.out'
@@ -154,7 +157,7 @@ class MailThread(models.AbstractModel):
         decoded = base64.b64decode(attachment.datas)
         fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
         fatturapa_attachment_in = self.env['fatturapa.attachment.in']
-        if attachment.mimetype == 'application/zip':
+        if attachment.file_type == 'application/zip':
             with zipfile.ZipFile(io.BytesIO(decoded)) as zf:
                 for file_name in zf.namelist():
                     inv_file = zf.open(file_name)
