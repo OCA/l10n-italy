@@ -1,0 +1,838 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_ddt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 14:25+0000\n"
+"PO-Revision-Date: 2018-12-17 14:25+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:email.template,body_html:l10n_it_fatturapa_out_ddt.email_template_edi_ddt
+msgid "\n"
+"<p>Dear ${object.partner_id.name},</p>\n"
+"<p>Here is your document\n"
+"%if object.date:\n"
+" of <strong>${object.date},</strong>\n"
+"% endif\n"
+"%if object.date_done:\n"
+"with shipping date\n"
+"<strong>${object.date_done}</strong>\n"
+"%endif\n"
+"from ${object.company_id.name}.\n"
+"</p>\n"
+"<p>You can reply to this email if you have any questions.</p>\n"
+"<p>Thank you.</p>\n"
+"\n"
+"\n"
+"            "
+msgstr "\n"
+"<p>Dear ${object.partner_id.name},</p>\n"
+"<p>Here is your document\n"
+"%if object.date:\n"
+" of <strong>${object.date},</strong>\n"
+"% endif\n"
+"%if object.date_done:\n"
+"with shipping date\n"
+"<strong>${object.date_done}</strong>\n"
+"%endif\n"
+"from ${object.company_id.name}.\n"
+"</p>\n"
+"<p>You can reply to this email if you have any questions.</p>\n"
+"<p>Thank you.</p>\n"
+"\n"
+"\n"
+"            "
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:email.template,report_name:l10n_it_fatturapa_out_ddt.email_template_edi_ddt
+#: model:email.template,report_name:l10n_it_fatturapa_out_ddt.email_template_edi_ddt_with_logo
+msgid "${(object.ddt_number)}"
+msgstr "${(object.ddt_number)}"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:email.template,subject:l10n_it_fatturapa_out_ddt.email_template_edi_ddt
+#: model:email.template,subject:l10n_it_fatturapa_out_ddt.email_template_edi_ddt_with_logo
+msgid "${object.company_id.name} (${object.ddt_number})\n"
+"            "
+msgstr "${object.company_id.name} (${object.ddt_number})            "
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:email.template,subject:l10n_it_fatturapa_out_ddt.mail_template_data_notification_email_ddt
+msgid "${object.subject}"
+msgstr "${object.subject}"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:email.template,body_html:l10n_it_fatturapa_out_ddt.mail_template_data_notification_email_ddt
+msgid "<html>\n"
+"                <head></head>\n"
+"                % set record = ctx.get('record')\n"
+"                % set company = record and record.company_id or user.company_id\n"
+"                <body style=\"margin: 0; padding: 0;\">\n"
+"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-collapse:separate;\" summary=\"o_mail_notification\">\n"
+"                    <tbody>\n"
+"\n"
+"                      <!-- HEADER -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\">\n"
+"                                  <span style=\"font-size:20px; color:white; font-weight: bold;\">\n"
+"                                      ${object.record_name}\n"
+"                                  </span>\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\">\n"
+"                                  <img src=\"/logo.png?company=${company.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${company.name}\">\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- CONTENT -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                              <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
+"                                ${object.body | safe}\n"
+"                              </td>\n"
+"                            </tbody>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- FOOTER -->\n"
+"\n"
+"                       <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\" align=\"left\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                ${company.name}<br/>\n"
+"                                ${company.phone or ''}\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                % if company.email:\n"
+"                                <a href=\"mailto:${company.email}\" style=\"text-decoration:none; color: white;\">${company.email}</a><br/>\n"
+"                                % endif\n"
+"                                % if company.website:\n"
+"                                    <a href=\"${company.website}\" style=\"text-decoration:none; color: white;\">\n"
+"                                        ${company.website}\n"
+"                                    </a>\n"
+"                                % endif\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                      <tr>\n"
+"                        <td align=\"center\">\n"
+"                            Powered by <a href=\"https://www.odoo.com\">Odoo</a>.\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"                </body>\n"
+"                </html>\n"
+"            "
+msgstr "<html>\n"
+"                <head></head>\n"
+"                % set record = ctx.get('record')\n"
+"                % set company = record and record.company_id or user.company_id\n"
+"                <body style=\"margin: 0; padding: 0;\">\n"
+"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-collapse:separate;\" summary=\"o_mail_notification\">\n"
+"                    <tbody>\n"
+"\n"
+"                      <!-- HEADER -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\">\n"
+"                                  <span style=\"font-size:20px; color:white; font-weight: bold;\">\n"
+"                                      ${object.record_name}\n"
+"                                  </span>\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\">\n"
+"                                  <img src=\"/logo.png?company=${company.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${company.name}\">\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- CONTENT -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                              <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
+"                                ${object.body | safe}\n"
+"                              </td>\n"
+"                            </tbody>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- FOOTER -->\n"
+"\n"
+"                       <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\" align=\"left\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                ${company.name}<br/>\n"
+"                                ${company.phone or ''}\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                % if company.email:\n"
+"                                <a href=\"mailto:${company.email}\" style=\"text-decoration:none; color: white;\">${company.email}</a><br/>\n"
+"                                % endif\n"
+"                                % if company.website:\n"
+"                                    <a href=\"${company.website}\" style=\"text-decoration:none; color: white;\">\n"
+"                                        ${company.website}\n"
+"                                    </a>\n"
+"                                % endif\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                      <tr>\n"
+"                        <td align=\"center\">\n"
+"                            Powered by <a href=\"https://www.odoo.com\">Odoo</a>.\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"                </body>\n"
+"                </html>\n"
+"            "
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:email.template,body_html:l10n_it_fatturapa_out_ddt.email_template_edi_ddt_with_logo
+msgid "<html>\n"
+"                <head></head>\n"
+"                % set record = ctx.get('record')\n"
+"                % set company = record and record.company_id or user.company_id\n"
+"                <body style=\"margin: 0; padding: 0;\">\n"
+"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-collapse:separate;\" summary=\"o_mail_notification\">\n"
+"                    <tbody>\n"
+"\n"
+"                      <!-- HEADER -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" style=\"min-width: 590px; background-image: linear-gradient(to top, #ce94bf 0%, #875A7B 100%);  padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\">\n"
+"                                  <span style=\"font-size:20px; color:white; font-weight: bold;\">\n"
+"                                      Transport Document N.: ${object.ddt_number}\n"
+"                                  </span>\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\">\n"
+"                                  <img src=\"/logo.png?company=${company.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${company.name}\">\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- CONTENT -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                              <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
+"                                <p>Dear ${object.partner_id.name},</p>\n"
+"                                <p>Attached to this you will find the copy of the Transport Document relating to your order\n"
+"                                %if object.date:\n"
+"                                 of <strong>${object.date},</strong>\n"
+"                                % endif\n"
+"                                %if object.date_done:\n"
+"                                with shipping date\n"
+"                                <strong>${object.date_done}</strong>\n"
+"                                %endif\n"
+"                                without any legal value.<br/>\n"
+"                                I remind you that at the end of the month you will receive, where indicated by you, the electronic invoice having tax value.\n"
+"                                </p>\n"
+"                                <p>You can reply to this email if you have any questions.</p>\n"
+"                                <p>Thank you.</p>\n"
+"                              </td>\n"
+"                            </tbody>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- FOOTER -->\n"
+"\n"
+"                       <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" style=\"min-width: 590px; background-image: linear-gradient(to bottom, #ce94bf 0%, #875A7B 100%) ; padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\" align=\"left\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                ${company.name}<br/>\n"
+"                                ${company.phone or ''}\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                % if company.email:\n"
+"                                <a href=\"mailto:${company.email}\" style=\"text-decoration:none; color: white;\">${company.email}</a><br/>\n"
+"                                % endif\n"
+"                                % if company.website:\n"
+"                                    <a href=\"${company.website}\" style=\"text-decoration:none; color: white;\">\n"
+"                                        ${company.website}\n"
+"                                    </a>\n"
+"                                % endif\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                      <tr>\n"
+"                        <td align=\"center\">\n"
+"                            Powered by <a href=\"https://www.odoo.com\">Odoo</a>.\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"                </body>\n"
+"                </html>\n"
+"\n"
+"            "
+msgstr "<html>\n"
+"                <head></head>\n"
+"                % set record = ctx.get('record')\n"
+"                % set company = record and record.company_id or user.company_id\n"
+"                <body style=\"margin: 0; padding: 0;\">\n"
+"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-collapse:separate;\" summary=\"o_mail_notification\">\n"
+"                    <tbody>\n"
+"\n"
+"                      <!-- HEADER -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" style=\"min-width: 590px; background-image: linear-gradient(to top, #ce94bf 0%, #875A7B 100%);  padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\">\n"
+"                                  <span style=\"font-size:20px; color:white; font-weight: bold;\">\n"
+"                                      Documento Di Trasporto N.: ${object.ddt_number}\n"
+"                                  </span>\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\">\n"
+"                                  <img src=\"/logo.png?company=${company.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${company.name}\">\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- CONTENT -->\n"
+"\n"
+"                      <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                              <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
+"                                <p>Gentile cliente ${object.partner_id.name},</p>\n"
+"                                <p>In allegato alla presente troverà la copia del Documento Di Trasporto relativo al suo ordine\n"
+"                                %if object.date:\n"
+"                                 del <strong>${object.date},</strong>\n"
+"                                % endif\n"
+"                                %if object.date_done:\n"
+"                                spedito in data\n"
+"                                <strong>${object.date_done}</strong>\n"
+"                                %endif\n"
+"                                senza alcun valore legale.<br/>\n"
+"                                Le ricordo che a fine mese riceverà, dove da lei indicato, la Fattura Elettronica avente valore fiscale.\n"
+"                                </p>\n"
+"                                <p>Può rispondere a questa email se ha qualche domanda.</p>\n"
+"                                <p>Grazie.</p>\n"
+"                              </td>\n"
+"                            </tbody>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"\n"
+"                      <!-- FOOTER -->\n"
+"\n"
+"                       <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" style=\"min-width: 590px; background-image: linear-gradient(to bottom, #ce94bf 0%, #875A7B 100%) ; padding: 20px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                              <td valign=\"middle\" align=\"left\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                ${company.name}<br/>\n"
+"                                ${company.phone or ''}\n"
+"                              </td>\n"
+"                              <td valign=\"middle\" align=\"right\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
+"                                % if company.email:\n"
+"                                <a href=\"mailto:${company.email}\" style=\"text-decoration:none; color: white;\">${company.email}</a><br/>\n"
+"                                % endif\n"
+"                                % if company.website:\n"
+"                                    <a href=\"${company.website}\" style=\"text-decoration:none; color: white;\">\n"
+"                                        ${company.website}\n"
+"                                    </a>\n"
+"                                % endif\n"
+"                              </td>\n"
+"                            </tr>\n"
+"                          </table>\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                      <tr>\n"
+"                        <td align=\"center\">\n"
+"                            Powered by <a href=\"https://www.odoo.com\">Odoo</a>.\n"
+"                        </td>\n"
+"                      </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"                </body>\n"
+"                </html>\n"
+"\n"
+"            "
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_account_voucher
+msgid "Accounting Voucher"
+msgstr "Voucher contabile"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:ddt.invoicing:l10n_it_fatturapa_out_ddt.view_ddt_invoicing
+msgid "Cancel"
+msgstr "Cancella"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Carriage Condition"
+msgstr "Resa merce"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Carrier"
+msgstr "Corriere"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Carrier's Signature"
+msgstr "Firma del Corriere"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Cessionario"
+msgstr "Cessionario"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:ddt.invoicing:l10n_it_fatturapa_out_ddt.view_ddt_invoicing
+msgid "Create"
+msgstr "Crea"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:ddt.create.invoice:l10n_it_fatturapa_out_ddt.view_ddt_create_invoice_new
+#: view:ddt.invoicing:l10n_it_fatturapa_out_ddt.view_ddt_invoicing
+#: model:ir.actions.report.xml,name:l10n_it_fatturapa_out_ddt.action_report_ddt
+#: model:ir.ui.menu,name:l10n_it_fatturapa_out_ddt.menu_ddt_preparation
+msgid "DDT"
+msgstr "DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:wizard.export.fatturapa,include_ddt_data:0
+msgid "DDT Data"
+msgstr "Dati DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "DDT Date"
+msgstr "Data DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:ddt.invoicing:l10n_it_fatturapa_out_ddt.view_ddt_invoicing
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_out_ddt.action_ddt_invoicing
+#: model:ir.ui.menu,name:l10n_it_fatturapa_out_ddt.menu_account_ddt_invoicing
+#: model:ir.ui.menu,name:l10n_it_fatturapa_out_ddt.menu_ddt_invoicing
+msgid "DDT Invoicing"
+msgstr "Fatturazione DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "DDT Type"
+msgstr "Tipo DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "DDT number:"
+msgstr "Numero DDT:"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:res.partner,ddt_show_price:0
+msgid "DDT show prices"
+msgstr "DDT mostra prezzi"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.create.invoice,group:0
+msgid "Group DDT by partner"
+msgstr "Raggruppa DDT per Partner"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: code:addons/l10n_it_fatturapa_out_ddt/wizard/ddt_create_invoice.py:62
+#, python-format
+msgid "Move {m} is not invoiceable ({d})"
+msgstr "Il trasferimento di {m} non è fatturabile ({d})"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: code:addons/l10n_it_fatturapa_out_ddt/stock_picking_package_preparation.py:214
+#, python-format
+msgid "The movement "%s" are not billable"
+msgstr "Il movimento "%s" non è fatturabile"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:wizard.export.fatturapa,include_ddt_data:0
+msgid "Dati DDT"
+msgstr "Dati DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.create.invoice,ddt_ids:0
+msgid "Ddt ids"
+msgstr "Numero DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Destinatario"
+msgstr "Destinatario"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Discount"
+msgstr "Sconto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:stock.picking.package.preparation.line,discount:0
+msgid "Discount (%)"
+msgstr "Sconto (%)"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Driver's Signature"
+msgstr "Firma Conducente"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,date_to:0
+msgid "End Date"
+msgstr "Data di fine"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr "Esporta E-Fattura"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Fiscal Code:"
+msgstr "Codice Fiscale:"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Goods Description"
+msgstr "Aspetto esteriore dei beni"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:sale.order,gross_weight:0
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Gross Weight"
+msgstr "Peso Lordo"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:account.invoice,gross_weight:0
+msgid "Gross Weight"
+msgstr "Peso Lordo"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:account.invoice,net_weight:0
+msgid "Net Weight"
+msgstr "Peso Netto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: selection:wizard.export.fatturapa,include_ddt_data:0
+msgid "Include DDT Data"
+msgstr "Includere dati DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: help:wizard.export.fatturapa,include_ddt_data:0
+msgid "Include DDT data: The field must be entered when a transport document associated with a deferred invoice is present\n"
+"Include transport data: The field must be entered when a shipping invoice to be filled with transport data is present"
+msgstr "Includere dati DDT: campo da valorizzare quando è presente una fattura "
+"differita con un documento di trasporto associato\n"
+"Includere dati trasporto: campo da valorizzare quando è presente un fattura "
+"accompagnatoria da compilare con i dati di trasporto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: selection:wizard.export.fatturapa,include_ddt_data:0
+msgid "Include transport data"
+msgstr "Includere dati trasporto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:account.invoice,incoterm:0
+msgid "Incoterm"
+msgstr "Condizioni di consegna"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: help:account.invoice,incoterm:0
+msgid "International Commercial Terms are a series of predefined commercial terms used in international transactions."
+msgstr "I Termini Commerciali Internazionali sono una serie di termini commerciali predefiniti usati nelle transazioni internazionali."
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,date_invoice:0
+msgid "Invoice Date"
+msgstr "Data fattura"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "Invoiced"
+msgstr "Fatturato"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: help:stock.picking.package.preparation,to_be_invoiced:0
+msgid "It depends on the 'invoice control' field in picking. True if 'To Be Invoice' is set.Save to see the changes"
+msgstr "Dipende dal campo 'Controllo Fatturazione' in picking. Vero se è impostato 'Da Fatturare'. Salvare per vedere le modifiche"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,journal_id:0
+msgid "Journal"
+msgstr "Sezionale"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Lots/Serial Numbers"
+msgstr "Lotti/Numeri seriali"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:sale.order,net_weight:0
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Net Weight"
+msgstr "Peso Netto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Notes"
+msgstr "Note"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: code:addons/l10n_it_fatturapa_out_ddt/wizard/ddt_invoicing.py:37
+#, python-format
+msgid "Nothing to invoice"
+msgstr "Non ci sono DDT da fatturare"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_stock_picking_package_preparation
+msgid "Package Preparation"
+msgstr "Preparazione Pacco"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_stock_picking_package_preparation_line
+msgid "Package Preparation Line"
+msgstr "Riga Preparazione Pacco"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Parcels"
+msgstr "Colli"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_res_partner
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Pick up time"
+msgstr "Ora ritiro"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_stock_picking
+msgid "Picking List"
+msgstr "Lista Picking"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_stock_transfer_details
+msgid "Picking wizard"
+msgstr "Picking wizard"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Price"
+msgstr "Prezzo"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Recipient's Signature"
+msgstr "Firma destinatario"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:stock.picking.package.preparation.line,sale_line_id:0
+msgid "Sale order line"
+msgstr "Riga ordine di vendita"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "Search DDT"
+msgstr "Cerca DDT"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_form_mail
+msgid "Send by Mail"
+msgstr "Invia per Email"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:ddt.invoicing:l10n_it_fatturapa_out_ddt.view_ddt_invoicing
+msgid "Setting"
+msgstr "Impostazioni"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: help:res.partner,ddt_show_price:0
+msgid "Show prices and         discounts in ddt report"
+msgstr "Mostra prezzi e sconti sulla stampa del ddt"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:stock.picking.package.preparation,show_price:0
+msgid "Show prices on report"
+msgstr "Mostra prezzi su report"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Size"
+msgstr "Dimensioni"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:ddt.invoicing,date_from:0
+msgid "Start Date"
+msgstr "Data di inizio"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "State"
+msgstr "Stato"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:stock.picking.package.preparation.line,tax_ids:0
+msgid "Taxes"
+msgstr "Imposte"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:stock.picking.package.preparation:l10n_it_fatturapa_out_ddt.ddt_stock_picking_package_preparation_search
+msgid "To Be Invoiced"
+msgstr "Da Fatturare"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:stock.picking.package.preparation,to_be_invoiced:0
+msgid "To be Invoiced"
+msgstr "Fatturabile"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Transportation Method"
+msgstr "Trasporto a mezzo"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.delivery_data
+msgid "Transportation Reason"
+msgstr "Causale del trasporto"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:stock.picking.package.preparation.line,price_unit:0
+msgid "Unit Price"
+msgstr "Prezzo Unitario"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:website:l10n_it_fatturapa_out_ddt.report_ddt
+msgid "VAT number:"
+msgstr "Partita IVA:"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:account.invoice,volume:0
+#: field:sale.order,volume:0
+msgid "Volume"
+msgstr "Volume"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: view:ddt.invoicing:l10n_it_fatturapa_out_ddt.view_ddt_invoicing
+msgid "or"
+msgstr "o"
+

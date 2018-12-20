@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+    <!-- DdT Views -->
+
+    <record id="ddt_stock_picking_package_preparation_form_new" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.form.new</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="l10n_it_ddt.ddt_stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_id" position='replace'>
+                <field name="show_price"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="sppp_line_stock_picking_package_preparation_form_ddt" model="ir.ui.view">
+        <field name="name">sppp.line.stock.picking.package.preparation.form.ddt</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom']" position="after">
+               <field name="price_unit"/>
+               <field name="discount" groups="sale.group_discount_per_so_line"/>
+               <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/form//field[@name='product_uom']" position="after">
+               <field name="price_unit"/>
+               <field name="discount" groups="sale.group_discount_per_so_line"/>
+               <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="ddt_stock_picking_package_preparation_search" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.search</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="arch" type="xml">
+            <search string="Search DDT">
+                <field name="ddt_number"/>
+                <field name="partner_id"/>
+                <field name="partner_shipping_id"/>
+                <field name="ddt_type_id" />
+                <filter string="To Be Invoiced" domain="[('to_be_invoiced','=', True), ('invoice_id','=', False)]"/>
+                <filter string="Invoiced" domain="[('invoice_id','!=', False)]"/>
+                <filter string="Draft" domain="[('state','=', 'draft')]"/>
+                <field name="picking_ids"></field>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_partner" string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    <filter string="DDT Date" context="{'group_by': 'date'}"/>
+                    <filter string="State" context="{'group_by': 'state'}"/>
+                    <filter string="DDT Type" context="{'group_by': 'ddt_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Invoicing data -->
+
+    <record id="stock_picking_package_preparation_invoicing_form" model="ir.ui.view">
+            <field name="name">stock.picking.package.preparation.invoicing.form</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                   <field name="to_be_invoiced"/>
+                   <field name="invoice_id"/>
+                </xpath>
+
+            </field>
+    </record>
+
+    <record id="stock_picking_package_preparation_invoicing_tree" model="ir.ui.view">
+            <field name="name">stock.picking.package.preparation.invoicing.tree</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                   <field name="to_be_invoiced"/>
+                </xpath>
+            </field>
+    </record>
+
+    <!-- Mail button -->
+     <record id="ddt_stock_picking_package_preparation_form_mail" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.form.mail</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="l10n_it_ddt.ddt_stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+            <button name="set_done" position="after">
+                <button name="action_send_ddt_mail" type="object" string="Send by Mail"
+                            attrs="{'invisible':[('state','in', 'draft')]}"/>
+            </button>
+        </field>
+    </record>
+
+    <!-- Create a new menuitem DDT calling the same action of the original menuitem -->
+    <menuitem
+        action="stock_picking_package_preparation.action_stock_picking_package_preparation"
+        id="menu_ddt_preparation"
+        parent="stock.menu_stock_warehouse_mgmt"
+        name="DDT"
+        sequence="3"/>
+
+
+</data>
+</openerp>

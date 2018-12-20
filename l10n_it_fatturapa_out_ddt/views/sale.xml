@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sale_order_form_view_fattpa_ddt" model="ir.ui.view">
+            <field name="name">sale.order.form.fattpa.ddt</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="l10n_it_ddt.sale_order_form_view_ddt"/>
+            <field name="arch" type="xml">
+                <field name="parcels" position="after">
+                    <field name="gross_weight"/>
+                    <field name="net_weight"/>
+                    <field name="volume"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

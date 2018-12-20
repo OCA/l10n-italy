@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_ddt_create_invoice_new" model="ir.ui.view">
+            <field name="name">Create Invoice</field>
+            <field name="model">ddt.create.invoice</field>
+            <field name="inherit_id" ref="l10n_it_ddt.view_ddt_create_invoice"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="before">
+                    <separator string="DDT" />
+                    <field string="DDT" name="ddt_ids" readonly="0">
+                        <tree create="false">
+                            <field name="ddt_number"/>
+                            <field name="partner_id"/>
+                            <field name="partner_shipping_id"/>
+                            <field name="date"/>
+                            <field name="date_done"/>
+                            <field name="package_id"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

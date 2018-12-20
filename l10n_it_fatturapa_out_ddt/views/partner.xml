@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_form_ddt_price" model="ir.ui.view">
+            <field name="name">res.partner.form.ddt.price</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_it_ddt.view_partner_form_ddt"/>
+            <field name="arch" type="xml">
+
+                <field name="transportation_method_id" position='after'>
+                    <field name="ddt_show_price"/>
+                </field>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>
