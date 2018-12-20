@@ -32,12 +32,12 @@ class AccountInvoice(models.Model):
         else:
             return False
 
-    @api.onchange('invoice_line_tax_id')
-    def _onchange_tax_line(self):
-        if self.is_tax_stamp_applicable():
-            self.tax_stamp = True
-        else:
-            self.tax_stamp = False
+    # @api.onchange('tax_line')
+    # def _onchange_tax_line(self):
+    #     if self.is_tax_stamp_applicable():
+    #         self.tax_stamp = True
+    #     else:
+    #         self.tax_stamp = False
 
     @api.multi
     def add_tax_stamp_line(self):
