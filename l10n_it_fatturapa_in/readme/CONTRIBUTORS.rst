@@ -3,3 +3,4 @@
 * Alessio Gerace
 * Gianmarco Conte
 * Marco Calcagni
+* Alex Comba <alex.comba@agilebg.com>
