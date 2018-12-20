@@ -11,7 +11,8 @@
                         <div id="tax_stamp">
                             <div>
                                 <label for="tax_stamp_product_id"/>
-                                <field name="tax_stamp_product_id" required="1" class="oe_inline"/>
+                                <field name="tax_stamp_product_id" required="1" class="oe_inline"
+                                       domain="[('is_stamp', '=', True)]" context="{'default_is_stamp': True}"/>
                             </div>
                         </div>
                 </xpath>

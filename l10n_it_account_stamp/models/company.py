@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from openerp import fields, models, api
 
@@ -9,7 +9,7 @@ class ResCompany(models.Model):
 
     tax_stamp_product_id = fields.Many2one(
         'product.product', 'Tax Stamp Product',
-        help="Product used to model DatiBollo XML element on bills."
+        help="Product used as Tax Stamp in customer invoices."
         )
 
 
