@@ -196,4 +196,5 @@ class MailThread(orm.AbstractModel):
                              attachment.name)
             else:
                 fatturapa_attachment_in.create(
-                    {'ir_attachment_id': attachment.id})
+                    cr, uid, {'ir_attachment_id': attachment.id},
+                    context=context)
