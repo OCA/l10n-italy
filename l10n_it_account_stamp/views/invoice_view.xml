@@ -16,7 +16,9 @@
                 <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
                     <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
                 </xpath>
-
+                <xpath expr="//field[@name='invoice_line']" position="attributes">
+                    <attribute name="on_change">0</attribute>
+                </xpath>
                 <field name="date_due" position="after">
                     <field name="tax_stamp"/>
                 </field>
