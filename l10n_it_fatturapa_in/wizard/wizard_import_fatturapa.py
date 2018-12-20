@@ -346,11 +346,11 @@ class WizardImportFatturapa(models.TransientModel):
             line_vals['account_id'] = (
                 product.product_tmpl_id.property_account_expense.id)
         elif (
-            product.product_tmpl_id.categ_id.property_account_expense_categ_id
+            product.product_tmpl_id.categ_id.property_account_expense_categ
         ):
             line_vals['account_id'] = (
                 product.product_tmpl_id.categ_id.
-                property_account_expense_categ_id.id
+                property_account_expense_categ.id
             )
         account = self.env['account.account'].browse(line_vals['account_id'])
         new_tax = None
@@ -394,8 +394,8 @@ class WizardImportFatturapa(models.TransientModel):
             retLine['discount'] = self._computeDiscount(line)
         if line.RiferimentoAmministrazione:
             retLine['admin_ref'] = line.RiferimentoAmministrazione
-        if wt_found and line.Ritenuta:
-            retLine['invoice_line_tax_wt_ids'] = [(6, 0, [wt_found.id])]
+        # if wt_found and line.Ritenuta:
+        #     retLine['invoice_line_tax_wt_ids'] = [(6, 0, [wt_found.id])]
 
         return retLine
 
@@ -703,7 +703,7 @@ class WizardImportFatturapa(models.TransientModel):
                             {
                                 'acc_number': dline.IBAN.strip(),
                                 'partner_id': partner_id,
-                                'bank_id': bankid,
+                                'bank': bankid,
                                 'bank_name': dline.IstitutoFinanziario,
                                 'bank_bic': dline.BIC,
                                 'state': 'iban',
@@ -872,8 +872,8 @@ class WizardImportFatturapa(models.TransientModel):
             'currency_id': currency[0].id,
             'journal_id': purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
-            'fiscal_position_id': False,
-            'payment_term_id': False,
+            'fiscal_position': False,
+            'payment_term': False,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
             'comment': comment
@@ -964,8 +964,8 @@ class WizardImportFatturapa(models.TransientModel):
                             "CassaPrevidenziale %s has Ritenuta but no "
                             "withholding tax was found in the system"
                             % walfareLine.TipoCassa))
-                    line_vals['invoice_line_tax_wt_ids'] = [
-                        (6, 0, [wt_found.id])]
+                    # line_vals['invoice_line_tax_wt_ids'] = [
+                    #     (6, 0, [wt_found.id])]
                 if self.env.user.company_id.cassa_previdenziale_product_id:
                     cassa_previdenziale_product = (
                         self.env.user.company_id.
