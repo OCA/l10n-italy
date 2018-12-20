@@ -167,7 +167,7 @@ class MailThread(orm.AbstractModel):
         decoded = base64.b64decode(attachment.datas)
         fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
         fatturapa_attachment_in = self.pool.get('fatturapa.attachment.in')
-        if attachment.mimetype == 'application/zip':
+        if attachment.file_type == 'application/zip':
             with zipfile.ZipFile(io.BytesIO(decoded)) as zf:
                 for file_name in zf.namelist():
                     inv_file = zf.open(file_name)
