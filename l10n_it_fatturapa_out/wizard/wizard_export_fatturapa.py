@@ -42,7 +42,8 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DettaglioPagamentoType,
     AllegatiType,
     ScontoMaggiorazioneType,
-    CodiceArticoloType
+    CodiceArticoloType,
+    DatiBolloType,
 )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -488,8 +489,15 @@ class WizardExportFatturapa(models.TransientModel):
             Numero=invoice.number,
             ImportoTotaleDocumento='%.2f' % ImportoTotaleDocumento)
 
-        # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
-        # ScontoMaggiorazione, Arrotondamento,
+        stamp_lines = [x for x in invoice.invoice_line if x.is_stamp_line]
+        if stamp_lines:
+            body.DatiGenerali.DatiGeneraliDocumento.DatiBollo = DatiBolloType(
+                BolloVirtuale='SI',
+                ImportoBollo='%.2f' % stamp_lines[0].price_subtotal,
+            )
+
+        # TODO: DatiRitenuta, DatiCassaPrevidenziale, ScontoMaggiorazione,
+        # Arrotondamento,
 
         if invoice.comment:
             # max length of Causale is 200
