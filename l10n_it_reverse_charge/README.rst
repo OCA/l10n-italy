@@ -179,6 +179,8 @@ Contributors
 * Davide Corio <davide.corio@abstract.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com
+* Domenico Stragapede <d.stragapede@elvenstudio.it>
+* Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 
 Maintainer
 ----------

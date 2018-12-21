@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_reverse_charge
+#	* l10n_it_reverse_charge
 #
 # Translators:
 # Paolo Valier <paolo.valier@hotmail.it>, 2017
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2017-10-28 05:14+0000\n"
+"PO-Revision-Date: 2018-12-21 16:50+0000\n"
 "Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -19,24 +19,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:254
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:303
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
-msgstr ""
+msgstr "Impossibile trovare 1 mappatura di imposte per %s"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:220
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:266
 #, python-format
 msgid "Can't find tax mapping"
-msgstr ""
+msgstr "Impossibile trovare mappatura d'imposte"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,create_uid:0 field:account.rc.type.tax,create_uid:0
+#: field:account.rc.type,create_uid:0
+#: field:account.rc.type.tax,create_uid:0
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,create_date:0 field:account.rc.type.tax,create_date:0
+#: field:account.rc.type,create_date:0
+#: field:account.rc.type.tax,create_date:0
 msgid "Created on"
 msgstr "Creato il"
 
@@ -54,24 +56,21 @@ msgstr "Nome da visualizzare"
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,tax_ids:0
 msgid "Example: 22_A_I_UE, 22_V_I_UE"
-msgstr ""
+msgstr "Esempio: 22_A_I_UE, 22_V_I_UE"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr "Posizione Fiscale"
+msgstr "Posizione fiscale"
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,with_supplier_self_invoice:0
-msgid ""
-"Flag this to enable the creation of an additional supplier self invoice. "
-"This is tipically used for extraUE suppliers, in order to show, in supplier "
-"register, an invoice to the specified partner (tipically, my company), "
-"instead of the extraUE partner"
-msgstr ""
+msgid "Flag this to enable the creation of an additional supplier self invoice. This is tipically used for extraUE suppliers, in order to show, in supplier register, an invoice to the specified partner (tipically, my company), instead of the extraUE partner"
+msgstr "Selezionare questo per abilitare la creazione di un'addizionale autofattura passiva. Questo è usato tipicamente per i fornitori extra UE, per mostrare, nel registro IVA acquisti, una fattura per il partner specificato (tipicamente, la propria azienda), invece del fornitore extra UE"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,id:0 field:account.rc.type.tax,id:0
+#: field:account.rc.type,id:0
+#: field:account.rc.type.tax,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -86,49 +85,52 @@ msgid "Invoice Line"
 msgstr "Righe Fattura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:213
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:257
 #, python-format
-msgid ""
-"Invoice line\n"
+msgid "Invoice line\n"
 "%s\n"
 "is RC but has not tax"
-msgstr ""
+msgstr "La riga fattura\n"
+"%s\n"
+"è RC ma non non ha imposte"
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,journal_id:0
 msgid "Journal used on RC self invoices."
-msgstr ""
+msgstr "Sezionale usato per le autofatture."
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,supplier_journal_id:0
 msgid "Journal used on RC supplier self invoices."
-msgstr ""
+msgstr "Sezionale usato nelle autofatture passive."
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,payment_journal_id:0
 msgid "Journal used to pay RC self invoices."
-msgstr ""
+msgstr "Sezionale usato per i pagamenti delle autofatture."
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,__last_update:0
 #: field:account.rc.type.tax,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Last Modified on"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,write_uid:0 field:account.rc.type.tax,write_uid:0
+#: field:account.rc.type,write_uid:0
+#: field:account.rc.type.tax,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultimo Aggiornamento il"
+msgstr "Ultimo aggiornamento da"
 
 #. module: l10n_it_reverse_charge
-#: field:account.rc.type,write_date:0 field:account.rc.type.tax,write_date:0
+#: field:account.rc.type,write_date:0
+#: field:account.rc.type.tax,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Main Informations"
-msgstr ""
+msgstr "Informazioni principali"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,method:0
@@ -143,179 +145,177 @@ msgstr "Nome"
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,partner_type:0
 msgid "Other"
-msgstr ""
+msgstr "Altro"
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,partner_id:0
 msgid "Partner used on RC self invoices."
-msgstr ""
+msgstr "Partner usato sulle autofatture."
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type.tax,purchase_tax_id:0
 msgid "Purchase Tax"
-msgstr ""
+msgstr "Imposta Acquisti"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice.line,rc:0
 msgid "RC"
-msgstr ""
+msgstr "RC"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice,rc_purchase_invoice_id:0
 msgid "RC Purchase Invoice"
-msgstr ""
+msgstr "Fattura di acquisto in RC"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice,rc_self_invoice_id:0
 msgid "RC Self Invoice"
-msgstr ""
+msgstr "Autofattura"
 
 #. module: l10n_it_reverse_charge
 #: field:account.invoice,rc_self_purchase_invoice_id:0
 msgid "RC Self Purchase Invoice"
-msgstr ""
+msgstr "Autofattura passiva"
 
 #. module: l10n_it_reverse_charge
 #: field:account.fiscal.position,rc_type_id:0
 msgid "RC Type"
-msgstr ""
+msgstr "Tipo RC"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type.tax,rc_type_id:0
 msgid "RC type"
-msgstr ""
+msgstr "Tipo RC"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type
 msgid "Reverse Charge Type"
-msgstr ""
+msgstr "Tipo reverse charge"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_tree
 #: model:ir.actions.act_window,name:l10n_it_reverse_charge.action_rc_type
 #: model:ir.ui.menu,name:l10n_it_reverse_charge.menu_action_rc_type
 msgid "Reverse Charge Types"
-msgstr ""
+msgstr "Tipi reverse charge"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type.tax,sale_tax_id:0
 msgid "Sale Tax"
-msgstr ""
+msgstr "Imposta Vendite"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,method:0
 msgid "Self Invoice"
-msgstr ""
+msgstr "Autofattura"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,journal_id:0
 msgid "Self Invoice Journal"
-msgstr ""
+msgstr "Sezionale autofattura"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,partner_id:0
 msgid "Self Invoice Partner"
-msgstr ""
+msgstr "Partner autofattura"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,partner_type:0
 msgid "Self Invoice Partner Type"
-msgstr ""
+msgstr "Tipo partner autofattura"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,payment_journal_id:0
 msgid "Self Invoice Payment Journal"
-msgstr ""
+msgstr "Sezionale pagamento autofattura"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,tax_ids:0
 msgid "Self Invoice Tax Mapping"
-msgstr ""
+msgstr "Mappature tasse autofattura"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,transitory_account_id:0
 msgid "Self Invoice Transitory Account"
-msgstr ""
+msgstr "Conto transitorio autofattura"
 
 #. module: l10n_it_reverse_charge
 #: view:account.invoice:l10n_it_reverse_charge.view_invoice_form_rc
 #: view:account.invoice:l10n_it_reverse_charge.view_invoice_supplier_form_rc
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Self Invoicing"
-msgstr ""
+msgstr "Autofatturazione"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,partner_type:0
 msgid "Supplier"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,supplier_journal_id:0
 msgid "Supplier Self Invoice Journal"
-msgstr ""
+msgstr "Sezionale autofattura passiva"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Tax Mapping"
-msgstr ""
+msgstr "Mappatura imposte"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type_tax
 msgid "Tax Mapping for self invoices"
-msgstr ""
+msgstr "Mappatura imposte per autofatturazione"
 
 #. module: l10n_it_reverse_charge
 #: sql_constraint:account.rc.type.tax:0
 msgid "Tax mappings can be defined only once per rc type."
-msgstr ""
+msgstr "Una mappatura può essere definita solo una volta per ogni tipo rc."
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,self_invoice_text:0
 msgid "Text in Self Invoice"
-msgstr ""
+msgstr "Testo su autofattura"
 
 #. module: l10n_it_reverse_charge
 #: view:account.rc.type:l10n_it_reverse_charge.view_rc_type_form
 msgid "Text on Self Invoice"
-msgstr ""
+msgstr "Testo su autofattura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:303
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:357
 #, python-format
-msgid ""
-"There are more than one payment line.\n"
-"In that case account entries cannot be canceledautomatically. Please proceed "
-"manually"
-msgstr ""
+msgid "There are more than one payment line.\n"
+"In that case account entries cannot be canceledautomatically. Please proceed manually"
+msgstr "C'è più di una riga di pagamento.\n"
+"In tal caso le registrazioni non possono essere annullate automaticamente. Procedere manualmente"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:199
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:239
 #, python-format
-msgid ""
-"There is no default credit account defined \n"
+msgid "There is no default credit account defined \n"
 "on journal \"%s\"."
-msgstr ""
+msgstr "Non c'è un conto di credito di default \n"
+"sul sezionale \"%s\"."
 
 #. module: l10n_it_reverse_charge
 #: help:account.rc.type,transitory_account_id:0
 msgid "Transitory account used on self invoices."
-msgstr ""
+msgstr "Conto transitorio usato sulle autofatture."
 
 #. module: l10n_it_reverse_charge
 #: selection:account.rc.type,method:0
 msgid "VAT Integration"
-msgstr ""
+msgstr "Integrazione IVA"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:89
 #, python-format
-msgid ""
-"When \"With additional supplier self invoice\" you must set only one tax "
-"mapping line: only 1 tax per invoice is supported"
-msgstr ""
+msgid "When \"With additional supplier self invoice\" you must set only one tax mapping line: only 1 tax per invoice is supported"
+msgstr "Quando \"Con autofattura passiva aggiuntiva\" bisogna impostare una sola riga di mappatura imposte: solo un'imposta per fattura è supportata"
 
 #. module: l10n_it_reverse_charge
 #: field:account.rc.type,with_supplier_self_invoice:0
 msgid "With additional supplier self invoice"
-msgstr ""
+msgstr "Con autofattura passiva aggiuntiva"
+

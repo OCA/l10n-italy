@@ -2,6 +2,8 @@
 # Copyright 2017 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2018 Domenico Stragapede - Elven Studio s.n.c
+# Copyright 2018 Vincenzo Terzulli - Elven Studio s.n.c
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
