@@ -44,6 +44,13 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.imac = self.env.ref(
             'product.product_product_8_product_template')
         self.service = self.env.ref('product.product_product_consultant')
+        self.state = self.env['res.country.state']
+        self.state.create({
+            'code': 'SS',
+            'name': 'Sassari',
+            'country_id': self.env['res.country'].search(
+                [('code', '=', 'IT')]).id
+        })
 
     def run_wizard(self, name, file_name):
         attach_id = self.attach_model.create(
