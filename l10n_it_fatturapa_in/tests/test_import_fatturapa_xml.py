@@ -21,7 +21,6 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
     def create_wt(self):
         return self.env['withholding.tax'].create({
             'name': '1040',
-            'code': '1040',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
             'payment_term': self.env.ref('account.account_payment_term').id,
@@ -185,9 +184,9 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             invoice.invoice_line[1].invoice_line_tax_id[0].name,
             '22% ftPA acq')
         self.assertEqual(
-            invoice.invoice_line[0].invoice_line_tax_id[0].amount, 22)
+            invoice.invoice_line[0].invoice_line_tax_id[0].amount, 0.22)
         self.assertEqual(
-            invoice.invoice_line[1].invoice_line_tax_id[0].amount, 22)
+            invoice.invoice_line[1].invoice_line_tax_id[0].amount, 0.22)
         self.assertEqual(
             invoice.invoice_line[1].price_unit, 2)
         self.assertTrue(len(invoice.e_invoice_line_ids) == 2)
