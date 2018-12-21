@@ -24,7 +24,6 @@ class DdtInvoicing(models.TransientModel):
 
     @api.multi
     def create_invoices(self):
-        print "**** create_invoices self ****", self
         for wizard in self:
             domain = [('to_be_invoiced', '=', True),
                       ('invoice_id', '=', False),
