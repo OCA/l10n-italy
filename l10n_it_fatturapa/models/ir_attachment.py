@@ -118,9 +118,9 @@ class Attachment(models.Model):
                 '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
             temp_der_file_name = (
                 '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
-            with open(temp_file_name, 'w') as p7m_file:
+            with open(temp_file_name, 'wb') as p7m_file:
                 datas = fatturapa_attachment.datas
-                format_data = base64.decodestring(datas).decode('utf-8')
+                format_data = base64.decodestring(datas)
                 p7m_file.write(format_data)
             xml_file_name = os.path.splitext(temp_file_name)[0]
 
@@ -137,7 +137,7 @@ class Attachment(models.Model):
             xml_file_name = self.decrypt_to_xml(
                 temp_file_name, xml_file_name)
 
-            with open(xml_file_name, 'r') as fatt_file:
+            with open(xml_file_name, 'rb') as fatt_file:
                 file_content = fatt_file.read()
             xml_string = file_content
         elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
