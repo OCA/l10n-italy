@@ -80,7 +80,6 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
 				<PrezzoTotale>637.20</PrezzoTotale>
 				<AliquotaIVA>22.00</AliquotaIVA>
 			</DettaglioLinee>
-			
 			<DettaglioLinee>
 				<NumeroLinea>2</NumeroLinea>
 				<CodiceArticolo>
@@ -98,7 +97,6 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
 				<PrezzoTotale>536.40</PrezzoTotale>
 				<AliquotaIVA>22.00</AliquotaIVA>
 			</DettaglioLinee>
-			
 			<DatiRiepilogo>
 				<AliquotaIVA>22.00</AliquotaIVA>
 				<ImponibileImporto>1173.60</ImponibileImporto>
