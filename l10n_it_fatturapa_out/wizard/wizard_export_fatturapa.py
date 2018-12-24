@@ -497,7 +497,7 @@ class WizardExportFatturapa(models.TransientModel):
             Numero=invoice.number,
             ImportoTotaleDocumento='%.2f' % ImportoTotaleDocumento)
 
-        # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
+        # TODO: DatiRitenuta, DatiCassaPrevidenziale,
         # ScontoMaggiorazione, Arrotondamento,
 
         if invoice.comment:
