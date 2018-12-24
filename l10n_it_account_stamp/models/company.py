@@ -14,12 +14,13 @@ class ResCompany(models.Model):
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
 
     tax_stamp_product_id = fields.Many2one(
         related='company_id.tax_stamp_product_id',
         string="Tax Stamp Product",
-        help="Product used as Tax Stamp in customer invoices."
+        help="Product used as Tax Stamp in customer invoices.",
+        readonly=False
         )
 
     @api.onchange('company_id')
