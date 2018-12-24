@@ -372,7 +372,7 @@ class WizardImportFatturapa(models.TransientModel):
                     line_vals['invoice_line_tax_id'] = [
                         (6, 0, [new_tax.id])]
 
-    def _prepareInvoiceLine(self, credit_account_id, line, wt_found=False):
+    def _prepareInvoiceLine(self, credit_account_id, line):
         retLine = self._prepare_generic_line_data(line)
         retLine.update({
             'name': line.Descrizione,
@@ -390,8 +390,6 @@ class WizardImportFatturapa(models.TransientModel):
             retLine['discount'] = self._computeDiscount(line)
         if line.RiferimentoAmministrazione:
             retLine['admin_ref'] = line.RiferimentoAmministrazione
-        # if wt_found and line.Ritenuta:
-        #     retLine['invoice_line_tax_wt_ids'] = [(6, 0, [wt_found.id])]
 
         return retLine
 
@@ -917,7 +915,7 @@ class WizardImportFatturapa(models.TransientModel):
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
             if self.e_invoice_detail_level == '2':
                 invoice_line_data = self._prepareInvoiceLine(
-                    credit_account_id, line, wt_found)
+                    credit_account_id, line)
                 product = self.get_line_product(line, partner)
                 if product:
                     invoice_line_data['product_id'] = product.id
@@ -931,7 +929,7 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
         invoice = invoice_model.create(invoice_data)
         # invoice._onchange_invoice_line_wt_ids()
-        invoice.compute_all_withholding_tax()
+        # invoice.compute_all_withholding_tax()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 
@@ -960,8 +958,13 @@ class WizardImportFatturapa(models.TransientModel):
                             "CassaPrevidenziale %s has Ritenuta but no "
                             "withholding tax was found in the system"
                             % walfareLine.TipoCassa))
-                    # line_vals['invoice_line_tax_wt_ids'] = [
-                    #     (6, 0, [wt_found.id])]
+                    # if wt_found:
+                    #
+                    #     self.env['account.invoice.withholding.tax'].create({
+                    #         # 'base': ,
+                    #         # 'tax': Withholding.ImportoRitenuta,
+                    #         'withholding_tax_id': wt_found[0].id,
+                    #     })
                 if self.env.user.company_id.cassa_previdenziale_product_id:
                     cassa_previdenziale_product = (
                         self.env.user.company_id.
@@ -1170,15 +1173,22 @@ class WizardImportFatturapa(models.TransientModel):
                 }
                 AttachModel.create(_attach_dict)
 
-        self._addGlobalDiscount(
-            invoice_id, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
-
         # compute the invoice
         # invoice.compute_taxes()
         account_invoice_tax = self.env['account.invoice.tax']
         compute_taxes = account_invoice_tax.compute(
             invoice.with_context(lang=invoice.partner_id.lang))
         invoice.check_tax_lines(compute_taxes)
+        if wt_found:
+            wh_line_id = self.env['account.invoice.withholding.tax'].create({
+                'base': float(Withholding.ImportoRitenuta) / float(
+                    Withholding.AliquotaRitenuta) * 100.0,
+                'tax': float(Withholding.ImportoRitenuta),
+                'withholding_tax_id': wt_found[0].id,
+            })
+            invoice.write({'withholding_tax_line': [(6, 0, [wh_line_id.id])]})
+        self._addGlobalDiscount(
+            invoice_id, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
         return invoice_id
 
     def compute_xml_amount_untaxed(self, DatiRiepilogo):
