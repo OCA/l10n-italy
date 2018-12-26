@@ -18,14 +18,14 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from osv import fields, osv
 
 
-class FatturaPAAttachment(orm.Model):
+class FatturaPAAttachment(osv.osv):
     _name = "fatturapa.attachment.out"
     _description = "E-invoice Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
-    _inherit = ['mail.thread']
+    #_inherit = ['mail.thread']
 
     def _compute_has_pdf_invoice_print(self, cr, uid, ids, name, unknow_none, context={}):
         ret = {}
@@ -96,12 +96,14 @@ class FatturaPAAttachment(orm.Model):
     _constraints = [
         (_check_datas_fname, 'File Already Present.', ['datas_fname']),
     ]
+FatturaPAAttachment()
 
 
-class FatturaAttachments(orm.Model):
+class FatturaAttachments(osv.osv):
     _inherit = "fatturapa.attachments"
 
     _columns = {
         'is_pdf_invoice_print': fields.boolean(
         help="This attachment contains the PDF report of the linked invoice")
     }
+FatturaAttachments()

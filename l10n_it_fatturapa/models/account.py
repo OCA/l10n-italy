@@ -217,7 +217,7 @@ class DiscountRisePrice(osv.osv):
 DiscountRisePrice()
 
 
-class FatturapaRelatedDocumentType(osv.osv):
+class fatturapa_related_document_type(osv.osv):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_document_type'
     _description = 'FatturaPA Related Document Type'
@@ -259,7 +259,7 @@ class FatturapaRelatedDocumentType(osv.osv):
         return super(fatturapa_related_document_type, self).\
             create(cr, uid, vals, context)
 
-FatturapaRelatedDocumentType()
+fatturapa_related_document_type()
 
 
 class FaturapaActivityProgress(osv.osv):
@@ -293,7 +293,7 @@ class FatturaAttachments(osv.osv):
 FatturaAttachments()
 
 
-class FatturapaRelatedDdt(osv.osv):
+class fatturapa_related_ddt(osv.osv):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_ddt'
     _description = 'FatturaPA Related DdT'
@@ -320,10 +320,10 @@ class FatturapaRelatedDdt(osv.osv):
             vals['lineref'] = line.sequence
         return super(fatturapa_related_ddt, self).\
             create(cr, uid, vals, context)
-FatturapaRelatedDdt()
+fatturapa_related_ddt()
 
 
-class AccountInvoiceLine(osv.osv):
+class account_invoiceLine(osv.osv):
     # _position = ['2.2.1']
     _inherit = "account.invoice.line"
 
@@ -346,7 +346,7 @@ class AccountInvoiceLine(osv.osv):
     ),
     'ftpa_line_number': fields.integer("Line number", readonly=True, copy=False) ,
     }
-AccountInvoiceLine()
+account_invoiceLine()
 
 
 class FaturapaSummaryData(osv.osv):
@@ -381,7 +381,7 @@ class FaturapaSummaryData(osv.osv):
 FaturapaSummaryData()
 
 
-class AccountInvoice(osv.osv):
+class account_invoice(osv.osv):
     # _position = ['2.1', '2.2', '2.3', '2.4', '2.5']
     _inherit = "account.invoice"
     _columns = {
@@ -538,4 +538,4 @@ class AccountInvoice(osv.osv):
         default['fatturapa_attachment_out_id'] = False
         ret_id = super(account_invoice, self).copy(cr, uid, id, default, context=context)
         return ret_id
-AccountInvoice()
+account_invoice()

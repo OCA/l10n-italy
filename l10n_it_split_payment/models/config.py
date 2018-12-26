@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-from osv import orm, fields, osv
+from osv import fields, osv
 
 
 class ResCompany(osv.osv):
@@ -33,3 +33,4 @@ class ResCompany(osv.osv):
             string="Split Payment Write-off Account",
             help="Account used to write off the VAT amount")
     }
+ResCompany()

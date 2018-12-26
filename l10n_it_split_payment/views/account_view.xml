@@ -23,8 +23,8 @@
                 </field>
                 <field name="amount_tax" position="after">
                     <field name="amount_sp" widget="monetary"
-                        options="{'currency_field': 'currency_id'}"
                         attrs="{'invisible': [('split_payment', '=', False)]}"/>
+                        <!--options="{'currency_field': 'currency_id'}"-->
                 </field>
             </field>
         </record>

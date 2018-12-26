@@ -25,7 +25,7 @@
                                 <tree editable="bottom" string="Related Documents">
                                     <field name="type" />
                                     <field name="name" />
-                                    <field name="lineRef" readonly="1" />
+                                    <field name="lineref" readonly="1" />
                                     <field name="date" />
                                     <field name="numitem" />
                                     <field name="code" />

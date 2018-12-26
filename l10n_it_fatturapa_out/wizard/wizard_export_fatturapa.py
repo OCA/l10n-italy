@@ -22,8 +22,8 @@
 import base64
 import logging
 import phonenumbers
-from osv import orm, osv, fields
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from osv import osv, fields
+from l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     IdFiscaleType,
     ContattiTrasmittenteType,
     CedentePrestatoreType,
@@ -54,9 +54,9 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType
 )
-from openerp.addons.l10n_it_fatturapa.models.account import (
+from l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
-from openerp.tools.translate import _
+from tools.translate import _
 _logger = logging.getLogger(__name__)
 
 try:
@@ -65,14 +65,14 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
-class WizardExportFatturapa(osv.osv_memory):
+class wizard_export_fatturapa(osv.osv_memory):
     _name = "wizard.export.fatturapa"
     _description = "Export E-invoice"
 
     def __init__(self, cr, uid, **kwargs):
         fatturapa = False
         self.number = False
-        super(WizardExportFatturapa, self).__init__(cr, uid, **kwargs)
+        super(wizard_export_fatturapa, self).__init__(cr, uid, **kwargs)
 
     def _domain_ir_values(self, cr, uid, context={}):
         return [('model', '=', context.get('active_model', False)),
@@ -1042,3 +1042,4 @@ class WizardExportFatturapa(osv.osv_memory):
                 res[invoice.partner_id.id] = []
             res[invoice.partner_id.id].append(invoice.id)
         return res
+wizard_export_fatturapa()

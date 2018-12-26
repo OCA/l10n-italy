@@ -18,12 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.tools.translate import _
-from openerp.osv import fields, orm
-from openerp.osv.osv import except_osv
+from tools.translate import _
+from osv import fields, osv
+from osv.osv import except_osv
 
 
-class AccountInvoice(orm.Model):
+class account_invoice(osv.osv):
     _inherit = "account.invoice"
 
     _columns = {
@@ -48,6 +48,7 @@ class AccountInvoice(orm.Model):
                     "Invoice %s has XML and can't be canceled. "
                     "Delete the XML before"
                 ) % invoice.number)
-        res = super(AccountInvoice, self).action_invoice_cancel(cr, uid, ids,
+        res = super(account_invoice, self).action_invoice_cancel(cr, uid, ids,
                                                                 context)
         return res
+account_invoice()

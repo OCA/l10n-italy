@@ -32,13 +32,14 @@ class AccountFiscalPosition(osv.osv):
     _columns = {
         'split_payment': fields.boolean("Split Payment")
     }
+AccountFiscalPosition()
 
 
-class AccountInvoice(osv.osv):
+class account_invoice(osv.osv):
     _inherit = 'account.invoice'
 
     def _amount_all(self, cr, uid, ids, name, args, context=None):
-        res = super(AccountInvoice, self)._amount_all(
+        res = super(account_invoice, self)._amount_all(
             cr, uid, ids, name, args, context=context)
         for invoice in self.browse(cr, uid, ids, context=context):
             res[invoice.id]['amount_sp'] = 0
@@ -170,7 +171,7 @@ class AccountInvoice(osv.osv):
                         context=context, update_check=False)
 
     def action_move_create(self, cr, uid, ids, context=None):
-        res = super(AccountInvoice, self).action_move_create(
+        res = super(account_invoice, self).action_move_create(
             cr, uid, ids, context=context)
         for invoice in self.browse(cr, uid, ids, context=context):
             if (
@@ -187,3 +188,4 @@ class AccountInvoice(osv.osv):
                 write_off_line_vals['move_id'] = invoice.move_id.id
                 line_model.create(cr, uid, write_off_line_vals, context=context)
         return res
+account_invoice()
