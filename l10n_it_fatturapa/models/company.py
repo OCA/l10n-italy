@@ -160,3 +160,4 @@ class ResCompany(osv.osv):
                 'fatturapa_stabile_organizzazione': False,
                 })
         return res
+ResCompany()

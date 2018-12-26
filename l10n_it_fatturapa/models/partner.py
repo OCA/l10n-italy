@@ -114,4 +114,4 @@ class ResPartner(osv.osv):
             'firstname', 'customer', 'street', 'zip', 'city',
             'country_id']),
     ]
-
+ResPartner()

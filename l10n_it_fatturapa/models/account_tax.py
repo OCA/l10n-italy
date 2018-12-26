@@ -71,3 +71,4 @@ class AccountTax(osv.osv):
                     _('Error'), _('Too many tax %s found') %
                     tax_name)
         return tax_ids[0]
+AccountTax()

@@ -18,7 +18,7 @@
     "depends": [
         'account'
     ],
-    "data": [
+    "update_xml": [
         'views/partner_view.xml',
         'views/company_view.xml',
     ],

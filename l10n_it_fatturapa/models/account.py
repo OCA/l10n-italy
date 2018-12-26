@@ -25,6 +25,7 @@ class FatturapaFormat(osv.osv):
         'name': fields.char('Description', size=128),
         'code': fields.char('Code', size=5),
     }
+FatturapaFormat()
 
 
 class FatturapaDocumentType(osv.osv):
@@ -36,6 +37,7 @@ class FatturapaDocumentType(osv.osv):
         'name': fields.char('Description', size=128),
         'code': fields.char('Code', size=4),
     }
+FatturapaDocumentType()
 
 
 class FatturapaPaymentTerm(osv.osv):
@@ -47,6 +49,7 @@ class FatturapaPaymentTerm(osv.osv):
         'name': fields.char('Description', size=128),
         'code': fields.char('Code', size=4),
     }
+FatturapaPaymentTerm()
 
 
 class FatturapaPaymentMethod(osv.osv):
@@ -58,6 +61,7 @@ class FatturapaPaymentMethod(osv.osv):
         'name': fields.char('Description', size=128),
         'code': fields.char('Code', size=4),
     }
+FatturapaPaymentMethod()
 
 
 #  used in fatturaPa import
@@ -79,6 +83,7 @@ class FatturapaPaymentData(osv.osv):
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True),
     }
+FatturapaPaymentData()
 
 
 class FatturapaPaymentDetail(osv.osv):
@@ -115,6 +120,7 @@ class FatturapaPaymentDetail(osv.osv):
             'fatturapa.payment.data', 'Related payments Data',
             ondelete='cascade', select=True),
     }
+FatturapaPaymentDetail()
 
 
 #  used in fatturaPa export
@@ -128,6 +134,7 @@ class AccountPaymentTerm(osv.osv):
         'fatturapa_pm_id': fields.many2one(
             'fatturapa.payment_method', string="FatturaPA Payment Method"),
     }
+AccountPaymentTerm()
 
 
 class FatturapaFiscalPosition(osv.osv):
@@ -139,6 +146,7 @@ class FatturapaFiscalPosition(osv.osv):
         'name': fields.char('Description', size=128),
         'code': fields.char('Code', size=4),
     }
+FatturapaFiscalPosition()
 
 
 class WelfareFundType(osv.osv):
@@ -150,6 +158,7 @@ class WelfareFundType(osv.osv):
         'name': fields.char('name', size=32),
         'description': fields.char('description', size=100),
     }
+WelfareFundType()
 
 
 class WelfareFundDataLine(osv.osv):
@@ -174,7 +183,7 @@ class WelfareFundDataLine(osv.osv):
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),
-        'welfare_Iva_tax': fields.float('Welfare  tax'),
+        'welfare_iva_tax': fields.float('Welfare tax'),
         'subjected_withholding': fields.char(
             'Subjected at Withholding', size=2),
         'pa_line_code': fields.char('PA Code for this record', size=20),
@@ -183,6 +192,7 @@ class WelfareFundDataLine(osv.osv):
             ondelete='cascade', select=True
         ),
     }
+WelfareFundDataLine()
 
 
 class DiscountRisePrice(osv.osv):
@@ -204,6 +214,7 @@ class DiscountRisePrice(osv.osv):
             ondelete='cascade', select=True
         ),
     }
+DiscountRisePrice()
 
 
 class FatturapaRelatedDocumentType(osv.osv):
@@ -223,7 +234,7 @@ class FatturapaRelatedDocumentType(osv.osv):
             'Document Type', required=True
         ),
         'name': fields.char('DocumentID', size=20, required=True),
-        'lineRef': fields.integer('LineRef'),
+        'lineref': fields.integer('LineRef'),
         'invoice_line_id': fields.many2one(
             'account.invoice.line', 'Related Invoice Line',
             ondelete='cascade', select=True),
@@ -244,9 +255,11 @@ class FatturapaRelatedDocumentType(osv.osv):
             line_obj = self.pool.get('account.invoice.line')
             line = line_obj.browse(
                 cr, uid, vals['invoice_line_id'], context=context)
-            vals['lineRef'] = line.sequence
+            vals['lineref'] = line.sequence
         return super(fatturapa_related_document_type, self).\
             create(cr, uid, vals, context)
+
+FatturapaRelatedDocumentType()
 
 
 class FaturapaActivityProgress(osv.osv):
@@ -259,6 +272,7 @@ class FaturapaActivityProgress(osv.osv):
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True)
     }
+FaturapaActivityProgress()
 
 
 class FatturaAttachments(osv.osv):
@@ -276,6 +290,7 @@ class FatturaAttachments(osv.osv):
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True)
     }
+FatturaAttachments()
 
 
 class FatturapaRelatedDdt(osv.osv):
@@ -286,7 +301,7 @@ class FatturapaRelatedDdt(osv.osv):
     _columns = {
         'name': fields.char('DocumentID', size=20, required=True),
         'date': fields.date('Date'),
-        'lineRef': fields.integer('LineRef'),
+        'lineref': fields.integer('LineRef'),
         'invoice_line_id': fields.many2one(
             'account.invoice.line', 'Related Invoice Line',
             ondelete='cascade', select=True),
@@ -302,9 +317,10 @@ class FatturapaRelatedDdt(osv.osv):
             line_obj = self.pool.get('account.invoice.line')
             line = line_obj.browse(
                 cr, uid, vals['invoice_line_id'], context=context)
-            vals['lineRef'] = line.sequence
+            vals['lineref'] = line.sequence
         return super(fatturapa_related_ddt, self).\
             create(cr, uid, vals, context)
+FatturapaRelatedDdt()
 
 
 class AccountInvoiceLine(osv.osv):
@@ -330,6 +346,7 @@ class AccountInvoiceLine(osv.osv):
     ),
     'ftpa_line_number': fields.integer("Line number", readonly=True, copy=False) ,
     }
+AccountInvoiceLine()
 
 
 class FaturapaSummaryData(osv.osv):
@@ -346,7 +363,7 @@ class FaturapaSummaryData(osv.osv):
             ('N6', 'inversione contabile (reverse charge)'),
             ('N7', 'IVA assolta in altro stato UE')
         ], string="Non taxable nature"),
-        'incidental charges': fields.float('Incidental Charges'),
+        'incidental_charges': fields.float('Incidental Charges'),
         'rounding': fields.float('Rounding'),
         'amount_untaxed': fields.float('Amount untaxed'),
         'amount_tax': fields.float('Amount tax'),
@@ -361,6 +378,7 @@ class FaturapaSummaryData(osv.osv):
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True)
     }
+FaturapaSummaryData()
 
 
 class AccountInvoice(osv.osv):
@@ -450,7 +468,7 @@ class AccountInvoice(osv.osv):
             'FatturaPA Summary   Datas'
         ),
         #  2.3
-        'Vehicle_registration': fields.date('Veicole Registration'),
+        'vehicle_registration': fields.date('Veicole Registration'),
         'total_travel': fields.char('Travel in hours or Km', size=15),
         #  2.4
         'fatturapa_payments': fields.one2many(
@@ -520,3 +538,4 @@ class AccountInvoice(osv.osv):
         default['fatturapa_attachment_out_id'] = False
         ret_id = super(account_invoice, self).copy(cr, uid, id, default, context=context)
         return ret_id
+AccountInvoice()

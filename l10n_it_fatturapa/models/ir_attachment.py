@@ -148,3 +148,5 @@ class Attachment(osv.osv):
         transform = ET.XSLT(xslt)
         newdom = transform(dom)
         return ET.tostring(newdom, pretty_print=True)
+
+Attachment()
