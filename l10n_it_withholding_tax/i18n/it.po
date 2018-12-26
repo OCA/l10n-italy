@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-11 07:51+0000\n"
-"PO-Revision-Date: 2018-12-20 15:58+0000\n"
+"PO-Revision-Date: 2018-12-27 01:40+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -178,13 +178,13 @@ msgstr "Debito"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:69
 #, python-format
 msgid "Error! Rates are required"
-msgstr "Errore, le aliquote sono obbligatorie"
+msgstr "Errore! Le aliquote sono obbligatorie"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:138
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
-msgstr "Errore, due aliquote non posso sovrapporsi"
+msgstr "Errore! Due aliquote non posso sovrapporsi"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_fiscal_position
@@ -377,7 +377,7 @@ msgstr "Imposta a dovuto"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__statement_id
 msgid "Statement"
-msgstr "Documento"
+msgstr "Dichiarazione"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__state
@@ -430,7 +430,7 @@ msgstr "Totale imponibile"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax_move__move_line_id
 msgid "Used from trace WT from other parts"
-msgstr "Usato per tenere traccia della RdA da posti diversi"
+msgstr "Usato per tenere traccia della RdA da posizioni diverse"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_line__invoice_line_tax_wt_ids
