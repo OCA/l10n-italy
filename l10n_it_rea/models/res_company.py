@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.osv import fields, orm
+from osv import fields, orm, osv
 from tools.translate import _
 from res_partner import sel_liquidation_state, sel_member_type
 
 
-class Company(orm.Model):
+class Company(osv.osv):
     _inherit = 'res.company'
 
     _columns = {

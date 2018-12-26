@@ -3,12 +3,12 @@
 # Copyright 2018 Andrea Cometa <a.cometa@apuliasoftware.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from openerp.osv import fields, orm
-from openerp.osv.osv import except_osv
-from openerp.tools.translate import _
+from osv import fields, orm, osv
+from osv.osv import except_osv
+from tools.translate import _
 
 
-class ResPartner(orm.Model):
+class ResPartner(osv.osv):
     _inherit = "res.partner"
 
     _columns = {

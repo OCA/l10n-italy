@@ -17,7 +17,7 @@
     "license": "AGPL-3",
     "depends": ['base'],
     "data": [
-        'view/partner_view.xml',
+        'partner_view.xml',
     ],
     'installable': True,
 }

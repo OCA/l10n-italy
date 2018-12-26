@@ -8,15 +8,15 @@ import shlex
 import subprocess
 import logging
 from io import BytesIO
-from openerp.osv import fields, orm
-from openerp.modules.module import get_module_resource
-from openerp.osv.osv import except_osv
-from openerp.tools.translate import _
+from osv import fields, orm, osv
+from addons import get_module_resource
+from osv.osv import except_osv
+from tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
 
-class Attachment(orm.Model):
+class Attachment(osv.osv):
     _inherit = 'ir.attachment'
 
     def _compute_ftpa_preview_link(self, cr, uid, ids, context={}):

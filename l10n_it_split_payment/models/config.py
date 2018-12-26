@@ -21,10 +21,10 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from osv import orm, fields, osv
 
 
-class ResCompany(orm.Model):
+class ResCompany(osv.osv):
     _inherit = 'res.company'
 
     _columns = {

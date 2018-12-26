@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
-from openerp.tools.translate import _
+from osv import fields, orm, osv
+from tools.translate import _
 
 
-class AccountTax(orm.Model):
+class AccountTax(osv.osv):
     _inherit = 'account.tax'
     _columns = {
         'non_taxable_nature': fields.selection([

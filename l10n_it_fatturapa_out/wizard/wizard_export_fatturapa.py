@@ -22,8 +22,7 @@
 import base64
 import logging
 import phonenumbers
-from openerp.osv import orm
-from openerp.osv import fields
+from osv import orm, osv, fields
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     IdFiscaleType,
     ContattiTrasmittenteType,
@@ -66,7 +65,7 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
-class WizardExportFatturapa(orm.TransientModel):
+class WizardExportFatturapa(osv.osv_memory):
     _name = "wizard.export.fatturapa"
     _description = "Export E-invoice"
 

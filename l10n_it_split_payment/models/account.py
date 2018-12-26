@@ -21,12 +21,12 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from osv import orm, fields,osv
 from tools.translate import _
 import decimal_precision as dp
 
 
-class AccountFiscalPosition(orm.Model):
+class AccountFiscalPosition(osv.osv):
     _inherit = 'account.fiscal.position'
 
     _columns = {
@@ -34,7 +34,7 @@ class AccountFiscalPosition(orm.Model):
     }
 
 
-class AccountInvoice(orm.Model):
+class AccountInvoice(osv.osv):
     _inherit = 'account.invoice'
 
     def _amount_all(self, cr, uid, ids, name, args, context=None):

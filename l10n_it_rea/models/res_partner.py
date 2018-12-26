@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.osv import fields, orm
+from osv import fields, orm, osv
 
 
 sel_member_type = [
@@ -11,7 +11,7 @@ sel_liquidation_state = [
     ('LN', 'Not in liquidation')]
 
 
-class ResPartner(orm.Model):
+class ResPartner(osv.osv):
     _inherit = 'res.partner'
 
     _columns = {

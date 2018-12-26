@@ -3,8 +3,8 @@
 # Copyright 2018 Andrea Cometa <a.cometa@apuliasoftware.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from openerp.osv import fields
-from openerp.osv import orm
+from osv import fields,orm,osv
+
 
 
 RELATED_DOCUMENT_TYPES = {
@@ -16,7 +16,7 @@ RELATED_DOCUMENT_TYPES = {
 }
 
 
-class FatturapaFormat(orm.Model):
+class FatturapaFormat(osv.osv):
     # _position = ['1.1.3']
     _name = "fatturapa.format"
     _description = 'FatturaPA Format'
@@ -27,7 +27,7 @@ class FatturapaFormat(orm.Model):
     }
 
 
-class FatturapaDocumentType(orm.Model):
+class FatturapaDocumentType(osv.osv):
     # _position = ['2.1.1.1']
     _name = "fatturapa.document_type"
     _description = 'FatturaPA Document Type'
@@ -38,7 +38,7 @@ class FatturapaDocumentType(orm.Model):
     }
 
 
-class FatturapaPaymentTerm(orm.Model):
+class FatturapaPaymentTerm(osv.osv):
     # _position = ['2.4.1']
     _name = "fatturapa.payment_term"
     _description = 'FatturaPA Payment Term'
@@ -49,7 +49,7 @@ class FatturapaPaymentTerm(orm.Model):
     }
 
 
-class FatturapaPaymentMethod(orm.Model):
+class FatturapaPaymentMethod(osv.osv):
     # _position = ['2.4.2.2']
     _name = "fatturapa.payment_method"
     _description = 'FatturaPA Payment Method'
@@ -61,7 +61,7 @@ class FatturapaPaymentMethod(orm.Model):
 
 
 #  used in fatturaPa import
-class FatturapaPaymentData(orm.Model):
+class FatturapaPaymentData(osv.osv):
     # _position = ['2.4.2.2']
     _name = "fatturapa.payment.data"
     _description = 'FatturaPA Payment Data'
@@ -81,7 +81,7 @@ class FatturapaPaymentData(orm.Model):
     }
 
 
-class FatturapaPaymentDetail(orm.Model):
+class FatturapaPaymentDetail(osv.osv):
     # _position = ['2.4.2']
     _name = "fatturapa.payment.detail"
     _columns = {
@@ -118,7 +118,7 @@ class FatturapaPaymentDetail(orm.Model):
 
 
 #  used in fatturaPa export
-class AccountPaymentTerm(orm.Model):
+class AccountPaymentTerm(osv.osv):
     # _position = ['2.4.2.2']
     _inherit = 'account.payment.term'
 
@@ -130,7 +130,7 @@ class AccountPaymentTerm(orm.Model):
     }
 
 
-class FatturapaFiscalPosition(orm.Model):
+class FatturapaFiscalPosition(osv.osv):
     # _position = ['2.1.1.7.7', '2.2.1.14']
     _name = "fatturapa.fiscal_position"
     _description = 'FatturaPA Fiscal Position'
@@ -141,7 +141,7 @@ class FatturapaFiscalPosition(orm.Model):
     }
 
 
-class WelfareFundType(orm.Model):
+class WelfareFundType(osv.osv):
     # _position = ['2.1.1.7.1']
     _name = "welfare.fund.type"
     _description = 'welfare fund type'
@@ -152,7 +152,7 @@ class WelfareFundType(orm.Model):
     }
 
 
-class WelfareFundDataLine(orm.Model):
+class WelfareFundDataLine(osv.osv):
     # _position = ['2.1.1.7']
     _name = "welfare.fund.data.line"
     _description = 'FatturaPA Welfare Fund Data'
@@ -185,7 +185,7 @@ class WelfareFundDataLine(orm.Model):
     }
 
 
-class DiscountRisePrice(orm.Model):
+class DiscountRisePrice(osv.osv):
     # _position = ['2.1.1.8', '2.2.1.10']
     _name = "discount.rise.price"
     _description = 'FatturaPA Discount Rise Price Data'
@@ -206,7 +206,7 @@ class DiscountRisePrice(orm.Model):
     }
 
 
-class FatturapaRelatedDocumentType(orm.Model):
+class FatturapaRelatedDocumentType(osv.osv):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_document_type'
     _description = 'FatturaPA Related Document Type'
@@ -249,7 +249,7 @@ class FatturapaRelatedDocumentType(orm.Model):
             create(cr, uid, vals, context)
 
 
-class FaturapaActivityProgress(orm.Model):
+class FaturapaActivityProgress(osv.osv):
     # _position = ['2.1.7']
     _name = "faturapa.activity.progress"
 
@@ -261,7 +261,7 @@ class FaturapaActivityProgress(orm.Model):
     }
 
 
-class FatturaAttachments(orm.Model):
+class FatturaAttachments(osv.osv):
     # _position = ['2.5']
     _name = "fatturapa.attachments"
     _description = "FatturaPA attachments"
@@ -278,7 +278,7 @@ class FatturaAttachments(orm.Model):
     }
 
 
-class FatturapaRelatedDdt(orm.Model):
+class FatturapaRelatedDdt(osv.osv):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_ddt'
     _description = 'FatturaPA Related DdT'
@@ -307,7 +307,7 @@ class FatturapaRelatedDdt(orm.Model):
             create(cr, uid, vals, context)
 
 
-class AccountInvoiceLine(orm.Model):
+class AccountInvoiceLine(osv.osv):
     # _position = ['2.2.1']
     _inherit = "account.invoice.line"
 
@@ -332,7 +332,7 @@ class AccountInvoiceLine(orm.Model):
     }
 
 
-class FaturapaSummaryData(orm.Model):
+class FaturapaSummaryData(osv.osv):
     # _position = ['2.2.2']
     _name = "faturapa.summary.data"
     _columns = {
@@ -363,7 +363,7 @@ class FaturapaSummaryData(orm.Model):
     }
 
 
-class AccountInvoice(orm.Model):
+class AccountInvoice(osv.osv):
     # _position = ['2.1', '2.2', '2.3', '2.4', '2.5']
     _inherit = "account.invoice"
     _columns = {

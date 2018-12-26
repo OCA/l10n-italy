@@ -18,11 +18,11 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
-from openerp.osv.osv import except_osv
+from osv import fields, orm, osv
+from osv.osv import except_osv
 
 
-class ResCompany(orm.Model):
+class ResCompany(osv.osv):
     _inherit = 'res.company'
     _columns = {
         'fatturapa_fiscal_position_id': fields.many2one(

@@ -89,7 +89,7 @@ To contribute to this module, please visit http://odoo-community.org.
     "depends": [
         'account',
         'l10n_it_base',
-        'l10n_it_fiscalcode',
+        # 'l10n_it_fiscalcode',
         'document',
         'l10n_it_ipa',
         'l10n_it_rea',
@@ -97,13 +97,13 @@ To contribute to this module, please visit http://odoo-community.org.
         ],
 
     "data": [
-        'data/fatturapa_data.xml',
-        'data/welfare.fund.type.csv',
+        # 'data/fatturapa_data.xml',
+        # 'data/welfare.fund.type.csv',
         'views/account_view.xml',
         'views/company_view.xml',
         'views/partner_view.xml',
         'views/account_tax_view.xml',
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
     ],
     #"demo": ['demo/account_invoice_fatturapa.xml'],
     "installable": True,
