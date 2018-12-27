@@ -131,7 +131,7 @@ msgid "Last error message"
 msgstr "Ultimo messaggio di errore"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:56
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:58
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
 msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
@@ -219,21 +219,21 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr "Procedura per inviare PEC e-fattura multiple"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:242
-#, python-format
-msgid "You can only delete 'ready to send' files."
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:246
+#, fuzzy, python-format
+msgid "You can only delete files in 'Ready to Send' state."
 msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:46
-#, python-format
-msgid "You can only reset 'sender error' files."
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
+#, fuzzy, python-format
+msgid "You can only reset files in 'Sender Error' state."
 msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
-#, python-format
-msgid "You can only send 'ready to send' files."
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:68
+#, fuzzy, python-format
+msgid "You can only send files in 'Ready to Send' state."
 msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_pec
