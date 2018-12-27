@@ -21,17 +21,10 @@ msgstr ""
 "X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_rea
-#: code:addons/l10n_it_rea/models/res_company.py:50
-#, python-format
-msgid "%s %s Share Cap. %s € %s %s"
+#: code:addons/l10n_it_rea/models/res_company.py:51
+#, fuzzy, python-format
+msgid "%s - %s / Share Cap. %s € / %s / %s"
 msgstr "%s - %s / Cap. sociale %s € / %s / %s"
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company_rea_capital
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_capital
-msgid "Capital"
-msgstr "Capitale sociale"
 
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_company
@@ -87,14 +80,23 @@ msgid "REA Code"
 msgstr "Codice REA"
 
 #. module: l10n_it_rea
+#: model:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
+#, fuzzy
+msgid "REA Data"
+msgstr "Dati REA"
+
+#. module: l10n_it_rea
 #: model:ir.ui.view,arch_db:l10n_it_rea.view_rea_partner_form
 msgid "REA Registration"
 msgstr "Registrazione REA"
 
 #. module: l10n_it_rea
-#: model:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
-msgid "REA data"
-msgstr "Dati REA"
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company_rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_capital
+#, fuzzy
+msgid "Share Capital"
+msgstr "Capitale sociale"
 
 #. module: l10n_it_rea
 #: sql_constraint:res.partner:0

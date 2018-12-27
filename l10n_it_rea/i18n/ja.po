@@ -19,16 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_it_rea
-#: code:addons/l10n_it_rea/models/res_company.py:50
+#: code:addons/l10n_it_rea/models/res_company.py:51
 #, python-format
-msgid "%s %s Share Cap. %s € %s %s"
-msgstr ""
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company_rea_capital
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_capital
-msgid "Capital"
+msgid "%s - %s / Share Cap. %s € / %s / %s"
 msgstr ""
 
 #. module: l10n_it_rea
@@ -85,13 +78,20 @@ msgid "REA Code"
 msgstr ""
 
 #. module: l10n_it_rea
+#: model:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
+msgid "REA Data"
+msgstr ""
+
+#. module: l10n_it_rea
 #: model:ir.ui.view,arch_db:l10n_it_rea.view_rea_partner_form
 msgid "REA Registration"
 msgstr ""
 
 #. module: l10n_it_rea
-#: model:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
-msgid "REA data"
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company_rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner_rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users_rea_capital
+msgid "Share Capital"
 msgstr ""
 
 #. module: l10n_it_rea
