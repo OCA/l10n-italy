@@ -21,18 +21,18 @@
 #
 ##############################################################################
 
-from osv import orm, fields,osv
+from osv import fields, osv
 from tools.translate import _
 import decimal_precision as dp
 
 
-class AccountFiscalPosition(osv.osv):
+class account_fiscal_position(osv.osv):
     _inherit = 'account.fiscal.position'
 
     _columns = {
         'split_payment': fields.boolean("Split Payment")
     }
-AccountFiscalPosition()
+account_fiscal_position()
 
 
 class account_invoice(osv.osv):
@@ -48,7 +48,6 @@ class account_invoice(osv.osv):
                 res[invoice.id]['amount_tax'] = 0
             res[invoice.id]['amount_total'] = res[invoice.id][
                 'amount_untaxed'] + res[invoice.id]['amount_tax']
-        print res
         return res
 
     def _get_invoice_line(self, cr, uid, ids, context=None):
@@ -68,7 +67,7 @@ class account_invoice(osv.osv):
     _columns = {
         'amount_untaxed': fields.function(
             _amount_all, digits_compute=dp.get_precision('Account'),
-            string='Untaxed', multi='all',
+            string='Untaxed', multi='all', method=True,
             store={
                 'account.invoice': (
                     lambda self, cr, uid, ids, c={}: ids,
@@ -82,7 +81,7 @@ class account_invoice(osv.osv):
             }),
         'amount_tax': fields.function(
             _amount_all, digits_compute=dp.get_precision('Account'),
-            string='Untaxed', multi='all',
+            string='Untaxed', multi='all', method=True,
             store={
                 'account.invoice': (
                     lambda self, cr, uid, ids, c={}: ids,
@@ -96,7 +95,7 @@ class account_invoice(osv.osv):
             }),
         'amount_total': fields.function(
             _amount_all, digits_compute=dp.get_precision('Account'),
-            string='Untaxed', multi='all',
+            string='Untaxed', multi='all', method=True,
             store={
                 'account.invoice': (
                     lambda self, cr, uid, ids, c={}: ids,
@@ -110,7 +109,7 @@ class account_invoice(osv.osv):
             }),
         'amount_sp': fields.function(
             _amount_all, digits_compute=dp.get_precision('Account'),
-            string='Untaxed', multi='all',
+            string='Untaxed', multi='all', method=True,
             store={
                 'account.invoice': (
                     lambda self, cr, uid, ids, c={}: ids,
