@@ -43,7 +43,9 @@ class FatturaPAAttachmentOut(models.Model):
     def reset_to_ready(self):
         for att in self:
             if att.state != 'sender_error':
-                raise UserError(_("You can only reset 'sender error' files."))
+                raise UserError(
+                    _("You can only reset files in 'Sender Error' state.")
+                )
             att.state = 'ready'
 
     @api.model
@@ -62,7 +64,9 @@ class FatturaPAAttachmentOut(models.Model):
         self.env.user.company_id.sdi_channel_id.check_first_pec_sending()
         states = self.mapped('state')
         if set(states) != set(['ready']):
-            raise UserError(_("You can only send 'Ready to Send' files."))
+            raise UserError(
+                _("You can only send files in 'Ready to Send' state.")
+            )
         for att in self:
             mail_message = self.env['mail.message'].create({
                 'model': self._name,
@@ -240,6 +244,6 @@ class FatturaPAAttachmentOut(models.Model):
         for att in self:
             if att.state != 'ready':
                 raise UserError(_(
-                    "You can only delete 'ready to send' files."
+                    "You can only delete files in 'Ready to Send' state."
                 ))
         return super(FatturaPAAttachmentOut, self).unlink()
