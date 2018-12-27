@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 15:51+0000\n"
-"PO-Revision-Date: 2018-12-25 16:58+0000\n"
+"PO-Revision-Date: 2018-12-27 19:40+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -104,7 +104,7 @@ msgstr "Email %s non valida"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__email_exchange_system
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__email_exchange_system
 msgid "Exchange System Email Address"
-msgstr "Indirizzo email sistema di interscambio"
+msgstr "Indirizzo email SdI"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__first_invoice_sent
