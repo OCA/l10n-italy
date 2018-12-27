@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-16 23:58+0000\n"
+"PO-Revision-Date: 2018-12-28 01:40+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -24,7 +24,7 @@ msgid ""
 "related to an e-invoice.</p><p>Please check PEC mailbox %s, at server %s, "
 "with user %s</p>"
 msgstr ""
-"<p>Il messaggio PEC con message-Id %s è stato letto ma non elaborato, perché "
+"<p>Il messaggio PEC con message-ID %s è stato letto ma non elaborato, perché "
 "non è relativo a una e-fattura.</p><p>Controllare la casella PEC %s: server %"
 "s, utente %s</p>"
 
@@ -147,7 +147,7 @@ msgid "Last error message"
 msgstr "Ultimo messaggio di errore"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:57
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:59
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
 msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
@@ -247,21 +247,21 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr "Procedura per inviare PEC e-fattura multiple"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:240
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:244
 #, python-format
-msgid "You can only delete 'ready to send' files."
+msgid "You can only delete files in 'Ready to Send' state."
 msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:48
 #, python-format
-msgid "You can only reset 'sender error' files."
+msgid "You can only reset files in 'Sender Error' state."
 msgstr "È possibile reimpostare solo file con stato «Errore trasmittente\"."
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:65
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:68
 #, python-format
-msgid "You can only send 'Ready to Send' files."
+msgid "You can only send files in 'Ready to Send' state."
 msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_pec
