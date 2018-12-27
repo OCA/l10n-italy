@@ -918,33 +918,7 @@ class WizardImportFatturapa(models.TransientModel):
                 WalferLineVals = self._prepareWelfareLine(
                     invoice_id, walfareLine)
                 WelfareFundLineModel.create(WalferLineVals)
-                line_vals = self._prepare_generic_line_data(walfareLine)
-                line_vals.update({
-                    'name': _(
-                        "Welfare Fund: %s") % walfareLine.TipoCassa,
-                    'price_unit': float(walfareLine.ImportoContributoCassa),
-                    'invoice_id': invoice.id,
-                    'account_id': credit_account_id,
-                })
-                if walfareLine.Ritenuta:
-                    if not wt_found:
-                        raise UserError(_(
-                            "Welfare Fund data %s has withholding tax but no "
-                            "withholding tax was found in the system."
-                            % walfareLine.TipoCassa))
-                    line_vals['invoice_line_tax_wt_ids'] = [
-                        (6, 0, [wt_found.id])]
-                if self.env.user.company_id.cassa_previdenziale_product_id:
-                    cassa_previdenziale_product = (
-                        self.env.user.company_id.
-                        cassa_previdenziale_product_id
-                    )
-                    line_vals['product_id'] = cassa_previdenziale_product.id
-                    line_vals['name'] = cassa_previdenziale_product.name
-                    self.adjust_accounting_data(
-                        cassa_previdenziale_product, line_vals
-                    )
-                self.env['account.invoice.line'].create(line_vals)
+
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
         if relOrders:
