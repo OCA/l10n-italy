@@ -8,7 +8,8 @@ from openerp.tools.translate import _
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
     tax_stamp = fields.Boolean(
-        "Tax Stamp", readonly=True, states={'draft': [('readonly', False)]})
+        "Tax Stamp", readonly=True, states={'draft': [('readonly', False)]},
+        compute='_compute_tax_stamp')
 
     def is_tax_stamp_applicable(self):
         stamp_product_id = self.env.user.with_context(
@@ -32,12 +33,13 @@ class AccountInvoice(models.Model):
         else:
             return False
 
-    # @api.onchange('tax_line')
-    # def _onchange_tax_line(self):
-    #     if self.is_tax_stamp_applicable():
-    #         self.tax_stamp = True
-    #     else:
-    #         self.tax_stamp = False
+    @api.one
+    @api.depends('tax_line')
+    def _compute_tax_stamp(self):
+        if self.is_tax_stamp_applicable():
+            self.tax_stamp = True
+        else:
+            self.tax_stamp = False
 
     @api.multi
     def add_tax_stamp_line(self):
