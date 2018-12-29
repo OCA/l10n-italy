@@ -4,7 +4,6 @@ import base64
 import tempfile
 from openerp.tests.common import SingleTransactionCase
 from openerp.modules import get_module_resource
-from openerp.exceptions import Warning as UserError
 
 
 class TestFatturaPAXMLValidation(SingleTransactionCase):
