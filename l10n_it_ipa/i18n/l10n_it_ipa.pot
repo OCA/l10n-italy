@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-29 12:11+0000\n"
+"PO-Revision-Date: 2018-12-29 11:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,7 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_ipa
+#: code:addons/l10n_it_ipa/model/partner.py:35
 #: field:res.partner,ipa_code:0
+#, python-format
 msgid "IPA Code"
 msgstr ""
 
@@ -29,7 +33,13 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_ipa
-#: field:res.partner,is_pa:0
+#: code:addons/l10n_it_ipa/model/partner.py:36
+#, python-format
 msgid "Public administration"
+msgstr ""
+
+#. module: l10n_it_ipa
+#: view:res.partner:l10n_it_ipa.view_partner_ipa_vat_form
+msgid "{'required': [('is_company', '=', True), ('is_pa', '=', False)]}"
 msgstr ""
 

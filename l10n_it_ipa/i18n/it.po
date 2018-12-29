@@ -4,13 +4,14 @@
 #
 # Translators:
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
+# Domenico Stragapede <d.stragapede@libero.it>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-01 13:08+0000\n"
-"PO-Revision-Date: 2015-07-29 10:53+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2018-12-29 12:11+0000\n"
+"Last-Translator: Domenico Stragapede <d.stragapede@libero.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -20,7 +21,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_ipa
+#: code:addons/l10n_it_ipa/model/partner.py:35
 #: field:res.partner,ipa_code:0
+#, python-format
 msgid "IPA Code"
 msgstr "Codice IPA"
 
@@ -35,6 +38,13 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_ipa
-#: field:res.partner,is_pa:0
+#: code:addons/l10n_it_ipa/model/partner.py:36
+#, python-format
 msgid "Public administration"
-msgstr ""
+msgstr "Pubblica Amministrazione"
+
+#. module: l10n_it_ipa
+#: view:res.partner:l10n_it_ipa.view_partner_ipa_vat_form
+msgid "{'required': [('is_company', '=', True), ('is_pa', '=', False)]}"
+msgstr "{'required': [('is_company', '=', True), ('is_pa', '=', False)]}"
+

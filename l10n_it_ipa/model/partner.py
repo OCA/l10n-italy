@@ -25,12 +25,12 @@
 #
 ##############################################################################
 
-from openerp import models
-from openerp import fields
+from openerp import models, fields
+from openerp.tools.translate import _
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    ipa_code = fields.Char(string='IPA Code')
-    is_pa = fields.Boolean("Public administration")
+    ipa_code = fields.Char(string=_('IPA Code'))
+    is_pa = fields.Boolean(string=_("Public administration"))
