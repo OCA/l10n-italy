@@ -277,3 +277,4 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertTrue(len(invoices) == 2)
         for invoice in invoices:
             self.assertTrue(len(invoice.invoice_line) == 0)
+
