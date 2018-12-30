@@ -244,6 +244,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                     self.assertFalse(line.product_id)
 
         partner = invoice.partner_id
+        self.partner = partner
         partner.e_invoice_default_product_id = (
             self.imac.product_variant_ids[0].id)
         # I create a supplier code to be matched in XML
@@ -272,13 +273,13 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
     def test_17_xml_import(self):
         # file B2B downloaded from
         # http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm
+        partner = self.partner
+        partner.e_invoice_detail_level = '0'
         res = self.run_wizard('test18', 'IT01234567890_FPR04.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertTrue(len(invoices) == 2)
         invoice = invoices[0]
         # change Livello di dettaglio Fatture elettroniche to Minimo
-        partner = invoice.partner_id
-        partner.e_invoice_detail_level = '0'
         for invoice in invoices:
             self.assertTrue(len(invoice.invoice_line) == 0)
