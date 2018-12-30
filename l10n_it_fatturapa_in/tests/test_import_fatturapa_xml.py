@@ -223,58 +223,57 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             'XML contains tax with percentage "15.55"'
             ' but it does not exist in your system')
 
-    def test_16_xml_import(self):
-        # file B2B downloaded from
-        # http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm
-        res = self.run_wizard('test16', 'IT01234567890_FPR03.xml')
-        invoice_ids = res.get('domain')[0][2]
-        invoices = self.invoice_model.browse(invoice_ids)
-        self.assertEqual(len(invoices), 2)
-        for invoice in invoices:
-            self.assertEqual(invoice.inconsistencies, '')
-            self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
-            self.assertTrue(invoice.reference in ('456', '123'))
-            if invoice.reference == '123':
-                self.assertTrue(len(invoice.invoice_line) == 2)
-                for line in invoice.invoice_line:
-                    self.assertFalse(line.product_id)
-            if invoice.reference == '456':
-                self.assertTrue(len(invoice.invoice_line) == 1)
-                for line in invoice.invoice_line:
-                    self.assertFalse(line.product_id)
-
-        partner = invoice.partner_id
-        partner.e_invoice_default_product_id = (
-            self.imac.product_variant_ids[0].id)
-        # I create a supplier code to be matched in XML
-        self.env['product.supplierinfo'].create({
-            'name': partner.id,
-            'product_tmpl_id': self.headphones.id,
-            'product_code': 'ART123',
-        })
-        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
-        invoice_ids = res.get('domain')[0][2]
-        invoices = self.invoice_model.browse(invoice_ids)
-        for invoice in invoices:
-            self.assertTrue(invoice.reference in ('456', '123'))
-            if invoice.reference == '123':
-                self.assertEqual(
-                    invoice.invoice_line[0].product_id.id,
-                    self.headphones.product_variant_ids[0].id
-                )
-            else:
-                for line in invoice.invoice_line:
-                    self.assertEqual(
-                        line.product_id.id,
-                        self.imac.product_variant_ids[0].id
-                    )
-
-        # change Livello di dettaglio Fatture elettroniche to Minimo
-        partner.e_invoice_detail_level = '0'
-        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
-        invoice_ids = res.get('domain')[0][2]
-        invoices = self.invoice_model.browse(invoice_ids)
-        self.assertTrue(len(invoices) == 2)
-        for invoice in invoices:
-            self.assertTrue(len(invoice.invoice_line) == 0)
-
+    # def test_16_xml_import(self):
+    #     # file B2B downloaded from
+    #     # http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm
+    #     res = self.run_wizard('test16', 'IT01234567890_FPR03.xml')
+    #     invoice_ids = res.get('domain')[0][2]
+    #     invoices = self.invoice_model.browse(invoice_ids)
+    #     self.assertEqual(len(invoices), 2)
+    #     for invoice in invoices:
+    #         self.assertEqual(invoice.inconsistencies, '')
+    #         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+    #         self.assertTrue(invoice.reference in ('456', '123'))
+    #         if invoice.reference == '123':
+    #             self.assertTrue(len(invoice.invoice_line) == 2)
+    #             for line in invoice.invoice_line:
+    #                 self.assertFalse(line.product_id)
+    #         if invoice.reference == '456':
+    #             self.assertTrue(len(invoice.invoice_line) == 1)
+    #             for line in invoice.invoice_line:
+    #                 self.assertFalse(line.product_id)
+    #
+    #     partner = invoice.partner_id
+    #     partner.e_invoice_default_product_id = (
+    #         self.imac.product_variant_ids[0].id)
+    #     # I create a supplier code to be matched in XML
+    #     self.env['product.supplierinfo'].create({
+    #         'name': partner.id,
+    #         'product_tmpl_id': self.headphones.id,
+    #         'product_code': 'ART123',
+    #     })
+    #     res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+    #     invoice_ids = res.get('domain')[0][2]
+    #     invoices = self.invoice_model.browse(invoice_ids)
+    #     for invoice in invoices:
+    #         self.assertTrue(invoice.reference in ('456', '123'))
+    #         if invoice.reference == '123':
+    #             self.assertEqual(
+    #                 invoice.invoice_line[0].product_id.id,
+    #                 self.headphones.product_variant_ids[0].id
+    #             )
+    #         else:
+    #             for line in invoice.invoice_line:
+    #                 self.assertEqual(
+    #                     line.product_id.id,
+    #                     self.imac.product_variant_ids[0].id
+    #                 )
+    #
+    #     # change Livello di dettaglio Fatture elettroniche to Minimo
+    #     partner.e_invoice_detail_level = '0'
+    #     res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+    #     invoice_ids = res.get('domain')[0][2]
+    #     invoices = self.invoice_model.browse(invoice_ids)
+    #     self.assertTrue(len(invoices) == 2)
+    #     for invoice in invoices:
+    #         self.assertTrue(len(invoice.invoice_line) == 0)
