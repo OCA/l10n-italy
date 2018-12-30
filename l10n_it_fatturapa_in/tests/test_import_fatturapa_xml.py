@@ -255,12 +255,12 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             'product_tmpl_id': self.headphones.id,
             'product_code': 'ART123',
         })
-        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+        res = self.run_wizard('test17', 'IT01234567890_FPR04.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         for invoice in invoices:
-            self.assertTrue(invoice.reference in ('456', '123'))
-            if invoice.reference == '123':
+            self.assertTrue(invoice.reference in ('457', '124'))
+            if invoice.reference == '124':
                 self.assertEqual(
                     invoice.invoice_line[0].product_id.id,
                     self.headphones.product_variant_ids[0].id
@@ -280,7 +280,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         ])[0]
         # change Livello di dettaglio Fatture elettroniche to Minimo
         partner.e_invoice_detail_level = '0'
-        res = self.run_wizard('test18', 'IT01234567890_FPR04.xml')
+        res = self.run_wizard('test18', 'IT01234567890_FPR05.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertTrue(len(invoices) == 2)
