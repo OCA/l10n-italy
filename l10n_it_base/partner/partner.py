@@ -2,6 +2,7 @@
 ##############################################################################
 #    
 #    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#    All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,14 +22,13 @@
 
 from osv import osv
 from osv import fields
-from tools.translate import _
 
 class res_region(osv.osv):
     _name = 'res.region'
     _description = 'Region'
     _columns = {
         'name': fields.char('Region Name', size=64, help='The full name of the region.', required=True),
-        'country_id': fields.many2one('res.country', 'Country', ondelete='restrict'),
+        'country_id': fields.many2one('res.country', 'Country'),
     }
 res_region()
 
@@ -38,7 +38,7 @@ class res_province(osv.osv):
     _columns = {
         'name': fields.char('Province Name', size=64, help='The full name of the province.', required=True),
         'code': fields.char('Province Code', size=2, help='The province code in two chars.',required=True),
-        'region': fields.many2one('res.region','Region', ondelete='restrict'),
+        'region': fields.many2one('res.region','Region'),
     }
 
 res_province()
@@ -48,7 +48,7 @@ class res_city(osv.osv):
     _description = 'City'
     _columns = {
         'name': fields.char('City', size=64, required=True),
-        'province_id': fields.many2one('res.province','Province', ondelete='restrict'),
+    	'province_id': fields.many2one('res.province','Province'),
         'zip': fields.char('ZIP', size=5),
         'phone_prefix': fields.char('Telephone Prefix' , size=16),
         'istat_code': fields.char('ISTAT code', size=16),
@@ -57,12 +57,14 @@ class res_city(osv.osv):
         'region': fields.related('province_id','region',type='many2one', relation='res.region', string='Region', readonly=True),
     }
 
+res_city()
+
 class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-        'province': fields.many2one('res.province', string='Province', ondelete='restrict'),
-        'region': fields.many2one('res.region', string='Region', ondelete='restrict'),
+        'province': fields.many2one('res.province', string='Province'),
+        'region': fields.many2one('res.region', string='Region'),
     }
 
     def on_change_city(self, cr, uid, ids, city):
@@ -72,10 +74,10 @@ class res_partner_address(osv.osv):
             if city_id:
                 city_obj = self.pool.get('res.city').browse(cr, uid, city_id[0])
                 res = {'value': {
-                    'province': city_obj.province_id and city_obj.province_id.id or False,
-                    'region': city_obj.region and city_obj.region.id or False,
+                    'province':city_obj.province_id.id,
+                    'region':city_obj.region.id,
                     'zip': city_obj.zip,
-                    'country_id': city_obj.region and city_obj.region.country_id and city_obj.region.country_id.id or False,
+                    'country_id': city_obj.region.country_id.id,
                     'city': city.title(),
                     }}
         return res

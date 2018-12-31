@@ -611,8 +611,6 @@ class fiscal_year_closing(osv.osv):
             if not fyc.opening_move_id:
                 raise osv.except_osv(_("Not all the operations have been performed!"), _("The Opening move is required"))
 
-            ''' needed ?
-            
             #
             # Calculate the moves to check
             #
@@ -682,8 +680,6 @@ class fiscal_year_closing(osv.osv):
                     WHERE id = %d
                     """
             cr.execute(query % fyc.closing_fiscalyear_id.id)
-            
-            '''
 
         # Done
         self.write(cr, uid, ids, {'state': 'done'})
@@ -715,8 +711,6 @@ class fiscal_year_closing(osv.osv):
                     'check_unbalanced_moves': False,
                 }, context=context)
 
-        ''' needed? 
-
         #
         # Open the fiscal year and it's periods
         #
@@ -725,8 +719,6 @@ class fiscal_year_closing(osv.osv):
         #       so we have to do it on SQL level :(
         #       This is based on the "account.fiscalyear.close.state" wizard.
         #
-        # TODO check this for 6.1
-        
         for fyc in self.browse(cr, uid, ids, context):
             query = """
                     UPDATE account_journal_period
@@ -747,20 +739,12 @@ class fiscal_year_closing(osv.osv):
                     """
             cr.execute(query % fyc.closing_fiscalyear_id.id)
 
-        '''
-
-        for fyc in self.browse(cr, uid, ids, context):
-            if fyc.loss_and_profit_move_id:
-                fyc.loss_and_profit_move_id.unlink()
-            if fyc.net_loss_and_profit_move_id:
-                fyc.net_loss_and_profit_move_id.unlink()
-            if fyc.closing_move_id:
-                fyc.closing_move_id.unlink()
-            if fyc.opening_move_id:
-                fyc.opening_move_id.unlink()
 
         # Canceled
         self.write(cr, uid, ids, {'state': 'canceled'})
+
+        # Note: Everything else (removing the account moves) is done on the
+        #       cancel wizard *after* this action returns.
         return True
 
 

@@ -3,6 +3,7 @@
 #    
 #    Copyright (C) 2010-2011 OpenERP Italian Community
 #    http://www.openerp-italia.org> 
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -32,7 +33,7 @@ Funcionalities:
 - Automatistmi su res.partner.address
 
 """,
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
+    'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['base'],

@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
 #    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -45,19 +43,8 @@
             TA(t) = f( TBA(t) )
         the result difference is small but important
 
-    NOTE
-    ====
-    
-    For OpenERP 6.1, please use the patch contained in the following branch:
-https://code.launchpad.net/~openerp-community/openobject-addons/fix-account-6-1-tax-computation-method
-instead of this module
-
-    For OpenERP > 6.1, the fix has been merged yet:
-https://code.launchpad.net/~akretion-team/openobject-addons/trunk-add-tax-rounding-option/+merge/113833
-so this module is not needed anymore
-    
     """,
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
+    'author': 'OpenERP Italian Community',
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account', 'account_voucher'],
@@ -71,3 +58,5 @@ so this module is not needed anymore
     "active": False,
     "installable": True
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

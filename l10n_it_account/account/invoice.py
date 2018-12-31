@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #    
-#    Copyright (C) 2010 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#    All Rights Reserved
+#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -14,7 +15,7 @@
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU Affero General Public License
+#    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
@@ -22,52 +23,30 @@
 import netsvc
 import pooler, tools
 
-from openerp.osv import fields, orm
+from osv import fields, osv
 from tools.translate import _
 
-class account_invoice(orm.Model):
+class account_invoice(osv.osv):
     
     _inherit = 'account.invoice'
-    _columns = {
-        'supplier_invoice_number': fields.char('Supplier invoice nr', size=16),
-        }
 
     def action_number(self, cr, uid, ids, context=None):
         super(account_invoice, self).action_number(cr, uid, ids, context)
         for obj_inv in self.browse(cr, uid, ids):
             inv_type = obj_inv.type
-            number = obj_inv.number
-            date_invoice = obj_inv.date_invoice
-            reg_date = obj_inv.registration_date
-            journal = obj_inv.journal_id.id
-            fy_id = obj_inv.period_id.fiscalyear_id.id
-            period_ids = self.pool.get('account.period').search(
-                cr, uid, [('fiscalyear_id', '=', fy_id), ('company_id', '=', obj_inv.company_id.id)])
-            if inv_type == 'out_invoice' or inv_type == 'out_refund':
-                res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','>',date_invoice), 
-                                            ('number', '<', number), ('journal_id', '=', journal),
-                                            ('period_id', 'in', period_ids)])
-                if res:
-                    raise orm.except_orm(_('Date Inconsistency'),
-                            _('Cannot create invoice! Post the invoice with a greater date'))
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
-                res = self.search(cr, uid, [('type','=',inv_type),('registration_date','>',reg_date), 
-                                            ('number', '<', number), ('journal_id', '=', journal),
-                                            ('period_id', 'in', period_ids)], context=context)
-                if res:
-                    raise orm.except_orm(_('Date Inconsistency'),
-                        _('Cannot create invoice! Post the invoice with a greater date'))
-                #check duplication (only supplier's invoices)
-                supplier_invoice_number = obj_inv.supplier_invoice_number
-                partner_id = obj_inv.partner_id.id
-                res = self.search(cr, uid, [('type','=',inv_type),('date_invoice','=',date_invoice), 
-                                            ('journal_id', '=', journal),
-                                            ('supplier_invoice_number', '=', supplier_invoice_number),
-                                            ('partner_id', '=', partner_id),
-                                            ('state', 'not in', ('draft', 'cancel'))], context=context)
-                if res:
-                    raise orm.except_orm(_('Invoice Duplication'),
-                        _('Invoice already posted!'))
+                return True
+            #number = obj_inv.number
+            #date_invoice = obj_inv.date_invoice
+            #cr.execute("SELECT number FROM account_invoice i WHERE i.type = %s AND i.date_invoice > %s AND i.number < %s", (inv_type, date_invoice, number))
+            #res = cr.dictfetchall()
+            #if res:
+            #    raise osv.except_osv(_('Date Inconsistency'),
+            #            _('Cannot create invoice! Post the invoice with a greater date'))
         return True
+    
+account_invoice()
+
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
