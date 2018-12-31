@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.osv import fields, osv, orm
+from osv import fields, osv, orm
 
-from openerp.addons.l10n_it_sdi_channel.models.sdi import SDI_CHANNELS
+from l10n_it_sdi_channel.models.sdi import SDI_CHANNELS
 
 
-class ResCompany(orm.Model):
+class ResCompany(osv.osv):
     _inherit = 'res.company'
 
     _columns = {
@@ -55,3 +55,4 @@ class ResCompany(orm.Model):
             'email_exchange_system':  [('company_id', '=', company_id)],
         })
         return res
+ResCompany(osv.osv)

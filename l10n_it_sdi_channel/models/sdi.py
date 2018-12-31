@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
-from openerp.addons.base.ir.ir_mail_server import extract_rfc2822_addresses
+from osv import fields, osv, orm
+from tools.translate import _
+from ir_mail_server import extract_rfc2822_addresses
 
 SDI_CHANNELS = [
     ('pec', 'PEC'),
@@ -12,7 +12,7 @@ SDI_CHANNELS = [
 ]
 
 
-class SdiChannel(orm.Model):
+class SdiChannel(osv.osv):
     _name = "sdi.channel"
     _description = "SdI channel"
 
@@ -25,9 +25,10 @@ class SdiChannel(orm.Model):
         'company_id': lambda self, cr, uid, ctx: self.pool.get('res.company')._company_default_get(
             cr, uid, 'sdi.channel', context=ctx),
     }
+SdiChannel()
 
 
-class SdiChannelPEC(orm.Model):
+class SdiChannelPEC(osv.osv):
     _inherit = "sdi.channel"
 
     def _check_pec_server_id(self, cr, uid, ids, context=None):
@@ -57,9 +58,10 @@ class SdiChannelPEC(orm.Model):
         (_check_pec_server_id, _("The channel %s with pec server %s already exists"), ['pec_server_id']),
         (_check_email_validity, _("Email %s is not valid"), ['email_exchange_system']),
     ]
+SdiChannelPEC()
 
 
-class SdiChannelWEB(orm.Model):
+class SdiChannelWEB(osv.osv):
     _inherit = "sdi.channel"
 
     _columns = {
@@ -68,3 +70,4 @@ class SdiChannelWEB(orm.Model):
         'web_server_password': fields.char('Web server password', size=32),
         'web_server_token': fields.char('Web server token', size=250),
     }
+SdiChannelWEB()
