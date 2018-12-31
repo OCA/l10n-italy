@@ -7,6 +7,7 @@
 
 import base64
 import logging
+import phonenumbers
 
 from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
@@ -175,7 +176,7 @@ class WizardExportFatturapa(models.TransientModel):
         if not company.phone:
             raise UserError(
                 _('Company Telephone number not set.'))
-        Telefono = company.phone
+        Telefono = self.checkSetupPhone(company.phone)
 
         if not company.email:
             raise UserError(
@@ -186,6 +187,11 @@ class WizardExportFatturapa(models.TransientModel):
                 Telefono=Telefono, Email=Email)
 
         return True
+
+    def checkSetupPhone(self, phone_number=False):
+        if phone_number and '+' in phone_number:
+            phone_number = phonenumbers.format_number(phonenumbers.parse(phone_number), phonenumbers.PhoneNumberFormat.NATIONAL)
+        return phone_number
 
     def setDatiTrasmissione(self, company, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
@@ -297,8 +303,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=company.partner_id.phone or None,
-            Fax=company.partner_id.fax or None,
+            Telefono=self.checkSetupPhone(company.partner_id.phone) or None,
+            Fax=self.checkSetupPhone(company.partner_id.fax) or None,
             Email=company.partner_id.email or None
         )
 
@@ -431,9 +437,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.city:
             raise UserError(
                 _('Customer city not set.'))
-        if not partner.state_id:
-            raise UserError(
-                _('Customer province not set.'))
         if not partner.country_id:
             raise UserError(
                 _('Customer country not set.'))
@@ -444,8 +447,10 @@ class WizardExportFatturapa(models.TransientModel):
                 Indirizzo=partner.street,
                 CAP=partner.zip,
                 Comune=partner.city,
-                Provincia=partner.state_id.code,
                 Nazione=partner.country_id.code))
+        if partner.state_id:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
+                Provincia = partner.state_id.code
 
         return True
 
@@ -577,8 +582,13 @@ class WizardExportFatturapa(models.TransientModel):
         line_no = 1
         price_precision = self.env['decimal.precision'].precision_get(
             'Product Price')
+        if price_precision < 2:
+            # XML wants at least 2 decimals always
+            price_precision = 2
         uom_precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
+        if uom_precision < 2:
+            uom_precision = 2
         for line in invoice.invoice_line:
             if not line.invoice_line_tax_id:
                 raise UserError(
@@ -714,8 +724,13 @@ class WizardExportFatturapa(models.TransientModel):
     def setAttachments(self, invoice, body):
         if invoice.fatturapa_doc_attachments:
             for doc_id in invoice.fatturapa_doc_attachments:
+                nome_attachment = doc_id.datas_fname if \
+                   len(doc_id.datas_fname) <= 60 else \
+                   ''.join([
+                       doc_id.split(doc_id.file_type)[0][:56],
+                       doc_id.file_type])
                 AttachDoc = AllegatiType(
-                    NomeAttachment=doc_id.datas_fname,
+                    NomeAttachment=nome_attachment,
                     Attachment=base64.decodestring(doc_id.datas)
                 )
                 body.Allegati.append(AttachDoc)
