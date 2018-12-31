@@ -193,7 +193,9 @@ class WizardExportFatturapa(models.TransientModel):
 
     def checkSetupPhone(self, phone_number=False):
         if phone_number and '+' in phone_number:
-            phone_number = phonenumbers.format_number(phonenumbers.parse(phone_number), phonenumbers.PhoneNumberFormat.NATIONAL)
+            phone_number = phonenumbers.format_number(
+                phonenumbers.parse(phone_number),
+                phonenumbers.PhoneNumberFormat.NATIONAL)
         return phone_number
 
     def setDatiTrasmissione(self, company, partner, fatturapa):
@@ -735,10 +737,10 @@ class WizardExportFatturapa(models.TransientModel):
     def setAttachments(self, invoice, body):
         if invoice.fatturapa_doc_attachments:
             for doc_id in invoice.fatturapa_doc_attachments:
-                nome_attachment = doc_id.datas_fname if \
-                   len(doc_id.datas_fname) <= 60 else \
-                   ''.join([doc_id.name.rsplit('.', 1)[0][:55],
-                            doc_id.name.rsplit('.', 1)[1]])
+                nome_attachment = doc_id.datas_fname if len(
+                    doc_id.datas_fname) <= 60 else ''.join([
+                        doc_id.name.rsplit('.', 1)[0][:55],
+                        doc_id.name.rsplit('.', 1)[1]])
                 AttachDoc = AllegatiType(
                     NomeAttachment=nome_attachment,
                     Attachment=base64.decodestring(doc_id.datas)
