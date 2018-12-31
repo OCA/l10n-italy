@@ -43,8 +43,7 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DettaglioPagamentoType,
     AllegatiType,
     ScontoMaggiorazioneType,
-    CodiceArticoloType,
-    DatiBolloType,
+    CodiceArticoloType
 )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -368,7 +367,8 @@ class WizardExportFatturapa(models.TransientModel):
         else:
             if not partner.lastname or not partner.firstname:
                 raise UserError(
-                    _("Partner %s deve avere nome e cognome") % partner.name)
+                    _("Partner %s must have name and surname.") %
+                    partner.name)
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Cognome=partner.lastname,
@@ -495,9 +495,11 @@ class WizardExportFatturapa(models.TransientModel):
 
         TipoDocumento = invoice.fiscal_document_type_id.code
         if not TipoDocumento:
-            TipoDocumento = 'TD01'
-        if invoice.type == 'out_refund':
-            TipoDocumento = 'TD04'
+            if invoice.type == 'out_refund':
+                TipoDocumento = 'TD04'
+            else:
+                TipoDocumento = 'TD01'
+
         ImportoTotaleDocumento = invoice.amount_total
         if invoice.split_payment:
             ImportoTotaleDocumento += invoice.amount_sp

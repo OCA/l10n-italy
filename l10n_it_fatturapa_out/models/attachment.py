@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio
-# Copyright 2016 Lorenzo Battistini - Agile Business Group
+# Copyright 2016-2018 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -20,7 +20,6 @@ class FatturaPAAttachment(models.Model):
     out_invoice_ids = fields.One2many(
         'account.invoice', 'fatturapa_attachment_out_id',
         string="Out Invoices", readonly=True)
-
     has_pdf_invoice_print = fields.Boolean(
         help="True if all the invoices have a printed "
              "report attached in the XML, False otherwise.",
@@ -43,7 +42,9 @@ class FatturaPAAttachment(models.Model):
         for att in self:
             res = self.search([('datas_fname', '=', att.datas_fname)])
             if len(res) > 1:
-                raise UserError(_("File %s already present") % att.datas_fname)
+                raise UserError(
+                    _("File %s already present.") %
+                    att.datas_fname)
 
     @api.multi
     @api.depends(
