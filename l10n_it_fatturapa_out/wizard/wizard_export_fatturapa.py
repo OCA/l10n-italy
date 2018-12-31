@@ -7,7 +7,6 @@
 
 import base64
 import logging
-import phonenumbers
 
 from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
@@ -179,7 +178,7 @@ class WizardExportFatturapa(models.TransientModel):
         if not company.phone:
             raise UserError(
                 _('Company Telephone number not set.'))
-        Telefono = self.checkSetupPhone(company.phone)
+        Telefono = company.phone
 
         if not company.email:
             raise UserError(
@@ -190,13 +189,6 @@ class WizardExportFatturapa(models.TransientModel):
                 Telefono=Telefono, Email=Email)
 
         return True
-
-    def checkSetupPhone(self, phone_number=False):
-        if phone_number and '+' in phone_number:
-            phone_number = phonenumbers.format_number(
-                phonenumbers.parse(phone_number),
-                phonenumbers.PhoneNumberFormat.NATIONAL)
-        return phone_number
 
     def setDatiTrasmissione(self, company, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
@@ -312,8 +304,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=self.checkSetupPhone(company.partner_id.phone) or None,
-            Fax=self.checkSetupPhone(company.partner_id.fax) or None,
+            Telefono=company.partner_id.phone or None,
+            Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
             )
 
