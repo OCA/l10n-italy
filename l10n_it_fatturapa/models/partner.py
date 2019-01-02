@@ -63,7 +63,7 @@ class ResPartner(osv.osv):
                         "deve avere il codice IPA lungo 6 caratteri"
                     ) % partner.name)
                 if partner.fiscalcode and (
-                    not partner.fiscalcode_lastname or not partner.fiscalcode_firstname
+                    not partner.fiscalcode_surname or not partner.fiscalcode_firstname
                 ):
                     raise except_osv(_('Error' ),_(
                         "Il partner %s, essendo persona "
