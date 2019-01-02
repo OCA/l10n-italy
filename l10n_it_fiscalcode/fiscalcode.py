@@ -49,3 +49,4 @@ class res_partner(osv.osv):
     _sql_constraints = [
         ('fiscalcode_uniq', 'unique (fiscalcode, company_id)', 'The fiscal code must be unique per company !'),
         ]
+res_partner()

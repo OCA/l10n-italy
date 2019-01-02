@@ -89,6 +89,7 @@ To contribute to this module, please visit http://odoo-community.org.
     "depends": [
         'account',
         'l10n_it_base',
+        'l10n_it_base_contact',
         # 'l10n_it_fiscalcode',
         'document',
         'l10n_it_ipa',
