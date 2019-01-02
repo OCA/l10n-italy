@@ -10,11 +10,12 @@
     'version': '8.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche con uso di imposte non IVA',
-    'author': 'Sergio Corato',
+    'author': 'Sergio Corato, Odoo Community Association (OCA)',
     'website': 'https://efatto.it',
     'license': 'LGPL-3',
     "depends": [
         'l10n_it_fatturapa_out',
+        'l10n_it_vat_registries',
         ],
     "data": [
     ],
