@@ -20,6 +20,7 @@ addon | version | summary
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.1.4.2 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 10.0.1.2.3 | Italian Localization - Account
+[l10n_it_account_stamp](l10n_it_account_stamp/) | 10.0.1.0.0 | Tax stamp automatic management
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
@@ -35,6 +36,7 @@ addon | version | summary
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.2.6 | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e DDT
+[l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.2.1 | Invio fatture elettroniche tramite PEC
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.1.1.0 | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
