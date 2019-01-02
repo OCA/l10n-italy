@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_taxes
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-02 16:24+0000\n"
+"PO-Revision-Date: 2019-01-02 16:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_taxes
+#: model:ir.model,name:l10n_it_fatturapa_out_taxes.model_wizard_export_fatturapa
+msgid "Export FatturaPA"
+msgstr "Export Fattura Elettronica"
+
+#. module: l10n_it_fatturapa_out_taxes
+#: code:addons/l10n_it_fatturapa_out_taxes/wizard/wizard_export_fatturapa.py:52
+#, python-format
+msgid "Invoice line %s does not have vat tax."
+msgstr "La riga fattura %s non contiene imposte IVA."
+
+#. module: l10n_it_fatturapa_out_taxes
+#: code:addons/l10n_it_fatturapa_out_taxes/wizard/wizard_export_fatturapa.py:129
+#, python-format
+msgid "No 'law reference' field for tax %s."
+msgstr "Campo \"riferimento normativo\" non valorizzato per l'imposta %s."
+
+#. module: l10n_it_fatturapa_out_taxes
+#: code:addons/l10n_it_fatturapa_out_taxes/wizard/wizard_export_fatturapa.py:87
+#: code:addons/l10n_it_fatturapa_out_taxes/wizard/wizard_export_fatturapa.py:125
+#, python-format
+msgid "No 'nature' field for tax %s."
+msgstr "Campo \"natura\" non valorizzato per l'imposta %s."
+
+#. module: l10n_it_fatturapa_out_taxes
+#: code:addons/l10n_it_fatturapa_out_taxes/wizard/wizard_export_fatturapa.py:55
+#, python-format
+msgid "Too many vat taxes for invoice line %s."
+msgstr "Troppe imposte IVA per la riga fattura %s."
+
