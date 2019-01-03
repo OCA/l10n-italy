@@ -14,7 +14,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_partner_location_form_zip">
+    <!--record model="ir.ui.view" id="view_partner_location_form_zip">
         <field name="name">res.partner.location.form.zip</field>
         <field name="model">res.partner.location</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
                 <field name="province"/>
 		    </field>
         </field>
-    </record>
+    </record-->
 
 </data>
 </openerp>

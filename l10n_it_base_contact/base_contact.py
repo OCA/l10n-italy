@@ -30,41 +30,40 @@ class res_partner_contact(osv.osv):
         }
 res_partner_contact()
 
-class res_partner_location(osv.osv):
-    _inherit = 'res.partner.location'
-    _columns = {
-        'province': fields.many2one('res.province', string='Province'),
-        }
-        
-    def on_change_city(self, cr, uid, ids, city):
-        return self.pool.get('res.partner.address').on_change_city(cr, uid, ids, city)
-        
-    def create(self, cr, uid, vals, context=None):
-        vals = self.pool.get('res.partner.address')._set_vals_city_data(cr, uid, vals)
-        return super(res_partner_location, self).create(cr, uid, vals, context)
+#class res_partner_location(osv.osv):
+#    _inherit = 'res.partner.location'
+#    _columns = {
+#        'province': fields.many2one('res.province', string='Province'),
+#        }
+#        
+#    def on_change_city(self, cr, uid, ids, city):
+#        return self.pool.get('res.partner.address').on_change_city(cr, uid, ids, city)
+#        
+#    def create(self, cr, uid, vals, context=None):
+#        vals = self.pool.get('res.partner.address')._set_vals_city_data(cr, uid, vals)
+#        return super(res_partner_location, self).create(cr, uid, vals, context)
+#
+#    def write(self, cr, uid, ids, vals, context=None):
+#        vals = self.pool.get('res.partner.address')._set_vals_city_data(cr, uid, vals)
+#        return super(res_partner_location, self).write(cr, uid, ids, vals, context)
+#res_partner_location()
 
-    def write(self, cr, uid, ids, vals, context=None):
-        vals = self.pool.get('res.partner.address')._set_vals_city_data(cr, uid, vals)
-        return super(res_partner_location, self).write(cr, uid, ids, vals, context)
-        
-res_partner_location()
-
-class res_partner_address(osv.osv):
-    _inherit = 'res.partner.address'
-    _columns = {
-        # fields from location
-        'province': fields.related('location_id', 'province', string='Province', type="many2one", relation="res.province", store=True),
-        }
-    
-    def onchange_location_id(self,cr, uid, ids, location_id=False, context={}):
-        res = super(res_partner_address, self).onchange_location_id(
-            cr, uid, ids, location_id=location_id, context=context)
-        if location_id:
-            location = self.pool.get('res.partner.location').browse(cr, uid, location_id, context=context)
-            res['value'].update({
-                'province':location.province and location.province.id or False,
-                'region':location.province and location.province.region and location.province.region.id or False,
-                })
-        return res
-
-res_partner_address()
+#class res_partner_address(osv.osv):
+#    _inherit = 'res.partner.address'
+#    #_columns = {
+#    #    # fields from location
+#    #    'province': fields.related('location_id', 'province', string='Province', type="many2one", relation="res.province", store=True),
+#    #    }
+#    
+#    def onchange_location_id(self,cr, uid, ids, location_id=False, context={}):
+#        res = super(res_partner_address, self).onchange_location_id(
+#            cr, uid, ids, location_id=location_id, context=context)
+#        if location_id:
+#            location = self.pool.get('res.partner.location').browse(cr, uid, location_id, context=context)
+#            res['value'].update({
+#                'province':location.province and location.province.id or False,
+#                'region':location.province and location.province.region and location.province.region.id or False,
+#                })
+#        return res
+#
+#res_partner_address()
