@@ -20,10 +20,10 @@ class SdICase(TransactionCase):
     def test_create_sdi_channel(self):
         with self.assertRaises(UserError) as e:
             self.sdi_model.create({
-                    'name': 'Sdi Channel',
-                    'channel_type': 'pec',
-                    'pec_server_id': self.mail_pec_server.id,
-                    'email_exchange_system': 'test%pec.it'
-                })
+                'name': 'Sdi Channel',
+                'channel_type': 'pec',
+                'pec_server_id': self.mail_pec_server.id,
+                'email_exchange_system': 'test%pec.it'
+            })
         self.assertEqual(e.exception.message,
                          "Email test%pec.it is not valid")
