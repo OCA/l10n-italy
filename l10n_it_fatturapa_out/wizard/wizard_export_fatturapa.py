@@ -342,7 +342,7 @@ class WizardExportFatturapa(models.TransientModel):
     def _setDatiAnagraficiCessionario(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
-        if not partner.vat and not partner.fiscalcode:
+        if not partner.vat and not partner.fiscalcode and partner.codice_destinatario != 'XXXXXXX':
             raise UserError(
                 _('VAT number and fiscal code are not set for %s.') %
                 partner.name)
