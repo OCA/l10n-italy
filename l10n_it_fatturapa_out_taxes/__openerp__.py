@@ -11,7 +11,8 @@
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche con uso di imposte non IVA',
     'author': 'Sergio Corato, Odoo Community Association (OCA)',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/OCA/l10n-italy/tree/8.0/'
+               'l10n_it_fatturapa_out_taxes',
     'license': 'LGPL-3',
     "depends": [
         'l10n_it_fatturapa_out',
@@ -20,6 +21,7 @@
     "data": [
     ],
     'installable': True,
+    'autoinstall': True,
     'external_dependencies': {
         'python': ['unidecode'],
     }
