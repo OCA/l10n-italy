@@ -5,17 +5,17 @@ import logging
 
 from datetime import datetime
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from osv import fields, osv, orm
+from tools.translate import _
+from tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
 
 MAX_POP_MESSAGES = 50
 
 
-class Fetchmail(orm.Model):
-    _inherit = 'fetchmail.server'
+class Fetchmail(osv.osv):
+    _inherit = 'email.server'
 
     _columns = {
         'last_pec_error_message': fields.text(
@@ -144,3 +144,4 @@ class Fetchmail(orm.Model):
             server.write({'date': datetime.now().strftime(
                 DEFAULT_SERVER_DATETIME_FORMAT)})
         return True
+Fetchmail()

@@ -6,10 +6,10 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from osv import osv
 
 
-class SendPEC(orm.TransientModel):
+class SendPEC(osv.osv_memory):
     _name = 'wizard.fatturapa.send.pec'
     _description = "Wizard to send multiple e-invoice PEC"
 
@@ -17,3 +17,4 @@ class SendPEC(orm.TransientModel):
         if context and context.get('active_ids'):
             self.pool['fatturapa.attachment.out'].send_via_pec(
                 cr, uid, context['active_ids'], context=context)
+SendPEC()

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
+from osv import fields, osv, orm
+from tools.translate import _
 
 class account_invoice(osv.osv):
     _inherit = 'account.invoice'
@@ -17,7 +17,7 @@ class account_invoice(osv.osv):
             'rejected': 'error'
         }
         res = {}
-        for record in self.browse(cr, uid, ids, context=context):
+        for record in self.pool['account.invoice'].browse(cr, uid, ids, context=context):
             res[record.id] = mapping.get(
                 record.fatturapa_attachment_out_id.state)
         return res
@@ -48,4 +48,4 @@ class account_invoice(osv.osv):
                      ['state'], 10),
             })
     }
-
+account_invoice()

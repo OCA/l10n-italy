@@ -3,16 +3,15 @@
 
 import logging
 import re
-import openerp
 
 from datetime import datetime
 from lxml import etree
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from osv import fields, osv, orm
+from tools.translate import _
+from tools import DEFAULT_SERVER_DATETIME_FORMAT
 
-from openerp.addons.base.ir.ir_mail_server import MailDeliveryException
+#from openerp.addons.base.ir.ir_mail_server import MailDeliveryException
 
 _logger = logging.getLogger(__name__)
 
@@ -20,7 +19,7 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
                       '[a-zA-Z0-9]{,3}'
 
 
-class FatturaPAAttachmentOut(orm.Model):
+class FatturaPAAttachmentOut(osv.osv):
     _inherit = 'fatturapa.attachment.out'
 
     _defaults = {
@@ -267,3 +266,4 @@ class FatturaPAAttachmentOut(orm.Model):
                     _("You can only delete 'ready to send' files"))
         return super(FatturaPAAttachmentOut, self).unlink(
             cr, uid, ids, context=context)
+FatturaPAAttachmentOut()

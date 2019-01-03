@@ -70,6 +70,7 @@ Creare infine il mail server in ingresso, impostando 'FatturaPA PEC server'
     "application": False,
     "installable": True,
     "depends": [
+        "base",
         "account",
         "fetchmail",
         "l10n_it_fatturapa",

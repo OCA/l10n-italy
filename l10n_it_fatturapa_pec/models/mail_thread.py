@@ -7,8 +7,8 @@ import base64
 import zipfile
 import io
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
+from osv import fields, osv, orm
+from tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -18,8 +18,8 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}' \
                       '_MT_[a-zA-Z0-9]{,3}'
 
 
-class MailThread(orm.AbstractModel):
-    _inherit = 'mail.thread'
+class MailThread(osv.osv_memory):
+    _inherit = 'mailgate.thread'
 
     def _create_message_attachments(self, cr, uid, message_dict, context=None):
         ir_attachment_obj = self.pool.get('ir.attachment')
@@ -197,3 +197,4 @@ class MailThread(orm.AbstractModel):
             else:
                 fatturapa_attachment_in.create(
                     {'ir_attachment_id': attachment.id})
+MailThread()

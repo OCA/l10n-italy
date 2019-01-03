@@ -15,8 +15,8 @@ class ResCompany(osv.osv):
             'sdi_channel_id', 'channel_type', type='selection',
             selection=SDI_CHANNELS,
             string='SdI channel type', readonly=True),
-        'email_from_for_fatturaPA': fields.related(
-            'sdi_channel_id', 'pec_server_id', 'email_from_for_fatturaPA',
+        'email_from_for_fattura_pa': fields.related(
+            'sdi_channel_id', 'pec_server_id', 'email_from_for_fattura_pa',
             type='char', string='Sender Email Address', readonly=True),
         'email_exchange_system': fields.related(
             'sdi_channel_id', 'email_exchange_system', type='char',
@@ -34,9 +34,9 @@ class ResCompany(osv.osv):
                                    and company.sdi_channel_id.id or False),
                 'sdi_channel_type': (company.sdi_channel_type
                                      and company.sdi_channel_type or False),
-                'email_from_for_fatturaPA': (
-                    company.email_from_for_fatturaPA
-                    and company.email_from_for_fatturaPA or False),
+                'email_from_for_fattura_pa': (
+                    company.email_from_for_fattura_pa
+                    and company.email_from_for_fattura_pa or False),
                 'email_exchange_system': (
                     company.email_exchange_system
                     and company.email_exchange_system or False),
@@ -45,14 +45,14 @@ class ResCompany(osv.osv):
             res['value'].update({
                 'sdi_channel_id': False,
                 'sdi_channel_type': False,
-                'email_from_for_fatturaPA': False,
+                'email_from_for_fattura_pa': False,
                 'email_exchange_system': False,
             })
         res.setdefault('domain', {}).update({
             'sdi_channel_id': [('company_id', '=', company_id)],
             'sdi_channel_type': [('company_id', '=', company_id)],
-            'email_from_for_fatturaPA': [('company_id', '=', company_id)],
+            'email_from_for_fattura_pa': [('company_id', '=', company_id)],
             'email_exchange_system':  [('company_id', '=', company_id)],
         })
         return res
-ResCompany(osv.osv)
+ResCompany()

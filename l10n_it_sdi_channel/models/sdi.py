@@ -3,7 +3,17 @@
 
 from osv import fields, osv, orm
 from tools.translate import _
-from ir_mail_server import extract_rfc2822_addresses
+#from ir_mail_server import extract_rfc2822_addresses
+
+def extract_rfc2822_addresses(text):
+    """Returns a list of valid RFC2822 addresses
+       that can be found in ``source``, ignoring 
+       malformed ones and non-ASCII ones.
+    """
+    if not text: return []
+    candidates = address_pattern.findall(tools.ustr(text).encode('utf-8'))
+    return filter(try_coerce_ascii, candidates)
+
 
 SDI_CHANNELS = [
     ('pec', 'PEC'),
@@ -49,7 +59,7 @@ class SdiChannelPEC(osv.osv):
         'channel_type': fields.selection(SDI_CHANNELS, string='SdI channel type', required=True,
             help='PEC is the only implemented channel in this module. Other '
                  'channels (Web, Sftp) could be provided by external modules.'),
-        'pec_server_id': fields.many2one('ir.mail_server', string='Pec mail server', required=False,
+        'pec_server_id': fields.many2one('email.server', string='Pec mail server', required=False,
             domain=[('is_fatturapa_pec', '=', True)]),
         'email_exchange_system': fields.char('Exchange System Email Address', size=250),
     }
