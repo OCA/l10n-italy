@@ -79,7 +79,7 @@ class ResPartner(models.Model):
                         "Partner %s Addressee Code "
                         "must be 7 characters long."
                     ) % partner.name)
-                if not partner.vat and not partner.fiscalcode:
+                if not partner.vat and not partner.fiscalcode and partner.codice_destinatario != 'XXXXXXX':
                     raise ValidationError(_(
                         "Partner %s must have VAT Number or Fiscal Code."
                     ) % partner.name)
