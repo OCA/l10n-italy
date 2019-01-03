@@ -7,7 +7,7 @@
 
 import logging
 
-from openerp import fields, models, api, _
+from openerp import models, _
 from openerp.exceptions import Warning as UserError
 
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
