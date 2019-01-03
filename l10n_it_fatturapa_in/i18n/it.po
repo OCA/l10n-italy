@@ -889,8 +889,8 @@ msgstr "Cassa previdenziale non definita."
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:957
 #, python-format
-msgid "Welfare Fund: %s"
-msgstr "Cassa previdenziale: %s"
+msgid "Welfare Fund: {}"
+msgstr "Cassa previdenziale: {}"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:372
