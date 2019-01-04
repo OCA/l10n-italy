@@ -29,11 +29,14 @@ Italian Localization - Fattura elettronica taxes compatibility
 
 Questo modulo si autoinstalla quanto vengono installati i moduli
 l10n_it_fatturapa_out e l10n_it_vat_registries.
+È necessario per filtrare le imposte di tipo non IVA per l'esportazione
+corretta della fattura elettronica.
 
 **English**
 
 This is an auto-installing module when installed
 l10n_it_fatturapa_out e l10n_it_vat_registries.
+It is needed to remove not-VAT taxes for correct e-invoice export.
 
 **Table of contents**
 
@@ -74,10 +77,6 @@ Contributors
 
 * Davide Corio
 * Lorenzo Battistini <https://github.com/eLBati>
-* Roberto Onnis
-* Alessio Gerace
-* Alex Comba
-* Sergio Zanchetta <https://github.com/primes2h>
 * Gianmarco Conte
 * Marco Calcagni
 * Sergio Corato <https://github.com/sergiocorato>

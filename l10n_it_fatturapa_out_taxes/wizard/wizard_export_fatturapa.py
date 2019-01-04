@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014 Davide Corio
-# Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
 # Copyright 2018 Sergio Corato
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -29,7 +26,18 @@ except ImportError as err:
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
+    def _get_prezzo_unitario(self, line):
+        res = line.price_unit
+        taxes = line.invoice_line_tax_id.filtered(
+            lambda x: not x.tax_code_id.exclude_from_registries)
+        if taxes[0].price_include:
+            res = line.price_unit / (1 + taxes[0].amount)
+        return res
+
     def setDettaglioLinee(self, invoice, body):
+        res = super(WizardExportFatturapa, self).setDettaglioLinee(
+            invoice=invoice, body=body
+        )
 
         body.DatiBeniServizi = DatiBeniServiziType()
         # TipoCessionePrestazione not handled
@@ -106,9 +114,13 @@ class WizardExportFatturapa(models.TransientModel):
 
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
-        return True
+        return res
 
     def setDatiRiepilogo(self, invoice, body):
+        res = super(WizardExportFatturapa, self).setDatiRiepilogo(
+            invoice, body
+        )
+        body.DatiBeniServizi.DatiRiepilogo = []
         model_tax = self.env['account.tax']
         for tax_line in invoice.tax_line.filtered(
             lambda x: not x.tax_code_id.exclude_from_registries
@@ -138,4 +150,4 @@ class WizardExportFatturapa(models.TransientModel):
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
 
-        return True
+        return res
