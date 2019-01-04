@@ -14,8 +14,7 @@
                             <group attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                                 <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_pa','=', False)]}"/>
                                 <field name="codice_destinatario" attrs="{'invisible': [('is_pa', '=', True)]}"/>
-                                <field name="pec_destinatario"
-                                       attrs="{'invisible': ['|',('is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"/>
+                                <field name="pec_destinatario" attrs="{'invisible': [('is_pa', '=', True)]}"/>
                                 <field name="eori_code"/>
                             </group>
                         </group>
