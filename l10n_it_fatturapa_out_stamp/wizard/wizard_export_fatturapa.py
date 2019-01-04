@@ -16,18 +16,13 @@ class WizardExportFatturapa(models.TransientModel):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
         if invoice.tax_stamp:
-            price_precision = self.env['decimal.precision'].precision_get(
-                'Product Price')
-            if price_precision < 2:
-                price_precision = 2
             if not invoice.company_id.tax_stamp_product_id:
                 raise UserError(_(
                     "Tax Stamp Product not set for company %s"
                 ) % invoice.company_id.name)
+            stamp_price = invoice.company_id.tax_stamp_product_id.list_price
             body.DatiGenerali.DatiGeneraliDocumento.DatiBollo = DatiBolloType(
                 BolloVirtuale="SI",
-                ImportoBollo=('%.' + str(
-                    price_precision
-                ) + 'f') % invoice.company_id.tax_stamp_product_id.list_price,
+                ImportoBollo='%.2f' % stamp_price,
             )
         return res
