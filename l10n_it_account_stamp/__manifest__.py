@@ -7,22 +7,22 @@
 
 {
     'name': 'Italian Localization - Tax Stamp',
-    'version': '10.0.1.0.1',
+    'version': '11.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Tax stamp automatic management',
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
-              'Odoo Community Association (OCA)',
+              'Agile Business Group, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'product',
-        'account',
+        'account_invoicing',
     ],
     'data': [
         'data/data.xml',
         'views/invoice_view.xml',
         'views/product_view.xml',
-        'views/company_view.xml',
+        'views/res_config_settings_view.xml',
     ],
     'installable': True,
 }
