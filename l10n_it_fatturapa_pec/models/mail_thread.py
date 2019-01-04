@@ -32,6 +32,10 @@ class MailThread(models.AbstractModel):
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
+
+        mail_cls = self.env['mail.message'].with_context(
+            message_create_from_mail_mail=True)
+
         if any("@pec.fatturapa.it" in x for x in [
             message.get('Reply-To', ''),
             message.get('From', ''),
@@ -41,58 +45,61 @@ class MailThread(models.AbstractModel):
                          "{}".format(message.get('Message-Id')))
 
             fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
-            fatturapa_attachments = [x for x in message_dict['attachments']
-                                     if fatturapa_regex.match(x.fname)]
             response_regex = re.compile(RESPONSE_MAIL_REGEX)
-            response_attachments = [x for x in message_dict['attachments']
-                                    if response_regex.match(x.fname)]
+            fatturapa_attachments = []
+            response_attachments = []
+            for attachment in message_dict['attachments']:
+                if fatturapa_regex.match(attachment[0]):
+                    fatturapa_attachments.append(attachment)
+
+                if response_regex.match(attachment[0]):
+                    response_attachments.append(attachment)
+
             if response_attachments and fatturapa_attachments:
                 # this is an electronic invoice
                 if len(response_attachments) > 1:
                     _logger.info(
                         'More than 1 message found in mail of incoming '
                         'invoice')
-                message_dict['model'] = 'fatturapa.attachment.in'
                 message_dict['record_name'] = message_dict['subject']
-                message_dict['res_id'] = 0
-                attachment_ids = self._message_post_process_attachments(
-                    message_dict['attachments'], [], message_dict)
-                for attachment in self.env['ir.attachment'].browse(
-                        [att_id for m, att_id in attachment_ids]):
+                model = 'fatturapa.attachment.in'
+                res_id = 0
+                attachment_m_ids = self._message_preprocess_attachments(
+                    message_dict['attachments'], [], model, res_id)
+
+                attachment_ids = [att_id for m, att_id in attachment_m_ids]
+                attachments = self.env['ir.attachment'].browse(attachment_ids)
+                for attachment in attachments:
                     if fatturapa_regex.match(attachment.name):
                         self.create_fatturapa_attachment_in(attachment)
 
-                message_dict['attachment_ids'] = attachment_ids
+                message_dict['attachment_ids'] = attachment_m_ids
                 self.clean_message_dict(message_dict)
-
-                # model and res_id are only needed by
-                # _message_post_process_attachments: we don't attach to
-                del message_dict['model']
-                del message_dict['res_id']
 
                 # message_create_from_mail_mail to avoid to notify message
                 # (see mail.message.create)
-                self.env['mail.message'].with_context(
-                    message_create_from_mail_mail=True).create(message_dict)
+                mail_cls.create(message_dict)
                 _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
                              .format(message.get('Message-Id')))
                 return []
 
             else:
                 # this is an SDI notification
-                message_dict = self.env['fatturapa.attachment.out']\
-                    .parse_pec_response(message_dict)
+                ftpa_out_cls = self.env['fatturapa.attachment.out']
+                message_dict = ftpa_out_cls.parse_pec_response(message_dict)
 
                 message_dict['record_name'] = message_dict['subject']
-                attachment_ids = self._message_post_process_attachments(
-                    message_dict['attachments'], [], message_dict)
+
+                attachment_ids = self._message_preprocess_attachments(
+                    message_dict['attachments'], [],
+                    message_dict['model'], message_dict['res_id'])
+
                 message_dict['attachment_ids'] = attachment_ids
                 self.clean_message_dict(message_dict)
 
                 # message_create_from_mail_mail to avoid to notify message
                 # (see mail.message.create)
-                self.env['mail.message'].with_context(
-                    message_create_from_mail_mail=True).create(message_dict)
+                mail_cls.create(message_dict)
                 _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
                              .format(message.get('Message-Id')))
                 return []
@@ -106,9 +113,7 @@ class MailThread(models.AbstractModel):
                     message_dict['model'] = 'fatturapa.attachment.out'
                     message_dict['res_id'] = att.id
                     self.clean_message_dict(message_dict)
-                    self.env['mail.message'].with_context(
-                        message_create_from_mail_mail=True).create(
-                            message_dict)
+                    mail_cls.create(message_dict)
                 else:
                     _logger.error('Can\'t route PEC E-Mail with Message-Id: {}'
                                   .format(message.get('Message-Id')))
