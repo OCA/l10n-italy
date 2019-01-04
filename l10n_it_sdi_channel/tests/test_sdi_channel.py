@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests.common import TransactionCase
-from openerp.exceptions import Warning as UserError
+from openerp.exceptions import ValidationError
 
 
 class SdICase(TransactionCase):
@@ -18,7 +18,7 @@ class SdICase(TransactionCase):
         })
 
     def test_create_sdi_channel(self):
-        with self.assertRaises(UserError) as e:
+        with self.assertRaises(ValidationError) as e:
             self.sdi_model.create({
                 'name': 'Sdi Channel',
                 'channel_type': 'pec',
