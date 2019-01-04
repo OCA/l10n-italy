@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Lorenzo Battistini
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "Italian Localization - Fattura elettronica - Integrazione bollo",
     "summary": "Modulo ponte tra emissione fatture elettroniche e imposta di "
                "bollo",
-    "version": "10.0.1.0.1",
+    "version": "11.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
@@ -18,7 +17,5 @@
     "depends": [
         "l10n_it_fatturapa_out",
         "l10n_it_account_stamp",
-    ],
-    "data": [
-    ],
+    ]
 }
