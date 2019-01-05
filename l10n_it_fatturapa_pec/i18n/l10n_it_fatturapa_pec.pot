@@ -14,8 +14,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:124
+#, python-format
+msgid "<p>PEC message with Message-Id %s has been read but not processed, as not related to an e-invoice.</p><p>Please check PEC mailbox %s, at server %s, with user %s</p>"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify when PEC message can't be processed"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -130,6 +146,12 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:58
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:121
+#, python-format
+msgid "PEC message [%s] not processed"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
