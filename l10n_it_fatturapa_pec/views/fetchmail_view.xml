@@ -15,6 +15,10 @@
                 <!-- Hiding, because it would not be considered. See 'fetch_mail' override -->
                 <attribute name="attrs">{'invisible': [('is_fatturapa_pec', '=', True)]}</attribute>
             </xpath>
+            <field name="active" position="after">
+                <field name="e_inv_notify_partner_ids" widget="many2many_tags"
+                       attrs="{'invisible': [('is_fatturapa_pec', '=', False)]}"/>
+            </field>
         </field>
     </record>
 </odoo>
