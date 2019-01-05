@@ -78,20 +78,37 @@ class Attachment(models.Model):
         try:
             proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
             stdoutdata, stderrdata = proc.communicate()
-            if proc.wait() != 0:
-                _logger.warning(stdoutdata)
-                raise Exception(stderrdata)
+            # We need to primarily check if xml file exists,
+            # it's a workaround for a (likely) openssl bug (v.1.1.0x).
+            # The file is correctly decrypted but openssl gives an error
+            # in signature verification like the following one:
+            #
+            # Verification failure
+            # int_rsa_verify:bad signature
+            # PKCS7_signatureVerify:signature failure
+            # PKCS7_verify:signature failure
+            #
+            # Tested versions:
+            # 1.0.1t-1+deb8u8    - Debian 8     - OK
+            # 1.0.2g-1ubuntu4.14 - Ubuntu 16.04 - OK
+            # 1.1.0f-3+deb9u2    - Debian 9     - affected
+            # 1.1.0g-2ubuntu4.3  - Ubuntu 18.04 - affected
+            #
+            if not os.path.isfile(xml_file):
+                if proc.wait() != 0:
+                    _logger.warning(stdoutdata)
+                    raise Exception(stderrdata)
+                else:
+                    raise UserError(
+                        _(
+                            'Signed Xml file not decryptable.'
+                        )
+                    )
         except Exception as e:
             raise UserError(
                 _(
                     'Signed Xml file %s.'
                 ) % e.args
-            )
-        if not os.path.isfile(xml_file):
-            raise UserError(
-                _(
-                    'Signed Xml file not decryptable.'
-                )
             )
         return xml_file
 
