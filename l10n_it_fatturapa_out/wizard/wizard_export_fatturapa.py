@@ -507,11 +507,15 @@ class WizardExportFatturapa(models.TransientModel):
             for causale in caus_list:
                 if not causale:
                     continue
-                # Remove non latin chars, but go back to unicode string,
-                # as expected by String200LatinType
-                causale = causale.encode(
-                    'latin', 'ignore').decode('latin')
-                body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
+                causale_list_200 = \
+                    [causale[i:i+200] for i in range(0, len(causale), 200)]
+                for causale200 in causale_list_200:
+                    # Remove non latin chars, but go back to unicode string,
+                    # as expected by String200LatinType
+                    causale = causale200.encode(
+                        'latin', 'ignore').decode('latin')
+                    body.DatiGenerali.DatiGeneraliDocumento.Causale\
+                        .append(causale)
 
         if invoice.company_id.fatturapa_art73:
             body.DatiGenerali.DatiGeneraliDocumento.Art73 = 'SI'
