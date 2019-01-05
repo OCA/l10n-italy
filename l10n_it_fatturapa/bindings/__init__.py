@@ -7,8 +7,8 @@ import logging
 _logger = logging.getLogger(__name__)
 
 # pyxb is referenced in several in top-level statements in
-# fatturapa_v_1_1, so we guard the import of the entire file
+# fatturapa_v_1_2, so we guard the import of the entire file
 try:
-    from . import fatturapa_v_1_1
+    from . import fatturapa_v_1_2
 except ImportError:
     _logger.debug('Cannot `import pyxb`.')  # Avoid init error if not installed
