@@ -4,6 +4,24 @@
 from osv import fields, osv, orm
 from tools.translate import _
 #from ir_mail_server import extract_rfc2822_addresses
+import re
+import tools
+
+
+address_pattern = re.compile(r'([^ ,<@]+@[^> ,]+)')
+
+def try_coerce_ascii(string_utf8):
+    """Attempts to decode the given utf8-encoded string
+       as ASCII after coercing it to UTF-8, then return
+       the confirmed 7-bit ASCII string.
+       If the process fails (because the string
+       contains non-ASCII characters) returns ``None``.
+    """
+    try:
+        string_utf8.decode('ascii')
+    except UnicodeDecodeError:
+        return
+    return string_utf8
 
 def extract_rfc2822_addresses(text):
     """Returns a list of valid RFC2822 addresses

@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
 #    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#    Copyright (C) 2018 Andrea Cometa <a.cometa@apuliasoftware.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -89,19 +90,19 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        user_obj = self.pool['res.users']
+        user_obj = self.pool.get('res.users')
         company = user_obj.browse(cr, uid, uid).company_id
 
         if not company.vat:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('Company TIN not set.'))
         if company.fatturapa_sender_partner and not company.fatturapa_sender_partner.vat:
-            raise orm.except_orm(_('Error!'), _('Partner %s TIN not set.') % company.fatturapa_sender_partner.name)
+            raise osv.except_osv(_('Error!'), _('Partner %s TIN not set.') % company.fatturapa_sender_partner.name)
         vat = company.vat
         if company.fatturapa_sender_partner:
             vat = company.fatturapa_sender_partner.vat
         vat = vat.replace(' ', '').replace('.', '').replace('-', '')
-        attach_obj = self.pool['fatturapa.attachment.out']
+        attach_obj = self.pool.get('fatturapa.attachment.out')
         attach_vals = {
             'name': '%s_%s.xml' % (vat, str(number)),
             'datas_fname': '%s_%s.xml' % (vat, str(number)),
@@ -116,13 +117,13 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        user_obj = self.pool['res.users']
+        user_obj = self.pool.get('res.users')
         company = user_obj.browse(cr, uid, uid).company_id
-        sequence_obj = self.pool['ir.sequence']
+        sequence_obj = self.pool.get('ir.sequence')
         fatturapa_sequence = company.fatturapa_sequence_id
 
         if not fatturapa_sequence:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('E-invoice sequence not configured.'))
 
         number = sequence_obj.next_by_id(
@@ -143,17 +144,26 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        if not company.country_id:
-            raise orm.except_orm(
+        partner_addr = self.pool.get('res.partner').address_get(
+            cr, uid, [company.partner_id.id], ['default'])
+
+        if not partner_addr:
+            raise osv.except_osv(
+                _('Error!'), _('Company partner address not set.'))
+        country = self.pool.get('res.partner.address').browse(
+            cr, uid, partner_addr['default'])
+
+        if not country.country_id:
+            raise osv.except_osv(
                 _('Error!'), _('Company Country not set.'))
-        IdPaese = company.country_id.code
+        IdPaese = country.country_id.code
 
         IdCodice = company.partner_id.fiscalcode
         if not IdCodice:
-            if company.vat:
-                IdCodice = company.vat[2:]
+            if company.partner_id.vat:
+                IdCodice = company.partner_id.vat[2:]
         if not IdCodice:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error'), _('Company does not have fiscal code or VAT'))
 
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
@@ -182,11 +192,11 @@ class wizard_export_fatturapa(osv.osv_memory):
         if partner.is_pa: 
             code = partner.ipa_code
             if not code:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _('Error!'), _('IPA Code not set on partner form.'))
         else:
             if not partner.codice_destinatario:
-                raise orm.except_orm(_('Error!'), _(
+                raise osv.except_osv(_('Error!'), _(
                     "Partner %s is not PA but does not have Codice "
                     "Destinatario"
                 ) % partner.name)
@@ -205,15 +215,15 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        if not company.phone:
-            raise orm.except_orm(
+        if not company.partner_id.phone:
+            raise osv.except_osv(
                 _('Error!'), _('Company Telephone number not set.'))
-        Telefono = self.checkSetupPhone(company.phone)
+        Telefono = self.checkSetupPhone(company.partner_id.phone)
 
-        if not company.email:
-            raise orm.except_orm(
+        if not company.partner_id.email:
+            raise osv.except_osv(
                 _('Error!'), _('Email address not set.'))
-        Email = company.email
+        Email = company.partner_id.email
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             ContattiTrasmittente = ContattiTrasmittenteType(
                 Telefono=Telefono, Email=Email)
@@ -240,16 +250,17 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        if not company.vat:
-            raise orm.except_orm(
+        if not company.partner_id.vat:
+            raise osv.except_osv(
                 _('Error!'), _('TIN not set.'))
         CedentePrestatore.DatiAnagrafici = DatiAnagraficiCedenteType()
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('FatturaPA fiscal position not set.'))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-            IdPaese=company.country_id.code, IdCodice=company.vat[2:])
+            IdPaese=company.partner_id.address[0].country_id.code,
+            IdCodice=company.partner_id.vat[2:])
         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
             Denominazione=company.name)
 
@@ -276,25 +287,25 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        if not company.street:
-            raise orm.except_orm(
+        if not company.partner_id.address and company.partner_id.address[0].street:
+            raise osv.except_osv(
                 _('Error!'), _('Street not set.'))
-        if not company.zip:
-            raise orm.except_orm(
+        if not company.partner_id.address and company.partner_id.address[0].zip:
+            raise osv.except_osv(
                 _('Error!'), _('ZIP not set.'))
-        if not company.city:
-            raise orm.except_orm(
+        if not company.partner_id.address and company.partner_id.address[0].city:
+            raise osv.except_osv(
                 _('Error!'), _('City not set.'))
-        if not company.country_id:
-            raise orm.except_orm(
+        if not company.partner_id.address and company.partner_id.address[0].country_id:
+            raise osv.except_osv(
                 _('Error!'), _('Country not set.'))
         # FIXME: manage address number in <NumeroCivico>
         # see https://github.com/OCA/partner-contact/pull/96
         CedentePrestatore.Sede = IndirizzoType(
-            Indirizzo=company.street,
-            CAP=company.zip,
-            Comune=company.city,
-            Nazione=company.country_id.code)
+            Indirizzo=company.partner_id.address[0].street,
+            CAP=company.partner_id.address[0].zip,
+            Comune=company.partner_id.address[0].city,
+            Nazione=company.partner_id.address[0].country_id.code)
         if company.partner_id.address and company.partner_id.address[0].province:
             CedentePrestatore.Sede.Provincia = company.partner_id.address[0].province.code
         return True
@@ -306,16 +317,16 @@ class wizard_export_fatturapa(osv.osv_memory):
         if company.fatturapa_stabile_organizzazione:
             stabile_organizzazione = company.fatturapa_stabile_organizzazione
             if not stabile_organizzazione.street:
-                raise orm.except_orm(_('Error!'),
+                raise osv.except_osv(_('Error!'),
                     _('Street not set for %s') % stabile_organizzazione.name)
             if not stabile_organizzazione.zip:
-                raise orm.except_orm(_('Error!'),
+                raise osv.except_osv(_('Error!'),
                     _('ZIP not set for %s') % stabile_organizzazione.name)
             if not stabile_organizzazione.city:
-                raise orm.except_orm(_('Error!'),
+                raise osv.except_osv(_('Error!'),
                     _('City not set for %s') % stabile_organizzazione.name)
             if not stabile_organizzazione.country_id:
-                raise orm.except_orm(_('Error!'),
+                raise osv.except_osv(_('Error!'),
                     _('Country not set for %s') % stabile_organizzazione.name)
             CedentePrestatore.StabileOrganizzazione = IndirizzoType(
                 Indirizzo=stabile_organizzazione.street,
@@ -395,7 +406,7 @@ class wizard_export_fatturapa(osv.osv_memory):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         if not partner.vat and not partner.fiscalcode:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('Partner VAT and Fiscalcode not set.'))
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -410,7 +421,7 @@ class wizard_export_fatturapa(osv.osv_memory):
                     Denominazione=partner.name)
         else:
             if not partner.lastname or not partner.firstname:
-                raise orm.except_orm(_('Error!'),
+                raise osv.except_osv(_('Error!'),
                     _("Partner %s deve avere nome e cognome") % partner.name)
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
@@ -447,7 +458,7 @@ class wizard_export_fatturapa(osv.osv_memory):
         fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
             DatiAnagrafici = DatiAnagraficiRappresentanteType()
         if not partner.vat and not partner.fiscalcode:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('VAT and Fiscalcode not set for %s') % partner.name)
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
@@ -474,7 +485,7 @@ class wizard_export_fatturapa(osv.osv_memory):
             TerzoIntermediarioOSoggettoEmittente.\
             DatiAnagrafici = DatiAnagraficiTerzoIntermediarioType()
         if not partner.vat and not partner.fiscalcode:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('Partner VAT and Fiscalcode not set.'))
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.\
@@ -502,16 +513,16 @@ class wizard_export_fatturapa(osv.osv_memory):
             context = {}
 
         if not partner.street:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('Customer street not set.'))
         if not partner.zip:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('Customer ZIP not set.'))
         if not partner.city:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('Customer city not set.'))
         if not partner.country_id:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'), _('Customer country not set.'))
 
         # FIXME: manage address number in <NumeroCivico>
@@ -575,7 +586,7 @@ class wizard_export_fatturapa(osv.osv_memory):
 
         body.DatiGenerali = DatiGeneraliType()
         if not invoice.number:
-            raise orm.except_orm(
+            raise osv.except_osv(
                 _('Error!'),
                 _('Invoice does not have a number.'))
 
@@ -680,17 +691,17 @@ class wizard_export_fatturapa(osv.osv_memory):
         # TODO CodiceArticolo
 
         line_no = 1
-        price_precision = self.pool['decimal.precision'].precision_get(cr, uid, 
+        price_precision = self.pool.get('decimal.precision').precision_get(cr, uid, 
             'Product Price')
-        uom_precision = self.pool['decimal.precision'].precision_get(cr, uid, 
+        uom_precision = self.pool.get('decimal.precision').precision_get(cr, uid, 
             'Product Unit of Measure')
         for line in invoice.invoice_line:
             if not line.invoice_line_tax_id:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _('Error'),
                     _("Invoice line %s does not have tax") % line.name)
             if len(line.invoice_line_tax_id) > 1:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _('Error'),
                     _("Too many taxes for invoice line %s") % line.name)
             aliquota = line.invoice_line_tax_id[0].amount * 100
@@ -717,7 +728,7 @@ class wizard_export_fatturapa(osv.osv_memory):
                 DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
             if aliquota == 0.0:
                 if not line.invoice_line_tax_id[0].non_taxable_nature:
-                    raise orm.except_orm(
+                    raise osv.except_osv(
                         _('Error'),
                         _("No 'nature' field for tax %s") %
                         line.invoice_line_tax_id[0].name)
@@ -748,9 +759,9 @@ class wizard_export_fatturapa(osv.osv_memory):
     def setDatiRiepilogo(self, cr, uid, invoice, body, context=None):
         if context is None:
             context = {}
-        tax_pool = self.pool['account.tax']
+        tax_pool = self.pool.get('account.tax')
         for tax_line in invoice.tax_line:
-            tax_id = self.pool['account.tax'].get_tax_by_invoice_tax(
+            tax_id = tax_pool.get_tax_by_invoice_tax(
                 cr, uid, tax_line.name, context=context)
             tax = tax_pool.browse(cr, uid, tax_id, context=context)
             riepilogo = DatiRiepilogoType(
@@ -760,12 +771,12 @@ class wizard_export_fatturapa(osv.osv_memory):
             )
             if tax.amount == 0.0:
                 if not tax.non_taxable_nature:
-                    raise orm.except_orm(
+                    raise osv.except_osv(
                         _('Error'),
                         _("No 'nature' field for tax %s") % tax.name)
                 riepilogo.Natura = tax.non_taxable_nature
                 if not tax.law_reference:
-                    raise orm.except_orm(
+                    raise osv.except_osv(
                         _('Error'),
                         _("No 'law reference' field for tax %s") % tax.name)
                 riepilogo.RiferimentoNormativo = tax.law_reference
@@ -786,19 +797,19 @@ class wizard_export_fatturapa(osv.osv_memory):
         if invoice.payment_term:
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term.fatturapa_pt_id:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _('Error'),
                     _('Payment term %s does not have a linked e-invoice '
                       'payment term') % invoice.payment_term.name)
             if not invoice.payment_term.fatturapa_pm_id:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _('Error'),
                     _('Payment term %s does not have a linked e-invoice '
                       'payment method') % invoice.payment_term.name)
             DatiPagamento.CondizioniPagamento = (
                 invoice.payment_term.fatturapa_pt_id.code)
-            move_line_pool = self.pool['account.move.line']
-            invoice_pool = self.pool['account.invoice']
+            move_line_pool = self.pool.get('account.move.line')
+            invoice_pool = self.pool.get('account.invoice')
             payment_line_ids = invoice_pool.move_line_id_payment_get(
                 cr, uid, [invoice.id])
             for move_line_id in payment_line_ids:
@@ -878,7 +889,7 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        invoice_model = self.pool['account.invoice']
+        invoice_model = self.pool.get('account.invoice')
         partner = False
 
         invoices = invoice_model.browse(cr, uid, invoice_ids, context=context)
@@ -887,7 +898,7 @@ class wizard_export_fatturapa(osv.osv_memory):
             if not partner:
                 partner = invoice.partner_id
             if invoice.partner_id != partner:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _('Error!'),
                     _('Invoices must belong to the same partner'))
 
@@ -897,7 +908,7 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
 
-        invoice_model = self.pool['account.invoice']
+        invoice_model = self.pool.get('account.invoice')
         partner = False
 
         invoices = invoice_model.browse(cr, uid, invoice_ids, context=context)
@@ -906,7 +917,7 @@ class wizard_export_fatturapa(osv.osv_memory):
             if not partner:
                 partner = invoice.address_invoice_id
             if invoice.address_invoice_id != partner:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _('Error!'),
                     _('Invoices must belong to the same partner address'))
 
@@ -916,10 +927,10 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
         obj = self.browse(cr, uid, ids[0])
-        model_data_obj = self.pool['ir.model.data']
-        invoice_obj = self.pool['account.invoice']
-        attachments = self.pool['fatturapa.attachment.out']
-        user_obj = self.pool['res.users']
+        model_data_obj = self.pool.get('ir.model.data')
+        invoice_obj = self.pool.get('account.invoice')
+        attachments = self.pool.get('fatturapa.attachment.out')
+        user_obj = self.pool.get('res.users')
         attachment_ids = []
         invoice_ids = context.get('active_ids', False)
         #partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
@@ -936,7 +947,7 @@ class wizard_export_fatturapa(osv.osv_memory):
             company = user_obj.browse(cr, uid, uid).company_id
             context_partner = context.copy()
             context_partner.update({'lang': partner.lang})
-            user_obj = self.pool['res.users']
+            #user_obj = self.pool['res.users']
             try:
                 self.setFatturaElettronicaHeader(cr, uid, company,
                                                  partner, fatturapa,
@@ -946,7 +957,7 @@ class wizard_export_fatturapa(osv.osv_memory):
                     inv = invoice_obj.browse(
                         cr, uid, invoice_id, context=context_partner)
                     if inv.fatturapa_attachment_out_id:
-                        raise orm.except_orm(
+                        raise osv.except_osv(
                             _("Error"),
                             _("Invoice %s has E-invoice Export File yet") % (
                                 inv.number))
@@ -961,7 +972,7 @@ class wizard_export_fatturapa(osv.osv_memory):
     
                 number = self.setProgressivoInvio(cr, uid, fatturapa, context=context)
             except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise orm.except_orm(
+                raise osv.except_osv(
                     _("XML SDI validation error"),
                     (unicode(e)))
 
@@ -998,10 +1009,10 @@ class wizard_export_fatturapa(osv.osv_memory):
         action_report_model, action_report_id = (
             obj.report_print_menu.value.split(',')[0],
             int(obj.report_print_menu.value.split(',')[1]))
-        action_report = self.pool[action_report_model] \
+        action_report = self.pool.get(action_report_model) \
             .browse(action_report_id)
-        report_model = self.pool['report']
-        attachment_model = self.pool['ir.attachment']
+        report_model = self.pool.get('report')
+        attachment_model = self.pool.get('ir.attachment')
         # Generate the PDF: if report_action.attachment is set
         # they will be automatically attached to the invoice,
         # otherwise use res to build a new attachment
