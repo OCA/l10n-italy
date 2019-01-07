@@ -69,10 +69,26 @@ class Attachment(models.Model):
             )
         return tmp_der_file
 
+    # Due to a (likely) openssl bug (v.1.1.0x) we need to decrypt
+    # files without message signature verification (-nosigs option).
+    # Otherwise openssl gives an error like the following one on
+    # some files (decrypted anyway):
+    #
+    # Verification failure
+    # int_rsa_verify:bad signature
+    # PKCS7_signatureVerify:signature failure
+    # PKCS7_verify:signature failure
+    #
+    # Tested openssl versions:
+    # 1.0.1t-1+deb8u8    - Debian 8     - OK
+    # 1.0.2g-1ubuntu4.14 - Ubuntu 16.04 - OK
+    # 1.1.0f-3+deb9u2    - Debian 9     - affected
+    # 1.1.0g-2ubuntu4.3  - Ubuntu 18.04 - affected
+
     def decrypt_to_xml(self, signed_file, xml_file):
         strcmd = (
             'openssl smime -decrypt -verify -inform'
-            ' DER -in %s -noverify -out %s'
+            ' DER -in %s -noverify -nosigs -out %s'
         ) % (signed_file, xml_file)
         cmd = shlex.split(strcmd)
         try:
