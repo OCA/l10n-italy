@@ -15,6 +15,11 @@ msgstr ""
 
 #. module: l10n_it_split_payment
 #: model:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Configuration for Split Payment module.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
 msgid "Account"
 msgstr ""
 
