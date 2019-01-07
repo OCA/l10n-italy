@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fetchmail_server_invoice,fetchmail_server_invoice,model_fetchmail_server,account.group_account_invoice,1,0,0,0
