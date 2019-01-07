@@ -164,7 +164,7 @@ class FatturaPAAttachmentOut(models.Model):
                     error_list = root.find('ListaErrori')
                     error_str = ''
                     for error in error_list:
-                        error_str += "\n[%s] %s %s" % (
+                        error_str += u"\n[%s] %s %s" % (
                             error.find('Codice').text if error.find(
                                 'Codice') is not None else '',
                             error.find('Descrizione').text if error.find(
@@ -174,18 +174,18 @@ class FatturaPAAttachmentOut(models.Model):
                         )
                     fatturapa_attachment_out.write({
                         'state': 'sender_error',
-                        'last_sdi_response': 'SdI ID: {}; '
-                        'Message ID: {}; Receipt date: {}; '
-                        'Error: {}'.format(
+                        'last_sdi_response': u'SdI ID: {}; '
+                        u'Message ID: {}; Receipt date: {}; '
+                        u'Error: {}'.format(
                             id_sdi, message_id, receipt_dt, error_str)
                     })
                 elif message_type == 'MC':  # 3A. Mancata consegna
                     missed_delivery_note = root.find('Descrizione').text
                     fatturapa_attachment_out.write({
                         'state': 'recipient_error',
-                        'last_sdi_response': 'SdI ID: {}; '
-                        'Message ID: {}; Receipt date: {}; '
-                        'Missed delivery note: {}'.format(
+                        'last_sdi_response': u'SdI ID: {}; '
+                        u'Message ID: {}; Receipt date: {}; '
+                        u'Missed delivery note: {}'.format(
                             id_sdi, message_id, receipt_dt,
                             missed_delivery_note)
                     })
@@ -203,8 +203,7 @@ class FatturaPAAttachmentOut(models.Model):
                     esito_committente = root.find('EsitoCommittente')
                     if esito_committente is not None:
                         # more than one esito?
-                        esito = esito_committente.find(
-                            'Esito')
+                        esito = esito_committente.find('Esito')
                         if esito is not None:
                             if esito.text == 'EC01':
                                 state = 'validated'
@@ -212,8 +211,8 @@ class FatturaPAAttachmentOut(models.Model):
                                 state = 'rejected'
                             fatturapa_attachment_out.write({
                                 'state': state,
-                                'last_sdi_response': 'SdI ID: {}; '
-                                'Message ID: {}; Response: {}; '.format(
+                                'last_sdi_response': u'SdI ID: {}; '
+                                u'Message ID: {}; Response: {}; '.format(
                                     id_sdi, message_id, esito.text)
                             })
                 elif message_type == 'DT':  # 5. Decorrenza Termini per PA
@@ -221,9 +220,9 @@ class FatturaPAAttachmentOut(models.Model):
                     if description is not None:
                         fatturapa_attachment_out.write({
                             'state': 'validated',
-                            'last_sdi_response': 'SdI ID: {}; '
-                            'Message ID: {}; Receipt date: {}; '
-                            'Description: {}'.format(
+                            'last_sdi_response': u'SdI ID: {}; '
+                            u'Message ID: {}; Receipt date: {}; '
+                            u'Description: {}'.format(
                                 id_sdi, message_id, receipt_dt,
                                 description.text)
                         })
@@ -234,8 +233,9 @@ class FatturaPAAttachmentOut(models.Model):
                         fatturapa_attachment_out.write({
                             'state': 'validated',
                             'last_sdi_response': (
-                                'SdI ID: {}; Message ID: {}; Receipt date: {};'
-                                ' Description: {}'
+                                u'SdI ID: {}; Message ID: {}; '
+                                u'Receipt date: {};'
+                                u' Description: {}'
                             ).format(
                                 id_sdi, message_id, receipt_dt,
                                 description.text)
