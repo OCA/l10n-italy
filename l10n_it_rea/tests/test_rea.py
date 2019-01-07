@@ -19,7 +19,8 @@ class TestRea(TransactionCase):
         self.company.onchange_rea_data()
         self.assertEqual(
             self.company.company_registry,
-            'RM 123456 Share Cap. 10,000.00 € Unique Member Not in liquidation'
+            'RM - 123456 / Share Cap. 10,000.00 € / '
+            'Unique Member / Not in liquidation'
         )
         self.assertEqual(
             self.company.partner_id.rea_office, self.company.rea_office)

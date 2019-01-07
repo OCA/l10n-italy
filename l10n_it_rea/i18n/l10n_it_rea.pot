@@ -16,13 +16,7 @@ msgstr ""
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:54
 #, python-format
-msgid "%s %s Share Cap. %s â¬ %s %s"
-msgstr ""
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_capital
-msgid "Capital"
+msgid "%s - %s / Share Cap. %s â¬ / %s / %s"
 msgstr ""
 
 #. module: l10n_it_rea
@@ -43,12 +37,14 @@ msgstr ""
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_liquidation_state
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_liquidation_state
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_liquidation_state
 msgid "Liquidation State"
 msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_member_type
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_member_type
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_member_type
 msgid "Member Type"
 msgstr ""
 
@@ -65,13 +61,20 @@ msgstr ""
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_office
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_office
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_office
 msgid "Office Province"
 msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_code
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_code
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_code
 msgid "REA Code"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
+msgid "REA Data"
 msgstr ""
 
 #. module: l10n_it_rea
@@ -80,8 +83,10 @@ msgid "REA Registration"
 msgstr ""
 
 #. module: l10n_it_rea
-#: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
-msgid "REA data"
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_capital
+msgid "Share Capital"
 msgstr ""
 
 #. module: l10n_it_rea
