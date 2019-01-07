@@ -557,35 +557,6 @@ class WizardImportFatturapa(models.TransientModel):
             self.env['account.invoice.line'].create(line_vals)
         return True
 
-    def add_dati_bollo(self, invoice, DatiGeneraliDocumento):
-        # 2.1.1.6
-        Stamps = DatiGeneraliDocumento.DatiBollo
-        if Stamps:
-            invoice.virtual_stamp = Stamps.BolloVirtuale
-            invoice.stamp_amount = float(Stamps.ImportoBollo)
-            if self.e_invoice_detail_level == '2':
-                journal = self.get_purchase_journal(invoice.company_id)
-                credit_account_id = journal.default_credit_account_id.id
-                line_vals = {
-                    'invoice_id': invoice.id,
-                    'name': _(
-                        "Bollo assolto ai sensi del decreto MEF 17 giugno "
-                        "2014 (art. 6)"
-                    ),
-                    'account_id': credit_account_id,
-                    'price_unit': invoice.stamp_amount,
-                    'quantity': 1,
-                    }
-                if self.env.user.company_id.dati_bollo_product_id:
-                    dati_bollo_product = (
-                        self.env.user.company_id.dati_bollo_product_id)
-                    line_vals['product_id'] = dati_bollo_product.id
-                    line_vals['name'] = dati_bollo_product.name
-                    self.adjust_accounting_data(
-                        dati_bollo_product, line_vals
-                    )
-                self.env['account.invoice.line'].create(line_vals)
-
     def _createPayamentsLine(self, payment_id, line, partner_id):
         PaymentModel = self.env['fatturapa.payment.detail']
         PaymentMethodModel = self.env['fatturapa.payment_method']
@@ -933,9 +904,6 @@ class WizardImportFatturapa(models.TransientModel):
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 
-        self.add_dati_bollo(
-            invoice, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
-
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiCassaPrevidenziale
@@ -944,38 +912,7 @@ class WizardImportFatturapa(models.TransientModel):
                 WalferLineVals = self._prepareWelfareLine(
                     invoice_id, walfareLine)
                 WelfareFundLineModel.create(WalferLineVals)
-                line_vals = self._prepare_generic_line_data(walfareLine)
-                line_vals.update({
-                    'name': _(
-                        "Cassa Previdenziale: %s") % walfareLine.TipoCassa,
-                    'price_unit': float(walfareLine.ImportoContributoCassa),
-                    'invoice_id': invoice.id,
-                    'account_id': credit_account_id,
-                })
-                if walfareLine.Ritenuta:
-                    if not wt_found:
-                        raise UserError(_(
-                            "CassaPrevidenziale %s has Ritenuta but no "
-                            "withholding tax was found in the system"
-                            % walfareLine.TipoCassa))
-                    # if wt_found:
-                    #
-                    #     self.env['account.invoice.withholding.tax'].create({
-                    #         # 'base': ,
-                    #         # 'tax': Withholding.ImportoRitenuta,
-                    #         'withholding_tax_id': wt_found[0].id,
-                    #     })
-                if self.env.user.company_id.cassa_previdenziale_product_id:
-                    cassa_previdenziale_product = (
-                        self.env.user.company_id.
-                        cassa_previdenziale_product_id
-                    )
-                    line_vals['product_id'] = cassa_previdenziale_product.id
-                    line_vals['name'] = cassa_previdenziale_product.name
-                    self.adjust_accounting_data(
-                        cassa_previdenziale_product, line_vals
-                    )
-                self.env['account.invoice.line'].create(line_vals)
+
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
         if relOrders:
