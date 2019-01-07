@@ -22,15 +22,9 @@ msgstr ""
 
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:54
-#, python-format
-msgid "%s %s Share Cap. %s â¬ %s %s"
+#, fuzzy, python-format
+msgid "%s - %s / Share Cap. %s â¬ / %s / %s"
 msgstr "%s - %s / Cap. sociale %s â¬ / %s / %s"
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_capital
-msgid "Capital"
-msgstr "Capitale sociale"
 
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_company
@@ -50,12 +44,14 @@ msgstr "In liquidazione"
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_liquidation_state
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_liquidation_state
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_liquidation_state
 msgid "Liquidation State"
 msgstr "Stato liquidazione"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_member_type
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_member_type
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_member_type
 msgid "Member Type"
 msgstr "Tipo socio"
 
@@ -72,14 +68,22 @@ msgstr "Non in liquidazione"
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_office
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_office
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_office
 msgid "Office Province"
 msgstr "Provincia ufficio"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_code
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_code
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_code
 msgid "REA Code"
 msgstr "Codice REA"
+
+#. module: l10n_it_rea
+#: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
+#, fuzzy
+msgid "REA Data"
+msgstr "Dati REA"
 
 #. module: l10n_it_rea
 #: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_rea_partner_form
@@ -87,9 +91,12 @@ msgid "REA Registration"
 msgstr "Registrazione REA"
 
 #. module: l10n_it_rea
-#: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
-msgid "REA data"
-msgstr "Dati REA"
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_capital
+#, fuzzy
+msgid "Share Capital"
+msgstr "Capitale sociale"
 
 #. module: l10n_it_rea
 #: sql_constraint:res.partner:0
