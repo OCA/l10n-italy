@@ -25,8 +25,8 @@ msgid ""
 "with user %s</p>"
 msgstr ""
 "<p>Il messaggio PEC con message-ID %s è stato letto ma non elaborato, perché "
-"non è relativo a una e-fattura.</p><p>Controllare la casella PEC %s: server %"
-"s, utente %s</p>"
+"non è relativo a una e-fattura.</p><p>Controllare la casella PEC %s: server "
+"%s, utente %s</p>"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
@@ -247,7 +247,7 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr "Procedura per inviare PEC e-fattura multiple"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:244
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:245
 #, python-format
 msgid "You can only delete files in 'Ready to Send' state."
 msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
