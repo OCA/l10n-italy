@@ -1,4 +1,5 @@
 account-financial-tools
+delivery-carrier
 server-ux
 stock-logistics-workflow
 partner-contact
