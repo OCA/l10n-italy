@@ -77,8 +77,6 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         return wizard.importFatturaPA()
 
     def test_00_xml_import(self):
-        self.env.user.company_id.cassa_previdenziale_product_id = (
-            self.service.id)
         res = self.run_wizard('test0', 'IT05979361218_001.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -86,17 +84,11 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(
             invoice.partner_id.register_fiscalpos.code, 'RF02')
         self.assertEqual(invoice.reference, 'FT/2015/0006')
-        self.assertEqual(invoice.amount_total, 57.00)
+        self.assertEqual(invoice.amount_total, 54.00)
         self.assertEqual(invoice.gross_weight, 0.00)
         self.assertEqual(invoice.net_weight, 0.00)
         self.assertEqual(invoice.welfare_fund_ids[0].kind_id.code, 'N4')
         self.assertFalse(invoice.art73)
-        welfare_found = False
-        for line in invoice.invoice_line:
-            if line.product_id.id == self.service.id:
-                self.assertEqual(line.price_unit, 3)
-                welfare_found = True
-        self.assertTrue(welfare_found)
         self.assertTrue(len(invoice.e_invoice_line_ids) == 1)
         self.assertEqual(
             invoice.e_invoice_line_ids[0].name, 'Prodotto di test al giorno')
@@ -122,8 +114,8 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.reference, '123')
-        self.assertEqual(invoice.amount_untaxed, 34.00)
-        self.assertEqual(invoice.amount_tax, 7.48)
+        self.assertEqual(invoice.amount_untaxed, 25.00)
+        self.assertEqual(invoice.amount_tax, 5.5)
         self.assertEqual(
             len(invoice.invoice_line[0].invoice_line_tax_id), 1)
         self.assertEqual(
