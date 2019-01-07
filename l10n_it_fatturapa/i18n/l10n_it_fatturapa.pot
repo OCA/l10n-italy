@@ -1080,11 +1080,6 @@ msgid "Stable Organization"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__stamp_amount
-msgid "Stamp Amount"
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__store_fname
 msgid "Stored Filename"
 msgstr ""
@@ -1217,11 +1212,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__vehicle_registration
 msgid "Vehicle Registration"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__virtual_stamp
-msgid "Virtual Stamp"
 msgstr ""
 
 #. module: l10n_it_fatturapa
