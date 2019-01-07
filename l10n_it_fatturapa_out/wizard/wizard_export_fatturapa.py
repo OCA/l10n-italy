@@ -586,9 +586,13 @@ class WizardExportFatturapa(models.TransientModel):
         line_no = 1
         price_precision = self.env['decimal.precision'].precision_get(
             'Product Price')
+        if price_precision < 2:
+            # XML wants at least 2 decimals always
+            price_precision = 2
         uom_precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
-
+        if uom_precision < 2:
+            uom_precision = 2
         for line in invoice.invoice_line_ids:
             if not line.invoice_line_tax_ids:
                 raise UserError(
@@ -605,7 +609,7 @@ class WizardExportFatturapa(models.TransientModel):
                 # can't insert newline with pyxb
                 # see https://tinyurl.com/ycem923t
                 # and '&#10;' would not be correctly visualized anyway
-                # (for example firefox replaces '&#10;' with space
+                # (for example firefox replaces '&#10;' with space)
                 Descrizione=line.name.replace('\n', ' ').encode(
                     'latin', 'ignore').decode('latin'),
                 PrezzoUnitario='{prezzo:.{precision}f}'.format(
