@@ -23,7 +23,7 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_MT_' \
 class MailThread(models.AbstractModel):
     _inherit = 'mail.thread'
 
-    def _create_message_attachments(self, message_dict):
+    def create_message_attachments(self, message_dict):
         ir_attachment_obj = self.env['ir.attachment']
         attachment_ids = []
         for name, content in message_dict['attachments']:
@@ -63,6 +63,14 @@ class MailThread(models.AbstractModel):
             response_regex = re.compile(RESPONSE_MAIL_REGEX)
             response_attachments = [x for x in message_dict['attachments']
                                     if response_regex.match(x[0])]
+            # pass company_id in attachments creation
+            fetchmail_server = self.env['fetchmail.server'].browse(
+                self._context.get('fetchmail_server_id', False))
+            sdi_channel = self.env['sdi.channel'].search([
+                ('fetchmail_server_id', '=', fetchmail_server.id)
+            ])
+            company_id = sdi_channel.company_id if sdi_channel else \
+                self.env.user.company_id
             if response_attachments and fatturapa_attachments:
                 # this is an electronic invoice
                 if len(response_attachments) > 1:
@@ -72,7 +80,8 @@ class MailThread(models.AbstractModel):
                 message_dict['model'] = 'fatturapa.attachment.in'
                 message_dict['record_name'] = message_dict['subject']
                 message_dict['res_id'] = 0
-                attachment_ids = self._create_message_attachments(message_dict)
+                attachment_ids = self.with_context(company_id=company_id).\
+                    create_message_attachments(message_dict)
                 for attachment in self.env['ir.attachment'].browse(
                         [x.id for x in attachment_ids]):
                     if fatturapa_regex.match(attachment.name):
@@ -82,7 +91,7 @@ class MailThread(models.AbstractModel):
                 self.clean_message_dict(message_dict)
 
                 # model and res_id are only needed by
-                # _create_message_attachments: we don't attach to
+                # create_message_attachments: we don't attach to
                 del message_dict['model']
                 del message_dict['res_id']
 
@@ -100,7 +109,8 @@ class MailThread(models.AbstractModel):
                     .parse_pec_response(message_dict)
 
                 message_dict['record_name'] = message_dict['subject']
-                attachment_ids = self._create_message_attachments(message_dict)
+                attachment_ids = self.with_context(company_id=company_id).\
+                    create_message_attachments(message_dict)
                 message_dict['attachment_ids'] = attachment_ids
                 self.clean_message_dict(message_dict)
 
