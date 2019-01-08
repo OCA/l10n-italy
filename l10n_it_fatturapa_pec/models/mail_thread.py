@@ -30,6 +30,7 @@ class MailThread(models.AbstractModel):
             if isinstance(content, unicode):
                 content = content.encode('utf-8')
             data_attach = {
+                'company_id': self._context.get('company_id'),
                 'name': name,
                 'datas': base64.b64encode(str(content)),
                 'datas_fname': name,
@@ -80,7 +81,7 @@ class MailThread(models.AbstractModel):
                 message_dict['model'] = 'fatturapa.attachment.in'
                 message_dict['record_name'] = message_dict['subject']
                 message_dict['res_id'] = 0
-                attachment_ids = self.with_context(company_id=company_id).\
+                attachment_ids = self.with_context(company_id=company_id.id).\
                     create_message_attachments(message_dict)
                 for attachment in self.env['ir.attachment'].browse(
                         [x.id for x in attachment_ids]):
@@ -109,7 +110,7 @@ class MailThread(models.AbstractModel):
                     .parse_pec_response(message_dict)
 
                 message_dict['record_name'] = message_dict['subject']
-                attachment_ids = self.with_context(company_id=company_id).\
+                attachment_ids = self.with_context(company_id=company_id.id).\
                     create_message_attachments(message_dict)
                 message_dict['attachment_ids'] = attachment_ids
                 self.clean_message_dict(message_dict)
