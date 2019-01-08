@@ -135,7 +135,6 @@
             <field name="customer">1</field>
             <field name="supplier">0</field>
             <field name="is_company">1</field>
-            <field name="is_pa">0</field>
             <field name="city">Genova</field>
             <field name="zip">16100</field>
             <field name="country_id" ref="base.it"/>

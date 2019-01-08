@@ -6,13 +6,17 @@ from lxml import etree
 import shutil
 import os
 from openerp.modules.module import get_module_resource
-from openerp.addons.account.tests.account_test_users import AccountTestUsers
+from openerp.tests.common import TransactionCase
 
 
-class FatturaPACommon(AccountTestUsers):
+class FatturaPACommon(TransactionCase):
 
     def setUp(self):
         super(FatturaPACommon, self).setUp()
+        self.seq_model = self.env['ir.sequence']
+        self.res_user_model = self.env['res.users']
+        self.company = self.env.ref('base.main_company')
+        self.account_model = self.env['account.account']
         self.wizard_model = self.env['wizard.export.fatturapa']
         self.data_model = self.env['ir.model.data']
         self.attach_model = self.env['fatturapa.attachment.out']
@@ -24,24 +28,46 @@ class FatturaPACommon(AccountTestUsers):
             [('type', '=', 'sale')])[0]
         account_user_type = self.env.ref(
             'account.data_account_type_receivable')
+        res_users_account_user = self.env.ref('account.group_account_user')
+        res_users_account_manager = self.env.ref(
+            'account.group_account_manager')
+        partner_manager = self.env.ref('base.group_partner_manager')
+        self.account_user = self.res_user_model.with_context(
+            {'no_reset_password': True}).create(dict(
+                name="Accountant",
+                company_id=self.company.id,
+                login="acc",
+                email="accountuser@yourcompany.com",
+                groups_id=[(6, 0, [
+                    res_users_account_user.id, partner_manager.id])]
+            ))
+        self.account_manager = self.res_user_model.with_context(
+            {'no_reset_password': True}).create(dict(
+                name="Adviser",
+                company_id=self.company.id,
+                login="fm",
+                email="accountmanager@yourcompany.com",
+                groups_id=[
+                    (6, 0, [res_users_account_manager.id, partner_manager.id])]
+            ))
         self.a_recv = self.account_model.sudo(self.account_manager.id).create(
             dict(
                 code="cust_acc",
                 name="customer account",
-                user_type_id=account_user_type.id,
+                user_type=account_user_type.id,
                 reconcile=True,
             ))
-        self.a_sale = self.env['account.account'].search([
+        self.a_sale = self.account_model.search([
             (
-                'user_type_id', '=',
-                self.env.ref('account.data_account_type_revenue').id)
+                'user_type', '=',
+                self.env.ref('account.data_account_type_income').id)
         ], limit=1)
         self.account_payment_term = self.env.ref(
             'account.account_payment_term')
         self.user_demo = self.env.ref('base.user_demo')
         self.product_uom_unit = self.env.ref('product.product_uom_unit')
         self.product_product_10 = self.env.ref('product.product_product_10')
-        self.product_order_01 = self.env.ref('product.product_order_01')
+        self.product_order_01 = self.env.ref('product.product_product_1')
         self.product_product_10.default_code = False
         self.product_product_10.ean13 = False
         self.product_order_01.default_code = False
@@ -58,13 +84,7 @@ class FatturaPACommon(AccountTestUsers):
             'l10n_it_fatturapa.res_partner_fatturapa_3')
         self.fiscal_position_sp = self.env.ref(
             'l10n_it_fatturapa.fiscal_position_sp')
-        self.company = self.env.ref('base.main_company')
-        self.company.sp_account_id = self.env['account.account'].search([
-            (
-                'user_type_id', '=',
-                self.env.ref('account.data_account_type_current_assets').id
-            )
-        ], limit=1)
+        self.company.sp_account_id = self.env.ref('account.ova')
         self.EUR = self.env.ref('base.EUR')
         self.cr.execute(
             "UPDATE res_company SET currency_id = %s WHERE id = %s",
@@ -80,23 +100,20 @@ class FatturaPACommon(AccountTestUsers):
             }
         )
 
-    def set_sequences(self, file_number, invoice_number, dt):
-        seq_pool = self.env['ir.sequence']
+    def set_sequences(self, file_number, invoice_number, year):
         seq_id = self.data_model.xmlid_to_res_id(
             'l10n_it_fatturapa.seq_fatturapa')
-        ftpa_seq = seq_pool.browse(seq_id)
+        ftpa_seq = self.seq_model.browse(seq_id)
         ftpa_seq.write({
             'implementation': 'no_gap',
             'number_next_actual': file_number, })
-        inv_seq = seq_pool.search([('name', '=', 'Customer Invoices')])[0]
-        seq_date = self.env['ir.sequence.date_range'].search([
-            ('sequence_id', '=', inv_seq.id),
-            ('date_from', '<=', dt),
-            ('date_to', '>=', dt),
-        ], limit=1)
-        if not seq_date:
-            seq_date = inv_seq._create_date_range_seq(dt)
-        seq_date.number_next_actual = invoice_number
+        inv_seq = self.seq_model.search([(
+            'name', '=', 'Account Default Sales Journal')])[0]
+        inv_seq.write({
+            'prefix': 'INV/%s/' % year,
+            'padding': 4,
+            'implementation': 'no_gap', })
+        inv_seq.number_next_actual = invoice_number
 
     def run_wizard(self, invoice_id):
         wizard = self.wizard_model.create({})
