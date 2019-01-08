@@ -6,6 +6,7 @@
 
 import base64
 import logging
+import os
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
@@ -725,8 +726,12 @@ class WizardExportFatturapa(models.TransientModel):
     def setAttachments(self, invoice, body):
         if invoice.fatturapa_doc_attachments:
             for doc_id in invoice.fatturapa_doc_attachments:
+                file_name, file_extension = os.path.splitext(doc_id.name)
+                attachment_name = doc_id.datas_fname if len(
+                    doc_id.datas_fname) <= 60 else ''.join([
+                        file_name[:(60-len(file_extension))], file_extension])
                 AttachDoc = AllegatiType(
-                    NomeAttachment=doc_id.datas_fname,
+                    NomeAttachment=attachment_name,
                     Attachment=base64.decodestring(doc_id.datas)
                 )
                 body.Allegati.append(AttachDoc)
