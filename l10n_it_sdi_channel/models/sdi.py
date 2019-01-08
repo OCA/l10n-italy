@@ -52,6 +52,13 @@ class SdiChannelPEC(models.Model):
         string="Exchange System Email Address"
     )
 
+    fetchmail_server_id = fields.Many2one(
+        'fetchmail.server',
+        string='Fetchmail server',
+        required=False,
+        domain=[('is_fatturapa_pec', '=', True)]
+    )
+
     @api.constrains('pec_server_id')
     def check_pec_server_id(self):
         for channel in self:
