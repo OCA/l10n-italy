@@ -4,6 +4,7 @@ import base64
 import shlex
 import subprocess
 import logging
+import re
 from io import BytesIO
 from odoo import models, api, fields
 from odoo.modules import get_module_resource
@@ -126,8 +127,23 @@ class Attachment(models.Model):
                 elem.text = elem.text.strip()
         return ET.tostring(root)
 
+    def decode_base64_e_invoice(self, attachment_content):
+        # Decode base64 files, if needed.
+        # E-invoices could be signed and base64 encoded,
+        # so we need to decode them before removing signature
+        prog = re.compile(
+            b"^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$"
+        )
+        if prog.match(attachment_content):
+            attachment_content = base64.decodebytes(attachment_content)
+        return attachment_content
+
     def get_xml_string(self):
         fatturapa_attachment = self
+        # Here we decode standard odoo attachment, always base64 encoded
+        attachment_content = base64.decodebytes(fatturapa_attachment.datas)
+        # Here we remove additional base64 encoding, when present
+        attachment_content = self.decode_base64_e_invoice(attachment_content)
         # decrypt  p7m file
         if fatturapa_attachment.datas_fname.lower().endswith('.p7m'):
             temp_file_name = (
@@ -135,9 +151,7 @@ class Attachment(models.Model):
             temp_der_file_name = (
                 '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
             with open(temp_file_name, 'wb') as p7m_file:
-                datas = fatturapa_attachment.datas
-                format_data = base64.decodebytes(datas)
-                p7m_file.write(format_data)
+                p7m_file.write(attachment_content)
             xml_file_name = os.path.splitext(temp_file_name)[0]
 
             # check if temp_file_name is a PEM file
@@ -157,7 +171,7 @@ class Attachment(models.Model):
                 file_content = fatt_file.read()
             xml_string = file_content
         elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
-            xml_string = base64.decodebytes(fatturapa_attachment.datas)
+            xml_string = attachment_content
         xml_string = self.remove_xades_sign(xml_string)
         xml_string = self.strip_xml_content(xml_string)
         return xml_string
