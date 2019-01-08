@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import odoo.addons.decimal_precision as dp
