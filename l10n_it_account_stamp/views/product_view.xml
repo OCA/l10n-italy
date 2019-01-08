@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.product_template_form_view"/>
             <field name="arch" type="xml">
 
-                <page name='invoicing' position="inside">
+                <group name='group_standard_price' position="after">
                     <group string="Tax stamp">
                         <field name="is_stamp"/>
                         <p attrs="{'invisible': [('is_stamp', '=', False)]}" colspan="2">
@@ -18,7 +18,7 @@
                         <field name="stamp_apply_tax_ids" attrs="{'invisible': [('is_stamp', '=', False)]}" widget="many2many_tags">
                         </field>
                     </group>
-                </page>
+                </group>
 
                 <xpath expr="//field[@name='property_account_income_id']" position="attributes">
                     <attribute name="attrs">{'required': [('is_stamp', '=', True)]}</attribute>
