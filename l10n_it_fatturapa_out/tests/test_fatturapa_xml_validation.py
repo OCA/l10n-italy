@@ -5,15 +5,44 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from .fatturapa_common import FatturaPACommon
+from datetime import date
 
 
 class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
+        obj_acc_fiscalyear = self.env['account.fiscalyear']
+        self.fiscalyear = obj_acc_fiscalyear.create(
+            vals={
+                'name': '2016',
+                'code': '2016',
+                'date_start': '2016-01-01',
+                'date_stop': '2016-12-31',
+                # 'company_id': config.company_id.id,
+            }
+        )
+        period_obj = self.env['account.period']
+        self.period = period_obj.create({
+            'name': "Period 01/2016",
+            'code': '01/2016',
+            'date_start': '2016-01-01',
+            'date_stop': '2016-01-31',
+            'special': False,
+            'fiscalyear_id': self.fiscalyear.id,
+        })
+        self.period1 = period_obj.create({
+            'name': "Period 06/2016",
+            'code': '06/2016',
+            'date_start': '2016-06-01',
+            'date_stop': '2016-06-30',
+            'special': False,
+            'fiscalyear_id': self.fiscalyear.id,
+        })
 
     def test_1_xml_export(self):
         self.set_sequences(1, 13, '2016-01-07')
+        self.res_partner_fatturapa_0.name = 'Public Administration'
         invoice = self.invoice_model.create({
             'date_invoice': '2016-01-07',
             'partner_id': self.res_partner_fatturapa_0.id,
@@ -45,7 +74,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                         self.tax_22.id})]
                 })],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
         self.assertTrue(res)
@@ -96,7 +125,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 'cup': '456',
             })],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
 
@@ -144,7 +173,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 'cup': '456',
             })],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         self.AttachFileToInvoice(invoice.id, 'test1.pdf')
         self.AttachFileToInvoice(invoice.id, 'test2.pdf')
         res = self.run_wizard(invoice.id)
@@ -187,7 +216,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                         self.tax_22_SP.id})]
                 })],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
         xml_content = attachment.datas.decode('base64')
@@ -220,7 +249,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 }),
             ],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
         xml_content = attachment.datas.decode('base64')
@@ -262,7 +291,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                         self.tax_22.id})]
                 })],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.assertEqual(attachment.datas_fname, 'IT06363391001_00006.xml')
@@ -282,6 +311,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.company.fatturapa_stabile_organizzazione = (
             self.stabile_organizzazione.id)
         self.set_sequences(7, 14, '2018-01-07')
+        self.res_partner_fatturapa_2.is_pa = False
         invoice = self.invoice_model.create({
             'date_invoice': '2018-01-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -304,7 +334,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 }),
             ],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.assertEqual(
@@ -348,7 +378,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                         self.tax_22.id})]
                 })],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.assertEqual(attachment.datas_fname, 'IT06363391001_00008.xml')
