@@ -36,22 +36,21 @@ class FatturaPAAttachmentIn(models.Model):
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
 
-    @api.multi
+    @api.one
     @api.depends('ir_attachment_id.datas')
     def _compute_xml_data(self):
-        for att in self:
-            fatt = self.env['wizard.import.fatturapa'].get_invoice_obj(att)
-            cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            partner_id = self.env['wizard.import.fatturapa'].getCedPrest(
-                cedentePrestatore)
-            att.xml_supplier_id = partner_id
-            att.invoices_number = len(fatt.FatturaElettronicaBody)
-            att.invoices_total = 0
-            for invoice_body in fatt.FatturaElettronicaBody:
-                att.invoices_total += float(
-                    invoice_body.DatiGenerali.DatiGeneraliDocumento.
-                    ImportoTotaleDocumento or 0
-                )
+        fatt = self.env['wizard.import.fatturapa'].get_invoice_obj(self)
+        cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
+        partner_id = self.env['wizard.import.fatturapa'].getCedPrest(
+            cedentePrestatore)
+        self.xml_supplier_id = partner_id
+        self.invoices_number = len(fatt.FatturaElettronicaBody)
+        self.invoices_total = 0
+        for invoice_body in fatt.FatturaElettronicaBody:
+            self.invoices_total += float(
+                invoice_body.DatiGenerali.DatiGeneraliDocumento.
+                ImportoTotaleDocumento or 0
+            )
 
     @api.multi
     @api.depends('in_invoice_ids')
