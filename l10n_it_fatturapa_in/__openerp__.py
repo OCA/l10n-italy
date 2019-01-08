@@ -23,6 +23,7 @@
         'views/partner_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
         'security/ir.model.access.csv',
+        'security/fatturapa_in_security.xml',
         'wizard/link_to_existing_invoice.xml',
         'views/company_view.xml',
     ],
