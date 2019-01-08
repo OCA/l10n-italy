@@ -16,5 +16,9 @@ Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree July
             <field name="supplier_taxes_id" eval="[(6, 0, [])]"/>
         </record>
 
+        <record id="base.main_company" model="res.company">
+            <field name="tax_stamp_product_id" ref="l10n_it_account_stamp.l10n_it_account_stamp_2_euro"/>
+        </record>
+
     </data>
 </openerp>
