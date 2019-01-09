@@ -15,11 +15,11 @@
     'depends': [
         'fetchmail',
         'l10n_it_fatturapa_out',
-        # 'l10n_it_fatturapa_in', Enable this dep as soon as
-        # the module is ready
+        'l10n_it_fatturapa_in',
         'l10n_it_sdi_channel',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/account.xml',
         'views/fatturapa_attachment_out.xml',
         'wizard/send_pec_view.xml',
