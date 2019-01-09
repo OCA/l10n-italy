@@ -53,14 +53,20 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         })
 
     def run_wizard(self, name, file_name):
-        attach_id = self.attach_model.create(
-            {
+        try:
+            attach_id = self.attach_model.create({
                 'name': name,
                 'datas': self.getFile(file_name)[1],
                 'datas_fname': file_name
-            }).id
+            })
+        except KeyError:
+            attach_id = self.attach_model.create({
+                'name': name,
+                'datas': self.getFile(file_name)[1],
+                'datas_fname': file_name
+            })
         wizard = self.wizard_model.with_context(
-            active_ids=[attach_id]).create({})
+            active_ids=[attach_id.id]).create({})
         return wizard.importFatturaPA()
 
     def run_wizard_multi(self, file_name_list):
