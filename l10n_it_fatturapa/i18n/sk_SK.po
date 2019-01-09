@@ -1124,13 +1124,13 @@ msgid "Sequence %s can't use subsequences."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:87
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:103
 #, python-format
 msgid "Signed Xml file %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:93
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:109
 #, python-format
 msgid "Signed Xml file not decryptable."
 msgstr ""
