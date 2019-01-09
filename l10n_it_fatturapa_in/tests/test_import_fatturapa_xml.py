@@ -395,5 +395,5 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertTrue(len(invoices) == 2)
-        # for invoice in invoices:
-        #     self.assertTrue(len(invoice.invoice_line) == 0)
+        for invoice in invoices:
+            self.assertTrue(len(invoice.invoice_line) == 0)
