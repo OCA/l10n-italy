@@ -35,9 +35,6 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     def setDettaglioLinee(self, invoice, body):
-        res = super(WizardExportFatturapa, self).setDettaglioLinee(
-            invoice=invoice, body=body
-        )
 
         body.DatiBeniServizi = DatiBeniServiziType()
         # TipoCessionePrestazione not handled
@@ -114,13 +111,9 @@ class WizardExportFatturapa(models.TransientModel):
 
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
-        return res
+        return True
 
     def setDatiRiepilogo(self, invoice, body):
-        res = super(WizardExportFatturapa, self).setDatiRiepilogo(
-            invoice, body
-        )
-        body.DatiBeniServizi.DatiRiepilogo = []
         model_tax = self.env['account.tax']
         for tax_line in invoice.tax_line.filtered(
             lambda x: not x.tax_code_id.exclude_from_registries
@@ -150,4 +143,4 @@ class WizardExportFatturapa(models.TransientModel):
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
 
-        return res
+        return True
