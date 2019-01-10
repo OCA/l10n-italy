@@ -116,6 +116,9 @@ class MailThread(models.AbstractModel):
             fetchmail_server_id = self.env['fetchmail.server'].browse(
                 self._context['fetchmail_server_id'])
             if fetchmail_server_id.is_fatturapa_pec:
+                attachment_ids = self._create_message_attachments(
+                    message_dict)
+                message_dict['attachment_ids'] = attachment_ids
                 att = self.find_attachment_by_subject(message_dict['subject'])
                 if att:
                     message_dict['model'] = 'fatturapa.attachment.out'
