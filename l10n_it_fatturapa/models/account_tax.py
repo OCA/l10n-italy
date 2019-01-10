@@ -32,8 +32,7 @@ class AccountTax(models.Model):
             tax_descr = invoice_tax.split(' - ')[0]
             tax_ids = self.search([('description', '=', tax_descr)])
         if not tax_ids or len(tax_ids) > 1:
-            tax_name = invoice_tax
-            tax_ids = self.search([('name', '=', tax_name)])
+            tax_ids = self.search([('name', '=', invoice_tax)])
         if not tax_ids:
             raise exceptions.Warning(
                 _('Error'), _('No tax %s found') % invoice_tax)
