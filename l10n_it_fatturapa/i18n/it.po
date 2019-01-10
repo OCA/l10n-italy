@@ -417,10 +417,8 @@ msgid "Effective date of Penality"
 msgstr "Data Decorrenza Penale"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:35
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:39
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:46
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:50
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:38
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:41
 #, python-format
 msgid "Error"
 msgstr ""
@@ -793,8 +791,7 @@ msgid "Net Weight"
 msgstr "Peso Netto"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:35
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:46
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:38
 #, python-format
 msgid "No tax %s found"
 msgstr ""
@@ -1247,8 +1244,7 @@ msgid "Titolo Quietanzante"
 msgstr "Titolo Quietanzante"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:39
-#: code:addons/l10n_it_fatturapa/models/account_tax.py:50
+#: code:addons/l10n_it_fatturapa/models/account_tax.py:41
 #, python-format
 msgid "Too many tax %s found"
 msgstr ""
