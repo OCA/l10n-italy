@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2018 Sergio Corato (https://efatto.it)
+# Copyright 2018 Sergio Corato (https://efatto.it)ftpa_out_cls
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -85,9 +85,9 @@ class MailThread(models.AbstractModel):
 
             else:
                 # this is an SDI notification
-                ftpa_out_cls = self.env['fatturapa.attachment.out']
-                message_dict = ftpa_out_cls.parse_pec_response(message_dict)
-
+                message_dict = self.env['fatturapa.attachment.out']\
+                    .parse_pec_response(message_dict)
+                
                 message_dict['record_name'] = message_dict['subject']
 
                 attachment_ids = self._message_preprocess_attachments(
