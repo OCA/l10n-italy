@@ -68,6 +68,7 @@ class AccountInvoice(models.Model):
                     (6, 0, stamp_product_id.taxes_id.ids)],
                 'account_analytic_id': None,
             })
+            inv.compute_taxes()
 
     def is_tax_stamp_line_present(self):
         for l in self.invoice_line_ids:
