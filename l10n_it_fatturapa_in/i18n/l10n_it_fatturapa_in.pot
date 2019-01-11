@@ -268,6 +268,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_default_product_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_default_product_id
 msgid "E-bill Default Product"
 msgstr ""
 
@@ -294,6 +295,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_detail_level
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__e_invoice_detail_level
 msgid "E-bills Detail Level"
 msgstr ""
@@ -570,6 +572,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner__e_invoice_detail_level
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users__e_invoice_detail_level
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa__e_invoice_detail_level
 msgid "Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill.\n"
 "Maximum level: every line contained in the electronic bill will create a line in the bill."
@@ -912,6 +915,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner__e_invoice_default_product_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users__e_invoice_default_product_id
 msgid "Used by electronic invoice XML import. If filled in, generated bill lines will use this product when no other possible product is found."
 msgstr ""
 
