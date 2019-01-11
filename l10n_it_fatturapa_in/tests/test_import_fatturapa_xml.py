@@ -53,6 +53,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         })
 
     def run_wizard(self, name, file_name):
+        self.env.invalidate_all()
         attach_id = self.attach_model.create(
             {
                 'name': name,
