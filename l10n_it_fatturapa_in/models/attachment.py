@@ -54,7 +54,7 @@ class FatturaPAAttachmentIn(models.Model):
                 )
 
     @api.multi
-    @api.depends('in_invoice_ids')
+    @api.depends('in_invoice_ids', 'invoices_number')
     def _compute_registered(self):
         for att in self:
             if (
