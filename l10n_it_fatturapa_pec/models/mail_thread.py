@@ -33,7 +33,7 @@ class MailThread(models.AbstractModel):
     def message_route(self, message, message_dict, model=None, thread_id=None,
                       custom_values=None):
 
-        mail_cls = self.env['mail.message'].with_context(
+        mail_model = self.env['mail.message'].with_context(
             message_create_from_mail_mail=True)
 
         if any("@pec.fatturapa.it" in x for x in [
@@ -78,7 +78,7 @@ class MailThread(models.AbstractModel):
 
                 # message_create_from_mail_mail to avoid to notify message
                 # (see mail.message.create)
-                mail_cls.create(message_dict)
+                mail_model.create(message_dict)
                 _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
                              .format(message.get('Message-Id')))
                 return []
@@ -99,7 +99,7 @@ class MailThread(models.AbstractModel):
 
                 # message_create_from_mail_mail to avoid to notify message
                 # (see mail.message.create)
-                mail_cls.create(message_dict)
+                mail_model.create(message_dict)
                 _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
                              .format(message.get('Message-Id')))
                 return []
@@ -113,7 +113,7 @@ class MailThread(models.AbstractModel):
                     message_dict['model'] = 'fatturapa.attachment.out'
                     message_dict['res_id'] = att.id
                     self.clean_message_dict(message_dict)
-                    mail_cls.create(message_dict)
+                    mail_model.create(message_dict)
                 else:
                     _logger.error('Can\'t route PEC E-Mail with Message-Id: {}'
                                   .format(message.get('Message-Id')))
