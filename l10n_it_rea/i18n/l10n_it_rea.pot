@@ -37,12 +37,14 @@ msgstr ""
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_liquidation_state
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_liquidation_state
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_liquidation_state
 msgid "Liquidation State"
 msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_member_type
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_member_type
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_member_type
 msgid "Member Type"
 msgstr ""
 
@@ -59,12 +61,14 @@ msgstr ""
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_office
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_office
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_office
 msgid "Office Province"
 msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_code
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_code
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_code
 msgid "REA Code"
 msgstr ""
 
@@ -81,6 +85,7 @@ msgstr ""
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_capital
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_capital
 msgid "Share Capital"
 msgstr ""
 
