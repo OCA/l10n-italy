@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - Tax Stamp',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'Localization/Italy',
     'summary': 'Tax stamp automatic management',
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
