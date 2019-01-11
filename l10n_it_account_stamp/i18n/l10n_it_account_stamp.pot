@@ -64,6 +64,7 @@ msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_line__is_stamp_line
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__is_stamp
 msgid "Is stamp"
 msgstr ""
@@ -77,13 +78,13 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:16
 #: code:addons/l10n_it_account_stamp/models/invoice.py:46
-#: code:addons/l10n_it_account_stamp/models/invoice.py:128
+#: code:addons/l10n_it_account_stamp/models/invoice.py:129
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:83
+#: code:addons/l10n_it_account_stamp/models/invoice.py:84
 #, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr ""
@@ -105,11 +106,13 @@ msgid "Product used as Tax Stamp in customer invoices."
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_min_total_base
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_min_total_base
 msgid "Stamp apply min total base"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_tax_ids
 msgid "Stamp taxes"
 msgstr ""
@@ -126,13 +129,13 @@ msgid "Tax Stamp 2 euro"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:101
+#: code:addons/l10n_it_account_stamp/models/invoice.py:102
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:88
+#: code:addons/l10n_it_account_stamp/models/invoice.py:89
 #, python-format
 msgid "Tax Stamp Income"
 msgstr ""
