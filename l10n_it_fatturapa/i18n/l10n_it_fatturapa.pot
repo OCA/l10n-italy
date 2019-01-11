@@ -51,11 +51,13 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__codice_destinatario
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__codice_destinatario
 msgid "Addressee Code"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__pec_destinatario
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__pec_destinatario
 msgid "Addressee PEC"
 msgstr ""
 
@@ -412,6 +414,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__eori_code
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__eori_code
 msgid "EORI Code"
 msgstr ""
 
@@ -651,6 +654,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__license_number
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__license_number
 msgid "License Code"
 msgstr ""
 
@@ -749,6 +753,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__pa_partner_code
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__pa_partner_code
 msgid "PA Code for Partner"
 msgstr ""
 
@@ -759,6 +764,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__pec_destinatario
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__pec_destinatario
 msgid "PEC to which the electronic invoice will be sent. Must be filled ONLY when the information element <CodiceDestinatario> is '0000000'"
 msgstr ""
 
@@ -858,6 +864,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register
 msgid "Professional Register"
 msgstr ""
 
@@ -934,21 +941,25 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_fiscalpos
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_fiscalpos
 msgid "Register Fiscal Position"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_province
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_province
 msgid "Register Province"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_regdate
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_regdate
 msgid "Register Registration Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_code
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_code
 msgid "Register Registration Number"
 msgstr ""
 
@@ -1097,6 +1108,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__electronic_invoice_subjected
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Subjected to Electronic Invoice"
 msgstr ""
 
@@ -1122,6 +1134,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__codice_destinatario
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__codice_destinatario
 msgid "The code, 7 characters long, assigned by ES to subjects with an accredited channel; if the addressee didn't accredit a channel to ES and invoices are received by PEC, the field must be filled with zeros ('0000000')."
 msgstr ""
 
