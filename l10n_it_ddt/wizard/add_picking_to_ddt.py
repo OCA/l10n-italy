@@ -13,6 +13,7 @@ from odoo.exceptions import Warning as UserError
 class AddPickingToDdt(models.TransientModel):
 
     _name = "add.pickings.to.ddt"
+    _description = 'Add picking to DDT'
 
     ddt_id = fields.Many2one('stock.picking.package.preparation')
 

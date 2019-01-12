@@ -137,3 +137,9 @@ class SaleOrder(models.Model):
             result['views'] = [(res and res[1] or False, 'form')]
             result['res_id'] = ddt_ids and ddt_ids[0] or False
         return result
+
+    @api.multi
+    def action_invoice_create(self, grouped=False, final=False):
+        return super(SaleOrder, self.with_context(
+            skip_onchange_partner_id=True
+        )).action_invoice_create(grouped, final)

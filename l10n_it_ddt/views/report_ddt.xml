@@ -92,19 +92,20 @@
                 <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
                 <div class="page">
                     <div class="row">
-                        <div class="col-xs-6">
-                            <h2>Destinatario</h2>
+                        <div class="col-6">
+                            <h2>Consignee</h2>
                             <div t-field="o.partner_shipping_id"
                                 t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
                             <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div>
                         </div>
-                        <div class="col-xs-6">
-                            <h2>Cessionario</h2>
+                        <div class="col-6">
+                            <h2>Assignee</h2>
                             <div t-field="o.partner_id"
                                 t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
                             <div t-if="o.partner_id">VAT number: <span t-field="o.partner_id.vat"/></div>
                         </div>
                     </div>
+                    <br/>
                     <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
                     <table class="table table-condensed">
                         <t t-set="has_serial_number"

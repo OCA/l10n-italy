@@ -12,6 +12,7 @@ from odoo.exceptions import Warning as UserError
 
 class DdTFromPickings(models.TransientModel):
     _name = "ddt.from.pickings"
+    _description = 'DDT from pickings'
 
     def _get_picking_ids(self):
         return self.env['stock.picking'].browse(self.env.context['active_ids'])

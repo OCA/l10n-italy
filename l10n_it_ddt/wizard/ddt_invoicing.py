@@ -12,6 +12,7 @@ from odoo.exceptions import Warning as UserError
 
 class DdtInvoicing(models.TransientModel):
     _name = "ddt.invoicing"
+    _description = "Invoicing DDT"
 
     @api.model
     def _default_journal(self):

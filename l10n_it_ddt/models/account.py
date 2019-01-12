@@ -36,6 +36,8 @@ class AccountInvoice(models.Model):
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
         res = super(AccountInvoice, self)._onchange_partner_id()
+        if self.env.context.get('skip_onchange_partner_id'):
+            return res
         if self.partner_id:
             self.carriage_condition_id = (
                 self.partner_id.carriage_condition_id.id)

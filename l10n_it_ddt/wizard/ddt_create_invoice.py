@@ -11,6 +11,7 @@ from odoo import fields, models, api, _
 
 class DdtCreateInvoice(models.TransientModel):
     _name = "ddt.create.invoice"
+    _description = "Create invoice from DDT"
 
     def _get_ddt_ids(self):
         return self.env['stock.picking.package.preparation'].browse(

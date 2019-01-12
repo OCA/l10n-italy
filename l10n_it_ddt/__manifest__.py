@@ -7,14 +7,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Italian Localization - DDT: Documento di trasporto',
-    'version': '11.0.1.0.0',
+    'name': 'Italian Localization - DDT: documento di trasporto',
+    'version': '12.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
               'Agile Business Group, Francesco Apruzzese, '
               'Openforce di Camilli Alessandro',
-    'website': 'https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_ddt',
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_ddt',
     'license': 'AGPL-3',
     'depends': [
         'sale_stock',
