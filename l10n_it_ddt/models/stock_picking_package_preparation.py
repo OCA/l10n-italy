@@ -6,10 +6,8 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 import odoo.addons.decimal_precision as dp
 from odoo.tools import float_is_zero
 from odoo.tools.misc import formatLang
@@ -206,6 +204,14 @@ class StockPickingPackagePreparation(models.Model):
         return True
 
     @api.multi
+    def action_done(self):
+        # Avoid to overwrite price_unit.
+        # We don't use price_unit field of stock.move because it is a cost
+        # price, while here we have the sale price
+        return super(StockPickingPackagePreparation, self.with_context(
+            skip_update_line_ids=True)).action_done()
+
+    @api.multi
     @api.depends(
         'name', 'ddt_number', 'partner_id.name', 'date'
     )
@@ -267,13 +273,8 @@ class StockPickingPackagePreparation(models.Model):
         ddt_date_to = self._context.get('ddt_date_to', False)
         if ddt_date_from and ddt_date_to:
             invoice_description = '{} {} - {}'.format(
-                _('Competenza:'),
-                datetime.strptime(
-                    ddt_date_from,
-                    DEFAULT_SERVER_DATE_FORMAT).strftime(date_format),
-                datetime.strptime(
-                    ddt_date_to,
-                    DEFAULT_SERVER_DATE_FORMAT).strftime(date_format)
+                _('Relevant period:'), ddt_date_from.strftime(date_format),
+                ddt_date_to.strftime(date_format)
             )
         return invoice_description
 
@@ -411,7 +412,7 @@ class StockPickingPackagePreparation(models.Model):
                     references[invoice] = references[invoice] | ddt
 
         if not invoices:
-            raise UserError(_('There is no invoicable line.'))
+            raise UserError(_('There is no invoiceable line.'))
 
         for invoice in list(invoices.values()):
             if not invoice.name:
@@ -419,7 +420,7 @@ class StockPickingPackagePreparation(models.Model):
                     'name': invoice.origin
                 })
             if not invoice.invoice_line_ids:
-                raise UserError(_('There is no invoicable line.'))
+                raise UserError(_('There is no invoiceable line.'))
             # If invoice is negative, do a refund invoice instead
             if invoice.amount_untaxed < 0:
                 invoice.type = 'out_refund'

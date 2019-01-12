@@ -1,4 +1,4 @@
-* Davide Corio <davide.corio@abstract.it>
+* Davide Corio <info@davidecorio.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>

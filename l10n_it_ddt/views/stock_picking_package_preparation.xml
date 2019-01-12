@@ -44,21 +44,21 @@
                     <field name="partner_id"/>
                     <field name="partner_shipping_id"/>
                     <field name="ddt_type_id"/>
-                    <filter string="To Be Invoiced"
+                    <filter string="To Be Invoiced" name="to_be_invoiced"
                             domain="[('to_be_invoiced','=', True), ('invoice_id','=', False)]"/>
-                    <filter string="Invoiced"
+                    <filter string="Invoiced" name="invoiced"
                             domain="[('invoice_id','!=', False)]"/>
-                    <filter string="Draft" domain="[('state','=', 'draft')]"/>
+                    <filter string="Draft" domain="[('state','=', 'draft')]" name="draft"/>
                     <field name="picking_ids"></field>
                     <group expand="0" string="Group By">
                         <filter name="group_by_partner" string="Partner"
                                 domain="[]"
                                 context="{'group_by': 'partner_id'}"/>
-                        <filter string="DDT Date"
+                        <filter string="DDT Date" name="group_by_ddt_date"
                                 context="{'group_by': 'date'}"/>
-                        <filter string="State"
+                        <filter string="State" name="group_by_state"
                                 context="{'group_by': 'state'}"/>
-                        <filter string="DDT Type"
+                        <filter string="DDT Type" name="group_by_ddt_type"
                                 context="{'group_by': 'ddt_type_id'}"/>
                     </group>
                 </search>

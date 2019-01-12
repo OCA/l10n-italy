@@ -197,7 +197,7 @@ class TestDdt(TransactionCase):
     def test_action_put_in_pack(self):
         self.picking.action_confirm()
         self.picking.action_assign()
-        self.assertTrue('Agrolait' in self.ddt.display_name)
+        self.assertTrue('Deco Addict' in self.ddt.display_name)
         self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
         self.ddt.line_ids[0].name = 'Changed for test'
         self.ddt.action_put_in_pack()
@@ -205,7 +205,7 @@ class TestDdt(TransactionCase):
         with self.assertRaises(UserError):
             self.ddt.set_done()
         for picking in self.ddt.picking_ids:
-            picking.do_transfer()
+            picking.button_validate()
         self.ddt.set_done()
         self.assertTrue('DDT' in self.ddt.display_name)
 
@@ -315,7 +315,7 @@ class TestDdt(TransactionCase):
                 wiz = self.env[wiz_vals['res_model']] \
                     .browse(wiz_vals['res_id'])
                 wiz.process()
-            picking.do_transfer()
+            picking.button_validate()
 
         # test invoice
         wizard = self.env['sale.advance.payment.inv'].with_context({
@@ -402,7 +402,7 @@ class TestDdt(TransactionCase):
             wiz = self.env[wiz_vals['res_model']] \
                 .browse(wiz_vals['res_id'])
             wiz.process()
-        picking1.do_transfer()
+        picking1.button_validate()
         ddt.set_done()
         self.assertTrue('DDT' in ddt.display_name)
         self.assertEqual(ddt.weight, 0)
@@ -430,3 +430,22 @@ class TestDdt(TransactionCase):
         action = order1.action_view_ddt()
         self.assertTrue(action['domain'])
         self.assertFalse(action['res_id'])
+
+    def test_ddt_from_scratch(self):
+        outgoung_type = self.env['stock.picking.type'].search(
+            [('code', '=', 'outgoing')])
+        outgoung_type.write({
+            'default_location_dest_id': self.env.ref(
+                'stock.stock_location_customers').id
+        })
+        ddt = self._create_ddt()
+        ddt.line_ids = [(0, 0, {
+            'name': self.product1.name,
+            'product_id': self.product1.id,
+            'product_uom_qty': 2,
+            'product_uom_id': self.product1.uom_id.id,
+            'price_unit': 3,
+        })]
+        ddt.action_put_in_pack()
+        ddt.action_done()
+        self.assertEqual(ddt.line_ids[0].price_unit, 3)
