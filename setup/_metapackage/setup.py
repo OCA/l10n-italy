@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo8-addon-account_vat_period_end_statement',
         'odoo8-addon-l10n_it_abicab',
         'odoo8-addon-l10n_it_account',
+        'odoo8-addon-l10n_it_account_stamp',
         'odoo8-addon-l10n_it_account_tax_kind',
         'odoo8-addon-l10n_it_ateco',
         'odoo8-addon-l10n_it_base',
