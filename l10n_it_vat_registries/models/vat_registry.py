@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -12,9 +10,10 @@ import time
 
 class ReportRegistroIva(models.AbstractModel):
     _name = 'report.l10n_it_vat_registries.report_registro_iva'
+    _description = 'Report VAT registry'
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         # docids required by caller but not used
         # see addons/account/report/account_balance.py
 
@@ -40,19 +39,22 @@ class ReportRegistroIva(models.AbstractModel):
             'compute_totals_tax': self._compute_totals_tax,
             'l10n_it_count_fiscal_page_base': data['form']['fiscal_page_base'],
             'only_totals': data['form']['only_totals'],
-            'date_format': date_format
+            'date_format': date_format,
+            'year_footer': data['form']['year_footer']
         }
-
-        return self.env['report'].render(
-            'l10n_it_vat_registries.report_registro_iva', docargs)
+        return docargs
 
     def _get_move(self, move_ids):
         move_list = self.env['account.move'].browse(move_ids)
         return move_list
 
     def _format_date(self, my_date, date_format):
-        formatted_date = time.strftime(date_format,
-                                       time.strptime(my_date, '%Y-%m-%d'))
+        # supporting both cases, as data['form']['from_date'] is string
+        if isinstance(my_date, str):
+            formatted_date = time.strftime(
+                date_format, time.strptime(my_date, '%Y-%m-%d'))
+        else:
+            formatted_date = my_date.strftime(date_format)
         return formatted_date or ''
 
     def _get_invoice_from_move(self, move):
@@ -129,6 +131,7 @@ class ReportRegistroIva(models.AbstractModel):
         return res
 
     def _get_tax_lines(self, move, data):
+
         """
 
         Args:
@@ -179,6 +182,7 @@ class ReportRegistroIva(models.AbstractModel):
         return inv_taxes, used_taxes
 
     def _get_move_total(self, move):
+
         total = 0.0
         receivable_payable_found = False
         for move_line in move.line_ids:

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.addons.account.tests.account_test_classes import AccountingTestCase
@@ -67,7 +65,12 @@ class TestRegistry(AccountingTestCase):
         })
         wizard.load_journal_ids()
         res = wizard.print_registro()
-        html = self.env['report'].get_html(
-            res['data']['ids'], 'l10n_it_vat_registries.report_registro_iva',
-            res['data'])
-        self.assertTrue('Tax 10.0' in html)
+
+        domain = [('report_type', 'like', 'qweb'),
+                  ('report_name',
+                   '=',
+                   'l10n_it_vat_registries.report_registro_iva')]
+        report = self.env['ir.actions.report'].search(domain)
+        html = report.render_qweb_html(res['data']['ids'], res['data'])
+
+        self.assertTrue(b'Tax 10.0' in html[0])
