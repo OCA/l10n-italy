@@ -518,5 +518,5 @@ class AccountInvoice(orm.Model):
 
     def copy(self, cr, uid, id, default=None, context=None):
         default['fatturapa_attachment_out_id'] = False
-        ret_id = super(account_invoice, self).copy(cr, uid, id, default, context=context)
+        ret_id = super(AccountInvoice, self).copy(cr, uid, id, default, context=context)
         return ret_id
