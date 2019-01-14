@@ -1152,7 +1152,7 @@ class String10Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String10Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,10})')
+String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,10})')
 String10Type._InitializeFacetMap(String10Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String10Type', String10Type)
 _module_typeBindings.String10Type = String10Type
@@ -1174,7 +1174,7 @@ class String15Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String15Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,15})')
+String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,15})')
 String15Type._InitializeFacetMap(String15Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String15Type', String15Type)
 _module_typeBindings.String15Type = String15Type
@@ -1196,7 +1196,7 @@ class String20Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String20Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,20})')
+String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,20})')
 String20Type._InitializeFacetMap(String20Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String20Type', String20Type)
 _module_typeBindings.String20Type = String20Type
@@ -1218,7 +1218,7 @@ class String35Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String35Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,35})')
+String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,35})')
 String35Type._InitializeFacetMap(String35Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String35Type', String35Type)
 _module_typeBindings.String35Type = String35Type
@@ -1240,7 +1240,7 @@ class String60Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String60Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,60})')
+String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,60})')
 String60Type._InitializeFacetMap(String60Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String60Type', String60Type)
 _module_typeBindings.String60Type = String60Type
@@ -1262,7 +1262,7 @@ class String80Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String80Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,80})')
+String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,80})')
 String80Type._InitializeFacetMap(String80Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String80Type', String80Type)
 _module_typeBindings.String80Type = String80Type
@@ -1284,7 +1284,7 @@ class String100Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String100Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,100})')
+String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,100})')
 String100Type._InitializeFacetMap(String100Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String100Type', String100Type)
 _module_typeBindings.String100Type = String100Type
