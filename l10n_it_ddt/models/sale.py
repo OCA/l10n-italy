@@ -92,6 +92,7 @@ class SaleOrder(models.Model):
             'goods_description_id': self.goods_description_id.id,
             'transportation_reason_id':
             self.transportation_reason_id.id,
+            'to_be_invoiced': self.transportation_reason_id.to_be_invoiced,
             'transportation_method_id':
             self.transportation_method_id.id,
             'carrier_id': self.ddt_carrier_id.id,

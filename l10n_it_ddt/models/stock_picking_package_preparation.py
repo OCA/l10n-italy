@@ -81,12 +81,10 @@ class StockPickingPackagePreparation(models.Model):
     _rec_name = 'display_name'
     _order = 'date desc'
 
-    @api.multi
-    @api.depends('transportation_reason_id.to_be_invoiced')
-    def _compute_to_be_invoiced(self):
-        for ddt in self:
-            ddt.to_be_invoiced = ddt.transportation_reason_id and \
-                ddt.transportation_reason_id.to_be_invoiced or False
+    @api.onchange('transportation_reason_id')
+    def _onchange_to_be_invoiced(self):
+        self.to_be_invoiced = self.transportation_reason_id and \
+            self.transportation_reason_id.to_be_invoiced
 
     def _default_ddt_type(self):
         return self.env['stock.ddt.type'].search([], limit=1)
@@ -116,7 +114,7 @@ class StockPickingPackagePreparation(models.Model):
     invoice_id = fields.Many2one(
         'account.invoice', string='Invoice', readonly=True, copy=False)
     to_be_invoiced = fields.Boolean(
-        string='To be Invoiced', store=True, compute="_compute_to_be_invoiced",
+        string='To be Invoiced',
         help="This depends on 'To be Invoiced' field of the Reason for "
              "Transportation of this DDT")
     show_price = fields.Boolean(string='Show prices on report')
