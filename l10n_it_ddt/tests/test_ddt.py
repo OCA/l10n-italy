@@ -182,6 +182,7 @@ class TestDdt(TransactionCase):
         with self.assertRaises(UserError):
             invoice_wizard.create_invoice()
         ddt.transportation_reason_id = self.transportation_reason_VEN.id
+        ddt._onchange_to_be_invoiced()
         self.assertTrue(ddt.to_be_invoiced)
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][0][2]
@@ -374,6 +375,8 @@ class TestDdt(TransactionCase):
             self.transportation_reason_VEN.id)
         ddt5.transportation_reason_id = (
             self.transportation_reason_VEN.id)
+        ddt4._onchange_to_be_invoiced()
+        ddt5._onchange_to_be_invoiced()
         self.assertTrue(ddt4.to_be_invoiced)
         self.assertTrue(ddt5.to_be_invoiced)
         invoice_wizard = self.env['ddt.create.invoice'].with_context(

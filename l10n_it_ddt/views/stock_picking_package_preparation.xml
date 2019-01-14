@@ -197,7 +197,7 @@
                    ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='company_id']" position="after">
-                    <field name="to_be_invoiced"/>
+                    <field name="to_be_invoiced" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
                     <field name="invoice_id"/>
                     <field name="check_if_picking_done"
                            invisible="True"></field>

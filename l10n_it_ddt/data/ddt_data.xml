@@ -45,6 +45,7 @@
     <!-- trasportation reasons -->
     <record id="transportation_reason_VEN" model="stock.picking.transportation_reason">
         <field name="name">VENDITA</field>
+        <field name="to_be_invoiced" eval="True"/>
     </record>
     <record id="transportation_reason_VIS" model="stock.picking.transportation_reason">
         <field name="name">CONTO VISIONE</field>

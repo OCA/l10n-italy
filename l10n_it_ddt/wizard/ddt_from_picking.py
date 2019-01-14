@@ -172,6 +172,9 @@ class DdTFromPickings(models.TransientModel):
                 values['transportation_method_id'] = (
                     transportation_method_id.id)
 
+        if transportation_reason_id:
+            values['to_be_invoiced'] = transportation_reason_id.to_be_invoiced
+
         if len(self.picking_ids) == 1 and self.picking_ids[0].sale_id:
             # otherwise weights and volume should be different
             values['weight_manual'] = self.picking_ids[0].sale_id.weight
