@@ -960,9 +960,9 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.1.6
         RelInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
         if RelInvoices:
-            for invoice in RelInvoices:
+            for RefInvoice in RelInvoices:
                 doc_datas = self._prepareRelDocsLine(
-                    invoice_id, invoice, 'invoice')
+                    invoice_id, RefInvoice, 'invoice')
                 if doc_datas:
                     for doc_data in doc_datas:
                         rel_docs_model.create(doc_data)
