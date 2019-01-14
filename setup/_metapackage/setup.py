@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo8-addon-l10n_it_esigibilita_iva',
         'odoo8-addon-l10n_it_fatturapa',
         'odoo8-addon-l10n_it_fatturapa_out',
+        'odoo8-addon-l10n_it_fatturapa_out_stamp',
         'odoo8-addon-l10n_it_fatturapa_pec',
         'odoo8-addon-l10n_it_fiscal_document_type',
         'odoo8-addon-l10n_it_fiscal_payment_term',
