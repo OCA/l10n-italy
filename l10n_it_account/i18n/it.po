@@ -19,9 +19,10 @@ msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
+#, fuzzy
 msgid ""
 "<br/>\n"
-"                      <span class=\"text-right\">Vat:</span>"
+"                      <span class=\"text-right\">TIN: </span>"
 msgstr ""
 "<br/>\n"
 "                      <span class=\"text-right\">IVA:</span>"
@@ -32,11 +33,6 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
 msgstr "Contabilità"
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
-msgid "Generate Date Ranges"
-msgstr "Generazione intervalli date"
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_cee_type
@@ -50,8 +46,8 @@ msgstr "Fiscalità italiana"
 
 #. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
-msgid "Pag:"
-msgstr "Pag:"
+msgid "Page:"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_parent_tax_ids
@@ -81,6 +77,12 @@ msgid ""
 msgstr ""
 "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
 "registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+
+#~ msgid "Generate Date Ranges"
+#~ msgstr "Generazione intervalli date"
+
+#~ msgid "Pag:"
+#~ msgstr "Pag:"
 
 #~ msgid "Date Range Types"
 #~ msgstr "Tipi di intervallo date"
