@@ -2,6 +2,7 @@
 # Copyright 2015-2017 Agile Business Group (<http://www.agilebg.com>)
 # Copyright 2015 Link It Spa (<http://www.linkgroup.it/>)
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -14,11 +15,11 @@
     'license': 'AGPL-3',
     "depends": [
         'account_fiscal_year',
+        'account_tax_balance',
         'web',
     ],
     "data": [
         'views/account_setting.xml',
-        'views/account_view.xml',
         'views/account_menuitem.xml',
         'views/partner_view.xml',
         'views/product_view.xml',
