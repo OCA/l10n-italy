@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_pec
+#: selection:fatturapa.attachment.out,state:0
+msgid "Accepted"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: view:wizard.fatturapa.send.pec:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Cancel"
 msgstr ""
@@ -37,7 +42,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: field:fatturapa.attachment.out,delivered_date:0
-msgid "Delivered date"
+msgid "Delivered Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -112,6 +117,17 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:60
+#, python-format
+msgid "No incoming PEC server found. Please configure it."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: selection:fatturapa.attachment.out,state:0
+msgid "Not delivered"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
 msgid "Ready"
 msgstr ""
@@ -120,11 +136,6 @@ msgstr ""
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Ready to Send"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: selection:fatturapa.attachment.out,state:0
-msgid "Recipient Error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -165,7 +176,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: field:fatturapa.attachment.out,sending_user:0
-msgid "Sending user"
+msgid "Sending User"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -175,13 +186,13 @@ msgid "Sent"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: view:fatturapa.attachment.out:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Sent by"
+#: field:fatturapa.attachment.out,sending_date:0
+msgid "Sent Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: field:fatturapa.attachment.out,sending_date:0
-msgid "Sent date"
+#: view:fatturapa.attachment.out:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Sent by"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -195,21 +206,21 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:245
 #, python-format
-msgid "Yo can only reset 'sender error' files"
+msgid "You can only delete files in 'Ready to Send' state."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:251
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:49
 #, python-format
-msgid "You can only delete 'ready to send' files"
+msgid "You can only reset files in 'Sender Error' state."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:54
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:69
 #, python-format
-msgid "You can only send 'ready to send' files"
+msgid "You can only send files in 'Ready to Send' state."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
