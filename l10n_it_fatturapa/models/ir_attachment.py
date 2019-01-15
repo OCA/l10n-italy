@@ -23,7 +23,7 @@ class Attachment(models.Model):
     @api.multi
     def _compute_ftpa_preview_link(self):
         for att in self:
-            att.ftpa_preview_link = '/fatturapa/preview/%s' % self.id
+            att.ftpa_preview_link = '/fatturapa/preview/%s' % att.id
 
     def check_file_is_pem(self, p7m_file):
         file_is_pem = True
@@ -39,7 +39,7 @@ class Attachment(models.Model):
         except Exception as e:
             raise UserError(
                 _(
-                    'An error with command "openssl asn1parse" occurred: %s'
+                    "An error with command 'openssl asn1parse' occurred: %s."
                 ) % e.args
             )
         return file_is_pem
@@ -58,21 +58,37 @@ class Attachment(models.Model):
         except Exception as e:
             raise UserError(
                 _(
-                    'Parsing PEM to DER  file %s'
+                    'Parsing PEM to DER file %s.'
                 ) % e.args
             )
         if not os.path.isfile(tmp_der_file):
             raise UserError(
                 _(
-                    'ASN.1 structure is not parsable in DER'
+                    'ASN.1 structure is not parsable in DER.'
                 )
             )
         return tmp_der_file
 
+    # Due to a (likely) openssl bug (v.1.1.0x) we need to decrypt
+    # files without message signature verification (-nosigs option).
+    # Otherwise openssl gives an error like the following one on
+    # some files (decrypted anyway):
+    #
+    # Verification failure
+    # int_rsa_verify:bad signature
+    # PKCS7_signatureVerify:signature failure
+    # PKCS7_verify:signature failure
+    #
+    # Tested openssl versions:
+    # 1.0.1t-1+deb8u8    - Debian 8     - OK
+    # 1.0.2g-1ubuntu4.14 - Ubuntu 16.04 - OK
+    # 1.1.0f-3+deb9u2    - Debian 9     - affected
+    # 1.1.0g-2ubuntu4.3  - Ubuntu 18.04 - affected
+
     def decrypt_to_xml(self, signed_file, xml_file):
         strcmd = (
             'openssl smime -decrypt -verify -inform'
-            ' DER -in %s -noverify -out %s'
+            ' DER -in %s -noverify -nosigs -out %s'
         ) % (signed_file, xml_file)
         cmd = shlex.split(strcmd)
         try:
@@ -84,13 +100,13 @@ class Attachment(models.Model):
         except Exception as e:
             raise UserError(
                 _(
-                    'Signed Xml file %s'
+                    'Signed Xml file %s.'
                 ) % e.args
             )
         if not os.path.isfile(xml_file):
             raise UserError(
                 _(
-                    'Signed Xml file not decryptable'
+                    'Signed Xml file not decryptable.'
                 )
             )
         return xml_file
@@ -118,9 +134,9 @@ class Attachment(models.Model):
                 '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
             temp_der_file_name = (
                 '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
-            with open(temp_file_name, 'w') as p7m_file:
+            with open(temp_file_name, 'wb') as p7m_file:
                 datas = fatturapa_attachment.datas
-                format_data = base64.decodestring(datas).decode('utf-8')
+                format_data = base64.decodebytes(datas)
                 p7m_file.write(format_data)
             xml_file_name = os.path.splitext(temp_file_name)[0]
 
@@ -137,11 +153,11 @@ class Attachment(models.Model):
             xml_file_name = self.decrypt_to_xml(
                 temp_file_name, xml_file_name)
 
-            with open(xml_file_name, 'r') as fatt_file:
+            with open(xml_file_name, 'rb') as fatt_file:
                 file_content = fatt_file.read()
             xml_string = file_content
         elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
-            xml_string = base64.decodestring(fatturapa_attachment.datas)
+            xml_string = base64.decodebytes(fatturapa_attachment.datas)
         xml_string = self.remove_xades_sign(xml_string)
         xml_string = self.strip_xml_content(xml_string)
         return xml_string
