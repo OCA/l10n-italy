@@ -16,7 +16,7 @@ msgstr ""
 #. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid "<br/>\n"
-"                      <span class=\"text-right\">Vat:</span>"
+"                      <span class=\"text-right\">TIN: </span>"
 msgstr ""
 
 #. module: l10n_it_account
@@ -24,11 +24,6 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
 #: model:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
-msgid "Generate Date Ranges"
 msgstr ""
 
 #. module: l10n_it_account
@@ -43,7 +38,7 @@ msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
-msgid "Pag:"
+msgid "Page:"
 msgstr ""
 
 #. module: l10n_it_account
