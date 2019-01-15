@@ -1,5 +1,6 @@
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2019 Lorenzo Battistini <https://github.com/eLBati>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 
@@ -10,7 +11,8 @@ fatturapa_attachment_state_mapping = {
     'sent': 'sent',
     'validated': 'delivered',
     'sender_error': 'error',
-    'recipient_error': 'error',
+    'recipient_error': 'accepted',
+    'accepted': 'accepted',
     'rejected': 'error'
 }
 
@@ -22,6 +24,7 @@ class AccountInvoice(models.Model):
         [('ready', 'Ready to Send'),
          ('sent', 'Sent'),
          ('delivered', 'Delivered'),
+         ('accepted', 'Accepted'),
          ('error', 'Error')],
         string='E-invoice State',
         compute='_compute_fatturapa_state',
