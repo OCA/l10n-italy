@@ -32,6 +32,7 @@
                     <group attrs="{'invisible': [('channel_type', '!=', 'pec')]}">
                         <field name="pec_server_id" context="{'default_is_fatturapa_pec': True}"/>
                         <field name="email_exchange_system"/>
+                        <field name="fetch_pec_server_id" context="{'default_is_fatturapa_pec': True}" />
                     </group>
                     <!--<group attrs="{'invisible': [('channel_type', '!=', 'web')]}">-->
                         <!--<field name="web_server_address"/>-->
