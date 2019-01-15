@@ -56,14 +56,14 @@
                 <field name="state"/>
                 <filter name="ready" string="Ready to Send" domain="[('state','=','ready')]"/>
                 <filter name="sender_error" string="Sender Error" domain="[('state','=','sender_error')]"/>
-                <filter name="recipient_error" string="Recipient Error" domain="[('state','=','recipient_error')]"/>
+                <filter name="recipient_error" string="Not delivered" domain="[('state','=','recipient_error')]"/>
                 <filter name="rejected" string="Rejected (PA)" domain="[('state','=','rejected')]"/>
             </field>
         </field>
     </record>
 
     <record id="l10n_it_fatturapa_out.action_fatturapa_attachment" model="ir.actions.act_window">
-        <field name="context">{'search_default_ready': True, 'search_default_sender_error': True, 'search_default_recipient_error': True, 'search_default_rejected': True, }</field>
+        <field name="context">{'search_default_ready': True, 'search_default_sender_error': True, 'search_default_rejected': True, }</field>
     </record>
 
 </odoo>
