@@ -81,7 +81,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
 
         self.assertTrue(messages_nbr)
 
-    def test_process_response_INVO(self):
+    def test_process_response_INVIO(self):
         """Receiving a 'Invio File' creates a new e-invoice"""
         incoming_mail = self._get_file(
             'POSTA CERTIFICATA: Invio File 7339338.txt')
@@ -97,3 +97,19 @@ class TestEInvoiceResponse(EInvoiceCommon):
         self.assertTrue(e_invoices)
         self.assertEqual(e_invoices.xml_supplier_id.vat,
                          'IT02652600210')
+
+    def test_process_response_MC(self):
+        """Receiving a 'Mancata consegna' sets the state of the
+        e-invoice to 'recipient_error'"""
+        self.env.user.company_id.vat = 'IT14627831002'
+        self.set_sequences(2621, 2621, '2019-01-08')
+        e_invoice = self._create_e_invoice()
+        e_invoice.send_via_pec()
+
+        incoming_mail = self._get_file(
+            'POSTA CERTIFICATA_mancata_consegna.txt')
+
+        self.env['mail.thread'] \
+            .with_context(fetchmail_server_id=self.PEC_server.id) \
+            .message_process(False, incoming_mail)
+        self.assertEqual(e_invoice.state, 'recipient_error')

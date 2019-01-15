@@ -1,7 +1,7 @@
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
-# Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
+# Copyright 2018-2019 Lorenzo Battistini <https://github.com/eLBati>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
@@ -25,9 +25,10 @@ class FatturaPAAttachmentOut(models.Model):
     state = fields.Selection([('ready', 'Ready to Send'),
                               ('sent', 'Sent'),
                               ('sender_error', 'Sender Error'),
-                              ('recipient_error', 'Recipient Error'),
+                              ('recipient_error', 'Not delivered'),
                               ('rejected', 'Rejected (PA)'),
                               ('validated', 'Delivered'),
+                              ('accepted', 'Accepted'),
                               ],
                              string='State',
                              default='ready',)
@@ -227,7 +228,7 @@ class FatturaPAAttachmentOut(models.Model):
                     description = root.find('Descrizione')
                     if description is not None:
                         fatturapa_attachment_out.write({
-                            'state': 'validated',
+                            'state': 'accepted',
                             'last_sdi_response': (
                                 'SdI ID: {}; Message ID: {}; Receipt date: {};'
                                 ' Description: {}'
