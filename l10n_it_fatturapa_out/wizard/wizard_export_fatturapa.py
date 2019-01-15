@@ -191,8 +191,8 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
             DatiTrasmissioneType())
         self._setIdTrasmittente(company, fatturapa)
-        self._setFormatoTrasmissione(partner, fatturapa)
-        self._setCodiceDestinatario(partner, fatturapa)
+        self._setFormatoTrasmissione(partner.commercial_partner_id, fatturapa)
+        self._setCodiceDestinatario(partner.commercial_partner_id, fatturapa)
         self._setContattiTrasmittente(company, fatturapa)
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
@@ -431,9 +431,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.city:
             raise UserError(
                 _('Customer city not set.'))
-        if not partner.state_id:
-            raise UserError(
-                _('Customer province not set.'))
         if not partner.country_id:
             raise UserError(
                 _('Customer country not set.'))
@@ -444,9 +441,10 @@ class WizardExportFatturapa(models.TransientModel):
                 Indirizzo=partner.street,
                 CAP=partner.zip,
                 Comune=partner.city,
-                Provincia=partner.state_id.code,
                 Nazione=partner.country_id.code))
-
+        if partner.state_id:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
+                Provincia = partner.state_id.code
         return True
 
     def setRappresentanteFiscale(self, company, fatturapa):
@@ -458,7 +456,8 @@ class WizardExportFatturapa(models.TransientModel):
     def setCessionarioCommittente(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
             CessionarioCommittenteType())
-        self._setDatiAnagraficiCessionario(partner, fatturapa)
+        self._setDatiAnagraficiCessionario(
+            partner.commercial_partner_id, fatturapa)
         self._setSedeCessionario(partner, fatturapa)
 
     def setTerzoIntermediarioOSoggettoEmittente(self, company, fatturapa):
@@ -476,7 +475,9 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Invoice does not have a number.'))
 
-        TipoDocumento = 'TD01'
+        TipoDocumento = invoice.fiscal_document_type_id.code
+        if not TipoDocumento:
+            TipoDocumento = 'TD01'
         if invoice.type == 'out_refund':
             TipoDocumento = 'TD04'
         ImportoTotaleDocumento = invoice.amount_total
@@ -574,8 +575,13 @@ class WizardExportFatturapa(models.TransientModel):
         line_no = 1
         price_precision = self.env['decimal.precision'].precision_get(
             'Product Price')
+        if price_precision < 2:
+            # XML wants at least 2 decimals always
+            price_precision = 2
         uom_precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
+        if uom_precision < 2:
+            uom_precision = 2
         for line in invoice.invoice_line:
             if not line.invoice_line_tax_id:
                 raise UserError(
