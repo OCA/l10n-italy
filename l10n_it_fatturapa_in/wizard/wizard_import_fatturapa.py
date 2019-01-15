@@ -275,12 +275,12 @@ class WizardImportFatturapa(models.TransientModel):
                     ('amount', '=', 0.0),
                 ])
             if not account_taxes:
-                raise UserError(
+                self.log_inconsistency(
                     _('No tax with percentage '
                       '%s and nature %s found. Please configure this tax.')
                     % (line.AliquotaIVA, line.Natura))
             if len(account_taxes) > 1:
-                raise UserError(
+                self.log_inconsistency(
                     _('Too many taxes with percentage '
                       '%s and nature %s found.')
                     % (line.AliquotaIVA, line.Natura))
