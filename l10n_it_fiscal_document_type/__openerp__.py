@@ -4,18 +4,19 @@
 
 {
     'name': 'Italian Localization - '
-            'Tipi di documento fiscali per dichiarativi',
-    'version': '8.0.0.1.0',
+            'Tipi di documento fiscale per dichiarativi',
+    'version': '8.0.1.1.0',
     'category': 'Localisation/Italy',
     'author': "Link It srl, Odoo Community Association (OCA)",
-    'website': 'https://www.odoo-italia.net/',
+    'website': 'https://github.com/OCA/l10n-italy/tree/8.0/'
+               'l10n_it_fiscal_document_type',
     'license': 'LGPL-3',
     'depends': ['l10n_it_account'],
     'data': [
-        'view/fiscal_document_type_view.xml',
-        'view/res_partner_view.xml',
-        'view/account_invoice_view.xml',
-        'view/account_view.xml',
+        'views/fiscal_document_type_view.xml',
+        'views/res_partner_view.xml',
+        'views/account_invoice_view.xml',
+        'views/account_view.xml',
         'data/fiscal.document.type.csv',
         "security/ir.model.access.csv"
     ],

@@ -33,6 +33,24 @@ class AccountInvoice(models.Model):
                     journal=journal)[0] or False)
         return res
 
+    def _set_document_fiscal_type(self):
+        dt = self._get_document_fiscal_type(
+            self.type, self.partner_id, self.fiscal_position,
+            self.journal_id)
+        if dt:
+            self.fiscal_document_type_id = dt[0]
+
+    @api.model
+    def create(self, vals):
+        invoice = super(AccountInvoice, self).create(vals)
+        if not invoice.fiscal_document_type_id:
+            dt = self._get_document_fiscal_type(
+                invoice.type, invoice.partner_id, invoice.fiscal_position,
+                invoice.journal_id)
+            if dt:
+                invoice.fiscal_document_type_id = dt[0]
+        return invoice
+
     def _get_document_fiscal_type(self, type=None, partner=None,
                                   fiscal_position=None, journal=None):
         dt = []
@@ -62,5 +80,5 @@ class AccountInvoice(models.Model):
 
     fiscal_document_type_id = fields.Many2one(
         'fiscal.document.type',
-        string="Tipo documento fiscale",
+        string="Fiscal Document Type",
         readonly=False)
