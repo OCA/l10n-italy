@@ -84,7 +84,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.partner_id.register_code, 'TO1258B')
         self.assertEqual(
             invoice.partner_id.register_fiscalpos.code, 'RF02')
-        self.assertEqual(invoice.reference, 'FT/2015/0006')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0006')
         self.assertEqual(invoice.amount_total, 54.00)
         self.assertEqual(invoice.gross_weight, 0.00)
         self.assertEqual(invoice.net_weight, 0.00)
@@ -114,7 +114,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test1', 'IT02780790107_11004.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, '123')
+        self.assertEqual(invoice.supplier_invoice_number, '123')
         self.assertEqual(invoice.amount_untaxed, 25.00)
         self.assertEqual(invoice.amount_tax, 5.5)
         self.assertEqual(
@@ -175,7 +175,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test4', 'IT02780790107_11005.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, '124')
+        self.assertEqual(invoice.supplier_invoice_number, '124')
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(
             invoice.invoice_line[0].invoice_line_tax_id[0].name,
@@ -208,7 +208,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test5', 'IT05979361218_003.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, 'FT/2015/0008')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0008')
         self.assertEqual(invoice.sender, 'TZ')
         self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
@@ -239,7 +239,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test7', 'IT05979361218_004.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, 'FT/2015/0009')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0009')
         self.assertAlmostEqual(invoice.amount_untaxed, 1173.60)
         self.assertEqual(invoice.amount_tax, 258.19)
         self.assertEqual(invoice.amount_total, 1431.79)
@@ -250,7 +250,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test8', 'IT05979361218_005.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, 'FT/2015/0010')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0010')
         self.assertAlmostEqual(invoice.amount_total, 1288.61)
         self.assertFalse(invoice.inconsistencies)
 
@@ -261,7 +261,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test9', 'IT05979361218_006.XML')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, 'FT/2015/0011')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0011')
         self.assertAlmostEqual(invoice.amount_total, 1288.61)
         self.assertEqual(
             invoice.inconsistencies,
@@ -273,7 +273,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test6', 'IT05979361218_007.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, 'FT/2015/0009')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0009')
         self.assertEqual(
             invoice.date_invoice, '2015-03-16')
         self.assertEqual(
@@ -305,7 +305,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test12', 'IT05979361218_008.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, 'FT/2015/0012')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0012')
         self.assertEqual(invoice.sender, 'TZ')
         self.assertEqual(invoice.intermediary.name, 'ROSSI MARIO')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
@@ -340,7 +340,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         res = self.run_wizard('test14', 'IT02780790107_11007.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.reference, '136')
+        self.assertEqual(invoice.supplier_invoice_number, '136')
         self.assertEqual(invoice.partner_id.name, 'SOCIETA\' ALPHA SRL')
         self.assertEqual(invoice.amount_untaxed, 25.00)
         self.assertEqual(invoice.amount_tax, 0.0)
@@ -371,12 +371,12 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         for invoice in invoices:
             self.assertEqual(invoice.inconsistencies, '')
             self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
-            self.assertTrue(invoice.reference in ('456', '123'))
-            if invoice.reference == '123':
+            self.assertTrue(invoice.supplier_invoice_number in ('456', '123'))
+            if invoice.supplier_invoice_number == '123':
                 self.assertTrue(len(invoice.invoice_line) == 2)
                 for line in invoice.invoice_line:
                     self.assertFalse(line.product_id)
-            if invoice.reference == '456':
+            if invoice.supplier_invoice_number == '456':
                 self.assertTrue(len(invoice.invoice_line) == 1)
                 for line in invoice.invoice_line:
                     self.assertFalse(line.product_id)
@@ -394,8 +394,8 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         for invoice in invoices:
-            self.assertTrue(invoice.reference in ('456', '123'))
-            if invoice.reference == '123':
+            self.assertTrue(invoice.supplier_invoice_number in ('456', '123'))
+            if invoice.supplier_invoice_number == '123':
                 self.assertEqual(
                     invoice.invoice_line[0].product_id.id,
                     self.headphones.product_variant_ids[0].id

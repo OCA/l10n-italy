@@ -828,7 +828,7 @@ class WizardImportFatturapa(models.TransientModel):
             'fiscal_document_type_id': docType_id,
             'date_invoice':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
-            'reference':
+            'supplier_invoice_number':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             'account_id': pay_acc_id,
