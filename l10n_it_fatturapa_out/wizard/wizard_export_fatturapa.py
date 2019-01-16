@@ -592,7 +592,7 @@ class WizardExportFatturapa(models.TransientModel):
             'Product Unit of Measure')
         if uom_precision < 2:
             uom_precision = 2
-        for line in invoice.invoice_line_ids:
+        for line in self.getAccountInvoiceLines(invoice):
             if not line.invoice_line_tax_ids:
                 raise UserError(
                     _("Invoice line %s does not have tax.") % line.name)
@@ -655,6 +655,12 @@ class WizardExportFatturapa(models.TransientModel):
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
         return True
+
+    def getAccountInvoiceLines(self, invoice):
+        lines = invoice.mapped('invoice_line_ids').filtered(lambda r: (
+                r.quantity != 0 and r.price_unit != 0 and
+                r.invoice_line_tax_ids))
+        return lines
 
     def setDatiRiepilogo(self, invoice, body):
         for tax_line in invoice.tax_line_ids:
