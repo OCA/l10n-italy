@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
-
+import codecs
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import (
     FatturaPACommon)
 
@@ -55,13 +54,15 @@ class TestInvoiceDDT(FatturaPACommon):
         })
         self.so1.action_confirm()
         self.so2.action_confirm()
-        (self.so1.picking_ids | self.so2.picking_ids).do_transfer()
+        self.so1.picking_ids.move_lines[0].move_line_ids[0].qty_done = 2.0
+        self.so2.picking_ids.move_lines[0].move_line_ids[0].qty_done = 3.0
         self.env['ddt.from.pickings'].with_context({
             'active_ids': self.so1.picking_ids.ids
             }).create({}).create_ddt()
         self.env['ddt.from.pickings'].with_context({
             'active_ids': self.so2.picking_ids.ids
         }).create({}).create_ddt()
+        (self.so1.picking_ids | self.so2.picking_ids).do_transfer()
         self.so1.ddt_ids[0].date = '2018-01-07'
         self.so2.ddt_ids[0].date = '2018-01-07'
         self.so1.ddt_ids[0].ddt_number = 'DDT/0100'
@@ -84,7 +85,7 @@ class TestInvoiceDDT(FatturaPACommon):
         self.assertEqual(wizard.include_ddt_data, 'dati_ddt')
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
-        xml_content = attachment.datas.decode('base64')
+        xml_content = codecs.decode(attachment.datas, 'base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00006.xml')
         self.check_content(
@@ -110,10 +111,11 @@ class TestInvoiceDDT(FatturaPACommon):
             'transportation_method_id': self.transportation_method_DES.id,
         })
         self.so3.action_confirm()
-        self.so3.picking_ids[0].do_transfer()
+        self.so3.picking_ids.move_lines[0].move_line_ids[0].qty_done = 2.0
         self.env['ddt.from.pickings'].with_context({
             'active_ids': self.so3.picking_ids.ids
             }).create({}).create_ddt()
+        self.so3.picking_ids[0].do_transfer()
         self.so3.ddt_ids[0].carrier_id = self.intermediario.id
         self.so3.ddt_ids[0].set_done()
         invoice_wizard = self.env['ddt.create.invoice'].with_context(
@@ -131,7 +133,7 @@ class TestInvoiceDDT(FatturaPACommon):
         wizard.include_ddt_data = 'dati_trasporto'
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
-        xml_content = attachment.datas.decode('base64')
+        xml_content = codecs.decode(attachment.datas, 'base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00007.xml')
         self.check_content(
