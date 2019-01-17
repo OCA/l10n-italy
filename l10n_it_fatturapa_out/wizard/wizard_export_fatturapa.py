@@ -359,7 +359,7 @@ class WizardExportFatturapa(models.TransientModel):
                     and partner.country_id.code
                     and partner.country_id.code != 'IT'
             ):
-                # SDI accepts missing VAT for foreign customers by setting a
+                # SDI accepts missing VAT# for foreign customers by setting a
                 # fake IdCodice and a valid IdPaese
                 # Otherwise raise error if we have no VAT# and no Fiscal code
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -458,9 +458,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.street:
             raise UserError(
                 _('Customer street is not set.'))
-        if not partner.zip:
-            raise UserError(
-                _('Customer ZIP is not set.'))
         if not partner.city:
             raise UserError(
                 _('Customer city is not set.'))
