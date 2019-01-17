@@ -38,6 +38,8 @@ class FatturaPACommon(AccountTestUsers):
         ], limit=1)
         self.account_payment_term = self.env.ref(
             'account.account_payment_term')
+        self.account_payment_mode = self.env.ref(
+            'account_payment.payment_mode_1')
         self.user_demo = self.env.ref('base.user_demo')
         self.product_uom_unit = self.env.ref('product.product_uom_unit')
         self.product_product_10 = self.env.ref('product.product_product_10')
