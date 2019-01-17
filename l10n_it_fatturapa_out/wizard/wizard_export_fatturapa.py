@@ -345,7 +345,13 @@ class WizardExportFatturapa(models.TransientModel):
     def _setDatiAnagraficiCessionario(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
-        if not partner.vat and not partner.fiscalcode:
+        if not partner.vat and not partner.fiscalcode and partner.codice_destinatario == 'XXXXXXX':
+            # SDI accpets missing VAT# for foreign customers by setting a fake IdCodice and a valid IdPaese
+            # Otherwise raise error if we havo no VAT# and no Fiscal code
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+                    IdPaese=partner.country_id.code, IdCodice='99999999999')
+        if not partner.vat and not partner.fiscalcode and not partner.codice_destinatario == 'XXXXXXX': 
             raise UserError(
                 _('VAT number and fiscal code are not set for %s.') %
                 partner.name)
@@ -449,15 +455,25 @@ class WizardExportFatturapa(models.TransientModel):
                 _('Customer country is not set.'))
 
         # TODO: manage address number in <NumeroCivico>
-        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
-            IndirizzoType(
+        if partner.codice_destinatario == 'XXXXXXX':
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
+              IndirizzoType(
                 Indirizzo=partner.street,
-                CAP=partner.zip,
+                CAP='00000',
                 Comune=partner.city,
+                Provincia='EE',
                 Nazione=partner.country_id.code))
-        if partner.state_id:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
-                Provincia = partner.state_id.code
+        else:        
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
+                IndirizzoType(
+                    Indirizzo=partner.street,
+                    CAP=partner.zip,
+                    Comune=partner.city,
+                    Nazione=partner.country_id.code))
+        if partner.state_id and partner.codice_destinatario != 'XXXXXXX':
+            if partner.state_id:
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
+                    Provincia = partner.state_id.code
 
         return True
 
