@@ -87,7 +87,7 @@ class MailThread(models.AbstractModel):
                 # this is an SDI notification
                 message_dict = self.env['fatturapa.attachment.out']\
                     .parse_pec_response(message_dict)
-                
+
                 message_dict['record_name'] = message_dict['subject']
 
                 attachment_ids = self._message_preprocess_attachments(
