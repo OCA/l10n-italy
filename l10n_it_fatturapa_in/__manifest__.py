@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '12.0.1.1.2',
+    'version': '12.0.1.2.0',
     "development_status": "Beta",
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
@@ -26,6 +26,7 @@
         'security/ir.model.access.csv',
         'wizard/link_to_existing_invoice.xml',
         'views/company_view.xml',
+        'security/rules.xml'
     ],
     "installable": True
 }
