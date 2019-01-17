@@ -673,18 +673,28 @@ class WizardExportFatturapa(models.TransientModel):
         if invoice.payment_term:
             DatiPagamento = DatiPagamentoType()
 
-            if not invoice.fatturapa_pt_id:
+            if not invoice.payment_term:
+                raise UserError(
+                    _('Invoice %s does not have a payment term')
+                    % invoice.payment_term.name)
+
+            if not invoice.payment_term.fatturapa_pt_id:
                 raise UserError(
                     _('Payment term %s does not have a linked e-invoice '
                       'payment term') % invoice.payment_term.name)
 
-            if not invoice.fatturapa_pm_id:
+            if not invoice.payment_mode_id:
                 raise UserError(
-                    _('Payment term %s does not have a linked e-invoice '
-                      'payment method') % invoice.payment_term.name)
+                    _('Invoice %s does not have a payment mode')
+                    % invoice.payment_mode_id.name)
+
+            if not invoice.payment_mode_id.fatturapa_pm_id:
+                raise UserError(
+                    _('Payment mode %s does not have a linked e-invoice '
+                      'payment method') % invoice.payment_mode_id.name)
 
             DatiPagamento.CondizioniPagamento = (
-                invoice.fatturapa_pt_id.code)
+                invoice.payment_term.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
             payment_line_ids = invoice.move_line_id_payment_get()
             for move_line_id in payment_line_ids:
@@ -692,7 +702,7 @@ class WizardExportFatturapa(models.TransientModel):
                 ImportoPagamento = '%.2f' % move_line.debit
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
-                        invoice.fatturapa_pm_id.code),
+                        invoice.payment_mode_id.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento=ImportoPagamento
                 )

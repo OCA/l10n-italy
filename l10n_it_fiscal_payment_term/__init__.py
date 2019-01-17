@@ -15,6 +15,3 @@ def pre_init_hook(cr):
         cr.execute(
             "UPDATE ir_model_data SET module = 'l10n_it_fiscal_payment_term' "
             "WHERE model = 'fatturapa.payment_term'")
-        cr.execute(
-            "UPDATE ir_model_data SET module = 'l10n_it_fiscal_payment_term' "
-            "WHERE model = 'fatturapa.payment_method'")

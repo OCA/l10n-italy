@@ -11,10 +11,13 @@ from openerp import fields, models
 from openerp.tools.translate import _
 
 
+#  used in fatturaPa export
 class PaymentMode(models.Model):
+    # _position = ['2.4.2.2']
     _inherit = 'payment.mode'
 
     fatturapa_pm_id = fields.Many2one(
         comodel_name='fatturapa.payment_method',
-        string=_('Fiscal Payment Method')
+        string=_('Fiscal Payment Method'),
+        required=True
     )

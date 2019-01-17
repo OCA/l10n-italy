@@ -7,5 +7,5 @@
 #
 ##############################################################################
 
+from . import fatturapa_payment_method
 from . import payment_mode
-from . import account_invoice

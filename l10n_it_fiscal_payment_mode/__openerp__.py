@@ -16,13 +16,15 @@
     'license': 'LGPL-3',
 
     'depends': [
-        'l10n_it_fiscal_payment_term',
         'account_payment',
     ],
 
     'data': [
+        'security/ir.model.access.csv',
+        'data/fatturapa_data.xml',
         'views/payment_mode_view.xml',
     ],
 
-    'installable': True
+    'installable': True,
+    'pre_init_hook': 'pre_init_hook',
 }
