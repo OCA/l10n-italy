@@ -31,6 +31,11 @@ msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server_e_inv_notify_partner_ids
 msgid "Contacts to notify"
 msgstr ""
@@ -75,6 +80,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_account_invoice_fatturapa_state
 msgid "E-invoice State"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company_e_invoice_user_id
+msgid "E-invoice creator"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -239,6 +249,21 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_account_config_settings_e_invoice_user_id
+msgid "Supplier e-invoice creator"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company_e_invoice_user_id
+msgid "This user will be used at supplier e-invoice creation."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_account_config_settings_e_invoice_user_id
+msgid "This user will be used at supplier e-invoice creation. This setting is relevant in multi-company environments"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_fatturapa_send_pec
 msgid "Wizard to send multiple e-invoice PEC"
 msgstr ""
@@ -259,6 +284,11 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:69
 #, python-format
 msgid "You can only send files in 'Ready to Send' state."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_account_config_settings
+msgid "account.config.settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
