@@ -49,18 +49,13 @@ msgid "Fiscal"
 msgstr ""
 
 #. module: l10n_it_fiscal_payment_term
-#: field:account.invoice,fatturapa_pm_id:0
-#: field:account.payment.term,fatturapa_pm_id:0
-#: code:addons/l10n_it_fiscal_payment_term/models/account_invoice.py:16
 #: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_method
-#, python-format
 msgid "Fiscal Payment Method"
 msgstr ""
 
 #. module: l10n_it_fiscal_payment_term
-#: field:account.invoice,fatturapa_pt_id:0
 #: field:account.payment.term,fatturapa_pt_id:0
-#: code:addons/l10n_it_fiscal_payment_term/models/account_invoice.py:10
+#: code:addons/l10n_it_fiscal_payment_term/models/account.py:26
 #: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_term
 #, python-format
 msgid "Fiscal Payment Term"
