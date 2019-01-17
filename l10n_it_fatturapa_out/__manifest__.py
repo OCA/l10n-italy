@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Emissione',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.2.0',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche',
@@ -24,6 +24,7 @@
         'views/attachment_view.xml',
         'views/account_view.xml',
         'security/ir.model.access.csv',
+        'security/rules.xml',
     ],
     'installable': True,
     'external_dependencies': {
