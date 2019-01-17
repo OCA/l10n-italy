@@ -7,8 +7,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '8.0.1.0.2',
-    'development_status': 'Beta',
+    'version': '8.0.1.1.2',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
     'author': 'Agile Business Group, Innoviu, '
@@ -26,6 +25,7 @@
         'security/ir.model.access.csv',
         'wizard/link_to_existing_invoice.xml',
         'views/company_view.xml',
+        'security/rules.xml'
     ],
     'installable': True
 }
