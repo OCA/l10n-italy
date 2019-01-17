@@ -28,6 +28,7 @@
         'views/fetchmail_view.xml',
         'security/ir.model.access.csv',
         'data/fetchmail_data.xml',
+        'views/company_view.xml',
     ],
     'installable': True
 }
