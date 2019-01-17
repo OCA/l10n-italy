@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - Fattura Elettronica - Emission',
-    'version': '8.0.3.0.0',
+    'version': '8.0.3.1.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices emission',
     'author': 'Davide Corio, Agile Business Group, Innoviu,'
@@ -24,6 +24,7 @@
         'views/attachment_view.xml',
         'views/account_view.xml',
         'security/ir.model.access.csv',
+        'security/rules.xml',
     ],
     'installable': True,
     'external_dependencies': {
