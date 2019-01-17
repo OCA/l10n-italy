@@ -46,11 +46,11 @@
             </field>
         </record>
         <record id="action_sdi_channel" model="ir.actions.act_window">
-            <field name="name">ES Channel</field>
+            <field name="name">SdI Channel</field>
             <field name="res_model">sdi.channel</field>
             <field name="view_id" ref="view_sdi_channel_tree"/>
         </record>
-        <menuitem id="menu_sdi_channel" name="ES Channels"
+        <menuitem id="menu_sdi_channel" name="SdI Channels"
             action="action_sdi_channel" parent="account.account_account_menu"
             groups="account.group_account_manager" sequence="50"/>
     </data>
