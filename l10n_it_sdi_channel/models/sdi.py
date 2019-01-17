@@ -48,6 +48,17 @@ class SdiChannelPEC(models.Model):
     )
     first_invoice_sent = fields.Boolean("First invoice sent", readonly=True)
 
+    @api.constrains('fetch_pec_server_id')
+    def check_fetch_pec_server_id(self):
+        for channel in self:
+            domain = [
+                ('fetch_pec_server_id', '=', channel.fetch_pec_server_id.id)]
+            elements = self.search(domain)
+            if len(elements) > 1:
+                raise exceptions.ValidationError(
+                    _("The channel %s with pec server %s already exists")
+                    % (channel.name, channel.fetch_pec_server_id.name))
+
     @api.constrains('pec_server_id')
     def check_pec_server_id(self):
         for channel in self:
