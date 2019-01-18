@@ -17,6 +17,7 @@
 
     'depends': [
         'account_payment',
+        'account_payment_partner',
     ],
 
     'data': [
