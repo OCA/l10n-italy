@@ -102,6 +102,14 @@ class WelfareFundType(models.Model):
 
     name = fields.Char('name')
     description = fields.Char('description')
+    display_name = fields.Char(string='Name', compute='_compute_display_name')
+
+    @api.depends('description', 'name')
+    @api.multi
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = u'[%s] %s' % (
+                record.name, record.description)
 
 
 class WelfareFundDataLine(models.Model):
