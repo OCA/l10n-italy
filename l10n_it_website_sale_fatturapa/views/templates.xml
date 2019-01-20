@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Copyright 2019 Simone Rubino
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
+<odoo>
+    <template id="address" inherit_id="website_sale.address">
+        <xpath expr="//input[@name='name']/.." position="attributes">
+            <attribute name="t-attf-class" separator=" " add="o_hidden"/>
+        </xpath>
+        <xpath expr="//input[@name='name']/.." position="after">
+            <div t-attf-class="form-group #{error.get('firstname') and 'o_has_error' or ''} col-lg-6 div_firstname">
+                <label class="col-form-label" for="name">First name</label>
+                <input type="text" name="firstname"
+                       t-attf-class="form-control #{error.get('firstname') and 'is-invalid' or ''}"
+                       t-att-value="'firstname' in checkout and checkout['firstname']" />
+            </div>
+            <div t-attf-class="form-group #{error.get('lastname') and 'o_has_error' or ''} col-lg-6 div_lastname">
+                <label class="col-form-label" for="name">Last name</label>
+                <input type="text" name="lastname"
+                       t-attf-class="form-control #{error.get('lastname') and 'is-invalid' or ''}"
+                       t-att-value="'lastname' in checkout and checkout['lastname']" />
+            </div>
+        </xpath>
+        <div class="form-row" position="inside">
+            <h3 class="o_page_header mt8 col-lg-12">
+                Electronic invoicing
+            </h3>
+            <div t-attf-class="form-group #{error.get('codice_destinatario') and 'o_has_error' or ''} col-lg-6 div_codice_destinatario">
+                <label class="col-form-label label-optional" for="name">Addressee code</label>
+                <input type="text" name="codice_destinatario"
+                       t-attf-class="form-control #{error.get('codice_destinatario') and 'is-invalid' or ''}"
+                       t-att-value="'codice_destinatario' in checkout and checkout['codice_destinatario']" />
+            </div>
+            <div t-attf-class="form-group #{error.get('pec_destinatario') and 'o_has_error' or ''} col-lg-6 div_pec_destinatario">
+                <label class="col-form-label label-optional" for="name">PEC Mail</label>
+                <input type="text" name="pec_destinatario"
+                       t-attf-class="form-control #{error.get('pec_destinatario') and 'is-invalid' or ''}"
+                       t-att-value="'pec_destinatario' in checkout and checkout['pec_destinatario']" />
+            </div>
+            <div t-attf-class="form-group #{error.get('is_pa') and 'o_has_error' or ''} col-lg-6 div_is_pa">
+                <label class="col-form-label label-optional" for="name">Are you a Public Administration?</label>
+                <input type="checkbox" name="is_pa" style="width: auto;"
+                       t-attf-class="form-control #{error.get('is_pa') and 'is-invalid' or ''}"
+                       t-att-checked="'is_pa' in checkout and bool(checkout['is_pa'])"
+                       t-att-value="'is_pa' in checkout and bool(checkout['is_pa'])" />
+                <input type="hidden" name="is_pa" t-att-value="False" />
+            </div>
+            <div t-attf-class="form-group #{error.get('ipa_code') and 'o_has_error' or ''} col-lg-6 div_ipa_code">
+                <label class="col-form-label label-optional" for="name">IPA Code</label>
+                <input type="text" name="ipa_code" 
+                       t-attf-class="form-control #{error.get('ipa_code') and 'is-invalid' or ''}" 
+                       t-att-value="'ipa_code' in checkout and checkout['ipa_code']" />
+            </div>
+        </div>
+    </template>
+</odoo>
