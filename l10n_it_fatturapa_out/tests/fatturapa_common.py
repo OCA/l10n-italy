@@ -6,7 +6,8 @@ from lxml import etree
 import shutil
 import os
 from openerp.modules.module import get_module_resource
-from openerp.addons.account.tests.account_test_users import AccountTestUsers
+from openerp.addons.l10n_it_fatturapa_out.tests.account_test_users import AccountTestUsers
+# from openerp.addons.account.tests.account_test_users import AccountTestUsers
 
 
 class FatturaPACommon(AccountTestUsers):
@@ -28,16 +29,16 @@ class FatturaPACommon(AccountTestUsers):
             dict(
                 code="cust_acc",
                 name="customer account",
-                user_type_id=account_user_type.id,
+                user_type=account_user_type.id,
                 reconcile=True,
             ))
         self.a_sale = self.env['account.account'].search([
             (
-                'user_type_id', '=',
-                self.env.ref('account.data_account_type_revenue').id)
+                'user_type', '=',
+                self.env.ref('account.data_account_type_income').id)
         ], limit=1)
-        self.account_payment_term = self.env.ref(
-            'account.account_payment_term')
+        # self.account_payment_term = self.env.ref(
+            # 'account.account_payment_term')
         self.user_demo = self.env.ref('base.user_demo')
         self.product_uom_unit = self.env.ref('product.product_uom_unit')
         self.product_product_10 = self.env.ref('product.product_product_10')
@@ -61,7 +62,7 @@ class FatturaPACommon(AccountTestUsers):
         self.company = self.env.ref('base.main_company')
         self.company.sp_account_id = self.env['account.account'].search([
             (
-                'user_type_id', '=',
+                'user_type', '=',
                 self.env.ref('account.data_account_type_current_assets').id
             )
         ], limit=1)

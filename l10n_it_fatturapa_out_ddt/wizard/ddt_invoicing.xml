@@ -36,7 +36,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem action="action_ddt_invoicing" id="menu_ddt_invoicing" parent="base.menu_sales" sequence="7" groups="base.group_sale_salesman,base.group_sale_manager"/>
+        <!-- <menuitem action="action_ddt_invoicing" id="menu_ddt_invoicing" parent="base.menu_sales" sequence="7" groups="base.group_sale_salesman,base.group_sale_manager"/> -->
         <menuitem action="action_ddt_invoicing" id="menu_account_ddt_invoicing" parent="account.menu_finance_receivables" sequence="10" />
 
     </data>

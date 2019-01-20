@@ -18,7 +18,6 @@ class StockPicking(models.Model):
             res['origin'] = move.picking_id.ddt_ids.ddt_number
         return res
 
-    @api.v7
     def _invoice_create_line(self, cr, uid, moves, journal_id, inv_type='out_invoice', context=None):
         invoice_obj = self.pool.get('account.invoice')
         move_obj = self.pool.get('stock.move')
