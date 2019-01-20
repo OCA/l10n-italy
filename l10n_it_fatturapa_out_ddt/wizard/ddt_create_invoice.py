@@ -81,6 +81,7 @@ class DdTCreateInvoice(models.TransientModel):
                     self.journal_id.id, group=True,
                     context=ctx)
                 invoice_obj = self.env['account.invoice'].browse(invoices)
+                # notes = invoice_obj.comment + '\n' + ddt_partner[partner_id][0].note
                 invoice_obj.write({
                     'carriage_condition_id': ddt_partner[
                         partner_id][0].carriage_condition_id.id,
@@ -94,6 +95,7 @@ class DdTCreateInvoice(models.TransientModel):
                     'gross_weight': ddt_partner[partner_id][0].weight,
                     'net_weight': ddt_partner[partner_id][0].net_weight,
                     'volume': ddt_partner[partner_id][0].volume,
+                    # 'comment': notes,
                 })
                 for ddt in ddt_partner[partner_id]:
                     ddt.invoice_id = invoices[0]

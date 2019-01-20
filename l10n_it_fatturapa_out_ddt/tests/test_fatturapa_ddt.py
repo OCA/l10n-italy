@@ -31,7 +31,7 @@ class TestInvoiceDDT(FatturaPACommon):
                 'product_uom': self.product_uom_unit.id, 'price_unit': 10,
                 'tax_id': [(6, 0, {self.tax_22.id})]
             })],
-            'pricelist_id': self.env.ref('product.list0').id,
+            # 'pricelist_id': self.env.ref('product.list0').id,
             'carriage_condition_id': self.carriage_condition_PF.id,
             'goods_description_id': self.goods_description_CAR.id,
             'transportation_reason_id': self.transportation_reason_VEN.id,
@@ -47,7 +47,7 @@ class TestInvoiceDDT(FatturaPACommon):
                 'product_uom': self.product_uom_unit.id, 'price_unit': 10,
                 'tax_id': [(6, 0, {self.tax_22.id})]
             })],
-            'pricelist_id': self.env.ref('product.list0').id,
+            # 'pricelist_id': self.env.ref('product.list0').id,
             'carriage_condition_id': self.carriage_condition_PF.id,
             'goods_description_id': self.goods_description_CAR.id,
             'transportation_reason_id': self.transportation_reason_VEN.id,
@@ -102,7 +102,7 @@ class TestInvoiceDDT(FatturaPACommon):
                 'product_uom': self.product_uom_unit.id, 'price_unit': 10,
                 'tax_id': [(6, 0, {self.tax_22.id})]
             })],
-            'pricelist_id': self.env.ref('product.list0').id,
+            # 'pricelist_id': self.env.ref('product.list0').id,
             'carriage_condition_id': self.carriage_condition_PF.id,
             'goods_description_id': self.goods_description_CAR.id,
             'transportation_reason_id': self.transportation_reason_VEN.id,
