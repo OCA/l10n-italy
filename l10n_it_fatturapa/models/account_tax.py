@@ -27,26 +27,16 @@ class AccountTax(models.Model):
     _inherit = 'account.tax'
 
     def get_tax_by_invoice_tax(self, invoice_tax):
+        tax_ids = []
         if ' - ' in invoice_tax:
             tax_descr = invoice_tax.split(' - ')[0]
             tax_ids = self.search([('description', '=', tax_descr)])
-            if not tax_ids:
-                raise exceptions.Warning(
-                    _('Error'), _('No tax %s found') %
-                    tax_descr)
-            if len(tax_ids) > 1:
-                raise exceptions.Warning(
-                    _('Error'), _('Too many tax %s found') %
-                    tax_descr)
-        else:
-            tax_name = invoice_tax
-            tax_ids = self.search([('name', '=', tax_name)])
-            if not tax_ids:
-                raise exceptions.Warning(
-                    _('Error'), _('No tax %s found') %
-                    tax_name)
-            if len(tax_ids) > 1:
-                raise exceptions.Warning(
-                    _('Error'), _('Too many tax %s found') %
-                    tax_name)
+        if not tax_ids or len(tax_ids) > 1:
+            tax_ids = self.search([('name', '=', invoice_tax)])
+        if not tax_ids:
+            raise exceptions.Warning(
+                _('Error'), _('No tax %s found') % invoice_tax)
+        elif len(tax_ids) > 1:
+            raise exceptions.Warning(
+                _('Error'), _('Too many tax %s found') % invoice_tax)
         return tax_ids[0]

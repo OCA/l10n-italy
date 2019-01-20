@@ -27,6 +27,7 @@ addon | version | summary
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Italian Localization - Account
+[l10n_it_account_stamp](l10n_it_account_stamp/) | 8.0.1.0.0 | Tax stamp automatic management
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 8.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
@@ -39,7 +40,9 @@ addon | version | summary
 [l10n_it_ddt_delivery](l10n_it_ddt_delivery/) | 8.0.1.0.0 | Copy carrier from picking and from sale order
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 8.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.2.1 | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.1.2.4 | Electronic invoices emission
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.1.0.0 | Electronic invoices reception
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.3.0.0 | Electronic invoices emission
+[l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 8.0.1.1.0 | Send electronic invoices via PEC
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 8.0.0.1.0 | Italian Localization - Tipi di documento fiscali per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 8.0.0.0.0 | Electronic invoices payment
