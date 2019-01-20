@@ -113,6 +113,14 @@ class FatturaPAAttachment(models.Model):
                 )
         return res
 
+    def unlink(self):
+        for attachment_out in self:
+            for invoice in attachment_out.out_invoice_ids:
+                invoice.fatturapa_doc_attachments.filtered(
+                    "is_pdf_invoice_print"
+                ).unlink()
+        return super(FatturaPAAttachment, self).unlink()
+
 
 class FatturaAttachments(models.Model):
     _inherit = "fatturapa.attachments"
