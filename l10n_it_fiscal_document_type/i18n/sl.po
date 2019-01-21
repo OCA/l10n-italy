@@ -21,8 +21,8 @@ msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,code:0
-msgid "Codice"
-msgstr "Koda"
+msgid "Code"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,create_uid:0
@@ -35,19 +35,36 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: l10n_it_fiscal_document_type
+#: field:fiscal.document.type,out_refund:0
+msgid "Customer Credit Note"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: field:fiscal.document.type,out_invoice:0
+#, fuzzy
+msgid "Customer Invoice"
+msgstr "Račun"
+
+#. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,display_name:0
 msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: l10n_it_fiscal_document_type
-#: field:fiscal.document.type,in_invoice:0
-msgid "Fattura acquisto"
-msgstr "Prejeti račun"
+#: field:account.fiscal.position,fiscal_document_type_id:0
+#: field:account.invoice,fiscal_document_type_id:0
+#: field:res.partner,in_fiscal_document_type:0
+#: field:res.partner,out_fiscal_document_type:0
+msgid "Fiscal Document Type"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: field:fiscal.document.type,out_invoice:0
-msgid "Fattura vendita"
-msgstr "Izdani račun"
+#: view:fiscal.document.type:l10n_it_fiscal_document_type.view_fiscal_document_type_form
+#: view:fiscal.document.type:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
+#: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
+#: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
+msgid "Fiscal Document Types"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_fiscal_position
@@ -70,11 +87,17 @@ msgid "Journal"
 msgstr "Dnevnik"
 
 #. module: l10n_it_fiscal_document_type
-#: code:addons/l10n_it_fiscal_document_type/model/journal.py:19
+#: code:addons/l10n_it_fiscal_document_type/models/journal.py:19
 #, python-format
 msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
 msgstr ""
 "Dnevnik %s se lahko poveže z le 1 fiskalnim dokumentom tipa (najdeno v %s)"
+
+#. module: l10n_it_fiscal_document_type
+#: field:fiscal.document.type,journal_ids:0
+#, fuzzy
+msgid "Journals"
+msgstr "Dnevnik"
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,__last_update:0
@@ -93,18 +116,8 @@ msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_it_fiscal_document_type
 #: field:fiscal.document.type,name:0
-msgid "Nome"
-msgstr "Naziv"
-
-#. module: l10n_it_fiscal_document_type
-#: field:fiscal.document.type,out_refund:0
-msgid "Nota di credito"
-msgstr "Dobropis"
-
-#. module: l10n_it_fiscal_document_type
-#: field:fiscal.document.type,in_refund:0
-msgid "Nota di debito"
-msgstr "Bremepis"
+msgid "Name"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_res_partner
@@ -117,22 +130,38 @@ msgid "Priority"
 msgstr "Prioriteta"
 
 #. module: l10n_it_fiscal_document_type
-#: field:fiscal.document.type,journal_ids:0
-msgid "Sezionali"
-msgstr "Sekcijski regirstri"
+#: field:fiscal.document.type,in_invoice:0
+msgid "Vendor Bill"
+msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: view:fiscal.document.type:l10n_it_fiscal_document_type.view_fiscal_document_type_form
-#: view:fiscal.document.type:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
-#: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
-#: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
-msgid "Tipi di documento fiscale"
-msgstr "Tip fiskalnega dokumenta"
+#: field:fiscal.document.type,in_refund:0
+msgid "Vendor Credit Note"
+msgstr ""
 
-#. module: l10n_it_fiscal_document_type
-#: field:account.fiscal.position,fiscal_document_type_id:0
-#: field:account.invoice,fiscal_document_type_id:0
-#: field:res.partner,in_fiscal_document_type:0
-#: field:res.partner,out_fiscal_document_type:0
-msgid "Tipo documento fiscale"
-msgstr "Tip fiskalnega dokumenta"
+#~ msgid "Codice"
+#~ msgstr "Koda"
+
+#~ msgid "Fattura acquisto"
+#~ msgstr "Prejeti račun"
+
+#~ msgid "Fattura vendita"
+#~ msgstr "Izdani račun"
+
+#~ msgid "Nome"
+#~ msgstr "Naziv"
+
+#~ msgid "Nota di credito"
+#~ msgstr "Dobropis"
+
+#~ msgid "Nota di debito"
+#~ msgstr "Bremepis"
+
+#~ msgid "Sezionali"
+#~ msgstr "Sekcijski regirstri"
+
+#~ msgid "Tipi di documento fiscale"
+#~ msgstr "Tip fiskalnega dokumenta"
+
+#~ msgid "Tipo documento fiscale"
+#~ msgstr "Tip fiskalnega dokumenta"
