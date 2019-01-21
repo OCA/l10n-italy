@@ -1145,11 +1145,6 @@ msgid "Stabile Organizzazione"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: field:account.invoice,stamp_amount:0
-msgid "Stamp Amount"
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,store_fname:0
 msgid "Stored Filename"
 msgstr ""
@@ -1248,11 +1243,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:account.invoice,vehicle_registration:0
 msgid "Vehicle Registration"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: field:account.invoice,virtual_stamp:0
-msgid "Virtual Stamp"
 msgstr ""
 
 #. module: l10n_it_fatturapa

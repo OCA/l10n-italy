@@ -1175,11 +1175,6 @@ msgid "Stabile Organizzazione"
 msgstr "Stabile Organizzazione"
 
 #. module: l10n_it_fatturapa
-#: field:account.invoice,stamp_amount:0
-msgid "Stamp Amount"
-msgstr "Importo bollo"
-
-#. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,store_fname:0
 msgid "Stored Filename"
 msgstr "Nome del File Registrato"
@@ -1283,11 +1278,6 @@ msgstr "Veicolo"
 #: field:account.invoice,vehicle_registration:0
 msgid "Vehicle Registration"
 msgstr "Immatricolazione"
-
-#. module: l10n_it_fatturapa
-#: field:account.invoice,virtual_stamp:0
-msgid "Virtual Stamp"
-msgstr "Bollo virtuale"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,unit_weight:0
@@ -1401,6 +1391,12 @@ msgstr "Terzo"
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
 msgid "welfare fund type"
 msgstr "Tipo cassa previdenziale"
+
+#~ msgid "Stamp Amount"
+#~ msgstr "Importo bollo"
+
+#~ msgid "Virtual Stamp"
+#~ msgstr "Bollo virtuale"
 
 #, fuzzy
 #~ msgid "22 Split Payment"
