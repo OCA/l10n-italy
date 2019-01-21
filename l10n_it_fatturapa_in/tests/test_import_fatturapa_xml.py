@@ -46,12 +46,14 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             'product.product_product_8_product_template')
         self.service = self.env.ref('product.service_delivery')
 
-    def run_wizard(self, name, file_name):
+    def run_wizard(self, name, file_name, datas_fname=None):
+        if datas_fname is None:
+            datas_fname = file_name
         attach_id = self.attach_model.create(
             {
                 'name': name,
                 'datas': self.getFile(file_name)[1],
-                'datas_fname': file_name
+                'datas_fname': datas_fname
             }).id
         wizard = self.wizard_model.with_context(
             active_ids=[attach_id]).create({})
@@ -142,6 +144,21 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.ftpa_incoterms, 'DAP')
         self.assertEqual(invoice.fiscal_document_type_id.code, 'TD01')
         self.assertTrue(invoice.art73)
+
+    def test_02_xml_import(self):
+        # Testing CAdES signature
+        res = self.run_wizard('test02', 'IT01234567890_FPR03.base64.xml.p7m')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertEqual(len(invoices), 2)
+        for invoice in invoices:
+            self.assertEqual(invoice.inconsistencies, '')
+            self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+            self.assertTrue(invoice.reference in ('456', '123'))
+            if invoice.reference == '123':
+                self.assertTrue(len(invoice.invoice_line_ids) == 2)
+            if invoice.reference == '456':
+                self.assertTrue(len(invoice.invoice_line_ids) == 1)
 
     # def test_02_xml_import(self):
     #     res = self.run_wizard('test2', 'IT03638121008_X11111.xml')
