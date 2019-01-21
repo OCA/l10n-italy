@@ -294,16 +294,20 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setRea(self, CedentePrestatore, company):
 
-        if company.rea_office and company.rea_code:
+        if (
+            company.rea_office and company.rea_code and
+            company.rea_liquidation_state
+        ):
+            # The required fields for IscrizioneREA (not required) are
+            # Ufficio, NumeroREA and StatoLiquidazione
             CedentePrestatore.IscrizioneREA = IscrizioneREAType(
-                Ufficio=(
-                    company.rea_office and company.rea_office.code or None),
-                NumeroREA=company.rea_code or None,
+                Ufficio=(company.rea_office.code or None),
+                NumeroREA=company.rea_code,
                 CapitaleSociale=(
                     company.rea_capital and
                     '%.2f' % company.rea_capital or None),
                 SocioUnico=(company.rea_member_type or None),
-                StatoLiquidazione=company.rea_liquidation_state or None
+                StatoLiquidazione=company.rea_liquidation_state
                 )
 
     def _setContatti(self, CedentePrestatore, company):
