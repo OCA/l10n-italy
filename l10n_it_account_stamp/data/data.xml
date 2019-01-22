@@ -7,8 +7,7 @@
             <field name="type">service</field>
             <field name="list_price" eval="2.0"/>
             <field name="standard_price" eval="2.0"/>
-            <field name="description_sale">
-Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree July
+            <field name="description_sale">Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree July
 17, 2014</field>
             <field name="is_stamp" eval="True"/>
             <field name="stamp_apply_min_total_base" eval="77.47"/>
