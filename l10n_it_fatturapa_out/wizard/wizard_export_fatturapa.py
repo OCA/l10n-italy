@@ -608,70 +608,75 @@ class WizardExportFatturapa(models.TransientModel):
         if uom_precision < 2:
             uom_precision = 2
         for line in invoice.invoice_line:
-            if not line.invoice_line_tax_id:
-                raise UserError(
-                    _("Invoice line %s does not have tax") % line.name)
-            if len(line.invoice_line_tax_id) > 1:
-                raise UserError(
-                    _("Too many taxes for invoice line %s") % line.name)
-            aliquota = line.invoice_line_tax_id[0].amount
-            AliquotaIVA = '%.2f' % (aliquota * 100)
-            line.ftpa_line_number = line_no
-            prezzo_unitario = self._get_prezzo_unitario(line)
-            DettaglioLinea = DettaglioLineeType(
-                NumeroLinea=str(line_no),
-                # can't insert newline with pyxb
-                # see https://tinyurl.com/ycem923t
-                # and '&#10;' would not be correctly visualized anyway
-                # (for example firefox replaces '&#10;' with space
-                Descrizione=line.name.replace('\n', ' ').replace
-                ('\t', ' ').replace('\r', ' ').encode(
-                    'latin', 'ignore').decode('latin'),
-                PrezzoUnitario=('%.' + str(
-                    price_precision
-                ) + 'f') % prezzo_unitario,
-                Quantita=('%.' + str(
-                    uom_precision
-                ) + 'f') % line.quantity,
-                UnitaMisura=line.uos_id and (
-                    unidecode(line.uos_id.name)) or None,
-                PrezzoTotale='%.2f' % line.price_subtotal,
-                AliquotaIVA=AliquotaIVA)
-            if line.discount:
-                ScontoMaggiorazione = ScontoMaggiorazioneType(
-                    Tipo='SC',
-                    Percentuale='%.2f' % line.discount
-                )
-                DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
-            if aliquota == 0.0:
-                if not line.invoice_line_tax_id[0].kind_id:
-                    raise UserError(
-                        _("No 'nature' field for tax %s") %
-                        line.invoice_line_tax_id[0].name)
-                DettaglioLinea.Natura = line.invoice_line_tax_id[
-                    0
-                ].kind_id.code
-            if line.admin_ref:
-                DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
-            if line.product_id:
-                if line.product_id.default_code:
-                    CodiceArticolo = CodiceArticoloType(
-                        CodiceTipo=self.env['ir.config_parameter'].sudo(
-                            ).get_param('fatturapa.codicetipo.odoo', 'ODOO'),
-                        CodiceValore=line.product_id.default_code.encode(
-                            'latin', 'ignore').decode('latin')
-                    )
-                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-                if line.product_id.ean13:
-                    CodiceArticolo = CodiceArticoloType(
-                        CodiceTipo='EAN',
-                        CodiceValore=line.product_id.ean13
-                    )
-                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+            self.setDettaglioLinea(
+                line_no, line, body, price_precision, uom_precision)
             line_no += 1
 
-            body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
+        return True
 
+    def setDettaglioLinea(
+            self, line_no, line, body, price_precision, uom_precision):
+        if not line.invoice_line_tax_id:
+            raise UserError(
+                _("Invoice line %s does not have tax") % line.name)
+        if len(line.invoice_line_tax_id) > 1:
+            raise UserError(
+                _("Too many taxes for invoice line %s") % line.name)
+        aliquota = line.invoice_line_tax_id[0].amount
+        AliquotaIVA = '%.2f' % (aliquota * 100)
+        line.ftpa_line_number = line_no
+        prezzo_unitario = self._get_prezzo_unitario(line)
+        DettaglioLinea = DettaglioLineeType(
+            NumeroLinea=str(line_no),
+            # can't insert newline with pyxb
+            # see https://tinyurl.com/ycem923t
+            # and '&#10;' would not be correctly visualized anyway
+            # (for example firefox replaces '&#10;' with space
+            Descrizione=line.name.replace('\n', ' ').encode(
+                'latin', 'ignore').decode('latin'),
+            PrezzoUnitario=('%.' + str(
+                price_precision
+            ) + 'f') % prezzo_unitario,
+            Quantita=('%.' + str(
+                uom_precision
+            ) + 'f') % line.quantity,
+            UnitaMisura=line.uos_id and (
+                unidecode(line.uos_id.name)) or None,
+            PrezzoTotale='%.2f' % line.price_subtotal,
+            AliquotaIVA=AliquotaIVA)
+        if line.discount:
+            ScontoMaggiorazione = ScontoMaggiorazioneType(
+                Tipo='SC',
+                Percentuale='%.2f' % line.discount
+            )
+            DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
+        if aliquota == 0.0:
+            if not line.invoice_line_tax_id[0].kind_id:
+                raise UserError(
+                    _("No 'nature' field for tax %s") %
+                    line.invoice_line_tax_id[0].name)
+            DettaglioLinea.Natura = line.invoice_line_tax_id[
+                0
+            ].kind_id.code
+        if line.admin_ref:
+            DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
+        if line.product_id:
+            if line.product_id.default_code:
+                CodiceArticolo = CodiceArticoloType(
+                    CodiceTipo=self.env['ir.config_parameter'].sudo(
+                    ).get_param('fatturapa.codicetipo.odoo', 'ODOO'),
+                    CodiceValore=line.product_id.default_code.encode(
+                        'latin', 'ignore').decode('latin')
+                )
+                DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+            if line.product_id.ean13:
+                CodiceArticolo = CodiceArticoloType(
+                    CodiceTipo='EAN',
+                    CodiceValore=line.product_id.ean13
+                )
+                DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+
+        body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
         return True
 
     def setDatiRiepilogo(self, invoice, body):
