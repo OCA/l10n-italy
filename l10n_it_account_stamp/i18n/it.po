@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-24 15:03+0000\n"
-"PO-Revision-Date: 2019-01-15 11:30+0000\n"
+"PO-Revision-Date: 2019-01-22 19:41+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -71,8 +71,9 @@ msgid ""
 "For each invoice, the base amount for each selected tax will be added up and "
 "used to determine the application of the account stamp."
 msgstr ""
-"Per ogni fattura, l'imponibile di ogni imposta selezionata aggiunta e usata "
-"per determinare l'applicabilità del bollo."
+"Per ciascuna fattura, l'applicabilità dell'imposta di bollo verrà calcolata "
+"in modo automatico in base alla somma degli imponibili relativi alle imposte "
+"selezionate."
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_account_invoice
@@ -88,13 +89,13 @@ msgstr "Riga fattura"
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_line__is_stamp_line
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__is_stamp
 msgid "Is stamp"
-msgstr "E' bollo"
+msgstr "È un bollo"
 
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:57
 #, python-format
 msgid "Missing account income configuration for %s"
-msgstr "Configrazione del conto di ricavo per %s"
+msgstr "Configurazione mancante del conto di ricavo per %s"
 
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:17
@@ -102,13 +103,13 @@ msgstr "Configrazione del conto di ricavo per %s"
 #: code:addons/l10n_it_account_stamp/models/invoice.py:129
 #, python-format
 msgid "Missing tax stamp product in company settings!"
-msgstr "Prodotto Marca da bollo mancante nella configurazione dell'azienda!"
+msgstr "Prodotto imposta di bollo mancante nelle impostazioni dell'azienda!"
 
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:84
 #, python-format
 msgid "Product %s must have income and expense accounts"
-msgstr "Il prodotto %s deve avere i conti di ricavo e di spesa"
+msgstr "È necessario impostare i conti di ricavo e di costo per il prodotto %s"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_product_template
@@ -134,7 +135,7 @@ msgstr "Totale imponibile minimo per applicabilità bollo"
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_tax_ids
 msgid "Stamp taxes"
-msgstr "Imposte marca da bollo"
+msgstr "Imposte di bollo"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__tax_stamp
@@ -151,20 +152,20 @@ msgstr "Imposta di bollo 2 euro"
 #: code:addons/l10n_it_account_stamp/models/invoice.py:102
 #, python-format
 msgid "Tax Stamp Expense"
-msgstr "Spesa bollo"
+msgstr "Costo imposta di bollo"
 
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:89
 #, python-format
 msgid "Tax Stamp Income"
-msgstr "Ricavo bollo"
+msgstr "Ricavo imposta di bollo"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__tax_stamp_product_id
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__tax_stamp_product_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
 msgid "Tax Stamp Product"
-msgstr "Prodotto bollo"
+msgstr "Prodotto imposta di bollo"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
@@ -175,20 +176,21 @@ msgstr "Imposta di bollo"
 #: code:addons/l10n_it_account_stamp/models/invoice.py:42
 #, python-format
 msgid "Tax stamp is not applicable"
-msgstr "Bollo non applicabile"
+msgstr "Imposta di bollo non applicabile"
 
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:51
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
-msgstr "La riga bollo %s è già presente. Rimuoverla prima."
+msgstr "La riga dell'imposta di bollo %s è già presente, prima rimuoverla."
 
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/product.py:16
 #, python-format
 msgid "The product %s must be a stamp to set apply taxes!"
 msgstr ""
-"Il prodotto %s deve essere una marca da bollo per poter impostare le imposte!"
+"Il prodotto %s deve essere una marca da bollo per applicare le imposte "
+"definite!"
 
 #. module: l10n_it_account_stamp
 #: model:product.product,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
