@@ -10,15 +10,15 @@ class ResCompany(models.Model):
 
     fatturapa_fiscal_position_id = fields.Many2one(
         'fatturapa.fiscal_position', 'Fiscal Position',
-        help="Fiscal position used by Electronic Invoice",
+        help="Fiscal position used by electronic invoice",
         )
     fatturapa_sequence_id = fields.Many2one(
-        'ir.sequence', 'Sequence',
+        'ir.sequence', 'E-invoice Sequence',
         help="The univocal progressive of the file is represented by "
              "an alphanumeric sequence of maximum length 5, "
              "its values are included in 'A'-'Z' and '0'-'9'"
         )
-    fatturapa_art73 = fields.Boolean('Art73')
+    fatturapa_art73 = fields.Boolean('Art. 73')
     fatturapa_pub_administration_ref = fields.Char(
         'Public Administration Reference Code', size=20,
         )
@@ -58,7 +58,7 @@ class ResCompany(models.Model):
             if company.fatturapa_sequence_id:
                 if company.fatturapa_sequence_id.use_date_range:
                     raise ValidationError(_(
-                        "Sequence %s can't use subsequences"
+                        "Sequence %s can't use subsequences."
                     ) % company.fatturapa_sequence_id.name)
                 journal = self.env['account.journal'].search([
                     ('sequence_id', '=', company.fatturapa_sequence_id.id)
@@ -66,7 +66,7 @@ class ResCompany(models.Model):
                 if journal:
                     raise ValidationError(_(
                         "Sequence %s already used by journal %s. Please select"
-                        " another one"
+                        " another one."
                     ) % (company.fatturapa_sequence_id.name, journal.name))
 
 
@@ -76,65 +76,76 @@ class AccountConfigSettings(models.TransientModel):
     fatturapa_fiscal_position_id = fields.Many2one(
         related='company_id.fatturapa_fiscal_position_id',
         string="Fiscal Position",
-        help='Fiscal position used by Electronic Invoice'
+        help='Fiscal position used by electronic invoice'
         )
     fatturapa_sequence_id = fields.Many2one(
         related='company_id.fatturapa_sequence_id',
         string="Sequence",
         help="The univocal progressive of the file is represented by "
              "an alphanumeric sequence of maximum length 5, "
-             "its values are included in 'A'-'Z' and '0'-'9'"
+             "its values are included in 'A'-'Z' and '0'-'9'",
+        readonly=False
         )
     fatturapa_art73 = fields.Boolean(
         related='company_id.fatturapa_art73',
-        string="Art73",
+        string="Art. 73",
         help="Indicates whether the document has been issued according to "
              "methods and terms laid down in a ministerial decree under "
              "the terms of Article 73 of Italian Presidential Decree "
              "633/72 (this enables the company to issue in the same "
-             "year several documents with same number)"
+             "year several documents with same number)",
+        readonly=False
         )
     fatturapa_pub_administration_ref = fields.Char(
         related='company_id.fatturapa_pub_administration_ref',
-        string="Public Administration Reference Code"
+        string="Public Administration Reference Code",
+        readonly=False
         )
     fatturapa_rea_office = fields.Many2one(
-        related='company_id.fatturapa_rea_office',
-        string="Rea Office"
+        related='company_id.rea_office',
+        string="REA Office",
+        readonly=False
         )
     fatturapa_rea_number = fields.Char(
-        related='company_id.fatturapa_rea_number',
-        string="Rea Number"
+        related='company_id.rea_code',
+        string="REA Number",
+        readonly=False
         )
     fatturapa_rea_capital = fields.Float(
-        related='company_id.fatturapa_rea_capital',
-        string="Rea Capital"
+        related='company_id.rea_capital',
+        string="REA Capital",
+        readonly=False
         )
     fatturapa_rea_partner = fields.Selection(
-        related='company_id.fatturapa_rea_partner',
-        string="Rea Copartner"
+        related='company_id.rea_member_type',
+        string="REA Copartner",
+        readonly=False
         )
     fatturapa_rea_liquidation = fields.Selection(
-        related='company_id.fatturapa_rea_liquidation',
-        string="Rea Liquidation"
+        related='company_id.rea_liquidation_state',
+        string="REA Liquidation",
+        readonly=False
         )
     fatturapa_tax_representative = fields.Many2one(
         related='company_id.fatturapa_tax_representative',
         string="Legal Tax Representative",
         help='The fields must be entered only when the seller/provider makes '
-             'use of a tax representative in Italy'
+             'use of a tax representative in Italy',
+        readonly=False
         )
     fatturapa_sender_partner = fields.Many2one(
         related='company_id.fatturapa_sender_partner',
         string="Third Party/Sender",
         help="Data of Third-Party Issuer Intermediary who emits the "
-             "invoice on behalf of the seller/provider"
+             "invoice on behalf of the seller/provider",
+        readonly=False
         )
     fatturapa_stabile_organizzazione = fields.Many2one(
         related='company_id.fatturapa_stabile_organizzazione',
         string="Stable Organization",
-        help='The fields must be entered only when the seller/provider is '
-             'non-resident, with a stable organization in Italy'
+        help="The fields must be entered only when the seller/provider is "
+             "non-resident, with a stable organization in Italy",
+        readonly=False
         )
 
     @api.onchange('company_id')

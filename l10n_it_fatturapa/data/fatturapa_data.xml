@@ -9,11 +9,11 @@
         </record>
         <record id="fatturapa_TD02" model="fatturapa.document_type">
             <field name="code">TD02</field>
-            <field name="name">Acconto / anticipo su fattura</field>
+            <field name="name">Acconto / Anticipo su fattura</field>
         </record>
         <record id="fatturapa_TD03" model="fatturapa.document_type">
             <field name="code">TD03</field>
-            <field name="name">Acconto / anticipo su parcella</field>
+            <field name="name">Acconto / Anticipo su parcella</field>
         </record>
         <record id="fatturapa_TD04" model="fatturapa.document_type">
             <field name="code">TD04</field>
