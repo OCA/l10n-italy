@@ -17,13 +17,18 @@
                     <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
                 </xpath>
 
-                <field name="date_due" position="after">
-                    <field name="tax_stamp"/>
-                </field>
-
                 <field name="invoice_line_ids" position="after">
-                    <button type="object" string="Add tax stamp line"
-                            name="add_tax_stamp_line" attrs="{'invisible': [('tax_stamp', '=', False)]}"/>
+                    <form>
+                        <group class="oe_left">
+                            <field name="tax_stamp" string="Tax stamp"/>
+                        </group>
+                    </form>
+                    <form>
+                        <group class="oe_left">
+                            <button type="object" string="Add tax stamp line"
+                                    name="add_tax_stamp_line" attrs="{'invisible': [('tax_stamp', '=', False)]}"/>
+                        </group>
+                    </form>
                 </field>
 
             </field>
