@@ -32,12 +32,12 @@ addon | version | summary
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.7.1 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.3.1 | Fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.3.0 | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.4.0 | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.2.6 | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.3.0 | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
-[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.3.0 | Invio fatture elettroniche tramite PEC
+[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.4.0 | Invio fatture elettroniche tramite PEC
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.1.1.0 | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.1.0 | Italian Localisation - Fiscal Code
@@ -49,7 +49,7 @@ addon | version | summary
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.1.3 | Reverse Charge for Italy
 [l10n_it_riba_commission](l10n_it_riba_commission/) | 10.0.1.0.1 | Ricevute bancarie & commissioni
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.2.0 | Ricevute Bancarie
-[l10n_it_sdi_channel](l10n_it_sdi_channel/) | 10.0.1.1.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
+[l10n_it_sdi_channel](l10n_it_sdi_channel/) | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.1.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.3 | Italian Localization - VAT Registries
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
