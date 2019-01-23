@@ -157,6 +157,19 @@
             <field name="country_id" ref="base.it"/>
         </record>
 
+        <record id="res_partner_fatturapa_4" model="res.partner">
+            <field name="name">Foreign Customer</field>
+            <field name="customer">1</field>
+            <field name="supplier">0</field>
+            <field name="is_company">1</field>
+            <field name="street">29-17 Al Thanya St</field>
+            <field name="is_pa">0</field>
+            <field name="city">Dubai</field>
+            <field name="zip">123234</field>
+            <field name="country_id" ref="base.ae"/>
+            <field name="email">info@mycompany.it</field>
+        </record>
+
         <record id="fiscal_position_sp" model="account.fiscal.position">
             <field name="name">Split payment</field>
             <field name="split_payment" eval="True"></field>
