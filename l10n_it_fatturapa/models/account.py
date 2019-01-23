@@ -336,7 +336,8 @@ class AccountInvoice(models.Model):
     net_weight = fields.Float('Net Weight', copy=False)
     pickup_datetime = fields.Datetime('Pick up', copy=False)
     transport_date = fields.Date('Transport Date', copy=False)
-    delivery_address = fields.Text('Delivery Address', copy=False)
+    delivery_address = fields.Text(
+        'Delivery Address for E-invoice', copy=False)
     delivery_datetime = fields.Datetime('Delivery Date Time', copy=False)
     ftpa_incoterms = fields.Char(string="Incoterms", copy=False)
     #  2.1.10
