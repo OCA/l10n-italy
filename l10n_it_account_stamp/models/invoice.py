@@ -7,6 +7,8 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
     tax_stamp = fields.Boolean(
         "Tax Stamp", readonly=True, states={'draft': [('readonly', False)]})
+    auto_compute_stamp = fields.Boolean(
+        related='company_id.tax_stamp_product_id.auto_compute')
 
     def is_tax_stamp_applicable(self):
         stamp_product_id = self.env.user.with_context(
@@ -29,10 +31,8 @@ class AccountInvoice(models.Model):
 
     @api.onchange('tax_line_ids')
     def _onchange_tax_line_ids(self):
-        if self.is_tax_stamp_applicable():
-            self.tax_stamp = True
-        else:
-            self.tax_stamp = False
+        if self.auto_compute_stamp:
+            self.tax_stamp = self.is_tax_stamp_applicable()
 
     @api.multi
     def add_tax_stamp_line(self):

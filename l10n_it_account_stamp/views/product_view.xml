@@ -11,11 +11,12 @@
                 <group name='group_standard_price' position="after">
                     <group string="Tax stamp">
                         <field name="is_stamp"/>
-                        <p attrs="{'invisible': [('is_stamp', '=', False)]}" colspan="2">
+                        <field name="auto_compute" attrs="{'invisible': [('is_stamp', '=', False)]}"/>
+                        <p attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)]}" colspan="2">
                             For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
                         </p>
-                        <field name="stamp_apply_min_total_base" attrs="{'invisible': [('is_stamp', '=', False)], 'required': [('is_stamp', '=', True)]}"/>
-                        <field name="stamp_apply_tax_ids" attrs="{'invisible': [('is_stamp', '=', False)]}" widget="many2many_tags">
+                        <field name="stamp_apply_min_total_base" attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)], 'required': [('auto_compute', '=', True)]}"/>
+                        <field name="stamp_apply_tax_ids" attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)]}" widget="many2many_tags">
                         </field>
                     </group>
                 </group>
