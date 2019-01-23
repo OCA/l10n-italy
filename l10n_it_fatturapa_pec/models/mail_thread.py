@@ -172,8 +172,16 @@ class MailThread(models.AbstractModel):
                 return fatturapa_attachment_out
         return False
 
+    @staticmethod
+    def is_base64_encoded(data):
+        decoded = base64.b64decode(data)
+        return data.replace('\n', '').replace('\r', '') == base64.b64encode(decoded)
+
     def create_fatturapa_attachment_in(self, attachment):
-        decoded = base64.b64decode(attachment.datas)
+        # some attachments are base64-encoded twice, but dike6 is able to verify a base64 of p7m
+        decoded = attachment.datas
+        while self.is_base64_encoded(decoded):
+            decoded = base64.b64decode(decoded)
         fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
         fatturapa_attachment_in = self.env['fatturapa.attachment.in']
         if attachment.mimetype == 'application/zip':
@@ -201,5 +209,8 @@ class MailThread(models.AbstractModel):
                     "Invoice xml already processed in %s"
                     % fatturapa_atts.mapped('name'))
             else:
+                datas = base64.encodestring(decoded)
+                if datas != attachment.datas:
+                    attachment.write({'datas': datas})
                 fatturapa_attachment_in.create({
                     'ir_attachment_id': attachment.id})
