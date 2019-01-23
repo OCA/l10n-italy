@@ -117,13 +117,17 @@ class WizardImportFatturapa(models.TransientModel):
                 DatiAnagrafici.IdFiscaleIVA.IdPaese,
                 DatiAnagrafici.IdFiscaleIVA.IdCodice
             )
-        partners = partner_model.search([
-            '|',
-            ('vat', '=', vat or 0),
-            ('fiscalcode', '=', cf or 0),
-        ])
-        commercial_partner = False
+        partners = partner_model
+        if vat:
+            partners = partner_model.search([
+                ('vat', '=', vat),
+            ])
+        if not partners and cf:
+            partners = partner_model.search([
+                ('fiscalcode', '=', cf),
+            ])
         if len(partners) > 1:
+            commercial_partner = False
             for partner in partners:
                 if (
                     commercial_partner and
@@ -135,8 +139,9 @@ class WizardImportFatturapa(models.TransientModel):
                           "present in db." %
                           (vat, cf))
                         )
+                commercial_partner = partner.commercial_partner_id.id
         if partners:
-            commercial_partner_id = partners[0].id
+            commercial_partner_id = partners[0].commercial_partner_id.id
             self.check_partner_base_data(commercial_partner_id, DatiAnagrafici)
             return commercial_partner_id
         else:
