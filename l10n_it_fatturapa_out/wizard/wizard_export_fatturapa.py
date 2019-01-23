@@ -405,19 +405,9 @@ class WizardExportFatturapa(orm.TransientModel):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
-        if not partner.individual:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-                DatiAnagrafici.Anagrafica = AnagraficaType(
-                    Denominazione=partner.name)
-        else:
-            if not partner.lastname or not partner.firstname:
-                raise orm.except_orm(_('Error!'),
-                    _("Partner %s deve avere nome e cognome") % partner.name)
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-                DatiAnagrafici.Anagrafica = AnagraficaType(
-                    Cognome=partner.lastname,
-                    Nome=partner.firstname
-                )
+        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            DatiAnagrafici.Anagrafica = AnagraficaType(
+                Denominazione=partner.name)
         # not using for now
 
         # Anagrafica = DatiAnagrafici.find('Anagrafica')
