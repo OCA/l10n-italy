@@ -6,8 +6,8 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Tax Stamp',
-    'version': '11.0.1.0.0',
+    'name': 'Italian Localization - Imposta di bollo',
+    'version': '11.0.1.1.0',
     'category': 'Localization/Italy',
     'summary': 'Tax stamp automatic management',
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
