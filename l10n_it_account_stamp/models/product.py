@@ -23,3 +23,4 @@ class ProductTemplate(models.Model):
         'Stamp applicability min total base',
         digits=dp.get_precision('Account'))
     is_stamp = fields.Boolean('Is a stamp')
+    auto_compute = fields.Boolean('Auto-compute')
