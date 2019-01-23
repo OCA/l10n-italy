@@ -103,8 +103,7 @@ class ResPartner(orm.Model):
     _constraints = [
         (_check_ftpa_partner_data, 'Some customer infos are needed.', [
             'is_pa', 'ipa_code', 'codice_destinatario', 'company_type',
-            'electronic_invoice_subjected', 'vat', 'fiscalcode', 'lastname',
-            'firstname', 'customer', 'street', 'zip', 'city',
-            'country_id']),
+            'electronic_invoice_subjected', 'vat', 'fiscalcode',
+            'customer', 'street', 'zip', 'city', 'country_id']),
     ]
 
