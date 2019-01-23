@@ -51,7 +51,8 @@ class Attachment(models.Model):
         ) % (pem_file, tmp_der_file)
         cmd = shlex.split(strcmd)
         try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
             stdoutdata, stderrdata = proc.communicate()
             if proc.wait() != 0:
                 _logger.warning(stdoutdata)
@@ -93,7 +94,8 @@ class Attachment(models.Model):
         ) % (signed_file, xml_file)
         cmd = shlex.split(strcmd)
         try:
-            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
             stdoutdata, stderrdata = proc.communicate()
             if proc.wait() != 0:
                 _logger.warning(stdoutdata)
