@@ -14,14 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account_stamp
-#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
-#: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-msgid "\n"
-"Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree July\n"
-"17, 2014"
-msgstr ""
-
-#. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
 msgid "<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
@@ -66,7 +58,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_line__is_stamp_line
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__is_stamp
-msgid "Is stamp"
+msgid "Is a stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -108,7 +100,14 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_min_total_base
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_min_total_base
-msgid "Stamp apply min total base"
+msgid "Stamp applicability min total base"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
+#: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree July\n"
+"17, 2014"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -148,6 +147,7 @@ msgid "Tax Stamp Product"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
 msgid "Tax stamp"
 msgstr ""
@@ -167,7 +167,7 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/product.py:15
 #, python-format
-msgid "The product %s must be a stamp to set apply taxes!"
+msgid "The product %s must be a stamp to apply set taxes!"
 msgstr ""
 
 #. module: l10n_it_account_stamp
