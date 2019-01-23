@@ -62,13 +62,6 @@ class ResPartner(orm.Model):
                         "Il partner %s, essendo una pubblica amministrazione "
                         "deve avere il codice IPA lungo 6 caratteri"
                     ) % partner.name)
-                if partner.individual and (
-                    not partner.lastname or not partner.firstname
-                ):
-                    raise except_osv(_('Error' ),_(
-                        "Il partner %s, essendo persona "
-                        "deve avere Nome e Cognome"
-                    ) % partner.name)
                 if not partner.is_pa and (
                     not partner.codice_destinatario or
                     len(partner.codice_destinatario) != 7
