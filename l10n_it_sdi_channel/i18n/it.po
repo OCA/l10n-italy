@@ -76,7 +76,7 @@ msgid "ES channel type"
 msgstr "Tipo di canale SdI"
 
 #. module: l10n_it_sdi_channel
-#: code:addons/l10n_it_sdi_channel/models/sdi.py:53
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:67
 #, python-format
 msgid "Email %s is not valid"
 msgstr "L'email %s non è valida"
@@ -92,6 +92,12 @@ msgstr "Indirizzo email del SdI"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_id
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_fetch_pec_server_id
+#, fuzzy
+msgid "Incoming PEC server"
+msgstr "Server PEC e-fattura"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel___last_update
@@ -152,7 +158,8 @@ msgid "Sender Email Address"
 msgstr "Indirizzo email mittente"
 
 #. module: l10n_it_sdi_channel
-#: code:addons/l10n_it_sdi_channel/models/sdi.py:45
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:49
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:59
 #, python-format
 msgid "The channel %s with pec server %s already exists"
 msgstr "Canale %s con server PEC %s già esistente"
