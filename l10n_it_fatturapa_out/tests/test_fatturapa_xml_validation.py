@@ -409,7 +409,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def test_9_xml_export(self):
         self.tax_22.price_include = True
-        self.set_sequences(9, 18, '2018-01-07')
+        self.set_sequences(9, 18, '2018')
         partner = self.res_partner_fatturapa_4
         partner.onchange_country_id_e_inv()
         partner.write(partner._convert_to_write(partner._cache))
@@ -419,19 +419,19 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             'partner_id': partner.id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
-            'payment_term_id': self.account_payment_term.id,
+            'payment_term': self.account_payment_term.id,
             'user_id': self.user_demo.id,
             'type': 'out_invoice',
             'currency_id': self.AED.id,
-            'invoice_line_ids': [
+            'invoice_line': [
                 (0, 0, {
                     'account_id': self.a_sale.id,
                     'product_id': self.product_product_10.id,
                     'name': 'Mouse Optical',
                     'quantity': 1,
-                    'uom_id': self.product_uom_unit.id,
+                    'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
-                    'invoice_line_tax_ids': [(6, 0, {
+                    'invoice_line_tax_id': [(6, 0, {
                         self.tax_22.id})]
                 }),
                 (0, 0, {
@@ -439,13 +439,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                     'product_id': self.product_order_01.id,
                     'name': 'Zed+ Antivirus',
                     'quantity': 1,
-                    'uom_id': self.product_uom_unit.id,
+                    'uos_id': self.product_uom_unit.id,
                     'price_unit': 4,
-                    'invoice_line_tax_ids': [(6, 0, {
+                    'invoice_line_tax_id': [(6, 0, {
                         self.tax_22.id})]
                 })],
         })
-        invoice.action_invoice_open()
+        invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.assertEqual(attachment.datas_fname, 'IT06363391001_00009.xml')

@@ -335,21 +335,25 @@ class WizardExportFatturapa(models.TransientModel):
             company)
 
     def _setDatiAnagraficiCessionario(self, partner, fatturapa):
-        fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
+        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         if not partner.vat and not partner.fiscalcode:
-            if partner.codice_destinatario == 'XXXXXXX' \
-                    and partner.country_id.code:
-                # SDI accpets missing VAT# for foreign customers by setting a
+            if (
+                    partner.codice_destinatario == 'XXXXXXX'
+                    and partner.country_id.code
+                    and partner.country_id.code != 'IT'
+            ):
+                # SDI accepts missing VAT for foreign customers by setting a
                 # fake IdCodice and a valid IdPaese
-                # Otherwise raise error if we havo no VAT# and no Fiscal code
+                # Otherwise raise error if we have no VAT# and no Fiscal code
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                     DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                        IdPaese=partner.country_id.code, IdCodice='99999999999'
-                    )
+                        IdPaese=partner.country_id.code,
+                        IdCodice='99999999999')
             else:
                 raise UserError(
-                    _('VAT and Fiscalcode not set for %s') % partner.name)
+                    _('VAT number and fiscal code are not set for %s.') %
+                    partner.name)
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode

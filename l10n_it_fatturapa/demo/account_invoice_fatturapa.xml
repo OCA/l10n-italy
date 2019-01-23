@@ -162,7 +162,6 @@
             <field name="supplier">0</field>
             <field name="is_company">1</field>
             <field name="street">29-17 Al Thanya St</field>
-            <field name="is_pa">0</field>
             <field name="city">Dubai</field>
             <field name="zip">23100</field>
             <field name="country_id" ref="base.ae"/>
