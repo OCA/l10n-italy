@@ -345,13 +345,21 @@ class WizardExportFatturapa(models.TransientModel):
     def _setDatiAnagraficiCessionario(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
-        if not partner.vat and not partner.fiscalcode and partner.codice_destinatario == 'XXXXXXX':
-            # SDI accpets missing VAT# for foreign customers by setting a fake IdCodice and a valid IdPaese
-            # Otherwise raise error if we havo no VAT# and no Fiscal code
+        if (
+            not partner.vat and not partner.fiscalcode and
+            partner.codice_destinatario == 'XXXXXXX' and
+            partner.country_id.code
+        ):
+            # SDI accpets missing VAT# for foreign customers by setting a fake
+            # IdCodice and a valid IdPaese
+            # Otherwise raise error if we have no VAT# and no Fiscal code
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.country_id.code, IdCodice='99999999999')
-        if not partner.vat and not partner.fiscalcode and not partner.codice_destinatario == 'XXXXXXX': 
+        if (
+            not partner.vat and not partner.fiscalcode and
+            not partner.codice_destinatario == 'XXXXXXX'
+        ):
             raise UserError(
                 _('VAT number and fiscal code are not set for %s.') %
                 partner.name)
@@ -444,9 +452,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.street:
             raise UserError(
                 _('Customer street is not set.'))
-        if not partner.zip:
-            raise UserError(
-                _('Customer ZIP is not set.'))
         if not partner.city:
             raise UserError(
                 _('Customer city is not set.'))
@@ -457,23 +462,25 @@ class WizardExportFatturapa(models.TransientModel):
         # TODO: manage address number in <NumeroCivico>
         if partner.codice_destinatario == 'XXXXXXX':
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
-              IndirizzoType(
-                Indirizzo=partner.street,
-                CAP='00000',
-                Comune=partner.city,
-                Provincia='EE',
-                Nazione=partner.country_id.code))
-        else:        
+                IndirizzoType(
+                    Indirizzo=partner.street,
+                    CAP='00000',
+                    Comune=partner.city,
+                    Provincia='EE',
+                    Nazione=partner.country_id.code))
+        else:
+            if not partner.zip:
+                raise UserError(
+                    _('Customer ZIP not set.'))
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
                 IndirizzoType(
                     Indirizzo=partner.street,
                     CAP=partner.zip,
                     Comune=partner.city,
                     Nazione=partner.country_id.code))
-        if partner.state_id and partner.codice_destinatario != 'XXXXXXX':
             if partner.state_id:
-                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
-                    Provincia = partner.state_id.code
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                    Sede.Provincia = partner.state_id.code
 
         return True
 
