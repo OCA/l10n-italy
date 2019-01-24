@@ -68,6 +68,7 @@ Authors
 * Ermanno Gnan
 * Sergio Corato
 * Enrico Ganzaroli
+* Agile Business Group
 
 Contributors
 ~~~~~~~~~~~~
