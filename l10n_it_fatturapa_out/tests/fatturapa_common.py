@@ -55,6 +55,8 @@ class FatturaPACommon(AccountTestUsers):
             'l10n_it_fatturapa.res_partner_fatturapa_1')
         self.stabile_organizzazione = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_3')
+        self.res_partner_fatturapa_4 = self.env.ref(
+            'l10n_it_fatturapa.res_partner_fatturapa_4')
         self.fiscal_position_sp = self.env.ref(
             'l10n_it_fatturapa.fiscal_position_sp')
         self.company = self.env.ref('base.main_company')
@@ -65,6 +67,8 @@ class FatturaPACommon(AccountTestUsers):
             )
         ], limit=1)
         self.EUR = self.env.ref('base.EUR')
+        # United Arab Emirates currency
+        self.AED = self.env.ref('base.AED')
         self.cr.execute(
             "UPDATE res_company SET currency_id = %s WHERE id = %s",
             [self.EUR.id, self.company.id])
