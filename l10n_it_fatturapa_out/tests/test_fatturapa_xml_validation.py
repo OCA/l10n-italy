@@ -1,6 +1,6 @@
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# Copyright 2018 Alex Comba - Agile Business Group
+# Copyright 2018-2019 Alex Comba - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import base64
@@ -355,3 +355,49 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00008.xml')
+
+    def test_9_xml_export(self):
+        self.tax_22.price_include = True
+        self.set_sequences(9, 18, '2018-01-07')
+        partner = self.res_partner_fatturapa_4
+        partner.onchange_country_id_e_inv()
+        partner.write(partner._convert_to_write(partner._cache))
+        self.assertEqual(partner.codice_destinatario, 'XXXXXXX')
+        invoice = self.invoice_model.create({
+            'date_invoice': '2018-01-07',
+            'partner_id': partner.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'payment_term_id': self.account_payment_term.id,
+            'user_id': self.user_demo.id,
+            'type': 'out_invoice',
+            'currency_id': self.AED.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_product_10.id,
+                    'name': 'Mouse Optical',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 10,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                }),
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_order_01.id,
+                    'name': 'Zed+ Antivirus',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 4,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                })],
+        })
+        invoice.action_invoice_open()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.assertEqual(attachment.datas_fname, 'IT06363391001_00009.xml')
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, 'IT06363391001_00009.xml')

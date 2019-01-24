@@ -2,6 +2,7 @@
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2018 Sergio Corato
+# Copyright 2019 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -724,7 +725,8 @@ class WizardExportFatturapa(models.TransientModel):
             payment_line_ids = invoice.get_receivable_line_ids()
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = '%.2f' % move_line.debit
+                ImportoPagamento = '%.2f' % (
+                    move_line.amount_currency or move_line.debit)
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
