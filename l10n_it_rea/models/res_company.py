@@ -11,7 +11,8 @@ class Company(models.Model):
         'res.country.state', string='Office Province',
         related='partner_id.rea_office')
     rea_code = fields.Char('REA Code', size=20, related='partner_id.rea_code')
-    rea_capital = fields.Float('Capital', related='partner_id.rea_capital')
+    rea_capital = fields.Float(
+        'Share Capital', related='partner_id.rea_capital')
     rea_member_type = fields.Selection(
         [('SU', 'Unique Member'),
          ('SM', 'Multiple Members')], 'Member Type',
@@ -46,7 +47,7 @@ class Company(models.Model):
                     ]._description_selection(self.env)
                 )[self.rea_liquidation_state]
             # using always €, as this is a registry of Italian companies
-            company_registry = _("%s %s Share Cap. %s € %s %s") % (
+            company_registry = _("%s - %s / Share Cap. %s € / %s / %s") % (
                 self.rea_office.code or '', self.rea_code or '',
                 formatLang(self.env, self.rea_capital), rea_member_type,
                 rea_liquidation_state
