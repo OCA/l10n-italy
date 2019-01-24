@@ -6,19 +6,20 @@
 # Copyright 2018 Sergio Corato
 
 {
-    'name': 'Italian Localization - Fattura Elettronica reception',
-    'version': '8.0.1.0.0',
+    'name': 'Italian Localization - Fattura elettronica - Ricezione',
+    'version': '8.0.1.0.1',
+    'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
     'author': 'Agile Business Group, Innoviu, '
               'Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'LGPL-3',
-    "depends": [
+    'depends': [
         'l10n_it_fatturapa',
         'l10n_it_withholding_tax_causali',
         ],
-    "data": [
+    'data': [
         'views/account_view.xml',
         'views/partner_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
@@ -26,5 +27,5 @@
         'wizard/link_to_existing_invoice.xml',
         'views/company_view.xml',
     ],
-    "installable": True
+    'installable': True
 }
