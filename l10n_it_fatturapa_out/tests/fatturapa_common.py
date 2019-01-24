@@ -82,10 +82,14 @@ class FatturaPACommon(TransactionCase):
             'l10n_it_fatturapa.res_partner_fatturapa_1')
         self.stabile_organizzazione = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_3')
+        self.res_partner_fatturapa_4 = self.env.ref(
+            'l10n_it_fatturapa.res_partner_fatturapa_4')
         self.fiscal_position_sp = self.env.ref(
             'l10n_it_fatturapa.fiscal_position_sp')
         self.company.sp_account_id = self.env.ref('account.ova')
         self.EUR = self.env.ref('base.EUR')
+        # United Arab Emirates currency
+        self.AED = self.env.ref('base.AED')
         self.cr.execute(
             "UPDATE res_company SET currency_id = %s WHERE id = %s",
             [self.EUR.id, self.company.id])
