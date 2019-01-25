@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-24 15:03+0000\n"
-"PO-Revision-Date: 2019-01-22 19:41+0000\n"
+"PO-Revision-Date: 2019-01-25 19:51+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -44,7 +44,7 @@ msgstr "Aziende"
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_res_config_settings
 msgid "Config Settings"
-msgstr "Impostazioni di configurazione"
+msgstr "Impostazioni configurazione"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
@@ -75,7 +75,6 @@ msgstr "Riga fattura"
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_line__is_stamp_line
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__is_stamp
-#, fuzzy
 msgid "Is a stamp"
 msgstr "È un bollo"
 
@@ -118,22 +117,19 @@ msgstr "Prodotto usato come imposta di bollo nelle fatture cliente."
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_min_total_base
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_min_total_base
-#, fuzzy
 msgid "Stamp applicability min total base"
 msgstr "Totale imponibile minimo per applicabilità bollo"
 
 #. module: l10n_it_account_stamp
 #: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-#, fuzzy
 msgid ""
 "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
 "July\n"
 "17, 2014"
 msgstr ""
-"\n"
-"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
-"M.\n"
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del "
+"D.M.\n"
 "17 giugno 2014"
 
 #. module: l10n_it_account_stamp
@@ -188,15 +184,13 @@ msgstr "Imposta di bollo non applicabile"
 #: code:addons/l10n_it_account_stamp/models/invoice.py:50
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
-msgstr "La riga dell'imposta di bollo %s è già presente, prima rimuoverla."
+msgstr "Riga per l'imposta di bollo %s già presente, prima rimuoverla."
 
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/product.py:15
-#, fuzzy, python-format
+#, python-format
 msgid "The product %s must be a stamp to apply set taxes!"
-msgstr ""
-"Il prodotto %s deve essere una marca da bollo per applicare le imposte "
-"definite!"
+msgstr "Il prodotto %s deve essere un bollo per applicare le imposte definite!"
 
 #. module: l10n_it_account_stamp
 #: model:product.product,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
