@@ -27,6 +27,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
 msgid "Add tax stamp line"
 msgstr ""
@@ -35,6 +43,11 @@ msgstr ""
 #: model:ir.model,name:l10n_it_account_stamp.model_res_company
 msgid "Companies"
 msgstr "Aziende"
+
+#. module: l10n_it_account_stamp
+#: model:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings
+msgid "Configuration for Tax stamp"
+msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
@@ -66,14 +79,14 @@ msgid "Is stamp"
 msgstr "Marca da bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:57
+#: code:addons/l10n_it_account_stamp/models/invoice.py:56
 #, fuzzy, python-format
 msgid "Missing account income configuration for %s"
 msgstr "Configurazione conti costo/ricavo mancante per %s"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:17
-#: code:addons/l10n_it_account_stamp/models/invoice.py:47
+#: code:addons/l10n_it_account_stamp/models/invoice.py:16
+#: code:addons/l10n_it_account_stamp/models/invoice.py:46
 #: code:addons/l10n_it_account_stamp/models/invoice.py:129
 #, python-format
 msgid "Missing tax stamp product in company settings!"
@@ -91,8 +104,13 @@ msgid "Product Template"
 msgstr "Modello Prodotto"
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_config_settings_tax_stamp_product_id
+#: model:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings
+msgid "Product used as Tax Stamp in customer invoices"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model.fields,help:l10n_it_account_stamp.field_res_company_tax_stamp_product_id
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_config_settings_tax_stamp_product_id
 msgid "Product used as Tax Stamp in customer invoices."
 msgstr ""
 
@@ -134,8 +152,8 @@ msgid "Tax Stamp Income"
 msgstr "Prodotto Marca da Bollo"
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_config_settings_tax_stamp_product_id
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company_tax_stamp_product_id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings_tax_stamp_product_id
 #: model:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings
 msgid "Tax Stamp Product"
 msgstr "Prodotto Marca da Bollo"
@@ -146,19 +164,19 @@ msgid "Tax stamp"
 msgstr "Marca da bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:42
+#: code:addons/l10n_it_account_stamp/models/invoice.py:41
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:51
+#: code:addons/l10n_it_account_stamp/models/invoice.py:50
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/product.py:16
+#: code:addons/l10n_it_account_stamp/models/product.py:15
 #, python-format
 msgid "The product %s must be a stamp to set apply taxes!"
 msgstr ""
@@ -166,8 +184,8 @@ msgstr ""
 "imposta!"
 
 #. module: l10n_it_account_stamp
-#: model:ir.model,name:l10n_it_account_stamp.model_account_config_settings
-msgid "account.config.settings"
+#: model:ir.model,name:l10n_it_account_stamp.model_res_config_settings
+msgid "res.config.settings"
 msgstr ""
 
 #~ msgid "Accounting"
