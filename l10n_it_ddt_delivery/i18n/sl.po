@@ -22,11 +22,19 @@ msgstr ""
 
 #. module: l10n_it_ddt_delivery
 #: model:ir.model,name:l10n_it_ddt_delivery.model_sale_order
-msgid "Sales Order"
-msgstr "Prodajni nalog"
+msgid "Quotation"
+msgstr ""
 
 #. module: l10n_it_ddt_delivery
-#: code:addons/l10n_it_ddt_delivery/wizards/ddt_from_pickings.py:19
+#: code:addons/l10n_it_ddt_delivery/wizards/ddt_from_pickings.py:18
 #, python-format
 msgid "Selected Pickings have different carriers"
 msgstr "Izbrani zbirniki imajo različne prevoznike"
+
+#. module: l10n_it_ddt_delivery
+#: model:ir.model,name:l10n_it_ddt_delivery.model_ddt_from_pickings
+msgid "ddt.from.pickings"
+msgstr ""
+
+#~ msgid "Sales Order"
+#~ msgstr "Prodajni nalog"
