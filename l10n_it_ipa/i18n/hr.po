@@ -26,6 +26,7 @@ msgstr ""
 
 #. module: l10n_it_ipa
 #: model:ir.model.fields,field_description:l10n_it_ipa.field_res_partner__ipa_code
+#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_users__ipa_code
 msgid "IPA Code"
 msgstr ""
 
@@ -41,6 +42,7 @@ msgstr ""
 
 #. module: l10n_it_ipa
 #: model:ir.model.fields,field_description:l10n_it_ipa.field_res_partner__is_pa
+#: model:ir.model.fields,field_description:l10n_it_ipa.field_res_users__is_pa
 msgid "Public administration"
 msgstr ""
 
