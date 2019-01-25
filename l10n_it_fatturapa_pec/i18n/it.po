@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-12-28 19:40+0000\n"
+"PO-Revision-Date: 2019-01-25 19:51+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -25,12 +25,15 @@ msgid ""
 "related to an e-invoice.</p><p>Please check PEC mailbox %s, at server %s, "
 "with user %s</p>"
 msgstr ""
+"<p>I messaggi PEC con Message-Id %s sono stati letti ma non elaborati, non "
+"sono relativi a una e-fattura.</p><p>Controllare la casella PEC %s: server %"
+"s, utente %s</p>"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Accepted"
-msgstr ""
+msgstr "Accettato"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
@@ -40,12 +43,12 @@ msgstr "Annulla"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
 msgid "Contacts to notify"
-msgstr ""
+msgstr "Contatti da notificare"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
 msgid "Contacts to notify when PEC message can't be processed"
-msgstr ""
+msgstr "Contatti da notificare quando non è possibile elaborare i messaggi PEC"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_uid
@@ -117,7 +120,7 @@ msgstr "ID"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
 msgid "Incoming Mail Server"
-msgstr "Server email in ingresso"
+msgstr "Server di posta in ingresso"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_account_invoice
@@ -164,15 +167,14 @@ msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
 #. module: l10n_it_fatturapa_pec
 #: selection:fatturapa.attachment.out,state:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
-#, fuzzy
 msgid "Not delivered"
-msgstr "Consegnato"
+msgstr "Non consegnato"
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:121
 #, python-format
 msgid "PEC message [%s] not processed"
-msgstr ""
+msgstr "Messaggio PEC [%s] non elaborato"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
