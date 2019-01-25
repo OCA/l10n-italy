@@ -74,13 +74,13 @@ msgstr "Configurazione conti costo/ricavo mancante per %s"
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:17
 #: code:addons/l10n_it_account_stamp/models/invoice.py:47
-#: code:addons/l10n_it_account_stamp/models/invoice.py:129
+#: code:addons/l10n_it_account_stamp/models/invoice.py:130
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr "Prodotto Marca da bollo mancante nella configurazione dell'azienda!"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:84
+#: code:addons/l10n_it_account_stamp/models/invoice.py:85
 #, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr ""
@@ -122,13 +122,13 @@ msgid "Tax Stamp 2 euro"
 msgstr "Prodotto Marca da Bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:102
+#: code:addons/l10n_it_account_stamp/models/invoice.py:103
 #, fuzzy, python-format
 msgid "Tax Stamp Expense"
 msgstr "Imposte marca da bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:89
+#: code:addons/l10n_it_account_stamp/models/invoice.py:90
 #, fuzzy, python-format
 msgid "Tax Stamp Income"
 msgstr "Prodotto Marca da Bollo"
