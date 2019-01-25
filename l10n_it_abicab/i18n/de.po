@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_abicab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_abi
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__abi
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_abi
 msgid "ABI"
@@ -40,6 +41,7 @@ msgid "Bank Details"
 msgstr "Bankdetails"
 
 #. module: l10n_it_abicab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_cab
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__cab
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_cab
 msgid "CAB"
