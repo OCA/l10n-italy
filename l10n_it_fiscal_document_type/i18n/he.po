@@ -84,6 +84,7 @@ msgstr "מזהה"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users__in_fiscal_document_type
 msgid "In Fiscal Document Type"
 msgstr ""
 
@@ -130,6 +131,7 @@ msgstr ""
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__out_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users__out_fiscal_document_type
 msgid "Out Fiscal Document Type"
 msgstr ""
 
