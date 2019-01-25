@@ -20,6 +20,14 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: l10n_it_fatturapa
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_bank_abi
 msgid "ABI"
 msgstr ""
@@ -55,11 +63,13 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__codice_destinatario
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__codice_destinatario
 msgid "Addressee Code"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__pec_destinatario
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__pec_destinatario
 msgid "Addressee PEC"
 msgstr ""
 
@@ -420,6 +430,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__eori_code
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__eori_code
 msgid "EORI Code"
 msgstr ""
 
@@ -667,6 +678,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__license_number
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__license_number
 msgid "License Code"
 msgstr ""
 
@@ -765,6 +777,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__pa_partner_code
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__pa_partner_code
 msgid "PA Code for Partner"
 msgstr ""
 
@@ -775,6 +788,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__pec_destinatario
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__pec_destinatario
 msgid ""
 "PEC to which the electronic invoice will be sent. Must be filled ONLY when "
 "the information element <CodiceDestinatario> is '0000000'"
@@ -876,6 +890,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register
 msgid "Professional Register"
 msgstr ""
 
@@ -953,21 +968,25 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_fiscalpos
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_fiscalpos
 msgid "Register Fiscal Position"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_province
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_province
 msgid "Register Province"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_regdate
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_regdate
 msgid "Register Registration Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_code
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_code
 msgid "Register Registration Number"
 msgstr ""
 
@@ -1081,13 +1100,13 @@ msgid "Sequence %s can't use subsequences."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:86
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:102
 #, python-format
 msgid "Signed Xml file %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:92
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
 #, python-format
 msgid "Signed Xml file not decryptable."
 msgstr ""
@@ -1101,11 +1120,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_stabile_organizzazione
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_stabile_organizzazione
 msgid "Stable Organization"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__stamp_amount
-msgid "Stamp Amount"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1123,6 +1137,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__electronic_invoice_subjected
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Subjected to Electronic Invoice"
 msgstr ""
 
@@ -1148,6 +1163,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__codice_destinatario
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__codice_destinatario
 msgid ""
 "The code, 7 characters long, assigned by ES to subjects with an accredited "
 "channel; if the addressee didn't accredit a channel to ES and invoices are "
@@ -1255,11 +1271,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__vehicle_registration
 msgid "Vehicle Registration"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__virtual_stamp
-msgid "Virtual Stamp"
 msgstr ""
 
 #. module: l10n_it_fatturapa
