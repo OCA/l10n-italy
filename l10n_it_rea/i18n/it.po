@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2018-12-11 10:50+0000\n"
+"PO-Revision-Date: 2019-01-25 19:51+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
 "language/it/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "%s - %s / Share Cap. %s â¬ / %s / %s"
 msgstr "%s - %s / Cap. sociale %s â¬ / %s / %s"
 
@@ -81,7 +81,6 @@ msgstr "Codice REA"
 
 #. module: l10n_it_rea
 #: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
-#, fuzzy
 msgid "REA Data"
 msgstr "Dati REA"
 
@@ -94,7 +93,6 @@ msgstr "Registrazione REA"
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_capital
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_capital
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_capital
-#, fuzzy
 msgid "Share Capital"
 msgstr "Capitale sociale"
 
