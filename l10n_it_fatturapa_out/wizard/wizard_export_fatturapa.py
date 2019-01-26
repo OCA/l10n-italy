@@ -2,6 +2,7 @@
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2018 Sergio Corato
+# Copyright 2019 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -346,9 +347,22 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         if not partner.vat and not partner.fiscalcode:
-            raise UserError(
-                _('VAT number and fiscal code are not set for %s.') %
-                partner.name)
+            if (
+                    partner.codice_destinatario == 'XXXXXXX'
+                    and partner.country_id.code
+                    and partner.country_id.code != 'IT'
+            ):
+                # SDI accepts missing VAT# for foreign customers by setting a
+                # fake IdCodice and a valid IdPaese
+                # Otherwise raise error if we have no VAT# and no Fiscal code
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                    DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+                        IdPaese=partner.country_id.code,
+                        IdCodice='99999999999')
+            else:
+                raise UserError(
+                    _('VAT number and fiscal code are not set for %s.') %
+                    partner.name)
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
@@ -438,9 +452,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.street:
             raise UserError(
                 _('Customer street is not set.'))
-        if not partner.zip:
-            raise UserError(
-                _('Customer ZIP is not set.'))
         if not partner.city:
             raise UserError(
                 _('Customer city is not set.'))
@@ -449,15 +460,27 @@ class WizardExportFatturapa(models.TransientModel):
                 _('Customer country is not set.'))
 
         # TODO: manage address number in <NumeroCivico>
-        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
-            IndirizzoType(
-                Indirizzo=partner.street,
-                CAP=partner.zip,
-                Comune=partner.city,
-                Nazione=partner.country_id.code))
-        if partner.state_id:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
-                Provincia = partner.state_id.code
+        if partner.codice_destinatario == 'XXXXXXX':
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
+                IndirizzoType(
+                    Indirizzo=partner.street,
+                    CAP='00000',
+                    Comune=partner.city,
+                    Provincia='EE',
+                    Nazione=partner.country_id.code))
+        else:
+            if not partner.zip:
+                raise UserError(
+                    _('Customer ZIP not set.'))
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
+                IndirizzoType(
+                    Indirizzo=partner.street,
+                    CAP=partner.zip,
+                    Comune=partner.city,
+                    Nazione=partner.country_id.code))
+            if partner.state_id:
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                    Sede.Provincia = partner.state_id.code
 
         return True
 
@@ -702,7 +725,8 @@ class WizardExportFatturapa(models.TransientModel):
             payment_line_ids = invoice.get_receivable_line_ids()
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = '%.2f' % move_line.debit
+                ImportoPagamento = '%.2f' % (
+                    move_line.amount_currency or move_line.debit)
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
