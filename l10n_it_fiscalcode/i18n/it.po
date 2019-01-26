@@ -41,6 +41,12 @@ msgid "City of birth"
 msgstr "Città di nascita"
 
 #. module: l10n_it_fiscalcode
+#: model:ir.model,name:l10n_it_fiscalcode.model_res_company
+#, fuzzy
+msgid "Companies"
+msgstr "Calcola"
+
+#. module: l10n_it_fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Compute"
 msgstr "Calcola"
@@ -113,6 +119,7 @@ msgid "First name"
 msgstr "Nome"
 
 #. module: l10n_it_fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company__fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users__fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
@@ -137,6 +144,7 @@ msgid "Individual Data"
 msgstr "Dati personali"
 
 #. module: l10n_it_fiscalcode
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_company__fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner__fiscalcode
 #: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users__fiscalcode
 msgid "Italian Fiscal Code"
