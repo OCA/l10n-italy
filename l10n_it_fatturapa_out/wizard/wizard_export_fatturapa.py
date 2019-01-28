@@ -93,12 +93,12 @@ class wizard_export_fatturapa(osv.osv_memory):
         user_obj = self.pool.get('res.users')
         company = user_obj.browse(cr, uid, uid).company_id
 
-        if not company.vat:
+        if not company.partner_id.vat:
             raise osv.except_osv(
                 _('Error!'), _('Company TIN not set.'))
         if company.fatturapa_sender_partner and not company.fatturapa_sender_partner.vat:
             raise osv.except_osv(_('Error!'), _('Partner %s TIN not set.') % company.fatturapa_sender_partner.name)
-        vat = company.vat
+        vat = company.partner_id.vat
         if company.fatturapa_sender_partner:
             vat = company.fatturapa_sender_partner.vat
         vat = vat.replace(' ', '').replace('.', '').replace('-', '')
@@ -126,7 +126,7 @@ class wizard_export_fatturapa(osv.osv_memory):
             raise osv.except_osv(
                 _('Error!'), _('E-invoice sequence not configured.'))
 
-        number = sequence_obj.next_by_id(
+        number = sequence_obj.get_id(
             cr, uid, fatturapa_sequence.id, context=context)
 
         try:
@@ -137,7 +137,7 @@ class wizard_export_fatturapa(osv.osv_memory):
                 'FatturaElettronicaHeader.DatiTrasmissione.'
                 'ProgressivoInvio:\n%s'
             ) % unicode(e)
-            raise _('Error!'), _(msg)
+            raise osv.except_osv(_('Error!'), _(msg))
         return number
 
     def _setIdTrasmittente(self, cr, uid, company, fatturapa, context=None):
@@ -360,9 +360,9 @@ class wizard_export_fatturapa(osv.osv_memory):
         if context is None:
             context = {}
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=self.checkSetupPhone(company.phone) or None,
-            Fax=self.checkSetupPhone(company.fax) or None,
-            Email=company.email or None
+            Telefono=self.checkSetupPhone(company.partner_id.phone) or None,
+            Fax=self.checkSetupPhone(company.partner_id.fax) or None,
+            Email=company.partner_id.email or None
         )
 
     def _setPubAdministrationRef(self, cr, uid, CedentePrestatore,
@@ -415,7 +415,7 @@ class wizard_export_fatturapa(osv.osv_memory):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
-        if not partner.individual:
+        if partner.vat:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Denominazione=partner.name)

@@ -12,6 +12,8 @@ class ResPartner(osv.osv):
     _inherit = "res.partner"
 
     _columns = {
+        'fax': fields.related('address', 'fax', type='char', 
+                              string='Fax'),
         'eori_code': fields.char('EORI Code', size=20),
         'license_number': fields.char('License Code', size=20),
         # 1.2.6 RiferimentoAmministrazione

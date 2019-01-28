@@ -171,7 +171,7 @@ class account_invoice(osv.osv):
 
     def action_move_create(self, cr, uid, ids, context=None):
         res = super(account_invoice, self).action_move_create(
-            cr, uid, ids, context=context)
+            cr, uid, ids, context)
         for invoice in self.browse(cr, uid, ids, context=context):
             if (
                 invoice.fiscal_position and
