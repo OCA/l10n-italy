@@ -32,7 +32,7 @@ msgid "ABI"
 msgstr "ABI"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:67
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:68
 #, python-format
 msgid "ASN.1 structure is not parsable in DER"
 msgstr "ASN.1 structure is not parsable in DER"
@@ -73,7 +73,7 @@ msgid "Amount untaxed"
 msgstr "Importo imponibile"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:42
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:43
 #, python-format
 msgid "An error with command \"openssl asn1parse\" occurred: %s"
 msgstr "An error with command \"openssl asn1parse\" occurred: %s"
@@ -864,7 +864,7 @@ msgid "PEC destinatario"
 msgstr "PEC destinatario"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:61
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:62
 #, python-format
 msgid "Parsing PEM to DER  file %s"
 msgstr "Parsing PEM to DER  file %s"
@@ -1152,13 +1152,13 @@ msgstr ""
 "1.2.3.6 <Nazione> e' uguale a IT"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:103
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:104
 #, python-format
 msgid "Signed Xml file %s"
 msgstr "Signed Xml file %s"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:109
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:110
 #, python-format
 msgid "Signed Xml file not decryptable"
 msgstr "Signed Xml file not decryptable"
