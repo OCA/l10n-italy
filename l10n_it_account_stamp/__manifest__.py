@@ -3,11 +3,12 @@
 # Copyright 2018 Ermanno Gnan (ermannognan@gmail.com)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # Copyright 2018 Sergio Zanchetta (https://github.com/primes2h)
+# Copyright 2019 Stefano Consolaro (https://github.com/mymage)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Italian Localization - Imposta di bollo',
-    'version': '11.0.1.1.0',
+    'version': '11.0.1.1.1',
     'category': 'Localization/Italy',
     'summary': 'Tax stamp automatic management',
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '

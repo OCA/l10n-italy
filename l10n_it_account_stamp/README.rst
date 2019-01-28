@@ -25,7 +25,14 @@ Italian Localization - Imposta di bollo
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module supports Italian Tax Stamp in invoices.
+**Italiano**
+
+Questo modulo aggiunge il supporto all'imposta di bollo italiana nelle fatture.
+
+
+**English**
+
+This module adds Italian Tax Stamp support in invoices.
 
 **Table of contents**
 
@@ -70,6 +77,15 @@ Also set income/expense accounts, typically income = 'Debiti per bolli' and expe
 Usage
 =====
 
+**Italiano**
+
+Se nella fattura è previsto l'addebito dell'imposta di bollo al cliente, fare clic sul pulsante "Aggiungi riga bollo" per aggiungere una riga relativa all'imposta di bollo.
+
+In caso contrario, l'imposta di bollo verrà comunque considerata ma non verrà addebitata al cliente.
+
+
+**English**
+
 In invoice form, when applicable, click 'Add tax stamp line' button to add tax stamp as invoice line, thus charging customer.
 
 Otherwise, tax stamp will be anyway accounted, without charging customer.
@@ -103,6 +119,7 @@ Contributors
 * Ermanno Gnan
 * Enrico Ganzaroli
 * Sergio Zanchetta <https://github.com/primes2h>
+* Stefano Consolaro <https://github.com/mymage>
 
 Maintainers
 ~~~~~~~~~~~
