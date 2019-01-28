@@ -713,27 +713,28 @@ class WizardExportFatturapa(models.TransientModel):
                 invoice.payment_term_id.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
             payment_line_ids = invoice.get_receivable_line_ids()
-            for move_line_id in payment_line_ids:
-                move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = '{val:.2f}'.format(val=move_line.debit)
-                DettaglioPagamento = DettaglioPagamentoType(
-                    ModalitaPagamento=(
-                        invoice.payment_term_id.fatturapa_pm_id.code),
-                    DataScadenzaPagamento=move_line.date_maturity,
-                    ImportoPagamento=ImportoPagamento
-                    )
-                if invoice.partner_bank_id:
-                    DettaglioPagamento.IstitutoFinanziario = (
-                        invoice.partner_bank_id.bank_name)
-                    if invoice.partner_bank_id.acc_number:
-                        DettaglioPagamento.IBAN = (
-                            ''.join(invoice.partner_bank_id.acc_number.split())
-                            )
-                    if invoice.partner_bank_id.bank_bic:
-                        DettaglioPagamento.BIC = (
-                            invoice.partner_bank_id.bank_bic)
-                DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
-            body.DatiPagamento.append(DatiPagamento)
+            if payment_line_ids:
+                for move_line_id in payment_line_ids:
+                    move_line = move_line_pool.browse(move_line_id)
+                    ImportoPagamento = '{val:.2f}'.format(val=move_line.debit)
+                    DettaglioPagamento = DettaglioPagamentoType(
+                        ModalitaPagamento=(
+                            invoice.payment_term_id.fatturapa_pm_id.code),
+                        DataScadenzaPagamento=move_line.date_maturity,
+                        ImportoPagamento=ImportoPagamento
+                        )
+                    if invoice.partner_bank_id:
+                        DettaglioPagamento.IstitutoFinanziario = (
+                            invoice.partner_bank_id.bank_name)
+                        if invoice.partner_bank_id.acc_number:
+                            DettaglioPagamento.IBAN = (
+                                ''.join(invoice.partner_bank_id.acc_number.split())
+                                )
+                        if invoice.partner_bank_id.bank_bic:
+                            DettaglioPagamento.BIC = (
+                                invoice.partner_bank_id.bank_bic)
+                    DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
+                body.DatiPagamento.append(DatiPagamento)
         return True
 
     def setAttachments(self, invoice, body):
