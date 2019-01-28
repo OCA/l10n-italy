@@ -1935,6 +1935,11 @@ class DataFatturaType (pyxb.binding.datatypes.date):
 
     """An atomic simple type."""
 
+    # remove tzinfo from parsed dates or pyxb will fail the comparison
+    def __new__(cls, *args, **kwargs):
+        result = super(DataFatturaType, cls).__new__(cls, *args, **kwargs)
+        return result.replace(tzinfo=None)
+
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DataFatturaType')
     _XSDLocation = pyxb.utils.utility.Location(
         'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/'
