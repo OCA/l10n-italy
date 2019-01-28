@@ -1945,7 +1945,9 @@ class DataFatturaType (pyxb.binding.datatypes.date):
 DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
     value_datatype=DataFatturaType,
     value=pyxb.binding.datatypes.date('1970-01-01'))
-DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive)
+# FIXME: if a date in the xml has the timezone, pyxb is unable to check this rule,
+# so is disabled for now
+#DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
 _module_typeBindings.DataFatturaType = DataFatturaType
 
