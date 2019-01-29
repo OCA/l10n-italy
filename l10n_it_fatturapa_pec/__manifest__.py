@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Supporto PEC',
-    'version': '12.0.1.2.0',
+    'version': '12.0.1.3.0',
     'category': 'Localization/Italy',
     'summary': 'Invio fatture elettroniche tramite PEC',
     'author': 'Openforce Srls Unipersonale, Odoo Community Association (OCA)',
@@ -25,7 +25,8 @@
         'views/fatturapa_attachment_out.xml',
         'wizard/send_pec_view.xml',
         'views/fetchmail_view.xml',
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
+        'data/fetchmail_data.xml',
     ],
     'installable': True
 }
