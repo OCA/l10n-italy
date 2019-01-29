@@ -89,7 +89,7 @@ class DdTCreateInvoice(models.TransientModel):
                             raise UserError(
                                 _("Move {m} is not invoiceable ({d})".format(
                                     m=move.name, d=ddt.ddt_number)))
-            invoice_list = []
+            invoice_ids = []
             for partner_id in ddt_partner.keys():
                 p_list = []
                 # ---- Force to use partner invoice from ddt as invoice partner
@@ -121,15 +121,15 @@ class DdTCreateInvoice(models.TransientModel):
                 })
                 for ddt in ddt_partner[partner_id]:
                     ddt.invoice_id = invoices[0]
-                invoice_list.append(invoices[0])
-            return invoice_list
+                invoice_ids.append(invoices[0])
+            return invoice_ids
 
-        invoice_list = []
+        invoice_ids = []
         if self.group:
-            invoice_list = _create_invoices(ddts)
+            invoice_ids = _create_invoices(ddts)
         else:
             for ddt in ddts:
-                invoice_list.append(_create_invoices([ddt]))
+                invoice_ids.append(_create_invoices([ddt]))
 
         # ----- Show invoice
         ir_model_data = self.env['ir.model.data']
@@ -145,11 +145,10 @@ class DdTCreateInvoice(models.TransientModel):
             'view_type': 'form',
             'view_mode': 'form,tree',
             'res_model': 'account.invoice',
-            'res_ids': invoice_list,
+            'res_ids': invoice_ids,
             'view_id': False,
             'views': [(tree_id, 'tree'), (form_id, 'form')],
             'type': 'ir.actions.act_window',
-            'domain': "[('type', '=', 'out_invoice'),"
-                      " ('id','in', [" + ','.join(map(str, invoice_list)) +
-                      "])]",
+            'domain': [('type', '=', 'out_invoice'),
+                       ('id', 'in', invoice_ids)],
         }
