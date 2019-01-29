@@ -112,7 +112,14 @@ class Attachment(models.Model):
         return xml_file
 
     def remove_xades_sign(self, xml):
-        root = ET.XML(xml)
+        # Recovering parser is needed for files where strings like
+        # xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"
+        # are present: even if lxml raises
+        # {XMLSyntaxError}xmlns:ds:
+        # 'http://www.w3.org/2000/09/xmldsig#"' is not a valid URI
+        # such files are accepted by SDI
+        recovering_parser = ET.XMLParser(recover=True)
+        root = ET.XML(xml, parser=recovering_parser)
         for elem in root.iter('*'):
             if elem.tag.find('Signature') > -1:
                 elem.getparent().remove(elem)
@@ -120,7 +127,8 @@ class Attachment(models.Model):
         return ET.tostring(root)
 
     def strip_xml_content(self, xml):
-        root = ET.XML(xml)
+        recovering_parser = ET.XMLParser(recover=True)
+        root = ET.XML(xml, parser=recovering_parser)
         for elem in root.iter('*'):
             if elem.text is not None:
                 elem.text = elem.text.strip()
@@ -168,7 +176,8 @@ class Attachment(models.Model):
         xslt = ET.parse(xsl_path)
         xml_string = self.get_xml_string()
         xml_file = BytesIO(xml_string)
-        dom = ET.parse(xml_file)
+        recovering_parser = ET.XMLParser(recover=True)
+        dom = ET.parse(xml_file, parser=recovering_parser)
         transform = ET.XSLT(xslt)
         newdom = transform(dom)
         return ET.tostring(newdom, pretty_print=True)
