@@ -25,8 +25,13 @@
                 <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
                     <attribute eval="False" name="editable"></attribute>
                 </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="doc_type"></field>
+                </xpath>
+                
             </field>
         </record>
+
         <record id="supplier_invoice_lines_not_editable" model="ir.ui.view">
             <field name="name">supplier_invoice_lines_not_editable</field>
             <field name="model">account.invoice</field>
