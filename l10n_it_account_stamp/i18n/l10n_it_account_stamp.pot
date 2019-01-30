@@ -25,6 +25,13 @@ msgid "Add tax stamp line"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__auto_compute_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__auto_compute
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
+msgid "Auto-compute"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_res_company
 msgid "Companies"
 msgstr ""
@@ -68,7 +75,7 @@ msgid "Missing account income configuration for %s"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:16
+#: code:addons/l10n_it_account_stamp/models/invoice.py:18
 #: code:addons/l10n_it_account_stamp/models/invoice.py:46
 #: code:addons/l10n_it_account_stamp/models/invoice.py:129
 #, python-format
@@ -106,7 +113,7 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-msgid "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree July\n"
+msgid "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree June\n"
 "17, 2014"
 msgstr ""
 
