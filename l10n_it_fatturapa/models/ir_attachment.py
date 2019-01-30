@@ -4,6 +4,7 @@ import base64
 import shlex
 import subprocess
 import logging
+import re
 from io import BytesIO
 from odoo import models, api, fields
 from odoo.modules import get_module_resource
@@ -126,6 +127,14 @@ class Attachment(models.Model):
                 elem.text = elem.text.strip()
         return ET.tostring(root)
 
+    def isBase64(self, s):
+        prog = re.compile(
+            b"^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$"
+        )
+        if prog.match(s):
+            return True
+        return False
+
     def get_xml_string(self):
         fatturapa_attachment = self
         # decrypt  p7m file
@@ -137,6 +146,8 @@ class Attachment(models.Model):
             with open(temp_file_name, 'wb') as p7m_file:
                 datas = fatturapa_attachment.datas
                 format_data = base64.decodebytes(datas)
+                if self.isBase64(format_data):
+                    format_data = base64.b64decode(format_data)
                 p7m_file.write(format_data)
             xml_file_name = os.path.splitext(temp_file_name)[0]
 
