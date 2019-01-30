@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2019-01-25 19:51+0000\n"
+"PO-Revision-Date: 2019-01-30 16:35+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
 "language/it/)\n"
@@ -18,12 +18,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:54
-#, python-format
-msgid "%s - %s / Share Cap. %s â¬ / %s / %s"
+#, fuzzy, python-format
+#| msgid "%s - %s / Share Cap. %s â¬ / %s / %s"
+msgid "%s - %s / Share Cap. %s € / %s / %s"
 msgstr "%s - %s / Cap. sociale %s â¬ / %s / %s"
 
 #. module: l10n_it_rea
@@ -77,7 +78,7 @@ msgstr "Provincia ufficio"
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__rea_code
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_users__rea_code
 msgid "REA Code"
-msgstr "Codice REA"
+msgstr "Numero REA"
 
 #. module: l10n_it_rea
 #: model_terms:ir.ui.view,arch_db:l10n_it_rea.view_company_form_rea
