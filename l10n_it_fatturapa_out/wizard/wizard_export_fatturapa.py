@@ -9,6 +9,7 @@ import base64
 import logging
 import os
 
+import openerp
 from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
 from openerp.tools.safe_eval import safe_eval
@@ -847,8 +848,10 @@ class WizardExportFatturapa(models.TransientModel):
         # Generate the PDF: if report_action.attachment is set
         # they will be automatically attached to the invoice,
         # otherwise use res to build a new attachment
-        res = report_model.get_pdf(inv, action_report.report_name, html=None,
-                                   data=None)
+        (res, report_format) = openerp.report.render_report(
+            self._cr, self._uid, [inv.id],
+            action_report.report_name, {'model': inv._name},
+            self._context)
         if action_report.attachment:
             # If the report is configured to be attached
             # to the current invoice, just get that from the attachments.
