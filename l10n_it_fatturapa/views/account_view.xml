@@ -19,6 +19,32 @@
             </field>
         </record>
 
+        <record id="customer_invoice_lines_not_editable" model="ir.ui.view">
+            <field name="name">customer_invoice_lines_not_editable</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                    <attribute eval="False" name="editable"></attribute>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="doc_type"></field>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <record id="supplier_invoice_lines_not_editable" model="ir.ui.view">
+            <field name="name">supplier_invoice_lines_not_editable</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                    <attribute eval="False" name="editable"></attribute>
+                </xpath>
+            </field>
+        </record>
+
         <record id="view_invoice_line_form_fatturapa" model="ir.ui.view">
             <field name="name">account.invoice.line.fatturapa</field>
             <field name="model">account.invoice.line</field>
