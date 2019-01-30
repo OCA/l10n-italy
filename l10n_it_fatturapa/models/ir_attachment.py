@@ -5,6 +5,8 @@ import os
 import shlex
 import subprocess
 import logging
+import re
+import base64
 from io import BytesIO
 from odoo import models, api, fields
 from odoo.modules import get_module_resource
@@ -135,6 +137,14 @@ class Attachment(models.Model):
                 elem.text = elem.text.strip()
         return ET.tostring(root)
 
+    def isBase64(self, s):
+        prog = re.compile(
+            "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$"
+        )
+        if prog.match(s):
+            return True
+        return False
+
     def get_xml_string(self):
         fatturapa_attachment = self
         # decrypt  p7m file
@@ -144,7 +154,10 @@ class Attachment(models.Model):
             temp_der_file_name = (
                 '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
             with open(temp_file_name, 'w') as p7m_file:
-                p7m_file.write(fatturapa_attachment.datas.decode('base64'))
+                format_data = fatturapa_attachment.datas.decode('base64')
+                if self.isBase64(format_data):
+                    format_data = base64.b64decode(format_data)
+                p7m_file.write(format_data)
             xml_file_name = os.path.splitext(temp_file_name)[0]
 
             # check if temp_file_name is a PEM file
