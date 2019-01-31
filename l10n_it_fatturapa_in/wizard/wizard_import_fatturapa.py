@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import base64
 import logging
 from openerp import models, api, fields, _
 from openerp.tools import float_is_zero
@@ -1091,24 +1090,9 @@ class WizardImportFatturapa(models.TransientModel):
                 self._createPayamentsLine(PayDataId, PaymentLine, partner_id)
         # 2.5
         AttachmentsData = FatturaBody.Allegati
-        if AttachmentsData:
-            AttachModel = self.env['fatturapa.attachments']
-            for attach in AttachmentsData:
-                if not attach.NomeAttachment:
-                    name = _("Attachment without name")
-                else:
-                    name = attach.NomeAttachment
-                content = attach.Attachment
-                _attach_dict = {
-                    'name': name,
-                    'datas': base64.b64encode(str(content)),
-                    'datas_fname': name,
-                    'description': attach.DescrizioneAttachment or '',
-                    'compression': attach.AlgoritmoCompressione or '',
-                    'format': attach.FormatoAttachment or '',
-                    'invoice_id': invoice_id,
-                }
-                AttachModel.create(_attach_dict)
+        if AttachmentsData and invoice_id:
+            self.env['fatturapa.attachment.in'].extract_attachments(
+                AttachmentsData, invoice_id)
 
         # compute the invoice
         # invoice.compute_taxes()
