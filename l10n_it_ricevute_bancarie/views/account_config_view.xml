@@ -8,12 +8,19 @@
         <field name="inherit_id" ref="account.view_account_config_settings"/>
         <field name="arch" type="xml">
             <xpath expr="//group[@name='bank_cash']" position="after">
-                <separator string="Ri.Ba. Due Cost Config"/>
+                <separator string="Ri.Ba. Config"/>
                 <group name="riba_config">
                     <label for="id" string="Due Cost Service"/>
                         <div>
                             <div>
                                 <field name="due_cost_service_id"
+                                       class="oe_inline"/>
+                            </div>
+                        </div>
+                    <label for="id" string="Payment Response"/>
+                        <div>
+                            <div>
+                                <field name="riba_payment_response"
                                        class="oe_inline"/>
                             </div>
                         </div>
