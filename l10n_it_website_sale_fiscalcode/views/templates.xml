@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2017 Nicola Malcontenti - Agile Business Group
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+     Copyright 2019 Simone Rubino
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 
 <odoo>
-<template id="l10n_it_website_sale_fiscalcode" inherit_id="website_sale.address">
-  <xpath expr="//div[@id='div_phone']" position="after">
-    <div t-attf-class="form-group #{error.get('fiscalcode') and 'has-error' or ''} col-md-6" id="div_fiscalcode">
-        <label class="control-label" for="fiscalcode">Fiscal Code</label>
-        <input name="fiscalcode" class="form-control" t-att-value="'fiscalcode' in checkout and checkout['fiscalcode']" />
-    </div>
-  </xpath>
-</template>
+    <template id="l10n_it_website_sale_fiscalcode" inherit_id="website_sale.address">
+        <xpath expr="//div[@id='div_phone']" position="after">
+            <t t-if="mode[1] == 'billing'">
+                <div t-attf-class="form-group #{error.get('is_company') and 'has-error' or ''} col-md-6" id="div_is_company">
+                    <label class="control-label">
+                        Are you acting on behalf of a company?
+                        <input type="checkbox" name="is_company" class="form-control"
+                               style="width: auto;"
+                               t-att-checked="'is_company' in checkout and bool(checkout['is_company'])"
+                               t-att-value="'is_company' in checkout and bool(checkout['is_company'])"/>
+                        <!-- Used to post company field even if it is False,
+                        see https://stackoverflow.com/questions/1809494/post-unchecked-html-checkboxes/1992745#1992745-->
+                        <input type="hidden" name="is_company" t-att-value="False"/>
+                    </label>
+                </div>
+            </t>
+            <div t-attf-class="form-group #{error.get('fiscalcode') and 'has-error' or ''} col-md-6" id="div_fiscalcode">
+                <label class="control-label" for="fiscalcode">Fiscal Code</label>
+                <input name="fiscalcode" class="form-control" t-att-value="'fiscalcode' in checkout and checkout['fiscalcode']"/>
+            </div>
+        </xpath>
+    </template>
 </odoo>
