@@ -146,7 +146,9 @@ class RibaFileExport(models.TransientModel):
 
     def _Record70(self):
         return " 70" + str(self._progressivo).rjust(
-            7, '0') + " " * 110 + "\r\n"
+            7, '0') + " " * 91 + \
+            self.env.user.company_id.riba_payment_response + \
+            " " * 18 + "\r\n"
 
     def _RecordEF(self):  # record di coda
         return (
