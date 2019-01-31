@@ -8,7 +8,7 @@
         <xpath expr="//div[@id='div_phone']" position="after">
             <t t-if="mode[1] == 'billing'">
                 <div t-attf-class="form-group #{error.get('is_company') and 'has-error' or ''} col-md-6" id="div_is_company">
-                    <label class="control-label">
+                    <label class="control-label label-optional">
                         Are you acting on behalf of a company?
                         <input type="checkbox" name="is_company" class="form-control"
                                style="width: auto;"
@@ -21,7 +21,7 @@
                 </div>
             </t>
             <div t-attf-class="form-group #{error.get('fiscalcode') and 'has-error' or ''} col-md-6" id="div_fiscalcode">
-                <label class="control-label" for="fiscalcode">Fiscal Code</label>
+                <label class="control-label label-optional" for="fiscalcode">Fiscal Code</label>
                 <input name="fiscalcode" class="form-control" t-att-value="'fiscalcode' in checkout and checkout['fiscalcode']"/>
             </div>
         </xpath>
