@@ -159,6 +159,11 @@ msgid "Bank Accounts"
 msgstr "Conti Bancari"
 
 #. module: l10n_it_ricevute_bancarie
+#: selection:res.company,riba_payment_response:0
+msgid "Bank Agreement"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_bank_expense_account_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_bank_expense_account_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_bank_expense_account_id
@@ -682,31 +687,31 @@ msgid "Move lines"
 msgstr "Move lines"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:246
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:248
 #, python-format
 msgid "No IBAN or ABI/CAB specified for "
 msgstr "Nessun IBAN o ABI/CAB specificato per"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:193
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:195
 #, python-format
 msgid "No IBAN specified"
 msgstr "Nessun IBAN specificato"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:201
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:203
 #, python-format
 msgid "No SIA Code specified for: "
 msgstr "Nessun codice SIA specificato per: "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:261
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:263
 #, python-format
 msgid "No VAT or Fiscal code specified for "
 msgstr "Nessuna P.IVA o codice fiscale specificato per "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:213
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:215
 #, python-format
 msgid "No VAT or Fiscalcode specified for: "
 msgstr "Nessuna P.IVA o codice fiscale specificato per: "
@@ -719,6 +724,11 @@ msgstr "Nessuna P.IVA o codice fiscale specificato per: "
 #, python-format
 msgid "No active ID found"
 msgstr "Nessun ID trovato"
+
+#. module: l10n_it_ricevute_bancarie
+#: selection:res.company,riba_payment_response:0
+msgid "Not Required"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_sequence
@@ -781,6 +791,13 @@ msgid "Partner %s has not bank!!!"
 msgstr "Il partner %s non ha banca!"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
+#, fuzzy
+#| msgid "Payments"
+msgid "Payment Response"
+msgstr "Pagamenti"
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_payment_term
 msgid "Payment Term"
 msgstr "Termine di pagamento"
@@ -820,6 +837,17 @@ msgid "Registration Date"
 msgstr "Data registrazione"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_config_settings_riba_payment_response
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_company_riba_payment_response
+msgid "Require to send back the response of the RiBa payment"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: selection:res.company,riba_payment_response:0
+msgid "Required"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Reset to Draft"
 msgstr "Riporta a bozza"
@@ -857,14 +885,16 @@ msgid "Ri.Ba. Bank"
 msgstr "Banca Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_configuration
-msgid "Ri.Ba. Configuration"
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
+#, fuzzy
+#| msgid "Ri.Ba. Configuration"
+msgid "Ri.Ba. Config"
 msgstr "Ri.Ba. Configurazione"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
-msgid "Ri.Ba. Due Cost Config"
-msgstr "Ri.Ba. Configurazione spese d'incasso"
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_configuration
+msgid "Ri.Ba. Configuration"
+msgstr "Ri.Ba. Configurazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_unsolved_action
@@ -1190,6 +1220,9 @@ msgstr "riba.unsolved"
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "Ri.Ba. Due Cost Config"
+#~ msgstr "Ri.Ba. Configurazione spese d'incasso"
 
 #~ msgid "Modalità Emissione"
 #~ msgstr "Modalità Emissione"
