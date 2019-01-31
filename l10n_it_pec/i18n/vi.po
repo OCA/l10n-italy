@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_it_pec
-#: model:ir.ui.view,arch_db:l10n_it_pec.res_partner_kanban_pec_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_pec.res_partner_kanban_pec_view
 msgid "<span> (PEC)</span>"
 msgstr ""
 
@@ -29,8 +29,8 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_pec
-#: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner_pec_mail
-#: model:ir.model.fields,field_description:l10n_it_pec.field_res_users_pec_mail
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner__pec_mail
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_users__pec_mail
 msgid "PEC Mail"
 msgstr ""
 
