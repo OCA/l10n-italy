@@ -35,5 +35,16 @@
         </field>
     </record>
 
+    <record id="view_partner_form_country_change" model="ir.ui.view">
+        <field name="name">res.partner.form.country.change</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="country_id" position="attributes">
+            	<attribute name="on_change">onchange_country_id_e_inv(country_id)</attribute>
+            </field>
+        </field>
+    </record>
+    
     </data>
 </openerp>
