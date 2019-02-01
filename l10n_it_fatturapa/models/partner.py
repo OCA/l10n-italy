@@ -63,8 +63,11 @@ class ResPartner(models.Model):
                         "As a Public Administration, partner %s IPA Code "
                         "must be 6 characters long."
                     ) % partner.name)
-                if partner.company_type == 'person' and (
-                    not partner.lastname or not partner.firstname
+                if (
+                    partner.company_type == 'person' and not
+                    partner.company_name and (
+                        not partner.lastname or not partner.firstname
+                    )
                 ):
                     raise ValidationError(_(
                         "As a natural person, partner %s "
