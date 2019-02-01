@@ -9,6 +9,9 @@
             <notebook position="inside">
                 <page string="Last error message" attrs="{'invisible': [('last_pec_error_message', '=', False)]}">
                     <field name="last_pec_error_message"/>
+                    <group>
+                        <field name="pec_error_count"/>
+                    </group>
                 </page>
             </notebook>
             <xpath expr="//notebook/page[1]/group[1]/group[3]" position="attributes">
