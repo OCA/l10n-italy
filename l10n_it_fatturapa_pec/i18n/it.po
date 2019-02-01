@@ -29,9 +29,22 @@ msgstr ""
 "%s, utente %s</p>"
 
 #. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:166
+#, python-format
+msgid ""
+"<p>PEC server %s has been reset. Last error message is</p><p><strong>%s</"
+"strong></p>"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Accepted"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:res.groups,name:l10n_it_fatturapa_pec.group_force_e_inv_export_state
+msgid "Allow to force e-invoice export state"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -123,6 +136,12 @@ msgid "Error"
 msgstr "Errore"
 
 #. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:163
+#, python-format
+msgid "Fetchmail PEC server [%s] reset"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_id
 msgid "ID"
 msgstr "ID"
@@ -174,6 +193,11 @@ msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
 #, fuzzy
 msgid "Not delivered"
 msgstr "Consegnato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server_pec_error_count
+msgid "PEC error count"
+msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:122
