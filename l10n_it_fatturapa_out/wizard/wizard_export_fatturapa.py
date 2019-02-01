@@ -370,7 +370,12 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
-        if partner.company_type == 'company':
+        if partner.company_name:
+            # This is valorized by e-commerce orders typically
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                DatiAnagrafici.Anagrafica = AnagraficaType(
+                    Denominazione=partner.company_name)
+        elif partner.company_type == 'company':
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Denominazione=partner.name)
