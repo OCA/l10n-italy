@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
-from odoo import models, api, fields
+from odoo import models, api, fields, _
 
 _logger = logging.getLogger(__name__)
 MAX_POP_MESSAGES = 50
@@ -17,6 +17,7 @@ class Fetchmail(models.Model):
 
     last_pec_error_message = fields.Text(
         "Last PEC Error Message", readonly=True)
+    pec_error_count = fields.Integer("PEC error count", readonly=True)
     e_inv_notify_partner_ids = fields.Many2many(
         "res.partner", string="Contacts to notify",
         help="Contacts to notify when PEC message can't be processed",
@@ -46,6 +47,7 @@ class Fetchmail(models.Model):
                 additional_context['server_type'] = server.type
                 imap_server = None
                 pop_server = None
+                error_raised = False
                 if server.type == 'imap':
                     try:
                         imap_server = server.connect()
@@ -71,11 +73,9 @@ class Fetchmail(models.Model):
                                     server.type, server.name, exc_info=True
                                 )
                                 # Here is where we need to intervene.
-                                # Setting to draft prevents new e-invoices to
-                                # be sent via PEC
-                                server.state = 'draft'
                                 server.last_pec_error_message = str(e)
-                                break
+                                error_raised = True
+                                continue
                             imap_server.store(num, '+FLAGS', '\\Seen')
                             # We need to commit because message is processed:
                             # Possible next exceptions, out of try, should not
@@ -86,8 +86,8 @@ class Fetchmail(models.Model):
                             "General failure when trying to fetch mail from "
                             "%s server %s.",
                             server.type, server.name, exc_info=True)
-                        server.state = 'draft'
                         server.last_pec_error_message = str(e)
+                        error_raised = True
                     finally:
                         if imap_server:
                             imap_server.close()
@@ -122,9 +122,9 @@ class Fetchmail(models.Model):
                                         server.type, server.name, exc_info=True
                                     )
                                     # See the comments in the IMAP part
-                                    server.state = 'draft'
+                                    error_raised = True
                                     server.last_pec_error_message = str(e)
-                                    break
+                                    continue
                                 self._cr.commit()
                             if num_messages < MAX_POP_MESSAGES:
                                 break
@@ -135,10 +135,48 @@ class Fetchmail(models.Model):
                             " server %s.",
                             server.type, server.name, exc_info=True)
                         # See the comments in the IMAP part
-                        server.state = 'draft'
+                        error_raised = True
                         server.last_pec_error_message = str(e)
                     finally:
                         if pop_server:
                             pop_server.quit()
+                if error_raised:
+                    server.pec_error_count += 1
+                    max_retry = self.env['ir.config_parameter'].get_param(
+                        'fetchmail.pec.max.retry')
+                    if server.pec_error_count > int(max_retry):
+                        # Setting to draft prevents new e-invoices to
+                        # be sent via PEC.
+                        # Resetting server state only after N fails.
+                        # So that the system can try to fetch again after
+                        # temporary connection errors
+                        server.state = 'draft'
+                        server.notify_about_server_reset()
+                else:
+                    server.pec_error_count = 0
             server.write({'date': fields.Datetime.now()})
         return True
+
+    def notify_about_server_reset(self):
+        if self.e_inv_notify_partner_ids:
+            self.env['mail.mail'].create({
+                'subject': _(
+                    "Fetchmail PEC server [%s] reset"
+                ) % self.name,
+                'body_html': _(
+                    "<p>"
+                    "PEC server %s has been reset. Last error message is</p>"
+                    "<p><strong>%s</strong></p>"
+                ) % (self.name, self.last_pec_error_message),
+                'recipient_ids': [(
+                    6, 0,
+                    self.e_inv_notify_partner_ids.ids
+                )]
+            })
+            _logger.info(
+                'Notifying partners %s about PEC server %s reset'
+                % (self.e_inv_notify_partner_ids.ids, self.name)
+            )
+        else:
+            _logger.error(
+                "Can't notify anyone about PEC server %s reset" % self.name)
