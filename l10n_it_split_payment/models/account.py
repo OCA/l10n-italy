@@ -136,7 +136,7 @@ class AccountInvoice(orm.Model):
 
     def _compute_split_payments(self, cr, uid, ids, context=None):
         for invoice in self.browse(cr, uid, ids, context):
-            payment_line_ids = invoice.move_line_id_payment_get()
+            payment_line_ids = invoice.move_line_id_payment_get(cr, uid, ids)
             move_line_pool = self.pool['account.move.line']
             for payment_line in move_line_pool.browse(
                 cr, uid, payment_line_ids, context
