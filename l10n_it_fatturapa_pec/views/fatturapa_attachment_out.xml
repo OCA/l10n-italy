@@ -35,6 +35,18 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_fatturapa_out_pec_attachment_form_statusbar">
+        <field name="name">view_fatturapa_out_pec_attachment_form_statusbar</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form"/>
+        <field name="groups_id" eval="[(4,ref('l10n_it_fatturapa_pec.group_force_e_inv_export_state'))]"/>
+        <field name="arch" type="xml">
+            <field name="state" position="attributes">
+                <attribute name="clickable">1</attribute>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="view_fatturapa_out_attachment_tree_state">
         <field name="name">view_fatturapa_out_attachment_tree_state</field>
         <field name="model">fatturapa.attachment.out</field>
