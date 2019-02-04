@@ -55,6 +55,7 @@ addon | version | summary
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.2.3 | Italian Localization - VAT Registries
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 10.0.1.0.0 | Bridge module to make VAT registries work with Split Payment
+[l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 10.0.1.0.0 | Add fiscal code to details of frontend user
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 10.0.1.1.1 | Italian localization - Website Sale Corrispettivi
 [l10n_it_website_sale_fiscalcode](l10n_it_website_sale_fiscalcode/) | 10.0.1.0.1 | Website Sale FiscalCode
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.2.3 | Italian Withholding Tax
