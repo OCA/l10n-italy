@@ -416,3 +416,10 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                 self.assertTrue(len(invoice.invoice_line_ids) == 2)
             if invoice.reference == '456':
                 self.assertTrue(len(invoice.invoice_line_ids) == 1)
+
+    def test_17_xml_import(self):
+        res = self.run_wizard('test17', 'IT05979361218_010.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(
+            invoice.related_documents[0].type, "invoice")
