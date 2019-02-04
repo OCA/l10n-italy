@@ -7,12 +7,13 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '8.0.1.1.3',
+    'version': '8.0.1.1.4',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
     'author': 'Agile Business Group, Innoviu, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy/tree/8.0/'
+               'l10n_it_fatturapa_in',
     'license': 'LGPL-3',
     'depends': [
         'l10n_it_fatturapa',
