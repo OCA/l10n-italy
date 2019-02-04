@@ -31,7 +31,7 @@ class FatturaPAAttachmentOut(models.Model):
                               ('accepted', 'Accepted'),
                               ],
                              string='State',
-                             default='ready',)
+                             default='ready', track_visibility='onchange')
 
     last_sdi_response = fields.Text(
         string='Last Response from Exchange System', default='No response yet',
