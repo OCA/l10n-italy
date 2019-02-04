@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template id="fiscalcode_details" name="Add fiscalcode" inherit_id="website_portal.details">
+        <xpath expr="//form[@action='/my/account']//div[hasclass('col-md-8')]//div[hasclass('row')]" position="inside">
+            <div class="clearfix"/>
+            <div t-attf-class="form-group #{error.get('fiscalcode') and 'has-error' or ''} col-lg-6">
+                <label class="control-label label-optional" for="fiscalcode">
+                    Your Fiscal Code
+                </label>
+                <input type="text" name="fiscalcode" class="form-control"
+                       t-att-value="fiscalcode or partner.fiscalcode"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
