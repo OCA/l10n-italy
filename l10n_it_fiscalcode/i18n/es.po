@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 08:05+0000\n"
-"PO-Revision-Date: 2016-01-14 07:30+0000\n"
-"Last-Translator: rubencr7 <rubencr7@gmail.com>\n"
+"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_fiscalcode
 #: field:res.city.it.code,cadastre_code:0
@@ -80,7 +81,7 @@ msgstr "Fecha de nacimiento"
 #: field:res.city.it.code.province,display_name:0
 #: field:wizard.compute.fc,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a mostrar"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:159
@@ -137,7 +138,6 @@ msgstr "Código Fiscal Italiano"
 #: field:res.city.it.code.distinct,__last_update:0
 #: field:res.city.it.code.province,__last_update:0
 #: field:wizard.compute.fc,__last_update:0
-#, fuzzy
 msgid "Last Modified on"
 msgstr "Última Actualización el"
 
@@ -192,7 +192,7 @@ msgstr "Notas"
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr "Empresa"
 
 #. module: l10n_it_fiscalcode
 #: field:res.city.it.code,province:0 field:wizard.compute.fc,birth_province:0
