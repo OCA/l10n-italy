@@ -715,6 +715,9 @@ class WizardExportFatturapa(models.TransientModel):
 
     def setDatiPagamento(self, invoice, body):
         if invoice.payment_term_id:
+            payment_line_ids = invoice.get_receivable_line_ids()
+            if not payment_line_ids:
+                return True
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term_id.fatturapa_pt_id:
                 raise UserError(
@@ -727,7 +730,6 @@ class WizardExportFatturapa(models.TransientModel):
             DatiPagamento.CondizioniPagamento = (
                 invoice.payment_term_id.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
-            payment_line_ids = invoice.get_receivable_line_ids()
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
                 ImportoPagamento = '%.2f' % (
