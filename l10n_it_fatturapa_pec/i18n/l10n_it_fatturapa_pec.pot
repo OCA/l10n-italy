@@ -32,6 +32,11 @@ msgid "Accepted"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:res.groups,name:l10n_it_fatturapa_pec.group_force_e_inv_export_state
+msgid "Allow to force e-invoice export state"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Cancel"
 msgstr ""
