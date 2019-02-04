@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-24 15:03+0000\n"
-"PO-Revision-Date: 2019-01-25 19:51+0000\n"
+"PO-Revision-Date: 2019-02-04 14:30+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
@@ -41,7 +41,7 @@ msgstr "Aggiungi riga bollo"
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__auto_compute
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
 msgid "Auto-compute"
-msgstr ""
+msgstr "Calcolo automatico"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_res_company
@@ -130,14 +130,13 @@ msgstr "Totale imponibile minimo per applicabilità bollo"
 #. module: l10n_it_account_stamp
 #: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-#, fuzzy
 msgid ""
 "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
 "June\n"
 "17, 2014"
 msgstr ""
-"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
-"M.\n"
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del "
+"D.M.\n"
 "17 giugno 2014"
 
 #. module: l10n_it_account_stamp
