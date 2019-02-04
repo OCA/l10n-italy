@@ -21,6 +21,7 @@
         'l10n_it_sdi_channel',
     ],
     'data': [
+        'security/groups.xml',
         'views/account.xml',
         'views/fatturapa_attachment_out.xml',
         'wizard/send_pec_view.xml',
