@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo11-addon-l10n_it_rea',
         'odoo11-addon-l10n_it_sdi_channel',
         'odoo11-addon-l10n_it_split_payment',
+        'odoo11-addon-l10n_it_vat_registries',
         'odoo11-addon-l10n_it_website_sale_corrispettivi',
         'odoo11-addon-l10n_it_withholding_tax',
         'odoo11-addon-l10n_it_withholding_tax_causali',
