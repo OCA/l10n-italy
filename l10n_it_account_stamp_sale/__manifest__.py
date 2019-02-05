@@ -5,7 +5,7 @@
 {
     'name': 'Italian Localization - Imposta di bollo - vendite',
     'summary': "Modulo ponte tra imposta di bollo e vendite",
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Localization/Italy',
     'license': 'AGPL-3',
     'author': 'Agile Business Group, Odoo Community Association (OCA)',
