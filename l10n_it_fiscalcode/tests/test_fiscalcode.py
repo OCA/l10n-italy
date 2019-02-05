@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
 
 
 class TestFiscalCode(TransactionCase):
@@ -24,3 +25,29 @@ class TestFiscalCode(TransactionCase):
         # ---- Compute FiscalCode
         wizard.compute_fc()
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04H501X')
+
+    def test_fiscalcode_check(self):
+        # Wrong FC
+        with self.assertRaises(ValidationError):
+            self.env['res.partner'].create({
+                'name': 'Person',
+                'is_company': False,
+                'fiscalcode': '123',
+            })
+        # Correct FC
+        self.env['res.partner'].create({
+            'name': 'Person',
+            'is_company': False,
+            'fiscalcode': 'RSSMRA84H04H501X',
+        })
+        # Empty FC
+        self.env['res.partner'].create({
+            'name': 'Person',
+        })
+        # FC is VAT number
+        self.env['res.partner'].create({
+            'name': 'Person',
+            'company_name': 'Company',
+            'is_company': False,
+            'fiscalcode': '123456789',
+        })
