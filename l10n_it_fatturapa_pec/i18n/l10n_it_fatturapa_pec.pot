@@ -120,6 +120,12 @@ msgid "Fetchmail PEC server [%s] reset"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:73
+#, python-format
+msgid "File content and file name are mandatory"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
 msgid "ID"
 msgstr ""
@@ -265,7 +271,7 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:247
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:249
 #, python-format
 msgid "You can only delete files in 'Ready to Send' state."
 msgstr ""

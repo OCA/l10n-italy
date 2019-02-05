@@ -41,6 +41,15 @@ class TestEInvoiceSend(EInvoiceCommon):
         e_invoice.send_via_pec()
         self.assertEqual(e_invoice.state, 'sent')
 
+    def test_send_empty_file(self):
+        """Sending e-invoice without file content must be blocked"""
+        e_invoice = self._create_e_invoice()
+
+        self._create_fetchmail_pec_server()
+        e_invoice.datas = False
+        with self.assertRaises(UserError):
+            e_invoice.send_via_pec()
+
     def test_wizard_send(self):
         """Sending e-invoice with wizard changes its state to 'sent'"""
         e_invoice = self._create_e_invoice()
