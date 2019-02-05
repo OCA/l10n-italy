@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_tax_registry_form" model="ir.ui.view">
+            <field name="name">account.tax.registry.form</field>
+            <field name="model">account.tax.registry</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"></field>
+                        <field name="layout_type"></field>
+                    </group>
+                    <separator string="Journals"></separator>
+                    <field name="journal_ids"></field>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_tax_registry_form" model="ir.actions.act_window">
+            <field name="name">VAT registries</field>
+            <field name="res_model">account.tax.registry</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a VAT registry.
+              </p><p>
+                A VAT registry is used to group several journals in one registry.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_account_tax_registry_form"
+        id="menu_action_account_tax_registry_form"
+        parent="account.account_account_menu"
+        />
+    </data>
+</openerp>
