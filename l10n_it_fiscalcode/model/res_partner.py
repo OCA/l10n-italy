@@ -10,14 +10,19 @@ class ResPartner(models.Model):
     def check_fiscalcode(self):
         for partner in self:
             if not partner.fiscalcode:
-                return True
-            elif (
-                len(partner.fiscalcode) != 16 and
-                partner.company_type == 'person'
-            ):
-                return False
-            else:
-                return True
+                # Because it is not mandatory
+                continue
+            elif partner.company_type == 'person':
+                # Person case
+                if partner.company_name:
+                    # In E-commerce, if there is company_name,
+                    # the user might insert VAT in fiscalcode field.
+                    # Perform the same check as Company case
+                    continue
+                if len(partner.fiscalcode) != 16:
+                    # Check fiscalcode of a person
+                    return False
+        return True
 
     fiscalcode = fields.Char(
         'Fiscal Code', size=16, help="Italian Fiscal Code")
