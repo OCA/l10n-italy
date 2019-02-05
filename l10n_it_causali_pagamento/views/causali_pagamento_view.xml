@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_causale_pagamento_tree" model="ir.ui.view">
+        <field name="name">view.causale.pagamento.tree</field>
+        <field name="model">causale.pagamento</field>
+        <field name="arch" type="xml">
+            <tree string="Causale pagamento">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_causale_pagamento_form" model="ir.ui.view">
+        <field name="name">view.causale.pagamento.form</field>
+        <field name="model">causale.pagamento</field>
+        <field name="arch" type="xml">
+            <form string="Causale pagamento">
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_causale_pagamento" model="ir.actions.act_window">
+        <field name="name">Causali pagamento</field>
+        <field name="res_model">causale.pagamento</field>
+        <field name="view_id" ref="view_causale_pagamento_tree"/>
+    </record>
+
+    <menuitem id="menu_causale_pagamento" name="Causali pagamento"
+        action="action_causale_pagamento" parent="account.account_account_menu"
+        groups="account.group_account_manager" sequence="45"/>
+
+</odoo>

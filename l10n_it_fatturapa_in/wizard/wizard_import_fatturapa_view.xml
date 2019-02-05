@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="wizard_import_fatturapa_form_view" model="ir.ui.view">
+            <field name="name">Electronic Bill Import</field>
+            <field name="model">wizard.import.fatturapa</field>
+            <field name="arch" type="xml">
+                <form string="Electronic Bill Import" >
+                    <group>
+                        <field name="e_invoice_detail_level"/>
+                        <footer>
+                            <button special="cancel" string="Cancel"/>
+                            <button name="importFatturaPA" string="Import" type="object"/>
+                        </footer>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Import Electronic Bill"
+            res_model="wizard.import.fatturapa"
+            src_model="fatturapa.attachment.in"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_wizard_import_fatturapa"
+            view_id="wizard_import_fatturapa_form_view"/>
+
+    </data>
+</odoo>

@@ -1,4 +1,3 @@
-# Copyright 2017 Agile Business Group (<http://www.agilebg.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields
@@ -17,6 +16,16 @@ class AccountTax(models.Model):
     parent_tax_ids = fields.Many2many(
         'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
         string='Parent Taxes')
+
+    def _get_tax_amount(self):
+        self.ensure_one()
+        res = 0.0
+        if self.amount_type == 'group':
+            for child in self.children_tax_ids:
+                res += child.amount
+        else:
+            res = self.amount
+        return res
 
     def _get_tax_name(self):
         self.ensure_one()
