@@ -16,3 +16,4 @@ class AccountInvoice(models.Model):
         invoice_model = self.env['account.invoice']
         for invoice in invoice_model.browse(invoice_ids):
             invoice.tax_stamp = invoice.is_tax_stamp_applicable()
+        return invoice_ids
