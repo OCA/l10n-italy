@@ -14,5 +14,18 @@
                 </field>
             </field>
         </record>
+
+        <record id="view_payment_term_tree_fatturapa" model="ir.ui.view">
+            <field name="name">account.payment.term.fatturapa</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="account.view_payment_term_tree"></field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="fatturapa_pt_id"/>
+                    <field name="fatturapa_pm_id"/>
+                </field>
+            </field>
+        </record>
+
     </data>
 </odoo>
