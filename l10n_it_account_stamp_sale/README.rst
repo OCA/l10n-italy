@@ -32,7 +32,7 @@ a partire da un ordine di vendita.
 
 **English**
 
-The module allows to to automatically determine the application of the account stamp for each invoice created starting
+The module allows to automatically determine the application of the account stamp for each invoice created starting
 from a sale order.
 
 **Table of contents**
