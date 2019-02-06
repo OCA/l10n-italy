@@ -24,8 +24,7 @@ class WizardLinkToInvoice(models.TransientModel):
         self.invoice_id.fatturapa_attachment_in_id = active_ids[0]
         # extract pdf if attached
         fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
-        fatturapa_attachment_ids = self.env.context.get('active_ids', False)
-        for fatturapa_attachment_id in fatturapa_attachment_ids:
+        for fatturapa_attachment_id in active_ids:
             fatturapa_attachment = fatturapa_attachment_obj.browse(
                 fatturapa_attachment_id)
             fatt = self.get_invoice_obj(fatturapa_attachment)
@@ -33,5 +32,5 @@ class WizardLinkToInvoice(models.TransientModel):
                 # 2.5
                 AttachmentsData = FatturaBody.Allegati
                 if AttachmentsData and self.invoice_id:
-                    self.env['fatturapa.attachment.in'].extract_attachments(
+                    fatturapa_attachment_obj.extract_attachments(
                         AttachmentsData, self.invoice_id.id)
