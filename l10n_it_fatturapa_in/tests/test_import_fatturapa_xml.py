@@ -44,14 +44,16 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.attach_model = self.registry('fatturapa.attachment.in')
         self.invoice_model = self.registry('account.invoice')
 
-    def run_wizard(self, name, file_name):
+    def run_wizard(self, name, file_name, datas_fname=None):
         cr, uid = self.cr, self.uid
+        if datas_fname is None:
+            datas_fname = file_name
         attach_id = self.attach_model .create(
             cr, uid,
             {
                 'name': name,
                 'datas': self.getFile(file_name)[1],
-                'datas_fname': file_name
+                'datas_fname': datas_fname
             })
         wizard_id = self.wizard_model.create(cr, uid, {})
 
@@ -327,3 +329,26 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             ' but it does not exist in your system\n'
             'XML contains tax with percentage "15.55"'
             ' but it does not exist in your system')
+
+    def test_19_xml_import(self):
+        # Testing CAdES signature, base64 encoded
+        res = self.run_wizard(
+            'test19', 'IT01234567890_FPR03.base64.xml.p7m',
+            'IT01234567890_FPR03.xml.p7m')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertEqual(len(invoices), 2)
+        for invoice in invoices:
+            self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+            self.assertEqual(invoice.partner_id.e_invoice_detail_level, '0')
+            self.assertTrue(invoice.reference in ('456', '123'))
+            if invoice.reference == '123':
+                self.assertEqual(
+                    invoice.inconsistencies,
+                    'Computed amount untaxed 0.0 is different from summary '
+                    'data 25.0')
+            if invoice.reference == '456':
+                self.assertEqual(
+                    invoice.inconsistencies,
+                    'Computed amount untaxed 0.0 is different from summary '
+                    'data 2000.0')
