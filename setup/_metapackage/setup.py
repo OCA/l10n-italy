@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_abicab',
         'odoo10-addon-l10n_it_account',
         'odoo10-addon-l10n_it_account_stamp',
+        'odoo10-addon-l10n_it_account_stamp_ddt',
         'odoo10-addon-l10n_it_account_stamp_sale',
         'odoo10-addon-l10n_it_account_tax_kind',
         'odoo10-addon-l10n_it_ateco',
