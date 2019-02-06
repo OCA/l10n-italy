@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino
+  Copyright 2019 Lorenzo Battistini
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Portal Electronic Invoice">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/l10n_it_website_portal_fatturapa/static/src/js/l10n_it_website_portal_fatturapa.js"/>
+        </xpath>
+    </template>
+
+    <template id="fatturapa_details" name="Add fatturapa fields" inherit_id="l10n_it_website_portal_fiscalcode.fiscalcode_details">
+        <xpath expr="//input[@name='name']/.." position="attributes">
+            <attribute name="t-attf-class" separator=" " add="#{'o_hidden' if not partner.is_company else ''}"/>
+        </xpath>
+        <xpath expr="//input[@name='name']/.." position="after">
+            <t t-if="not partner.is_company">
+                <div class="clearfix"/>
+                <div t-attf-class="form-group #{error.get('firstname') and 'has-error' or ''} col-lg-6">
+                    <label class="control-label" for="firstname">
+                        Your First Name
+                    </label>
+                    <input type="text" name="firstname" class="form-control"
+                           t-att-value="firstname or partner.firstname"/>
+                </div>
+                <div t-attf-class="form-group #{error.get('lastname') and 'has-error' or ''} col-lg-6">
+                    <label class="control-label" for="lastname">
+                        Your Last Name
+                    </label>
+                    <input type="text" name="lastname" class="form-control"
+                           t-att-value="lastname or partner.lastname"/>
+                </div>
+                <div class="clearfix"/>
+            </t>
+        </xpath>
+        <xpath expr="//input[@name='fiscalcode']/.." position="after">
+            <div class="clearfix"/>
+            <div class="col-lg-6 div_electronic_invoice_subjected">
+                <label class="control-label label-optional" for="electronic_invoice_subjected">
+                    I want to receive electronic invoices
+                </label>
+                <input type="checkbox" name="electronic_invoice_subjected" class="form-control"
+                       style="width: auto; margin:0px"
+                       t-att-checked="electronic_invoice_subjected or partner.electronic_invoice_subjected"/>
+            </div>
+            <div class="clearfix"/>
+            <div t-attf-class="form-group #{error.get('codice_destinatario') and 'has-error' or ''} col-lg-6 div_codice_destinatario">
+                <label class="control-label label-optional" for="codice_destinatario">
+                    Addressee code
+                </label>
+                <input type="text" name="codice_destinatario" class="form-control"
+                       t-att-value="codice_destinatario or partner.codice_destinatario"/>
+            </div>
+            <div t-attf-class="form-group #{error.get('pec_destinatario') and 'has-error' or ''} col-lg-6 div_pec_destinatario">
+                <label class="control-label label-optional" for="pec_destinatario">
+                    Or PEC address for Electronic invoicing
+                </label>
+                <input type="text" name="pec_destinatario" class="form-control"
+                       t-att-value="pec_destinatario or partner.pec_destinatario"/>
+            </div>
+            <div class="clearfix"/>
+        </xpath>
+    </template>
+</odoo>
