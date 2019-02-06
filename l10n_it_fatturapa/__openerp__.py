@@ -110,6 +110,9 @@ To contribute to this module, please visit http://odoo-community.org.
     "demo": ['demo/account_invoice_fatturapa.xml'],
     "installable": True,
     'external_dependencies': {
-        'python': ['pyxb'],
+        'python': [
+            'pyxb',  # pyxb 1.2.5
+            'asn1crypto'
+        ],
     }
 }
