@@ -443,3 +443,10 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                     invoice.inconsistencies,
                     'Computed amount untaxed 0.0 is different from summary '
                     'data 2000.0')
+
+    def test_20_xml_import(self):
+        # Testing xml without xml declaration (sent by Amazon)
+        res = self.run_wizard('test20', 'IT05979361218_no_decl.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")

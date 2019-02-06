@@ -19,7 +19,6 @@ except (ImportError, IOError) as err:
     _logger.debug(err)
 
 
-re_xml = re.compile(br'(\xef\xbb\xbf)*\s*<\?xml', re.I)
 re_base64 = re.compile(
     br'^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$')
 
@@ -79,9 +78,6 @@ class Attachment(models.Model):
                 ) % e.args
             )
 
-        if re_xml.match(data) is not None:
-            return self.cleanup_xml(data)
-
         if re_base64.match(data) is not None:
             try:
                 data = base64.b64decode(data)
@@ -92,12 +88,27 @@ class Attachment(models.Model):
                     ) % e.args
                 )
 
+        # Amazon sends xml files without <?xml declaration,
+        # so they cannot be easily detected using a pattern.
+        # We first try to parse as asn1, if it fails we assume xml
+
+        # asn1crypto parser will raise ValueError
+        # if the asn1 cannot be parsed
+        # KeyError is raised if one of the needed key is not
+        # in the asn1 structure (info->content->encap_content_info->content)
         try:
-            return self.cleanup_xml(self.extract_cades(data))
-        except (ValueError, KeyError) as e:
+            data = self.extract_cades(data)
+        except (ValueError, KeyError):
+            pass
+
+        try:
+            return self.cleanup_xml(data)
+        # cleanup_xml calls root.iter(), but root is None if the parser fails
+        # Invalid xml 'NoneType' object has no attribute 'iter'
+        except AttributeError as e:
             raise UserError(
                 _(
-                    'Signed Xml file %s.'
+                    'Invalid xml %s.'
                 ) % e.args
             )
 
