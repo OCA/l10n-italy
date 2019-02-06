@@ -1,5 +1,6 @@
 
-from odoo import fields, models, api
+import base64
+from odoo import fields, models, api, _
 
 
 class FatturaPAAttachmentIn(models.Model):
@@ -62,3 +63,22 @@ class FatturaPAAttachmentIn(models.Model):
                 att.registered = True
             else:
                 att.registered = False
+
+    def extract_attachments(self, AttachmentsData, invoice_id):
+        AttachModel = self.env['fatturapa.attachments']
+        for attach in AttachmentsData:
+            if not attach.NomeAttachment:
+                name = _("Attachment without name")
+            else:
+                name = attach.NomeAttachment
+            content = attach.Attachment
+            _attach_dict = {
+                'name': name,
+                'datas': base64.b64encode(content),
+                'datas_fname': name,
+                'description': attach.DescrizioneAttachment or '',
+                'compression': attach.AlgoritmoCompressione or '',
+                'format': attach.FormatoAttachment or '',
+                'invoice_id': invoice_id,
+            }
+            AttachModel.create(_attach_dict)
