@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_website_portal_fatturapa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_website_portal_fatturapa
+#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+msgid "Addressee code"
+msgstr ""
+
+#. module: l10n_it_website_portal_fatturapa
+#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:70
+#, python-format
+msgid "At least one of first name and last name is required"
+msgstr ""
+
+#. module: l10n_it_website_portal_fatturapa
+#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+msgid "I want to receive electronic invoices"
+msgstr ""
+
+#. module: l10n_it_website_portal_fatturapa
+#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+msgid "Or PEC address for Electronic invoicing"
+msgstr ""
+
+#. module: l10n_it_website_portal_fatturapa
+#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+msgid "Your First Name"
+msgstr ""
+
+#. module: l10n_it_website_portal_fatturapa
+#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+msgid "Your Last Name"
+msgstr ""
+
