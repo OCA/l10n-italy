@@ -600,9 +600,12 @@ class WizardExportFatturapa(orm.TransientModel):
                 _('Error!'),
                 _('Invoice does not have a number.'))
 
-        TipoDocumento = 'TD01'
-        if invoice.type == 'out_refund':
-            TipoDocumento = 'TD04'
+        if invoice.doc_type:
+            TipoDocumento = invoice.doc_type.code
+        else:
+            TipoDocumento = 'TD01'
+            if invoice.type == 'out_refund':
+                TipoDocumento = 'TD04'
         ImportoTotaleDocumento = invoice.amount_total
         if invoice.split_payment:
             ImportoTotaleDocumento += invoice.amount_sp
