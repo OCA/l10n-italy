@@ -1,11 +1,11 @@
 **Italiano**
 
-Il server Odoo deve essere avviato da un sistema Linux con installato
+Questo modulo richiede asn1crypto
 
-``openssl``
+https://github.com/wbond/asn1crypto
 
 **English**
 
-Odoo server must run on linux and be able to run
+This module requires asn1crypto
 
-``openssl``
+https://github.com/wbond/asn1crypto
