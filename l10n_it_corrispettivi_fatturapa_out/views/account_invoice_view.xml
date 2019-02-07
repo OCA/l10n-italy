@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 Simone Rubino
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
+<odoo>
+    <record id="corrispettivi_fatturapa_out_form" model="ir.ui.view">
+        <field name="name">Integrate receipts and fatturapa out form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="l10n_it_corrispettivi.corrispettivi_form"/>
+        <field name="arch" type="xml">
+            <button name="%(l10n_it_fatturapa_out.action_wizard_export_fatturapa)d" position="attributes">
+                <attribute name="class" add="o_hidden" separator=" "/>
+            </button>
+        </field>
+    </record>
+</odoo>
