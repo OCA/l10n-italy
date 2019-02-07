@@ -415,3 +415,31 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertTrue(len(invoices) == 2)
         for invoice in invoices:
             self.assertTrue(len(invoice.invoice_line) == 0)
+
+    def test_19_xml_import(self):
+        # Testing CAdES signature, base64 encoded
+        res = self.run_wizard('test19', 'IT01234567890_FPR03.base64.xml.p7m')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertEqual(len(invoices), 2)
+        for invoice in invoices:
+            self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+            self.assertEqual(invoice.partner_id.e_invoice_detail_level, '0')
+            self.assertTrue(invoice.supplier_invoice_number in ('456', '123'))
+            if invoice.supplier_invoice_number == '123':
+                self.assertEqual(
+                    invoice.inconsistencies,
+                    'Computed amount untaxed 0.0 is different from '
+                    'DatiRiepilogo 25.0')
+            if invoice.supplier_invoice_number == '456':
+                self.assertEqual(
+                    invoice.inconsistencies,
+                    'Computed amount untaxed 0.0 is different from '
+                    'DatiRiepilogo 2000.0')
+
+    def test_20_xml_import(self):
+        # Testing xml without xml declaration (sent by Amazon)
+        res = self.run_wizard('test20', 'IT05979361218_no_decl.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
