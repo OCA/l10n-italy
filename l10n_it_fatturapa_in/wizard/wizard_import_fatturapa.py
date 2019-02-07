@@ -850,7 +850,7 @@ class WizardImportFatturapa(models.TransientModel):
             'journal_id': purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
             'fiscal_position_id': False,
-            'payment_term_id': False,
+            'payment_term_id': partner.property_supplier_payment_term_id.id,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
             'comment': comment
@@ -913,6 +913,7 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
         invoice = invoice_model.create(invoice_data)
         invoice._onchange_invoice_line_wt_ids()
+        invoice._onchange_payment_term_date_invoice()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 
