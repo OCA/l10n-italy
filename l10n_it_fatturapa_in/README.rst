@@ -41,9 +41,9 @@ http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 Installation
 ============
 
-odoo server must run on linux and be able to run
+This module requires asn1crypto
 
-``openssl``
+https://github.com/wbond/asn1crypto
 
 Configuration
 =============
