@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_account_stamp',
         'odoo12-addon-l10n_it_account_tax_kind',
         'odoo12-addon-l10n_it_causali_pagamento',
+        'odoo12-addon-l10n_it_corrispettivi',
         'odoo12-addon-l10n_it_esigibilita_iva',
         'odoo12-addon-l10n_it_fatturapa',
         'odoo12-addon-l10n_it_fatturapa_in',
