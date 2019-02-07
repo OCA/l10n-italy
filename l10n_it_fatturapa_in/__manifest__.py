@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '11.0.1.0.2',
+    'version': '11.0.1.0.3',
     "development_status": "Beta",
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
