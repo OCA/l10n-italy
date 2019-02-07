@@ -173,7 +173,7 @@ msgid "Bank Name"
 msgstr "Nome banca"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:90
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:86
 #, python-format
 msgid "Base64 encoded file %s."
 msgstr ""
@@ -231,7 +231,7 @@ msgid "Contract"
 msgstr "Contratto"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:77
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:76
 #, fuzzy, python-format
 msgid "Corrupted attachment %s."
 msgstr "Allegati e-fattura"
@@ -592,6 +592,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_intermediary
 msgid "Intermediary"
 msgstr "Intermediario"
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:110
+#, python-format
+msgid "Invalid xml %s."
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice
@@ -1136,12 +1142,6 @@ msgid "Sequence %s can't use subsequences."
 msgstr "La sequenza %s non può usare sottosequenze."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:99
-#, python-format
-msgid "Signed Xml file %s."
-msgstr "File XML firmato %s."
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
@@ -1418,6 +1418,9 @@ msgstr "non imponibili"
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
 msgstr "inversione contabile"
+
+#~ msgid "Signed Xml file %s."
+#~ msgstr "File XML firmato %s."
 
 #~ msgid "ASN.1 structure is not parsable in DER."
 #~ msgstr "La struttura ASN.1 non può essere analizzata con DER."

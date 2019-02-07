@@ -170,7 +170,7 @@ msgid "Bank Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:90
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:86
 #, python-format
 msgid "Base64 encoded file %s."
 msgstr ""
@@ -228,7 +228,7 @@ msgid "Contract"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:77
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:76
 #, python-format
 msgid "Corrupted attachment %s."
 msgstr ""
@@ -577,6 +577,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_intermediary
 msgid "Intermediary"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:110
+#, python-format
+msgid "Invalid xml %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1117,12 +1123,6 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa/models/company.py:61
 #, python-format
 msgid "Sequence %s can't use subsequences."
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:99
-#, python-format
-msgid "Signed Xml file %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
