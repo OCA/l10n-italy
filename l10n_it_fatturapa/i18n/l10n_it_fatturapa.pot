@@ -285,7 +285,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__delivery_address
-msgid "Delivery Address"
+msgid "Delivery Address for E-invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -589,6 +589,11 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type__numitem
 msgid "Item Num."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__key
+msgid "Key"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1133,6 +1138,11 @@ msgid "Tax Representative"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__key
+msgid "Technical field used to resolve multiple attachments in a multi-website environment."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__codice_destinatario
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__codice_destinatario
 msgid "The code, 7 characters long, assigned by ES to subjects with an accredited channel; if the addressee didn't accredit a channel to ES and invoices are received by PEC, the field must be filled with zeros ('0000000')."
@@ -1168,6 +1178,11 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company__fatturapa_sequence_id
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_config_settings__fatturapa_sequence_id
 msgid "The univocal progressive of the file is represented by an alphanumeric sequence of maximum length 5, its values are included in 'A'-'Z' and '0'-'9'"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__theme_template_id
+msgid "Theme Template"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1230,6 +1245,16 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__vehicle_registration
 msgid "Vehicle Registration"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__website_id
+msgid "Website"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__website_url
+msgid "Website URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa
