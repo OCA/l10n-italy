@@ -58,11 +58,12 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def corrispettivo_print(self):
-        """ Print the corrispettivo and mark it as sent"""
+        """Print the corrispettivo and mark it as sent"""
         self.ensure_one()
         self.sent = True
-        return self.env['report'].get_action(
-            self, 'l10n_it_corrispettivi.report_corrispettivi')
+        return self.env.ref(
+            'l10n_it_corrispettivi.account_corrispettivi'
+        ).report_action(self)
 
 
 class AccountJournal(models.Model):

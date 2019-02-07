@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     'name': 'Italian Localization - Corrispettivi',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'category': 'Accounting & Finance',
     'author': 'Odoo Italian Community, Agile Business Group, '
               'Odoo Community Association (OCA)',
