@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_rea',
         'odoo12-addon-l10n_it_sdi_channel',
         'odoo12-addon-l10n_it_split_payment',
+        'odoo12-addon-l10n_it_website_sale_fiscalcode',
         'odoo12-addon-l10n_it_withholding_tax',
         'odoo12-addon-l10n_it_withholding_tax_causali',
     ],
