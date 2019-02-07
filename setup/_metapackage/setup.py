@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo11-addon-l10n_it_fatturapa_in',
         'odoo11-addon-l10n_it_fatturapa_out',
         'odoo11-addon-l10n_it_fatturapa_out_ddt',
+        'odoo11-addon-l10n_it_fatturapa_out_stamp',
         'odoo11-addon-l10n_it_fiscal_document_type',
         'odoo11-addon-l10n_it_fiscal_payment_term',
         'odoo11-addon-l10n_it_fiscalcode',
