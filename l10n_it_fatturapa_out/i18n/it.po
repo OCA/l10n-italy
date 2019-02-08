@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-12-06 16:54+0000\n"
+"PO-Revision-Date: 2019-02-08 12:50+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -120,7 +120,7 @@ msgstr "Cliente"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:477
-#, fuzzy, python-format
+#, python-format
 msgid "Customer ZIP not set."
 msgstr "CAP del cliente non impostato."
 
@@ -259,14 +259,13 @@ msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:210
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Fiscal position for electronic invoice not set for company %s. (Go to "
 "Accounting / Configuration / Settings / Electronic Invoice)"
 msgstr ""
-"Posizione fiscale dell'azienda %s non impostata per la fattura elettronica "
-"(andare in Contabilità →  Configurazione →  Impostazioni →  Fattura "
-"elettronica)"
+"Posizione fiscale dell'azienda %s non impostata per la fattura elettronica ("
+"andare in Contabilità / Configurazione / Impostazioni / Fattura elettronica)"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_has_pdf_invoice_print
