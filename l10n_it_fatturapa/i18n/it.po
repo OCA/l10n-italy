@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2019-01-25 19:51+0000\n"
+"PO-Revision-Date: 2019-02-08 11:50+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
@@ -130,7 +130,7 @@ msgstr ""
 "6 caratteri."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:69
+#: code:addons/l10n_it_fatturapa/models/partner.py:72
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
 msgstr "Il partner %s, come persona fisica, deve avere nome e cognome."
@@ -264,19 +264,19 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:99
+#: code:addons/l10n_it_fatturapa/models/partner.py:102
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:103
+#: code:addons/l10n_it_fatturapa/models/partner.py:106
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:91
+#: code:addons/l10n_it_fatturapa/models/partner.py:94
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessario l'indirizzo."
@@ -309,7 +309,8 @@ msgstr "Esigibilità differita"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__delivery_address
-msgid "Delivery Address"
+#, fuzzy
+msgid "Delivery Address for E-invoice"
 msgstr "Indirizzo di consegna"
 
 #. module: l10n_it_fatturapa
@@ -615,21 +616,26 @@ msgid "Is public document"
 msgstr "È un documento pubblico"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:86
-#, fuzzy, python-format
+#: code:addons/l10n_it_fatturapa/models/partner.py:89
+#, python-format
 msgid "Italian partner %s must have VAT Number or Fiscal Code."
-msgstr "Il partner %s deve avere una partita IVA o un codice fiscale."
+msgstr "Il partner italiano %s deve avere una partita IVA o un codice fiscale."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:95
-#, fuzzy, python-format
+#: code:addons/l10n_it_fatturapa/models/partner.py:98
+#, python-format
 msgid "Italian partner %s: ZIP is needed for XML generation."
-msgstr "Cliente %s: per la generazione dell'XML è necessario il CAP."
+msgstr "Partner italiano %s: per la generazione dell'XML è necessario il CAP."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type__numitem
 msgid "Item Num."
 msgstr "Num. elemento"
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__key
+msgid "Key"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price____last_update
@@ -825,7 +831,7 @@ msgid "Parsing PEM to DER file %s."
 msgstr "Analisi file da PEM a DER  %s."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:78
+#: code:addons/l10n_it_fatturapa/models/partner.py:81
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long."
 msgstr "Il codice destinatario del partner %s deve essere lungo 7 caratteri."
@@ -989,25 +995,25 @@ msgstr "Destinatario"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_fiscalpos
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_fiscalpos
 msgid "Register Fiscal Position"
-msgstr "Posizione fiscale albo"
+msgstr "Posizione fiscale Albo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_province
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_province
 msgid "Register Province"
-msgstr "Provincia albo"
+msgstr "Provincia Albo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_regdate
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_regdate
 msgid "Register Registration Date"
-msgstr "Data iscrizione albo"
+msgstr "Data iscrizione Albo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__register_code
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__register_code
 msgid "Register Registration Number"
-msgstr "Numero iscrizione albo"
+msgstr "Numero iscrizione Albo"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_related_ddts
@@ -1183,6 +1189,13 @@ msgid "Tax Representative"
 msgstr "Rappresentante fiscale"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__key
+msgid ""
+"Technical field used to resolve multiple attachments in a multi-website "
+"environment."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__codice_destinatario
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__codice_destinatario
 msgid ""
@@ -1247,6 +1260,11 @@ msgstr ""
 "\"9\""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__theme_template_id
+msgid "Theme Template"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_sender_partner
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_sender_partner
 msgid "Third Party/Sender"
@@ -1309,6 +1327,16 @@ msgid "Vehicle Registration"
 msgstr "Immatricolazione veicolo"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__website_id
+msgid "Website"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__website_url
+msgid "Website URL"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__unit_weight
 msgid "Weight Unit"
 msgstr "Unità di peso"
@@ -1351,7 +1379,7 @@ msgid ""
 "link to your file."
 msgstr ""
 "È possibile caricare un file dal computer oppure fare copia/incolla di un "
-"collegamento Internet nel file."
+"collegamento Internet al file."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice__efatt_stabile_organizzazione_cap
