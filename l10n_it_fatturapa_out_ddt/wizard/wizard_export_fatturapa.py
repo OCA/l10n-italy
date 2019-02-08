@@ -30,6 +30,7 @@ class WizardExportFatturapa(models.TransientModel):
     include_ddt_data = fields.Selection([
         ('dati_ddt', 'Include DDT Data'),
         ('dati_trasporto', 'Include transport data'),
+        ('descrizione_ddt', 'Includi DDT - Descrizione')
         ],
         string="DDT Data",
         help="Include DDT data: The field must be entered when a transport "
