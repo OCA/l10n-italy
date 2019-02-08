@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2018-12-06 16:54+0000\n"
+"PO-Revision-Date: 2019-02-08 10:50+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_access_token
 msgid "Access Token"
-msgstr ""
+msgstr "Token di accesso"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -125,7 +125,7 @@ msgstr "Cliente"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:484
-#, fuzzy, python-format
+#, python-format
 msgid "Customer ZIP not set."
 msgstr "CAP del cliente non impostato."
 
@@ -264,19 +264,17 @@ msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:222
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Fiscal position for electronic invoice not set for company %s. (Go to "
 "Accounting / Configuration / Settings / Electronic Invoice)"
 msgstr ""
-"Posizione fiscale dell'azienda %s non impostata per la fattura elettronica "
-"(andare in Contabilità →  Configurazione →  Impostazioni →  Fattura "
-"elettronica)"
+"Posizione fiscale dell'azienda %s non impostata per la fattura elettronica ("
+"andare in Contabilità / Configurazione / Impostazioni / Fattura elettronica)"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice_has_pdf_invoice_print
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_has_pdf_invoice_print
-#, fuzzy
 msgid "Has Pdf Invoice Print"
 msgstr "Contiene stampa fattura in PDF"
 
@@ -348,7 +346,6 @@ msgstr "Le fatture devono appartenere allo stesso partner."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachments_is_pdf_invoice_print
-#, fuzzy
 msgid "Is Pdf Invoice Print"
 msgstr "È una stampa fattura in PDF"
 
@@ -455,7 +452,6 @@ msgstr "Documenti collegati"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa_report_print_menu
-#, fuzzy
 msgid "Report Print Menu"
 msgstr "Menù di stampa del documento"
 
@@ -567,7 +563,7 @@ msgid ""
 "link to your file."
 msgstr ""
 "È possibile caricare un file dal computer oppure fare copia/incolla di un "
-"collegamento Internet nel file."
+"collegamento Internet al file."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:258
