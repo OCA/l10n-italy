@@ -44,6 +44,14 @@
                         </group>
                     </group>
                 </page>
+                <page string="DDT Vuoti !"
+                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                    <group>
+                        <group string="DDT Vuoti">
+                            <field name="fatturapa_attachment_out_id"></field>
+                        </group>
+                    </group>
+                </page>
                 <page string="Electronic Invoice Attachments"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                     <group string="Attachments">
