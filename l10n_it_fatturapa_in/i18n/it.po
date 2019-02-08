@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2019-01-25 20:11+0000\n"
+"PO-Revision-Date: 2019-02-08 11:50+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -491,6 +491,11 @@ msgid "Is public document"
 msgstr "È un documento pubblico"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid "Key"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code____last_update
@@ -659,7 +664,7 @@ msgstr "Riferimento numero"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Numero azioni"
+msgstr "Numero di azioni"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_error_counter
@@ -873,6 +878,13 @@ msgid "Tax kind %s not found"
 msgstr "Tipo imposta %s non trovato"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid ""
+"Technical field used to resolve multiple attachments in a multi-website "
+"environment."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__text_ref
 msgid "Text Reference"
 msgstr "Riferimento testo"
@@ -898,6 +910,11 @@ msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__theme_template_id
+msgid "Theme Template"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__thumbnail
 msgid "Thumbnail"
 msgstr "Anteprima"
@@ -920,12 +937,12 @@ msgstr "Prezzo totale"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:139
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Two distinct partners with VAT number %s or Fiscal Code %s already present "
 "in db."
 msgstr ""
-"Nel database sono già presenti due diversi partner con partita IVA %s e "
+"Nel database sono già presenti due diversi partner con partita IVA %s o "
 "codice fiscale %s."
 
 #. module: l10n_it_fatturapa_in
@@ -975,9 +992,20 @@ msgid "VAT Rate"
 msgstr "Aliquota IVA"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_id
+#, fuzzy
+msgid "Website"
+msgstr "Messaggi sito web"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_url
+msgid "Website URL"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
@@ -1035,7 +1063,7 @@ msgid ""
 "link to your file."
 msgstr ""
 "È possibile caricare un file dal computer oppure fare copia/incolla di un "
-"collegamento Internet nel file."
+"collegamento Internet al file."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:18
