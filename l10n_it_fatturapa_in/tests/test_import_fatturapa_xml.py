@@ -145,6 +145,12 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.fiscal_document_type_id.code, 'TD01')
         self.assertTrue(invoice.art73)
 
+    def test_02_xml_import(self):
+        res = self.run_wizard('test02', 'IT05979361218_011.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.intermediary.vat, 'IT03339130126')
+
     # def test_02_xml_import(self):
     #     res = self.run_wizard('test2', 'IT03638121008_X11111.xml')
     #     invoice_id = res.get('domain')[0][2][0]
