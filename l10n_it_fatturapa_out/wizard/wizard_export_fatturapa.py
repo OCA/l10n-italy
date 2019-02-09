@@ -618,7 +618,7 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     def setDettaglioLinee(self, invoice, body):
-
+        company = self.env.user.company_id
         body.DatiBeniServizi = DatiBeniServiziType()
         # TipoCessionePrestazione not handled
 
@@ -643,14 +643,17 @@ class WizardExportFatturapa(models.TransientModel):
             AliquotaIVA = '{val:.2f}'.format(val=aliquota)
             line.ftpa_line_number = line_no
             prezzo_unitario = self._get_prezzo_unitario(line)
+            # can't insert newline with pyxb
+            # see https://tinyurl.com/ycem923t
+            # and '&#10;' would not be correctly visualized anyway
+            # (for example firefox replaces '&#10;' with space)
+            descrizione = line.name.replace('\n', ' ').encode(
+                'latin', 'ignore').decode('latin')
+            if company.fatturapa_trunk_line_description:
+                descrizione = descrizione[:1000]
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
-                # can't insert newline with pyxb
-                # see https://tinyurl.com/ycem923t
-                # and '&#10;' would not be correctly visualized anyway
-                # (for example firefox replaces '&#10;' with space)
-                Descrizione=line.name.replace('\n', ' ').encode(
-                    'latin', 'ignore').decode('latin'),
+                Descrizione=descrizione,
                 PrezzoUnitario='{price:.{precision}f}'.format(
                     price=prezzo_unitario,
                     precision=price_precision

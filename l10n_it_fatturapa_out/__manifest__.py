@@ -3,11 +3,12 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Sergio Corato
 # Copyright 2018 Lara Baggio (Link IT srl)
+# Copyright 2019 Alessandro Camilli - Openforce
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Italian Localization - Fattura Elettronica - Emissione',
-    "version": "11.0.1.0.2",
+    "version": "11.0.1.0.3",
     'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche',
@@ -23,6 +24,7 @@
         'wizard/wizard_export_fatturapa_view.xml',
         'views/attachment_view.xml',
         'views/account_view.xml',
+        'views/company_view.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
