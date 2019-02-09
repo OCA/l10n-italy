@@ -491,6 +491,11 @@ msgid "Is public document"
 msgstr "È un documento pubblico"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid "Key"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code____last_update
@@ -873,6 +878,13 @@ msgid "Tax kind %s not found"
 msgstr "Tipo imposta %s non trovato"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid ""
+"Technical field used to resolve multiple attachments in a multi-website "
+"environment."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__text_ref
 msgid "Text Reference"
 msgstr "Riferimento testo"
@@ -896,6 +908,11 @@ msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__res_id
 msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__theme_template_id
+msgid "Theme Template"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__thumbnail
@@ -975,9 +992,20 @@ msgid "VAT Rate"
 msgstr "Aliquota IVA"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_id
+#, fuzzy
+msgid "Website"
+msgstr "Messaggi sito web"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_url
+msgid "Website URL"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
