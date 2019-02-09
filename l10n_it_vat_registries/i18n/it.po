@@ -148,7 +148,7 @@ msgid "Indetraibile"
 msgstr "Indetraibile"
 
 #. module: l10n_it_vat_registries
-#: model:ir.actions.report.xml,name:l10n_it_vat_registries.action_report_registro_iva
+#: model:ir.actions.report,name:l10n_it_vat_registries.action_report_registro_iva
 msgid "Invoices VAT Registry"
 msgstr "Registro IVA fatture"
 
@@ -197,17 +197,12 @@ msgid "Layout"
 msgstr "Struttura"
 
 #. module: l10n_it_vat_registries
-#: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
-msgid "Load Journals"
-msgstr "Carica registri contabili"
-
-#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_message
 msgid "Message"
 msgstr "Messaggio"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:75
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:77
 #, python-format
 msgid "Move line %s has too many base taxes"
 msgstr "La riga movimento %s ha troppe imposte imponibili"
@@ -230,14 +225,14 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:56
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:69
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:64
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:77
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato nella selezione corrente"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:65
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:73
 #, python-format
 msgid ""
 "No journals found in the current selection.\n"
@@ -269,6 +264,18 @@ msgid "RAGIONE SOCIALE"
 msgstr "RAGIONE SOCIALE"
 
 #. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_report_l10n_it_vat_registries_report_registro_iva
+#, fuzzy
+msgid "Report VAT registry"
+msgstr "Registro IVA"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
+#, fuzzy
+msgid "Run VAT registry"
+msgstr "Registro IVA"
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_journal_ids
 msgid "Select journals you want retrieve documents from"
 msgstr "Selezionare i registri dai quali prelevare i documenti"
@@ -294,6 +301,12 @@ msgstr "Imposta"
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Tax Journal"
 msgstr "Registro imposta"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_tax_registry
+#, fuzzy
+msgid "Tax registry"
+msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
@@ -340,6 +353,16 @@ msgid "VAT registry"
 msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_year_footer
+msgid "Value printed near number of page in the footer"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_year_footer
+msgid "Year for Footer"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal_tax_registry_id
 msgid ""
 "You can group several journals within 1 registry. In printing wizard, you "
@@ -350,21 +373,18 @@ msgstr ""
 "per caricare i relativi registri ."
 
 #. module: l10n_it_vat_registries
-#: model:ir.model,name:l10n_it_vat_registries.model_account_tax_registry
-msgid "account.tax.registry"
-msgstr "account.tax.registry"
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "or"
 msgstr "o"
 
-#. module: l10n_it_vat_registries
-#: model:ir.model,name:l10n_it_vat_registries.model_report_l10n_it_vat_registries_report_registro_iva
-msgid "report.l10n_it_vat_registries.report_registro_iva"
-msgstr "report.l10n_it_vat_registries.report_registro_iva"
+#~ msgid "Load Journals"
+#~ msgstr "Carica registri contabili"
 
-#. module: l10n_it_vat_registries
-#: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
-msgid "wizard.registro.iva"
-msgstr "wizard.registro.iva"
+#~ msgid "account.tax.registry"
+#~ msgstr "account.tax.registry"
+
+#~ msgid "report.l10n_it_vat_registries.report_registro_iva"
+#~ msgstr "report.l10n_it_vat_registries.report_registro_iva"
+
+#~ msgid "wizard.registro.iva"
+#~ msgstr "wizard.registro.iva"
