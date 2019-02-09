@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '11.0.1.0.3',
+    'version': '11.0.1.1.1',
     "development_status": "Beta",
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
@@ -18,7 +18,7 @@
     "depends": [
         'l10n_it_fatturapa',
         'l10n_it_withholding_tax_causali',
-        ],
+    ],
     "data": [
         'views/account_view.xml',
         'views/partner_view.xml',

@@ -112,10 +112,18 @@ class WizardImportFatturapa(models.TransientModel):
         cf = DatiAnagrafici.CodiceFiscale or False
         vat = False
         if DatiAnagrafici.IdFiscaleIVA:
-            vat = "%s%s" % (
-                DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                DatiAnagrafici.IdFiscaleIVA.IdCodice
-            )
+            # Format Italian VAT ID to always have 11 char
+            # to avoid validation error when creating the given partner
+            if DatiAnagrafici.IdFiscaleIVA.IdPaese.upper() == 'IT':
+                vat = "%s%s" % (
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, '0')
+                )
+            else:
+                vat = "%s%s" % (
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice
+                )
         partners = partner_model
         if vat:
             partners = partner_model.search([
@@ -137,7 +145,7 @@ class WizardImportFatturapa(models.TransientModel):
                           "VAT number %s or Fiscal Code %s already "
                           "present in db." %
                           (vat, cf))
-                        )
+                    )
                 commercial_partner = partner.commercial_partner_id.id
         if partners:
             commercial_partner_id = partners[0].commercial_partner_id.id
@@ -457,14 +465,14 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _prepareWelfareLine(self, invoice_id, line):
         TipoCassa = line.TipoCassa or False
-        AlCassa = line.AlCassa and (float(line.AlCassa)/100) or None
+        AlCassa = line.AlCassa and (float(line.AlCassa) / 100) or None
         ImportoContributoCassa = (
             line.ImportoContributoCassa and
             float(line.ImportoContributoCassa) or None)
         ImponibileCassa = (
             line.ImponibileCassa and float(line.ImponibileCassa) or None)
         AliquotaIVA = (
-            line.AliquotaIVA and (float(line.AliquotaIVA)/100) or None)
+            line.AliquotaIVA and (float(line.AliquotaIVA) / 100) or None)
         Ritenuta = line.Ritenuta or ''
         Natura = line.Natura or False
         kind_id = False
@@ -525,7 +533,7 @@ class WizardImportFatturapa(models.TransientModel):
         line_unit = line_total / float(DettaglioLinea.Quantita)
         discount = (
             1 - (line_unit / float(DettaglioLinea.PrezzoUnitario))
-            ) * 100.0
+        ) * 100.0
         return discount
 
     def _addGlobalDiscount(self, invoice_id, DatiGeneraliDocumento):
@@ -558,7 +566,7 @@ class WizardImportFatturapa(models.TransientModel):
                 'account_id': credit_account_id,
                 'price_unit': discount,
                 'quantity': 1,
-                }
+            }
             if self.env.user.company_id.sconto_maggiorazione_product_id:
                 sconto_maggiorazione_product = (
                     self.env.user.company_id.sconto_maggiorazione_product_id)
@@ -1150,7 +1158,8 @@ class WizardImportFatturapa(models.TransientModel):
                 FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
                 ImportoTotaleDocumento)
             if not float_is_zero(
-                invoice.amount_total-ImportoTotaleDocumento, precision_digits=2
+                invoice.amount_total - ImportoTotaleDocumento,
+                precision_digits=2
             ):
                 self.log_inconsistency(
                     _('Bill total %s is different from '
@@ -1165,7 +1174,7 @@ class WizardImportFatturapa(models.TransientModel):
             amount_untaxed = self.compute_xml_amount_untaxed(
                 FatturaElettronicaBody.DatiBeniServizi.DatiRiepilogo)
             if not float_is_zero(
-                invoice.amount_untaxed-amount_untaxed, precision_digits=2
+                invoice.amount_untaxed - amount_untaxed, precision_digits=2
             ):
                 self.log_inconsistency(
                     _('Computed amount untaxed %s is different from'
