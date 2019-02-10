@@ -42,7 +42,7 @@ class ResPartner(models.Model):
              "<CodiceDestinatario> is '0000000'"
     )
     electronic_invoice_subjected = fields.Boolean(
-        "Subjected to Electronic Invoice")
+        "Enable electronic invoicing")
 
     @api.multi
     @api.constrains(
