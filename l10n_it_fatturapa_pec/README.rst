@@ -57,7 +57,7 @@ In case of multi company, in
 
 Contabilità → Configurazione → Impostazioni → Fattura elettronica
 
-set, for every company, the user who will be used as creator of supplier e-invoices automatically created from PEC.
+set, for every company, the user who will be used as creator of supplier e-bills automatically created from PEC.
 
 Usage
 =====
