@@ -461,6 +461,12 @@ msgid "Electronic Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
+msgid "Enable electronic invoicing"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
 msgid "File Content"
 msgstr ""
@@ -1100,8 +1106,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__electronic_invoice_subjected
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Subjected to Electronic Invoice"
 msgstr ""
 
