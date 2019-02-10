@@ -621,7 +621,8 @@ class WizardExportFatturapa(models.TransientModel):
             line_no += 1
 
     def setDettaglioLinea(
-        self, line_no, line, body, price_precision, uom_precision):
+        self, line_no, line, body, price_precision, uom_precision
+    ):
         if not line.invoice_line_tax_ids:
             raise UserError(
                 _("Invoice line %s does not have tax.") % line.name)
@@ -638,8 +639,8 @@ class WizardExportFatturapa(models.TransientModel):
             # see https://tinyurl.com/ycem923t
             # and '&#10;' would not be correctly visualized anyway
             # (for example firefox replaces '&#10;' with space)
-            Descrizione=line.name.replace('\n', ' ').encode(
-                'latin', 'ignore').decode('latin'),
+            Descrizione=line.name.replace('\n', ' ').replace('\t', ' ').
+            replace('\r', ' ').encode('latin', 'ignore').decode('latin'),
             PrezzoUnitario='{prezzo:.{precision}f}'.format(
                 prezzo=prezzo_unitario, precision=price_precision),
             Quantita='{qta:.{precision}f}'.format(
