@@ -3,9 +3,10 @@
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    "name": "SdI channel",
-    "summary": "Add channel to send-receice xml files to SdI.",
-    "version": "8.0.1.0.0",
+    'name': 'Italian Localization - Fattura elettronica - Canale SdI',
+    "summary": "Aggiunge il canale di invio/ricezione dei file XML "
+               "attraverso lo SdI",
+    "version": "8.0.1.1.0",
     "development_status": "Alpha",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
