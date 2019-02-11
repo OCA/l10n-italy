@@ -32,7 +32,7 @@ class FatturaPAAttachmentOut(models.Model):
                               ('accepted', 'Accepted'),
                               ],
                              string='State',
-                             default='ready',)
+                             default='ready', track_visibility='onchange')
 
     last_sdi_response = fields.Text(
         string='Last Response from Exchange System', default='No response yet',
@@ -86,6 +86,7 @@ class FatturaPAAttachmentOut(models.Model):
                 'mail_server_id': self.env.user.company_id.sdi_channel_id.
                 pec_server_id.id,
             })
+
             mail = self.env['mail.mail'].create({
                 'mail_message_id': mail_message.id,
                 'body_html': mail_message.body,
@@ -97,14 +98,14 @@ class FatturaPAAttachmentOut(models.Model):
             })
 
             if mail:
-                    try:
-                        mail.send(raise_exception=True)
-                        att.state = 'sent'
-                        att.sending_date = fields.Datetime.now()
-                        att.sending_user = self.env.user.id
-                    except MailDeliveryException as e:
-                        att.state = 'sender_error'
-                        mail.body = e[1]
+                try:
+                    mail.send(raise_exception=True)
+                    att.state = 'sent'
+                    att.sending_date = fields.Datetime.now()
+                    att.sending_user = self.env.user.id
+                except MailDeliveryException as e:
+                    att.state = 'sender_error'
+                    mail.body = e[1]
 
     @api.multi
     def parse_pec_response(self, message_dict):

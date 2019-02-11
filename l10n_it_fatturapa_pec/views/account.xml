@@ -29,13 +29,13 @@
             <field name="inherit_id" ref="account.view_account_invoice_filter"></field>
             <field name="arch" type="xml">
                 <xpath expr="//separator" position="after">
-                    <filter name="fatturapa_ready" string="Fattura Elettronica Ready to Send" domain="[('fatturapa_state','=','ready')]"/>
-                    <filter name="fatturapa_errors" string="Fattura Elettronica Error" domain="[('fatturapa_state','=','error')]"/>
+                    <filter name="fatturapa_ready" string="Electronic Invoice Ready to Send" domain="[('fatturapa_state','=','ready')]"/>
+                    <filter name="fatturapa_errors" string="Electronic Invoice Error" domain="[('fatturapa_state','=','error')]"/>
                     <separator/>
                 </xpath>
 
                 <xpath expr="//group" position="inside">
-                    <filter string="Fattura Elettronica State" context="{'group_by':'fatturapa_state'}"/>
+                    <filter string="Electronic Invoice State" context="{'group_by':'fatturapa_state'}"/>
                 </xpath>
             </field>
         </record>
