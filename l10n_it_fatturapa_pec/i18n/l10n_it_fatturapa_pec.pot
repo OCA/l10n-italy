@@ -25,6 +25,11 @@ msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: field:wizard.fatturapa.send.pec,create_uid:0
 msgid "Created by"
 msgstr ""
@@ -49,6 +54,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: field:wizard.fatturapa.send.pec,display_name:0
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: field:res.company,e_invoice_user_id:0
+msgid "E-bill creator"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -199,6 +209,21 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: field:fatturapa.attachment.out,state:0
 msgid "State"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: field:account.config.settings,e_invoice_user_id:0
+msgid "Supplier e-bill creator"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: help:res.company,e_invoice_user_id:0
+msgid "This user will be used at supplier e-bill creation."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: help:account.config.settings,e_invoice_user_id:0
+msgid "This user will be used at supplier e-bill creation. This setting is relevant in multi-company environments"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
