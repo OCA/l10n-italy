@@ -16,5 +16,5 @@ class AccountTaxRegistry(models.Model):
     layout_type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
-        ('corrispettivi', 'Corrispettivi'),
+        ('corrispettivi', 'Sums due'),
         ], 'Layout', required=True)

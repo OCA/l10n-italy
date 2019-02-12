@@ -14,7 +14,7 @@ class WizardRegistroIva(models.TransientModel):
     layout_type = fields.Selection([
         ('customer', 'Customer Invoices'),
         ('supplier', 'Supplier Invoices'),
-        ('corrispettivi', 'Corrispettivi'), ],
+        ('corrispettivi', 'Sums due'), ],
         'Layout', required=True, default='customer')
     tax_registry_id = fields.Many2one('account.tax.registry', 'VAT registry')
     journal_ids = fields.Many2many(
