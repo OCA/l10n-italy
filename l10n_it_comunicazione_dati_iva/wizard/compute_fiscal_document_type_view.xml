@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="wizard_compute_fiscal_document_type" model="ir.ui.view">
+            <field name="name">Assegna tipo documento fiscale</field>
+            <field name="model">comunicazione.dati.iva.ricalcolo.tipo.document.fiscale</field>
+            <field name="arch" type="xml">
+                <form string="Export File">
+                    <div>
+                        <p>
+                        Clicca su <strong>Calcola</strong> per assegnare alle fatture del <strong>periodo</strong>
+                         della comunicazione il tipo di documento fiscale.
+                        </p>
+                    </div>
+                    <footer>
+                        <button name="compute"
+                                string="Calcola"
+                                type="object"
+                                class="oe_highlight"  />
+                        o
+                        <button string="Annulla" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_compute_fiscal_document_type" model="ir.actions.act_window">
+            <field name="name">Assegna tipo documento fiscale</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">comunicazione.dati.iva.ricalcolo.tipo.document.fiscale</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_compute_fiscal_document_type"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- <record model="ir.values" id="value_wizard_dati_iva_export_file">
+            <field name="name">Esporta file comunicazione</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_dati_iva_export_file'))" />
+            <field name="key">action</field>
+            <field name="model">comunicazione.dati.iva</field>
+        </record> -->
+
+    </data>
+</openerp>
