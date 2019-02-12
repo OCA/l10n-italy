@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import base64
-from odoo import api, fields, models, exceptions
+from odoo import api, fields, models, exceptions, _
 
 
 class ComunicazioneDatiIvaExportFile(models.TransientModel):
     _name = "comunicazione.dati.iva.export.file"
-    _description = "Export file xml della comunicazione dei dati IVA"
+    _description = "Export XML of invoices data communication"
 
     file_export = fields.Binary('File', readonly=True)
     filename = fields.Char()
@@ -17,13 +17,12 @@ class ComunicazioneDatiIvaExportFile(models.TransientModel):
 
         comunicazione_ids = self._context.get('active_ids')
         if not comunicazione_ids:
-            raise exceptions.Warning(
-                u'Attenzione! Nessuna comunicazione selezionata'
+            raise exceptions.UserError(
+                _('No communication selected')
             )
         if len(comunicazione_ids) > 1:
-            raise exceptions.Warning(
-                u'Attenzione! '
-                u'È possibile esportare una sola comunicazione alla volta'
+            raise exceptions.UserError(
+                _('You can only export one communication')
             )
 
         for wizard in self:
@@ -35,7 +34,7 @@ class ComunicazioneDatiIvaExportFile(models.TransientModel):
                 wizard.filename = filename
             model_data_obj = self.env['ir.model.data']
             view_rec = model_data_obj.get_object_reference(
-                'l10n_it_comunicazione_dati_iva',
+                'l10n_it_invoices_data_communication',
                 'wizard_dati_iva_export_file_exit'
             )
             view_id = view_rec and view_rec[1] or False
@@ -48,4 +47,4 @@ class ComunicazioneDatiIvaExportFile(models.TransientModel):
                 'res_id': wizard.id,
                 'type': 'ir.actions.act_window',
                 'target': 'new',
-}
+            }

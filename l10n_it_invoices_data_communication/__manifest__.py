@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Alessandro Camilli - Openforce
 # Copyright 2017-2019 Lorenzo Battistini
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Comunicazione dati IVA',
-    'version': '10.0.1.0.1',
+    'name': 'Italian Localization - Comunicazione dati fatture',
+    'summary': 'Comunicazione dati fatture (c.d. "nuovo spesometro" o '
+               '"esterometro")',
+    'version': '10.0.1.1.0',
     'category': 'Account',
-    'author': "Openforce di Camilli Alessandro",
-    'website': 'http://www.odoo-italia.net',
+    'author': "Openforce di Camilli Alessandro, "
+              "Odoo Community Association (OCA)",
+    'website': 'https://github.com/OCA/l10n-italy/',
     'license': 'LGPL-3',
     'depends': [
         'account', 'l10n_it_fiscal_document_type', 'l10n_it_codici_carica',

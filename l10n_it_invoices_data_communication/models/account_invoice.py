@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 
-from odoo import api, fields, models, _
+from odoo import fields, models, _
 from odoo.exceptions import ValidationError
 
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     comunicazione_dati_iva_escludi = fields.Boolean(
-        string='Escludi dalla dichiarazione IVA', default=False)
+        string='Exclude from invoices communication')
 
     def _compute_taxes_in_company_currency(self, vals):
         try:
@@ -50,6 +50,8 @@ class account_invoice(models.Model):
                     'EsigibilitaIVA': payability,
                     'Detraibile': 0.0,
                 }
+                if fattura.type in ('in_invoice', 'in_refund'):
+                    tax_grouped[main_tax.id]['Detraibile'] = 100.0
             else:
                 tax_grouped[main_tax.id]['Imposta'] += imposta
             if tax.account_id:
@@ -80,16 +82,17 @@ class account_invoice(models.Model):
         return tax_lines
 
     def _check_tax_comunicazione_dati_iva(self, tax, val=None):
+        self.ensure_one()
         if not val:
             val = {}
         if val['Aliquota'] == 0 and not val['Natura_id']:
             raise ValidationError(
-                _("Specificare la natura dell'esenzione per l'imposta: {}\
-                - Fattura {}"
-                  ).format(tax.name, self.number or False))
+                _(
+                    "Please specify exemption kind for tax: {} - Invoice {}"
+                ).format(tax.name, self.number or False))
         if not val['EsigibilitaIVA']:
             raise ValidationError(
-                _("Specificare l'esigibilità IVA per l'imposta: {}\
-                - Fattura {}"
-                  ).format(tax.name, self.number or False))
+                _(
+                    "Please specify VAT payability for tax: {} - Invoice {}"
+                ).format(tax.name, self.number or False))
         return val
