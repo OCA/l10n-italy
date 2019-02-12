@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_comunicazione_dati_iva_tree" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.tree</field>
+            <field name="model">comunicazione.dati.iva</field>
+            <field name="arch" type="xml">
+                <tree string="Comunicazioni dati IVA">
+                    <field name="identificativo"/>
+                    <field name="dati_trasmissione"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_form" model="ir.ui.view">
+            <field name="name">comunicazione.dati.iva.form</field>
+            <field name="model">comunicazione.dati.iva</field>
+            <field name="arch" type="xml">
+                <form string="Comunicazione dati IVA">
+                    <header>
+                        <button name="compute_values" string="Calcola Valori" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('dati_trasmissione', '=', 'ANN')]}"/>
+                        <button type="action" name="%(action_compute_fiscal_document_type)d"
+                                string="Assegna tipo documento fiscale"
+                                attrs="{'invisible':[('dati_trasmissione', '=', 'ANN')]}"/>
+                        <button name="check_errors" string="Controllo Errori" type="object"
+                                attrs="{'invisible':[('dati_trasmissione', '=', 'ANN')]}"/>
+                    </header>
+                    <sheet>
+                        <group name="company">
+                            <group>
+                            <field name="company_id" widget="selection"/>
+                            <field name="declarant_fiscalcode"/>
+                            <field name="codice_carica_id" attrs="{'required':[('declarant_fiscalcode', '!=', False)]}"/>
+                            </group>
+                            <group>
+                            <field name="identificativo"/>
+                            <field name="id_comunicazione"
+                                   attrs="{'required':[('dati_trasmissione', '=', 'ANN')]}"/>
+                            </group>
+                        </group>
+                        <newline/>
+                        <group name="Periodo">
+                            <group>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group name="Riepilogo">
+                            <field name="dati_trasmissione" widget="radio"/>
+                        </group>
+                        <notebook attrs="{'invisible':[('dati_trasmissione', '!=', 'DTE')]}">
+	                        <page string="Cedente" name="page_cedente">
+	                            <group name="cedente">
+	                                <field name="partner_cedente_id"/>
+	                                <field name="cedente_IdFiscaleIVA_IdPaese"/>
+	                                <field name="cedente_IdFiscaleIVA_IdCodice"/>
+	                                <field name="cedente_CodiceFiscale"/>
+	                                <field name="cedente_Denominazione"/>
+	                                <field name="cedente_Nome"/>
+	                                <field name="cedente_Cognome"/>
+	                            </group>
+	                        </page>
+	                        <page string="Sede">
+	                            <group name="cedente_sede">
+	                                <field name="cedente_sede_Indirizzo"/>
+	                                <field name="cedente_sede_NumeroCivico"/>
+	                                <field name="cedente_sede_Cap"/>
+	                                <field name="cedente_sede_Comune"/>
+	                                <field name="cedente_sede_Provincia"/>
+	                                <field name="cedente_sede_Nazione"/>
+	                            </group>
+	                        </page>
+	                        <page string="Stabile Organizzazione">
+	                            <group name="cedente_stabile_organizzazione">
+	                                <field name="cedente_so_Indirizzo"/>
+	                                <field name="cedente_so_NumeroCivico"/>
+	                                <field name="cedente_so_Cap"/>
+	                                <field name="cedente_so_Comune"/>
+	                                <field name="cedente_so_Provincia"/>
+	                                <field name="cedente_so_Nazione"/>
+	                            </group>
+	                        </page>
+	                        <page string="Rappresentante Fiscale">
+	                            <group name="cedente_rappresentante_fiscale">
+	                                <field name="cedente_rf_IdFiscaleIVA_IdPaese"/>
+	                                <field name="cedente_rf_IdFiscaleIVA_IdCodice"/>
+	                                <field name="cedente_rf_Denominazione"/>
+	                                <field name="cedente_rf_Nome"/>
+	                                <field name="cedente_rf_Cognome"/>
+	                            </group>
+	                        </page>
+	                    </notebook>
+	                    <notebook attrs="{'invisible':[('dati_trasmissione', '!=', 'DTR')]}">
+	                       <page string="Cessionario" name="page_cessionario">
+	                            <group name="cessionario">
+	                                <field name="partner_cessionario_id"/>
+	                                <field name="cessionario_IdFiscaleIVA_IdPaese"/>
+	                                <field name="cessionario_IdFiscaleIVA_IdCodice"/>
+	                                <field name="cessionario_CodiceFiscale"/>
+	                                <field name="cessionario_Denominazione"/>
+	                                <field name="cessionario_Nome"/>
+	                                <field name="cessionario_Cognome"/>
+	                            </group>
+	                        </page>
+	                        <page string="Sede">
+	                            <group name="cessionario_sede">
+	                                <field name="cessionario_sede_Indirizzo"/>
+	                                <field name="cessionario_sede_NumeroCivico"/>
+	                                <field name="cessionario_sede_Cap"/>
+	                                <field name="cessionario_sede_Comune"/>
+	                                <field name="cessionario_sede_Provincia"/>
+	                                <field name="cessionario_sede_Nazione"/>
+	                            </group>
+	                        </page>
+	                        <page string="Stabile Organizzazione">
+	                            <group name="cessionario_stabile_organizzazione">
+	                                <field name="cessionario_so_Indirizzo"/>
+	                                <field name="cessionario_so_NumeroCivico"/>
+	                                <field name="cessionario_so_Cap"/>
+	                                <field name="cessionario_so_Comune"/>
+	                                <field name="cessionario_so_Provincia"/>
+	                                <field name="cessionario_so_Nazione"/>
+	                            </group>
+	                        </page>
+	                        <page string="Rappresentante Fiscale">
+	                            <group name="cessionario_rappresentante_fiscale">
+	                                <field name="cessionario_rf_IdFiscaleIVA_IdPaese"/>
+	                                <field name="cessionario_rf_IdFiscaleIVA_IdCodice"/>
+	                                <field name="cessionario_rf_Denominazione"/>
+	                                <field name="cessionario_rf_Nome"/>
+	                                <field name="cessionario_rf_Cognome"/>
+	                            </group>
+	                        </page>
+	                    </notebook>
+                        <notebook attrs="{'invisible':[('dati_trasmissione', '=', 'ANN')]}">
+                            <page string="Fatture Emesse"
+                                attrs="{'invisible':[('dati_trasmissione', '!=', 'DTE')]}">
+                                <group>
+                                    <field name="fatture_emesse_ids" nolabel="1">
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Fatture Ricevute"
+                                attrs="{'invisible':[('dati_trasmissione', '!=', 'DTR')]}">
+                                <group>
+                                    <field name="fatture_ricevute_ids" nolabel="1">
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Errori">
+                                <group>
+                                    <field name="errors" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_comunicazione_dati_iva" model="ir.actions.act_window">
+            <field name="name">Comunicazione dati IVA</field>
+            <field name="res_model">comunicazione.dati.iva</field>
+            <field name="view_id" ref="view_comunicazione_dati_iva_tree"/>
+        </record>
+
+        <menuitem id="menu_comunicazione_dati_iva" name="Comunicazione dati IVA"
+            action="action_comunicazione_dati_iva"
+            parent="account.menu_finance_entries" sequence="50"/>
+
+        <record id="view_comunicazione_dati_iva_fatture_emesse_tree" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.emesse.tree</field>
+            <field name="model">comunicazione.dati.iva.fatture.emesse</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fatture emesse">
+                    <field name="partner_id" />
+                    <field name="cessionario_Denominazione" />
+                    <field name="totale_imponibile"/>
+                    <field name="totale_iva"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_fatture_emesse_form" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.emesse.form</field>
+            <field name="model">comunicazione.dati.iva.fatture.emesse</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fatture emesse">
+                    <group string="Rettifica" name="rettifica">
+                        <field name="rettifica_IdFile"/>
+                        <field name="rettifica_Posizione"/>
+                    </group>
+                    <notebook>
+                        <page string="Cessionario" name="page_cessionario">
+                            <group name="cessionario">
+                                <field name="partner_id"/>
+                                <field name="cessionario_IdFiscaleIVA_IdPaese"/>
+                                <field name="cessionario_IdFiscaleIVA_IdCodice"/>
+                                <field name="cessionario_CodiceFiscale"/>
+                                <field name="cessionario_Denominazione"/>
+                                <field name="cessionario_Nome"/>
+                                <field name="cessionario_Cognome"/>
+                            </group>
+                        </page>
+                        <page string="Sede">
+                            <group name="cessionario_sede">
+                                <field name="cessionario_sede_Indirizzo"/>
+                                <field name="cessionario_sede_NumeroCivico"/>
+                                <field name="cessionario_sede_Cap"/>
+                                <field name="cessionario_sede_Comune"/>
+                                <field name="cessionario_sede_Provincia"/>
+                                <field name="cessionario_sede_Nazione"/>
+                            </group>
+                        </page>
+                        <page string="Stabile Organizzazione">
+                            <group name="cessionario_stabile_organizzazione">
+                                <field name="cessionario_so_Indirizzo"/>
+                                <field name="cessionario_so_NumeroCivico"/>
+                                <field name="cessionario_so_Cap"/>
+                                <field name="cessionario_so_Comune"/>
+                                <field name="cessionario_so_Provincia"/>
+                                <field name="cessionario_so_Nazione"/>
+                            </group>
+                        </page>
+                        <page string="Rappresentante Fiscale">
+                            <group name="cessionario_rappresentante_fiscale">
+                                <field name="cessionario_rf_IdFiscaleIVA_IdPaese"/>
+                                <field name="cessionario_rf_IdFiscaleIVA_IdCodice"/>
+                                <field name="cessionario_rf_Denominazione"/>
+                                <field name="cessionario_rf_Nome"/>
+                                <field name="cessionario_rf_Cognome"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <newline/>
+                    <group>
+                        <field name="fatture_emesse_body_ids" nolabel="1">
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_fatture_ricevute_tree" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.ricevute.tree</field>
+            <field name="model">comunicazione.dati.iva.fatture.ricevute</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fatture ricevute">
+                    <field name="partner_id" />
+                    <field name="cedente_Denominazione" />
+                    <field name="totale_imponibile"/>
+                    <field name="totale_iva"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_fatture_ricevute_form" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.ricevute.form</field>
+            <field name="model">comunicazione.dati.iva.fatture.ricevute</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fatture ricevute">
+                    <group string="Rettifica" name="rettifica">
+                        <field name="rettifica_IdFile"/>
+                        <field name="rettifica_Posizione"/>
+                    </group>
+                    <newline/>
+                    <notebook>
+                        <page string="Cedente" name="page_cedente">
+                            <group name="cedente">
+                                <field name="partner_id"/>
+                                <field name="cedente_IdFiscaleIVA_IdPaese"/>
+                                <field name="cedente_IdFiscaleIVA_IdCodice"/>
+                                <field name="cedente_CodiceFiscale"/>
+                                <field name="cedente_Denominazione"/>
+                                <field name="cedente_Nome"/>
+                                <field name="cedente_Cognome"/>
+                            </group>
+                        </page>
+                        <page string="Sede">
+                            <group name="cedente_sede">
+                                <field name="cedente_sede_Indirizzo"/>
+                                <field name="cedente_sede_NumeroCivico"/>
+                                <field name="cedente_sede_Cap"/>
+                                <field name="cedente_sede_Comune"/>
+                                <field name="cedente_sede_Provincia"/>
+                                <field name="cedente_sede_Nazione"/>
+                            </group>
+                        </page>
+                        <page string="Stabile Organizzazione">
+                            <group name="cedente_stabile_organizzazione">
+                                <field name="cedente_so_Indirizzo"/>
+                                <field name="cedente_so_NumeroCivico"/>
+                                <field name="cedente_so_Cap"/>
+                                <field name="cedente_so_Comune"/>
+                                <field name="cedente_so_Provincia"/>
+                                <field name="cedente_so_Nazione"/>
+                            </group>
+                        </page>
+                        <page string="Rappresentante Fiscale">
+                            <group name="cedente_rappresentante_fiscale">
+                                <field name="cedente_rf_IdFiscaleIVA_IdPaese"/>
+                                <field name="cedente_rf_IdFiscaleIVA_IdCodice"/>
+                                <field name="cedente_rf_Denominazione"/>
+                                <field name="cedente_rf_Nome"/>
+                                <field name="cedente_rf_Cognome"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                    <group>
+                        <field name="fatture_ricevute_body_ids" nolabel="1">
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_fatture_emesse_body_tree" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.emesse.body.tree</field>
+            <field name="model">comunicazione.dati.iva.fatture.emesse.body</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fatture emesse">
+                    <field name="posizione" />
+                    <field name="invoice_id" />
+                    <field name="dati_fattura_Numero" />
+                    <field name="dati_fattura_Data" />
+                    <field name="totale_imponibile" sum="Tot Imponibile"/>
+                    <field name="totale_iva" sum="Tot Imposta"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_fatture_emesse_body_form" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.emesse.body.form</field>
+            <field name="model">comunicazione.dati.iva.fatture.emesse.body</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Body Fatture emesse">
+                    <group string="Riferimenti" name="riferimenti">
+                        <field name="posizione"/>
+                        <field name="invoice_id"/>
+                        <field name="dati_fattura_TipoDocumento"/>
+                        <field name="dati_fattura_Numero"/>
+                        <field name="dati_fattura_Data"/>
+                    </group>
+                    <group string="Riepilogo IVA" name="riepilogo_iva">
+                        <field name="dati_fattura_iva_ids"  nolabel="1">
+                            <tree editable="bottom">
+                                <field name="ImponibileImporto" sum="Tot Imponibile"/>
+                                <field name="Imposta" sum="Tot Imposta"/>
+                                <field name="Aliquota"/>
+                                <field name="Natura_id"/>
+                                <field name="Detraibile"/>
+                                <field name="Deducibile"/>
+                                <field name="EsigibilitaIVA"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_fatture_ricevute_body_tree" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.ricevute.body.tree</field>
+            <field name="model">comunicazione.dati.iva.fatture.ricevute.body</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="posizione" />
+                    <field name="invoice_id" />
+                    <field name="dati_fattura_Numero" />
+                    <field name="dati_fattura_Data" />
+                    <field name="dati_fattura_DataRegistrazione"/>
+                    <field name="totale_imponibile" sum="Tot Imponibile"/>
+                    <field name="totale_iva" sum="Tot Imposta"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_fatture_ricevute_body_form" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.fatture.ricevute.body.form</field>
+            <field name="model">comunicazione.dati.iva.fatture.ricevute.body</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Body fatture ricevute">
+                    <group string="Riferimenti" name="riferimenti">
+                        <field name="posizione"/>
+                        <field name="invoice_id"/>
+                        <field name="dati_fattura_TipoDocumento"/>
+                        <field name="dati_fattura_Numero"/>
+                        <field name="dati_fattura_Data"/>
+                        <field name="dati_fattura_DataRegistrazione"/>
+                    </group>
+                    <group string="Riepilogo IVA" name="riepilogo_iva">
+                        <field name="dati_fattura_iva_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="ImponibileImporto" sum="Tot Imponibile"/>
+                                <field name="Imposta" sum="Tot Imposta"/>
+                                <field name="Aliquota"/>
+                                <field name="Natura_id"/>
+                                <field name="Detraibile"/>
+                                <field name="Deducibile"/>
+                                <field name="EsigibilitaIVA"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

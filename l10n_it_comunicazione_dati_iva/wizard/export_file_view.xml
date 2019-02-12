@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="wizard_dati_iva_export_file" model="ir.ui.view">
+            <field name="name">Export file</field>
+            <field name="model">comunicazione.dati.iva.export.file</field>
+            <field name="arch" type="xml">
+                <form string="Export File">
+                    <div>
+                        <p>
+                        Clicca su <strong>Esporta</strong> per generare il file della comunicazione dati IVA.
+                        </p>
+                    </div>
+                    <footer>
+                        <button name="export"
+                                string="Esporta"
+                                type="object"
+                                class="oe_highlight"  />
+                        o
+                        <button string="Annulla" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_dati_iva_export_file_exit" model="ir.ui.view">
+            <field name="name">Export file - Eseguito</field>
+            <field name="model">comunicazione.dati.iva.export.file</field>
+            <field name="arch" type="xml">
+                <form string="Esporta">
+                    <group>
+                        <field name="file_export" readonly="1" filename="filename"/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_dati_iva_export_file" model="ir.actions.act_window">
+            <field name="name">Export file comunicazione dati IVA</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">comunicazione.dati.iva.export.file</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_dati_iva_export_file"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="value_wizard_dati_iva_export_file">
+            <field name="name">Esporta file comunicazione</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_dati_iva_export_file'))" />
+            <field name="key">action</field>
+            <field name="model">comunicazione.dati.iva</field>
+        </record>
+
+    </data>
+</openerp>
