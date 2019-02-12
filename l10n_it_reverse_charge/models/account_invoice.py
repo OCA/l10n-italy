@@ -69,7 +69,7 @@ class AccountInvoice(models.Model):
             'quantity': line.quantity,
             }
 
-    def rc_inv_vals(self, partner, account, rc_type, lines):
+    def rc_inv_vals(self, partner, account, rc_type, lines, currency):
         if self.type == 'in_invoice':
             type = 'out_invoice'
         else:
@@ -86,6 +86,7 @@ class AccountInvoice(models.Model):
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
+            'currency_id': currency.id,
             'fiscal_position_id': False,
             'payment_term_id': False,
             }
@@ -115,7 +116,6 @@ class AccountInvoice(models.Model):
 
     def compute_rc_amount_tax(self):
         rc_amount_tax = 0.0
-        round_curr = self.currency_id.round
         rc_lines = self.invoice_line_ids.filtered(lambda l: l.rc)
         for rc_line in rc_lines:
             price_unit = \
@@ -128,7 +128,14 @@ class AccountInvoice(models.Model):
                 partner=rc_line.partner_id)['taxes']
             rc_amount_tax += sum([tax['amount'] for tax in taxes])
 
-        return round_curr(rc_amount_tax)
+        # convert the amount to main company currency
+        invoice_currency = self.currency_id
+        main_currency = self.company_currency_id
+        if invoice_currency != main_currency:
+            amount_rc_tax = invoice_currency.compute(
+                amount_rc_tax, main_currency)
+
+        return amount_rc_tax
 
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
@@ -308,6 +315,7 @@ class AccountInvoice(models.Model):
             rc_partner = rc_type.partner_id
         else:
             rc_partner = self.partner_id
+        rc_currency = self.currency_id
         rc_account = rc_partner.property_account_receivable_id
 
         rc_invoice_lines = []
@@ -334,7 +342,7 @@ class AccountInvoice(models.Model):
                 rc_invoice_lines.append([0, False, rc_invoice_line])
         if rc_invoice_lines:
             inv_vals = self.rc_inv_vals(
-                rc_partner, rc_account, rc_type, rc_invoice_lines)
+                rc_partner, rc_account, rc_type, rc_invoice_lines, rc_currency)
 
             # create or write the self invoice
             if self.rc_self_invoice_id:
