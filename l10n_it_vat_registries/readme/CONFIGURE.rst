@@ -1,23 +1,23 @@
 **Italiano**
 
-E' possibile configurare quali imposte escludere dai registri (ad esempio le ritenute)
-impostando il campo dell'imposta 'Escludi dai registri IVA'
+È possibile configurare quali imposte escludere dai registri (ad esempio le ritenute)
+impostando il campo dell'imposta 'Escludere dai registri IVA'
 
 Per generare i periodi fiscali,
-aprire Contabilità > Configurazione > Contabilità > Intervalli date > Genera intervalli date.
+aprire Contabilità > Configurazione > Contabilità > Intervalli data > Generazione intervalli data.
 
-* Prefisso: Prefisso identificativo dell'anno dei periodi da generare
+* Prefisso nome intervallo: prefisso identificativo dell'anno dei periodi da generare
 * Durata: 1 mese
 * Numero di intervalli da generare: 12
-* Tipo: Creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione particolare per il tipo
-* Data di inizio: primo giorno dell'anno dei periodi da generare (ad esempio 01/01/2018)
+* Tipo: creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione particolare per il tipo
+* Data iniziale: primo giorno dell'anno dei periodi da generare (ad esempio 01/01/2018)
 
 Tramite
 Contabilità -> Configurazione -> Contabilità -> Registri IVA
 è possibile configurare i registri IVA, ad esempio 'vendite', 'acquisti' o 'corrispettivi'.
-Per associare un registro ad un registro IVA, aprire il registro tramite
+Per associare un registro contabile a un registro IVA, aprire il registro tramite
 Contabilità -> Configurazione -> Contabilità -> Registri
-ed impostare il campo 'Registro IVA'
+e impostare il campo "Registro IVA"
 
 
 **English**
@@ -28,7 +28,7 @@ setting the 'Exclude from VAT registries' field.
 In order to generate fiscal periods,
 open Accounting > Configuration > Accounting > Date range > Generate Date Ranges and select:
 
-* Prefix: Prefix identifying the year of the periods to be generated
+* Range name prefix: Prefix identifying the year of the periods to be generated
 * Duration: 1 month
 * Number of ranges to generate: 12
 * Type: Create a type or use an existing one, no specific type's configuration is required
